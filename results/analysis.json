@@ -1,0 +1,48 @@
+{
+ "damage": {
+  "T0.3_r1": {
+   "final_width_sites": 7,
+   "total_damage": 0.016536458333333334
+  },
+  "T0.3_r4": {
+   "final_width_sites": 14,
+   "total_damage": 0.030208333333333334
+  },
+  "T0.3_r16": {
+   "final_width_sites": 48,
+   "total_damage": 0.337109375
+  },
+  "T0.7_r1": {
+   "final_width_sites": 48,
+   "total_damage": 0.32578125
+  },
+  "T0.7_r4": {
+   "final_width_sites": 48,
+   "total_damage": 0.5774739583333334
+  },
+  "T0.7_r16": {
+   "final_width_sites": 48,
+   "total_damage": 0.838671875
+  },
+  "T1.5_r1": {
+   "final_width_sites": 48,
+   "total_damage": 0.893359375
+  },
+  "T1.5_r4": {
+   "final_width_sites": 48,
+   "total_damage": 0.9459635416666666
+  },
+  "T1.5_r16": {
+   "final_width_sites": 48,
+   "total_damage": 0.943359375
+  }
+ },
+ "period2_fraction": {
+  "async_T0.3": 0.05,
+  "async_T0.7": 0.0676,
+  "async_T1.0": 0.0396,
+  "sync_T0.3": 0.8379,
+  "sync_T0.7": 0.3227,
+  "sync_T1.0": 0.0872
+ }
+}

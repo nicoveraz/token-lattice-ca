@@ -1,0 +1,8 @@
+0 {"val_acc": 0.0, "val_ce": 7.638, "bigram_T0.3": 0.01, "act_T0.3": 0.999, "bigram_T0.7": 0.018, "act_T0.7": 1.0, "census_overlap50": 0.0, "census_spearman": NaN, "damage_T0.3_r1": 0.0, "melt_retention": 0.003}
+1000 {"val_acc": 0.259, "val_ce": 4.258, "bigram_T0.3": 0.945, "act_T0.3": 0.207, "bigram_T0.7": 0.919, "act_T0.7": 0.462, "census_overlap50": 0.42, "census_spearman": 0.526, "damage_T0.3_r1": 0.0, "melt_retention": 0.112}
+2000 {"val_acc": 0.292, "val_ce": 3.95, "bigram_T0.3": 1.0, "act_T0.3": 0.185, "bigram_T0.7": 0.971, "act_T0.7": 0.615, "census_overlap50": 0.4, "census_spearman": 0.527, "damage_T0.3_r1": 0.0, "melt_retention": 0.216}
+3000 {"val_acc": 0.293, "val_ce": 3.877, "bigram_T0.3": 1.0, "act_T0.3": 0.226, "bigram_T0.7": 0.958, "act_T0.7": 0.665, "census_overlap50": 0.36, "census_spearman": 0.513, "damage_T0.3_r1": 0.0, "melt_retention": 0.112}
+4000 {"val_acc": 0.298, "val_ce": 3.818, "bigram_T0.3": 1.0, "act_T0.3": 0.191, "bigram_T0.7": 0.971, "act_T0.7": 0.595, "census_overlap50": 0.48, "census_spearman": 0.543, "damage_T0.3_r1": 0.0, "melt_retention": 0.154}
+5000 {"val_acc": 0.307, "val_ce": 3.762, "bigram_T0.3": 1.0, "act_T0.3": 0.164, "bigram_T0.7": 0.971, "act_T0.7": 0.54, "census_overlap50": 0.48, "census_spearman": 0.613, "damage_T0.3_r1": 0.0, "melt_retention": 0.169}
+6000 {"val_acc": 0.316, "val_ce": 3.743, "bigram_T0.3": 1.0, "act_T0.3": 0.181, "bigram_T0.7": 0.969, "act_T0.7": 0.608, "census_overlap50": 0.5, "census_spearman": 0.58, "damage_T0.3_r1": 0.0, "melt_retention": 0.143}
+CRYSTAL DONE

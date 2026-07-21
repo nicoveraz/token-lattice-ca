@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtualenv
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# HuggingFace / torch caches (Phase 3) — keep out of the repo
+hf_cache/
+*.pt
+
+# Scratch
+scratch/
+*.tmp
+
+# Note: ckpt/ (0.42M-param checkpoints), data/, results/, and fig/ ARE tracked
+# on purpose — the pilot must be reproducible without retraining.
