@@ -1,0 +1,13 @@
+T=0.3 model-diff step0: d5=0.997 d20=1.000 dEnd=1.000
+T=0.3 model-diff step1000: d5=0.746 d20=0.827 dEnd=0.855
+T=0.3 model-diff step3000: d5=0.645 d20=0.773 dEnd=0.771
+T=0.3 model-diff step5000: d5=0.659 d20=0.775 dEnd=0.811
+T=0.3 NULL max divergence = 0.000000
+T=0.3 apparatus (CDF perm): d5=0.625 d20=0.686 dEnd=0.742
+T=0.7 model-diff step0: d5=0.997 d20=1.000 dEnd=1.000
+T=0.7 model-diff step1000: d5=0.829 d20=0.865 dEnd=0.883
+T=0.7 model-diff step3000: d5=0.814 d20=0.871 dEnd=0.870
+T=0.7 model-diff step5000: d5=0.828 d20=0.895 dEnd=0.891
+T=0.7 NULL max divergence = 0.000000
+T=0.7 apparatus (CDF perm): d5=0.887 d20=0.915 dEnd=0.943
+DIFFERENTIAL DONE

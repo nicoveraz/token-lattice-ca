@@ -28,3 +28,4 @@
 {"r": 2, "T": 1.0, "mode": "sync", "act_final": 0.9736979166666668, "entropy_final": 4.816051484271764, "distinct_final": 0.71875, "bigram_final": 0.5885416666666666, "frozen_frac": 0.0, "secs": 5.4}
 {"r": 2, "T": 1.5, "mode": "sync", "act_final": 0.9953125, "entropy_final": 5.361591569703403, "distinct_final": 0.8958333333333333, "bigram_final": 0.3307291666666667, "frozen_frac": 0.0, "secs": 4.4}
 {"r": 2, "T": 2.5, "mode": "sync", "act_final": 0.9989583333333332, "entropy_final": 5.538087500721156, "distinct_final": 0.9765625, "bigram_final": 0.1484375, "frozen_frac": 0.0, "secs": 5.2}
+SWEEP DONE

@@ -1,0 +1,13 @@
+>>> sweep : .venv/bin/python experiments/sweep.py
+sweep             219 s   OK
+>>> census : .venv/bin/python experiments/census.py
+census             92 s   OK
+>>> damage : .venv/bin/python experiments/damage.py
+damage            166 s   OK
+>>> differential : .venv/bin/python experiments/differential.py
+differential       57 s   OK
+>>> crystal : .venv/bin/python experiments/crystal.py
+crystal           132 s   OK
+>>> analyze_figs : .venv/bin/python experiments/analyze_figs.py
+analyze_figs        3 s   OK
+PHASE1_CHAIN_DONE

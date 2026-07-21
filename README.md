@@ -17,8 +17,8 @@ tiny-transformer pilot; F10+ for real pretrained MLMs).
 src/           library
   model.py       tiny bidirectional transformer (the CA rule family p_r)
   ca.py          the automaton: ring, async/sync Glauber, CRN sampling, metrics
-  vocab.py       word-level vocab builder (pilot); see bpe.py for the BPE variant (Phase 2)
 experiments/   runnable pipeline steps (run from repo root)
+  vocab.py       word-level vocab builder (pilot); see bpe.py for the BPE variant (Phase 2)
   train.py       train the windowed conditional model on tinyshakespeare
   sweep.py       coarse T×r phase sweep (async + one sync row)
   census.py      attractor census + corpus recovery + melting + cycle check
@@ -83,16 +83,34 @@ export JAX_PLATFORMS=cpu
 .venv/bin/python experiments/crystal_fig.py  # -> fig/crystallization.png
 ```
 
-## Runtimes (M1 Pro, CPU JAX)
+## Runtimes (M1 Pro, 16 GB, CPU JAX)
 
-_(filled in per phase as runs complete — see the runtime table below)_
+Phase 1 full reproduction chain: **≈ 11 min** wall (checkpoints provided, so
+`train.py` is not part of it).
 
 | Step | Command | Wall time |
 |------|---------|-----------|
-| train | `experiments/train.py` | _TBD_ |
-| sweep | `experiments/sweep.py` | _TBD_ |
-| census | `experiments/census.py` | _TBD_ |
-| damage | `experiments/damage.py` | _TBD_ |
-| crystal | `experiments/crystal.py` | _TBD_ |
-| differential | `experiments/differential.py` | _TBD_ |
-| figures | `analyze_figs.py` + `crystal_fig.py` | _TBD_ |
+| vocab | `experiments/vocab.py` | ~2 s |
+| train | `experiments/train.py` | not run in repro (ckpt/ provided; ~20–30 min to regenerate) |
+| sweep | `experiments/sweep.py` | 219 s |
+| census | `experiments/census.py` | 92 s |
+| damage | `experiments/damage.py` | 166 s |
+| differential | `experiments/differential.py` | 57 s |
+| crystal | `experiments/crystal.py` | 132 s |
+| figures | `experiments/analyze_figs.py` | 3 s |
+| **chain total** | `bash experiments/_run_phase1.sh` | **≈ 669 s (11.2 min)** |
+
+Reproduction is faithful: the order parameter matches the pilot to within
+`max|Δ| = 0.034` over all (r,T); T=0.3 sweeps are bit-identical (peaked low-T
+sampling is robust to BLAS drift), higher T drifts slightly. F1–F9 confirmed
+qualitatively (see `results/logs_phase1/` and `experiments/_compare_phase1.py`).
+
+### Known code↔results mismatch (resolved in Phase 2)
+
+The provided `crystal.py` is an earlier snapshot than its committed outputs: it
+emits only single-site `damage_T0.3_r1` (all-or-nothing, ≈0), while the committed
+`results/crystal.json` and `crystal_fig.py` use a 3-site **block-flip + ignition**
+damage probe (`bdmg_*`, F8: 0.833 at step 0 → 0.055 at step 1000). F7's
+order/census/val crystallization reproduces exactly; the block-damage probe is
+rebuilt as the hardened default in Phase 2 (block flips, B≥64, ignition
+probability reported separately).
