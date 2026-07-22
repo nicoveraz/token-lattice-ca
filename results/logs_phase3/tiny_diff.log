@@ -1,0 +1,21 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 17929.60it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] null_T0.8_r2: traj_d=0.0 delta_order=0.0 (oA=0.3479 oB=0.3479)
+[tiny] apparatus:order_T0.8_r2: traj_d=0.9505 delta_order=0.0174 (oA=0.3479 oB=0.3652)
+[tiny] apparatus:cdfperm_T0.8_r2: traj_d=0.9648 delta_order=0.0063 (oA=0.3479 oB=0.3416)
+[tiny] apparatus:scheme_T0.8_r2: traj_d=0.9648 delta_order=0.0757 (oA=0.3479 oB=0.4236)
+[tiny] null_T1.3_r2: traj_d=0.0 delta_order=0.0 (oA=0.0814 oB=0.0814)
+[tiny] apparatus:order_T1.3_r2: traj_d=1.0 delta_order=0.0137 (oA=0.0814 oB=0.0677)
+[tiny] apparatus:cdfperm_T1.3_r2: traj_d=1.0 delta_order=0.0124 (oA=0.0814 oB=0.069)
+[tiny] apparatus:scheme_T1.3_r2: traj_d=0.9987 delta_order=0.0078 (oA=0.0814 oB=0.0892)
+DIFFERENTIAL DONE (130s)

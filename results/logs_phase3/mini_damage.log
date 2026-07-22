@@ -1,0 +1,24 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 26911.53it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-mini
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[mini] cone T=1.0 r= 1: v=1.69 sites/sweep mean_dmg=0.992 P_ign=1.000 (56s)
+[mini] cone T=1.0 r= 2: v=3.57 sites/sweep mean_dmg=0.953 P_ign=1.000 (60s)
+[mini] cone T=1.0 r= 4: v=7.70 sites/sweep mean_dmg=0.959 P_ign=1.000 (65s)
+[mini] cone T=1.0 r= 8: v=11.50 sites/sweep mean_dmg=0.979 P_ign=1.000 (69s)
+[mini] cone T=1.0 r=16: v=11.50 sites/sweep mean_dmg=0.915 P_ign=0.969 (73s)
+[mini] heal r=4 T=0.5: mean_dmg=0.508 P_ign=0.844 spread=0.602 (58s)
+[mini] heal r=4 T=0.8: mean_dmg=0.842 P_ign=0.906 spread=0.929 (57s)
+[mini] heal r=4 T=1.0: mean_dmg=0.959 P_ign=1.000 spread=0.959 (58s)
+[mini] heal r=4 T=1.3: mean_dmg=0.995 P_ign=1.000 spread=0.995 (58s)
+[mini] heal r=4 T=1.6: mean_dmg=0.995 P_ign=1.000 spread=0.995 (57s)
+[mini] heal r=4 T=2.0: mean_dmg=0.997 P_ign=1.000 spread=0.997 (57s)
+[mini] DAMAGE DONE (667s)

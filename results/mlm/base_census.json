@@ -1,0 +1,60 @@
+{
+ "0.7": {
+  "overlap50": 0.04,
+  "spearman": 0.20635280905654016,
+  "shared": 800,
+  "baseline_overlap50": 0.0,
+  "secs": 47.4,
+  "top_trigrams": [
+   "...",
+   ". a.",
+   ". c.",
+   ". p.",
+   ". i.",
+   ". m.",
+   ". s.",
+   ". o.",
+   ". e.",
+   ", p.",
+   "d ) draw",
+   ". b.",
+   ". r.",
+   ". d.",
+   "( d )"
+  ],
+  "examples": [
+   ", i don ' t. f. on this page is written by christian for mother. 1. will i do not live forever... i finally told me what he hoped to increase access to the trampoline, i told you he meant",
+   "tibetan, nepal, china : yunnan, sichuan, china...................... -. : yes. thank you, too, now it is found in",
+   ", no matter what it is approved by parliament, he was coming was up was a man who wanted to kiss her hard, 2006 - 07 - 0, no. 1 % of those who give they always french and spanish, portuguese, italian"
+  ]
+ },
+ "1.0": {
+  "overlap50": 0.04,
+  "spearman": 0.18154487691765808,
+  "shared": 535,
+  "baseline_overlap50": 0.0,
+  "secs": 45.6,
+  "top_trigrams": [
+   "( d )",
+   ") draw (",
+   "d ) draw",
+   "( r )",
+   "draw ( d",
+   "( 2 )",
+   ") - (",
+   "...",
+   "r ) relegated",
+   "( 1 )",
+   "( q )",
+   ") ( d",
+   ") ( r",
+   "( s )",
+   "( c )"
+  ],
+  "examples": [
+   ": user account of the degree o is a game is still being quoted as : halt justice kintyre ) instrumental ( 1979 ) ( n ) = second highest red stripe in the right arm he could fly to burkina faso : golden stamina",
+   "to a total of : 879 / 15 january in inner city o ' connors church. org ( z ) ( 1967 ) - promoted - secretary - general aiken green ; bright radiator peat ii is curious regarding pervading",
+   "von bois ejected it in three layers in area 30. c plus deus siamese, inco. i mean make, which is colored as ( prostata - - where am i the grim rain of the 1950s - kamakop"
+  ]
+ }
+}

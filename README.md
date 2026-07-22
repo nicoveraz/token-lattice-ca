@@ -148,3 +148,38 @@ Key Phase-2 outcomes: `<unk>` artifact removed (word-level top attractors were
 5-seed error bars (max std 0.026); **the temperature "transition" is a finite-size
 crossover** (χ_peak ∝ 1/N, curves overlay — F12); block-flip ignition probability
 separates cleanly from conditional spread (F13).
+
+## Real pretrained MLMs (Phase 3)
+
+Ports the CA rule to HuggingFace masked LMs (bert-tiny → bert-mini →
+bert-base-uncased; fp16 on MPS). See findings **F14–F19**. Needs `torch`,
+`transformers`, `datasets` (Phase-3 deps above). Models cache to `hf_cache/`
+(gitignored). All three share the bert-base-uncased vocab, so one tokenizer serves
+all; bert-tiny/mini load via the explicit `BertForMaskedLM` class (their configs
+lack `model_type`).
+
+```bash
+export HF_HOME=./hf_cache TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=1
+.venv/bin/python experiments/wikitext_ref.py         # -> data_mlm/ (WikiText-103 proxy corpus)
+.venv/bin/python experiments/mlm_smoke.py            # sanity: CA on bert-tiny + null test
+caffeinate -i bash experiments/_run_phase3.sh        # tiny+mini full, base reduced, model arms
+.venv/bin/python experiments/analyze_figs_phase3.py  # -> fig/mlm_*.png, analysis_phase3.json
+```
+
+`_run_phase3.sh` is idempotent (skips any probe whose json exists) — safe to
+resume. Wrap it in `caffeinate -i` so idle sleep doesn't kill the long base run.
+
+| Model | sweep | damage | census | diff | notes |
+|-------|-------|--------|--------|------|-------|
+| bert-tiny (2L/128) | ~400 s | 551 s | 49 s | 133 s | B=16–32, sweeps 40 |
+| bert-mini (4L/256) | 795 s | 674 s | 83 s | 247 s | B=16–32, sweeps 40 |
+| bert-base (12L/768)| 992 s | 1405 s | 100 s | 339 s | B=12–24, sweeps 25–30 (reduced) |
+| model arms | — | — | — | 3×~60 s | tiny/mini, mini/base, tiny/base |
+
+**Phase 3 total ≈ 100 min** wall on M1 (fp16/MPS). Headlines: instrument ports and
+the **null CRN coupling stays exactly 0** (F14); real MLMs are **not radius-blind**
+(F15); **light cones replicate, velocity ∝ r and model-invariant** (F16); **no
+strong self-healing phase** — real MLMs are far more damage-fragile than the toy,
+boundary below the τ≈1.5–2 full-context crossover (F17); differential certification
+holds, but the **special-token scheme is a first-class apparatus factor** (F18);
+proxy census recovers WikiText's format skeleton, improving with scale (F19).

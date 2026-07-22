@@ -1,0 +1,14 @@
+{
+ "model:tiny_vs_base_T0.8": {
+  "traj_d_end": 0.9861,
+  "order_a": 0.3681,
+  "order_b": 0.4719,
+  "delta_order": 0.1039
+ },
+ "model:tiny_vs_base_T1.3": {
+  "traj_d_end": 0.9948,
+  "order_a": 0.0819,
+  "order_b": 0.11,
+  "delta_order": 0.0281
+ }
+}

@@ -1,0 +1,27 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 9939.46it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[base] census T=0.7: overlap50=0.040 rho=0.206 shared=800 baseline=0.000 (47.4s)
+       '...'
+       '. a.'
+       '. c.'
+       '. p.'
+       '. i.'
+       '. m.'
+[base] census T=1.0: overlap50=0.040 rho=0.182 shared=535 baseline=0.000 (45.6s)
+       '( d )'
+       ') draw ('
+       'd ) draw'
+       '( r )'
+       'draw ( d'
+       '( 2 )'
+[base] CENSUS DONE (93s)

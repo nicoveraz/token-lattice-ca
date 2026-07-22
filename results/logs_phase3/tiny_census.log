@@ -1,0 +1,27 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 23278.18it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] census T=0.7: overlap50=0.020 rho=0.144 shared=386 baseline=0.000 (21.2s)
+       '† † †'
+       '##osphos'
+       '##phosph'
+       '[ [ ]'
+       '[ ] ]'
+       '] [ ['
+[tiny] census T=1.0: overlap50=0.000 rho=-0.111 shared=154 baseline=0.000 (20.8s)
+       '##phosph'
+       '##osphos'
+       '( 2008 )'
+       '( 2009 )'
+       '( 2005 )'
+       '( 2006 )'
+[tiny] CENSUS DONE (42s)

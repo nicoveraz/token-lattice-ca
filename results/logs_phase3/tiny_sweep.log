@@ -1,0 +1,48 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 22369.62it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] r= 1 T=0.5: order=0.510 k2=0.510 k3=0.029 k4=0.005 act=0.058 (11.8s)
+[tiny] r= 1 T=0.8: order=0.309 k2=0.309 k3=0.012 k4=0.000 act=0.310 (11.2s)
+[tiny] r= 1 T=1.0: order=0.126 k2=0.126 k3=0.004 k4=0.001 act=0.839 (11.6s)
+[tiny] r= 1 T=1.3: order=0.066 k2=0.066 k3=0.004 k4=0.000 act=0.988 (11.6s)
+[tiny] r= 1 T=1.6: order=0.031 k2=0.031 k3=0.000 k4=0.000 act=0.997 (11.5s)
+[tiny] r= 1 T=2.0: order=0.014 k2=0.014 k3=0.000 k4=0.000 act=0.999 (11.4s)
+[tiny] r= 1 T=2.5: order=0.000 k2=0.000 k3=0.000 k4=0.000 act=1.000 (11.4s)
+[tiny] r= 2 T=0.5: order=0.417 k2=0.417 k3=0.115 k4=0.025 act=0.195 (11.6s)
+[tiny] r= 2 T=0.8: order=0.408 k2=0.408 k3=0.087 k4=0.004 act=0.344 (11.6s)
+[tiny] r= 2 T=1.0: order=0.320 k2=0.320 k3=0.065 k4=0.001 act=0.533 (11.4s)
+[tiny] r= 2 T=1.3: order=0.059 k2=0.059 k3=0.003 k4=0.000 act=0.985 (12.2s)
+[tiny] r= 2 T=1.6: order=0.031 k2=0.031 k3=0.004 k4=0.000 act=0.998 (11.6s)
+[tiny] r= 2 T=2.0: order=0.012 k2=0.012 k3=0.000 k4=0.000 act=1.000 (12.7s)
+[tiny] r= 2 T=2.5: order=0.007 k2=0.007 k3=0.000 k4=0.000 act=1.000 (11.6s)
+[tiny] r= 4 T=0.5: order=0.423 k2=0.423 k3=0.116 k4=0.047 act=0.153 (12.8s)
+[tiny] r= 4 T=0.8: order=0.198 k2=0.198 k3=0.038 k4=0.008 act=0.267 (12.8s)
+[tiny] r= 4 T=1.0: order=0.229 k2=0.229 k3=0.029 k4=0.004 act=0.668 (12.2s)
+[tiny] r= 4 T=1.3: order=0.094 k2=0.094 k3=0.007 k4=0.000 act=0.969 (12.3s)
+[tiny] r= 4 T=1.6: order=0.038 k2=0.038 k3=0.000 k4=0.000 act=0.998 (11.7s)
+[tiny] r= 4 T=2.0: order=0.014 k2=0.014 k3=0.000 k4=0.000 act=1.000 (11.7s)
+[tiny] r= 4 T=2.5: order=0.007 k2=0.007 k3=0.000 k4=0.000 act=1.000 (11.6s)
+[tiny] r= 8 T=0.5: order=0.435 k2=0.435 k3=0.276 k4=0.220 act=0.089 (11.9s)
+[tiny] r= 8 T=0.8: order=0.401 k2=0.401 k3=0.135 k4=0.070 act=0.363 (10.6s)
+[tiny] r= 8 T=1.0: order=0.286 k2=0.286 k3=0.051 k4=0.010 act=0.618 (10.4s)
+[tiny] r= 8 T=1.3: order=0.105 k2=0.105 k3=0.016 k4=0.000 act=0.975 (12.4s)
+[tiny] r= 8 T=1.6: order=0.027 k2=0.027 k3=0.000 k4=0.000 act=0.996 (10.7s)
+[tiny] r= 8 T=2.0: order=0.010 k2=0.010 k3=0.000 k4=0.000 act=0.999 (10.7s)
+[tiny] r= 8 T=2.5: order=0.005 k2=0.005 k3=0.000 k4=0.000 act=1.000 (13.2s)
+[tiny] r=16 T=0.5: order=0.445 k2=0.445 k3=0.118 k4=0.064 act=0.107 (13.4s)
+[tiny] r=16 T=0.8: order=0.344 k2=0.344 k3=0.091 k4=0.005 act=0.316 (13.3s)
+[tiny] r=16 T=1.0: order=0.302 k2=0.302 k3=0.056 k4=0.003 act=0.594 (13.0s)
+[tiny] r=16 T=1.3: order=0.121 k2=0.121 k3=0.004 k4=0.000 act=0.984 (12.2s)
+[tiny] r=16 T=1.6: order=0.033 k2=0.033 k3=0.000 k4=0.000 act=0.998 (12.6s)
+[tiny] r=16 T=2.0: order=0.008 k2=0.008 k3=0.001 k4=0.000 act=0.999 (12.1s)
+[tiny] r=16 T=2.5: order=0.007 k2=0.007 k3=0.000 k4=0.000 act=1.000 (12.3s)
+[tiny] SWEEP DONE (417s)

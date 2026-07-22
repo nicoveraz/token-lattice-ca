@@ -150,6 +150,83 @@ damage collapses to 0.086 (P_ignite 0.58) as bigram order jumps 0.01→0.945 —
 contained conditional spread. (`fig/damage_ignition.png`, `fig/crystallization.png`,
 `results/damage_block.json`)
 
+## Phase 3 findings — real pretrained MLMs (the actual test)
+
+The instrument is ported to HuggingFace masked LMs (prajjwal1/bert-tiny 2L/128H,
+prajjwal1/bert-mini 4L/256H, bert-base-uncased 12L/768H; fp16 on MPS; shared
+bert-base-uncased WordPiece vocab, 30522). The rule wraps the 2r+1 window in
+[CLS]…[SEP] with the center masked (an *apparatus* choice; a no-special-tokens
+variant is in the apparatus arm). Census validation is now **proxy-based** against
+a WikiText-103 slice (238k tokens) — BERT was not trained on WikiText, so
+overlap/ρ are a lower bound on "recovers natural English", not ground truth.
+
+**F14 — The CA instrument ports cleanly to real MLMs and the CRN harness stays
+exactly zero.** All three models drive the ring CA on MPS; coupled twin runs
+sharing model, init, order, and uniforms diverge by **exactly 0** (the null test,
+on the torch path too). Low-T lattices are locally coherent English (bert-base at
+T=0.7: *"i don't. … is written by christian for mother. … he hoped to increase
+access to the trampoline"*), high-T is token soup. The instrument works.
+(`experiments/mlm_ca.py`, `mlm_smoke.py`)
+
+**F15 — Real MLMs are NOT radius-blind (contrast with toy F2).** Where the toy's
+equilibrium statistics collapsed across r=1…16, the MLMs' do not. Local bigram
+order is already r-dependent for the larger models (k2 spread across r = 0.09 tiny,
+0.27 mini, 0.18 base), and longer-range corpus consistency (k3, k4 overlap) rises
+with r and peaks at an *intermediate* radius (r≈4 for mini, r≈8 for tiny/base)
+before falling at r=16 — larger windows can build longer-range structure, but a
+too-large window relative to N=48 degrades it. Caveat: the k-gram overlap conflates
+"corpus-consistent long-range structure" with repetitive attractor loops (tiny's
+high k4≈0.22 at r=8 owes partly to repeats like "hong kong hong kong"), so read the
+*presence of r-dependence* as the finding, not the absolute magnitudes.
+(`fig/mlm_radius.png`, `results/mlm/*_sweep.json`)
+
+**F16 — Damage light cones replicate on real MLMs, and the front velocity is
+model-invariant (set by r, not scale).** Block-flip CRN cones give a front velocity
+of **1.6 → 3.5 → 7.7 → 11.5 → 11.5 sites/sweep for r = 1,2,4,8,16, essentially
+identical across tiny/mini/base** (saturating at ≈N/2 per sweep once r≥8 fills the
+ring in ~2 sweeps). The toy's F2 light cone (velocity∝r) reproduces on real models,
+and the velocity is an interaction-range (apparatus) property independent of model
+scale. (`fig/mlm_damage.png` left)
+
+**F17 — Real MLMs lack a strong self-healing ordered phase in the radius-windowed
+CA; the healing/spreading boundary sits *below* the full-context τ≈1.5–2 crossover.**
+At r=4 the mean block-flip damage never heals to near-zero even at the lowest T
+tested: T=0.5 gives mean damage 0.39 (tiny) / ~0.58 (mini, base), rising to ≈1.0 by
+T≈1.3. So the healing→spreading boundary is T≈0.5–0.8, whereas the toy healed to
+0.02–0.03 (T=0.3, r≤4) — the real MLMs are markedly **more damage-fragile**. This
+sits well below the slow/fast-mixing crossover τ≈1.5–2 reported for *full-context*
+MLM-Glauber (arXiv:2605.16378). The setups differ deliberately — they condition on
+the full sequence, we condition on a radius-r window — and the comparison suggests
+that removing long-range context (windowing) destabilizes the dynamics and pushes
+the fragility boundary to lower T. This is the clearest divergence from the toy.
+(`fig/mlm_damage.png` right)
+
+**F18 — Differential certification (F9) holds on real MLMs and exposes scale-
+dependent *apparatus* sensitivity.** Statistics-level Δ(order parameter): the null
+arm is exactly 0 for all three models; distribution-preserving apparatus swaps
+(update order, CDF-ordering) sit at a floor of Δ≈0.009–0.021; **model** swaps move
+it above the floor (tiny↔mini 0.072, tiny↔base 0.066, mini↔base 0.023) — so the
+certification rule (a reading is model signal iff it nulls under apparatus swaps and
+moves under model swaps) is satisfiable. Two cautions: (i) tiny→mini changes the CA
+equilibrium *more* than mini→base (0.072 vs 0.023) — the dynamical structure
+saturates early with scale, echoing F7 on the training axis; (ii) the special-token
+scheme is **not** a negligible apparatus — swapping CLS/SEP for no-special-tokens
+moves Δorder by 0.042 (tiny), **0.135 (mini)**, 0.045 (base), i.e. for mini the
+windowing choice moves the order parameter *more than a model change does*. Headline
+claims must therefore hold the special-token scheme fixed and be certified against
+it. (`fig/mlm_differential.png`, `results/mlm/*_diff.json`, `model_arm_*.json`)
+
+**F19 — Proxy census: scale improves recovery, and bert-base recovers WikiText's
+*format skeleton* — the same phenomenon as the toy's Shakespeare skeleton (F3).**
+Top-50 trigram overlap with the WikiText proxy is low for all (0.02–0.04, vs the
+toy's ground-truth 0.40–0.60) but Spearman ρ improves with scale (0.14 tiny → 0.21
+base) and bert-base's lattices are coherent English. Its deepest attractors are
+WikiText's format markers (abbreviation/list patterns ". a.", ". c.", sentence
+boundaries) — structurally the same "deepest prior = document format skeleton"
+result as the toy's speaker-name+colon+newline (F3), now on a real model. The low
+absolute overlap is the stated proxy limitation, not weak recovery.
+(`results/mlm/*_census.json`)
+
 ## Caveats
 
 The Phase-2 caveats below are now *addressed*: seeds are swept (F11, ≥5), the

@@ -1,0 +1,39 @@
+SKIP tiny_sweep (exists)
+>>> tiny_damage : .venv/bin/python experiments/mlm_damage.py --model tiny --sweeps 40 --B 32
+tiny_damage               551 s   OK
+>>> tiny_census : .venv/bin/python experiments/mlm_census.py --model tiny --sweeps 60 --B 24
+tiny_census                49 s   OK
+>>> tiny_diff : .venv/bin/python experiments/mlm_differential.py --model tiny --sweeps 30 --B 16
+tiny_diff                 133 s   OK
+>>> mini_sweep : .venv/bin/python experiments/mlm_sweep.py --model mini --sweeps 40 --B 16
+mini_sweep                795 s   OK
+>>> mini_damage : .venv/bin/python experiments/mlm_damage.py --model mini --sweeps 40 --B 32
+mini_damage               674 s   OK
+>>> mini_census : .venv/bin/python experiments/mlm_census.py --model mini --sweeps 60 --B 24
+mini_census                83 s   OK
+>>> mini_diff : .venv/bin/python experiments/mlm_differential.py --model mini --sweeps 30 --B 16
+mini_diff                 247 s   OK
+>>> base_sweep : .venv/bin/python experiments/mlm_sweep.py --model base --sweeps 25 --B 12
+SKIP tiny_sweep (exists)
+SKIP tiny_damage (exists)
+SKIP tiny_census (exists)
+SKIP tiny_diff (exists)
+SKIP mini_sweep (exists)
+SKIP mini_damage (exists)
+SKIP mini_census (exists)
+SKIP mini_diff (exists)
+>>> base_sweep : .venv/bin/python experiments/mlm_sweep.py --model base --sweeps 25 --B 12
+base_sweep                992 s   OK
+>>> base_damage : .venv/bin/python experiments/mlm_damage.py --model base --sweeps 30 --B 24
+base_damage              1405 s   OK
+>>> base_census : .venv/bin/python experiments/mlm_census.py --model base --sweeps 45 --B 16
+base_census               100 s   OK
+>>> base_diff : .venv/bin/python experiments/mlm_differential.py --model base --sweeps 24 --B 12
+base_diff                 339 s   OK
+>>> arm_tiny_mini : .venv/bin/python experiments/mlm_differential.py --pair tiny,mini --sweeps 30 --B 16
+arm_tiny_mini              56 s   OK
+>>> arm_mini_base : .venv/bin/python experiments/mlm_differential.py --pair mini,base --sweeps 24 --B 12
+arm_mini_base              72 s   OK
+>>> arm_tiny_base : .venv/bin/python experiments/mlm_differential.py --pair tiny,base --sweeps 24 --B 12
+arm_tiny_base              57 s   OK
+PHASE3_CHAIN_DONE

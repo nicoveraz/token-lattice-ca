@@ -1,0 +1,50 @@
+{
+ "null_T0.8_r2": {
+  "traj_d_end": 0.0,
+  "order_a": 0.3479,
+  "order_b": 0.3479,
+  "delta_order": 0.0
+ },
+ "apparatus:order_T0.8_r2": {
+  "traj_d_end": 0.9505,
+  "order_a": 0.3479,
+  "order_b": 0.3652,
+  "delta_order": 0.0174
+ },
+ "apparatus:cdfperm_T0.8_r2": {
+  "traj_d_end": 0.9648,
+  "order_a": 0.3479,
+  "order_b": 0.3416,
+  "delta_order": 0.0063
+ },
+ "apparatus:scheme_T0.8_r2": {
+  "traj_d_end": 0.9648,
+  "order_a": 0.3479,
+  "order_b": 0.4236,
+  "delta_order": 0.0757
+ },
+ "null_T1.3_r2": {
+  "traj_d_end": 0.0,
+  "order_a": 0.0814,
+  "order_b": 0.0814,
+  "delta_order": 0.0
+ },
+ "apparatus:order_T1.3_r2": {
+  "traj_d_end": 1.0,
+  "order_a": 0.0814,
+  "order_b": 0.0677,
+  "delta_order": 0.0137
+ },
+ "apparatus:cdfperm_T1.3_r2": {
+  "traj_d_end": 1.0,
+  "order_a": 0.0814,
+  "order_b": 0.069,
+  "delta_order": 0.0124
+ },
+ "apparatus:scheme_T1.3_r2": {
+  "traj_d_end": 0.9987,
+  "order_a": 0.0814,
+  "order_b": 0.0892,
+  "delta_order": 0.0078
+ }
+}

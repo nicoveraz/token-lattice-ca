@@ -1,0 +1,6 @@
+{
+ "source": "wikitext-103-raw-v1/validation",
+ "tokens": 238656,
+ "distinct": 15289,
+ "vocab": 30522
+}

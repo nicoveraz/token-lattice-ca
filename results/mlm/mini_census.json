@@ -1,0 +1,60 @@
+{
+ "0.7": {
+  "overlap50": 0.04,
+  "spearman": 0.06348143613969318,
+  "shared": 897,
+  "baseline_overlap50": 0.0,
+  "secs": 39.2,
+  "top_trigrams": [
+   "source : source",
+   ": source :",
+   "/ / /",
+   "...",
+   "( 1 )",
+   "/ 05 /",
+   "( 2 )",
+   "* * *",
+   ". s.",
+   ". c.",
+   ". source :",
+   ". a.",
+   "source source :",
+   "05 / 05",
+   ". j."
+  ],
+  "examples": [
+   ". source : source : source : source source : source : source : source : intel ) ( 2013 ) 5 ( 1 ) 0 ( 3 ) hooper ( 2 ) 0 ( 8 ) winner ( 2010 ) 1 ( 2011 ) ( 1998 )",
+   "( guest ) ( 1945 ) ( 2013 ) ( reprise ) ( 2018 ) 2008 - 09 : 05 : 05 : 02 : 05 : 00 : 00 : 00 : 30 : 2 : 1 / 2 / 1 / 2 ) ( son )",
+   "* * * * * * * * * * * a total i wished i was threatened by iucn ( iucn ) iucn ( iucn ) ( 2008 ) ( 2 ) 1 ( 2000 ) source ( source ) source : * * * * *"
+  ]
+ },
+ "1.0": {
+  "overlap50": 0.02,
+  "spearman": 0.17868897090931404,
+  "shared": 744,
+  "baseline_overlap50": 0.0,
+  "secs": 37.2,
+  "top_trigrams": [
+   "source : source",
+   ": source :",
+   "( 2 )",
+   "( 1 )",
+   "( uncredited )",
+   "( 2004 )",
+   "( 2006 )",
+   "( 2008 )",
+   "source source :",
+   "( 3 )",
+   ") ( 2",
+   "( 2010 )",
+   "( 2011 )",
+   "( 2007 )",
+   ") ( 1"
+  ],
+  "examples": [
+   "in the snow warmed his stomach occasionally remains appear at ( audition ) ( 2012 ) rt newball air a concern kept the book and mooea hasn ' t. & consulting ltd, ok, private parking, nobody ' s shows are shown",
+   "j. k. v. germanyn = the disappointing maryline blew her head that rush out of the house ( untitled ) relations ( right ) ( 1887 ) ( one ) ( intro ) ( 1890 ). source : source : source :",
+   "23 fm tar 89 oh 144 - 284 signifies a member of zimbabwe league qualifier source : source : 3, stars above the deer included baskets, trees, to the local chief mayor genras is found in the village population : vol. 11,"
+  ]
+ }
+}

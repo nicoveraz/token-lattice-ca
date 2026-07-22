@@ -1,0 +1,99 @@
+{
+ "radius_test": {
+  "tiny": {
+   "T": 0.5,
+   "k2_spread": 0.094,
+   "k4_r1": 0.005,
+   "k4_peak": 0.22,
+   "k4_peak_r": 8
+  },
+  "mini": {
+   "T": 0.5,
+   "k2_spread": 0.267,
+   "k4_r1": 0.057,
+   "k4_peak": 0.09,
+   "k4_peak_r": 4
+  },
+  "base": {
+   "T": 0.5,
+   "k2_spread": 0.181,
+   "k4_r1": 0.049,
+   "k4_peak": 0.078,
+   "k4_peak_r": 8
+  }
+ },
+ "damage": {
+  "tiny": {
+   "healing_boundary_T": 0.8,
+   "v_r1": 1.64,
+   "v_rmax": 11.5
+  },
+  "mini": {
+   "healing_boundary_T": 0.5,
+   "v_r1": 1.69,
+   "v_rmax": 11.5
+  },
+  "base": {
+   "healing_boundary_T": 0.5,
+   "v_r1": 1.65,
+   "v_rmax": 11.5
+  }
+ },
+ "differential": {
+  "tiny": {
+   "null_delta": 0.0,
+   "apparatus_delta": 0.0125
+  },
+  "mini": {
+   "null_delta": 0.0,
+   "apparatus_delta": 0.009
+  },
+  "base": {
+   "null_delta": 0.0,
+   "apparatus_delta": 0.021
+  },
+  "model_arm": {
+   "model_arm_tiny_mini": 0.0716,
+   "model_arm_mini_base": 0.0227,
+   "model_arm_tiny_base": 0.066
+  }
+ },
+ "census_proxy": {
+  "tiny": {
+   "0.7": {
+    "overlap50": 0.02,
+    "spearman": 0.1435480426262961,
+    "baseline": 0.0
+   },
+   "1.0": {
+    "overlap50": 0.0,
+    "spearman": -0.11137959366341554,
+    "baseline": 0.0
+   }
+  },
+  "mini": {
+   "0.7": {
+    "overlap50": 0.04,
+    "spearman": 0.06348143613969318,
+    "baseline": 0.0
+   },
+   "1.0": {
+    "overlap50": 0.02,
+    "spearman": 0.17868897090931404,
+    "baseline": 0.0
+   }
+  },
+  "base": {
+   "0.7": {
+    "overlap50": 0.04,
+    "spearman": 0.20635280905654016,
+    "baseline": 0.0
+   },
+   "1.0": {
+    "overlap50": 0.04,
+    "spearman": 0.18154487691765808,
+    "baseline": 0.0
+   }
+  }
+ }
+}
