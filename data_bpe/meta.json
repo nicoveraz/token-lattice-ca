@@ -1,0 +1,9 @@
+{
+ "vocab_size": 4096,
+ "tokens": 334777,
+ "train": 318039,
+ "val": 16738,
+ "coverage": 1.0,
+ "mask_id": 0,
+ "compression_chars_per_token": 3.332
+}

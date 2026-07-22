@@ -9,7 +9,7 @@ import jax
 from model import init_params, load, save
 from ca import run, metrics
 from census import ngrams, validation, melt
-from damage import damage
+from damage import damage, block_damage
 from train import batch_windows, eval_step, val_ids
 
 CKPTS = [("0", None)] + [(str(s), f"ckpt/step{s}.npz") for s in
@@ -36,9 +36,15 @@ def probe(params, tag):
     tri = ngrams(o["snaps"][-30:].reshape(-1, 48).tolist(), 3)
     ov, rho, nsh = validation(tri, corpus_tri)
     out["census_overlap50"], out["census_spearman"] = ov, rho
-    # damage healing at T=0.3, r=1
-    cone = damage(params, 0.3, 1, B=8, N=48, sweeps=40, seed=41)
-    out["damage_T0.3_r1"] = float(cone[-5:].mean())
+    # damage healing: 3-site block flip (B=64), ignition prob reported separately
+    # from conditional spread (F8). Single-site kept for the all-or-nothing contrast.
+    for T in [0.3, 0.7]:
+        bd = block_damage(params, T, 1, block=3, B=64, N=48, settle=30, sweeps=40, seed=41)
+        out[f"bdmg_T{T}"] = bd["mean_damage"]
+        out[f"bdmg_T{T}_ignited"] = bd["ignition_prob"]
+        out[f"bdmg_T{T}_cond"] = bd["cond_spread"]
+        cone = damage(params, T, 1, B=16, N=48, sweeps=40, seed=41)
+        out[f"damage_T{T}_r1"] = float(cone[-5:].mean())
     # melting retention at T=0.3
     keep = melt(params, 0.3, r=2, B=8, N=48, sweeps=40, seed=43)
     out["melt_retention"] = float(keep[-1])

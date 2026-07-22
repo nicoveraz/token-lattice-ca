@@ -114,3 +114,37 @@ damage probe (`bdmg_*`, F8: 0.833 at step 0 → 0.055 at step 1000). F7's
 order/census/val crystallization reproduces exactly; the block-damage probe is
 rebuilt as the hardened default in Phase 2 (block flips, B≥64, ignition
 probability reported separately).
+
+## Harden (Phase 2)
+
+Fixes the pilot's known weaknesses: BPE vocab (kills the `<unk>` artifact),
+≥5-seed statistics with error bars, block-flip damage with ignition probability,
+and a finite-size scan. See findings **F10–F13**.
+
+```bash
+export JAX_PLATFORMS=cpu
+.venv/bin/python experiments/bpe.py                          # -> data_bpe/ (4096 byte-level BPE)
+.venv/bin/python experiments/train.py --data-dir data_bpe \
+    --ckpt-dir ckpt_bpe --vocab 4096                         # retrain on BPE (~2.3 min)
+bash experiments/_run_phase2.sh                              # census_bpe, multiseed sweep,
+                                                             # block damage, finite-size, crystal
+.venv/bin/python experiments/analyze_figs_phase2.py          # -> fig/*_multiseed, finite_size, ...
+.venv/bin/python experiments/crystal_fig.py                  # -> fig/crystallization.png (bdmg fixed)
+```
+
+| Step | Command | Wall time |
+|------|---------|-----------|
+| bpe | `experiments/bpe.py` | ~3 s |
+| train (BPE) | `train.py --data-dir data_bpe --ckpt-dir ckpt_bpe --vocab 4096` | 135 s |
+| census (BPE) | `experiments/census_bpe.py` | 70 s |
+| sweep (5-seed) | `experiments/sweep_multiseed.py` | 1871 s |
+| damage (block, B=64) | `experiments/damage.py` | 362 s |
+| finite-size | `experiments/finite_size.py` | 1920 s |
+| crystal (block+ignition) | `experiments/crystal.py` | 385 s |
+| **Phase 2 total** | | **≈ 79 min** (under the 2 h budget) |
+
+Key Phase-2 outcomes: `<unk>` artifact removed (word-level top attractors were
+11–13/15 `<unk>`-trigrams; BPE 0/15, real Shakespeare); phase curves survive
+5-seed error bars (max std 0.026); **the temperature "transition" is a finite-size
+crossover** (χ_peak ∝ 1/N, curves overlay — F12); block-flip ignition probability
+separates cleanly from conditional spread (F13).

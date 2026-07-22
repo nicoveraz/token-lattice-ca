@@ -1,0 +1,10 @@
+T0.3 r1: ignition_prob=0.516 cond_spread=0.159 mean=0.083 (33/64)  21s
+T0.3 r4: ignition_prob=0.453 cond_spread=0.274 mean=0.124 (29/64)  40s
+T0.3 r16: ignition_prob=0.719 cond_spread=0.491 mean=0.353 (46/64)  66s
+T0.7 r1: ignition_prob=0.828 cond_spread=0.598 mean=0.495 (53/64)  21s
+T0.7 r4: ignition_prob=1.000 cond_spread=0.853 mean=0.853 (64/64)  34s
+T0.7 r16: ignition_prob=1.000 cond_spread=0.851 mean=0.851 (64/64)  65s
+T1.5 r1: ignition_prob=1.000 cond_spread=0.954 mean=0.954 (64/64)  20s
+T1.5 r4: ignition_prob=1.000 cond_spread=0.950 mean=0.950 (64/64)  32s
+T1.5 r16: ignition_prob=1.000 cond_spread=0.945 mean=0.945 (64/64)  62s
+DAMAGE(block) DONE

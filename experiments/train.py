@@ -52,29 +52,48 @@ def eval_step(params, x, y, w):
     ce = -jnp.take_along_axis(logp, y[:, None], 1).mean()
     return acc, ce
 
-def main():
+def main(data_dir="data", ckpt_dir="ckpt", vocab=None, steps=None):
+    """Train the windowed conditional model. Defaults reproduce the word-level
+    pilot (vocab=2000, data/, ckpt/). Pass vocab/data_dir/ckpt_dir to train a
+    BPE model (Phase 2). Only init_params depends on vocab; forward infers the
+    output width from the param shapes, so the arch (d,h,layers) is unchanged."""
+    import os
+    global STEPS
+    if steps is not None:
+        STEPS = steps
+    os.makedirs(ckpt_dir, exist_ok=True)
+    cfg = CFG if vocab is None else {**CFG, "vocab": vocab}
+    tr = np.load(f"{data_dir}/train_ids.npy")
+    va = np.load(f"{data_dir}/val_ids.npy")
     rng = np.random.default_rng(0)
-    params = init_params(jax.random.PRNGKey(0))
+    params = init_params(jax.random.PRNGKey(0), cfg)
     zeros = jax.tree_util.tree_map(jnp.zeros_like, params)
     m, v = zeros, jax.tree_util.tree_map(jnp.zeros_like, params)
     t0 = time.time()
     for t in range(1, STEPS + 1):
         r = RADII[t % len(RADII)]
-        x, y = batch_windows(train_ids, r, BATCH, rng)
+        x, y = batch_windows(tr, r, BATCH, rng)
         params, m, v, loss = train_step(params, m, v, t, 2 * r + 1,
                                         jnp.asarray(x), jnp.asarray(y))
         if t % 250 == 0 or t == 1:
             msgs = []
             for rr in RADII:
-                xe, ye = batch_windows(val_ids, rr, 512, rng)
+                xe, ye = batch_windows(va, rr, 512, rng)
                 acc, ce = eval_step(params, jnp.asarray(xe), jnp.asarray(ye), 2 * rr + 1)
                 msgs.append(f"r{rr}:acc={float(acc):.3f}/ce={float(ce):.2f}")
             el = time.time() - t0
             print(f"step {t:5d}  loss={float(loss):.3f}  [{el:6.0f}s]  " + " ".join(msgs), flush=True)
         if t % 1000 == 0 or t == STEPS:
-            save(params, f"ckpt/step{t}.npz")
-    save(params, "ckpt/final.npz")
+            save(params, f"{ckpt_dir}/step{t}.npz")
+    save(params, f"{ckpt_dir}/final.npz")
     print("done", flush=True)
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data-dir", default="data")
+    ap.add_argument("--ckpt-dir", default="ckpt")
+    ap.add_argument("--vocab", type=int, default=None)
+    ap.add_argument("--steps", type=int, default=None)
+    a = ap.parse_args()
+    main(a.data_dir, a.ckpt_dir, a.vocab, a.steps)

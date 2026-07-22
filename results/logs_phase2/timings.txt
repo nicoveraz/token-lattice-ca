@@ -1,0 +1,12 @@
+train_bpe done in 135 s
+>>> census_bpe : .venv/bin/python experiments/census_bpe.py
+census_bpe           70 s   OK
+>>> sweep_multiseed : .venv/bin/python experiments/sweep_multiseed.py
+sweep_multiseed    1871 s   OK
+>>> damage_block : .venv/bin/python experiments/damage.py
+damage_block        362 s   OK
+>>> finite_size : .venv/bin/python experiments/finite_size.py
+finite_size        1920 s   OK
+>>> crystal_hard : .venv/bin/python experiments/crystal.py
+crystal_hard        385 s   OK
+PHASE2_CHAIN_DONE

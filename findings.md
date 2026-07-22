@@ -93,8 +93,70 @@ T=0.3; ≈ 0 at T=0.7, consistent with F7). Certification rule: a reading is mod
 signal iff it nulls under apparatus swaps and moves under model swaps.
 (`differential.py`, `results/differential.json`)
 
+## Phase 2 findings — hardening (word-level toy, still)
+
+**F10 — BPE removes the `<unk>` artifact, and reveals the pilot's low-T census
+recovery was partly artifact-to-artifact matching.** Replacing the word-level
+2000-type vocab (8% `<unk>`) with a 4096 byte-level BPE (100% coverage, no
+`<unk>`; model retrained, val masked-center acc ≈0.25–0.29) changes the census
+*qualitatively*. Word-level top-15 attractor trigrams were **11–13/15
+`<unk>`-containing** ("`<unk> , <nl>`", "`<unk> <unk> ,`", "`the <unk> <unk>`");
+since the corpus itself is 8% `<unk>`, those matched trivially and inflated the
+top-50 overlap. BPE top attractors are **0/15 artifact** and are real formulaic
+Shakespeare ("`my lord,`", "`, my lord`", the speaker-name+colon+newline
+skeleton). Raw top-50 overlap therefore *drops* at T=0.3 (0.40→0.26) — the
+artifact correction — while genuine recovery is *higher* at T=0.7 (0.50→0.60),
+and the recovery peak shifts T=1.0→T=0.7. Trigram units differ across
+tokenizations, so the number is not directly comparable; the finding is that BPE
+recovery is artifact-free and trustworthy. Confirms F3's mechanism; the fix works.
+(`fig/census_bpe.png`, `results/census_bpe.json`)
+
+**F11 — Radius collapse and the phase curves survive proper seed statistics.**
+≥5 independent seeds per condition (different init, update order, and uniform
+stream): error bars on the order parameter are tiny — std ≤0.001 deep in the
+ordered phase, peaking at only 0.026 near the drop (T≈1.25), max 0.026 over all
+conditions. The radius collapse (F2) holds: at T=1.0 the spread across r=1…16 is
+0.034, within ~2× the seed noise. The pilot's single-seed curves were not a lucky
+seed. (`fig/phase_curves_multiseed.png`, `results/sweep_multiseed.jsonl`)
+
+**F12 — The temperature "phase transition" is a finite-size CROSSOVER, not a true
+transition.** Finite-size scan N∈{48,96,192}, r=2, fine T grid, ≥5 seeds: the
+order_mean(T) curves **overlay** across N (T=1.0: 0.763 / 0.759 / 0.762), the
+maximum slope |d·order/dT| is **constant** (0.86 → 0.85 → 0.84 — no steepening),
+and the susceptibility (variance of the per-lattice order parameter across the
+ensemble) **self-averages as χ_peak ∝ 1/N** (0.0068 : 0.0035 : 0.0018 ≈ 4:2:1
+for N=48:96:192). At a genuine continuous transition the susceptibility peak would
+*grow* with N and the drop would *steepen*; here it does the opposite. So the
+T-driven order/disorder change of F1 — and the literature anchors T_c≈1
+(2406.05335) and τ≈1.5–2 (2605.16378) — are **crossover scales** at this
+radius-windowed toy scale, not critical points. Any "phase transition" language
+must be downgraded to "crossover" unless larger-N or real-model data show χ growth.
+This is the single most important correction to the pilot's framing.
+(`fig/finite_size.png`, `results/finite_size.json`)
+
+**F13 — Block-flip damage with ignition probability cleanly separates the
+all-or-nothing Bernoulli from the spread magnitude (F8 done right).** Single-site
+flips have all-or-nothing ignition (F8), so one number conflates P(ignite) with
+spread. With **3-site block flips and B=64** the two separate: in the ordered
+phase (T=0.3) ignition probability rises with radius (0.52 at r=1 → 0.72 at r=16)
+and so does conditional spread (0.16→0.49) — small-radius damage usually heals
+(mean 0.083), large-radius leaks (0.353), so interaction range is readable from
+ignition statistics; near the transition (T=0.7) ignition is 0.83 (r=1) → 1.0
+(r≥4), spread 0.60→0.85; disordered (T=1.5) ignition 1.0, spread ≈0.95. Across
+training, the healing basin forms with the grammar: the untrained rule (step 0)
+ignites **every** lattice (P=1.0, mean damage 0.88 at T=0.3); by step 1000 mean
+damage collapses to 0.086 (P_ignite 0.58) as bigram order jumps 0.01→0.945 — F8's
+"0.83→0.06" reproduced and decomposed into a falling ignition probability and a
+contained conditional spread. (`fig/damage_ignition.png`, `fig/crystallization.png`,
+`results/damage_block.json`)
+
 ## Caveats
 
+The Phase-2 caveats below are now *addressed*: seeds are swept (F11, ≥5), the
+`<unk>` census bias is removed (F10, BPE), damage uses block flips with ignition
+probability (F13), and the "transition" is re-characterized as a crossover (F12).
+Remaining: still a tiny model, single small corpus, radius-windowed conditionals
+(not full-context); the finite-size scan tops out at N=192 and T=1.5;
 Tiny model, single small corpus, N=48, B=8–32 lattices per condition, no seeds swept;
 MLM local conditionals are globally inconsistent (proven for real MLMs in 2605.16378),
 so the CA is a well-defined stochastic dynamical system but not an exact sampler of any

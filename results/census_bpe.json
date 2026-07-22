@@ -1,0 +1,111 @@
+{
+ "census": {
+  "0.3": {
+   "overlap50": 0.26,
+   "spearman": 0.34724544591492434,
+   "shared": 1922,
+   "baseline_overlap50": 0.0,
+   "secs": 25.6,
+   "top_trigrams": [
+    "', sir,'",
+    "'.\\n\\n'",
+    "' my lord,'",
+    "',\\nand'",
+    "'\\nand i'",
+    "\" o'er\"",
+    "'\\nmy lord'",
+    "', my lord'",
+    "' sir,\\n'",
+    "' lord.\\n'",
+    "'my lord,'",
+    "\"'er,\"",
+    "' my lord.'",
+    "' lord, sir'",
+    "'\\nwhy,'"
+   ],
+   "examples": [
+    "\" but my lord,\\nwhy, i'll see\\nand i know,\\nand 'tis,\\nand i have not not?\\nay, sir, sir, my lord:\\ncome, my lord,\\nand i have,\"",
+    "\"warwick:\\nand i have, let me.\\nwhy, i'll be, sir,\\nthat he o'er,\\nand i say, i know the king,\\nand there, sir, sir, my lord.\\n\"",
+    "\" sir,\\nmy lord, o'er-morrow, i know you.\\n\\nmenenius:\\nand i would i know you,\\nand i know you.\\ni'll not in my lord, the people o'er,\""
+   ]
+  },
+  "0.7": {
+   "overlap50": 0.6,
+   "spearman": 0.5042008330558918,
+   "shared": 6615,
+   "baseline_overlap50": 0.0,
+   "secs": 22.7,
+   "top_trigrams": [
+    "'.\\n\\n'",
+    "':\\ni'",
+    "'\\nmy lord'",
+    "',\\nand'",
+    "'?\\n\\n'",
+    "':\\nmy'",
+    "':\\nand'",
+    "', sir,'",
+    "'\\n\\nking'",
+    "' lord.\\n'",
+    "' my lord,'",
+    "'my lord,'",
+    "'\\nromeo:'",
+    "' you.\\n'",
+    "'romeo:\\n'"
+   ],
+   "examples": [
+    "'sir here: i come.\\nwarwick:\\no, the matter,\\nthat i tell me to be the poor piece.\\nwhat is so?\\nit, and she know\\nthe change that.\\n\\n\\nlord:\\n'",
+    "\"this give her,\\nit is she have be to live\\nmy son, my eyes.\\n\\nmadam, henry'll not a present royal health.\\n\\ngremio:\\ni please 'twere let me.\\nduke vincentio:\\n\"",
+    "\" shall fear; let thee, yet, and be\\nand, i say you, and the city. i would see it well,\\nis been.\\nols.\\nwarwick:\\nsir, tell\\n cry of't, i\""
+   ]
+  },
+  "1.0": {
+   "overlap50": 0.44,
+   "spearman": 0.44167820476287367,
+   "shared": 5134,
+   "baseline_overlap50": 0.0,
+   "secs": 19.3,
+   "top_trigrams": [
+    "'.\\n\\n'",
+    "',\\nand'",
+    "':\\ni'",
+    "'\\nduke vincentio'",
+    "'?\\n\\n'",
+    "',\\ni'",
+    "':\\nand'",
+    "'.\\ni'",
+    "'duke vincentio:'",
+    "' vincentio:\\n'",
+    "',\\nthat'",
+    "'\\no,'",
+    "',\\nthe'",
+    "'\\nwhy,'",
+    "'.\\no'"
+   ],
+   "examples": [
+    "\" prove us at that how that pray in the princess, coalilimar'd was seen by my heart of his first: ach;\\nif the party, thou other of proud reved upon the man! trues,\\nis\"",
+    "' clear\\nmake and five thing? being do noate as we may you not, nor they see himself lose\\nrifure the crown for your foe not so off edward shall not be lived? o\\nisabella:\\nwhen you lay most'",
+    "' to utterier:\\ni should do, for\\nis, this well, by him of her sovereign: nor when this warwickdards, burn; but i dear be\\nhe ancious emprining, but the commoncious it'"
+   ]
+  }
+ },
+ "vs_word_level": {
+  "0.3": {
+   "bpe_overlap": 0.26,
+   "word_overlap": 0.4,
+   "bpe_rho": 0.34724544591492434,
+   "word_rho": 0.5546104449943156
+  },
+  "0.7": {
+   "bpe_overlap": 0.6,
+   "word_overlap": 0.5,
+   "bpe_rho": 0.5042008330558918,
+   "word_rho": 0.5533398918191123
+  },
+  "1.0": {
+   "bpe_overlap": 0.44,
+   "word_overlap": 0.52,
+   "bpe_rho": 0.44167820476287367,
+   "word_rho": 0.4807009874554968
+  }
+ }
+}

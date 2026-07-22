@@ -10,6 +10,18 @@ from model import CFG, center_logits, load
 
 MASK, UNK = 0, 1
 
+# --- context (switchable so the same automaton drives word-level or BPE models) ---
+# Defaults reproduce the word-level pilot exactly. A BPE experiment sets e.g.
+#   ca.DATA_DIR = "data_bpe"; ca.VOCAB = 4096; ca.INIT_LO = 1
+# before calling run()/metrics() (byte-level BPE has no <unk>, so id 1 is a real
+# token and random init should span [1, V)).
+DATA_DIR = "data"
+VOCAB = None      # None -> fall back to CFG["vocab"]
+INIT_LO = 2       # lowest token id used for random init (skips <mask>,<unk>)
+
+def _vocab():
+    return VOCAB if VOCAB is not None else CFG["vocab"]
+
 @partial(jax.jit, static_argnums=(3,))
 def _site_probs(params, lattice, idx, w, T):
     """lattice (B,N); idx (w,) ring indices with center masked -> probs (B,V)."""
@@ -31,13 +43,13 @@ def run(params, B=8, N=48, r=2, T=1.0, sweeps=120, mode="async",
     """Returns dict with snapshots, activity, and per-sweep metrics."""
     rng = np.random.default_rng(seed)
     w = 2 * r + 1
-    V = CFG["vocab"]
+    V = _vocab()
     if init_state is not None:
         lat = init_state.copy()
     elif init == "random":
-        lat = rng.integers(2, V, size=(B, N)).astype(np.int32)
+        lat = rng.integers(INIT_LO, V, size=(B, N)).astype(np.int32)
     else:  # corpus slices
-        ids = np.load("data/train_ids.npy")
+        ids = np.load(f"{DATA_DIR}/train_ids.npy")
         starts = rng.integers(0, len(ids) - N, size=B)
         lat = np.stack([ids[s:s + N] for s in starts]).astype(np.int32)
 
@@ -72,13 +84,12 @@ def run(params, B=8, N=48, r=2, T=1.0, sweeps=120, mode="async",
                 final=lat, params_r=r, T=T, mode=mode)
 
 # ---------- metrics ----------
-_corpus_bi = None
+_corpus_bi = {}
 def corpus_bigrams():
-    global _corpus_bi
-    if _corpus_bi is None:
-        ids = np.load("data/train_ids.npy")
-        _corpus_bi = set(zip(ids[:-1].tolist(), ids[1:].tolist()))
-    return _corpus_bi
+    if DATA_DIR not in _corpus_bi:
+        ids = np.load(f"{DATA_DIR}/train_ids.npy")
+        _corpus_bi[DATA_DIR] = set(zip(ids[:-1].tolist(), ids[1:].tolist()))
+    return _corpus_bi[DATA_DIR]
 
 def metrics(lat):
     """lat (B,N) -> dict of scalars averaged over lattices."""

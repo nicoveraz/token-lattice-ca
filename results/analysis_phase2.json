@@ -1,0 +1,30 @@
+{
+ "finite_size": {
+  "chi_peak": {
+   "48": 0.00681,
+   "96": 0.00349,
+   "192": 0.00178
+  },
+  "max_slope": {
+   "48": 0.8640624999999994,
+   "96": 0.8457031250000004,
+   "192": 0.8381510416666652
+  },
+  "chi_ratio_48_over_192": 3.83,
+  "verdict": "CROSSOVER (chi_peak ~ 1/N self-averaging, drop does NOT steepen with N)"
+ },
+ "census_bpe_vs_word": {
+  "0.3": {
+   "word": 0.4,
+   "bpe": 0.26
+  },
+  "0.7": {
+   "word": 0.5,
+   "bpe": 0.6
+  },
+  "1.0": {
+   "word": 0.52,
+   "bpe": 0.44
+  }
+ }
+}

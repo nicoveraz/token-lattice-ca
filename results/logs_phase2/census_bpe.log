@@ -1,0 +1,9 @@
+BPE T=0.3: overlap50=0.260 rho=0.347 shared=1922 baseline=0.000  (25.6s)
+BPE T=0.7: overlap50=0.600 rho=0.504 shared=6615 baseline=0.000  (22.7s)
+BPE T=1.0: overlap50=0.440 rho=0.442 shared=5134 baseline=0.000  (19.3s)
+
+=== BPE vs word-level corpus recovery ===
+  T=0.3: overlap 0.400 (word) -> 0.260 (BPE)   rho 0.555 -> 0.347
+  T=0.7: overlap 0.500 (word) -> 0.600 (BPE)   rho 0.553 -> 0.504
+  T=1.0: overlap 0.520 (word) -> 0.440 (BPE)   rho 0.481 -> 0.442
+CENSUS(bpe) DONE

@@ -1,0 +1,25 @@
+N= 48 T=0.7: order=0.961 chi(var)=0.0010
+N= 48 T=0.9: order=0.843 chi(var)=0.0039
+N= 48 T=1.0: order=0.763 chi(var)=0.0051
+N= 48 T=1.1: order=0.676 chi(var)=0.0063
+N= 48 T=1.2: order=0.600 chi(var)=0.0068
+N= 48 T=1.3: order=0.528 chi(var)=0.0068
+N= 48 T=1.5: order=0.409 chi(var)=0.0066
+  -> N=48: width(0.75->0.25)=nan  chi_peak=0.00681 at T=1.2
+N= 96 T=0.7: order=0.961 chi(var)=0.0005
+N= 96 T=0.9: order=0.844 chi(var)=0.0019
+N= 96 T=1.0: order=0.759 chi(var)=0.0027
+N= 96 T=1.1: order=0.677 chi(var)=0.0029
+N= 96 T=1.2: order=0.598 chi(var)=0.0034
+N= 96 T=1.3: order=0.527 chi(var)=0.0035
+N= 96 T=1.5: order=0.409 chi(var)=0.0035
+  -> N=96: width(0.75->0.25)=nan  chi_peak=0.00349 at T=1.3
+N=192 T=0.7: order=0.962 chi(var)=0.0002
+N=192 T=0.9: order=0.844 chi(var)=0.0009
+N=192 T=1.0: order=0.762 chi(var)=0.0013
+N=192 T=1.1: order=0.678 chi(var)=0.0015
+N=192 T=1.2: order=0.601 chi(var)=0.0017
+N=192 T=1.3: order=0.528 chi(var)=0.0018
+N=192 T=1.5: order=0.410 chi(var)=0.0017
+  -> N=192: width(0.75->0.25)=nan  chi_peak=0.00178 at T=1.3
+FINITE-SIZE DONE (1919s)
