@@ -70,9 +70,10 @@ class MLMRule:
 
     # ---- the rule -----------------------------------------------------------
     @torch.no_grad()
-    def center_probs(self, win, T, scheme="cls_sep"):
+    def center_probs(self, win, T, scheme="cls_sep", as_torch=False):
         """win: (B, w) int array (any center value); center is masked here.
-        Returns probs (B, V) float32 numpy, with special/unused tokens forbidden."""
+        Returns probs (B, V), special/unused tokens forbidden. as_torch keeps it on
+        the device (avoids a (B,V) MPS->CPU transfer per site — the hot-path win)."""
         B, w = win.shape
         win = np.asarray(win, dtype=np.int64).copy()
         win[:, w // 2] = self.MASK
@@ -90,7 +91,16 @@ class MLMRule:
         logits = self.model(input_ids=ids).logits[:, cpos, :].float()
         logits[:, self._forbid_t] = -1e9
         probs = torch.softmax(logits / T, dim=-1)
-        return probs.cpu().numpy()
+        return probs if as_torch else probs.cpu().numpy()
+
+    @torch.no_grad()
+    def sample_device(self, probs_t, u):
+        """On-device inverse-CDF (CRN): probs_t (B,V) torch, u (B,) numpy -> tokens
+        (B,) numpy. Deterministic given (probs_t, u), so the null test stays exact."""
+        u_t = torch.as_tensor(u, device=self.device, dtype=probs_t.dtype).unsqueeze(1)
+        cdf = probs_t.cumsum(-1)
+        cdf = cdf / cdf[:, -1:]
+        return (cdf < u_t).sum(dim=1).to("cpu", torch.int64).numpy()
 
     def random_lattice(self, rng, B, N):
         return rng.choice(self.init_pool, size=(B, N)).astype(np.int64)
@@ -114,27 +124,29 @@ def run(rule, B=16, N=48, r=2, T=1.0, sweeps=60, mode="async", scheme="cls_sep",
         lat = init_state.copy()
     else:
         lat = rule.random_lattice(rng, B, N)
-    sample = sampler or _sample
+    dev = sampler is None                               # default path samples on-device
     snaps, activity = [lat.copy()], []
     if u_stream is None:
         u_stream = rng.random(sweeps * N * B)
     ui = 0
+
+    def step(src, i):
+        nonlocal ui
+        idx = (np.arange(i - r, i + r + 1) % N)
+        u = u_stream[ui:ui + B]; ui += B
+        if dev:
+            return rule.sample_device(rule.center_probs(src[:, idx], T, scheme, as_torch=True), u)
+        return sampler(rule.center_probs(src[:, idx], T, scheme), u)
+
     for t in range(sweeps):
         prev = lat.copy()
         if mode == "async":
-            order = rng.permutation(N)
-            for i in order:
-                idx = (np.arange(i - r, i + r + 1) % N)
-                probs = rule.center_probs(lat[:, idx], T, scheme)
-                u = u_stream[ui:ui + B]; ui += B
-                lat[:, i] = sample(probs, u)
+            for i in rng.permutation(N):
+                lat[:, i] = step(lat, i)
         else:  # sync
             newlat = lat.copy()
             for i in range(N):
-                idx = (np.arange(i - r, i + r + 1) % N)
-                probs = rule.center_probs(prev[:, idx], T, scheme)
-                u = u_stream[ui:ui + B]; ui += B
-                newlat[:, i] = sample(probs, u)
+                newlat[:, i] = step(prev, i)
             lat = newlat
         activity.append((lat != prev).mean(axis=1))
         if (t + 1) % record_every == 0:
