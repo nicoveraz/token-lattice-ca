@@ -1,0 +1,35 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 20211.30it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] r= 1 T=0.3: D=0.114±0.036 P_ign=0.43 spread=0.26
+[tiny] r= 1 T=0.5: D=0.107±0.011 P_ign=0.45 spread=0.24
+[tiny] r= 1 T=0.7: D=0.111±0.014 P_ign=0.42 spread=0.27
+[tiny] r= 1 T=0.9: D=0.655±0.052 P_ign=0.96 spread=0.68
+[tiny] r= 2 T=0.3: D=0.190±0.037 P_ign=0.72 spread=0.26
+[tiny] r= 2 T=0.5: D=0.247±0.037 P_ign=0.77 spread=0.32
+[tiny] r= 2 T=0.7: D=0.462±0.039 P_ign=0.91 spread=0.51
+[tiny] r= 2 T=0.9: D=0.673±0.014 P_ign=0.98 spread=0.69
+[tiny] r= 4 T=0.3: D=0.275±0.004 P_ign=0.79 spread=0.35
+[tiny] r= 4 T=0.5: D=0.359±0.019 P_ign=0.79 spread=0.45
+[tiny] r= 4 T=0.7: D=0.570±0.014 P_ign=0.82 spread=0.69
+[tiny] r= 4 T=0.9: D=0.811±0.042 P_ign=0.96 spread=0.85
+[tiny] r= 8 T=0.3: D=0.260±0.042 P_ign=0.68 spread=0.38
+[tiny] r= 8 T=0.5: D=0.377±0.031 P_ign=0.73 spread=0.52
+[tiny] r= 8 T=0.7: D=0.514±0.011 P_ign=0.79 spread=0.65
+[tiny] r= 8 T=0.9: D=0.697±0.057 P_ign=0.85 spread=0.81
+[tiny] r=16 T=0.3: D=0.157±0.028 P_ign=0.39 spread=0.41
+[tiny] r=16 T=0.5: D=0.251±0.037 P_ign=0.60 spread=0.42
+[tiny] r=16 T=0.7: D=0.393±0.033 P_ign=0.61 spread=0.64
+[tiny] r=16 T=0.9: D=0.603±0.042 P_ign=0.84 spread=0.72
+[tiny] xi_repair(T)={'0.3': 'all_heal', '0.5': 'all_heal', '0.7': 2.549, '0.9': 'none_heal'}
+[tiny] T_c(r)={'1': 0.843, '2': 0.736, '4': 0.633, '8': 0.68, '16': 0.802}
+[tiny] REPAIR DONE (1507s)

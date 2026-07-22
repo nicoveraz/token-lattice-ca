@@ -1,0 +1,8 @@
+{
+ "K": 60,
+ "V": 64,
+ "succ": 6,
+ "tokens": 300000,
+ "empirical_vs_P_TV": 0.0124,
+ "entropy_bits": 1.938
+}

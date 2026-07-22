@@ -1,0 +1,6 @@
+{
+ "model": "EleutherAI/pythia-160m",
+ "tokens": 250262,
+ "distinct": 17727,
+ "vocab": 50254
+}

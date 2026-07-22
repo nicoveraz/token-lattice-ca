@@ -1,0 +1,18 @@
+step     1  loss=4.193  [     1s]  r1:acc=0.000/ce=4.21 r2:acc=0.000/ce=4.20 r4:acc=0.000/ce=4.23 r8:acc=0.000/ce=4.21 r16:acc=0.000/ce=4.20
+step   250  loss=1.449  [     6s]  r1:acc=0.715/ce=1.27 r2:acc=0.717/ce=1.31 r4:acc=0.734/ce=1.21 r8:acc=0.742/ce=1.27 r16:acc=0.732/ce=1.27
+step   500  loss=0.540  [     9s]  r1:acc=0.877/ce=0.48 r2:acc=0.873/ce=0.49 r4:acc=0.902/ce=0.42 r8:acc=0.922/ce=0.38 r16:acc=0.895/ce=0.48
+step   750  loss=0.205  [    12s]  r1:acc=0.920/ce=0.31 r2:acc=0.900/ce=0.34 r4:acc=0.891/ce=0.38 r8:acc=0.908/ce=0.34 r16:acc=0.902/ce=0.36
+step  1000  loss=0.259  [    16s]  r1:acc=0.926/ce=0.26 r2:acc=0.898/ce=0.33 r4:acc=0.898/ce=0.35 r8:acc=0.922/ce=0.25 r16:acc=0.900/ce=0.31
+step  1250  loss=0.326  [    19s]  r1:acc=0.918/ce=0.30 r2:acc=0.906/ce=0.31 r4:acc=0.924/ce=0.24 r8:acc=0.926/ce=0.22 r16:acc=0.920/ce=0.25
+step  1500  loss=0.291  [    23s]  r1:acc=0.930/ce=0.23 r2:acc=0.920/ce=0.22 r4:acc=0.902/ce=0.30 r8:acc=0.916/ce=0.24 r16:acc=0.920/ce=0.25
+step  1750  loss=0.235  [    26s]  r1:acc=0.912/ce=0.24 r2:acc=0.924/ce=0.22 r4:acc=0.926/ce=0.20 r8:acc=0.912/ce=0.23 r16:acc=0.928/ce=0.22
+step  2000  loss=0.206  [    30s]  r1:acc=0.910/ce=0.21 r2:acc=0.916/ce=0.25 r4:acc=0.922/ce=0.24 r8:acc=0.932/ce=0.20 r16:acc=0.934/ce=0.20
+step  2250  loss=0.293  [    33s]  r1:acc=0.918/ce=0.24 r2:acc=0.934/ce=0.19 r4:acc=0.918/ce=0.24 r8:acc=0.928/ce=0.21 r16:acc=0.930/ce=0.20
+step  2500  loss=0.261  [    37s]  r1:acc=0.920/ce=0.23 r2:acc=0.934/ce=0.20 r4:acc=0.914/ce=0.21 r8:acc=0.941/ce=0.17 r16:acc=0.916/ce=0.23
+step  2750  loss=0.229  [    40s]  r1:acc=0.928/ce=0.19 r2:acc=0.904/ce=0.25 r4:acc=0.934/ce=0.20 r8:acc=0.920/ce=0.25 r16:acc=0.932/ce=0.19
+step  3000  loss=0.195  [    44s]  r1:acc=0.941/ce=0.18 r2:acc=0.939/ce=0.14 r4:acc=0.941/ce=0.16 r8:acc=0.941/ce=0.19 r16:acc=0.926/ce=0.23
+step  3250  loss=0.119  [    48s]  r1:acc=0.936/ce=0.18 r2:acc=0.932/ce=0.18 r4:acc=0.922/ce=0.19 r8:acc=0.945/ce=0.16 r16:acc=0.908/ce=0.22
+step  3500  loss=0.104  [    52s]  r1:acc=0.926/ce=0.20 r2:acc=0.932/ce=0.19 r4:acc=0.941/ce=0.18 r8:acc=0.961/ce=0.12 r16:acc=0.930/ce=0.20
+step  3750  loss=0.173  [    56s]  r1:acc=0.926/ce=0.17 r2:acc=0.949/ce=0.15 r4:acc=0.930/ce=0.15 r8:acc=0.924/ce=0.18 r16:acc=0.953/ce=0.14
+step  4000  loss=0.110  [    60s]  r1:acc=0.926/ce=0.18 r2:acc=0.926/ce=0.17 r4:acc=0.934/ce=0.17 r8:acc=0.924/ce=0.18 r16:acc=0.957/ce=0.12
+done
