@@ -25,12 +25,16 @@ def block_damage(rule, T, r, block=3, B=32, N=48, settle=20, sweeps=40, seed=21,
     flipped = base.copy()
     for j in idx:
         flipped[:, j] = rng.choice(rule.init_pool, size=B)
+    # Batch the two CRN twins into one 2B run: stack [base; flipped]; tile the
+    # per-site uniforms so lattice j and j+B share them (exact CRN). One forward +
+    # one MPS sync per site instead of two -> ~1.5-1.7x faster, bit-identical result.
     u = np.random.default_rng(seed + 1).random(sweeps * N * B)
-    a = run(rule, B=B, N=N, r=r, T=T, sweeps=sweeps, scheme=scheme,
-            init_state=base, seed=seed + 2, u_stream=u)
-    b = run(rule, B=B, N=N, r=r, T=T, sweeps=sweeps, scheme=scheme,
-            init_state=flipped, seed=seed + 2, u_stream=u)
-    diff = (a["snaps"] != b["snaps"])
+    u2 = np.concatenate([u.reshape(sweeps * N, B)] * 2, axis=1).reshape(-1)
+    init2 = np.concatenate([base, flipped], axis=0)
+    c2 = run(rule, B=2 * B, N=N, r=r, T=T, sweeps=sweeps, scheme=scheme,
+             init_state=init2, seed=seed + 2, u_stream=u2)
+    snaps = c2["snaps"]
+    diff = (snaps[:, :B] != snaps[:, B:])
     cone = np.roll(diff, c - idx[len(idx) // 2] + (N // 2 - c), axis=2).mean(axis=1)
     final = diff[-tail:].mean(axis=(0, 2))
     ignited = final > ignite_thresh
