@@ -1,7 +1,13 @@
-"""Phase B analysis + figures (F23). The self-correction length xi_repair and the
-kinematic (velocity, model-invariant) vs stability (D / T_c) decomposition.
-  fig/repair_grid.png   D(r,T) heatmap per model with the D=0.5 heal/spread contour
-  fig/repair_scale.png  xi_repair(T) and T_c(r) across models; the decomposition
+"""Phase B analysis (F23): the self-correction length, diversity-controlled.
+
+The raw asymptotic damage D is diversity-confounded (a degenerate low-entropy model
+snaps back trivially, scoring low D for the wrong reason -- the stability analog of
+the A3 repetition confound). We control by the DIVERSITY FLOOR D0 (unperturbed
+independent-noise drift) and use D_norm = D/D0. The spine test: does D_norm still
+ORDER the models after this control (real xi_repair) or flatten onto the floor
+(self-correction was diversity in disguise)?
+  fig/repair_grid.png   D_norm(r,T) heatmaps per model + D=0.5 contour
+  fig/repair_scale.png  D_norm(r) profiles across models; floor validation; verdict
 Writes results/analysis_phaseB.json.
 """
 import sys as _sys, pathlib as _pathlib
@@ -17,7 +23,7 @@ from matplotlib.colors import LinearSegmentedColormap
 INK, SEC, MUT, GRID, SURF = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#fcfcfb"
 BLUE, ORANGE, AQUA, MAGENTA = "#2a78d6", "#eb6834", "#1baf7a", "#e87ba4"
 M_COL = {"tiny": "#9ec5f4", "mini": "#2a78d6", "base": "#0d366b"}
-DIV = LinearSegmentedColormap.from_list("hs", ["#1baf7a", "#f0efec", "#eb6834"])  # heal->spread
+DIV = LinearSegmentedColormap.from_list("hs", ["#1baf7a", "#f0efec", "#eb6834"])
 plt.rcParams.update({
     "figure.facecolor": SURF, "axes.facecolor": SURF, "savefig.facecolor": SURF,
     "text.color": INK, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": SEC,
@@ -34,85 +40,68 @@ analysis = {}
 def load(tag):
     d = json.load(open(f"{R}/repair_{tag}.json"))
     RS, TS = d["RS"], d["TS"]
-    D = np.array([[d["D"][str(r)][str(T)]["mean"] for T in TS] for r in RS])  # (r, T)
-    return d, RS, TS, D
+    def arr(k):
+        return np.array([[d[k][str(r)][str(T)]["mean"] for T in TS] for r in RS])
+    return d, RS, TS, arr
 
 
-# ---------- 1. D(r,T) grids ----------
+# ---------- grids ----------
 if TAGS:
     fig, axes = plt.subplots(1, len(TAGS), figsize=(3.3 * len(TAGS), 3.3), squeeze=False)
     for j, tag in enumerate(TAGS):
-        d, RS, TS, D = load(tag)
+        d, RS, TS, arr = load(tag)
+        Dn = arr("D_norm")
         ax = axes[0, j]
-        im = ax.imshow(D, aspect="auto", cmap=DIV, vmin=0, vmax=1, origin="lower")
+        im = ax.imshow(Dn, aspect="auto", cmap=DIV, vmin=0, vmax=1, origin="lower")
         ax.set_xticks(range(len(TS))); ax.set_xticklabels(TS)
         ax.set_yticks(range(len(RS))); ax.set_yticklabels(RS)
-        ax.set_xlabel("temperature T"); ax.set_title(f"{tag}: D(r,T)", loc="left")
-        ax.grid(False)
-        try:  # D=0.5 heal/spread contour
-            ax.contour(D, levels=[0.5], colors=[INK], linewidths=1.4)
-        except Exception:
-            pass
+        ax.set_xlabel("temperature T"); ax.set_title(f"{tag}: D_norm(r,T)", loc="left"); ax.grid(False)
         if j == 0:
             ax.set_ylabel("radius r")
-    fig.colorbar(im, ax=axes[0, -1], fraction=0.046, label="asymptotic damage D")
-    fig.suptitle("Self-correction map: green heals, orange spreads, line = D=0.5 boundary",
+    fig.colorbar(im, ax=axes[0, -1], fraction=0.046, label="D / D0 (diversity-controlled damage)")
+    fig.suptitle("Diversity-controlled self-correction map (green corrects, orange persists)",
                  x=0.01, ha="left", fontsize=10.5, fontweight="bold", color=INK)
     fig.tight_layout(rect=[0, 0, 1, 0.93]); fig.savefig("fig/repair_grid.png"); plt.close()
 
-# ---------- 2. xi_repair(T), T_c(r), and clean-ness ----------
+# ---------- profiles + verdict ----------
 if TAGS:
-    fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
+    fig, ax = plt.subplots(1, 3, figsize=(11.5, 3.5))
     summ = {}
+    Dn_prof, Draw_prof = {}, {}
     for tag in TAGS:
-        d, RS, TS, D = load(tag)
-        # T_c(r): interp T where D(T) crosses 0.5 at fixed r
-        def cross(xs, ys, lv=0.5):
-            xs, ys = np.asarray(xs, float), np.asarray(ys, float)
-            for i in range(len(xs) - 1):
-                a, b = ys[i], ys[i + 1]
-                if (a - lv) * (b - lv) <= 0 and a != b:
-                    return float(xs[i] + (a - lv) / (a - b) * (xs[i + 1] - xs[i]))
-            return np.nan
-        Tc = [cross(TS, D[i]) for i in range(len(RS))]
-        ax[0].plot(RS, Tc, "-o", color=M_COL[tag], lw=2, ms=5, label=tag)
-        # xi_repair(T): interp r (log2) where D(r) crosses 0.5 at fixed T
-        xi = []
-        for k in range(len(TS)):
-            c = cross(np.log2(RS), D[:, k])
-            xi.append(2 ** c if not np.isnan(c) else np.nan)
-        ax[1].plot(TS, xi, "-o", color=M_COL[tag], lw=2, ms=5, label=tag)
-        # monotonicity of T_c(r) (thesis: rises with r) and xi range
-        tc_valid = [x for x in Tc if not np.isnan(x)]
-        # r* = the maximally-UNSTABLE radius: argmin_r T_c (equivalently argmax_r D).
-        # Averaged over the T where D straddles 0.5 for robustness.
-        Tc_arr = np.array([np.nan if np.isnan(x) else x for x in Tc])
-        r_star_Tc = RS[int(np.nanargmin(Tc_arr))] if not np.all(np.isnan(Tc_arr)) else None
-        r_star_D = RS[int(np.argmax(D.mean(axis=1)))]     # radius of max mean damage
-        # U-shaped (non-monotone) if T_c dips then rises
-        u_shaped = (r_star_Tc not in (RS[0], RS[-1])) if r_star_Tc is not None else False
-        summ[tag] = dict(T_c_by_r=[None if np.isnan(x) else round(x, 3) for x in Tc],
-                         xi_repair_by_T=[None if np.isnan(x) else round(x, 2) for x in xi],
-                         r_star_min_Tc=r_star_Tc, r_star_max_D=r_star_D,
-                         Tc_min=round(float(np.nanmin(Tc_arr)), 3) if not np.all(np.isnan(Tc_arr)) else None,
-                         Tc_max=round(float(np.nanmax(Tc_arr)), 3) if not np.all(np.isnan(Tc_arr)) else None,
-                         U_shaped=bool(u_shaped))
-    ax[0].set_xscale("log", base=2); ax[0].set_xticks([1, 2, 4, 8, 16]); ax[0].set_xticklabels([1, 2, 4, 8, 16])
-    ax[0].set_xlabel("radius r"); ax[0].set_ylabel("T_c (heal/spread boundary)")
-    ax[0].set_title("Stability boundary T_c(r)", loc="left"); ax[0].legend(fontsize=8)
-    ax[1].set_xlabel("temperature T"); ax[1].set_ylabel("xi_repair (crossover radius)")
-    ax[1].set_title("Repair length xi_repair(T)", loc="left"); ax[1].legend(fontsize=8)
-    analysis["repair"] = summ
-    # model separation: spread of T_c(r) across models at each r
+        d, RS, TS, arr = load(tag)
+        Dn, Draw, D0, dist = arr("D_norm"), arr("D"), arr("D0_floor"), arr("distinct")
+        dn_r = Dn.mean(axis=1)      # D_norm averaged over T, vs r
+        draw_r = Draw.mean(axis=1)
+        Dn_prof[tag] = dn_r; Draw_prof[tag] = draw_r
+        ax[0].plot(RS, draw_r, "-o", color=M_COL[tag], lw=2, ms=4, label=tag)
+        ax[1].plot(RS, dn_r, "-o", color=M_COL[tag], lw=2, ms=4, label=tag)
+        ax[2].scatter(dist.ravel(), Dn.ravel(), color=M_COL[tag], s=18, label=tag)
+        summ[tag] = dict(D_raw_by_r=[round(float(x), 3) for x in draw_r],
+                         D_norm_by_r=[round(float(x), 3) for x in dn_r],
+                         D0_floor_mean=round(float(D0.mean()), 3),
+                         distinct_mean=round(float(dist.mean()), 3),
+                         r_star_norm=RS[int(np.argmax(dn_r))],
+                         mean_D_norm=round(float(dn_r.mean()), 3))
+    for a, t in [(ax[0], "raw D"), (ax[1], "D_norm = D/D0 (diversity-controlled)")]:
+        a.set_xscale("log", base=2); a.set_xticks(RS); a.set_xticklabels(RS)
+        a.set_xlabel("radius r"); a.legend(fontsize=8); a.set_title(t, loc="left")
+    ax[2].set_xlabel("distinct-token fraction"); ax[2].set_ylabel("D_norm")
+    ax[2].set_title("D_norm vs diversity (flat => controlled)", loc="left"); ax[2].legend(fontsize=8)
+    # spine verdict: does the model ordering by mean D_norm survive, and is it separated?
+    order_raw = sorted(TAGS, key=lambda t: Draw_prof[t].mean())
+    order_norm = sorted(TAGS, key=lambda t: Dn_prof[t].mean())
     if len(TAGS) >= 2:
-        seps = []
-        for i in range(len(load(TAGS[0])[1])):
-            vals = [summ[t]["T_c_by_r"][i] for t in TAGS if summ[t]["T_c_by_r"][i] is not None]
-            if len(vals) >= 2:
-                seps.append(max(vals) - min(vals))
-        analysis["model_separation_Tc"] = round(float(np.mean(seps)), 3) if seps else None
-    fig.suptitle("xi_repair as a measured scale, and the T_c(r) stability boundary",
-                 x=0.01, ha="left", fontsize=10.5, fontweight="bold", color=INK)
+        means = {t: float(Dn_prof[t].mean()) for t in TAGS}
+        spread = max(means.values()) - min(means.values())
+        analysis["spine"] = dict(order_by_raw_D=order_raw, order_by_norm_D=order_norm,
+                                 mean_D_norm=means, norm_spread=round(spread, 3),
+                                 separates_after_control=bool(spread > 0.08))
+    analysis["repair"] = summ
+    v = analysis.get("spine", {})
+    fig.suptitle(f"F23: does self-correction survive the diversity control? "
+                 f"norm order={v.get('order_by_norm_D')} spread={v.get('norm_spread')}",
+                 x=0.01, ha="left", fontsize=10, fontweight="bold", color=INK)
     fig.tight_layout(rect=[0, 0, 1, 0.93]); fig.savefig("fig/repair_scale.png"); plt.close()
 
 json.dump(analysis, open("results/analysis_phaseB.json", "w"), indent=1)

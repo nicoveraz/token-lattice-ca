@@ -44,6 +44,30 @@ def block_damage(rule, T, r, block=3, B=32, N=48, settle=20, sweeps=40, seed=21,
                 n_ignited=int(ignited.sum()), B=B)
 
 
+def drift_floor(rule, T, r, B=32, N=48, settle=12, sweeps=30, seed=21,
+                scheme="cls_sep", tail=8):
+    """Diversity / mixing floor for the damage metric. Two twins from the SAME
+    settled init but INDEPENDENT sampling noise (NO flip): how far the model
+    decorrelates on its own -- the level the perturbed damage D saturates toward. A
+    degenerate low-entropy model has a low floor (nowhere to differ); a diverse model
+    a high one. Genuine self-correction is D relative to this floor, not D itself
+    (else low D just means 'collapsed to mush', the stability analog of the A3
+    repetition confound). Also returns the distinct-token fraction (diversity gauge)."""
+    base = run(rule, B=B, N=N, r=r, T=T, sweeps=settle, scheme=scheme,
+               init="random", seed=seed)["final"]
+    ua = np.random.default_rng(seed + 1).random(sweeps * N * B)
+    ub = np.random.default_rng(seed + 101).random(sweeps * N * B)   # INDEPENDENT noise
+    u2 = np.concatenate([ua.reshape(sweeps * N, B), ub.reshape(sweeps * N, B)], axis=1).reshape(-1)
+    init2 = np.concatenate([base, base], axis=0)                    # same init, no flip
+    c2 = run(rule, B=2 * B, N=N, r=r, T=T, sweeps=sweeps, scheme=scheme,
+             init_state=init2, seed=seed + 2, u_stream=u2)
+    snaps = c2["snaps"]
+    d0 = float((snaps[-tail:, :B] != snaps[-tail:, B:]).mean())
+    last = snaps[-1]
+    distinct = float(np.mean([len(np.unique(last[b])) / N for b in range(2 * B)]))
+    return d0, distinct
+
+
 def main(tag, B, N, sweeps, scheme):
     ensure_resdir()
     rule = MLMRule(MODELS[tag])
