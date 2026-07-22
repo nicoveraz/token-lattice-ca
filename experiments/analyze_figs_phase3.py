@@ -159,6 +159,38 @@ for tag in TAGS:
                             baseline=c[T]["baseline_overlap50"]) for T in c}
 analysis["census_proxy"] = cen
 
+# ---------- 5. space-time diagram (soup -> ordered English) ----------
+st_tag = "base" if "base" in TAGS else (TAGS[-1] if TAGS else None)
+if st_tag and os.path.exists(f"{R}/{st_tag}_spacetime.npz"):
+    from matplotlib.colors import LinearSegmentedColormap, ListedColormap
+    SEQ = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
+    seq_cmap = LinearSegmentedColormap.from_list("seq", SEQ)
+    import mlm_ca
+    from collections import Counter
+    ref = np.load("data_mlm/ref_ids.npy")
+    freq = Counter(ref.tolist())
+    rank = {t: i for i, (t, _) in enumerate(freq.most_common())}
+    maxr = len(rank)
+    def rankfield(snaps):
+        f = np.vectorize(lambda t: rank.get(int(t), maxr))(snaps)
+        return np.log1p(f) / np.log1p(maxr)
+    z = np.load(f"{R}/{st_tag}_spacetime.npz")
+    Ts = [t for t in [0.5, 1.0, 2.0] if f"snaps_T{t}" in z]
+    fig, axes = plt.subplots(2, len(Ts), figsize=(3.1 * len(Ts), 5.2), sharex=True, sharey=True)
+    axes = np.atleast_2d(axes)
+    for j, T in enumerate(Ts):
+        s = z[f"snaps_T{T}"]
+        axes[0, j].imshow(rankfield(s), aspect="auto", cmap=seq_cmap, vmin=0, vmax=1)
+        axes[0, j].set_title(f"T = {T}", loc="left"); axes[0, j].grid(False)
+        chg = (np.diff(s, axis=0) != 0)
+        axes[1, j].imshow(chg, aspect="auto", cmap=ListedColormap([SURF, "#2a78d6"]), vmin=0, vmax=1)
+        axes[1, j].grid(False); axes[1, j].set_xlabel("lattice site")
+    axes[0, 0].set_ylabel("sweep →\n(token corpus-rarity)", fontsize=8)
+    axes[1, 0].set_ylabel("sweep →\n(site changed)", fontsize=8)
+    fig.suptitle(f"{st_tag}: space-time (r=2) — random soup -> ordered English vs churn",
+                 x=0.01, ha="left", fontsize=11, fontweight="bold", color=INK)
+    fig.tight_layout(rect=[0, 0, 1, 0.95]); fig.savefig("fig/mlm_spacetime.png"); plt.close()
+
 json.dump(analysis, open("results/analysis_phase3.json", "w"), indent=1)
 print(json.dumps(analysis, indent=1))
 print("PHASE3 FIGS DONE  (models:", TAGS, ")")

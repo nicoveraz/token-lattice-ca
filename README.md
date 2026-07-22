@@ -9,7 +9,23 @@ censuses validated against a known corpus, probes across training checkpoints,
 and a differential instrument/signal-separation protocol.
 
 See **[findings.md](findings.md)** for the substantive results (F1–F9 from the
-tiny-transformer pilot; F10+ for real pretrained MLMs).
+tiny-transformer pilot; F10–F13 hardening; F14–F19 on real pretrained MLMs).
+
+### Findings at a glance
+
+| # | Finding | Phase |
+|---|---------|-------|
+| F1–F9 | Pilot reproduced on M1: temperature phase structure, radius-blind statics but radius-set damage cones, partial corpus recovery, metastable churn, sync period-2 artifact, measure-not-sample, early crystallization, learned self-healing, CRN certification (null = 0) | 1 |
+| F10 | BPE kills the `<unk>` artifact — word-level top attractors were 11–13/15 `<unk>`; BPE 0/15, real text | 2 |
+| F11 | Phase curves survive ≥5-seed error bars (max std 0.026) | 2 |
+| **F12** | **The temperature "transition" is a finite-size crossover, not a true transition** (χ_peak ∝ 1/N) | 2 |
+| F13 | Block-flip ignition probability separated from conditional spread | 2 |
+| F14 | Instrument ports to bert-tiny/mini/base; **null CRN coupling stays exactly 0** | 3 |
+| **F15** | **Real MLMs are NOT radius-blind** (unlike the toy) — long-range structure peaks at intermediate r | 3 |
+| F16 | Damage light cones replicate; **front velocity ∝ r and model-invariant** | 3 |
+| **F17** | **No strong self-healing phase** on real MLMs — far more damage-fragile than the toy; boundary below the τ≈1.5–2 full-context crossover | 3 |
+| F18 | Differential certification holds; the **special-token scheme is a first-class apparatus factor** | 3 |
+| F19 | Proxy census recovers WikiText's format skeleton, improving with scale | 3 |
 
 ## Layout
 

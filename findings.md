@@ -229,30 +229,48 @@ absolute overlap is the stated proxy limitation, not weak recovery.
 
 ## Caveats
 
-The Phase-2 caveats below are now *addressed*: seeds are swept (F11, ≥5), the
-`<unk>` census bias is removed (F10, BPE), damage uses block flips with ignition
-probability (F13), and the "transition" is re-characterized as a crossover (F12).
-Remaining: still a tiny model, single small corpus, radius-windowed conditionals
-(not full-context); the finite-size scan tops out at N=192 and T=1.5;
-Tiny model, single small corpus, N=48, B=8–32 lattices per condition, no seeds swept;
-MLM local conditionals are globally inconsistent (proven for real MLMs in 2605.16378),
-so the CA is a well-defined stochastic dynamical system but not an exact sampler of any
-joint distribution; `<unk>` compression biases the census; melting/census used r=2 only.
+Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
+census bias is removed (F10, BPE), damage uses block flips with ignition
+probability (F13), the "transition" is re-characterized as a crossover (F12), and
+the instrument is validated on real pretrained MLMs (F14–F19).
+
+Remaining limitations. **General:** MLM local conditionals are globally
+inconsistent (proven for real MLMs in 2605.16378), so the CA is a well-defined
+stochastic dynamical system but *not* an exact sampler of any joint distribution —
+all findings are phrased as properties of the dynamics, not of a sampled
+distribution. **Toy:** single small corpus, N≤192, radius-windowed conditionals.
+**Phase 3:** census is *proxy* (WikiText-103, which BERT was not trained on) so
+overlap/ρ are lower bounds; the k-gram overlap metric conflates corpus-consistent
+long-range structure with repetitive attractor loops (F15); MLM sweeps used a
+single seed and N=48; bert-base ran at reduced settings (sweeps 25–30, B=12–24) for
+tractability; the finite-size crossover result (F12) was established on the toy
+only — it is not yet checked on the real models.
 
 ## Next steps
 
-BPE vocab to remove the `<unk>` artifact; ignition-probability-aware damage statistics
-(larger lattice ensembles); scale model/corpus; point the instrument at a real
-pretrained small LM (weights would need to be provided to this sandbox); compare
-against a Claude-as-rule qualitative run (LOGOS-CA style) with matched protocol.
+- **Full-context vs radius-windowed** head-to-head on the same MLM, to test the
+  F17 conjecture that windowing is what makes the dynamics fragile.
+- Multi-seed + finite-size (N scan) on the real MLMs; is the MLM temperature
+  behavior also a crossover (F12) or a transition?
+- Disentangle repetition from genuine long-range structure in the radius test
+  (F15) — e.g. an overlap metric that discounts periodic attractors.
+- More of the scale ladder (small, medium, large) to test the tiny→mini→base
+  "early saturation" hint (F18); RoBERTa/other families as a model-family arm.
+- Claude-as-rule qualitative run (LOGOS-CA style, arXiv:2602.00036) with matched
+  protocol.
 
 ## Files
 
-- `fig/phase_curves.png` — order parameter & activity vs T, radius collapse
-- `fig/spacetime.png` — space-time diagrams at T=0.3 / 1.0 / 2.5
-- `fig/damage_cones.png` — damage light cones across (T, r)
-- `fig/melting.png` — corpus-text melting curves
-- `fig/census_validation.png` — census-vs-corpus trigram recovery
-- `fig/crystallization.png` — all probes vs training checkpoint (F7, F8)
-- `results/` — raw npz for every run + `summary.jsonl`, `census.json`, `analysis.json`
-- `model.py ca.py train.py sweep.py census.py damage.py analyze_figs.py` — full harness
+Toy (Phases 1–2):
+- `fig/phase_curves.png`, `fig/phase_curves_multiseed.png` — order & activity vs T (F1, F11)
+- `fig/spacetime.png` — space-time diagrams; `fig/damage_cones.png`, `fig/damage_ignition.png` — damage (F2, F13)
+- `fig/melting.png` (F6), `fig/census_validation.png`, `fig/census_bpe.png` (F3, F10)
+- `fig/crystallization.png` — probes vs training checkpoint (F7, F8); `fig/finite_size.png` — crossover (F12)
+Real MLMs (Phase 3):
+- `fig/mlm_radius.png` (F15), `fig/mlm_damage.png` (F16, F17), `fig/mlm_phase.png`, `fig/mlm_differential.png` (F18)
+- `fig/mlm_spacetime.png` — bert-base space-time: random soup → ordered English vs churn (F14)
+Code & data:
+- `src/` (model.py, ca.py, mlm_ca.py), `experiments/` (pipeline scripts), `tests/`
+- `results/` — raw npz/json for every run; `results/mlm/` — per-model MLM probes
+- `ckpt/` word-level + `ckpt_bpe/` BPE checkpoints; `data/`, `data_bpe/`, `data_mlm/`
+- See `README.md` for install, per-phase repro commands, and the M1 runtime tables.
