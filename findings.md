@@ -302,24 +302,39 @@ propagates at the same velocity∝r as the perturbed run, so the normalized
   error-damping length shrinks as the window widens. The raw-D "recovery" at large r
   was the lattice collapsing into repetition (distinct-token frac ↓), deflating raw D
   while D_norm stayed high — the confound, caught.
-- **Capacity orders it, after the control**: mean D_norm tiny 0.67 < mini 0.88
-  (spread 0.21 ≫ the distribution-preserving apparatus floor). The ordering *fights*
-  the normalization (mini's higher diversity floor should deflate its D_norm, yet it
-  is higher) and is velocity-immune (matched r ⇒ matched propagation speed), so the
-  gap is neither diversity nor kinematics.
+- **Capacity orders it, after the control (3 points)**: mean D_norm tiny 0.672 <
+  mini 0.880 < base 0.904 — monotone across the capacity ladder. Only the two larger
+  models cross **D_norm > 1** (mini and base at large r); tiny stays sub-critical
+  (max 0.82). The ordering *fights* the normalization (a more diverse model's higher
+  floor should deflate its D_norm, yet it is higher) and is velocity-immune (matched
+  r ⇒ matched propagation speed), so the gap is neither diversity nor kinematics.
+- **Kinematics ⊥ stability (the Lyapunov confirms it)**: the finite-size Lyapunov
+  exponent λ (early log-separation slope of the CRN twins) is **model-invariant** —
+  λ_max = +0.745 / +0.738 / +0.767 for tiny / mini / base, all at (r=8, T=0.9), a
+  ~4% spread against D_norm's 35%. λ is universally *positive* (every model
+  transiently spreads a perturbation) and set by the radius (velocity∝r, F16/F21),
+  not the model. So the early-time dynamics are a kinematic axis shared by all
+  models; the capacity signal lives *entirely* in the **asymptotic** persistence
+  D_norm. Velocity/λ and stability/D_norm are orthogonal — and only stability tracks
+  capacity. This is the clean kinematic⊥stability decomposition.
 - **Reading (edge-of-chaos, as measurement)**: D_norm > 1 (mini at large r) is a
   chaos signature — the flip is amplified *beyond the model's own noise floor*. tiny
   reads "stable" because it is *frozen* (heals by collapsing to a dead repetitive
   attractor); mini reads "sensitive" because it is *expressive* (rich dynamics carry
   a perturbation). So the capacity axis traces a **stability↔expressiveness
   tradeoff**: more capable models run nearer criticality, where expressiveness lives.
-Rigor: D_norm is monotone in r for mini but **tiny dips at r=16** (0.82→0.75) — the
-dip is *model-dependent*, which argues collapse-residual over pure ring geometry (a
-geometric finite-size effect would hit both models equally). The finite-size N-scan
-and a finite-size **Lyapunov exponent** λ (early log-separation slope; does λ cross
-positive with capacity?) plus the third capacity point (base) quantify this — see the
-rigor update. (`fig/repair_grid.png`, `fig/repair_scale.png`,
-`results/mlm/repair_*.json`)
+Rigor: D_norm is monotone in r for mini and base but **tiny dips at r=16**
+(0.82→0.75) — the dip is *model-dependent*, arguing collapse-residual over pure ring
+geometry (a geometric finite-size effect would hit all models equally). The
+finite-size N-scan (N∈{48,96,192}) settles it in favor of **geometry, not collapse**:
+the dip is present only at N=48 — where the r=16 window (w=33) spans 69% of the ring —
+and *vanishes* at N=96 and N=192, where D_norm is monotone in r (N=192:
+0.18→0.26→0.55→0.62). The underlying monotone rise of D_norm with r is therefore
+N-robust (the real repair-length signal); only the small-ring r=16 dip was
+ring-geometry. (The absolute D_norm level falls with N — a perturbation reaches a
+smaller *fraction* of a larger ring — but the shape is stable.)
+(`fig/repair_grid.png`, `fig/repair_scale.png`,
+`results/mlm/repair_*.json`, `lyapunov_mlm_*.json`, `repair_fss_tiny.json`)
 
 **F24 — Both load-bearing measurements replicate on an autoregressive model, so
 they are not artifacts of the MLM's globally-inconsistent construction (external

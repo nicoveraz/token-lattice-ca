@@ -10,3 +10,21 @@ cls.seq_relationship.weight | UNEXPECTED |  |
 
 Notes:
 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[base] r= 1 T=0.5: D=0.477 D0(floor)=0.884 Dnorm=0.540 distinct=0.59
+[base] r= 1 T=0.7: D=0.629 D0(floor)=0.908 Dnorm=0.692 distinct=0.65
+[base] r= 1 T=0.9: D=0.817 D0(floor)=0.957 Dnorm=0.854 distinct=0.77
+[base] r= 2 T=0.5: D=0.637 D0(floor)=0.849 Dnorm=0.749 distinct=0.74
+[base] r= 2 T=0.7: D=0.821 D0(floor)=0.949 Dnorm=0.865 distinct=0.78
+[base] r= 2 T=0.9: D=0.941 D0(floor)=0.975 Dnorm=0.966 distinct=0.81
+[base] r= 4 T=0.5: D=0.642 D0(floor)=0.727 Dnorm=0.882 distinct=0.74
+[base] r= 4 T=0.7: D=0.758 D0(floor)=0.843 Dnorm=0.898 distinct=0.74
+[base] r= 4 T=0.9: D=0.928 D0(floor)=0.945 Dnorm=0.982 distinct=0.80
+[base] r= 8 T=0.5: D=0.624 D0(floor)=0.626 Dnorm=0.998 distinct=0.69
+[base] r= 8 T=0.7: D=0.800 D0(floor)=0.769 Dnorm=1.040 distinct=0.74
+[base] r= 8 T=0.9: D=0.927 D0(floor)=0.918 Dnorm=1.009 distinct=0.77
+[base] r=16 T=0.5: D=0.572 D0(floor)=0.541 Dnorm=1.056 distinct=0.65
+[base] r=16 T=0.7: D=0.727 D0(floor)=0.714 Dnorm=1.018 distinct=0.69
+[base] r=16 T=0.9: D=0.872 D0(floor)=0.860 Dnorm=1.013 distinct=0.73
+[base] raw   xi(T)={'0.5': 1.104, '0.7': 'none', '0.9': 'none'}  T_c(r)={'1': 0.53, '2': 'none', '4': 'none', '8': 'none', '16': 'none'}
+[base] norm  xi(T)={'0.5': 'none', '0.7': 'none', '0.9': 'none'}  T_c(r)={'1': 'none', '2': 'none', '4': 'none', '8': 'none', '16': 'none'}
+[base] REPAIR DONE (4577s)

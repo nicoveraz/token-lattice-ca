@@ -1,0 +1,23 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 25081.46it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] lambda r= 1 T=0.7: +0.2841/sweep
+[tiny] lambda r= 1 T=0.9: +0.2192/sweep
+[tiny] lambda r= 2 T=0.7: +0.2557/sweep
+[tiny] lambda r= 2 T=0.9: +0.3351/sweep
+[tiny] lambda r= 4 T=0.7: +0.2717/sweep
+[tiny] lambda r= 4 T=0.9: +0.6541/sweep
+[tiny] lambda r= 8 T=0.7: +0.5004/sweep
+[tiny] lambda r= 8 T=0.9: +0.7449/sweep
+[tiny] lambda r=16 T=0.7: +0.4369/sweep
+[tiny] lambda r=16 T=0.9: +0.6758/sweep
+[tiny] lambda_max=+0.7449 at r,T=(8, 0.9) (298s)

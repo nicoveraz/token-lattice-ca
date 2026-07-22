@@ -1,2 +1,12 @@
 >>> repair_mini
 >>> repair_base
+repair_base          4584 s OK
+>>> lyap_tiny
+lyap_tiny             304 s OK
+>>> lyap_mini
+lyap_mini             490 s OK
+>>> lyap_base
+lyap_base            1990 s OK
+>>> fss_tiny
+fss_tiny             1960 s OK
+PHASEB_RIGOR_DONE
