@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 16755.89it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny/cls_sep] done (315s)
+  r= 1: order=0.435±0.019  k4=0.000 k4c=0.000 k4d=0.000  distinct=0.20  mi_len=4.0
+  r= 2: order=0.347±0.051  k4=0.008 k4c=0.006 k4d=0.006  distinct=0.37  mi_len=5.8
+  r= 4: order=0.344±0.041  k4=0.033 k4c=0.021 k4d=0.018  distinct=0.33  mi_len=14.0
+  r= 8: order=0.398±0.084  k4=0.051 k4c=0.025 k4d=0.013  distinct=0.23  mi_len=22.8
+  r=16: order=0.463±0.032  k4=0.080 k4c=0.029 k4d=0.013  distinct=0.16  mi_len=24.0
+[tiny/none] done (276s)
+  r= 1: order=0.552±0.036  k4=0.035 k4c=0.001 k4d=0.013  distinct=0.13  mi_len=4.4
+  r= 2: order=0.353±0.061  k4=0.005 k4c=0.001 k4d=0.002  distinct=0.18  mi_len=14.8
+  r= 4: order=0.296±0.070  k4=0.036 k4c=0.007 k4d=0.006  distinct=0.19  mi_len=22.0
+  r= 8: order=0.286±0.038  k4=0.050 k4c=0.010 k4d=0.009  distinct=0.19  mi_len=24.0
+  r=16: order=0.333±0.077  k4=0.044 k4c=0.026 k4d=0.014  distinct=0.14  mi_len=24.0
+[tiny] PHASE-A RADIUS DONE (591s)

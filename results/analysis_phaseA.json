@@ -1,0 +1,129 @@
+{
+ "A1_scheme_certification": {
+  "cross_model_fixed_scheme": {
+   "tiny_vs_mini": {
+    "dist": 0.1396,
+    "se": 0.0328
+   },
+   "tiny_vs_base": {
+    "dist": 0.115,
+    "se": 0.0233
+   },
+   "mini_vs_base": {
+    "dist": 0.0526,
+    "se": 0.0271
+   }
+  },
+  "scheme_apparatus": {
+   "tiny": 0.0828,
+   "mini": 0.324,
+   "base": 0.1551
+  },
+  "apparatus_floor_order_cdf": 0.0142,
+  "verdict": "F15 CERTIFIED as a model claim: tiny->mini profile shift 0.140\u00b10.033 exceeds the fixed-scheme apparatus floor 0.014"
+ },
+ "A2_velocity_ceiling": {
+  "r4": {
+   "N48": 7.7,
+   "N96": 7.18,
+   "N192": 6.63,
+   "N384": 5.76,
+   "ceiling_lifts_with_N": false
+  },
+  "r8": {
+   "N48": 11.5,
+   "N96": 15.7,
+   "N192": 13.94,
+   "N384": 14.12,
+   "ceiling_lifts_with_N": true
+  },
+  "r16": {
+   "N48": 11.5,
+   "N96": 23.5,
+   "N192": 47.5,
+   "N384": 41.14,
+   "ceiling_lifts_with_N": true
+  },
+  "verdict": "ceiling was finite-size wraparound: velocity keeps rising with N (v~r holds)"
+ },
+ "A3_repetition": {
+  "tiny": {
+   "k4_peak_r": 16,
+   "k4distinct_peak_r": 4,
+   "k4distinct": [
+    0.0,
+    0.006,
+    0.018,
+    0.014,
+    0.013
+   ],
+   "mi_len": [
+    4.0,
+    5.8,
+    14.0,
+    22.8,
+    24.0
+   ],
+   "distinct": [
+    0.2,
+    0.37,
+    0.33,
+    0.23,
+    0.16
+   ],
+   "survives": true
+  },
+  "mini": {
+   "k4_peak_r": 4,
+   "k4distinct_peak_r": 4,
+   "k4distinct": [
+    0.005,
+    0.023,
+    0.041,
+    0.031,
+    0.028
+   ],
+   "mi_len": [
+    2.8,
+    6.2,
+    11.4,
+    13.6,
+    7.0
+   ],
+   "distinct": [
+    0.55,
+    0.52,
+    0.56,
+    0.46,
+    0.41
+   ],
+   "survives": true
+  },
+  "base": {
+   "k4_peak_r": 1,
+   "k4distinct_peak_r": 4,
+   "k4distinct": [
+    0.017,
+    0.023,
+    0.036,
+    0.026,
+    0.02
+   ],
+   "mi_len": [
+    2.0,
+    3.4,
+    3.0,
+    3.8,
+    3.4
+   ],
+   "distinct": [
+    0.63,
+    0.75,
+    0.75,
+    0.7,
+    0.67
+   ],
+   "survives": true
+  }
+ }
+}

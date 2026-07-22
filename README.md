@@ -26,6 +26,9 @@ tiny-transformer pilot; F10–F13 hardening; F14–F19 on real pretrained MLMs).
 | **F17** | **No strong self-healing phase** on real MLMs — far more damage-fragile than the toy; boundary below the τ≈1.5–2 full-context crossover | 3 |
 | F18 | Differential certification holds; the **special-token scheme is a first-class apparatus factor** | 3 |
 | F19 | Proxy census recovers WikiText's format skeleton, improving with scale | 3 |
+| F20 | F15 certified as a model effect **at a fixed scheme** — but CLS/SEP is a first-class apparatus (scheme swap ≥ model shift) | A |
+| F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
+| F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
 
 ## Layout
 
@@ -199,3 +202,27 @@ strong self-healing phase** — real MLMs are far more damage-fragile than the t
 boundary below the τ≈1.5–2 full-context crossover (F17); differential certification
 holds, but the **special-token scheme is a first-class apparatus factor** (F18);
 proxy census recovers WikiText's format skeleton, improving with scale (F19).
+
+## Harden the headline (Phase A)
+
+Closes three publication threats to F15/F16 (findings **F20–F22**): scheme
+apparatus, velocity finite-size, repetition confound. Fixed scheme (cls_sep),
+≥5 seeds, repetition-robust metrics (`distinct_corpus_kgrams`, coarse MI).
+
+```bash
+export HF_HOME=./hf_cache TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=1
+caffeinate -i bash experiments/_run_phaseA.sh          # radius (3 models) + velocity FSS
+.venv/bin/python experiments/phaseA_analyze.py         # -> fig/phaseA_*.png, analysis_phaseA.json
+```
+
+| Step | Wall time |
+|------|-----------|
+| radius_tiny / mini / base (2 schemes × 5 seeds × 5 r) | 598 / 1150 / 2585 s |
+| velocity FSS tiny (N∈{48,96,192,384}, r∈{4,8,16}) | 1834 s |
+| velocity FSS mini (N∈{48,96,192}, r=8) | 404 s |
+| **Phase A total** | **≈ 111 min** |
+
+Outcomes: F15's radius profile is a model effect **only at a fixed scheme** (scheme
+swap moves it ≥ a model change — F20); the F16 velocity ceiling was finite-size
+wraparound, v∝r continues (F21); F15's large-r growth was repetition, the real
+signal is an intermediate-radius optimum r≈4 (F22).

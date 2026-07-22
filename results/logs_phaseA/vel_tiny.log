@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 23123.59it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] N= 48 r= 4: v=7.70 sites/sweep (N/2=24, sat@3) (26s)
+[tiny] N= 48 r= 8: v=11.50 sites/sweep (N/2=24, sat@2) (26s)
+[tiny] N= 48 r=16: v=11.50 sites/sweep (N/2=24, sat@2) (28s)
+[tiny] N= 96 r= 4: v=7.18 sites/sweep (N/2=48, sat@6) (51s)
+[tiny] N= 96 r= 8: v=15.70 sites/sweep (N/2=48, sat@3) (54s)
+[tiny] N= 96 r=16: v=23.50 sites/sweep (N/2=48, sat@2) (57s)
+[tiny] N=192 r= 4: v=6.63 sites/sweep (N/2=96, sat@12) (123s)
+[tiny] N=192 r= 8: v=13.94 sites/sweep (N/2=96, sat@7) (118s)
+[tiny] N=192 r=16: v=47.50 sites/sweep (N/2=96, sat@2) (128s)
+[tiny] N=384 r= 4: v=5.76 sites/sweep (N/2=192, sat@12) (407s)
+[tiny] N=384 r= 8: v=14.12 sites/sweep (N/2=192, sat@12) (395s)
+[tiny] N=384 r=16: v=41.14 sites/sweep (N/2=192, sat@5) (414s)
+[tiny] PHASE-A VELOCITY DONE (1827s)

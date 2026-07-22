@@ -1,0 +1,11 @@
+>>> radius_tiny : .venv/bin/python experiments/phaseA_radius.py --model tiny
+radius_tiny                 598 s   OK
+>>> radius_mini : .venv/bin/python experiments/phaseA_radius.py --model mini
+radius_mini                1150 s   OK
+>>> radius_base : .venv/bin/python experiments/phaseA_radius.py --model base
+radius_base                2585 s   OK
+>>> vel_tiny : .venv/bin/python experiments/phaseA_velocity.py --model tiny --ns 48,96,192,384 --rs 4,8,16
+vel_tiny                   1834 s   OK
+>>> vel_mini : .venv/bin/python experiments/phaseA_velocity.py --model mini --ns 48,96,192 --rs 8
+vel_mini                    404 s   OK
+PHASEA_CHAIN_DONE

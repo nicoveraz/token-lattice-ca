@@ -1,0 +1,26 @@
+{
+ "model": "mini",
+ "B": 24,
+ "sweeps": 30,
+ "N48_r8": {
+  "velocity": 11.5,
+  "saturate_sweep": 2,
+  "mean_damage": 0.933,
+  "N_over_2": 24,
+  "sweeps": 30
+ },
+ "N96_r8": {
+  "velocity": 23.0,
+  "saturate_sweep": 2,
+  "mean_damage": 0.872,
+  "N_over_2": 48,
+  "sweeps": 30
+ },
+ "N192_r8": {
+  "velocity": 15.61,
+  "saturate_sweep": 6,
+  "mean_damage": 0.876,
+  "N_over_2": 96,
+  "sweeps": 34
+ }
+}

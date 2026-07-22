@@ -45,17 +45,52 @@ def ring_kgrams(row, k):
     return [tuple(ext[i:i + k]) for i in range(n)]
 
 
-def kgram_overlap(lat, ksets):
+def repeat_collapse(row):
+    """Collapse runs of identical tokens: [a,a,b,b,b,c] -> [a,b,c]. Removes the
+    trivial 'my lord my lord' repetition that inflates k-gram overlap (A3)."""
+    out = [row[0]]
+    for t in row[1:]:
+        if t != out[-1]:
+            out.append(t)
+    return out
+
+
+def kgram_overlap(lat, ksets, collapse=False):
     """For each k, fraction of ring k-grams present in the reference set,
-    averaged over lattices. Local (k=2) vs longer-range (k=3,4) corpus consistency."""
+    averaged over lattices. Local (k=2) vs longer-range (k=3,4) corpus consistency.
+    collapse=True first repeat-collapses each row (A3: repetition-robust variant)."""
+    B, N = lat.shape
+    rows = []
+    for b in range(B):
+        r = lat[b].tolist()
+        rows.append(repeat_collapse(r) if collapse else r)
+    out = {}
+    for k, S in ksets.items():
+        vals = []
+        for r in rows:
+            if len(r) < k:
+                continue
+            g = ring_kgrams(r, k)
+            vals.append(np.mean([x in S for x in g]))
+        out[k] = float(np.mean(vals)) if vals else 0.0
+    return out
+
+
+def distinct_corpus_kgrams(lat, ksets):
+    """Repetition-robust structure metric: count of DISTINCT lattice k-grams that
+    appear in the corpus, normalized by N (per lattice, averaged). A lattice looping
+    one corpus bigram 24x contributes 1, not 24 -- so periodic repetition ("my lord
+    my lord") cannot inflate this the way raw position-weighted overlap does.
+    Also returns the distinct-token fraction as a repetitiveness gauge."""
     B, N = lat.shape
     out = {}
     for k, S in ksets.items():
         vals = []
         for b in range(B):
-            g = ring_kgrams(lat[b].tolist(), k)
-            vals.append(np.mean([x in S for x in g]))
+            g = set(ring_kgrams(lat[b].tolist(), k))
+            vals.append(len(g & S) / N)
         out[k] = float(np.mean(vals))
+    out["distinct_tok"] = float(np.mean([len(np.unique(lat[b])) / N for b in range(B)]))
     return out
 
 
@@ -96,3 +131,70 @@ def cone_front_velocity(cone, thresh=0.25):
 
 def ensure_resdir():
     os.makedirs(RESDIR, exist_ok=True)
+
+
+# ---------- coarse-grained long-range MI (A3, repetition-robust) ----------
+_BUCKET = {}
+def freq_buckets(nbuckets=16):
+    """Map each token id -> a coarse frequency bucket (0=most frequent .. nbuckets-1
+    =rarest/unseen), by corpus-frequency rank. Coarse-graining keeps the MI joint
+    (nbuckets x nbuckets) well-sampled from a few thousand lattice sites."""
+    if nbuckets in _BUCKET:
+        return _BUCKET[nbuckets]
+    ids = load_ref()
+    from collections import Counter
+    c = Counter(ids.tolist())
+    ranked = [t for t, _ in c.most_common()]
+    rank = {t: i for i, t in enumerate(ranked)}
+    R = len(ranked)
+    V = 30522
+    bmap = np.full(V, nbuckets - 1, dtype=np.int32)     # unseen -> rarest bucket
+    if R > 0:
+        edges = np.linspace(0, np.log1p(R), nbuckets + 1)
+        for t, r in rank.items():
+            b = int(np.searchsorted(edges, np.log1p(r), side="right") - 1)
+            bmap[t] = min(max(b, 0), nbuckets - 1)
+    _BUCKET[nbuckets] = bmap
+    return bmap
+
+
+def _mi_plugin(a, b, K):
+    """Plug-in MI (bits) of two integer arrays with alphabet size K."""
+    joint = np.zeros((K, K))
+    np.add.at(joint, (a, b), 1.0)
+    joint /= joint.sum()
+    pa = joint.sum(1, keepdims=True); pb = joint.sum(0, keepdims=True)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        m = joint * (np.log2(joint) - np.log2(pa) - np.log2(pb))
+    return float(np.nansum(m))
+
+
+def coarse_mi_decay(lats, nbuckets=16, dmax=None, ring=True, seed=0):
+    """lats: (M, N) int array of equilibrium lattices. Returns shuffle-debiased
+    coarse MI(x_0 ; x_d) vs distance d (bits), and a decay length (first d where MI
+    falls below half of MI at d=1). Debias: subtract MI of a globally shuffled pair
+    set (the finite-sample bias floor for independent variables)."""
+    bmap = freq_buckets(nbuckets)
+    lats = np.asarray(lats)
+    M, N = lats.shape
+    bl = bmap[lats]                                     # (M,N) bucket field
+    if dmax is None:
+        dmax = N // 2
+    rng = np.random.default_rng(seed)
+    mis, mis_raw = [], []
+    for d in range(1, dmax + 1):
+        if ring:
+            a = bl.reshape(-1)
+            b = bmap[np.roll(lats, -d, axis=1)].reshape(-1)
+        else:
+            a = bl[:, :N - d].reshape(-1); b = bl[:, d:].reshape(-1)
+        raw = _mi_plugin(a, b, nbuckets)
+        sh = _mi_plugin(a, rng.permutation(b), nbuckets)
+        mis_raw.append(raw)
+        mis.append(max(0.0, raw - sh))
+    mis = np.array(mis)
+    half = mis[0] / 2 if mis[0] > 0 else 0.0
+    below = np.where(mis < half)[0]
+    length = int(below[0] + 1) if len(below) else dmax
+    return dict(mi=mis.tolist(), mi_raw=mis_raw, decay_length=length,
+                integrated=float(mis.sum()), mi_d1=float(mis[0]))

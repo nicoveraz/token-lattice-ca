@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 6460.89it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[base/cls_sep] done (1354s)
+  r= 1: order=0.389±0.021  k4=0.077 k4c=0.000 k4d=0.017  distinct=0.63  mi_len=2.0
+  r= 2: order=0.542±0.020  k4=0.041 k4c=0.019 k4d=0.023  distinct=0.75  mi_len=3.4
+  r= 4: order=0.548±0.025  k4=0.039 k4c=0.034 k4d=0.036  distinct=0.75  mi_len=3.0
+  r= 8: order=0.493±0.045  k4=0.033 k4c=0.026 k4d=0.026  distinct=0.70  mi_len=3.8
+  r=16: order=0.428±0.011  k4=0.020 k4c=0.019 k4d=0.019  distinct=0.67  mi_len=3.4
+[base/none] done (1224s)
+  r= 1: order=0.526±0.023  k4=0.003 k4c=0.002 k4d=0.003  distinct=0.39  mi_len=2.0
+  r= 2: order=0.719±0.025  k4=0.011 k4c=0.007 k4d=0.010  distinct=0.39  mi_len=3.0
+  r= 4: order=0.623±0.013  k4=0.032 k4c=0.009 k4d=0.029  distinct=0.40  mi_len=3.0
+  r= 8: order=0.623±0.022  k4=0.033 k4c=0.013 k4d=0.022  distinct=0.31  mi_len=3.0
+  r=16: order=0.685±0.051  k4=0.047 k4c=0.018 k4d=0.018  distinct=0.20  mi_len=9.8
+[base] PHASE-A RADIUS DONE (2579s)

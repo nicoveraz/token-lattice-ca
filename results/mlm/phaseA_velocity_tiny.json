@@ -1,0 +1,89 @@
+{
+ "model": "tiny",
+ "B": 24,
+ "sweeps": 30,
+ "N48_r4": {
+  "velocity": 7.7,
+  "saturate_sweep": 3,
+  "mean_damage": 0.867,
+  "N_over_2": 24,
+  "sweeps": 30
+ },
+ "N48_r8": {
+  "velocity": 11.5,
+  "saturate_sweep": 2,
+  "mean_damage": 0.835,
+  "N_over_2": 24,
+  "sweeps": 30
+ },
+ "N48_r16": {
+  "velocity": 11.5,
+  "saturate_sweep": 2,
+  "mean_damage": 0.876,
+  "N_over_2": 24,
+  "sweeps": 30
+ },
+ "N96_r4": {
+  "velocity": 7.18,
+  "saturate_sweep": 6,
+  "mean_damage": 0.805,
+  "N_over_2": 48,
+  "sweeps": 30
+ },
+ "N96_r8": {
+  "velocity": 15.7,
+  "saturate_sweep": 3,
+  "mean_damage": 0.81,
+  "N_over_2": 48,
+  "sweeps": 30
+ },
+ "N96_r16": {
+  "velocity": 23.5,
+  "saturate_sweep": 2,
+  "mean_damage": 0.858,
+  "N_over_2": 48,
+  "sweeps": 30
+ },
+ "N192_r4": {
+  "velocity": 6.63,
+  "saturate_sweep": 12,
+  "mean_damage": 0.793,
+  "N_over_2": 96,
+  "sweeps": 34
+ },
+ "N192_r8": {
+  "velocity": 13.94,
+  "saturate_sweep": 7,
+  "mean_damage": 0.816,
+  "N_over_2": 96,
+  "sweeps": 34
+ },
+ "N192_r16": {
+  "velocity": 47.5,
+  "saturate_sweep": 2,
+  "mean_damage": 0.823,
+  "N_over_2": 96,
+  "sweeps": 34
+ },
+ "N384_r4": {
+  "velocity": 5.76,
+  "saturate_sweep": 12,
+  "mean_damage": 0.535,
+  "N_over_2": 192,
+  "sweeps": 58
+ },
+ "N384_r8": {
+  "velocity": 14.12,
+  "saturate_sweep": 12,
+  "mean_damage": 0.611,
+  "N_over_2": 192,
+  "sweeps": 58
+ },
+ "N384_r16": {
+  "velocity": 41.14,
+  "saturate_sweep": 5,
+  "mean_damage": 0.692,
+  "N_over_2": 192,
+  "sweeps": 58
+ }
+}

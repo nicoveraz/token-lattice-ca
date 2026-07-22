@@ -227,6 +227,54 @@ result as the toy's speaker-name+colon+newline (F3), now on a real model. The lo
 absolute overlap is the stated proxy limitation, not weak recovery.
 (`results/mlm/*_census.json`)
 
+## Phase A findings — hardening the real-MLM headline
+
+Three publication-blocking threats to F15/F16 closed, at a fixed special-token
+scheme (cls_sep) with ≥5-seed error bars, at T=0.7 (the ordered regime).
+
+**F20 — F15's radius-profile difference is a certified *model* effect at a fixed
+scheme — but the special-token scheme is a first-class apparatus of comparable or
+larger magnitude.** Cross-model order-profile shift (mean_r |Δorder|, fixed
+cls_sep, 5 seeds): tiny↔mini **0.140 ± 0.033**, tiny↔base 0.115 ± 0.023, mini↔base
+0.053 ± 0.027 — all far above the distribution-preserving apparatus floor
+(update-order / CDF-ordering swaps) of **0.014**. So the radius profile genuinely
+differs between models; F15 is not an artifact of the distribution-preserving
+knobs. *However*, swapping cls_sep → no-special-tokens moves the same profile by
+0.083 (tiny), **0.324 (mini)**, 0.155 (base) — for mini the scheme swap exceeds any
+model change. Conclusion: cross-model radius claims are valid *only at a fixed
+scheme*; the CLS/SEP choice is a first-class apparatus that must be held fixed and
+certified against (confirming and quantifying F18 at the profile level). The
+certification protocol is what makes F15 reportable. (`fig/phaseA_radius.png`)
+
+**F21 — The r≥8 damage-velocity plateau (F16) was finite-size wraparound; the
+velocity∝r law continues.** Finite-size scan N∈{48,96,192,384} at r∈{4,8,16}: the
+"11.5 sites/sweep ceiling" on N=48 lifts with N — at r=16, v = 11.5 → 23.5 → 47.5 →
+41 for N = 48,96,192,384; at r=8, 11.5 → 15.7 → 14 (settles once unclipped); at r=4
+(never clipped) v ≈ 6–7, stable across all N. The clean unclipped law is
+v ≈ (1.5–2.7)·r sites/sweep, growing monotonically with r. F16's velocity-set-by-
+radius result holds; the saturation was the ring filling in ~2 sweeps at small N.
+(Apply finite-size scaling before calling anything saturated — the F12 lesson, now
+applied to a velocity.) (`fig/phaseA_velocity.png`, `results/mlm/phaseA_velocity_*.json`)
+
+**F22 — F15's raw "long-range structure grows with r" was partly repetition; the
+repetition-robust signal is an *intermediate*-radius optimum (r≈4).** The raw
+k-gram overlap conflates corpus-consistent structure with degenerate repetition (a
+lattice looping one corpus bigram scores high). Two controls: (i) a
+distinct-corpus-k-gram count (a repeated k-gram counts once) and (ii) the
+distinct-token fraction. Under the distinct metric the 4-gram signal **peaks at
+r≈4 for all three models** (tiny 0.018, mini 0.041, base 0.036) and *falls* by
+r=16 — an intermediate conditioning-radius optimum, not monotonic growth. It is
+genuine (not repetition) for mini and base, whose distinct-token fraction stays
+high across r (mini ≈0.5, base ≈0.7); tiny (weakest) degenerates into repetition at
+large r (distinct 0.20 → 0.16), so *its* raw large-r rise was repetition — the
+confound is itself model-dependent. The coarse-grained MI-decay length is
+repetition-confounded in the same direction (long for repetitive tiny, short for
+diverse base) and must not be read as a structure measure. **Reframed F15:** real
+models are not radius-blind (vs toy F2) — they show a genuine intermediate
+conditioning-radius optimum (~r=4) for corpus-consistent structure — but there is
+no monotonic long-range growth, and the effect must be read with a
+repetition-robust metric. (`fig/phaseA_repetition.png`)
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
