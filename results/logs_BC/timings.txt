@@ -1,0 +1,8 @@
+>>> repair_mini
+>>> repair_tiny
+repair_tiny         799 s OK
+>>> repair_mini
+repair_mini        1248 s OK
+>>> ar_160m
+ar_160m            6754 s FAIL
+BC_DONE

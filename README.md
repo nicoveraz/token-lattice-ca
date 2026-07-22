@@ -29,6 +29,8 @@ tiny-transformer pilot; F10–F13 hardening; F14–F19 on real pretrained MLMs).
 | F20 | F15 certified as a model effect **at a fixed scheme** — but CLS/SEP is a first-class apparatus (scheme swap ≥ model shift) | A |
 | F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
 | F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
+| **F23** | A diversity+velocity-controlled **repair length** (D_norm=D/D0) shrinks with radius; capacity orders it (tiny<mini) — a stability↔expressiveness tradeoff, measured black-box | B |
+| F24 | Both velocity∝r and the repair length **replicate on an AR model** (Pythia, causal window) — not MLM-construction artifacts | C1 |
 
 ## Layout
 
@@ -194,6 +196,34 @@ resume. Wrap it in `caffeinate -i` so idle sleep doesn't kill the long base run.
 | bert-mini (4L/256) | 795 s | 674 s | 83 s | 247 s | B=16–32, sweeps 40 |
 | bert-base (12L/768)| 992 s | 1405 s | 100 s | 339 s | B=12–24, sweeps 25–30 (reduced) |
 | model arms | — | — | — | 3×~60 s | tiny/mini, mini/base, tiny/base |
+
+## Repair length + external validity (Phases B, C)
+
+Measures the perturbation-damping (**repair**) length ξ_repair, diversity- and
+velocity-controlled, and tests external validity on an autoregressive model.
+Framing (per novelty check): the contribution is the **instrument** and its
+measurements; edge-of-chaos/criticality is decades old (reservoir computing;
+2410.02536) — we quantify it black-box, not discover it. Term is "repair length",
+not "self-correction" (taken).
+
+```bash
+export HF_HOME=./hf_cache TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=1
+# Phase B: repair length D(r,T) with the diversity floor (D_norm = D/D0)
+caffeinate -i bash experiments/_run_BC.sh              # tiny+mini repair (normalized) + AR probe
+caffeinate -i bash experiments/_run_phaseB_rigor.sh   # base repair + lyapunov + N-scan
+.venv/bin/python experiments/mlm_repair_analyze.py    # -> fig/repair_*.png
+# Phase C: AR port (src/ar_ca.py, causal window) + calibration (Markov sources)
+.venv/bin/python experiments/ar_ref.py                # data_ar/ (Pythia-tokenized WikiText proxy)
+.venv/bin/python experiments/calib_markov.py --out data_markov_a  # + _b/_c, then train + calib_census.py
+```
+
+Key methods: `mlm_damage.drift_floor` (diversity floor), `lyapunov.py` (finite-size
+λ), `repair_fss.py` (N-scan). Perf: on-device sampling + batched CRN twins (~3×).
+Outcomes: F23 (repair length shrinks with r, capacity→sensitivity), F24 (AR
+replication), C2 calibration (census recovers a known transition matrix, self-TV
+0.22 vs baseline 0.91, discriminates).
+
+## Phase 3 (real MLMs) headlines
 
 **Phase 3 total ≈ 100 min** wall on M1 (fp16/MPS). Headlines: instrument ports and
 the **null CRN coupling stays exactly 0** (F14); real MLMs are **not radius-blind**

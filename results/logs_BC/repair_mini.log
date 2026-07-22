@@ -1,0 +1,30 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 28211.97it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-mini
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[mini] r= 1 T=0.5: D=0.385 D0(floor)=0.849 Dnorm=0.453 distinct=0.42
+[mini] r= 1 T=0.7: D=0.727 D0(floor)=0.913 Dnorm=0.796 distinct=0.60
+[mini] r= 1 T=0.9: D=0.976 D0(floor)=0.993 Dnorm=0.983 distinct=0.86
+[mini] r= 2 T=0.5: D=0.383 D0(floor)=0.689 Dnorm=0.555 distinct=0.48
+[mini] r= 2 T=0.7: D=0.639 D0(floor)=0.877 Dnorm=0.728 distinct=0.54
+[mini] r= 2 T=0.9: D=0.878 D0(floor)=0.950 Dnorm=0.925 distinct=0.70
+[mini] r= 4 T=0.5: D=0.489 D0(floor)=0.610 Dnorm=0.800 distinct=0.52
+[mini] r= 4 T=0.7: D=0.738 D0(floor)=0.808 Dnorm=0.913 distinct=0.55
+[mini] r= 4 T=0.9: D=0.945 D0(floor)=0.943 Dnorm=1.003 distinct=0.70
+[mini] r= 8 T=0.5: D=0.457 D0(floor)=0.455 Dnorm=1.004 distinct=0.47
+[mini] r= 8 T=0.7: D=0.672 D0(floor)=0.708 Dnorm=0.951 distinct=0.47
+[mini] r= 8 T=0.9: D=0.861 D0(floor)=0.860 Dnorm=1.000 distinct=0.58
+[mini] r=16 T=0.5: D=0.416 D0(floor)=0.379 Dnorm=1.101 distinct=0.36
+[mini] r=16 T=0.7: D=0.500 D0(floor)=0.515 Dnorm=0.970 distinct=0.40
+[mini] r=16 T=0.9: D=0.774 D0(floor)=0.757 Dnorm=1.023 distinct=0.46
+[mini] raw   xi(T)={'0.5': 'all_below', '0.7': 'none', '0.9': 'none'}  T_c(r)={'1': 0.567, '2': 0.592, '4': 0.509, '8': 0.54, '16': 0.699}
+[mini] norm  xi(T)={'0.5': 1.374, '0.7': 'none', '0.9': 'none'}  T_c(r)={'1': 0.527, '2': 'none', '4': 'none', '8': 'none', '16': 'none'}
+[mini] REPAIR DONE (1242s)

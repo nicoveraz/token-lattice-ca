@@ -1,0 +1,60 @@
+{
+ "spine": {
+  "order_by_raw_D": [
+   "tiny",
+   "mini"
+  ],
+  "order_by_norm_D": [
+   "tiny",
+   "mini"
+  ],
+  "mean_D_norm": {
+   "tiny": 0.6720333333333334,
+   "mini": 0.8802866666666667
+  },
+  "norm_spread": 0.208,
+  "separates_after_control": true
+ },
+ "repair": {
+  "tiny": {
+   "D_raw_by_r": [
+    0.29,
+    0.446,
+    0.554,
+    0.499,
+    0.405
+   ],
+   "D_norm_by_r": [
+    0.429,
+    0.595,
+    0.765,
+    0.818,
+    0.753
+   ],
+   "D0_floor_mean": 0.627,
+   "distinct_mean": 0.287,
+   "r_star_norm": 8,
+   "mean_D_norm": 0.672
+  },
+  "mini": {
+   "D_raw_by_r": [
+    0.696,
+    0.633,
+    0.724,
+    0.663,
+    0.563
+   ],
+   "D_norm_by_r": [
+    0.744,
+    0.736,
+    0.905,
+    0.985,
+    1.031
+   ],
+   "D0_floor_mean": 0.754,
+   "distinct_mean": 0.54,
+   "r_star_norm": 16,
+   "mean_D_norm": 0.88
+  }
+ }
+}

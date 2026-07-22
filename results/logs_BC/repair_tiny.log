@@ -1,0 +1,30 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/44 [00:00<?, ?it/s]Loading weights: 100%|██████████| 44/44 [00:00<00:00, 21589.77it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-tiny
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[tiny] r= 1 T=0.5: D=0.110 D0(floor)=0.311 Dnorm=0.359 distinct=0.13
+[tiny] r= 1 T=0.7: D=0.107 D0(floor)=0.486 Dnorm=0.220 distinct=0.18
+[tiny] r= 1 T=0.9: D=0.651 D0(floor)=0.920 Dnorm=0.707 distinct=0.59
+[tiny] r= 2 T=0.5: D=0.244 D0(floor)=0.588 Dnorm=0.418 distinct=0.36
+[tiny] r= 2 T=0.7: D=0.429 D0(floor)=0.752 Dnorm=0.569 distinct=0.38
+[tiny] r= 2 T=0.9: D=0.664 D0(floor)=0.831 Dnorm=0.799 distinct=0.48
+[tiny] r= 4 T=0.5: D=0.343 D0(floor)=0.540 Dnorm=0.635 distinct=0.28
+[tiny] r= 4 T=0.7: D=0.537 D0(floor)=0.719 Dnorm=0.748 distinct=0.33
+[tiny] r= 4 T=0.9: D=0.783 D0(floor)=0.860 Dnorm=0.910 distinct=0.40
+[tiny] r= 8 T=0.5: D=0.335 D0(floor)=0.428 Dnorm=0.798 distinct=0.19
+[tiny] r= 8 T=0.7: D=0.496 D0(floor)=0.621 Dnorm=0.803 distinct=0.22
+[tiny] r= 8 T=0.9: D=0.665 D0(floor)=0.778 Dnorm=0.854 distinct=0.27
+[tiny] r=16 T=0.5: D=0.231 D0(floor)=0.355 Dnorm=0.650 distinct=0.10
+[tiny] r=16 T=0.7: D=0.391 D0(floor)=0.481 Dnorm=0.810 distinct=0.15
+[tiny] r=16 T=0.9: D=0.592 D0(floor)=0.741 Dnorm=0.800 distinct=0.24
+[tiny] raw   xi(T)={'0.5': 'all_below', '0.7': 3.156, '0.9': 'none'}  T_c(r)={'1': 0.844, '2': 0.76, '4': 0.662, '8': 0.705, '16': 0.808}
+[tiny] norm  xi(T)={'0.5': 2.6, '0.7': 1.743, '0.9': 'none'}  T_c(r)={'1': 0.815, '2': 0.609, '4': 'none', '8': 'none', '16': 'none'}
+[tiny] REPAIR DONE (793s)

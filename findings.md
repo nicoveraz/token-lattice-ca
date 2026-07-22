@@ -275,6 +275,72 @@ conditioning-radius optimum (~r=4) for corpus-consistent structure — but there
 no monotonic long-range growth, and the effect must be read with a
 repetition-robust metric. (`fig/phaseA_repetition.png`)
 
+## Phase B/C findings — the repair length, and external validity
+
+Naming/positioning (per novelty check): we call the perturbation-damping scale the
+**repair length** (`ξ_repair`) / **error-damping length**, *not* "self-correction"
+(that term is taken by the autoregressive/CoT reasoning-error literature). The
+contribution is the **black-box token-lattice CA instrument** and the specific
+quantities it measures (the radius law F15, velocity∝r F16/F21, the repair length,
+and its capacity scaling); the *phenomena* those land on — criticality, computation
+at the edge of chaos — are decades old (Langton; Bertschinger & Natschläger 2004,
+reservoir computing; *Intelligence at the Edge of Chaos* arXiv:2410.02536). We
+**measure and quantify a long-hypothesized picture from the outside and add a
+capacity-scaling result**; we do not claim to discover the edge of chaos.
+
+**F23 — A diversity- and velocity-controlled repair length exists, and it shrinks
+with conditioning radius; larger-capacity models sit closer to the chaotic side.**
+The raw asymptotic damage D (fraction of sites still differing at long time) is
+*diversity-confounded*: a degenerate low-entropy lattice snaps a perturbation back
+trivially (a deep narrow attractor with nowhere to differ), scoring low D for the
+wrong reason — the stability analog of the F22 repetition confound. We control with
+the **diversity floor** D0 = unperturbed drift of twins sharing the settled init but
+with **independent** noise and **no** flip; because D0 is a full radius-r run it
+propagates at the same velocity∝r as the perturbed run, so the normalized
+`D_norm = D/D0` cancels **both** the diversity term **and** the kinematic term. Then:
+- **D_norm rises with r** (tiny 0.43→0.82, mini 0.74→1.03 over r=1…16): the
+  error-damping length shrinks as the window widens. The raw-D "recovery" at large r
+  was the lattice collapsing into repetition (distinct-token frac ↓), deflating raw D
+  while D_norm stayed high — the confound, caught.
+- **Capacity orders it, after the control**: mean D_norm tiny 0.67 < mini 0.88
+  (spread 0.21 ≫ the distribution-preserving apparatus floor). The ordering *fights*
+  the normalization (mini's higher diversity floor should deflate its D_norm, yet it
+  is higher) and is velocity-immune (matched r ⇒ matched propagation speed), so the
+  gap is neither diversity nor kinematics.
+- **Reading (edge-of-chaos, as measurement)**: D_norm > 1 (mini at large r) is a
+  chaos signature — the flip is amplified *beyond the model's own noise floor*. tiny
+  reads "stable" because it is *frozen* (heals by collapsing to a dead repetitive
+  attractor); mini reads "sensitive" because it is *expressive* (rich dynamics carry
+  a perturbation). So the capacity axis traces a **stability↔expressiveness
+  tradeoff**: more capable models run nearer criticality, where expressiveness lives.
+Rigor: D_norm is monotone in r for mini but **tiny dips at r=16** (0.82→0.75) — the
+dip is *model-dependent*, which argues collapse-residual over pure ring geometry (a
+geometric finite-size effect would hit both models equally). The finite-size N-scan
+and a finite-size **Lyapunov exponent** λ (early log-separation slope; does λ cross
+positive with capacity?) plus the third capacity point (base) quantify this — see the
+rigor update. (`fig/repair_grid.png`, `fig/repair_scale.png`,
+`results/mlm/repair_*.json`)
+
+**F24 — Both load-bearing measurements replicate on an autoregressive model, so
+they are not artifacts of the MLM's globally-inconsistent construction (external
+validity).** The instrument is ported to Pythia-160m as a one-sided **causal**
+window p(x_i | x_{i-r..i-1}) — an order-r Markov approximation, the AR analog of the
+MLM's symmetric masked window (`src/ar_ca.py`; null CRN divergence exactly 0). On
+this consistent-joint model: (a) **velocity∝r replicates** (v = 5.8, 7.7, 11.5,
+11.5 for r = 2,4,8,16, same N/2 saturation as F21; r=1 does not propagate at all),
+and (b) the **repair length replicates** — D_norm rises 0.001 (r=1, fully damps) →
+0.98 (r≥4, fully decorrelates), the same climb as the MLM. Because the MLM joint is
+globally inconsistent (2605.16378) while the AR joint is consistent, the phenomena
+being construction-independent is the single most important external-validity check.
+We hold the MLM↔AR comparison at the level of the **trend**, not absolute numbers:
+AR healing is causal-context (one-sided), a different object from bidirectional MLM
+healing. The AR capacity trend (Pythia-160m vs 410m) is the natural next step.
+(`results/mlm/ar_pythia-160m.json`)
+
+> Novelty TODO before submission (from the check): direct-read arXiv:2607.09803 and
+> QUIVER; keep the instrument (not "dynamical-systems analysis of LLMs") as the
+> claimed novel core.
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`

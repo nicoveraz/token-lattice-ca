@@ -16,3 +16,5 @@ Notes:
 [mini] r= 1 T=0.9: D=0.987±0.001 P_ign=1.00 spread=0.99
 [mini] r= 2 T=0.3: D=0.274±0.019 P_ign=0.80 spread=0.34
 [mini] r= 2 T=0.5: D=0.426±0.024 P_ign=0.80 spread=0.53
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
