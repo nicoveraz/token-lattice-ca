@@ -1,0 +1,224 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,natbib,xcolor}
+\usepackage[T1]{fontenc}
+\graphicspath{{../fig/}}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
+\newcommand{\dn}{\ensuremath{D_{\mathrm{norm}}}}
+\newcommand{\dz}{\ensuremath{D_0}}
+\title{\bfseries A Token-Lattice Cellular Automaton:\\ Black-Box Measurement of Dynamical Structure in Language Models}
+\author{token-lattice-ca \\ \small Draft --- findings F1--F24 in \texttt{findings.md}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We turn a language model into a \emph{cellular automaton (CA) over token space} and use
+it as a measurement instrument. A ring of $N$ token cells is updated in place by the
+model's own windowed conditional $p_r(x_i \mid x_{i\pm r})$ at temperature $T$
+(asynchronous random-order Glauber); the model \emph{is} the update rule, and the radius
+$r$ of the conditioning window is a swept knob. Reading the model out as a dynamical
+system rather than a next-token predictor exposes structure that static evaluation
+misses. We report four black-box measurements, each certified against apparatus
+confounds by a common-random-number (CRN) differential protocol. (1)~A \textbf{radius
+law}: equilibrium \emph{local} statistics are nearly radius-blind, but corpus-consistent
+\emph{longer-range} structure has an intermediate-radius optimum, visible only through a
+repetition-robust metric. (2)~\textbf{Damage light cones} whose front velocity is set by
+the conditioning radius, $v \propto r$, and is model-invariant. (3)~A \textbf{repair
+length}: the asymptotic damage from a perturbation, once controlled for the model's
+intrinsic diversity, shrinks as the window widens and grows with model capacity---the
+larger models amplify perturbations beyond their own noise floor. A finite-size Lyapunov
+exponent shows the \emph{early} dynamics are a purely kinematic axis shared by all
+models, so the capacity signal lives entirely in the \emph{asymptotic} persistence:
+velocity and stability are orthogonal, and only stability tracks capacity. (4)~\textbf{External
+validity}: both the velocity law and the repair length replicate on an autoregressive
+model driven through a one-sided causal window, so they are not artifacts of the masked
+LM's globally-inconsistent joint. We calibrate against synthetic sources with known
+transition matrices, where the attractor census recovers ground truth quantitatively and
+discriminates sources. The contribution is the \textbf{instrument and the quantities it
+measures}; the phenomena those quantities land on---criticality, computation at the edge
+of chaos \citep{langton1990computation,bertschinger2004real,edgeofchaos2024}---are decades
+old, and we measure them from the outside rather than claim to discover them.
+\end{abstract}
+
+\section{Introduction}
+Language models are evaluated almost entirely as functions: given a context, how good is
+the next-token distribution? But a masked or autoregressive conditional also \emph{defines
+a dynamics}---iterate it in place over a lattice of tokens and one obtains a stochastic
+cellular automaton whose rule is the model. Iterated-map views of LLMs have appeared
+qualitatively \citep{logos_ca,telephone,paraphrase2cycle} and as mixing-time studies of
+masked-LM Glauber dynamics \citep{glauber_mlm}. What has been missing is a
+\emph{measurement instrument}: a small, controlled, calibrated apparatus that reads
+structural properties out of the dynamics, with apparatus confounds explicitly certified
+away. We build that instrument and sweep the one knob a token-space CA has that a
+next-token evaluation does not---the \textbf{conditioning radius} $r$. A CA has a native
+chaos vocabulary---damage spreading, light cones, Lyapunov exponents, attractor censuses
+\citep{hanson1997computational}---and we import it wholesale. Our claims are modest about
+\emph{what} is found and precise about \emph{how}: the edge-of-chaos and criticality ideas
+the results touch are old \citep{langton1990computation,bertschinger2004real,edgeofchaos2024};
+we provide a black-box, token-space, generation-time \emph{measurement} of them in trained
+LMs, plus a capacity-scaling result. The novel core is the instrument and its measurements.
+
+\section{The instrument}
+\textbf{Rule.} A window of $w=2r{+}1$ tokens with the center masked is fed to a masked LM;
+the tempered center distribution is the kernel $p_r(x_i\mid x_{i\pm r})$. For an
+autoregressive model (\S\ref{sec:ar}) the window is the $r$ cells to the left and the rule
+is the next-token distribution---an order-$r$ Markov approximation, the causal analog of
+the symmetric masked window. \textbf{Automaton.} $N$ ring cells, async random-order
+single-site Glauber (synchronous updates manufacture period-2 blinkers and are only an
+apparatus arm \citep{paraphrase2cycle}); special tokens forbidden as emissions.
+\textbf{CRN coupling.} Twin lattices sharing initial state, update order, and the uniform
+stream driving inverse-CDF sampling differ only in the factor under test; the \emph{null}
+arm must diverge by exactly zero (it does, on both masked and autoregressive paths),
+certifying the coupling. \textbf{Four pillars:} $T\times r$ phase sweeps; damage spreading
+(block flips, CRN twins, ignition probability separate from spread); attractor census
+(random soup to quasi-stationarity, validated against a corpus); and differential
+certification---attribute at the level of \emph{statistics}, never trajectories (under
+chaos, trajectory divergence saturates for signal and apparatus alike, so only a statistic
+that nulls under apparatus swaps and moves under model swaps is a model reading).
+
+\textbf{Two confounds shape every metric.} \emph{Repetition}: a lattice looping one corpus
+$n$-gram scores high overlap for free, so structure uses a repetition-robust variant
+(distinct corpus $n$-grams). \emph{Diversity} (its stability analog): a degenerate
+low-entropy lattice snaps a perturbation back trivially---low damage for the wrong
+reason---so damage is normalized by the model's own diversity floor (\S\ref{sec:repair}).
+We validate on a tiny transformer trained from scratch on tinyshakespeare (census checked
+against the actual training corpus), then scale to \texttt{bert-tiny/mini/base} and
+\texttt{Pythia-160m/410m} \citep{pythia}. A free control: the temperature ``phase
+transition'' is, on a finite-size scan, a \emph{crossover}, not a true transition (the
+order-parameter susceptibility self-averages, $\chi_{\mathrm{peak}}\propto 1/N$),
+disciplining all ``transition'' language.
+
+\section{Results}
+\subsection{A radius law}
+Sweeping $r$ at fixed $T$, the \emph{local} statistic (corpus-bigram fraction) is nearly
+radius-blind. \emph{Longer-range} corpus consistency is not: raw 3- and 4-gram overlap
+rises with $r$, but under the repetition-robust metric the signal \emph{peaks at an
+intermediate radius} ($r\approx4$) and falls by $r{=}16$---the apparent large-$r$ growth
+was collapse into repetition. Certification: holding the special-token windowing scheme
+fixed, the cross-model radius-profile difference far exceeds the distribution-preserving
+apparatus floor (so the profile is a model effect), but the scheme itself moves the profile
+as much as a model change, so cross-model claims must hold the scheme fixed
+(Fig.~\ref{fig:radius}).
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{phaseA_radius.png}
+\caption{Radius certification. Cross-model radius profiles at a fixed scheme exceed the
+distribution-preserving apparatus floor (model effect), but the special-token scheme is a
+first-class apparatus of comparable magnitude.}\label{fig:radius}
+\end{figure}
+
+\subsection{Damage light cones: $v\propto r$}
+A 3-site block flip under CRN produces a cone whose front advances ballistically at
+$v\approx 1.6,3.5,7.7,\dots$ sites/sweep for $r=1,2,4,\dots$. A plateau at large $r$ on
+small rings is finite-size (the front fills the ring in $\sim$2 sweeps) and lifts on an
+$N\in\{48,96,192,384\}$ scan ($v=11.5\!\to\!23.5\!\to\!47.5$ at $r{=}16$). The unclipped
+law $v\propto r$ is \textbf{model-invariant}: interaction range is a kinematic property of
+the apparatus, not the model (Fig.~\ref{fig:velocity}).
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.72\linewidth]{phaseA_velocity.png}
+\caption{Damage-front velocity vs.\ ring size. The small-ring plateau is finite-size
+wraparound; $v\propto r$ continues once unclipped.}\label{fig:velocity}
+\end{figure}
+
+\subsection{The repair length, kinematics $\perp$ stability}\label{sec:repair}
+Perturb, evolve under CRN, and ask how much damage \emph{persists}. The raw answer is
+diversity-confounded, so we normalize by a \textbf{diversity floor} \dz{}: the asymptotic
+drift of twins sharing the settled initial state but evolving under \emph{independent}
+noise with \emph{no} flip. Because \dz{} is a full radius-$r$ run it propagates at the same
+$v\propto r$, so $\dn=D/\dz$ cancels \emph{both} the diversity and the kinematic terms.
+Then (Fig.~\ref{fig:repair}): \dn{} rises with radius (repair length shrinks as the window
+widens; the raw ``recovery'' at large $r$ was collapse); capacity orders it monotonically
+(mean \dn{} $0.672<0.880<0.904$ for tiny/mini/base), the larger models crossing $\dn>1$
+(amplification beyond the noise floor). The ordering fights the normalization (a diverse
+model's higher floor should deflate its \dn) and is velocity-immune (matched $r$), so it is
+neither diversity nor kinematics. A finite-size Lyapunov exponent $\lambda$ (early
+log-separation slope) is \textbf{model-invariant} ($\lambda_{\max}\approx0.74$--$0.77$ for
+all three) and universally positive: early dynamics are a kinematic axis set by the radius,
+and the capacity signal lives entirely in the asymptotic \dn. \emph{Reading (as
+measurement)}: $\dn>1$ is a chaos signature; the smallest model reads ``stable'' because it
+is \emph{frozen} (collapses to a dead repetitive attractor), the larger ones ``sensitive''
+because \emph{expressive}. The capacity axis traces a stability$\leftrightarrow$expressiveness
+tradeoff---the long-hypothesized edge-of-chaos picture
+\citep{bertschinger2004real,edgeofchaos2024} measured black-box, with a capacity axis added.
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{repair_scale.png}
+\caption{The repair length. Left: raw damage $D$ vs.\ $r$. Middle: diversity+velocity
+controlled $\dn=D/\dz$---rises with $r$, ordered by capacity, $\dn>1$ for the larger models.
+Right: \dn{} vs.\ diversity (flat $\Rightarrow$ controlled).}\label{fig:repair}
+\end{figure}
+
+\subsection{External validity: the autoregressive port}\label{sec:ar}
+Both load-bearing measurements replicate on \texttt{Pythia-160m} driven through a one-sided
+\emph{causal} window (null CRN divergence exactly zero). Velocity$\propto r$ holds
+($v=5.8,7.7,11.5$ for $r=2,4,8$; $r{=}1$ does not propagate), and the repair length holds
+(\dn{} climbs $0.001\!\to\!0.98$ across $r$). The capacity$\to$sensitivity climb replicates
+too: at the sub-saturation radius $r{=}2$, mean \dn{} rises $0.64\to0.73$ from Pythia-160m
+to 410m. Because the masked-LM joint is globally inconsistent \citep{glauber_mlm} while the
+autoregressive joint is consistent, replication across constructions is the strongest
+evidence the phenomena are properties of trained-LM token dynamics, not artifacts of the
+masked construction. We compare at the level of the \emph{trend}: causal-context healing is
+a different object from bidirectional healing.
+
+\subsection{Calibration against ground truth}
+On three synthetic first-order Markov sources sharing a vocabulary but with different sparse
+transition matrices $P_a/P_b/P_c$, a model trained on each and censused yields an empirical
+bigram transition $Q_X$ matching its own $P_X$ (row total-variation $0.22$ vs.\ a
+random-lattice baseline $0.91$) and \emph{not} the others (cross-TV $0.95$): the census
+recovers each model's own priors quantitatively and discriminates sources
+(Fig.~\ref{fig:calib})---the honest trained-model analog of a sampler oracle
+\citep{sampler_oracle}. On natural corpora the recovery is qualitative but structurally
+identical: the deepest attractors are the corpus's \emph{format skeleton}. Vocabulary
+compression corrupts this---a word-level \texttt{<unk>} becomes attractor material and
+inflates recovery through artifact-to-artifact matching; byte-level BPE removes it.
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.5\linewidth]{calib_discrimination.png}
+\caption{Calibration. Row total-variation between each model's censused bigram transition
+$Q_X$ and every true $P_Y$: diagonal (self-recovery) $\approx0.22$, off-diagonal
+$\approx0.95$---quantitative recovery and clean discrimination.}\label{fig:calib}
+\end{figure}
+
+\section{Related work}
+The instrument re-confirms as novel: nearest ``dynamical-systems analysis of LLMs''
+studies operate on activations or layer depth \citep{dyn_regimes_llm}, not iterated
+token-generation dynamics. We cite \citet{sampler_oracle} first as the calibration/oracle
+kin (\S3.5) and cast our synthetic-Markov recovery as its trained-model analog;
+\citet{quiver} and perturbation-propagation work are the damage-spreading kin;
+\citet{glauber_mlm} owns the temperature axis and the incompatibility result we phrase
+claims around, but lacks the radius axis, light cones, repair length, and corpus-validated
+census; temperature-criticality work \citep{ar_tempcrit,phase_detect} makes the temperature
+axis crowded (we treat $T$ as a calibration anchor); the edge-of-chaos line
+\citep{langton1990computation,bertschinger2004real,edgeofchaos2024} is the conceptual home
+of \S\ref{sec:repair}, and our contribution is measurement plus capacity scaling, not the
+concept; the census methodology descends from \citet{hanson1997computational}; early
+crystallization of low-order structure is consistent with distributional simplicity bias
+\citep{simplicitybias}, read black-box. \emph{(Pre-submission: direct-read
+arXiv:2607.09803 and QUIVER and re-run the full novelty harness over the evolved findings.)}
+
+\section{Limitations}
+Masked-LM local conditionals are globally inconsistent, so the CA is a well-defined
+stochastic dynamical system but not a sampler of any joint; all claims are properties of
+the dynamics. The real-model census is proxy-validated (WikiText, out-of-training), a lower
+bound; ground-truth calibration is on synthetic sources only. Rings are small ($N\le384$),
+the ladder short (three masked, two autoregressive), and the AR capacity trend rests on two
+models with only the sub-saturation radius discriminating (the 410m largest window OOM'd on
+16\,GB). The special-token windowing scheme is a first-class apparatus factor to hold fixed;
+temperature scales are not comparable across masked and autoregressive constructions.
+
+\section{Conclusion}
+Reading a language model as a cellular automaton over its own token space, with the
+conditioning radius as a swept knob and CRN perturbations as the probe, yields calibrated,
+apparatus-certified measurements static evaluation does not: a radius law, a model-invariant
+damage velocity, and a diversity- and velocity-controlled repair length that shortens with
+capacity as the dynamics move toward the chaotic side---replicated on an autoregressive
+model and quantified against ground truth. The instrument is the contribution; the phenomena
+it measures are old and deep, and that is exactly why measuring them cleanly, from the
+outside, is worth doing.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}
