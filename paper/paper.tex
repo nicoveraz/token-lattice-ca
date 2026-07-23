@@ -47,7 +47,12 @@ radius-level measurements are not tied to the masked construction---though both
 constructions are windowed, in-place-resampled rings rather than samplers of the model's
 true joint, so this is cross-construction agreement, not proof about the joint. We calibrate against synthetic sources with known
 transition matrices, where the attractor census recovers ground truth quantitatively and
-discriminates sources. The contribution is the \textbf{instrument and the quantities it
+discriminates sources. As a first probe of external significance, on a six-model
+autoregressive ladder the white-box activation-space top-Lyapunov exponent is a clean
+scaling law ($\rho{=}-0.94$), and its black-box token-space Lyapunov counterpart moves with
+it in the type-matched pairing ($r{=}0.71$, $n{=}6$, suggestive but underpowered) while the
+mismatched persistence pairing does not---token- and activation-space criticality appear to
+share a growth-rate axis. The contribution is the \textbf{instrument and the quantities it
 measures}; the phenomena those quantities land on---criticality, computation at the edge
 of chaos \citep{langton1990computation,bertschinger2004real,edgeofchaos2024}---are decades
 old, and we measure them from the outside rather than claim to discover them.
@@ -270,6 +275,43 @@ $Q_X$ and every true $P_Y$: diagonal (self-recovery) $\approx0.22$, off-diagonal
 $\approx0.95$---quantitative recovery and clean discrimination.}\label{fig:calib}
 \end{figure}
 
+\subsection{Cross-level validation: token-space vs.\ activation-space criticality}\label{sec:crosslevel}
+A black-box instrument earns its keep only if its readings track something one would
+otherwise need internals to see. We test this directly on the autoregressive ladder
+(Pythia 14M--1B, six sizes). \textbf{White-box:} a finite-depth top-Lyapunov exponent
+$\lambda_{\mathrm{top}}=\frac{1}{L}\log\rho(J_{\mathrm{emb}\to h_L})$, the depth-normalized
+log spectral radius of the embedding-to-final-hidden Jacobian---the SPARC error-propagation
+operator $\rho(F_T)$ \citep{sparc}, power-iterated with finite-difference Jacobian--vector
+products in fp32. \textbf{Black-box:} two token-space quantities from the same CA---the
+asymptotic damping length \dn{} and the token-space finite-size Lyapunov
+$\lambda_{\mathrm{ca}}$ (the early damage-growth slope), at $r{=}2$, $T{=}0.7$.
+Two results, one clean and one honest-but-underpowered (Fig.~\ref{fig:crosslevel}):
+(i)~$\lambda_{\mathrm{top}}$ is itself a clean scaling law---it falls monotonically with
+size (Spearman $\rho{=}-0.94$, $p{=}0.005$), larger models approaching criticality from the
+supercritical side. (ii)~Cross-level, the pairing depends on matching \emph{type}. The
+\emph{persistence} quantity \dn{} does \emph{not} track $\lambda_{\mathrm{top}}$ (Pearson
+$r{=}-0.29$, $p{=}0.57$)---expected, as a growth rate and an asymptotic persistence are
+different observables. The matched \emph{Lyapunov--Lyapunov} pairing moves together in the
+right direction ($r{=}0.71$, $\rho{=}0.60$)---a clean sign flip from the mismatched
+pairing---but at $n{=}6$ it is \emph{not} significant ($p{=}0.11$) and is leveraged by the
+two smallest models. We therefore report it as \textbf{suggestive, not established}: token-
+and activation-space criticality appear to share a growth-rate axis but not a persistence
+axis---enough to motivate, not certify, the black-box $\lambda_{\mathrm{ca}}$ as a
+weights-free proxy for internal criticality. Establishing it needs the power an $n{=}6$
+ladder lacks: a longer ladder and a second family, and---most powerfully---a
+\emph{within-model} design correlating $\lambda_{\mathrm{ca}}(T)$ against a
+temperature-dependent $\rho(F_T)$ across a swept axis, which yields many matched points per
+model rather than six cross-model scalars.
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{crosslevel.png}
+\caption{Cross-level (Pythia 14M--1B, $n{=}6$). Left: the mismatched pairing (white-box
+$\lambda_{\mathrm{top}}$ vs.\ black-box persistence \dn) is null ($r{=}-0.29$). Middle: the
+type-matched pairing (Lyapunov vs.\ Lyapunov) is suggestive ($r{=}0.71$, $p{=}0.11$) but
+underpowered and small-model-leveraged. Right: the white-box $\lambda_{\mathrm{top}}$ is a
+clean scaling law ($\rho{=}-0.94$, $p{=}0.005$).}\label{fig:crosslevel}
+\end{figure}
+
 \section{Related work}
 A novelty check (102-agent adversarial harness) places our contribution precisely: the
 \emph{instrument} is largely novel at the method level, but its \emph{substrate} is not,
@@ -351,9 +393,13 @@ matrix quantitatively on synthetic sources, and only qualitatively (proxy-scored
 near-floor) on real models. The instrument and its certification/calibration protocol are
 the contribution; the phenomena it measures are old and deep, which is exactly why measuring
 them cleanly, from the outside, is worth doing---provided the measurements are held to the
-seed-level standard we outline for the capacity claim. The open next step is to show the
-instrument \emph{predicts} an internal property: whether the black-box token-space damping
-length agrees with a white-box activation-space criticality measure on the same model.
+seed-level standard we outline for the capacity claim. A first cross-level test
+(\S\ref{sec:crosslevel}) is encouraging but underpowered: the black-box token-space Lyapunov
+moves with the white-box activation-space Lyapunov across a six-model ladder ($r{=}0.71$,
+$n{=}6$), while a persistence quantity does not---token- and activation-space criticality
+appear to share a growth-rate axis. Turning this into a \emph{certified} weights-free proxy
+for internal criticality---the result that would give the instrument its external
+significance---is the open next step, via a within-model, temperature-swept design.
 
 \paragraph{Opportunities --- chiefly for interpretability.} The instrument reads a model's
 dynamics from \emph{token space alone}---no weights, gradients, or activations---which is

@@ -471,6 +471,41 @@ this log now reflect the corrected claims.
   black-box token-space damping length agree with a white-box activation-space
   criticality measure (Jacobian/Lyapunov; SPARC ρ(F_T)≥1) across a Pythia ladder,
   at the seed-level standard of A1. This is the missing external-validity result.
+  **Run (F26 below).**
+
+## Phase D findings — cross-level validation (issue #4)
+
+### F26 — token-space vs activation-space criticality: matched-type is suggestive, mismatched is null
+Six-model Pythia ladder (14M/31M/70M/160M/410M/1B). WHITE-BOX: finite-depth
+top-Lyapunov λ_top = (1/L)·log ρ(J_{emb→h_L}), depth-normalized log spectral radius
+of the embedding→final-hidden Jacobian (= SPARC's ρ(F_T); finite-difference-JVP
+power iteration, fp32). BLACK-BOX (same CA): asymptotic damping length D_norm and
+the token-space finite-size Lyapunov λ_ca (early damage-growth slope), r=2, T=0.7,
+5/2 seeds. (`results/mlm/crosslevel.json`, `fig/crosslevel.png`,
+`experiments/crosslevel.py` + `crosslevel_lyap.py`.)
+
+- **A clean white-box scaling law:** λ_top falls monotonically with size (1.106,
+  0.925, 0.771, 0.312, 0.187, 0.235 for 14M→1B; Spearman ρ=−0.94, **p=0.005**) —
+  larger models sit closer to critical, approaching λ_top=0 from the supercritical
+  (expanding) side. Stands on its own, independent of the cross-level question.
+- **Mismatched pairing is null.** White λ_top vs black **D_norm** (a growth rate vs
+  an asymptotic *persistence*): Pearson r=−0.29, p=0.57; Spearman ρ=−0.49, p=0.33.
+  D_norm is flat across size (ρ=0.31, p=0.54) — it does not scale, so it cannot
+  track a scaling white-box quantity. Expected once framed by type.
+- **Matched pairing is suggestive but underpowered.** White λ_top vs black **λ_ca**
+  (Lyapunov vs Lyapunov): **Pearson r=+0.71 (p=0.11), Spearman ρ=+0.60 (p=0.21)** —
+  right sign, moderate-strong effect, a clean flip from the mismatched pairing, but
+  **not significant at n=6**, and leveraged by the two smallest models. Reported as
+  *suggestive, not established*. (λ_ca_max is rail-bound flat ~0.90 at the grid edge
+  r=8,T=0.9 for all models — apparatus-saturated, its correlation is noise; λ_ca at
+  the informative r=2 cell carries the effect.)
+- **Reading:** token-space and activation-space criticality appear to share a
+  *growth-rate* axis but not a *persistence* axis — enough to motivate, not certify,
+  black-box λ_ca as a weights-free proxy for internal criticality.
+- **Path to significance (not yet run):** longer ladder + second family (GPT-2) for
+  more points, and — most powerfully — a *within-model* design correlating λ_ca(T)
+  against a temperature-dependent white-box ρ(F_T) over a swept T, giving many
+  matched points per model instead of n=6 cross-model scalars.
 
 ## Caveats
 

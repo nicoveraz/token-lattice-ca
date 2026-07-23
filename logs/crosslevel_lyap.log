@@ -1,0 +1,74 @@
+[pythia-14m] black-box token-space Lyapunov ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11830.29it/s]
+    lambda_ca r= 1 T=0.7: -1.1226/sweep
+    lambda_ca r= 1 T=0.9: -1.1452/sweep
+    lambda_ca r= 2 T=0.7: +0.2321/sweep
+    lambda_ca r= 2 T=0.9: +0.2202/sweep
+    lambda_ca r= 4 T=0.7: +0.4745/sweep
+    lambda_ca r= 4 T=0.9: +0.5129/sweep
+    lambda_ca r= 8 T=0.7: +0.8859/sweep
+    lambda_ca r= 8 T=0.9: +0.9020/sweep
+[pythia-14m] lambda_ca_max=+0.9020 (r=8,T=0.9)  lambda_ca_r2=+0.2321  (186s)
+[pythia-31m] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6612.05it/s]
+    lambda_ca r= 1 T=0.7: -1.1407/sweep
+    lambda_ca r= 1 T=0.9: -1.1339/sweep
+    lambda_ca r= 2 T=0.7: +0.2068/sweep
+    lambda_ca r= 2 T=0.9: +0.2274/sweep
+    lambda_ca r= 4 T=0.7: +0.4764/sweep
+    lambda_ca r= 4 T=0.9: +0.5073/sweep
+    lambda_ca r= 8 T=0.7: +0.8872/sweep
+    lambda_ca r= 8 T=0.9: +0.8996/sweep
+[pythia-31m] lambda_ca_max=+0.8996 (r=8,T=0.9)  lambda_ca_r2=+0.2068  (216s)
+[pythia-70m] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6408.67it/s]
+    lambda_ca r= 1 T=0.7: -1.1334/sweep
+    lambda_ca r= 1 T=0.9: -1.1293/sweep
+    lambda_ca r= 2 T=0.7: +0.1480/sweep
+    lambda_ca r= 2 T=0.9: +0.1847/sweep
+    lambda_ca r= 4 T=0.7: +0.4851/sweep
+    lambda_ca r= 4 T=0.9: +0.5549/sweep
+    lambda_ca r= 8 T=0.7: +0.8914/sweep
+    lambda_ca r= 8 T=0.9: +0.9006/sweep
+[pythia-70m] lambda_ca_max=+0.9006 (r=8,T=0.9)  lambda_ca_r2=+0.1480  (282s)
+[pythia-160m] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7365.06it/s]
+    lambda_ca r= 1 T=0.7: -1.1455/sweep
+    lambda_ca r= 1 T=0.9: -1.1492/sweep
+    lambda_ca r= 2 T=0.7: +0.1659/sweep
+    lambda_ca r= 2 T=0.9: +0.1828/sweep
+    lambda_ca r= 4 T=0.7: +0.4983/sweep
+    lambda_ca r= 4 T=0.9: +0.5092/sweep
+    lambda_ca r= 8 T=0.7: +0.8793/sweep
+    lambda_ca r= 8 T=0.9: +0.8929/sweep
+[pythia-160m] lambda_ca_max=+0.8929 (r=8,T=0.9)  lambda_ca_r2=+0.1659  (574s)
+[pythia-410m] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6274.17it/s]
+    lambda_ca r= 1 T=0.7: -1.1388/sweep
+    lambda_ca r= 1 T=0.9: -1.1130/sweep
+    lambda_ca r= 2 T=0.7: +0.1637/sweep
+    lambda_ca r= 2 T=0.9: +0.2238/sweep
+    lambda_ca r= 4 T=0.7: +0.5002/sweep
+    lambda_ca r= 4 T=0.9: +0.4979/sweep
+    lambda_ca r= 8 T=0.7: +0.8659/sweep
+    lambda_ca r= 8 T=0.9: +0.8966/sweep
+[pythia-410m] lambda_ca_max=+0.8966 (r=8,T=0.9)  lambda_ca_r2=+0.1637  (1094s)
+[pythia-1b] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 6733.31it/s]
+    lambda_ca r= 1 T=0.7: -1.1152/sweep
+    lambda_ca r= 1 T=0.9: -1.1371/sweep
+    lambda_ca r= 2 T=0.7: +0.1686/sweep
+    lambda_ca r= 2 T=0.9: +0.2469/sweep
+    lambda_ca r= 4 T=0.7: +0.4859/sweep
+    lambda_ca r= 4 T=0.9: +0.5054/sweep
+    lambda_ca r= 8 T=0.7: +0.8829/sweep
+    lambda_ca r= 8 T=0.9: +0.8997/sweep
+[pythia-1b] lambda_ca_max=+0.8997 (r=8,T=0.9)  lambda_ca_r2=+0.1686  (1652s)
+
+=== TYPE-MATCHED CROSS-LEVEL (n=6) ===
+  white lambda_top vs black lambda_ca_max:  Spearman rho=0.6 p=0.208  (Pearson r=0.686 p=0.1328)
+      lambda_ca_max vs size: rho=-0.486 p=0.3287
+  white lambda_top vs black lambda_ca_r2:  Spearman rho=0.6 p=0.208  (Pearson r=0.712 p=0.1124)
+      lambda_ca_r2 vs size: rho=-0.486 p=0.3287
+CROSSLEVEL_LYAP DONE
