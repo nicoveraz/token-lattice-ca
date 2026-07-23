@@ -11,7 +11,9 @@ _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
 import os, json, time
 os.environ.setdefault("HF_HOME", "./hf_cache")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+import gc
 import numpy as np
+import torch
 from scipy import stats
 from ar_ca import ARRule
 from ar_probe import block_damage, drift_floor, MODELS
@@ -82,7 +84,12 @@ def main():
                         vals=[round(float(x), 4) for x in vals])
         print(f"[{tag}] D_norm(r=2)={res[tag]['mean']:.3f}+/-{res[tag]['se']:.3f} (n={len(v)})", flush=True)
         _analyze_and_save(res)                        # incremental save after each model
-        del rule
+        rule.model = None; del rule                   # free MPS memory before the next (bigger) model
+        gc.collect()
+        try:
+            torch.mps.empty_cache()
+        except Exception:
+            pass
     out = _analyze_and_save(res)
     if "_trend" in out:
         print(f"\nTREND: Spearman rho(log-size, D_norm)={out['_trend']['spearman_rho']} "
