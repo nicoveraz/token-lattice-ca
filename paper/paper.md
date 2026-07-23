@@ -200,6 +200,18 @@ overclaim (the earlier 2-seed 160m→410m climb did not survive a 4th size). We
 compare at the level of the *trend*, not absolute numbers: causal-context healing is a
 different object from bidirectional healing.
 
+**Crossover-relative robustness (is this a fixed-(r,T) sampling artifact?).** A fixed probe
+could sample different points of each model's phase diagram, so we swept *T* at r=2 and
+located each model's heal→spread crossover (`fig/crossover.png`). It cuts both ways.
+**Masked:** the D_norm(T) profiles are cleanly ordered tiny < mini < base at *every* T — base's
+whole profile is shifted up (it amplifies at lower T) — so the mini≈base "plateau" (§3.3) was
+an artifact of averaging over *large* radii where both saturate; at the discriminating radius
+the masked capacity effect is monotone and real. **Autoregressive:** the ordering does *not*
+hold — Pythia-410m is an outlier (profile shifted up, lowest crossover) while 70m≈160m≈1b — so
+the AR non-monotonicity is genuine, not a sampling artifact. (The crossover temperature itself
+is noisy in the high-variance low-T healing regime, so we compare profiles at fixed T.) Net:
+this *strengthens* the masked capacity effect and *confirms* the AR non-replication.
+
 ### 3.5 Calibration against ground truth (F19, C2)
 
 The census's validity rests on recovering *known* structure. On three synthetic

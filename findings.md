@@ -388,6 +388,21 @@ on AR (velocity∝r, damping length rises with r); the *capacity-scaling* of the
 length is masked-specific in this data, not construction-independent. This is the check
 catching an overclaim: the earlier 2-seed "160m→410m climb" did not survive a 4th size.
 (`fig/ar_capacity.png`, `results/mlm/ar_capacity.json`)
+
+**Crossover-relative robustness (is the plateau/non-monotonicity a fixed-(r,T) sampling
+artifact?).** A fixed probe could sample different points of each model's phase diagram, so
+we swept T at r=2 and located each model's heal→spread crossover (`fig/crossover.png`,
+`results/mlm/crossover.json`). It cuts both ways. **Masked:** the D_norm(T) profiles are
+cleanly ordered **tiny < mini < base at *every* T** — base's whole profile is shifted up (it
+amplifies at lower T) — so the mini≈base "plateau" (F23) was an artifact of averaging over
+*large* radii where both saturate; **at the discriminating radius r=2 the masked capacity
+effect is monotone and real.** **Autoregressive:** the ordering does *not* hold — Pythia-410m
+is an outlier (profile shifted up, lowest crossover) while 70m≈160m≈1b — so the **AR
+non-monotonicity is genuine, not a sampling artifact.** Caveat: the extracted crossover
+temperature is noisy in the high-variance low-T healing regime (bert-tiny's profile is
+non-monotone there), so we compare *profiles at fixed T*, not the crossing. Net:
+crossover-relative probing *strengthens* the masked capacity effect (monotone at r=2) and
+*confirms* the AR non-replication (410m genuinely anomalous).
 *Trim logged*: the 410m r=16 cells were dropped — 410m fp16 + the largest window
 OOM'd on 16 GB; velocity and the D-grid through r=8 (the discriminating range)
 completed. (`results/mlm/ar_pythia-160m.json`, `ar_pythia-410m.json`)

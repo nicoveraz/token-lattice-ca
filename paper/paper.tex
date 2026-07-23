@@ -196,6 +196,28 @@ Spearman $\rho{=}0.17$, $p{=}0.29$. The masked-side capacity effect is masked-sp
 this data.}\label{fig:arcap}
 \end{figure}
 
+\paragraph{Crossover-relative robustness (is the plateau a sampling artifact?).}
+A fixed $(r,T)$ probe could sample different points of each model's phase diagram, so we
+locate each model's heal$\to$spread crossover by sweeping $T$ at $r{=}2$
+(Fig.~\ref{fig:crossover}); this cuts both ways and confirms both readings. \emph{Masked}:
+the $\dn(T)$ profiles are cleanly ordered tiny $<$ mini $<$ base at \emph{every} temperature
+--- base's whole profile is shifted up (it amplifies at lower $T$) --- so the earlier
+mini$\approx$base plateau was an artifact of averaging over large radii where both saturate;
+at the discriminating radius the masked capacity effect is monotone and real.
+\emph{Autoregressive}: the ordering does \emph{not} hold---Pythia-410m is an outlier (profile
+shifted up, lowest crossover) while 70m $\approx$ 160m $\approx$ 1b---so the AR
+non-monotonicity is genuine, not a sampling artifact. (The extracted crossover temperature is
+itself noisy in the high-variance low-$T$ healing regime---bert-tiny's profile is non-monotone
+there---so we compare profiles at fixed $T$ rather than lean on it.)
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{crossover.png}
+\caption{Crossover-relative check: $\dn(T)$ at $r{=}2$. Masked models (left) are cleanly
+ordered by capacity at every $T$ (the plateau was a large-radius averaging artifact); the AR
+models (right) are not---Pythia-410m is an outlier and the others overlap, so the AR
+non-replication is real.}\label{fig:crossover}
+\end{figure}
+
 \subsection{Calibration against ground truth}
 On three synthetic first-order Markov sources sharing a vocabulary but with different sparse
 transition matrices $P_a/P_b/P_c$, a model trained on each and censused yields an empirical
