@@ -26,8 +26,9 @@ plt.rcParams.update({
     "text.color": INK, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": SEC,
     "xtick.color": MUT, "ytick.color": MUT, "axes.grid": True, "grid.color": GRID,
     "grid.linewidth": 0.6, "axes.spines.top": False, "axes.spines.right": False,
-    "font.size": 9, "axes.titlesize": 10, "axes.titlecolor": INK,
-    "legend.frameon": False, "figure.dpi": 150,
+    "font.size": 10.5, "axes.titlesize": 11, "axes.titlecolor": INK,
+    "axes.labelsize": 10.5, "xtick.labelsize": 9.5, "ytick.labelsize": 9.5,
+    "legend.fontsize": 9.5, "legend.frameon": False, "figure.dpi": 200, "savefig.bbox": "tight",
 })
 R = "results/mlm"
 RS = [1, 2, 4, 8, 16]

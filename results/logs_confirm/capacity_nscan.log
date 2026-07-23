@@ -11,3 +11,15 @@ cls.seq_relationship.weight | UNEXPECTED |  |
 Notes:
 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
 [tiny] N=48: D_norm(r=2,T=0.7)=0.564
+[tiny] N=96: D_norm(r=2,T=0.7)=0.356
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 30972.32it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-mini
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.

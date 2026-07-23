@@ -1,11 +1,11 @@
-"""Phase B analysis (F23): the self-correction length, diversity-controlled.
+"""Phase B analysis (F23): the damping length, diversity-controlled.
 
 The raw asymptotic damage D is diversity-confounded (a degenerate low-entropy model
 snaps back trivially, scoring low D for the wrong reason -- the stability analog of
 the A3 repetition confound). We control by the DIVERSITY FLOOR D0 (unperturbed
 independent-noise drift) and use D_norm = D/D0. The spine test: does D_norm still
 ORDER the models after this control (real xi_repair) or flatten onto the floor
-(self-correction was diversity in disguise)?
+(the damping length was diversity in disguise)?
   fig/repair_grid.png   D_norm(r,T) heatmaps per model + D=0.5 contour
   fig/repair_scale.png  D_norm(r) profiles across models; floor validation; verdict
 Writes results/analysis_phaseB.json.
@@ -29,8 +29,9 @@ plt.rcParams.update({
     "text.color": INK, "axes.edgecolor": "#c3c2b7", "axes.labelcolor": SEC,
     "xtick.color": MUT, "ytick.color": MUT, "axes.grid": True, "grid.color": GRID,
     "grid.linewidth": 0.6, "axes.spines.top": False, "axes.spines.right": False,
-    "font.size": 9, "axes.titlesize": 10, "axes.titlecolor": INK,
-    "legend.frameon": False, "figure.dpi": 150,
+    "font.size": 10.5, "axes.titlesize": 11.5, "axes.titlecolor": INK,
+    "axes.labelsize": 10.5, "xtick.labelsize": 9.5, "ytick.labelsize": 9.5,
+    "legend.fontsize": 9.5, "legend.frameon": False, "figure.dpi": 200, "savefig.bbox": "tight",
 })
 R = "results/mlm"
 TAGS = [t for t in ["tiny", "mini", "base"] if os.path.exists(f"{R}/repair_{t}.json")]
@@ -59,7 +60,7 @@ if TAGS:
         if j == 0:
             ax.set_ylabel("radius r")
     fig.colorbar(im, ax=axes[0, -1], fraction=0.046, label="D / D0 (diversity-controlled damage)")
-    fig.suptitle("Diversity-controlled self-correction map (green corrects, orange persists)",
+    fig.suptitle("The damping length: diversity-controlled damage D_norm (green damps, orange persists)",
                  x=0.01, ha="left", fontsize=10.5, fontweight="bold", color=INK)
     fig.tight_layout(rect=[0, 0, 1, 0.93]); fig.savefig("fig/repair_grid.png"); plt.close()
 
@@ -99,8 +100,8 @@ if TAGS:
                                  separates_after_control=bool(spread > 0.08))
     analysis["repair"] = summ
     v = analysis.get("spine", {})
-    fig.suptitle(f"F23: does self-correction survive the diversity control? "
-                 f"norm order={v.get('order_by_norm_D')} spread={v.get('norm_spread')}",
+    fig.suptitle(f"F23: diversity-controlled damage D_norm rises with r and separates capacity "
+                 f"(tiny ≪ {{mini, base}}; norm spread={v.get('norm_spread')})",
                  x=0.01, ha="left", fontsize=10, fontweight="bold", color=INK)
     fig.tight_layout(rect=[0, 0, 1, 0.93]); fig.savefig("fig/repair_scale.png"); plt.close()
 
