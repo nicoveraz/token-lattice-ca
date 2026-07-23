@@ -1,1 +1,5 @@
 >>> capacity_nscan
+capacity_nscan     1126 s OK
+>>> ar_70m
+ar_70m             1720 s FAIL
+CONFIRM_DONE

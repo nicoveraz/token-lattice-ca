@@ -23,3 +23,22 @@ cls.seq_relationship.weight | UNEXPECTED |  |
 
 Notes:
 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[mini] N=48: D_norm(r=2,T=0.7)=0.762
+[mini] N=96: D_norm(r=2,T=0.7)=0.482
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 6433.57it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[base] N=48: D_norm(r=2,T=0.7)=0.903
+[base] N=96: D_norm(r=2,T=0.7)=0.575
+verdict per N: tiny < mini < base ?
+  N=48: {'tiny': 0.5638, 'mini': 0.7617, 'base': 0.9031}  tiny<mini=True
+  N=96: {'tiny': 0.3559, 'mini': 0.4825, 'base': 0.5754}  tiny<mini=True
+CAPACITY NSCAN DONE

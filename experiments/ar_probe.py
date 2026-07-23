@@ -108,7 +108,7 @@ def main(tag, B, N, sweeps):
     print(f"[{tag}] example: {res['example'][:180]!r}", flush=True)
 
     json.dump(res, open(f"{RESDIR}/ar_{tag}.json", "w"), indent=1)
-    print(f"[{tag}] AR PROBE DONE ({time.time()-t0:.0f}s)  velocity={vel}  r*={res['r_star_max_D']}", flush=True)
+    print(f"[{tag}] AR PROBE DONE ({time.time()-t0:.0f}s)  velocity={vel}  r*={res['r_star_max_Dnorm']}", flush=True)
 
 
 if __name__ == "__main__":

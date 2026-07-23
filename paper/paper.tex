@@ -169,9 +169,13 @@ Right: \dn{} vs.\ diversity (flat $\Rightarrow$ controlled).}\label{fig:repair}
 Both load-bearing measurements replicate on \texttt{Pythia-160m} driven through a one-sided
 \emph{causal} window (null CRN divergence exactly zero). Velocity$\propto r$ holds
 ($v=5.8,7.7,11.5$ for $r=2,4,8$; $r{=}1$ does not propagate), and the damping length holds
-(\dn{} climbs $0.001\!\to\!0.98$ across $r$). The capacity$\to$sensitivity climb replicates
-too: at the sub-saturation radius $r{=}2$, mean \dn{} rises $0.64\to0.73$ from Pythia-160m
-to 410m. Because the masked-LM joint is globally inconsistent \citep{glauber_mlm} while the
+(\dn{} climbs $0.001\!\to\!0.98$ across $r$). A capacity$\to$sensitivity effect is present
+on the AR side too but weak---a single jump, not a clean climb: at $r{=}2,\,T{=}0.5$,
+$\dn=0.23$ (Pythia-70m) $\approx 0.20$ (160m) $< 0.44$ (410m), the two smaller models
+indistinguishable and only the largest clearly more sensitive. This mirrors the masked side,
+where the jump is also one scale step (tiny$\to$mini, then saturating): the effect is a
+one-step jump at some scale, not a smooth monotone climb, on both constructions (2 seeds on
+AR; reported as suggestive). Because the masked-LM joint is globally inconsistent \citep{glauber_mlm} while the
 autoregressive joint is consistent, replication across constructions is the strongest
 evidence the phenomena are properties of trained-LM token dynamics, not artifacts of the
 masked construction. We compare at the level of the \emph{trend}: causal-context healing is

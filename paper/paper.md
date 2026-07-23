@@ -186,10 +186,13 @@ propagate — a single causal token cannot carry the flip), and the damping leng
 (`D_norm` climbs 0.001 → 0.98 across *r*). Because the masked-LM joint is globally
 inconsistent while the autoregressive joint is consistent, replication across the two
 constructions is the strongest available evidence that the phenomena are properties of
-trained-LM token dynamics, not artifacts of the masked-LM construction. The
-**capacity→sensitivity climb replicates on the AR construction** too: at the
-sub-saturation radius r=2, mean `D_norm` rises 0.64 (Pythia-160m) → 0.73
-(Pythia-410m), the larger causal model damping less — mirroring the masked ladder. We
+trained-LM token dynamics, not artifacts of the masked-LM construction. A
+**capacity→sensitivity effect is present on the AR construction too, but weak** — a
+single jump, not a clean climb: at r=2, T=0.5, `D_norm` = 0.23 (Pythia-70m) ≈ 0.20
+(160m) < 0.44 (410m) — the two smaller models indistinguishable, only the largest
+clearly more sensitive. This mirrors the masked side (the jump is one scale step,
+tiny→mini, then saturating): a **one-step jump at some scale, not a smooth monotone
+climb**, on both constructions (2 seeds on AR; reported as suggestive). We
 compare at the level of the *trend*, not absolute numbers: causal-context healing is a
 different object from bidirectional healing.
 

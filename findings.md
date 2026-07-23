@@ -328,7 +328,11 @@ propagates at the same velocity∝r as the perturbed run, so the normalized
   **D_norm > 1** (amplification beyond the floor); tiny stays sub-critical (max 0.82).
   The separation *fights* the normalization (a more diverse model's higher floor should
   deflate its D_norm, yet it is higher) and is velocity-immune (matched r ⇒ matched
-  propagation speed), so it is neither diversity nor kinematics.
+  propagation speed), so it is neither diversity nor kinematics. **N-robust:** at the
+  discriminating radius r=2 the full ordering tiny < mini < base holds at both N=48
+  (0.56 < 0.76 < 0.90) and N=96 (0.36 < 0.48 < 0.58); the mini–base gap is visible at low
+  r but washes out in the all-cell average because large-r cells saturate (hence p=0.21).
+  (`results/mlm/capacity_nscan.json`)
 - **Kinematics ⊥ stability (the Lyapunov confirms it)**: the finite-size Lyapunov
   exponent λ (early log-separation slope of the CRN twins) is **model-invariant** —
   λ_max = +0.745 / +0.738 / +0.767 for tiny / mini / base, all at (r=8, T=0.9), a
@@ -370,11 +374,16 @@ globally inconsistent (2605.16378) while the AR joint is consistent, the phenome
 being construction-independent is the single most important external-validity check.
 We hold the MLM↔AR comparison at the level of the **trend**, not absolute numbers:
 AR healing is causal-context (one-sided), a different object from bidirectional MLM
-healing. **The capacity→sensitivity climb also replicates on the AR construction**:
-at the sub-saturation radius r=2, mean `D_norm` rises 0.641 (Pythia-160m) → 0.735
-(Pythia-410m) — the larger causal model damps less — mirroring the masked-LM ladder
-(tiny<mini<base). (By r≥4 both AR models saturate near `D_norm≈1`, so r=2 is the
-discriminating radius.) So the capacity axis is not a masked-LM artifact either.
+healing. **A capacity→sensitivity effect is *present* on the AR construction too, but
+weak — a single jump, not a clean climb.** At the discriminating radius/temperature
+(r=2, T=0.5), `D_norm` is **0.23 (Pythia-70m) ≈ 0.20 (160m) < 0.44 (410m)**: the two
+smaller causal models are indistinguishable and only the largest is clearly more
+sensitive. This *mirrors the masked side*, where the jump is also a single scale step
+(tiny→mini, then saturating, F23) — so the capacity→sensitivity effect is a **one-step
+jump at some scale, not a smooth monotone climb**, on both constructions. On AR it is
+suggestive (2 seeds; by r≥4 both AR models saturate near `D_norm≈1`), not established.
+So the capacity axis is not purely a masked-LM artifact, but the AR evidence is thin and
+reported as such.
 *Trim logged*: the 410m r=16 cells were dropped — 410m fp16 + the largest window
 OOM'd on 16 GB; velocity and the D-grid through r=8 (the discriminating range)
 completed. (`results/mlm/ar_pythia-160m.json`, `ar_pythia-410m.json`)

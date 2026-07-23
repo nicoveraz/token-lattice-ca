@@ -1,0 +1,31 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 22023.43it/s]
+[pythia-70m] velocity r= 1: v=-0.34 sites/sweep (mean_dmg=0.00)
+[pythia-70m] velocity r= 2: v=7.9 sites/sweep (mean_dmg=0.94)
+[pythia-70m] velocity r= 4: v=7.7 sites/sweep (mean_dmg=0.98)
+[pythia-70m] velocity r= 8: v=11.5 sites/sweep (mean_dmg=0.98)
+[pythia-70m] velocity r=16: v=11.5 sites/sweep (mean_dmg=0.98)
+[pythia-70m] D r= 1 T=0.5: D=0.001 D0=0.621 Dnorm=0.002 distinct=0.28
+[pythia-70m] D r= 1 T=0.8: D=0.001 D0=0.961 Dnorm=0.001 distinct=0.71
+[pythia-70m] D r= 1 T=1.1: D=0.002 D0=0.993 Dnorm=0.002 distinct=0.91
+[pythia-70m] D r= 2 T=0.5: D=0.182 D0=0.778 Dnorm=0.234 distinct=0.44
+[pythia-70m] D r= 2 T=0.8: D=0.749 D0=0.980 Dnorm=0.765 distinct=0.78
+[pythia-70m] D r= 2 T=1.1: D=0.961 D0=0.996 Dnorm=0.965 distinct=0.93
+[pythia-70m] D r= 4 T=0.5: D=0.934 D0=0.960 Dnorm=0.973 distinct=0.66
+[pythia-70m] D r= 4 T=0.8: D=0.968 D0=0.988 Dnorm=0.980 distinct=0.81
+[pythia-70m] D r= 4 T=1.1: D=0.982 D0=0.996 Dnorm=0.986 distinct=0.93
+[pythia-70m] D r= 8 T=0.5: D=0.965 D0=0.968 Dnorm=0.997 distinct=0.62
+[pythia-70m] D r= 8 T=0.8: D=0.973 D0=0.985 Dnorm=0.988 distinct=0.78
+[pythia-70m] D r= 8 T=1.1: D=0.985 D0=0.996 Dnorm=0.988 distinct=0.92
+[pythia-70m] D r=16 T=0.5: D=0.737 D0=0.758 Dnorm=0.972 distinct=0.28
+[pythia-70m] D r=16 T=0.8: D=0.969 D0=0.979 Dnorm=0.990 distinct=0.72
+[pythia-70m] D r=16 T=1.1: D=0.983 D0=0.996 Dnorm=0.987 distinct=0.93
+[pythia-70m] order(bigram overlap, T=0.7 r=4)=0.196
+[pythia-70m] example: ' can easily the small city in\n\n and, by,,\n\n“ an answer.\n\n“// Start the.4\\.\n\nFor you noisely things the other you the Holy Spirit control ofvoltage characteristics of the energy'
+Traceback (most recent call last):
+  File "/Users/nicoveraz/Documents/GitHub/textca/experiments/ar_probe.py", line 121, in <module>
+    main(a.model, a.B, a.N, a.sweeps)
+  File "/Users/nicoveraz/Documents/GitHub/textca/experiments/ar_probe.py", line 111, in main
+    print(f"[{tag}] AR PROBE DONE ({time.time()-t0:.0f}s)  velocity={vel}  r*={res['r_star_max_D']}", flush=True)
+                                                                               ~~~^^^^^^^^^^^^^^^^
+KeyError: 'r_star_max_D'
