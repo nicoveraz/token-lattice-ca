@@ -250,6 +250,32 @@ model and quantified against ground truth. The instrument is the contribution; t
 it measures are old and deep, and that is exactly why measuring them cleanly, from the
 outside, is worth doing.
 
+\paragraph{Opportunities --- chiefly for interpretability.} The instrument reads a model's
+dynamics from \emph{token space alone}---no weights, gradients, or activations---which is
+what makes it an interpretability tool for the black-box regime. (i)~\emph{Black-box
+criticality}: the damping length, light cone, and edge-of-chaos position are measurable on
+closed / API-only models, a token-space complement to activation-space probes
+(\citet{sparc}'s $\rho(F_T)\!\ge\!1$; Jacobian--Lyapunov \citep{lyap_selfattn}); relating
+the two on the same open model is an immediate cross-level check. (ii)~\emph{Priors
+read-out}: the attractor census, calibrated to recover a \emph{known} transition matrix
+(\S3.5), is a quantitative black-box probe of what distributional structure a model has
+internalized---an LM attractor-basin portrait \citep{hanson1997computational}.
+(iii)~\emph{Effective interaction range}: the radius axis measures the conditioning range
+at which a model builds structure ($r\!\approx\!4$); correlating it with attention-head
+span or induction heads links a black-box observable to mechanism. (iv)~\emph{Token-space
+causal maps}: CRN damage cones are a causal-influence map over token positions---a
+black-box analog of activation patching---and the damping length bounds how far a
+single-token error propagates before absorption, relevant to error attribution and
+hallucination propagation. (v)~\emph{Developmental interpretability}: the training-time
+trajectory (chaotic init $\to$ ordering collapse $\to$ edge-of-chaos climb; F25) is an
+order-of-acquisition and phase-change detector across checkpoints. (vi)~\emph{Theory}: a
+Lieb--Robinson-style propagation bound \citep{lieb1972finite} for the non-unitary
+stochastic LM dynamics would put the light cone on rigorous footing. Finally, the
+statistics-level, apparatus-nulled certification protocol is a reusable rigor tool for the
+interpretability of \emph{any} iterated-LLM system---self-refinement, agentic loops,
+iterated rewriting---where trajectory-level divergence otherwise saturates for signal and
+apparatus alike.
+
 \bibliographystyle{plainnat}
 \bibliography{refs}
 \end{document}

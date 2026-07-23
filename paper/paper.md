@@ -279,3 +279,30 @@ velocity-controlled damping length that shortens with capacity as the dynamics m
 toward the chaotic side — replicated on an autoregressive model and quantified against
 ground truth. The instrument is the contribution; the phenomena it measures are old and
 deep, and that is exactly why measuring them cleanly, from the outside, is worth doing.
+
+**Opportunities — chiefly for interpretability.** The instrument reads a model's
+dynamics from *token space alone* — no weights, gradients, or activations — which is
+precisely what makes it an interpretability tool for the black-box regime.
+(i) *Black-box criticality.* The damping length, light cone, and edge-of-chaos position
+are measurable on closed / API-only models, a token-space complement to activation-space
+criticality probes (SPARC's spectral radius ρ(F_T)≥1; Jacobian–Lyapunov analyses,
+arXiv:2505.19458). Relating the two on the same open model — does the token-space damping
+length agree with the activation-space spectral radius? — is an immediate cross-level
+check. (ii) *Priors read-out.* The attractor census, calibrated to recover a *known*
+transition matrix (§3.5), is a quantitative black-box probe of what distributional
+structure a model has internalized — an LM attractor-basin portrait in the sense of Hanson
+& Crutchfield. (iii) *Effective interaction range.* The radius axis measures the
+conditioning range at which a model builds structure (the r≈4 optimum); correlating it
+with attention-head span or induction-head presence links a black-box observable to
+mechanism. (iv) *Token-space causal maps.* CRN damage cones are a causal-influence map over
+token positions — a black-box analog of activation patching — and the damping length bounds
+how far a single-token error propagates before it is absorbed, directly relevant to error
+attribution and hallucination propagation. (v) *Developmental interpretability.* The
+training-time trajectory (chaotic init → ordering collapse → edge-of-chaos climb; F25)
+turns the instrument into an order-of-acquisition and phase-change detector across
+checkpoints. (vi) *Theory.* A Lieb–Robinson-style propagation bound for the (non-unitary,
+stochastic) LM dynamics would put the light cone on rigorous footing. Finally, the
+certification protocol (statistics-level, apparatus-nulled) is a reusable rigor tool for
+the interpretability of *any* iterated-LLM system — self-refinement, agentic loops,
+iterated rewriting — where trajectory-level divergence otherwise saturates for signal and
+apparatus alike.
