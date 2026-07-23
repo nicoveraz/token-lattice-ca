@@ -1,0 +1,12 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:48,  3.03it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 444.59it/s]
+[step0] {"Dnorm_r2": 0.9935, "Dnorm_r4": 0.9948, "order_bigram": 0.0, "census_overlap50": 0.0, "census_rho": NaN, "secs": 399.9}
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:34,  4.21it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 611.07it/s]
+[step512] {"Dnorm_r2": 0.2716, "Dnorm_r4": 0.4196, "order_bigram": 0.0159, "census_overlap50": 0.0, "census_rho": NaN, "secs": 382.4}
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<01:00,  2.44it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 358.77it/s]
+[step4000] {"Dnorm_r2": 0.5487, "Dnorm_r4": 0.9882, "order_bigram": 0.1567, "census_overlap50": 0.0, "census_rho": 0.1514, "secs": 383.4}
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:34,  4.21it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 617.30it/s]
+[step32000] {"Dnorm_r2": 0.6489, "Dnorm_r4": 0.9879, "order_bigram": 0.1244, "census_overlap50": 0.0, "census_rho": 0.1344, "secs": 388.4}
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:40,  3.66it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 535.93it/s]
+[step143000] {"Dnorm_r2": 0.7108, "Dnorm_r4": 0.9897, "order_bigram": 0.1092, "census_overlap50": 0.0, "census_rho": 0.177, "secs": 396.1}
+PYTHIA DEV DONE (1950s)

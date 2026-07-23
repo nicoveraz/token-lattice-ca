@@ -1,6 +1,6 @@
 # A Token-Lattice Cellular Automaton: Black-Box Measurement of Dynamical Structure in Language Models
 
-*Draft — token-lattice-ca. Findings F1–F24 in `findings.md`; figures in `fig/`.*
+*Draft — token-lattice-ca. Findings F1–F25 in `findings.md`; figures in `fig/`.*
 
 ## Abstract
 
@@ -15,14 +15,14 @@ confounds by a common-random-number differential protocol. (1) A **radius law**:
 equilibrium *local* statistics are nearly radius-blind, but corpus-consistent
 *longer-range* structure has an intermediate-radius optimum — visible only through a
 repetition-robust metric. (2) **Damage light cones** whose front velocity is set by
-the conditioning radius, `v ∝ r`, and is *model-invariant*. (3) A **repair length**:
+the conditioning radius, `v ∝ r`, and is *model-invariant*. (3) A **damping length**:
 the asymptotic damage from a perturbation, once controlled for the model's intrinsic
 diversity, shrinks as the window widens and grows with model capacity — the larger
 models amplify perturbations beyond their own noise floor. A finite-size Lyapunov
 exponent shows the *early* dynamics are a purely kinematic axis shared by all models,
 so the capacity signal lives entirely in the *asymptotic* persistence: velocity and
 stability are orthogonal, and only stability tracks capacity. (4) **External
-validity**: both the velocity law and the repair length replicate on an
+validity**: both the velocity law and the damping length replicate on an
 autoregressive model driven through a one-sided causal window, so they are not
 artifacts of the masked LM's globally-inconsistent joint. We calibrate the instrument
 against synthetic sources with known transition matrices, where the attractor census
@@ -130,7 +130,7 @@ artifact — the front simply fills the ring in ~2 sweeps — and it lifts clean
 `v ∝ r`, and it is **model-invariant**: tiny, mini, and base share the same velocity
 profile. Interaction range is a kinematic property of the apparatus, not of the model.
 
-### 3.3 The repair length, and a kinematic ⊥ stability decomposition (F23)
+### 3.3 The damping length, and a kinematic ⊥ stability decomposition (F23)
 
 Perturb, evolve under CRN, and ask how much damage *persists* asymptotically. The raw
 answer is diversity-confounded, so we normalize by a **diversity floor** `D0`: the
@@ -139,7 +139,7 @@ asymptotic drift of twins that share the settled initial state but evolve under
 `D0` is a full radius-*r* run, it propagates at the same `v ∝ r`, so the normalized
 `D_norm = D/D0` cancels **both** the diversity and the kinematic terms. Then:
 
-- **`D_norm` rises with radius** (tiny 0.43→0.82, mini 0.74→1.03): the repair length —
+- **`D_norm` rises with radius** (tiny 0.43→0.82, mini 0.74→1.03): the damping length —
   the conditioning radius at which `D_norm` crosses half — shrinks as the window
   widens. The raw-damage "recovery" at large *r* was collapse-into-repetition; the
   control removes it.
@@ -172,7 +172,7 @@ capacity-scaling axis added.
 Both load-bearing measurements replicate on `Pythia-160m` driven through a one-sided
 *causal* window (the AR analog of the masked window; null CRN divergence exactly
 zero). Velocity∝r holds (`v = 5.8, 7.7, 11.5` for `r = 2,4,8`; `r=1` does not
-propagate — a single causal token cannot carry the flip), and the repair length holds
+propagate — a single causal token cannot carry the flip), and the damping length holds
 (`D_norm` climbs 0.001 → 0.98 across *r*). Because the masked-LM joint is globally
 inconsistent while the autoregressive joint is consistent, replication across the two
 constructions is the strongest available evidence that the phenomena are properties of
@@ -201,34 +201,45 @@ text).
 
 ## 4. Related work
 
-The instrument re-confirms as novel: the nearest "dynamical-systems analysis of LLMs"
-studies operate on *activations* or *layer depth*, not iterated token-generation
-dynamics; we recast the model as a radius-swept token-lattice CA and run perturbation
-dynamics on it.
+A 102-agent adversarial novelty check (`results/deep_research_novelty.md`) places the
+contribution precisely: the **instrument** is largely novel at the method level, but
+its **substrate is not**, and novelty is uneven across claims.
 
-**Position against, do not reinvent.** *Sampler-centric / oracle calibration* work is
-the closest kin to §3.5 and our differential certification — we cite it first and cast
-our synthetic-Markov recovery as its honest *trained-model* analog. *QUIVER* and the
-broader perturbation-propagation-in-compound-AI line are the damage-spreading kin for
-§3.2–3.3. *Glauber dynamics on masked LMs* (mixing times, metastable traps, the
-slow/fast crossover near τ≈1.5–2) owns the temperature axis and the incompatibility
-result we phrase all claims around — it lacks the radius axis, the light cones, the
-repair length, and corpus-validated censuses. *Temperature criticality* in
-autoregressive generation (`T_c≈1`) and *phase-transition detection in LLM output
-distributions* make the temperature axis crowded; we treat *T* as a calibration
-anchor, not a contribution. *Edge of chaos* — Langton, Bertschinger & Natschläger's
-reservoir-computing classic, and *Intelligence at the Edge of Chaos* for trained nets
-— is the conceptual home of §3.3; our contribution is measurement and the capacity
-scaling, not the concept. The *telephone-game / paraphrase 2-cycle* line is where our
-synchronous-update period-2 caution (an apparatus artifact, not a model property)
-applies. *Distributional simplicity bias* is consistent with the toy's early
-crystallization of low-order structure; we read it black-box via lattice dynamics. The
-attractor-census methodology descends from Hanson & Crutchfield's basin portraits.
+**Shared substrate — the exposed flank.** *Glauber dynamics on masked LMs*
+(arXiv:2605.16378) already recasts a masked LM as iterated masked-token resampling — a
+Glauber Markov chain on token sequences, the exact substrate we iterate. It measures
+mixing time / metastability, **not** damage spreading, light-cone velocity, a damping
+length, or a finite-size Lyapunov exponent, and it uses **maximal coupling** (provably
+distinct from our common-random-number coupling). Our novelty rests on the
+**measurement layer**, not the LM-as-iterated-token-CA framing, which we do not claim.
 
-*(Pre-submission: direct-read the two nearest damage/dynamics papers, arXiv:2607.09803
-and QUIVER, and re-run the full novelty harness over the evolved findings — the
-targeted check that produced this positioning was confident on the specific papers
-read, medium on exhaustiveness.)*
+**Edge of chaos — §3.3 is partially anticipated.** Edge-of-chaos-as-capability is
+canonical (Langton; Bertschinger & Natschläger 2004, reservoir computing) and has been
+shown for *trained transformers* via Lyapunov exponents of self-attention Jacobians
+(arXiv:2505.19458, Tomihari & Karakida, NeurIPS 2025), and named for LLMs generally
+(*Intelligence at the Edge of Chaos* arXiv:2410.02536; QLE arXiv:2503.13530). We claim
+neither the concept nor the criticality↔capability link — only the *token-space*
+finite-size Lyapunov / damping-length measurement and the explicit **model-size →
+sensitivity** axis, which arXiv:2505.19458 (continuous hidden space, performance-
+correlated) does not report.
+
+**Perturbation propagation.** *SPARC* (arXiv:2607.09803 — **not** QUIVER) formalizes an
+error-propagation operator on AR residual streams with a ρ(F_T)≥1 criticality threshold
+(the top-Lyapunov boundary) in *activation space* — adjacent, not a token-space CA;
+*QUIVER* (arXiv:2605.23956) is compound-AI pipeline graphs, sharing vocabulary but no
+method. **Terminology:** we avoid "repair" (taken by *self-repair* / the *Hydra effect*,
+arXiv:2307.15771, 2402.15390, for internal component compensation) and "self-correction"
+(SPARC), both categorically different from our spatial damping length.
+
+**Other.** *Sampler-centric oracle* work is the calibration kin to §3.5 (our
+synthetic-Markov recovery is its trained-model analog); temperature-criticality work
+makes *T* a calibration anchor; the census descends from Hanson & Crutchfield's basin
+portraits; early low-order crystallization is consistent with distributional simplicity
+bias, read black-box; the *telephone-game / paraphrase 2-cycle* line is where our
+sync-update period-2 caution applies.
+
+*(Pre-submission: full-paper reads of arXiv:2605.16378 and QUIVER; verify all
+2026-preprint titles/IDs; re-check near submission — these are weeks-old preprints.)*
 
 ## 5. Limitations
 
@@ -250,7 +261,7 @@ Reading a language model as a cellular automaton over its own token space, with 
 conditioning radius as a swept knob and common-random-number perturbations as the
 probe, yields calibrated, apparatus-certified measurements that static evaluation does
 not: a radius law, a model-invariant damage velocity, and a diversity- and
-velocity-controlled repair length that shortens with capacity as the dynamics move
+velocity-controlled damping length that shortens with capacity as the dynamics move
 toward the chaotic side — replicated on an autoregressive model and quantified against
 ground truth. The instrument is the contribution; the phenomena it measures are old and
 deep, and that is exactly why measuring them cleanly, from the outside, is worth doing.

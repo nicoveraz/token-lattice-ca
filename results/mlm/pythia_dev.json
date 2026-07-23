@@ -1,0 +1,55 @@
+{
+ "model": "EleutherAI/pythia-160m",
+ "ckpts": [
+  "step0",
+  "step512",
+  "step4000",
+  "step32000",
+  "step143000"
+ ],
+ "RS": [
+  2,
+  4
+ ],
+ "T": 0.7,
+ "step0": {
+  "Dnorm_r2": 0.9935,
+  "Dnorm_r4": 0.9948,
+  "order_bigram": 0.0,
+  "census_overlap50": 0.0,
+  "census_rho": NaN,
+  "secs": 399.9
+ },
+ "step512": {
+  "Dnorm_r2": 0.2716,
+  "Dnorm_r4": 0.4196,
+  "order_bigram": 0.0159,
+  "census_overlap50": 0.0,
+  "census_rho": NaN,
+  "secs": 382.4
+ },
+ "step4000": {
+  "Dnorm_r2": 0.5487,
+  "Dnorm_r4": 0.9882,
+  "order_bigram": 0.1567,
+  "census_overlap50": 0.0,
+  "census_rho": 0.1514,
+  "secs": 383.4
+ },
+ "step32000": {
+  "Dnorm_r2": 0.6489,
+  "Dnorm_r4": 0.9879,
+  "order_bigram": 0.1244,
+  "census_overlap50": 0.0,
+  "census_rho": 0.1344,
+  "secs": 388.4
+ },
+ "step143000": {
+  "Dnorm_r2": 0.7108,
+  "Dnorm_r4": 0.9897,
+  "order_bigram": 0.1092,
+  "census_overlap50": 0.0,
+  "census_rho": 0.177,
+  "secs": 396.1
+ }
+}

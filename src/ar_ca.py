@@ -30,11 +30,12 @@ def pick_device(prefer="mps"):
 class ARRule:
     """Wraps an autoregressive LM as the causal CA rule p_r(x_i | x_{i-r..i-1})."""
 
-    def __init__(self, model_name, device=None, fp16=True):
-        self.name = model_name
-        self.tok = AutoTokenizer.from_pretrained(model_name)
+    def __init__(self, model_name, device=None, fp16=True, revision=None):
+        self.name = model_name if revision is None else f"{model_name}@{revision}"
+        self.tok = AutoTokenizer.from_pretrained(model_name)   # tokenizer is revision-invariant
         self.device = device or pick_device()
-        self.model = AutoModelForCausalLM.from_pretrained(model_name).eval()
+        kw = {"revision": revision} if revision else {}
+        self.model = AutoModelForCausalLM.from_pretrained(model_name, **kw).eval()
         self.dtype = torch.float16 if (fp16 and self.device != "cpu") else torch.float32
         self.model = self.model.to(self.device, self.dtype)
         self.V = self.model.get_output_embeddings().weight.shape[0]

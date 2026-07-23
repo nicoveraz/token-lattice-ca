@@ -9,7 +9,7 @@ censuses validated against a known corpus, probes across training checkpoints,
 and a differential instrument/signal-separation protocol.
 
 See **[findings.md](findings.md)** for the substantive results (F1–F9 from the
-tiny-transformer pilot; F10–F13 hardening; F14–F19 on real pretrained MLMs).
+tiny-transformer pilot; F10–F13 hardening; F14–F19 real MLMs; F20–F25 harden+dynamics).
 
 ### Findings at a glance
 
@@ -29,8 +29,9 @@ tiny-transformer pilot; F10–F13 hardening; F14–F19 on real pretrained MLMs).
 | F20 | F15 certified as a model effect **at a fixed scheme** — but CLS/SEP is a first-class apparatus (scheme swap ≥ model shift) | A |
 | F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
 | F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
-| **F23** | A diversity+velocity-controlled **repair length** (D_norm=D/D0) shrinks with radius; capacity orders it (tiny<mini) — a stability↔expressiveness tradeoff, measured black-box | B |
-| F24 | velocity∝r + repair length **replicate on AR** (Pythia causal window); capacity→sensitivity also replicates (160m→410m) — not MLM artifacts | C1 |
+| **F23** | A diversity+velocity-controlled **damping length** (D_norm=D/D0) shrinks with radius; capacity orders it (tiny<mini) — a stability↔expressiveness tradeoff, measured black-box | B |
+| F24 | velocity∝r + damping length **replicate on AR** (Pythia causal window); capacity→sensitivity also replicates (160m→410m) — not MLM artifacts | C1 |
+| F25 | **Developmental**: across Pythia training, D_norm traces chaotic-init → order-minimum → edge-of-chaos climb; structure crystallizes before sensitivity (real-model F7) | D |
 
 ## Layout
 
@@ -203,12 +204,12 @@ Measures the perturbation-damping (**repair**) length ξ_repair, diversity- and
 velocity-controlled, and tests external validity on an autoregressive model.
 Framing (per novelty check): the contribution is the **instrument** and its
 measurements; edge-of-chaos/criticality is decades old (reservoir computing;
-2410.02536) — we quantify it black-box, not discover it. Term is "repair length",
+2410.02536) — we quantify it black-box, not discover it. Term is "damping length",
 not "self-correction" (taken).
 
 ```bash
 export HF_HOME=./hf_cache TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=1
-# Phase B: repair length D(r,T) with the diversity floor (D_norm = D/D0)
+# Phase B: damping length D(r,T) with the diversity floor (D_norm = D/D0)
 caffeinate -i bash experiments/_run_BC.sh              # tiny+mini repair (normalized) + AR probe
 caffeinate -i bash experiments/_run_phaseB_rigor.sh   # base repair + lyapunov + N-scan
 .venv/bin/python experiments/mlm_repair_analyze.py    # -> fig/repair_*.png
@@ -219,7 +220,7 @@ caffeinate -i bash experiments/_run_phaseB_rigor.sh   # base repair + lyapunov +
 
 Key methods: `mlm_damage.drift_floor` (diversity floor), `lyapunov.py` (finite-size
 λ), `repair_fss.py` (N-scan). Perf: on-device sampling + batched CRN twins (~3×).
-Outcomes: F23 (repair length shrinks with r, capacity→sensitivity), F24 (AR
+Outcomes: F23 (damping length shrinks with r, capacity→sensitivity), F24 (AR
 replication), C2 calibration (census recovers a known transition matrix, self-TV
 0.22 vs baseline 0.91, discriminates).
 

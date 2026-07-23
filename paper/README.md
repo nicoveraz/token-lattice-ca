@@ -24,9 +24,14 @@ pdflatex paper && bibtex paper && pdflatex paper && pdflatex paper
 ## Pre-submission checklist (from the novelty check)
 
 1. Direct-read arXiv:2607.09803 and QUIVER; confirm no overlap with the instrument.
-2. Re-run the full novelty harness over the evolved findings (repair length,
-   capacity→sensitivity) — see `results/deep_research_novelty.md` when the run lands.
+2. Novelty harness DONE — see `results/deep_research_novelty.md`. Verdicts: velocity∝r
+   NOVEL; damping length + edge-of-chaos PARTIALLY ANTICIPATED (cite arXiv:2505.19458);
+   AR replication NOVEL. Foreground the measurement layer vs the shared Glauber-on-MLM
+   substrate (arXiv:2605.16378, which uses maximal coupling ≠ our CRN).
 3. Keep the **instrument** as the claimed novel core; frame edge-of-chaos as
    *measurement* of a decades-old idea, never a discovery.
-4. Term is **repair length / error-damping length**, not "self-correction" (taken).
-5. Verify every `refs.bib` entry's real title/authors/ID.
+4. Term is **damping length / error-damping length**, NOT "repair" (collides with
+   self-repair / Hydra effect, arXiv:2307.15771 / 2402.15390) and NOT "self-correction"
+   (SPARC arXiv:2607.09803). Disambiguate both in related work.
+5. Verify every `refs.bib` entry's real title/authors/ID (2607.09803 = SPARC, not QUIVER;
+   QUIVER = 2605.23956). Direct-reads owed near submission (2026 preprints may change).

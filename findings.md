@@ -275,20 +275,24 @@ conditioning-radius optimum (~r=4) for corpus-consistent structure — but there
 no monotonic long-range growth, and the effect must be read with a
 repetition-robust metric. (`fig/phaseA_repetition.png`)
 
-## Phase B/C findings — the repair length, and external validity
+## Phase B/C findings — the damping length, and external validity
 
-Naming/positioning (per novelty check): we call the perturbation-damping scale the
-**repair length** (`ξ_repair`) / **error-damping length**, *not* "self-correction"
-(that term is taken by the autoregressive/CoT reasoning-error literature). The
+Naming/positioning (per novelty check, `results/deep_research_novelty.md`): we call the
+perturbation-damping scale the **damping length** / **error-damping length** (symbol
+`ξ_repair` in code). We deliberately avoid **"repair"** (collides with *self-repair* /
+the *Hydra effect* — internal component-compensation, arXiv:2307.15771, 2402.15390) and
+**"self-correction"** (the AR/CoT reasoning-error literature and SPARC, arXiv:2607.09803);
+both are disambiguated below. Our damping length is a *spatial/dynamical* scale over
+which a token-space perturbation is absorbed — a categorically different object. The
 contribution is the **black-box token-lattice CA instrument** and the specific
-quantities it measures (the radius law F15, velocity∝r F16/F21, the repair length,
+quantities it measures (the radius law F15, velocity∝r F16/F21, the damping length,
 and its capacity scaling); the *phenomena* those land on — criticality, computation
 at the edge of chaos — are decades old (Langton; Bertschinger & Natschläger 2004,
 reservoir computing; *Intelligence at the Edge of Chaos* arXiv:2410.02536). We
 **measure and quantify a long-hypothesized picture from the outside and add a
 capacity-scaling result**; we do not claim to discover the edge of chaos.
 
-**F23 — A diversity- and velocity-controlled repair length exists, and it shrinks
+**F23 — A diversity- and velocity-controlled damping length exists, and it shrinks
 with conditioning radius; larger-capacity models sit closer to the chaotic side.**
 The raw asymptotic damage D (fraction of sites still differing at long time) is
 *diversity-confounded*: a degenerate low-entropy lattice snaps a perturbation back
@@ -330,7 +334,7 @@ finite-size N-scan (N∈{48,96,192}) settles it in favor of **geometry, not coll
 the dip is present only at N=48 — where the r=16 window (w=33) spans 69% of the ring —
 and *vanishes* at N=96 and N=192, where D_norm is monotone in r (N=192:
 0.18→0.26→0.55→0.62). The underlying monotone rise of D_norm with r is therefore
-N-robust (the real repair-length signal); only the small-ring r=16 dip was
+N-robust (the real damping-length signal); only the small-ring r=16 dip was
 ring-geometry. (The absolute D_norm level falls with N — a perturbation reaches a
 smaller *fraction* of a larger ring — but the shape is stable.)
 (`fig/repair_grid.png`, `fig/repair_scale.png`,
@@ -343,7 +347,7 @@ window p(x_i | x_{i-r..i-1}) — an order-r Markov approximation, the AR analog 
 MLM's symmetric masked window (`src/ar_ca.py`; null CRN divergence exactly 0). On
 this consistent-joint model: (a) **velocity∝r replicates** (v = 5.8, 7.7, 11.5,
 11.5 for r = 2,4,8,16, same N/2 saturation as F21; r=1 does not propagate at all),
-and (b) the **repair length replicates** — D_norm rises 0.001 (r=1, fully damps) →
+and (b) the **damping length replicates** — D_norm rises 0.001 (r=1, fully damps) →
 0.98 (r≥4, fully decorrelates), the same climb as the MLM. Because the MLM joint is
 globally inconsistent (2605.16378) while the AR joint is consistent, the phenomena
 being construction-independent is the single most important external-validity check.
@@ -357,6 +361,25 @@ discriminating radius.) So the capacity axis is not a masked-LM artifact either.
 *Trim logged*: the 410m r=16 cells were dropped — 410m fp16 + the largest window
 OOM'd on 16 GB; velocity and the D-grid through r=8 (the discriminating range)
 completed. (`results/mlm/ar_pythia-160m.json`, `ar_pythia-410m.json`)
+
+**F25 — The damping length has a non-monotone *developmental* trajectory: chaotic
+init → early ordering collapse → edge-of-chaos climb; and structure crystallizes
+before the sensitivity does (the real-training echo of F7).** Running the instrument
+across Pythia-160m's public training checkpoints (`step0/512/4000/32000/143000`),
+`D_norm` at the discriminating radius r=2 traces a U in *training time*: the
+untrained network is maximally chaotic (`D_norm≈0.99` — a random net amplifies every
+perturbation, sitting above the edge of chaos); early training **collapses it to an
+ordered/contractive minimum** (`0.27` at step 512, the strongest damping); then
+sensitivity **climbs monotonically back toward the edge** as capability grows
+(`0.27→0.55→0.65→0.71`). This is the *training-time analog of F23's capacity→sensitivity
+size climb*: on both the size axis and the training axis, more capable models sit
+nearer the chaotic side. Order of acquisition: the order parameter (bigram overlap vs
+the proxy) forms **early** — it is already 0.16 by step 4000 while `D_norm` is still
+climbing — so local structure crystallizes *before* the dynamical sensitivity settles,
+the real-model echo of the toy's F7/F19 early crystallization. Caveats: the proxy
+top-50 census is too weak here to add signal (overlap 0; only ρ moves, 0.15→0.18); r=4
+is already saturated (`D_norm≈0.99`) so r=2 is the informative radius; this is one
+model on five checkpoints. (`fig/pythia_dev.png`, `results/mlm/pythia_dev.json`)
 
 > Novelty TODO before submission (from the check): direct-read arXiv:2607.09803 and
 > QUIVER; keep the instrument (not "dynamical-systems analysis of LLMs") as the
