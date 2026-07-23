@@ -1,0 +1,71 @@
+{
+ "128": {
+  "rule": 128,
+  "cls": "ordered (Class I, nucleating->0)",
+  "lambda_ca": -0.921,
+  "lambda_ca_se": 0.0,
+  "dmax_frac": 0.016
+ },
+ "232": {
+  "rule": 232,
+  "cls": "ordered (Class II, majority/stable)",
+  "lambda_ca": -0.0341,
+  "lambda_ca_se": 0.0147,
+  "dmax_frac": 0.016
+ },
+ "4": {
+  "rule": 4,
+  "cls": "ordered (Class II, fixed)",
+  "lambda_ca": 0.0087,
+  "lambda_ca_se": 0.0108,
+  "dmax_frac": 0.02
+ },
+ "110": {
+  "rule": 110,
+  "cls": "complex / edge (Class IV)",
+  "lambda_ca": 0.1278,
+  "lambda_ca_se": 0.002,
+  "dmax_frac": 0.09
+ },
+ "54": {
+  "rule": 54,
+  "cls": "complex / edge (Class IV)",
+  "lambda_ca": 0.2424,
+  "lambda_ca_se": 0.0445,
+  "dmax_frac": 0.107
+ },
+ "90": {
+  "rule": 90,
+  "cls": "chaotic-linear (Class III, ballistic ref)",
+  "lambda_ca": -0.0852,
+  "lambda_ca_se": 0.3413,
+  "dmax_frac": 0.276
+ },
+ "150": {
+  "rule": 150,
+  "cls": "chaotic-linear (Class III)",
+  "lambda_ca": 0.4548,
+  "lambda_ca_se": 0.1548,
+  "dmax_frac": 0.25
+ },
+ "30": {
+  "rule": 30,
+  "cls": "chaotic (Class III)",
+  "lambda_ca": 0.2336,
+  "lambda_ca_se": 0.1067,
+  "dmax_frac": 0.054
+ },
+ "22": {
+  "rule": 22,
+  "cls": "chaotic (Class III)",
+  "lambda_ca": 0.4193,
+  "lambda_ca_se": 0.1374,
+  "dmax_frac": 0.162
+ },
+ "_group_means": {
+  "ordered": -0.3155,
+  "edge": 0.1851,
+  "chaotic": 0.2556
+ },
+ "_ordering_recovered": true
+}

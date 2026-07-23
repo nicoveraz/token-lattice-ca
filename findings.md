@@ -507,6 +507,21 @@ the token-space finite-size Lyapunov λ_ca (early damage-growth slope), r=2, T=0
   against a temperature-dependent white-box ρ(F_T) over a swept T, giving many
   matched points per model instead of n=6 cross-model scalars.
 
+### F27 — ground-truth calibration: λ_ca recovers the known criticality ordering of classical CA rules (issue #14)
+Drove the SAME damage-spreading + Lyapunov estimator (async updates, CRN twins,
+single-site flip, `lyap_from_cone`) with classical Elementary CA rules of known
+class (k=2, radius 1), same protocol as the instrument. Group-mean λ_ca: ordered
+{128,232,4} = **−0.315** < edge/complex {110,54} = **+0.185** < chaotic {150,30,22}
+= **+0.256**. **Pre-registered ordering ordered<edge<chaotic RECOVERED.** This is the
+criticality-side analog of the census calibration (which recovers a known transition
+matrix): it validates that black-box λ_ca measures *criticality*, not an apparatus
+artifact. Nuance (a feature, not a bug): linear **Rule 90** reads marginal
+(λ_ca=−0.09) despite wide spread (dmax/N=0.28) — correct, because linear rules spread
+*ballistically* (velocity>0) with marginal *exponential* growth (λ≈0), so λ_ca
+correctly separates exponential growth from mere spreading (the velocity⊥Lyapunov
+distinction). Individual-rule λ_ca is noisy (3 seeds); the class-level ordering is the
+robust claim. (`results/eca_calib.json`, `experiments/eca_calib.py`.)
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
