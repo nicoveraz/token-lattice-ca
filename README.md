@@ -30,7 +30,7 @@ tiny-transformer pilot; F10–F13 hardening; F14–F19 on real pretrained MLMs).
 | F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
 | F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
 | **F23** | A diversity+velocity-controlled **repair length** (D_norm=D/D0) shrinks with radius; capacity orders it (tiny<mini) — a stability↔expressiveness tradeoff, measured black-box | B |
-| F24 | Both velocity∝r and the repair length **replicate on an AR model** (Pythia, causal window) — not MLM-construction artifacts | C1 |
+| F24 | velocity∝r + repair length **replicate on AR** (Pythia causal window); capacity→sensitivity also replicates (160m→410m) — not MLM artifacts | C1 |
 
 ## Layout
 

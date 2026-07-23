@@ -349,8 +349,14 @@ globally inconsistent (2605.16378) while the AR joint is consistent, the phenome
 being construction-independent is the single most important external-validity check.
 We hold the MLM↔AR comparison at the level of the **trend**, not absolute numbers:
 AR healing is causal-context (one-sided), a different object from bidirectional MLM
-healing. The AR capacity trend (Pythia-160m vs 410m) is the natural next step.
-(`results/mlm/ar_pythia-160m.json`)
+healing. **The capacity→sensitivity climb also replicates on the AR construction**:
+at the sub-saturation radius r=2, mean `D_norm` rises 0.641 (Pythia-160m) → 0.735
+(Pythia-410m) — the larger causal model damps less — mirroring the masked-LM ladder
+(tiny<mini<base). (By r≥4 both AR models saturate near `D_norm≈1`, so r=2 is the
+discriminating radius.) So the capacity axis is not a masked-LM artifact either.
+*Trim logged*: the 410m r=16 cells were dropped — 410m fp16 + the largest window
+OOM'd on 16 GB; velocity and the D-grid through r=8 (the discriminating range)
+completed. (`results/mlm/ar_pythia-160m.json`, `ar_pythia-410m.json`)
 
 > Novelty TODO before submission (from the check): direct-read arXiv:2607.09803 and
 > QUIVER; keep the instrument (not "dynamical-systems analysis of LLMs") as the

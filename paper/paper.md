@@ -176,9 +176,12 @@ propagate — a single causal token cannot carry the flip), and the repair lengt
 (`D_norm` climbs 0.001 → 0.98 across *r*). Because the masked-LM joint is globally
 inconsistent while the autoregressive joint is consistent, replication across the two
 constructions is the strongest available evidence that the phenomena are properties of
-trained-LM token dynamics, not artifacts of the masked-LM construction. We compare at
-the level of the *trend*, not absolute numbers: causal-context healing is a different
-object from bidirectional healing.
+trained-LM token dynamics, not artifacts of the masked-LM construction. The
+**capacity→sensitivity climb replicates on the AR construction** too: at the
+sub-saturation radius r=2, mean `D_norm` rises 0.64 (Pythia-160m) → 0.73
+(Pythia-410m), the larger causal model damping less — mirroring the masked ladder. We
+compare at the level of the *trend*, not absolute numbers: causal-context healing is a
+different object from bidirectional healing.
 
 ### 3.5 Calibration against ground truth (F19, C2)
 
@@ -234,10 +237,10 @@ stochastic dynamical system but not a sampler of any joint — every claim is ph
 a property of the dynamics, not of a sampled distribution. The census on real models is
 *proxy*-validated (WikiText, which the models were not trained on), a lower bound on
 recovery; the ground-truth calibration is on synthetic sources only. Rings are small
-(`N ≤ 384`), the model ladder short (three masked, one autoregressive), and the
-autoregressive capacity trend (160m vs 410m) is not yet run. The repair-length r-trend
-and one model's large-radius dip await the finite-size scan for a geometry-vs-collapse
-verdict. The special-token windowing scheme is a first-class apparatus factor that
+(`N ≤ 384`), the model ladder short (three masked, two autoregressive). The
+autoregressive capacity trend rests on two models and only the sub-saturation radius
+discriminates (both saturate by r≥4); the 410m r=16 cell OOM'd on 16 GB and was
+dropped. The special-token windowing scheme is a first-class apparatus factor that
 must be held fixed for cross-model claims. Temperature scales are not comparable across
 the masked and autoregressive constructions.
 

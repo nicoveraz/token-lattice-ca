@@ -1,0 +1,21 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 14887.34it/s]
+[pythia-410m] velocity r= 1: v=-0.34 sites/sweep (mean_dmg=0.00)
+[pythia-410m] velocity r= 2: v=7.9 sites/sweep (mean_dmg=0.93)
+[pythia-410m] velocity r= 4: v=7.7 sites/sweep (mean_dmg=0.98)
+[pythia-410m] velocity r= 8: v=11.5 sites/sweep (mean_dmg=0.98)
+[pythia-410m] velocity r=16: v=11.5 sites/sweep (mean_dmg=0.98)
+[pythia-410m] D r= 1 T=0.5: D=0.001 D0=0.697 Dnorm=0.001 distinct=0.37
+[pythia-410m] D r= 1 T=0.8: D=0.002 D0=0.983 Dnorm=0.002 distinct=0.78
+[pythia-410m] D r= 1 T=1.1: D=0.002 D0=0.996 Dnorm=0.002 distinct=0.93
+[pythia-410m] D r= 2 T=0.5: D=0.384 D0=0.864 Dnorm=0.444 distinct=0.54
+[pythia-410m] D r= 2 T=0.8: D=0.842 D0=0.983 Dnorm=0.857 distinct=0.81
+[pythia-410m] D r= 2 T=1.1: D=0.900 D0=0.997 Dnorm=0.903 distinct=0.93
+[pythia-410m] D r= 4 T=0.5: D=0.957 D0=0.962 Dnorm=0.994 distinct=0.67
+[pythia-410m] D r= 4 T=0.8: D=0.973 D0=0.984 Dnorm=0.989 distinct=0.80
+[pythia-410m] D r= 4 T=1.1: D=0.987 D0=0.996 Dnorm=0.991 distinct=0.93
+[pythia-410m] D r= 8 T=0.5: D=0.949 D0=0.943 Dnorm=1.006 distinct=0.51
+[pythia-410m] D r= 8 T=0.8: D=0.972 D0=0.983 Dnorm=0.988 distinct=0.75
+[pythia-410m] D r= 8 T=1.1: D=0.986 D0=0.997 Dnorm=0.990 distinct=0.92
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
