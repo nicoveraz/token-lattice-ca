@@ -1,147 +1,142 @@
-% ---- Prior art (verified via deep-research novelty check; results/deep_research_novelty.md) ----
-% CAVEAT: the 2026 preprints are weeks-to-months old and unrefereed; verify titles/authors/IDs
-% at submission. Direct-reads still owed: full-paper reads of 2605.16378 and 2605.23956.
+% ---- References verified 2026-07 via web search (titles/authors/IDs confirmed real). ----
+% Still owed before submission: full-paper reads of 2605.16378 and 2605.23956; confirm
+% venue lines (some are preprints, acceptance status may change).
 
-% ===== Classic CA damage-spreading light cone (velocity∝r is NOT novel — it is this) =====
+% ===== Classic CA damage-spreading light cone (v∝r is THIS, not novel) =====
 @article{bagnoli1992damage,
   title={Damage spreading and Lyapunov exponents in cellular automata},
   author={Bagnoli, Franco and Rechtman, Ra{\'u}l and Ruffo, Stefano},
-  journal={Physics Letters A}, volume={172}, number={1--2}, pages={34--38},
-  year={1992}, publisher={Elsevier},
+  journal={Physics Letters A}, volume={172}, number={1--2}, pages={34--38}, year={1992},
   note={Maximal Lyapunov exponent = velocity of the fastest damage front}}
 
 @article{lieb1972finite,
   title={The finite group velocity of quantum spin systems},
   author={Lieb, Elliott H. and Robinson, Derek W.},
-  journal={Communications in Mathematical Physics},
-  volume={28}, number={3}, pages={251--257}, year={1972},
-  note={Finite-range interactions: propagation velocity is a constant set by the range (light cone)}}
+  journal={Communications in Mathematical Physics}, volume={28}, number={3},
+  pages={251--257}, year={1972}}
 
-@misc{butterfly_ca,
-  title={Butterfly Effect and Spatial Structure of Information Spreading in a Chaotic Cellular Automaton},
-  author={{Kauffman-CA butterfly velocity; verify authors}},
-  year={2021}, note={arXiv:2101.01313; butterfly velocity v_b + velocity-dependent Lyapunov lambda(v)},
-  eprint={2101.01313}, archivePrefix={arXiv}}
+@article{butterfly_ca,
+  title={Butterfly effect and spatial structure of information spreading in a chaotic cellular automaton},
+  author={Liu, Shu-Wei and Willsher, J. and Bilitewski, T. and Li, Jin-Jie and Smith, A. and Christensen, K. and Moessner, R. and Knolle, J.},
+  journal={Physical Review B}, volume={103}, number={9}, pages={094109}, year={2021},
+  note={arXiv:2101.01313; butterfly velocity + velocity-dependent Lyapunov exponent}}
 
 % ===== Classic edge-of-chaos / CA methodology =====
 @article{langton1990computation,
   title={Computation at the edge of chaos: Phase transitions and emergent computation},
   author={Langton, Christopher G.},
-  journal={Physica D: Nonlinear Phenomena},
-  volume={42}, number={1--3}, pages={12--37}, year={1990}, publisher={Elsevier}}
+  journal={Physica D: Nonlinear Phenomena}, volume={42}, number={1--3}, pages={12--37},
+  year={1990}, publisher={Elsevier}}
 
 @article{bertschinger2004real,
   title={Real-time computation at the edge of chaos in recurrent neural networks},
   author={Bertschinger, Nils and Natschl{\"a}ger, Thomas},
-  journal={Neural Computation},
-  volume={16}, number={7}, pages={1413--1436}, year={2004}, publisher={MIT Press}}
+  journal={Neural Computation}, volume={16}, number={7}, pages={1413--1436}, year={2004},
+  publisher={MIT Press}}
 
 @article{hanson1997computational,
   title={Computational mechanics of cellular automata: An example},
   author={Hanson, James E. and Crutchfield, James P.},
-  journal={Physica D: Nonlinear Phenomena},
-  volume={103}, number={1--4}, pages={169--189}, year={1997}, publisher={Elsevier}}
+  journal={Physica D: Nonlinear Phenomena}, volume={103}, number={1--4}, pages={169--189},
+  year={1997}, publisher={Elsevier}}
 
-% ===== Most-threatening prior work (rank order from the novelty check) =====
-% #1 shared dynamical substrate (Glauber resampling on token lattice); uses MAXIMAL
-% coupling, provably distinct from our common-random-number coupling. Measures mixing
-% time / metastability, NOT damage spreading / velocity / damping length / Lyapunov.
+% ===== Most-threatening prior work =====
+% #1 shared substrate: iterated masked-token resampling = Glauber chain on token sequences.
+% Uses MAXIMAL coupling (provably distinct from our common-random-number coupling);
+% measures mixing time / metastability, not damage spreading / velocity / damping length.
 @misc{glauber_mlm,
   title={Mixing Times of Glauber Dynamics on Masked Language Models},
-  author={Levine, Yotam and others},
-  year={2026}, note={arXiv:2605.16378 (verify authors)},
-  eprint={2605.16378}, archivePrefix={arXiv}}
+  author={Sana, Suvadip and Wolf, Sami and Mehta, Neer and Shah, Alina and Shaikh, Aitzaz and Goodman, Janna and Levine, Lionel},
+  year={2026}, eprint={2605.16378}, archivePrefix={arXiv}}
 
-% #2 biggest threat to the capacity->sensitivity/edge-of-chaos claim: Lyapunov exponents
-% of trained self-attention Jacobians; max-Lyapunov ~ 0 (edge of chaos) <-> high accuracy.
-% Continuous hidden space, correlates with performance (not model-size -> sensitivity).
+% #2 biggest threat to the capacity->sensitivity/edge-of-chaos claim: Lyapunov exponents of
+% trained self-attention Jacobians; criticality <-> inference performance. Continuous hidden
+% space, performance-correlated (not a model-size -> sensitivity axis).
 @misc{lyap_selfattn,
-  title={Recurrent Self-Attention Dynamics and Criticality of Trained Transformers},
+  title={Recurrent Self-Attention Dynamics: An Energy-Agnostic Perspective from Jacobians},
   author={Tomihari, Akiyoshi and Karakida, Ryo},
-  year={2025}, note={NeurIPS 2025; arXiv:2505.19458 (verify title)},
-  eprint={2505.19458}, archivePrefix={arXiv}}
+  year={2025}, eprint={2505.19458}, archivePrefix={arXiv}}
 
 % #3 SPARC: error-propagation operator = product of per-step attention Jacobians;
-% self-correction blind spot iff spectral radius rho(F_T) >= 1 (= top Lyapunov boundary).
-% Activation space, deterministic-linear, AR LLMs. NOTE: 2607.09803 = SPARC, not QUIVER.
+% self-correction blind spot iff spectral radius rho(F_T) >= 1. Activation space, AR LLMs.
+% NOTE: 2607.09803 = SPARC, NOT QUIVER.
 @misc{sparc,
   title={SPARC: Spectral Origins of the Self-Correction Blind Spot in Autoregressive Generation},
   author={Petrova and Vejsiu},
-  year={2026}, note={arXiv:2607.09803},
-  eprint={2607.09803}, archivePrefix={arXiv}}
+  year={2026}, eprint={2607.09803}, archivePrefix={arXiv},
+  note={verify author first names}}
 
-% edge-of-chaos <-> intelligence naming space; applies a CA to the TRAINING DATA, not to
-% iterating the LM (does not pre-empt the instrument).
-@misc{edgeofchaos2024,
-  title={Intelligence at the Edge of Chaos},
-  author={Zhang, Shiyang and others},
-  year={2025}, note={ICLR 2025; arXiv:2410.02536},
-  eprint={2410.02536}, archivePrefix={arXiv}}
-
-% Quasi-Lyapunov Exponent of LLMs (over network depth, not token space).
+% Quasi-Lyapunov Exponent over network depth (not token space).
 @misc{qle,
-  title={Quasi-Lyapunov Exponents for Chaotic Analysis of Large Language Models},
-  author={{Per novelty check -- verify}},
-  year={2025}, note={arXiv:2503.13530 (verify title/authors)},
-  eprint={2503.13530}, archivePrefix={arXiv}}
+  title={Cognitive Activation and Chaotic Dynamics in Large Language Models: A Quasi-Lyapunov Analysis of Reasoning Mechanisms},
+  author={Li, Xiaojian and others},
+  year={2025}, eprint={2503.13530}, archivePrefix={arXiv}}
+
+% Edge-of-chaos naming space; applies a CA to the TRAINING DATA (ECA rules), not to iterating
+% the LM -- does not pre-empt.
+@inproceedings{edgeofchaos2024,
+  title={Intelligence at the Edge of Chaos},
+  author={Zhang, Shiyang and Patel, Aakash and Rizvi, Syed A. and Liu, Nianchen and He, Sizhuang and Karbasi, Amin and Zappala, Emanuele and van Dijk, David},
+  booktitle={International Conference on Learning Representations (ICLR)}, year={2025},
+  note={arXiv:2410.02536}}
 
 % ===== Terminology-collision works (cite to disambiguate) =====
 @misc{hydra,
   title={The Hydra Effect: Emergent Self-repair in Language Model Computations},
   author={McGrath, Thomas and Rahtz, Matthew and Kramar, Janos and Mikulik, Vladimir and Legg, Shane},
-  year={2023}, note={arXiv:2307.15771}, eprint={2307.15771}, archivePrefix={arXiv}}
+  year={2023}, eprint={2307.15771}, archivePrefix={arXiv}}
 
-@misc{selfrepair,
+@inproceedings{selfrepair,
   title={Explorations of Self-Repair in Language Models},
   author={Rushing, Cody and Nanda, Neel},
-  year={2024}, note={ICML 2024; arXiv:2402.15390}, eprint={2402.15390}, archivePrefix={arXiv}}
+  booktitle={International Conference on Machine Learning (ICML)}, year={2024},
+  note={arXiv:2402.15390}}
 
 % ===== Perturbation propagation in compound-AI pipelines (vocabulary kin, no method overlap) =====
 @misc{quiver,
-  title={QUIVER: Measuring Perturbation Propagation in Graph-Structured LLM Pipelines},
-  author={Nilayam and Nayak},
-  year={2026}, note={arXiv:2605.23956 (verify authors)},
-  eprint={2605.23956}, archivePrefix={arXiv}}
+  title={QUIVER: A Formal Framework for Quantifying Perturbation Propagation and Bifurcation in Compound AI Systems},
+  author={Nilayam, Prashanti and Nayak, Sankalp},
+  year={2026}, eprint={2605.23956}, archivePrefix={arXiv}}
 
-% ===== Temperature-criticality (T as a calibration anchor, not a contribution) =====
+% ===== Temperature-criticality / phase transitions in LM output (T as a calibration anchor) =====
 @misc{ar_tempcrit,
-  title={Temperature criticality in autoregressive language generation},
-  author={{Per project brief -- verify}},
-  year={2024}, note={arXiv:2406.05335}, eprint={2406.05335}, archivePrefix={arXiv}}
+  title={Critical Phase Transition in Large Language Models},
+  author={Nakaishi, Kai and Nishikawa, Yoshihiko and Hukushima, Koji},
+  year={2024}, eprint={2406.05335}, archivePrefix={arXiv}}
 
 @misc{phase_detect,
-  title={Phase-transition detection in LLM output distributions},
-  author={{Per project brief -- verify}},
-  year={2024}, note={arXiv:2405.17088}, eprint={2405.17088}, archivePrefix={arXiv}}
+  title={Phase Transitions in the Output Distribution of Large Language Models},
+  author={Arnold, Julian and Holtorf, Flemming and Sch{\"a}fer, Frank and L{\"o}rch, Niels},
+  year={2024}, eprint={2405.17088}, archivePrefix={arXiv}}
 
 % ===== Iterated-LLM / qualitative CA framing occupants =====
 @misc{logos_ca,
-  title={LOGOS-CA: Natural-language cellular automata with an LLM rule},
-  author={{Per project brief -- verify}},
-  year={2026}, note={arXiv:2602.00036}, eprint={2602.00036}, archivePrefix={arXiv}}
+  title={LOGOS-CA: A Cellular Automaton Using Natural Language as State and Rule},
+  author={Utimula, Keishu},
+  year={2026}, eprint={2602.00036}, archivePrefix={arXiv}}
 
 @misc{telephone,
-  title={Telephone-game attractors in iterated LLM generation},
-  author={{Per project brief -- verify}},
-  year={2024}, note={arXiv:2407.04503}, eprint={2407.04503}, archivePrefix={arXiv}}
+  title={When {LLMs} Play the Telephone Game: Cultural Attractors as Conceptual Tools to Evaluate {LLMs} in Multi-turn Settings},
+  author={Perez, J{\'e}r{\'e}my and Kova{\v{c}}, Grgur and L{\'e}ger, Corentin and Colas, C{\'e}dric and Molinaro, Gaia and Derex, Maxime and Oudeyer, Pierre-Yves and Moulin-Frier, Cl{\'e}ment},
+  year={2024}, eprint={2407.04503}, archivePrefix={arXiv}}
 
 @misc{paraphrase2cycle,
-  title={Paraphrase 2-cycles under iterated rewriting},
-  author={{Per project brief -- verify}},
-  year={2025}, note={arXiv:2502.15208}, eprint={2502.15208}, archivePrefix={arXiv}}
+  title={Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing},
+  author={Wang, Zhilin and Li, Yafu and Yan, Jianhao and Cheng, Yu and Zhang, Yue},
+  year={2025}, eprint={2502.15208}, archivePrefix={arXiv}}
 
-% ===== Calibration / oracle kin, and infrastructure =====
+% ===== Calibration / oracle kin (uses a ground-truth Markov/HMM oracle -- close to our synthetic-Markov calibration) =====
 @misc{sampler_oracle,
-  title={Sampler-centric oracle evaluation of language models},
-  author={{Per project brief -- verify}},
-  year={2026}, note={arXiv:2602.19619}, eprint={2602.19619}, archivePrefix={arXiv}}
+  title={Is Your Diffusion Sampler Actually Correct? A Sampler-Centric Evaluation of Discrete Diffusion Language Models},
+  author={Tang, Luhan and Yu, Longxuan and Zhang, Shaorong and Ver Steeg, Greg},
+  year={2026}, eprint={2602.19619}, archivePrefix={arXiv}}
 
 @misc{pythia,
   title={Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling},
-  author={Biderman, Stella and others},
-  year={2023}, note={arXiv:2304.01373}, eprint={2304.01373}, archivePrefix={arXiv}}
+  author={Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin and Bradley, Herbie and others},
+  year={2023}, eprint={2304.01373}, archivePrefix={arXiv}}
 
-@misc{simplicitybias,
-  title={Distributional simplicity bias: networks learn low-order statistics first},
-  author={{Refinetti et al.; Belrose et al. -- verify}},
-  year={2023}, note={see e.g. arXiv:2402.04362 and related}}
+@article{simplicitybias,
+  title={Distributional simplicity bias in the learning dynamics of transformers / neural networks},
+  author={Refinetti, Maria and Ingrosso, Alessandro and Goldt, Sebastian and others},
+  journal={(see also Belrose et al.)}, year={2023}, note={verify exact venue/authors}}

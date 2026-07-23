@@ -215,10 +215,15 @@ its **substrate is not**, and novelty is uneven across claims.
 **Shared substrate — the exposed flank.** *Glauber dynamics on masked LMs*
 (arXiv:2605.16378) already recasts a masked LM as iterated masked-token resampling — a
 Glauber Markov chain on token sequences, the exact substrate we iterate. It measures
-mixing time / metastability, **not** damage spreading, light-cone velocity, a damping
-length, or a finite-size Lyapunov exponent, and it uses **maximal coupling** (provably
-distinct from our common-random-number coupling). Our novelty rests on the
-**measurement layer**, not the LM-as-iterated-token-CA framing, which we do not claim.
+mixing time (O(n log n) at high T) and low-T metastability — **not** a conditioning-radius
+axis, light-cone velocity, a damping length, an attractor census, or a finite-size Lyapunov
+exponent. The distinction is sharp in the **coupling**: it tracks Hamming-distance
+*contraction* under **maximal coupling** to *bound mixing*, whereas we track Hamming-distance
+*spatial propagation* under **common-random-number coupling** to *measure the light cone and
+a diversity-normalized damping length* across a swept radius — maximal coupling minimizes
+disagreement (a mixing device), CRN preserves the common noise so the perturbation's causal
+spread is visible. Our novelty rests on this **measurement layer**, not the
+LM-as-iterated-token-CA framing, which we do not claim.
 
 **Edge of chaos — §3.3 is partially anticipated.** Edge-of-chaos-as-capability is
 canonical (Langton; Bertschinger & Natschläger 2004, reservoir computing) and has been
