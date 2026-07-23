@@ -6,6 +6,13 @@
 \hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
 \newcommand{\dn}{\ensuremath{D_{\mathrm{norm}}}}
 \newcommand{\dz}{\ensuremath{D_0}}
+% --- NeurIPS submission: replace the two lines below with
+%     \documentclass{article}\usepackage[final]{neurips_2024}
+%     (drop neurips_2024.sty into the project; the checklist macros are then provided).
+%     Fallback definitions so the checklist compiles under the plain article class:
+\providecommand{\answerYes}[1][]{{\color{blue!60!black}[Yes]} #1}
+\providecommand{\answerNo}[1][]{{\color{red!70!black}[No]} #1}
+\providecommand{\answerNA}[1][]{{\color{gray}[NA]} #1}
 \title{\bfseries A Token-Lattice Cellular Automaton:\\ Black-Box Measurement of Dynamical Structure in Language Models}
 \author{[Author name(s) and affiliation --- fill before submission]
   \\ \small Draft --- findings F1--F25 and code in the \texttt{token-lattice-ca} repository}
@@ -20,25 +27,25 @@ it as a measurement instrument. A ring of $N$ token cells is updated in place by
 model's own windowed conditional $p_r(x_i \mid x_{i\pm r})$ at temperature $T$
 (asynchronous random-order Glauber); the model \emph{is} the update rule, and the radius
 $r$ of the conditioning window is a swept knob. Reading the model out as a dynamical
-system rather than a next-token predictor exposes structure that static evaluation
-misses. We report four black-box measurements, each certified against apparatus
+system rather than a next-token predictor surfaces structure a next-token evaluation does
+not. We report four black-box measurements, each certified against apparatus
 confounds by a common-random-number (CRN) differential protocol. (1)~A \textbf{radius
 law}: equilibrium \emph{local} statistics are nearly radius-blind, but corpus-consistent
 \emph{longer-range} structure has an intermediate-radius optimum, visible only through a
-repetition-robust metric. (2)~\textbf{Damage light cones} whose front velocity is set by
-the conditioning radius, $v \propto r$, and is model-invariant. (3)~A \textbf{damping
+repetition-robust metric. (2)~\textbf{Damage light cones} whose front velocity grows with
+the conditioning radius and is model-invariant (the classic CA light cone; the exact form
+is mildly super-linear on the one unclipped ring, not a clean $v\propto r$). (3)~A \textbf{damping
 length}: the asymptotic damage from a perturbation, once controlled for the model's
-intrinsic diversity, shrinks as the window widens and is capacity-dependent among masked
-models---the smallest damps far more than larger ones, which amplify perturbations beyond
-their own noise floor (this capacity effect is not a clean monotone scaling law and does
-not replicate on an autoregressive model). A finite-size Lyapunov
-exponent shows the \emph{early} dynamics are a purely kinematic axis shared by all
-models, so the capacity signal lives entirely in the \emph{asymptotic} persistence:
-velocity and stability are orthogonal, and only stability tracks capacity. (4)~\textbf{External
-validity}: the velocity law and the damping length's radius dependence replicate on an
-autoregressive model driven through a one-sided causal window (the capacity scaling does
-not), so the core measurements are not artifacts of the masked LM's globally-inconsistent
-joint. We calibrate against synthetic sources with known
+intrinsic diversity, shrinks as the window widens. Among masked models a capacity-linked
+gap appears---the smallest ($4$M) damps markedly more than two larger ones---but on the
+present evidence (two seeds; a three-model toy ladder; the gap closing between the mid and
+largest model) we report this as \emph{suggestive}, not an established scaling law, and it
+does not replicate on an autoregressive ladder. (4)~\textbf{External validity}: the
+velocity law and the damping length's radius dependence replicate on an autoregressive
+model driven through a one-sided causal window (the capacity effect does not), so the
+radius-level measurements are not tied to the masked construction---though both
+constructions are windowed, in-place-resampled rings rather than samplers of the model's
+true joint, so this is cross-construction agreement, not proof about the joint. We calibrate against synthetic sources with known
 transition matrices, where the attractor census recovers ground truth quantitatively and
 discriminates sources. The contribution is the \textbf{instrument and the quantities it
 measures}; the phenomena those quantities land on---criticality, computation at the edge
@@ -117,11 +124,16 @@ first-class apparatus of comparable magnitude.}\label{fig:radius}
 \subsection{Damage light cones: $v\propto r$}
 A 3-site block flip under CRN produces a cone whose front advances ballistically at
 $v\approx 1.6,3.5,7.7,\dots$ sites/sweep for $r=1,2,4,\dots$. A plateau at large $r$ on
-small rings is finite-size (the front fills the ring in $\sim$2 sweeps) and lifts on an
-$N\in\{48,96,192,384\}$ scan ($v=11.5\!\to\!23.5\!\to\!47.5$ at $r{=}16$). The unclipped
-law $v\propto r$ is \textbf{model-invariant}: interaction range is a kinematic property of
-the apparatus, not the model (Fig.~\ref{fig:velocity}). We do \emph{not} claim this law as
-new: a ballistic damage front whose velocity is set by the neighborhood range is the
+small rings is finite-size: the front fills the ring in $\sim$2 sweeps, so the velocity
+measured there is merely the wraparound ceiling $\approx N/4$ (the values $11.5,23.5,47.5$
+for $N{=}48,96,192$ at $r{=}16$ are exactly $N/4$, not an unclipped law). Only the largest
+ring escapes clipping at $r{=}16$ ($N{=}384$), and there the velocity ($41.1$) sits
+\emph{below} the smaller-ring ceilings---confirming they \emph{were} ceilings---while the
+unclipped points are mildly \emph{super}-linear ($\approx1.5r$ at $r{=}4$ rising to
+$\approx2.6r$ at $r{=}16$). So we do not claim a clean $v\propto r$; what is robust and
+\textbf{model-invariant} is that the front velocity grows monotonically with the
+conditioning radius---interaction range is a kinematic property of the apparatus, not the
+model (Fig.~\ref{fig:velocity}). We do \emph{not} claim even the qualitative law as new: a ballistic damage front whose velocity is set by the neighborhood range is the
 classic CA light cone---the maximal Lyapunov exponent equals the damage-front velocity
 \citep{bagnoli1992damage}, finite-range interactions give a constant range-set velocity by
 the Lieb--Robinson bound \citep{lieb1972finite}, and butterfly velocities of decorrelator
@@ -135,32 +147,42 @@ velocity is model-invariant, i.e.\ a shared kinematic axis (contrast \S\ref{sec:
 wraparound; $v\propto r$ continues once unclipped.}\label{fig:velocity}
 \end{figure}
 
-\subsection{The damping length, kinematics $\perp$ stability}\label{sec:repair}
+\subsection{The damping length}\label{sec:repair}
 Perturb, evolve under CRN, and ask how much damage \emph{persists}. The raw answer is
-diversity-confounded, so we normalize by a \textbf{diversity floor} \dz{}: the asymptotic
-drift of twins sharing the settled initial state but evolving under \emph{independent}
-noise with \emph{no} flip. Because \dz{} is a full radius-$r$ run it propagates at the same
-$v\propto r$, so $\dn=D/\dz$ cancels \emph{both} the diversity and the kinematic terms.
-Then (Fig.~\ref{fig:repair}): \dn{} rises with radius (damping length shrinks as the window
-widens; the raw ``recovery'' at large $r$ was collapse); capacity separates it, though the
-climb saturates early (mean \dn{} tiny $0.672$, mini $0.880$, base $0.904$; a paired test
-across the 15 $(r,T)$ cells gives mini$\gg$tiny at $15/15$ cells, $p<10^{-4}$, but
-base-vs-mini not significant, $8/15$, $p=0.21$)---i.e.\ tiny $\ll$ \{mini, base\}, the two
-larger models crossing $\dn>1$ (amplification beyond the noise floor) while tiny stays
-sub-critical. The separation fights the normalization (a diverse
-model's higher floor should deflate its \dn) and is velocity-immune (matched $r$), so it is
-neither diversity nor kinematics. A finite-size Lyapunov exponent $\lambda$ (early
-log-separation slope) is \textbf{model-invariant} ($\lambda_{\max}\approx0.74$--$0.77$ for
-all three) and universally positive: early dynamics are a kinematic axis set by the radius,
-and the capacity signal lives entirely in the asymptotic \dn. That $\lambda$ tracks the
-damage-front velocity is itself the classic CA relation \citep{bagnoli1992damage}; our
-contribution is the \emph{decomposition}---that this kinematic Lyapunov axis is universal
-(model-invariant) while a distinct \emph{asymptotic} axis, \dn, is what tracks capacity. \emph{Reading (as
-measurement)}: $\dn>1$ is a chaos signature; the smallest model reads ``stable'' because it
-is \emph{frozen} (collapses to a dead repetitive attractor), the larger ones ``sensitive''
-because \emph{expressive}. The capacity axis traces a stability$\leftrightarrow$expressiveness
-tradeoff---the long-hypothesized edge-of-chaos picture
-\citep{bertschinger2004real,edgeofchaos2024} measured black-box, with a capacity axis added.
+diversity-confounded: a low-entropy lattice snaps back for free. We therefore report the
+perturbation damage $D$ alongside a \textbf{diversity floor} \dz{}---the asymptotic drift
+of twins sharing the settled initial state but evolving under \emph{independent} noise with
+\emph{no} flip---and their ratio $\dn=D/\dz$. Two caveats on the normalization, stated
+plainly because they bound the reading. \emph{First}, $D$ and \dz{} use different couplings
+($D$ common-random-number, \dz{} independent noise), so \dn{} is a controlled diagnostic,
+not a ratio of like quantities; the natural CRN floor is the null itself ($=0$). \emph{Second},
+at large $r$ the rise in \dn{} is \textbf{denominator-driven}: raw $D$ already \emph{falls}
+(tiny, $T{=}0.7$: $0.54\!\to\!0.39$ from $r{=}4$ to $r{=}16$) while \dz{} falls faster, so
+``the damping length keeps shrinking'' at large $r$ partly reflects the floor collapsing,
+not a stronger perturbation response.
+
+Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius and
+orders the masked models by capacity (mean \dn{} tiny $0.672$, mini $0.880$, base $0.904$).
+We flag the strength of this ordering carefully. It rests on \textbf{two seeds} and three
+toy models, and the only clean gap is tiny $\ll$ \{mini,\,base\} (base-vs-mini is null,
+$8/15$ cells, $p{=}0.21$); the ``$15/15$ cells, $p<10^{-4}$'' paired statistic we previously
+reported is \emph{pseudoreplicated} across a smooth correlated $(r,T)$ grid driven by the
+same two seeds---it restates a shared sign, not independent evidence, and we retract it as a
+significance claim. The two larger models reach $\dn\gtrsim1$, but only by $\sim1\sigma$
+(mini $1.10{\pm}.06$, base $1.04{\pm}.01$, two-seed), and $D/\dz\!\to\!1$ mechanically as
+both saturate, so we do \emph{not} read $\dn>1$ as a certified above-floor amplification.
+We had also reported a kinematics-versus-stability decomposition---a model-invariant early
+Lyapunov exponent placing all capacity in the asymptotic \dn. On re-audit the invariance
+holds only at the single saturated cell where $\lambda_{\max}$ is attained ($r{=}8,T{=}0.9$:
+$0.74$--$0.77$) and \emph{fails} off it ($r{=}8,T{=}0.7$: $0.50/0.60/0.66$, a $24\%$ spread
+tracking capacity like \dn{} itself), so we \textbf{withdraw} the orthogonality claim.
+\emph{Reading (as measurement)}: to the extent the ordering is real, it is consistent with a
+stability$\leftrightarrow$expressiveness picture---the smallest model reading ``stable''
+because it collapses to a dead repetitive attractor, the larger ones ``sensitive'' because
+expressive---the long-hypothesized edge-of-chaos idea
+\citep{bertschinger2004real,edgeofchaos2024} probed black-box. Establishing it as a capacity
+\emph{axis} (rather than a suggestive two-seed gap) needs the seed-level rebuild we flag in
+Limitations.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{repair_scale.png}
@@ -181,12 +203,16 @@ insignificant size-rank correlation (Spearman $\rho{=}0.17$, $p{=}0.29$; only 16
 is marginal, $p{=}0.06$). So the masked-side capacity ordering (\S\ref{sec:repair}) is
 masked-specific in this data, not construction-independent; neither construction extends it
 monotonically (masked saturates, AR reverses). What replicates on AR is the \emph{instrument}
-(velocity$\propto r$; the damping length rising with $r$), not the capacity scaling. Because
-the masked-LM joint is globally inconsistent \citep{glauber_mlm} while the
-autoregressive joint is consistent, replication across constructions is the strongest
-evidence the phenomena are properties of trained-LM token dynamics, not artifacts of the
-masked construction. We compare at the level of the \emph{trend}: causal-context healing is
-a different object from bidirectional healing.
+(velocity grows with $r$; the damping length rises with $r$), not the capacity scaling. The
+masked-LM local conditionals are globally inconsistent \citep{glauber_mlm}; the
+autoregressive rule here is a \emph{consistent} order-$r$ causal kernel---but resampled in
+place on a periodic ring, so it too is not a sampler of the model's true left-to-right
+joint. Both constructions are thus windowed, in-place-resampled ring dynamics rather than
+the model's actual distribution. Replication across them is evidence that the radius-level
+measurements are not tied to the masked windowing---not proof about either joint. We compare
+at the level of the \emph{trend}, since causal-context healing is a different object from
+bidirectional healing. (The AR means pool two temperature regimes with very different
+\dn{} scales; per-$T$ reporting is the correct fix, flagged in Limitations.)
 
 \begin{figure}[t]\centering
 \includegraphics[width=0.62\linewidth]{ar_capacity.png}
@@ -199,12 +225,13 @@ this data.}\label{fig:arcap}
 \paragraph{Crossover-relative robustness (is the plateau a sampling artifact?).}
 A fixed $(r,T)$ probe could sample different points of each model's phase diagram, so we
 locate each model's heal$\to$spread crossover by sweeping $T$ at $r{=}2$
-(Fig.~\ref{fig:crossover}); this cuts both ways and confirms both readings. \emph{Masked}:
-the $\dn(T)$ profiles are cleanly ordered tiny $<$ mini $<$ base at \emph{every} temperature
---- base's whole profile is shifted up (it amplifies at lower $T$) --- so the earlier
-mini$\approx$base plateau was an artifact of averaging over large radii where both saturate;
-at the discriminating radius the masked capacity effect is monotone and real.
-\emph{Autoregressive}: the ordering does \emph{not} hold---Pythia-410m is an outlier (profile
+(Fig.~\ref{fig:crossover}). \emph{Masked}: base's profile is clearly shifted up (it
+amplifies at lower $T$) and tiny is lowest across most of the range, consistent with the
+tiny $\ll$ \{mini,\,base\} gap; but the ordering is \emph{not} clean at every $T$ (at
+$T{=}0.3$, mini $0.46 <$ tiny $0.51$) and the profiles are single-seed with no error bars.
+We therefore read this as a plateau \emph{diagnostic}---the mid-vs-large saturation is a
+large-radius averaging effect---rather than an independent confirmation of a monotone
+capacity axis. \emph{Autoregressive}: the ordering does \emph{not} hold---Pythia-410m is an outlier (profile
 shifted up, lowest crossover) while 70m $\approx$ 160m $\approx$ 1b---so the AR
 non-monotonicity is genuine, not a sampling artifact. (The extracted crossover temperature is
 itself noisy in the high-variance low-$T$ healing regime---bert-tiny's profile is non-monotone
@@ -212,9 +239,10 @@ there---so we compare profiles at fixed $T$ rather than lean on it.)
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{crossover.png}
-\caption{Crossover-relative check: $\dn(T)$ at $r{=}2$. Masked models (left) are cleanly
-ordered by capacity at every $T$ (the plateau was a large-radius averaging artifact); the AR
-models (right) are not---Pythia-410m is an outlier and the others overlap, so the AR
+\caption{Crossover-relative check: $\dn(T)$ at $r{=}2$ (single-seed). Masked models (left):
+base is shifted up and tiny lowest across most of $T$ (the mid-vs-large plateau is a
+large-radius averaging effect), though the ordering is not clean at every $T$; the AR models
+(right) are not ordered---Pythia-410m is an outlier and the others overlap, so the AR
 non-replication is real.}\label{fig:crossover}
 \end{figure}
 
@@ -225,10 +253,15 @@ bigram transition $Q_X$ matching its own $P_X$ (row total-variation $0.22$ vs.\ 
 random-lattice baseline $0.91$) and \emph{not} the others (cross-TV $0.95$): the census
 recovers each model's own priors quantitatively and discriminates sources
 (Fig.~\ref{fig:calib})---the honest trained-model analog of a sampler oracle
-\citep{sampler_oracle}. On natural corpora the recovery is qualitative but structurally
-identical: the deepest attractors are the corpus's \emph{format skeleton}. Vocabulary
-compression corrupts this---a word-level \texttt{<unk>} becomes attractor material and
-inflates recovery through artifact-to-artifact matching; byte-level BPE removes it.
+\citep{sampler_oracle}. This quantitative recovery is established \emph{only} on the
+synthetic toy trained on the exact sources. On real models the census is scored against an
+out-of-training WikiText proxy and the numbers are near-floor (top-$50$ overlap
+$0.02$--$0.04$, Spearman $0.14$--$0.21$); the largest model's deepest attractors resemble a
+corpus \emph{format skeleton}, but the smallest model's are degenerate token fragments. So
+the ``the census reads out what the model internalized'' reading is licensed by the
+synthetic calibration, not by the real-model overlaps. Vocabulary compression corrupts even
+that---a word-level \texttt{<unk>} becomes attractor material and inflates recovery through
+artifact-to-artifact matching; byte-level BPE removes it.
 
 \begin{figure}[t]\centering
 \includegraphics[width=0.5\linewidth]{calib_discrimination.png}
@@ -256,10 +289,11 @@ partially anticipated).} Measuring proximity to the edge of chaos and tying it t
 capability is canonical \citep{langton1990computation,bertschinger2004real} and has been
 shown for trained transformers via Lyapunov exponents of self-attention Jacobians
 \citep{lyap_selfattn}, and named for LLMs generally \citep{edgeofchaos2024,qle}. We claim
-neither the concept nor the criticality$\leftrightarrow$capability link; our novelty is the
-\emph{token-space} finite-size Lyapunov / damping-length measurement and the explicit
-model-size$\to$sensitivity axis, which \citet{lyap_selfattn} (continuous hidden space,
-performance-correlated) does not report. \textbf{The CA light cone is classic (\S3.2 is import, not discovery).} A ballistic
+neither the concept nor the criticality$\leftrightarrow$capability link; our contribution is
+the \emph{token-space}, black-box damping-length measurement and its
+certification/calibration protocol, which \citet{lyap_selfattn} (white-box, continuous
+hidden space) does not provide. We do \emph{not} claim an established
+model-size$\to$sensitivity axis (see \S\ref{sec:repair}). \textbf{The CA light cone is classic (\S3.2 is import, not discovery).} A ballistic
 damage front whose velocity is set by the neighborhood range, and the identity
 Lyapunov$=$front-velocity, are textbook CA / statistical-physics
 \citep{bagnoli1992damage,lieb1972finite,butterfly_ca}; we import them and show the LM
@@ -289,18 +323,37 @@ models with only the sub-saturation radius discriminating (the 410m largest wind
 16\,GB). The special-token windowing scheme is a first-class apparatus factor to hold fixed;
 temperature scales are not comparable across masked and autoregressive constructions.
 
-\section{Conclusion}
+\textbf{Statistical scope (what the numbers do and do not license).} The capacity ordering
+is measured at $N{=}48$ with \emph{two} seeds; its magnitude shrinks with ring size (\dn{}
+tiny, $r{=}8$: $0.88\!\to\!0.55$ from $N{=}48$ to $192$), and we apply no multiplicity
+correction across the several trend tests reported. The diversity-floor ratio \dn{} pairs a
+CRN numerator with an independent-noise denominator, and its large-$r$ behavior is partly
+denominator-driven (\S\ref{sec:repair}). Establishing capacity$\to$sensitivity as an
+\emph{axis}---rather than the suggestive tiny $\ll$ \{mini,\,base\} gap we can defend---
+requires: $\ge15$ \emph{independent} seeds tested at the seed level (hierarchical /
+bootstrap, not a signed-rank over correlated cells); a longer, second-family ladder;
+multiple $N\gg100$; per-$T$ (not pooled) AR reporting; and the normalization ablated against
+the CRN-null and maximal-coupling floors. The repository issue tracker enumerates these as
+pre-camera-ready work, together with the cross-level white-box/black-box criticality check
+(\S\ref{sec:conclusion}) that would give the instrument external significance.
+
+\section{Conclusion}\label{sec:conclusion}
 Reading a language model as a cellular automaton over its own token space, with the
-conditioning radius as a swept knob and CRN perturbations as the probe, yields calibrated,
-apparatus-certified measurements static evaluation does not: a radius law, a model-invariant
-damage velocity, and a diversity- and velocity-controlled damping length that shortens with
-the conditioning radius and---among masked models---with capacity, as the dynamics move
-toward the chaotic side (a capacity effect that is masked-specific in our data: it saturates
-by the mid model and does not survive on an autoregressive scale ladder). The velocity law
-and the damping length's radius dependence replicate on an autoregressive model, and the
-census is quantified against ground truth. The instrument is the contribution; the phenomena
-it measures are old and deep, and that is exactly why measuring them cleanly, from the
-outside, is worth doing.
+conditioning radius as a swept knob and CRN perturbations as the probe, yields
+apparatus-certified measurements a next-token evaluation does not: a radius law, a front
+velocity that grows with the conditioning radius and is model-invariant, and a
+diversity-controlled damping length that shortens as the window widens. Among masked models
+a capacity-linked gap appears (the smallest damps most), but in our data it is a
+\emph{suggestive} two-seed effect---it closes by the mid model and does not survive on an
+autoregressive ladder---not a scaling axis; the velocity and the damping-length radius trend
+do replicate on the autoregressive port. The attractor census recovers a known transition
+matrix quantitatively on synthetic sources, and only qualitatively (proxy-scored,
+near-floor) on real models. The instrument and its certification/calibration protocol are
+the contribution; the phenomena it measures are old and deep, which is exactly why measuring
+them cleanly, from the outside, is worth doing---provided the measurements are held to the
+seed-level standard we outline for the capacity claim. The open next step is to show the
+instrument \emph{predicts} an internal property: whether the black-box token-space damping
+length agrees with a white-box activation-space criticality measure on the same model.
 
 \paragraph{Opportunities --- chiefly for interpretability.} The instrument reads a model's
 dynamics from \emph{token space alone}---no weights, gradients, or activations---which is
@@ -363,8 +416,12 @@ between the censused and true transition matrix. Census on real models is proxy-
 against a WikiText-103 slice re-tokenized per model ($\sim$240--250\,k tokens).
 
 \textbf{Statistics.} F12 (crossover), F21 (velocity), and the F23 radius trend are
-finite-size scanned; the F23 capacity separation is paired-tested across the $15$ $(r,T)$
-cells (mini$\gg$tiny: $15/15$, $p<10^{-4}$; base-vs-mini: $8/15$, $p{=}0.21$).
+finite-size scanned. The F23 capacity gap is measured with \emph{two} seeds; the
+$15/15$-cell signed-rank we originally reported ($p<10^{-4}$) is pseudoreplicated
+(correlated $(r,T)$ cells driven by the same two seeds) and is \emph{not} treated as a
+significance claim---the defensible statement is the tiny $\ll$ \{mini,\,base\} gap
+(base-vs-mini null, $8/15$). A seed-level rebuild ($\ge15$ independent seeds, hierarchical /
+bootstrap test) is the tracked pre-camera-ready fix.
 
 \textbf{Known limits of this run.} The AR capacity trend uses two--three Pythia sizes with
 one discriminating radius; the $410$m largest-window cell OOM'd on 16\,GB and was dropped;
@@ -373,4 +430,7 @@ the real-model census is a proxy; reference metadata in \texttt{refs.bib} is web
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
+
+\input{neurips_checklist}
+
 \end{document}

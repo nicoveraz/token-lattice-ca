@@ -430,6 +430,48 @@ model on five checkpoints. (`fig/pythia_dev.png`, `results/mlm/pythia_dev.json`)
 > QUIVER; keep the instrument (not "dynamical-systems analysis of LLMs") as the
 > claimed novel core.
 
+## Adversarial audit (pre-NeurIPS) — retractions and demotions
+
+Two independent adversarial reviews (originality + rigor lenses) were run against
+the draft and the raw JSON; both recommend Reject (4/10, 3/10). Every rigor
+objection below was re-verified against the JSON and **confirmed**. See
+`paper/REVIEW.md` and repository issues #1–#12. The paper (`paper/paper.tex`) and
+this log now reflect the corrected claims.
+
+- **A1 — Capacity→sensitivity is 2-seed and its significance was pseudoreplicated.**
+  `repair_{tiny,mini,base}.json` all use `seeds:[21,22]` (n=2). The "15/15 cells,
+  p<10⁻⁴" signed-rank is over a smooth correlated (r,T) grid from the same 2 seeds
+  → effective n=2; p<10⁻⁴ merely restates a shared sign. **Retracted as a
+  significance claim.** Defensible residue: tiny ≪ {mini, base} (base-vs-mini null,
+  8/15, p=0.21). Demoted from "capacity axis" to "suggestive gap." (F23)
+- **A2 — λ "model-invariant" / kinematics⊥stability is cherry-picked.** The
+  0.745/0.738/0.767 (~4% spread) are λ_max, all at the single saturated cell
+  (r=8,T=0.9). Off-cell λ tracks capacity: (r=8,T=0.7) 0.50/0.60/0.66 = 24% spread;
+  (r=1,T=0.7) reversed, 46% spread. **Orthogonality decomposition withdrawn.**
+- **A3 — D_norm large-r rise is denominator-driven.** tiny T=0.7: raw D falls
+  0.537→0.496→0.391 (r=4→16) while D_norm rises 0.748→0.803→0.810 because D0 falls
+  faster. "Damping shrinks with r" partly = floor collapse. Also numerator (CRN) and
+  denominator (independent noise) use different couplings; D_norm>1 is ~1σ from the
+  saturation value 1. Now stated as a controlled *diagnostic*, not a clean ratio.
+- **A4 — v∝r overclaimed.** The N-scan "lifts" 11.5→23.5→47.5 at r=16 are exactly
+  N/4 (clipping ceilings, saturate_sweep=2). The one unclipped point (N=384) = 41.1
+  < 47.5; unclipped points superlinear (1.5r→2.6r). Reframed as "velocity grows
+  monotonically with r, model-invariant" — no clean proportional law claimed. (F21)
+- **A5 — Crossover "rescue" false at T=0.3.** "tiny<mini<base at every T" is wrong
+  (T=0.3: mini 0.463 < tiny 0.508); profiles single-seed. Downgraded to a plateau
+  *diagnostic*, not a confirmation of a monotone axis. (crossover.json)
+- **A6 — AR "consistent joint" overstated + bimodal pooling.** `ar_ca.py` is a
+  truncated order-r causal kernel resampled in-place on a ring — not the model's true
+  AR joint; both constructions are non-samplers. AR "5 seeds" = n=10 pooled across
+  two T regimes (bimodal) → ill-defined mean/SE; per-T reporting is the fix. (F24)
+- **A7 — Census recovery real only on the toy.** Quantitative recovery (self-TV 0.22
+  vs cross 0.95) is synthetic-only; real-model overlap is near-floor (0.02–0.04 vs
+  WikiText, out-of-training); tiny_census deepest attractors are degenerate fragments.
+- **Path to significance (flagship, issue #4):** cross-level check — does the
+  black-box token-space damping length agree with a white-box activation-space
+  criticality measure (Jacobian/Lyapunov; SPARC ρ(F_T)≥1) across a Pythia ladder,
+  at the seed-level standard of A1. This is the missing external-validity result.
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
