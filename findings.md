@@ -374,16 +374,20 @@ globally inconsistent (2605.16378) while the AR joint is consistent, the phenome
 being construction-independent is the single most important external-validity check.
 We hold the MLM↔AR comparison at the level of the **trend**, not absolute numbers:
 AR healing is causal-context (one-sided), a different object from bidirectional MLM
-healing. **A capacity→sensitivity effect is *present* on the AR construction too, but
-weak — a single jump, not a clean climb.** At the discriminating radius/temperature
-(r=2, T=0.5), `D_norm` is **0.23 (Pythia-70m) ≈ 0.20 (160m) < 0.44 (410m)**: the two
-smaller causal models are indistinguishable and only the largest is clearly more
-sensitive. This *mirrors the masked side*, where the jump is also a single scale step
-(tiny→mini, then saturating, F23) — so the capacity→sensitivity effect is a **one-step
-jump at some scale, not a smooth monotone climb**, on both constructions. On AR it is
-suggestive (2 seeds; by r≥4 both AR models saturate near `D_norm≈1`), not established.
-So the capacity axis is not purely a masked-LM artifact, but the AR evidence is thin and
-reported as such.
+healing. **The capacity→sensitivity effect does NOT robustly replicate on the AR
+construction.** Firmed up with four Pythia sizes and 5 seeds each (mean D_norm at r=2,
+±SE): **70m 0.41±0.08 ≈ 160m 0.41±0.08 < 410m 0.56±0.06 > 1b 0.47±0.08** — it is
+*non-monotone*, peaking at 410m and *dropping* at 1b. The size-rank correlation is
+insignificant (**Spearman ρ=0.17, p=0.29** over 40 points); only the 160m→410m step is
+even marginal (gap +0.15, p=0.06), and 1b→410m reverses (p=0.86). So the masked-side
+capacity result (F23, tiny≪{mini,base}) does **not** carry over to the AR causal window
+as a monotone scaling law. Honest reading: the capacity→sensitivity effect is a jump at
+*some intermediate scale* that neither construction extends monotonically — the masked
+side saturates (mini≈base), the AR side reverses (410m>1b). The *instrument* replicates
+on AR (velocity∝r, damping length rises with r); the *capacity-scaling* of the damping
+length is masked-specific in this data, not construction-independent. This is the check
+catching an overclaim: the earlier 2-seed "160m→410m climb" did not survive a 4th size.
+(`fig/ar_capacity.png`, `results/mlm/ar_capacity.json`)
 *Trim logged*: the 410m r=16 cells were dropped — 410m fp16 + the largest window
 OOM'd on 16 GB; velocity and the D-grid through r=8 (the discriminating range)
 completed. (`results/mlm/ar_pythia-160m.json`, `ar_pythia-410m.json`)

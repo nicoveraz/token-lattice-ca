@@ -17,14 +17,15 @@ equilibrium *local* statistics are nearly radius-blind, but corpus-consistent
 repetition-robust metric. (2) **Damage light cones** whose front velocity is set by
 the conditioning radius, `v ∝ r`, and is *model-invariant*. (3) A **damping length**:
 the asymptotic damage from a perturbation, once controlled for the model's intrinsic
-diversity, shrinks as the window widens and grows with model capacity — the larger
-models amplify perturbations beyond their own noise floor. A finite-size Lyapunov
+diversity, shrinks as the window widens and is capacity-dependent among masked models — the
+smallest damps far more than larger ones, which amplify perturbations beyond their noise
+floor (this capacity effect is not a clean monotone law and does not replicate on an AR model). A finite-size Lyapunov
 exponent shows the *early* dynamics are a purely kinematic axis shared by all models,
 so the capacity signal lives entirely in the *asymptotic* persistence: velocity and
 stability are orthogonal, and only stability tracks capacity. (4) **External
-validity**: both the velocity law and the damping length replicate on an
-autoregressive model driven through a one-sided causal window, so they are not
-artifacts of the masked LM's globally-inconsistent joint. We calibrate the instrument
+validity**: the velocity law and the damping length's radius dependence replicate on an
+autoregressive model driven through a one-sided causal window (the capacity scaling does
+not), so the core measurements are not artifacts of the masked LM's globally-inconsistent joint. We calibrate the instrument
 against synthetic sources with known transition matrices, where the attractor census
 recovers ground truth quantitatively and discriminates sources. The contribution is
 the **instrument and the quantities it measures**; the phenomena those quantities
@@ -56,8 +57,8 @@ edge-of-chaos and criticality ideas the results touch are old (Langton's λ para
 Bertschinger & Natschläger's reservoir-computing analysis of computation at the edge
 of chaos; and, for trained networks, *Intelligence at the Edge of Chaos*). We do not
 discover them. We provide a *black-box, token-space, generation-time* measurement of
-them in real trained language models, plus a capacity-scaling result we did not find
-taken. The novel core is the instrument and its measurements.
+them in real trained language models, plus a capacity-dependent stability effect among masked models (reported honestly as
+masked-specific, not a scaling law). The novel core is the instrument and its measurements.
 
 ## 2. The instrument
 
@@ -186,13 +187,16 @@ propagate — a single causal token cannot carry the flip), and the damping leng
 (`D_norm` climbs 0.001 → 0.98 across *r*). Because the masked-LM joint is globally
 inconsistent while the autoregressive joint is consistent, replication across the two
 constructions is the strongest available evidence that the phenomena are properties of
-trained-LM token dynamics, not artifacts of the masked-LM construction. A
-**capacity→sensitivity effect is present on the AR construction too, but weak** — a
-single jump, not a clean climb: at r=2, T=0.5, `D_norm` = 0.23 (Pythia-70m) ≈ 0.20
-(160m) < 0.44 (410m) — the two smaller models indistinguishable, only the largest
-clearly more sensitive. This mirrors the masked side (the jump is one scale step,
-tiny→mini, then saturating): a **one-step jump at some scale, not a smooth monotone
-climb**, on both constructions (2 seeds on AR; reported as suggestive). We
+trained-LM token dynamics, not artifacts of the masked-LM construction. The
+**capacity→sensitivity result, however, does NOT robustly carry over to AR.** Firmed up
+with four Pythia sizes × 5 seeds (mean `D_norm` at r=2, ±SE): 0.41±.08 (70m) ≈ 0.41±.08
+(160m) < 0.56±.06 (410m) > 0.47±.08 (1b) — **non-monotone**, peaking at 410m and dropping
+at 1b, with an insignificant size-rank correlation (Spearman ρ=0.17, p=0.29; only
+160m→410m is marginal, p=0.06). So the masked-side capacity ordering (§3.3) is
+masked-specific in this data; neither construction extends it monotonically (masked
+saturates, AR reverses). What replicates on AR is the **instrument** (velocity∝r, the
+damping length rising with r), not the capacity scaling — and the check caught the
+overclaim (the earlier 2-seed 160m→410m climb did not survive a 4th size). We
 compare at the level of the *trend*, not absolute numbers: causal-context healing is a
 different object from bidirectional healing.
 
@@ -286,9 +290,11 @@ Reading a language model as a cellular automaton over its own token space, with 
 conditioning radius as a swept knob and common-random-number perturbations as the
 probe, yields calibrated, apparatus-certified measurements that static evaluation does
 not: a radius law, a model-invariant damage velocity, and a diversity- and
-velocity-controlled damping length that shortens with capacity as the dynamics move
-toward the chaotic side — replicated on an autoregressive model and quantified against
-ground truth. The instrument is the contribution; the phenomena it measures are old and
+velocity-controlled damping length that shortens with the conditioning radius and — among
+masked models — with capacity, as the dynamics move toward the chaotic side (a capacity effect
+that is masked-specific in our data: it saturates by the mid model and does not survive on an
+AR scale ladder). The velocity law and the damping length's radius dependence replicate on an
+AR model, and the census is quantified against ground truth. The instrument is the contribution; the phenomena it measures are old and
 deep, and that is exactly why measuring them cleanly, from the outside, is worth doing.
 
 **Opportunities — chiefly for interpretability.** The instrument reads a model's

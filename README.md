@@ -30,7 +30,7 @@ tiny-transformer pilot; F10–F13 hardening; F14–F19 real MLMs; F20–F25 hard
 | F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
 | F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
 | **F23** | A diversity+velocity-controlled **damping length** (D_norm=D/D0) shrinks with radius; **tiny ≪ {mini,base}** (mini≫tiny p<10⁻⁴; base≈mini, saturates) — a stability↔expressiveness tradeoff, measured black-box | B |
-| F24 | velocity∝r + damping length **replicate on AR** (Pythia causal window); capacity→sensitivity also replicates (160m→410m) — not MLM artifacts | C1 |
+| F24 | velocity∝r + damping-length-radius-trend **replicate on AR** (Pythia causal window) — not MLM artifacts; but the **capacity→sensitivity effect does NOT** (non-monotone over 4 Pythia sizes, ρ=0.17 p=0.29) — masked-specific | C1 |
 | F25 | **Developmental**: across Pythia training, D_norm traces chaotic-init → order-minimum → edge-of-chaos climb; structure crystallizes before sensitivity (real-model F7) | D |
 
 ## Layout

@@ -1,0 +1,13 @@
+[pythia-70m] SKIP (already done)
+[pythia-160m] SKIP (already done)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8553.83it/s]
+[pythia-410m] D_norm(r=2)=0.564+/-0.062 (n=10)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 7402.42it/s]
+[pythia-1b] D_norm(r=2)=0.471+/-0.078 (n=10)
+
+TREND: Spearman rho(log-size, D_norm)=0.172 p=0.2874
+  pythia-160m>pythia-70m: gap=+0.008 p=0.4849
+  pythia-410m>pythia-160m: gap=+0.151 p=0.0606
+  pythia-1b>pythia-410m: gap=-0.093 p=0.8635
+AR CAPACITY DONE
