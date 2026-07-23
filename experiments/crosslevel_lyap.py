@@ -32,6 +32,10 @@ LADDER = [
     ("pythia-160m", "EleutherAI/pythia-160m", 20),
     ("pythia-410m", "EleutherAI/pythia-410m", 16),
     ("pythia-1b",   "EleutherAI/pythia-1b",   12),
+    ("gpt2",        "gpt2",        20),
+    ("gpt2-medium", "gpt2-medium", 16),
+    ("gpt2-large",  "gpt2-large",  12),
+    ("gpt2-xl",     "gpt2-xl",     8),
 ]
 OUT = f"{RESDIR}/crosslevel.json"
 

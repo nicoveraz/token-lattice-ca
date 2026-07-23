@@ -1,0 +1,116 @@
+[pythia-70m] white-box rho(F_T) T-sweep ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7990.95it/s]
+    [white] T=0.5: log rho(F_T)=+1.4211
+    [white] T=0.6: log rho(F_T)=+1.4794
+    [white] T=0.7: log rho(F_T)=+1.3880
+    [white] T=0.8: log rho(F_T)=+1.3120
+    [white] T=0.9: log rho(F_T)=+1.2118
+    [white] T=1.0: log rho(F_T)=+1.1331
+    [white] T=1.2: log rho(F_T)=+0.8690
+[pythia-70m] black-box lambda_ca(T) T-sweep ...
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9971.13it/s]
+    [black] T=0.5: lambda_ca=+0.0954
+    [black] T=0.6: lambda_ca=+0.1608
+    [black] T=0.7: lambda_ca=+0.1480
+    [black] T=0.8: lambda_ca=+0.2120
+    [black] T=0.9: lambda_ca=+0.1847
+    [black] T=1.0: lambda_ca=+0.3080
+    [black] T=1.2: lambda_ca=+0.3732
+[pythia-70m] WITHIN-MODEL(T): Pearson r=-0.919 p=0.0034  Spearman rho=-0.857 p=0.0137  (204.7s)
+[pythia-410m] white-box rho(F_T) T-sweep ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7878.45it/s]
+    [white] T=0.5: log rho(F_T)=+1.1232
+    [white] T=0.6: log rho(F_T)=+1.1734
+    [white] T=0.7: log rho(F_T)=+1.0879
+    [white] T=0.8: log rho(F_T)=+1.0044
+    [white] T=0.9: log rho(F_T)=+0.8473
+    [white] T=1.0: log rho(F_T)=+0.7064
+    [white] T=1.2: log rho(F_T)=+0.4514
+[pythia-410m] black-box lambda_ca(T) T-sweep ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 9532.14it/s]
+    [black] T=0.5: lambda_ca=+0.1878
+    [black] T=0.6: lambda_ca=+0.1422
+    [black] T=0.7: lambda_ca=+0.1637
+    [black] T=0.8: lambda_ca=+0.1846
+    [black] T=0.9: lambda_ca=+0.2238
+    [black] T=1.0: lambda_ca=+0.2074
+    [black] T=1.2: lambda_ca=+0.2996
+[pythia-410m] WITHIN-MODEL(T): Pearson r=-0.93 p=0.0024  Spearman rho=-0.857 p=0.0137  (739.6s)
+[pythia-1b] white-box rho(F_T) T-sweep ...
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 5755.44it/s]
+    [white] T=0.5: log rho(F_T)=+1.3253
+    [white] T=0.6: log rho(F_T)=+1.3430
+    [white] T=0.7: log rho(F_T)=+1.3241
+    [white] T=0.8: log rho(F_T)=+1.2136
+    [white] T=0.9: log rho(F_T)=+1.0987
+    [white] T=1.0: log rho(F_T)=+0.9425
+    [white] T=1.2: log rho(F_T)=+0.7299
+[pythia-1b] black-box lambda_ca(T) T-sweep ...
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 7126.24it/s]
+    [black] T=0.5: lambda_ca=+0.1838
+    [black] T=0.6: lambda_ca=+0.1102
+    [black] T=0.7: lambda_ca=+0.1686
+    [black] T=0.8: lambda_ca=+0.2605
+    [black] T=0.9: lambda_ca=+0.2469
+    [black] T=1.0: lambda_ca=+0.3567
+    [black] T=1.2: lambda_ca=+0.2929
+[pythia-1b] WITHIN-MODEL(T): Pearson r=-0.807 p=0.0284  Spearman rho=-0.893 p=0.0068  (978.6s)
+[gpt2] white-box rho(F_T) T-sweep ...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7649.31it/s]
+    [white] T=0.5: log rho(F_T)=+0.8361
+    [white] T=0.6: log rho(F_T)=+0.7688
+    [white] T=0.7: log rho(F_T)=+0.6969
+    [white] T=0.8: log rho(F_T)=+0.6034
+    [white] T=0.9: log rho(F_T)=+0.5162
+    [white] T=1.0: log rho(F_T)=+0.4596
+    [white] T=1.2: log rho(F_T)=+0.3797
+[gpt2] black-box lambda_ca(T) T-sweep ...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 11261.51it/s]
+    [black] T=0.5: lambda_ca=+0.1097
+    [black] T=0.6: lambda_ca=+0.1314
+    [black] T=0.7: lambda_ca=+0.1411
+    [black] T=0.8: lambda_ca=+0.1595
+    [black] T=0.9: lambda_ca=+0.1645
+    [black] T=1.0: lambda_ca=+0.1817
+    [black] T=1.2: lambda_ca=+0.2242
+[gpt2] WITHIN-MODEL(T): Pearson r=-0.963 p=0.0005  Spearman rho=-1.0 p=0.0  (323.8s)
+[gpt2-medium] white-box rho(F_T) T-sweep ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7798.09it/s]
+    [white] T=0.5: log rho(F_T)=+0.4650
+    [white] T=0.6: log rho(F_T)=+0.4044
+    [white] T=0.7: log rho(F_T)=+0.2997
+    [white] T=0.8: log rho(F_T)=+0.2480
+    [white] T=0.9: log rho(F_T)=+0.1728
+    [white] T=1.0: log rho(F_T)=+0.0854
+    [white] T=1.2: log rho(F_T)=-0.0344
+[gpt2-medium] black-box lambda_ca(T) T-sweep ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7984.05it/s]
+    [black] T=0.5: lambda_ca=+0.1200
+    [black] T=0.6: lambda_ca=+0.1480
+    [black] T=0.7: lambda_ca=+0.1520
+    [black] T=0.8: lambda_ca=+0.1790
+    [black] T=0.9: lambda_ca=+0.1815
+    [black] T=1.0: lambda_ca=+0.2321
+    [black] T=1.2: lambda_ca=+0.2817
+[gpt2-medium] WITHIN-MODEL(T): Pearson r=-0.968 p=0.0003  Spearman rho=-1.0 p=0.0  (588.2s)
+[gpt2-large] white-box rho(F_T) T-sweep ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7722.56it/s]
+    [white] T=0.5: log rho(F_T)=-0.0913
+    [white] T=0.6: log rho(F_T)=-0.1891
+    [white] T=0.7: log rho(F_T)=-0.2745
+    [white] T=0.8: log rho(F_T)=-0.3452
+    [white] T=0.9: log rho(F_T)=-0.4336
+    [white] T=1.0: log rho(F_T)=-0.5514
+    [white] T=1.2: log rho(F_T)=-0.7429
+[gpt2-large] black-box lambda_ca(T) T-sweep ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 9052.25it/s]
+    [black] T=0.5: lambda_ca=+0.2175
+    [black] T=0.6: lambda_ca=+0.1469
+    [black] T=0.7: lambda_ca=+0.1877
+    [black] T=0.8: lambda_ca=+0.2092
+    [black] T=0.9: lambda_ca=+0.2208
+    [black] T=1.0: lambda_ca=+0.2444
+    [black] T=1.2: lambda_ca=+0.3051
+[gpt2-large] WITHIN-MODEL(T): Pearson r=-0.822 p=0.0233  Spearman rho=-0.786 p=0.0362  (945.7s)
+CROSSLEVEL_WITHIN DONE

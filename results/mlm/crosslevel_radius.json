@@ -1,0 +1,172 @@
+{
+ "pythia-70m": {
+  "name": "EleutherAI/pythia-70m",
+  "R_grid": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "T": 0.7,
+  "white_log_rho": {
+   "1": 1.3214,
+   "2": 1.9014,
+   "4": 1.5644,
+   "8": 1.316
+  },
+  "black_lambda_ca": {
+   "1": -1.1334,
+   "2": 0.148,
+   "4": 0.4851,
+   "8": 0.8914
+  },
+  "within_pearson_r": 0.164,
+  "within_pearson_p": 0.8358,
+  "within_spearman_rho": -0.4,
+  "secs": 149.2
+ },
+ "pythia-410m": {
+  "name": "EleutherAI/pythia-410m",
+  "R_grid": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "T": 0.7,
+  "white_log_rho": {
+   "1": 1.3585,
+   "2": 1.8566,
+   "4": 1.577,
+   "8": 1.1183
+  },
+  "black_lambda_ca": {
+   "1": -1.1388,
+   "2": 0.1637,
+   "4": 0.5002,
+   "8": 0.8659
+  },
+  "within_pearson_r": -0.077,
+  "within_pearson_p": 0.9226,
+  "within_spearman_rho": -0.4,
+  "secs": 564.5
+ },
+ "pythia-1b": {
+  "name": "EleutherAI/pythia-1b",
+  "R_grid": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "T": 0.7,
+  "white_log_rho": {
+   "1": 1.5891,
+   "2": 1.6922,
+   "4": 1.5064,
+   "8": 1.3838
+  },
+  "black_lambda_ca": {
+   "1": -1.1152,
+   "2": 0.1686,
+   "4": 0.4859,
+   "8": 0.8829
+  },
+  "within_pearson_r": -0.545,
+  "within_pearson_p": 0.4548,
+  "within_spearman_rho": -0.8,
+  "secs": 846.0
+ },
+ "gpt2": {
+  "name": "gpt2",
+  "R_grid": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "T": 0.7,
+  "white_log_rho": {
+   "1": -0.1153,
+   "2": 0.7336,
+   "4": 1.2743,
+   "8": 0.5461
+  },
+  "black_lambda_ca": {
+   "1": -1.2173,
+   "2": 0.1411,
+   "4": 0.4329,
+   "8": 0.8857
+  },
+  "within_pearson_r": 0.726,
+  "within_pearson_p": 0.2736,
+  "within_spearman_rho": 0.4,
+  "secs": 250.7
+ },
+ "gpt2-medium": {
+  "name": "gpt2-medium",
+  "R_grid": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "T": 0.7,
+  "white_log_rho": {
+   "1": 0.938,
+   "2": 0.3178,
+   "4": 0.959,
+   "8": 0.5979
+  },
+  "black_lambda_ca": {
+   "1": -1.1424,
+   "2": 0.152,
+   "4": 0.4905,
+   "8": 0.8722
+  },
+  "within_pearson_r": -0.366,
+  "within_pearson_p": 0.6343,
+  "within_spearman_rho": 0.0,
+  "secs": 461.9
+ },
+ "gpt2-large": {
+  "name": "gpt2-large",
+  "R_grid": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "T": 0.7,
+  "white_log_rho": {
+   "1": 0.0539,
+   "2": -0.1884,
+   "4": 0.1513,
+   "8": 0.1954
+  },
+  "black_lambda_ca": {
+   "1": -1.1211,
+   "2": 0.1877,
+   "4": 0.4803,
+   "8": 0.8709
+  },
+  "within_pearson_r": 0.281,
+  "within_pearson_p": 0.7188,
+  "within_spearman_rho": 0.8,
+  "secs": 741.4
+ },
+ "_summary": {
+  "n_models": 6,
+  "per_model_r": [
+   0.164,
+   -0.077,
+   -0.545,
+   0.726,
+   -0.366,
+   0.281
+  ],
+  "median_r": 0.044,
+  "n_positive": 3,
+  "all_same_sign": false
+ }
+}

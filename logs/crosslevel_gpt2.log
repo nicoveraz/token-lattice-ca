@@ -1,0 +1,100 @@
+[pythia-14m] SKIP (done)
+[pythia-31m] SKIP (done)
+[pythia-70m] SKIP (done)
+[pythia-160m] SKIP (done)
+[pythia-410m] SKIP (done)
+[pythia-1b] SKIP (done)
+[gpt2] white-box ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 18880.04it/s]
+[gpt2] lambda_top=+0.1516+/-0.0053 lambda_rand=+0.0790 (L=12)
+[gpt2] black-box (D_norm, r=2, T=0.7, 5 seeds) ...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 13491.49it/s]
+[gpt2] D_norm=0.5788+/-0.0671
+[gpt2] done in 240.6s
+[gpt2-medium] white-box ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7829.70it/s]
+[gpt2-medium] lambda_top=+0.1283+/-0.0087 lambda_rand=+0.0541 (L=24)
+[gpt2-medium] black-box (D_norm, r=2, T=0.7, 5 seeds) ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 13572.45it/s]
+[gpt2-medium] D_norm=0.5620+/-0.0596
+[gpt2-medium] done in 725.9s
+[gpt2-large] white-box ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7831.70it/s]
+[gpt2-large] lambda_top=+0.0677+/-0.0020 lambda_rand=+0.0197 (L=36)
+[gpt2-large] black-box (D_norm, r=2, T=0.7, 5 seeds) ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7784.59it/s]
+[gpt2-large] D_norm=0.5856+/-0.0519
+[gpt2-large] done in 1277.3s
+[gpt2-xl] white-box ...
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 8151.21it/s]
+[gpt2-xl] lambda_top=+0.0588+/-0.0047 lambda_rand=+0.0325 (L=48)
+[gpt2-xl] black-box (D_norm, r=2, T=0.7, 5 seeds) ...
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 8027.99it/s]
+[gpt2-xl] D_norm=0.6639+/-0.0447
+[gpt2-xl] done in 2539.3s
+
+=== CROSS-LEVEL CORRELATION (n=10) ===
+  white lambda_top vs black D_norm:  Spearman rho=0.248 p=0.4888
+  (Pearson r=0.254 p=0.4787)
+  white_top vs size:  rho=-0.806 p=0.0049
+  black_Dnorm vs size: rho=0.091 p=0.8028
+CROSSLEVEL DONE
+[pythia-14m] SKIP (done)
+[pythia-31m] SKIP (done)
+[pythia-70m] SKIP (done)
+[pythia-160m] SKIP (done)
+[pythia-410m] SKIP (done)
+[pythia-1b] SKIP (done)
+[gpt2] black-box token-space Lyapunov ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7697.88it/s]
+    lambda_ca r= 1 T=0.7: -1.2173/sweep
+    lambda_ca r= 1 T=0.9: -1.1500/sweep
+    lambda_ca r= 2 T=0.7: +0.1411/sweep
+    lambda_ca r= 2 T=0.9: +0.1645/sweep
+    lambda_ca r= 4 T=0.7: +0.4329/sweep
+    lambda_ca r= 4 T=0.9: +0.5077/sweep
+    lambda_ca r= 8 T=0.7: +0.8857/sweep
+    lambda_ca r= 8 T=0.9: +0.9026/sweep
+[gpt2] lambda_ca_max=+0.9026 (r=8,T=0.9)  lambda_ca_r2=+0.1411  (483s)
+[gpt2-medium] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7568.70it/s]
+    lambda_ca r= 1 T=0.7: -1.1424/sweep
+    lambda_ca r= 1 T=0.9: -1.1245/sweep
+    lambda_ca r= 2 T=0.7: +0.1520/sweep
+    lambda_ca r= 2 T=0.9: +0.1815/sweep
+    lambda_ca r= 4 T=0.7: +0.4905/sweep
+    lambda_ca r= 4 T=0.9: +0.5148/sweep
+    lambda_ca r= 8 T=0.7: +0.8722/sweep
+    lambda_ca r= 8 T=0.9: +0.9058/sweep
+[gpt2-medium] lambda_ca_max=+0.9058 (r=8,T=0.9)  lambda_ca_r2=+0.1520  (887s)
+[gpt2-large] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 10127.75it/s]
+    lambda_ca r= 1 T=0.7: -1.1211/sweep
+    lambda_ca r= 1 T=0.9: -1.1126/sweep
+    lambda_ca r= 2 T=0.7: +0.1877/sweep
+    lambda_ca r= 2 T=0.9: +0.2208/sweep
+    lambda_ca r= 4 T=0.7: +0.4803/sweep
+    lambda_ca r= 4 T=0.9: +0.4929/sweep
+    lambda_ca r= 8 T=0.7: +0.8709/sweep
+    lambda_ca r= 8 T=0.9: +0.8940/sweep
+[gpt2-large] lambda_ca_max=+0.8940 (r=8,T=0.9)  lambda_ca_r2=+0.1877  (1476s)
+[gpt2-xl] black-box token-space Lyapunov ...
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 7783.46it/s]
+    lambda_ca r= 1 T=0.7: -1.1844/sweep
+    lambda_ca r= 1 T=0.9: -1.1292/sweep
+    lambda_ca r= 2 T=0.7: +0.1411/sweep
+    lambda_ca r= 2 T=0.9: +0.1746/sweep
+    lambda_ca r= 4 T=0.7: +0.4898/sweep
+    lambda_ca r= 4 T=0.9: +0.4983/sweep
+    lambda_ca r= 8 T=0.7: +0.8392/sweep
+    lambda_ca r= 8 T=0.9: +0.8983/sweep
+[gpt2-xl] lambda_ca_max=+0.8983 (r=8,T=0.9)  lambda_ca_r2=+0.1411  (2391s)
+
+=== TYPE-MATCHED CROSS-LEVEL (n=10) ===
+  white lambda_top vs black lambda_ca_max:  Spearman rho=0.127 p=0.7261  (Pearson r=0.227 p=0.5274)
+      lambda_ca_max vs size: rho=-0.382 p=0.2763
+  white lambda_top vs black lambda_ca_r2:  Spearman rho=0.571 p=0.0844  (Pearson r=0.699 p=0.0245)
+      lambda_ca_r2 vs size: rho=-0.347 p=0.3267
+CROSSLEVEL_LYAP DONE

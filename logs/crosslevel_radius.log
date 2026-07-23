@@ -1,0 +1,85 @@
+[pythia-70m] white rho(F_r) radius sweep (T=0.7) ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9960.54it/s]
+    [white] r=1: log rho(F_r)=+1.3214
+    [white] r=2: log rho(F_r)=+1.9014
+    [white] r=4: log rho(F_r)=+1.5644
+    [white] r=8: log rho(F_r)=+1.3160
+[pythia-70m] black lambda_ca(r) radius sweep ...
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10054.16it/s]
+    [black] r=1: lambda_ca=-1.1334
+    [black] r=2: lambda_ca=+0.1480
+    [black] r=4: lambda_ca=+0.4851
+    [black] r=8: lambda_ca=+0.8914
+[pythia-70m] RADIUS-AXIS within-model: Pearson r=0.164 p=0.8358  (149.2s)
+[pythia-410m] white rho(F_r) radius sweep (T=0.7) ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8155.56it/s]
+    [white] r=1: log rho(F_r)=+1.3585
+    [white] r=2: log rho(F_r)=+1.8566
+    [white] r=4: log rho(F_r)=+1.5770
+    [white] r=8: log rho(F_r)=+1.1183
+[pythia-410m] black lambda_ca(r) radius sweep ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 14988.09it/s]
+    [black] r=1: lambda_ca=-1.1388
+    [black] r=2: lambda_ca=+0.1637
+    [black] r=4: lambda_ca=+0.5002
+    [black] r=8: lambda_ca=+0.8659
+[pythia-410m] RADIUS-AXIS within-model: Pearson r=-0.077 p=0.9226  (564.5s)
+[pythia-1b] white rho(F_r) radius sweep (T=0.7) ...
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 6127.86it/s]
+    [white] r=1: log rho(F_r)=+1.5891
+    [white] r=2: log rho(F_r)=+1.6922
+    [white] r=4: log rho(F_r)=+1.5064
+    [white] r=8: log rho(F_r)=+1.3838
+[pythia-1b] black lambda_ca(r) radius sweep ...
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 6782.48it/s]
+    [black] r=1: lambda_ca=-1.1152
+    [black] r=2: lambda_ca=+0.1686
+    [black] r=4: lambda_ca=+0.4859
+    [black] r=8: lambda_ca=+0.8829
+[pythia-1b] RADIUS-AXIS within-model: Pearson r=-0.545 p=0.4548  (846.0s)
+[gpt2] white rho(F_r) radius sweep (T=0.7) ...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7619.08it/s]
+    [white] r=1: log rho(F_r)=-0.1153
+    [white] r=2: log rho(F_r)=+0.7336
+    [white] r=4: log rho(F_r)=+1.2743
+    [white] r=8: log rho(F_r)=+0.5461
+[gpt2] black lambda_ca(r) radius sweep ...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 11944.30it/s]
+    [black] r=1: lambda_ca=-1.2173
+    [black] r=2: lambda_ca=+0.1411
+    [black] r=4: lambda_ca=+0.4329
+    [black] r=8: lambda_ca=+0.8857
+[gpt2] RADIUS-AXIS within-model: Pearson r=0.726 p=0.2736  (250.7s)
+[gpt2-medium] white rho(F_r) radius sweep (T=0.7) ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8239.01it/s]
+    [white] r=1: log rho(F_r)=+0.9380
+    [white] r=2: log rho(F_r)=+0.3178
+    [white] r=4: log rho(F_r)=+0.9590
+    [white] r=8: log rho(F_r)=+0.5979
+[gpt2-medium] black lambda_ca(r) radius sweep ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 19940.03it/s]
+    [black] r=1: lambda_ca=-1.1424
+    [black] r=2: lambda_ca=+0.1520
+    [black] r=4: lambda_ca=+0.4905
+    [black] r=8: lambda_ca=+0.8722
+[gpt2-medium] RADIUS-AXIS within-model: Pearson r=-0.366 p=0.6343  (461.9s)
+[gpt2-large] white rho(F_r) radius sweep (T=0.7) ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 8138.41it/s]
+    [white] r=1: log rho(F_r)=+0.0539
+    [white] r=2: log rho(F_r)=-0.1884
+    [white] r=4: log rho(F_r)=+0.1513
+    [white] r=8: log rho(F_r)=+0.1954
+[gpt2-large] black lambda_ca(r) radius sweep ...
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 8270.73it/s]
+    [black] r=1: lambda_ca=-1.1211
+    [black] r=2: lambda_ca=+0.1877
+    [black] r=4: lambda_ca=+0.4803
+    [black] r=8: lambda_ca=+0.8709
+[gpt2-large] RADIUS-AXIS within-model: Pearson r=0.281 p=0.7188  (741.4s)
+
+=== RADIUS-AXIS SUMMARY (6 models) ===
+  per-model r: [0.164, -0.077, -0.545, 0.726, -0.366, 0.281]
+  median=0.044  3/6 positive  all-same-sign=False
+  (uniform across families => still mechanical; varied/model-specific => real signal)
+CROSSLEVEL_RADIUS DONE

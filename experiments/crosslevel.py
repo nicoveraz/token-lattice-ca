@@ -52,6 +52,11 @@ LADDER = [
     ("pythia-160m", "EleutherAI/pythia-160m", 160,  20),
     ("pythia-410m", "EleutherAI/pythia-410m", 410,  16),
     ("pythia-1b",   "EleutherAI/pythia-1b",   1000, 12),
+    # second family (issue #5): GPT-2 small -> xl
+    ("gpt2",        "gpt2",        124,  20),
+    ("gpt2-medium", "gpt2-medium", 355,  16),
+    ("gpt2-large",  "gpt2-large",  774,  12),
+    ("gpt2-xl",     "gpt2-xl",     1558, 8),
 ]
 OUT = None
 

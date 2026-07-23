@@ -522,6 +522,33 @@ correctly separates exponential growth from mere spreading (the velocity⊥Lyapu
 distinction). Individual-rule λ_ca is noisy (3 seeds); the class-level ordering is the
 robust claim. (`results/eca_calib.json`, `experiments/eca_calib.py`.)
 
+### F28 — the cross-level proxy does NOT hold: an honest negative (issues #4, #5, #15)
+Full investigation across two families, two within-model axes, and a ground-truth
+calibration. Verdict: **the black-box token-space criticality instrument does not
+robustly proxy white-box activation-space criticality.**
+- **Second family (GPT-2 small→xl, issue #5).** The suggestive Pythia cross-model
+  correlation (white λ_top vs black λ_ca, r=+0.71, F26) does **not** replicate: GPT-2
+  gives r=−0.43. Pooling the two families gives r=+0.70, p=0.025 — but that is a
+  **Simpson's-paradox pooling artifact** (the families disagree), NOT significance.
+  What *does* replicate cross-family: the standalone white-box scaling law (λ_top
+  falls monotonically with size — Pythia ρ=−0.94; GPT-2 0.152→0.059).
+- **Within-model across T (issue #4).** Correlating λ_ca(T) vs white ρ(F_T) over
+  swept T gives a uniform r≈−0.9 for **all six models, both families** (pooled −0.90,
+  p=4e-16). This is a **mechanical confound**, not signal: raise T and the CA explores
+  more (λ_ca↑) while the softmax flattens (ρ(F_T)↓), so they anti-correlate by
+  construction. The uniformity across wildly different models is the tell.
+  (`crosslevel_within.json`.)
+- **Within-model across r, de-confounded (issue #15).** At fixed T=0.7, correlating
+  λ_ca(r) vs white ρ(F_r) over swept radius gives per-model r=[0.16,−0.08,−0.55,0.73,
+  −0.37,0.28] — median +0.04, no consistent sign → **null**. Reason: **λ_ca(r) is
+  model-invariant** (≈[−1.13, 0.15, 0.49, 0.89] for r=1,2,4,8 across all six models,
+  both families) — its radius-dependence is pure light-cone kinematics, carrying no
+  model signal, while white ρ(F_r) varies by model. (`crosslevel_radius.json`.)
+- **Reading:** token-space and activation-space criticality are **distinct,
+  non-proxying levels** in trained LMs. The instrument measures a real, ECA-calibrated
+  (F27) token-space criticality, but it is not a weights-free proxy for the
+  activation-space Jacobian. A clean negative that kills a natural hypothesis.
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
