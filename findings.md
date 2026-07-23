@@ -188,6 +188,18 @@ ring in ~2 sweeps). The toy's F2 light cone (velocity∝r) reproduces on real mo
 and the velocity is an interaction-range (apparatus) property independent of model
 scale. (`fig/mlm_damage.png` left)
 
+> **Novelty note (targeted CA-literature search, do it 2026-07):** `v∝r` is **NOT
+> novel** — a ballistic damage front whose velocity is set by the neighborhood range is
+> the *classic CA light cone*: Bagnoli, Rechtman & Ruffo 1992 (max Lyapunov = damage-front
+> velocity), the Lieb–Robinson bound (finite range → constant range-set velocity), and
+> butterfly velocities of decorrelator fronts in chaotic CA (arXiv:2101.01313, which also
+> has the velocity-dependent λ(v)). This *strengthens* the framing: the LM token-lattice
+> behaves as a bona-fide CA (it shows the light cone). The contribution is the black-box
+> **transfer to a trained LM + model-invariance + the r-parameterization + the λ⊥D_norm
+> decomposition**, not the law. F16/F21/F23 reworded to import, not discover. Even the
+> F23 λ result (λ = kinematic velocity axis) is anticipated by Bagnoli–Rechtman 1992; what
+> is new there is the *contrast* with the capacity-tracking asymptotic D_norm.
+
 **F17 — Real MLMs lack a strong self-healing ordered phase in the radius-windowed
 CA; the healing/spreading boundary sits *below* the full-context τ≈1.5–2 crossover.**
 At r=4 the mean block-flip damage never heals to near-zero even at the lowest T

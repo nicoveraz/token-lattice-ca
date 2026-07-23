@@ -17,7 +17,7 @@ the **measurement layer**, not the "LM-as-iterated-token-dynamical-system" frami
 
 | Claim | Verdict | Why / who to cite |
 |---|---|---|
-| (1) Damage light-cone front **velocity ∝ radius**, model-invariant | **NOVEL** | No located precedent measures a token-space damage front velocity tied to conditioning radius. (Absence-of-precedent, not positive confirmation.) |
+| (1) Damage light-cone front **velocity ∝ radius**, model-invariant | ~~NOVEL~~ → **NOT NOVEL as a phenomenon** (revised by targeted CA-literature search) | The classic CA light cone: **Bagnoli, Rechtman & Ruffo 1992** (max Lyapunov = damage-front velocity), **Lieb–Robinson 1972** (finite range → constant range-set velocity), butterfly velocity + λ(v) in chaotic CA (**arXiv:2101.01313**). Contribution = black-box **transfer to a trained LM**, model-invariance, r-parameterization, λ⊥D_norm decomposition — *not* the law. |
 | (2) Diversity-controlled **damping length** + capacity→sensitivity (edge-of-chaos), finite-size Lyapunov | **PARTIALLY ANTICIPATED** | The token-space metric + capacity axis are new, but "edge-of-chaos as capability measurement" is canonical (Bertschinger & Natschläger 2004) and already shown for *trained transformers* via Lyapunov of self-attention Jacobians — **arXiv:2505.19458** (Tomihari & Karakida, NeurIPS 2025, criticality↔capability). |
 | (3) **AR (Pythia) replication**, causal window | **NOVEL as instrument transfer** | SPARC (2607.09803) does AR perturbation propagation but in *activation space* (Jacobian spectral radius), not a token CA. |
 
@@ -67,9 +67,10 @@ is a further adjacent collision. **Recommendation: use "damping length" /
 
 ## Open questions (harden before submission)
 
-- Targeted search for "ballistic damage spreading" / "light-cone" in probabilistic
-  CA + LLM-sampling literature to *positively* confirm claim (1)'s novelty (currently
-  absence-of-precedent).
+- ~~Targeted search for "ballistic damage spreading" / "light-cone" in probabilistic
+  CA to confirm claim (1).~~ **DONE (2026-07): claim (1) is NOT novel — it is the classic
+  CA light cone (Bagnoli–Rechtman–Ruffo 1992; Lieb–Robinson 1972; arXiv:2101.01313).
+  Reframed as import-and-confirm; the LM-token-CA behaving as a bona-fide CA is the point.**
 - Is our model-size→sensitivity **monotone climb** genuinely distinct from
   2505.19458's performance↔criticality *correlation*, or would a size-parameterized
   reanalysis of 2505.19458 reproduce it? (Inference, not verified equivalence.)

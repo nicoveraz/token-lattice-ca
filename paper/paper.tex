@@ -115,7 +115,14 @@ $v\approx 1.6,3.5,7.7,\dots$ sites/sweep for $r=1,2,4,\dots$. A plateau at large
 small rings is finite-size (the front fills the ring in $\sim$2 sweeps) and lifts on an
 $N\in\{48,96,192,384\}$ scan ($v=11.5\!\to\!23.5\!\to\!47.5$ at $r{=}16$). The unclipped
 law $v\propto r$ is \textbf{model-invariant}: interaction range is a kinematic property of
-the apparatus, not the model (Fig.~\ref{fig:velocity}).
+the apparatus, not the model (Fig.~\ref{fig:velocity}). We do \emph{not} claim this law as
+new: a ballistic damage front whose velocity is set by the neighborhood range is the
+classic CA light cone---the maximal Lyapunov exponent equals the damage-front velocity
+\citep{bagnoli1992damage}, finite-range interactions give a constant range-set velocity by
+the Lieb--Robinson bound \citep{lieb1972finite}, and butterfly velocities of decorrelator
+fronts are standard in chaotic CA \citep{butterfly_ca}. Our point is that the LM
+token-lattice \emph{behaves as a bona-fide CA}---it exhibits this light cone---and that the
+velocity is model-invariant, i.e.\ a shared kinematic axis (contrast \S\ref{sec:repair}).
 
 \begin{figure}[t]\centering
 \includegraphics[width=0.72\linewidth]{phaseA_velocity.png}
@@ -137,7 +144,10 @@ model's higher floor should deflate its \dn) and is velocity-immune (matched $r$
 neither diversity nor kinematics. A finite-size Lyapunov exponent $\lambda$ (early
 log-separation slope) is \textbf{model-invariant} ($\lambda_{\max}\approx0.74$--$0.77$ for
 all three) and universally positive: early dynamics are a kinematic axis set by the radius,
-and the capacity signal lives entirely in the asymptotic \dn. \emph{Reading (as
+and the capacity signal lives entirely in the asymptotic \dn. That $\lambda$ tracks the
+damage-front velocity is itself the classic CA relation \citep{bagnoli1992damage}; our
+contribution is the \emph{decomposition}---that this kinematic Lyapunov axis is universal
+(model-invariant) while a distinct \emph{asymptotic} axis, \dn, is what tracks capacity. \emph{Reading (as
 measurement)}: $\dn>1$ is a chaos signature; the smallest model reads ``stable'' because it
 is \emph{frozen} (collapses to a dead repetitive attractor), the larger ones ``sensitive''
 because \emph{expressive}. The capacity axis traces a stability$\leftrightarrow$expressiveness
@@ -200,7 +210,12 @@ shown for trained transformers via Lyapunov exponents of self-attention Jacobian
 neither the concept nor the criticality$\leftrightarrow$capability link; our novelty is the
 \emph{token-space} finite-size Lyapunov / damping-length measurement and the explicit
 model-size$\to$sensitivity axis, which \citet{lyap_selfattn} (continuous hidden space,
-performance-correlated) does not report. \textbf{Perturbation propagation.}
+performance-correlated) does not report. \textbf{The CA light cone is classic (\S3.2 is import, not discovery).} A ballistic
+damage front whose velocity is set by the neighborhood range, and the identity
+Lyapunov$=$front-velocity, are textbook CA / statistical-physics
+\citep{bagnoli1992damage,lieb1972finite,butterfly_ca}; we import them and show the LM
+token-lattice exhibits them (behaves as a bona-fide CA) and that the velocity is
+model-invariant---not that the law is new. \textbf{Perturbation propagation.}
 \citet{sparc} formalizes an error-propagation operator on AR residual streams with a
 $\rho(F_T)\!\ge\!1$ criticality threshold (the top-Lyapunov boundary) in activation space,
 adjacent but not a token-space CA; \citet{quiver} operates on compound-AI pipeline graphs,

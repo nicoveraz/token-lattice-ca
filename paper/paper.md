@@ -129,6 +129,13 @@ artifact — the front simply fills the ring in ~2 sweeps — and it lifts clean
 `N ∈ {48,96,192,384}` scan (at r=16, `v = 11.5 → 23.5 → 47.5`). The unclipped law is
 `v ∝ r`, and it is **model-invariant**: tiny, mini, and base share the same velocity
 profile. Interaction range is a kinematic property of the apparatus, not of the model.
+We do **not** claim `v ∝ r` as new — a ballistic damage front whose velocity is set by
+the neighborhood range is the **classic CA light cone**: the maximal Lyapunov exponent
+equals the damage-front velocity (Bagnoli, Rechtman & Ruffo 1992), finite-range
+interactions give a constant range-set velocity (Lieb–Robinson 1972), and butterfly
+velocities of decorrelator fronts are standard in chaotic CA (arXiv:2101.01313). The
+point is that the LM token-lattice **behaves as a bona-fide CA** and that this velocity
+is a *model-invariant kinematic axis* (contrast the capacity-dependent §3.3).
 
 ### 3.3 The damping length, and a kinematic ⊥ stability decomposition (F23)
 
@@ -222,6 +229,13 @@ neither the concept nor the criticality↔capability link — only the *token-sp
 finite-size Lyapunov / damping-length measurement and the explicit **model-size →
 sensitivity** axis, which arXiv:2505.19458 (continuous hidden space, performance-
 correlated) does not report.
+
+**The CA light cone is classic — §3.2 is import, not discovery.** A ballistic damage
+front whose velocity is set by the neighborhood range, and the identity
+Lyapunov = front-velocity, are textbook CA / statistical physics (Bagnoli, Rechtman &
+Ruffo 1992; Lieb–Robinson 1972; butterfly velocity in a Kauffman CA, arXiv:2101.01313).
+We import them and show the LM token-lattice exhibits them (behaves as a bona-fide CA)
+with a model-invariant velocity — we do not claim `v ∝ r` as a new law.
 
 **Perturbation propagation.** *SPARC* (arXiv:2607.09803 — **not** QUIVER) formalizes an
 error-propagation operator on AR residual streams with a ρ(F_T)≥1 criticality threshold
