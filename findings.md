@@ -318,12 +318,17 @@ propagates at the same velocity∝r as the perturbed run, so the normalized
   error-damping length shrinks as the window widens. The raw-D "recovery" at large r
   was the lattice collapsing into repetition (distinct-token frac ↓), deflating raw D
   while D_norm stayed high — the confound, caught.
-- **Capacity orders it, after the control (3 points)**: mean D_norm tiny 0.672 <
-  mini 0.880 < base 0.904 — monotone across the capacity ladder. Only the two larger
-  models cross **D_norm > 1** (mini and base at large r); tiny stays sub-critical
-  (max 0.82). The ordering *fights* the normalization (a more diverse model's higher
-  floor should deflate its D_norm, yet it is higher) and is velocity-immune (matched
-  r ⇒ matched propagation speed), so the gap is neither diversity nor kinematics.
+- **Capacity separates it — but the climb saturates early.** Mean D_norm: tiny 0.672,
+  mini 0.880, base 0.904. A paired test across the 15 (r,T) cells shows **mini ≫ tiny**
+  is decisive (15/15 cells, gap +0.208, Wilcoxon p<10⁻⁴) but **base vs mini is NOT
+  significant** (8/15 cells, gap +0.024, p=0.21). So the honest claim is **tiny ≪
+  {mini, base}, with sensitivity saturating by mini** — not a monotone 3-point ladder.
+  This matches F18 (tiny→mini changes the dynamics more than mini→base): the dynamical
+  structure crystallizes early on the scale axis. Only the two larger models cross
+  **D_norm > 1** (amplification beyond the floor); tiny stays sub-critical (max 0.82).
+  The separation *fights* the normalization (a more diverse model's higher floor should
+  deflate its D_norm, yet it is higher) and is velocity-immune (matched r ⇒ matched
+  propagation speed), so it is neither diversity nor kinematics.
 - **Kinematics ⊥ stability (the Lyapunov confirms it)**: the finite-size Lyapunov
   exponent λ (early log-separation slope of the CRN twins) is **model-invariant** —
   λ_max = +0.745 / +0.738 / +0.767 for tiny / mini / base, all at (r=8, T=0.9), a

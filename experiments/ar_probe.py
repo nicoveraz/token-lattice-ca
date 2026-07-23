@@ -17,7 +17,8 @@ import ar_ca
 from ar_ca import ARRule, run
 from mlm_lib import cone_front_velocity, ensure_resdir, RESDIR
 
-MODELS = {"pythia-160m": "EleutherAI/pythia-160m", "pythia-410m": "EleutherAI/pythia-410m"}
+MODELS = {"pythia-70m": "EleutherAI/pythia-70m", "pythia-160m": "EleutherAI/pythia-160m",
+          "pythia-410m": "EleutherAI/pythia-410m"}
 RS = [1, 2, 4, 8, 16]
 TS = [0.5, 0.8, 1.1]
 SEEDS = [21, 22]

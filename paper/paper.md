@@ -150,11 +150,14 @@ asymptotic drift of twins that share the settled initial state but evolve under
   the conditioning radius at which `D_norm` crosses half — shrinks as the window
   widens. The raw-damage "recovery" at large *r* was collapse-into-repetition; the
   control removes it.
-- **Capacity orders it, monotonically** (mean `D_norm` tiny 0.672 < mini 0.880 <
-  base 0.904). The larger models cross `D_norm > 1` — the flip is amplified *beyond
-  the model's own noise floor* — while the smallest stays sub-critical. The ordering
-  fights the normalization (a more diverse model's higher floor should deflate its
-  `D_norm`) and is velocity-immune (matched *r*), so it is neither diversity nor
+- **Capacity separates it, but the climb saturates early.** Mean `D_norm` tiny 0.672,
+  mini 0.880, base 0.904. A paired test across the 15 (r,T) cells makes **mini ≫ tiny**
+  decisive (15/15 cells, p<10⁻⁴) but **base vs mini not significant** (8/15, p=0.21):
+  the honest claim is **tiny ≪ {mini, base}**, sensitivity saturating by mini (matching
+  F18: tiny→mini changes the dynamics more than mini→base). The two larger models cross
+  `D_norm > 1` — amplified *beyond the noise floor* — while tiny stays sub-critical. The
+  separation fights the normalization (a more diverse model's higher floor should deflate
+  its `D_norm`) and is velocity-immune (matched *r*), so it is neither diversity nor
   kinematics.
 - **Kinematics ⊥ stability**, made rigorous by a finite-size Lyapunov exponent λ (the
   early log-separation slope of the CRN twins). λ is **model-invariant**

@@ -7,7 +7,8 @@
 \newcommand{\dn}{\ensuremath{D_{\mathrm{norm}}}}
 \newcommand{\dz}{\ensuremath{D_0}}
 \title{\bfseries A Token-Lattice Cellular Automaton:\\ Black-Box Measurement of Dynamical Structure in Language Models}
-\author{token-lattice-ca \\ \small Draft --- findings F1--F25 in \texttt{findings.md}}
+\author{[Author name(s) and affiliation --- fill before submission]
+  \\ \small Draft --- findings F1--F25 and code in the \texttt{token-lattice-ca} repository}
 \date{\today}
 
 \begin{document}
@@ -137,9 +138,12 @@ drift of twins sharing the settled initial state but evolving under \emph{indepe
 noise with \emph{no} flip. Because \dz{} is a full radius-$r$ run it propagates at the same
 $v\propto r$, so $\dn=D/\dz$ cancels \emph{both} the diversity and the kinematic terms.
 Then (Fig.~\ref{fig:repair}): \dn{} rises with radius (damping length shrinks as the window
-widens; the raw ``recovery'' at large $r$ was collapse); capacity orders it monotonically
-(mean \dn{} $0.672<0.880<0.904$ for tiny/mini/base), the larger models crossing $\dn>1$
-(amplification beyond the noise floor). The ordering fights the normalization (a diverse
+widens; the raw ``recovery'' at large $r$ was collapse); capacity separates it, though the
+climb saturates early (mean \dn{} tiny $0.672$, mini $0.880$, base $0.904$; a paired test
+across the 15 $(r,T)$ cells gives mini$\gg$tiny at $15/15$ cells, $p<10^{-4}$, but
+base-vs-mini not significant, $8/15$, $p=0.21$)---i.e.\ tiny $\ll$ \{mini, base\}, the two
+larger models crossing $\dn>1$ (amplification beyond the noise floor) while tiny stays
+sub-critical. The separation fights the normalization (a diverse
 model's higher floor should deflate its \dn) and is velocity-immune (matched $r$), so it is
 neither diversity nor kinematics. A finite-size Lyapunov exponent $\lambda$ (early
 log-separation slope) is \textbf{model-invariant} ($\lambda_{\max}\approx0.74$--$0.77$ for
@@ -279,6 +283,49 @@ statistics-level, apparatus-nulled certification protocol is a reusable rigor to
 interpretability of \emph{any} iterated-LLM system---self-refinement, agentic loops,
 iterated rewriting---where trajectory-level divergence otherwise saturates for signal and
 apparatus alike.
+
+\appendix
+\section{Reproducibility}
+\label{app:repro}
+All code, checkpoints, per-run results, and figures are in the \texttt{token-lattice-ca}
+repository; each headline maps to a finding \texttt{F$k$} in \texttt{findings.md}. Hardware:
+Apple M1 Pro, 16\,GB; toy model on CPU JAX, real models fp16 on the MPS backend.
+
+\textbf{Models.} \emph{Toy}: a 0.42\,M-parameter bidirectional transformer ($d{=}96$,
+$4$ heads, $2$ layers) trained from scratch on tinyshakespeare (word-level 2000 vocab, and
+a 4096 byte-level BPE) as a joint windowed-conditional model over $r\in\{1,2,4,8,16\}$,
+$6000$ Adam steps. \emph{Masked}: \texttt{prajjwal1/bert-tiny} (2L/128), \texttt{-mini}
+(4L/256), \texttt{bert-base-uncased} (12L/768), shared bert-base-uncased WordPiece vocab
+(30522); loaded as \texttt{BertForMaskedLM}. \emph{Autoregressive}: \texttt{EleutherAI/
+pythia-70m/160m/410m}, causal window $p(x_i\mid x_{i-r..i-1})$.
+
+\textbf{Rule / automaton.} Async random-order single-site Glauber on a ring of $N$ cells;
+inverse-CDF sampling from the tempered, special-token-forbidden center (masked) or
+next-token (causal) distribution, computed on-device. CRN twins share init, visitation
+order, and the uniform stream; the two twins are run as one $2B$ batch with tiled uniforms
+(bit-identical to two runs). Null test: exactly zero divergence (\texttt{tests/}).
+
+\textbf{Grids and seeds.} Phase sweep: $N{=}48$, $B{=}16$, $40$ sweeps, $T\in\{0.5,0.8,1.0,
+1.3,1.6,2.0,2.5\}$, $r\in\{1,2,4,8,16\}$; multi-seed sweep uses $5$ seeds. Radius
+certification (F20/F22): $N{=}48$, $B{=}16$, $5$ seeds, $T{=}0.7$, schemes cls\_sep and
+no-special. Velocity FSS (F21): $N\in\{48,96,192,384\}$, $r\in\{4,8,16\}$, $B{=}24$. Damping
+length (F23): $N{=}48$, $B{=}32$, settle $12$, $25$--$30$ sweeps, $2$ seeds, $T\in\{0.5,0.7,
+0.9\}$, $r\in\{1,2,4,8,16\}$, tail $8$; the diversity floor $D_0$ is the same-init,
+independent-noise, no-flip drift (a full radius-$r$ run, hence velocity-matched). Finite-size
+Lyapunov: least-squares slope of $\log(\text{damaged sites})$ over the ballistic window.
+Calibration (\S3.5): three first-order Markov sources, $K{=}60$ symbols, $6$ successors,
+$300$\,k tokens each, a tiny model per source ($4000$ steps); recovery is row total-variation
+between the censused and true transition matrix. Census on real models is proxy-validated
+against a WikiText-103 slice re-tokenized per model ($\sim$240--250\,k tokens).
+
+\textbf{Statistics.} F12 (crossover), F21 (velocity), and the F23 radius trend are
+finite-size scanned; the F23 capacity separation is paired-tested across the $15$ $(r,T)$
+cells (mini$\gg$tiny: $15/15$, $p<10^{-4}$; base-vs-mini: $8/15$, $p{=}0.21$).
+
+\textbf{Known limits of this run.} The AR capacity trend uses two--three Pythia sizes with
+one discriminating radius; the $410$m largest-window cell OOM'd on 16\,GB and was dropped;
+the real-model census is a proxy; reference metadata in \texttt{refs.bib} is web-verified but
+2026 preprints may change.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
