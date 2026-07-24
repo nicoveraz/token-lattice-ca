@@ -1,0 +1,110 @@
+{
+ "step256": {
+  "step": 256,
+  "white_lambda_top": 0.1534,
+  "white_se": 0.0015,
+  "black_lambda_ca": -0.0794,
+  "black_D_norm": 0.1008,
+  "secs": 378.4
+ },
+ "step512": {
+  "step": 512,
+  "white_lambda_top": 0.1595,
+  "white_se": 0.0011,
+  "black_lambda_ca": -0.0443,
+  "black_D_norm": 0.1382,
+  "secs": 360.1
+ },
+ "step1000": {
+  "step": 1000,
+  "white_lambda_top": 0.1488,
+  "white_se": 0.0009,
+  "black_lambda_ca": 0.1937,
+  "black_D_norm": 0.7065,
+  "secs": 363.5
+ },
+ "step2000": {
+  "step": 2000,
+  "white_lambda_top": 0.1407,
+  "white_se": 0.0005,
+  "black_lambda_ca": 0.1407,
+  "black_D_norm": 0.5289,
+  "secs": 347.5
+ },
+ "step4000": {
+  "step": 4000,
+  "white_lambda_top": 0.1366,
+  "white_se": 0.0009,
+  "black_lambda_ca": 0.1831,
+  "black_D_norm": 0.6171,
+  "secs": 360.0
+ },
+ "step8000": {
+  "step": 8000,
+  "white_lambda_top": 0.1448,
+  "white_se": 0.0025,
+  "black_lambda_ca": 0.149,
+  "black_D_norm": 0.4888,
+  "secs": 344.5
+ },
+ "step16000": {
+  "step": 16000,
+  "white_lambda_top": 0.1362,
+  "white_se": 0.0019,
+  "black_lambda_ca": 0.1456,
+  "black_D_norm": 0.4977,
+  "secs": 343.0
+ },
+ "step32000": {
+  "step": 32000,
+  "white_lambda_top": 0.129,
+  "white_se": 0.0009,
+  "black_lambda_ca": 0.1784,
+  "black_D_norm": 0.7146,
+  "secs": 352.8
+ },
+ "step64000": {
+  "step": 64000,
+  "white_lambda_top": 0.1516,
+  "white_se": 0.001,
+  "black_lambda_ca": 0.1739,
+  "black_D_norm": 0.6926,
+  "secs": 343.9
+ },
+ "step143000": {
+  "step": 143000,
+  "white_lambda_top": 0.1902,
+  "white_se": 0.0018,
+  "black_lambda_ca": 0.1637,
+  "black_D_norm": 0.5937,
+  "secs": 346.8
+ },
+ "_dev": {
+  "model": "EleutherAI/pythia-410m",
+  "n": 10,
+  "white_top_vs_black_lambda_ca": {
+   "pearson_r": -0.215,
+   "pearson_p": 0.5503,
+   "spearman_rho": -0.333,
+   "spearman_p": 0.3466
+  },
+  "white_top_vs_black_D_norm": {
+   "pearson_r": -0.21,
+   "pearson_p": 0.5601,
+   "spearman_rho": -0.394,
+   "spearman_p": 0.26
+  },
+  "white_lambda_top_vs_step": {
+   "rho": -0.152,
+   "p": 0.6761
+  },
+  "black_lambda_ca_vs_step": {
+   "rho": 0.418,
+   "p": 0.2291
+  },
+  "black_D_norm_vs_step": {
+   "rho": 0.515,
+   "p": 0.1276
+  }
+ }
+}

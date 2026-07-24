@@ -1,0 +1,37 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:18,  2.10it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 302.90it/s]Loading weights:  71%|███████   | 208/292 [00:00<00:00, 305.63it/s]Loading weights:  90%|█████████ | 264/292 [00:01<00:00, 298.74it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 261.97it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:14,  2.17it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 553.97it/s]
+[step256] white λ_top=+0.1534  black λ_ca=-0.0794  D_norm=0.1008  (378.4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:14,  2.17it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 436.98it/s]Loading weights:  99%|█████████▉| 289/292 [00:00<00:00, 347.04it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 311.87it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.33it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 529.64it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 768.08it/s]
+[step512] white λ_top=+0.1595  black λ_ca=-0.0443  D_norm=0.1382  (360.1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:08,  2.26it/s]Loading weights:  66%|██████▋   | 194/292 [00:00<00:00, 447.86it/s]Loading weights:  98%|█████████▊| 287/292 [00:00<00:00, 379.47it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 337.50it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4831.02it/s]
+[step1000] white λ_top=+0.1488  black λ_ca=+0.1937  D_norm=0.7065  (363.5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:51,  2.60it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 538.62it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 495.79it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5147.73it/s]
+[step2000] white λ_top=+0.1407  black λ_ca=+0.1407  D_norm=0.5289  (347.5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:32,  3.16it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 631.50it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 480.42it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4366.93it/s]
+[step4000] white λ_top=+0.1366  black λ_ca=+0.1831  D_norm=0.6171  (360.0s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:54,  2.54it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 539.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 430.51it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5277.81it/s]
+[step8000] white λ_top=+0.1448  black λ_ca=+0.1490  D_norm=0.4888  (344.5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:47,  2.71it/s]Loading weights:  74%|███████▍  | 216/292 [00:00<00:00, 593.02it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 570.54it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4825.08it/s]
+[step16000] white λ_top=+0.1362  black λ_ca=+0.1456  D_norm=0.4977  (343.0s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:42,  2.85it/s]Loading weights:  70%|██████▉   | 204/292 [00:00<00:00, 588.26it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 457.85it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4432.17it/s]
+[step32000] white λ_top=+0.1290  black λ_ca=+0.1784  D_norm=0.7146  (352.8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:45,  2.77it/s]Loading weights:  77%|███████▋  | 224/292 [00:00<00:00, 631.72it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 554.97it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4483.19it/s]
+[step64000] white λ_top=+0.1516  black λ_ca=+0.1739  D_norm=0.6926  (343.9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.43it/s]Loading weights:  74%|███████▍  | 216/292 [00:00<00:00, 548.42it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 496.46it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4613.97it/s]
+[step143000] white λ_top=+0.1902  black λ_ca=+0.1637  D_norm=0.5937  (346.8s)
+
+=== DEVELOPMENTAL CROSS-LEVEL (EleutherAI/pythia-410m, n=10) ===
+  white λ_top vs black λ_ca:  Pearson r=-0.215 p=0.5503  Spearman ρ=-0.333 p=0.3466
+  white λ_top vs black D_norm: Pearson r=-0.21 p=0.5601
+  vs training step:  white λ_top ρ=-0.152  black λ_ca ρ=0.418  D_norm ρ=0.515
+CROSSLEVEL_DEV DONE

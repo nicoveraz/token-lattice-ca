@@ -320,6 +320,19 @@ but it is not a weights-free surrogate for the activation-space Jacobian---the n
 hypothesis is false, cleanly. The instrument's value is therefore as a \emph{token-space}
 measurement in its own right, not as a stand-in for internals.
 
+\textbf{The negative is structural, not a measurement failure.} We mined for a positive along
+the principled axes and hit the same barrier each time: $\lambda_{\mathrm{top}}$ is an
+\emph{architectural} quantity. Across ten Pythia-410M training checkpoints it is nearly flat
+($\sim\!0.13$--$0.19$) while the black-box criticality undergoes a clean order$\to$chaos
+transition around step $10^{3}$---the levels do not co-evolve. On a six-model BERT depth
+ladder ($L{=}2$--$24$) the white--black correlation is strong ($r{=}-0.92$) but purely
+\emph{depth-mediated}: both track depth ($r{=}-0.92$ and $+0.76$), and at fixed depth (two
+$L{=}4$ models) $\lambda_{\mathrm{top}}$ is identical while \dn{} differs---so the correlation
+conveys only the (public) layer count. Because $\lambda_{\mathrm{top}}\!\approx\!1/L$ is set
+by architecture rather than learning, no \emph{useful} weights-free proxy exists with these
+measures; the decoupling is a structural fact about the two levels, not an artifact of too
+little data.
+
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{crosslevel.png}
 \caption{Cross-level. Left: the instrument is criticality-calibrated---$\lambda_{\mathrm{ca}}$

@@ -549,6 +549,31 @@ robustly proxy white-box activation-space criticality.**
   (F27) token-space criticality, but it is not a weights-free proxy for the
   activation-space Jacobian. A clean negative that kills a natural hypothesis.
 
+### F29 — mining for a positive cross-level proxy: exhausted; the negative is structural (issue #4)
+Following F28, we mined the principled angles for a positive black-box→white-box
+proxy. All negative, with a **unifying mechanistic cause: the white-box depth-Lyapunov
+λ_top is an architectural quantity** (flat across training, ≈1/L across models), so it
+cannot proxy the learned token dynamics.
+- **Developmental** (`crosslevel_dev.json`): across 10 Pythia-410m checkpoints
+  (step256→143000), white λ_top is nearly flat (~0.13–0.19; vs-step ρ=−0.15) while
+  black λ_ca / D_norm undergo a clean order→chaos phase transition around step~1000
+  (λ_ca −0.08→+0.19; D_norm 0.10→0.71). They do not co-evolve (r=−0.21; partial|step
+  −0.48, n.s.). White λ_top is set by architecture, not learning. (Silver lining: the
+  black-box developmental phase transition at step~1000 is a real standalone signal.)
+- **Masked ladder** (`masked_ladder.json`): the one strong signal — 6 BERT depths
+  (L=2..24), white λ_top vs black D_norm r=−0.92, p=0.009 — is **depth-mediated**:
+  white-vs-depth r=−0.92, black-vs-depth r=+0.76. The two L=4 models (mini, small) are
+  the tell: white λ_top ≈ identical (0.965, 0.978) while D_norm differs (0.786, 0.886)
+  — at fixed depth white does NOT track black. The "surviving" partial correlation
+  (r=−0.90) is a linear-fit artifact on a 1/L relation. Depth is public → useless as a
+  weights-free proxy. (Initial n=3 in `masked_crosslevel.json`.)
+- **Conclusion:** no *useful* weights-free proxy for internal criticality exists with
+  these measures. The negative is structural, not a measurement failure: white-box
+  depth-Lyapunov is architectural (≈1/L); black-box λ_ca is either kinematic (AR) or
+  reflects learned dynamics decoupled from λ_top. Further measure-swapping would be
+  p-hacking. This is the honest, mechanistically-explained answer to the
+  external-significance question the instrument raises.
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`

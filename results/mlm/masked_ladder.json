@@ -1,0 +1,77 @@
+{
+ "bert-tiny": {
+  "name": "prajjwal1/bert-tiny",
+  "L": 2,
+  "white_lambda_top": 2.151,
+  "black_D_norm": 0.6046,
+  "D_norm_se": 0.0369,
+  "secs": 125.6
+ },
+ "bert-mini": {
+  "name": "prajjwal1/bert-mini",
+  "L": 4,
+  "white_lambda_top": 0.9652,
+  "black_D_norm": 0.7862,
+  "D_norm_se": 0.0175,
+  "secs": 136.2
+ },
+ "bert-small": {
+  "name": "prajjwal1/bert-small",
+  "L": 4,
+  "white_lambda_top": 0.9783,
+  "black_D_norm": 0.8863,
+  "D_norm_se": 0.0227,
+  "secs": 149.0
+ },
+ "bert-medium": {
+  "name": "prajjwal1/bert-medium",
+  "L": 8,
+  "white_lambda_top": 0.459,
+  "black_D_norm": 0.8859,
+  "D_norm_se": 0.0079,
+  "secs": 177.9
+ },
+ "bert-base": {
+  "name": "bert-base-uncased",
+  "L": 12,
+  "white_lambda_top": 0.2486,
+  "black_D_norm": 0.9047,
+  "D_norm_se": 0.0133,
+  "secs": 336.7
+ },
+ "bert-large": {
+  "name": "bert-large-uncased",
+  "L": 24,
+  "white_lambda_top": 0.1002,
+  "black_D_norm": 0.8881,
+  "D_norm_se": 0.0279,
+  "secs": 992.6
+ },
+ "_summary": {
+  "n": 6,
+  "models": [
+   "bert-tiny",
+   "bert-mini",
+   "bert-small",
+   "bert-medium",
+   "bert-base",
+   "bert-large"
+  ],
+  "white_vs_black": {
+   "pearson_r": -0.924,
+   "pearson_p": 0.0085,
+   "spearman_rho": -0.771,
+   "spearman_p": 0.0724
+  },
+  "white_vs_logL": {
+   "r": -0.924
+  },
+  "black_vs_logL": {
+   "r": 0.755
+  },
+  "partial_white_black_given_logL": {
+   "r": -0.901,
+   "p": 0.0142
+  }
+ }
+}
