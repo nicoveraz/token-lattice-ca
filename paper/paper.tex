@@ -103,8 +103,9 @@ $n$-gram scores high overlap for free, so structure uses a repetition-robust var
 low-entropy lattice snaps a perturbation back trivially---low damage for the wrong
 reason---so damage is normalized by the model's own diversity floor (\S\ref{sec:repair}).
 We validate on a tiny transformer trained from scratch on tinyshakespeare (census checked
-against the actual training corpus), then scale to \texttt{bert-tiny/mini/base} and
-\texttt{Pythia-160m/410m} \citep{pythia}. A free control: the temperature ``phase
+against the actual training corpus), then scale across a masked family (\texttt{bert-tiny}
+through \texttt{bert-large}, $L{=}2$--$24$) and two autoregressive families
+(\texttt{Pythia-14M}--\texttt{1B} \citep{pythia} and \texttt{GPT-2} small--xl). A free control: the temperature ``phase
 transition'' is, on a finite-size scan, a \emph{crossover}, not a true transition (the
 order-parameter susceptibility self-averages, $\chi_{\mathrm{peak}}\propto 1/N$),
 disciplining all ``transition'' language.
@@ -156,6 +157,15 @@ the analytic curve, mean error $<10^{-3}$); (2) coupled-map-lattice finite-size 
 \end{figure}
 
 \section{New measurements on language models}\label{sec:lm}
+Pointed at a trained LM, the validated instrument yields the quantities below. We are precise
+about what is new: several of these \emph{quantities} have been identified in concurrent work
+(a critical sampling temperature \citep{critical_temp,ar_tempcrit,phase_detect}; edge-of-chaos
+and Lyapunov framings \citep{bertschinger2004real,lyap_selfattn}). What we contribute is not
+the concepts but a single, CRN-certified, ground-truth-calibrated \emph{route} to them from
+weights-free access---the same estimator validated in \S\ref{sec:validation}---together with a
+few apparatus-level observations (the radius law, the confound taxonomy) that are specific to
+the token-lattice construction.
+
 \subsection{A radius law}
 Sweeping $r$ at fixed $T$, the \emph{local} statistic (corpus-bigram fraction) is nearly
 radius-blind. \emph{Longer-range} corpus consistency is not: raw 3- and 4-gram overlap
@@ -223,33 +233,23 @@ at large $r$ the rise in \dn{} is \textbf{denominator-driven}: raw $D$ already \
 ``the damping length keeps shrinking'' at large $r$ partly reflects the floor collapsing,
 not a stronger perturbation response.
 
-Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius and
-orders the masked models by capacity (mean \dn{} tiny $0.672$, mini $0.880$, base $0.904$).
-We flag the strength of this ordering carefully. It rests on \textbf{two seeds} and three
-toy models, and the only clean gap is tiny $\ll$ \{mini,\,base\} (base-vs-mini is null,
-$8/15$ cells, $p{=}0.21$); the ``$15/15$ cells, $p<10^{-4}$'' paired statistic we previously
-reported is \emph{pseudoreplicated} across a smooth correlated $(r,T)$ grid driven by the
-same two seeds---it restates a shared sign, not independent evidence, and we retract it as a
-significance claim. The two larger models reach $\dn\gtrsim1$, but only by $\sim1\sigma$
-(mini $1.10{\pm}.06$, base $1.04{\pm}.01$, two-seed), and $D/\dz\!\to\!1$ mechanically as
-both saturate, so we do \emph{not} read $\dn>1$ as a certified above-floor amplification.
-We had also reported a kinematics-versus-stability decomposition---a model-invariant early
-Lyapunov exponent placing all capacity in the asymptotic \dn. On re-audit the invariance
-holds only at the single saturated cell where $\lambda_{\max}$ is attained ($r{=}8,T{=}0.9$:
-$0.74$--$0.77$) and \emph{fails} off it ($r{=}8,T{=}0.7$: $0.50/0.60/0.66$, a $24\%$ spread
-tracking capacity like \dn{} itself), so we \textbf{withdraw} the orthogonality claim.
-\emph{Reading (as measurement)}: to the extent the ordering is real, it is consistent with a
-stability$\leftrightarrow$expressiveness picture---the smallest model reading ``stable''
-because it collapses to a dead repetitive attractor, the larger ones ``sensitive'' because
-expressive---the long-hypothesized edge-of-chaos idea
-\citep{bertschinger2004real,edgeofchaos2024} probed black-box. Establishing it as a capacity
-\emph{axis} (rather than a suggestive two-seed gap) needs the seed-level rebuild we flag in
-Limitations.
+Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius: the
+token-space damping length shortens as the window widens. This is the measurement we
+report---a diversity-controlled, weights-free error-persistence length of generation. A
+capacity-linked gap does appear among masked models (mean \dn{} tiny $0.672<$ mini
+$0.880\approx$ base $0.904$), but we \emph{do not build on it}: it rests on two seeds and one
+toy family, the only clean separation is tiny $\ll$ \{mini,\,base\}, and an earlier
+``$p<10^{-4}$'' statistic for it was pseudoreplicated (retracted---see Limitations and the
+repository audit). We likewise withdraw a previously-reported kinematics-versus-stability
+decomposition, which held only at the single grid cell where the early Lyapunov exponent
+saturates. Whether capacity sets a stability$\leftrightarrow$expressiveness axis
+\citep{bertschinger2004real,edgeofchaos2024} is left open, pending a seed-level rebuild; the
+damping length itself stands as a measurement independent of that question.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{repair_scale.png}
 \caption{The damping length. Left: raw damage $D$ vs.\ $r$. Middle: diversity+velocity
-controlled $\dn=D/\dz$---rises with $r$, ordered by capacity, $\dn>1$ for the larger models.
+controlled $\dn=D/\dz$---rises with $r$; $\dn\!\gtrsim\!1$ for the larger models.
 Right: \dn{} vs.\ diversity (flat $\Rightarrow$ controlled).}\label{fig:repair}
 \end{figure}
 
@@ -436,13 +436,26 @@ adjacent but not a token-space CA; \citet{quiver} operates on compound-AI pipeli
 sharing vocabulary but no method. \textbf{Terminology.} We avoid ``repair''---taken by
 self-repair / the Hydra effect \citep{hydra,selfrepair} for internal component
 compensation---and ``self-correction'' \citep{sparc}, both categorically different from our
-spatial damping length. \textbf{Other.} \citet{sampler_oracle} is the calibration/oracle
-kin (our synthetic-Markov recovery is its trained-model analog); temperature-criticality
-work \citep{ar_tempcrit,phase_detect} makes $T$ a calibration anchor, not a contribution;
-the census descends from \citet{hanson1997computational}; early low-order crystallization
-is consistent with distributional simplicity bias \citep{simplicitybias}, read black-box.
-\emph{(Pre-submission: full-paper reads of \citet{glauber_mlm} and \citet{quiver}; verify
-all 2026-preprint titles/IDs; see \texttt{results/deep\_research\_novelty.md}.)}
+spatial damping length. \textbf{Critical sampling temperature (the quantity, not the method, is prior work).}
+A per-model critical temperature separating ordered from disordered generation is already
+defined and measured: \citet{critical_temp} locates a $T_c$ by sweeping the softmax
+temperature (susceptibility peak, order-parameter collapse), and
+\citet{ar_tempcrit,phase_detect} identify the same temperature-driven order$\to$disorder
+transition via power-law statistics and phase mapping. We therefore \emph{do not} claim an
+edge-of-chaos temperature or a token-space Lyapunov as new quantities; our contribution is a
+CRN-certified, ground-truth-calibrated damage-spreading \emph{route} to them (a different
+estimator: Lyapunov zero-crossing rather than susceptibility). \textbf{Activation-space
+propagation.} \citet{tft} builds an empirical finite-$\epsilon$ position$\times$depth
+residual-stream propagation cone and \citet{residual_dynamics} its analytic Jacobian
+counterpart; these anticipate the activation-space cone we sketch as future work
+(\S\ref{sec:conclusion}), so we treat that direction as a rigor/calibration extension, not a
+new object. \textbf{Other.} \citet{sampler_oracle} is the calibration/oracle kin (our
+synthetic-Markov recovery is its trained-model analog); the census descends from
+\citet{hanson1997computational}; early low-order crystallization is consistent with
+distributional simplicity bias \citep{simplicitybias}, read black-box.
+\emph{(Pre-submission: full-paper reads of \citet{glauber_mlm,critical_temp,tft} and
+\citet{quiver}; verify all 2026-preprint titles/IDs; see
+\texttt{results/deep\_research\_novelty*.md}.)}
 
 \section{Limitations}
 Masked-LM local conditionals are globally inconsistent, so the CA is a well-defined
@@ -454,19 +467,20 @@ models with only the sub-saturation radius discriminating (the 410m largest wind
 16\,GB). The special-token windowing scheme is a first-class apparatus factor to hold fixed;
 temperature scales are not comparable across masked and autoregressive constructions.
 
-\textbf{Statistical scope (what the numbers do and do not license).} The capacity ordering
-is measured at $N{=}48$ with \emph{two} seeds; its magnitude shrinks with ring size (\dn{}
-tiny, $r{=}8$: $0.88\!\to\!0.55$ from $N{=}48$ to $192$), and we apply no multiplicity
-correction across the several trend tests reported. The diversity-floor ratio \dn{} pairs a
-CRN numerator with an independent-noise denominator, and its large-$r$ behavior is partly
-denominator-driven (\S\ref{sec:repair}). Establishing capacity$\to$sensitivity as an
-\emph{axis}---rather than the suggestive tiny $\ll$ \{mini,\,base\} gap we can defend---
-requires: $\ge15$ \emph{independent} seeds tested at the seed level (hierarchical /
-bootstrap, not a signed-rank over correlated cells); a longer, second-family ladder;
-multiple $N\gg100$; per-$T$ (not pooled) AR reporting; and the normalization ablated against
-the CRN-null and maximal-coupling floors. The repository issue tracker enumerates these as
-pre-camera-ready work, together with the cross-level white-box/black-box criticality check
-(\S\ref{sec:conclusion}) that would give the instrument external significance.
+\textbf{Statistical scope (what the numbers do and do not license).} The paper's central
+claims---the validation-ladder reproductions (\S\ref{sec:validation})---are exact or
+near-exact matches to known values and do not rest on null-hypothesis testing, so multiple
+comparisons are not a concern for them. Where we \emph{do} report trend tests (the cross-level
+correlations, \S\ref{sec:crosslevel}), we apply no formal multiplicity correction and treat
+them as exploratory: the reported conclusion is a \emph{negative} reached by sign-consistency
+across families and axes, not by any single surviving $p$-value, so it is robust to the
+correction we omit. The one demoted capacity gap is measured at $N{=}48$ with two seeds and is
+not built upon; establishing it as an \emph{axis} would need $\ge15$ independent seeds tested
+at the seed level (hierarchical / bootstrap, not a signed-rank over correlated cells), a
+longer second-family ladder, multiple $N\gg100$, per-$T$ (not pooled) reporting, and the
+diversity-floor normalization ablated against the CRN-null and maximal-coupling floors---all
+enumerated in the repository tracker as optional pre-camera-ready work, not load-bearing for
+the validated-instrument contribution.
 
 \section{Conclusion}\label{sec:conclusion}
 The contribution of this paper is a \emph{validated} black-box instrument. Its organizing
