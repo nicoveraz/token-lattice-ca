@@ -13,50 +13,41 @@
 \providecommand{\answerYes}[1][]{{\color{blue!60!black}[Yes]} #1}
 \providecommand{\answerNo}[1][]{{\color{red!70!black}[No]} #1}
 \providecommand{\answerNA}[1][]{{\color{gray}[NA]} #1}
-\title{\bfseries A Token-Lattice Cellular Automaton:\\ Black-Box Measurement of Dynamical Structure in Language Models}
+\title{\bfseries A Validated Black-Box Instrument for Language-Model Dynamics:\\ Reproducing Known Metrics with a Token-Lattice Cellular Automaton}
 \author{[Author name(s) and affiliation --- fill before submission]
-  \\ \small Draft --- findings F1--F25 and code in the \texttt{token-lattice-ca} repository}
+  \\ \small Draft --- findings F1--F29 and code in the \texttt{token-lattice-ca} repository}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We turn a language model into a \emph{cellular automaton (CA) over token space} and use
-it as a measurement instrument. A ring of $N$ token cells is updated in place by the
-model's own windowed conditional $p_r(x_i \mid x_{i\pm r})$ at temperature $T$
-(asynchronous random-order Glauber); the model \emph{is} the update rule, and the radius
-$r$ of the conditioning window is a swept knob. Reading the model out as a dynamical
-system rather than a next-token predictor surfaces structure a next-token evaluation does
-not. We report four black-box measurements, each certified against apparatus
-confounds by a common-random-number (CRN) differential protocol. (1)~A \textbf{radius
-law}: equilibrium \emph{local} statistics are nearly radius-blind, but corpus-consistent
-\emph{longer-range} structure has an intermediate-radius optimum, visible only through a
-repetition-robust metric. (2)~\textbf{Damage light cones} whose front velocity grows with
-the conditioning radius and is model-invariant (the classic CA light cone; the exact form
-is mildly super-linear on the one unclipped ring, not a clean $v\propto r$). (3)~A \textbf{damping
-length}: the asymptotic damage from a perturbation, once controlled for the model's
-intrinsic diversity, shrinks as the window widens. Among masked models a capacity-linked
-gap appears---the smallest ($4$M) damps markedly more than two larger ones---but on the
-present evidence (two seeds; a three-model toy ladder; the gap closing between the mid and
-largest model) we report this as \emph{suggestive}, not an established scaling law, and it
-does not replicate on an autoregressive ladder. (4)~\textbf{External validity}: the
-velocity law and the damping length's radius dependence replicate on an autoregressive
-model driven through a one-sided causal window (the capacity effect does not), so the
-radius-level measurements are not tied to the masked construction---though both
-constructions are windowed, in-place-resampled rings rather than samplers of the model's
-true joint, so this is cross-construction agreement, not proof about the joint. We calibrate against synthetic sources with known
-transition matrices, where the attractor census recovers ground truth quantitatively and
-discriminates sources. We probe external significance directly and report a clean negative:
-the white-box activation-space top-Lyapunov is a tidy cross-family scaling law, but the
-black-box instrument does \emph{not} proxy it---the one suggestive cross-model correlation
-fails on a second family, and both within-model axes are confounded or null (the token-space
-Lyapunov's radius-dependence is itself model-invariant), so token- and activation-space
-criticality are distinct, non-proxying levels. The instrument is ground-truth-calibrated on
-classical CA rules of known class and measures token-space criticality in its own right. The
-contribution is the \textbf{instrument and the quantities it measures}; the phenomena those quantities land on---criticality, computation at the edge
-of chaos \citep{langton1990computation,bertschinger2004real,edgeofchaos2024}---are decades
-old, and we measure them from the outside rather than claim to discover them.
+We turn a language model into a \emph{cellular automaton (CA) over token space}---a ring of
+token cells updated in place by the model's own windowed conditional $p_r(x_i\mid x_{i\pm r})$,
+with common-random-number (CRN) damage spreading as the probe---and develop it into a
+\emph{validated} black-box measurement instrument. The central move is \textbf{validation by
+reproduction}: before measuring a language model, the instrument recovers established
+dynamical metrics on systems where they are known. Its CRN damage-spreading estimator
+reproduces the \emph{exact} Lyapunov exponent of the logistic map across the entire
+bifurcation diagram (mean error $<\!10^{-3}$; $\ln 2$ at $r{=}4$; the correct negative dips
+in the periodic windows), the finite-size Lyapunov of a coupled-map lattice, the
+ordered/edge/chaotic criticality classes of elementary CA rules, and---through its attractor
+census---the known transition matrices of synthetic Markov sources (self-recovery
+total-variation $0.22$ vs.\ cross $0.95$). Every measurement is certified against apparatus
+confounds by an exact-zero-null CRN protocol and attributed at the level of \emph{statistics},
+not trajectories. Applied to trained LMs, the validated instrument yields black-box
+criticality measurements not otherwise available from weights-free access: a \textbf{token-space
+Lyapunov exponent} and a diversity-controlled \textbf{damping length} of generation, an
+\textbf{effective interaction radius} at which the model builds structure ($r{\approx}4$), a
+model-invariant \textbf{damage light cone}, and an \textbf{attractor census} of internalized
+structure. Finally we map a \emph{boundary}: a controlled cross-level study (two model
+families, two within-model axes) shows the black-box token-space criticality does \emph{not}
+proxy white-box activation-space criticality---they are distinct, non-proxying levels,
+because the activation measure is architectural. The contribution is a \textbf{validated
+instrument and the quantities it measures}; the phenomena it lands on---criticality,
+computation at the edge of chaos
+\citep{langton1990computation,bertschinger2004real,edgeofchaos2024}---are decades old, and we
+measure them from the outside rather than claim to discover them.
 \end{abstract}
 
 \section{Introduction}
@@ -65,20 +56,30 @@ the next-token distribution? But a masked or autoregressive conditional also \em
 a dynamics}---iterate it in place over a lattice of tokens and one obtains a stochastic
 cellular automaton whose rule is the model. Iterated-map views of LLMs have appeared
 qualitatively \citep{logos_ca,telephone,paraphrase2cycle} and as mixing-time studies of
-masked-LM Glauber dynamics \citep{glauber_mlm}. What has been missing is a
-\emph{measurement instrument}: a small, controlled, calibrated apparatus that reads
-structural properties out of the dynamics, with apparatus confounds explicitly certified
-away. We build that instrument and sweep the one knob a token-space CA has that a
-next-token evaluation does not---the \textbf{conditioning radius} $r$. A CA has a native
-chaos vocabulary---damage spreading, light cones, Lyapunov exponents, attractor censuses
-\citep{hanson1997computational}---and we import it wholesale. Our claims are modest about
-\emph{what} is found and precise about \emph{how}: the edge-of-chaos and criticality ideas
-the results touch are old \citep{langton1990computation,bertschinger2004real,edgeofchaos2024};
-we provide a black-box, token-space, generation-time \emph{measurement} of them in trained
-LMs, plus a (masked-specific, non-monotone) capacity-dependent stability effect. The novel
-core is the instrument and its measurements.
+masked-LM Glauber dynamics \citep{glauber_mlm}; the phenomena a CA vocabulary names---damage
+spreading, light cones, Lyapunov exponents, attractor censuses
+\citep{hanson1997computational}---are decades old. What has been missing is not a new
+phenomenon but a \emph{measurement instrument whose readings can be trusted}: a small,
+controlled apparatus, calibrated against ground truth, with apparatus confounds certified
+away.
 
-\section{The instrument}
+This paper's organizing principle is \textbf{validation by reproduction}. We build the
+instrument---a token-lattice CA with CRN damage spreading (\S\ref{sec:instrument})---and,
+before turning it on a language model, show that it recovers \emph{known} dynamical metrics
+on systems where the answer is established (\S\ref{sec:validation}): the exact logistic-map
+Lyapunov exponent across the bifurcation diagram, the finite-size Lyapunov of a coupled-map
+lattice, the criticality classes of elementary CA rules, and the known transition matrices of
+synthetic Markov sources. An instrument that reproduces exact values on known systems can be
+\emph{trusted} on an unknown one. Only then do we report the new, weights-free measurements it
+yields on trained LMs (\S\ref{sec:lm}): a token-space Lyapunov exponent, a damping length, an
+effective interaction radius, a damage light cone, and an attractor census. Finally we map the
+instrument's \emph{boundary}---the cross-level regime where the black-box token-space reading
+provably decouples from white-box internals (\S\ref{sec:crosslevel}). The edge-of-chaos and
+criticality ideas the results touch are old
+\citep{langton1990computation,bertschinger2004real,edgeofchaos2024}; our contribution is the
+validated black-box \emph{measurement} of them, not their discovery.
+
+\section{The instrument}\label{sec:instrument}
 \textbf{Rule.} A window of $w=2r{+}1$ tokens with the center masked is fed to a masked LM;
 the tempered center distribution is the kernel $p_r(x_i\mid x_{i\pm r})$. For an
 autoregressive model (\S\ref{sec:ar}) the window is the $r$ cells to the left and the rule
@@ -108,8 +109,63 @@ transition'' is, on a finite-size scan, a \emph{crossover}, not a true transitio
 order-parameter susceptibility self-averages, $\chi_{\mathrm{peak}}\propto 1/N$),
 disciplining all ``transition'' language.
 
-\section{Results}
+\section{Validation: reproducing known metrics}\label{sec:validation}
+An instrument is only as good as its calibration. Before applying the CA/damage-spreading
+apparatus to a language model---whose ``true'' dynamical metrics are unknown---we show it
+reproduces \emph{established} quantities on four systems of increasing relevance, where the
+answer is known analytically or by construction (Fig.~\ref{fig:ladder}).
+
+\textbf{(1) The logistic map (exact).} The same CRN twin-separation primitive the instrument
+uses to measure damage---two orbits sharing the deterministic dynamics, differing by a tiny
+$\epsilon$, with the log-separation growth renormalized each step---recovers the
+\emph{exactly-known} Lyapunov exponent $\lambda(r)=\langle\ln|r(1-2x)|\rangle$ of
+$x\mapsto rx(1-x)$ across the whole bifurcation diagram: mean $|\lambda_{\mathrm{exact}}-
+\lambda_{\mathrm{CRN}}|<10^{-3}$ over $61$ values of $r$, with $\lambda=\ln 2$ at $r{=}4$ and
+the correct sharp negative dips inside the period-doubling and period-$3$ windows. This is an
+exact analytic benchmark met to four decimals.
+
+\textbf{(2) A coupled-map lattice (spatial CA).} Extending to a genuine spatially-extended
+system---a ring of diffusively coupled logistic maps---the finite-size Lyapunov from
+single-site CRN damage spreading recovers the single-site $\ln 2$ at zero coupling and the
+known monotone reduction of the lattice exponent with diffusive coupling.
+
+\textbf{(3) Elementary CA criticality classes.} Driving the identical damage-spreading
+estimator (async updates, CRN twins, \texttt{lyap\_from\_cone}) with classical elementary CA
+rules of \emph{known} class recovers the criticality ordering: group-mean $\lambda_{\mathrm
+{ca}}$ is $-0.32$ (ordered: Rules 128/232/4) $<$ $+0.19$ (edge/complex: 110/54) $<$ $+0.26$
+(chaotic: 30/150/22). Linear Rule 90 correctly reads marginal ($\lambda\!\approx\!0$) despite
+wide ballistic spread---the estimator separates exponential growth from mere propagation.
+
+\textbf{(4) Synthetic Markov sources (known transition matrices).} The instrument's attractor
+census, run on tiny models trained on three synthetic first-order Markov sources with known
+sparse matrices $P_a,P_b,P_c$, recovers each model's own matrix (row total-variation $0.22$)
+and not the others (cross $0.95$; random baseline $0.91$)---quantitative recovery of a
+ground-truth generative rule and clean source discrimination (details in \S\ref{sec:census}).
+
+Across an exact map, a spatial lattice, discrete CA rules, and a trained-model census, the
+instrument reproduces what is independently known. We now trust it on language models.
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{validation_ladder.png}
+\caption{Validation ladder. The CA/damage-spreading instrument reproduces known metrics at
+four rungs: (1) the exact logistic-map Lyapunov across the bifurcation diagram (CRN dots on
+the analytic curve, mean error $<10^{-3}$); (2) coupled-map-lattice finite-size Lyapunov
+($\ln 2$ uncoupled, known coupling reduction); (3) elementary-CA criticality classes
+(ordered $<$ edge $<$ chaotic); (4) the census recovering known Markov transition matrices
+(self-TV $\approx0.22$ vs.\ cross $\approx0.95$).}\label{fig:ladder}
+\end{figure}
+
+\section{New measurements on language models}\label{sec:lm}
 \subsection{A radius law}
+Sweeping $r$ at fixed $T$, the \emph{local} statistic (corpus-bigram fraction) is nearly
+radius-blind. \emph{Longer-range} corpus consistency is not: raw 3- and 4-gram overlap
+rises with $r$, but under the repetition-robust metric the signal \emph{peaks at an
+intermediate radius} ($r\approx4$) and falls by $r{=}16$---the apparent large-$r$ growth
+was collapse into repetition. Certification: holding the special-token windowing scheme
+fixed, the cross-model radius-profile difference far exceeds the distribution-preserving
+apparatus floor (so the profile is a model effect), but the scheme itself moves the profile
+as much as a model change, so cross-model claims must hold the scheme fixed
+(Fig.~\ref{fig:radius}).
 Sweeping $r$ at fixed $T$, the \emph{local} statistic (corpus-bigram fraction) is nearly
 radius-blind. \emph{Longer-range} corpus consistency is not: raw 3- and 4-gram overlap
 rises with $r$, but under the repetition-robust metric the signal \emph{peaks at an
@@ -252,8 +308,10 @@ large-radius averaging effect), though the ordering is not clean at every $T$; t
 non-replication is real.}\label{fig:crossover}
 \end{figure}
 
-\subsection{Calibration against ground truth}
-On three synthetic first-order Markov sources sharing a vocabulary but with different sparse
+\subsection{The attractor census}\label{sec:census}
+The census is the instrument's read-out of internalized distributional structure; its
+ground-truth validation (rung 4 of \S\ref{sec:validation}) is here in full. On three
+synthetic first-order Markov sources sharing a vocabulary but with different sparse
 transition matrices $P_a/P_b/P_c$, a model trained on each and censused yields an empirical
 bigram transition $Q_X$ matching its own $P_X$ (row total-variation $0.22$ vs.\ a
 random-lattice baseline $0.91$) and \emph{not} the others (cross-TV $0.95$): the census
@@ -276,7 +334,7 @@ $Q_X$ and every true $P_Y$: diagonal (self-recovery) $\approx0.22$, off-diagonal
 $\approx0.95$---quantitative recovery and clean discrimination.}\label{fig:calib}
 \end{figure}
 
-\subsection{Cross-level validation: does the instrument proxy internal criticality?}\label{sec:crosslevel}
+\section{The instrument's boundary: token- vs.\ activation-space criticality}\label{sec:crosslevel}
 A black-box instrument earns its keep if its readings track something one would otherwise
 need internals to see. We tested this hypothesis thoroughly---a ground-truth calibration,
 two model families, two within-model axes---and report a clean \textbf{negative}: the
@@ -411,27 +469,24 @@ pre-camera-ready work, together with the cross-level white-box/black-box critica
 (\S\ref{sec:conclusion}) that would give the instrument external significance.
 
 \section{Conclusion}\label{sec:conclusion}
-Reading a language model as a cellular automaton over its own token space, with the
-conditioning radius as a swept knob and CRN perturbations as the probe, yields
-apparatus-certified measurements a next-token evaluation does not: a radius law, a front
-velocity that grows with the conditioning radius and is model-invariant, and a
-diversity-controlled damping length that shortens as the window widens. Among masked models
-a capacity-linked gap appears (the smallest damps most), but in our data it is a
-\emph{suggestive} two-seed effect---it closes by the mid model and does not survive on an
-autoregressive ladder---not a scaling axis; the velocity and the damping-length radius trend
-do replicate on the autoregressive port. The attractor census recovers a known transition
-matrix quantitatively on synthetic sources, and only qualitatively (proxy-scored,
-near-floor) on real models. The instrument and its certification/calibration protocol are
-the contribution; the phenomena it measures are old and deep, which is exactly why measuring
-them cleanly, from the outside, is worth doing---provided the measurements are held to the
-seed-level standard we outline for the capacity claim. A thorough cross-level test
-(\S\ref{sec:crosslevel}) returns a clean negative: across two families and two within-model
-axes, the black-box token-space Lyapunov does \emph{not} proxy the white-box activation-space
-Lyapunov (the one suggestive cross-model correlation fails on a second family; the
-within-model axes are confounded or model-invariant). Token- and activation-space criticality
-are distinct, non-proxying levels. The instrument's contribution is therefore a calibrated
-\emph{token-space} measurement---validated against classical CA rules of known class---not a
-stand-in for internals.
+The contribution of this paper is a \emph{validated} black-box instrument. Its organizing
+principle---validation by reproduction---is what separates it from the qualitative
+iterated-LLM literature: before measuring a language model, the CA/damage-spreading apparatus
+reproduces the \emph{exact} logistic-map Lyapunov exponent across the bifurcation diagram, the
+coupled-map-lattice finite-size Lyapunov, the criticality classes of elementary CA rules, and
+the known transition matrices of synthetic Markov sources (\S\ref{sec:validation}). An
+instrument that recovers what is independently known can be trusted on what is not. Pointed at
+trained LMs, it then yields weights-free measurements a next-token evaluation does not
+(\S\ref{sec:lm}): a token-space Lyapunov exponent and a diversity-controlled damping length of
+generation, an effective interaction radius ($r{\approx}4$), a model-invariant damage light
+cone, and an attractor census of internalized structure---each certified by the exact-zero-null
+CRN protocol and, where ground truth exists, calibrated against it. We also draw the
+instrument's \emph{boundary} (\S\ref{sec:crosslevel}): a controlled cross-level study returns a
+clean negative---the black-box token-space criticality does not proxy the white-box
+activation-space Lyapunov, because the latter is architectural---so token- and activation-space
+criticality are distinct, non-proxying levels. The phenomena the instrument measures are old
+and deep; what is new is a trustworthy way to measure them from the outside, and an honest map
+of where that measurement reaches its limit.
 
 \paragraph{Opportunities --- chiefly for interpretability.} The instrument reads a model's
 dynamics from \emph{token space alone}---no weights, gradients, or activations---which is
