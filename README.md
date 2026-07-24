@@ -1,15 +1,32 @@
 # token-lattice-ca
 
-A cellular automaton over **token space**, used as a black-box measurement
-instrument for language-model structure. A ring of *N* token cells is updated by
-a model's windowed conditional `p_r(x_i | x_{i±r})` (center masked, radius *r*,
-temperature *T*). The instrument measures temperature×radius phase diagrams,
-damage-spreading light cones (twin runs under common random numbers), attractor
-censuses validated against a known corpus, probes across training checkpoints,
-and a differential instrument/signal-separation protocol.
+A cellular automaton over **token space**, developed into a **validated black-box
+measurement instrument** for language-model dynamics. A ring of *N* token cells is
+updated by a model's windowed conditional `p_r(x_i | x_{i±r})` (radius *r*,
+temperature *T*), with common-random-number (CRN) damage spreading as the probe.
 
-See **[findings.md](findings.md)** for the substantive results (F1–F9 from the
-tiny-transformer pilot; F10–F13 hardening; F14–F19 real MLMs; F20–F25 harden+dynamics).
+The organizing principle is **validation by reproduction**: before measuring a
+language model — whose "true" dynamical metrics are unknown — the instrument
+reproduces *known* metrics on systems where the answer is established (the
+**validation ladder**): the *exact* logistic-map Lyapunov exponent across the
+bifurcation diagram, a coupled-map lattice, the ordered/edge/chaotic criticality
+classes of elementary CA rules, and the known transition matrices of synthetic
+Markov sources. Only then does it report the weights-free LM measurements it yields
+(token-space Lyapunov, damping length, effective interaction radius, damage light
+cone, attractor census), and the **boundary** where the black-box reading provably
+decouples from white-box internals.
+
+The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
+results in **[findings.md](findings.md)** (F1–F29); the adversarial audit that
+reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
+
+> **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
+> demoted/retracted several earlier headlines. In particular the F23
+> "capacity→sensitivity, *p*<10⁻⁴" result was **pseudoreplicated (n=2 seeds)** and
+> is retracted as a significance claim, and the λ "kinematics⊥stability"
+> decomposition is **withdrawn**. The cross-level proxy hypothesis (black-box
+> token-space criticality → white-box activation criticality) is a **clean
+> negative** (F26/F28/F29). The table below is annotated accordingly.
 
 ### Findings at a glance
 
@@ -29,9 +46,13 @@ tiny-transformer pilot; F10–F13 hardening; F14–F19 real MLMs; F20–F25 hard
 | F20 | F15 certified as a model effect **at a fixed scheme** — but CLS/SEP is a first-class apparatus (scheme swap ≥ model shift) | A |
 | F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
 | F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
-| **F23** | A diversity+velocity-controlled **damping length** (D_norm=D/D0) shrinks with radius; **tiny ≪ {mini,base}** (mini≫tiny p<10⁻⁴; base≈mini, saturates) — a stability↔expressiveness tradeoff, measured black-box | B |
+| F23 | A diversity-controlled **damping length** (D_norm=D/D0) shrinks with radius. A capacity gap **tiny ≪ {mini,base}** appears but is **suggestive only** — the "p<10⁻⁴" was pseudoreplicated (n=2 seeds); **retracted** as significance (see F26/F29) | B |
 | F24 | velocity∝r + damping-length-radius-trend **replicate on AR** (Pythia causal window) — not MLM artifacts; but the **capacity→sensitivity effect does NOT** (non-monotone over 4 Pythia sizes, ρ=0.17 p=0.29) — masked-specific | C1 |
 | F25 | **Developmental**: across Pythia training, D_norm traces chaotic-init → order-minimum → edge-of-chaos climb; structure crystallizes before sensitivity (real-model F7) | D |
+| **F26** | **Cross-level**: black-box token-space criticality does NOT robustly proxy white-box activation-space λ_top — cross-model family-dependent (Pythia +0.71 / GPT-2 −0.43) | D |
+| **F27** | **Ground-truth calibration**: λ_ca recovers the known ordered<edge<chaotic criticality classes of classical CA rules (the criticality analog of the census) | D |
+| F28 | Cross-level negative confirmed: within-T confounded (uniform −0.9), within-r null (λ_ca model-invariant/kinematic); GPT-2 non-replication | D |
+| **F29** | The negative is **structural**: white-box λ_top is architectural (flat across training, ≈1/L); masked ladder r=−0.92 is depth-mediated → no *useful* weights-free proxy. Validation ladder: the CRN primitive reproduces the **exact** logistic-map Lyapunov | D/E |
 
 ## Layout
 
@@ -257,3 +278,38 @@ Outcomes: F15's radius profile is a model effect **only at a fixed scheme** (sch
 swap moves it ≥ a model change — F20); the F16 velocity ceiling was finite-size
 wraparound, v∝r continues (F21); F15's large-r growth was repetition, the real
 signal is an intermediate-radius optimum r≈4 (F22).
+
+## Validated instrument: reproduce known metrics, cross-level, new fronts (Phases D/E)
+
+The reframed contribution. **Validation by reproduction** (the credibility spine) +
+the **cross-level boundary** (a structural negative) + a **new white-box front**
+(prototype). Findings **F26–F29**; audit in `paper/REVIEW.md`.
+
+```bash
+# --- Validation ladder: reproduce KNOWN metrics (CPU only; the credibility spine) ---
+.venv/bin/python experiments/reproduce_lyapunov.py    # logistic-map λ (EXACT, mean err <1e-3) + coupled-map lattice
+.venv/bin/python experiments/eca_calib.py             # elementary-CA criticality classes ordered<edge<chaotic (F27)
+.venv/bin/python experiments/fig_validation_ladder.py # -> fig/validation_ladder.png
+
+# --- Cross-level: does black-box criticality proxy white-box? (GPU/MPS) ---
+export HF_HOME=./hf_cache TOKENIZERS_PARALLELISM=false PYTORCH_ENABLE_MPS_FALLBACK=1
+caffeinate -im .venv/bin/python experiments/crosslevel.py        # white λ_top (depth-Lyapunov) + black D_norm, 6-model ladder + GPT-2
+caffeinate -im .venv/bin/python experiments/crosslevel_lyap.py   # black λ_ca (type-matched Lyapunov)
+caffeinate -im .venv/bin/python experiments/crosslevel_within.py # within-model T-sweep (finds the T-confound)
+caffeinate -im .venv/bin/python experiments/crosslevel_radius.py # de-confounded r-axis (null; λ_ca is kinematic)
+caffeinate -im .venv/bin/python experiments/crosslevel_dev.py    # developmental (Pythia checkpoints; λ_top is architecture-flat)
+caffeinate -im .venv/bin/python experiments/masked_ladder.py     # masked BERT depth ladder (r=-0.92 but depth-mediated)
+.venv/bin/python experiments/fig_crosslevel.py                   # -> fig/crosslevel.png
+
+# --- New front (prototype): activation-lattice information-propagation cone ---
+.venv/bin/python experiments/activation_cone.py       # -> fig/actcone_*.png (white-box; CRN null=0 by construction)
+```
+
+Outcomes: the **validation ladder** (F27 + logistic exact + census transition-matrix
+recovery) establishes the instrument reproduces known metrics before it measures LMs.
+The **cross-level** study returns a **structural negative** (F26/F28/F29): the black-box
+token-space criticality does not proxy the white-box activation-space Lyapunov, because
+the latter is architectural. The **activation-cone** is a prototype for a white-box front
+(novelty check: object partially anticipated — `results/deep_research_novelty_actcone.md`).
+Compute: the ladder is CPU-seconds; each cross-level run is ~15–45 min on M1/MPS (cap batch
+for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
