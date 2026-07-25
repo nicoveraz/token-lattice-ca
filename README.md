@@ -8,9 +8,10 @@ temperature *T*), with common-random-number (CRN) damage spreading as the probe.
 The organizing principle is **validation by reproduction**: before measuring a
 language model — whose "true" dynamical metrics are unknown — the instrument
 reproduces *known* metrics on systems where the answer is established (the
-**validation ladder**): a decisive ordered-vs-chaotic separation on elementary CA
-rules (the finer 3-class ordering does **not** survive — F33/F34) and the known
-transition matrices of synthetic Markov sources — the rungs that share the
+**validation ladder**): a decisive **ordered-vs-rest separation on elementary CA
+rules** (p=0.0000, Cohen d=3.03, measured on ignition probability — the finer 3-class
+ordering does **not** survive, F33/F34/F36) and the known transition matrices of
+synthetic Markov sources — the rungs that share the
 instrument's regime (discrete state, finite O(1) perturbation) — plus smooth-limit
 arithmetic checks on the logistic map and a coupled-map lattice.
 
@@ -28,11 +29,21 @@ arithmetic checks on the logistic map and a coupled-map lattice.
 
 Only then does it report the weights-free LM measurements it yields (token-space
 Lyapunov, damping length, effective interaction radius, damage light cone, attractor
-census), and the **boundary** where the black-box reading provably decouples from
-white-box internals.
+census), and the **boundaries** where those readings provably stop applying.
+
+> **What the instrument measures — read this before using any number here (F35).**
+> Real autoregressive generation does **not** absorb a single injected token error:
+> `P_persist = 1.000` on pythia-70m/160m/410m (32 trials each, CRN null exactly 0), and
+> distributionally `TV_norm ≈ 0.97` — the twins end as far apart as two *unrelated*
+> continuations. The mechanism is structural: **free generation never resamples a token**,
+> so an error stays in context permanently, whereas the ring CA revisits every site, which
+> is what makes healing possible at all. Therefore the damping length / `D_norm` /
+> "repair length" characterise the **iterated-resampling construction**, not the model's
+> generative process. This retroactively explains the kinematic light cone (F16/F21), the
+> model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F34); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F37); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -73,13 +84,19 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | F32 | `lyap_from_cone`'s branch constants are robust (ordering holds 54/54), but a **fixed** fit window inverts edge-vs-chaotic 3/4 times → use a saturation-relative window | 0 |
 | **F33** | Hardened ECA rung (19 rules × 12 seeds, rule-level bootstrap): **ordered < chaotic p<10⁻⁴ CONFIRMED**; **edge < chaotic p=0.17 NOT significant** → the 3-class ordering is demoted | 2 |
 | **F34** | The ECA rung had an **ignition confound** (λ averaged over ignited + dead runs). Rule 30's negative reading explained (λ\|ignited=+0.45); **Rule 90 "marginal" nuance RETRACTED** (λ\|ignited=+0.28). The real discriminator is **ignition probability** (ordered 0.05 vs edge 0.67 vs chaotic 0.68) | 2 |
+| **F35** | **Real generation does not absorb a single-token error** — P_persist=1.000 on 3 models, TV_norm≈0.97 distributionally, nulls exactly 0. Healing is a property of the **in-place-resampling construction**, not of the model | ext |
+| **F36** | ECA classes tested on the right statistic (**ignition probability**): ordered 0.046 vs rest, **p=0.0000, Cohen d=3.03**; edge-vs-chaotic **p=0.47** — the 3-class ordering is definitively not recoverable | 2 |
+| F37 | CML rung given an exact **Benettin/Jacobian** reference: `cml_lyap` is correct (max diff 0.0011). Also corrected a paper error — the exponent is **non-monotone** in coupling | 2 |
 
 ## Layout
 
 ```
 src/           library
+  lattice.py     THE simulation loop (one Rule protocol; all backends share it)
   model.py       tiny bidirectional transformer (the CA rule family p_r)
-  ca.py          the automaton: ring, async/sync Glauber, CRN sampling, metrics
+  ca.py          toy backend (ToyRule) + metrics; run() is a shim over lattice.run
+  mlm_ca.py      masked-LM backend (MLMRule, symmetric masked-centre window)
+  ar_ca.py       autoregressive backend (ARRule, left-causal window)
 experiments/   runnable pipeline steps (run from repo root)
   vocab.py       word-level vocab builder (pilot); see bpe.py for the BPE variant (Phase 2)
   train.py       train the windowed conditional model on tinyshakespeare
@@ -127,6 +144,17 @@ JAX_PLATFORMS=cpu .venv/bin/pytest tests/ -v
 runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
+
+The suite is **32 tests** and now covers every backend, not just the toy JAX path:
+
+- `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
+  `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
+  `StubRule` (no model load) exercises the same code path *by construction*; MLM and AR
+  are also tested directly. Includes a **non-vacuity** counterpart — a perturbation must
+  propagate, else the null test would pass trivially.
+- `tests/test_golden.py` — asserts the simulation core stays **bit-identical** against
+  `tests/golden/*.npz`, which were generated *before* the Phase-1 refactor. Do not relax
+  these to `allclose`; a backend that cannot be made bit-identical is a stop-and-report.
 
 ## Reproduce the pilot (Phase 1)
 
@@ -314,6 +342,15 @@ the **cross-level boundary** (a structural negative) + a **new white-box front**
 .venv/bin/python experiments/eca_calib_hardened.py   # 19 rules x 12 seeds + bootstrap CIs (F33)
 .venv/bin/python experiments/eca_calib_ignition.py   # separates ignition prob from conditional spread (F34)
 .venv/bin/python experiments/lyap_fit_sensitivity.py # is the ordering an estimator artifact? (F32)
+.venv/bin/python experiments/eca_ordered_vs_rest.py   # class test on ignition probability, the right statistic (F36)
+.venv/bin/python experiments/cml_benettin.py          # exact Benettin ground truth for the CML rung (F37)
+
+# --- does the instrument measure the MODEL or the construction? (F35, the delimiting result)
+.venv/bin/python experiments/real_generation_damage.py        # inject a token error into REAL AR generation
+.venv/bin/python experiments/real_generation_reconvergence.py # distributional version (TV vs an independent-continuation floor)
+
+# --- Phase 3: headline re-test at >=8 seeds, two lattice sizes, BH-FDR
+caffeinate -i .venv/bin/python experiments/dev_transition_phase3.py
 .venv/bin/python experiments/fig_validation_ladder.py # -> fig/validation_ladder.png
 
 # --- Cross-level: does black-box criticality proxy white-box? (GPU/MPS) ---
