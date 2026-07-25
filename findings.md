@@ -676,6 +676,32 @@ cached so the sweep isolates the *estimator* (`results/lyap_fit_sensitivity.json
   window rule stated, not as a bare ordering. Rule 90 (linear) reads λ=−0.186 at 5 seeds
   with dmax_frac=0.266 — still marginal despite wide ballistic spread (the F27 nuance holds).
 
+### F33 — hardened ECA rung (19 rules x 12 seeds): the 3-class ordering does NOT survive; ordered-vs-rest does
+Phase 2.1. Pre-registered before running: Wolfram (1984, Physica D 10:1-35) class
+assignment; the **saturation-relative** fit window with `lyap_from_cone` defaults frozen in
+advance (chosen over a fixed window because F32 showed a fixed window inverts edge-vs-chaotic
+3 times out of 4); primary claim `ordered < chaotic`, secondary `ordered < edge < chaotic`.
+Rule 90 held out as a linear reference. (`results/eca_calib_hardened.json`.)
+
+- **PRIMARY CONFIRMED, decisively.** ordered −0.663 [CI −0.921,−0.400] < chaotic +0.240
+  [+0.055,+0.370], bootstrap p=0.0000 (rule as the unit of analysis, not seed —
+  avoiding the pseudoreplication of W1). ordered < edge also p=0.0000.
+- **SECONDARY DEMOTED.** edge +0.143 vs chaotic +0.240: **p=0.167, not significant.**
+  F27's headline "ordered < edge < chaotic" 3-class ordering **does not survive** 12 seeds
+  and rule-level bootstrap. Only the coarse `ordered ≪ {edge, chaotic}` separation is
+  supported. Dropping the two disputed rules (106, 62) does not rescue it (edge +0.154).
+  This is the demotion F32 predicted from the window-sensitivity analysis.
+- **Rule 90 (linear reference) behaves as designed:** λ=−0.023, CI [−0.330,+0.236] —
+  marginal despite wide ballistic spread, i.e. the estimator separates exponential growth
+  from mere propagation. The F27 nuance survives hardening.
+- **New concern, reported not hidden: Rule 30 reads λ=−0.243, CI [−0.850,+0.195]** — the
+  canonical chaotic rule reads *negative* with a very wide interval, i.e. its damage
+  measurement is unstable across seeds. It was +0.234 at 3 seeds (F27). This inflates the
+  chaotic group's variance and is part of why edge-vs-chaotic fails. Worth diagnosing
+  before the rung is used as evidence for anything finer than ordered-vs-rest.
+- Ordered rules 0/8/32/128/160 all pin at exactly −0.921 with zero-width CI: damage dies
+  immediately, so the estimator is at its floor for them (not a meaningful spread).
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
