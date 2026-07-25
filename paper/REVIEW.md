@@ -1,5 +1,12 @@
 # Adversarial review synthesis (pre-submission, NeurIPS)
 
+> **STATUS (Phase 3).** Per-objection verdicts for W1–W9 are maintained in
+> [`findings.md`](../findings.md#audit-ledger--verdicts-on-every-reviewer-objection-w1w9).
+> Summary: W3, W4, W6, W7 resolved (mostly by retraction); W1 resolved by retraction plus a
+> pre-registered re-test; W8/W9 in progress; **W2 and W5 still stand and are disclosed
+> rather than fixed**. This file is the original review and is kept unedited as the record.
+
+
 Two independent adversarial reviews were run against the current draft
 (`paper/paper.md`), the ground-truth log (`findings.md`), and the raw result
 JSON in `results/`. One reviewer took an **originality** lens, the other an

@@ -1,0 +1,11 @@
+Phase 3 developmental transition: 96 runs (6 ckpts x 8 seeds x 2 sizes)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:43,  2.82it/s]Loading weights:  34%|███▎      | 98/292 [00:00<00:00, 278.72it/s]Loading weights:  53%|█████▎    | 154/292 [00:00<00:00, 276.43it/s]Loading weights:  67%|██████▋   | 197/292 [00:00<00:00, 258.70it/s]Loading weights:  79%|███████▉  | 232/292 [00:00<00:00, 262.95it/s]Loading weights:  91%|█████████ | 265/292 [00:01<00:00, 269.03it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 248.25it/s]
+[1/96] N48_step256_s21: lam=-0.2003 D_norm=0.0528 (112.1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.17it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 444.87it/s]Loading weights:  65%|██████▌   | 190/292 [00:00<00:00, 457.62it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 574.15it/s]
+[2/96] N48_step256_s22: lam=+0.0416 D_norm=0.1488 (107.0s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.35it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1201.20it/s]
+[3/96] N48_step256_s23: lam=-0.0026 D_norm=0.1226 (103.5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3024.18it/s]
+[4/96] N48_step256_s24: lam=+0.0402 D_norm=0.1967 (105.4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:12,  4.00it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 447.67it/s]Loading weights:  67%|██████▋   | 196/292 [00:00<00:00, 439.86it/s]Loading weights:  87%|████████▋ | 253/292 [00:00<00:00, 401.41it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 366.83it/s]

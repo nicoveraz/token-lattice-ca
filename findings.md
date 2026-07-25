@@ -753,18 +753,63 @@ single seed and N=48; bert-base ran at reduced settings (sweeps 25–30, B=12–
 tractability; the finite-size crossover result (F12) was established on the toy
 only — it is not yet checked on the real models.
 
+## Audit ledger — verdicts on every reviewer objection (W1–W9)
+
+Status of each objection in `paper/REVIEW.md` as of Phase 3. "Resolved" means the paper no
+longer makes the offending claim or the claim now matches the data; "stands" means the
+objection is still live and is disclosed rather than fixed.
+
+| # | Objection | Verdict |
+|---|---|---|
+| W1 | Capacity claim pseudoreplicated (n=2 seeds) | **Resolved by retraction + re-test.** Capacity dropped from the paper entirely; the surviving headline is being re-tested at 8 seeds × 2 lattice sizes (`dev_transition_phase3.py`). |
+| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. The DK rung (Phase 2.2) is what would establish that the coupling choice is load-bearing rather than incidental. |
+| W3 | λ "model-invariance" rests on one saturated cell (off-cell spread 24–46%) | **Resolved by retraction.** Verified: (r=8,T=0.7) spread 24%, (r=1,T=0.7) 46% and reversed. The kinematics⊥stability decomposition is withdrawn from the paper. F31 adds the deeper reason the cross-level pairing was ill-posed: λ_top is a *tangent-space* quantity and λ_ca a *finite* one. |
+| W4 | AR "consistent joint" overstated; bimodal T-pooling | **Resolved for surviving claims.** The paper now says both constructions are windowed, in-place-resampled rings — neither samples the model's joint. The bimodal pooling affected the AR *capacity* numbers, which were dropped with the capacity claim, so it no longer touches anything the paper asserts. |
+| W5 | Census near floor on real models (0.02–0.04 vs an out-of-training proxy) | **Stands, scoped.** Quantitative recovery is claimed **only** on the synthetic toy; the real-model numbers are reported as near-floor. The real fix (Pythia vs the Pile) is tracked as issue #6 under *Future work*. |
+| W6 | v∝r "lifts" are exactly N/4 clipping ceilings; unclipped is superlinear | **Resolved.** Verified the velocities equal N/4 exactly and the one unclipped point (N=384, 41.1) sits *below* the N=192 "ceiling" (47.5). The paper claims only that front velocity grows monotonically with r, and states the superlinearity. |
+| W7 | Crossover "strengthens at every T" is false at T=0.3; single-seed | **Resolved by retraction.** Verified (T=0.3: mini 0.463 < tiny 0.508). Downgraded to a plateau *diagnostic*; the "strengthens" claim is gone. |
+| W8 | No multiplicity correction | **In progress.** BH-FDR implemented and verified against known values; applied across an explicitly stated family in the Phase 3 run. Note the *central* validation claims are reproductions of known values, not NHT, so multiplicity does not apply to them. |
+| W9 | N=48 only; effect shrinks with N | **In progress.** N=96 arm running in Phase 3 (B halved 16→8 for the 16 GB budget; trade recorded). |
+
+**Pattern worth naming.** W2 and F34 are the same class of error: a statistic averaged over
+two populations that behave differently (CRN vs independent coupling; ignited vs
+extinguished damage). F8/F13 identified this on the LM path years earlier. Any new metric in
+this project should be checked for a mixed population *before* it is reported.
+
 ## Next steps
 
-- **Full-context vs radius-windowed** head-to-head on the same MLM, to test the
-  F17 conjecture that windowing is what makes the dynamics fragile.
-- Multi-seed + finite-size (N scan) on the real MLMs; is the MLM temperature
-  behavior also a crossover (F12) or a transition?
-- Disentangle repetition from genuine long-range structure in the radius test
-  (F15) — e.g. an overlap metric that discounts periodic attractors.
-- More of the scale ladder (small, medium, large) to test the tiny→mini→base
-  "early saturation" hint (F18); RoBERTa/other families as a model-family arm.
-- Claude-as-rule qualitative run (LOGOS-CA style, arXiv:2602.00036) with matched
-  protocol.
+**Running now.** Phase 3: 8 seeds × {N=48, N=96} × 6 Pythia-410m checkpoints re-testing the
+headline developmental transition, with BH-FDR over a pre-registered family
+(`experiments/dev_transition_phase3.py` → `results/dev_transition_phase3.json`). Pre-committed
+decision rule: if the primary claim fails at either lattice size, **the headline is demoted**
+and the paper becomes a methods-and-negatives submission.
+
+**Blocking the paper (in order).**
+1. Read the Phase 3 result and act on it — this determines whether the paper has a discovery
+   claim at all.
+2. Rebuild the ECA ordered-vs-rest test on **ignition probability** rather than λ (F34); the
+   current `p=0.0000` values in `eca_calib_ignition.json` are NaN-comparison artifacts and
+   must not be quoted.
+3. Phase 2.2 — the **Domany–Kinzel** rung (stochastic *discrete* PCA with a published
+   damage-spreading boundary). Literature check first (Domany & Kinzel 1984; Martins et al.;
+   Zebende & Penna; Kohring & Schreckenberg; Grassberger) — do not reinvent it. This is also
+   what makes the W2 coupling objection answerable: in stochastic PCAs the damage boundary is
+   known to depend on the coupling algorithm, i.e. CRN damage spreading measures a property
+   of *(model, coupling)*.
+4. Phase 2.3 — Benettin/QR reference for the CML rung, which currently has ground truth only
+   at ε=0 and whose estimator renormalizes (F31).
+5. Phase 4 — rebuild the paper around whatever survives; delete the stale `paper/paper.md`;
+   build the PDF (never yet built) and cut to ≤5 pages; double-blind pass; responsible-use
+   statement (its absence is an automatic desk reject).
+
+**Deferred, tracked as issues.** Phase 1.5 duplication hoisting (the `ca.DATA_DIR` mutable
+global is a genuine cross-experiment hazard); real-corpus census (#6); the compositional-
+complexity axis (#13, #20); greedy/T→0 limit (#17); activation-lattice cone (#19, object
+already taken by arXiv:2605.25225 — cite, don't claim).
+
+**Do not re-run.** The cross-level λ_ca vs λ_top hypothesis is settled and explained
+(F26/F28/F29 + the tangent-vs-finite regime mismatch in F31). Further measure-swapping there
+would be p-hacking.
 
 ## Files
 
