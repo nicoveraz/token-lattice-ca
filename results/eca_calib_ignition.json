@@ -1,0 +1,264 @@
+{
+ "note": "Separates ignition probability from conditional spread on the ECA rung, matching the LM path (F8/F13). lambda_all reproduces the old, ignition-confounded estimate for comparison.",
+ "ignite_thresh": 0.02,
+ "ignite_tail": 5,
+ "fit_kw": {
+  "sat_threshold": 3.5,
+  "frac_of_max": 0.5,
+  "max_sweeps": 8,
+  "min_sweeps": 3
+ },
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11
+ ],
+ "per_rule": {
+  "0": {
+   "group": "ordered",
+   "ignition_prob": 0.0,
+   "lambda_all": -0.9210340371976184,
+   "lambda_cond": NaN,
+   "lambda_cond_ci95": [
+    NaN,
+    NaN
+   ],
+   "n_seeds_ignited": 0
+  },
+  "4": {
+   "group": "ordered",
+   "ignition_prob": 0.14583333333333334,
+   "lambda_all": -0.008290225019474509,
+   "lambda_cond": 0.04653908435266922,
+   "lambda_cond_ci95": [
+    0.0462,
+    0.0472
+   ],
+   "n_seeds_ignited": 9
+  },
+  "8": {
+   "group": "ordered",
+   "ignition_prob": 0.0,
+   "lambda_all": -0.9210340371976184,
+   "lambda_cond": NaN,
+   "lambda_cond_ci95": [
+    NaN,
+    NaN
+   ],
+   "n_seeds_ignited": 0
+  },
+  "22": {
+   "group": "chaotic",
+   "ignition_prob": 0.6888020833333334,
+   "lambda_all": 0.3826839553796058,
+   "lambda_cond": 0.40476110598819304,
+   "lambda_cond_ci95": [
+    0.2707,
+    0.5343
+   ],
+   "n_seeds_ignited": 12
+  },
+  "30": {
+   "group": "chaotic",
+   "ignition_prob": 0.208984375,
+   "lambda_all": -0.2427945733087482,
+   "lambda_cond": 0.44660114050848515,
+   "lambda_cond_ci95": [
+    0.333,
+    0.5356
+   ],
+   "n_seeds_ignited": 7
+  },
+  "32": {
+   "group": "ordered",
+   "ignition_prob": 0.0,
+   "lambda_all": -0.9210340371976184,
+   "lambda_cond": NaN,
+   "lambda_cond_ci95": [
+    NaN,
+    NaN
+   ],
+   "n_seeds_ignited": 0
+  },
+  "45": {
+   "group": "chaotic",
+   "ignition_prob": 0.5188802083333334,
+   "lambda_all": 0.24776553061600756,
+   "lambda_cond": 0.3020947946608882,
+   "lambda_cond_ci95": [
+    0.2246,
+    0.3835
+   ],
+   "n_seeds_ignited": 12
+  },
+  "54": {
+   "group": "edge",
+   "ignition_prob": 0.998046875,
+   "lambda_all": 0.1680729491136637,
+   "lambda_cond": 0.16822263501266901,
+   "lambda_cond_ci95": [
+    0.135,
+    0.2084
+   ],
+   "n_seeds_ignited": 12
+  },
+  "62": {
+   "group": "edge",
+   "ignition_prob": 0.29296875,
+   "lambda_all": 0.00460542415651367,
+   "lambda_cond": 0.31990794056161104,
+   "lambda_cond_ci95": [
+    0.232,
+    0.4045
+   ],
+   "n_seeds_ignited": 11
+  },
+  "90": {
+   "group": "reference",
+   "ignition_prob": 0.75,
+   "lambda_all": -0.02342216994258031,
+   "lambda_cond": 0.2757817858090991,
+   "lambda_cond_ci95": [
+    0.206,
+    0.3369
+   ],
+   "n_seeds_ignited": 9
+  },
+  "105": {
+   "group": "chaotic",
+   "ignition_prob": 1.0,
+   "lambda_all": 0.387808078719112,
+   "lambda_cond": 0.387808078719112,
+   "lambda_cond_ci95": [
+    0.2331,
+    0.5415
+   ],
+   "n_seeds_ignited": 12
+  },
+  "106": {
+   "group": "edge",
+   "ignition_prob": 0.4908854166666667,
+   "lambda_all": 0.2594003099932685,
+   "lambda_cond": 0.385462285554733,
+   "lambda_cond_ci95": [
+    0.3088,
+    0.456
+   ],
+   "n_seeds_ignited": 12
+  },
+  "110": {
+   "group": "edge",
+   "ignition_prob": 0.8893229166666666,
+   "lambda_all": 0.1392605469564453,
+   "lambda_cond": 0.14890544004553127,
+   "lambda_cond_ci95": [
+    0.1265,
+    0.1714
+   ],
+   "n_seeds_ignited": 12
+  },
+  "126": {
+   "group": "chaotic",
+   "ignition_prob": 0.7845052083333334,
+   "lambda_all": 0.11911062543392277,
+   "lambda_cond": 0.1366573309328965,
+   "lambda_cond_ci95": [
+    0.1135,
+    0.1587
+   ],
+   "n_seeds_ignited": 12
+  },
+  "128": {
+   "group": "ordered",
+   "ignition_prob": 0.0,
+   "lambda_all": -0.9210340371976184,
+   "lambda_cond": NaN,
+   "lambda_cond_ci95": [
+    NaN,
+    NaN
+   ],
+   "n_seeds_ignited": 0
+  },
+  "146": {
+   "group": "chaotic",
+   "ignition_prob": 0.57421875,
+   "lambda_all": 0.394220530801286,
+   "lambda_cond": 0.39133130911231206,
+   "lambda_cond_ci95": [
+    0.2626,
+    0.5216
+   ],
+   "n_seeds_ignited": 12
+  },
+  "150": {
+   "group": "chaotic",
+   "ignition_prob": 1.0,
+   "lambda_all": 0.387808078719112,
+   "lambda_cond": 0.387808078719112,
+   "lambda_cond_ci95": [
+    0.2331,
+    0.5415
+   ],
+   "n_seeds_ignited": 12
+  },
+  "160": {
+   "group": "ordered",
+   "ignition_prob": 0.0,
+   "lambda_all": -0.9210340371976184,
+   "lambda_cond": NaN,
+   "lambda_cond_ci95": [
+    NaN,
+    NaN
+   ],
+   "n_seeds_ignited": 0
+  },
+  "232": {
+   "group": "ordered",
+   "ignition_prob": 0.177734375,
+   "lambda_all": -0.02727016655309797,
+   "lambda_cond": 0.04930300597485565,
+   "lambda_cond_ci95": [
+    0.0479,
+    0.0508
+   ],
+   "n_seeds_ignited": 12
+  }
+ },
+ "groups_conditional": {
+  "ordered": {
+   "mean": NaN,
+   "ci95": [
+    NaN,
+    NaN
+   ]
+  },
+  "edge": {
+   "mean": 0.2556245752936361,
+   "ci95": [
+    0.1586,
+    0.3527
+   ]
+  },
+  "chaotic": {
+   "mean": 0.35100883409157124,
+   "ci95": [
+    0.2709,
+    0.4094
+   ]
+  }
+ },
+ "tests": {
+  "ordered_lt_chaotic_p": 0.0,
+  "ordered_lt_edge_p": 0.0,
+  "edge_lt_chaotic_p": 0.0665
+ }
+}
