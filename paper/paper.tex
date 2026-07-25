@@ -159,7 +159,8 @@ the analytic curve, mean error $<10^{-3}$); (2) coupled-map-lattice finite-size 
 \section{New measurements on language models}\label{sec:lm}
 Pointed at a trained LM, the validated instrument yields the quantities below. We are precise
 about what is new: several of these \emph{quantities} have been identified in concurrent work
-(a critical sampling temperature \citep{critical_temp,ar_tempcrit,phase_detect}; edge-of-chaos
+(a critical sampling temperature
+\citep{critical_temp,critical_temp2,critical_temp3,ar_tempcrit,phase_detect}; edge-of-chaos
 and Lyapunov framings \citep{bertschinger2004real,lyap_selfattn}). What we contribute is not
 the concepts but a single, CRN-certified, ground-truth-calibrated \emph{route} to them from
 weights-free access---the same estimator validated in \S\ref{sec:validation}---together with a
@@ -438,10 +439,13 @@ self-repair / the Hydra effect \citep{hydra,selfrepair} for internal component
 compensation---and ``self-correction'' \citep{sparc}, both categorically different from our
 spatial damping length. \textbf{Critical sampling temperature (the quantity, not the method, is prior work).}
 A per-model critical temperature separating ordered from disordered generation is already
-defined and measured: \citet{critical_temp} locates a $T_c$ by sweeping the softmax
-temperature (susceptibility peak, order-parameter collapse), and
-\citet{ar_tempcrit,phase_detect} identify the same temperature-driven order$\to$disorder
-transition via power-law statistics and phase mapping. We therefore \emph{do not} claim an
+defined and measured across at least five independent works:
+\citet{critical_temp,critical_temp2,critical_temp3} locate a $T_c$ by sweeping the softmax
+temperature (susceptibility peak, order-parameter collapse, or a measured critical region
+$T\!\approx\!1.2$--$1.4$), and \citet{ar_tempcrit,phase_detect} identify the same
+temperature-driven order$\to$disorder transition via power-law statistics and phase mapping.
+The damage-spreading-to-Lyapunov estimator we use is likewise classical CA physics
+\citep{bagnoli1992damage}. We therefore \emph{do not} claim an
 edge-of-chaos temperature or a token-space Lyapunov as new quantities; our contribution is a
 CRN-certified, ground-truth-calibrated damage-spreading \emph{route} to them (a different
 estimator: Lyapunov zero-crossing rather than susceptibility). \textbf{Activation-space
