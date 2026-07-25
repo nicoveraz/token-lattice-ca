@@ -1,0 +1,20 @@
+{
+ "pythia-70m": {
+  "P_persist": 1.0,
+  "P_reconverge": 0.0,
+  "mean_divergence_frac": 0.94453125,
+  "divergence_frac_if_persisted": 0.94453125,
+  "n_trials": 32,
+  "null_max_divergence": 0.0,
+  "secs": 68.3
+ },
+ "pythia-160m": {
+  "P_persist": 1.0,
+  "P_reconverge": 0.0,
+  "mean_divergence_frac": 0.9578125,
+  "divergence_frac_if_persisted": 0.9578125,
+  "n_trials": 32,
+  "null_max_divergence": 0.0,
+  "secs": 124.7
+ }
+}

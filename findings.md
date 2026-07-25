@@ -774,6 +774,46 @@ single seed and N=48; bert-base ran at reduced settings (sweeps 25–30, B=12–
 tractability; the finite-size crossover result (F12) was established on the toy
 only — it is not yet checked on the real models.
 
+### F35 — real generation does NOT absorb a single-token error: the ring CA's "healing" is a property of the CONSTRUCTION
+The instrument's load-bearing assumption is that its error-propagation numbers say something
+about the *model*. Every number so far is measured on a ring CA whose stationary measure is
+not the model's generative distribution. This tests the assumption directly, on real
+autoregressive generation, with the same CRN discipline
+(`experiments/real_generation_damage.py`, `real_generation_reconvergence.py`).
+
+**Certification first:** in both experiments the null arm (no injection, shared uniform
+stream) diverges by **exactly zero** — asserted in code, not assumed. So the protocol
+transfers to free generation and the numbers mean what they say.
+
+**Two independent readouts agree that absorption is zero** (pythia-70m, 4 prompts × 8 seeds
+= 32 trials; larger models running):
+- **Token identity:** `P_persist = 1.000`, `P_reconverge = 0.000`, mean post-injection
+  divergence `0.945`. The error is *never* absorbed.
+- **Distributional (the fairer test):** TV between the twins' next-token distributions,
+  normalised by the TV between two *independent* continuations of the same prompt:
+  **TV_norm ≈ 1.0** (tail 1.08; trajectory 0.87–1.28). The twins end up as far apart as
+  unrelated continuations. Not a harsh-metric artifact — there is no reconvergence in
+  distribution either.
+
+**Mechanism (structural, not empirical accident).** Free generation **never resamples a
+token**: once the wrong token is in the context it stays there permanently, and the two
+continuations are simply different samples thereafter. The ring CA is the opposite — every
+site is revisited repeatedly, so a perturbed site *can* be overwritten back. **In-place
+resampling is what creates the possibility of healing, and it is exactly what real
+generation lacks.**
+
+**Consequence for the paper (this reframes it).** The damping length / repair length /
+`D_norm` measure a property of the **iterated-resampling construction**, not of the model's
+generative process. This is not a new failure — it retroactively explains the whole pattern:
+the light cone is kinematic (F16/F21), λ_ca(r) is model-invariant (F28), and the white-box
+proxy failed structurally (F29/F31). The instrument characterises *(model, construction)*,
+with the construction carrying more of the signal than the paper has been claiming.
+
+**Status: preliminary but hard to explain away** — one model so far, though two independent
+metrics agree, both nulls are certified exactly zero, and the mechanism is structural rather
+than statistical. Full 3-model run pending. The honest framing for the paper is a precise
+statement of what the instrument does and does not measure, made *before* a reviewer made it.
+
 ## Audit ledger — verdicts on every reviewer objection (W1–W9)
 
 Status of each objection in `paper/REVIEW.md` as of Phase 3. "Resolved" means the paper no
