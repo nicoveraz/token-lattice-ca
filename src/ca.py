@@ -7,6 +7,7 @@ import numpy as np
 import jax, jax.numpy as jnp
 from functools import partial
 from model import CFG, center_logits, load
+from lattice import run as _lattice_run
 
 MASK, UNK = 0, 1
 
@@ -25,8 +26,17 @@ def _vocab():
 @partial(jax.jit, static_argnums=(3,))
 def _site_probs(params, lattice, idx, w, T):
     """lattice (B,N); idx (w,) ring indices with center masked -> probs (B,V)."""
-    win = lattice[:, idx]
-    win = win.at[:, w // 2].set(MASK)
+    return _win_probs(params, lattice[:, idx], w, T)
+
+
+def _win_probs(params, win, w, T):
+    """Same as `_site_probs` but taking the ALREADY-SLICED window (B,w).
+
+    Split out so the unified loop in `lattice.run` can hand the rule a window rather than
+    the whole lattice. Integer gathering is exact, so slicing in numpy before the call is
+    bit-identical to slicing inside jax (verified by tests/test_golden.py).
+    """
+    win = jnp.asarray(win).at[:, w // 2].set(MASK)
     logits = center_logits(params, win)
     logits = logits.at[:, MASK].set(-1e9)  # never emit <mask>
     return jax.nn.softmax(logits / T, axis=-1)
@@ -38,50 +48,43 @@ def _sample(probs, u):
     return np.array([np.searchsorted(cdf[b], u[b]) for b in range(len(u))],
                     dtype=np.int32)
 
-def run(params, B=8, N=48, r=2, T=1.0, sweeps=120, mode="async",
-        init="random", seed=0, record_every=1, init_state=None, u_stream=None):
-    """Returns dict with snapshots, activity, and per-sweep metrics."""
-    rng = np.random.default_rng(seed)
-    w = 2 * r + 1
-    V = _vocab()
-    if init_state is not None:
-        lat = init_state.copy()
-    elif init == "random":
-        lat = rng.integers(INIT_LO, V, size=(B, N)).astype(np.int32)
-    else:  # corpus slices
+class ToyRule:
+    """The toy JAX transformer as a `lattice.Rule` (symmetric masked-centre window)."""
+
+    def __init__(self, params, init="random"):
+        self.params, self.init = params, init
+
+    def window(self, i, r, N):
+        return (np.arange(i - r, i + r + 1) % N).astype(np.int32)
+
+    def probs(self, win, T):
+        return _win_probs(self.params, win, win.shape[1], T)
+
+    def sample(self, probs, u):
+        return _sample(probs, u)
+
+    def random_lattice(self, rng, B, N):
+        """Replicates the historical init order exactly (random ids, or corpus slices)."""
+        if self.init == "random":
+            return rng.integers(INIT_LO, _vocab(), size=(B, N)).astype(np.int32)
         ids = np.load(f"{DATA_DIR}/train_ids.npy")
         starts = rng.integers(0, len(ids) - N, size=B)
-        lat = np.stack([ids[s:s + N] for s in starts]).astype(np.int32)
+        return np.stack([ids[s:s + N] for s in starts]).astype(np.int32)
 
-    snaps, activity = [lat.copy()], []
-    n_up = sweeps * N * B
-    if u_stream is None:
-        u_stream = rng.random(n_up)  # one uniform per (sweep,site,lattice)
-    ui = 0
 
-    for t in range(sweeps):
-        prev = lat.copy()
-        if mode == "async":
-            order = rng.permutation(N)
-            for i in order:
-                idx = (np.arange(i - r, i + r + 1) % N).astype(np.int32)
-                probs = _site_probs(params, jnp.asarray(lat), jnp.asarray(idx), w, T)
-                u = u_stream[ui:ui + B]; ui += B
-                lat[:, i] = _sample(probs, u)
-        else:  # sync: all sites from the same previous state
-            newlat = lat.copy()
-            for i in range(N):
-                idx = (np.arange(i - r, i + r + 1) % N).astype(np.int32)
-                probs = _site_probs(params, jnp.asarray(prev), jnp.asarray(idx), w, T)
-                u = u_stream[ui:ui + B]; ui += B
-                newlat[:, i] = _sample(probs, u)
-            lat = newlat
-        activity.append((lat != prev).mean(axis=1))  # per-lattice fraction changed
-        if (t + 1) % record_every == 0:
-            snaps.append(lat.copy())
+def run(params, B=8, N=48, r=2, T=1.0, sweeps=120, mode="async",
+        init="random", seed=0, record_every=1, init_state=None, u_stream=None):
+    """Returns dict with snapshots, activity, and per-sweep metrics.
 
-    return dict(snaps=np.array(snaps), activity=np.array(activity),
-                final=lat, params_r=r, T=T, mode=mode)
+    Thin shim over the unified loop (`lattice.run`); kept so existing experiment scripts
+    keep working. init_state/u_stream are passed through untouched so the RNG is consumed
+    in the historical order: init -> u_stream -> per-sweep permutations.
+    """
+    out = _lattice_run(ToyRule(params, init), B=B, N=N, r=r, T=T, sweeps=sweeps, mode=mode,
+                       init=init, seed=seed, record_every=record_every,
+                       init_state=init_state, u_stream=u_stream)
+    out["params_r"] = out.pop("r")            # historical key name for this backend
+    return out
 
 # ---------- metrics ----------
 _corpus_bi = {}

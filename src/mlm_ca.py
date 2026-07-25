@@ -22,6 +22,7 @@ import os
 import numpy as np
 import torch
 from transformers import AutoTokenizer, BertForMaskedLM
+from lattice import run as _lattice_run
 
 TOK_NAME = "bert-base-uncased"          # shared vocab for tiny/mini/base
 _TOK = None
@@ -114,45 +115,38 @@ def _sample(probs, u):
                     dtype=np.int64)
 
 
+class _MLMAdapter:
+    """Binds the MLM rule's scheme/sampler into the backend-agnostic `lattice.Rule` API.
+
+    An adapter rather than methods on MLMRule, so one loaded model can be driven with
+    different schemes/samplers concurrently without shared mutable state.
+    """
+
+    def __init__(self, rule, scheme, sampler):
+        self.rule, self.scheme, self.sampler = rule, scheme, sampler
+        self.dev = sampler is None                      # default path samples on-device
+
+    def window(self, i, r, N):
+        return np.arange(i - r, i + r + 1) % N          # symmetric, centre masked by rule
+
+    def probs(self, win, T):
+        return self.rule.center_probs(win, T, self.scheme, as_torch=self.dev)
+
+    def sample(self, probs, u):
+        return self.rule.sample_device(probs, u) if self.dev else self.sampler(probs, u)
+
+    def random_lattice(self, rng, B, N):
+        return self.rule.random_lattice(rng, B, N)
+
+
 def run(rule, B=16, N=48, r=2, T=1.0, sweeps=60, mode="async", scheme="cls_sep",
         init="random", seed=0, record_every=1, init_state=None, u_stream=None,
         sampler=None):
-    """Ring CA driven by `rule`. Mirrors ca.run (async/sync, CRN uniforms)."""
-    rng = np.random.default_rng(seed)
-    w = 2 * r + 1
-    if init_state is not None:
-        lat = init_state.copy()
-    else:
-        lat = rule.random_lattice(rng, B, N)
-    dev = sampler is None                               # default path samples on-device
-    snaps, activity = [lat.copy()], []
-    if u_stream is None:
-        u_stream = rng.random(sweeps * N * B)
-    ui = 0
-
-    def step(src, i):
-        nonlocal ui
-        idx = (np.arange(i - r, i + r + 1) % N)
-        u = u_stream[ui:ui + B]; ui += B
-        if dev:
-            return rule.sample_device(rule.center_probs(src[:, idx], T, scheme, as_torch=True), u)
-        return sampler(rule.center_probs(src[:, idx], T, scheme), u)
-
-    for t in range(sweeps):
-        prev = lat.copy()
-        if mode == "async":
-            for i in rng.permutation(N):
-                lat[:, i] = step(lat, i)
-        else:  # sync
-            newlat = lat.copy()
-            for i in range(N):
-                newlat[:, i] = step(prev, i)
-            lat = newlat
-        activity.append((lat != prev).mean(axis=1))
-        if (t + 1) % record_every == 0:
-            snaps.append(lat.copy())
-    return dict(snaps=np.array(snaps), activity=np.array(activity),
-                final=lat, r=r, T=T, mode=mode, scheme=scheme)
+    """Ring CA driven by `rule`. Thin shim over the unified loop (`lattice.run`)."""
+    return _lattice_run(_MLMAdapter(rule, scheme, sampler), B=B, N=N, r=r, T=T,
+                        sweeps=sweeps, mode=mode, init=init, seed=seed,
+                        record_every=record_every, init_state=init_state,
+                        u_stream=u_stream, scheme=scheme)
 
 
 # ---------- reference-corpus metrics (proxy validation) ----------

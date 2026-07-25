@@ -17,6 +17,7 @@ Pythia is a proper causal LM with a consistent joint, unlike the MLM -- state th
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from lattice import run as _lattice_run
 
 
 def pick_device(prefer="mps"):
@@ -76,28 +77,33 @@ class ARRule:
         return rng.choice(self.init_pool, size=(B, N)).astype(np.int64)
 
 
+class _ARAdapter:
+    """Causal (left-window) counterpart of `_MLMAdapter`."""
+
+    def __init__(self, rule, scheme, sampler):
+        self.rule, self.scheme, self.sampler = rule, scheme, sampler
+        self.dev = sampler is None
+
+    def window(self, i, r, N):
+        return np.arange(i - r, i) % N                   # r cells strictly to the LEFT
+
+    def probs(self, win, T):
+        return self.rule.center_probs(win, T, self.scheme, as_torch=self.dev)
+
+    def sample(self, probs, u):
+        return self.rule.sample_device(probs, u) if self.dev else self.sampler(probs, u)
+
+    def random_lattice(self, rng, B, N):
+        return self.rule.random_lattice(rng, B, N)
+
+
 def run(rule, B=16, N=48, r=2, T=1.0, sweeps=60, scheme="none", init="random",
-        seed=0, record_every=1, init_state=None, u_stream=None, sampler=None):
-    """Causal ring CA: cell i resampled from p(x_i | x_{i-r..i-1}) (left window on
-    the ring). Async random-order Glauber, CRN uniforms. Mirrors mlm_ca.run."""
-    rng = np.random.default_rng(seed)
-    lat = init_state.copy() if init_state is not None else rule.random_lattice(rng, B, N)
-    dev = sampler is None
-    snaps, activity = [lat.copy()], []
-    if u_stream is None:
-        u_stream = rng.random(sweeps * N * B)
-    ui = 0
-    for t in range(sweeps):
-        prev = lat.copy()
-        for i in rng.permutation(N):
-            idx = (np.arange(i - r, i) % N)                 # r cells to the LEFT
-            u = u_stream[ui:ui + B]; ui += B
-            if dev:
-                lat[:, i] = rule.sample_device(rule.center_probs(lat[:, idx], T, scheme, as_torch=True), u)
-            else:
-                lat[:, i] = sampler(rule.center_probs(lat[:, idx], T, scheme), u)
-        activity.append((lat != prev).mean(axis=1))
-        if (t + 1) % record_every == 0:
-            snaps.append(lat.copy())
-    return dict(snaps=np.array(snaps), activity=np.array(activity),
-                final=lat, r=r, T=T, mode="async", scheme=scheme)
+        seed=0, record_every=1, init_state=None, u_stream=None, sampler=None,
+        mode="async"):
+    """Causal ring CA: cell i resampled from p(x_i | x_{i-r..i-1}) (left window on the
+    ring). Thin shim over the unified loop; `mode` now works here too (it was missing
+    before the unification -- drift, not a decision)."""
+    return _lattice_run(_ARAdapter(rule, scheme, sampler), B=B, N=N, r=r, T=T,
+                        sweeps=sweeps, mode=mode, init=init, seed=seed,
+                        record_every=record_every, init_state=init_state,
+                        u_stream=u_stream, scheme=scheme)
