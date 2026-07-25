@@ -8,7 +8,7 @@
 \item {\bf Claims} \\
 Question: Do the abstract and introduction accurately reflect the paper's contributions and scope? \\
 Answer: \answerYes{} \\
-Justification: The abstract states the contribution as the instrument and its measurements, explicitly frames the criticality/edge-of-chaos phenomena as decades-old (measured, not discovered), and flags that the capacity effect is masked-specific and does not replicate on autoregressive models. Every headline claim is hedged to its statistics: the capacity ordering is presented as a suggestive two-seed gap (tiny$\ll$\{mini,base\}), not an established scaling axis; the front velocity as an apparatus-kinematic law; the AR capacity trend as a null. A withdrawn kinematics$\perp$stability decomposition is disclosed rather than retained.
+Justification: The abstract states the contribution as a \emph{validated} black-box instrument: it reproduces known dynamical metrics (the exact logistic-map Lyapunov, coupled-map-lattice and elementary-CA criticality, known Markov transition matrices) before measuring LMs, and the criticality/edge-of-chaos phenomena it lands on are framed as decades-old (measured, not discovered) and cited to concurrent work that defines them (a critical sampling temperature; residual-stream propagation cones). The scope is precise: the LM measurements are a certified, calibrated \emph{route} to already-identified quantities, and the one cross-level proxy hypothesis is reported as a clean \emph{negative}. No capacity scaling law is claimed---the earlier suggestive two-seed gap is disclosed and explicitly not built upon.
 
 \item {\bf Limitations} \\
 Question: Does the paper discuss the limitations of the work? \\
@@ -38,7 +38,7 @@ Justification: Reproducibility appendix specifies optimizer/steps for the toy mo
 \item {\bf Experiment statistical significance} \\
 Question: Does the paper report error bars / statistical significance? \\
 Answer: \answerYes{} \\
-Justification: The paper reports seed error bars and trend tests and, following an internal adversarial audit, explicitly \emph{retracts} a pseudoreplicated signed-rank statistic on the capacity claim, restating it as a suggestive two-seed gap (tiny$\ll$\{mini,base\}; base-vs-mini null $p=0.21$; AR size trend Spearman $\rho=0.17$, $p=0.29$). Marginal and null results are labeled as such. [TODO: the tracked pre-camera-ready rebuild raises the headline capacity/damping-length claims to $\ge15$ \emph{independent} seeds with a seed-level (hierarchical/bootstrap) test and a multiplicity correction; see repository issues \#1--\#3, \#9.]
+Justification: The paper's central claims are the validation-ladder reproductions---exact or near-exact matches to known values (logistic-map Lyapunov mean error $<10^{-3}$; the ordered$<$edge$<$chaotic ECA class ordering; census self-TV $0.22$ vs cross $0.95$)---which are not null-hypothesis tests, so multiple comparisons do not apply to them. Seed error bars are reported where relevant. The cross-level conclusion is a \emph{negative} reached by sign-consistency across two model families and two within-model axes, not a surviving $p$-value, so no multiplicity correction is load-bearing. The demoted capacity gap is disclosed as a suggestive two-seed effect and not built upon; an optional seed-level rebuild is tracked in the repository (issues \#1--\#2, \#10).
 
 \item {\bf Experiments compute resources} \\
 Question: Does the paper provide sufficient information on compute resources? \\

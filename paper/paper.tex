@@ -79,6 +79,19 @@ criticality ideas the results touch are old
 \citep{langton1990computation,bertschinger2004real,edgeofchaos2024}; our contribution is the
 validated black-box \emph{measurement} of them, not their discovery.
 
+\paragraph{Simplicity and tested reliability.} A deliberate choice runs through the paper: we
+use only \emph{simple, mature} primitives from cellular-automaton and dynamical-systems
+theory---single-site damage spreading, the damage-spreading Lyapunov exponent
+\citep{bagnoli1992damage}, the light cone \citep{lieb1972finite}, the attractor census
+\citep{hanson1997computational}---rather than bespoke machinery. Each has been used and tested
+for decades, and the value of transferring them is precisely that they are \emph{understood}:
+their expected behaviour on known systems is a fixed benchmark. That is what the validation
+ladder exploits (\S\ref{sec:validation})---reliability here is not asserted, it is
+\emph{demonstrated} by reproducing exact known values. The stance of the paper is a
+disciplined transfer of a reliable field's instruments to language models, with every reading
+either calibrated against ground truth or certified against apparatus confounds, and with the
+one place the transfer fails reported as plainly as the places it succeeds.
+
 \section{The instrument}\label{sec:instrument}
 \textbf{Rule.} A window of $w=2r{+}1$ tokens with the center masked is fed to a masked LM;
 the tempered center distribution is the kernel $p_r(x_i\mid x_{i\pm r})$. For an
@@ -506,31 +519,37 @@ criticality are distinct, non-proxying levels. The phenomena the instrument meas
 and deep; what is new is a trustworthy way to measure them from the outside, and an honest map
 of where that measurement reaches its limit.
 
-\paragraph{Opportunities --- chiefly for interpretability.} The instrument reads a model's
-dynamics from \emph{token space alone}---no weights, gradients, or activations---which is
-what makes it an interpretability tool for the black-box regime. (i)~\emph{Black-box
-criticality}: the damping length, light cone, and edge-of-chaos position are measurable on
-closed / API-only models, a token-space complement to activation-space probes
-(\citet{sparc}'s $\rho(F_T)\!\ge\!1$; Jacobian--Lyapunov \citep{lyap_selfattn}); relating
-the two on the same open model is an immediate cross-level check. (ii)~\emph{Priors
-read-out}: the attractor census, calibrated to recover a \emph{known} transition matrix
-(\S3.5), is a quantitative black-box probe of what distributional structure a model has
-internalized---an LM attractor-basin portrait \citep{hanson1997computational}.
-(iii)~\emph{Effective interaction range}: the radius axis measures the conditioning range
-at which a model builds structure ($r\!\approx\!4$); correlating it with attention-head
-span or induction heads links a black-box observable to mechanism. (iv)~\emph{Token-space
-causal maps}: CRN damage cones are a causal-influence map over token positions---a
-black-box analog of activation patching---and the damping length bounds how far a
-single-token error propagates before absorption, relevant to error attribution and
-hallucination propagation. (v)~\emph{Developmental interpretability}: the training-time
-trajectory (chaotic init $\to$ ordering collapse $\to$ edge-of-chaos climb; F25) is an
-order-of-acquisition and phase-change detector across checkpoints. (vi)~\emph{Theory}: a
-Lieb--Robinson-style propagation bound \citep{lieb1972finite} for the non-unitary
-stochastic LM dynamics would put the light cone on rigorous footing. Finally, the
-statistics-level, apparatus-nulled certification protocol is a reusable rigor tool for the
-interpretability of \emph{any} iterated-LLM system---self-refinement, agentic loops,
-iterated rewriting---where trajectory-level divergence otherwise saturates for signal and
-apparatus alike.
+\paragraph{Opportunities and future work.} The instrument reads a model's dynamics from
+\emph{token space alone}---no weights, gradients, or activations---which makes it usable in
+the black-box / API-only regime. \emph{Applications.} (i)~The damping length, light cone, and
+critical sampling temperature \citep{critical_temp} are measurable on closed models where
+activation-space probes are unavailable; our cross-level study (\S\ref{sec:crosslevel}) maps
+precisely how far this black-box reading can and cannot substitute for internals.
+(ii)~The attractor census, calibrated to recover a \emph{known} transition matrix
+(\S\ref{sec:census}), is a quantitative probe of the distributional structure a model has
+internalized \citep{hanson1997computational}. (iii)~The effective interaction radius
+($r\!\approx\!4$) can be correlated with attention-head span or induction heads to link a
+black-box observable to mechanism. (iv)~CRN damage cones are a causal-influence map over
+token positions, and the damping length bounds how far a single-token error propagates before
+absorption---relevant to error attribution and hallucination. (v)~The training-time
+trajectory (F25) is a phase-change detector across checkpoints for developmental
+interpretability. \emph{Extensions of the same validated method.} (vi)~A second,
+\emph{compositional-complexity} axis---an effective-rule-complexity or assembly-theoretic
+read-out of what the dynamics \emph{produce}, complementary to the criticality of how they
+\emph{behave}---would be validated the same way, against strings of known complexity.
+(vii)~Applying the damage-spreading machinery to the residual stream gives an activation-space
+information-propagation cone; that object is closely anticipated \citep{tft,residual_dynamics},
+so the contribution there would be the CRN certification and ground-truth calibration, not the
+cone itself. (viii)~The deterministic (greedy, $T\!\to\!0$) limit is a distinct dynamical
+object worth measuring, to test whether the criticality readings are a sampling phenomenon.
+\emph{Rigor.} The census recovery, quantitative on synthetic sources, should be re-established
+against a real model's \emph{true} training corpus rather than a proxy; and the demoted
+capacity gap, if revisited, needs the seed-level rebuild set out in Limitations. Throughout,
+the reusable asset is the statistics-level, apparatus-nulled certification protocol, which
+applies to \emph{any} iterated-LLM system---self-refinement, agentic loops, iterated
+rewriting---where trajectory-level divergence otherwise saturates for signal and apparatus
+alike. A Lieb--Robinson-style propagation bound \citep{lieb1972finite} for the non-unitary
+stochastic LM dynamics would put the light cone on rigorous footing.
 
 \appendix
 \section{Reproducibility}
