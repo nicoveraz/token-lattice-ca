@@ -8,10 +8,11 @@ temperature *T*), with common-random-number (CRN) damage spreading as the probe.
 The organizing principle is **validation by reproduction**: before measuring a
 language model — whose "true" dynamical metrics are unknown — the instrument
 reproduces *known* metrics on systems where the answer is established (the
-**validation ladder**): the ordered/edge/chaotic criticality classes of elementary
-CA rules and the known transition matrices of synthetic Markov sources — the rungs
-that share the instrument's regime (discrete state, finite O(1) perturbation) — plus
-smooth-limit arithmetic checks on the logistic map and a coupled-map lattice.
+**validation ladder**): a decisive ordered-vs-chaotic separation on elementary CA
+rules (the finer 3-class ordering does **not** survive — F33/F34) and the known
+transition matrices of synthetic Markov sources — the rungs that share the
+instrument's regime (discrete state, finite O(1) perturbation) — plus smooth-limit
+arithmetic checks on the logistic map and a coupled-map lattice.
 
 > **Honest scope of the logistic rung (do not overread it).** The logistic-map
 > agreement is a **unit test of the growth-rate arithmetic in the smooth limit**, not
@@ -23,7 +24,7 @@ smooth-limit arithmetic checks on the logistic map and a coupled-map lattice.
 > space. See `experiments/logistic_epsilon_sweep.py` (error is O(ε), log-log slope
 > 0.79) and `--finite-perturbation` (no renormalization: an irreducible ≈0.15
 > bias floor that does *not* vanish as ε→0). The weight-bearing rungs are the ECA
-> class recovery and the census.
+> ordered-vs-chaotic separation and the census.
 
 Only then does it report the weights-free LM measurements it yields (token-space
 Lyapunov, damping length, effective interaction radius, damage light cone, attractor
@@ -31,7 +32,7 @@ census), and the **boundary** where the black-box reading provably decouples fro
 white-box internals.
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F29); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F34); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -64,10 +65,14 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | F24 | velocity∝r + damping-length-radius-trend **replicate on AR** (Pythia causal window) — not MLM artifacts; but the **capacity→sensitivity effect does NOT** (non-monotone over 4 Pythia sizes, ρ=0.17 p=0.29) — masked-specific | C1 |
 | F25 | **Developmental**: across Pythia training, D_norm traces chaotic-init → order-minimum → edge-of-chaos climb; structure crystallizes before sensitivity (real-model F7) | D |
 | **F26** | **Cross-level**: black-box token-space criticality does NOT robustly proxy white-box activation-space λ_top — cross-model family-dependent (Pythia +0.71 / GPT-2 −0.43) | D |
-| **F27** | **Ground-truth calibration**: λ_ca recovers the known ordered<edge<chaotic criticality classes of classical CA rules (the criticality analog of the census) | D |
+| **F27** | **Ground-truth calibration**: the ECA rung separates ordered from chaotic. *Partly superseded:* the 3-class ordering (F33) and the Rule 90 nuance (F34) are demoted/retracted | D |
 | F28 | Cross-level negative confirmed: within-T confounded (uniform −0.9), within-r null (λ_ca model-invariant/kinematic); GPT-2 non-replication | D |
 | **F29** | The negative is **structural**: white-box λ_top is architectural (flat across training, ≈1/L); masked ladder r=−0.92 is depth-mediated → no *useful* weights-free proxy | D/E |
 | **F30** | **The logistic rung was circular** — its estimator renormalizes to the reference orbit, so it is a finite-difference derivative (error O(ε), slope 0.79); demoted to a smooth-limit arithmetic unit test. Finite/no-renorm regime has a ≈0.15 bias floor | 0 |
+| F31 | Repo-wide circularity hunt: `cml_lyap` renormalizes too (same failure mode); the LM damage path is **clean** (twins never re-anchored). Also: λ_top is *tangent-space* while λ_ca is *finite* — a second cause for the cross-level negative | 0 |
+| F32 | `lyap_from_cone`'s branch constants are robust (ordering holds 54/54), but a **fixed** fit window inverts edge-vs-chaotic 3/4 times → use a saturation-relative window | 0 |
+| **F33** | Hardened ECA rung (19 rules × 12 seeds, rule-level bootstrap): **ordered < chaotic p<10⁻⁴ CONFIRMED**; **edge < chaotic p=0.17 NOT significant** → the 3-class ordering is demoted | 2 |
+| **F34** | The ECA rung had an **ignition confound** (λ averaged over ignited + dead runs). Rule 30's negative reading explained (λ\|ignited=+0.45); **Rule 90 "marginal" nuance RETRACTED** (λ\|ignited=+0.28). The real discriminator is **ignition probability** (ordered 0.05 vs edge 0.67 vs chaotic 0.68) | 2 |
 
 ## Layout
 
@@ -305,7 +310,10 @@ the **cross-level boundary** (a structural negative) + a **new white-box front**
 .venv/bin/python experiments/reproduce_lyapunov.py    # smooth-limit unit test (tangent, renormalized) + CML
 .venv/bin/python experiments/reproduce_lyapunov.py --finite-perturbation  # the instrument's regime: no renorm, ~0.15 bias floor
 .venv/bin/python experiments/logistic_epsilon_sweep.py # WHY the agreement is a limit: error is O(ε) -> fig/logistic_epsilon.png
-.venv/bin/python experiments/eca_calib.py             # elementary-CA criticality classes ordered<edge<chaotic (F27)
+.venv/bin/python experiments/eca_calib.py             # original ECA rung (F27; superseded by the two below)
+.venv/bin/python experiments/eca_calib_hardened.py   # 19 rules x 12 seeds + bootstrap CIs (F33)
+.venv/bin/python experiments/eca_calib_ignition.py   # separates ignition prob from conditional spread (F34)
+.venv/bin/python experiments/lyap_fit_sensitivity.py # is the ordering an estimator artifact? (F32)
 .venv/bin/python experiments/fig_validation_ladder.py # -> fig/validation_ladder.png
 
 # --- Cross-level: does black-box criticality proxy white-box? (GPU/MPS) ---

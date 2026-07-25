@@ -515,11 +515,12 @@ class (k=2, radius 1), same protocol as the instrument. Group-mean λ_ca: ordere
 = **+0.256**. **Pre-registered ordering ordered<edge<chaotic RECOVERED.** This is the
 criticality-side analog of the census calibration (which recovers a known transition
 matrix): it validates that black-box λ_ca measures *criticality*, not an apparatus
-artifact. Nuance (a feature, not a bug): linear **Rule 90** reads marginal
-(λ_ca=−0.09) despite wide spread (dmax/N=0.28) — correct, because linear rules spread
-*ballistically* (velocity>0) with marginal *exponential* growth (λ≈0), so λ_ca
-correctly separates exponential growth from mere spreading (the velocity⊥Lyapunov
-distinction). Individual-rule λ_ca is noisy (3 seeds); the class-level ordering is the
+artifact. **[RETRACTED — see F34.** This entry originally claimed that linear Rule 90
+"correctly reads marginal despite wide spread", i.e. that λ_ca separates exponential growth
+from mere ballistic spreading. That reading was an **ignition-averaging artifact**: 25% of
+Rule 90 runs never ignite, and averaging them with the 75% that do produced the ≈0 value.
+Conditional on ignition Rule 90 grows at **+0.276**, like a chaotic rule. The claimed
+velocity⊥Lyapunov separation is **not** demonstrated.**] Individual-rule λ_ca is noisy (3 seeds); the class-level ordering is the
 robust claim. (`results/eca_calib.json`, `experiments/eca_calib.py`.)
 
 ### F28 — the cross-level proxy does NOT hold: an honest negative (issues #4, #5, #15)
@@ -674,7 +675,8 @@ cached so the sweep isolates the *estimator* (`results/lyap_fit_sensitivity.json
 - **Honest residue:** the coarse claim (`ordered` ≪ everything else) is solid; the
   **edge-vs-chaotic separation is the fragile comparison** and should be reported with the
   window rule stated, not as a bare ordering. Rule 90 (linear) reads λ=−0.186 at 5 seeds
-  with dmax_frac=0.266 — still marginal despite wide ballistic spread (the F27 nuance holds).
+  with dmax_frac=0.266 — which at the time appeared to confirm the F27 nuance, but is an
+  ignition artifact (see F34); the F27 nuance is retracted.
 
 ### F33 — hardened ECA rung (19 rules x 12 seeds): the 3-class ordering does NOT survive; ordered-vs-rest does
 Phase 2.1. Pre-registered before running: Wolfram (1984, Physica D 10:1-35) class
@@ -691,9 +693,9 @@ Rule 90 held out as a linear reference. (`results/eca_calib_hardened.json`.)
   and rule-level bootstrap. Only the coarse `ordered ≪ {edge, chaotic}` separation is
   supported. Dropping the two disputed rules (106, 62) does not rescue it (edge +0.154).
   This is the demotion F32 predicted from the window-sensitivity analysis.
-- **Rule 90 (linear reference) behaves as designed:** λ=−0.023, CI [−0.330,+0.236] —
-  marginal despite wide ballistic spread, i.e. the estimator separates exponential growth
-  from mere propagation. The F27 nuance survives hardening.
+- **Rule 90 (linear reference) reads λ=−0.023, CI [−0.330,+0.236]** — which looked like
+  the F27 nuance surviving. It does not: the wide CI was the tell, and F34 shows the value
+  is an ignition-averaging artifact.
 - **New concern, reported not hidden: Rule 30 reads λ=−0.243, CI [−0.850,+0.195]** — the
   canonical chaotic rule reads *negative* with a very wide interval, i.e. its damage
   measurement is unstable across seeds. It was +0.234 at 3 seeds (F27). This inflates the
@@ -701,6 +703,36 @@ Rule 90 held out as a linear reference. (`results/eca_calib_hardened.json`.)
   before the rung is used as evidence for anything finer than ordered-vs-rest.
 - Ordered rules 0/8/32/128/160 all pin at exactly −0.921 with zero-width CI: damage dies
   immediately, so the estimator is at its floor for them (not a meaningful spread).
+
+### F34 — the ECA rung had an ignition confound; Rule 30 explained, the Rule 90 nuance RETRACTED
+`eca_calib.damage_cone` averaged the damage cone over all B lattices *before* fitting λ.
+Single-site damage in a discrete CA is **bimodal** — it ignites or dies — so that average
+measures the mixture, not a growth rate. This is precisely the lesson the LM path already
+learned (F8: "ignition is a rare event and bimodal … must report ignition probability
+separately from spread"; F13, via `block_damage`'s `ignition_prob`/`cond_spread`); the ECA
+rung never received it. Fixed in `experiments/eca_calib_ignition.py`
+(`results/eca_calib_ignition.json`, 19 rules × 12 seeds).
+
+| rule | P(ignite) | λ (averaged, old) | λ \| ignited |
+|---|---:|---:|---:|
+| 30 (canonical chaotic) | 0.209 | −0.243 | **+0.447** |
+| 90 (linear reference) | 0.750 | −0.023 | **+0.276** |
+
+- **Rule 30 resolved.** Its negative reading (F33) was entirely the confound: only 21% of
+  lattices ignite, and the extinguished 79% dragged the mean below zero. Conditional on
+  ignition it is strongly chaotic.
+- **RETRACTION (F27's showcased nuance).** Rule 90 read ≈0 only because 25% of its runs
+  never ignited. Conditional on ignition it grows at +0.276 — indistinguishable from a
+  chaotic rule. **λ_ca does not demonstrate a separation of exponential growth from
+  ballistic spreading.** Removed from `paper/paper.tex`, this log, and `README.md`.
+- **What the rung actually discriminates: ignition probability**, not λ — ordered **0.046**
+  (range 0.000–0.178) vs edge **0.668** vs chaotic **0.682**. Ordered rules 0/8/32/128/160
+  have P(ignite) = 0.000 exactly.
+- Conditional on ignition, edge-vs-chaotic remains non-significant (p=0.067, vs 0.167
+  unconditional), consistent with F33: only the coarse ordered-vs-rest split is supported.
+- **Caveat, recorded not hidden:** the script's `ordered < chaotic p=0.0000` are
+  **NaN-comparison artifacts** (λ|ignited is undefined for rules that never ignite) and must
+  not be quoted. Ordered-vs-rest should be tested on ignition probability instead.
 
 ## Caveats
 

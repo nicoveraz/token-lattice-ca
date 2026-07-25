@@ -160,8 +160,12 @@ arithmetic to a spatially-extended system but not to discrete state.
 estimator (async updates, CRN twins, \texttt{lyap\_from\_cone}) with classical elementary CA
 rules of \emph{known} class recovers the criticality ordering: group-mean $\lambda_{\mathrm
 {ca}}$ is $-0.32$ (ordered: Rules 128/232/4) $<$ $+0.19$ (edge/complex: 110/54) $<$ $+0.26$
-(chaotic: 30/150/22). Linear Rule 90 correctly reads marginal ($\lambda\!\approx\!0$) despite
-wide ballistic spread---the estimator separates exponential growth from mere propagation.
+(chaotic: 30/150/22). The discriminating quantity is the \emph{ignition probability}---the
+fraction of lattices in which a single-site flip survives at all (ordered $0.05$ vs.\ edge
+$0.67$, chaotic $0.68$)---rather than $\lambda$ itself: damage in a discrete CA is bimodal,
+so a $\lambda$ averaged over ignited and extinguished runs measures the mixture. Conditional
+on ignition, edge and chaotic do not separate ($p{=}0.07$), so we claim only the coarse
+ordered-vs-rest split.
 
 \textbf{(4) Synthetic Markov sources (known transition matrices).} The instrument's attractor
 census, run on tiny models trained on three synthetic first-order Markov sources with known
@@ -379,14 +383,15 @@ need internals to see. We tested this hypothesis thoroughly---a ground-truth cal
 two model families, two within-model axes---and report a clean \textbf{negative}: the
 token-space instrument does \emph{not} robustly proxy activation-space criticality.
 
-\textbf{The instrument is a valid criticality measure.} Driving the same damage-spreading
-Lyapunov estimator (async, CRN, single-site flip) with classical Elementary CA rules of
-\emph{known} class recovers the criticality ordering: group-mean $\lambda_{\mathrm{ca}}$ is
-$-0.32$ (ordered, Rules 128/232/4) $<$ $+0.19$ (edge/complex, 110/54) $<$ $+0.26$ (chaotic,
-30/150/22). Linear Rule 90 correctly reads marginal ($\lambda_{\mathrm{ca}}\!\approx\!0$)
-despite wide ballistic spread---$\lambda_{\mathrm{ca}}$ separates exponential growth from
-mere propagation. This is the criticality-side analog of the census calibration: the
-token-space $\lambda_{\mathrm{ca}}$ measures criticality, not an apparatus artifact.
+\textbf{The instrument separates ordered from chaotic rules.} Driving the same
+damage-spreading estimator (async, CRN, single-site flip) with 19 classical Elementary CA
+rules of \emph{known} class over 12 seeds, the rule-level bootstrap separates ordered from
+chaotic decisively ($p<10^{-4}$), while edge-vs-chaotic does not separate ($p{=}0.07$); we
+therefore claim only the coarse split. The discriminating quantity is the \emph{ignition
+probability} (ordered $0.05$; edge $0.67$; chaotic $0.68$), because single-site damage is
+bimodal---it either ignites or dies---so a $\lambda$ averaged over both populations measures
+the mixture rather than a growth rate. This is the criticality-side analog of the census
+calibration, at the resolution the data support.
 
 \textbf{The white-box reference is a clean, cross-family scaling law.} On the autoregressive
 ladder we compute a finite-depth top-Lyapunov exponent
