@@ -1,0 +1,31 @@
+{
+ "kind": "finite_perturbation_no_renormalization",
+ "note": "No renormalization: the separation saturates at the attractor diameter, so lambda_hat is biased relative to the analytic value. This is the regime a discrete O(1) token flip inherits; the smooth-limit agreement of lyap_tangent_fd does NOT transfer here.",
+ "ln2": 0.6931,
+ "by_d0": {
+  "1e-06": {
+   "mean_abs_err": 0.1475,
+   "max_abs_err": 0.7993,
+   "mean_lambda": -0.2029,
+   "lambda_at_r4": 0.5469
+  },
+  "0.001": {
+   "mean_abs_err": 0.1612,
+   "max_abs_err": 1.2345,
+   "mean_lambda": -0.2188,
+   "lambda_at_r4": 0.6322
+  },
+  "0.01": {
+   "mean_abs_err": 0.1995,
+   "max_abs_err": 1.1349,
+   "mean_lambda": -0.1693,
+   "lambda_at_r4": 0.5741
+  },
+  "0.1": {
+   "mean_abs_err": 0.3079,
+   "max_abs_err": 1.4271,
+   "mean_lambda": -0.1385,
+   "lambda_at_r4": 0.2923
+  }
+ }
+}

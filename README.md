@@ -8,13 +8,27 @@ temperature *T*), with common-random-number (CRN) damage spreading as the probe.
 The organizing principle is **validation by reproduction**: before measuring a
 language model — whose "true" dynamical metrics are unknown — the instrument
 reproduces *known* metrics on systems where the answer is established (the
-**validation ladder**): the *exact* logistic-map Lyapunov exponent across the
-bifurcation diagram, a coupled-map lattice, the ordered/edge/chaotic criticality
-classes of elementary CA rules, and the known transition matrices of synthetic
-Markov sources. Only then does it report the weights-free LM measurements it yields
-(token-space Lyapunov, damping length, effective interaction radius, damage light
-cone, attractor census), and the **boundary** where the black-box reading provably
-decouples from white-box internals.
+**validation ladder**): the ordered/edge/chaotic criticality classes of elementary
+CA rules and the known transition matrices of synthetic Markov sources — the rungs
+that share the instrument's regime (discrete state, finite O(1) perturbation) — plus
+smooth-limit arithmetic checks on the logistic map and a coupled-map lattice.
+
+> **Honest scope of the logistic rung (do not overread it).** The logistic-map
+> agreement is a **unit test of the growth-rate arithmetic in the smooth limit**, not
+> a validation of the instrument. Its estimator renormalizes the twin separation back
+> to ε along the *same* orbit as the analytic reference, so
+> `log(d/ε) = log|f'(x)| + O(ε)` — it is a finite-difference evaluation of the
+> derivative it is compared against, which is why agreement is exact at ε=1e-9. A
+> token flip is **O(1)** in a discrete alphabet, so there is no ε→0 limit in token
+> space. See `experiments/logistic_epsilon_sweep.py` (error is O(ε), log-log slope
+> 0.79) and `--finite-perturbation` (no renormalization: an irreducible ≈0.15
+> bias floor that does *not* vanish as ε→0). The weight-bearing rungs are the ECA
+> class recovery and the census.
+
+Only then does it report the weights-free LM measurements it yields (token-space
+Lyapunov, damping length, effective interaction radius, damage light cone, attractor
+census), and the **boundary** where the black-box reading provably decouples from
+white-box internals.
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
 results in **[findings.md](findings.md)** (F1–F29); the adversarial audit that
@@ -52,7 +66,8 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F26** | **Cross-level**: black-box token-space criticality does NOT robustly proxy white-box activation-space λ_top — cross-model family-dependent (Pythia +0.71 / GPT-2 −0.43) | D |
 | **F27** | **Ground-truth calibration**: λ_ca recovers the known ordered<edge<chaotic criticality classes of classical CA rules (the criticality analog of the census) | D |
 | F28 | Cross-level negative confirmed: within-T confounded (uniform −0.9), within-r null (λ_ca model-invariant/kinematic); GPT-2 non-replication | D |
-| **F29** | The negative is **structural**: white-box λ_top is architectural (flat across training, ≈1/L); masked ladder r=−0.92 is depth-mediated → no *useful* weights-free proxy. Validation ladder: the CRN primitive reproduces the **exact** logistic-map Lyapunov | D/E |
+| **F29** | The negative is **structural**: white-box λ_top is architectural (flat across training, ≈1/L); masked ladder r=−0.92 is depth-mediated → no *useful* weights-free proxy | D/E |
+| **F30** | **The logistic rung was circular** — its estimator renormalizes to the reference orbit, so it is a finite-difference derivative (error O(ε), slope 0.79); demoted to a smooth-limit arithmetic unit test. Finite/no-renorm regime has a ≈0.15 bias floor | 0 |
 
 ## Layout
 
@@ -287,7 +302,9 @@ the **cross-level boundary** (a structural negative) + a **new white-box front**
 
 ```bash
 # --- Validation ladder: reproduce KNOWN metrics (CPU only; the credibility spine) ---
-.venv/bin/python experiments/reproduce_lyapunov.py    # logistic-map λ (EXACT, mean err <1e-3) + coupled-map lattice
+.venv/bin/python experiments/reproduce_lyapunov.py    # smooth-limit unit test (tangent, renormalized) + CML
+.venv/bin/python experiments/reproduce_lyapunov.py --finite-perturbation  # the instrument's regime: no renorm, ~0.15 bias floor
+.venv/bin/python experiments/logistic_epsilon_sweep.py # WHY the agreement is a limit: error is O(ε) -> fig/logistic_epsilon.png
 .venv/bin/python experiments/eca_calib.py             # elementary-CA criticality classes ordered<edge<chaotic (F27)
 .venv/bin/python experiments/fig_validation_ladder.py # -> fig/validation_ladder.png
 
@@ -305,7 +322,7 @@ caffeinate -im .venv/bin/python experiments/masked_ladder.py     # masked BERT d
 .venv/bin/python experiments/activation_cone.py       # -> fig/actcone_*.png (white-box; CRN null=0 by construction)
 ```
 
-Outcomes: the **validation ladder** (F27 + logistic exact + census transition-matrix
+Outcomes: the **validation ladder** (F27 ECA classes + census transition-matrix
 recovery) establishes the instrument reproduces known metrics before it measures LMs.
 The **cross-level** study returns a **structural negative** (F26/F28/F29): the black-box
 token-space criticality does not proxy the white-box activation-space Lyapunov, because

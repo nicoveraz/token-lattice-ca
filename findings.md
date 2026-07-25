@@ -574,6 +574,40 @@ cannot proxy the learned token dynamics.
   p-hacking. This is the honest, mechanistically-explained answer to the
   external-significance question the instrument raises.
 
+## Phase 0 findings — correctness audit of the validation ladder
+
+### F30 — the logistic-map "validation" was CIRCULAR; demoted to a smooth-limit unit test
+**Self-verified before acting** (external audit of `dd302df` flagged it; confirmed here):
+in `results/reproduce_lyapunov.json` the `crn` array is **bit-identical to `exact` at all
+61 points** (0 differing elements, max|diff| = 0.0). Cause, in `lyap_crn`
+(now `lyap_tangent_fd`): `xp = x + d0*np.sign(xp - x)` re-anchors the twin to the
+**reference orbit every step**, along the same orbit/seed/burn-in as `lyap_exact`. Hence
+`log(d/d0) = log|f'(x)| + O(d0)` — the estimator **is** a finite-difference evaluation of
+the analytic derivative it was being compared against. It reproduced the bifurcation
+diagram because it *is* the bifurcation diagram.
+- **Independently reproduced the O(d0) scaling** (`results/logistic_epsilon_sweep.json`,
+  `fig/logistic_epsilon.png`): mean|err| = 0.000000 (d0=1e-9), 0.000003 (1e-6), 0.003351
+  (1e-3), 0.039985 (1e-2), 0.256042 (1e-1); **log-log slope 0.79** ⇒ error is O(d0).
+  Perfect agreement is a property of the infinitesimal limit and nothing else.
+- **A token flip is O(1) in a discrete alphabet — there is no ε→0 limit in token space.**
+  So this rung certified exactly the one regime the instrument can never occupy.
+- **The docstring claim "the SAME primitive the LM instrument uses" was false at code
+  level.** `reproduce_lyapunov.py` imports only `pathlib/json/numpy`; the LM estimator is
+  `lyap_from_cone` (`experiments/lyapunov.py:22`). Zero shared code, and structurally
+  different estimators (renormalized tangent growth vs a windowed polyfit on a saturating
+  discrete damage count).
+- **The instrument's actual regime, measured** (`--finite-perturbation`,
+  `results/logistic_finite_perturbation.json`): no renormalization, finite d0 →
+  mean|err| = 0.147 (d0=1e-6), 0.161 (1e-3), 0.200 (1e-2), 0.308 (1e-1). The bias
+  **does not vanish as d0→0** (≈0.15 floor at d0=1e-9 too): it comes from the windowed fit
+  on a *saturating* separation, not from perturbation size. This is the honest analogue of
+  what `lyap_from_cone` does on a discrete damage count.
+- **Action:** `lyap_crn` → `lyap_tangent_fd` with an honest docstring; the logistic and CML
+  rungs are relabelled **smooth-limit arithmetic unit tests**, not validation of the
+  instrument, in `paper/paper.tex`, `README.md`, and here. The **weight-bearing rungs are
+  the ECA class recovery (F27) and the census** — both discrete, finite-perturbation,
+  no renormalization. New JSONs written to new files; prior results untouched (audit trail).
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`

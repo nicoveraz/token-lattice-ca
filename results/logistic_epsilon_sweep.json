@@ -1,0 +1,59 @@
+{
+ "d0_grid": [
+  1e-09,
+  1e-06,
+  0.001,
+  0.01,
+  0.1
+ ],
+ "n_r_points": 61,
+ "r_min": 2.8,
+ "r_max": 4.0,
+ "ln2": 0.6931,
+ "tangent_renormalized": {
+  "1e-09": {
+   "mean_abs_err": 2.5e-07,
+   "max_abs_err": 7.19e-06
+  },
+  "1e-06": {
+   "mean_abs_err": 2.83e-06,
+   "max_abs_err": 4.333e-05
+  },
+  "0.001": {
+   "mean_abs_err": 0.00335139,
+   "max_abs_err": 0.04816713
+  },
+  "0.01": {
+   "mean_abs_err": 0.03998547,
+   "max_abs_err": 0.48811524
+  },
+  "0.1": {
+   "mean_abs_err": 0.25604164,
+   "max_abs_err": 1.70352715
+  }
+ },
+ "finite_no_renorm": {
+  "1e-09": {
+   "mean_abs_err": 0.146089,
+   "max_abs_err": 0.799329
+  },
+  "1e-06": {
+   "mean_abs_err": 0.147543,
+   "max_abs_err": 0.799325
+  },
+  "0.001": {
+   "mean_abs_err": 0.161225,
+   "max_abs_err": 1.234529
+  },
+  "0.01": {
+   "mean_abs_err": 0.199514,
+   "max_abs_err": 1.134935
+  },
+  "0.1": {
+   "mean_abs_err": 0.307916,
+   "max_abs_err": 1.427092
+  }
+ },
+ "tangent_error_loglog_slope": 0.788,
+ "interpretation": "Tangent error scales as O(d0) (log-log slope ~1): perfect agreement at d0=1e-9 is the infinitesimal limit, not an independent confirmation of damage spreading. The finite, un-renormalized estimator does NOT converge to the analytic value -- and a token flip is O(1), so the token instrument inherits the finite regime, never the tangent one."
+}
