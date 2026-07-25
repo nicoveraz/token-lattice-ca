@@ -734,6 +734,27 @@ rung never received it. Fixed in `experiments/eca_calib_ignition.py`
   **NaN-comparison artifacts** (λ|ignited is undefined for rules that never ignite) and must
   not be quoted. Ordered-vs-rest should be tested on ignition probability instead.
 
+**Framing correction (the mixture is a composite, not merely an artifact).** An earlier draft
+of this entry called the ignition-averaged λ an "artifact". That is too strong, and the data
+say so: λ_all separated ordered from chaotic at **p<10⁻⁴** (F33), whereas λ|ignited is
+*undefined* for the ordered group (those rules never ignite). For the one comparison that
+survives, the mixture was the **more** usable statistic. The error was never that λ_all fails
+to discriminate — it is that we **labelled a composite with a component's name** and read it
+as a growth rate, so Rule 30's −0.243 was interpreted as "not chaotic" when it is strongly
+chaotic in the 21% of runs where damage ignites.
+- Two real residues of that mislabelling: the mixture is **not injective** (rule 90 at
+  P=0.75, λ|ign=+0.28 and rule 4 at P=0.15, λ|ign=+0.05 both land near −0.02 from entirely
+  different dynamics), and its weight is **apparatus-sensitive** (it moves with N, sweeps and
+  the ignition threshold — rule 30 went +0.234 at 3 seeds to −0.243 at 12).
+- **Resolution: report the pair (P_ignite, λ|ignited).** It is strictly more information than
+  the mixture, which is a lossy projection of it; it stays interpretable; and it retains the
+  discriminating power, since P_ignite alone separates ordered 0.046 from edge 0.668 /
+  chaotic 0.682. Decomposing did not discard the discriminator — it located it.
+- **P_ignite is the physically right object, not a nuisance.** Damage spreading in a discrete
+  CA is directed-percolation-class, and DP transitions are characterised by *survival
+  probability*. This is the same quantity whose boundary the Domany–Kinzel rung (Phase 2.2)
+  is meant to reproduce, so the ECA and DK rungs should report a common order parameter.
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
