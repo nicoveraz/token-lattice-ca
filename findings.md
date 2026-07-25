@@ -847,6 +847,34 @@ for rules that never ignite) and could not be quoted. Rule is the unit of analys
   damage dies from rules whose damage survives* — and supports it decisively. That is the
   DP-class survival transition, and it is the order parameter the DK rung (#22) should share.
 
+### F37 — the CML rung's eps>0 values are correct, but the rung stays a smooth-limit check (issue #23)
+The coupled-map-lattice rung had ground truth only at eps=0; its eps>0 values were compared
+against nothing. Computed the maximal Lyapunov exponent by the standard **Benettin** method
+— tangent vector evolved under the *exact analytic Jacobian* `C diag(f'(x))`, renormalized
+each step — as a genuine reference. (`results/cml_benettin.json`, 5 seeds, 20k steps.)
+
+| eps | Benettin (exact J) | `cml_lyap` (finite-diff) | \|diff\| |
+|---|---:|---:|---:|
+| 0.0 | 0.6932 ± 0.0000 | 0.6936 ± 0.0007 | 0.0003 |
+| 0.1 | 0.4499 ± 0.0008 | 0.4490 ± 0.0013 | 0.0009 |
+| 0.2 | 0.3671 ± 0.0008 | 0.3674 ± 0.0041 | 0.0004 |
+| 0.3 | 0.3636 ± 0.0009 | 0.3648 ± 0.0023 | 0.0011 |
+| 0.4 | 0.3691 ± 0.0009 | 0.3683 ± 0.0011 | 0.0007 |
+
+- **Implementation self-check:** at eps=0 the lattice decouples and Benettin returns
+  0.6932 against the analytic ln2 = 0.6931 (error 1e-4), so the reference is trustworthy
+  before it is used to judge anything.
+- **`cml_lyap` is correct: max |Benettin − cml_lyap| = 0.0011** across the whole eps range.
+  The gap flagged in F31 was that the values were unverified, not that they were wrong.
+- The exponent is **non-monotone in coupling** (0.693 → 0.450 → 0.367 → 0.364 → 0.369,
+  minimum near eps≈0.3), which the earlier "known monotone reduction with coupling" phrasing
+  in the paper got wrong; it decreases then turns back up.
+- **What this does NOT do.** Benettin is itself a *tangent-space* computation, so the
+  agreement is two infinitesimal methods agreeing with each other. It does **not**
+  rehabilitate the CML as a validation of the token instrument, which lives in the finite,
+  discrete regime (F30/F31/F35). The rung stays labelled a smooth-limit arithmetic check —
+  it is now a *verified* one.
+
 ## Audit ledger — verdicts on every reviewer objection (W1–W9)
 
 Status of each objection in `paper/REVIEW.md` as of Phase 3. "Resolved" means the paper no

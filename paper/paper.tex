@@ -70,10 +70,9 @@ This paper's organizing principle is \textbf{validation by reproduction}. We bui
 instrument---a token-lattice CA with CRN damage spreading (\S\ref{sec:instrument})---and,
 before turning it on a language model, show that it recovers \emph{known} dynamical metrics
 on systems where the answer is established (\S\ref{sec:validation}): the criticality classes
-of elementary CA rules, a stochastic PCA's published damage-spreading boundary, the
-smooth-limit growth-rate arithmetic on the logistic map and coupled-map
-lattice, the criticality classes of elementary CA rules, and the known transition matrices of
-synthetic Markov sources. An instrument that reproduces exact values on known systems can be
+of elementary CA rules, a stochastic PCA's published damage-spreading boundary, the known
+transition matrices of synthetic Markov sources, and---as explicitly labelled smooth-limit
+arithmetic checks---the logistic map and a coupled-map lattice. An instrument that reproduces exact values on known systems can be
 \emph{trusted} on an unknown one. Only then do we report the new, weights-free measurements it
 yields on trained LMs (\S\ref{sec:lm}): a token-space Lyapunov exponent, a damping length, an
 effective interaction radius, a damage light cone, and an attractor census. Finally we map the
@@ -152,8 +151,10 @@ bias of $\approx\!0.15$ nats/step that does \emph{not} vanish as $\epsilon\to0$
 perturbation size, sets the error. The weight-bearing rungs are therefore (3) and (4).
 
 \textbf{(2) A coupled-map lattice (spatial, still smooth).} A ring of diffusively coupled
-logistic maps recovers the single-site $\ln 2$ at zero coupling and a monotone reduction with
-coupling. This estimator also renormalizes, so it inherits the caveat above; it extends the
+logistic maps recovers the single-site $\ln 2$ at zero coupling, and its coupling
+dependence is verified against an exact Benettin/Jacobian reference (max discrepancy
+$1.1\times10^{-3}$); the exponent is non-monotone in coupling, with a minimum near
+$\epsilon\!\approx\!0.3$. This estimator also renormalizes, so it inherits the caveat above; it extends the
 arithmetic to a spatially-extended system but not to discrete state.
 
 \textbf{(3) Elementary CA criticality classes.} Driving the identical damage-spreading

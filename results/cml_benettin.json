@@ -1,0 +1,53 @@
+{
+ "note": "Maximal Lyapunov of the CML by Benettin (exact analytic Jacobian, renormalized tangent vector) as ground truth for the eps>0 values, which previously had none. NOTE: Benettin is a TANGENT-space computation, so agreement does not rehabilitate the CML as a validation of the token instrument -- both live in the infinitesimal limit and the instrument does not (F30/F31). This closes the 'compared against nothing' gap only; the rung stays a smooth-limit check.",
+ "r": 4.0,
+ "N": 64,
+ "n_steps": 20000,
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "ln2": 0.6931,
+ "eps0_error_vs_ln2": 0.0001,
+ "max_abs_diff": 0.0011,
+ "by_eps": {
+  "0": {
+   "benettin_mean": 0.6932,
+   "benettin_sd": 0.0,
+   "cml_lyap_mean": 0.6936,
+   "cml_lyap_sd": 0.0007,
+   "abs_diff": 0.0003
+  },
+  "0.1": {
+   "benettin_mean": 0.4499,
+   "benettin_sd": 0.0008,
+   "cml_lyap_mean": 0.449,
+   "cml_lyap_sd": 0.0013,
+   "abs_diff": 0.0009
+  },
+  "0.2": {
+   "benettin_mean": 0.3671,
+   "benettin_sd": 0.0008,
+   "cml_lyap_mean": 0.3674,
+   "cml_lyap_sd": 0.0041,
+   "abs_diff": 0.0004
+  },
+  "0.3": {
+   "benettin_mean": 0.3636,
+   "benettin_sd": 0.0009,
+   "cml_lyap_mean": 0.3648,
+   "cml_lyap_sd": 0.0023,
+   "abs_diff": 0.0011
+  },
+  "0.4": {
+   "benettin_mean": 0.3691,
+   "benettin_sd": 0.0009,
+   "cml_lyap_mean": 0.3683,
+   "cml_lyap_sd": 0.0011,
+   "abs_diff": 0.0007
+  }
+ }
+}
