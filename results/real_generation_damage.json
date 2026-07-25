@@ -16,5 +16,15 @@
   "n_trials": 32,
   "null_max_divergence": 0.0,
   "secs": 124.7
- }
+ },
+ "pythia-410m": {
+  "P_persist": 1.0,
+  "P_reconverge": 0.0,
+  "mean_divergence_frac": 0.9507812499999999,
+  "divergence_frac_if_persisted": 0.9507812499999999,
+  "n_trials": 32,
+  "null_max_divergence": 0.0,
+  "secs": 257.8
+ },
+ "_note": "Damage spreading on REAL autoregressive generation (not the ring CA). P_persist is the DP-style survival probability of a single injected token error; reported as a pair with conditional divergence per F34. The null arm (no injection, shared uniforms) is asserted to be exactly 0."
 }

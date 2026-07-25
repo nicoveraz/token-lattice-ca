@@ -785,15 +785,23 @@ autoregressive generation, with the same CRN discipline
 stream) diverges by **exactly zero** — asserted in code, not assumed. So the protocol
 transfers to free generation and the numbers mean what they say.
 
-**Two independent readouts agree that absorption is zero** (pythia-70m, 4 prompts × 8 seeds
-= 32 trials; larger models running):
-- **Token identity:** `P_persist = 1.000`, `P_reconverge = 0.000`, mean post-injection
-  divergence `0.945`. The error is *never* absorbed.
-- **Distributional (the fairer test):** TV between the twins' next-token distributions,
-  normalised by the TV between two *independent* continuations of the same prompt:
-  **TV_norm ≈ 1.0** (tail 1.08; trajectory 0.87–1.28). The twins end up as far apart as
-  unrelated continuations. Not a harsh-metric artifact — there is no reconvergence in
-  distribution either.
+**Two independent readouts agree that absorption is zero.** Token identity, all three
+models, 4 prompts × 8 seeds = 32 trials each:
+
+| model | P_persist | P_reconverge | divergence | null |
+|---|---:|---:|---:|---:|
+| pythia-70m | **1.000** | 0.000 | 0.945 | 0.0 |
+| pythia-160m | **1.000** | 0.000 | 0.958 | 0.0 |
+| pythia-410m | **1.000** | 0.000 | 0.951 | 0.0 |
+
+The error is *never* absorbed, at any scale tested, and the effect does not weaken with model
+size. **Distributional readout** (the fairer test, since after an injection the sequences are
+no longer positionally aligned): TV between the twins' next-token distributions normalised by
+the TV between two *independent* continuations of the same prompt —
+**TV_norm = 0.967** on pythia-70m (TV_damage 0.941 vs floor 0.973). The twins end up ~97% of
+the way to complete decorrelation. So the saturation is not a harsh-metric artifact: there is
+no meaningful reconvergence in distribution either. (The residual 3% is the only trace of
+coupling that survives, and it is not a recovery signal.)
 
 **Mechanism (structural, not empirical accident).** Free generation **never resamples a
 token**: once the wrong token is in the context it stays there permanently, and the two
@@ -809,9 +817,10 @@ the light cone is kinematic (F16/F21), λ_ca(r) is model-invariant (F28), and th
 proxy failed structurally (F29/F31). The instrument characterises *(model, construction)*,
 with the construction carrying more of the signal than the paper has been claiming.
 
-**Status: preliminary but hard to explain away** — one model so far, though two independent
-metrics agree, both nulls are certified exactly zero, and the mechanism is structural rather
-than statistical. Full 3-model run pending. The honest framing for the paper is a precise
+**Status: established on the token-identity readout** (3/3 models, 96 trials, all nulls
+exactly zero, no size dependence) and **corroborated distributionally** on pythia-70m
+(TV_norm 0.967); the 160m/410m distributional arms are still running. The mechanism is
+structural rather than statistical, which is why three models suffice. The honest framing for the paper is a precise
 statement of what the instrument does and does not measure, made *before* a reviewer made it.
 
 ## Audit ledger — verdicts on every reviewer objection (W1–W9)
