@@ -19,16 +19,48 @@ TS = [0.7, 0.9]
 SEEDS = [21, 22]
 
 
-def lyap_from_cone(cone, N):
-    """cone (sweeps+1, N) per-site damage prob -> finite-size Lyapunov (per sweep)."""
+def lyap_from_cone(cone, N, sat_threshold=3.5, frac_of_max=0.5, max_sweeps=8, min_sweeps=3,
+                   fit_window=None):
+    """cone (sweeps+1, N) per-site damage prob -> finite-size Lyapunov (per sweep).
+
+    The estimator fits the slope of log(expected damaged sites) over an early window. The
+    window is chosen by a DATA-DEPENDENT branch whose constants were previously hard-coded;
+    they are now explicit keyword arguments so that (a) they can be reported, and (b) a
+    headline result can be made independent of them.
+
+    Parameters
+    ----------
+    sat_threshold : float
+        If the damage count ever exceeds this, the perturbation is treated as having GROWN
+        beyond the ~3-site seed; otherwise it is treated as HEALED and the early decay is fit.
+    frac_of_max : float
+        In the grown branch, the window ends when the count first reaches this fraction of
+        its maximum (i.e. before saturation flattens the slope).
+    max_sweeps, min_sweeps : int
+        Clamp on the fitted window length.
+    fit_window : (start, end) or None
+        If given, BYPASSES the branch entirely and fits exactly this window. Use a
+        PRE-REGISTERED window for headline results so that no claim can be an artifact of
+        the data-dependent branch.
+
+    Returns (lambda_per_sweep, dmax_fraction_of_N).
+    """
     d = np.maximum(cone.sum(axis=1), 1e-6)               # expected damaged sites
     dmax = d.max()
-    if dmax >= 3.5:                                       # grew beyond the ~3-site seed
-        end = int(np.argmax(d >= 0.5 * dmax)); end = max(3, min(end, len(d) - 1))
-    else:                                                 # healed: fit the early decay
-        end = min(8, len(d) - 1)
-    ts = np.arange(end + 1)
-    lam = float(np.polyfit(ts, np.log(d[:end + 1]), 1)[0])
+    if fit_window is not None:                            # pre-registered: no data-dependence
+        start, end = fit_window
+        start = max(0, int(start)); end = int(min(end, len(d) - 1))
+        if end <= start:
+            end = min(start + 1, len(d) - 1)
+    else:
+        start = 0
+        if dmax >= sat_threshold:                         # grew beyond the ~3-site seed
+            end = int(np.argmax(d >= frac_of_max * dmax))
+            end = max(min_sweeps, min(end, len(d) - 1))
+        else:                                             # healed: fit the early decay
+            end = min(max_sweeps, len(d) - 1)
+    ts = np.arange(start, end + 1)
+    lam = float(np.polyfit(ts, np.log(d[start:end + 1]), 1)[0])
     return lam, float(dmax / N)
 
 

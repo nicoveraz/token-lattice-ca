@@ -608,6 +608,74 @@ diagram because it *is* the bifurcation diagram.
   the ECA class recovery (F27) and the census** — both discrete, finite-perturbation,
   no renormalization. New JSONs written to new files; prior results untouched (audit trail).
 
+### F31 — repo-wide hunt for the same failure mode: one more hit, the LM path is clean
+Grepped every twin/perturbed/damaged trajectory for renormalization, re-anchoring, or
+resetting to the reference, and every comparison sharing a seed/orbit/burn-in.
+**Listed, not fixed** (fixes deferred to Phase 2).
+
+**CIRCULAR — same failure mode as F30 (1 hit):**
+- `cml_lyap` (`reproduce_lyapunov.py:144`): `xp = x + (xp-x)*(d0/(d+1e-300))` rescales the
+  twin every step ⇒ tangent-space (infinitesimal) estimate, not finite damage spreading.
+  The CML ladder rung inherits F30's caveat exactly. Its ε>0 values additionally have **no
+  ground truth** (only ε=0 ↔ ln2). *Fix owed: Phase 2.3 Benettin/QR reference.*
+
+**GENUINE — finite perturbation, twins never re-anchored (4):**
+- `mlm_damage.block_damage`: twins = `base.copy()` + block flip, evolved under a **shared
+  tiled uniform stream**, never re-anchored; damage = Hamming diff of snapshots. ✅
+- `ar_probe.block_damage`: identical structure. ✅
+- `eca_calib.damage_cone` (**the F27 weight-bearing rung**): single-site flip, shared visit
+  order + shared per-site uniforms, no renormalization. ✅
+- `differential.coupled`: shared init + shared stream; null arm identical ⇒ exactly 0. ✅
+
+**Shared seed / burn-in — intentional and correct, not circular (2):**
+- `block_damage` and `drift_floor` both derive `base` from `run(..., seed=seed)`: the *same*
+  settled state. That is matched-pairs design (D and D0 measured from one starting state),
+  which is what you want, not a leak.
+- Known coupling mismatch (audit W2) persists: D uses **shared** uniforms (CRN), D0 uses
+  **independent** uniforms. Not circular, but D/D0 is a ratio across two couplings — and
+  Phase 2.2 (Domany–Kinzel) is precisely the experiment that shows the damage boundary is a
+  property of *(model, coupling)*.
+
+**New mechanism for the cross-level negative (F28/F29) — regime mismatch, not just level:**
+- `crosslevel.white_box` λ_top uses power iteration with `v ← w/‖w‖` each step. This is
+  **not** circular (power iteration is the standard spectral-radius algorithm and is not
+  compared against its own derivative) — but it makes λ_top an **infinitesimal /
+  tangent-space** quantity, while λ_ca is a **finite, O(1), un-renormalized** one. F30's
+  ε-sweep shows these two regimes disagree systematically (≈0.15 nats/step bias floor)
+  *even in a system where both are well-defined and ground truth is known*. So the
+  cross-level null had a second, deeper cause than "λ_top is architectural": the two
+  quantities were never in the same regime. This strengthens the negative and should be
+  stated in the paper.
+
+### F32 — the F27 ordering is robust to the estimator's branch constants, but NOT to an arbitrary fixed window
+`lyap_from_cone`'s four magic constants are now named kwargs (`sat_threshold=3.5`,
+`frac_of_max=0.5`, `max_sweeps=8`, `min_sweeps=3`) plus a `fit_window=(start,end)` that
+bypasses the data-dependent branch. Sensitivity run over 5 seeds × 8 rules, simulation
+cached so the sweep isolates the *estimator* (`results/lyap_fit_sensitivity.json`).
+
+- **Adaptive branch: ordering recovered in 54/54 parameter settings** (all combinations of
+  sat_threshold ∈ {2.5,3.5,5.0} × frac_of_max ∈ {0.3,0.5,0.7} × max_sweeps ∈ {5,8,12} ×
+  min_sweeps ∈ {2,3}). ordered<edge, ordered<chaotic and edge<chaotic each hold in every
+  setting; the edge→chaotic margin ranges +0.023 … +0.324. So the branch constants are
+  **not** a garden-of-forking-paths risk for F27.
+- **Fixed windows are a different story.** `ordered < {edge, chaotic}` survives all four
+  tested windows, but **edge < chaotic INVERTS for any window extending past ~3 sweeps**:
+  (0,3) ord −1.451 < edge +0.235 < chaos +0.249 ✓; (0,5) edge +0.172 > chaos +0.137 ✗;
+  (0,8) +0.125 > +0.078 ✗; (1,6) +0.093 > +0.028 ✗.
+- **Mechanism:** chaotic rules saturate *fast*, so a long fixed window averages the
+  post-saturation plateau into the slope and deflates their exponent; edge rules grow
+  slowly and keep growing through the window. The adaptive rule avoids this precisely
+  because it ends the window at a fraction of the run's own maximum.
+- **Consequence for Phase 2.1 (plan change).** A single global pre-registered fixed window
+  is the **wrong** pre-registration for this estimator: different classes saturate at
+  different sweeps, so any one window privileges one class. The defensible pre-registration
+  is a *saturation-relative* window with constants fixed in advance (demonstrably robust,
+  54/54), or a short fixed window (≤3 sweeps) selected on held-out rules.
+- **Honest residue:** the coarse claim (`ordered` ≪ everything else) is solid; the
+  **edge-vs-chaotic separation is the fragile comparison** and should be reported with the
+  window rule stated, not as a bare ordering. Rule 90 (linear) reads λ=−0.186 at 5 seeds
+  with dmax_frac=0.266 — still marginal despite wide ballistic spread (the F27 nuance holds).
+
 ## Caveats
 
 Several pilot caveats are now *addressed*: seeds are swept (F11, ≥5), the `<unk>`
