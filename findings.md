@@ -823,6 +823,30 @@ exactly zero, no size dependence) and **corroborated distributionally** on pythi
 structural rather than statistical, which is why three models suffice. The honest framing for the paper is a precise
 statement of what the instrument does and does not measure, made *before* a reviewer made it.
 
+### F36 — the ECA class separation, tested on the right statistic (issue #24)
+Re-runs the class test on **ignition probability** instead of λ, per F34. This replaces the
+λ-based ordered-group p-values, which were NaN-comparison artifacts (λ|ignited is undefined
+for rules that never ignite) and could not be quoted. Rule is the unit of analysis.
+(`results/eca_ordered_vs_rest.json`.)
+
+| class | P_ignite | CI95 | rules |
+|---|---:|---|---:|
+| ordered | **0.046** | [0.000, 0.102] | 7 |
+| edge | 0.668 | [0.392, 0.944] | 4 |
+| chaotic | 0.682 | [0.486, 0.867] | 7 |
+
+- **Primary claim, now on a valid statistic: ordered < rest, p=0.0000, Cohen's d = 3.03.**
+  Non-overlapping CIs and a very large effect. This is a *stronger* result than the λ-based
+  version and, unlike it, is not an artifact.
+- **Edge vs chaotic is definitively dead: p=0.470** — a coin flip. Under λ it looked
+  marginal (p=0.067 conditional, 0.167 unconditional); on the correct statistic there is no
+  separation at all. The three-class ordering is not recoverable by this instrument.
+- Reference rule 90 sits at P_ignite=0.750, inside the chaotic range — consistent with F34's
+  retraction of its "marginal" reading.
+- **Net:** the ECA rung supports exactly one claim — *the instrument separates rules whose
+  damage dies from rules whose damage survives* — and supports it decisively. That is the
+  DP-class survival transition, and it is the order parameter the DK rung (#22) should share.
+
 ## Audit ledger — verdicts on every reviewer objection (W1–W9)
 
 Status of each objection in `paper/REVIEW.md` as of Phase 3. "Resolved" means the paper no

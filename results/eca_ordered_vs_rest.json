@@ -1,0 +1,73 @@
+{
+ "note": "Class separation tested on IGNITION PROBABILITY, the DP-class order parameter. Supersedes the lambda-based tests, whose ordered-group p-values were NaN-comparison artifacts (lambda|ignited is undefined for rules that never ignite). Rule is the unit of analysis.",
+ "source": "eca_calib_ignition.json",
+ "n_boot": 20000,
+ "groups": {
+  "ordered": {
+   "mean": 0.0462,
+   "n_rules": 7,
+   "ci95": [
+    0.0,
+    0.1016
+   ],
+   "rules": {
+    "0": 0.0,
+    "4": 0.1458,
+    "8": 0.0,
+    "32": 0.0,
+    "128": 0.0,
+    "160": 0.0,
+    "232": 0.1777
+   }
+  },
+  "chaotic": {
+   "mean": 0.6822,
+   "n_rules": 7,
+   "ci95": [
+    0.4862,
+    0.8666
+   ],
+   "rules": {
+    "22": 0.6888,
+    "30": 0.209,
+    "45": 0.5189,
+    "105": 1.0,
+    "126": 0.7845,
+    "146": 0.5742,
+    "150": 1.0
+   }
+  },
+  "edge": {
+   "mean": 0.6678,
+   "n_rules": 4,
+   "ci95": [
+    0.3919,
+    0.9437
+   ],
+   "rules": {
+    "54": 0.998,
+    "62": 0.293,
+    "106": 0.4909,
+    "110": 0.8893
+   }
+  },
+  "reference": {
+   "mean": 0.75,
+   "n_rules": 1,
+   "ci95": [
+    0.75,
+    0.75
+   ],
+   "rules": {
+    "90": 0.75
+   }
+  }
+ },
+ "tests": {
+  "ordered_lt_rest_p": 0.0,
+  "ordered_lt_edge_p": 0.0,
+  "ordered_lt_chaotic_p": 0.0,
+  "edge_lt_chaotic_p": 0.46985,
+  "cohens_d_ordered_vs_rest": 3.027
+ }
+}

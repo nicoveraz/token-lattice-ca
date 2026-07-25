@@ -3,3 +3,6 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
 [pythia-70m] TV_norm(tail)=0.967  TV_damage=0.941  TV_floor=0.973  (146.9s)
          TV_norm trajectory: [0.8932, 0.9428, 0.9671, 0.9622, 0.9976, 0.9514, 1.0232, 1.031, 1.0146, 1.0104] ...
 Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  53%|█████▎    | 79/148 [00:00<00:00, 780.22it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 1002.02it/s]
+[pythia-160m] TV_norm(tail)=0.964  TV_damage=0.943  TV_floor=0.977  (307.9s)
+         TV_norm trajectory: [0.9126, 0.8839, 0.8543, 0.9093, 0.9236, 0.8717, 0.9486, 0.9694, 0.9536, 0.9679] ...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7984.05it/s]
