@@ -216,3 +216,53 @@ def test_responsible_use_section_exists():
     tex = _tex()
     assert re.search(r"\\section\{[^}]*Responsible use", tex), (
         "no responsible-use section -- automatic desk reject at this venue")
+
+
+# ------------------------------------------------------------------ issue #41: the page limit
+BODY_PAGE_LIMIT = 5
+
+
+def _pdf_pages_text():
+    import subprocess
+    pdf = ROOT / "paper" / "paper.pdf"
+    if not pdf.exists():
+        pytest.skip("paper.pdf not built")
+    try:
+        txt = subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True,
+                             text=True, timeout=60).stdout
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pytest.skip("pdftotext unavailable")
+    return txt.split("\f")
+
+
+def test_body_fits_the_page_limit():
+    """The body must end within the venue's page limit.
+
+    This is the submission's hardest constraint and nothing asserted it: the fit was verified by
+    hand after each edit, and it is currently a property of neurips_2025.sty. The 2026 style is
+    unpublished (404 as of 2026-07-26) and its geometry sets the page count, so swapping it can
+    silently undo a cut that took the body from 13 pages to 5. References, appendix and checklist
+    are excluded from the limit, so the test locates where the bibliography starts.
+    """
+    import re as _re
+    pages = _pdf_pages_text()
+    # The submission style prefixes every line with a line number, so "References" is not the
+    # first token on its page. Match it as a standalone heading line instead.
+    heading = _re.compile(r"^\s*\d*\s*References\s*$", _re.M)
+    refs_page = next((i + 1 for i, p in enumerate(pages) if heading.search(p)), None)
+    assert refs_page is not None, "could not locate the References heading in the built PDF"
+    body_pages = refs_page - 1
+    assert body_pages <= BODY_PAGE_LIMIT, (
+        f"the body occupies {body_pages} pages against a {BODY_PAGE_LIMIT}-page limit "
+        f"(References starts on page {refs_page}). See paper/NOTES.md §4 for the cut order and "
+        f"the do-not-cut list.")
+
+
+def test_the_style_file_in_use_is_recorded():
+    """If the style changes, the page-count result above changes with it -- say which is in use."""
+    tex = _tex()
+    import re as _re
+    m = _re.search(r"\\usepackage\{(neurips_\d{4})\}", tex)
+    assert m, "no neurips style package found; page-count guarantees are meaningless without one"
+    sty = ROOT / "paper" / f"{m.group(1)}.sty"
+    assert sty.exists(), f"{m.group(1)}.sty is referenced but not present in paper/"
