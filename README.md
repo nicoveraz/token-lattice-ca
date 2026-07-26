@@ -160,7 +160,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **66 tests** and now covers every backend, not just the toy JAX path:
+The suite is **79 tests** and now covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
@@ -172,6 +172,16 @@ The suite is **66 tests** and now covers every backend, not just the toy JAX pat
   is predicted by an independent simulator and asserted **cell-for-cell** — through
   `lattice.run`, the loop every model number comes from. Includes an off-line control that
   must fail, so the exact test cannot pass vacuously.
+- `tests/test_results_self_consistency.py` — a **results file must not contradict its own
+  declared design**. Two defects lived in analysis code that generated a JSON that fed a figure
+  and three documents, and no prose grep could find them: F39 (`n_pre` was 8 where the declared
+  pre set gives 16) and F42 (λ averaged over runs where it is undefined). These assert the
+  emitted `n` against the design, the ignition-filter asymmetry between λ and D_norm, and the
+  *margin* of the `D_norm==0` fallback rather than its current value.
+- `tests/test_paper_numbers.py` — **the paper must not contradict its results files.** Every
+  load-bearing number in `paper.tex` is checked against the JSON it came from, plus submission
+  hygiene (no unverified citations, no self-identifying strings, responsible-use section present).
+  It caught a real loss on its first run: a DK measurement dropped during a page-fit trim.
 - `tests/test_golden.py` — asserts the simulation core stays **bit-identical** against
   `tests/golden/*.npz`, which were generated *before* the Phase-1 refactor. Do not relax
   these to `allclose`; a backend that cannot be made bit-identical is a stop-and-report.

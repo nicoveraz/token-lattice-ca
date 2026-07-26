@@ -1,0 +1,22 @@
+Developmental TIMING across scale: 192 runs (4 models x 6 ckpts x 8 seeds, N=48)
+NOT the retracted capacity axis -- the question is WHEN the sign change happens.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:15,  4.71it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 350.12it/s]
+[1/192] m70_step128_s21: lam=-0.0103 D_norm=0.0679 (47.9s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 2938.32it/s]
+[2/192] m70_step128_s22: lam=+0.0471 D_norm=0.2197 (41.8s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 2669.18it/s]
+[3/192] m70_step128_s23: lam=+0.0237 D_norm=0.2170 (39.8s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10488.18it/s]
+[4/192] m70_step128_s24: lam=+0.1398 D_norm=0.2112 (41.7s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 1008.45it/s]
+[5/192] m70_step128_s25: lam=-0.0216 D_norm=0.0101 (40.0s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 775.92it/s]
+[6/192] m70_step128_s26: lam=+0.3770 D_norm=0.3162 (44.5s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 2874.99it/s]
+[7/192] m70_step128_s27: lam=-0.0575 D_norm=0.1352 (43.7s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10692.58it/s]
+[8/192] m70_step128_s28: lam=+0.0569 D_norm=0.1193 (39.1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8755.89it/s]
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
