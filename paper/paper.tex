@@ -10,732 +10,325 @@
 \hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
 \newcommand{\dn}{\ensuremath{D_{\mathrm{norm}}}}
 \newcommand{\dz}{\ensuremath{D_0}}
-\title{A Validated Black-Box Instrument for Language-Model Dynamics:\\ Reproducing Known Metrics with a Token-Lattice Cellular Automaton}
+\newcommand{\lca}{\ensuremath{\lambda_{\mathrm{ca}}}}
+\title{A Validated Black-Box Instrument for Language-Model Dynamics:\\
+Reproducing Known Metrics with a Token-Lattice Cellular Automaton}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We turn a language model into a \emph{cellular automaton (CA) over token space}---a ring of
-token cells updated in place by the model's own windowed conditional $p_r(x_i\mid x_{i\pm r})$,
-with common-random-number (CRN) damage spreading as the probe---and develop it into a
-\emph{validated} black-box measurement instrument. The central move is \textbf{validation by
-reproduction}: before measuring a language model, the instrument recovers established
-dynamical metrics on systems where they are known. Its CRN damage-spreading estimator
-separates elementary CA rules whose damage survives from those whose damage dies (ignition
-probability, Cohen's $d{=}3.0$); reproduces a stochastic discrete PCA's damage spreading
-\textbf{bit-exactly}---on the line where that model's damage field is provably the automaton
-itself, an independent prediction matches every cell over $4096\times1500$ updates with zero
-mismatches, while an off-line control mismatches as it must---giving the apparatus a
-calibration with no error bar attached; and---through its attractor census---recovers the
-known transition matrices of synthetic Markov sources
-(self-recovery total-variation $0.22$ vs.\ cross $0.95$). We are explicit about what the
-smooth-limit rungs do and do not establish: a renormalized tangent estimator reproduces the
-logistic map's analytic Lyapunov exponent to $O(\epsilon)$, but that agreement is a property
-of the infinitesimal limit, and a token flip is $O(1)$ in a discrete alphabet---so we keep
-that rung as a \emph{unit test of the growth-rate arithmetic}, not as validation of the
-instrument. Every measurement is certified against apparatus
-confounds by an exact-zero-null CRN protocol and attributed at the level of \emph{statistics},
-not trajectories. Applied to trained LMs, the validated instrument yields black-box
-criticality measurements not otherwise available from weights-free access: a \textbf{token-space
-Lyapunov exponent} and a diversity-controlled \textbf{damping length} of the token-lattice
-construction, an
-\textbf{effective interaction radius} at which the model builds structure ($r{\approx}4$), a
-model-invariant \textbf{damage light cone}, and an \textbf{attractor census} of internalized
-structure. Finally we map a \emph{boundary}: a controlled cross-level study (two model
-families, two within-model axes) shows the black-box token-space criticality does \emph{not}
-proxy white-box activation-space criticality---they are distinct, non-proxying levels,
-because the activation measure is architectural. The contribution is a \textbf{validated
-instrument and the quantities it measures}; the phenomena it lands on---criticality,
-computation at the edge of chaos
-\citep{langton1990computation,bertschinger2004real,edgeofchaos2024}---are decades old, and we
-measure them from the outside rather than claim to discover them.
+We turn a language model into a \emph{cellular automaton over token space}---a ring of token
+cells resampled in place by the model's own windowed conditional $p_r(x_i\mid x_{i\pm r})$,
+probed by common-random-number (CRN) damage spreading---and develop it into a \emph{validated}
+measurement instrument. The organizing principle is \textbf{validation by reproduction}: before
+measuring a language model we recover metrics whose values are already known. On the
+Domany--Kinzel stochastic automaton, where the damage field is provably the automaton itself,
+an independent prediction matches ours \textbf{bit-exactly}---zero mismatching cells over
+$4096\times1500$ updates, with a nonzero off-line control---calibrating the apparatus with no
+error bar attached; it also separates elementary CA rules by whether damage survives
+($d{=}3.0$) and recovers known Markov transition matrices. Applied across
+Pythia-410m training checkpoints, it detects a \textbf{developmental transition}: the
+token-space Lyapunov exponent crosses from negative to positive between steps $512$ and
+$1000$ and stays there, at two lattice sizes ($d{=}2.74$ and $2.78$; all four members of a
+pre-registered family survive Benjamini--Hochberg correction), with seed-to-seed variance
+collapsing $\sim\!3\times$ across the transition. We then \emph{delimit} the instrument, which
+is the result we consider most useful: real autoregressive generation absorbs \emph{no}
+injected token error ($P_{\text{persist}}{=}1.000$ on three models), because free generation
+never resamples a token. These quantities therefore characterise an iterated-resampling
+construction, not deployed decoding---a boundary we draw rather than leave to a reader.
 \end{abstract}
 
 \section{Introduction}
-Language models are evaluated almost entirely as functions: given a context, how good is
-the next-token distribution? But a masked or autoregressive conditional also \emph{defines
-a dynamics}---iterate it in place over a lattice of tokens and one obtains a stochastic
-cellular automaton whose rule is the model. Iterated-map views of LLMs have appeared
-qualitatively \citep{logos_ca,telephone,paraphrase2cycle} and as mixing-time studies of
-masked-LM Glauber dynamics \citep{glauber_mlm}; the phenomena a CA vocabulary names---damage
-spreading, light cones, Lyapunov exponents, attractor censuses
-\citep{hanson1997computational}---are decades old. What has been missing is not a new
-phenomenon but a \emph{measurement instrument whose readings can be trusted}: a small,
-controlled apparatus, calibrated against ground truth, with apparatus confounds certified
-away.
+Language models are evaluated almost entirely as functions: given a context, how good is the
+next-token distribution? But a masked or autoregressive conditional also \emph{defines a
+dynamics}---iterate it in place over a lattice of tokens and one obtains a stochastic cellular
+automaton whose rule is the model. Iterated-map views of LLMs have appeared qualitatively
+\citep{logos_ca,telephone,paraphrase2cycle} and as mixing-time studies of masked-LM Glauber
+dynamics \citep{glauber_mlm}; the phenomena a CA vocabulary names---damage spreading, light
+cones, Lyapunov exponents, attractor censuses \citep{hanson1997computational}---are decades
+old. What has been missing is not a phenomenon but a \emph{measurement instrument whose
+readings can be trusted}.
 
-This paper's organizing principle is \textbf{validation by reproduction}. We build the
-instrument---a token-lattice CA with CRN damage spreading (\S\ref{sec:instrument})---and,
-before turning it on a language model, show that it recovers \emph{known} dynamical metrics
-on systems where the answer is established (\S\ref{sec:validation}): a decisive
-survives-vs-dies criticality split among elementary CA rules, a stochastic PCA's published
-damage-spreading boundary (bit-exactly, where an exact mapping exists), the known
-transition matrices of synthetic Markov sources, and---as explicitly labelled smooth-limit
-arithmetic checks---the logistic map and a coupled-map lattice. An instrument that reproduces exact values on known systems can be
-\emph{trusted} on an unknown one. Only then do we report the new, weights-free measurements it
-yields on trained LMs (\S\ref{sec:lm}): a token-space Lyapunov exponent, a damping length, an
-effective interaction radius, a damage light cone, and an attractor census. Finally we map the
-instrument's \emph{boundary}---the cross-level regime where the black-box token-space reading
-provably decouples from white-box internals (\S\ref{sec:crosslevel}). The edge-of-chaos and
-criticality ideas the results touch are old
-\citep{langton1990computation,bertschinger2004real,edgeofchaos2024}; our contribution is the
-validated black-box \emph{measurement} of them, not their discovery.
+Our organizing principle is therefore \textbf{validation by reproduction}
+(\S\ref{sec:validation}): before turning the apparatus on a language model, we require it to
+recover values that are independently known. This is not a formality. Building the ladder
+forced us to retract several of our own earlier claims, and the strongest rung is one where
+agreement is \emph{exact} rather than fitted, so it cannot be passed by a plausible-looking
+estimator. Only then do we report what the instrument measures on trained LMs
+(\S\ref{sec:dev}, \S\ref{sec:other}), and---equally---where its readings provably stop
+applying (\S\ref{sec:realgen}, \S\ref{sec:crosslevel}).
 
-\paragraph{Simplicity and tested reliability.} A deliberate choice runs through the paper: we
-use only \emph{simple, mature} primitives from cellular-automaton and dynamical-systems
-theory---single-site damage spreading, the damage-spreading Lyapunov exponent
-\citep{bagnoli1992damage}, the light cone \citep{lieb1972finite}, the attractor census
-\citep{hanson1997computational}---rather than bespoke machinery. Each has been used and tested
-for decades, and the value of transferring them is precisely that they are \emph{understood}:
-their expected behaviour on known systems is a fixed benchmark. That is what the validation
-ladder exploits (\S\ref{sec:validation})---reliability here is not asserted, it is
-\emph{demonstrated} by reproducing exact known values. The stance of the paper is a
-disciplined transfer of a reliable field's instruments to language models, with every reading
-either calibrated against ground truth or certified against apparatus confounds, and with the
-one place the transfer fails reported as plainly as the places it succeeds.
+A deliberate choice runs through the paper: we use only \emph{simple, mature} primitives---
+single-site damage spreading, the damage-spreading Lyapunov exponent \citep{bagnoli1992damage},
+the light cone \citep{lieb1972finite}, the attractor census \citep{hanson1997computational}---
+rather than bespoke machinery. Their value is that they are \emph{understood}: their behaviour
+on known systems is a fixed benchmark, which is what makes reproduction a real test. The
+criticality and edge-of-chaos ideas the results touch are old
+\citep{langton1990computation,bertschinger2004real,edgeofchaos2024}; our contribution is a
+calibrated black-box \emph{measurement} of them, and an explicit statement of its limits.
 
 \section{The instrument}\label{sec:instrument}
-\textbf{Rule.} A window of $w=2r{+}1$ tokens with the center masked is fed to a masked LM;
-the tempered center distribution is the kernel $p_r(x_i\mid x_{i\pm r})$. For an
-autoregressive model (\S\ref{sec:ar}) the window is the $r$ cells to the left and the rule
-is the next-token distribution---an order-$r$ Markov approximation, the causal analog of
-the symmetric masked window. \textbf{Automaton.} $N$ ring cells, async random-order
-single-site Glauber (synchronous updates manufacture period-2 blinkers and are only an
-apparatus arm \citep{paraphrase2cycle}); special tokens forbidden as emissions.
-\textbf{CRN coupling.} Twin lattices sharing initial state, update order, and the uniform
-stream driving inverse-CDF sampling differ only in the factor under test; the \emph{null}
-arm must diverge by exactly zero (it does, on both masked and autoregressive paths),
-certifying the coupling. \textbf{Four pillars:} $T\times r$ phase sweeps; damage spreading
-(block flips, CRN twins, ignition probability separate from spread); attractor census
-(random soup to quasi-stationarity, validated against a corpus); and differential
-certification---attribute at the level of \emph{statistics}, never trajectories (under
-chaos, trajectory divergence saturates for signal and apparatus alike, so only a statistic
-that nulls under apparatus swaps and moves under model swaps is a model reading).
+\textbf{Rule.} A window of $w=2r{+}1$ tokens with the centre masked is fed to a masked LM; the
+tempered centre distribution is the kernel $p_r(x_i\mid x_{i\pm r})$. For an autoregressive
+model the window is the $r$ cells to the left and the rule is the next-token
+distribution---an order-$r$ causal kernel. \textbf{Automaton.} $N$ ring cells, async
+random-order single-site Glauber (synchronous updates manufacture period-2 blinkers and are
+only an apparatus arm); special tokens forbidden as emissions. \textbf{CRN coupling.} Twin
+lattices sharing initial state, update order, and the uniform stream driving inverse-CDF
+sampling differ only in the factor under test, so the \emph{null} arm must diverge by exactly
+zero. It does, on every backend---this is asserted in the test suite, not assumed, because
+every damage number depends on it.
 
 \textbf{Two confounds shape every metric.} \emph{Repetition}: a lattice looping one corpus
-$n$-gram scores high overlap for free, so structure uses a repetition-robust variant
-(distinct corpus $n$-grams). \emph{Diversity} (its stability analog): a degenerate
-low-entropy lattice snaps a perturbation back trivially---low damage for the wrong
-reason---so damage is normalized by the model's own diversity floor (\S\ref{sec:repair}).
-We validate on a tiny transformer trained from scratch on tinyshakespeare (census checked
-against the actual training corpus), then scale across a masked family (\texttt{bert-tiny}
-through \texttt{bert-large}, $L{=}2$--$24$) and two autoregressive families
-(\texttt{Pythia-14M}--\texttt{1B} \citep{pythia} and \texttt{GPT-2} small--xl). A free control: the temperature ``phase
-transition'' is, on a finite-size scan, a \emph{crossover}, not a true transition (the
-order-parameter susceptibility self-averages, $\chi_{\mathrm{peak}}\propto 1/N$),
-disciplining all ``transition'' language.
+$n$-gram scores high overlap for free, so structure uses a repetition-robust variant.
+\emph{Diversity}: a degenerate low-entropy lattice snaps a perturbation back trivially---low
+damage for the wrong reason---so damage $D$ is normalized by the model's own diversity floor
+\dz{} (the asymptotic drift of twins under \emph{independent} noise with no flip), giving
+$\dn=D/\dz$. A free control disciplines our language throughout: the temperature ``phase
+transition'' is, on a finite-size scan, a \emph{crossover}
+($\chi_{\mathrm{peak}}\propto1/N$), not a true transition.
 
 \section{Validation: reproducing known metrics}\label{sec:validation}
-An instrument is only as good as its calibration. Before applying the CA/damage-spreading
-apparatus to a language model---whose ``true'' dynamical metrics are unknown---we check it
-against systems where the answer is known, and we are explicit about which properties each
-rung does and does not exercise (Fig.~\ref{fig:ladder}). The ladder is ordered by how much of
-the instrument's actual regime it shares: smooth-limit arithmetic, then \emph{discrete} state
-with a finite perturbation---the regime the token instrument occupies.
+We check the apparatus against systems where the answer is known, and are explicit about which
+properties each rung does and does not exercise (Fig.~\ref{fig:ladder}). The ladder is ordered
+by how much of the instrument's regime the rung shares: smooth-limit arithmetic first, then
+\emph{discrete} state with a finite perturbation---the regime the token instrument occupies.
 
-\textbf{(1) The logistic map: a unit test of the growth-rate arithmetic, not a validation of
-the instrument.} A renormalized tangent estimator---two orbits differing by $\epsilon$, with
-the separation rescaled to $\epsilon$ after every step---recovers the analytic exponent
-$\lambda(r)=\langle\ln|r(1-2x)|\rangle$ of $x\mapsto rx(1-x)$ across the bifurcation diagram
-to machine precision at $\epsilon{=}10^{-9}$. We state plainly why that agreement is not
-evidence about damage spreading: because the twin is re-anchored to the reference orbit each
-step, $\log(d/\epsilon)=\log|f'(x)|+O(\epsilon)$, so the estimator \emph{is} a
-finite-difference evaluation of the derivative it is compared against. An $\epsilon$-sweep
-confirms the error is $O(\epsilon)$ (log--log slope $0.79$ over six decades; Fig.~\ref{fig:eps}).
-\textbf{A token flip is $O(1)$ in a discrete alphabet---there is no $\epsilon\!\to\!0$ limit in
-token space}---so this rung certifies only the smooth limit. Removing the renormalization and
-using a finite perturbation, which is the instrument's actual regime, leaves an irreducible
-bias of $\approx\!0.15$ nats/step that does \emph{not} vanish as $\epsilon\to0$
-(Fig.~\ref{fig:eps}, flat curve): the windowed fit on a saturating separation, not the
-perturbation size, sets the error. The weight-bearing rungs are therefore (3) and (4).
+\textbf{(1--2) Smooth-limit unit tests, labelled as such.} A renormalized tangent estimator
+recovers the logistic map's analytic exponent to machine precision, and a coupled-map lattice
+matches an exact Benettin/Jacobian reference to $1.1\times10^{-3}$. Neither is evidence about
+damage spreading: the twin is re-anchored to the reference orbit each step, so the estimator
+\emph{is} a finite-difference evaluation of the derivative it is compared against (an
+$\epsilon$-sweep confirms error $O(\epsilon)$), and \textbf{a token flip is $O(1)$ in a
+discrete alphabet---there is no $\epsilon\to0$ limit in token space}.
 
-\textbf{(2) A coupled-map lattice (spatial, still smooth).} A ring of diffusively coupled
-logistic maps recovers the single-site $\ln 2$ at zero coupling, and its coupling
-dependence is verified against an exact Benettin/Jacobian reference (max discrepancy
-$1.1\times10^{-3}$); the exponent is non-monotone in coupling, with a minimum near
-$\epsilon\!\approx\!0.3$. This estimator also renormalizes, so it inherits the caveat above; it extends the
-arithmetic to a spatially-extended system but not to discrete state.
+\textbf{(3) Elementary CA: a coarse split, decisively.} Driving the identical protocol with 19
+rules of \emph{known} class (12 seeds, rule as the unit of analysis) separates rules whose
+damage \emph{survives} from those whose damage \emph{dies}. The discriminating quantity is the
+\textbf{ignition probability}, not $\lambda$: damage in a discrete CA is bimodal, so a
+$\lambda$ averaged over ignited and extinguished runs measures the mixture. It is also the
+physically correct object, being the order parameter of the directed-percolation class
+\citep{grassberger1995}. Ordered rules sit at $0.046$ (CI $[0.000,0.102]$) against $0.668$
+(edge) and $0.682$ (chaotic): \textbf{ordered vs.\ rest $p{=}0.0$, $d{=}3.03$}. The finer
+three-class ordering does \emph{not} survive ($p{=}0.470$), so we claim only the coarse split.
+We report this rather than the group-mean $\lambda$ ordering we first computed, for two
+reasons: that ordering was not significant edge-vs-chaotic, and its ordered-group mean is not
+a measurement---five of seven ordered rules return exactly $-0.4\ln10$ with a zero-width
+interval, the constant a log-linear fit yields when damage dies immediately and the cone hits
+the estimator's numerical floor.
 
-\textbf{(3) Elementary CA criticality classes: a coarse split, decisively.} Driving the
-identical damage-spreading protocol (async updates, CRN twins) with classical elementary CA
-rules of \emph{known} class (19 rules $\times$ 12 seeds, rule as the unit of analysis)
-separates the rules whose damage \emph{survives} from those whose damage \emph{dies}. The
-discriminating quantity is the \textbf{ignition probability}---the fraction of lattices in
-which a single-site flip survives at all---not $\lambda$: damage in a discrete CA is bimodal,
-so a $\lambda$ averaged over ignited and extinguished runs measures the mixture. Ignition
-probability is also the physically correct object, being the order parameter of the
-directed-percolation class to which damage spreading in discrete CA belongs
-\citep{grassberger1995}. Measured on it, ordered rules sit at $0.046$ (bootstrap CI
-$[0.000,0.102]$) against $0.668$ (edge) and $0.682$ (chaotic): \textbf{ordered vs.\ rest
-$p{=}0.0$, Cohen's $d{=}3.03$}. The finer three-class ordering does \emph{not} survive---edge
-vs.\ chaotic gives $p{=}0.470$---so we claim only the coarse split. We report this rather than
-the group-mean $\lambda$ ordering we first computed, for two reasons: that ordering was not
-significant edge-vs-chaotic ($p{=}0.17$ on the same statistic), and its ordered-group mean is
-not a measurement at all. Five of seven ordered rules return exactly $-0.4\ln 10$ with a
-zero-width interval---the value the log-linear fit takes when damage dies immediately and the
-cone is clamped at the estimator's numerical floor (\texttt{DEAD\_DAMAGE\_FLOOR}), identical
-across rule, seed and lattice. A group mean built from it is arithmetic, not an exponent.
+\textbf{(4) Domany--Kinzel: an \emph{exact} check on the damage machinery.} The DK automaton
+\citep{domany1984} is the only rung that is stochastic \emph{and} discrete---the instrument's
+own regime. On its $p_2{=}0$ line the damage field between two commonly-driven replicas is
+provably \emph{itself} a DK automaton at the same $p_1$ \citep{kohring1992}: with
+$s'_i=(s_{i-1}\oplus s_{i+1})\,\theta(p_1-z_i)$, sharing $z_i$ gives
+$d'_i=(d_{i-1}\oplus d_{i+1})\,\theta(p_1-z_i)$. We therefore predict the damage trajectory
+with an independent simulator and demand \emph{bit-identity}: across $p_1\in\{0.2,\dots,1.0\}$
+on a ring of $4096$ over $1500$ steps, \textbf{zero mismatching cells}, with $16$ in an
+off-line control at $(0.6,0.5)$ where the mapping must break. This runs through the same
+simulation loop that produces every language-model number below, so the window indexing, the
+shared-uniform consumption order, the sampling and the update schedule are verified with no
+error bar attached. A second closed form rides inside the same run: at $p_1{=}1$ the update is
+deterministic $\oplus$ (Rule 90), so the damage field must hold exactly
+$2^{\mathrm{popcount}(t)}$ live cells---at $t{=}1500$, $128/4096=0.03125$, which is what we
+obtain. Critical points are a weaker, $\sim\!1\%$ check: $p_c{=}0.7065$ on the site-DP line
+(published $0.705489(4)$) and $0.8092$ on $p_2{=}0$, where the published value is itself
+disputed ($0.801(2)$ \citep{zebende1994} vs.\ $0.8087(5)$ \citep{hinrichsen1997}) and our
+accuracy cannot separate them; we report both and claim neither.
 
-\textbf{(4) Synthetic Markov sources (known transition matrices).} The instrument's attractor
-census, run on tiny models trained on three synthetic first-order Markov sources with known
-sparse matrices $P_a,P_b,P_c$, recovers each model's own matrix (row total-variation $0.22$)
-and not the others (cross $0.95$; random baseline $0.91$)---quantitative recovery of a
-ground-truth generative rule and clean source discrimination (details in \S\ref{sec:census}).
+\textbf{(5) Synthetic Markov sources.} The attractor census, run on tiny models trained on
+three sources with known sparse matrices, recovers each model's own matrix (row
+total-variation $0.22$) and not the others (cross $0.95$; random baseline $0.91$).
 
-\textbf{(5) The Domany--Kinzel automaton: an \emph{exact} check on the damage machinery.} The
-DK model \citep{domany1984} is the only rung that is stochastic \emph{and} discrete---the
-instrument's own regime---and the only one whose damage behaviour has a published boundary
-rather than an analogy. It also affords something no other rung does. On its $p_2{=}0$ line the
-damage field between two commonly-driven replicas is provably \emph{itself} a DK automaton at
-the same $p_1$ \citep{kohring1992}: with $s'_i=(s_{i-1}\!\oplus\!s_{i+1})\,\theta(p_1-z_i)$,
-sharing $z_i$ gives $d'_i=(d_{i-1}\!\oplus\!d_{i+1})\,\theta(p_1-z_i)$. We therefore predict
-the damage trajectory with an independent simulator and demand \emph{bit-identity}: across
-$p_1\in\{0.2,\dots,1.0\}$, a ring of $4096$ over $1500$ steps, \textbf{zero mismatching
-cells}, with $16$ mismatches in an off-line control at $(0.6,0.5)$ where the mapping must
-break. This is run through the same simulation loop that produces every language-model number
-below, so the window indexing, the shared-uniform consumption order, the inverse-CDF sampling
-and the update schedule are verified with no error bar attached. A second closed form rides
-inside the same run: at $p_1{=}1$, $p_2{=}0$ the update is deterministic $\oplus$---Rule
-90---so a single-seed damage field must hold exactly $2^{\mathrm{popcount}(t)}$ live cells;
-at $t{=}1500$ that is $128/4096=0.03125$, which is the density obtained, and the cone
-($3001$ cells) never reaches the boundary.
-
-The critical points are a weaker check and we label them so: the local-slope estimator
-($\delta_{\mathrm{eff}}\!\to\!\delta_{\mathrm{DP}}{=}0.1595$, $2000$ seed runs) gives
-$p_c{=}0.7065$ on the site-DP line ($0.15\%$ from the published $0.705489(4)$) and $0.8092$ on
-the $p_2{=}0$ line, with the damage field measured independently at $0.8089$---coinciding with
-the activity transition to $3\times10^{-4}$, as the mapping requires. The published $p_2{=}0$
-value is itself disputed, $0.801(2)$ \citep{zebende1994} versus $0.8087(5)$
-\citep{hinrichsen1997}, and at our stated $\sim\!1\%$ accuracy we cannot discriminate between
-them; we report both and claim neither.
-
-The rungs that share the instrument's regime---discrete state, finite $O(1)$ perturbation, no
-renormalization---are (3), (4) and (5), and those are what license its use on language models;
-(5) is the only rung on which agreement is exact rather than fitted. The smooth-limit rungs
-are retained as arithmetic unit tests and labelled as such.
+Rungs (3)--(5) share the instrument's regime and are what license its use on language models;
+(4) is the only one on which agreement is exact rather than fitted.
 
 \begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{logistic_epsilon.png}
-\caption{Why the logistic rung is a unit test, not a validation. Left: the renormalized
-tangent estimator's error is $O(\epsilon)$ (log--log slope $0.79$), so its agreement with the
-analytic exponent is a property of the infinitesimal limit; the finite, un-renormalized
-estimator---the instrument's regime---has an irreducible $\approx\!0.15$ bias floor that does
-not improve as $\epsilon\to0$. Right: the recovered bifurcation curve degrades visibly once
-$\epsilon$ is not infinitesimal.}\label{fig:eps}
+\includegraphics[width=0.97\linewidth]{validation_ladder.png}
+\caption{Validation ladder, ordered by how much of the instrument's regime each rung shares;
+only (3)--(5) are weight-bearing. Panel (4) is the load-bearing one: the DK damage field is
+predicted by an independent simulator and matches cell-for-cell, with the off-line control
+beside it showing the test is not vacuous.}\label{fig:ladder}
 \end{figure}
+
+\section{A developmental transition in token-space criticality}\label{sec:dev}
+Applying the calibrated instrument across Pythia-410m training checkpoints
+(\texttt{step256}--\texttt{step143000}, 8 seeds, two lattice sizes $N{=}48$ and $N{=}96$;
+Fig.~\ref{fig:dev}) reveals a transition in the model's token-space dynamics. Early in
+training the lattice is sub-critical---a perturbation dies---and after a transition between
+steps $512$ and $1000$ it is super-critical and remains so for the rest of training.
+
+We pre-registered the test (post-transition vs.\ pre-transition checkpoints, run-level
+Mann--Whitney, family $=\{\lca,\dn\}\times\{N{=}48,N{=}96\}$, Benjamini--Hochberg FDR) and a
+demotion rule: failure at either lattice size demotes the headline. \textbf{All four members
+survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$). Measured against the settled plateau
+(steps $2000/8000/143000$), $\lca$ moves $-0.0185\to+0.1683$ at $N{=}48$ ($d{=}2.74$,
+$p{=}6.6\times10^{-5}$) and $-0.0307\to+0.1686$ at $N{=}96$ ($d{=}2.78$,
+$p{=}8.6\times10^{-6}$).
+
+\textbf{The curve is not a step, and we quote it accordingly.} It rises, overshoots at step
+$1000$ by $14$--$22\%$, and settles. Quoting step $256$ against the step-$1000$ peak would
+inflate the $N{=}48$ \dn{} effect from $d{=}3.69$ to $d{=}5.04$---taking the transition's peak
+for its level. We therefore report against the plateau throughout. The overshoot itself
+separates from the plateau in only one of four cells after correction, so we describe the
+shape as non-monotone but do \emph{not} claim step $1000$ as a distinct developmental phase.
+
+\textbf{Which quantity carries the claim.} $\lca$ is size-robust: the effect does not shrink
+with a doubled lattice ($107\%$ retention) and the plateau \emph{level} is statistically
+indistinguishable across sizes ($+0.1683$ vs.\ $+0.1686$, $p{=}0.91$). \dn{} is not: its gap
+roughly halves and its plateau level differs decisively ($0.569$ vs.\ $0.306$,
+$p{=}1.3\times10^{-8}$), even though the standardized effect is undiminished ($d$ $3.69\to3.91$)
+because the variance shrinks too. So \dn{}'s \emph{discrimination} survives while its
+\emph{absolute scale} does not. We therefore let $\lca$ carry the claim and report \dn{} as
+same-direction corroboration at a stated lattice size, never as a lattice-free property.
+
+\textbf{An unregistered observation, reported as one.} Seed-to-seed variance collapses across
+the transition: $\mathrm{sd}(\lca)$ falls $0.136\to0.037$ at $N{=}48$ ($3.7\times$, Levene
+$p{=}1.7\times10^{-4}$) and $0.124\to0.040$ at $N{=}96$ ($3.1\times$,
+$p{=}7.7\times10^{-7}$). Before the transition, seeds disagree about the \emph{sign} of $\lca$;
+after it they agree to a few percent. It was not pre-registered, but it replicates
+independently at both lattice sizes.
 
 \begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{validation_ladder.png}
-\caption{Validation ladder, ordered by how much of the instrument's regime each rung shares.
-(1) logistic-map Lyapunov---a \emph{smooth-limit arithmetic unit test} (the tangent estimator
-is renormalized, so its agreement is an $O(\epsilon)$ limit property, not evidence about
-damage spreading; see Fig.~\ref{fig:eps}); (2) coupled-map-lattice finite-size Lyapunov
-($\ln 2$ uncoupled, known coupling reduction); (3) elementary-CA criticality, where the
-instrument separates rules whose damage survives from rules whose damage dies (ignition
-probability, ordered vs.\ rest $d{=}3.03$; the finer three-class ordering does \emph{not}
-survive, $p{=}0.470$); (4) the census recovering known Markov transition matrices
-(self-TV $\approx0.22$ vs.\ cross $\approx0.95$).}\label{fig:ladder}
+\includegraphics[width=0.97\linewidth]{developmental.png}
+\caption{The developmental transition. (A) $\lca$ crosses zero between steps $512$ and $1000$
+and stays; the two lattice sizes lie on top of each other. (B) \dn{} shows the same shape but
+a size-dependent level---which is why it corroborates rather than carries. (C) Per-seed
+values: sign disagreement before the transition, consensus after.}\label{fig:dev}
 \end{figure}
 
-\section{New measurements on language models}\label{sec:lm}
-Pointed at a trained LM, the validated instrument yields the quantities below. We are precise
-about what is new: several of these \emph{quantities} have been identified in concurrent work
-(a critical sampling temperature
-\citep{critical_temp,critical_temp2,critical_temp3,ar_tempcrit,phase_detect}; edge-of-chaos
-and Lyapunov framings \citep{bertschinger2004real,lyap_selfattn}). What we contribute is not
-the concepts but a single, CRN-certified, ground-truth-calibrated \emph{route} to them from
-weights-free access---the same estimator validated in \S\ref{sec:validation}---together with a
-few apparatus-level observations (the radius law, the confound taxonomy) that are specific to
-the token-lattice construction.
-
-\subsection{A radius law}
-Sweeping $r$ at fixed $T$, the \emph{local} statistic (corpus-bigram fraction) is nearly
-radius-blind. \emph{Longer-range} corpus consistency is not: raw 3- and 4-gram overlap
-rises with $r$, but under the repetition-robust metric the signal \emph{peaks at an
-intermediate radius} ($r\approx4$) and falls by $r{=}16$---the apparent large-$r$ growth
-was collapse into repetition. Certification: holding the special-token windowing scheme
-fixed, the cross-model radius-profile difference far exceeds the distribution-preserving
-apparatus floor (so the profile is a model effect), but the scheme itself moves the profile
-as much as a model change, so cross-model claims must hold the scheme fixed
-(Fig.~\ref{fig:radius}).
-Sweeping $r$ at fixed $T$, the \emph{local} statistic (corpus-bigram fraction) is nearly
-radius-blind. \emph{Longer-range} corpus consistency is not: raw 3- and 4-gram overlap
-rises with $r$, but under the repetition-robust metric the signal \emph{peaks at an
-intermediate radius} ($r\approx4$) and falls by $r{=}16$---the apparent large-$r$ growth
-was collapse into repetition. Certification: holding the special-token windowing scheme
-fixed, the cross-model radius-profile difference far exceeds the distribution-preserving
-apparatus floor (so the profile is a model effect), but the scheme itself moves the profile
-as much as a model change, so cross-model claims must hold the scheme fixed
-(Fig.~\ref{fig:radius}).
-
-\begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{phaseA_radius.png}
-\caption{Radius certification. Cross-model radius profiles at a fixed scheme exceed the
-distribution-preserving apparatus floor (model effect), but the special-token scheme is a
-first-class apparatus of comparable magnitude.}\label{fig:radius}
-\end{figure}
-
-\subsection{Damage light cones: $v\propto r$}
-A 3-site block flip under CRN produces a cone whose front advances ballistically at
-$v\approx 1.6,3.5,7.7,\dots$ sites/sweep for $r=1,2,4,\dots$. A plateau at large $r$ on
-small rings is finite-size: the front fills the ring in $\sim$2 sweeps, so the velocity
-measured there is merely the wraparound ceiling $\approx N/4$ (the values $11.5,23.5,47.5$
-for $N{=}48,96,192$ at $r{=}16$ are exactly $N/4$, not an unclipped law). Only the largest
-ring escapes clipping at $r{=}16$ ($N{=}384$), and there the velocity ($41.1$) sits
-\emph{below} the smaller-ring ceilings---confirming they \emph{were} ceilings---while the
-unclipped points are mildly \emph{super}-linear ($\approx1.5r$ at $r{=}4$ rising to
-$\approx2.6r$ at $r{=}16$). So we do not claim a clean $v\propto r$; what is robust and
-\textbf{model-invariant} is that the front velocity grows monotonically with the
-conditioning radius---interaction range is a kinematic property of the apparatus, not the
-model (Fig.~\ref{fig:velocity}). We do \emph{not} claim even the qualitative law as new: a ballistic damage front whose velocity is set by the neighborhood range is the
-classic CA light cone---the maximal Lyapunov exponent equals the damage-front velocity
-\citep{bagnoli1992damage}, finite-range interactions give a constant range-set velocity by
-the Lieb--Robinson bound \citep{lieb1972finite}, and butterfly velocities of decorrelator
-fronts are standard in chaotic CA \citep{butterfly_ca}. Our point is that the LM
-token-lattice \emph{behaves as a bona-fide CA}---it exhibits this light cone---and that the
-velocity is model-invariant, i.e.\ a shared kinematic axis (contrast \S\ref{sec:repair}).
-
-\begin{figure}[t]\centering
-\includegraphics[width=0.72\linewidth]{phaseA_velocity.png}
-\caption{Damage-front velocity vs.\ ring size. The small-ring plateau is finite-size
-wraparound; $v\propto r$ continues once unclipped.}\label{fig:velocity}
-\end{figure}
-
-\subsection{The damping length}\label{sec:repair}
-Perturb, evolve under CRN, and ask how much damage \emph{persists}. The raw answer is
-diversity-confounded: a low-entropy lattice snaps back for free. We therefore report the
-perturbation damage $D$ alongside a \textbf{diversity floor} \dz{}---the asymptotic drift
-of twins sharing the settled initial state but evolving under \emph{independent} noise with
-\emph{no} flip---and their ratio $\dn=D/\dz$. Two caveats on the normalization, stated
-plainly because they bound the reading. \emph{First}, $D$ and \dz{} use different couplings
-($D$ common-random-number, \dz{} independent noise), so \dn{} is a controlled diagnostic,
-not a ratio of like quantities; the natural CRN floor is the null itself ($=0$). \emph{Second},
-at large $r$ the rise in \dn{} is \textbf{denominator-driven}: raw $D$ already \emph{falls}
-(tiny, $T{=}0.7$: $0.54\!\to\!0.39$ from $r{=}4$ to $r{=}16$) while \dz{} falls faster, so
-``the damping length keeps shrinking'' at large $r$ partly reflects the floor collapsing,
-not a stronger perturbation response. \emph{Third}, and more fundamentally, damage spreading
-is a property of \emph{(model, coupling)} rather than of the model alone---a known result in
-stochastic PCAs, where the damage boundary moves with the replica-coupling algorithm while
-single-replica dynamics is entirely insensitive to it \citep{kohring1992,grassberger1995}. We
-can say precisely where our choice sits, and we are careful about how far that extends.
-Drawing one uniform per site and thresholding it against every probability is, on a
-\emph{binary} alphabet, exactly the \emph{maximal-correlation} member of the admissible
-family in the classification of \citet{hinrichsen1997}---which is why the Domany--Kinzel
-identity above is exact. On a vocabulary, it is not: inverse-CDF sampling from a shared
-uniform is the \emph{monotone} coupling, and for $|V|>2$ the two differ (for
-$p{=}(\tfrac12,\tfrac12,0)$, $q{=}(0,\tfrac12,\tfrac12)$ the maximal coupling agrees with
-probability $\tfrac12$ and the monotone one never). Since maximal coupling maximises
-agreement and hence minimises damage, our language-model damage numbers are \emph{not} an
-extremum of the family; they sit inside it. Measured on real conditionals from a live damage
-run, the excess disagreement our coupling introduces is small---$1.3\%$ ($T{=}0.7$) to
-$5.4\%$ ($T{=}0.9$) above the maximal-coupling value on average, and a factor $1.2$--$1.4$ in
-the near-agreement regime ahead of the damage front. The property that justifies the choice
-is a different one: inverse-CDF is \textbf{replica-independent}---each replica's next state
-is a function of its own state and the shared noise alone, never of its twin---so it extends
-consistently to more than two replicas and to a self-consistent damage field, whereas a
-maximal coupling is defined only pairwise. Relative comparisons (across checkpoints, across
-radii, rule to rule) are unaffected, since the coupling is a common mode; the absolute scale
-of \dn{} carries this caveat.
-
-Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius: the
-token-space damping length shortens as the window widens. This is the measurement we
-report---a diversity-controlled, weights-free error-persistence length \textbf{of the
-token-lattice construction}. That attribution is deliberate and is the subject of
-\S\ref{sec:realgen}: it is \emph{not} a property of free generation. A
-capacity-linked gap does appear among masked models (mean \dn{} tiny $0.672<$ mini
-$0.880\approx$ base $0.904$), but we \emph{do not build on it}: it rests on two seeds and one
-toy family, the only clean separation is tiny $\ll$ \{mini,\,base\}, and an earlier
-``$p<10^{-4}$'' statistic for it was pseudoreplicated (retracted---see Limitations and the
-repository audit). We likewise withdraw a previously-reported kinematics-versus-stability
-decomposition, which held only at the single grid cell where the early Lyapunov exponent
-saturates. Whether capacity sets a stability$\leftrightarrow$expressiveness axis
-\citep{bertschinger2004real,edgeofchaos2024} is left open, pending a seed-level rebuild; the
-damping length itself stands as a measurement independent of that question.
-
-\subsection{What the damping length measures: free generation absorbs nothing}\label{sec:realgen}
+\section{What the damping length measures: free generation absorbs nothing}\label{sec:realgen}
 The instrument's central assumption---that a number measured on the ring says something about
 the model---is one we tested rather than assumed, by running the identical damage protocol on
 \emph{real autoregressive generation}. From a prompt we generate two CRN twins sharing one
 uniform stream, force a different token at one position in one twin, and let both continue
-freely. The null arm (no injection) is asserted to diverge by exactly zero, and does.
+freely; the null arm is asserted to diverge by exactly zero, and does.
 
-The result is unambiguous and negative: on \texttt{pythia-70m}, \texttt{-160m} and
-\texttt{-410m} (32 trials each), the injected error \textbf{persists in every single trial}
-($P_{\text{persist}}{=}1.000$, $P_{\text{reconverge}}{=}0.000$, mean divergence fraction
-$0.94$--$0.96$). Token identity is a harsh readout after an injection shifts alignment, so we
-also measured distributionally: the total-variation distance between the twins' next-token
-distributions, normalized by the TV between two \emph{independent} continuations of the same
-prompt, settles at $\mathrm{TV_{norm}}{\approx}0.97$---the twins end as far apart as two
-unrelated continuations.
+The result is unambiguous and negative. On \texttt{pythia-70m}, \texttt{-160m} and
+\texttt{-410m} (32 trials each) the injected error \textbf{persists in every single trial}
+($P_{\text{persist}}{=}1.000$, $P_{\text{reconverge}}{=}0.000$). Token identity is a harsh
+readout once an injection shifts alignment, so we also measured distributionally: the
+total-variation distance between the twins' next-token distributions, normalized by the TV
+between two \emph{independent} continuations of the same prompt, settles at
+$\mathrm{TV_{norm}}\approx0.97$---the twins end as far apart as unrelated continuations.
 
-The mechanism is structural, not a property of any particular model. \textbf{Free generation
-never resamples a token}: once emitted, an error stays in context permanently. The ring CA
-revisits every site, and in-place resampling is precisely what creates the possibility of
-healing. So the damping length, \dn{} and the light cone characterise \emph{the iterated
-resampling construction}---they are not predictions about autoregressive decoding, and we do
-not offer them as such. This retroactively explains three otherwise-puzzling results: the
-light-cone velocity that depends on $r$ but not the model, the model-invariance of
-$\lambda_{\mathrm{ca}}(r)$, and the structural failure of the cross-level proxy
-(\S\ref{sec:crosslevel}).
+The mechanism is structural, not a property of any model. \textbf{Free generation never
+resamples a token}: once emitted, an error stays in context permanently. The ring CA revisits
+every site, and in-place resampling is precisely what creates the possibility of healing. The
+damping length, \dn{} and the light cone therefore characterise \emph{the iterated-resampling
+construction}; they are not predictions about autoregressive decoding and we do not offer them
+as such. This retroactively explains a light-cone velocity that depends on $r$ but not the
+model, the model-invariance of $\lca(r)$, and the failure in \S\ref{sec:crosslevel}.
 
-\textbf{What this does and does not cost the paper.} It removes any reading of these
-quantities as error-correction in deployed decoding. It does \emph{not} touch the
-developmental result, and the reason is worth stating explicitly: the construction is held
-\emph{fixed} across checkpoints---same ring, same radius, same temperature, same coupling,
-same seeds---so a change measured across checkpoints cannot come from the apparatus. It is
-attributable to the model. A fixed instrument giving different readings on different models is
-exactly what an instrument is for; what F35 forbids is transporting the reading's units to a
-process the instrument does not implement.
+\textbf{What this does and does not cost.} It removes any reading of these quantities as
+error-correction in deployed decoding. It does \emph{not} touch \S\ref{sec:dev}, and the reason
+is worth stating: the construction is held \emph{fixed} across checkpoints---same ring, radius,
+temperature, coupling, seeds---so a change measured across checkpoints cannot come from the
+apparatus. A fixed instrument reading differently on different models is what an instrument is
+for; what \S\ref{sec:realgen} forbids is transporting the reading's units to a process the
+instrument does not implement.
 
-\begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{repair_scale.png}
-\caption{The damping length. Left: raw damage $D$ vs.\ $r$. Middle: diversity+velocity
-controlled $\dn=D/\dz$---rises with $r$; $\dn\!\gtrsim\!1$ for the larger models.
-Right: \dn{} vs.\ diversity (flat $\Rightarrow$ controlled).}\label{fig:repair}
-\end{figure}
+\textbf{Coupling, stated precisely.} Damage spreading is a property of \emph{(model,
+coupling)}, not of the model alone---a published result in stochastic PCAs, where the damage
+boundary moves with the replica-coupling algorithm while single-replica dynamics is insensitive
+to it \citep{kohring1992,grassberger1995}. Our inverse-CDF sampling from a shared uniform is
+the \emph{monotone} coupling: on DK's binary alphabet it coincides with the maximal-correlation
+member of the admissible family \citep{hinrichsen1997}, which is why the identity above is
+exact, but on a vocabulary it does not, so our LM damage numbers sit inside the family rather
+than at an extremum (measured excess disagreement $1.3$--$5.4\%$; see the repository). The
+property that justifies the choice is replica-independence---each replica's next state depends
+on its own state and the shared noise alone---which a pairwise maximal coupling lacks.
+Relative comparisons, including \S\ref{sec:dev}, are unaffected: the coupling is a common mode.
 
-\subsection{External validity: the autoregressive port}\label{sec:ar}
-Both load-bearing measurements replicate on \texttt{Pythia-160m} driven through a one-sided
-\emph{causal} window (null CRN divergence exactly zero). Velocity$\propto r$ holds
-($v=5.8,7.7,11.5$ for $r=2,4,8$; $r{=}1$ does not propagate), and the damping length holds
-(\dn{} climbs $0.001\!\to\!0.98$ across $r$). The capacity$\to$sensitivity result, however,
-does \textbf{not} robustly carry over. Across four Pythia sizes with 5 seeds (mean \dn{} at
-$r{=}2$, $\pm$SE): $0.41{\pm}.08$ (70m) $\approx 0.41{\pm}.08$ (160m) $< 0.56{\pm}.06$ (410m)
-$> 0.47{\pm}.08$ (1b)---non-monotone, peaking at 410m and dropping at 1b, with an
-insignificant size-rank correlation (Spearman $\rho{=}0.17$, $p{=}0.29$; only 160m$\to$410m
-is marginal, $p{=}0.06$). So the masked-side capacity ordering (\S\ref{sec:repair}) is
-masked-specific in this data, not construction-independent; neither construction extends it
-monotonically (masked saturates, AR reverses). What replicates on AR is the \emph{instrument}
-(velocity grows with $r$; the damping length rises with $r$), not the capacity scaling. The
-masked-LM local conditionals are globally inconsistent \citep{glauber_mlm}; the
-autoregressive rule here is a \emph{consistent} order-$r$ causal kernel---but resampled in
-place on a periodic ring, so it too is not a sampler of the model's true left-to-right
-joint. Both constructions are thus windowed, in-place-resampled ring dynamics rather than
-the model's actual distribution. Replication across them is evidence that the radius-level
-measurements are not tied to the masked windowing---not proof about either joint. We compare
-at the level of the \emph{trend}, since causal-context healing is a different object from
-bidirectional healing. (The AR means pool two temperature regimes with very different
-\dn{} scales; per-$T$ reporting is the correct fix, flagged in Limitations.)
+\section{Other readings, briefly}\label{sec:other}
+Two further quantities, reported compactly because \S\ref{sec:realgen} bounds what they mean.
+\emph{Effective interaction radius}: under the repetition-robust metric, long-range corpus
+consistency peaks at $r\approx4$ and falls by $r{=}16$---the apparent large-$r$ growth is
+collapse into repetition. Cross-model profiles exceed the apparatus floor at a fixed windowing
+scheme, but the scheme moves the profile as much as a model change does. \emph{Damage light
+cone}: a block flip produces a ballistic front whose velocity grows monotonically with $r$ and
+is \textbf{model-invariant} (apparent plateaus on small rings are wraparound, $v\approx N/4$).
+This is the classic CA light cone \citep{bagnoli1992damage,lieb1972finite,butterfly_ca}; we
+show the token lattice exhibits it and do not claim the law as new. Both constructions
+replicate the radius-level measurements, evidence they are not tied to masked windowing.
 
-\begin{figure}[t]\centering
-\includegraphics[width=0.62\linewidth]{ar_capacity.png}
-\caption{The AR capacity trend does not hold. Diversity-controlled $\dn$ at $r{=}2$ vs.\
-Pythia size (5 seeds, $\pm$SE): non-monotone, peaking at 410m and dropping at 1b;
-Spearman $\rho{=}0.17$, $p{=}0.29$. The masked-side capacity effect is masked-specific in
-this data.}\label{fig:arcap}
-\end{figure}
-
-\paragraph{Crossover-relative robustness (is the plateau a sampling artifact?).}
-A fixed $(r,T)$ probe could sample different points of each model's phase diagram, so we
-locate each model's heal$\to$spread crossover by sweeping $T$ at $r{=}2$
-(Fig.~\ref{fig:crossover}). \emph{Masked}: base's profile is clearly shifted up (it
-amplifies at lower $T$) and tiny is lowest across most of the range, consistent with the
-tiny $\ll$ \{mini,\,base\} gap; but the ordering is \emph{not} clean at every $T$ (at
-$T{=}0.3$, mini $0.46 <$ tiny $0.51$) and the profiles are single-seed with no error bars.
-We therefore read this as a plateau \emph{diagnostic}---the mid-vs-large saturation is a
-large-radius averaging effect---rather than an independent confirmation of a monotone
-capacity axis. \emph{Autoregressive}: the ordering does \emph{not} hold---Pythia-410m is an outlier (profile
-shifted up, lowest crossover) while 70m $\approx$ 160m $\approx$ 1b---so the AR
-non-monotonicity is genuine, not a sampling artifact. (The extracted crossover temperature is
-itself noisy in the high-variance low-$T$ healing regime---bert-tiny's profile is non-monotone
-there---so we compare profiles at fixed $T$ rather than lean on it.)
-
-\begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{crossover.png}
-\caption{Crossover-relative check: $\dn(T)$ at $r{=}2$ (single-seed). Masked models (left):
-base is shifted up and tiny lowest across most of $T$ (the mid-vs-large plateau is a
-large-radius averaging effect), though the ordering is not clean at every $T$; the AR models
-(right) are not ordered---Pythia-410m is an outlier and the others overlap, so the AR
-non-replication is real.}\label{fig:crossover}
-\end{figure}
-
-\subsection{The attractor census}\label{sec:census}
-The census is the instrument's read-out of internalized distributional structure; its
-ground-truth validation (rung 4 of \S\ref{sec:validation}) is here in full. On three
-synthetic first-order Markov sources sharing a vocabulary but with different sparse
-transition matrices $P_a/P_b/P_c$, a model trained on each and censused yields an empirical
-bigram transition $Q_X$ matching its own $P_X$ (row total-variation $0.22$ vs.\ a
-random-lattice baseline $0.91$) and \emph{not} the others (cross-TV $0.95$): the census
-recovers each model's own priors quantitatively and discriminates sources
-(Fig.~\ref{fig:calib})---the honest trained-model analog of a sampler oracle
-\citep{sampler_oracle}. This quantitative recovery is established \emph{only} on the
-synthetic toy trained on the exact sources. On real models the census is scored against an
-out-of-training WikiText proxy and the numbers are near-floor (top-$50$ overlap
-$0.02$--$0.04$, Spearman $0.14$--$0.21$); the largest model's deepest attractors resemble a
-corpus \emph{format skeleton}, but the smallest model's are degenerate token fragments. So
-the ``the census reads out what the model internalized'' reading is licensed by the
-synthetic calibration, not by the real-model overlaps. Vocabulary compression corrupts even
-that---a word-level \texttt{<unk>} becomes attractor material and inflates recovery through
-artifact-to-artifact matching; byte-level BPE removes it.
-
-\begin{figure}[t]\centering
-\includegraphics[width=0.5\linewidth]{calib_discrimination.png}
-\caption{Calibration. Row total-variation between each model's censused bigram transition
-$Q_X$ and every true $P_Y$: diagonal (self-recovery) $\approx0.22$, off-diagonal
-$\approx0.95$---quantitative recovery and clean discrimination.}\label{fig:calib}
-\end{figure}
-
-\section{The instrument's boundary: token- vs.\ activation-space criticality}\label{sec:crosslevel}
-A black-box instrument earns its keep if its readings track something one would otherwise
-need internals to see. We tested this hypothesis thoroughly---a ground-truth calibration,
-two model families, two within-model axes---and report a clean \textbf{negative}: the
-token-space instrument does \emph{not} robustly proxy activation-space criticality.
-
-\textbf{The instrument separates ordered from chaotic rules.} Driving the same
-damage-spreading estimator (async, CRN, single-site flip) with 19 classical Elementary CA
-rules of \emph{known} class over 12 seeds, the rule-level bootstrap separates ordered from
-the rest decisively ($p{=}0.0$, Cohen's $d{=}3.03$), while edge-vs-chaotic does not separate
-($p{=}0.470$); we therefore claim only the coarse split. The discriminating quantity is the
-\emph{ignition probability} (ordered $0.046$; edge $0.668$; chaotic $0.682$), because single-site damage is
-bimodal---it either ignites or dies---so a $\lambda$ averaged over both populations measures
-the mixture rather than a growth rate. This is the criticality-side analog of the census
-calibration, at the resolution the data support.
-
-\textbf{The white-box reference is a clean, cross-family scaling law.} On the autoregressive
-ladder we compute a finite-depth top-Lyapunov exponent
-$\lambda_{\mathrm{top}}=\frac{1}{L}\log\rho(J_{\mathrm{emb}\to h_L})$ (the SPARC
-error-propagation operator $\rho(F_T)$ \citep{sparc}; finite-difference-JVP power iteration,
-fp32). It falls monotonically with size (Pythia 14M--1B, Spearman $\rho{=}-0.94$,
-$p{=}0.005$) and this replicates across families (GPT-2 124M--1.5B, $0.152\!\to\!0.059$):
-larger models sit nearer critical from the supercritical side.
-
-\textbf{But the black-box instrument does not proxy it} (Fig.~\ref{fig:crosslevel}).
-(i)~\emph{Cross-model}, fixed $(r,T)$: the type-matched pairing ($\lambda_{\mathrm{top}}$ vs
-$\lambda_{\mathrm{ca}}$) is suggestive on Pythia ($r{=}0.71$, $n{=}6$) but does \emph{not}
-replicate on GPT-2 ($r{=}-0.43$); pooling the families gives $r{=}0.70$, $p{=}0.025$, but
-that is a Simpson's-paradox artifact of two disagreeing families, not a real effect (the
-persistence quantity \dn{} does not track either, $r{=}-0.29$). (ii)~\emph{Within-model
-across temperature}: $\lambda_{\mathrm{ca}}(T)$ vs $\rho(F_T)$ gives a uniform
-$r\!\approx\!-0.9$ for all six models and both families---a mechanical confound (raising $T$
-makes the CA explore more while flattening the softmax), betrayed by its very uniformity,
-not cross-level signal. (iii)~\emph{Within-model across radius} (the de-confounded axis,
-fixed $T$): the correlation is null (per-model $r$ centred on $0$), because
-$\lambda_{\mathrm{ca}}(r)$ is itself \emph{model-invariant}---$\approx[-1.1,0.15,0.5,0.9]$
-for $r{=}1,2,4,8$ across every model and family, pure light-cone kinematics carrying no model
-signal, while $\rho(F_r)$ varies by model.
-
-\emph{Conclusion:} token-space and activation-space criticality are \textbf{distinct,
-non-proxying levels}. The instrument measures a real, calibrated token-space criticality,
-but it is not a weights-free surrogate for the activation-space Jacobian---the natural proxy
-hypothesis is false, cleanly. The instrument's value is therefore as a \emph{token-space}
-measurement in its own right, not as a stand-in for internals.
-
-\textbf{The negative is structural, not a measurement failure.} We mined for a positive along
-the principled axes and hit the same barrier each time: $\lambda_{\mathrm{top}}$ is an
-\emph{architectural} quantity. Across ten Pythia-410M training checkpoints it is nearly flat
-($\sim\!0.13$--$0.19$) while the black-box criticality undergoes a clean order$\to$chaos
-transition around step $10^{3}$---the levels do not co-evolve. On a six-model BERT depth
-ladder ($L{=}2$--$24$) the white--black correlation is strong ($r{=}-0.92$) but purely
-\emph{depth-mediated}: both track depth ($r{=}-0.92$ and $+0.76$), and at fixed depth (two
-$L{=}4$ models) $\lambda_{\mathrm{top}}$ is identical while \dn{} differs---so the correlation
-conveys only the (public) layer count. Because $\lambda_{\mathrm{top}}\!\approx\!1/L$ is set
-by architecture rather than learning, no \emph{useful} weights-free proxy exists with these
-measures; the decoupling is a structural fact about the two levels, not an artifact of too
-little data.
-
-\begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{crosslevel.png}
-\caption{Cross-level. Left: the instrument is criticality-calibrated---it separates classical
-CA rules whose damage survives from those whose damage dies (ignition probability, ordered
-vs.\ rest $p{=}0.0$, $d{=}3.03$; bars are per-rule, black lines group means, shading the
-bootstrap CI). Middle: the
-cross-model pairing is family-dependent (Pythia $r{=}0.71$ vs.\ GPT-2 $r{=}-0.43$; the pooled
-$p{=}0.025$ is a Simpson's-paradox artifact). Right: black-box $\lambda_{\mathrm{ca}}(r)$ is
-model-invariant (all six models, both families, overlap)---pure kinematics, so it carries no
-model signal to proxy the white-box $\rho(F_r)$.}\label{fig:crosslevel}
-\end{figure}
+\section{The instrument's boundary: token- vs.\ activation-space}\label{sec:crosslevel}
+A black-box instrument earns its keep if its readings track something one would otherwise need
+internals to see. We tested this thoroughly---calibration, two model families, two within-model
+axes---and report a clean \textbf{negative}. Pairing the token-space reading against a
+finite-depth top-Lyapunov exponent of the residual stream is family-dependent (Pythia
+$r{=}{+}0.71$, GPT-2 $r{=}{-}0.43$; the pooled $p{=}0.025$ is a Simpson's-paradox artifact).
+Within-model, the temperature axis is confounded by a common cause and the radius axis is null,
+because $\lca(r)$ is model-invariant and so carries no model signal to proxy. The reason is
+structural: the white-box exponent is \emph{architectural}---flat across training and
+$\approx1/L$---so a masked-family correlation with depth is depth-mediated. A regime mismatch
+compounds it: that exponent is a \emph{tangent} quantity while $\lca$ is a \emph{finite} one,
+and our own $\epsilon$-sweep shows the two disagree even where ground truth is known.
+Token-space and activation-space criticality are distinct, non-proxying levels.
 
 \section{Related work}
-A novelty check (102-agent adversarial harness) places our contribution precisely: the
-\emph{instrument} is largely novel at the method level, but its \emph{substrate} is not,
-and novelty is uneven across claims. \textbf{Shared substrate (the exposed flank).}
-\citet{glauber_mlm} already recasts a masked LM as iterated masked-token resampling---a
-Glauber Markov chain on token sequences---the exact substrate we iterate. It measures
-mixing time ($O(n\log n)$ high-$T$) and low-$T$ metastability, not a conditioning-radius
-axis, light-cone velocity, a damping length, an attractor census, or a finite-size Lyapunov
-exponent. The distinction is sharp in the coupling: it tracks Hamming-distance
-\emph{contraction} under \emph{maximal} coupling to \emph{bound mixing}, whereas we track
-Hamming-distance \emph{spatial propagation} under \emph{common-random-number} coupling to
-measure the light cone and a diversity-normalized damping length across a swept radius---
-maximal coupling minimizes disagreement (a mixing device), CRN preserves the common noise so
-the perturbation's causal spread is visible. Our novelty rests on this measurement layer,
-not on the LM-as-iterated-token-CA framing, which we do not claim. \textbf{Edge-of-chaos (claim of \S\ref{sec:repair} is
-partially anticipated).} Measuring proximity to the edge of chaos and tying it to
-capability is canonical \citep{langton1990computation,bertschinger2004real} and has been
-shown for trained transformers via Lyapunov exponents of self-attention Jacobians
-\citep{lyap_selfattn}, and named for LLMs generally \citep{edgeofchaos2024,qle}. We claim
-neither the concept nor the criticality$\leftrightarrow$capability link; our contribution is
-the \emph{token-space}, black-box damping-length measurement and its
-certification/calibration protocol, which \citet{lyap_selfattn} (white-box, continuous
-hidden space) does not provide. We do \emph{not} claim an established
-model-size$\to$sensitivity axis (see \S\ref{sec:repair}). \textbf{The CA light cone is classic (\S3.2 is import, not discovery).} A ballistic
-damage front whose velocity is set by the neighborhood range, and the identity
-Lyapunov$=$front-velocity, are textbook CA / statistical-physics
-\citep{bagnoli1992damage,lieb1972finite,butterfly_ca}; we import them and show the LM
-token-lattice exhibits them (behaves as a bona-fide CA) and that the velocity is
-model-invariant---not that the law is new. \textbf{Perturbation propagation.}
-\citet{sparc} formalizes an error-propagation operator on AR residual streams with a
-$\rho(F_T)\!\ge\!1$ criticality threshold (the top-Lyapunov boundary) in activation space,
-adjacent but not a token-space CA; \citet{quiver} operates on compound-AI pipeline graphs,
-sharing vocabulary but no method. \textbf{Terminology.} We avoid ``repair''---taken by
-self-repair / the Hydra effect \citep{hydra,selfrepair} for internal component
-compensation---and ``self-correction'' \citep{sparc}, both categorically different from our
-spatial damping length. \textbf{Critical sampling temperature (the quantity, not the method, is prior work).}
-A per-model critical temperature separating ordered from disordered generation is already
-defined and measured across at least five independent works:
-\citet{critical_temp,critical_temp2,critical_temp3} locate a $T_c$ by sweeping the softmax
-temperature (susceptibility peak, order-parameter collapse, or a measured critical region
-$T\!\approx\!1.2$--$1.4$), and \citet{ar_tempcrit,phase_detect} identify the same
-temperature-driven order$\to$disorder transition via power-law statistics and phase mapping.
-The damage-spreading-to-Lyapunov estimator we use is likewise classical CA physics
-\citep{bagnoli1992damage}. We therefore \emph{do not} claim an
-edge-of-chaos temperature or a token-space Lyapunov as new quantities; our contribution is a
-CRN-certified, ground-truth-calibrated damage-spreading \emph{route} to them (a different
-estimator: Lyapunov zero-crossing rather than susceptibility). \textbf{Activation-space
-propagation.} \citet{tft} builds an empirical finite-$\epsilon$ position$\times$depth
-residual-stream propagation cone and \citet{residual_dynamics} its analytic Jacobian
-counterpart; these anticipate the activation-space cone we sketch as future work
-(\S\ref{sec:conclusion}), so we treat that direction as a rigor/calibration extension, not a
-new object. \textbf{Other.} \citet{sampler_oracle} is the calibration/oracle kin (our
-synthetic-Markov recovery is its trained-model analog); the census descends from
-\citet{hanson1997computational}; early low-order crystallization is consistent with
-distributional simplicity bias \citep{simplicitybias}, read black-box.
-\emph{(Pre-submission: full-paper reads of \citet{glauber_mlm,critical_temp,tft} and
-\citet{quiver}; verify all 2026-preprint titles/IDs; see
-\texttt{results/deep\_research\_novelty*.md}.)}
+\textbf{The framing is not our claim.} Iterated-LLM views exist qualitatively
+\citep{logos_ca,telephone,paraphrase2cycle} and rigorously for masked-LM Glauber dynamics
+\citep{glauber_mlm}; our novelty is the measurement layer, not the framing. \textbf{Edge of
+chaos.} Canonical \citep{langton1990computation,bertschinger2004real}, and already applied to
+trained transformers via self-attention Jacobians \citep{lyap_selfattn} and to LLMs generally
+\citep{edgeofchaos2024,qle}; we claim neither the concept nor the
+criticality$\leftrightarrow$capability link. \textbf{Critical sampling temperature} is defined
+and measured in at least five prior works
+\citep{critical_temp,critical_temp2,critical_temp3,ar_tempcrit,phase_detect}; we claim only a
+calibrated route to it, not the quantity. \textbf{Perturbation propagation} in
+\emph{activation} space \citep{sparc,tft,residual_dynamics} and over compound-AI graphs
+\citep{quiver} is adjacent but in a different space. \textbf{Terminology}: we avoid ``repair''
+\citep{hydra,selfrepair} and ``self-correction'' \citep{sparc}, both categorically different
+from a spatial damping length. \citet{sampler_oracle} is the calibration kin; the census
+descends from \citet{hanson1997computational}.
 
 \section{Limitations}
-Masked-LM local conditionals are globally inconsistent, so the CA is a well-defined
-stochastic dynamical system but not a sampler of any joint; all claims are properties of
-the dynamics. The real-model census is proxy-validated (WikiText, out-of-training), a lower
-bound; ground-truth calibration is on synthetic sources only. Rings are small ($N\le384$),
-the ladder short (three masked, two autoregressive), and the AR capacity trend rests on two
-models with only the sub-saturation radius discriminating (the 410m largest window OOM'd on
-16\,GB). The special-token windowing scheme is a first-class apparatus factor to hold fixed;
-temperature scales are not comparable across masked and autoregressive constructions.
-
-\textbf{Statistical scope (what the numbers do and do not license).} The paper's central
-claims---the validation-ladder reproductions (\S\ref{sec:validation})---are exact or
-near-exact matches to known values and do not rest on null-hypothesis testing, so multiple
-comparisons are not a concern for them. Where we \emph{do} report trend tests (the cross-level
-correlations, \S\ref{sec:crosslevel}), we apply no formal multiplicity correction and treat
-them as exploratory: the reported conclusion is a \emph{negative} reached by sign-consistency
-across families and axes, not by any single surviving $p$-value, so it is robust to the
-correction we omit. The one demoted capacity gap is measured at $N{=}48$ with two seeds and is
-not built upon; establishing it as an \emph{axis} would need $\ge15$ independent seeds tested
-at the seed level (hierarchical / bootstrap, not a signed-rank over correlated cells), a
-longer second-family ladder, multiple $N\gg100$, per-$T$ (not pooled) reporting, and the
-diversity-floor normalization ablated against the CRN-null and maximal-coupling floors---all
-enumerated in the repository tracker as optional pre-camera-ready work, not load-bearing for
-the validated-instrument contribution.
+Masked-LM conditionals are globally inconsistent and the autoregressive rule, though
+consistent, is resampled in place on a ring: neither construction samples the model's actual
+distribution, so all claims are properties of the dynamics. Rings are small ($N\le384$) and
+the developmental result rests on one model family at two lattice sizes; a third size and a
+second family are the obvious next requirement. \dn{}'s absolute scale is doubly
+qualified---it moves with $N$ (\S\ref{sec:dev}) and its numerator's coupling is not extremal
+(\S\ref{sec:realgen})---so only its relative behaviour is quoted. Census ground truth is
+synthetic only; on real models it is proxy-scored and near-floor. The windowing scheme is a
+first-class apparatus factor, and temperatures are not comparable across constructions.
+\textbf{Statistical scope.} The developmental family is pre-registered with BH-FDR at the run
+level; the ECA test uses the rule as the unit. The ladder reproductions are exact or
+near-exact matches to known values and do not rest on hypothesis testing. The cross-level
+negative rests on sign-consistency across families and axes, not a surviving $p$-value. A
+previously reported capacity$\to$sensitivity axis was pseudoreplicated and is retracted.
 
 \section{Conclusion}\label{sec:conclusion}
-The contribution of this paper is a \emph{validated} black-box instrument. Its organizing
-principle---validation by reproduction---is what separates it from the qualitative
-iterated-LLM literature: before measuring a language model, the CA/damage-spreading apparatus
-separates elementary CA rules by whether damage survives, reproduces a stochastic PCA's
-published damage-spreading boundary---bit-exactly on the line where an exact mapping
-exists---and recovers the known transition matrices of synthetic Markov sources: the rungs
-that share its regime of discrete state and finite
-perturbation, while the smooth-limit logistic and coupled-map rungs are retained, and
-labelled, as arithmetic unit tests whose agreement is an $O(\epsilon)$ limit property
-(\S\ref{sec:validation}). An instrument that recovers what is independently known, and that
-is explicit about which of its checks are load-bearing, can be trusted on what is not. Pointed at
-trained LMs, it then yields weights-free measurements a next-token evaluation does not
-(\S\ref{sec:lm}): a token-space Lyapunov exponent and a diversity-controlled damping length of
-the lattice construction, an effective interaction radius ($r{\approx}4$), a model-invariant damage light
-cone, and an attractor census of internalized structure---each certified by the exact-zero-null
-CRN protocol and, where ground truth exists, calibrated against it. We also draw the
-instrument's \emph{boundary} (\S\ref{sec:crosslevel}): a controlled cross-level study returns a
-clean negative---the black-box token-space criticality does not proxy the white-box
-activation-space Lyapunov, because the latter is architectural---so token- and activation-space
-criticality are distinct, non-proxying levels. The phenomena the instrument measures are old
-and deep; what is new is a trustworthy way to measure them from the outside, and an honest map
-of where that measurement reaches its limit.
-
-\paragraph{Opportunities and future work.} The instrument reads a model's dynamics from
-\emph{token space alone}---no weights, gradients, or activations---which makes it usable in
-the black-box / API-only regime. \emph{Applications.} (i)~The damping length, light cone, and
-critical sampling temperature \citep{critical_temp} are measurable on closed models where
-activation-space probes are unavailable; our cross-level study (\S\ref{sec:crosslevel}) maps
-precisely how far this black-box reading can and cannot substitute for internals.
-(ii)~The attractor census, calibrated to recover a \emph{known} transition matrix
-(\S\ref{sec:census}), is a quantitative probe of the distributional structure a model has
-internalized \citep{hanson1997computational}. (iii)~The effective interaction radius
-($r\!\approx\!4$) can be correlated with attention-head span or induction heads to link a
-black-box observable to mechanism. (iv)~CRN damage cones are a causal-influence map over
-token positions. We deliberately do \emph{not} offer the damping length as a bound on error
-propagation in deployed decoding: \S\ref{sec:realgen} shows free generation absorbs no
-injected token error at all. (v)~The training-time
-trajectory (F25) is a phase-change detector across checkpoints for developmental
-interpretability. \emph{Extensions of the same validated method.} (vi)~A second,
-\emph{compositional-complexity} axis---an effective-rule-complexity or assembly-theoretic
-read-out of what the dynamics \emph{produce}, complementary to the criticality of how they
-\emph{behave}---would be validated the same way, against strings of known complexity.
-(vii)~Applying the damage-spreading machinery to the residual stream gives an activation-space
-information-propagation cone; that object is closely anticipated \citep{tft,residual_dynamics},
-so the contribution there would be the CRN certification and ground-truth calibration, not the
-cone itself. (viii)~The deterministic (greedy, $T\!\to\!0$) limit is a distinct dynamical
-object worth measuring, to test whether the criticality readings are a sampling phenomenon.
-\emph{Rigor.} The census recovery, quantitative on synthetic sources, should be re-established
-against a real model's \emph{true} training corpus rather than a proxy; and the demoted
-capacity gap, if revisited, needs the seed-level rebuild set out in Limitations. Throughout,
-the reusable asset is the statistics-level, apparatus-nulled certification protocol, which
-applies to \emph{any} iterated-LLM system---self-refinement, agentic loops, iterated
-rewriting---where trajectory-level divergence otherwise saturates for signal and apparatus
-alike. A Lieb--Robinson-style propagation bound \citep{lieb1972finite} for the non-unitary
-stochastic LM dynamics would put the light cone on rigorous footing.
-
-\appendix
-\section{Reproducibility}
-\label{app:repro}
-All code, checkpoints, per-run results, and figures are in the \texttt{token-lattice-ca}
-repository; each headline maps to a finding \texttt{F$k$} in \texttt{findings.md}. Hardware:
-Apple M1 Pro, 16\,GB; toy model on CPU JAX, real models fp16 on the MPS backend.
-
-\textbf{Models.} \emph{Toy}: a 0.42\,M-parameter bidirectional transformer ($d{=}96$,
-$4$ heads, $2$ layers) trained from scratch on tinyshakespeare (word-level 2000 vocab, and
-a 4096 byte-level BPE) as a joint windowed-conditional model over $r\in\{1,2,4,8,16\}$,
-$6000$ Adam steps. \emph{Masked}: \texttt{prajjwal1/bert-tiny} (2L/128), \texttt{-mini}
-(4L/256), \texttt{bert-base-uncased} (12L/768), shared bert-base-uncased WordPiece vocab
-(30522); loaded as \texttt{BertForMaskedLM}. \emph{Autoregressive}: \texttt{EleutherAI/
-pythia-70m/160m/410m}, causal window $p(x_i\mid x_{i-r..i-1})$.
-
-\textbf{Rule / automaton.} Async random-order single-site Glauber on a ring of $N$ cells;
-inverse-CDF sampling from the tempered, special-token-forbidden center (masked) or
-next-token (causal) distribution, computed on-device. CRN twins share init, visitation
-order, and the uniform stream; the two twins are run as one $2B$ batch with tiled uniforms
-(bit-identical to two runs). Null test: exactly zero divergence (\texttt{tests/}).
-
-\textbf{Grids and seeds.} Phase sweep: $N{=}48$, $B{=}16$, $40$ sweeps, $T\in\{0.5,0.8,1.0,
-1.3,1.6,2.0,2.5\}$, $r\in\{1,2,4,8,16\}$; multi-seed sweep uses $5$ seeds. Radius
-certification (F20/F22): $N{=}48$, $B{=}16$, $5$ seeds, $T{=}0.7$, schemes cls\_sep and
-no-special. Velocity FSS (F21): $N\in\{48,96,192,384\}$, $r\in\{4,8,16\}$, $B{=}24$. Damping
-length (F23): $N{=}48$, $B{=}32$, settle $12$, $25$--$30$ sweeps, $2$ seeds, $T\in\{0.5,0.7,
-0.9\}$, $r\in\{1,2,4,8,16\}$, tail $8$; the diversity floor $D_0$ is the same-init,
-independent-noise, no-flip drift (a full radius-$r$ run, hence velocity-matched). Finite-size
-Lyapunov: least-squares slope of $\log(\text{damaged sites})$ over the ballistic window.
-Calibration (\S3.5): three first-order Markov sources, $K{=}60$ symbols, $6$ successors,
-$300$\,k tokens each, a tiny model per source ($4000$ steps); recovery is row total-variation
-between the censused and true transition matrix. Census on real models is proxy-validated
-against a WikiText-103 slice re-tokenized per model ($\sim$240--250\,k tokens).
-
-\textbf{Statistics.} F12 (crossover), F21 (velocity), and the F23 radius trend are
-finite-size scanned. The F23 capacity gap is measured with \emph{two} seeds; the
-$15/15$-cell signed-rank we originally reported ($p<10^{-4}$) is pseudoreplicated
-(correlated $(r,T)$ cells driven by the same two seeds) and is \emph{not} treated as a
-significance claim---the defensible statement is the tiny $\ll$ \{mini,\,base\} gap
-(base-vs-mini null, $8/15$). A seed-level rebuild ($\ge15$ independent seeds, hierarchical /
-bootstrap test) is the tracked pre-camera-ready fix.
-
-\textbf{Known limits of this run.} The AR capacity trend uses two--three Pythia sizes with
-one discriminating radius; the $410$m largest-window cell OOM'd on 16\,GB and was dropped;
-the real-model census is a proxy; reference metadata in \texttt{refs.bib} is web-verified but
-2026 preprints may change.
+The contribution is a \emph{validated} black-box instrument and an honest account of its
+range. Before measuring a model, the apparatus reproduces a stochastic PCA's damage spreading
+bit-exactly, separates CA rules by whether damage survives, and recovers known transition
+matrices. Pointed at Pythia checkpoints it detects a developmental transition in token-space
+criticality that survives pre-registered correction at two lattice sizes. Pointed at real
+generation it returns a negative that bounds all of it: free generation absorbs no injected
+token error, so these measure an iterated-resampling construction. An instrument that recovers
+what is known, says which of its checks are load-bearing, and marks where its readings stop
+applying is more useful than one that claims more.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
+
+\appendix
+\section{Reproducibility}
+\textbf{Models.} \texttt{bert-tiny}/\texttt{mini}/\texttt{base} ($L{=}2$--$24$);
+\texttt{Pythia-14M}--\texttt{1B} \citep{pythia} and \texttt{GPT-2} small--xl; Pythia-410m
+checkpoints \texttt{step256}--\texttt{step143000}. A tiny transformer trained from scratch on
+tinyshakespeare provides the corpus-checked census. \textbf{Grids.} $r\in\{1,2,4,8,16\}$,
+$T\in\{0.3,\dots,1.5\}$, $N\in\{48,96,192,384\}$, 8 seeds for the developmental family.
+\textbf{Definitions.} $\dn=D/\dz$ with \dz{} the independent-noise no-flip floor; \lca{} the
+log-slope of damaged-site count over the pre-saturation window, with the fit window's
+constants exposed as parameters and a named sentinel for never-ignited runs. \textbf{Tests.}
+The exact-zero CRN null is asserted over every backend and both update modes through one
+shared simulation loop; a golden-file regression asserts the core stays bit-identical; the DK
+identity is asserted cell-for-cell with an off-line control that must fail. All code,
+per-run result files, and figure scripts accompany the submission; every number in the paper
+is traceable to a result file.
 
 \input{neurips_checklist}
 
