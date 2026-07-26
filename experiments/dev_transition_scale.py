@@ -49,7 +49,7 @@ from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr     # identical protocol, not a copy
 from provenance import stamp
-from lyapunov import is_unignited                     # F42
+from lyapunov import is_unignited                                   # F42
 
 MODELS = [("EleutherAI/pythia-70m", 70), ("EleutherAI/pythia-160m", 160),
           ("EleutherAI/pythia-410m", 410), ("EleutherAI/pythia-1b", 1000)]
@@ -115,11 +115,30 @@ def main():
     print("\nwrote", OUT)
 
 
+def _ignited(r):
+    """F42: lambda is UNDEFINED when damage never ignites -- there is no cone to fit."""
+    return not (is_unignited(mean_damage=r["mean_damage"]) if "mean_damage" in r
+                else is_unignited(D_norm=r["D_norm"]))
+
+
 def analyse(res):
     runs = [v for v in res["runs"].values() if "lambda_ca" in v]
     if not runs:
         print("no completed runs yet"); return
     sizes = sorted({v["size_m"] for v in runs})
+    # F42, applied here for the first time (issue #77). Every lambda STATISTIC below averages
+    # only ignited runs; the rank tests keep every run, since a rank does not depend on a dead
+    # run's magnitude. This file previously averaged over both, and the damage was concentrated
+    # and severe: pythia-1b step256 reported -0.5461 over 8 runs, where two unignited runs carry
+    # lambda = -2.216 and -1.546 -- values below even the -0.4*ln(10) dead-damage floor and
+    # uninterpretable, since lambda is undefined without a cone. Over the 6 ignited runs the mean
+    # is -0.1011. That 5.4x inflation is the whole of the "unexplained non-monotone early dip"
+    # recorded as issue #40. The crossing intervals are UNCHANGED by this fix at all four sizes,
+    # so nothing the paper claims moves -- but the step means it was reading were contaminated.
+    n_drop = len(runs) - sum(1 for r in runs if _ignited(r))
+    if n_drop:
+        print(f"F42: {n_drop} of {len(runs)} runs never ignited; excluded from lambda means, "
+              f"kept in the rank tests")
     per_model, tests, plateau_by_size = {}, [], {}
 
     print("\n=== mean lambda_ca by (model, step) ===")
@@ -130,7 +149,8 @@ def analyse(res):
         row = f"  {sz:>4}m  "
         for st in STEPS:
             v = np.array([r["lambda_ca"] for r in runs
-                          if r["size_m"] == sz and r["step"] == int(st.replace("step", ""))])
+                          if r["size_m"] == sz and r["step"] == int(st.replace("step", ""))
+                          and _ignited(r)])
             if len(v):
                 means[st] = float(v.mean())
                 row += f"{v.mean():>+9.4f}"
@@ -138,19 +158,26 @@ def analyse(res):
                 row += f"{'--':>9}"
         print(row)
         ci = crossing_interval(means) if len(means) == len(STEPS) else None
+        # ranks keep every run (F42); means take only ignited ones, and both n are stated
         pre = [r["lambda_ca"] for r in runs
                if r["size_m"] == sz and f"step{r['step']}" in PRE]
         post = [r["lambda_ca"] for r in runs
                 if r["size_m"] == sz and f"step{r['step']}" not in PRE]
+        pre_ig = [r["lambda_ca"] for r in runs
+                  if r["size_m"] == sz and f"step{r['step']}" in PRE and _ignited(r)]
+        post_ig = [r["lambda_ca"] for r in runs
+                   if r["size_m"] == sz and f"step{r['step']}" not in PRE and _ignited(r)]
         entry = dict(step_means={k: round(v, 4) for k, v in means.items()},
                      crossing_interval=list(ci) if ci else None,
-                     n_pre=len(pre), n_post=len(post))
+                     n_pre=len(pre), n_post=len(post),
+                     n_pre_ignited=len(pre_ig), n_post_ignited=len(post_ig),
+                     lambda_means_exclude_unignited=True)
         if len(pre) >= 3 and len(post) >= 3:
             u = stats.mannwhitneyu(post, pre, alternative="two-sided")
-            entry.update(pre_mean=round(float(np.mean(pre)), 4),
-                         post_mean=round(float(np.mean(post)), 4))
+            entry.update(pre_mean=round(float(np.mean(pre_ig)), 4),
+                         post_mean=round(float(np.mean(post_ig)), 4))
             tests.append((f"m{sz}_lambda_post_vs_pre", float(u.pvalue)))
-            plateau_by_size[sz] = float(np.mean(post))
+            plateau_by_size[sz] = float(np.mean(post_ig))
         per_model[f"{sz}m"] = entry
 
     print("\n=== PRIMARY: crossing interval per model ===")

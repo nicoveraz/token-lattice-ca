@@ -414,6 +414,18 @@
   "kind": "published"
  },
  {
+  "literal": "10^2",
+  "source": "Nakaishi et al. 2024 (arXiv:2406.05335)",
+  "derivation": "k_c ~ 10^2 steps: their onset of critical structure in Pythia-160m -- adjacent to our [step128, step256] bracket for the same model",
+  "kind": "published"
+ },
+ {
+  "literal": "T_c{\\approx}1",
+  "source": "Nakaishi et al. 2024 (arXiv:2406.05335)",
+  "derivation": "T_c ~ 1: their critical temperature for AUTOREGRESSIVE GENERATION -- a different sampler from our in-place lattice update, cited as a consistent reference point and not as the same measurement",
+  "kind": "published"
+ },
+ {
   "literal": "0.042",
   "source": "design",
   "derivation": "1/4! -- smallest attainable permutation p at 4 groups",

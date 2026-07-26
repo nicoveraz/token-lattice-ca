@@ -104,10 +104,20 @@ add(f(an["D_norm"]["plateau_mean"], 3),    "dev_transition_n192.json", "analysis
 # recompute plateau levels from the RAW runs: the stored 4dp values can sit on a .0005
 # boundary, and re-rounding a rounded number is how 0.1735 becomes 0.173 instead of 0.174
 import numpy as _np
+# F42 (#64, and again in #77): a lambda mean must exclude unignited runs. The plateau
+# checkpoints happen to contain none, so these literals do not move -- but the predicate belongs
+# here regardless, because "it happens to be empty right now" is not a guarantee.
+import sys as _sys
+_sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments"))
+from lyapunov import is_unignited as _unig
+def _ignited(r):
+    return not (_unig(mean_damage=r["mean_damage"]) if "mean_damage" in r
+                else _unig(D_norm=r["D_norm"]))
 _runs = [v for v in scal["runs"].values() if "lambda_ca" in v]
 _PRE = {128, 256, 512}
 for k in ("70","160","410","1000"):
-    _v = [r["lambda_ca"] for r in _runs if r["size_m"] == int(k) and r["step"] not in _PRE]
+    _v = [r["lambda_ca"] for r in _runs
+          if r["size_m"] == int(k) and r["step"] not in _PRE and _ignited(r)]
     add(f(float(_np.mean(_v)), 3), "dev_transition_scale.json",
         f"mean(runs[size={k}, step not in PRE].lambda_ca) over {len(_v)} runs")
 for tst, lit in zip(scal["tests"], ["0.015","0.003",None,None]):
@@ -187,6 +197,17 @@ for _lr in ("1.0", "6.0", "3.0"):
     add(_lr, "Biderman et al. 2023 (arXiv:2304.01373 Tab. 1); EleutherAI model cards",
         f"Pythia learning-rate mantissa {_lr}e-3/e-4 -- cited constant, not measured",
         kind="published")
+
+# --- Nakaishi et al. 2406.05335: the independent convergence (issue #75) -----
+# Both values are CITED, not measured here. Verified against the source rather than a summary,
+# per F43/F50: the main-text analysis is Pythia-160m (410M-2.8B only in Appendix A), checkpoints
+# k = 0, 16, 64, 128, 512, 143000, by POS-tag correlation and power spectra.
+_NAK = "Nakaishi et al. 2024 (arXiv:2406.05335)"
+add("10^2", _NAK, "k_c ~ 10^2 steps: their onset of critical structure in Pythia-160m -- "
+    "adjacent to our [step128, step256] bracket for the same model", kind="published")
+add("T_c{\\approx}1", _NAK, "T_c ~ 1: their critical temperature for AUTOREGRESSIVE "
+    "GENERATION -- a different sampler from our in-place lattice update, cited as a consistent "
+    "reference point and not as the same measurement", kind="published")
 
 # --- arithmetic consequences of the design ---------------------------------
 import math as _m
