@@ -1,0 +1,232 @@
+{
+ "runs": {
+  "N48B4_step256_s21": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 21,
+   "lambda_ca": -2.18179,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 89.1
+  },
+  "N48B4_step256_s22": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 22,
+   "lambda_ca": 0.06553,
+   "D_norm": 0.58882,
+   "mean_damage": 0.19205729166666666,
+   "ignition_prob": 0.75,
+   "secs": 85.8
+  },
+  "N48B4_step256_s23": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 23,
+   "lambda_ca": -0.17587,
+   "D_norm": 0.04618,
+   "mean_damage": 0.016927083333333332,
+   "ignition_prob": 0.25,
+   "secs": 86.3
+  },
+  "N48B4_step256_s24": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 24,
+   "lambda_ca": -1.75829,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 86.0
+  },
+  "N48B4_step256_s25": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 25,
+   "lambda_ca": -1.65039,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 86.2
+  },
+  "N48B4_step256_s26": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 26,
+   "lambda_ca": 0.09202,
+   "D_norm": 0.32217,
+   "mean_damage": 0.13151041666666666,
+   "ignition_prob": 0.25,
+   "secs": 86.0
+  },
+  "N48B4_step256_s27": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 27,
+   "lambda_ca": -2.38219,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 86.0
+  },
+  "N48B4_step256_s28": {
+   "N": 48,
+   "B": 4,
+   "step": 256,
+   "seed": 28,
+   "lambda_ca": 0.03125,
+   "D_norm": 0.46029,
+   "mean_damage": 0.14713541666666666,
+   "ignition_prob": 0.25,
+   "secs": 87.4
+  },
+  "N48B4_step512_s21": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 21,
+   "lambda_ca": -2.42509,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 87.8
+  },
+  "N48B4_step512_s22": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 22,
+   "lambda_ca": 0.19302,
+   "D_norm": 0.30092,
+   "mean_damage": 0.17122395833333334,
+   "ignition_prob": 0.25,
+   "secs": 87.6
+  },
+  "N48B4_step512_s23": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 23,
+   "lambda_ca": 0.25271,
+   "D_norm": 0.35655,
+   "mean_damage": 0.08333333333333333,
+   "ignition_prob": 0.5,
+   "secs": 91.0
+  },
+  "N48B4_step512_s24": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 24,
+   "lambda_ca": 0.12628,
+   "D_norm": 0.32931,
+   "mean_damage": 0.177734375,
+   "ignition_prob": 0.5,
+   "secs": 87.5
+  },
+  "N48B4_step512_s25": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 25,
+   "lambda_ca": -1.68505,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 89.8
+  },
+  "N48B4_step512_s26": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 26,
+   "lambda_ca": 0.37287,
+   "D_norm": 0.46083,
+   "mean_damage": 0.3561197916666667,
+   "ignition_prob": 1.0,
+   "secs": 92.0
+  },
+  "N48B4_step512_s27": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 27,
+   "lambda_ca": 0.13049,
+   "D_norm": 0.17035,
+   "mean_damage": 0.10026041666666667,
+   "ignition_prob": 0.25,
+   "secs": 89.8
+  },
+  "N48B4_step512_s28": {
+   "N": 48,
+   "B": 4,
+   "step": 512,
+   "seed": 28,
+   "lambda_ca": 0.09931,
+   "D_norm": 0.08645,
+   "mean_damage": 0.06770833333333333,
+   "ignition_prob": 0.25,
+   "secs": 89.1
+  }
+ },
+ "_preregistration": {
+  "N": 48,
+  "B": 4,
+  "steps": [
+   "step256",
+   "step512"
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28
+  ],
+  "predictions": {
+   "if_batch_size_effect": "~5/16 unignited, like N=192 B=4",
+   "if_lattice_size_effect": "~0/16 unignited, like N=48 B=16",
+   "if_both": "2-3/16, reported as 'both contribute', not rounded to the nearer story",
+   "reference_cells": {
+    "N48_B16": "0/16",
+    "N96_B8": "1/16",
+    "N192_B4": "5/16"
+   }
+  }
+ },
+ "analysis": {
+  "unignited": 6,
+  "n": 16,
+  "frac_unignited": 0.375,
+  "fisher_vs_sameN_diffB": {
+   "p": 0.01767,
+   "cell": "N=48 B=16 -> 0/16"
+  },
+  "fisher_vs_sameB_diffN": {
+   "p": 1.0,
+   "cell": "N=192 B=4 -> 5/16"
+  },
+  "measured_ignition_prob": 0.2656,
+  "measured_death_prob": 0.7344,
+  "f44_fitted_death_prob": 0.6897,
+  "predicted_unignited_from_measured_d": 4.65,
+  "verdict": "BATCH SIZE: the new cell differs from same-N/different-B and matches same-B/different-N. F44's conclusion is confirmed by manipulation."
+ },
+ "_analysis_provenance": {
+  "script": "ignition_nb.py",
+  "sha256": "8ff1c5a2207ed53c3fc57ed86ec1e95f6bc84a9c085c00ee17e04860a9f41a6d",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Missing cell of the N-vs-B 2x2 for the ignition question (issue #39). Every N in the existing data came with its own B, so F44 could only FIT a batch-size model, not manipulate it. This holds N at 48 and drops B to 4. Also records ignition_prob, giving the per-lattice death probability directly rather than inferring it from a d^B fit."
+}

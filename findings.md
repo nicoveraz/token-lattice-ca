@@ -969,6 +969,45 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
+### F47 — the N/B confound resolved by manipulation: it is batch size (issue #39)
+
+`experiments/ignition_nb.py` → `results/ignition_nb.json`. F44 concluded that "unignited runs
+rise with N" was a batch-size artifact, but every N in the existing data came with its own B
+(16/8/4, holding N·B fixed at 768), so F44 could only **fit** a d^B model — it could never
+manipulate the two apart. This runs the missing cell of the 2×2.
+
+| | B=16 | B=4 |
+|---|---|---|
+| **N=48** | 0/16 | **6/16** ← this run |
+| **N=192** | — | 5/16 |
+
+- vs **same N, different B**: Fisher **p=0.01767** — the cells differ.
+- vs **same B, different N**: Fisher **p=1.0000** — indistinguishable.
+
+**Verdict: batch size.** Holding the lattice at N=48 and dropping B from 16 to 4 moves the
+unignited fraction from 0/16 to 6/16, matching N=192 at the same B. F44's
+conclusion is now confirmed by an intervention rather than by a model's own residuals, and
+**no N-dependence of ignition is claimed or visible**.
+
+**The per-lattice death probability, measured rather than fitted.** These runs record
+`ignition_prob` — which `block_damage` had always computed and the earlier runs simply discarded
+(F42). Measured per-lattice ignition **0.2656**, i.e. death
+**d = 0.7344**, against F44's fitted **d = 0.6897**. The
+d^B model predicts 4.65 unignited of 16; observed
+6. So an independently measured d reproduces the count the model was fitted to.
+
+**A side observation that reinforces F42.** One unignited run here returned **λ = −2.4251**, a new
+extreme. Across every experiment that records ignition state the unignited λ values now span
+**−0.0251 to −2.4251**, a factor of **97**, for runs that are physically identical
+(zero surviving damage). That is the clearest evidence yet that λ is not merely noisy for these
+runs but *undefined*, and that keying the F42 predicate on raw damage rather than on λ's magnitude
+was the right choice.
+
+**Design consequence.** The N·B = 768 compromise is now known to be load-bearing in both
+directions: it makes F42 §5.3's `D_norm == 0` fallback margin constant across sizes (convenient)
+and it confounded F44's first answer (misleading). Any future size sweep should vary N at fixed B,
+or state that it cannot separate the two.
+
 ### F46 — the transition's timing moves later with size, then saturates (complete, 192/192)
 
 `experiments/dev_transition_scale.py` → `results/dev_transition_scale.json`. 6 checkpoints × 8
