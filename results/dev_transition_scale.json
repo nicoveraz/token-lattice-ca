@@ -1622,6 +1622,479 @@
    "mean_damage": 0.0,
    "ignition_prob": 0.0,
    "secs": 137.7
+  },
+  "m1000_step128_s26": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 128,
+   "seed": 26,
+   "lambda_ca": 0.17617,
+   "D_norm": 0.45913,
+   "mean_damage": 0.20751953125,
+   "ignition_prob": 0.5,
+   "secs": 142.4
+  },
+  "m1000_step128_s27": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 128,
+   "seed": 27,
+   "lambda_ca": -0.08434,
+   "D_norm": 0.23909,
+   "mean_damage": 0.10611979166666667,
+   "ignition_prob": 0.4375,
+   "secs": 139.0
+  },
+  "m1000_step128_s28": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 128,
+   "seed": 28,
+   "lambda_ca": -0.09235,
+   "D_norm": 0.10221,
+   "mean_damage": 0.0390625,
+   "ignition_prob": 0.0625,
+   "secs": 137.8
+  },
+  "m1000_step256_s21": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 21,
+   "lambda_ca": -0.0037,
+   "D_norm": 0.17523,
+   "mean_damage": 0.031087239583333332,
+   "ignition_prob": 0.125,
+   "secs": 328.3
+  },
+  "m1000_step256_s22": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 22,
+   "lambda_ca": -0.2337,
+   "D_norm": 0.17436,
+   "mean_damage": 0.06331380208333333,
+   "ignition_prob": 0.1875,
+   "secs": 138.3
+  },
+  "m1000_step256_s23": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 23,
+   "lambda_ca": -2.21581,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 138.3
+  },
+  "m1000_step256_s24": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 24,
+   "lambda_ca": 0.00444,
+   "D_norm": 0.26104,
+   "mean_damage": 0.052897135416666664,
+   "ignition_prob": 0.25,
+   "secs": 138.2
+  },
+  "m1000_step256_s25": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 25,
+   "lambda_ca": -1.54642,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 138.5
+  },
+  "m1000_step256_s26": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 26,
+   "lambda_ca": -0.01219,
+   "D_norm": 0.29615,
+   "mean_damage": 0.0751953125,
+   "ignition_prob": 0.1875,
+   "secs": 138.3
+  },
+  "m1000_step256_s27": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 27,
+   "lambda_ca": -0.1626,
+   "D_norm": 0.33285,
+   "mean_damage": 0.07454427083333334,
+   "ignition_prob": 0.1875,
+   "secs": 138.9
+  },
+  "m1000_step256_s28": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 256,
+   "seed": 28,
+   "lambda_ca": -0.19868,
+   "D_norm": 0.25399,
+   "mean_damage": 0.06217447916666667,
+   "ignition_prob": 0.125,
+   "secs": 139.5
+  },
+  "m1000_step512_s21": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 21,
+   "lambda_ca": 0.03887,
+   "D_norm": 0.26447,
+   "mean_damage": 0.12939453125,
+   "ignition_prob": 0.1875,
+   "secs": 335.7
+  },
+  "m1000_step512_s22": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 22,
+   "lambda_ca": 0.10919,
+   "D_norm": 0.31352,
+   "mean_damage": 0.14680989583333334,
+   "ignition_prob": 0.375,
+   "secs": 138.3
+  },
+  "m1000_step512_s23": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 23,
+   "lambda_ca": 0.11923,
+   "D_norm": 0.19385,
+   "mean_damage": 0.12011718750000001,
+   "ignition_prob": 0.25,
+   "secs": 138.4
+  },
+  "m1000_step512_s24": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 24,
+   "lambda_ca": 0.08426,
+   "D_norm": 0.32885,
+   "mean_damage": 0.17529296875,
+   "ignition_prob": 0.5,
+   "secs": 137.4
+  },
+  "m1000_step512_s25": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 25,
+   "lambda_ca": -0.02512,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 137.8
+  },
+  "m1000_step512_s26": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 26,
+   "lambda_ca": 0.21886,
+   "D_norm": 0.53219,
+   "mean_damage": 0.302734375,
+   "ignition_prob": 0.6875,
+   "secs": 138.2
+  },
+  "m1000_step512_s27": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 27,
+   "lambda_ca": 0.11607,
+   "D_norm": 0.22257,
+   "mean_damage": 0.13704427083333334,
+   "ignition_prob": 0.3125,
+   "secs": 138.0
+  },
+  "m1000_step512_s28": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 512,
+   "seed": 28,
+   "lambda_ca": 0.17768,
+   "D_norm": 0.28706,
+   "mean_damage": 0.13362630208333331,
+   "ignition_prob": 0.25,
+   "secs": 142.8
+  },
+  "m1000_step1000_s21": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 21,
+   "lambda_ca": 0.08433,
+   "D_norm": 0.42235,
+   "mean_damage": 0.23193359375000003,
+   "ignition_prob": 0.5,
+   "secs": 335.9
+  },
+  "m1000_step1000_s22": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 22,
+   "lambda_ca": 0.36644,
+   "D_norm": 0.59196,
+   "mean_damage": 0.3499348958333333,
+   "ignition_prob": 0.8125,
+   "secs": 139.3
+  },
+  "m1000_step1000_s23": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 23,
+   "lambda_ca": 0.21421,
+   "D_norm": 0.56996,
+   "mean_damage": 0.43424479166666663,
+   "ignition_prob": 0.875,
+   "secs": 139.0
+  },
+  "m1000_step1000_s24": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 24,
+   "lambda_ca": 0.23178,
+   "D_norm": 0.38469,
+   "mean_damage": 0.2576497395833333,
+   "ignition_prob": 0.625,
+   "secs": 138.8
+  },
+  "m1000_step1000_s25": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 25,
+   "lambda_ca": 0.16674,
+   "D_norm": 0.27347,
+   "mean_damage": 0.18440755208333334,
+   "ignition_prob": 0.5,
+   "secs": 139.3
+  },
+  "m1000_step1000_s26": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 26,
+   "lambda_ca": 0.22532,
+   "D_norm": 0.69304,
+   "mean_damage": 0.43619791666666663,
+   "ignition_prob": 0.8125,
+   "secs": 139.6
+  },
+  "m1000_step1000_s27": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 27,
+   "lambda_ca": 0.21723,
+   "D_norm": 0.42824,
+   "mean_damage": 0.23697916666666669,
+   "ignition_prob": 0.6875,
+   "secs": 139.9
+  },
+  "m1000_step1000_s28": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 1000,
+   "seed": 28,
+   "lambda_ca": 0.14525,
+   "D_norm": 0.5356,
+   "mean_damage": 0.38199869791666663,
+   "ignition_prob": 0.9375,
+   "secs": 140.0
+  },
+  "m1000_step2000_s21": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 21,
+   "lambda_ca": 0.14625,
+   "D_norm": 0.40245,
+   "mean_damage": 0.39013671875,
+   "ignition_prob": 0.6875,
+   "secs": 517.0
+  },
+  "m1000_step2000_s22": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 22,
+   "lambda_ca": 0.16855,
+   "D_norm": 0.58707,
+   "mean_damage": 0.5673828125,
+   "ignition_prob": 1.0,
+   "secs": 139.9
+  },
+  "m1000_step2000_s23": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 23,
+   "lambda_ca": 0.14039,
+   "D_norm": 0.4706,
+   "mean_damage": 0.4571940104166667,
+   "ignition_prob": 0.9375,
+   "secs": 140.8
+  },
+  "m1000_step2000_s24": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 24,
+   "lambda_ca": 0.16442,
+   "D_norm": 0.54144,
+   "mean_damage": 0.5242513020833333,
+   "ignition_prob": 1.0,
+   "secs": 139.0
+  },
+  "m1000_step2000_s25": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 25,
+   "lambda_ca": 0.09462,
+   "D_norm": 0.1546,
+   "mean_damage": 0.1494140625,
+   "ignition_prob": 0.3125,
+   "secs": 139.2
+  },
+  "m1000_step2000_s26": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 26,
+   "lambda_ca": 0.16782,
+   "D_norm": 0.60601,
+   "mean_damage": 0.5843098958333333,
+   "ignition_prob": 1.0,
+   "secs": 139.1
+  },
+  "m1000_step2000_s27": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 27,
+   "lambda_ca": 0.16847,
+   "D_norm": 0.52532,
+   "mean_damage": 0.51318359375,
+   "ignition_prob": 1.0,
+   "secs": 138.9
+  },
+  "m1000_step2000_s28": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 2000,
+   "seed": 28,
+   "lambda_ca": 0.12893,
+   "D_norm": 0.5388,
+   "mean_damage": 0.5187174479166667,
+   "ignition_prob": 1.0,
+   "secs": 138.8
+  },
+  "m1000_step4000_s21": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 21,
+   "lambda_ca": 0.09541,
+   "D_norm": 0.27632,
+   "mean_damage": 0.2618815104166667,
+   "ignition_prob": 0.5625,
+   "secs": 331.2
+  },
+  "m1000_step4000_s22": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 22,
+   "lambda_ca": 0.16619,
+   "D_norm": 0.56777,
+   "mean_damage": 0.5413411458333333,
+   "ignition_prob": 1.0,
+   "secs": 139.2
+  },
+  "m1000_step4000_s23": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 23,
+   "lambda_ca": 0.11244,
+   "D_norm": 0.34923,
+   "mean_damage": 0.33382161458333326,
+   "ignition_prob": 0.875,
+   "secs": 140.0
+  },
+  "m1000_step4000_s24": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 24,
+   "lambda_ca": 0.1739,
+   "D_norm": 0.51714,
+   "mean_damage": 0.49348958333333337,
+   "ignition_prob": 0.9375,
+   "secs": 139.2
+  },
+  "m1000_step4000_s25": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 25,
+   "lambda_ca": 0.13884,
+   "D_norm": 0.19993,
+   "mean_damage": 0.19124348958333334,
+   "ignition_prob": 0.5,
+   "secs": 139.2
+  },
+  "m1000_step4000_s26": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 26,
+   "lambda_ca": 0.15787,
+   "D_norm": 0.6126,
+   "mean_damage": 0.583984375,
+   "ignition_prob": 0.9375,
+   "secs": 139.1
+  },
+  "m1000_step4000_s27": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 27,
+   "lambda_ca": 0.17356,
+   "D_norm": 0.53449,
+   "mean_damage": 0.5069986979166667,
+   "ignition_prob": 0.9375,
+   "secs": 139.8
+  },
+  "m1000_step4000_s28": {
+   "model": "EleutherAI/pythia-1b",
+   "size_m": 1000,
+   "step": 4000,
+   "seed": 28,
+   "lambda_ca": 0.13037,
+   "D_norm": 0.42906,
+   "mean_damage": 0.40901692708333337,
+   "ignition_prob": 0.9375,
+   "secs": 139.2
   }
  },
  "tests": [
@@ -1634,13 +2107,19 @@
   {
    "name": "m160_lambda_post_vs_pre",
    "p_raw": 0.002198,
-   "p_bh": 0.003298,
+   "p_bh": 0.002931,
    "significant_bh_05": true
   },
   {
    "name": "m410_lambda_post_vs_pre",
    "p_raw": 0.0,
-   "p_bh": 1e-06,
+   "p_bh": 2e-06,
+   "significant_bh_05": true
+  },
+  {
+   "name": "m1000_lambda_post_vs_pre",
+   "p_raw": 7e-06,
+   "p_bh": 1.5e-05,
    "significant_bh_05": true
   }
  ],
@@ -1648,11 +2127,12 @@
   "by_size": {
    "70": 0.1623,
    "160": 0.1643,
-   "410": 0.1735
+   "410": 0.1735,
+   "1000": 0.1658
   },
-  "spearman_rho": 1.0,
-  "p_exact_floor": 0.1667,
-  "p_scipy_INVALID_AT_THIS_N": 0.0,
+  "spearman_rho": 0.8,
+  "p_exact_floor": 0.0417,
+  "p_scipy_INVALID_AT_THIS_N": 0.2,
   "label": "EXPLORATORY. This is NOT the retracted capacity->sensitivity axis (W1); it is the post-transition level by size, reported for completeness. It is not corrected for multiplicity and must not be quoted as an axis. Note the n: with this many sizes the smallest attainable permutation p is 1/n!, so a 'significant' Spearman here is arithmetically impossible."
  },
  "per_model": {
@@ -1709,14 +2189,24 @@
   },
   "1000m": {
    "step_means": {
-    "step128": -0.3286
+    "step128": -0.2054,
+    "step256": -0.5461,
+    "step512": 0.1049,
+    "step1000": 0.2064,
+    "step2000": 0.1474,
+    "step4000": 0.1436
    },
-   "crossing_interval": null,
-   "n_pre": 5,
-   "n_post": 0
+   "crossing_interval": [
+    "step256",
+    "step512"
+   ],
+   "n_pre": 24,
+   "n_post": 24,
+   "pre_mean": -0.2155,
+   "post_mean": 0.1658
   }
  },
- "primary_verdict": "SIZE-DEPENDENT or incomplete: crossing intervals differ across sizes",
+ "primary_verdict": "SIZE-DEPENDENT: 2 distinct crossing intervals across the 3 size(s) where one was located; 1 size(s) had none on this grid",
  "_note": "Timing of the developmental transition across Pythia sizes, N=48, 8 seeds, protocol imported verbatim from dev_transition_phase3.measure. PRIMARY is the crossing interval, not the level. The post-transition level by size is EXPLORATORY and is explicitly not the retracted capacity->sensitivity axis (W1).",
  "_preregistration": {
   "models": [

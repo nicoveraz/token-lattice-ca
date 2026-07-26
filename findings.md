@@ -969,31 +969,44 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
-### F46 — the transition's TIMING moves with model size (3 of 4 sizes; 1b in flight)
+### F46 — the transition's timing moves later with size, then saturates (complete, 192/192)
 
 `experiments/dev_transition_scale.py` → `results/dev_transition_scale.json`. 6 checkpoints × 8
-seeds × 4 Pythia sizes at N=48, protocol imported from Phase 3. **169/192 runs complete**:
-70m, 160m and 410m are done; pythia-1b has all 8 seeds at steps 128/256/512 and its later
-checkpoints are still running.
+seeds × 4 Pythia sizes at N=48, protocol imported from Phase 3. **192/192 complete.**
 
-**Mean λ_ca by (model, checkpoint):**
+**Mean λ_ca by (model, checkpoint), all cells n=8:**
 
 | size | 128 | 256 | 512 | 1000 | 2000 | 4000 |
 |---|---|---|---|---|---|---|
 | 70m | **+0.069** | +0.046 | +0.162 | +0.157 | +0.160 | +0.171 |
 | 160m | −0.039 | **+0.094** | +0.098 | +0.174 | +0.167 | +0.152 |
 | 410m | −0.279 | −0.019 | **+0.068** | +0.192 | +0.156 | +0.172 |
-| 1b | −0.329 | — | — | — | — | — |
+| 1b | −0.205 | −0.546 | **+0.105** | +0.206 | +0.147 | +0.144 |
 
-**The zero-crossing moves later with size — but it saturates, and my one-seed hint about 1b
-was wrong.** 70m is already positive at the earliest checkpoint (no crossing on this grid),
-160m crosses between **128 and 256**, 410m between **256 and 512**. I wrote above that
-pythia-1b "starts furthest negative (−0.329), which extends the pattern"; that was a single
-seed. At the full 8 seeds 1b's step128 mean is **−0.205**, *less* negative than 410m's −0.279,
-and 1b crosses in the **same 256 → 512 interval as 410m**. So the ordering is monotone
-non-decreasing but **ties at the top two sizes** — the honest statement is that the crossing
-moves later from 70m to 410m and this grid cannot separate 410m from 1b. 1b is also
-non-monotone early (step256 = −0.546 is *below* step128 = −0.205), which no other size shows.
+**The transition replicates in all four sizes** — per-model post-vs-pre, BH-FDR over the
+family: p_BH = 0.015 (70m), 0.003 (160m), 0.000 (410m), 0.00002 (1b).
+
+**The crossing moves later with size, then saturates.** 70m is already positive at the earliest
+checkpoint (transition earlier than this grid reaches); 160m crosses **128 → 256**; 410m and 1b
+both cross **256 → 512**. So the ordering is monotone non-decreasing with a **tie at the top two
+sizes** — the grid separates 70m, 160m and 410m but not 410m from 1b.
+
+**1b is qualitatively different early, and I have no explanation for it.** Its step256 mean is
+**−0.546**, deeper than any other cell in the table and *below* its own step128 (−0.205). Every
+other size is monotone or near-monotone through the transition. This is 8 seeds, so it is not
+noise in the usual sense, but one non-monotone model on one grid is an observation, not a
+mechanism, and I am not going to invent one.
+
+**A one-seed hint of mine did not survive.** At 5/48 runs I recorded that 1b "starts furthest
+negative (−0.329), which extends the pattern", flagged as a hint. At 8 seeds step128 is −0.205,
+*less* negative than 410m's −0.279, and 1b ties rather than extends. The hint was wrong and is
+corrected here rather than quietly dropped.
+
+**The level does NOT scale with size**, which matters because it is the closest thing here to
+the retracted claim: plateau λ is 0.162 / 0.164 / 0.174 / 0.166 — **non-monotone**, peaking at
+410m and falling at 1b. Spearman ρ=0.80, and with 4 sizes the smallest attainable permutation
+p is 1/4! = 0.042, so this could not have been significant however it came out. **No capacity
+axis is claimed, and none is visible.**
 
 **This is not the retracted capacity axis (W1).** That claim was about the *level* of λ/D_norm
 at a fixed checkpoint and was pseudoreplicated at n=2. This is about *when* the sign change
@@ -1008,7 +1021,7 @@ in the results file as explicitly exploratory.
   grid reaches*, and that is what the file records — "no crossing located on this grid", not
   "no transition".
 
-**Two bugs in my own analysis code, both found by reading the output rather than by a test.**
+**Three bugs in my own analysis code, all found by reading output rather than by a test.**
 
 1. **`crossing_interval` sorted checkpoint keys lexicographically.** The keys are strings
    (`"step128"`, `"step1000"`), so `sorted()` ordered them 1000, 128, 2000, 256, 4000, 512 —
@@ -1018,7 +1031,12 @@ in the results file as explicitly exploratory.
    actual behaviour differed, with nothing asserting the difference. It is also the helper the
    v3 review said "would have returned (256, 512) and contradicted its own docstring" — it
    would not have, because of this bug.
-2. **A Spearman p-value that cannot exist.** The exploratory level-vs-size line reported
+2. **The verdict conflated "no crossing on this grid" with "intervals differ".** The
+   pre-registration explicitly requires the former to be reported as such — 70m's transition is
+   *earlier* than the grid reaches, which is informative, not missing — but the verdict string
+   pooled it into "SIZE-DEPENDENT or incomplete". Now three distinct verdicts, with the
+   out-of-grid count stated separately.
+3. **A Spearman p-value that cannot exist.** The exploratory level-vs-size line reported
    `rho=+1.000, p=0.0000` at n=3. Every monotone triple gives rho=1, and with 3 points there
    are only 3!=6 orderings, so the smallest attainable permutation p is **1/6 = 0.167**. scipy's
    0.0 is an asymptotic approximation invalid at this n. The script now prints the exact floor

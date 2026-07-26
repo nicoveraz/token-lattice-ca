@@ -32,6 +32,7 @@ Nothing goes in the paper that isn't in this table with a `results/` path.
 | C10b | **Sign agreement** (pre-set-free restatement, preferred) | pre 6/16 and **7/15** negative; **0/48 plateau runs negative**, min +0.1074. Ordinal, so **unchanged by F42** | `...:sign_agreement` |
 | C11 | All 4 pre-registered members survive BH-FDR | p_BH ≤ 2e−05 | `dev_transition_phase3.json`, `logs/phase3_dev.log` |
 | C12 | Shape is non-monotone | overshoot **+1.4% to +22.4%**; separable in **1/4** cells after BH, and that cell is D_norm — λ_ca shows +1.4% (p_BH 0.78) at N=96 | `...:peak_vs_plateau` |
+| C20 | **Transition timing vs model size** | replicates in 4/4 sizes (p_BH ≤ 0.015); crossing 70m <128, 160m 128→256, 410m & 1b 256→512 (saturates); plateau level non-monotone 0.162/0.164/0.174/0.166 → no capacity axis | `dev_transition_scale.json` |
 | C13b | **λ_ca intensive, D_norm 1/N over 4×** | λ_ca 0.168/0.169/0.160 (N^−0.04); D_norm 0.569/0.306/0.139 (N^−1.02) | `dev_transition_n192.json` |
 | C13 | λ_ca is size-robust | **95%** retention (was 104% before F42 dropped the unignited run); plateau levels differ by −0.0003, **95% CI [−0.0229, +0.0223]** = agree within **±14%** | `...:size_scaling_W9` |
 | C14 | D_norm is size-dependent | 53% retention; level 0.569 vs 0.306, **p=1.3e−08** | same |
