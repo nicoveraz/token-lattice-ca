@@ -32,6 +32,7 @@ Nothing goes in the paper that isn't in this table with a `results/` path.
 | C10b | **Sign agreement** (pre-set-free restatement, preferred) | pre 6/16 and **7/15** negative; **0/48 plateau runs negative**, min +0.1074. Ordinal, so **unchanged by F42** | `...:sign_agreement` |
 | C11 | All 4 pre-registered members survive BH-FDR | p_BH ≤ 2e−05 | `dev_transition_phase3.json`, `logs/phase3_dev.log` |
 | C12 | Shape is non-monotone | overshoot **+1.4% to +22.4%**; separable in **1/4** cells after BH, and that cell is D_norm — λ_ca shows +1.4% (p_BH 0.78) at N=96 | `...:peak_vs_plateau` |
+| C13b | **λ_ca intensive, D_norm 1/N over 4×** | λ_ca 0.168/0.169/0.160 (N^−0.04); D_norm 0.569/0.306/0.139 (N^−1.02) | `dev_transition_n192.json` |
 | C13 | λ_ca is size-robust | **95%** retention (was 104% before F42 dropped the unignited run); plateau levels differ by −0.0003, **95% CI [−0.0229, +0.0223]** = agree within **±14%** | `...:size_scaling_W9` |
 | C14 | D_norm is size-dependent | 53% retention; level 0.569 vs 0.306, **p=1.3e−08** | same |
 | C15 | Variance collapse | sd(λ) 3.7× / 3.1×, Levene p≤1.7e−04. **Not** "seeds agree to a few percent" — plateau CV is 21.9%/25.4% | `...:variance` |
@@ -120,3 +121,11 @@ the responsible-use statement once written.
   effect size, because effect sizes depend on where the pre/post line is drawn and two separate
   defects had been found in exactly that choice.
 - **2026-07-26** — Cut complete: body fits 5 pages. Conclusion merged into Responsible use.
+- **2026-07-26** — N=192 landed (F45). λ_ca intensive across 4×, D_norm 1/N. My pre-registered
+  D_norm band missed by 2% because I built it from N=96's observed ratio instead of N=48 and a
+  theoretical factor of 2 — the band was mis-constructed, the hypothesis was right. Reported as
+  a miss, not retuned.
+- **2026-07-26** — Two process defects worth remembering: (a) editing an analysis script while
+  its job runs does NOT change that job's analysis — Python had already imported the module, so
+  the job wrote a pre-F42 analysis that "downgraded" the size claim as a pure artifact;
+  (b) two scripts implemented the F42 asymmetry differently, inflating D_norm's plateau 14%.

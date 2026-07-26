@@ -182,3 +182,22 @@ def test_phase3_unignited_count_is_what_F42_documents():
     assert len(dead) == 1, f"expected 1 unignited run, found {len(dead)}: {dead}"
     only = dead[0]
     assert (only["N"], only["step"], only["seed"]) == (96, 256, 22)
+
+
+def test_n192_uses_the_same_ignition_asymmetry_as_the_shape_script():
+    """Two scripts, one rule, must not have two behaviours (F45).
+
+    dev_transition_n192.py originally applied the ignition filter to BOTH metrics while
+    dev_transition_shape.py applied it only to lambda. That inflated D_norm's plateau by 14%
+    -- on the quantity whose size scaling was the entire point of the run.
+    """
+    d = _load("dev_transition_n192.json")
+    if "analysis" not in d:
+        pytest.skip("n192 analysis not present")
+    a = d["analysis"]
+    assert "ignited runs only" in a["lambda_ca"]["basis"], a["lambda_ca"]["basis"]
+    assert "ALL runs" in a["D_norm"]["basis"], a["D_norm"]["basis"]
+    # and the n's must differ exactly by the unignited count wherever there is one
+    dead_plateau = a["ignition"]["step143000"]["n_unignited"]
+    assert a["D_norm"]["n_plateau"] - a["lambda_ca"]["n_plateau"] == dead_plateau, (
+        "the two metrics' plateau group sizes do not differ by exactly the unignited count")

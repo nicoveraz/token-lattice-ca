@@ -93,9 +93,18 @@ def main():
         return is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v \
             else is_unignited(D_norm=v["D_norm"])
 
-    def sel(steps, m, ignited_only=False):
+    def sel(steps, m):
+        """F42 asymmetry, matching dev_transition_shape.py exactly.
+
+        lambda_ca: zero damage means NO CONE -> undefined -> drop the run.
+        D_norm   : zero damage means the ratio is GENUINELY ZERO -> keep it.
+
+        Applying the filter to BOTH (as the first version of this script did) silently biases
+        D_norm upward by discarding its true zeros -- here it moved the plateau 0.1393 -> 0.1592,
+        a 14% inflation of the quantity whose SIZE SCALING is the whole point of the run.
+        """
         rows = [v for v in done if f"step{v['step']}" in steps]
-        if ignited_only:
+        if m == "lambda_ca":
             rows = [v for v in rows if not unignited(v)]
         return np.array([v[m] for v in rows])
 
@@ -114,7 +123,7 @@ def main():
 
     print("\n=== N=192 result vs the pre-registered predictions (IGNITED runs only) ===")
     for m in ("lambda_ca", "D_norm"):
-        pre, post = sel(PRE, m, True), sel({"step143000"}, m, True)
+        pre, post = sel(PRE, m), sel({"step143000"}, m)
         if len(pre) < 2 or len(post) < 2:
             print(f"  {m:>10}: too few ignited runs to summarise"); continue
         out[m] = dict(pre_mean=round(float(pre.mean()), 4), n_pre=len(pre),
@@ -122,14 +131,16 @@ def main():
                       plateau_sd=round(float(post.std(ddof=1)), 4),
                       plateau_se=round(float(post.std(ddof=1) / np.sqrt(len(post))), 4),
                       gap=round(float(post.mean() - pre.mean()), 4),
-                      basis="ignited runs only (F42); n stated per group")
+                      basis=("ignited runs only (F42)" if m == "lambda_ca"
+                             else "ALL runs -- zero damage is a true zero (F42 asymmetry)"))
         print(f"  {m:>10}  pre {pre.mean():+.4f} (n={len(pre)}) -> plateau "
               f"{post.mean():+.4f} (n={len(post)}, sd {post.std(ddof=1):.4f}, "
               f"se {post.std(ddof=1)/np.sqrt(len(post)):.4f})")
         # the rank test is immune to the discarded magnitudes, so it uses ALL runs
         from scipy import stats as _st
-        pre_all, post_all = sel(PRE, m), sel({"step143000"}, m)
-        u = _st.mannwhitneyu(post_all, pre_all, alternative="two-sided")
+        rows_pre = [v[m] for v in done if f"step{v['step']}" in PRE]
+        rows_post = [v[m] for v in done if v["step"] == 143000]
+        u = _st.mannwhitneyu(rows_post, rows_pre, alternative="two-sided")
         out[m]["mannwhitney_all_runs_p"] = float(u.pvalue)
         print(f"{'':>14}rank test on ALL runs (ranks do not depend on a dead run's "
               f"magnitude): p={u.pvalue:.2e}")

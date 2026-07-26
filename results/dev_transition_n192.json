@@ -127,6 +127,70 @@
    "lambda_ca": 0.28051,
    "D_norm": 0.0509,
    "secs": 348.8
+  },
+  "N192_step143000_s21": {
+   "N": 192,
+   "step": 143000,
+   "seed": 21,
+   "lambda_ca": 0.15083,
+   "D_norm": 0.16613,
+   "secs": 347.7
+  },
+  "N192_step143000_s22": {
+   "N": 192,
+   "step": 143000,
+   "seed": 22,
+   "lambda_ca": 0.18295,
+   "D_norm": 0.12477,
+   "secs": 352.4
+  },
+  "N192_step143000_s23": {
+   "N": 192,
+   "step": 143000,
+   "seed": 23,
+   "lambda_ca": 0.14957,
+   "D_norm": 0.20922,
+   "secs": 344.8
+  },
+  "N192_step143000_s24": {
+   "N": 192,
+   "step": 143000,
+   "seed": 24,
+   "lambda_ca": 0.15311,
+   "D_norm": 0.18366,
+   "secs": 346.2
+  },
+  "N192_step143000_s25": {
+   "N": 192,
+   "step": 143000,
+   "seed": 25,
+   "lambda_ca": 0.17279,
+   "D_norm": 0.13401,
+   "secs": 345.8
+  },
+  "N192_step143000_s26": {
+   "N": 192,
+   "step": 143000,
+   "seed": 26,
+   "lambda_ca": 0.17082,
+   "D_norm": 0.15346,
+   "secs": 346.8
+  },
+  "N192_step143000_s27": {
+   "N": 192,
+   "step": 143000,
+   "seed": 27,
+   "lambda_ca": -0.99427,
+   "D_norm": 0.0,
+   "secs": 345.0
+  },
+  "N192_step143000_s28": {
+   "N": 192,
+   "step": 143000,
+   "seed": 28,
+   "lambda_ca": 0.13692,
+   "D_norm": 0.1431,
+   "secs": 336.6
   }
  },
  "_preregistration": {
@@ -164,5 +228,66 @@
     "N96_D_norm": 0.3062
    }
   }
- }
+ },
+ "analysis": {
+  "ignition": {
+   "step256": {
+    "n": 8,
+    "n_unignited": 2,
+    "n_ignited": 6,
+    "frac_ignited": 0.75,
+    "unignited_lambdas": [
+     -1.71303,
+     -0.99427
+    ]
+   },
+   "step512": {
+    "n": 8,
+    "n_unignited": 3,
+    "n_ignited": 5,
+    "frac_ignited": 0.625,
+    "unignited_lambdas": [
+     -0.03978,
+     -0.07899,
+     -0.99427
+    ]
+   },
+   "step143000": {
+    "n": 8,
+    "n_unignited": 1,
+    "n_ignited": 7,
+    "frac_ignited": 0.875,
+    "unignited_lambdas": [
+     -0.99427
+    ]
+   }
+  },
+  "lambda_ca": {
+   "pre_mean": 0.0597,
+   "n_pre": 11,
+   "plateau_mean": 0.1596,
+   "n_plateau": 7,
+   "plateau_sd": 0.0162,
+   "plateau_se": 0.0061,
+   "gap": 0.0999,
+   "basis": "ignited runs only (F42)",
+   "mannwhitney_all_runs_p": 0.10433314860884102
+  },
+  "D_norm": {
+   "pre_mean": 0.0487,
+   "n_pre": 16,
+   "plateau_mean": 0.1393,
+   "n_plateau": 8,
+   "plateau_sd": 0.0626,
+   "plateau_se": 0.0221,
+   "gap": 0.0906,
+   "basis": "ALL runs -- zero damage is a true zero (F42 asymmetry)",
+   "mannwhitney_all_runs_p": 0.006624038322988758
+  }
+ },
+ "verdict": {
+  "D_norm": "NEITHER prediction -- reported as such, not rounded to one",
+  "lambda_ca": "lambda_ca INVARIANT across a 4x size range"
+ },
+ "_note": "Third lattice size for the developmental transition. Predictions were written into _preregistration before the run. lambda_ca is expected to be intensive (a cone-growth RATE fitted before saturation) and D_norm to fall as 1/N (localised numerator over a delocalised floor)."
 }

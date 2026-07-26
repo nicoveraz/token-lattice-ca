@@ -51,7 +51,7 @@ census), and the **boundaries** where those readings provably stop applying.
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F43); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F45); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -100,6 +100,8 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F39** | **Developmental transition survives at two lattice sizes.** All 4 pre-registered family members survive BH-FDR (p_BH ≤ 2e−05). Headline stated ordinally: seeds disagree on λ's *sign* before, **0 of 48 plateau runs negative** after (min +0.107). λ_ca is size-robust (95% retention; plateau levels agree within **±14%**, 95% CI); D_norm is **not** (53%, level 0.569 vs 0.306) — so λ_ca carries the claim | 4 |
 | F40 | Ordered-group λ in the ECA rung is the estimator's **dead-damage floor** (−0.4·ln10), not a measurement — 5/7 rules pinned there with zero-width CI. Named as `DEAD_DAMAGE_FLOOR` with a predicate | 4 |
 | **F42** | **λ_ca is undefined when damage never ignites**, and the estimator emits a number anyway that spans an order of magnitude for the same outcome (−0.165 vs −1.713). `is_dead_damage_floor` catches neither. Rule: `is_unignited(mean_damage)`, ignition fraction per cell, λ stats over ignited runs only, **rank test keeps all runs**. Asymmetric by design — D_norm keeps them, since zero damage is a true zero | 4 |
+| **F45** | **Third lattice size.** Over N=48/96/192: λ_ca 0.168/0.169/0.160 = **N^−0.04, intensive across 4×**; D_norm 0.569/0.306/0.139 = **N^−1.02, i.e. 1/N**. Mechanism confirmed. My pre-registered D_norm band missed by 2% — mis-built, reported as a miss | 4 |
+| F44 | "Unignited runs rise with N" (Fisher p=0.022) is a **batch-size confound**: B halves as N doubles, and one constant per-lattice death probability fits all three sizes (χ² p=0.91). No evidence of an N effect | 4 |
 | F43 | Three citations were carrying **invented titles**; `plainnat` printed "Title/authors to verify" in the compiled bibliography. All five verified against arXiv; one prior-art claim narrowed to match what the cited works actually say | 4 |
 
 ## Layout
@@ -160,7 +162,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **79 tests** and now covers every backend, not just the toy JAX path:
+The suite is **82 tests** and now covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a

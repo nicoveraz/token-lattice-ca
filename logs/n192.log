@@ -34,3 +34,30 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
 Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.09it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 445.51it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 380.27it/s]Loading weights:  84%|████████▍ | 245/292 [00:00<00:00, 394.36it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 370.76it/s]
 [16/24] N192_step512_s28: lam=+0.2805 D_norm=0.0509 (348.8s)
 Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.31it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 595.33it/s]Loading weights:  85%|████████▌ | 249/292 [00:00<00:00, 659.43it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 518.83it/s]
+[17/24] N192_step143000_s21: lam=+0.1508 D_norm=0.1661 (347.7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.36it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 597.69it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 679.12it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 589.40it/s]
+[18/24] N192_step143000_s22: lam=+0.1829 D_norm=0.1248 (352.4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:08,  4.26it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 584.71it/s]Loading weights:  84%|████████▍ | 246/292 [00:00<00:00, 644.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 565.02it/s]
+[19/24] N192_step143000_s23: lam=+0.1496 D_norm=0.2092 (344.8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.16it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1727.08it/s]
+[20/24] N192_step143000_s24: lam=+0.1531 D_norm=0.1837 (346.2s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:56,  5.16it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 691.35it/s]Loading weights:  89%|████████▉ | 261/292 [00:00<00:00, 706.13it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 625.92it/s]
+[21/24] N192_step143000_s25: lam=+0.1728 D_norm=0.1340 (345.8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:54,  5.30it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 665.15it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 793.74it/s]
+[22/24] N192_step143000_s26: lam=+0.1708 D_norm=0.1535 (346.8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:39,  7.29it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1725.39it/s]
+[23/24] N192_step143000_s27: lam=-0.9943 D_norm=0.0000 (345.0s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:33,  8.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2124.50it/s]
+[24/24] N192_step143000_s28: lam=+0.1369 D_norm=0.1431 (336.6s)
+
+=== N=192 result vs the pre-registered predictions ===
+   lambda_ca  pre -0.1977 -> plateau +0.0153 (sd 0.4082, se 0.1443)
+      D_norm  pre +0.0487 -> plateau +0.1393 (sd 0.0626, se 0.0221)
+
+  D_norm  = 0.1393  -> NEITHER prediction -- reported as such, not rounded to one
+  lambda_ca = 0.0153  -> lambda_ca OUTSIDE the predicted interval -- size-robustness DOWNGRADED to 48->96
+
+  three-size levels  lambda: 0.1683 / 0.1686 / 0.0153
+                     D_norm: 0.5689 / 0.3062 / 0.1393   ratios 1.858, 2.198   (1/N would be 2.000, 2.000)
+
+wrote /Users/nicoveraz/Documents/GitHub/textca/results/dev_transition_n192.json

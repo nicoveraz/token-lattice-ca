@@ -969,6 +969,62 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
+### F45 — a third lattice size: λ_ca is intensive, D_norm is 1/N, and my prediction band was mis-built
+
+`experiments/dev_transition_n192.py` → `results/dev_transition_n192.json`. 24 runs at N=192,
+B=4 (steps 256/512/143000 × 8 seeds), protocol imported from the Phase 3 script, predictions
+written into `_preregistration` **before** the run.
+
+**The mechanism hypothesis is confirmed.** Over a 4× range in lattice size:
+
+| | N=48 | N=96 | N=192 | log–log slope |
+|---|---|---|---|---|
+| λ_ca plateau | 0.1683 | 0.1686 | **0.1596** | **N^(−0.038)** — intensive |
+| D_norm plateau | 0.5689 | 0.3062 | **0.1393** | **N^(−1.015)** — 1/N |
+
+λ_ca varies by **5.4% of its mean** across a 4× range; D_norm falls essentially exactly as
+1/N. That is what the mechanism predicted: λ_ca is a cone-growth *rate*, fitted before
+saturation, so it is intensive by construction; D_norm is a density ratio whose numerator
+stays localised in a cone while its denominator is delocalised over every site.
+
+**But the pre-registered band missed, and the reason is my error, not the data's.** I predicted
+D_norm ∈ [0.142, 0.153] under 1/N, and observed **0.1393** — below it. The band was built by
+scaling from N=96 using the *observed* two-size ratio 1.858, rather than from N=48 using the
+*theoretical* factor of 2. Pure 1/N from N=48 gives 0.1422, and the observation is **2.1%**
+from that. So the prediction interval was mis-constructed while the hypothesis it was testing
+is confirmed at slope −1.015. The script reports "NEITHER prediction", which is literally
+correct and is left standing rather than retuned after the fact.
+
+- **λ_ca's size-robustness upgrades** from "stable across 48→96" to **invariant across a 4×
+  range**, which is what F39's own limitation asked for. The pre-registered λ interval
+  [0.148, 0.188] contains the observation.
+- **A pre-registration assumption of mine was falsified.** I wrote that step143000 is "where
+  damage always ignites", making the plateau safe from F42. **It is not:** 1 of 8 plateau runs
+  at N=192 never ignited (λ = −0.9943, D_norm = 0). The F42 filter is load-bearing at the
+  plateau too, not only early in training.
+- **The N=192 rank test on λ is not significant** (p=0.104), against D_norm's p=0.0066. With
+  B=4 the plateau contains an unignited run whose rank sits at the bottom, which is exactly
+  what weakens a rank test. This cell was not powered as a hypothesis test — the pre-registered
+  test is Phase 3's — but it is reported rather than omitted.
+- **Ignition still shows no N effect.** With all three sizes complete: 0/24, 1/24, 6/24
+  unignited (Fisher p=0.022), and a single constant per-lattice death probability d=0.690 with
+  no N dependence reproduces all three (χ²=0.19, p=0.912). F44 stands, now on the full data.
+
+**A defect this run exposed, worth more than the result.** The analysis that the job itself
+wrote was **wrong**: I patched `dev_transition_n192.py` to apply the F42 filter *after*
+launching it, and Python had already imported the module, so the end-of-run analysis used the
+pre-F42 code. It averaged λ over unignited runs and printed
+"λ_ca OUTSIDE the predicted interval — size-robustness DOWNGRADED", a conclusion that is
+purely an artifact of the −0.9943 run. Re-running the analysis against the cached runs gave the
+correct numbers. **Editing an analysis script while its job is running does not change that
+job's analysis** — the results file must be regenerated afterwards, and was.
+
+Re-running also exposed a second inconsistency: `dev_transition_n192.py` applied the ignition
+filter to **both** metrics, while `dev_transition_shape.py` applies it only to λ. Two scripts,
+one rule, two behaviours. Dropping unignited runs from D_norm inflated its plateau
+0.1393 → 0.1592 — **14% on the very quantity whose size scaling was the point of the run**.
+Fixed to match; the asymmetry test now covers both files.
+
 ### F44 — the open question in F42 answered, and the obvious answer is wrong
 
 F42 recorded an open empirical question rather than asserting one: *do unignited runs get more
