@@ -438,6 +438,36 @@
   "kind": "published"
  },
  {
+  "literal": "26",
+  "source": "loss_baseline.json",
+  "derivation": "number of (model, checkpoint) pairs evaluated = len(loss)",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.71",
+  "source": "loss_baseline.json",
+  "derivation": "least-negative Spearman rho, |.| to 2dp",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.77",
+  "source": "loss_baseline.json",
+  "derivation": "most-negative Spearman rho, |.| to 2dp",
+  "kind": "measured"
+ },
+ {
+  "literal": "512",
+  "source": "loss_baseline.json",
+  "derivation": "endpoint of the steepest-loss bracket, identical across all 4 sizes",
+  "kind": "measured"
+ },
+ {
+  "literal": "1000",
+  "source": "loss_baseline.json",
+  "derivation": "endpoint of the steepest-loss bracket, identical across all 4 sizes",
+  "kind": "measured"
+ },
+ {
   "literal": "10^2",
   "source": "Nakaishi et al. 2024 (arXiv:2406.05335)",
   "derivation": "k_c ~ 10^2 steps: their onset of critical structure in Pythia-160m -- adjacent to our [step128, step256] bracket for the same model",

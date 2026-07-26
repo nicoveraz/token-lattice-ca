@@ -394,6 +394,7 @@ def test_manifest_covers_the_load_bearing_claims():
         "real_generation_damage.json",  # F35, the delimiting result
         "coupling_gap.json",            # F41, the coupling correction
         "calib_census.json",            # the census rung
+        "loss_baseline.json",           # #72, lambda_ca is not a perplexity proxy
     }
     assert required <= srcs, f"manifest no longer covers: {sorted(required - srcs)}"
     assert len(_manifest()) >= 60, f"manifest shrank to {len(_manifest())} entries"
@@ -438,3 +439,51 @@ def test_the_crossing_brackets_in_prose_match_the_scale_results():
     assert pm["70m"]["crossing_interval"] is None, (
         f"70m now has a crossing interval ({pm['70m']['crossing_interval']}); the paper says it "
         f"is already super-critical at the earliest checkpoint probed")
+
+
+def test_paper_loss_baseline_claims_match():
+    """#72: the paper claims lambda_ca is not a monotone transform of held-out loss.
+
+    Asserted against the file rather than through manifest literal-matching, because the load
+    bearing quantities here are COUNTS -- "monotone at all four sizes", "overshoots at three" --
+    and a single digit matches trivially anywhere in a manuscript. A manifest entry for "4"
+    would be traceability theatre.
+    """
+    tex, lb = _tex(), _load("loss_baseline.json")
+    a = lb["analysis"]
+
+    # premise of the shape argument: loss must fall monotonically everywhere
+    non_mono = [k for k, v in a.items() if not v["loss_monotone_decreasing"]]
+    assert not non_mono, (
+        f"held-out loss is no longer monotone at {non_mono}; the paper's "
+        f"'non-monotone function of a monotone variable' argument collapses without it")
+
+    # and lambda_ca must overshoot somewhere, or there is nothing to contrast
+    over = [k for k, v in a.items() if v["lambda_overshoot"]]
+    assert len(over) >= 3, (
+        f"lambda_ca now overshoots at only {len(over)} of {len(a)} sizes ({over}); the paper "
+        f"says three, and below that the proxy objection is no longer answered by shape")
+
+    # the contrast with C20 is that the loss elbow does NOT move with size while the crossing does
+    brackets = {tuple(v["loss_steepest_bracket"]) for v in a.values()}
+    assert len(brackets) == 1, (
+        f"the steepest-loss bracket is no longer identical across sizes ({brackets}); the "
+        f"paper's 'for every size' claim is void")
+    lo, hi = sorted(brackets.pop())
+    assert f"${lo}$--${hi}$" in tex, (
+        f"paper does not state the steepest-loss bracket as ${lo}$--${hi}$")
+
+    # and the crossings must actually differ from it, or there is no disagreement to report
+    crossings = {tuple(v["lambda_crossing_bracket"]) for v in a.values()
+                 if v["lambda_crossing_bracket"]}
+    assert crossings != {(lo, hi)}, (
+        "every lambda_ca crossing now coincides with the steepest-loss bracket; the paper claims "
+        "they disagree about location")
+
+    # the correlation half is explicitly NOT leaned on -- check the paper still says so
+    rho = [v["spearman_rho"] for v in a.values()]
+    assert f"{abs(max(rho)):.2f}" in tex and f"{abs(min(rho)):.2f}" in tex, (
+        f"paper omits the Spearman range {min(rho):.2f} to {max(rho):.2f}")
+    assert "correlation does not" in tex or "not the correlation" in tex, (
+        "the paper no longer says the correlation does not carry this claim; at n=6 checkpoints "
+        "with 1 of 4 significant, leaning on rho would be the weakest available argument")

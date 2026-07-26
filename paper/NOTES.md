@@ -122,6 +122,40 @@ geometry sets the page count — issue #55, hard stop Aug 26.
 
 ## 5. Decisions log
 
+- **2026-07-26** — **F53: the perplexity-proxy objection is answered in the paper, not just in
+  the repo (#72).** The transition sits where everything in training changes at once, so
+  "λ_ca is an expensive perplexity proxy with a good test suite" is the strongest attack
+  available. Held-out loss recomputed at the same 26 (model, checkpoint) pairs:
+
+  | | result |
+  |---|---|
+  | loss monotone decreasing | **4/4 sizes** |
+  | λ_ca overshoot | **3/4** (not 70m, which never crosses) |
+  | loss steepest-descent bracket | **(512, 1000) for every size** |
+  | λ_ca crossing bracket | none / 128–256 / 256–512 / 256–512 — **moves with size** |
+  | Spearman ρ | −0.77 … −0.71, significant in **1 of 4** at n=6 |
+
+  Two arguments, and the second was not anticipated in the pre-registration. **Shape:** a
+  non-monotone function of a monotone variable is not a monotone transform of it.
+  **Location:** the loss elbow is size-invariant while the λ_ca crossing is not, so λ_ca
+  resolves an ordering the loss curve does not express, at a point where the loss curve has no
+  feature. The correlation half is explicitly disclaimed in the paper — at n=6 with 1/4
+  significant, leaning on ρ would be the weakest available argument.
+
+  Scope shipped with it: shape only, not level, since WikiText-103 is not Pythia's training
+  distribution. The Pile version is [[#84]].
+
+  Guarding: the counts (4/4, 3/4) are deliberately **not** manifest literals — a single digit
+  matches trivially anywhere in a manuscript, and an entry for "4" would be traceability
+  theatre. They are asserted against the results file in
+  `test_paper_loss_baseline_claims_match`, which also asserts the steepest-loss bracket is
+  size-invariant and that the crossings differ from it. Mutation-tested by perturbing 70m's
+  bracket — the guard fires.
+
+  **Cost: +10 body lines.** The trim (#62) is now **37 lines (~480 words)**, deferred by
+  explicit instruction ("add to paper, trim later").
+
+
 - **2026-07-26** — **F52: the temperature scope is a WINDOW, not a point (#73).** The first pass
   ran T ∈ {0.3, 1.1} only, and three points is thin for the paper's most attackable limit. Adding
   T = 0.5 and 0.9 (32 runs, BH-FDR recomputed over the **full** four-temperature family, not

@@ -200,6 +200,17 @@ permutation $p$ is $1/4!\,{=}\,0.042$, so no capacity axis could have been estab
 none is visible. We report that null because it is the closest thing in this data to a
 previously retracted capacity claim.
 
+\textbf{It is not a restatement of the loss curve.} The transition sits where everything else in
+training changes at once, so \lca{} might be an expensive perplexity proxy. It is not. Held-out
+loss recomputed at the same $26$ (model, checkpoint) pairs falls \emph{monotonically} at all four
+sizes while \lca{} overshoots at three, and a non-monotone function of a monotone variable is not
+a monotone transform of it. The two also disagree about \emph{where}: the steepest loss descent
+is the $512$--$1000$ bracket for \emph{every} size, whereas the \lca{} crossing moves with size
+and precedes it. Rank correlation is moderate and mostly not significant at six checkpoints
+($\rho$ from $-0.77$ to $-0.71$), so shape and location carry this and correlation does not. We
+use the loss curve's \emph{shape} and not its level, since the evaluation text is not Pythia's
+training distribution.
+
 \textbf{Which quantity carries the claim.} $\lca$ is size-robust and \dn{} is not, and a third
 lattice size settles why. Over $N{=}48/96/192$ the $\lca$ plateau is $0.168/0.169/0.160$ --- a
 log--log slope of $N^{-0.04}$, i.e.\ \textbf{intensive across a $4\times$ range}, varying by $5\%$

@@ -211,6 +211,28 @@ for _lr in ("1.0", "6.0", "3.0"):
         f"Pythia learning-rate mantissa {_lr}e-3/e-4 -- cited constant, not measured",
         kind="published")
 
+# --- loss baseline: lambda_ca is not a perplexity proxy (issue #72) ----------
+# Derived from the analysis block, not retyped: the counts and the rho range are recomputed
+# here so a re-run that changed them fails the paper rather than silently disagreeing with it.
+_lb = L("loss_baseline.json")
+_la = _lb["analysis"]
+add(str(len(_lb["loss"])), "loss_baseline.json",
+    "number of (model, checkpoint) pairs evaluated = len(loss)")
+# The bare counts "4 sizes" and "3 overshoot" are deliberately NOT registered as manifest
+# literals: single digits match trivially anywhere in the manuscript, so the entry would claim a
+# traceability it does not provide. They are asserted instead in
+# test_paper_numbers.py::test_paper_loss_baseline_claims_match, against the results file.
+_rho = [v["spearman_rho"] for v in _la.values()]
+add(f(abs(max(_rho)), 2), "loss_baseline.json", "least-negative Spearman rho, |.| to 2dp")
+add(f(abs(min(_rho)), 2), "loss_baseline.json", "most-negative Spearman rho, |.| to 2dp")
+# the steepest-loss bracket must be the SAME for every size -- that is the whole contrast with
+# C20's size-dependent crossing, so assert the invariance rather than quoting one model's value
+_sb = {tuple(v["loss_steepest_bracket"]) for v in _la.values()}
+assert len(_sb) == 1, f"loss steepest-descent bracket is no longer size-invariant: {_sb}"
+for _x in sorted(_sb.pop()):
+    add(str(_x), "loss_baseline.json",
+        f"endpoint of the steepest-loss bracket, identical across all {len(_la)} sizes")
+
 # --- Nakaishi et al. 2406.05335: the independent convergence (issue #75) -----
 # Both values are CITED, not measured here. Verified against the source rather than a summary,
 # per F43/F50: the main-text analysis is Pythia-160m (410M-2.8B only in Appendix A), checkpoints
