@@ -1,9 +1,11 @@
 # Paper
 
-arXiv-ready draft of the token-lattice-CA instrument paper.
+Draft of the token-lattice cellular-automaton instrument paper.
+(Repository and author names are deliberately omitted here: this directory is
+bundled as anonymised supplementary material for a double-blind venue.)
 
-- `paper.md` — the readable Markdown source (edit here first; keep in sync with `.tex`).
-- `paper.tex` — arXiv LaTeX article (single-column `article` class, `natbib`).
+- `paper.tex` — the paper. Builds with `tectonic -X compile paper.tex`.
+- `NOTES.md` — the claim inventory and cut ledger; decide content there, assemble prose from it.
 - `refs.bib` — BibTeX. **Several arXiv IDs are as supplied by the project brief and are
   flagged for verification before submission** (the novelty check owes direct-reads of
   arXiv:2607.09803 and QUIVER).

@@ -23,12 +23,12 @@ Justification: The paper contains no formal theorems; it is empirical/measuremen
 \item {\bf Experimental result reproducibility} \\
 Question: Does the paper fully disclose all the information needed to reproduce the main experimental results? \\
 Answer: \answerYes{} \\
-Justification: All code, model checkpoints (toy), per-run result JSON/NPZ, and figures are in the public repository; the Reproducibility appendix gives models, grids, seeds, batch/ring sizes, the diversity-floor and CRN definitions, and the statistical tests. A harness regression test asserts the CRN null coupling is exactly zero.
+Justification: All code, model checkpoints (toy), per-run result JSON/NPZ, and figures are supplied as anonymised supplementary material; the Reproducibility appendix gives models, grids, seeds, batch/ring sizes, the diversity-floor and CRN definitions, and the statistical tests. A harness regression test asserts the CRN null coupling is exactly zero.
 
 \item {\bf Open access to data and code} \\
 Question: Does the paper provide open access to the data and code, with sufficient instructions? \\
 Answer: \answerYes{} \\
-Justification: Repository with a README giving per-phase reproduction commands and M1 runtime tables; pinned dependency versions; scripts are idempotent and resumable. [TODO: make the repository public and add the URL at camera-ready.]
+Justification: The anonymised supplement contains the full codebase with a README giving per-phase reproduction commands and measured M1 runtime tables, pinned dependency versions, and idempotent resumable scripts. Every number in the paper is traceable to a committed result file; the analysis scripts assert their emitted group sizes against their declared pre-registered design. A public repository URL will be added at camera-ready if the paper is accepted.
 
 \item {\bf Experimental setting/details} \\
 Question: Does the paper specify all the training and test details? \\
@@ -53,7 +53,7 @@ Justification: Measurement/interpretability work on public pretrained models and
 \item {\bf Broader impacts} \\
 Question: Does the paper discuss potential positive and negative societal impacts? \\
 Answer: \answerYes{} \\
-Justification: The instrument is a black-box interpretability tool (positive: measurement of trained-LM token dynamics without weight access, applicable to closed models). It creates no new generative capability; negative societal impact is minimal and indirect. [TODO: one broader-impacts paragraph.]
+Justification: See the Responsible use section. Positive: black-box measurement of trained-LM token dynamics without weight access, applicable to closed/API-only models. It creates no new generative capability. The negative case we treat as most likely is misreading: the paper's damping length and light cone describe an in-place-resampling construction, and real autoregressive generation absorbs no injected token error, so they must not be cited as evidence about deployed-decoder robustness. That boundary is stated in the body, not an appendix.
 
 \item {\bf Safeguards} \\
 Question: Does the paper describe safeguards for responsible release of high-risk assets? \\
@@ -63,7 +63,7 @@ Justification: No high-risk models or datasets are released; only measurement co
 \item {\bf Licenses for existing assets} \\
 Question: Are existing assets (code, data, models) properly credited and licenses respected? \\
 Answer: \answerYes{} \\
-Justification: Pretrained models (BERT, Pythia), datasets (tinyshakespeare, WikiText-103), and libraries (JAX, PyTorch/Transformers) are cited; usage is within their licenses. [TODO: list exact licenses in the appendix at camera-ready.]
+Justification: All assets are publicly released and cited: Pythia and BERT checkpoints (Apache-2.0), GPT-2 (MIT), tinyshakespeare (public-domain source text), WikiText-103 (CC BY-SA 3.0), PyTorch (BSD-3-Clause), HuggingFace Transformers and JAX (Apache-2.0). Usage is research-only and within each licence.
 
 \item {\bf New assets} \\
 Question: Are new assets introduced in the paper well documented? \\
@@ -82,5 +82,5 @@ Justification: No human-subjects research.
 \item {\bf Declaration of LLM usage} \\
 Question: Does the paper describe LLM usage if it was an important, original, or non-standard component? \\
 Answer: \answerYes{} \\
-Justification: Pretrained LLMs are the object of study (the CA rule), documented throughout. [TODO: disclose any LLM assistance in writing/experimentation per venue policy.]
+Justification: Pretrained LLMs are the object of study --- they supply the CA update rule --- and this is documented throughout. Separately, and disclosed here per venue policy: an AI coding assistant was used substantially in implementing the experiments, in analysis scripting, and in drafting. All experimental designs, pre-registrations and claims were reviewed and verified by the authors against committed result files; several errors introduced during that process were caught by the repository's own assertions and are recorded as retractions in the supplementary findings log.
 \end{enumerate}

@@ -936,6 +936,39 @@ published boundary rather than an analogy.
   does not absorb an injected token error. A correct instrument can still be pointed at a
   process whose numbers do not transfer.
 
+### F43 — three citations were carrying invented titles (Phase 4.3)
+
+Found while cutting the paper: `plainnat` prints `note=` fields, so the compiled bibliography
+literally read **"Title/authors to verify"** on five entries. Verified all five against arXiv.
+**Three of the placeholder titles were wrong** — not approximations, different papers' worth of
+wrong:
+
+| key | title as cited | actual title (verified) |
+|---|---|---|
+| `critical_temp` | *A Critical Sampling Temperature in Large Language Model Generation* | **Generative Criticality in Large Language Model Temperature Scaling** (Ruan, Li, Guo, Wang 2026) |
+| `critical_temp2` | *A Critical Sampling Temperature for Coherent Text Generation* | **Phase Transitions in Large Language Models and the O(N) Model** (Sun & Haghighat 2025) |
+| `critical_temp3` | *A Temperature-Driven Phase Transition in LLM Text Generation* | **(Un)biased data and spin glasses reveal clustering for Turing phase transitions within human–transformer interactions** (George, Yusaf, Zoltick, Huynh 2025) |
+| `tft` | *Transformer Field Theory* | **Transformer Field Theory: A Response-Theoretic Approach to Mechanistic Interpretability** (Olivieri & Pérez Rodríguez 2026) |
+| `residual_dynamics` | *Dynamics of the Transformer Residual Stream* | **…: Coupling Spectral Geometry to Network Topology** (Fernando & Guitchounts 2026) |
+
+The arXiv IDs were right in every case — `results/deep_research_novelty*.md` had recorded the
+IDs and what each paper *does*, but the titles had been written from the descriptions rather
+than read off the source, and then never reconciled.
+
+**A claim moved as a result.** The paper said "a critical sampling temperature is defined in at
+least five prior works." `critical_temp3` is about temperature-induced phase transitions in
+*human–transformer interaction* (Turing tests, spin-glass framing), not a per-model sampling
+$T_c$. The sentence now reads "temperature-driven order–disorder transitions in LLM generation
+are already studied in several independent works," which is true of all five. Note the direction:
+this is a **prior-art disclaimer**, so the error was over-crediting others, not inflating us —
+but citing a paper for something it does not say is wrong either way.
+
+**Rule-2 case, one level out from the data.** The standing rule is "never fabricate a number";
+this is the same failure applied to a citation. A `note` field saying "to verify" is an
+admission that the entry was written on trust, and it survived into a compiled PDF where a
+reviewer would have seen it before we did. Anything self-flagged as unverified must either be
+verified or removed before it can be printed.
+
 ### F42 — λ_ca is emitted for runs where damage never ignited, and it is uninterpretable there
 
 Found before the N=192 analysis, deliberately: deciding how to treat non-ignited runs *after*
