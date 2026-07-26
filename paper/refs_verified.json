@@ -1,0 +1,238 @@
+{
+ "_note": "Citation metadata AS RETURNED BY THE ARXIV API, written by experiments/audit_refs.py. refs.bib is checked against this offline by tests/test_refs_match_arxiv.py. Regenerate after adding or editing any arXiv citation. Entries with no arXiv id are listed under `unverifiable` and must be checked by hand against the published venue.",
+ "verified": {
+  "butterfly_ca": {
+   "arxiv_id": "2101.01313",
+   "title": "Butterfly Effect and Spatial Structure of Information Spreading in a Chaotic Cellular Automaton",
+   "first_author": "Liu, Shuwei",
+   "n_authors": 8,
+   "published": "2021-01-05",
+   "arxiv_year": "2021",
+   "bib_year": "2021",
+   "venue_year_later_than_preprint": null
+  },
+  "glauber_mlm": {
+   "arxiv_id": "2605.16378",
+   "title": "Mixing Times of Glauber Dynamics on Masked Language Models",
+   "first_author": "Sana, Suvadip",
+   "n_authors": 7,
+   "published": "2026-05-11",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "lyap_selfattn": {
+   "arxiv_id": "2505.19458",
+   "title": "Recurrent Self-Attention Dynamics: An Energy-Agnostic Perspective from Jacobians",
+   "first_author": "Tomihari, Akiyoshi",
+   "n_authors": 2,
+   "published": "2025-05-26",
+   "arxiv_year": "2025",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": null
+  },
+  "sparc": {
+   "arxiv_id": "2607.09803",
+   "title": "Spectral Origins of the Self-Correction Blind Spot in Autoregressive Generation",
+   "first_author": "Petrova, Ingrid",
+   "n_authors": 2,
+   "published": "2026-07-09",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "qle": {
+   "arxiv_id": "2503.13530",
+   "title": "Cognitive Activation and Chaotic Dynamics in Large Language Models: A Quasi-Lyapunov Analysis of Reasoning Mechanisms",
+   "first_author": "Li, Xiaojian",
+   "n_authors": 5,
+   "published": "2025-03-15",
+   "arxiv_year": "2025",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": null
+  },
+  "edgeofchaos2024": {
+   "arxiv_id": "2410.02536",
+   "title": "Intelligence at the Edge of Chaos",
+   "first_author": "Zhang, Shiyang",
+   "n_authors": 8,
+   "published": "2024-10-03",
+   "arxiv_year": "2024",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": "2025"
+  },
+  "hydra": {
+   "arxiv_id": "2307.15771",
+   "title": "The Hydra Effect: Emergent Self-repair in Language Model Computations",
+   "first_author": "McGrath, Thomas",
+   "n_authors": 5,
+   "published": "2023-07-28",
+   "arxiv_year": "2023",
+   "bib_year": "2023",
+   "venue_year_later_than_preprint": null
+  },
+  "selfrepair": {
+   "arxiv_id": "2402.15390",
+   "title": "Explorations of Self-Repair in Language Models",
+   "first_author": "Rushing, Cody",
+   "n_authors": 2,
+   "published": "2024-02-23",
+   "arxiv_year": "2024",
+   "bib_year": "2024",
+   "venue_year_later_than_preprint": null
+  },
+  "quiver": {
+   "arxiv_id": "2605.23956",
+   "title": "QUIVER: A Formal Framework for Quantifying Perturbation Propagation and Bifurcation in Compound AI Systems",
+   "first_author": "Nilayam, Prashanti",
+   "n_authors": 2,
+   "published": "2026-05-11",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "ar_tempcrit": {
+   "arxiv_id": "2406.05335",
+   "title": "Phase transition in large language models and the criticality of natural languages",
+   "first_author": "Nakaishi, Kai",
+   "n_authors": 3,
+   "published": "2024-06-08",
+   "arxiv_year": "2024",
+   "bib_year": "2024",
+   "venue_year_later_than_preprint": null
+  },
+  "phase_detect": {
+   "arxiv_id": "2405.17088",
+   "title": "Phase Transitions in the Output Distribution of Large Language Models",
+   "first_author": "Arnold, Julian",
+   "n_authors": 4,
+   "published": "2024-05-27",
+   "arxiv_year": "2024",
+   "bib_year": "2024",
+   "venue_year_later_than_preprint": null
+  },
+  "critical_temp": {
+   "arxiv_id": "2606.06238",
+   "title": "Generative Criticality in Large Language Model Temperature Scaling",
+   "first_author": "Ruan, Huajian",
+   "n_authors": 4,
+   "published": "2026-06-04",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "critical_temp2": {
+   "arxiv_id": "2501.16241",
+   "title": "Phase Transitions in Large Language Models and the $O(N)$ Model",
+   "first_author": "Sun, Youran",
+   "n_authors": 2,
+   "published": "2025-01-27",
+   "arxiv_year": "2025",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": null
+  },
+  "critical_temp3": {
+   "arxiv_id": "2505.02879",
+   "title": "(Un)biased data and spin glasses reveal clustering for Turing phase transitions within human-transformer interactions",
+   "first_author": "George, Jackson",
+   "n_authors": 4,
+   "published": "2025-05-05",
+   "arxiv_year": "2025",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": null
+  },
+  "tft": {
+   "arxiv_id": "2605.25225",
+   "title": "Transformer Field Theory: A Response-Theoretic Approach to Mechanistic Interpretability",
+   "first_author": "Olivieri, David N.",
+   "n_authors": 2,
+   "published": "2026-05-24",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "residual_dynamics": {
+   "arxiv_id": "2605.14258",
+   "title": "Dynamics of the Transformer Residual Stream: Coupling Spectral Geometry to Network Topology",
+   "first_author": "Fernando, Jesseba",
+   "n_authors": 2,
+   "published": "2026-05-14",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "logos_ca": {
+   "arxiv_id": "2602.00036",
+   "title": "LOGOS-CA: A Cellular Automaton Using Natural Language as State and Rule",
+   "first_author": "Utimula, Keishu",
+   "n_authors": 1,
+   "published": "2026-01-18",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "telephone": {
+   "arxiv_id": "2407.04503",
+   "title": "When LLMs Play the Telephone Game: Cultural Attractors as Conceptual Tools to Evaluate LLMs in Multi-turn Settings",
+   "first_author": "Perez, J\u00e9r\u00e9my",
+   "n_authors": 8,
+   "published": "2024-07-05",
+   "arxiv_year": "2024",
+   "bib_year": "2024",
+   "venue_year_later_than_preprint": null
+  },
+  "paraphrase2cycle": {
+   "arxiv_id": "2502.15208",
+   "title": "Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing",
+   "first_author": "Wang, Zhilin",
+   "n_authors": 5,
+   "published": "2025-02-21",
+   "arxiv_year": "2025",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": null
+  },
+  "sampler_oracle": {
+   "arxiv_id": "2602.19619",
+   "title": "Is Your Diffusion Sampler Actually Correct? A Sampler-Centric Evaluation of Discrete Diffusion Language Models",
+   "first_author": "Tang, Luhan",
+   "n_authors": 4,
+   "published": "2026-02-23",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "pythia": {
+   "arxiv_id": "2304.01373",
+   "title": "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling",
+   "first_author": "Biderman, Stella",
+   "n_authors": 13,
+   "published": "2023-04-03",
+   "arxiv_year": "2023",
+   "bib_year": "2023",
+   "venue_year_later_than_preprint": null
+  },
+  "simplicitybias": {
+   "arxiv_id": "2211.11567",
+   "title": "Neural networks trained with SGD learn distributions of increasing complexity",
+   "first_author": "Refinetti, Maria",
+   "n_authors": 3,
+   "published": "2022-11-21",
+   "arxiv_year": "2022",
+   "bib_year": "2023",
+   "venue_year_later_than_preprint": "2023"
+  }
+ },
+ "unverifiable": [
+  "bagnoli1992damage",
+  "lieb1972finite",
+  "langton1990computation",
+  "bertschinger2004real",
+  "hanson1997computational",
+  "domany1984",
+  "kohring1992",
+  "grassberger1995",
+  "hinrichsen1997",
+  "hinrichsen2000",
+  "zebende1994"
+ ]
+}

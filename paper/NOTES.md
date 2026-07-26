@@ -79,8 +79,8 @@ bounds it (C16–C18).
 | ~~Responsible-use statement~~ | **DONE** — written from F35, merged with the conclusion as §9 |
 | ~~Double-blind~~ | **DONE** — `paper.tex`, `neurips_checklist.tex` and `paper/README.md` all anonymised |
 | ~~Checklist TODOs~~ | **DONE** — all 4 resolved, incl. an honest LLM-assistance disclosure |
-| ~~Page fit~~ | **DONE** — body is 5 pages |
-| Citations | **DONE** (F43) — 5 entries printed "Title/authors to verify"; all verified against arXiv, 3 titles were wrong |
+| Page fit | **NOT DONE** — body is **6 pages**, 27 body lines (~350 words) onto the References page. #62. The guard under-reported 5 for four commits; it now counts the spill. |
+| Citations | **DONE, then reopened, now automated** (F43 → F50, #71). The hand audit missed a **fourth** wrong title (`ar_tempcrit`). Replaced by `experiments/audit_refs.py` + `tests/test_refs_match_arxiv.py`: 22/22 arXiv entries verified, 0 mismatches, offline test locks it. |
 | Style file | `neurips_2025.sty` — 2026 not published yet (404). Swap when it appears; geometry sets the page count |
 | Fig sources | `fig_validation_ladder.py`, `fig_developmental.py`, `fig_crosslevel.py` all regenerate from `results/` |
 
@@ -121,6 +121,64 @@ out of something on the do-not-cut list, which is a decision, not a trim.
 geometry sets the page count — issue #55, hard stop Aug 26.
 
 ## 5. Decisions log
+
+- **2026-07-26** — **F50: the hand citation audit was incomplete.** F43 (#37) checked five
+  entries by hand and fixed three titles. A fourth wrong title survived it — `ar_tempcrit`
+  claimed *"Critical Phase Transition in Large Language Models"*; arXiv says *"Phase transition
+  in large language models and the criticality of natural languages"* — and was found only
+  because the entry was opened for an unrelated reason. Same shape as #57: fixed as an instance,
+  not as a class. Now: `experiments/audit_refs.py` fetches every entry's record (the export API
+  was unreachable from this machine — timeouts then 429/503 — so it reads the abstract pages'
+  Highwire `citation_*` meta tags), writes `paper/refs_verified.json`, and
+  `tests/test_refs_match_arxiv.py` checks refs.bib against it **offline**. Mutation-tested: the
+  guard reproduces the exact defect that shipped. **22/22 verified, 0 mismatches.**
+  - A suspected malformed `eprint={2101.0}` on `lieb1972finite` was a **false alarm** — an
+    artifact of a throwaway dump regex bleeding into the neighbouring entry. It has no eprint,
+    correctly, being a 1972 CMP paper.
+  - The year check was initially too strict: it flagged `edgeofchaos2024` (ICLR **2025** on a
+    2024 preprint) and `simplicitybias` (ICML **2023** on a 2022 preprint). Both are correct as
+    written. Only a bib year *preceding* the preprint is impossible, and that is what is now
+    asserted — a check that cries wolf trains you to ignore it.
+
+- **2026-07-26** — **F51: read `ar_tempcrit` instead of merely citing it, and it helps twice.**
+  Nakaishi, Nishikawa & Hukushima (arXiv:2406.05335) was sitting in the bib as defensive padding
+  in a list of prior temperature work. Verified against the source:
+  - main-text analysis is **Pythia-160m** (410M–2.8B only in Appendix A); checkpoints
+    k = 0, 16, 64, 128, 512, 143000; method is POS-tag correlation + power spectra — **no
+    overlap with damage spreading**
+  - *"the model begins to acquire nontrivial structures of the natural language around
+    k_c ≈ 10²"* → **an orthogonal instrument places the onset where ours does.** Our 160m
+    bracket is `[step128, step256]` (`dev_transition_scale.json`). Stated as agreement to
+    within a factor of ~2, **not** as a reproduction: both checkpoint grids are coarse near the
+    onset (theirs jumps 64 → 128 → 512).
+  - *"a phase transition occurs at T_c ≈ 1"* → the temperature paragraph stops apologising. Our
+    T=1.1 ceiling (ignition 0.98→0.99) is supercritical and our T=0.3 floor (0.20→0.21) deeply
+    sub-critical **as that predicts**. Caveat shipped in the same sentence: their temperature
+    parameterises *autoregressive generation*, ours the *in-place lattice update* — same softmax
+    knob, different sampler.
+  - New guard: `test_the_crossing_brackets_in_prose_match_the_scale_results`. The brackets were
+    prose-only until now; the convergence claim makes the 160m one load-bearing, so a re-run
+    that moved it would silently turn agreement into contradiction.
+
+- **2026-07-26** — **Originality reframed (#74).** "CA framework in a new field" is the weakest
+  claim available and invites a reviewer to go find prior CA-and-LM work — there is plenty, and
+  temperature transitions in LLMs are ≥2 years old (`ar_tempcrit`, `critical_temp`). The
+  defensible lead is the **calibration move**: damage-spreading implementations are
+  conventionally validated against *fitted* critical exponents, which a wrong implementation can
+  match for the wrong reasons; a **bit-exact identity cannot be**. One clause added to the intro.
+
+- **2026-07-26** — **C16 scope stated out loud (#76).** The construction-held-fixed argument
+  licenses *comparative* claims only. Added: we do not claim any model **is** critical, since
+  that would need the ring, radius and D₀ to be principled rather than merely fixed — and they
+  are choices. Volunteering the boundary beats having it extracted.
+
+- **2026-07-26** — **The proxy objection is now being tested, not argued (#72).** λ_ca's
+  transition sits where everything else in training changes, so "expensive perplexity proxy" is
+  the strongest attack on the paper. `experiments/loss_baseline.py` measures held-out loss on
+  the *same* 26 (model, checkpoint) pairs — no new lattice runs. Pre-registered: the
+  discriminating test is **shape, not correlation** (a non-monotone function of a monotone
+  variable is not a monotone transform of it), and **if λ_ca shows no overshoot the objection
+  stands and the paper says so**.
 
 - **2026-07-26** — λ_ca replaces D_norm as the headline carrier (C13/C14).
 - **2026-07-26** — Abstract leads the DK rung with the bit-exact identity, not the 0.06%

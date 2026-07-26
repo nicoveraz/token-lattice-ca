@@ -1,0 +1,521 @@
+{
+ "loss": {
+  "70m_step128": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 128,
+   "nll_per_token": 8.209353,
+   "ppl": 3675.1646,
+   "secs": 6.6
+  },
+  "70m_step256": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 256,
+   "nll_per_token": 7.42885,
+   "ppl": 1683.8707,
+   "secs": 5.9
+  },
+  "70m_step512": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 512,
+   "nll_per_token": 6.521879,
+   "ppl": 679.8543,
+   "secs": 5.2
+  },
+  "70m_step1000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 1000,
+   "nll_per_token": 4.978706,
+   "ppl": 145.2862,
+   "secs": 5.5
+  },
+  "70m_step2000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 2000,
+   "nll_per_token": 4.404657,
+   "ppl": 81.8311,
+   "secs": 5.3
+  },
+  "70m_step4000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 4000,
+   "nll_per_token": 4.158406,
+   "ppl": 63.9695,
+   "secs": 5.2
+  },
+  "160m_step128": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 128,
+   "nll_per_token": 8.23762,
+   "ppl": 3780.5333,
+   "secs": 10.8
+  },
+  "160m_step256": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 256,
+   "nll_per_token": 7.462527,
+   "ppl": 1741.5428,
+   "secs": 10.4
+  },
+  "160m_step512": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 512,
+   "nll_per_token": 6.434685,
+   "ppl": 623.0862,
+   "secs": 10.6
+  },
+  "160m_step1000": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 1000,
+   "nll_per_token": 4.864423,
+   "ppl": 129.5962,
+   "secs": 10.6
+  },
+  "160m_step2000": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 2000,
+   "nll_per_token": 4.11534,
+   "ppl": 61.273,
+   "secs": 10.9
+  },
+  "160m_step4000": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 4000,
+   "nll_per_token": 3.768158,
+   "ppl": 43.3002,
+   "secs": 10.8
+  },
+  "410m_step128": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 128,
+   "nll_per_token": 8.627244,
+   "ppl": 5581.6745,
+   "secs": 26.1
+  },
+  "410m_step256": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 256,
+   "nll_per_token": 7.687209,
+   "ppl": 2180.28,
+   "secs": 25.9
+  },
+  "410m_step512": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 512,
+   "nll_per_token": 6.854226,
+   "ppl": 947.8779,
+   "secs": 25.9
+  },
+  "410m_step1000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1000,
+   "nll_per_token": 4.970329,
+   "ppl": 144.0743,
+   "secs": 25.9
+  },
+  "410m_step2000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2000,
+   "nll_per_token": 3.964548,
+   "ppl": 52.6965,
+   "secs": 26.8
+  },
+  "410m_step4000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4000,
+   "nll_per_token": 3.534606,
+   "ppl": 34.2815,
+   "secs": 25.9
+  },
+  "410m_step8000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8000,
+   "nll_per_token": 3.285669,
+   "ppl": 26.7268,
+   "secs": 26.2
+  },
+  "410m_step143000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 143000,
+   "nll_per_token": 2.856783,
+   "ppl": 17.4054,
+   "secs": 26.7
+  },
+  "1b_step128": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 128,
+   "nll_per_token": 8.063904,
+   "ppl": 3177.6726,
+   "secs": 61.3
+  },
+  "1b_step256": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 256,
+   "nll_per_token": 7.376231,
+   "ppl": 1597.5571,
+   "secs": 62.1
+  },
+  "1b_step512": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 512,
+   "nll_per_token": 6.18694,
+   "ppl": 486.3554,
+   "secs": 61.1
+  },
+  "1b_step1000": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 1000,
+   "nll_per_token": 4.628074,
+   "ppl": 102.3169,
+   "secs": 60.7
+  },
+  "1b_step2000": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 2000,
+   "nll_per_token": 3.795707,
+   "ppl": 44.5097,
+   "secs": 58.5
+  },
+  "1b_step4000": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 4000,
+   "nll_per_token": 3.348225,
+   "ppl": 28.4522,
+   "secs": 63.5
+  }
+ },
+ "_preregistration": {
+  "grid": {
+   "EleutherAI/pythia-70m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-160m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-410m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000,
+    8000,
+    143000
+   ],
+   "EleutherAI/pythia-1b": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ]
+  },
+  "seq_len": 1024,
+  "n_seq": 96,
+  "eval_set": "Salesforce/wikitext wikitext-103-raw-v1 validation, first 98304 tokens of the concatenated split",
+  "P1": "Spearman(lambda_ca mean, held-out loss) within model, checkpoints as unit",
+  "P2": "shape: an overshoot in lambda_ca against monotone loss refutes a monotone proxy; no overshoot means the proxy objection STANDS and is reported",
+  "P3": "loss steepest-descent bracket vs lambda_ca zero-crossing bracket",
+  "P4": "descriptive only: loss is deterministic here, so seed sign-agreement has no analog"
+ },
+ "analysis": {
+  "70m": {
+   "checkpoints": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "loss": [
+    8.209353,
+    7.42885,
+    6.521879,
+    4.978706,
+    4.404657,
+    4.158406
+   ],
+   "lambda_mean": [
+    0.06939,
+    0.04623,
+    0.16152,
+    0.15652,
+    0.15977,
+    0.17071
+   ],
+   "n_ignited": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+   ],
+   "sign_unanimous": [
+    false,
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "spearman_rho": -0.7714,
+   "spearman_p": 0.0724,
+   "n": 6,
+   "loss_monotone_decreasing": true,
+   "lambda_overshoot": false,
+   "lambda_argmax_step": 4000,
+   "lambda_crossing_bracket": null,
+   "loss_steepest_bracket": [
+    512,
+    1000
+   ],
+   "loss_steepest_rate_per_lognat": 2.3052,
+   "brackets_coincide": false
+  },
+  "160m": {
+   "checkpoints": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "loss": [
+    8.23762,
+    7.462527,
+    6.434685,
+    4.864423,
+    4.11534,
+    3.768158
+   ],
+   "lambda_mean": [
+    -0.03907,
+    0.09385,
+    0.09822,
+    0.17347,
+    0.1674,
+    0.15217
+   ],
+   "n_ignited": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+   ],
+   "sign_unanimous": [
+    false,
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "spearman_rho": -0.7714,
+   "spearman_p": 0.0724,
+   "n": 6,
+   "loss_monotone_decreasing": true,
+   "lambda_overshoot": true,
+   "lambda_argmax_step": 1000,
+   "lambda_crossing_bracket": [
+    128,
+    256
+   ],
+   "loss_steepest_bracket": [
+    512,
+    1000
+   ],
+   "loss_steepest_rate_per_lognat": 2.34567,
+   "brackets_coincide": false
+  },
+  "410m": {
+   "checkpoints": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000,
+    8000,
+    143000
+   ],
+   "loss": [
+    8.627244,
+    7.687209,
+    6.854226,
+    4.970329,
+    3.964548,
+    3.534606,
+    3.285669,
+    2.856783
+   ],
+   "lambda_mean": [
+    -0.09263,
+    -0.01845,
+    0.06793,
+    0.19235,
+    0.15582,
+    0.17243,
+    0.16989,
+    0.17924
+   ],
+   "n_ignited": [
+    6,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+   ],
+   "sign_unanimous": [
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "spearman_rho": -0.7381,
+   "spearman_p": 0.03655,
+   "n": 8,
+   "loss_monotone_decreasing": true,
+   "lambda_overshoot": true,
+   "lambda_argmax_step": 1000,
+   "lambda_crossing_bracket": [
+    256,
+    512
+   ],
+   "loss_steepest_bracket": [
+    512,
+    1000
+   ],
+   "loss_steepest_rate_per_lognat": 2.81418,
+   "brackets_coincide": false
+  },
+  "1b": {
+   "checkpoints": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "loss": [
+    8.063904,
+    7.376231,
+    6.18694,
+    4.628074,
+    3.795707,
+    3.348225
+   ],
+   "lambda_mean": [
+    -0.00892,
+    -0.10107,
+    0.12345,
+    0.20641,
+    0.14743,
+    0.14357
+   ],
+   "n_ignited": [
+    7,
+    6,
+    7,
+    8,
+    8,
+    8
+   ],
+   "sign_unanimous": [
+    false,
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "spearman_rho": -0.7143,
+   "spearman_p": 0.11079,
+   "n": 6,
+   "loss_monotone_decreasing": true,
+   "lambda_overshoot": true,
+   "lambda_argmax_step": 1000,
+   "lambda_crossing_bracket": [
+    256,
+    512
+   ],
+   "loss_steepest_bracket": [
+    512,
+    1000
+   ],
+   "loss_steepest_rate_per_lognat": 2.32864,
+   "brackets_coincide": false
+  }
+ },
+ "verdict": "NOT A MONOTONE PROXY: held-out loss falls monotonically in all 4/4 models, while lambda_ca overshoots in 3. A non-monotone function of a monotone variable is not a monotone transform of it. Separately, the zero-crossing and steepest-loss brackets differ in 3 of 4 models.",
+ "_analysis_provenance": {
+  "script": "loss_baseline.py",
+  "sha256": "46a86bcf37fcb6d814d3c86235795df50a6d099c217f5851a5dde082b3dd4917",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Held-out loss per checkpoint, to test whether lambda_ca is an expensive perplexity proxy. No new lattice runs: every (model, revision) already carries a lambda_ca measurement and every revision was already cached. Loss is teacher-forced NLL per token on a FIXED slice of WikiText-103 validation and is therefore deterministic -- zero seed variance by construction, which is itself the point of P4. The LEVEL of these numbers is not comparable to published Pythia curves (different corpus); only the SHAPE across checkpoints is used. lambda statistics drop unignited runs per F42 with n carried through.",
+ "_config": {
+  "grid": {
+   "EleutherAI/pythia-70m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-160m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-410m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000,
+    8000,
+    143000
+   ],
+   "EleutherAI/pythia-1b": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ]
+  },
+  "seq_len": 1024,
+  "n_seq": 96,
+  "device": "mps",
+  "eval_set": "wikitext-103-raw-v1 validation"
+ }
+}

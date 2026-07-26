@@ -52,8 +52,9 @@ Our organizing principle is therefore \textbf{validation by reproduction}
 (\S\ref{sec:validation}): before turning the apparatus on a language model we require it to
 recover values that are independently known. This is not a formality --- building the ladder
 forced us to retract several of our own earlier claims, and the strongest rung is one where
-agreement is \emph{exact} rather than fitted, so it cannot be passed by a plausible-looking
-estimator. We use only \emph{simple, mature} primitives \citep{bagnoli1992damage,lieb1972finite,
+agreement is \emph{exact} rather than fitted. Damage-spreading implementations are conventionally
+validated against fitted critical exponents, which a wrong implementation can match for the wrong
+reasons; a bit-exact identity cannot be passed by a plausible-looking estimator. We use only \emph{simple, mature} primitives \citep{bagnoli1992damage,lieb1972finite,
 hanson1997computational} rather than bespoke machinery, precisely because their behaviour on known
 systems is a fixed benchmark. Only then do we report what the instrument measures on trained LMs
 (\S\ref{sec:dev}) and, equally, where its readings provably stop applying
@@ -145,9 +146,13 @@ limit rather than an incidental setting: repeating the two ends of the curve at 
 $T{=}1.1$ finds no detectable transition at either ($p_{\mathrm{BH}}{=}0.44$). The ignition
 fraction says why. At $T{=}1.1$ damage propagates in essentially every lattice at \emph{both} ends
 ($0.98\to0.99$), so there is no room to move --- a ceiling; at $T{=}0.3$ it barely propagates at
-either end ($0.20\to0.21$) and $\lca$ hugs zero --- a floor. The claim is therefore that
-\textbf{at intermediate temperature} training moves the lattice from sub- to super-critical; the
-probe has dynamic range there and loses it in both directions.
+either end ($0.20\to0.21$) and $\lca$ hugs zero --- a floor. Independent work places the critical
+temperature of Pythia generation at $T_c{\approx}1$ \citep{ar_tempcrit}, which is where those pegs
+sit: our ceiling is supercritical and our floor deeply sub-critical, leaving intermediate $T$ as
+the only place a sub-critical probe keeps dynamic range. That temperature parameterises a
+\emph{different sampler} --- left-to-right generation, not our in-place lattice update --- so we
+take it as a consistent reference point and not as the same measurement. The claim is therefore
+that \textbf{at intermediate temperature} training moves the lattice from sub- to super-critical.
 
 We pre-registered the test (post- vs pre-transition checkpoints, run-level Mann--Whitney, family
 $=\{\lca,\dn\}\times\{N{=}48,96\}$, BH-FDR) and a demotion rule: failure at either size demotes the
@@ -180,7 +185,12 @@ and 410m and 1b both cross between $256$ and $512$. Learning rate is confounded 
 the suite ($1.0{\times}10^{-3}$, $6.0{\times}10^{-4}$, $3.0{\times}10^{-4}$,
 $3.0{\times}10^{-4}$ \citep{pythia}), and the two sizes sharing a learning rate are the two
 sharing a crossing bracket, so we report the timing shift as an ordering and not as a size
-effect. The plateau \emph{level}, by contrast, does
+effect. An orthogonal instrument agrees on where the onset falls: \citet{ar_tempcrit} locate the
+emergence of critical structure in Pythia-160m during training by power spectra and
+part-of-speech correlation --- no damage spreading involved --- at $k_c{\approx}10^2$ steps,
+adjacent to our $128$--$256$ bracket for the same model. Both checkpoint grids are coarse near the
+onset, so we read this as agreement to within a factor of about two, not as a reproduction.
+The plateau \emph{level}, by contrast, does
 not order with size ($0.162/0.164/0.174/0.166$) --- with four sizes the smallest attainable
 permutation $p$ is $1/4!\,{=}\,0.042$, so no capacity axis could have been established here, and
 none is visible. We report that null because it is the closest thing in this data to a
@@ -232,7 +242,10 @@ the model, the model-invariance of $\lca(r)$, and the failure in \S\ref{sec:cros
 ring, radius, temperature, coupling, seeds --- so a change measured across checkpoints cannot come
 from the apparatus. A fixed instrument reading differently on different models is what an
 instrument is for; what this result forbids is transporting the units to a process the instrument
-does not implement.
+does not implement. The licence is therefore \emph{comparative} --- checkpoint against checkpoint
+under a construction held constant --- and never absolute: we do not claim any model \emph{is}
+critical, since that would require the ring, the radius and \dz{} to be principled rather than
+merely fixed, and they are choices.
 
 \textbf{Coupling, stated precisely.} Damage spreading is a property of \emph{(model, coupling)},
 not of the model alone --- a published result in stochastic PCAs

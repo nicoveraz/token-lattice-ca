@@ -367,3 +367,40 @@ def test_manifest_covers_the_load_bearing_claims():
     assert {"measured", "published", "arithmetic"} <= kinds, (
         f"the manifest no longer distinguishes number kinds: {kinds}. A published literature "
         f"value and a measurement of ours must not be traced the same way.")
+
+
+def test_the_crossing_brackets_in_prose_match_the_scale_results():
+    """C20's per-size crossing brackets are prose claims; assert them against the file.
+
+    These were never checked. That mattered little while they were only a timing anecdote, but
+    the paper now hangs an external convergence claim on one of them -- Nakaishi et al.
+    (arXiv:2406.05335) place the emergence of critical structure in Pythia-160m at k_c ~ 10^2
+    steps, which is adjacent to our 160m bracket *only if that bracket really is 128--256*. A
+    re-run that moved the bracket would silently turn a convergence into a contradiction.
+    """
+    d = _load("dev_transition_scale.json")
+    pm = d.get("per_model")
+    if not pm:
+        pytest.skip("dev_transition_scale.json has no per_model block")
+    tex = _tex()
+
+    # 160m: the bracket the external convergence claim depends on
+    got = pm["160m"]["crossing_interval"]
+    assert got == ["step128", "step256"], (
+        f"160m crossing bracket is {got}, but paper.tex claims 128--256 and uses it to assert "
+        f"agreement with Nakaishi et al.'s k_c ~ 10^2. Reconcile before shipping.")
+    assert re.search(r"160m crosses between steps \$128\$ and \$256\$", tex), (
+        "paper.tex no longer states the 160m crossing bracket in the form the convergence "
+        "claim depends on")
+
+    # 410m and 1b share a bracket -- this is the tie that carries the learning-rate disclosure
+    for k in ("410m", "1000m"):
+        assert pm[k]["crossing_interval"] == ["step256", "step512"], (
+            f"{k} crossing bracket moved to {pm[k]['crossing_interval']}; the paper claims "
+            f"410m and 1b share the 256--512 bracket, which is what makes the LR confound "
+            f"argument work (the two sizes sharing an LR are the two sharing a bracket)")
+
+    # 70m has no crossing on this grid -- "already super-critical at the earliest checkpoint"
+    assert pm["70m"]["crossing_interval"] is None, (
+        f"70m now has a crossing interval ({pm['70m']['crossing_interval']}); the paper says it "
+        f"is already super-critical at the earliest checkpoint probed")

@@ -212,6 +212,7 @@ _STALENESS_PAIRS = [
     ("ignition_nb.json", "ignition_nb.py"),
     ("floor_decorrelation.json", "floor_decorrelation.py"),
     ("dev_transition_temp.json", "dev_transition_temp.py"),
+    ("loss_baseline.json", "loss_baseline.py"),
 ]
 
 
