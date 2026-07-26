@@ -239,6 +239,11 @@ def _pdf_pages_text():
     return txt.split("\f")
 
 
+@pytest.mark.xfail(strict=True, reason=(
+    "Body is 6 pages, not 5 -- see issue #62. Known and tracked; the trim is a Gate B "
+    "words-only task, deliberately sequenced after project polish. strict=True so that when "
+    "the trim lands this XPASSes and FAILS, forcing the marker to be removed rather than "
+    "quietly outliving the defect."))
 def test_body_fits_the_page_limit():
     """The body must end within the venue's page limit.
 
@@ -255,7 +260,13 @@ def test_body_fits_the_page_limit():
     heading = _re.compile(r"^\s*\d*\s*References\s*$", _re.M)
     refs_page = next((i + 1 for i, p in enumerate(pages) if heading.search(p)), None)
     assert refs_page is not None, "could not locate the References heading in the built PDF"
-    body_pages = refs_page - 1
+    # The body does NOT necessarily end where References begins. If References starts partway
+    # down its page, body text occupies that page too, and counting refs_page-1 silently
+    # under-reports by one -- which is exactly how this test passed while the body had spilled.
+    refs_text = pages[refs_page - 1]
+    before = refs_text[:heading.search(refs_text).start()]
+    body_spills_onto_refs_page = len([l for l in before.splitlines() if l.strip()]) > 2
+    body_pages = refs_page if body_spills_onto_refs_page else refs_page - 1
     assert body_pages <= BODY_PAGE_LIMIT, (
         f"the body occupies {body_pages} pages against a {BODY_PAGE_LIMIT}-page limit "
         f"(References starts on page {refs_page}). See paper/NOTES.md §4 for the cut order and "

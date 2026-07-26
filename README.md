@@ -51,7 +51,7 @@ census), and the **boundaries** where those readings provably stop applying.
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F48); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F49); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -100,6 +100,8 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F39** | **Developmental transition survives at two lattice sizes.** All 4 pre-registered family members survive BH-FDR (p_BH ≤ 2e−05). Headline stated ordinally: seeds disagree on λ's *sign* before, **0 of 48 plateau runs negative** after (min +0.107). λ_ca is size-robust (95% retention; plateau levels agree within **±14%**, 95% CI); D_norm is **not** (53%, level 0.569 vs 0.306) — so λ_ca carries the claim | 4 |
 | F40 | Ordered-group λ in the ECA rung is the estimator's **dead-damage floor** (−0.4·ln10), not a measurement — 5/7 rules pinned there with zero-width CI. Named as `DEAD_DAMAGE_FLOOR` with a predicate | 4 |
 | **F42** | **λ_ca is undefined when damage never ignites**, and the estimator emits a number anyway that spans an order of magnitude for the same outcome (−0.165 vs −1.713). `is_dead_damage_floor` catches neither. Rule: `is_unignited(mean_damage)`, ignition fraction per cell, λ stats over ignited runs only, **rank test keeps all runs**. Asymmetric by design — D_norm keeps them, since zero damage is a true zero | 4 |
+| **F49** | **The transition is only *detectable* at intermediate T** (#17). Not detectable at T=0.3 or T=1.1 (both p_BH=0.44). Diagnosed: T=1.1 is a **ceiling** (ignition 0.98→0.99), T=0.3 a **floor** (0.20→0.21). Claim restated as *at intermediate sampling temperature* | 4 |
+| **F47** | **N/B confound resolved by manipulation** (#39). Missing 2×2 cell (N=48, B=4): 6/16 unignited — differs from N=48 B=16 (p=0.018), matches N=192 B=4 (p=1.00). It is **batch size** | 4 |
 | **F48** | **W2's floor objection bounded at 4%** (closes #34). The CRN/maximal floors it proposed are *structurally zero* — identical twins stay identical — so the coupling mismatch is unavoidable. Sweeping the shared-draw fraction 0→0.9 moves D_norm only **1.04×**; at exactly 1.0 the floor collapses to 0, so the CRN floor is an **isolated point**, not the family's limit | 4 |
 | **F47** | **N/B confound resolved by manipulation** (closes #39). Ran the missing 2×2 cell (N=48, B=4): **6/16** unignited, differing from N=48 B=16 (0/16, p=0.018) and matching N=192 B=4 (5/16, p=1.00). It is **batch size**. Per-lattice death probability measured directly (d=0.734) vs F44's fitted 0.690 | 4 |
 | **F46** | **Transition timing across model scale** (192 runs, 4 Pythia sizes × 6 checkpoints × 8 seeds). Replicates in **all four** (p_BH 0.015/0.003/0.000/0.00002). Crossing moves **later** with size then **saturates**: 70m before step128, 160m 128→256, 410m and 1b both 256→512. Plateau **level** is non-monotone (0.162/0.164/0.174/0.166) — **no capacity axis** | 4 |
@@ -165,7 +167,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **86 tests** and now covers every backend, not just the toy JAX path:
+The suite is **94 tests** and now covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a

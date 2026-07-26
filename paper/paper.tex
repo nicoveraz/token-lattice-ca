@@ -76,12 +76,7 @@ Numerator and denominator necessarily use different couplings --- a floor sharin
 coupling is identically zero, because identical twins stay identical --- but the cost is bounded:
 sweeping the fraction of shared draws from $0$ to $0.9$ moves \dn{} by $4\%$.
 A free control disciplines our language: the temperature ``phase transition'' is, on a finite-size
-scan, a \emph{crossover} ($\chi_{\mathrm{peak}}\propto1/N$). Two further readings, reported here
-because \S\ref{sec:realgen} bounds what they mean: an \textbf{effective interaction radius}, where
-repetition-robust long-range corpus consistency peaks at $r{\approx}4$ and falls by $r{=}16$; and a
-\textbf{damage light cone} whose front velocity grows with $r$ and is \emph{model-invariant} --- the
-classic CA light cone \citep{bagnoli1992damage,lieb1972finite,butterfly_ca}, imported, not claimed.
-
+scan, a \emph{crossover} ($\chi_{\mathrm{peak}}\propto1/N$). 
 \section{Validation: reproducing known metrics}\label{sec:validation}
 We check the apparatus against systems where the answer is known, and are explicit about which
 properties each rung does and does not exercise (Fig.~\ref{fig:ladder}). The ladder is ordered
@@ -90,10 +85,9 @@ by how much of the instrument's regime the rung shares: smooth-limit arithmetic 
 
 \textbf{(1--2) Smooth-limit unit tests, labelled as such.} A renormalized tangent estimator
 recovers the logistic map's analytic exponent to machine precision, and a coupled-map lattice
-matches an exact Benettin/Jacobian reference to $1.1\times10^{-3}$. Neither is evidence about
-damage spreading: the twin is re-anchored to the reference orbit each step, so the estimator
-\emph{is} a finite-difference evaluation of the derivative it is compared against, and
-\textbf{a token flip is $O(1)$ --- there is no $\epsilon\to0$ limit in token space}.
+matches an exact Benettin reference to $1.1\times10^{-3}$. Neither is evidence about damage
+spreading --- the twin is re-anchored each step, so the estimator \emph{is} a finite-difference
+derivative of what it is compared against, and \textbf{a token flip is $O(1)$}.
 
 \textbf{(3) Elementary CA: a coarse split, decisively.} Driving the identical protocol with 19
 rules of \emph{known} class (12 seeds, rule as the unit of analysis) separates rules whose
@@ -127,11 +121,10 @@ $3\times10^{-4}$, as the mapping requires. The published $p_2{=}0$ value is itse
 ($0.801(2)$ \citep{zebende1994} vs.\ $0.8087(5)$ \citep{hinrichsen1997}) and our accuracy
 cannot separate them; we report both and claim neither.
 
-\textbf{(5) Synthetic Markov sources.} The attractor census, run on tiny models trained on three
-sources with known sparse matrices, recovers each model's own matrix (row total-variation $0.22$)
-and not the others (cross $0.95$; random baseline $0.91$). Rungs (3)--(5) share the instrument's
-regime and are what license its use on language models; (4) is the only one on which agreement is
-exact rather than fitted.
+\textbf{(5) Synthetic Markov sources.} The attractor census recovers each model's own sparse
+transition matrix (row total-variation $0.22$) and not the others (cross $0.95$; random baseline
+$0.91$). Rungs (3)--(5) share the instrument's regime and license its use on language models;
+(4) is the only one where agreement is exact rather than fitted.
 
 \begin{figure}[t]\centering
 \includegraphics[width=0.80\linewidth]{validation_ladder.png}
@@ -164,19 +157,19 @@ $+0.0247\to+0.1683$ at $N{=}48$ ($d{=}1.59$) and $+0.0320\to+0.1686$ at $N{=}96$
 $n_{\mathrm{pre}}{=}15$: one run is excluded because its damage never ignited, so $\lca$ is
 undefined for it).
 
-\textbf{The claim is better stated without any pre/post split}, since every effect size depends on
-where that line is drawn. Before the transition the seeds do not agree on the \emph{sign} of $\lca$
-(6/16 negative at $N{=}48$, 7/15 at $N{=}96$, spanning $-0.216$ to $+0.320$); after it,
+\textbf{The claim is better stated without any pre/post split}, since every effect size depends
+on where that line is drawn. Before the transition the seeds do not agree on the \emph{sign} of
+$\lca$ (6/16 negative at $N{=}48$, 7/15 at $N{=}96$, spanning $-0.216$ to $+0.320$); after it,
 \textbf{not one of 48 plateau runs is negative}, the minimum being $+0.107$. That uses every run,
 is ordinal, and survived a later change to how unignited runs are handled that moved every mean in
 the analysis.
 
-\textbf{The curve is not a step, and both ends of the contrast can be inflated.} It overshoots at
-step $1000$ by $1.4$--$22.4\%$ and settles; taking that peak as the level, or the lowest checkpoint
-alone as the baseline, inflates the effect ($1.7\times$ on $\lca$ for the latter). We use the
+\textbf{The curve is not a step, and both ends can be inflated.} It overshoots at step $1000$ by
+$1.4$--$22.4\%$ and settles; taking the peak as the post value, or the lowest checkpoint alone as
+the pre value, inflates the effect ($1.7\times$ on $\lca$ for the latter), so we use the
 pre-registered sets at both ends. The overshoot survives correction in one of four cells, and that
 cell is \dn{} --- on $\lca$ it is $+1.4\%$ at $N{=}96$ ($p_{\mathrm{BH}}{=}0.78$) --- so
-non-monotonicity is largely a \dn{} phenomenon and step $1000$ is not claimed as a distinct phase.
+non-monotonicity is largely a \dn{} phenomenon and step $1000$ is not a distinct phase.
 
 \textbf{It is not specific to the model we picked.} Repeating the whole grid on four Pythia
 sizes (70m/160m/410m/1b $\times$ 6 checkpoints $\times$ 8 seeds, 192 runs) reproduces the
@@ -213,30 +206,29 @@ after.}\label{fig:dev}
 
 \section{What the damping length measures: free generation absorbs nothing}\label{sec:realgen}
 The instrument's central assumption --- that a number measured on the ring says something about the
-model --- is one we tested rather than assumed, by running the identical damage protocol on
-\emph{real autoregressive generation}: two CRN twins from a prompt sharing one uniform stream, one
-forced to a different token at one position, both then continuing freely. The null arm is asserted
-to diverge by exactly zero, and does.
+model --- we tested rather than assumed, by running the identical damage protocol on \emph{real
+autoregressive generation}: two CRN twins from a prompt sharing one uniform stream, one forced to a
+different token at one position, both continuing freely. The null arm is asserted to diverge by
+exactly zero, and does.
 
 The result is unambiguous and negative. On \texttt{pythia-70m}, \texttt{-160m} and \texttt{-410m}
 (32 trials each) the injected error \textbf{persists in every single trial}
 ($P_{\text{persist}}{=}1.000$). Token identity is harsh once an injection shifts alignment, so we
 also measured distributionally: the total-variation distance between the twins' next-token
 distributions, normalised by the TV between two \emph{independent} continuations of the same
-prompt, settles at $\mathrm{TV_{norm}}\approx0.97$ --- the twins end as far apart as unrelated
-continuations.
+prompt, settles at $\mathrm{TV_{norm}}\approx0.97$ --- as far apart as unrelated continuations.
 
 The mechanism is structural. \textbf{Free generation never resamples a token}: once emitted, an
-error stays in context permanently. The ring CA revisits every site, and in-place resampling is
-what creates the possibility of healing. The damping length, \dn{} and the light cone therefore
-characterise \emph{the iterated-resampling construction}, and we do not offer them as predictions
-about decoding. This also explains a light-cone velocity that depends on $r$ but not the model, the
-model-invariance of $\lca(r)$, and the failure in \S\ref{sec:crosslevel}. It does \emph{not} touch
-\S\ref{sec:dev}, and the reason is worth stating: the construction is held \emph{fixed} across
-checkpoints --- same ring, radius, temperature, coupling, seeds --- so a change measured across
-checkpoints cannot come from the apparatus. A fixed instrument reading differently on different
-models is what an instrument is for; what this result forbids is transporting the units to a
-process the instrument does not implement.
+error stays in context permanently, whereas the ring CA revisits every site, and in-place
+resampling is what creates the possibility of healing. The damping length, \dn{} and the light cone
+therefore characterise \emph{the iterated-resampling construction}, and we do not offer them as
+predictions about decoding. This also explains a light-cone velocity that depends on $r$ but not
+the model, the model-invariance of $\lca(r)$, and the failure in \S\ref{sec:crosslevel}. It does
+\emph{not} touch \S\ref{sec:dev}: the construction is held \emph{fixed} across checkpoints --- same
+ring, radius, temperature, coupling, seeds --- so a change measured across checkpoints cannot come
+from the apparatus. A fixed instrument reading differently on different models is what an
+instrument is for; what this result forbids is transporting the units to a process the instrument
+does not implement.
 
 \textbf{Coupling, stated precisely.} Damage spreading is a property of \emph{(model, coupling)},
 not of the model alone --- a published result in stochastic PCAs
@@ -247,18 +239,20 @@ vocabulary it does not, so our LM damage numbers sit inside the family rather th
 (measured excess disagreement $1.3$--$5.4\%$; see the supplement). What justifies the choice is
 replica-independence --- each replica's next state depends on its own state and the shared noise
 alone --- which a pairwise maximal coupling lacks. Relative comparisons, including
-\S\ref{sec:dev}, are unaffected: the coupling is a common mode.
+\S\ref{sec:dev}, are unaffected: the coupling is a common mode. \textbf{One fact explains both.}
+Damage-spreading theory was developed on \emph{binary} alphabets --- which is why the DK rung is
+exact, and why its coupling result does not survive $|V|\approx5\times10^{4}$. The strongest
+calibration here and the sharpest limitation have a single cause, so an imported guarantee must be
+checked against the alphabet.
 
 \section{The instrument's boundary: token- vs.\ activation-space}\label{sec:crosslevel}
 A black-box instrument earns its keep if its readings track something one would otherwise need
-internals to see. Tested across two model families and two within-model axes, they do not:
-pairing $\lca$ against a finite-depth top-Lyapunov exponent of the residual stream is
+internals to see. Across two model families and two within-model axes they do not: the pairing is
 family-dependent (Pythia $r{=}{+}0.71$, GPT-2 $r{=}{-}0.43$; the pooled $p{=}0.025$ is a
-Simpson's-paradox artifact), the temperature axis is confounded by a common cause, and the
-radius axis is null because $\lca(r)$ is model-invariant. The reason is structural: the
-white-box exponent is \emph{architectural} (flat across training, ${\approx}1/L$) and is a
-\emph{tangent} quantity while $\lca$ is \emph{finite}. We report a clean \textbf{negative} ---
-token-space and activation-space criticality are distinct, non-proxying levels.
+Simpson's-paradox artifact), the temperature axis is confounded, and the radius axis is null
+because $\lca(r)$ is model-invariant. The reason is structural --- the white-box exponent is
+architectural (flat across training, ${\approx}1/L$) and \emph{tangent}, while $\lca$ is
+\emph{finite}. We report a clean \textbf{negative}: the two levels are distinct and non-proxying.
 
 \section{Related work}
 Iterated-LLM views exist qualitatively \citep{logos_ca,telephone,paraphrase2cycle} and rigorously
@@ -266,9 +260,9 @@ for masked-LM Glauber dynamics \citep{glauber_mlm}; our novelty is the measureme
 framing. Edge-of-chaos measurement is canonical \citep{langton1990computation,bertschinger2004real}
 and already applied to transformers \citep{lyap_selfattn} and LLMs \citep{edgeofchaos2024,qle}; we
 claim neither the concept nor the criticality$\leftrightarrow$capability link. Temperature-driven
-order--disorder transitions in LLM generation are already studied in several independent works
-\citep{critical_temp,critical_temp2,critical_temp3,ar_tempcrit,phase_detect}; we claim only a
-calibrated route to the quantity, not the quantity. Perturbation propagation in \emph{activation} space
+order--disorder transitions are studied in several prior works
+\citep{critical_temp,critical_temp2,critical_temp3,ar_tempcrit,phase_detect}; we claim a calibrated
+route, not the quantity. Perturbation propagation in \emph{activation} space
 \citep{sparc,tft,residual_dynamics} and over compound-AI graphs \citep{quiver} is adjacent, in a
 different space. We avoid ``repair'' \citep{hydra,selfrepair} and ``self-correction''
 \citep{sparc}, both categorically different from a spatial damping length.
@@ -278,32 +272,32 @@ different space. We avoid ``repair'' \citep{hydra,selfrepair} and ``self-correct
 \section{Limitations}
 Neither construction samples the model's actual distribution --- masked conditionals are globally
 inconsistent, and the autoregressive rule, though consistent, is resampled in place on a ring ---
-so all claims are properties of the dynamics. Rings are small ($N\le384$); the developmental result rests on one model
-\emph{family} --- four sizes within it, and a third lattice size, are now run, so a second family
-is the obvious next requirement --- and it is measured at one sampling temperature, outside which
-the probe saturates in one direction or the other (\S\ref{sec:dev}). \dn{}'s absolute
-scale is doubly qualified: it moves with $N$ (\S\ref{sec:dev}) and its numerator's coupling is not
-extremal (\S\ref{sec:realgen}), so only its relative behaviour is quoted. Census ground truth is
-synthetic only. \textbf{Statistical scope.} The developmental family is pre-registered with BH-FDR
-at the run level and the ECA test uses the rule as its unit; $\lca$ statistics exclude runs whose
-damage never ignited, for which the quantity is undefined, with $n$ stated. The ladder
-reproductions are exact or near-exact matches to known values and rest on no hypothesis test. The
-cross-level negative rests on sign-consistency, not a surviving $p$-value. A previously reported
-capacity$\to$sensitivity axis was pseudoreplicated and is retracted.
+so all claims are properties of the dynamics. Rings are small ($N\le384$); the developmental
+result rests on one model \emph{family} (four sizes within it, and three lattice sizes, are run,
+so a second family is the next requirement) and on one sampling temperature, outside which the
+probe saturates in one direction or the other (\S\ref{sec:dev}). \dn{}'s absolute scale is doubly
+qualified --- it moves with $N$, and its numerator's coupling is not extremal --- so only its
+relative behaviour is quoted. Census ground truth is synthetic only. \textbf{Statistical scope.}
+The developmental family is pre-registered with BH-FDR at the run level and the ECA test uses the
+rule as its unit; $\lca$ statistics exclude runs whose damage never ignited, for which the
+quantity is undefined, with $n$ stated. The ladder reproductions rest on no hypothesis test, and
+the cross-level negative on sign-consistency rather than a surviving $p$-value. A previously
+reported capacity$\to$sensitivity axis was pseudoreplicated and is retracted.
 
 \section{Responsible use and conclusion}
-This instrument measures a construction built \emph{from} a language model, using only sampled
-outputs. Its intended uses are black-box: characterising models behind an API where weights are
-unavailable, and detecting developmental phase changes across checkpoints. It creates no new
-generative capability and needs no privileged access. The misuse we consider most likely is a
-misreading of our own numbers, which is why \S\ref{sec:realgen} is in the body rather than an
-appendix: a damping length or light cone measured here describes an in-place-resampling ring, and
+This instrument measures a construction built \emph{from} a language model from sampled outputs
+alone. That is its practical affordance: it characterises models behind an API, where weights are
+unavailable and activation-space methods cannot reach, and it detects developmental phase changes
+across checkpoints. It creates no new generative capability. The misuse we consider most likely is
+a misreading of our own numbers, which is why \S\ref{sec:realgen} is in the body: a damping length or light cone measured here describes an in-place-resampling ring, and
 real generation absorbs \emph{no} injected token error. These quantities must \textbf{not} be cited
 as evidence about the robustness, error tolerance or self-correction of a deployed decoder --- a
 $\lca$ below zero is not a safety property. All models and corpora used are publicly released and
-used within their licences. That boundary is the point: an instrument that reproduces what is
-independently known, says which of its checks are load-bearing, and marks where its readings stop
-applying is more useful than one that claims more.
+used within their licences. That boundary is the point, and it generalises: a metric
+should be made to reproduce known answers before it is believed about unknown ones. We offer the
+ladder as a method, not only as our step one --- it is what demoted our own ECA ordering and
+caught a $\lca$ reported where it is undefined. An instrument that does that, and marks where its
+readings stop applying, is more useful than one that claims more.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}

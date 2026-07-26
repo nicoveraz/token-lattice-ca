@@ -1,0 +1,6 @@
+# Excluded from `git archive` — the anonymised submission mirror (#52).
+# paper_milestone.sh hardcodes the GitHub org/repo and exists only to drive the tracker;
+# it is not part of what the Reproducibility appendix promises accompanies the paper.
+paper_milestone.sh export-ignore
+tracker_dump.md    export-ignore
+.gitattributes     export-ignore
