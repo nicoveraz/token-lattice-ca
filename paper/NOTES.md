@@ -79,7 +79,7 @@ bounds it (C16–C18).
 | ~~Responsible-use statement~~ | **DONE** — written from F35, merged with the conclusion as §9 |
 | ~~Double-blind~~ | **DONE** — `paper.tex`, `neurips_checklist.tex` and `paper/README.md` all anonymised |
 | ~~Checklist TODOs~~ | **DONE** — all 4 resolved, incl. an honest LLM-assistance disclosure |
-| Page fit | **NOT DONE** — body is **6 pages**, 27 body lines (~350 words) onto the References page. #62. The guard under-reported 5 for four commits; it now counts the spill. |
+| ~~Page fit~~ | **DONE** — body is **5 pages**, zero body lines on the References page. Guard de-xfailed and hardened twice (gutter filter + no tolerance). |
 | Citations | **DONE, then reopened, now automated** (F43 → F50, #71). The hand audit missed a **fourth** wrong title (`ar_tempcrit`). Replaced by `experiments/audit_refs.py` + `tests/test_refs_match_arxiv.py`: 22/22 arXiv entries verified, 0 mismatches, offline test locks it. |
 | Style file | `neurips_2025.sty` — 2026 not published yet (404). Swap when it appears; geometry sets the page count |
 | Fig sources | `fig_validation_ladder.py`, `fig_developmental.py`, `fig_crosslevel.py` all regenerate from `results/` |
@@ -121,6 +121,55 @@ out of something on the do-not-cut list, which is a decision, not a trim.
 geometry sets the page count — issue #55, hard stop Aug 26.
 
 ## 5. Decisions log
+
+- **2026-07-26** — **The trim landed: body 6 pages → 5 (#62 closed).** Body prose 3555 → 3125
+  words. Nothing on the do-not-cut list was touched: DK Part A, the coupling correction,
+  construction-held-fixed, responsible use, the F42 *n*-stated clause, the binary-alphabet
+  thesis, the methodology clause, the C16 scope sentence, the Nakaishi convergence and the loss
+  paragraph all survive.
+
+  **What was actually removed**, as opposed to reworded:
+  - the intro's duplicated citation list and its "not a formality" sentence (the latter on the
+    author's instruction); `bagnoli1992damage` and `lieb1972finite` were rehomed onto the
+    phenomena they name rather than orphaned
+  - the two-size equivalence bound (plateau_diff ± CI) — **superseded** by the third lattice
+    size, which gives a scaling exponent instead of an interval around zero. Three manifest
+    entries retired with it.
+  - the repetition-robust "structure" confound clause — the paper's **only** mention of a metric
+    no claim uses
+  - §3 detail throughout, on the author's instruction to "mention what we got"
+
+  **Figures were the real cost centre, not prose.** Each figure block was ~14 lines; pages 3–4
+  held 38–39 lines against 52–53 elsewhere. See [[F54]].
+
+- **2026-07-26** — **F54: both paper figures were defective, and one had shipped unreadable.**
+  - `fig_developmental.py` panel A used a doubled backslash-n in a **non-raw f-string**, so
+    matplotlib received a literal `\n`. The title rendered as one long line that **overprinted
+    panel B's title**. The headline figure was illegible across the middle in a built PDF.
+    It was only ever checked as a full-resolution PNG, where it looks fine.
+  - Both figures were authored far wider than displayed (13.2in and 14.5in, included at 4.4in),
+    so every label reproduced at ~30% of nominal. Figures are now authored at their display
+    size: a 7pt label is 7pt on the page.
+  - Panel A also hardcoded `±13.6%` and the CI that the trim removed from `paper.tex` — the
+    figure would have been the last surviving site of a retired number.
+  - The ladder's ECA panel encoded class by **colour alone** ("green ordered / amber edge / red
+    chaotic"), unreadable in greyscale, photocopy, or with red-green CVD.
+  - Its six panels were numbered (1)–(6) while the caption said "only (3)–(5) are
+    weight-bearing" — which points at panels 3,4,5 and **excludes the census**, that §3 calls
+    weight-bearing.
+
+  Now: `experiments/figstyle.py`, classic-R monochrome (full box, ticks out, no grid), series
+  separated by **marker and dash, never hue** — verified programmatically, max RGB channel
+  spread **0** on both. Two panels each rather than three, so each is large enough to read.
+
+- **2026-07-26** — **The page-fit guard was wrong twice, in opposite directions.** It counted
+  `pdftotext` output without `-layout`, where the submission style's line-number gutter extracts
+  as 43 standalone numerals; the original `> 2` threshold was compensating for that noise by
+  tolerance rather than by filtering — and so **also tolerated two real lines of body text**.
+  The paper sat at exactly two during the trim, so the guard would have certified a five-page
+  fit that did not exist. Now: filter the gutter, then allow **zero** spill. Mutation-tested by
+  restoring a cut sentence — it fires with "5 body line(s) spill onto it".
+
 
 - **2026-07-26** — **F53: the perplexity-proxy objection is answered in the paper, not just in
   the repo (#72).** The transition sits where everything in training changes at once, so

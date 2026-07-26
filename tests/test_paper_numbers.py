@@ -146,9 +146,15 @@ def test_paper_keeps_the_coupling_correction():
 
 
 def test_paper_keeps_the_construction_held_fixed_argument():
-    """This is what licenses the developmental claim despite F35."""
-    tex = _tex()
-    assert "held \\emph{fixed} across" in tex or "held fixed across" in tex, (
+    """This is what licenses the developmental claim despite F35.
+
+    Matched on whitespace-normalised text. The earlier version compared raw substrings and so
+    failed the moment a reflow put a line break inside the phrase -- reporting the argument as
+    "gone" when only its typography had moved. A guard that fires on rewrapping trains you to
+    ignore it, which is the failure mode the citation-year check already had.
+    """
+    flat = " ".join(_tex().split())
+    assert "held \\emph{fixed} across" in flat or "held fixed across" in flat, (
         "the construction-held-fixed argument is gone; without it F35 undercuts the headline")
 
 
@@ -239,11 +245,6 @@ def _pdf_pages_text():
     return txt.split("\f")
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "Body is 6 pages, not 5 -- see issue #62. Known and tracked; the trim is a Gate B "
-    "words-only task, deliberately sequenced after project polish. strict=True so that when "
-    "the trim lands this XPASSes and FAILS, forcing the marker to be removed rather than "
-    "quietly outliving the defect."))
 def test_body_fits_the_page_limit():
     """The body must end within the venue's page limit.
 
@@ -265,12 +266,22 @@ def test_body_fits_the_page_limit():
     # under-reports by one -- which is exactly how this test passed while the body had spilled.
     refs_text = pages[refs_page - 1]
     before = refs_text[:heading.search(refs_text).start()]
-    body_spills_onto_refs_page = len([l for l in before.splitlines() if l.strip()]) > 2
-    body_pages = refs_page if body_spills_onto_refs_page else refs_page - 1
+    # Any line of real body text on the References page means the body reached that page.
+    #
+    # Two things had to be fixed here. The submission style numbers every line, and without
+    # -layout pdftotext emits that gutter as standalone numerals -- 43 of them on this page --
+    # so a naive count sees "43 spilling lines" on a body that ends cleanly. The original guard
+    # compensated with a `> 2` threshold rather than by filtering, which meant it ALSO tolerated
+    # two real lines of body text; during this trim the paper sat at exactly two, so that guard
+    # would have certified a five-page fit that did not exist. Filter the gutter, then allow no
+    # spill at all: a tolerance wide enough to hide the defect it looks for is not a tolerance.
+    spill = [l for l in before.splitlines()
+             if l.strip() and not _re.fullmatch(r"\d+", l.strip())]
+    body_pages = refs_page if spill else refs_page - 1
     assert body_pages <= BODY_PAGE_LIMIT, (
         f"the body occupies {body_pages} pages against a {BODY_PAGE_LIMIT}-page limit "
-        f"(References starts on page {refs_page}). See paper/NOTES.md §4 for the cut order and "
-        f"the do-not-cut list.")
+        f"(References starts on page {refs_page}; {len(spill)} body line(s) spill onto it). "
+        f"See paper/NOTES.md §4 for the cut order and the do-not-cut list.")
 
 
 def test_the_style_file_in_use_is_recorded():
