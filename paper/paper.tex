@@ -141,18 +141,19 @@ sizes $N{=}48$ and $96$; Fig.~\ref{fig:dev}), the calibrated instrument finds th
 token-space dynamics changing from sub-critical to super-critical between steps $512$ and $2000$,
 and staying there for the rest of training.
 
-All of this is measured at a single sampling temperature, $T{=}0.7$, and that is a real scope
-limit rather than an incidental setting: repeating the two ends of the curve at $T{=}0.3$ and
-$T{=}1.1$ finds no detectable transition at either ($p_{\mathrm{BH}}{=}0.44$). The ignition
-fraction says why. At $T{=}1.1$ damage propagates in essentially every lattice at \emph{both} ends
-($0.98\to0.99$), so there is no room to move --- a ceiling; at $T{=}0.3$ it barely propagates at
-either end ($0.20\to0.21$) and $\lca$ hugs zero --- a floor. Independent work places the critical
-temperature of Pythia generation at $T_c{\approx}1$ \citep{ar_tempcrit}, which is where those pegs
-sit: our ceiling is supercritical and our floor deeply sub-critical, leaving intermediate $T$ as
-the only place a sub-critical probe keeps dynamic range. That temperature parameterises a
-\emph{different sampler} --- left-to-right generation, not our in-place lattice update --- so we
-take it as a consistent reference point and not as the same measurement. The claim is therefore
-that \textbf{at intermediate temperature} training moves the lattice from sub- to super-critical.
+\textbf{The effect occupies a temperature window, and the window has a mechanism.} Repeating the
+two ends of the curve at $T\in\{0.3,0.5,0.9,1.1\}$ (8 seeds each, BH-FDR over the four) recovers
+the transition at $T{=}0.5$ ($p_{\mathrm{BH}}{=}6{\times}10^{-4}$) alongside the $T{=}0.7$ of the
+main grid, and at none of $0.3$, $0.9$, $1.1$ ($p_{\mathrm{BH}}{=}0.59$, $0.72$, $0.59$). The
+ignition fraction makes that a floor and a ceiling rather than a failure: at $T{=}0.3$ damage
+barely propagates at either end ($0.20\to0.21$) and $\lca$ hugs zero, whereas at $T{=}0.9$ and
+$1.1$ the lattice is \emph{already} super-critical before the training being measured ($\lca$
+${+}0.19$ and ${+}0.30$ at the pre checkpoint, ignition $0.65$ and $0.98$), so nothing is left to
+move. Inside the window that fraction swings hard, $0.23\to0.81$ at $T{=}0.5$. Independent work
+puts the critical temperature of Pythia \emph{generation} at $T_c{\approx}1$
+\citep{ar_tempcrit}; that parameterises a different sampler from our in-place update, so we take
+it as a consistent reference point rather than the same measurement --- but a ceiling setting in
+between $0.7$ and $0.9$ is where it would predict one.
 
 We pre-registered the test (post- vs pre-transition checkpoints, run-level Mann--Whitney, family
 $=\{\lca,\dn\}\times\{N{=}48,96\}$, BH-FDR) and a demotion rule: failure at either size demotes the

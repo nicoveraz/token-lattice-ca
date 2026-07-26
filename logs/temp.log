@@ -1,80 +1,19 @@
-developmental transition vs temperature: 32 runs (T in [0.3, 1.1] x 2 checkpoints x 8 seeds); T=0.7 from Phase 3
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.39it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 597.95it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 416.48it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 370.34it/s]
-[1/32] T0.3_step256_s21: lam=+0.0181 D_norm=0.3657 ign=0.06 (110.1s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:25, 11.54it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1645.42it/s]
-[2/32] T0.3_step256_s22: lam=-0.0667 D_norm=0.2428 ign=0.06 (107.3s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:42,  6.90it/s]Loading weights:  60%|██████    | 176/292 [00:00<00:00, 870.55it/s]Loading weights:  96%|█████████▌| 279/292 [00:00<00:00, 613.33it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 561.94it/s]
-[3/32] T0.3_step256_s23: lam=-0.0640 D_norm=0.2810 ign=0.31 (109.1s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 170/292 [00:00<00:00, 1697.80it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2329.27it/s]
-[4/32] T0.3_step256_s24: lam=+0.0008 D_norm=0.3885 ign=0.25 (107.2s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:34,  8.47it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 893.02it/s]Loading weights:  89%|████████▉ | 260/292 [00:00<00:00, 866.00it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 842.54it/s]
-[5/32] T0.3_step256_s25: lam=-1.6360 D_norm=0.0000 ign=0.00 (106.9s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:35,  8.17it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1364.12it/s]
-[6/32] T0.3_step256_s26: lam=+0.1042 D_norm=1.8414 ign=0.50 (107.5s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:45,  6.42it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 785.85it/s]Loading weights:  90%|█████████ | 263/292 [00:00<00:00, 381.28it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 373.31it/s]
-[7/32] T0.3_step256_s27: lam=-0.1242 D_norm=0.2003 ign=0.12 (108.6s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.84it/s]Loading weights:  60%|██████    | 176/292 [00:00<00:00, 905.83it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1118.66it/s]
-[8/32] T0.3_step256_s28: lam=-0.1296 D_norm=0.0930 ign=0.25 (108.5s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:17,  3.78it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 324.22it/s]Loading weights:  52%|█████▏    | 152/292 [00:00<00:00, 297.40it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 296.18it/s]Loading weights:  81%|████████  | 236/292 [00:00<00:00, 340.02it/s]Loading weights:  94%|█████████▍| 274/292 [00:00<00:00, 316.67it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 288.39it/s]
-[9/32] T0.3_step143000_s21: lam=-0.1583 D_norm=0.0493 ign=0.06 (108.7s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.38it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 598.75it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 430.75it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 399.00it/s]
-[10/32] T0.3_step143000_s22: lam=+0.0732 D_norm=0.0938 ign=0.19 (104.7s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:57,  5.02it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1214.91it/s]
-[11/32] T0.3_step143000_s23: lam=-0.0500 D_norm=0.2705 ign=0.44 (106.0s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 1309.64it/s]Loading weights:  90%|█████████ | 263/292 [00:00<00:00, 819.69it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 719.50it/s]
-[12/32] T0.3_step143000_s24: lam=+0.0809 D_norm=0.2903 ign=0.44 (106.4s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:41,  6.99it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1538.49it/s]
-[13/32] T0.3_step143000_s25: lam=-0.1271 D_norm=0.0576 ign=0.12 (107.8s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  49%|████▉     | 144/292 [00:00<00:00, 1339.30it/s]Loading weights:  95%|█████████▌| 278/292 [00:00<00:00, 1085.35it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1161.14it/s]
-[14/32] T0.3_step143000_s26: lam=+0.0985 D_norm=0.1891 ign=0.25 (106.6s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:48,  6.04it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1563.07it/s]
-[15/32] T0.3_step143000_s27: lam=-0.0713 D_norm=0.1194 ign=0.19 (108.0s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:57,  5.02it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 638.23it/s]Loading weights:  84%|████████▎ | 244/292 [00:00<00:00, 496.05it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 460.10it/s]
-[16/32] T0.3_step143000_s28: lam=+0.1496 D_norm=0.0019 ign=0.00 (109.2s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:05,  4.48it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 601.06it/s]Loading weights:  84%|████████▍ | 246/292 [00:00<00:00, 574.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 480.14it/s]
-[17/32] T1.1_step256_s21: lam=+0.2867 D_norm=0.9438 ign=1.00 (107.0s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  82%|████████▏ | 239/292 [00:00<00:00, 2377.62it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2649.25it/s]
-[18/32] T1.1_step256_s22: lam=+0.4514 D_norm=0.9599 ign=1.00 (105.7s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:54,  5.31it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 981.84it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 971.34it/s]
-[19/32] T1.1_step256_s23: lam=+0.2498 D_norm=0.9131 ign=1.00 (107.1s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:41,  7.02it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1927.72it/s]
-[20/32] T1.1_step256_s24: lam=+0.2714 D_norm=0.9019 ign=1.00 (106.3s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  8.07it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 806.33it/s]Loading weights:  83%|████████▎ | 243/292 [00:00<00:00, 639.29it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 710.65it/s]
-[21/32] T1.1_step256_s25: lam=+0.3177 D_norm=0.9060 ign=0.94 (104.2s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:58,  2.46it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 640.48it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 555.60it/s]
-[22/32] T1.1_step256_s26: lam=+0.3016 D_norm=0.9895 ign=1.00 (104.8s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  95%|█████████▌| 278/292 [00:00<00:00, 2753.03it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2559.19it/s]
-[23/32] T1.1_step256_s27: lam=+0.3343 D_norm=0.9034 ign=0.94 (103.6s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:46,  6.22it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1344.09it/s]
-[24/32] T1.1_step256_s28: lam=+0.1890 D_norm=0.9194 ign=1.00 (103.5s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.05it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 539.14it/s]Loading weights:  80%|████████  | 235/292 [00:00<00:00, 501.31it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 388.12it/s]
-[25/32] T1.1_step143000_s21: lam=+0.2094 D_norm=0.8736 ign=1.00 (104.1s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3270.03it/s]
-[26/32] T1.1_step143000_s22: lam=+0.3590 D_norm=0.9132 ign=1.00 (102.8s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:53,  5.47it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1111.72it/s]
-[27/32] T1.1_step143000_s23: lam=+0.2203 D_norm=0.9183 ign=1.00 (103.3s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 2081.43it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1630.62it/s]
-[28/32] T1.1_step143000_s24: lam=+0.2484 D_norm=0.8456 ign=1.00 (103.6s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 37/292 [00:00<00:00, 369.90it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2248.88it/s]
-[29/32] T1.1_step143000_s25: lam=+0.2749 D_norm=0.7323 ign=0.94 (102.6s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 1538.73it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1822.62it/s]
-[30/32] T1.1_step143000_s26: lam=+0.2991 D_norm=0.9542 ign=1.00 (102.7s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 2398.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2051.57it/s]
-[31/32] T1.1_step143000_s27: lam=+0.3397 D_norm=0.9313 ign=1.00 (102.7s)
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5381.28it/s]
-[32/32] T1.1_step143000_s28: lam=+0.1711 D_norm=0.8309 ign=1.00 (102.7s)
+developmental transition vs temperature: 64 runs (T in [0.3, 0.5, 0.9, 1.1] x 2 checkpoints x 8 seeds); T=0.7 from Phase 3
 
 === lambda_ca: pre (step256) -> plateau (step143000), by temperature ===
       T        pre    n    plateau    n   ignited      p_raw
     0.7    -0.0185    8    +0.1792    8 (Phase 3)         --
     0.3    -0.0373    7    -0.0006    8        15   4.42e-01
+    0.5    -0.0501    8    +0.1830    8        16   1.55e-04
+    0.9    +0.1868    8    +0.2206    8        16   7.21e-01
     1.1    +0.3002    8    +0.2652    8        16   4.42e-01
 
 === BH-FDR over the temperatures tested here ===
-    T0.3 p_raw=0.44180  p_BH=0.44180  n.s.
-    T1.1 p_raw=0.44180  p_BH=0.44180  n.s.
+    T0.3 p_raw=0.44180  p_BH=0.58907  n.s.
+    T0.5 p_raw=0.00016  p_BH=0.00062  SURVIVES
+    T0.9 p_raw=0.72090  p_BH=0.72090  n.s.
+    T1.1 p_raw=0.44180  p_BH=0.58907  n.s.
 
-  -> VANISHES at both tested temperatures -- the claim is temperature-specific and must be restated as such
+  -> PARTIAL: survives at ['T0.5'] but not at the others -- see the per-temperature means before reading this either way
 
 wrote /Users/nicoveraz/Documents/GitHub/textca/results/dev_transition_temp.json

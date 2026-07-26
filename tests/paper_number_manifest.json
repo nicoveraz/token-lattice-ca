@@ -282,21 +282,75 @@
   "kind": "measured"
  },
  {
-  "literal": "0.44",
+  "literal": "0.20",
   "source": "dev_transition_temp.json",
-  "derivation": "summary['0.3'].p_bh",
+  "derivation": "mean ignition_prob at T=0.3, step256 over 8 runs -- ceiling/floor mechanism",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.21",
+  "source": "dev_transition_temp.json",
+  "derivation": "mean ignition_prob at T=0.3, step143000 over 8 runs -- ceiling/floor mechanism",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.23",
+  "source": "dev_transition_temp.json",
+  "derivation": "mean ignition_prob at T=0.5, step256 over 8 runs -- ceiling/floor mechanism",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.80",
+  "source": "dev_transition_temp.json",
+  "derivation": "mean ignition_prob at T=0.5, step143000 over 8 runs -- ceiling/floor mechanism",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.65",
+  "source": "dev_transition_temp.json",
+  "derivation": "mean ignition_prob at T=0.9, step256 over 8 runs -- ceiling/floor mechanism",
   "kind": "measured"
  },
  {
   "literal": "0.98",
   "source": "dev_transition_temp.json",
-  "derivation": "T=1.1 pre ignition 0.984 -> 0.98",
+  "derivation": "mean ignition_prob at T=1.1, step256 over 8 runs -- ceiling/floor mechanism",
   "kind": "measured"
  },
  {
-  "literal": "0.20",
+  "literal": "0.59",
   "source": "dev_transition_temp.json",
-  "derivation": "T=0.3 pre ignition 0.195 -> 0.20",
+  "derivation": "summary['0.3'].p_bh -- pegged temperature, BH over the four-temperature family",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.72",
+  "source": "dev_transition_temp.json",
+  "derivation": "summary['0.9'].p_bh -- pegged temperature, BH over the four-temperature family",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.59",
+  "source": "dev_transition_temp.json",
+  "derivation": "summary['1.1'].p_bh -- pegged temperature, BH over the four-temperature family",
+  "kind": "measured"
+ },
+ {
+  "literal": "6{\\times}10^{-4}",
+  "source": "dev_transition_temp.json",
+  "derivation": "summary['0.5'].p_bh = 6.22e-04 -- the surviving end of the window",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.19",
+  "source": "dev_transition_temp.json",
+  "derivation": "mean lambda_ca over 8 IGNITED runs at T=0.9, step256 -- super-critical pre",
+  "kind": "measured"
+ },
+ {
+  "literal": "0.30",
+  "source": "dev_transition_temp.json",
+  "derivation": "mean lambda_ca over 8 IGNITED runs at T=1.1, step256 -- super-critical pre",
   "kind": "measured"
  },
  {
@@ -315,36 +369,6 @@
   "literal": "0.97",
   "source": "real_generation_reconvergence.json",
   "derivation": "pythia-70m.tv_norm_tail",
-  "kind": "measured"
- },
- {
-  "literal": "0.98",
-  "source": "dev_transition_temp.json",
-  "derivation": "mean ignition_prob at T=1.1, step256 over 8 runs",
-  "kind": "measured"
- },
- {
-  "literal": "0.99",
-  "source": "dev_transition_temp.json",
-  "derivation": "mean ignition_prob at T=1.1, step143000 over 8 runs",
-  "kind": "measured"
- },
- {
-  "literal": "0.20",
-  "source": "dev_transition_temp.json",
-  "derivation": "mean ignition_prob at T=0.3, step256 over 8 runs",
-  "kind": "measured"
- },
- {
-  "literal": "0.21",
-  "source": "dev_transition_temp.json",
-  "derivation": "mean ignition_prob at T=0.3, step143000 over 8 runs",
-  "kind": "measured"
- },
- {
-  "literal": "0.44",
-  "source": "dev_transition_temp.json",
-  "derivation": "summary['1.1'].p_bh",
   "kind": "measured"
  },
  {

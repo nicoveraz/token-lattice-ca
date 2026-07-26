@@ -128,9 +128,30 @@ add(f(rg["pythia-70m"]["P_persist"], 3), "real_generation_damage.json", "pythia-
 add("1.3", "coupling_gap.json", "T=0.7 inflation 1.013 -> 1.3% excess")
 add("5.4", "coupling_gap.json", "T=0.9 inflation 1.054 -> 5.4% excess")
 # --- temperature ---------------------------------------------------------
-add(f(tmp["summary"]["0.3"]["p_bh"], 2), "dev_transition_temp.json", "summary['0.3'].p_bh")
-add("0.98", "dev_transition_temp.json", "T=1.1 pre ignition 0.984 -> 0.98")
-add("0.20", "dev_transition_temp.json", "T=0.3 pre ignition 0.195 -> 0.20")
+# Temperature WINDOW (#73). The family is now FIVE temperatures {0.3,0.5,0.7,0.9,1.1}; every
+# p_BH moved when 0.5 and 0.9 were added, because the correction was recomputed over the full
+# family rather than appended to the old one. T=0.7 is NOT in this family -- it carries its own
+# BH correction from the Phase 3 grid. Registered here is exactly what the paragraph states: the
+# three pegged p-values, the surviving one, the ignition fractions carrying the ceiling/floor
+# argument, and the two pre-checkpoint lambda means showing 0.9 and 1.1 start super-critical.
+_tr = [v for v in tmp["runs"].values() if "lambda_ca" in v]
+def _tmp_ignited(r):
+    return not (_unig(mean_damage=r["mean_damage"]) if "mean_damage" in r
+                else _unig(D_norm=r["D_norm"]))
+for _T, _st in ((0.3, 256), (0.3, 143000), (0.5, 256), (0.5, 143000), (0.9, 256), (1.1, 256)):
+    _v = [r["ignition_prob"] for r in _tr if r["T"] == _T and r["step"] == _st]
+    add(f(float(np.mean(_v)), 2), "dev_transition_temp.json",
+        f"mean ignition_prob at T={_T}, step{_st} over {len(_v)} runs -- ceiling/floor mechanism")
+for _T in ("0.3", "0.9", "1.1"):
+    add(f(tmp["summary"][_T]["p_bh"], 2), "dev_transition_temp.json",
+        f"summary['{_T}'].p_bh -- pegged temperature, BH over the four-temperature family")
+add("6{\\times}10^{-4}", "dev_transition_temp.json",
+    f"summary['0.5'].p_bh = {tmp['summary']['0.5']['p_bh']:.2e} -- the surviving end of the window")
+for _T in (0.9, 1.1):
+    _v = [r["lambda_ca"] for r in _tr
+          if r["T"] == _T and r["step"] == 256 and _tmp_ignited(r)]
+    add(f(float(np.mean(_v)), 2), "dev_transition_temp.json",
+        f"mean lambda_ca over {len(_v)} IGNITED runs at T={_T}, step256 -- super-critical pre")
 # --- CML -----------------------------------------------------------------
 add("1.1", "cml_benettin.json", f"max_abs_diff {ben['max_abs_diff']} -> 1.1e-3")
 # --- cross-level (C19) ------------------------------------------------------
@@ -145,14 +166,6 @@ add(f(cen["baseline_TV"]["a"], 2), "calib_census.json", "baseline_TV.a (random-l
 rr = L("real_generation_reconvergence.json")
 _k = next(k for k in rr if isinstance(rr[k], dict) and "tv_norm_tail" in rr[k])
 add(f(rr[_k]["tv_norm_tail"], 2), "real_generation_reconvergence.json", f"{_k}.tv_norm_tail")
-# --- temperature scope (F49) ------------------------------------------------
-_t = L("dev_transition_temp.json")
-_tr = [v for v in _t["runs"].values() if "lambda_ca" in v]
-for T, st, lit in ((1.1, 256, None), (1.1, 143000, None), (0.3, 256, None), (0.3, 143000, None)):
-    _v = [r["ignition_prob"] for r in _tr if r["T"] == T and r["step"] == st]
-    add(f(float(np.mean(_v)), 2), "dev_transition_temp.json",
-        f"mean ignition_prob at T={T}, step{st} over {len(_v)} runs")
-add(f(_t["summary"]["1.1"]["p_bh"], 2), "dev_transition_temp.json", "summary['1.1'].p_bh")
 # --- size scaling exponents (derived from the three-size levels) -------------
 import numpy as _np2
 # RAW runs, not the stored rounded levels -- the D_norm slope is -1.01506, which is 1.02 to

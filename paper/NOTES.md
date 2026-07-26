@@ -122,6 +122,34 @@ geometry sets the page count — issue #55, hard stop Aug 26.
 
 ## 5. Decisions log
 
+- **2026-07-26** — **F52: the temperature scope is a WINDOW, not a point (#73).** The first pass
+  ran T ∈ {0.3, 1.1} only, and three points is thin for the paper's most attackable limit. Adding
+  T = 0.5 and 0.9 (32 runs, BH-FDR recomputed over the **full** four-temperature family, not
+  appended to the old one — a correction that grows by accretion is not a correction):
+
+  | T | ignition pre → plateau | λ_ca pre → plateau | p_BH |
+  |---|---|---|---|
+  | 0.3 | 0.195 → 0.211 | −0.037 → −0.001 | 0.59 — floor |
+  | **0.5** | **0.227 → 0.805** | **−0.050 → +0.183** | **6×10⁻⁴ — survives** |
+  | 0.7 | — | −0.019 → +0.179 | (Phase 3 family) |
+  | 0.9 | 0.648 → 0.984 | **+0.187** → +0.221 | 0.72 — ceiling |
+  | 1.1 | 0.984 → 0.992 | +0.300 → +0.265 | 0.59 — ceiling |
+
+  Two things changed. **(a)** The effect now spans **two adjacent temperatures** (0.5 and 0.7),
+  which is a different claim from "at one temperature". **(b)** The ceiling starts at **0.9, not
+  1.1** — the paper had been reading 1.1's 0.98→0.99 as the ceiling, but at 0.9 the lattice is
+  *already* super-critical before the training being measured (λ = +0.187 at the pre
+  checkpoint). The old paragraph was right about the mechanism and wrong about where it begins.
+
+  Ceiling onset between 0.7 and 0.9 sits just below `ar_tempcrit`'s T_c ≈ 1 — stated as
+  consistent, not as the same measurement (different sampler; see [[F51]]).
+
+  Pre-registration honoured: #73 said an outcome surviving only at 0.7 would force "at T=0.7"
+  rather than "at intermediate temperature". That is not what happened, so the range language
+  stands — but it now rests on two surviving temperatures and a mechanism that says where it
+  stops, instead of one temperature and an assertion.
+
+
 - **2026-07-26** — **F50: the hand citation audit was incomplete.** F43 (#37) checked five
   entries by hand and fixed three titles. A fourth wrong title survived it — `ar_tempcrit`
   claimed *"Critical Phase Transition in Large Language Models"*; arXiv says *"Phase transition

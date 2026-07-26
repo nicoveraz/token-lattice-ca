@@ -11,13 +11,29 @@ structural it should persist. This tests the developmental claim specifically ra
 static criticality, because the developmental claim is what the paper rests on.
 
 DESIGN. The two extreme checkpoints only -- step256 (pre) and step143000 (plateau) -- at
-T in {0.3, 1.1}, 8 seeds, N=48, B=16. T=0.7 is already measured (Phase 3), so this gives three
-temperatures spanning near-greedy to high-entropy at both ends of training. 32 new runs.
+T in {0.3, 0.5, 0.9, 1.1}, 8 seeds, N=48, B=16. T=0.7 is already measured (Phase 3), so this
+gives FIVE temperatures spanning near-greedy to high-entropy at both ends of training.
+
+WIDENED FOR ISSUE #73. The first pass ran T in {0.3, 1.1} only. Three points on the temperature
+axis is thin for the paper's most attackable scope limit: it supports "the effect appears at one
+temperature and pegs at the two we tried outside it", and the ceiling/floor mechanism offered to
+explain the pegs is then a story about three points. T=0.5 and T=0.9 turn that into "the effect
+appears across a RANGE and pegs outside it", which is a categorically different claim for the
+same cost. The BH-FDR correction is recomputed over the FULL five-temperature family rather than
+appended to the old one -- a correction that grows by accretion is not a correction.
 
 PRE-REGISTERED BEFORE RUNNING:
-  * Primary: does the pre -> plateau sign change in lambda_ca persist at BOTH T=0.3 and T=1.1?
+  * Primary: does the pre -> plateau sign change in lambda_ca persist at each T?
     Tested per temperature with a run-level Mann-Whitney, BH-FDR over the family of temperatures
     reported here.
+  * If it survives at 0.5, 0.7 and 0.9 but not at 0.3 and 1.1, the ceiling/floor reading is
+    confirmed by a range rather than asserted from two endpoints, and the paper says
+    "at intermediate temperature".
+  * If it survives ONLY at 0.7, the scope limit is real and narrow: the paper must say "at
+    T=0.7" and not "at intermediate temperature". That is a successful outcome of this
+    experiment, not a failure, and the sentence gets rewritten.
+  * Ignition fraction is recorded at every temperature, because it is what makes the
+    ceiling/floor reading testable rather than post-hoc.
   * If it persists at both, the headline is NOT a T=0.7 artifact and the paper should say so.
   * If it vanishes at low T, the claim is a sampling phenomenon and must be restated as such --
     that is a successful outcome of this experiment, not a failure.
@@ -41,7 +57,7 @@ from dev_transition_phase3 import measure, bh_fdr
 from lyapunov import is_unignited
 from provenance import stamp
 
-TEMPS = [0.3, 1.1]                       # T=0.7 comes from Phase 3
+TEMPS = [0.3, 0.5, 0.9, 1.1]             # T=0.7 comes from Phase 3
 STEPS = ["step256", "step143000"]        # the two ends of the developmental curve
 SEEDS = [21, 22, 23, 24, 25, 26, 27, 28]
 N, B = 48, 16
