@@ -1002,23 +1002,42 @@ effect size both needed rewriting, and have been.
 **The headline number, measured against the pooled plateau (2000/8000/143000), not the
 step-1000 peak:**
 
-| N | metric | step256 | plateau | Cohen d | p | (d vs peak, *inflated*) |
-|---|---|---|---|---|---|---|
-| 48 | λ_ca | −0.0185 | +0.1683 | **2.74** | 6.6e−05 | 2.32 |
-| 48 | D_norm | 0.1328 | 0.5689 | **3.69** | 3.8e−07 | *5.04* |
-| 96 | λ_ca | −0.0307 | +0.1686 | **2.78** | 8.6e−06 | 2.19 |
-| 96 | D_norm | 0.0733 | 0.3062 | **3.91** | 7.6e−07 | 3.85 |
+| N | metric | pre {256,512} | plateau | Cohen d | p | vs peak | from 256 only |
+|---|---|---|---|---|---|---|---|
+| 48 | λ_ca | +0.0247 | +0.1683 | **1.59** | 5.9e−05 | 1.16 | *2.74* |
+| 48 | D_norm | +0.1865 | +0.5689 | **2.88** | 7.2e−07 | *3.94* | *3.69* |
+| 96 | λ_ca | +0.0197 | +0.1686 | **1.76** | 6.6e−05 | 1.86 | *2.78* |
+| 96 | D_norm | +0.1030 | +0.3062 | **3.07** | 3.0e−07 | 3.56 | *3.91* |
 
-Quoting step 256 vs step 1000 would have inflated the D_norm effect at N=48 from d=3.69 to
-**d=5.04** — taking the transition's peak for its level, which is the same species of error
-as the W1 retraction. The `_INFLATED` values are stored in the JSON only so the difference
-stays auditable; they must not be quoted.
+**Both ends of this contrast can be inflated, and the first version of this entry inflated
+one of them.** Taking step 1000 as the post value quotes the transition's peak for its level.
+Taking step 256 *alone* as the pre value does the identical thing at the other end — and it
+is worse: **1.72×** on λ_ca at N=48 and **1.58×** at N=96, against 1.37× for the peak error
+that was caught first. The pre-registered pre set is `{256, 512}` and that is what the table
+now uses. Italicised columns are the unregistered variants, retained in the JSON under
+`_INFLATED` / `_UNREGISTERED` keys purely so the difference stays auditable — they must not
+be quoted.
 
-- **The overshoot is real but weak.** Step 1000 sits +14% to +22% above the plateau, yet it
-  separates from it in only **1 of 4 cells** after BH-FDR (N=48 D_norm, p_raw 0.0117 →
-  p_BH 0.047; the other three are 0.086, 0.086, 0.78). So: describe the shape as
-  non-monotone, state the overshoot magnitude, and do **not** claim step 1000 is a distinct
-  developmental phase. It is a bump the data cannot resolve from the plateau at n=8.
+**"λ_ca crosses zero" is withdrawn; it fails twice.** Under the pre-registered split the
+pre-group mean is **+0.0247** (N=48) and **+0.0197** (N=96) — both positive, so there is no
+crossing at group level. And taking cell means, the crossing sits between **256 and 512**
+(−0.0185→+0.0679; −0.0307→+0.0702), not between 512 and 1000; that interval is the
+pre-registration boundary, not the crossing point.
+
+**The replacement is stronger and needs no pre/post choice.** Before the transition seeds do
+not agree on the *sign* of λ_ca — 6/16 negative at N=48, 8/16 at N=96, spanning −0.216 to
++0.320. After it, **not one of 48 plateau runs is negative** (minimum +0.1074). That uses all
+96 runs, is immune to where the split is drawn, and merges the headline with the
+variance-collapse observation below.
+
+- **The overshoot is weak, and on the spine quantity it is essentially absent.** The range
+  is **+1.4% to +22.4%**, not 14–22% as first written. Broken out: λ_ca overshoots +14.3% at
+  N=48 (p_BH 0.114) and **+1.4% at N=96** (d=0.06, p_BH 0.78); D_norm +22.4% and +17.0%
+  (p_BH 0.047 and 0.114). It survives correction in **1 of 4 cells**, and that cell is
+  D_norm. Since λ_ca now carries the claim, the honest reading is that **non-monotonicity is
+  largely a D_norm phenomenon**; the spine quantity shows no overshoot at the larger lattice.
+  Describe the shape as non-monotone, give the range, and do **not** claim step 1000 as a
+  distinct developmental phase.
 - **The transition is durable, which is the substantive point.** The fully-trained
   checkpoint (step 143000) is not a decay back toward the initial state: D_norm 0.61 (N=48)
   and 0.33 (N=96) against step256's 0.13 and 0.07. Whatever happens at step ~1000 persists
@@ -1029,12 +1048,14 @@ capacity claim, so it gets reported plainly in both directions:
 
 | metric | gap N=48 | gap N=96 | retention | plateau level N48 vs N96 |
 |---|---|---|---|---|
-| λ_ca | +0.1868 | +0.1994 | **107%** | +0.1683 vs +0.1686, p=0.91 |
-| D_norm | +0.4361 | +0.2329 | **53%** | 0.5689 vs 0.3062, **p=1.3e−08** |
+| λ_ca | +0.1436 | +0.1489 | **104%** | +0.1683 vs +0.1686 |
+| D_norm | +0.3824 | +0.2033 | **53%** | 0.5689 vs 0.3062, **p=1.3e−08** |
 
-- **λ_ca is size-robust.** The effect does not shrink (107% retention) and the plateau
-  *level* is statistically indistinguishable across a doubling of the lattice (p=0.91).
-  That is a genuine replication, not a survival.
+- **λ_ca is size-robust, stated as a bound rather than a null result.** The effect does not
+  shrink (104% retention) and the plateau levels differ by **−0.0003, 95% CI
+  [−0.0229, +0.0223]** on a plateau of 0.168 — the two lattice sizes **agree to within ±14%**.
+  A confidence interval is the right form here; "p=0.91 therefore the same" is an argument
+  from a null result and a reviewer can decline it.
 - **D_norm is size-dependent.** The gap roughly halves and the plateau level differs
   decisively. Standardised, the effect is undiminished (d 3.69 → 3.91) because the variance
   shrinks too — so the *discrimination* survives while the *absolute scale* does not.
@@ -1047,9 +1068,11 @@ capacity claim, so it gets reported plainly in both directions:
 
 **Variance collapse replicates at both sizes** (observation, not pre-registered): sd(λ) falls
 0.1363 → 0.0366 at N=48 (3.7×, Levene p=1.7e−04) and 0.1238 → 0.0395 at N=96 (3.1×,
-p=7.7e−07). Before the transition, seeds disagree about the *sign* of λ; after it they agree
-to a few percent. Since it was not pre-registered it is reported as an observation, but it
-replicates independently at both lattice sizes, which is more than the mean shift needed.
+p=7.7e−07). Before the transition seeds disagree about the *sign*; after it every run is
+positive. **They do not agree "to a few percent"** — the plateau per-seed CV is 21.9% (N=48)
+and 25.4% (N=96). The few-percent agreement is between checkpoint *means* and between lattice
+*sizes* (0.1683 vs 0.1686, 0.2%), which is a different and weaker statement. Reported as an
+observation, but it replicates independently at both sizes.
 
 ### F40 — the ordered-group λ is an estimator floor, not a measurement (Phase 4.1)
 

@@ -4,11 +4,19 @@
 BH-FDR table is in `logs/phase3_dev.log`. It did not ask what shape the rise has. The N=48
 arm made clear that the curve is not a step: it overshoots at step 1000 and settles lower.
 
-That matters for what may be quoted. Reporting step 256 vs step 1000 takes the transition's
-peak as if it were its level, which inflates the effect size -- the same species of error as
-the W1 retraction. This script therefore computes the headline against the POOLED PLATEAU
-(steps 2000/8000/143000), tests whether the step-1000 peak is separable from that plateau at
-all, and reports the N=48 vs N=96 comparison that objection W9 asks for.
+That matters for what may be quoted, AT BOTH ENDS. Reporting step 1000 as the post value
+takes the transition's peak for its level. Reporting step 256 alone as the pre value does
+the same thing at the other end -- and by more: it inflates lambda_ca's effect by 1.7x
+against 1.4x for the peak. The first version of this script fixed the post end and committed
+the pre-end error in the same edit, while declaring `pre: [256, 512]` in the JSON it wrote.
+Both ends now use the PRE-REGISTERED sets. The unregistered variants are retained under
+explicit _INFLATED / _UNREGISTERED keys so the difference stays auditable.
+
+Because any effect size depends on which checkpoints are called "pre", the script also
+reports a statement that needs no such choice: the SIGN AGREEMENT across all 96 runs.
+
+Tests whether the step-1000 peak is separable from the plateau, and reports the N=48 vs
+N=96 comparison objection W9 asks for -- as an equivalence BOUND, not a null p-value.
 
 Reads results/dev_transition_phase3.json (never writes it); writes
 results/dev_transition_shape.json. Pure numpy/scipy, seconds.
@@ -79,22 +87,50 @@ def main():
                 print(f"  {N:>4} {st:>7} {len(v):>3} {v.mean():>+9.4f} "
                       f"{v.std(ddof=1):>8.4f} {v.min():>+9.4f} {v.max():>+9.4f}")
 
-    print("\n=== HEADLINE: step 256 vs the POOLED PLATEAU (2000/8000/143000) ===")
-    print("    (NOT step 256 vs step 1000 -- that takes the overshoot for the level)")
+    print("\n=== HEADLINE: the PRE-REGISTERED pre set {256,512} vs the POOLED PLATEAU ===")
+    print("    Both ends matter. Using the step-1000 PEAK as the post value inflates the")
+    print("    effect; using step 256 ALONE as the pre value inflates it at the other end,")
+    print("    and by MORE (up to 1.7x on lambda_ca). PRE is the pre-registered set.")
     praw, keys = [], []
     for N in (48, 96):
         for m in METRICS:
-            a, b = sel(N, {256}, m), sel(N, PLATEAU, m)
+            a, b = sel(N, PRE, m), sel(N, PLATEAU, m)
             p = float(stats.mannwhitneyu(b, a, alternative="two-sided").pvalue)
             praw.append(p); keys.append(f"N{N}_{m}")
+            d_lowest = cohens_d(sel(N, {256}, m), b)      # step256-only: NOT pre-registered
             out["headline"][f"N{N}_{m}"] = dict(
-                pre256_mean=round(float(a.mean()), 4), plateau_mean=round(float(b.mean()), 4),
+                pre_mean=round(float(a.mean()), 4), plateau_mean=round(float(b.mean()), 4),
                 n_pre=len(a), n_plateau=len(b), cohens_d=round(cohens_d(a, b), 2),
                 p_raw=p,
-                cohens_d_vs_peak_INFLATED=round(cohens_d(a, sel(N, PEAK, m)), 2))
+                cohens_d_vs_peak_INFLATED=round(cohens_d(a, sel(N, PEAK, m)), 2),
+                cohens_d_from_step256_only_UNREGISTERED=round(d_lowest, 2))
             print(f"  N={N} {m:>10}  {a.mean():+.4f} -> {b.mean():+.4f}   "
                   f"d={cohens_d(a, b):.2f}   p={p:.2e}"
-                  f"   [vs-peak d would be {cohens_d(a, sel(N, PEAK, m)):.2f}]")
+                  f"   [step256-only d would be {d_lowest:.2f}]")
+
+    # --- the pre-set-free statement of the same result -------------------------------
+    # Effect sizes depend on which checkpoints are called "pre". This does not: it uses
+    # every run, and it is what panel C of the figure draws.
+    print("\n=== SIGN AGREEMENT (uses all 96 runs; independent of the pre/post split) ===")
+    out["sign_agreement"] = {}
+    for N in (48, 96):
+        pre, post = sel(N, PRE, "lambda_ca"), sel(N, PLATEAU, "lambda_ca")
+        rec = dict(n_pre=len(pre), pre_negative=int((pre < 0).sum()),
+                   pre_min=round(float(pre.min()), 4), pre_max=round(float(pre.max()), 4),
+                   n_plateau=len(post), plateau_negative=int((post < 0).sum()),
+                   plateau_min=round(float(post.min()), 4),
+                   plateau_cv_pct=round(float(100 * post.std(ddof=1) / post.mean()), 1))
+        out["sign_agreement"][f"N{N}"] = rec
+        print(f"  N={N}: pre {rec['pre_negative']}/{rec['n_pre']} negative "
+              f"(range {rec['pre_min']:+.3f} to {rec['pre_max']:+.3f})  |  "
+              f"plateau {rec['plateau_negative']}/{rec['n_plateau']} negative "
+              f"(min {rec['plateau_min']:+.4f}, CV {rec['plateau_cv_pct']}%)")
+    allpost = np.concatenate([sel(48, PLATEAU, "lambda_ca"), sel(96, PLATEAU, "lambda_ca")])
+    out["sign_agreement"]["pooled"] = dict(
+        n=len(allpost), negative=int((allpost < 0).sum()),
+        min=round(float(allpost.min()), 4))
+    print(f"  pooled: {int((allpost < 0).sum())}/{len(allpost)} plateau runs negative, "
+          f"min {allpost.min():+.4f}")
     for k, adj in zip(keys, bh_fdr(praw)):
         out["headline"][k]["p_bh"] = float(adj)
 
@@ -119,11 +155,20 @@ def main():
 
     print("\n=== W9: does the effect fall with lattice size? ===")
     for m in METRICS:
-        a48, b48 = sel(48, {256}, m), sel(48, PLATEAU, m)
-        a96, b96 = sel(96, {256}, m), sel(96, PLATEAU, m)
+        a48, b48 = sel(48, PRE, m), sel(48, PLATEAU, m)     # PRE, not the lowest checkpoint
+        a96, b96 = sel(96, PRE, m), sel(96, PLATEAU, m)
         g48, g96 = float(b48.mean() - a48.mean()), float(b96.mean() - a96.mean())
         p_lvl = float(stats.mannwhitneyu(b48, b96, alternative="two-sided").pvalue)
+        # equivalence BOUND, not a null p-value: a reviewer cannot object to a CI the way
+        # they can to "p=0.91 therefore the same".
+        se = float(np.sqrt(b48.var(ddof=1) / len(b48) + b96.var(ddof=1) / len(b96)))
+        diff = float(b48.mean() - b96.mean())
+        ci = (diff - 1.96 * se, diff + 1.96 * se)
         out["size_scaling_W9"][m] = dict(
+            plateau_diff=round(diff, 4), plateau_diff_se=round(se, 4),
+            plateau_diff_ci95=[round(ci[0], 4), round(ci[1], 4)],
+            plateau_agree_within_pct=round(
+                100 * max(abs(ci[0]), abs(ci[1])) / abs(float(b48.mean())), 1),
             gap_N48=round(g48, 4), gap_N96=round(g96, 4),
             retention_pct=round(100 * g96 / g48, 1),
             cohens_d_N48=round(cohens_d(a48, b48), 2),

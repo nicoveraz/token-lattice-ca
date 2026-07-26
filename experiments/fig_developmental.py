@@ -3,19 +3,20 @@
 Three panels, chosen so the figure states the claim AND its two honest qualifications:
 
   (A) lambda_ca vs checkpoint, both lattice sizes. The claim. lambda_ca is the quantity that
-      carries it, because W9 turned out favourably for it: 107% retention at N=96 and a
-      plateau level statistically indistinguishable across a doubling of the lattice.
+      carries it, because W9 turned out favourably for it: 104% retention at N=96, and the
+      plateau levels agree to within +-14% (95% CI on the difference, not a null p-value).
   (B) D_norm vs checkpoint, both sizes. The corroboration -- same shape, same direction,
       but the two curves are visibly offset, which is exactly the point: D_norm's absolute
       scale moves with N (plateau 0.569 vs 0.306, p=1.3e-08), so it is reported at a stated
       lattice size and never as a lattice-free property.
   (C) Seed spread across the transition. Before it, seeds disagree about the SIGN of lambda;
-      after, they agree to a few percent (3.7x / 3.1x collapse). Not pre-registered, so it
+      after, none of 48 plateau runs is negative (sd collapses 3.7x / 3.1x). Not pre-registered, so it
       is drawn as an observation.
 
-The plateau band is drawn from steps 2000/8000/143000 -- NOT from the step-1000 peak, which
-is a +14-22% overshoot that survives BH-FDR in only 1 of 4 cells. Quoting the peak as the
-level would inflate the N=48 D_norm effect from d=3.69 to d=5.04.
+The plateau band is drawn from steps 2000/8000/143000 -- NOT from the step-1000 peak, whose
+overshoot is +1.4% to +22.4% and survives BH-FDR in only 1 of 4 cells (a D_norm cell). Quoting the peak as the
+level would inflate the N=48 D_norm effect; using step256 ALONE as the pre value inflates
+lambda_ca by 1.7x. Both ends use the pre-registered sets.
 
 Reads results/dev_transition_phase3.json and dev_transition_shape.json (writes neither);
 writes fig/developmental.png.
@@ -63,9 +64,9 @@ def panel(a, metric, ylabel, title):
 
 h = shape["headline"]
 panel(ax[0], "lambda_ca", r"$\lambda_{\mathrm{ca}}$",
-      f"(A) the claim: $\\lambda_{{ca}}$ crosses zero and stays\n"
-      f"N=48 $d$={h['N48_lambda_ca']['cohens_d']}, N=96 $d$={h['N96_lambda_ca']['cohens_d']} "
-      f"(vs. plateau)  |  levels agree, $p$=0.91")
+      f"(A) the claim: 0/48 plateau runs negative (min +0.107)\\n"
+      f"$d$={h['N48_lambda_ca']['cohens_d']} / {h['N96_lambda_ca']['cohens_d']} vs the pre-registered pre set\\n"
+      f"plateau levels agree within $\\pm$13.6\\% (95% CI [-0.0229, +0.0223])")
 ax[0].axhline(0, color="k", lw=0.8, ls="-", alpha=0.5, zorder=2)
 
 panel(ax[1], "D_norm", r"$D_{\mathrm{norm}}$",

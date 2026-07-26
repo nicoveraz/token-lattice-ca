@@ -29,10 +29,11 @@ $4096\times1500$ updates, with a nonzero off-line control---calibrating the appa
 error bar attached; it also separates elementary CA rules by whether damage survives
 ($d{=}3.0$) and recovers known Markov transition matrices. Applied across
 Pythia-410m training checkpoints, it detects a \textbf{developmental transition}: the
-token-space Lyapunov exponent crosses from negative to positive between steps $512$ and
-$1000$ and stays there, at two lattice sizes ($d{=}2.74$ and $2.78$; all four members of a
-pre-registered family survive Benjamini--Hochberg correction), with seed-to-seed variance
-collapsing $\sim\!3\times$ across the transition. We then \emph{delimit} the instrument, which
+token-space Lyapunov exponent goes from seeds disagreeing about its \emph{sign} to
+\textbf{every one of 48 post-transition runs being positive}, at two lattice sizes (all four
+members of a pre-registered family survive Benjamini--Hochberg correction; $d{=}1.59$ and
+$1.76$ against the pre-registered baseline), with seed-to-seed variance collapsing
+$\sim\!3\times$. We then \emph{delimit} the instrument, which
 is the result we consider most useful: real autoregressive generation absorbs \emph{no}
 injected token error ($P_{\text{persist}}{=}1.000$ on three models), because free generation
 never resamples a token. These quantities therefore characterise an iterated-resampling
@@ -156,29 +157,40 @@ beside it showing the test is not vacuous.}\label{fig:ladder}
 Applying the calibrated instrument across Pythia-410m training checkpoints
 (\texttt{step256}--\texttt{step143000}, 8 seeds, two lattice sizes $N{=}48$ and $N{=}96$;
 Fig.~\ref{fig:dev}) reveals a transition in the model's token-space dynamics. Early in
-training the lattice is sub-critical---a perturbation dies---and after a transition between
-steps $512$ and $1000$ it is super-critical and remains so for the rest of training.
+training the lattice is sub-critical for many seeds---a perturbation dies---and after the
+transition it is super-critical for every seed, and remains so for the rest of training.
 
 We pre-registered the test (post-transition vs.\ pre-transition checkpoints, run-level
 Mann--Whitney, family $=\{\lca,\dn\}\times\{N{=}48,N{=}96\}$, Benjamini--Hochberg FDR) and a
 demotion rule: failure at either lattice size demotes the headline. \textbf{All four members
-survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$). Measured against the settled plateau
-(steps $2000/8000/143000$), $\lca$ moves $-0.0185\to+0.1683$ at $N{=}48$ ($d{=}2.74$,
-$p{=}6.6\times10^{-5}$) and $-0.0307\to+0.1686$ at $N{=}96$ ($d{=}2.78$,
-$p{=}8.6\times10^{-6}$).
+survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$). Measured from the pre-registered pre set
+(steps $256/512$) to the settled plateau ($2000/8000/143000$), $\lca$ moves
+$+0.0247\to+0.1683$ at $N{=}48$ ($d{=}1.59$, $p{=}5.9\times10^{-5}$) and
+$+0.0197\to+0.1686$ at $N{=}96$ ($d{=}1.76$, $p{=}6.6\times10^{-5}$).
 
-\textbf{The curve is not a step, and we quote it accordingly.} It rises, overshoots at step
-$1000$ by $14$--$22\%$, and settles. Quoting step $256$ against the step-$1000$ peak would
-inflate the $N{=}48$ \dn{} effect from $d{=}3.69$ to $d{=}5.04$---taking the transition's peak
-for its level. We therefore report against the plateau throughout. The overshoot itself
-separates from the plateau in only one of four cells after correction, so we describe the
-shape as non-monotone but do \emph{not} claim step $1000$ as a distinct developmental phase.
+\textbf{The claim is better stated without any pre/post split at all}, since every effect
+size depends on where that line is drawn. Before the transition the seeds do not agree on the
+\emph{sign} of $\lca$ (6/16 negative at $N{=}48$, 8/16 at $N{=}96$, spanning $-0.216$ to
+$+0.320$); after it, \textbf{not one of 48 plateau runs is negative}, the minimum being
+$+0.107$. That uses all 96 runs and is what Fig.~\ref{fig:dev}C draws.
+
+\textbf{The curve is not a step, and both ends of the contrast can be inflated.} It rises,
+overshoots at step $1000$ by $1.4$--$22.4\%$, and settles. Taking the peak as the post value
+inflates the effect; taking the lowest checkpoint alone as the pre value does the same at the
+other end and by more ($1.7\times$ on $\lca$). We therefore use the pre-registered sets at
+both ends. The overshoot survives correction in only one of four cells, and that cell is
+\dn{}: on $\lca$---the quantity carrying the claim---it is $+14.3\%$ at $N{=}48$
+($p_{\mathrm{BH}}{=}0.11$) and $+1.4\%$ at $N{=}96$ ($p_{\mathrm{BH}}{=}0.78$). So
+non-monotonicity is largely a \dn{} phenomenon, and we do \emph{not} claim step $1000$ as a
+distinct developmental phase.
 
 \textbf{Which quantity carries the claim.} $\lca$ is size-robust: the effect does not shrink
-with a doubled lattice ($107\%$ retention) and the plateau \emph{level} is statistically
-indistinguishable across sizes ($+0.1683$ vs.\ $+0.1686$, $p{=}0.91$). \dn{} is not: its gap
-roughly halves and its plateau level differs decisively ($0.569$ vs.\ $0.306$,
-$p{=}1.3\times10^{-8}$), even though the standardized effect is undiminished ($d$ $3.69\to3.91$)
+with a doubled lattice ($104\%$ retention) and the plateau levels differ by $-0.0003$ with a
+$95\%$ CI of $[-0.023,+0.022]$---they \textbf{agree to within $\pm14\%$}. We state this as a
+bound rather than as a non-significant $p$-value, since a null result is not evidence of
+equality. \dn{} is not size-robust: its gap roughly halves and its plateau level differs
+decisively ($0.569$ vs.\ $0.306$, $p{=}1.3\times10^{-8}$), even though the standardized
+effect is undiminished ($d$ $2.88\to3.07$)
 because the variance shrinks too. So \dn{}'s \emph{discrimination} survives while its
 \emph{absolute scale} does not. We therefore let $\lca$ carry the claim and report \dn{} as
 same-direction corroboration at a stated lattice size, never as a lattice-free property.
@@ -187,13 +199,14 @@ same-direction corroboration at a stated lattice size, never as a lattice-free p
 the transition: $\mathrm{sd}(\lca)$ falls $0.136\to0.037$ at $N{=}48$ ($3.7\times$, Levene
 $p{=}1.7\times10^{-4}$) and $0.124\to0.040$ at $N{=}96$ ($3.1\times$,
 $p{=}7.7\times10^{-7}$). Before the transition, seeds disagree about the \emph{sign} of $\lca$;
-after it they agree to a few percent. It was not pre-registered, but it replicates
-independently at both lattice sizes.
+after it every run is positive. They do not agree to a few percent---the plateau per-seed CV
+is $22\%$ and $25\%$; the few-percent agreement is between lattice \emph{sizes}. Not
+pre-registered, but it replicates independently at both sizes.
 
 \begin{figure}[t]\centering
 \includegraphics[width=0.97\linewidth]{developmental.png}
-\caption{The developmental transition. (A) $\lca$ crosses zero between steps $512$ and $1000$
-and stays; the two lattice sizes lie on top of each other. (B) \dn{} shows the same shape but
+\caption{The developmental transition. (A) $\lca$ rises and settles positive; the two lattice
+sizes lie on top of each other (plateau levels agree within $\pm14\%$). (B) \dn{} shows the same shape but
 a size-dependent level---which is why it corroborates rather than carries. (C) Per-seed
 values: sign disagreement before the transition, consensus after.}\label{fig:dev}
 \end{figure}

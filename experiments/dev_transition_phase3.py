@@ -46,11 +46,17 @@ FIT_KW = dict(sat_threshold=3.5, frac_of_max=0.5, max_sweeps=8, min_sweeps=3)
 OUT = str(_ROOT / "results" / "dev_transition_phase3.json")
 
 
-def measure(revision, N, B, seed):
-    """One run -> (lambda_ca, D_norm). Run is the unit of analysis, not the lattice."""
+def measure(revision, N, B, seed, base=None):
+    """One run -> (lambda_ca, D_norm). Run is the unit of analysis, not the lattice.
+
+    `base` defaults to BASE (pythia-410m); it is a parameter so that
+    `dev_transition_scale.py` can drive the IDENTICAL protocol on other model sizes.
+    Cross-model comparison is only meaningful if the measurement path is literally the
+    same code, so that script imports this function rather than copying it.
+    """
     from ar_ca import ARRule
     from ar_probe import block_damage, drift_floor
-    rule = ARRule(BASE, revision=revision)
+    rule = ARRule(base or BASE, revision=revision)
     try:
         d = block_damage(rule, T, R, block=3, B=B, N=N, settle=12, sweeps=22,
                          seed=seed, scheme="none")

@@ -26,12 +26,13 @@ Nothing goes in the paper that isn't in this table with a `results/` path.
 | C7 | Ordered-group λ is a floor sentinel | 5/7 rules at exactly −0.4·ln10, zero-width CI | `eca_calib_hardened.json`, F40 |
 | C8 | CML vs exact Benettin | max diff **0.0011**, non-monotone in ε | `cml_benettin.json` |
 | C9 | Census recovers known matrices | self-TV **0.22** vs cross **0.95**, baseline 0.91 | `calib_census.json` |
-| C10 | **Developmental transition** | λ_ca −0.0185→+0.1683 (N=48, **d=2.74**), −0.0307→+0.1686 (N=96, **d=2.78**) | `dev_transition_shape.json:headline` |
+| C10 | **Developmental transition** | λ_ca +0.0247→+0.1683 (N=48, **d=1.59**), +0.0197→+0.1686 (N=96, **d=1.76**) — pre set is the pre-registered {256,512} | `dev_transition_shape.json:headline` |
+| C10b | **Sign agreement** (pre-set-free restatement, preferred) | pre 6/16 and 8/16 negative; **0/48 plateau runs negative**, min +0.1074 | `...:sign_agreement` |
 | C11 | All 4 pre-registered members survive BH-FDR | p_BH ≤ 2e−05 | `dev_transition_phase3.json`, `logs/phase3_dev.log` |
-| C12 | Shape is non-monotone | overshoot +14–22% at step1000; separable in **1/4** cells after BH | `dev_transition_shape.json:peak_vs_plateau` |
-| C13 | λ_ca is size-robust | 107% retention; plateau level p=**0.91** | `...:size_scaling_W9` |
+| C12 | Shape is non-monotone | overshoot **+1.4% to +22.4%**; separable in **1/4** cells after BH, and that cell is D_norm — λ_ca shows +1.4% (p_BH 0.78) at N=96 | `...:peak_vs_plateau` |
+| C13 | λ_ca is size-robust | 104% retention; plateau levels differ by −0.0003, **95% CI [−0.0229, +0.0223]** = agree within **±14%** | `...:size_scaling_W9` |
 | C14 | D_norm is size-dependent | 53% retention; level 0.569 vs 0.306, **p=1.3e−08** | same |
-| C15 | Variance collapse | sd(λ) 3.7× (N=48) / 3.1× (N=96), Levene p≤1.7e−04 | `...:variance` |
+| C15 | Variance collapse | sd(λ) 3.7× / 3.1×, Levene p≤1.7e−04. **Not** "seeds agree to a few percent" — plateau CV is 21.9%/25.4% | `...:variance` |
 | C16 | **Real generation absorbs nothing** | P_persist **1.000**, P_reconverge 0.000, 3 models × 32 trials, null exactly 0 | `real_generation_damage.json` |
 | C17 | — distributionally too | TV_norm **≈0.967** | `real_generation_reconvergence.json` |
 | C18 | Coupling is monotone, not maximal | excess disagreement **1.3–5.4%**; 1.16–1.38× near agreement | `coupling_gap.json`, F41 |
@@ -40,7 +41,10 @@ Nothing goes in the paper that isn't in this table with a `results/` path.
 **Retracted — must never reappear:** 3-class ECA ordering; ordered-group mean λ = −0.32;
 capacity→sensitivity axis; "damping length *of generation*"; "damage numbers are a lower
 bound over admissible couplings" (true on DK only); "the literature disagreement resolves
-toward HWD"; step256-vs-step1000 as the headline contrast (d=5.04, inflated).
+toward HWD"; step256-vs-step1000 as the headline contrast (d=5.04); **step256-alone as the
+pre baseline** (d=2.74/2.78, inflated 1.7×/1.6× over the pre-registered {256,512});
+**"λ_ca crosses zero between steps 512 and 1000"** — the pre-group mean is positive and the
+cell-mean crossing is 256→512.
 
 ---
 

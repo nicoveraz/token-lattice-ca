@@ -171,44 +171,48 @@
  },
  "headline": {
   "N48_lambda_ca": {
-   "pre256_mean": -0.0185,
+   "pre_mean": 0.0247,
    "plateau_mean": 0.1683,
-   "n_pre": 8,
+   "n_pre": 16,
    "n_plateau": 24,
-   "cohens_d": 2.74,
-   "p_raw": 6.598024395577232e-05,
-   "cohens_d_vs_peak_INFLATED": 2.32,
-   "p_bh": 6.598024395577232e-05
+   "cohens_d": 1.59,
+   "p_raw": 5.895703681079107e-05,
+   "cohens_d_vs_peak_INFLATED": 1.47,
+   "cohens_d_from_step256_only_UNREGISTERED": 2.74,
+   "p_bh": 6.625770668464904e-05
   },
   "N48_D_norm": {
-   "pre256_mean": 0.1328,
+   "pre_mean": 0.1865,
    "plateau_mean": 0.5689,
-   "n_pre": 8,
+   "n_pre": 16,
    "n_plateau": 24,
-   "cohens_d": 3.69,
-   "p_raw": 3.802895905231834e-07,
-   "cohens_d_vs_peak_INFLATED": 5.04,
-   "p_bh": 1.5211583620927337e-06
+   "cohens_d": 2.88,
+   "p_raw": 7.210196050447294e-07,
+   "cohens_d_vs_peak_INFLATED": 3.67,
+   "cohens_d_from_step256_only_UNREGISTERED": 3.69,
+   "p_bh": 1.4420392100894588e-06
   },
   "N96_lambda_ca": {
-   "pre256_mean": -0.0307,
+   "pre_mean": 0.0197,
    "plateau_mean": 0.1686,
-   "n_pre": 8,
+   "n_pre": 16,
    "n_plateau": 24,
-   "cohens_d": 2.78,
-   "p_raw": 8.556515786771626e-06,
-   "cohens_d_vs_peak_INFLATED": 2.19,
-   "p_bh": 1.1408687715695502e-05
+   "cohens_d": 1.76,
+   "p_raw": 6.625770668464904e-05,
+   "cohens_d_vs_peak_INFLATED": 1.46,
+   "cohens_d_from_step256_only_UNREGISTERED": 2.78,
+   "p_bh": 6.625770668464904e-05
   },
   "N96_D_norm": {
-   "pre256_mean": 0.0733,
+   "pre_mean": 0.103,
    "plateau_mean": 0.3062,
-   "n_pre": 8,
+   "n_pre": 16,
    "n_plateau": 24,
-   "cohens_d": 3.91,
-   "p_raw": 7.605791810463668e-07,
-   "cohens_d_vs_peak_INFLATED": 3.85,
-   "p_bh": 1.5211583620927337e-06
+   "cohens_d": 3.07,
+   "p_raw": 3.034975833317224e-07,
+   "cohens_d_vs_peak_INFLATED": 3.24,
+   "cohens_d_from_step256_only_UNREGISTERED": 3.91,
+   "p_bh": 1.2139903333268896e-06
   }
  },
  "peak_vs_plateau": {
@@ -247,21 +251,35 @@
  },
  "size_scaling_W9": {
   "lambda_ca": {
-   "gap_N48": 0.1868,
-   "gap_N96": 0.1994,
-   "retention_pct": 106.7,
-   "cohens_d_N48": 2.74,
-   "cohens_d_N96": 2.78,
+   "plateau_diff": -0.0003,
+   "plateau_diff_se": 0.0115,
+   "plateau_diff_ci95": [
+    -0.0229,
+    0.0223
+   ],
+   "plateau_agree_within_pct": 13.6,
+   "gap_N48": 0.1436,
+   "gap_N96": 0.1489,
+   "retention_pct": 103.7,
+   "cohens_d_N48": 1.59,
+   "cohens_d_N96": 1.76,
    "plateau_level_N48": 0.1683,
    "plateau_level_N96": 0.1686,
    "plateau_level_differs_p": 0.9097070273165737
   },
   "D_norm": {
-   "gap_N48": 0.4361,
-   "gap_N96": 0.2329,
-   "retention_pct": 53.4,
-   "cohens_d_N48": 3.69,
-   "cohens_d_N96": 3.91,
+   "plateau_diff": 0.2627,
+   "plateau_diff_se": 0.0276,
+   "plateau_diff_ci95": [
+    0.2087,
+    0.3167
+   ],
+   "plateau_agree_within_pct": 55.7,
+   "gap_N48": 0.3824,
+   "gap_N96": 0.2033,
+   "retention_pct": 53.2,
+   "cohens_d_N48": 2.88,
+   "cohens_d_N96": 3.07,
    "plateau_level_N48": 0.5689,
    "plateau_level_N96": 0.3062,
    "plateau_level_differs_p": 1.3413340721858704e-08
@@ -279,6 +297,33 @@
    "sd_post": 0.0395,
    "ratio": 3.13,
    "levene_p": 7.696887846985742e-07
+  }
+ },
+ "sign_agreement": {
+  "N48": {
+   "n_pre": 16,
+   "pre_negative": 6,
+   "pre_min": -0.2003,
+   "pre_max": 0.3202,
+   "n_plateau": 24,
+   "plateau_negative": 0,
+   "plateau_min": 0.1074,
+   "plateau_cv_pct": 21.9
+  },
+  "N96": {
+   "n_pre": 16,
+   "pre_negative": 8,
+   "pre_min": -0.2156,
+   "pre_max": 0.2205,
+   "n_plateau": 24,
+   "plateau_negative": 0,
+   "plateau_min": 0.1099,
+   "plateau_cv_pct": 25.4
+  },
+  "pooled": {
+   "n": 48,
+   "negative": 0,
+   "min": 0.1074
   }
  },
  "_note": "Shape analysis of the completed developmental re-test. The pre-registered post>pre test and its BH-FDR table live in dev_transition_phase3.py; this file adds the shape. HEADLINE EFFECT SIZES ARE step256 vs the POOLED PLATEAU (2000/8000/143000), not vs the step-1000 peak: the curve overshoots and settles, so quoting the peak as the level inflates the effect. The vs-peak numbers are stored under cohens_d_vs_peak_INFLATED purely so the difference is auditable -- do not quote them. Variance collapse was NOT pre-registered and is reported as an observation.",
