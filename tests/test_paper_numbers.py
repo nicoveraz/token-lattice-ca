@@ -315,10 +315,28 @@ def test_every_manifest_number_appears_in_the_paper():
         "\n".join(f"  {lit} <- {src} :: {der}" for lit, src, der in missing))
 
 
-def test_every_manifest_number_is_backed_by_an_existing_results_file():
+def test_every_manifest_number_is_backed_by_an_existing_source():
+    """Sources are of three kinds and are checked differently.
+
+    A results file must exist on disk. A `published` value cites the module that records the
+    literature anchor. An `arithmetic` value follows from the design and has no file -- but it
+    must say so, so that a number with no provenance cannot hide behind a vague source string.
+    """
     for m in _manifest():
-        p = RESULTS / m["source"]
-        assert p.exists(), f"{m['literal']} claims to come from {m['source']}, which is absent"
+        kind, src = m.get("kind", "measured"), m["source"]
+        if kind == "arithmetic":
+            assert src == "design", f"{m['literal']}: arithmetic entries must cite 'design'"
+            continue
+        if kind == "published":
+            assert (ROOT / src.split()[0]).exists(), f"{m['literal']}: {src} absent"
+            continue
+        # measured: may name one file, or a brace set of files that all must exist
+        names = ([src] if "{" not in src else
+                 [src.replace(src[src.index("{"):src.index("}") + 1], part)
+                  for part in src[src.index("{") + 1:src.index("}")].split(",")])
+        for n in names:
+            assert (RESULTS / n).exists(), (
+                f"{m['literal']} claims to come from {n}, which is absent")
 
 
 def test_manifest_covers_the_load_bearing_claims():
@@ -336,4 +354,8 @@ def test_manifest_covers_the_load_bearing_claims():
         "calib_census.json",            # the census rung
     }
     assert required <= srcs, f"manifest no longer covers: {sorted(required - srcs)}"
-    assert len(_manifest()) >= 45, f"manifest shrank to {len(_manifest())} entries"
+    assert len(_manifest()) >= 60, f"manifest shrank to {len(_manifest())} entries"
+    kinds = {m.get("kind", "measured") for m in _manifest()}
+    assert {"measured", "published", "arithmetic"} <= kinds, (
+        f"the manifest no longer distinguishes number kinds: {kinds}. A published literature "
+        f"value and a measurement of ours must not be traced the same way.")

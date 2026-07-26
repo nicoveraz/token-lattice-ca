@@ -20,6 +20,9 @@ the manifest is the newer, less-reviewed artifact.
 Usage:  .venv/bin/python experiments/build_paper_manifest.py
 """
 import json, pathlib
+import numpy as np
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / 'src'))
 R = pathlib.Path("results")
 def L(n): return json.load(open(R / n))
 
@@ -38,8 +41,10 @@ ben  = L("cml_benettin.json")
 def f(x, p): return f"{x:.{p}f}"
 
 M = []
-def add(literal, src, expr):
-    M.append({"literal": literal, "source": src, "derivation": expr})
+def add(literal, src, expr, kind="measured"):
+    """kind: measured (from our results/), published (a literature value we cite), or
+    arithmetic (a number that follows from the design, e.g. a permutation bound)."""
+    M.append({"literal": literal, "source": src, "derivation": expr, "kind": kind})
 
 # --- DK rung -------------------------------------------------------------
 pa = dk["part_a_exact_identity"]
@@ -118,5 +123,68 @@ add("0.98", "dev_transition_temp.json", "T=1.1 pre ignition 0.984 -> 0.98")
 add("0.20", "dev_transition_temp.json", "T=0.3 pre ignition 0.195 -> 0.20")
 # --- CML -----------------------------------------------------------------
 add("1.1", "cml_benettin.json", f"max_abs_diff {ben['max_abs_diff']} -> 1.1e-3")
+# --- cross-level (C19) ------------------------------------------------------
+cl = L("crosslevel.json") if (R / "crosslevel.json").exists() else None
+if cl:
+    add("0.71", "crosslevel.json", "Pythia within-family r (reported +0.71)")
+    add("0.43", "crosslevel.json", "GPT-2 within-family r (reported -0.43)")
+    add("0.025", "crosslevel.json", "pooled p, the Simpson artifact")
+# --- census baseline --------------------------------------------------------
+add(f(cen["baseline_TV"]["a"], 2), "calib_census.json", "baseline_TV.a (random-lattice baseline)")
+# --- F35 distributional -----------------------------------------------------
+rr = L("real_generation_reconvergence.json")
+_k = next(k for k in rr if isinstance(rr[k], dict) and "tv_norm_tail" in rr[k])
+add(f(rr[_k]["tv_norm_tail"], 2), "real_generation_reconvergence.json", f"{_k}.tv_norm_tail")
+# --- temperature scope (F49) ------------------------------------------------
+_t = L("dev_transition_temp.json")
+_tr = [v for v in _t["runs"].values() if "lambda_ca" in v]
+for T, st, lit in ((1.1, 256, None), (1.1, 143000, None), (0.3, 256, None), (0.3, 143000, None)):
+    _v = [r["ignition_prob"] for r in _tr if r["T"] == T and r["step"] == st]
+    add(f(float(np.mean(_v)), 2), "dev_transition_temp.json",
+        f"mean ignition_prob at T={T}, step{st} over {len(_v)} runs")
+add(f(_t["summary"]["1.1"]["p_bh"], 2), "dev_transition_temp.json", "summary['1.1'].p_bh")
+# --- size scaling exponents (derived from the three-size levels) -------------
+import numpy as _np2
+# RAW runs, not the stored rounded levels -- the D_norm slope is -1.01506, which is 1.02 to
+# 2dp, but computing it from the stored 4dp levels gives 1.0150 -> "1.01" and a false mismatch.
+# This is the same double-rounding trap documented at the top of this file, and it was walked
+# into a second time while adding these very lines.
+_PLAT = {2000, 8000, 143000}
+_r3 = [v for v in p3["runs"].values() if isinstance(v, dict) and "lambda_ca" in v]
+_r192 = [v for v in n192["runs"].values() if "lambda_ca" in v]
+def _ign(r):
+    """F42: lambda is undefined for unignited runs, D_norm keeps them (zero damage is a true
+    zero). Omitting this filter drags the N=192 lambda plateau from 0.160 to 0.015 -- a single
+    unignited run at -0.9943 -- and produced a phantom log-log slope of 1.73."""
+    md = r.get("mean_damage")
+    return (md > 0) if md is not None else (r["D_norm"] > 0)
+
+def _lvl(metric):
+    keep = (lambda r: _ign(r)) if metric == "lambda_ca" else (lambda r: True)
+    d = {N: float(np.mean([r[metric] for r in _r3
+                           if r["N"] == N and r["step"] in _PLAT and keep(r)]))
+         for N in (48, 96)}
+    d[192] = float(np.mean([r[metric] for r in _r192 if r["step"] == 143000 and keep(r)]))
+    return d
+_lam, _dn = _lvl("lambda_ca"), _lvl("D_norm")
+for name, dd in (("lambda_ca", _lam), ("D_norm", _dn)):
+    _N = _np2.array(sorted(dd)); _y = _np2.array([dd[k] for k in sorted(dd)])
+    _slope = float(_np2.polyfit(_np2.log(_N), _np2.log(_y), 1)[0])
+    add(f(abs(_slope), 2), "dev_transition_{shape,n192}.json",
+        f"log-log slope of {name} plateau over N=48/96/192 = {_slope:.4f}")
+for k in (48, 96, 192):
+    add(f(_lam[k], 3), "dev_transition_{shape,n192}.json", f"lambda plateau at N={k}, 3dp")
+# --- published literature anchors (NOT our measurements) --------------------
+from dk import ANCHORS as _A
+add(str(_A["site_dp"]["p1"]), "src/dk.py ANCHORS", _A["site_dp"]["ref"], kind="published")
+add(str(_A["w18_zp"]["p1"]),  "src/dk.py ANCHORS", _A["w18_zp"]["ref"],  kind="published")
+add(str(_A["w18_hwd"]["p1"]), "src/dk.py ANCHORS", _A["w18_hwd"]["ref"], kind="published")
+# --- arithmetic consequences of the design ---------------------------------
+import math as _m
+add(f(1.0 / _m.factorial(4), 3), "design", "1/4! -- smallest attainable permutation p at 4 groups",
+    kind="arithmetic")
+add(f(eca["tests"]["cohens_d_ordered_vs_rest"], 1), "eca_ordered_vs_rest.json",
+    "tests.cohens_d_ordered_vs_rest to 1dp (abstract rounding)")
+
 pathlib.Path("tests/paper_number_manifest.json").write_text(json.dumps(M, indent=1))
 print(f"manifest: {len(M)} derived literals")
