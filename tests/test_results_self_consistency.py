@@ -236,3 +236,41 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
         f"{results_name} was written by a different version of {script_name} "
         f"(stamped {prov['sha256'][:12]}, on disk {actual[:12]}). Re-run the analysis before "
         f"reading its numbers -- this is the F45/F46 stale-analysis trap.")
+
+
+# --------------------------- a committed log must not contradict its current results file
+LOG_RESULT_PAIRS = [
+    ("n192.log",  "dev_transition_n192.json",  lambda d: list(d["verdict"].values())),
+    ("scale.log", "dev_transition_scale.json", lambda d: [d["primary_verdict"]]),
+    ("temp.log",  "dev_transition_temp.json",  lambda d: [d["verdict"]]),
+]
+
+
+@pytest.mark.parametrize("log_name,results_name,extract", LOG_RESULT_PAIRS,
+                         ids=[p[0] for p in LOG_RESULT_PAIRS])
+def test_log_does_not_contradict_its_results_file(log_name, results_name, extract):
+    """The log a reviewer greps must agree with the results file the paper cites.
+
+    This is the CLASS behind issue #46, which was first fixed only as an instance. A job writes
+    its own end-of-run analysis using the code imported at launch, so any mid-run edit leaves a
+    stale verdict in the log while the regenerated JSON is correct. It happened twice:
+
+      * logs/n192.log said "size-robustness DOWNGRADED" where the truth is "INVARIANT across a
+        4x range" -- an inverted conclusion;
+      * logs/scale.log carried the pre-fix verdict string, less precise though not wrong.
+
+    Fixing the first and not checking the second is exactly the failure this test exists to
+    stop. The remedy is never to hand-edit the log: append a machine-written superseding block
+    by re-running the analysis, which leaves the current verdict as the last one present.
+    """
+    log = ROOT / "logs" / log_name
+    if not log.exists():
+        pytest.skip(f"{log_name} not present")
+    d = _load(results_name)
+    text = log.read_text()
+    for verdict in extract(d):
+        assert verdict in text, (
+            f"logs/{log_name} does not contain the current verdict from {results_name}:\n"
+            f"  {verdict!r}\n"
+            f"Append a machine-written superseding block by re-running the analysis; do not "
+            f"hand-edit the log.")

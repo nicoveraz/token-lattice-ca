@@ -429,3 +429,35 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
   Spearman rho=+0.800  -- exploratory. With 4 sizes the smallest attainable permutation p is 1/4! = 0.042, so this cannot be significant however it comes out; scipy's 0.200 is an invalid asymptotic.
 
 wrote /Users/nicoveraz/Documents/GitHub/textca/results/dev_transition_scale.json
+
+=== SUPERSEDING ANALYSIS (re-run 2026-07-26T15:12:26Z) ===
+The verdict line above was written by the job's own process, which had imported
+dev_transition_scale.py before the verdict logic was corrected to distinguish
+'no crossing located on this grid' from 'intervals differ'. The per-model crossing
+intervals above ARE correct. The block below is the same analysis re-run against the
+same cached runs under the current code. See findings F46 and issue #46.
+
+
+=== mean lambda_ca by (model, step) ===
+  size         128      256      512     1000     2000     4000
+    70m    +0.0694  +0.0462  +0.1615  +0.1565  +0.1598  +0.1707
+   160m    -0.0391  +0.0938  +0.0982  +0.1735  +0.1674  +0.1522
+   410m    -0.2785  -0.0185  +0.0679  +0.1923  +0.1558  +0.1724
+  1000m    -0.2054  -0.5461  +0.1049  +0.2064  +0.1474  +0.1436
+
+=== PRIMARY: crossing interval per model ===
+    70m : no crossing located on this grid
+   160m : step128 -> step256
+   410m : step256 -> step512
+  1000m : step256 -> step512
+  -> SIZE-DEPENDENT: 2 distinct crossing intervals across the 3 size(s) where one was located; 1 size(s) had none on this grid
+
+=== per-model post-vs-pre, BH-FDR across the family ===
+  m70_lambda_post_vs_pre     p_raw=0.01540  p_BH=0.01540  SURVIVES
+  m160_lambda_post_vs_pre    p_raw=0.00220  p_BH=0.00293  SURVIVES
+  m410_lambda_post_vs_pre    p_raw=0.00000  p_BH=0.00000  SURVIVES
+  m1000_lambda_post_vs_pre   p_raw=0.00001  p_BH=0.00002  SURVIVES
+
+=== exploratory (NOT a capacity claim): plateau level vs size ===
+  70m=+0.1623  160m=+0.1643  410m=+0.1735  1000m=+0.1658
+  Spearman rho=+0.800  -- exploratory. With 4 sizes the smallest attainable permutation p is 1/4! = 0.042, so this cannot be significant however it comes out; scipy's 0.200 is an invalid asymptotic.
