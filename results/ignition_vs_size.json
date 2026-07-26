@@ -1,0 +1,102 @@
+{
+ "by_size": {
+  "48": {
+   "n": 48,
+   "n_unignited": 0,
+   "frac_unignited": 0.0,
+   "B": 16,
+   "N_times_B": 768
+  },
+  "96": {
+   "n": 48,
+   "n_unignited": 1,
+   "frac_unignited": 0.0208,
+   "B": 8,
+   "N_times_B": 768
+  },
+  "192": {
+   "n": 16,
+   "n_unignited": 5,
+   "frac_unignited": 0.3125,
+   "B": 4,
+   "N_times_B": 768
+  }
+ },
+ "by_size_and_step": {
+  "N48_step256": {
+   "n": 8,
+   "n_unignited": 0,
+   "frac_unignited": 0.0
+  },
+  "N96_step256": {
+   "n": 8,
+   "n_unignited": 1,
+   "frac_unignited": 0.125
+  },
+  "N192_step256": {
+   "n": 8,
+   "n_unignited": 2,
+   "frac_unignited": 0.25
+  },
+  "N48_step512": {
+   "n": 8,
+   "n_unignited": 0,
+   "frac_unignited": 0.0
+  },
+  "N96_step512": {
+   "n": 8,
+   "n_unignited": 0,
+   "frac_unignited": 0.0
+  },
+  "N192_step512": {
+   "n": 8,
+   "n_unignited": 3,
+   "frac_unignited": 0.375
+  }
+ },
+ "fisher_smallest_vs_largest": {
+  "checkpoints": [
+   256,
+   512
+  ],
+  "N_small": 48,
+  "N_large": 192,
+  "unignited_small": 0,
+  "total_small": 16,
+  "unignited_large": 5,
+  "total_large": 16,
+  "p": 0.04338
+ },
+ "batch_size_model": {
+  "d_hat": 0.7242,
+  "chi_square": 0.244,
+  "dof": 2,
+  "gof_p": 0.8851,
+  "per_size": {
+   "48": {
+    "B": 16,
+    "predicted": 0.0057,
+    "expected_unignited": 0.09,
+    "observed_unignited": 0,
+    "n": 16
+   },
+   "96": {
+    "B": 8,
+    "predicted": 0.0757,
+    "expected_unignited": 1.21,
+    "observed_unignited": 1,
+    "n": 16
+   },
+   "192": {
+    "B": 4,
+    "predicted": 0.2751,
+    "expected_unignited": 4.4,
+    "observed_unignited": 5,
+    "n": 16
+   }
+  },
+  "explains_the_trend": true
+ },
+ "verdict": "CONFOUNDED: the unignited fraction rises with N in the raw counts (Fisher p=0.043), but B is halved as N doubles and a single constant per-lattice death probability d=0.724 with NO N dependence reproduces all three sizes (chi2 p=0.885). These data show no evidence of an N effect.",
+ "_note": "Descriptive answer to the open question F42 recorded: does the unignited fraction rise with lattice size? Compared at MATCHED checkpoints, because unignited runs concentrate in early training and pooling would confound size with checkpoint mix. This is a property of the apparatus, not a claim about any model, and it pre-registers nothing. F42's exclusion rule does not depend on the answer -- lambda is undefined without a cone either way -- but the answer says how much work the filter is doing at each size. THE ANSWER IS THAT IT IS CONFOUNDED AND THE CONFOUND WINS: B is halved as N doubles (16/8/4) for the 16GB budget, a run is unignited only if ALL B lattices die, and a single constant per-lattice death probability with NO N dependence reproduces every size. Reporting the raw Fisher test alone would have been a spurious finding."
+}

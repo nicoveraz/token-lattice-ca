@@ -969,6 +969,49 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
+### F44 — the open question in F42 answered, and the obvious answer is wrong
+
+F42 recorded an open empirical question rather than asserting one: *do unignited runs get more
+common at larger N?* Three lattice sizes have now been run under an identical protocol, so it is
+answerable. `experiments/ignition_vs_size.py` → `results/ignition_vs_size.json`.
+
+**The raw answer says yes, and the raw answer is a confound.** At matched checkpoints
+(steps 256 and 512, the only ones present at every size):
+
+| step | N=48 | N=96 | N=192 |
+|---|---|---|---|
+| 256 | 0/8 | 1/8 | 2/8 |
+| 512 | 0/8 | 0/8 | 3/8 |
+| **total** | **0/16** | 1/16 | **5/16** |
+
+Fisher exact, smallest vs largest: **p = 0.043**. Stopping there would have produced a finding.
+
+**But B is halved as N doubles** — 16, 8, 4 — to fit the 16 GB budget, and a run is recorded as
+unignited only if **all B lattices** die. So under a *constant* per-lattice death probability `d`
+with **no N dependence at all**, P(run unignited) = `d^B`, which grows as B shrinks. Fitting one
+`d` to all three sizes:
+
+| N | B | d^B | expected unignited | observed |
+|---|---|---|---|---|
+| 48 | 16 | 0.0057 | 0.09 | 0/16 |
+| 96 | 8 | 0.0757 | 1.21 | 1/16 |
+| 192 | 4 | 0.2751 | 4.40 | 5/16 |
+
+**d = 0.7242, χ² = 0.244 on 2 df, p = 0.8851.** A single constant reproduces every
+size. **These data show no evidence of an N effect on ignition at all** — the apparent trend is
+exactly what a pure batch-size effect predicts.
+
+**Why this is recorded as a finding rather than a null.** The Fisher test is the analysis anyone
+would run, it is significant, and it is wrong — the design's memory-budget compromise (halve B as
+N doubles) is confounded with the variable of interest by construction. The same compromise is
+what made the `D_norm == 0` fallback margin constant across sizes (F42 §5.3): N·B is held fixed
+at 768, which is convenient there and misleading here.
+
+**What it does not touch.** F42's exclusion rule is unaffected — λ is undefined without a cone
+whether or not the rate depends on N. Nothing in F39 depends on this. What it changes is that
+a fourth lattice size run at *fixed* B would be needed to separate the two, and until then no
+N-dependence of ignition may be claimed.
+
 ### F42 — λ_ca is emitted for runs where damage never ignited, and it is uninterpretable there
 
 Found before the N=192 analysis, deliberately: deciding how to treat non-ignited runs *after*
