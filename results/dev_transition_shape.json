@@ -1,0 +1,299 @@
+{
+ "cells": {
+  "N48_step256_lambda_ca": {
+   "n": 8,
+   "mean": -0.0185,
+   "sd": 0.1243,
+   "min": -0.2003,
+   "max": 0.1779
+  },
+  "N48_step512_lambda_ca": {
+   "n": 8,
+   "mean": 0.0679,
+   "sd": 0.1416,
+   "min": -0.1632,
+   "max": 0.3202
+  },
+  "N48_step1000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1923,
+   "sd": 0.0313,
+   "min": 0.1287,
+   "max": 0.2303
+  },
+  "N48_step2000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1558,
+   "sd": 0.0401,
+   "min": 0.1074,
+   "max": 0.2193
+  },
+  "N48_step8000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1699,
+   "sd": 0.0388,
+   "min": 0.1093,
+   "max": 0.2227
+  },
+  "N48_step143000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1792,
+   "sd": 0.0322,
+   "min": 0.1331,
+   "max": 0.227
+  },
+  "N96_step256_lambda_ca": {
+   "n": 8,
+   "mean": -0.0307,
+   "sd": 0.1268,
+   "min": -0.2156,
+   "max": 0.1361
+  },
+  "N96_step512_lambda_ca": {
+   "n": 8,
+   "mean": 0.0702,
+   "sd": 0.1045,
+   "min": -0.0731,
+   "max": 0.2205
+  },
+  "N96_step1000_lambda_ca": {
+   "n": 8,
+   "mean": 0.171,
+   "sd": 0.03,
+   "min": 0.1257,
+   "max": 0.2129
+  },
+  "N96_step2000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1522,
+   "sd": 0.0297,
+   "min": 0.1132,
+   "max": 0.1935
+  },
+  "N96_step8000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1772,
+   "sd": 0.0389,
+   "min": 0.112,
+   "max": 0.2354
+  },
+  "N96_step143000_lambda_ca": {
+   "n": 8,
+   "mean": 0.1765,
+   "sd": 0.0562,
+   "min": 0.1099,
+   "max": 0.2787
+  },
+  "N48_step256_D_norm": {
+   "n": 8,
+   "mean": 0.1328,
+   "sd": 0.1002,
+   "min": 0.0479,
+   "max": 0.3442
+  },
+  "N48_step512_D_norm": {
+   "n": 8,
+   "mean": 0.2403,
+   "sd": 0.1707,
+   "min": 0.06,
+   "max": 0.5605
+  },
+  "N48_step1000_D_norm": {
+   "n": 8,
+   "mean": 0.6962,
+   "sd": 0.1222,
+   "min": 0.4546,
+   "max": 0.8599
+  },
+  "N48_step2000_D_norm": {
+   "n": 8,
+   "mean": 0.5471,
+   "sd": 0.1024,
+   "min": 0.4199,
+   "max": 0.6824
+  },
+  "N48_step8000_D_norm": {
+   "n": 8,
+   "mean": 0.5458,
+   "sd": 0.1588,
+   "min": 0.3379,
+   "max": 0.7784
+  },
+  "N48_step143000_D_norm": {
+   "n": 8,
+   "mean": 0.6139,
+   "sd": 0.1025,
+   "min": 0.4704,
+   "max": 0.8095
+  },
+  "N96_step256_D_norm": {
+   "n": 8,
+   "mean": 0.0733,
+   "sd": 0.0702,
+   "min": 0.0,
+   "max": 0.2309
+  },
+  "N96_step512_D_norm": {
+   "n": 8,
+   "mean": 0.1326,
+   "sd": 0.0808,
+   "min": 0.0213,
+   "max": 0.2208
+  },
+  "N96_step1000_D_norm": {
+   "n": 8,
+   "mean": 0.3582,
+   "sd": 0.0774,
+   "min": 0.2319,
+   "max": 0.4485
+  },
+  "N96_step2000_D_norm": {
+   "n": 8,
+   "mean": 0.2752,
+   "sd": 0.0391,
+   "min": 0.2273,
+   "max": 0.3252
+  },
+  "N96_step8000_D_norm": {
+   "n": 8,
+   "mean": 0.3132,
+   "sd": 0.0625,
+   "min": 0.178,
+   "max": 0.3655
+  },
+  "N96_step143000_D_norm": {
+   "n": 8,
+   "mean": 0.3303,
+   "sd": 0.0548,
+   "min": 0.2319,
+   "max": 0.4168
+  }
+ },
+ "headline": {
+  "N48_lambda_ca": {
+   "pre256_mean": -0.0185,
+   "plateau_mean": 0.1683,
+   "n_pre": 8,
+   "n_plateau": 24,
+   "cohens_d": 2.74,
+   "p_raw": 6.598024395577232e-05,
+   "cohens_d_vs_peak_INFLATED": 2.32,
+   "p_bh": 6.598024395577232e-05
+  },
+  "N48_D_norm": {
+   "pre256_mean": 0.1328,
+   "plateau_mean": 0.5689,
+   "n_pre": 8,
+   "n_plateau": 24,
+   "cohens_d": 3.69,
+   "p_raw": 3.802895905231834e-07,
+   "cohens_d_vs_peak_INFLATED": 5.04,
+   "p_bh": 1.5211583620927337e-06
+  },
+  "N96_lambda_ca": {
+   "pre256_mean": -0.0307,
+   "plateau_mean": 0.1686,
+   "n_pre": 8,
+   "n_plateau": 24,
+   "cohens_d": 2.78,
+   "p_raw": 8.556515786771626e-06,
+   "cohens_d_vs_peak_INFLATED": 2.19,
+   "p_bh": 1.1408687715695502e-05
+  },
+  "N96_D_norm": {
+   "pre256_mean": 0.0733,
+   "plateau_mean": 0.3062,
+   "n_pre": 8,
+   "n_plateau": 24,
+   "cohens_d": 3.91,
+   "p_raw": 7.605791810463668e-07,
+   "cohens_d_vs_peak_INFLATED": 3.85,
+   "p_bh": 1.5211583620927337e-06
+  }
+ },
+ "peak_vs_plateau": {
+  "N48_lambda_ca": {
+   "peak": 0.1923,
+   "plateau": 0.1683,
+   "overshoot_pct": 14.3,
+   "cohens_d": 0.67,
+   "p_raw": 0.08572335833737392,
+   "p_bh": 0.11429781111649856
+  },
+  "N48_D_norm": {
+   "peak": 0.6962,
+   "plateau": 0.5689,
+   "overshoot_pct": 22.4,
+   "cohens_d": 1.04,
+   "p_raw": 0.01173326488120704,
+   "p_bh": 0.04693305952482816
+  },
+  "N96_lambda_ca": {
+   "peak": 0.171,
+   "plateau": 0.1686,
+   "overshoot_pct": 1.4,
+   "cohens_d": 0.06,
+   "p_raw": 0.7816240266963294,
+   "p_bh": 0.7816240266963294
+  },
+  "N96_D_norm": {
+   "peak": 0.3582,
+   "plateau": 0.3062,
+   "overshoot_pct": 17.0,
+   "cohens_d": 0.84,
+   "p_raw": 0.08572335833737392,
+   "p_bh": 0.11429781111649856
+  }
+ },
+ "size_scaling_W9": {
+  "lambda_ca": {
+   "gap_N48": 0.1868,
+   "gap_N96": 0.1994,
+   "retention_pct": 106.7,
+   "cohens_d_N48": 2.74,
+   "cohens_d_N96": 2.78,
+   "plateau_level_N48": 0.1683,
+   "plateau_level_N96": 0.1686,
+   "plateau_level_differs_p": 0.9097070273165737
+  },
+  "D_norm": {
+   "gap_N48": 0.4361,
+   "gap_N96": 0.2329,
+   "retention_pct": 53.4,
+   "cohens_d_N48": 3.69,
+   "cohens_d_N96": 3.91,
+   "plateau_level_N48": 0.5689,
+   "plateau_level_N96": 0.3062,
+   "plateau_level_differs_p": 1.3413340721858704e-08
+  }
+ },
+ "variance": {
+  "N48": {
+   "sd_pre": 0.1363,
+   "sd_post": 0.0366,
+   "ratio": 3.72,
+   "levene_p": 0.00016737500232781808
+  },
+  "N96": {
+   "sd_pre": 0.1238,
+   "sd_post": 0.0395,
+   "ratio": 3.13,
+   "levene_p": 7.696887846985742e-07
+  }
+ },
+ "_note": "Shape analysis of the completed developmental re-test. The pre-registered post>pre test and its BH-FDR table live in dev_transition_phase3.py; this file adds the shape. HEADLINE EFFECT SIZES ARE step256 vs the POOLED PLATEAU (2000/8000/143000), not vs the step-1000 peak: the curve overshoots and settles, so quoting the peak as the level inflates the effect. The vs-peak numbers are stored under cohens_d_vs_peak_INFLATED purely so the difference is auditable -- do not quote them. Variance collapse was NOT pre-registered and is reported as an observation.",
+ "_definitions": {
+  "pre": [
+   256,
+   512
+  ],
+  "peak": [
+   1000
+  ],
+  "plateau": [
+   2000,
+   8000,
+   143000
+  ]
+ }
+}

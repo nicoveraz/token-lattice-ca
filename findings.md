@@ -980,10 +980,76 @@ the correction is real.
   per-token Gumbels is replica-independent, ordering-invariant, and much closer to maximal.
   Switching couplings now would invalidate every measurement in the repo.
 
-### F39 — *reserved* for the completed Phase 3 developmental re-test
+### F39 — the developmental transition SURVIVES at both lattice sizes, and it is not a step
 
-`experiments/dev_transition_phase3.py` was still running (65/96, N=96 arm) when F40 was
-written. The slot is held so the developmental result keeps the number it was promised.
+96/96 runs complete. `experiments/dev_transition_phase3.py` → `results/dev_transition_phase3.json`
+(pre-registered test, BH-FDR); `experiments/dev_transition_shape.py` →
+`results/dev_transition_shape.json` (shape, effect size, W9). 6 checkpoints × 8 seeds ×
+{N=48 B=16, N=96 B=8}, Pythia-410m, run-level statistics.
+
+**Verdict: (b) rise → overshoot → plateau.** The headline survives; the framing and the
+effect size both needed rewriting, and have been.
+
+**Pre-registered primary — all four survive BH-FDR:**
+
+| family member | pre → post | p_raw | p_BH |
+|---|---|---|---|
+| N=48 λ_ca | +0.0247 → +0.1743 | 0.00001 | **0.00002** |
+| N=48 D_norm | +0.1865 → +0.6008 | 0.00000 | **0.00000** |
+| N=96 λ_ca | +0.0197 → +0.1692 | 0.00002 | **0.00002** |
+| N=96 D_norm | +0.1030 → +0.3192 | 0.00000 | **0.00000** |
+
+**The headline number, measured against the pooled plateau (2000/8000/143000), not the
+step-1000 peak:**
+
+| N | metric | step256 | plateau | Cohen d | p | (d vs peak, *inflated*) |
+|---|---|---|---|---|---|---|
+| 48 | λ_ca | −0.0185 | +0.1683 | **2.74** | 6.6e−05 | 2.32 |
+| 48 | D_norm | 0.1328 | 0.5689 | **3.69** | 3.8e−07 | *5.04* |
+| 96 | λ_ca | −0.0307 | +0.1686 | **2.78** | 8.6e−06 | 2.19 |
+| 96 | D_norm | 0.0733 | 0.3062 | **3.91** | 7.6e−07 | 3.85 |
+
+Quoting step 256 vs step 1000 would have inflated the D_norm effect at N=48 from d=3.69 to
+**d=5.04** — taking the transition's peak for its level, which is the same species of error
+as the W1 retraction. The `_INFLATED` values are stored in the JSON only so the difference
+stays auditable; they must not be quoted.
+
+- **The overshoot is real but weak.** Step 1000 sits +14% to +22% above the plateau, yet it
+  separates from it in only **1 of 4 cells** after BH-FDR (N=48 D_norm, p_raw 0.0117 →
+  p_BH 0.047; the other three are 0.086, 0.086, 0.78). So: describe the shape as
+  non-monotone, state the overshoot magnitude, and do **not** claim step 1000 is a distinct
+  developmental phase. It is a bump the data cannot resolve from the plateau at n=8.
+- **The transition is durable, which is the substantive point.** The fully-trained
+  checkpoint (step 143000) is not a decay back toward the initial state: D_norm 0.61 (N=48)
+  and 0.33 (N=96) against step256's 0.13 and 0.07. Whatever happens at step ~1000 persists
+  to the end of training.
+
+**W9 — the size question, and the answer is split.** This is the objection that killed the
+capacity claim, so it gets reported plainly in both directions:
+
+| metric | gap N=48 | gap N=96 | retention | plateau level N48 vs N96 |
+|---|---|---|---|---|
+| λ_ca | +0.1868 | +0.1994 | **107%** | +0.1683 vs +0.1686, p=0.91 |
+| D_norm | +0.4361 | +0.2329 | **53%** | 0.5689 vs 0.3062, **p=1.3e−08** |
+
+- **λ_ca is size-robust.** The effect does not shrink (107% retention) and the plateau
+  *level* is statistically indistinguishable across a doubling of the lattice (p=0.91).
+  That is a genuine replication, not a survival.
+- **D_norm is size-dependent.** The gap roughly halves and the plateau level differs
+  decisively. Standardised, the effect is undiminished (d 3.69 → 3.91) because the variance
+  shrinks too — so the *discrimination* survives while the *absolute scale* does not.
+  D_norm's absolute reading is therefore an N-relative quantity and must never be quoted as
+  a lattice-free property of the model. This compounds F41: its numerator's coupling is
+  already known not to be extremal, and now its scale is known to move with N.
+- **Consequence for the paper:** λ_ca carries the developmental claim; D_norm is reported
+  alongside it as a same-direction corroboration at a stated lattice size, not as a second
+  independent number.
+
+**Variance collapse replicates at both sizes** (observation, not pre-registered): sd(λ) falls
+0.1363 → 0.0366 at N=48 (3.7×, Levene p=1.7e−04) and 0.1238 → 0.0395 at N=96 (3.1×,
+p=7.7e−07). Before the transition, seeds disagree about the *sign* of λ; after it they agree
+to a few percent. Since it was not pre-registered it is reported as an observation, but it
+replicates independently at both lattice sizes, which is more than the mean shift needed.
 
 ### F40 — the ordered-group λ is an estimator floor, not a measurement (Phase 4.1)
 
@@ -1132,16 +1198,12 @@ this project should be checked for a mixed population *before* it is reported.
 
 ## Next steps
 
-**Running now.** Phase 3: 8 seeds × {N=48, N=96} × 6 Pythia-410m checkpoints re-testing the
-headline developmental transition, with BH-FDR over a pre-registered family
-(`experiments/dev_transition_phase3.py` → `results/dev_transition_phase3.json`). Pre-committed
-decision rule: if the primary claim fails at either lattice size, **the headline is demoted**
-and the paper becomes a methods-and-negatives submission.
+**Phase 3 is complete (96/96).** The pre-committed decision rule did NOT fire: all four
+family members survive BH-FDR at both lattice sizes. See **F39** for the verdict, the
+plateau-based effect sizes, and the split W9 answer (λ_ca size-robust, D_norm size-dependent).
 
 **Blocking the paper (in order).**
-1. Read the Phase 3 result and act on it — this determines whether the paper has a discovery
-   claim at all.
-2. Phase 4 — rebuild the paper around whatever survives; delete the stale `paper/paper.md`;
+1. Phase 4 — rebuild the paper around whatever survives; delete the stale `paper/paper.md`;
    build the PDF (never yet built) and cut to ≤5 pages; double-blind pass; responsible-use
    statement (its absence is an automatic desk reject).
 
