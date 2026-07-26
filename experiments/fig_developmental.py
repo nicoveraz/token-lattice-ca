@@ -3,7 +3,7 @@
 Three panels, chosen so the figure states the claim AND its two honest qualifications:
 
   (A) lambda_ca vs checkpoint, both lattice sizes. The claim. lambda_ca is the quantity that
-      carries it, because W9 turned out favourably for it: 104% retention at N=96, and the
+      carries it, because W9 turned out favourably for it: 95% retention at N=96, and the
       plateau levels agree to within +-14% (95% CI on the difference, not a null p-value).
   (B) D_norm vs checkpoint, both sizes. The corroboration -- same shape, same direction,
       but the two curves are visibly offset, which is exactly the point: D_norm's absolute

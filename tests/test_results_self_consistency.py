@@ -46,12 +46,22 @@ def test_shape_groups_match_declared_definitions():
     assert defs["expected_n_pre"] == exp_pre
     assert defs["expected_n_plateau"] == exp_plateau
     for N in defs["sizes"]:
+        # F42 makes the expected n metric-dependent: lambda drops unignited runs (no cone,
+        # value undefined), D_norm keeps them (zero damage is a true zero). The design check
+        # must account for that EXACTLY -- not be relaxed to an inequality, which would let
+        # F39's silent-subset defect back in.
+        def dead_in(step_set):
+            return sum(v["n_unignited"] for k, v in d["ignition"].items()
+                       if k.startswith(f"N{N}_step") and int(k.split("step")[1]) in step_set)
         for m in ("lambda_ca", "D_norm"):
             h = d["headline"][f"N{N}_{m}"]
-            assert h["n_pre"] == exp_pre, (
+            drop_pre = dead_in(defs["pre"]) if m == "lambda_ca" else 0
+            drop_pl = dead_in(defs["plateau"]) if m == "lambda_ca" else 0
+            assert h["n_pre"] == exp_pre - drop_pre, (
                 f"N{N}_{m}: headline used n_pre={h['n_pre']} but the declared pre set "
-                f"{defs['pre']} x {defs['n_seeds']} seeds = {exp_pre}. This is F39's defect.")
-            assert h["n_plateau"] == exp_plateau
+                f"{defs['pre']} x {defs['n_seeds']} seeds minus {drop_pre} unignited = "
+                f"{exp_pre - drop_pre}. This is F39's defect (or F42's filter misapplied).")
+            assert h["n_plateau"] == exp_plateau - drop_pl
 
 
 def test_shape_retains_the_unregistered_variants_for_audit():
@@ -107,19 +117,61 @@ def test_estimator_is_N_independent_for_a_fixed_cone():
         f"size-dependent and is_unignited's docstring is wrong.")
 
 
-def test_D_norm_zero_fallback_is_sound_at_the_configurations_used():
-    """`is_unignited(D_norm=0)` is only valid if no nonzero damage can round to 0.00000.
+# ----------------------------------------------------------------- F42 metric asymmetry
+def test_lambda_and_D_norm_use_different_ignition_filters():
+    """The filter is asymmetric ON PURPOSE and a refactor must not collapse the two.
 
-    Smallest nonzero mean_damage is 1/(tail*N*B) with tail=8; the stored D_norm is
-    round(mean_damage/max(D0,1e-3), 5). Checked against the largest plausible floor.
+    lambda_ca: zero damage means NO CONE -> the value is UNDEFINED -> drop the run.
+    D_norm   : zero damage means the ratio is GENUINELY ZERO -> a true measurement -> keep.
+
+    Dropping unignited runs from D_norm too would raise its pre level and shrink its gap,
+    biasing the metric that is not broken (N=96 pre would go 0.1030 -> 0.1099, retention
+    53% -> 51%). The emitted `_definitions` must therefore record two different bases.
+    """
+    d = _load("dev_transition_shape.json")
+    defs = d["_definitions"]
+    assert "ignited" in defs["lambda_basis"], defs["lambda_basis"]
+    assert "all runs" in defs["D_norm_basis"], defs["D_norm_basis"]
+    exp_pre = len(defs["pre"]) * defs["n_seeds"]
+    for N in defs["sizes"]:
+        dead_pre = sum(v["n_unignited"] for k, v in d["ignition"].items()
+                       if k.startswith(f"N{N}_step")
+                       and int(k.split("step")[1]) in defs["pre"])
+        assert d["headline"][f"N{N}_D_norm"]["n_pre"] == exp_pre, (
+            f"N{N}: D_norm dropped runs it should have kept -- the asymmetry collapsed")
+        assert d["headline"][f"N{N}_lambda_ca"]["n_pre"] == exp_pre - dead_pre, (
+            f"N{N}: lambda kept {dead_pre} unignited run(s) it should have dropped")
+
+
+def test_D_norm_zero_fallback_margin_is_asserted_not_its_current_value():
+    """`is_unignited(D_norm=0)` needs a MARGIN, and the margin has a size at which it dies.
+
+    Measured, not assumed: the smallest nonzero mean_damage is 1/(tail*N*B). It is equal at
+    N=48/96/192 in this project ONLY because the design holds N*B = 768 fixed (B is halved
+    as N doubles for the 16GB budget). It is neither N-independent nor 1/N -- it is
+    1/(N*B). A design with fixed B would halve it at every doubling, and the fallback dies
+    once round(quantum/D0, 5) == 0.
+
+    Asserting today's 2.7e-4 would pass right up until the configuration where it stops
+    being true and then fail silently. So assert the formula and the headroom instead.
     """
     tail = 8
-    for N, B in ((48, 16), (96, 8), (192, 4)):
-        smallest = 1.0 / (tail * N) / B
+    designs = ((48, 16), (96, 8), (192, 4))
+    quanta = {(N, B): 1.0 / (tail * N * B) for N, B in designs}
+    assert len(set(round(q, 12) for q in quanta.values())) == 1, (
+        f"the design no longer holds N*B fixed: {quanta}. The fallback's margin now varies "
+        f"across sizes and each must be checked separately.")
+    for (N, B), q in quanta.items():
         for D0 in (0.1, 0.3, 0.6, 1.0):
-            assert round(smallest / max(D0, 1e-3), 5) > 0.0, (
-                f"at N={N} B={B} D0={D0} a single damaged site rounds D_norm to 0.00000 -- "
-                f"the D_norm fallback in is_unignited is unsound here")
+            assert round(q / max(D0, 1e-3), 5) > 0.0, (
+                f"at N={N} B={B} D0={D0} one damaged site rounds D_norm to 0.00000 -- the "
+                f"fallback is unsound here; record mean_damage instead")
+    # headroom: how much larger could N*B get before the fallback dies at the worst D0?
+    worst_D0 = 1.0
+    limit_NB = 1.0 / (tail * 0.5e-5 * worst_D0)
+    assert designs[0][0] * designs[0][1] < limit_NB / 10, (
+        f"N*B={designs[0][0]*designs[0][1]} is within 10x of the limit {limit_NB:.0f} where "
+        f"a single damaged site rounds to zero -- stop using the D_norm fallback")
 
 
 def test_phase3_unignited_count_is_what_F42_documents():

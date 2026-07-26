@@ -961,9 +961,50 @@ The rule below was written with 4 of 24 runs in.
   and is not asserted here. *The reason to exclude these runs does not depend on the
   mechanism*: λ is undefined without a cone.
 - **Magnitude of the exposure.** One unignited run displaces a 16-run pre mean by ≈ −0.108,
-  which is **73% of N=96's entire pre→plateau λ gap** (0.1489). At N=192 a single such run
+  which is **73% of N=96's entire pre→plateau λ gap** as measured *with* that run included
+  (0.1489; the corrected gap is 0.1366). At N=192 a single such run
   among eight would drag the step256 cell mean to ≈ −0.24 and make the retention read ~173%
   — the transition apparently *sharpening* with size, as a pure artifact.
+
+**5.1 — F42 applied retroactively to Phase 3 (this moved F39's committed numbers).**
+The one unignited run sits *inside* the N=96 pre cell, so `dev_transition_shape.json` was
+stale the moment the rule existed — a file predating a rule its own data violates. Re-run,
+not hand-edited. Machine-written result:
+
+| | before F42 | after F42 |
+|---|---|---|
+| N=96 pre λ mean | +0.0197 (n=16) | **+0.0320 (n=15)** |
+| N=96 gap | 0.1489 | **0.1366** |
+| N=48 gap | 0.1436 | 0.1436 (zero unignited at N=48) |
+| retention (96/48) | 104% | **95%** |
+| N=96 λ Cohen's d | 1.76 | **1.71** |
+| sign agreement, N=96 pre | 8/16 negative | **7/15 negative** |
+
+Two things worth recording. **Cohen's d fell (1.76 → 1.71), it did not rise** — dropping an
+outlier shrinks the sd as well as the gap, so the direction had to be recomputed rather than
+inferred. And **the headline is untouched**: it is ordinal (sign counts and a rank test), so
+0/48 plateau runs negative stands exactly as before. That is the argument for having made it
+ordinal in the first place — a metric-definition change of this size moved every mean in the
+analysis and left the claim alone.
+
+**5.2 — the rule is asymmetric between the two metrics, deliberately.** For λ, zero damage
+means *no cone*, so the value is **undefined** → drop the run. For D_norm, zero damage means
+the ratio is **genuinely zero**, a true measurement → keep it. Dropping unignited runs from
+D_norm as well would raise its pre level and shrink its gap (N=96: 0.1030 → 0.1099, retention
+53% → 51%), i.e. silently bias the metric that is *not* broken. The two bases are recorded in
+the emitted `_definitions` and the asymmetry is asserted in the suite so a refactor cannot
+collapse them.
+
+**5.3 — the `D_norm == 0` fallback has a margin, and the margin is what is asserted.** The
+fallback is what Phase 3's records actually use, since they predate `mean_damage`. Measured
+rather than assumed: the smallest nonzero `mean_damage` is **1/(tail·N·B)**. It is equal at
+N=48/96/192 in this project **only because the design holds N·B = 768 fixed** (B is halved as
+N doubles for the 16 GB budget). It is neither N-independent nor 1/N — it is 1/(N·B), so a
+design with fixed B would halve it at every doubling. The fallback dies once
+`round(quantum/D0, 5) == 0`, i.e. beyond N·B ≈ 25,000 (at D0=1.0) to 250,000 (at D0=0.1); the
+current design sits at 768, a 30–300× margin. The test asserts the *formula and the headroom*,
+and fails if the design stops holding N·B fixed — asserting today's 2.7e-4 would have passed
+right up to the configuration where it silently stopped being true.
 
 **The rule (pre-registered, before the N=192 analysis).**
 
@@ -1050,6 +1091,8 @@ effect size both needed rewriting, and have been.
 | N=48 λ_ca | +0.0247 → +0.1743 | 0.00001 | **0.00002** |
 | N=48 D_norm | +0.1865 → +0.6008 | 0.00000 | **0.00000** |
 | N=96 λ_ca | +0.0197 → +0.1692 | 0.00002 | **0.00002** |
+
+*(This table is the pre-registered **rank** test and keeps all 96 runs. Mann–Whitney uses only ranks, so the unignited run's magnitude cannot move it — F42 leaves every p-value here unchanged, which is exactly why the ordinal headline was chosen.)*
 | N=96 D_norm | +0.1030 → +0.3192 | 0.00000 | **0.00000** |
 
 **The headline number, measured against the pooled plateau (2000/8000/143000), not the
@@ -1059,7 +1102,7 @@ step-1000 peak:**
 |---|---|---|---|---|---|---|---|
 | 48 | λ_ca | +0.0247 | +0.1683 | **1.59** | 5.9e−05 | 1.16 | *2.74* |
 | 48 | D_norm | +0.1865 | +0.5689 | **2.88** | 7.2e−07 | *3.94* | *3.69* |
-| 96 | λ_ca | +0.0197 | +0.1686 | **1.76** | 6.6e−05 | 1.86 | *2.78* |
+| 96 | λ_ca | +0.0320 | +0.1686 | **1.71** | 1.3e−04 | 1.86 | *2.65* |
 | 96 | D_norm | +0.1030 | +0.3062 | **3.07** | 3.0e−07 | 3.56 | *3.91* |
 
 **Both ends of this contrast can be inflated, and the first version of this entry inflated
@@ -1072,13 +1115,13 @@ now uses. Italicised columns are the unregistered variants, retained in the JSON
 be quoted.
 
 **"λ_ca crosses zero" is withdrawn; it fails twice.** Under the pre-registered split the
-pre-group mean is **+0.0247** (N=48) and **+0.0197** (N=96) — both positive, so there is no
+pre-group mean is **+0.0247** (N=48) and **+0.0320** (N=96, ignited runs, F42) — both positive, so there is no
 crossing at group level. And taking cell means, the crossing sits between **256 and 512**
 (−0.0185→+0.0679; −0.0307→+0.0702), not between 512 and 1000; that interval is the
 pre-registration boundary, not the crossing point.
 
 **The replacement is stronger and needs no pre/post choice.** Before the transition seeds do
-not agree on the *sign* of λ_ca — 6/16 negative at N=48, 8/16 at N=96, spanning −0.216 to
+not agree on the *sign* of λ_ca — 6/16 negative at N=48, 7/15 at N=96, spanning −0.216 to
 +0.320. After it, **not one of 48 plateau runs is negative** (minimum +0.1074). That uses all
 96 runs, is immune to where the split is drawn, and merges the headline with the
 variance-collapse observation below.
@@ -1101,11 +1144,11 @@ capacity claim, so it gets reported plainly in both directions:
 
 | metric | gap N=48 | gap N=96 | retention | plateau level N48 vs N96 |
 |---|---|---|---|---|
-| λ_ca | +0.1436 | +0.1489 | **104%** | +0.1683 vs +0.1686 |
+| λ_ca | +0.1436 | +0.1366 | **95%** | +0.1683 vs +0.1686 |
 | D_norm | +0.3824 | +0.2033 | **53%** | 0.5689 vs 0.3062, **p=1.3e−08** |
 
 - **λ_ca is size-robust, stated as a bound rather than a null result.** The effect does not
-  shrink (104% retention) and the plateau levels differ by **−0.0003, 95% CI
+  shrink much (**95%** retention after F42; 104% before it) and the plateau levels differ by **−0.0003, 95% CI
   [−0.0229, +0.0223]** on a plateau of 0.168 — the two lattice sizes **agree to within ±14%**.
   A confidence interval is the right form here; "p=0.91 therefore the same" is an argument
   from a null result and a reviewer can decline it.

@@ -29,7 +29,7 @@ PRE-REGISTERED BEFORE RUNNING (2026-07-26):
 
 Protocol is IDENTICAL to F39's by construction: `measure` is imported from
 dev_transition_phase3.py, not reimplemented. N=48 throughout, which F39 licenses for a
-lambda_ca question specifically -- lambda_ca was shown size-robust (104% retention; plateau
+lambda_ca question specifically -- lambda_ca was shown size-robust (95% retention; plateau
 levels agree within +-14%, 95% CI), unlike D_norm, whose absolute scale moves with N and
 which is therefore recorded here but not used for the primary.
 

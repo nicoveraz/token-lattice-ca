@@ -25,6 +25,8 @@ import sys, pathlib, json
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 import numpy as np
 from scipy import stats
+sys.path[:0] = [str(ROOT / "experiments")]
+from lyapunov import is_unignited
 
 SRC = ROOT / "results" / "dev_transition_phase3.json"
 OUT = ROOT / "results" / "dev_transition_shape.json"
@@ -37,18 +39,19 @@ N_SEEDS = 8                              # design constant: 8 independent seeds 
 SIZES = (48, 96)
 
 
-def _check_group(name, n_got, step_set):
+def _check_group(name, n_got, step_set, n_dropped=0):
     """Rule 8: assert an emitted n against the DESIGN, not against what the code did.
 
     This is the one-line check that would have failed the first version of this script,
     where `headline` used step256 alone (n=8) while declaring `pre: [256, 512]` (n=16).
     A subset can now only be used by also changing the declared design, which is visible.
     """
-    n_want = len(step_set) * N_SEEDS
+    n_want = len(step_set) * N_SEEDS - n_dropped
     if n_got != n_want:
         raise AssertionError(
             f"{name}: n={n_got} but the declared design gives {len(step_set)} checkpoints "
-            f"x {N_SEEDS} seeds = {n_want}. Either the selection is a silent subset or the "
+            f"x {N_SEEDS} seeds - {n_dropped} unignited = {n_want}. Either the selection is "
+            f"a silent subset or the "
             f"design constant is stale -- do not proceed on a group whose size the design "
             f"does not predict.")
 
@@ -84,10 +87,30 @@ def bh_fdr(pvals):
     return adj
 
 
+def unignited(r):
+    """F42 predicate. Phase-3 records predate `mean_damage`, so the D_norm fallback is used;
+    its soundness is asserted in tests/test_results_self_consistency.py."""
+    return (is_unignited(mean_damage=r["mean_damage"]) if "mean_damage" in r
+            else is_unignited(D_norm=r["D_norm"]))
+
+
 def main():
     rows = load()
-    sel = lambda N, steps, m: np.array([r[m] for r in rows
-                                        if r["N"] == N and r["step"] in steps])
+
+    def sel(N, steps, m):
+        """F42, and note the ASYMMETRY between the two metrics.
+
+        lambda_ca: zero damage means there is NO CONE, so lambda is UNDEFINED -> drop.
+        D_norm   : zero damage means the ratio is GENUINELY ZERO, a true measurement -> keep.
+
+        Dropping unignited runs from D_norm as well would raise its pre level and shrink its
+        gap, i.e. silently bias the metric that is not broken. The filter is deliberately
+        applied to one metric only.
+        """
+        rs = [r for r in rows if r["N"] == N and r["step"] in steps]
+        if m == "lambda_ca":
+            rs = [r for r in rs if not unignited(r)]
+        return np.array([r[m] for r in rs])
     out = {"cells": {}, "headline": {}, "peak_vs_plateau": {}, "size_scaling_W9": {},
            "variance": {}}
 
@@ -105,6 +128,23 @@ def main():
                 print(f"  {N:>4} {st:>7} {len(v):>3} {v.mean():>+9.4f} "
                       f"{v.std(ddof=1):>8.4f} {v.min():>+9.4f} {v.max():>+9.4f}")
 
+    print("\n=== ignition per cell (F42) -- lambda is UNDEFINED where damage never ignited ===")
+    out["ignition"] = {}
+    for N in SIZES:
+        for st in STEPS:
+            cell = [r for r in rows if r["N"] == N and r["step"] == st]
+            dead = [r for r in cell if unignited(r)]
+            out["ignition"][f"N{N}_step{st}"] = dict(
+                n=len(cell), n_unignited=len(dead), n_ignited=len(cell) - len(dead),
+                frac_ignited=round(1 - len(dead) / max(len(cell), 1), 4),
+                dropped_lambdas=[r["lambda_ca"] for r in dead])
+            if dead:
+                print(f"  N={N} step{st}: {len(cell)-len(dead)}/{len(cell)} ignited"
+                      f"   DROPPED lambda {[r['lambda_ca'] for r in dead]}")
+    tot_dead = sum(v["n_unignited"] for v in out["ignition"].values())
+    print(f"  total unignited across all 96 runs: {tot_dead}  "
+          f"(lambda stats exclude them; D_norm stats KEEP them -- see sel())")
+
     print("\n=== HEADLINE: the PRE-REGISTERED pre set {256,512} vs the POOLED PLATEAU ===")
     print("    Both ends matter. Using the step-1000 PEAK as the post value inflates the")
     print("    effect; using step 256 ALONE as the pre value inflates it at the other end,")
@@ -114,8 +154,16 @@ def main():
         for m in METRICS:
             a, b = sel(N, PRE, m), sel(N, PLATEAU, m)
             p = float(stats.mannwhitneyu(b, a, alternative="two-sided").pvalue)
-            _check_group(f"headline N{N}_{m} pre", len(a), PRE)
-            _check_group(f"headline N{N}_{m} plateau", len(b), PLATEAU)
+            # design check: D_norm must match the design exactly; lambda may be smaller by
+            # exactly the number of unignited runs in that group, and by no more.
+            n_dead_pre = sum(1 for r in rows
+                             if r["N"] == N and r["step"] in PRE and unignited(r))
+            n_dead_pl = sum(1 for r in rows
+                            if r["N"] == N and r["step"] in PLATEAU and unignited(r))
+            _check_group(f"headline N{N}_{m} pre", len(a),
+                         PRE, n_dropped=n_dead_pre if m == "lambda_ca" else 0)
+            _check_group(f"headline N{N}_{m} plateau", len(b),
+                         PLATEAU, n_dropped=n_dead_pl if m == "lambda_ca" else 0)
             praw.append(p); keys.append(f"N{N}_{m}")
             d_lowest = cohens_d(sel(N, {256}, m), b)      # step256-only: NOT pre-registered
             out["headline"][f"N{N}_{m}"] = dict(
@@ -223,7 +271,10 @@ def main():
     out["_definitions"] = dict(pre=sorted(PRE), peak=sorted(PEAK), plateau=sorted(PLATEAU),
                                n_seeds=N_SEEDS, sizes=list(SIZES),
                                expected_n_pre=len(PRE) * N_SEEDS,
-                               expected_n_plateau=len(PLATEAU) * N_SEEDS)
+                               expected_n_plateau=len(PLATEAU) * N_SEEDS,
+                               lambda_basis="ignited runs only (F42)",
+                               D_norm_basis="all runs -- zero damage is a true zero, not "
+                                            "an undefined value (F42 asymmetry)")
     json.dump(out, open(OUT, "w"), indent=1)
     print(f"\nwrote {OUT}")
 

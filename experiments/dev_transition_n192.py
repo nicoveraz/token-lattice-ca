@@ -1,7 +1,7 @@
 """A third lattice size for the developmental transition: is lambda_ca intensive, and is
 D_norm 1/N?
 
-F39 found a split at two sizes: lambda_ca's effect and level are size-stable (104% retention,
+F39 found a split at two sizes: lambda_ca's effect and level are size-stable (95% retention,
 plateau levels +0.1683 vs +0.1686) while D_norm's halve (53% retention, 0.5689 vs 0.3062).
 Two points cannot distinguish "intensive vs 1/N" from "any decreasing function", and
 `paper.tex` names a third size as its own next requirement. This adds one.
