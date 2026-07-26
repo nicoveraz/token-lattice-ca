@@ -1,9 +1,12 @@
 \documentclass{article}
-% NeurIPS 2026 style files are not published yet (media.neurips.cc .../NeurIPS2026/Styles.zip
-% returns 404 as of 2026-07-26); this is the 2025 style, which is the current one. Swap in
-% neurips_2026.sty when it appears -- the geometry is what sets the page count.
-% Anonymous submission: no [final], no [preprint].
-\usepackage{neurips_2025}
+% Official NeurIPS 2026 style, from
+% media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip
+% (the .../NeurIPS2026/Styles.zip path #55 had been polling 404s; the ZIP above is the one the
+% CFP links). Geometry is byte-identical to the 2025 style -- textheight=9in, textwidth=5.5in,
+% top=1in, headheight=12pt, headsep=25pt, footskip=30pt -- so the page budget did not move.
+% dblblindworkshop keeps \@anonymoustrue; sglblindworkshop would NOT. No [final], no [preprint].
+\usepackage[dblblindworkshop]{neurips_2026}
+\workshoptitle{Interpretability for Discovery}
 \usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
 \usepackage[T1]{fontenc}
 \graphicspath{{../fig/}}

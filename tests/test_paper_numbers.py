@@ -274,13 +274,47 @@ def test_body_fits_the_page_limit():
 
 
 def test_the_style_file_in_use_is_recorded():
-    """If the style changes, the page-count result above changes with it -- say which is in use."""
+    """If the style changes, the page-count result above changes with it -- say which is in use.
+
+    Strengthened when the real NeurIPS 2026 style was finally located (#55). The old version
+    matched only `\\usepackage{neurips_XXXX}` with no optional argument, so adding the required
+    `[dblblindworkshop]` option would have broken it -- a guard that fails on the correct change
+    is no better than one that passes on the wrong one. It now pins the four things the
+    submission actually depends on.
+    """
     tex = _tex()
     import re as _re
-    m = _re.search(r"\\usepackage\{(neurips_\d{4})\}", tex)
+    m = _re.search(r"\\usepackage(?:\[([^\]]*)\])?\{(neurips_\d{4})\}", tex)
     assert m, "no neurips style package found; page-count guarantees are meaningless without one"
-    sty = ROOT / "paper" / f"{m.group(1)}.sty"
-    assert sty.exists(), f"{m.group(1)}.sty is referenced but not present in paper/"
+    opts = [o.strip() for o in (m.group(1) or "").split(",") if o.strip()]
+    sty = ROOT / "paper" / f"{m.group(2)}.sty"
+    assert sty.exists(), f"{m.group(2)}.sty is referenced but not present in paper/"
+
+    # 1. anonymity. `final` and `preprint` both de-anonymise; so does sglblindworkshop, which
+    #    sets \@anonymousfalse and differs from the correct option by three characters.
+    for bad in ("final", "preprint", "sglblindworkshop", "nonanonymous"):
+        assert bad not in opts, (
+            f"style option '{bad}' de-anonymises the submission, and this venue is double-blind")
+
+    # 2. the venue is a workshop, so the camera-ready footer must name it rather than the main
+    #    track. \@trackname only renders under \if@neuripsfinal, so this is dormant at submission
+    #    and load-bearing at camera-ready -- exactly the kind of thing that is forgotten later.
+    if any(o.endswith("workshop") for o in opts):
+        assert "\\workshoptitle{" in tex, (
+            "a workshop option is set but \\workshoptitle is not; the camera-ready footer would "
+            "read 'Workshop: .' with an empty name (the style warns, it does not error)")
+
+    # 3. THE PAGE BUDGET. test_body_fits_the_page_limit is a claim about geometry, not about
+    #    LaTeX in general. A style swap that changed any of these would move the page count
+    #    silently, which is the entire risk #55 was opened to track.
+    geom = _re.search(r"\\newgeometry\{(.*?)\}", sty.read_text(), _re.S)
+    assert geom, f"no \\newgeometry block in {sty.name}; the page budget is unpinned"
+    got = dict(_re.findall(r"(\w+)\s*=\s*([\w.]+)", geom.group(1)))
+    expected = {"textheight": "9in", "textwidth": "5.5in", "top": "1in",
+                "headheight": "12pt", "headsep": "25pt", "footskip": "30pt"}
+    assert got == expected, (
+        f"{sty.name} geometry is {got}, not {expected}. The page-fit result was measured against "
+        f"the latter; re-measure before trusting it.")
 
 
 # --------------------------------------------------- issue #48: every number traced to results/

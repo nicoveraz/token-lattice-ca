@@ -31,3 +31,6 @@ paper/*.out
 paper/*.xdv
 paper/*.fdb_latexmk
 paper/*.fls
+
+# personal planning doc: contains the author's username and absolute paths (double-blind)
+paper/plan_to_submission.md
