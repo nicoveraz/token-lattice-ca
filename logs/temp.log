@@ -1,0 +1,3 @@
+developmental transition vs temperature: 32 runs (T in [0.3, 1.1] x 2 checkpoints x 8 seeds); T=0.7 from Phase 3
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.39it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 597.95it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 416.48it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 370.34it/s]

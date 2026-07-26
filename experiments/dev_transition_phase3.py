@@ -46,22 +46,23 @@ FIT_KW = dict(sat_threshold=3.5, frac_of_max=0.5, max_sweeps=8, min_sweeps=3)
 OUT = str(_ROOT / "results" / "dev_transition_phase3.json")
 
 
-def measure(revision, N, B, seed, base=None):
+def measure(revision, N, B, seed, base=None, r=None, temp=None):
     """One run -> (lambda_ca, D_norm). Run is the unit of analysis, not the lattice.
 
-    `base` defaults to BASE (pythia-410m); it is a parameter so that
+    `base`, `r` and `temp` default to the module constants; they are parameters so that
     `dev_transition_scale.py` can drive the IDENTICAL protocol on other model sizes.
     Cross-model comparison is only meaningful if the measurement path is literally the
     same code, so that script imports this function rather than copying it.
     """
     from ar_ca import ARRule
     from ar_probe import block_damage, drift_floor
+    rr, tt = (R if r is None else r), (T if temp is None else temp)
     rule = ARRule(base or BASE, revision=revision)
     try:
-        d = block_damage(rule, T, R, block=3, B=B, N=N, settle=12, sweeps=22,
+        d = block_damage(rule, tt, rr, block=3, B=B, N=N, settle=12, sweeps=22,
                          seed=seed, scheme="none")
         lam = lyap_from_cone(d["cone"], N, **FIT_KW)[0]
-        d0, _ = drift_floor(rule, T, R, B=B, N=N, settle=12, sweeps=22,
+        d0, _ = drift_floor(rule, tt, rr, B=B, N=N, settle=12, sweeps=22,
                             seed=seed, scheme="none")
         dn = d["mean_damage"] / max(d0, 1e-3)
         # F42: lambda is undefined when damage never ignites, so the raw damage and the
