@@ -159,9 +159,20 @@ def analyse(res):
         print(f"  {sz:>4}m : {' -> '.join(ci) if ci else 'no crossing located on this grid'}")
         if ci:
             intervals.append(tuple(ci))
-    same = len(set(intervals)) == 1 and len(intervals) == len(sizes)
-    verdict = ("UNIVERSAL: all sizes cross in the same interval" if same else
-               "SIZE-DEPENDENT or incomplete: crossing intervals differ across sizes")
+    # Distinguish the three cases the pre-registration cares about. "No crossing located" is
+    # NOT the same as "intervals differ" -- it means the transition is outside this grid for
+    # that model, which is itself informative and must not be pooled into a disagreement.
+    n_missing = len(sizes) - len(intervals)
+    distinct = len(set(intervals))
+    if n_missing == 0 and distinct == 1:
+        verdict = "UNIVERSAL: every size crosses in the same interval"
+    elif distinct <= 1 and n_missing:
+        verdict = (f"CONSISTENT where located, but {n_missing} size(s) have no crossing on this "
+                   f"grid -- their transition lies outside it")
+    else:
+        verdict = (f"SIZE-DEPENDENT: {distinct} distinct crossing intervals across the "
+                   f"{len(intervals)} size(s) where one was located"
+                   + (f"; {n_missing} size(s) had none on this grid" if n_missing else ""))
     print(f"  -> {verdict}")
 
     if tests:
