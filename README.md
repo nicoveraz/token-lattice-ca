@@ -10,10 +10,18 @@ language model — whose "true" dynamical metrics are unknown — the instrument
 reproduces *known* metrics on systems where the answer is established (the
 **validation ladder**): a decisive **ordered-vs-rest separation on elementary CA
 rules** (p=0.0000, Cohen d=3.03, measured on ignition probability — the finer 3-class
-ordering does **not** survive, F33/F34/F36) and the known transition matrices of
-synthetic Markov sources — the rungs that share the
-instrument's regime (discrete state, finite O(1) perturbation) — plus smooth-limit
+ordering does **not** survive, F33/F34/F36), the known transition matrices of
+synthetic Markov sources, and the **Domany–Kinzel** stochastic PCA — the rungs that share
+the instrument's regime (discrete state, finite O(1) perturbation) — plus smooth-limit
 arithmetic checks on the logistic map and a coupled-map lattice.
+
+> **The strongest rung is exact.** Domany–Kinzel is the only rung that is stochastic *and*
+> discrete, i.e. the instrument's own regime. On its `p2=0` line the CRN damage field is
+> provably *itself* a DK automaton at the same `p1` (Kohring & Schreckenberg 1992), so the
+> damage machinery is checked **bit-for-bit against an independent prediction — 0
+> mismatching cells, no error bar** — through the same loop that produces every
+> language-model number here. The critical points come back at 0.15% (site DP) and 0.06%
+> (Wolfram-18) of published values. See F38, `experiments/dk_calib.py`, `fig/dk_ladder.png`.
 
 > **Honest scope of the logistic rung (do not overread it).** The logistic-map
 > agreement is a **unit test of the growth-rate arithmetic in the smooth limit**, not
@@ -43,7 +51,7 @@ census), and the **boundaries** where those readings provably stop applying.
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F37); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F38); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -87,6 +95,7 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F35** | **Real generation does not absorb a single-token error** — P_persist=1.000 on 3 models, TV_norm≈0.97 distributionally, nulls exactly 0. Healing is a property of the **in-place-resampling construction**, not of the model | ext |
 | **F36** | ECA classes tested on the right statistic (**ignition probability**): ordered 0.046 vs rest, **p=0.0000, Cohen d=3.03**; edge-vs-chaotic **p=0.47** — the 3-class ordering is definitively not recoverable | 2 |
 | F37 | CML rung given an exact **Benettin/Jacobian** reference: `cml_lyap` is correct (max diff 0.0011). Also corrected a paper error — the exponent is **non-monotone** in coupling | 2 |
+| **F38** | **Domany–Kinzel rung: the exact anchor holds.** CRN damage field ≡ a DK automaton on `p2=0` — **0 mismatching cells** (16 in the off-line control); p_c recovered to **0.15%** (site DP 0.705489) and **0.06%** (W18, HWD 0.8087). CRN is provably the *maximal-correlation* coupling ⇒ all damage numbers here are a **lower bound** over admissible couplings (answers W2) | 2 |
 
 ## Layout
 
@@ -97,6 +106,7 @@ src/           library
   ca.py          toy backend (ToyRule) + metrics; run() is a shim over lattice.run
   mlm_ca.py      masked-LM backend (MLMRule, symmetric masked-centre window)
   ar_ca.py       autoregressive backend (ARRule, left-causal window)
+  dk.py          Domany-Kinzel PCA (DKRule + vectorised reference + published anchors)
 experiments/   runnable pipeline steps (run from repo root)
   vocab.py       word-level vocab builder (pilot); see bpe.py for the BPE variant (Phase 2)
   train.py       train the windowed conditional model on tinyshakespeare
@@ -145,13 +155,18 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **32 tests** and now covers every backend, not just the toy JAX path:
+The suite is **58 tests** and now covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
   `StubRule` (no model load) exercises the same code path *by construction*; MLM and AR
   are also tested directly. Includes a **non-vacuity** counterpart — a perturbation must
   propagate, else the null test would pass trivially.
+- `tests/test_dk_damage_identity.py` — the **exact** rung. On the Domany–Kinzel `p2=0` line
+  the CRN damage field is provably a DK automaton at the same `p1`, so the damage machinery
+  is predicted by an independent simulator and asserted **cell-for-cell** — through
+  `lattice.run`, the loop every model number comes from. Includes an off-line control that
+  must fail, so the exact test cannot pass vacuously.
 - `tests/test_golden.py` — asserts the simulation core stays **bit-identical** against
   `tests/golden/*.npz`, which were generated *before* the Phase-1 refactor. Do not relax
   these to `allclose`; a backend that cannot be made bit-identical is a stop-and-report.
@@ -344,6 +359,8 @@ the **cross-level boundary** (a structural negative) + a **new white-box front**
 .venv/bin/python experiments/lyap_fit_sensitivity.py # is the ordering an estimator artifact? (F32)
 .venv/bin/python experiments/eca_ordered_vs_rest.py   # class test on ignition probability, the right statistic (F36)
 .venv/bin/python experiments/cml_benettin.py          # exact Benettin ground truth for the CML rung (F37)
+.venv/bin/python experiments/dk_calib.py              # Domany-Kinzel rung: exact damage identity + published p_c (F38); ~4 min
+.venv/bin/python experiments/dk_calib.py --figure-only  # redraw fig/dk_ladder.png from saved results
 
 # --- does the instrument measure the MODEL or the construction? (F35, the delimiting result)
 .venv/bin/python experiments/real_generation_damage.py        # inject a token error into REAL AR generation

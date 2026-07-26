@@ -875,10 +875,60 @@ each step — as a genuine reference. (`results/cml_benettin.json`, 5 seeds, 20k
   discrete regime (F30/F31/F35). The rung stays labelled a smooth-limit arithmetic check —
   it is now a *verified* one.
 
-## Literature check — Domany–Kinzel rung (issue #22; no code written yet)
+### F38 — the Domany–Kinzel rung passes, and its exact anchor holds bit-for-bit (issue #22)
 
-Standing rule: check before you build. This is the report; the rung is not implemented.
-Nothing DK-related exists in the repo (grep: zero hits outside planning prose).
+`src/dk.py`, `experiments/dk_calib.py` → `results/dk_calib.json`, `fig/dk_ladder.png`;
+`tests/test_dk_damage_identity.py` (26 tests). Design rationale in the literature check below.
+
+DK is the **only rung in the regime the instrument actually lives in** — stochastic *and*
+discrete. The logistic map and the CML are smooth and infinitesimal (F30/F31/F37); the ECA
+rung is discrete but deterministic. It is also the only rung whose damage behaviour has a
+published boundary rather than an analogy.
+
+- **The exact identity holds.** On the `p2=0` line the CRN damage field is itself a DK
+  automaton at the same `p1` (Kohring–Schreckenberg). Predicted by an independent
+  simulator and compared cell by cell: **0 mismatching cells** at p1 ∈ {0.2, 0.5, 0.75,
+  0.8087, 0.95, 1.0}, ring 4096, 1500 steps, 3 seeds each — and **16 mismatches** in the
+  off-line control at (0.6, 0.5), so the test is not vacuous.
+- **Why this matters more than a critical point.** The identity is run *through*
+  `lattice.run` in the test file — the same loop that produces every language-model number
+  in this project. It verifies the window indexing, the shared-uniform consumption order,
+  the inverse-CDF sampling and the synchronous update **bit-exactly, with no error bar**.
+  Nothing else in the ladder does that; every other rung agrees to within a fitted constant.
+- **Critical points recovered.** Local-slope method (`δ_eff → δ_DP = 0.159464`), 2000 seed
+  runs × 512 steps on a ring of 1100:
+
+  | line | estimate | published | off by |
+  |---|---|---|---|
+  | site DP (`p1=p2`) | 0.7065 | 0.705489(4) | **0.15%** |
+  | W18 (`p2=0`), activity | 0.8092 | 0.8087(5) HWD / 0.801(2) Zebende–Penna | **0.06%** / 1.02% |
+  | W18 (`p2=0`), damage | 0.8089 | 0.8087(5) HWD / 0.801(2) Zebende–Penna | **0.02%** / 0.98% |
+
+  These are ~1%-accurate calibrations at modest sizes, not measurements of DP exponents,
+  and are reported as such.
+- **The literature disagreement resolves toward HWD.** The two published `p2=0` values
+  differ by ~1%; our independent estimate lands 0.06% from Hinrichsen–Weitz–Domany's
+  0.8087(5) and 1% from Zebende–Penna's 0.801(2). Stated as an observation with our own
+  error budget attached, not as a refutation.
+- **The corollary check passes.** Because the damage field *is* the automaton on `p2=0`,
+  the damage and activity transitions must coincide. Measured independently: **|gap| =
+  0.0003**.
+- **W2 gets an answer, not just a disclosure.** CRN is provably HWD's *maximal-correlation*
+  member of the admissible coupling family (one uniform per site, thresholded against every
+  probability ⇒ `α̃ = min(p1,p2)`, `β̃ = p1`). Larger correlation ⇒ smaller damage, so
+  **every damage number in this project is a lower bound over admissible couplings.** The
+  coupling-dependence itself is published (Kohring–Schreckenberg 1992; Grassberger 1995),
+  so this is a known property of damage spreading being handled, not a defect discovered.
+- **What this does NOT do.** It validates the *apparatus*, not the LM claims. F35 stands:
+  the instrument characterises the iterated-resampling construction, and real AR generation
+  does not absorb an injected token error. A correct instrument can still be pointed at a
+  process whose numbers do not transfer.
+
+## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
+
+Standing rule: check before you build. This is the report as written *before* any code;
+the rung it specified is now implemented and its results are F38 above. Nothing DK-related
+existed in the repo when this was written (grep: zero hits outside planning prose).
 
 **The prior art is large and settles most of the design.**
 
@@ -972,7 +1022,7 @@ objection is still live and is disclosed rather than fixed.
 | # | Objection | Verdict |
 |---|---|---|
 | W1 | Capacity claim pseudoreplicated (n=2 seeds) | **Resolved by retraction + re-test.** Capacity dropped from the paper entirely; the surviving headline is being re-tested at 8 seeds × 2 lattice sizes (`dev_transition_phase3.py`). |
-| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. **Sharpened by the DK literature check:** coupling-dependence of damage boundaries is a known, named result (Kohring–Schreckenberg 1992; Grassberger 1995), and Hinrichsen–Weitz–Domany 1997 give the standard resolution — classify by the behaviour of the whole admissible coupling family. Our CRN is provably their *maximal-correlation* member, so our damage numbers are a **lower bound** over that family. The disclosure can now cite prior art and state a direction, instead of only conceding. |
+| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. **Answered in part by the DK rung (F38).** Coupling-dependence of damage boundaries is a known, named result (Kohring–Schreckenberg 1992; Grassberger 1995), with a standard resolution in Hinrichsen–Weitz–Domany 1997: classify by the behaviour of the whole admissible coupling family. Our CRN is provably their *maximal-correlation* member, so our damage numbers are a **lower bound** over that family — a bounded statement, not a caveat. **Still not fixed:** the alternative floors themselves (CRN-null, minimal-correlation) are unrun on the LM backends. |
 | W3 | λ "model-invariance" rests on one saturated cell (off-cell spread 24–46%) | **Resolved by retraction.** Verified: (r=8,T=0.7) spread 24%, (r=1,T=0.7) 46% and reversed. The kinematics⊥stability decomposition is withdrawn from the paper. F31 adds the deeper reason the cross-level pairing was ill-posed: λ_top is a *tangent-space* quantity and λ_ca a *finite* one. |
 | W4 | AR "consistent joint" overstated; bimodal T-pooling | **Resolved for surviving claims.** The paper now says both constructions are windowed, in-place-resampled rings — neither samples the model's joint. The bimodal pooling affected the AR *capacity* numbers, which were dropped with the capacity claim, so it no longer touches anything the paper asserts. |
 | W5 | Census near floor on real models (0.02–0.04 vs an out-of-training proxy) | **Stands, scoped.** Quantitative recovery is claimed **only** on the synthetic toy; the real-model numbers are reported as near-floor. The real fix (Pythia vs the Pile) is tracked as issue #6 under *Future work*. |
@@ -997,20 +1047,13 @@ and the paper becomes a methods-and-negatives submission.
 **Blocking the paper (in order).**
 1. Read the Phase 3 result and act on it — this determines whether the paper has a discovery
    claim at all.
-2. Rebuild the ECA ordered-vs-rest test on **ignition probability** rather than λ (F34); the
-   current `p=0.0000` values in `eca_calib_ignition.json` are NaN-comparison artifacts and
-   must not be quoted.
-3. Phase 2.2 — the **Domany–Kinzel** rung (stochastic *discrete* PCA with a published
-   damage-spreading boundary). Literature check first (Domany & Kinzel 1984; Martins et al.;
-   Zebende & Penna; Kohring & Schreckenberg; Grassberger) — do not reinvent it. This is also
-   what makes the W2 coupling objection answerable: in stochastic PCAs the damage boundary is
-   known to depend on the coupling algorithm, i.e. CRN damage spreading measures a property
-   of *(model, coupling)*.
-4. Phase 2.3 — Benettin/QR reference for the CML rung, which currently has ground truth only
-   at ε=0 and whose estimator renormalizes (F31).
-5. Phase 4 — rebuild the paper around whatever survives; delete the stale `paper/paper.md`;
+2. Phase 4 — rebuild the paper around whatever survives; delete the stale `paper/paper.md`;
    build the PDF (never yet built) and cut to ≤5 pages; double-blind pass; responsible-use
    statement (its absence is an automatic desk reject).
+
+**Done since this list was written.** ECA rebuilt on ignition probability (F36); Phase 2.3
+Benettin reference for the CML rung (F37); Phase 2.2 Domany–Kinzel rung, literature check
+then build (F38) — which also converts W2 from a concession into a bounded statement.
 
 **Deferred, tracked as issues.** Phase 1.5 duplication hoisting (the `ca.DATA_DIR` mutable
 global is a genuine cross-experiment hazard); real-corpus census (#6); the compositional-

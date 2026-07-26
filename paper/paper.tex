@@ -174,9 +174,29 @@ sparse matrices $P_a,P_b,P_c$, recovers each model's own matrix (row total-varia
 and not the others (cross $0.95$; random baseline $0.91$)---quantitative recovery of a
 ground-truth generative rule and clean source discrimination (details in \S\ref{sec:census}).
 
+\textbf{(5) The Domany--Kinzel automaton: an \emph{exact} check on the damage machinery.} The
+DK model \citep{domany1984} is the only rung that is stochastic \emph{and} discrete---the
+instrument's own regime---and the only one whose damage behaviour has a published boundary
+rather than an analogy. It also affords something no other rung does. On its $p_2{=}0$ line the
+damage field between two commonly-driven replicas is provably \emph{itself} a DK automaton at
+the same $p_1$ \citep{kohring1992}: with $s'_i=(s_{i-1}\!\oplus\!s_{i+1})\,\theta(p_1-z_i)$,
+sharing $z_i$ gives $d'_i=(d_{i-1}\!\oplus\!d_{i+1})\,\theta(p_1-z_i)$. We therefore predict
+the damage trajectory with an independent simulator and demand \emph{bit-identity}: across
+$p_1\in\{0.2,\dots,1.0\}$, a ring of $4096$ over $1500$ steps, \textbf{zero mismatching
+cells}, with $16$ mismatches in an off-line control at $(0.6,0.5)$ where the mapping must
+break. This is run through the same simulation loop that produces every language-model number
+below, so the window indexing, the shared-uniform consumption order, the inverse-CDF sampling
+and the update schedule are verified with no error bar attached. The critical points follow:
+the local-slope estimator ($\delta_{\mathrm{eff}}\!\to\!\delta_{\mathrm{DP}}{=}0.1595$, $2000$
+seed runs) gives $p_c{=}0.7065$ on the site-DP line (published $0.705489(4)$, $0.15\%$) and
+$0.8092$ on the $p_2{=}0$ line (published $0.8087(5)$, $0.06\%$); measured independently on
+the damage field, $0.8089$---coinciding with the activity transition to $3\times10^{-4}$, as
+the mapping requires.
+
 The rungs that share the instrument's regime---discrete state, finite $O(1)$ perturbation, no
-renormalization---are (3) and (4), and those are what license its use on language models. The
-smooth-limit rungs are retained as arithmetic unit tests and labelled as such.
+renormalization---are (3), (4) and (5), and those are what license its use on language models;
+(5) is the only rung on which agreement is exact rather than fitted. The smooth-limit rungs
+are retained as arithmetic unit tests and labelled as such.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{logistic_epsilon.png}
@@ -275,7 +295,15 @@ not a ratio of like quantities; the natural CRN floor is the null itself ($=0$).
 at large $r$ the rise in \dn{} is \textbf{denominator-driven}: raw $D$ already \emph{falls}
 (tiny, $T{=}0.7$: $0.54\!\to\!0.39$ from $r{=}4$ to $r{=}16$) while \dz{} falls faster, so
 ``the damping length keeps shrinking'' at large $r$ partly reflects the floor collapsing,
-not a stronger perturbation response.
+not a stronger perturbation response. \emph{Third}, and more fundamentally, damage spreading
+is a property of \emph{(model, coupling)} rather than of the model alone---a known result in
+stochastic PCAs, where the damage boundary moves with the replica-coupling algorithm while
+single-replica dynamics is entirely insensitive to it \citep{kohring1992,grassberger1995}. We
+can say precisely where our choice sits. Drawing one uniform per site and thresholding it
+against every probability is, in the classification of \citet{hinrichsen1997}, the
+\emph{maximal-correlation} member of the admissible coupling family, and larger correlation
+means smaller damage. \textbf{Every damage number we report is therefore a lower bound over
+admissible couplings}---a bounded statement rather than an open caveat.
 
 Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius: the
 token-space damping length shortens as the window widens. This is the measurement we
