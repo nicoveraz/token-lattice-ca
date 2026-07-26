@@ -118,9 +118,11 @@ sampling and the update schedule are all verified with no error bar attached. A 
 deterministic $\oplus$ (Rule 90), so the damage field must hold exactly
 $2^{\mathrm{popcount}(t)}$ live cells---at $t{=}1500$, $128/4096=0.03125$, which is what we
 obtain. Critical points are a weaker, $\sim\!1\%$ check: $p_c{=}0.7065$ on the site-DP line
-(published $0.705489(4)$) and $0.8092$ on $p_2{=}0$, where the published value is itself
-disputed ($0.801(2)$ \citep{zebende1994} vs.\ $0.8087(5)$ \citep{hinrichsen1997}) and our
-accuracy cannot separate them; we report both and claim neither.
+(published $0.705489(4)$) and $0.8092$ on $p_2{=}0$, with the damage field measured
+\emph{independently} at $0.8089$ --- coinciding with the activity transition to
+$3\times10^{-4}$, as the mapping requires. The published $p_2{=}0$ value is itself disputed
+($0.801(2)$ \citep{zebende1994} vs.\ $0.8087(5)$ \citep{hinrichsen1997}) and our accuracy
+cannot separate them; we report both and claim neither.
 
 \textbf{(5) Synthetic Markov sources.} The attractor census, run on tiny models trained on three
 sources with known sparse matrices, recovers each model's own matrix (row total-variation $0.22$)
@@ -273,10 +275,9 @@ appendix: a damping length or light cone measured here describes an in-place-res
 real generation absorbs \emph{no} injected token error. These quantities must \textbf{not} be cited
 as evidence about the robustness, error tolerance or self-correction of a deployed decoder --- a
 $\lca$ below zero is not a safety property. All models and corpora used are publicly released and
-used within their licences. That boundary is, finally, the point: an instrument that reproduces
-what is independently known --- bit-exactly, where an exact mapping exists --- says which of its
-checks are load-bearing, and marks where its readings stop applying, is more useful than one that
-claims more.
+used within their licences. That boundary is the point: an instrument that reproduces what is
+independently known, says which of its checks are load-bearing, and marks where its readings stop
+applying is more useful than one that claims more.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
