@@ -972,8 +972,9 @@ verified or removed before it can be printed.
 ### F46 — the transition's TIMING moves with model size (3 of 4 sizes; 1b in flight)
 
 `experiments/dev_transition_scale.py` → `results/dev_transition_scale.json`. 6 checkpoints × 8
-seeds × 4 Pythia sizes at N=48, protocol imported from Phase 3. **149/192 runs complete**:
-70m, 160m and 410m are done, pythia-1b is at 5/48 and running.
+seeds × 4 Pythia sizes at N=48, protocol imported from Phase 3. **169/192 runs complete**:
+70m, 160m and 410m are done; pythia-1b has all 8 seeds at steps 128/256/512 and its later
+checkpoints are still running.
 
 **Mean λ_ca by (model, checkpoint):**
 
@@ -984,11 +985,15 @@ seeds × 4 Pythia sizes at N=48, protocol imported from Phase 3. **149/192 runs 
 | 410m | −0.279 | −0.019 | **+0.068** | +0.192 | +0.156 | +0.172 |
 | 1b | −0.329 | — | — | — | — | — |
 
-**The zero-crossing moves later with size**, monotonically over the three completed models:
-70m is already positive at the earliest checkpoint (no crossing on this grid), 160m crosses
-between **128 and 256**, 410m between **256 and 512**. Pythia-1b starts furthest negative
-(−0.329 at step128), which extends the pattern, but with one checkpoint it is a hint, not a
-result.
+**The zero-crossing moves later with size — but it saturates, and my one-seed hint about 1b
+was wrong.** 70m is already positive at the earliest checkpoint (no crossing on this grid),
+160m crosses between **128 and 256**, 410m between **256 and 512**. I wrote above that
+pythia-1b "starts furthest negative (−0.329), which extends the pattern"; that was a single
+seed. At the full 8 seeds 1b's step128 mean is **−0.205**, *less* negative than 410m's −0.279,
+and 1b crosses in the **same 256 → 512 interval as 410m**. So the ordering is monotone
+non-decreasing but **ties at the top two sizes** — the honest statement is that the crossing
+moves later from 70m to 410m and this grid cannot separate 410m from 1b. 1b is also
+non-monotone early (step256 = −0.546 is *below* step128 = −0.205), which no other size shows.
 
 **This is not the retracted capacity axis (W1).** That claim was about the *level* of λ/D_norm
 at a fixed checkpoint and was pseudoreplicated at n=2. This is about *when* the sign change
