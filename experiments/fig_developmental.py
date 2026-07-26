@@ -2,29 +2,46 @@
 
 Three panels, chosen so the figure states the claim AND its two honest qualifications:
 
-  (A) lambda_ca vs checkpoint, both lattice sizes. The claim. lambda_ca is the quantity that
-      carries it, because W9 turned out favourably for it: 95% retention at N=96, and the
-      plateau levels agree to within +-14% (95% CI on the difference, not a null p-value).
-  (B) D_norm vs checkpoint, both sizes. The corroboration -- same shape, same direction,
-      but the two curves are visibly offset, which is exactly the point: D_norm's absolute
-      scale moves with N (plateau 0.569 vs 0.306, p=1.3e-08), so it is reported at a stated
-      lattice size and never as a lattice-free property.
+  (A) lambda_ca vs checkpoint, both lattice sizes. The claim, and the quantity that carries it:
+      lambda_ca is intensive across a 4x range of N (F45), so the two curves lie on top of each
+      other.
+  (B) D_norm vs checkpoint, both sizes. The corroboration -- same shape, same direction, but the
+      two curves are visibly OFFSET, which is exactly the point: D_norm's absolute scale moves
+      with N, so it is reported at a stated lattice size and never as a lattice-free property.
   (C) Seed spread across the transition. Before it, seeds disagree about the SIGN of lambda;
-      after, none of 48 plateau runs is negative (sd collapses 3.7x / 3.1x). Not pre-registered, so it
-      is drawn as an observation.
+      after, none of 48 plateau runs is negative. Not pre-registered, so it is drawn as an
+      observation.
 
-The plateau band is drawn from steps 2000/8000/143000 -- NOT from the step-1000 peak, whose
-overshoot is +1.4% to +22.4% and survives BH-FDR in only 1 of 4 cells (a D_norm cell). Quoting the peak as the
-level would inflate the N=48 D_norm effect; using step256 ALONE as the pre value inflates
-lambda_ca by 1.7x. Both ends use the pre-registered sets.
+The plateau band is drawn from steps 2000/8000/143000 -- NOT from the step-1000 peak. Quoting the
+peak as the level would inflate the N=48 D_norm effect; using step256 ALONE as the pre value
+inflates lambda_ca by 1.7x. Both ends use the pre-registered sets.
+
+TWO DEFECTS THIS REWRITE FIXES, both of which shipped in a built PDF:
+
+  * Panel A's title used a doubled backslash-n inside a non-raw f-string, so the escape reached
+    matplotlib as a LITERAL backslash-n rather than a line break. The title rendered as one long
+    line that overran its axes and printed on top of panel B's title. The headline figure was
+    unreadable across the middle, and nobody caught it because the figure was only ever checked
+    as a thumbnail.
+  * That same title hardcoded "+-13.6%" and "95% CI [-0.0229, +0.0223]" -- the two-size
+    equivalence bound, which the third lattice size superseded and which has since been cut from
+    paper.tex. The figure would have been the last surviving site of a retired number, which is
+    exactly the drift the paper-number manifest exists to prevent.
+
+All titles are now short. Statistics belong in the caption, where they are set at full size and
+where the manifest already checks them.
+
+Monochrome by construction -- series are separated by marker and dash, never by hue -- so the
+figure survives greyscale printing and every colour-vision deficiency. See figstyle.py.
 
 Reads results/dev_transition_phase3.json and dev_transition_shape.json (writes neither);
 writes fig/developmental.png.
 """
-import pathlib, json
+import pathlib, json, sys
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from figstyle import use_classic_r, series, finish, BAND, RULE
 import matplotlib.pyplot as plt
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -38,9 +55,13 @@ rows = [r for r in rows if isinstance(r, dict) and "lambda_ca" in r]
 
 STEPS = [256, 512, 1000, 2000, 8000, 143000]
 PLATEAU = {2000, 8000, 143000}
-SIZES = [(48, "#2c6fbb", "o", "N=48"), (96, "#b0413e", "s", "N=96")]
-plt.rcParams.update({"font.size": 9.5, "axes.titlesize": 9.5, "figure.dpi": 200})
-fig, ax = plt.subplots(1, 3, figsize=(13.2, 3.5))
+SIZES = [48, 96]
+
+use_classic_r(base=7.0)
+# Authored at the size it is DISPLAYED: width=\linewidth is 5.5in in the NeurIPS geometry, so a
+# 7pt label here is 7pt on the page. The previous version was authored 13.2in wide and scaled to
+# 4.4in, which shrank every label to a third of nominal and is why its text was illegible.
+fig, ax = plt.subplots(1, 3, figsize=(5.5, 1.9))
 
 
 def cell(N, step, m):
@@ -48,51 +69,44 @@ def cell(N, step, m):
 
 
 def panel(a, metric, ylabel, title):
-    for N, col, mk, lab in SIZES:
+    for i, N in enumerate(SIZES):
         mu = np.array([cell(N, s, metric).mean() for s in STEPS])
         sd = np.array([cell(N, s, metric).std(ddof=1) for s in STEPS])
-        a.errorbar(STEPS, mu, yerr=sd, fmt=mk + "-", color=col, ms=5, lw=1.6,
-                   capsize=3, label=lab, zorder=3)
+        a.errorbar(STEPS, mu, yerr=sd, capsize=1.5, elinewidth=0.6, zorder=3,
+                   **series(i, f"$N$={N}"))
         pl = np.mean([cell(N, s, metric).mean() for s in sorted(PLATEAU)])
-        a.axhline(pl, color=col, lw=0.9, ls=":", alpha=0.8, zorder=1)
+        a.axhline(pl, color=RULE, lw=0.5, ls=(0, (1, 2)), zorder=1)
     a.set_xscale("log")
-    a.axvspan(200, 700, color="0.85", alpha=0.55, lw=0, zorder=0)   # the pre-transition set
-    a.set_xlabel("training step (Pythia-410m checkpoint)")
-    a.set_ylabel(ylabel); a.set_title(title, fontsize=9)
-    a.legend(fontsize=7.5, loc="lower right", frameon=False)
+    a.axvspan(200, 700, color=BAND, lw=0, zorder=0)          # the pre-registered pre set
+    a.set_xlabel("training step")
+    a.set_ylabel(ylabel)
+    a.set_title(title)
+    a.legend(loc="lower right")
 
 
-h = shape["headline"]
-panel(ax[0], "lambda_ca", r"$\lambda_{\mathrm{ca}}$",
-      f"(A) the claim: 0/48 plateau runs negative (min +0.107)\\n"
-      f"$d$={h['N48_lambda_ca']['cohens_d']} / {h['N96_lambda_ca']['cohens_d']} vs the pre-registered pre set\\n"
-      f"plateau levels agree within $\\pm$13.6\\% (95% CI [-0.0229, +0.0223])")
-ax[0].axhline(0, color="k", lw=0.8, ls="-", alpha=0.5, zorder=2)
+panel(ax[0], "lambda_ca", r"$\lambda_{\mathrm{ca}}$", r"(A) $\lambda_{\mathrm{ca}}$: sizes agree")
+ax[0].axhline(0, color=RULE, lw=0.7, zorder=2)
 
-panel(ax[1], "D_norm", r"$D_{\mathrm{norm}}$",
-      f"(B) corroboration, at a stated lattice size:\n"
-      f"same shape, but the LEVEL moves with $N$\n"
-      f"(plateau 0.569 vs 0.306, $p$=1.3e-08)")
+panel(ax[1], "D_norm", r"$D_{\mathrm{norm}}$", r"(B) $D_{\mathrm{norm}}$: level moves with $N$")
 
-# (C) seed spread -- the collapse, drawn as raw per-seed points plus the sd
+# (C) seed spread -- raw per-seed points, so the collapse is drawn rather than summarised
 a = ax[2]
-for N, col, mk, lab in SIZES:
-    for i, s in enumerate(STEPS):
+for i, N in enumerate(SIZES):
+    st = series(i, f"$N$={N}")
+    for j, s in enumerate(STEPS):
         v = cell(N, s, "lambda_ca")
-        jitter = (np.random.default_rng(s + N).random(len(v)) - 0.5) * 0.13
-        a.scatter(np.full(len(v), i) + (0.16 if N == 96 else -0.16) + jitter, v,
-                  s=9, color=col, alpha=0.65, lw=0, zorder=3,
-                  label=lab if i == 0 else None)
-a.axhline(0, color="k", lw=0.8, alpha=0.5)
-a.axvspan(-0.5, 1.5, color="0.85", alpha=0.55, lw=0, zorder=0)
-a.set_xticks(range(len(STEPS))); a.set_xticklabels([str(s) for s in STEPS], fontsize=7.5)
-a.set_xlabel("training step"); a.set_ylabel(r"$\lambda_{\mathrm{ca}}$ (per seed)")
-v48, v96 = shape["variance"]["N48"], shape["variance"]["N96"]
-a.set_title(f"(C) seeds stop disagreeing about the SIGN\n"
-            f"sd collapses {v48['ratio']}× (N=48) / {v96['ratio']}× (N=96)\n"
-            f"observation, not pre-registered", fontsize=9)
-a.legend(fontsize=7.5, loc="lower right", frameon=False)
+        jit = (np.random.default_rng(s + N).random(len(v)) - 0.5) * 0.16
+        a.plot(np.full(len(v), j) + (0.17 if N == 96 else -0.17) + jit, v,
+               ls="none", marker=st["marker"], mfc=st["mfc"], color="black",
+               markeredgecolor="black", markeredgewidth=0.5, ms=2.1, zorder=3,
+               label=st["label"] if j == 0 else None)
+a.axhline(0, color=RULE, lw=0.7)
+a.axvspan(-0.5, 1.5, color=BAND, lw=0, zorder=0)
+a.set_xticks(range(len(STEPS)))
+a.set_xticklabels([str(s) for s in STEPS], rotation=45, ha="right")
+a.set_xlabel("training step")
+a.set_ylabel(r"$\lambda_{\mathrm{ca}}$ per seed")
+a.set_title("(C) seeds agree on the sign")
+a.legend(loc="lower right")
 
-fig.tight_layout()
-fp = str(ROOT / "fig" / "developmental.png")
-fig.savefig(fp, bbox_inches="tight"); print("wrote", fp)
+finish(fig, str(ROOT / "fig" / "developmental.png"))

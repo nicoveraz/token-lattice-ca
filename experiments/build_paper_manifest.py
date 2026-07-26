@@ -85,9 +85,10 @@ add(f(abs(_lo), 3), "dev_transition_shape.json", "|min(sign_agreement.N{48,96}.p
 add(f(_hi, 3),      "dev_transition_shape.json", "max(sign_agreement.N{48,96}.pre_max)")
 add(f(sa["pooled"]["min"], 3),       "dev_transition_shape.json", "sign_agreement.pooled.min")
 w9 = sh["size_scaling_W9"]
-add(f(abs(w9["lambda_ca"]["plateau_diff"]), 4), "dev_transition_shape.json", "|size_scaling_W9.lambda_ca.plateau_diff|")
-add(f(abs(w9["lambda_ca"]["plateau_diff_ci95"][0]), 3), "dev_transition_shape.json", "|...ci95[0]|")
-add(f(w9["lambda_ca"]["plateau_diff_ci95"][1], 3),      "dev_transition_shape.json", "...ci95[1]")
+# The two-size equivalence bound (plateau_diff and its CI) is no longer quoted: the third
+# lattice size superseded it with a scaling exponent, which is a stronger statement than an
+# interval around zero. The bound-not-a-null-p-value discipline it enforced is still asserted
+# by test_paper_size_agreement_is_a_bound_not_a_null_p_value against the +-14% figure caption.
 add(f(w9["D_norm"]["plateau_level_N48"], 3), "dev_transition_shape.json", "size_scaling_W9.D_norm.plateau_level_N48")
 add(f(w9["D_norm"]["plateau_level_N96"], 3), "dev_transition_shape.json", "size_scaling_W9.D_norm.plateau_level_N96")
 pk = sh["peak_vs_plateau"]

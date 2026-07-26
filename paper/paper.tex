@@ -44,26 +44,19 @@ boundary we draw rather than leave to a reader.
 Language models are evaluated almost entirely as functions: given a context, how good is the
 next-token distribution? But a masked or autoregressive conditional also \emph{defines a dynamics}
 --- iterate it in place over a lattice of tokens and one obtains a stochastic cellular automaton
-whose rule is the model. Iterated-map views of LLMs have appeared qualitatively
-\citep{logos_ca,telephone,paraphrase2cycle} and as mixing-time studies of masked-LM Glauber
-dynamics \citep{glauber_mlm}; the phenomena a CA vocabulary names --- damage spreading, light
-cones, Lyapunov exponents, attractor censuses \citep{hanson1997computational} --- are decades old.
-What has been missing is not a phenomenon but a \emph{measurement instrument whose readings can be
-trusted}.
+whose rule is the model. The phenomena a CA vocabulary names --- damage spreading
+\citep{bagnoli1992damage}, light cones \citep{lieb1972finite}, Lyapunov exponents, attractor
+censuses \citep{hanson1997computational} --- are decades old. What has been missing is not a
+phenomenon but a \emph{measurement instrument whose readings can be trusted}.
 
 Our organizing principle is therefore \textbf{validation by reproduction}
 (\S\ref{sec:validation}): before turning the apparatus on a language model we require it to
-recover values that are independently known. This is not a formality --- building the ladder
-forced us to retract several of our own earlier claims, and the strongest rung is one where
-agreement is \emph{exact} rather than fitted. Damage-spreading implementations are conventionally
+recover values that are independently known. Damage-spreading implementations are conventionally
 validated against fitted critical exponents, which a wrong implementation can match for the wrong
-reasons; a bit-exact identity cannot be passed by a plausible-looking estimator. We use only \emph{simple, mature} primitives \citep{bagnoli1992damage,lieb1972finite,
-hanson1997computational} rather than bespoke machinery, precisely because their behaviour on known
-systems is a fixed benchmark. Only then do we report what the instrument measures on trained LMs
+reasons; our strongest rung is instead \emph{exact}, and a bit-exact identity cannot be passed by
+a plausible-looking estimator. Only then do we report what the instrument measures on trained LMs
 (\S\ref{sec:dev}) and, equally, where its readings provably stop applying
-(\S\ref{sec:realgen}, \S\ref{sec:crosslevel}). The criticality ideas the results touch are old
-\citep{langton1990computation,bertschinger2004real,edgeofchaos2024}; our contribution is a
-calibrated black-box \emph{measurement} of them and an explicit statement of its limits.
+(\S\ref{sec:realgen}, \S\ref{sec:crosslevel}).
 
 \section{The instrument}\label{sec:instrument}
 \textbf{Rule.} A window of $w{=}2r{+}1$ tokens with the centre masked is fed to a masked LM; the
@@ -217,10 +210,8 @@ log--log slope of $N^{-0.04}$, i.e.\ \textbf{intensive across a $4\times$ range}
 of its mean --- while \dn{} is $0.569/0.306/0.139$, a slope of $N^{-1.02}$, i.e.\ \textbf{$1/N$}.
 That is what the construction predicts: $\lca$ is a cone-growth \emph{rate} fitted before
 saturation, so it is intensive; \dn{} is a density ratio whose numerator stays localised in a cone
-while its denominator is delocalised over every site. (At two sizes we could only state a bound:
-the plateau levels differed by $-0.0003$, $95\%$ CI $[-0.023,+0.022]$. We give the bound rather
-than a non-significant $p$-value, since a null result is not evidence of equality.) So $\lca$ carries the claim and \dn{} corroborates at a stated lattice size,
-never as a lattice-free property. Seed-to-seed variance also collapses ${\sim}3\times$ across the
+while its denominator is delocalised over every site. So $\lca$ carries the claim and \dn{}
+corroborates at a stated lattice size, never as a lattice-free property. Seed-to-seed variance also collapses ${\sim}3\times$ across the
 transition (Levene $p\le1.7\times10^{-4}$ at both sizes); not pre-registered, reported as an
 observation, and note it is the checkpoint means and the two lattice sizes that agree to a few
 percent --- the plateau per-seed CV is $22$--$25\%$.

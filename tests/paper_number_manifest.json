@@ -156,24 +156,6 @@
   "kind": "measured"
  },
  {
-  "literal": "0.0003",
-  "source": "dev_transition_shape.json",
-  "derivation": "|size_scaling_W9.lambda_ca.plateau_diff|",
-  "kind": "measured"
- },
- {
-  "literal": "0.023",
-  "source": "dev_transition_shape.json",
-  "derivation": "|...ci95[0]|",
-  "kind": "measured"
- },
- {
-  "literal": "0.022",
-  "source": "dev_transition_shape.json",
-  "derivation": "...ci95[1]",
-  "kind": "measured"
- },
- {
   "literal": "0.569",
   "source": "dev_transition_shape.json",
   "derivation": "size_scaling_W9.D_norm.plateau_level_N48",
