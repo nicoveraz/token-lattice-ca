@@ -169,6 +169,17 @@ pre-registered sets at both ends. The overshoot survives correction in one of fo
 cell is \dn{} --- on $\lca$ it is $+1.4\%$ at $N{=}96$ ($p_{\mathrm{BH}}{=}0.78$) --- so
 non-monotonicity is largely a \dn{} phenomenon and step $1000$ is not claimed as a distinct phase.
 
+\textbf{It is not specific to the model we picked.} Repeating the whole grid on four Pythia
+sizes (70m/160m/410m/1b $\times$ 6 checkpoints $\times$ 8 seeds, 192 runs) reproduces the
+transition in \textbf{all four} ($p_{\mathrm{BH}} = 0.015$, $0.003$, $2\times10^{-6}$,
+$1.5\times10^{-5}$). Its \emph{timing} moves later with size and then saturates: 70m is already
+super-critical at the earliest checkpoint we probe, 160m crosses between steps $128$ and $256$,
+and 410m and 1b both cross between $256$ and $512$. The plateau \emph{level}, by contrast, does
+not order with size ($0.162/0.164/0.174/0.166$) --- with four sizes the smallest attainable
+permutation $p$ is $1/4!\,{=}\,0.042$, so no capacity axis could have been established here, and
+none is visible. We report that null because it is the closest thing in this data to a
+previously retracted capacity claim.
+
 \textbf{Which quantity carries the claim.} $\lca$ is size-robust and \dn{} is not, and a third
 lattice size settles why. Over $N{=}48/96/192$ the $\lca$ plateau is $0.168/0.169/0.160$ --- a
 log--log slope of $N^{-0.04}$, i.e.\ \textbf{intensive across a $4\times$ range}, varying by $5\%$
@@ -235,12 +246,10 @@ internals to see. Tested across two model families and two within-model axes, th
 pairing $\lca$ against a finite-depth top-Lyapunov exponent of the residual stream is
 family-dependent (Pythia $r{=}{+}0.71$, GPT-2 $r{=}{-}0.43$; the pooled $p{=}0.025$ is a
 Simpson's-paradox artifact), the temperature axis is confounded by a common cause, and the
-radius axis is null because $\lca(r)$ is model-invariant and so carries no model signal to
-proxy. The reason is structural and compounds a regime mismatch: the white-box exponent is
-\emph{architectural} (flat across training, ${\approx}1/L$) and is a \emph{tangent} quantity,
-while $\lca$ is \emph{finite} --- and our own $\epsilon$-sweep shows those two disagree even
-where ground truth is known. We report this as a clean \textbf{negative}: token-space and
-activation-space criticality are distinct, non-proxying levels.
+radius axis is null because $\lca(r)$ is model-invariant. The reason is structural: the
+white-box exponent is \emph{architectural} (flat across training, ${\approx}1/L$) and is a
+\emph{tangent} quantity while $\lca$ is \emph{finite}. We report a clean \textbf{negative} ---
+token-space and activation-space criticality are distinct, non-proxying levels.
 
 \section{Related work}
 Iterated-LLM views exist qualitatively \citep{logos_ca,telephone,paraphrase2cycle} and rigorously
@@ -260,9 +269,9 @@ different space. We avoid ``repair'' \citep{hydra,selfrepair} and ``self-correct
 \section{Limitations}
 Neither construction samples the model's actual distribution --- masked conditionals are globally
 inconsistent, and the autoregressive rule, though consistent, is resampled in place on a ring ---
-so all claims are properties of the dynamics. Rings are small ($N\le384$); the developmental result rests on one model
-family, and a second family --- not a third lattice size, which is now run --- is the obvious next
-requirement. \dn{}'s absolute
+so all claims are properties of the dynamics. Rings are small ($N\le384$), and the developmental result rests on one model
+\emph{family} --- four sizes within it, and a third lattice size, are now run, so a second
+family is the obvious next requirement. \dn{}'s absolute
 scale is doubly qualified: it moves with $N$ (\S\ref{sec:dev}) and its numerator's coupling is not
 extremal (\S\ref{sec:realgen}), so only its relative behaviour is quoted. Census ground truth is
 synthetic only. \textbf{Statistical scope.} The developmental family is pre-registered with BH-FDR
