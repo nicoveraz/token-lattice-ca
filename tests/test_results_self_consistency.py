@@ -204,12 +204,19 @@ def test_n192_uses_the_same_ignition_asymmetry_as_the_shape_script():
 
 
 # ------------------------------------------------------- issue #38: stale-analysis detection
-@pytest.mark.parametrize("results_name,script_name", [
+_STALENESS_PAIRS = [
     ("dev_transition_shape.json", "dev_transition_shape.py"),
     ("dev_transition_n192.json", "dev_transition_n192.py"),
     ("dev_transition_scale.json", "dev_transition_scale.py"),
     ("ignition_vs_size.json", "ignition_vs_size.py"),
-])
+    ("ignition_nb.json", "ignition_nb.py"),
+    ("floor_decorrelation.json", "floor_decorrelation.py"),
+    ("dev_transition_temp.json", "dev_transition_temp.py"),
+]
+
+
+@pytest.mark.parametrize("results_name,script_name", _STALENESS_PAIRS,
+                         ids=[p[0] for p in _STALENESS_PAIRS])
 def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name, script_name):
     """A results file must not have been produced by a different version of its analysis.
 
@@ -274,3 +281,29 @@ def test_log_does_not_contradict_its_results_file(log_name, results_name, extrac
             f"  {verdict!r}\n"
             f"Append a machine-written superseding block by re-running the analysis; do not "
             f"hand-edit the log.")
+
+
+def test_every_stamped_results_file_is_covered_by_the_staleness_check():
+    """A file that records provenance but is not checked against it gains nothing.
+
+    The stamp is only useful if something recomputes it. This asserts the parametrize list above
+    keeps pace with the scripts that stamp, so adding provenance to a new analysis without adding
+    it to the guard fails here rather than passing silently.
+    """
+    import glob, os
+    stamped = set()
+    for f in glob.glob(str(RESULTS / "*.json")):
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        pr = d.get("_analysis_provenance")
+        if pr is None and isinstance(d.get("analysis"), dict):
+            pr = d["analysis"].get("_analysis_provenance")
+        if pr:
+            stamped.add(os.path.basename(f))
+    covered = {results_name for results_name, _script in _STALENESS_PAIRS}
+    assert stamped <= covered, (
+        f"stamped but unchecked: {sorted(stamped - covered)}. Add them to _STALENESS_PAIRS.")
