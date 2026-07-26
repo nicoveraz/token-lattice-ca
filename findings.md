@@ -969,6 +969,58 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
+### F49 — the developmental transition is only *detectable* at intermediate temperature (issue #17)
+
+`experiments/dev_transition_temp.py` → `results/dev_transition_temp.json`. The two ends of the
+developmental curve (step256, step143000) at T=0.3 and T=1.1, 8 seeds, N=48, against the Phase 3
+T=0.7 cells. Pre-registered, including what each outcome would mean.
+
+| T | pre (step256) | plateau (step143000) | gap | ignition, pre → plateau | p_BH |
+|---|---|---|---|---|---|
+| 0.3 | −0.0373 | −0.0006 | **+0.037** | 0.195 → 0.211 | 0.442 n.s. |
+| **0.7** | **−0.0185** | **+0.1792** | **+0.198** | — | (Phase 3) |
+| 1.1 | +0.3002 | +0.2652 | **−0.035** | 0.984 → 0.992 | 0.442 n.s. |
+
+**The transition is not detectable at either tested temperature away from 0.7.** That is a real
+negative and it bounds the headline.
+
+**But the two failures have different causes, and the ignition fraction diagnoses both** — the
+same DP order parameter the ECA rungs use (F34/F36):
+
+- **T=1.1 is a ceiling.** Ignition is **0.984 → 0.992**: damage propagates in essentially every
+  lattice at *both* ends of training. There is no room to move up, so the pre→plateau gap is
+  −0.035. This is exactly the outcome the pre-registration named as "a ceiling rather than a
+  refutation".
+- **T=0.3 is a floor.** Ignition is **0.195 → 0.211** and λ hugs zero at both ends. Damage
+  barely propagates whether the model is trained or not.
+- **T=0.7 is where the instrument has dynamic range**, and the gap there is 5× the T=0.3 gap and
+  opposite in sign to the T=1.1 one.
+
+**How the claim must be restated.** Not "training drives the token lattice from sub- to
+super-critical", full stop — that is false at T=0.3, where the *fully trained* model sits at
+λ = −0.0006. The defensible claim is narrower and still substantive: **at intermediate sampling
+temperature, training moves the token lattice from sub-critical to super-critical**, and the
+effect is invisible at low T because nothing propagates and at high T because everything does.
+
+**Is this "a sampling phenomenon"?** Partly, and the honest answer is that the question is
+mis-framed by the binary the pre-registration used. The transition is a property of the
+*model* — the construction is held fixed across checkpoints, so a change across checkpoints is
+attributable to the model (the construction-held-fixed argument). What is temperature-dependent
+is whether the probe can *see* it. A thermometer that saturates below 0°C and above 100°C still
+measures temperature; it just has a range. But the range must be stated, because a reader
+otherwise assumes the result is temperature-free, and it is not.
+
+**Consistency with what was already known.** F12 established that the temperature "transition"
+is a finite-size crossover, and the cross-level work found the temperature axis confounded by a
+common cause. This is the same axis asserting itself: T is the strongest knob in the apparatus,
+and any single-T reading needs its range stated. That is now in the paper's Limitations rather
+than only in this log.
+
+**What is unaffected.** The transition itself at T=0.7 — 4 lattice-size cells and 4 model sizes,
+all surviving BH-FDR (F39, F45, F46). The temperature result does not contradict any of them; it
+says where the probe stops resolving. Phase 3's runs predate the `ignition_prob` field so the
+T=0.7 ignition fraction is not recorded, which is the one number that would complete this table.
+
 ### F48 — W2's floor objection is bounded at 4%, and the CRN floor is an isolated point (closes #34)
 
 `experiments/floor_decorrelation.py` → `results/floor_decorrelation.json`. pythia-160m,

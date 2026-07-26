@@ -1,0 +1,456 @@
+{
+ "runs": {
+  "T0.3_step256_s21": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 21,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.01807,
+   "D_norm": 0.36574,
+   "mean_damage": 0.061848958333333336,
+   "ignition_prob": 0.0625,
+   "secs": 110.1
+  },
+  "T0.3_step256_s22": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 22,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.06665,
+   "D_norm": 0.24279,
+   "mean_damage": 0.016438802083333332,
+   "ignition_prob": 0.0625,
+   "secs": 107.3
+  },
+  "T0.3_step256_s23": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 23,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.064,
+   "D_norm": 0.28102,
+   "mean_damage": 0.05013020833333333,
+   "ignition_prob": 0.3125,
+   "secs": 109.1
+  },
+  "T0.3_step256_s24": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 24,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.00075,
+   "D_norm": 0.38852,
+   "mean_damage": 0.06608072916666667,
+   "ignition_prob": 0.25,
+   "secs": 107.2
+  },
+  "T0.3_step256_s25": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 25,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -1.63601,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 106.9
+  },
+  "T0.3_step256_s26": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 26,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.10418,
+   "D_norm": 1.84144,
+   "mean_damage": 0.19091796875,
+   "ignition_prob": 0.5,
+   "secs": 107.5
+  },
+  "T0.3_step256_s27": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 27,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.12416,
+   "D_norm": 0.2003,
+   "mean_damage": 0.021809895833333336,
+   "ignition_prob": 0.125,
+   "secs": 108.6
+  },
+  "T0.3_step256_s28": {
+   "T": 0.3,
+   "step": 256,
+   "seed": 28,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.12955,
+   "D_norm": 0.09302,
+   "mean_damage": 0.014322916666666666,
+   "ignition_prob": 0.25,
+   "secs": 108.5
+  },
+  "T0.3_step143000_s21": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 21,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.15834,
+   "D_norm": 0.04935,
+   "mean_damage": 0.013509114583333334,
+   "ignition_prob": 0.0625,
+   "secs": 108.7
+  },
+  "T0.3_step143000_s22": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 22,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.07317,
+   "D_norm": 0.09382,
+   "mean_damage": 0.027180989583333332,
+   "ignition_prob": 0.1875,
+   "secs": 104.7
+  },
+  "T0.3_step143000_s23": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 23,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.05004,
+   "D_norm": 0.27049,
+   "mean_damage": 0.05533854166666666,
+   "ignition_prob": 0.4375,
+   "secs": 106.0
+  },
+  "T0.3_step143000_s24": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 24,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.08089,
+   "D_norm": 0.29026,
+   "mean_damage": 0.07275390625,
+   "ignition_prob": 0.4375,
+   "secs": 106.4
+  },
+  "T0.3_step143000_s25": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 25,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.12714,
+   "D_norm": 0.05763,
+   "mean_damage": 0.01708984375,
+   "ignition_prob": 0.125,
+   "secs": 107.8
+  },
+  "T0.3_step143000_s26": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 26,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.0985,
+   "D_norm": 0.18913,
+   "mean_damage": 0.061197916666666664,
+   "ignition_prob": 0.25,
+   "secs": 106.6
+  },
+  "T0.3_step143000_s27": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 27,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": -0.07125,
+   "D_norm": 0.11944,
+   "mean_damage": 0.027994791666666664,
+   "ignition_prob": 0.1875,
+   "secs": 108.0
+  },
+  "T0.3_step143000_s28": {
+   "T": 0.3,
+   "step": 143000,
+   "seed": 28,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.14964,
+   "D_norm": 0.00188,
+   "mean_damage": 0.00048828125,
+   "ignition_prob": 0.0,
+   "secs": 109.2
+  },
+  "T1.1_step256_s21": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 21,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.28674,
+   "D_norm": 0.94384,
+   "mean_damage": 0.9436848958333333,
+   "ignition_prob": 1.0,
+   "secs": 107.0
+  },
+  "T1.1_step256_s22": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 22,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.45138,
+   "D_norm": 0.95992,
+   "mean_damage": 0.958984375,
+   "ignition_prob": 1.0,
+   "secs": 105.7
+  },
+  "T1.1_step256_s23": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 23,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.24982,
+   "D_norm": 0.91307,
+   "mean_damage": 0.9129231770833333,
+   "ignition_prob": 1.0,
+   "secs": 107.1
+  },
+  "T1.1_step256_s24": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 24,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.2714,
+   "D_norm": 0.90194,
+   "mean_damage": 0.9012044270833333,
+   "ignition_prob": 1.0,
+   "secs": 106.3
+  },
+  "T1.1_step256_s25": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 25,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.31773,
+   "D_norm": 0.90604,
+   "mean_damage": 0.9055989583333333,
+   "ignition_prob": 0.9375,
+   "secs": 104.2
+  },
+  "T1.1_step256_s26": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 26,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.30159,
+   "D_norm": 0.98952,
+   "mean_damage": 0.9830729166666667,
+   "ignition_prob": 1.0,
+   "secs": 104.8
+  },
+  "T1.1_step256_s27": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 27,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.33426,
+   "D_norm": 0.90344,
+   "mean_damage": 0.9029947916666666,
+   "ignition_prob": 0.9375,
+   "secs": 103.6
+  },
+  "T1.1_step256_s28": {
+   "T": 1.1,
+   "step": 256,
+   "seed": 28,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.18903,
+   "D_norm": 0.91941,
+   "mean_damage": 0.9191080729166666,
+   "ignition_prob": 1.0,
+   "secs": 103.5
+  },
+  "T1.1_step143000_s21": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 21,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.20944,
+   "D_norm": 0.87357,
+   "mean_damage": 0.8704427083333334,
+   "ignition_prob": 1.0,
+   "secs": 104.1
+  },
+  "T1.1_step143000_s22": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 22,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.35904,
+   "D_norm": 0.91321,
+   "mean_damage": 0.9093424479166666,
+   "ignition_prob": 1.0,
+   "secs": 102.8
+  },
+  "T1.1_step143000_s23": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 23,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.22031,
+   "D_norm": 0.91833,
+   "mean_damage": 0.9150390625,
+   "ignition_prob": 1.0,
+   "secs": 103.3
+  },
+  "T1.1_step143000_s24": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 24,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.24843,
+   "D_norm": 0.8456,
+   "mean_damage": 0.8414713541666667,
+   "ignition_prob": 1.0,
+   "secs": 103.6
+  },
+  "T1.1_step143000_s25": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 25,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.27488,
+   "D_norm": 0.73227,
+   "mean_damage": 0.7291666666666666,
+   "ignition_prob": 0.9375,
+   "secs": 102.6
+  },
+  "T1.1_step143000_s26": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 26,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.29908,
+   "D_norm": 0.95423,
+   "mean_damage": 0.9501953125,
+   "ignition_prob": 1.0,
+   "secs": 102.7
+  },
+  "T1.1_step143000_s27": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 27,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.3397,
+   "D_norm": 0.93126,
+   "mean_damage": 0.9261067708333333,
+   "ignition_prob": 1.0,
+   "secs": 102.7
+  },
+  "T1.1_step143000_s28": {
+   "T": 1.1,
+   "step": 143000,
+   "seed": 28,
+   "N": 48,
+   "B": 16,
+   "lambda_ca": 0.17112,
+   "D_norm": 0.83094,
+   "mean_damage": 0.8271484375,
+   "ignition_prob": 1.0,
+   "secs": 102.7
+  }
+ },
+ "_preregistration": {
+  "temps": [
+   0.3,
+   1.1
+  ],
+  "steps": [
+   "step256",
+   "step143000"
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28
+  ],
+  "N": 48,
+  "B": 16,
+  "reference_T": 0.7,
+  "source_of_reference": "dev_transition_phase3"
+ },
+ "reference_T07": {
+  "256": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": -0.0185
+  },
+  "143000": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.1792
+  }
+ },
+ "summary": {
+  "0.7": {
+   "source": "dev_transition_phase3",
+   "pre_mean": -0.0185,
+   "plateau_mean": 0.1792
+  },
+  "0.3": {
+   "pre_mean": -0.0373,
+   "n_pre_ignited": 7,
+   "plateau_mean": -0.0006,
+   "n_plateau_ignited": 8,
+   "n_unignited": 1,
+   "p_raw": 0.4418026418026417,
+   "p_bh": 0.4418026418026417
+  },
+  "1.1": {
+   "pre_mean": 0.3002,
+   "n_pre_ignited": 8,
+   "plateau_mean": 0.2652,
+   "n_plateau_ignited": 8,
+   "n_unignited": 0,
+   "p_raw": 0.4418026418026417,
+   "p_bh": 0.4418026418026417
+  }
+ },
+ "verdict": "VANISHES at both tested temperatures -- the claim is temperature-specific and must be restated as such",
+ "_analysis_provenance": {
+  "script": "dev_transition_temp.py",
+  "sha256": "55620156dc1bad4433843ec3e2e7638e348a9460870077999015882198636c8f",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Robustness of the developmental transition to sampling temperature (issue #17). The headline is measured at T=0.7 only, and temperature is a known-strong axis here (F12; the cross-level temperature confound), so this tests the two ends of the developmental curve at T=0.3 and T=1.1 against the Phase 3 T=0.7 cells. lambda statistics exclude unignited runs (F42) with n stated; the rank test keeps all runs, since ranks do not depend on a dead run's magnitude."
+}

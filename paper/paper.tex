@@ -147,6 +147,15 @@ sizes $N{=}48$ and $96$; Fig.~\ref{fig:dev}), the calibrated instrument finds th
 token-space dynamics changing from sub-critical to super-critical between steps $512$ and $2000$,
 and staying there for the rest of training.
 
+All of this is measured at a single sampling temperature, $T{=}0.7$, and that is a real scope
+limit rather than an incidental setting: repeating the two ends of the curve at $T{=}0.3$ and
+$T{=}1.1$ finds no detectable transition at either ($p_{\mathrm{BH}}{=}0.44$). The ignition
+fraction says why. At $T{=}1.1$ damage propagates in essentially every lattice at \emph{both} ends
+($0.98\to0.99$), so there is no room to move --- a ceiling; at $T{=}0.3$ it barely propagates at
+either end ($0.20\to0.21$) and $\lca$ hugs zero --- a floor. The claim is therefore that
+\textbf{at intermediate temperature} training moves the lattice from sub- to super-critical; the
+probe has dynamic range there and loses it in both directions.
+
 We pre-registered the test (post- vs pre-transition checkpoints, run-level Mann--Whitney, family
 $=\{\lca,\dn\}\times\{N{=}48,96\}$, BH-FDR) and a demotion rule: failure at either size demotes the
 headline. \textbf{All four members survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$). From the
@@ -269,9 +278,10 @@ different space. We avoid ``repair'' \citep{hydra,selfrepair} and ``self-correct
 \section{Limitations}
 Neither construction samples the model's actual distribution --- masked conditionals are globally
 inconsistent, and the autoregressive rule, though consistent, is resampled in place on a ring ---
-so all claims are properties of the dynamics. Rings are small ($N\le384$), and the developmental result rests on one model
-\emph{family} --- four sizes within it, and a third lattice size, are now run, so a second
-family is the obvious next requirement. \dn{}'s absolute
+so all claims are properties of the dynamics. Rings are small ($N\le384$); the developmental result rests on one model
+\emph{family} --- four sizes within it, and a third lattice size, are now run, so a second family
+is the obvious next requirement --- and it is measured at one sampling temperature, outside which
+the probe saturates in one direction or the other (\S\ref{sec:dev}). \dn{}'s absolute
 scale is doubly qualified: it moves with $N$ (\S\ref{sec:dev}) and its numerator's coupling is not
 extremal (\S\ref{sec:realgen}), so only its relative behaviour is quoted. Census ground truth is
 synthetic only. \textbf{Statistical scope.} The developmental family is pre-registered with BH-FDR
