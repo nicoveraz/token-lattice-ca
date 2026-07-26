@@ -21,3 +21,13 @@ scratch/
 
 # Note: ckpt/ (0.42M-param checkpoints), data/, results/, and fig/ ARE tracked
 # on purpose — the pilot must be reproducible without retraining.
+
+# LaTeX build artifacts (paper.pdf IS committed; intermediates are not)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.xdv
+paper/*.fdb_latexmk
+paper/*.fls

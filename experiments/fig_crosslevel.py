@@ -1,5 +1,5 @@
 """Figure for the cross-level story (honest negative + calibration). Three panels:
-(1) the instrument is criticality-calibrated on classical CA rules (ordered<edge<chaotic);
+(1) the instrument is criticality-calibrated on classical CA rules (ordered vs rest);
 (2) the cross-model white-vs-black pairing is family-dependent (Pythia + vs GPT-2 -);
 (3) black-box lambda_ca(r) is model-invariant (all models/families overlap) -> no model
 signal to proxy the white-box rho(F_r).
@@ -15,28 +15,34 @@ from mlm_lib import RESDIR
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 cl = json.load(open(f"{RESDIR}/crosslevel.json"))
 rad = json.load(open(f"{RESDIR}/crosslevel_radius.json"))
-eca = json.load(open(f"{ROOT}/results/eca_calib.json"))
+ign = json.load(open(f"{ROOT}/results/eca_ordered_vs_rest.json"))
 
 plt.rcParams.update({"font.size": 11, "axes.titlesize": 11, "figure.dpi": 200})
 fig, ax = plt.subplots(1, 3, figsize=(14, 4.2))
 
-# panel 1: ECA calibration
-grp = [("ordered", [128, 232, 4], "#3a7d44"), ("edge", [110, 54], "#c78a1e"),
-       ("chaotic", [30, 150, 22, 90], "#b0413e")]
+# panel 1: ECA calibration on IGNITION PROBABILITY (F36).
+# Was: lambda_ca with an "ordered < edge < chaotic" title. Both are retracted -- the 3-class
+# ordering fails (p=0.470, F36) and the ordered-group lambda is the estimator's dead-damage
+# floor, not a measurement (F40). A figure that still showed them would contradict the text.
 x = 0; ticks = []; tlab = []
-for gname, rules, c in grp:
-    for rn in rules:
-        v = eca[str(rn)]["lambda_ca"]
-        ax[0].bar(x, v, color=c, width=0.8)
-        ticks.append(x); tlab.append(str(rn)); x += 1
+for gname, c in [("ordered", "#3a7d44"), ("edge", "#c78a1e"), ("chaotic", "#b0413e")]:
+    rules = sorted(ign["groups"][gname]["rules"].items(), key=lambda kv: int(kv[0]))
+    seg0 = x
+    for rn, p_ig in rules:
+        ax[0].bar(x, p_ig, color=c, width=0.8)
+        ticks.append(x); tlab.append(rn); x += 1
+    m = ign["groups"][gname]["mean"]; lo, hi = ign["groups"][gname]["ci95"]
+    ax[0].hlines(m, seg0 - 0.45, x - 0.55, color="k", lw=1.6)
+    ax[0].fill_between([seg0 - 0.45, x - 0.55], lo, hi, color="k", alpha=0.10, lw=0)
     x += 0.6
-ax[0].axhline(0, color="gray", lw=0.8)
-ax[0].set_xticks(ticks); ax[0].set_xticklabels(tlab, fontsize=8)
-ax[0].set_ylabel(r"$\lambda_{ca}$ (token-space Lyapunov)")
+ax[0].set_xticks(ticks); ax[0].set_xticklabels(tlab, fontsize=6.5, rotation=90)
+ax[0].set_ylim(0, 1.05)
+ax[0].set_ylabel("ignition probability (DP order parameter)")
 ax[0].set_xlabel("ECA rule (green=ordered, amber=edge, red=chaotic)")
-gm = eca["_group_means"]
-ax[0].set_title(f"Instrument calibrated on known rules\nordered {gm['ordered']:+.2f} < "
-                f"edge {gm['edge']:+.2f} < chaotic {gm['chaotic']:+.2f}")
+t = ign["tests"]
+ax[0].set_title(f"Instrument calibrated on known rules\nordered vs rest: p={t['ordered_lt_rest_p']:.3f}, "
+                f"d={t['cohens_d_ordered_vs_rest']}\n(edge vs chaotic p={t['edge_lt_chaotic_p']:.2f} — "
+                f"no 3-class ordering)")
 
 # panel 2: cross-model, family-dependent
 def pts(fam):

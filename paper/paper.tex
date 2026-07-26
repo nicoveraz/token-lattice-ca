@@ -1,22 +1,16 @@
-\documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,natbib,xcolor}
+\documentclass{article}
+% NeurIPS 2026 style files are not published yet (media.neurips.cc .../NeurIPS2026/Styles.zip
+% returns 404 as of 2026-07-26); this is the 2025 style, which is the current one. Swap in
+% neurips_2026.sty when it appears -- the geometry is what sets the page count.
+% Anonymous submission: no [final], no [preprint].
+\usepackage{neurips_2025}
+\usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
 \usepackage[T1]{fontenc}
 \graphicspath{{../fig/}}
 \hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black}
 \newcommand{\dn}{\ensuremath{D_{\mathrm{norm}}}}
 \newcommand{\dz}{\ensuremath{D_0}}
-% --- NeurIPS submission: replace the two lines below with
-%     \documentclass{article}\usepackage[final]{neurips_2024}
-%     (drop neurips_2024.sty into the project; the checklist macros are then provided).
-%     Fallback definitions so the checklist compiles under the plain article class:
-\providecommand{\answerYes}[1][]{{\color{blue!60!black}[Yes]} #1}
-\providecommand{\answerNo}[1][]{{\color{red!70!black}[No]} #1}
-\providecommand{\answerNA}[1][]{{\color{gray}[NA]} #1}
-\title{\bfseries A Validated Black-Box Instrument for Language-Model Dynamics:\\ Reproducing Known Metrics with a Token-Lattice Cellular Automaton}
-\author{[Author name(s) and affiliation --- fill before submission]
-  \\ \small Draft --- findings F1--F29 and code in the \texttt{token-lattice-ca} repository}
-\date{\today}
+\title{A Validated Black-Box Instrument for Language-Model Dynamics:\\ Reproducing Known Metrics with a Token-Lattice Cellular Automaton}
 
 \begin{document}
 \maketitle
@@ -544,9 +538,8 @@ little data.
 \includegraphics[width=\linewidth]{crosslevel.png}
 \caption{Cross-level. Left: the instrument is criticality-calibrated---it separates classical
 CA rules whose damage survives from those whose damage dies (ignition probability, ordered
-vs.\ rest $d{=}3.03$). \emph{The left panel plots the superseded $\lambda$ ordering; the
-claim it is cited for is the coarse split, and the finer three-class ordering it appears to
-show does not survive testing ($p{=}0.470$).} Middle: the
+vs.\ rest $p{=}0.0$, $d{=}3.03$; bars are per-rule, black lines group means, shading the
+bootstrap CI). Middle: the
 cross-model pairing is family-dependent (Pythia $r{=}0.71$ vs.\ GPT-2 $r{=}-0.43$; the pooled
 $p{=}0.025$ is a Simpson's-paradox artifact). Right: black-box $\lambda_{\mathrm{ca}}(r)$ is
 model-invariant (all six models, both families, overlap)---pure kinematics, so it carries no
