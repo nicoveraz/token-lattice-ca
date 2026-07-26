@@ -159,8 +159,13 @@ def test_no_unverified_citations_reach_the_bibliography():
     if not bib.exists():
         pytest.skip("refs.bib not present")
     s = bib.read_text()
-    for marker in ("to verify", "TODO", "FIXME", "XXX"):
+    for marker in ("to verify", "TODO", "FIXME", "XXX", "verify author"):
         assert marker not in s, f"refs.bib still contains an unverified entry marker: {marker!r}"
+    # plainnat PRINTS note= fields, so any working annotation ends up in the reference list.
+    # F43 found five such entries; two more were working notes about the cited work itself.
+    assert "note={" not in s, (
+        "refs.bib has a note= field. plainnat prints it into the bibliography, so working "
+        "annotations become visible to reviewers -- move the content elsewhere or delete it.")
 
 
 def test_no_self_identifying_strings_in_the_submission():
