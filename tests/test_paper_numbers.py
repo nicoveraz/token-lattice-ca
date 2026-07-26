@@ -153,6 +153,44 @@ def test_paper_keeps_the_construction_held_fixed_argument():
 
 
 # ------------------------------------------------------------------ submission hygiene
+def test_every_cited_key_resolves():
+    """The guard that would have caught a destroyed refs.bib.
+
+    A regex edit to one entry once matched far past its end and deleted 16 others; the build
+    still "succeeded" and the PDF shipped with [???] in the introduction. tectonic does not
+    fail on unresolved citations, and the log check I was using did not catch it either. This
+    compares the cite keys in the manuscript against the entry keys in the database directly.
+    """
+    import re as _re
+    tex = _tex()
+    bib = ROOT / "paper" / "refs.bib"
+    if not bib.exists():
+        pytest.skip("refs.bib not present")
+    cited = set()
+    for m in _re.finditer(r"\\cite[tp]?\{([^}]*)\}", tex):
+        cited.update(k.strip() for k in m.group(1).split(","))
+    defined = set(_re.findall(r"@[a-zA-Z]+\{([A-Za-z_0-9]+),", bib.read_text()))
+    missing = sorted(cited - defined)
+    assert not missing, (
+        f"{len(missing)} cited key(s) have no bibliography entry and will render as [?]: "
+        f"{missing}")
+
+
+def test_pdf_has_no_unresolved_citation_marks():
+    """Belt and braces: read the built PDF and look for the marks themselves."""
+    import subprocess
+    pdf = ROOT / "paper" / "paper.pdf"
+    if not pdf.exists():
+        pytest.skip("paper.pdf not built")
+    try:
+        txt = subprocess.run(["pdftotext", str(pdf), "-"], capture_output=True,
+                             text=True, timeout=60).stdout
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pytest.skip("pdftotext unavailable")
+    for mark in ("[???]", "[?]"):
+        assert mark not in txt, f"the built PDF contains {mark} -- an unresolved citation"
+
+
 def test_no_unverified_citations_reach_the_bibliography():
     """`plainnat` prints note= fields; 'to verify' must never be printable (F43)."""
     bib = ROOT / "paper" / "refs.bib"
