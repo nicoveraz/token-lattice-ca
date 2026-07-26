@@ -875,6 +875,94 @@ each step — as a genuine reference. (`results/cml_benettin.json`, 5 seeds, 20k
   discrete regime (F30/F31/F35). The rung stays labelled a smooth-limit arithmetic check —
   it is now a *verified* one.
 
+## Literature check — Domany–Kinzel rung (issue #22; no code written yet)
+
+Standing rule: check before you build. This is the report; the rung is not implemented.
+Nothing DK-related exists in the repo (grep: zero hits outside planning prose).
+
+**The prior art is large and settles most of the design.**
+
+- Domany & Kinzel, *Equivalence of cellular automata to Ising models and directed
+  percolation*, PRL 53, 311 (1984); Kinzel, Z. Phys. B 58, 229 (1985). Two-parameter
+  synchronous PCA on a diagonal lattice: `P[1|0,0]=0`, `P[1|0,1]=P[1|1,0]=p1`,
+  `P[1|1,1]=p2`. Implemented with **one uniform `z_i` per site per step**.
+- Martins, de Resende, Tsallis & de Magalhães, PRL 66, 2045 (1991) — first observed damage
+  spreading in DK; split the active phase into "chaotic" and non-chaotic.
+- Zebende & Penna, J. Stat. Phys. 74, 1273 (1994); Kohring & Schreckenberg, J. Phys. I
+  France 2, 2033 (1992); Grassberger, J. Stat. Phys. 79, 13 (1995); Bagnoli, J. Stat. Phys.
+  85, 151 (1996); Hinrichsen, Weitz & Domany, cond-mat/9611085, J. Stat. Phys. 88, 617
+  (1997). Review: Hinrichsen, *Adv. Phys.* 49, 815 (2000), cond-mat/0001070, §5.
+
+**W2 is a published, named problem — not a defect this project invented.** The DK damage
+boundary was shown to *move* when the algorithm coupling the two replicas changes, while a
+single replica is completely insensitive to that choice. Grassberger's verdict, quoted in
+Hinrichsen's review:
+
+> "it is misleading to speak of different phases in the DK automaton, ... instead these are
+> different phases for very specific algorithms for simulating pairs of such automata"
+
+Hinrichsen–Weitz–Domany's resolution: restrict to the family of couplings that leave
+single-replica dynamics and its symmetries intact, then classify a point by how the *whole
+family* behaves — damage spreads for all couplings (phase 1), heals for all (phase 2), or
+spreads for some and heals for others (phase 3). Under that definition the DK active phase
+has **three** sub-phases, and boundaries `B_max`/`B_min` bracket the coupling-dependent
+region. **This is exactly the right frame for our W2 disclosure**, and it upgrades the
+statement from "we picked a coupling" to "damage spreading is a property of (model,
+coupling); here is which member of the family CRN is."
+
+**Which member is CRN? The maximally-correlated one — by construction, not by choice.**
+HWD parametrise couplings by correlations `α̃ = <r01 r11>`, `β̃ = <r01 r10>`; drawing a
+single `z` per site and thresholding it against every probability gives
+`α̃ = min(p1,p2)`, `β̃ = p1`, which they name *maximal correlation*. Our lattice draws one
+uniform per site per sweep, shared by both twins, and samples by inverse CDF — that is
+literally eq. (21) of HWD. Larger correlation ⇒ smaller damage, so **CRN sits on the
+damage-minimising edge of the family**, `B_max`. Every damage number in this repo is a
+lower bound over the admissible couplings. That is a sharper and more defensible statement
+than the current disclosure.
+
+**The rung has an exact, statistics-free anchor** (Kohring & Schreckenberg; extended by
+HWD §IV A). On the `p2 = 0` line the damage field is *itself* a DK automaton at the same
+`p1`. Derivation: with `p2=0`, `s'_i = (s_{i-1} ⊕ s_{i+1})·θ(p1 − z_i)`, so for CRN twins
+
+    d'_i = s'_i ⊕ t'_i = θ(p1 − z_i)·[(a⊕c) ⊕ (b⊕d)] = θ(p1 − z_i)·(d_{i-1} ⊕ d_{i+1})
+
+**Verified numerically** (scratch, pure numpy, N=512, 400 steps, p1 ∈ {0.3, 0.6, 0.8087,
+0.95}): `max |(a XOR b) − DK(d)| = 0` at every site and step. Off the line the identity
+breaks as it must — control at (p1,p2)=(0.6,0.5) gives 15 mismatching sites.
+
+This is worth more than a critical-point comparison: it makes the DK rung a **bit-exact
+golden test of the entire CRN damage machinery** (window indexing, shared-uniform
+consumption order, inverse-CDF sampling, sync update) with no error bars, in the same style
+as `tests/test_golden.py`. A critical-point check can only ever agree to ~1%.
+
+**Published numbers available as anchors.**
+
+| quantity | value | note |
+|---|---|---|
+| site DP (`p1=p2`) | 0.705489(4) | density transition; 7 digits |
+| bond DP | p1=0.6447001(1), p2=0.8737620(2) | density transition; 7 digits |
+| compact DP | (1/2, 1) | exactly solvable |
+| W18 line (`p2=0`) | 0.801(2) (Zebende–Penna) vs **0.8087(5)** (HWD) | ~1% spread — a *loose* anchor, quote both |
+| DK triple point | p1=0.744(10), p2=0.526(10) | terminus of the coupling-dependent region |
+| DP density exponent β | 0.277(1) | HWD measured 0.279(10)–0.302(30) for damage |
+
+The `p2=0` disagreement is real and should be reported as a range, not collapsed to one
+number. The tight anchors are *density* transitions, which coincide with the damage
+transition only on the `p2=0` line (by the mapping above) — so they validate the
+survival-probability estimator, not the coupling.
+
+**Design consequences (supersedes the sketch in issue #22).**
+1. Primary deliverable is the **exact XOR identity as a bit-identical test**, not a
+   critical-point estimate. Cheap, deterministic, and it tests the machinery the LM numbers
+   actually depend on.
+2. Secondary: `P_ignite` vs `p1` along `p2=0` and along the site-DP line, against the table
+   above — the shared DP order parameter F34/F36 established.
+3. `src/lattice.py` needs **no changes**: DK is a `Rule` whose `probs` reads positions 0 and
+   2 of an `r=1` symmetric window and ignores the centre, run in existing `mode="sync"`.
+   `N` must be even (the diagonal lattice decouples into two sublattices under a plain ring).
+4. Nothing here has been done for language models — no prior work found applying DK-style
+   damage spreading to LM token dynamics. The rung is a validation instrument, not a claim.
+
 ## Audit ledger — verdicts on every reviewer objection (W1–W9)
 
 Status of each objection in `paper/REVIEW.md` as of Phase 3. "Resolved" means the paper no
@@ -884,7 +972,7 @@ objection is still live and is disclosed rather than fixed.
 | # | Objection | Verdict |
 |---|---|---|
 | W1 | Capacity claim pseudoreplicated (n=2 seeds) | **Resolved by retraction + re-test.** Capacity dropped from the paper entirely; the surviving headline is being re-tested at 8 seeds × 2 lattice sizes (`dev_transition_phase3.py`). |
-| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. The DK rung (Phase 2.2) is what would establish that the coupling choice is load-bearing rather than incidental. |
+| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. **Sharpened by the DK literature check:** coupling-dependence of damage boundaries is a known, named result (Kohring–Schreckenberg 1992; Grassberger 1995), and Hinrichsen–Weitz–Domany 1997 give the standard resolution — classify by the behaviour of the whole admissible coupling family. Our CRN is provably their *maximal-correlation* member, so our damage numbers are a **lower bound** over that family. The disclosure can now cite prior art and state a direction, instead of only conceding. |
 | W3 | λ "model-invariance" rests on one saturated cell (off-cell spread 24–46%) | **Resolved by retraction.** Verified: (r=8,T=0.7) spread 24%, (r=1,T=0.7) 46% and reversed. The kinematics⊥stability decomposition is withdrawn from the paper. F31 adds the deeper reason the cross-level pairing was ill-posed: λ_top is a *tangent-space* quantity and λ_ca a *finite* one. |
 | W4 | AR "consistent joint" overstated; bimodal T-pooling | **Resolved for surviving claims.** The paper now says both constructions are windowed, in-place-resampled rings — neither samples the model's joint. The bimodal pooling affected the AR *capacity* numbers, which were dropped with the capacity claim, so it no longer touches anything the paper asserts. |
 | W5 | Census near floor on real models (0.02–0.04 vs an out-of-training proxy) | **Stands, scoped.** Quantitative recovery is claimed **only** on the synthetic toy; the real-model numbers are reported as near-floor. The real fix (Pythia vs the Pile) is tracked as issue #6 under *Future work*. |
