@@ -396,6 +396,24 @@
   "kind": "published"
  },
  {
+  "literal": "1.0",
+  "source": "Biderman et al. 2023 (arXiv:2304.01373 Tab. 1); EleutherAI model cards",
+  "derivation": "Pythia learning-rate mantissa 1.0e-3/e-4 -- cited constant, not measured",
+  "kind": "published"
+ },
+ {
+  "literal": "6.0",
+  "source": "Biderman et al. 2023 (arXiv:2304.01373 Tab. 1); EleutherAI model cards",
+  "derivation": "Pythia learning-rate mantissa 6.0e-3/e-4 -- cited constant, not measured",
+  "kind": "published"
+ },
+ {
+  "literal": "3.0",
+  "source": "Biderman et al. 2023 (arXiv:2304.01373 Tab. 1); EleutherAI model cards",
+  "derivation": "Pythia learning-rate mantissa 3.0e-3/e-4 -- cited constant, not measured",
+  "kind": "published"
+ },
+ {
   "literal": "0.042",
   "source": "design",
   "derivation": "1/4! -- smallest attainable permutation p at 4 groups",

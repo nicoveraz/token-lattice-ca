@@ -328,7 +328,15 @@ def test_every_manifest_number_is_backed_by_an_existing_source():
             assert src == "design", f"{m['literal']}: arithmetic entries must cite 'design'"
             continue
         if kind == "published":
-            assert (ROOT / src.split()[0]).exists(), f"{m['literal']}: {src} absent"
+            # A published value is either recorded in a repo module (e.g. src/dk.py ANCHORS)
+            # or cited to an external source. The latter must carry a resolvable identifier --
+            # an arXiv id or DOI -- so "published" cannot become a way to launder a number with
+            # no provenance at all.
+            in_repo = (ROOT / src.split()[0]).exists()
+            cited = bool(re.search(r"arXiv:\d{4}\.\d{4,5}|doi\.org/|10\.\d{4,}/", src))
+            assert in_repo or cited, (
+                f"{m['literal']}: published source {src!r} names neither a repo file nor a "
+                f"resolvable citation identifier")
             continue
         # measured: may name one file, or a brace set of files that all must exist
         names = ([src] if "{" not in src else

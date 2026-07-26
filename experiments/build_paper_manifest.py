@@ -179,6 +179,15 @@ from dk import ANCHORS as _A
 add(str(_A["site_dp"]["p1"]), "src/dk.py ANCHORS", _A["site_dp"]["ref"], kind="published")
 add(str(_A["w18_zp"]["p1"]),  "src/dk.py ANCHORS", _A["w18_zp"]["ref"],  kind="published")
 add(str(_A["w18_hwd"]["p1"]), "src/dk.py ANCHORS", _A["w18_hwd"]["ref"], kind="published")
+# --- Pythia learning rates: cited constants, not our measurements ------------
+# The C20 paragraph reports these to disclose that LR is confounded with size across the suite.
+# Verified against the official model card, which also states the batch size is held at 2M
+# (2,097,152) tokens for every size -- which is what makes the checkpoint grids comparable.
+for _lr in ("1.0", "6.0", "3.0"):
+    add(_lr, "Biderman et al. 2023 (arXiv:2304.01373 Tab. 1); EleutherAI model cards",
+        f"Pythia learning-rate mantissa {_lr}e-3/e-4 -- cited constant, not measured",
+        kind="published")
+
 # --- arithmetic consequences of the design ---------------------------------
 import math as _m
 add(f(1.0 / _m.factorial(4), 3), "design", "1/4! -- smallest attainable permutation p at 4 groups",
