@@ -924,6 +924,44 @@ published boundary rather than an analogy.
   does not absorb an injected token error. A correct instrument can still be pointed at a
   process whose numbers do not transfer.
 
+### F39 — *reserved* for the completed Phase 3 developmental re-test
+
+`experiments/dev_transition_phase3.py` was still running (65/96, N=96 arm) when F40 was
+written. The slot is held so the developmental result keeps the number it was promised.
+
+### F40 — the ordered-group λ is an estimator floor, not a measurement (Phase 4.1)
+
+Found while auditing the paper against `results/`, not by a reviewer.
+
+- Five of the seven ordered ECA rules (0, 8, 32, 128, 160) report
+  `lambda_all = -0.9210340371976184` in **both** `eca_calib_hardened.json` (as `mean`) and
+  `eca_calib_ignition.json`, with `sd = 1.2e-16` and a **zero-width** bootstrap CI
+  `[-0.921, -0.921]`. All five have `n_seeds_ignited = 0`.
+- That value is exactly **−0.4·ln 10**, and the mechanism is now traced: `lyap_from_cone`
+  clamps the damage count at `1e-6` before taking a log, so a cone whose damage dies
+  immediately gives the fitted sequence `[1, 1e-6, 1e-6, …]`, and the least-squares slope
+  over the default 9-point window is a **constant** — independent of rule, seed, model and
+  lattice size. Reproduced directly:
+  `lyap_from_cone(dead_cone, 64) → -0.9210340371976186`.
+- **Consequence:** the ordered group mean of **−0.32 is 5/7 a constant**. Any "ordered <
+  edge < chaotic" ordering built on it is partly arithmetic rather than measured. This is an
+  independent second reason the three-class ordering had to go, on top of its failing the
+  significance test (F33 λ_all p=0.17; F36 P_ignite p=0.470).
+- **Fix landed.** `experiments/lyapunov.py` now names `DAMAGE_CLAMP` and
+  `DEAD_DAMAGE_FLOOR` with the derivation in a comment, and exports
+  `is_dead_damage_floor(lam)` so callers can exclude the sentinel before averaging. The
+  returned values are **unchanged** — verified — so no downstream number moves; this is
+  documentation plus a predicate, not a behaviour change.
+- The paper now states this explicitly where it previously quoted the λ ordering, and reports
+  the coarse split on ignition probability instead.
+
+**Related quoting hazard, also fixed.** `eca_calib_ignition.json`'s *ordered* p-values are
+NaN-comparison artifacts: `lambda_cond` is `NaN` for every rule with `n_seeds_ignited = 0`,
+so comparisons against it are meaningless. They must not be quoted anywhere. Three different
+edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.0665 (λ|ignited),
+**0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
+most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

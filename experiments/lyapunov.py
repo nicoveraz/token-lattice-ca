@@ -18,6 +18,27 @@ RS = [1, 2, 4, 8, 16]
 TS = [0.7, 0.9]
 SEEDS = [21, 22]
 
+# --- the estimator's numerical floor ---------------------------------------------------
+# `lyap_from_cone` clamps the damage count at DAMAGE_CLAMP before taking a log. When damage
+# dies immediately -- one damaged site at t=0 and nothing after -- the fitted sequence is
+# [1, eps, eps, ...] and the least-squares slope over the default 9-point window is a
+# CONSTANT, independent of rule, seed, model and lattice size:
+#
+#     DEAD_DAMAGE_FLOOR = -0.4 * ln(10) = -0.9210340371976...
+#
+# It is a sentinel meaning "damage never ignited", NOT an estimated exponent. Five of the
+# seven ordered rules in results/eca_calib_hardened.json sit exactly on it with a zero-width
+# bootstrap interval, which is why the ordered-group mean lambda must never be reported as a
+# measured exponent (see findings F40). Use `is_dead_damage_floor` to detect and exclude it;
+# the DP-class order parameter for those runs is the ignition probability, not lambda.
+DAMAGE_CLAMP = 1e-6
+DEAD_DAMAGE_FLOOR = -0.4 * np.log(10)
+
+
+def is_dead_damage_floor(lam, tol=1e-9):
+    """True if `lam` is the never-ignited sentinel rather than a measured exponent."""
+    return bool(np.isfinite(lam) and abs(float(lam) - DEAD_DAMAGE_FLOOR) < tol)
+
 
 def lyap_from_cone(cone, N, sat_threshold=3.5, frac_of_max=0.5, max_sweeps=8, min_sweeps=3,
                    fit_window=None):
@@ -44,8 +65,11 @@ def lyap_from_cone(cone, N, sat_threshold=3.5, frac_of_max=0.5, max_sweeps=8, mi
         the data-dependent branch.
 
     Returns (lambda_per_sweep, dmax_fraction_of_N).
+
+    NOTE: a returned lambda equal to DEAD_DAMAGE_FLOOR is the never-ignited sentinel, not a
+    measurement -- test it with `is_dead_damage_floor` before averaging.
     """
-    d = np.maximum(cone.sum(axis=1), 1e-6)               # expected damaged sites
+    d = np.maximum(cone.sum(axis=1), DAMAGE_CLAMP)       # expected damaged sites
     dmax = d.max()
     if fit_window is not None:                            # pre-registered: no data-dependence
         start, end = fit_window

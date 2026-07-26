@@ -28,9 +28,12 @@ with common-random-number (CRN) damage spreading as the probe---and develop it i
 \emph{validated} black-box measurement instrument. The central move is \textbf{validation by
 reproduction}: before measuring a language model, the instrument recovers established
 dynamical metrics on systems where they are known. Its CRN damage-spreading estimator
-recovers the ordered/edge/chaotic criticality classes of elementary CA rules, the
-damage-spreading boundary of a stochastic discrete PCA with a published phase diagram, and---
-through its attractor census---the known transition matrices of synthetic Markov sources
+separates elementary CA rules whose damage survives from those whose damage dies (ignition
+probability, Cohen's $d{=}3.0$); reproduces the damage-spreading boundary of a stochastic
+discrete PCA with a published phase diagram to $0.06\%$, and---on the line where that model's
+damage field is provably the automaton itself---\emph{bit-exactly}, giving the apparatus a
+calibration with no error bar attached; and---through its attractor census---recovers the
+known transition matrices of synthetic Markov sources
 (self-recovery total-variation $0.22$ vs.\ cross $0.95$). We are explicit about what the
 smooth-limit rungs do and do not establish: a renormalized tangent estimator reproduces the
 logistic map's analytic Lyapunov exponent to $O(\epsilon)$, but that agreement is a property
@@ -40,7 +43,8 @@ instrument. Every measurement is certified against apparatus
 confounds by an exact-zero-null CRN protocol and attributed at the level of \emph{statistics},
 not trajectories. Applied to trained LMs, the validated instrument yields black-box
 criticality measurements not otherwise available from weights-free access: a \textbf{token-space
-Lyapunov exponent} and a diversity-controlled \textbf{damping length} of generation, an
+Lyapunov exponent} and a diversity-controlled \textbf{damping length} of the token-lattice
+construction, an
 \textbf{effective interaction radius} at which the model builds structure ($r{\approx}4$), a
 model-invariant \textbf{damage light cone}, and an \textbf{attractor census} of internalized
 structure. Finally we map a \emph{boundary}: a controlled cross-level study (two model
@@ -69,8 +73,9 @@ away.
 This paper's organizing principle is \textbf{validation by reproduction}. We build the
 instrument---a token-lattice CA with CRN damage spreading (\S\ref{sec:instrument})---and,
 before turning it on a language model, show that it recovers \emph{known} dynamical metrics
-on systems where the answer is established (\S\ref{sec:validation}): the criticality classes
-of elementary CA rules, a stochastic PCA's published damage-spreading boundary, the known
+on systems where the answer is established (\S\ref{sec:validation}): a decisive
+survives-vs-dies criticality split among elementary CA rules, a stochastic PCA's published
+damage-spreading boundary (bit-exactly, where an exact mapping exists), the known
 transition matrices of synthetic Markov sources, and---as explicitly labelled smooth-limit
 arithmetic checks---the logistic map and a coupled-map lattice. An instrument that reproduces exact values on known systems can be
 \emph{trusted} on an unknown one. Only then do we report the new, weights-free measurements it
@@ -157,16 +162,25 @@ $1.1\times10^{-3}$); the exponent is non-monotone in coupling, with a minimum ne
 $\epsilon\!\approx\!0.3$. This estimator also renormalizes, so it inherits the caveat above; it extends the
 arithmetic to a spatially-extended system but not to discrete state.
 
-\textbf{(3) Elementary CA criticality classes.} Driving the identical damage-spreading
-estimator (async updates, CRN twins, \texttt{lyap\_from\_cone}) with classical elementary CA
-rules of \emph{known} class recovers the criticality ordering: group-mean $\lambda_{\mathrm
-{ca}}$ is $-0.32$ (ordered: Rules 128/232/4) $<$ $+0.19$ (edge/complex: 110/54) $<$ $+0.26$
-(chaotic: 30/150/22). The discriminating quantity is the \emph{ignition probability}---the
-fraction of lattices in which a single-site flip survives at all (ordered $0.05$ vs.\ edge
-$0.67$, chaotic $0.68$)---rather than $\lambda$ itself: damage in a discrete CA is bimodal,
-so a $\lambda$ averaged over ignited and extinguished runs measures the mixture. Conditional
-on ignition, edge and chaotic do not separate ($p{=}0.07$), so we claim only the coarse
-ordered-vs-rest split.
+\textbf{(3) Elementary CA criticality classes: a coarse split, decisively.} Driving the
+identical damage-spreading protocol (async updates, CRN twins) with classical elementary CA
+rules of \emph{known} class (19 rules $\times$ 12 seeds, rule as the unit of analysis)
+separates the rules whose damage \emph{survives} from those whose damage \emph{dies}. The
+discriminating quantity is the \textbf{ignition probability}---the fraction of lattices in
+which a single-site flip survives at all---not $\lambda$: damage in a discrete CA is bimodal,
+so a $\lambda$ averaged over ignited and extinguished runs measures the mixture. Ignition
+probability is also the physically correct object, being the order parameter of the
+directed-percolation class to which damage spreading in discrete CA belongs
+\citep{grassberger1995}. Measured on it, ordered rules sit at $0.046$ (bootstrap CI
+$[0.000,0.102]$) against $0.668$ (edge) and $0.682$ (chaotic): \textbf{ordered vs.\ rest
+$p{=}0.0$, Cohen's $d{=}3.03$}. The finer three-class ordering does \emph{not} survive---edge
+vs.\ chaotic gives $p{=}0.470$---so we claim only the coarse split. We report this rather than
+the group-mean $\lambda$ ordering we first computed, for two reasons: that ordering was not
+significant edge-vs-chaotic ($p{=}0.17$ on the same statistic), and its ordered-group mean is
+not a measurement at all. Five of seven ordered rules return exactly $-0.4\ln 10$ with a
+zero-width interval---the value the log-linear fit takes when damage dies immediately and the
+cone is clamped at the estimator's numerical floor (\texttt{DEAD\_DAMAGE\_FLOOR}), identical
+across rule, seed and lattice. A group mean built from it is arithmetic, not an exponent.
 
 \textbf{(4) Synthetic Markov sources (known transition matrices).} The instrument's attractor
 census, run on tiny models trained on three synthetic first-order Markov sources with known
@@ -214,8 +228,10 @@ $\epsilon$ is not infinitesimal.}\label{fig:eps}
 (1) logistic-map Lyapunov---a \emph{smooth-limit arithmetic unit test} (the tangent estimator
 is renormalized, so its agreement is an $O(\epsilon)$ limit property, not evidence about
 damage spreading; see Fig.~\ref{fig:eps}); (2) coupled-map-lattice finite-size Lyapunov
-($\ln 2$ uncoupled, known coupling reduction); (3) elementary-CA criticality classes
-(ordered $<$ edge $<$ chaotic); (4) the census recovering known Markov transition matrices
+($\ln 2$ uncoupled, known coupling reduction); (3) elementary-CA criticality, where the
+instrument separates rules whose damage survives from rules whose damage dies (ignition
+probability, ordered vs.\ rest $d{=}3.03$; the finer three-class ordering does \emph{not}
+survive, $p{=}0.470$); (4) the census recovering known Markov transition matrices
 (self-TV $\approx0.22$ vs.\ cross $\approx0.95$).}\label{fig:ladder}
 \end{figure}
 
@@ -307,7 +323,9 @@ admissible couplings}---a bounded statement rather than an open caveat.
 
 Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius: the
 token-space damping length shortens as the window widens. This is the measurement we
-report---a diversity-controlled, weights-free error-persistence length of generation. A
+report---a diversity-controlled, weights-free error-persistence length \textbf{of the
+token-lattice construction}. That attribution is deliberate and is the subject of
+\S\ref{sec:realgen}: it is \emph{not} a property of free generation. A
 capacity-linked gap does appear among masked models (mean \dn{} tiny $0.672<$ mini
 $0.880\approx$ base $0.904$), but we \emph{do not build on it}: it rests on two seeds and one
 toy family, the only clean separation is tiny $\ll$ \{mini,\,base\}, and an earlier
@@ -317,6 +335,41 @@ decomposition, which held only at the single grid cell where the early Lyapunov 
 saturates. Whether capacity sets a stability$\leftrightarrow$expressiveness axis
 \citep{bertschinger2004real,edgeofchaos2024} is left open, pending a seed-level rebuild; the
 damping length itself stands as a measurement independent of that question.
+
+\subsection{What the damping length measures: free generation absorbs nothing}\label{sec:realgen}
+The instrument's central assumption---that a number measured on the ring says something about
+the model---is one we tested rather than assumed, by running the identical damage protocol on
+\emph{real autoregressive generation}. From a prompt we generate two CRN twins sharing one
+uniform stream, force a different token at one position in one twin, and let both continue
+freely. The null arm (no injection) is asserted to diverge by exactly zero, and does.
+
+The result is unambiguous and negative: on \texttt{pythia-70m}, \texttt{-160m} and
+\texttt{-410m} (32 trials each), the injected error \textbf{persists in every single trial}
+($P_{\text{persist}}{=}1.000$, $P_{\text{reconverge}}{=}0.000$, mean divergence fraction
+$0.94$--$0.96$). Token identity is a harsh readout after an injection shifts alignment, so we
+also measured distributionally: the total-variation distance between the twins' next-token
+distributions, normalized by the TV between two \emph{independent} continuations of the same
+prompt, settles at $\mathrm{TV_{norm}}{\approx}0.97$---the twins end as far apart as two
+unrelated continuations.
+
+The mechanism is structural, not a property of any particular model. \textbf{Free generation
+never resamples a token}: once emitted, an error stays in context permanently. The ring CA
+revisits every site, and in-place resampling is precisely what creates the possibility of
+healing. So the damping length, \dn{} and the light cone characterise \emph{the iterated
+resampling construction}---they are not predictions about autoregressive decoding, and we do
+not offer them as such. This retroactively explains three otherwise-puzzling results: the
+light-cone velocity that depends on $r$ but not the model, the model-invariance of
+$\lambda_{\mathrm{ca}}(r)$, and the structural failure of the cross-level proxy
+(\S\ref{sec:crosslevel}).
+
+\textbf{What this does and does not cost the paper.} It removes any reading of these
+quantities as error-correction in deployed decoding. It does \emph{not} touch the
+developmental result, and the reason is worth stating explicitly: the construction is held
+\emph{fixed} across checkpoints---same ring, same radius, same temperature, same coupling,
+same seeds---so a change measured across checkpoints cannot come from the apparatus. It is
+attributable to the model. A fixed instrument giving different readings on different models is
+exactly what an instrument is for; what F35 forbids is transporting the reading's units to a
+process the instrument does not implement.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{repair_scale.png}
@@ -415,9 +468,9 @@ token-space instrument does \emph{not} robustly proxy activation-space criticali
 \textbf{The instrument separates ordered from chaotic rules.} Driving the same
 damage-spreading estimator (async, CRN, single-site flip) with 19 classical Elementary CA
 rules of \emph{known} class over 12 seeds, the rule-level bootstrap separates ordered from
-chaotic decisively ($p<10^{-4}$), while edge-vs-chaotic does not separate ($p{=}0.07$); we
-therefore claim only the coarse split. The discriminating quantity is the \emph{ignition
-probability} (ordered $0.05$; edge $0.67$; chaotic $0.68$), because single-site damage is
+the rest decisively ($p{=}0.0$, Cohen's $d{=}3.03$), while edge-vs-chaotic does not separate
+($p{=}0.470$); we therefore claim only the coarse split. The discriminating quantity is the
+\emph{ignition probability} (ordered $0.046$; edge $0.668$; chaotic $0.682$), because single-site damage is
 bimodal---it either ignites or dies---so a $\lambda$ averaged over both populations measures
 the mixture rather than a growth rate. This is the criticality-side analog of the census
 calibration, at the resolution the data support.
@@ -466,8 +519,11 @@ little data.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{crosslevel.png}
-\caption{Cross-level. Left: the instrument is criticality-calibrated---$\lambda_{\mathrm{ca}}$
-recovers the known ordered$<$edge$<$chaotic class ordering of classical CA rules. Middle: the
+\caption{Cross-level. Left: the instrument is criticality-calibrated---it separates classical
+CA rules whose damage survives from those whose damage dies (ignition probability, ordered
+vs.\ rest $d{=}3.03$). \emph{The left panel plots the superseded $\lambda$ ordering; the
+claim it is cited for is the coarse split, and the finer three-class ordering it appears to
+show does not survive testing ($p{=}0.470$).} Middle: the
 cross-model pairing is family-dependent (Pythia $r{=}0.71$ vs.\ GPT-2 $r{=}-0.43$; the pooled
 $p{=}0.025$ is a Simpson's-paradox artifact). Right: black-box $\lambda_{\mathrm{ca}}(r)$ is
 model-invariant (all six models, both families, overlap)---pure kinematics, so it carries no
@@ -562,15 +618,17 @@ the validated-instrument contribution.
 The contribution of this paper is a \emph{validated} black-box instrument. Its organizing
 principle---validation by reproduction---is what separates it from the qualitative
 iterated-LLM literature: before measuring a language model, the CA/damage-spreading apparatus
-recovers the criticality classes of elementary CA rules and the known transition matrices of
-synthetic Markov sources---the rungs that share its regime of discrete state and finite
-perturbation---while the smooth-limit logistic and coupled-map rungs are retained, and
+separates elementary CA rules by whether damage survives, reproduces a stochastic PCA's
+published damage-spreading boundary---bit-exactly on the line where an exact mapping
+exists---and recovers the known transition matrices of synthetic Markov sources: the rungs
+that share its regime of discrete state and finite
+perturbation, while the smooth-limit logistic and coupled-map rungs are retained, and
 labelled, as arithmetic unit tests whose agreement is an $O(\epsilon)$ limit property
 (\S\ref{sec:validation}). An instrument that recovers what is independently known, and that
 is explicit about which of its checks are load-bearing, can be trusted on what is not. Pointed at
 trained LMs, it then yields weights-free measurements a next-token evaluation does not
 (\S\ref{sec:lm}): a token-space Lyapunov exponent and a diversity-controlled damping length of
-generation, an effective interaction radius ($r{\approx}4$), a model-invariant damage light
+the lattice construction, an effective interaction radius ($r{\approx}4$), a model-invariant damage light
 cone, and an attractor census of internalized structure---each certified by the exact-zero-null
 CRN protocol and, where ground truth exists, calibrated against it. We also draw the
 instrument's \emph{boundary} (\S\ref{sec:crosslevel}): a controlled cross-level study returns a
@@ -591,8 +649,9 @@ precisely how far this black-box reading can and cannot substitute for internals
 internalized \citep{hanson1997computational}. (iii)~The effective interaction radius
 ($r\!\approx\!4$) can be correlated with attention-head span or induction heads to link a
 black-box observable to mechanism. (iv)~CRN damage cones are a causal-influence map over
-token positions, and the damping length bounds how far a single-token error propagates before
-absorption---relevant to error attribution and hallucination. (v)~The training-time
+token positions. We deliberately do \emph{not} offer the damping length as a bound on error
+propagation in deployed decoding: \S\ref{sec:realgen} shows free generation absorbs no
+injected token error at all. (v)~The training-time
 trajectory (F25) is a phase-change detector across checkpoints for developmental
 interpretability. \emph{Extensions of the same validated method.} (vi)~A second,
 \emph{compositional-complexity} axis---an effective-rule-complexity or assembly-theoretic
