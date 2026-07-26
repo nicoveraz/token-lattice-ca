@@ -86,27 +86,38 @@ bounds it (C16–C18).
 
 ---
 
-## 4. Cut ledger
+## 4. Cut ledger — CLOSED
 
-Body went 13 pages → ~6. Done: dropped 7 of 9 figures; Related work 615→200 words;
-Conclusion 645→130; Reproducibility → appendix; AR port and crossover sections cut to a
-clause; **removed a verbatim duplicated paragraph** (the radius law appeared twice, lines
-253–270 of the old file).
+Body went **13 pages → 5**. The fit is verified by
+`tests/test_paper_numbers.py::test_body_fits_the_page_limit`, which locates the References
+heading and asserts the body ends before it, and by `test_the_style_file_in_use_is_recorded`,
+which pins the `.sty` the guarantee refers to. It is no longer a hand-checked property.
 
-Remaining ~1 page to find, in preference order:
+**What was cut**, in the order it went:
 
-1. §7 cross-level → 3 sentences. It is a *negative* and does not need its full argument;
-   the retraction detail lives in `findings.md`.
-2. §6 "Other readings" → delete entirely, fold the radius law into §2 as one clause. The
-   light cone is already in the ladder figure's regime discussion.
-3. Merge §2 (instrument) into §1's last paragraph.
-4. Figures to `0.9\linewidth`.
+| cut | from → to |
+|---|---|
+| figures | 9 → 2 |
+| Related work | 615 → ~180 words, every "we do not claim" disclaimer kept |
+| Conclusion | 645 → merged into Responsible use as its closing sentence |
+| Reproducibility | body → appendix |
+| AR port, crossover | full subsections → one clause |
+| "Other readings" | own section → two clauses folded into §2 |
+| cross-level | full argument → one paragraph |
+| a **duplicated paragraph** | the radius law appeared verbatim twice — never compiled, so never seen |
 
-**Do not cut:** C1's sentence, the C18 coupling correction (compress, never disappear — it
-corrects a claim that was public in the repo), the construction-held-fixed argument,
-the responsible-use statement once written.
+**What survived deliberately, and must not be cut to buy space:** the DK Part A sentence
+(bit-exact, zero mismatching cells, nonzero off-line control); the coupling correction with its
+replica-independence justification; the construction-held-fixed argument that licenses the
+developmental claim despite F35; the responsible-use section; and the F42 clause stating that
+λ statistics exclude unignited runs with *n* stated.
 
----
+**Remaining space, if any is needed:** the cross-level section (§6) is the only remaining
+candidate — 12 lines for a *negative* whose full argument lives in `findings.md`. That is the
+budget the C20 decision (issue #44) draws on if the 4-size scale replication goes in.
+
+**Live risk:** the fit is a property of `neurips_2025.sty`. The 2026 style is unpublished and its
+geometry sets the page count — issue #55, hard stop Aug 26.
 
 ## 5. Decisions log
 

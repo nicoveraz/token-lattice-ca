@@ -61,3 +61,32 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
                      D_norm: 0.5689 / 0.3062 / 0.1393   ratios 1.858, 2.198   (1/N would be 2.000, 2.000)
 
 wrote /Users/nicoveraz/Documents/GitHub/textca/results/dev_transition_n192.json
+
+=== SUPERSEDING ANALYSIS (re-run 2026-07-26T14:25:03Z) ===
+The analysis block above was written by the job's own process, which had imported
+dev_transition_n192.py BEFORE the F42 ignition filter was added -- so it averaged
+lambda over runs where damage never ignited and reported a DOWNGRADE that is a pure
+artifact. The block below is the same analysis re-run against the same cached runs
+under the current code. See findings F45 and issue #46.
+
+N=192 developmental cell: 24 runs (3 ckpts x 8 seeds)
+PRE-REGISTERED: D_norm plateau [0.142, 0.153] if 1/N, >=0.25 if intensive; lambda_ca [0.148, 0.188]
+
+=== ignition per cell (F42): lambda is UNDEFINED for unignited runs ===
+       step256: 6/8 ignited   DISCARDED lambdas [-1.71303, -0.99427]
+       step512: 5/8 ignited   DISCARDED lambdas [-0.03978, -0.07899, -0.99427]
+    step143000: 7/8 ignited   DISCARDED lambdas [-0.99427]
+
+=== N=192 result vs the pre-registered predictions (IGNITED runs only) ===
+   lambda_ca  pre +0.0597 (n=11) -> plateau +0.1596 (n=7, sd 0.0162, se 0.0061)
+              rank test on ALL runs (ranks do not depend on a dead run's magnitude): p=1.04e-01
+      D_norm  pre +0.0487 (n=16) -> plateau +0.1393 (n=8, sd 0.0626, se 0.0221)
+              rank test on ALL runs (ranks do not depend on a dead run's magnitude): p=6.62e-03
+
+  D_norm  = 0.1393  -> NEITHER prediction -- reported as such, not rounded to one
+  lambda_ca = 0.1596  -> lambda_ca INVARIANT across a 4x size range
+
+  three-size levels  lambda: 0.1683 / 0.1686 / 0.1596
+                     D_norm: 0.5689 / 0.3062 / 0.1393   ratios 1.858, 2.198   (1/N would be 2.000, 2.000)
+
+wrote /Users/nicoveraz/Documents/GitHub/textca/results/dev_transition_n192.json
