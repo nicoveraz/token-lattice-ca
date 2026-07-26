@@ -72,6 +72,9 @@ suite, because every damage number depends on it. \textbf{Confounds.} A lattice 
 $n$-gram scores overlap for free, so structure uses a repetition-robust variant; a degenerate
 low-entropy lattice snaps a perturbation back trivially, so damage $D$ is normalised by the model's
 own diversity floor \dz{} (twins under \emph{independent} noise, no flip), giving $\dn{=}D/\dz$.
+Numerator and denominator necessarily use different couplings --- a floor sharing the numerator's
+coupling is identically zero, because identical twins stay identical --- but the cost is bounded:
+sweeping the fraction of shared draws from $0$ to $0.9$ moves \dn{} by $4\%$.
 A free control disciplines our language: the temperature ``phase transition'' is, on a finite-size
 scan, a \emph{crossover} ($\chi_{\mathrm{peak}}\propto1/N$). Two further readings, reported here
 because \S\ref{sec:realgen} bounds what they mean: an \textbf{effective interaction radius}, where

@@ -969,6 +969,52 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
+### F48 — W2's floor objection is bounded at 4%, and the CRN floor is an isolated point (closes #34)
+
+`experiments/floor_decorrelation.py` → `results/floor_decorrelation.json`. pythia-160m,
+5 seeds, α = probability the two replicas share a uniform draw.
+
+**#34 as filed was ill-posed and this is the version that can be run.** It proposed replacing
+D_norm's independent-noise denominator with a CRN-null floor or a maximal-coupling floor. Both are
+**structurally zero**: the floor's twins start identical with no flip, so `p == q` at every site,
+and any coupling with `P(X=Y)=1` at `p == q` keeps identical twins identical forever (verified at
+|V| = 2, 8, 30522 — maximal and monotone agreement both exactly 1.000000). So the coupling mismatch
+W2 objects to is **unavoidable**, not a choice. What is variable is the *degree* of decorrelation.
+
+| α | D0 | % of the α=0 floor | D_norm |
+|---|---|---|---|
+| 0.00 | 0.9566 | 100.0% | 0.5509 |
+| 0.25 | 0.9500 | 99.3% | 0.5544 |
+| 0.50 | 0.9404 | 98.3% | 0.5604 |
+| 0.75 | 0.9307 | 97.3% | 0.5663 |
+| 0.90 | 0.9169 | 95.9% | 0.5747 |
+| **1.00** | **0.000000** | **0.0%** | **undefined** |
+
+**Two results, and the second is the interesting one.**
+
+1. **The objection is bounded, and it is small.** Across α ∈ [0, 0.9], D_norm moves
+   0.5509 → 0.5747 — a factor of **1.043**, i.e.
+   **4%**. Setting α=0 by fiat is not doing meaningful work. That is a
+   much weaker objection than W2 assumed, and it is now measured rather than conceded.
+
+2. **The CRN floor is an isolated point, not the limit of the family.** Sharing **90%** of the
+   uniform draws still leaves **96%** of the fully-independent floor; sharing 100% collapses it to
+   **exactly 0**. The mechanism is clear: one unshared draw flips a site, the twins' contexts then
+   differ, and they decorrelate from there — so any α<1 decorrelates eventually and only exact α=1
+   preserves identity. The zero floor is a measure-zero boundary effect, which is why it cannot be
+   reached by "using a more correlated floor".
+
+**The exact-zero null gets a fresh check from a new direction.** α=1 is asserted to give D0 = 0
+exactly, and does. Every damage number in the project depends on that, and until now it was only
+tested by the twin-run null; this reaches it as the endpoint of a continuum.
+
+**What this does NOT do.** It bounds the arbitrariness of D_norm's *absolute scale* from the
+denominator's side only. It does not rehabilitate that scale: F45 showed it moves as N^−1.02 over
+a 4× range, and F41 showed the numerator's coupling is not extremal. Relative comparisons —
+across checkpoints, radii, rules — are unaffected by any of the three, because all are common
+modes. D_norm remains a corroborating quantity reported at a stated lattice size, and λ_ca
+continues to carry the developmental claim.
+
 ### F47 — the N/B confound resolved by manipulation: it is batch size (issue #39)
 
 `experiments/ignition_nb.py` → `results/ignition_nb.json`. F44 concluded that "unignited runs
