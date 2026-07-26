@@ -906,23 +906,79 @@ published boundary rather than an analogy.
 
   These are ~1%-accurate calibrations at modest sizes, not measurements of DP exponents,
   and are reported as such.
-- **The literature disagreement resolves toward HWD.** The two published `p2=0` values
-  differ by ~1%; our independent estimate lands 0.06% from Hinrichsen–Weitz–Domany's
-  0.8087(5) and 1% from Zebende–Penna's 0.801(2). Stated as an observation with our own
-  error budget attached, not as a refutation.
+- **The literature disagreement is NOT resolved by this — correcting an earlier overreach
+  in this entry.** The two published `p2=0` values are 0.96% apart, and our own stated
+  accuracy is ~1%, so 0.8089 cannot discriminate 0.8087(5) from 0.801(2): both sit inside
+  our error bar. The first draft of this finding said the disagreement "resolves toward
+  HWD"; that claim exceeded the method's precision and is withdrawn. We report both and
+  claim neither.
+- **A second exact identity rides inside Part A, free.** At `p1=1, p2=0` the update is
+  deterministic XOR — Rule 90 — so a single-seed damage field holds exactly
+  `2^popcount(t)` live cells (odd entries in row t of Pascal's triangle). `popcount(1500)
+  = 7`, so 128 cells, and `128/4096 = 0.03125` — exactly the reported
+  `final_damage_density`. The cone spans 3001 < 4096 cells, so there is no wraparound and
+  the infinite-lattice count applies. A different closed form from the one Part A was
+  designed to test, and it also matches to the digit.
 - **The corollary check passes.** Because the damage field *is* the automaton on `p2=0`,
   the damage and activity transitions must coincide. Measured independently: **|gap| =
   0.0003**.
-- **W2 gets an answer, not just a disclosure.** CRN is provably HWD's *maximal-correlation*
-  member of the admissible coupling family (one uniform per site, thresholded against every
-  probability ⇒ `α̃ = min(p1,p2)`, `β̃ = p1`). Larger correlation ⇒ smaller damage, so
-  **every damage number in this project is a lower bound over admissible couplings.** The
-  coupling-dependence itself is published (Kohring–Schreckenberg 1992; Grassberger 1995),
-  so this is a known property of damage spreading being handled, not a defect discovered.
+- **W2 — partially answered, and the first version of this bullet was WRONG.** It claimed
+  CRN is HWD's *maximal-correlation* member of the admissible coupling family, hence that
+  every damage number here is a lower bound over that family. **That holds only on a binary
+  alphabet.** See F41: inverse-CDF sampling from a shared uniform is the *monotone*
+  coupling, which coincides with maximal at |V|=2 — which is exactly why this rung is exact
+  and unaffected — but not at |V|=30522. The inequality was backwards for the LM backends
+  and is retracted there. What survives: the coupling-dependence itself is published
+  (Kohring–Schreckenberg 1992; Grassberger 1995), so it is a known property being handled
+  rather than a defect discovered, and on DK the bound is real.
 - **What this does NOT do.** It validates the *apparatus*, not the LM claims. F35 stands:
   the instrument characterises the iterated-resampling construction, and real AR generation
   does not absorb an injected token error. A correct instrument can still be pointed at a
   process whose numbers do not transfer.
+
+### F41 — our CRN is the *monotone* coupling, not the maximal one (retracts part of F38)
+
+`experiments/coupling_gap.py` → `results/coupling_gap.json`. Raised in review; verified, and
+the correction is real.
+
+- **The claim that broke.** F38 argued that one shared uniform thresholded against every
+  probability gives HWD's *maximal-correlation* coupling, hence that all damage numbers here
+  are a lower bound over the admissible family. Sampling in this project is
+  `(cdf < u).sum()` — inverse CDF — which is the **monotone (quantile)** coupling.
+- **It coincides with maximal only at |V| = 2.** Verified: 200,000 random binary pairs,
+  `max |maximal − quantile| = 0.0`. So **the DK rung is untouched and stays exact** — that
+  is precisely why the identity holds there. At |V| > 2 they diverge: `p=(.5,.5,0)`,
+  `q=(0,.5,.5)` gives maximal agreement 0.5 and quantile agreement **0**. Over 20,000 random
+  8-way pairs the quantile coupling is strictly worse in 99.9% of cases (mean gap 0.215).
+- **The direction matters and was backwards.** Maximal coupling maximises agreement, so it
+  *minimises* damage. Our LM damage numbers are therefore **not** an extremum of the family —
+  they sit inside it. The "lower bound" claim is retracted for every backend with |V| > 2.
+- **Measured, not hedged**, on real conditionals from a live bert-tiny damage run (384 (p,q)
+  pairs per temperature, taken through the same adapter the loop uses):
+
+  | T | mean disagreement, maximal | inverse-CDF | inflation | near-agreement subset (TV<0.05) |
+  |---|---|---|---|---|
+  | 0.7 | 0.7717 | 0.7818 | 1.013× | 0.00136 → 0.00188 (**1.38×**) |
+  | 0.9 | 0.8042 | 0.8477 | 1.054× | 0.00437 → 0.00505 (**1.16×**) |
+
+  The review's synthetic estimate put the near-agreement inflation at 3–6.6×; measured at the
+  real operating point it is **1.16–1.38×**. The qualitative correction stands regardless of
+  magnitude — the inequality direction was wrong — but the effect is smaller than feared.
+  One model, one lattice size, one settled configuration; treat as an order estimate.
+- **What is untouched.** The exact-zero null (p ≡ q gives agreement 1 under any coupling),
+  the DK rung, the ECA rungs, and every **relative** comparison — checkpoint-to-checkpoint,
+  across radii, rule-to-rule — because the coupling is a common mode. The developmental
+  headline is unaffected. What weakens is the *absolute* reading of `D_norm`, whose numerator
+  is coupling-inflated toward the independent-noise denominator.
+- **The replacement argument, which is true and costs nothing.** Inverse-CDF is
+  **replica-independent**: each replica's next state is a function of (its own state, the
+  shared noise) alone, never of its twin. A maximal coupling is defined only pairwise — it
+  needs both `p` and `q` at construction and does not extend consistently to three replicas
+  or to a self-consistent damage field. That is a principled reason to use it, and at |V|=2
+  it coincides with maximal anyway.
+- **Future work, explicitly not for this deadline.** The Gumbel-max coupling with shared
+  per-token Gumbels is replica-independent, ordering-invariant, and much closer to maximal.
+  Switching couplings now would invalidate every measurement in the repo.
 
 ### F39 — *reserved* for the completed Phase 3 developmental re-test
 
@@ -1060,7 +1116,7 @@ objection is still live and is disclosed rather than fixed.
 | # | Objection | Verdict |
 |---|---|---|
 | W1 | Capacity claim pseudoreplicated (n=2 seeds) | **Resolved by retraction + re-test.** Capacity dropped from the paper entirely; the surviving headline is being re-tested at 8 seeds × 2 lattice sizes (`dev_transition_phase3.py`). |
-| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. **Answered in part by the DK rung (F38).** Coupling-dependence of damage boundaries is a known, named result (Kohring–Schreckenberg 1992; Grassberger 1995), with a standard resolution in Hinrichsen–Weitz–Domany 1997: classify by the behaviour of the whole admissible coupling family. Our CRN is provably their *maximal-correlation* member, so our damage numbers are a **lower bound** over that family — a bounded statement, not a caveat. **Still not fixed:** the alternative floors themselves (CRN-null, minimal-correlation) are unrun on the LM backends. |
+| W2 | D_norm coupling mismatch; denominator-driven rise; ">1" within 1σ | **Stands, disclosed.** All three sub-claims verified. The paper now states the coupling mismatch and the denominator-driven rise plainly and no longer reads `D_norm>1` as amplification. **Not fixed:** the alternative floors (CRN-null, maximal coupling) are unrun. **Answered in part by the DK rung (F38).** Coupling-dependence of damage boundaries is a known, named result (Kohring–Schreckenberg 1992; Grassberger 1995), with a standard resolution in Hinrichsen–Weitz–Domany 1997: classify by the behaviour of the whole admissible coupling family. On DK (binary alphabet) our CRN provably *is* their maximal-correlation member, so the bound is real there. **On the LM backends it is not** — inverse-CDF is the *monotone* coupling (F41), so those damage numbers sit inside the family rather than at its damage-minimising edge; the earlier "lower bound" wording had the inequality backwards and is retracted. Measured excess disagreement 1.3–5.4% overall, 1.16–1.38× in the near-agreement regime. The defensible property is **replica-independence**, not extremality. **Still not fixed:** the alternative floors themselves are unrun on the LM backends. |
 | W3 | λ "model-invariance" rests on one saturated cell (off-cell spread 24–46%) | **Resolved by retraction.** Verified: (r=8,T=0.7) spread 24%, (r=1,T=0.7) 46% and reversed. The kinematics⊥stability decomposition is withdrawn from the paper. F31 adds the deeper reason the cross-level pairing was ill-posed: λ_top is a *tangent-space* quantity and λ_ca a *finite* one. |
 | W4 | AR "consistent joint" overstated; bimodal T-pooling | **Resolved for surviving claims.** The paper now says both constructions are windowed, in-place-resampled rings — neither samples the model's joint. The bimodal pooling affected the AR *capacity* numbers, which were dropped with the capacity claim, so it no longer touches anything the paper asserts. |
 | W5 | Census near floor on real models (0.02–0.04 vs an out-of-training proxy) | **Stands, scoped.** Quantitative recovery is claimed **only** on the synthetic toy; the real-model numbers are reported as near-floor. The real fix (Pythia vs the Pile) is tracked as issue #6 under *Future work*. |

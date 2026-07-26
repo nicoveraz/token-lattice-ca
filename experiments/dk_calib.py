@@ -185,8 +185,11 @@ def main():
         "the local-slope method at modest sizes; they are NOT measurements of DP exponents. "
         "The p2=0 anchor is reported against BOTH published values, which disagree: "
         "0.801(2) (Zebende & Penna 1994) and 0.8087(5) (Hinrichsen, Weitz & Domany 1997). "
-        "CRN is provably HWD's maximal-correlation coupling, so damage numbers here and "
-        "elsewhere in this project are a lower bound over admissible couplings (W2).")
+        "On this BINARY alphabet CRN (one shared uniform, inverse CDF) coincides with HWD's "
+        "maximal-correlation coupling, so the damage numbers in THIS file are a lower bound "
+        "over admissible couplings. That does NOT extend to the language-model backends, "
+        "where |V|>2 and inverse-CDF is the monotone coupling, not the maximal one; see "
+        "experiments/coupling_gap.py (W2).")
     out["_runtime_s"] = round(time.time() - t_start, 1)
     out["_config"] = dict(n_trials=N_TRIALS, steps=STEPS, ring=N_RING,
                           dp_delta=DP_DELTA)

@@ -27,11 +27,27 @@ WHICH COUPLING IS CRN? Hinrichsen-Weitz-Domany parametrise the admissible replic
 by correlations alpha = <r01 r11>, beta = <r01 r10>. Drawing ONE uniform per site and
 thresholding it against every probability gives alpha = min(p1,p2), beta = p1 -- their
 "maximal correlation" (eq. 21). `lattice.run` draws one uniform per site per sweep, shared
-by both twins, and samples by inverse CDF, so our CRN *is* that member of the family.
-Since larger correlation means smaller damage, every damage number in this project is a
-LOWER BOUND over admissible couplings. This is the published answer to objection W2:
-damage spreading is a property of (model, coupling), not of the model alone --
-Grassberger, J. Stat. Phys. 79, 13 (1995).
+by both twins, and samples by inverse CDF, so HERE, ON A BINARY ALPHABET, our CRN *is* that
+member of the family.
+
+    SCOPE -- THIS DOES NOT GENERALISE TO THE LANGUAGE-MODEL BACKENDS. Inverse-CDF sampling
+    from a shared uniform is the MONOTONE (quantile) coupling. On |V|=2 the monotone and
+    maximal couplings coincide, which is why the identity below is exact and why this rung
+    is unaffected. On |V|>2 they come apart: p=(.5,.5,0), q=(0,.5,.5) gives maximal
+    agreement 0.5 and quantile agreement 0. Since maximal coupling maximises agreement and
+    so minimises damage, the LM damage numbers are NOT a lower bound over the admissible
+    family -- an earlier claim to that effect had the inequality backwards and is retracted.
+    Measured excess disagreement at the real operating point is small but nonzero:
+    `experiments/coupling_gap.py` -> results/coupling_gap.json.
+
+    The property inverse-CDF *does* have, and the reason to keep it, is REPLICA
+    INDEPENDENCE: each replica's next state is a function of (its own state, the shared
+    noise) alone, never of its twin. A maximal coupling is defined only pairwise -- it needs
+    both p and q at construction and does not extend consistently to three replicas or to a
+    self-consistent damage field.
+
+Either way the underlying point stands, and it is published: damage spreading is a property
+of (model, coupling), not of the model alone -- Grassberger, J. Stat. Phys. 79, 13 (1995).
 
 UNIFORM CONVENTION. The literature writes s'=1 iff z < p; `lattice.run` samples by
 inverse CDF over [1-p, p], which fires iff u > 1-p. These are the same rule under
@@ -188,7 +204,8 @@ def survival_from_seed(p1, p2, n_trials=1000, N=2048, steps=800, seed=0, chunk=2
 def damage_survival_from_seed(p1, p2, n_trials=1000, N=2048, steps=800, seed=0, chunk=250):
     """P_damage(t): fraction of CRN twin pairs whose damage is still alive at time t.
 
-    Twins share one uniform per site per step (CRN = the maximal-correlation coupling);
+    Twins share one uniform per site per step (CRN; on this binary alphabet that is the
+    maximal-correlation coupling -- see the scope note in the module docstring);
     they differ initially at exactly one site. This is the damage-spreading analogue of
     `survival_from_seed`, and on the p2=0 line the two must coincide by the exact identity
     in the module docstring.

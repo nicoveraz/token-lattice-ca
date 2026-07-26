@@ -29,9 +29,10 @@ with common-random-number (CRN) damage spreading as the probe---and develop it i
 reproduction}: before measuring a language model, the instrument recovers established
 dynamical metrics on systems where they are known. Its CRN damage-spreading estimator
 separates elementary CA rules whose damage survives from those whose damage dies (ignition
-probability, Cohen's $d{=}3.0$); reproduces the damage-spreading boundary of a stochastic
-discrete PCA with a published phase diagram to $0.06\%$, and---on the line where that model's
-damage field is provably the automaton itself---\emph{bit-exactly}, giving the apparatus a
+probability, Cohen's $d{=}3.0$); reproduces a stochastic discrete PCA's damage spreading
+\textbf{bit-exactly}---on the line where that model's damage field is provably the automaton
+itself, an independent prediction matches every cell over $4096\times1500$ updates with zero
+mismatches, while an off-line control mismatches as it must---giving the apparatus a
 calibration with no error bar attached; and---through its attractor census---recovers the
 known transition matrices of synthetic Markov sources
 (self-recovery total-variation $0.22$ vs.\ cross $0.95$). We are explicit about what the
@@ -200,12 +201,20 @@ $p_1\in\{0.2,\dots,1.0\}$, a ring of $4096$ over $1500$ steps, \textbf{zero mism
 cells}, with $16$ mismatches in an off-line control at $(0.6,0.5)$ where the mapping must
 break. This is run through the same simulation loop that produces every language-model number
 below, so the window indexing, the shared-uniform consumption order, the inverse-CDF sampling
-and the update schedule are verified with no error bar attached. The critical points follow:
-the local-slope estimator ($\delta_{\mathrm{eff}}\!\to\!\delta_{\mathrm{DP}}{=}0.1595$, $2000$
-seed runs) gives $p_c{=}0.7065$ on the site-DP line (published $0.705489(4)$, $0.15\%$) and
-$0.8092$ on the $p_2{=}0$ line (published $0.8087(5)$, $0.06\%$); measured independently on
-the damage field, $0.8089$---coinciding with the activity transition to $3\times10^{-4}$, as
-the mapping requires.
+and the update schedule are verified with no error bar attached. A second closed form rides
+inside the same run: at $p_1{=}1$, $p_2{=}0$ the update is deterministic $\oplus$---Rule
+90---so a single-seed damage field must hold exactly $2^{\mathrm{popcount}(t)}$ live cells;
+at $t{=}1500$ that is $128/4096=0.03125$, which is the density obtained, and the cone
+($3001$ cells) never reaches the boundary.
+
+The critical points are a weaker check and we label them so: the local-slope estimator
+($\delta_{\mathrm{eff}}\!\to\!\delta_{\mathrm{DP}}{=}0.1595$, $2000$ seed runs) gives
+$p_c{=}0.7065$ on the site-DP line ($0.15\%$ from the published $0.705489(4)$) and $0.8092$ on
+the $p_2{=}0$ line, with the damage field measured independently at $0.8089$---coinciding with
+the activity transition to $3\times10^{-4}$, as the mapping requires. The published $p_2{=}0$
+value is itself disputed, $0.801(2)$ \citep{zebende1994} versus $0.8087(5)$
+\citep{hinrichsen1997}, and at our stated $\sim\!1\%$ accuracy we cannot discriminate between
+them; we report both and claim neither.
 
 The rungs that share the instrument's regime---discrete state, finite $O(1)$ perturbation, no
 renormalization---are (3), (4) and (5), and those are what license its use on language models;
@@ -315,11 +324,25 @@ not a stronger perturbation response. \emph{Third}, and more fundamentally, dama
 is a property of \emph{(model, coupling)} rather than of the model alone---a known result in
 stochastic PCAs, where the damage boundary moves with the replica-coupling algorithm while
 single-replica dynamics is entirely insensitive to it \citep{kohring1992,grassberger1995}. We
-can say precisely where our choice sits. Drawing one uniform per site and thresholding it
-against every probability is, in the classification of \citet{hinrichsen1997}, the
-\emph{maximal-correlation} member of the admissible coupling family, and larger correlation
-means smaller damage. \textbf{Every damage number we report is therefore a lower bound over
-admissible couplings}---a bounded statement rather than an open caveat.
+can say precisely where our choice sits, and we are careful about how far that extends.
+Drawing one uniform per site and thresholding it against every probability is, on a
+\emph{binary} alphabet, exactly the \emph{maximal-correlation} member of the admissible
+family in the classification of \citet{hinrichsen1997}---which is why the Domany--Kinzel
+identity above is exact. On a vocabulary, it is not: inverse-CDF sampling from a shared
+uniform is the \emph{monotone} coupling, and for $|V|>2$ the two differ (for
+$p{=}(\tfrac12,\tfrac12,0)$, $q{=}(0,\tfrac12,\tfrac12)$ the maximal coupling agrees with
+probability $\tfrac12$ and the monotone one never). Since maximal coupling maximises
+agreement and hence minimises damage, our language-model damage numbers are \emph{not} an
+extremum of the family; they sit inside it. Measured on real conditionals from a live damage
+run, the excess disagreement our coupling introduces is small---$1.3\%$ ($T{=}0.7$) to
+$5.4\%$ ($T{=}0.9$) above the maximal-coupling value on average, and a factor $1.2$--$1.4$ in
+the near-agreement regime ahead of the damage front. The property that justifies the choice
+is a different one: inverse-CDF is \textbf{replica-independent}---each replica's next state
+is a function of its own state and the shared noise alone, never of its twin---so it extends
+consistently to more than two replicas and to a self-consistent damage field, whereas a
+maximal coupling is defined only pairwise. Relative comparisons (across checkpoints, across
+radii, rule to rule) are unaffected, since the coupling is a common mode; the absolute scale
+of \dn{} carries this caveat.
 
 Read as a floor-relative diagnostic (Fig.~\ref{fig:repair}), \dn{} rises with radius: the
 token-space damping length shortens as the window widens. This is the measurement we

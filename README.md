@@ -95,7 +95,8 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F35** | **Real generation does not absorb a single-token error** — P_persist=1.000 on 3 models, TV_norm≈0.97 distributionally, nulls exactly 0. Healing is a property of the **in-place-resampling construction**, not of the model | ext |
 | **F36** | ECA classes tested on the right statistic (**ignition probability**): ordered 0.046 vs rest, **p=0.0000, Cohen d=3.03**; edge-vs-chaotic **p=0.47** — the 3-class ordering is definitively not recoverable | 2 |
 | F37 | CML rung given an exact **Benettin/Jacobian** reference: `cml_lyap` is correct (max diff 0.0011). Also corrected a paper error — the exponent is **non-monotone** in coupling | 2 |
-| **F38** | **Domany–Kinzel rung: the exact anchor holds.** CRN damage field ≡ a DK automaton on `p2=0` — **0 mismatching cells** (16 in the off-line control); p_c recovered to **0.15%** (site DP 0.705489) and **0.06%** (W18, HWD 0.8087). CRN is provably the *maximal-correlation* coupling ⇒ all damage numbers here are a **lower bound** over admissible couplings (answers W2) | 2 |
+| **F38** | **Domany–Kinzel rung: the exact anchor holds.** CRN damage field ≡ a DK automaton on `p2=0` — **0 mismatching cells** (16 in the off-line control); p_c recovered to **0.15%** (site DP 0.705489) and **0.06%** (W18, HWD 0.8087). Also recovers Rule 90's exact `2^popcount(t)` cell count at p1=1 | 2 |
+| **F41** | **Correction to F38 (raised in review).** Our CRN is the *monotone* coupling, not the maximal one — they coincide at \|V\|=2 (so DK stays exact) but not at \|V\|=30522. The "damage numbers are a lower bound over couplings" claim is **retracted** for the LM backends. Measured excess disagreement 1.3–5.4%; 1.16–1.38× near agreement. Relative comparisons and the null are untouched | 4 |
 
 ## Layout
 

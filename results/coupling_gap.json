@@ -1,0 +1,52 @@
+{
+ "T=0.7": {
+  "n_pairs": 384,
+  "n_differing_cells": 299,
+  "mean_TV": 0.77172,
+  "mean_disagree_maximal": 0.77172,
+  "mean_disagree_quantile": 0.78182,
+  "mean_gap": 0.0101,
+  "median_gap": 7e-05,
+  "max_gap": 0.78608,
+  "inflation_factor": 1.013,
+  "near_agreement_subset": {
+   "definition": "TV < 0.05 -- the region ahead of the damage front",
+   "n": 74,
+   "mean_disagree_maximal": 0.00136,
+   "mean_disagree_quantile": 0.00188,
+   "inflation_factor": 1.38
+  }
+ },
+ "T=0.9": {
+  "n_pairs": 384,
+  "n_differing_cells": 326,
+  "mean_TV": 0.80422,
+  "mean_disagree_maximal": 0.80422,
+  "mean_disagree_quantile": 0.84769,
+  "mean_gap": 0.04347,
+  "median_gap": 0.00479,
+  "max_gap": 0.73348,
+  "inflation_factor": 1.054,
+  "near_agreement_subset": {
+   "definition": "TV < 0.05 -- the region ahead of the damage front",
+   "n": 49,
+   "mean_disagree_maximal": 0.00437,
+   "mean_disagree_quantile": 0.00505,
+   "inflation_factor": 1.16
+  }
+ },
+ "_note": "Measured excess disagreement of this project's CRN coupling (inverse-CDF from a shared uniform = the MONOTONE/quantile coupling) relative to the MAXIMAL coupling, on real conditionals from a live damage run. Retracts the earlier claim that our coupling is HWD's maximal-correlation member: that holds only on a binary alphabet (which is why the Domany-Kinzel rung, F38, is unaffected and still exact). Because maximal coupling minimises damage, our LM damage numbers are NOT a lower bound over the admissible family -- they sit inside it. The justified property of inverse-CDF is REPLICA-INDEPENDENCE: each replica's next state is a function of (its own state, the shared noise) alone, with no reference to its twin, so it extends consistently to >2 replicas and to a self-consistent damage field; a maximal coupling is defined only pairwise. The exact-zero null is untouched (p == q gives agreement 1 under any of these), as are all RELATIVE comparisons, where the coupling is a common mode.",
+ "_config": {
+  "model": "prajjwal1/bert-tiny",
+  "B": 8,
+  "N": 48,
+  "r": 2,
+  "sweeps": 20,
+  "block": 3,
+  "temperatures": [
+   0.7,
+   0.9
+  ],
+  "seed": 21
+ }
+}
