@@ -194,10 +194,15 @@ _lam, _dn = _lvl("lambda_ca"), _lvl("D_norm")
 for name, dd in (("lambda_ca", _lam), ("D_norm", _dn)):
     _N = _np2.array(sorted(dd)); _y = _np2.array([dd[k] for k in sorted(dd)])
     _slope = float(_np2.polyfit(_np2.log(_N), _np2.log(_y), 1)[0])
+    # brace set: the manifest's established multi-source notation, expanded and existence-
+    # checked by test_every_manifest_number_is_backed_by_an_existing_source. The slope really
+    # does come from both files (N=48,96 from shape; N=192 from n192).
     add(f(abs(_slope), 2), "dev_transition_{shape,n192}.json",
         f"log-log slope of {name} plateau over N=48/96/192 = {_slope:.4f}")
 for k in (48, 96, 192):
-    add(f(_lam[k], 3), "dev_transition_{shape,n192}.json", f"lambda plateau at N={k}, 3dp")
+    add(f(_lam[k], 3),
+        "dev_transition_n192.json" if k == 192 else "dev_transition_shape.json",
+        f"lambda plateau at N={k}, 3dp")
 # --- published literature anchors (NOT our measurements) --------------------
 from dk import ANCHORS as _A
 add(str(_A["site_dp"]["p1"]), "src/dk.py ANCHORS", _A["site_dp"]["ref"], kind="published")

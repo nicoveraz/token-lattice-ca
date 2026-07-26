@@ -367,19 +367,19 @@
  },
  {
   "literal": "0.168",
-  "source": "dev_transition_{shape,n192}.json",
+  "source": "dev_transition_shape.json",
   "derivation": "lambda plateau at N=48, 3dp",
   "kind": "measured"
  },
  {
   "literal": "0.169",
-  "source": "dev_transition_{shape,n192}.json",
+  "source": "dev_transition_shape.json",
   "derivation": "lambda plateau at N=96, 3dp",
   "kind": "measured"
  },
  {
   "literal": "0.160",
-  "source": "dev_transition_{shape,n192}.json",
+  "source": "dev_transition_n192.json",
   "derivation": "lambda plateau at N=192, 3dp",
   "kind": "measured"
  },
