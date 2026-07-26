@@ -969,6 +969,56 @@ admission that the entry was written on trust, and it survived into a compiled P
 reviewer would have seen it before we did. Anything self-flagged as unverified must either be
 verified or removed before it can be printed.
 
+### F46 — the transition's TIMING moves with model size (3 of 4 sizes; 1b in flight)
+
+`experiments/dev_transition_scale.py` → `results/dev_transition_scale.json`. 6 checkpoints × 8
+seeds × 4 Pythia sizes at N=48, protocol imported from Phase 3. **149/192 runs complete**:
+70m, 160m and 410m are done, pythia-1b is at 5/48 and running.
+
+**Mean λ_ca by (model, checkpoint):**
+
+| size | 128 | 256 | 512 | 1000 | 2000 | 4000 |
+|---|---|---|---|---|---|---|
+| 70m | **+0.069** | +0.046 | +0.162 | +0.157 | +0.160 | +0.171 |
+| 160m | −0.039 | **+0.094** | +0.098 | +0.174 | +0.167 | +0.152 |
+| 410m | −0.279 | −0.019 | **+0.068** | +0.192 | +0.156 | +0.172 |
+| 1b | −0.329 | — | — | — | — | — |
+
+**The zero-crossing moves later with size**, monotonically over the three completed models:
+70m is already positive at the earliest checkpoint (no crossing on this grid), 160m crosses
+between **128 and 256**, 410m between **256 and 512**. Pythia-1b starts furthest negative
+(−0.329 at step128), which extends the pattern, but with one checkpoint it is a hint, not a
+result.
+
+**This is not the retracted capacity axis (W1).** That claim was about the *level* of λ/D_norm
+at a fixed checkpoint and was pseudoreplicated at n=2. This is about *when* the sign change
+occurs, at 8 seeds per cell, and it is a different object. The level-vs-size question is kept
+in the results file as explicitly exploratory.
+
+- **The transition replicates in every completed size.** Per-model post-vs-pre, BH-FDR over
+  the family: 70m p_BH=0.015, 160m p_BH=0.003, 410m p_BH=0.000 — all survive.
+- **Caveat on the 70m cell.** The script's pre set is {128, 256, 512}, but 70m is already
+  positive across all three, so its "pre" group is not pre-transition. Its test still passes
+  because the plateau is higher still, but the crossing for 70m is simply *earlier than this
+  grid reaches*, and that is what the file records — "no crossing located on this grid", not
+  "no transition".
+
+**Two bugs in my own analysis code, both found by reading the output rather than by a test.**
+
+1. **`crossing_interval` sorted checkpoint keys lexicographically.** The keys are strings
+   (`"step128"`, `"step1000"`), so `sorted()` ordered them 1000, 128, 2000, 256, 4000, 512 —
+   the "adjacent" pairs were not adjacent in training time, and the reported crossing intervals
+   were meaningless (160m and 410m both came out as `step128 → step2000`). Fixed to sort by the
+   integer step. This is the same class as F39 and F42: a helper whose declared behaviour and
+   actual behaviour differed, with nothing asserting the difference. It is also the helper the
+   v3 review said "would have returned (256, 512) and contradicted its own docstring" — it
+   would not have, because of this bug.
+2. **A Spearman p-value that cannot exist.** The exploratory level-vs-size line reported
+   `rho=+1.000, p=0.0000` at n=3. Every monotone triple gives rho=1, and with 3 points there
+   are only 3!=6 orderings, so the smallest attainable permutation p is **1/6 = 0.167**. scipy's
+   0.0 is an asymptotic approximation invalid at this n. The script now prints the exact floor
+   and labels the asymptotic `p_scipy_INVALID_AT_THIS_N`, so the number cannot be quoted.
+
 ### F45 — a third lattice size: λ_ca is intensive, D_norm is 1/N, and my prediction band was mis-built
 
 `experiments/dev_transition_n192.py` → `results/dev_transition_n192.json`. 24 runs at N=192,

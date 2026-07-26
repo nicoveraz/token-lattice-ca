@@ -59,9 +59,20 @@ N, B = 48, 16
 OUT = str(_ROOT / "results" / "dev_transition_scale.json")
 
 
+def _step_num(k):
+    return int(str(k).replace("step", ""))
+
+
 def crossing_interval(step_means):
-    """First adjacent pair where the mean crosses zero upward. None if no crossing."""
-    steps = sorted(step_means)
+    """First CHRONOLOGICALLY adjacent pair where the mean crosses zero upward.
+
+    The keys are strings like "step128", "step1000". Sorting them directly is LEXICOGRAPHIC --
+    it orders 1000 before 128 before 2000 before 256 -- so the "adjacent" pairs were not
+    adjacent in training time and the reported crossing interval was meaningless. Sort by the
+    integer step. (Same class of defect as F39 and F42: a helper whose declared behaviour and
+    actual behaviour differed, with nothing asserting the difference.)
+    """
+    steps = sorted(step_means, key=_step_num)
     for a, b in zip(steps, steps[1:]):
         if step_means[a] < 0 <= step_means[b]:
             return (a, b)
@@ -167,15 +178,26 @@ def analyse(res):
     if len(plateau_by_size) >= 3:
         szs = sorted(plateau_by_size)
         rho, p = stats.spearmanr(szs, [plateau_by_size[s] for s in szs])
+        # With n sizes there are only n! orderings, so the smallest attainable permutation
+        # p-value is 1/n! -- 0.167 at n=3. scipy's asymptotic p (which returns 0.0 here) is
+        # not valid at this n and must not be quoted.
+        from math import factorial
+        p_floor = 1.0 / factorial(len(szs))
         res["exploratory_plateau_vs_size"] = dict(
             by_size={str(s): round(plateau_by_size[s], 4) for s in szs},
-            spearman_rho=round(float(rho), 3), p=round(float(p), 4),
+            spearman_rho=round(float(rho), 3),
+            p_exact_floor=round(p_floor, 4),
+            p_scipy_INVALID_AT_THIS_N=round(float(p), 4),
             label=("EXPLORATORY. This is NOT the retracted capacity->sensitivity axis (W1); "
                    "it is the post-transition level by size, reported for completeness. It is "
-                   "not corrected for multiplicity and must not be quoted as an axis."))
+                   "not corrected for multiplicity and must not be quoted as an axis. Note the "
+                   "n: with this many sizes the smallest attainable permutation p is "
+                   "1/n!, so a 'significant' Spearman here is arithmetically impossible."))
         print(f"\n=== exploratory (NOT a capacity claim): plateau level vs size ===")
         print("  " + "  ".join(f"{s}m={plateau_by_size[s]:+.4f}" for s in szs))
-        print(f"  Spearman rho={rho:+.3f}, p={p:.4f}  -- exploratory, uncorrected")
+        print(f"  Spearman rho={rho:+.3f}  -- exploratory. With {len(szs)} sizes the smallest "
+              f"attainable permutation p is 1/{len(szs)}! = {p_floor:.3f}, so this cannot be "
+              f"significant however it comes out; scipy's {p:.3f} is an invalid asymptotic.")
 
     res["per_model"] = per_model
     res["primary_verdict"] = verdict
