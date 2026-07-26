@@ -6,8 +6,10 @@ Rationale: iteratively micro-editing `paper.tex` to hit a page count mixes two d
 jobs — deciding *what is true and what gets claimed*, and *fitting it on 5 pages*. This file
 holds the first. The `.tex` gets assembled from it in one pass when the content is settled.
 
-Status: `paper.pdf` builds (`tectonic -X compile paper.tex`), **11 pages: body 1–6, refs 6–7,
-appendix 8, checklist 9–11**. Body is ~1 page over. 0 undefined refs, 0 overfull boxes.
+Status: `paper.pdf` builds (`tectonic -X compile paper.tex`), **10 pages: body 1–5, references 6,
+Reproducibility appendix 7, checklist 8–10**. **The body fits the 5-page limit.** 0 undefined refs,
+0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
+double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 
 ---
 
@@ -72,11 +74,12 @@ bounds it (C16–C18).
 
 | item | state |
 |---|---|
-| **Responsible-use statement** | **absent — automatic desk reject.** ~110 words. F35 gives the real sentence: the instrument characterises a resampling construction, so it must not be cited as evidence about deployed-model robustness |
-| Double-blind | `paper.tex` author block is gone, but check the tree: `paper/README.md:3` names the repo; checklist `:26`, `:31`, `:66` |
-| Checklist TODOs | 4 real ones at `neurips_checklist.tex` lines 31, 56, 66, 85 |
+| ~~Responsible-use statement~~ | **DONE** — written from F35, merged with the conclusion as §9 |
+| ~~Double-blind~~ | **DONE** — `paper.tex`, `neurips_checklist.tex` and `paper/README.md` all anonymised |
+| ~~Checklist TODOs~~ | **DONE** — all 4 resolved, incl. an honest LLM-assistance disclosure |
+| ~~Page fit~~ | **DONE** — body is 5 pages |
+| Citations | **DONE** (F43) — 5 entries printed "Title/authors to verify"; all verified against arXiv, 3 titles were wrong |
 | Style file | `neurips_2025.sty` — 2026 not published yet (404). Swap when it appears; geometry sets the page count |
-| Page fit | body ~1 page over. See §4 |
 | Fig sources | `fig_validation_ladder.py`, `fig_developmental.py`, `fig_crosslevel.py` all regenerate from `results/` |
 
 ---
@@ -111,3 +114,9 @@ the responsible-use statement once written.
   values, so it was advertising the weak half.
 - **2026-07-26** — Effect sizes are quoted against the *plateau*, never the step-1000 peak.
 - **2026-07-26** — Switched to this file; paper prose deferred until content is settled.
+- **2026-07-26** — F42: λ statistics exclude unignited runs; D_norm keeps them (asymmetric by
+  design). Applied retroactively; moved N=96's λ numbers, left the ordinal headline untouched.
+- **2026-07-26** — Headline restated ordinally (0/48 plateau runs negative) rather than as an
+  effect size, because effect sizes depend on where the pre/post line is drawn and two separate
+  defects had been found in exactly that choice.
+- **2026-07-26** — Cut complete: body fits 5 pages. Conclusion merged into Responsible use.

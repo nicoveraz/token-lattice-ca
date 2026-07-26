@@ -51,7 +51,7 @@ census), and the **boundaries** where those readings provably stop applying.
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F38); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F43); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -97,6 +97,10 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | F37 | CML rung given an exact **Benettin/Jacobian** reference: `cml_lyap` is correct (max diff 0.0011). Also corrected a paper error — the exponent is **non-monotone** in coupling | 2 |
 | **F38** | **Domany–Kinzel rung: the exact anchor holds.** CRN damage field ≡ a DK automaton on `p2=0` — **0 mismatching cells** (16 in the off-line control); p_c recovered to **0.15%** (site DP 0.705489) and **0.06%** (W18, HWD 0.8087). Also recovers Rule 90's exact `2^popcount(t)` cell count at p1=1 | 2 |
 | **F41** | **Correction to F38 (raised in review).** Our CRN is the *monotone* coupling, not the maximal one — they coincide at \|V\|=2 (so DK stays exact) but not at \|V\|=30522. The "damage numbers are a lower bound over couplings" claim is **retracted** for the LM backends. Measured excess disagreement 1.3–5.4%; 1.16–1.38× near agreement. Relative comparisons and the null are untouched | 4 |
+| **F39** | **Developmental transition survives at two lattice sizes.** All 4 pre-registered family members survive BH-FDR (p_BH ≤ 2e−05). Headline stated ordinally: seeds disagree on λ's *sign* before, **0 of 48 plateau runs negative** after (min +0.107). λ_ca is size-robust (95% retention; plateau levels agree within **±14%**, 95% CI); D_norm is **not** (53%, level 0.569 vs 0.306) — so λ_ca carries the claim | 4 |
+| F40 | Ordered-group λ in the ECA rung is the estimator's **dead-damage floor** (−0.4·ln10), not a measurement — 5/7 rules pinned there with zero-width CI. Named as `DEAD_DAMAGE_FLOOR` with a predicate | 4 |
+| **F42** | **λ_ca is undefined when damage never ignites**, and the estimator emits a number anyway that spans an order of magnitude for the same outcome (−0.165 vs −1.713). `is_dead_damage_floor` catches neither. Rule: `is_unignited(mean_damage)`, ignition fraction per cell, λ stats over ignited runs only, **rank test keeps all runs**. Asymmetric by design — D_norm keeps them, since zero damage is a true zero | 4 |
+| F43 | Three citations were carrying **invented titles**; `plainnat` printed "Title/authors to verify" in the compiled bibliography. All five verified against arXiv; one prior-art claim narrowed to match what the cited works actually say | 4 |
 
 ## Layout
 
@@ -156,7 +160,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **58 tests** and now covers every backend, not just the toy JAX path:
+The suite is **66 tests** and now covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
@@ -362,6 +366,14 @@ the **cross-level boundary** (a structural negative) + a **new white-box front**
 .venv/bin/python experiments/cml_benettin.py          # exact Benettin ground truth for the CML rung (F37)
 .venv/bin/python experiments/dk_calib.py              # Domany-Kinzel rung: exact damage identity + published p_c (F38); ~4 min
 .venv/bin/python experiments/dk_calib.py --figure-only  # redraw fig/dk_ladder.png from saved results
+
+# --- developmental transition (F39/F42), the paper's headline
+caffeinate -i .venv/bin/python experiments/dev_transition_phase3.py  # 6 ckpts x 8 seeds x {N=48,96}; ~4 h
+.venv/bin/python experiments/dev_transition_shape.py                 # shape, effect sizes, W9 -- applies the F42 ignition rule
+.venv/bin/python experiments/fig_developmental.py                    # -> fig/developmental.png
+caffeinate -i .venv/bin/python experiments/dev_transition_n192.py    # third lattice size, pre-registered 1/N vs intensive
+caffeinate -i .venv/bin/python experiments/dev_transition_scale.py   # transition TIMING across 4 Pythia sizes (~9 h; resumable)
+.venv/bin/python experiments/coupling_gap.py                         # how far our CRN is from the maximal coupling (F41)
 
 # --- does the instrument measure the MODEL or the construction? (F35, the delimiting result)
 .venv/bin/python experiments/real_generation_damage.py        # inject a token error into REAL AR generation
