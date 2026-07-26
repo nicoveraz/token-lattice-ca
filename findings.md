@@ -936,6 +936,59 @@ published boundary rather than an analogy.
   does not absorb an injected token error. A correct instrument can still be pointed at a
   process whose numbers do not transfer.
 
+### F42 — λ_ca is emitted for runs where damage never ignited, and it is uninterpretable there
+
+Found before the N=192 analysis, deliberately: deciding how to treat non-ignited runs *after*
+seeing all 24 values is the degrees-of-freedom problem this project keeps catching in itself.
+The rule below was written with 4 of 24 runs in.
+
+- **The defect.** `lyap_from_cone` returns a finite λ when damage never ignites. λ_ca is the
+  growth rate of a damage cone; with no surviving damage there is no cone and no rate, but
+  the estimator fits against its `DAMAGE_CLAMP` floor and emits a number anyway.
+- **It is wildly unstable for physically identical runs.** Phase 3 has exactly one unignited
+  run (N=96, step256, seed 22): `D_norm = 0.0`, `λ = −0.1649`, against a global minimum of
+  −0.2156 across all 96 runs — invisible. N=192 run 1/24 is the same physical outcome at
+  **λ = −1.7130**, an order of magnitude away.
+- **`is_dead_damage_floor` catches neither** — both are far from −0.9210. F40 named one
+  specific sentinel; this is the general case it does not cover.
+- **A mechanism I checked rather than assumed.** The natural explanation is that the bogus
+  value grows with lattice size. **It does not.** `lyap_from_cone` is N-independent for a
+  fixed cone — a 3-site seed dying immediately returns −0.9943 at N=48, 96 and 192 alike;
+  the fit window is `min(max_sweeps=8, len(d)−1)` with no N in it, and N enters only the
+  second return value `dmax/N`. The spread comes from the **cones differing** — how
+  gradually damage decays before vanishing — not from N entering the estimator. Whether
+  unignited runs get more common or more extreme at larger N is an open empirical question
+  and is not asserted here. *The reason to exclude these runs does not depend on the
+  mechanism*: λ is undefined without a cone.
+- **Magnitude of the exposure.** One unignited run displaces a 16-run pre mean by ≈ −0.108,
+  which is **73% of N=96's entire pre→plateau λ gap** (0.1489). At N=192 a single such run
+  among eight would drag the step256 cell mean to ≈ −0.24 and make the retention read ~173%
+  — the transition apparently *sharpening* with size, as a pure artifact.
+
+**The rule (pre-registered, before the N=192 analysis).**
+
+1. `ignited` is a property of the **damage**, not of λ: `is_unignited(mean_damage)` in
+   `experiments/lyapunov.py`, keyed on the raw quantity. It cannot key on λ's sign or
+   magnitude — N=192 seed 23 has `λ = −0.2197, D_norm = 0.0250`, **negative and ignited**,
+   a real measurement that must be kept.
+2. **Ignition fraction is reported per cell as its own observable.** It is the DP survival
+   order parameter, which this project already uses for the ECA rungs (F34/F36) — the same
+   framing, reused, not reinvented. `block_damage` was *already* computing `ignition_prob`;
+   `measure()` was discarding it. It is now recorded.
+3. λ **means, sds, Cohen's d, gaps and retention over ignited runs only**, with `n` stated
+   in every cell. **No censoring to `DEAD_DAMAGE_FLOOR`** — issue #28 records what a constant
+   sentinel does to a group mean.
+4. **The rank test keeps all runs.** Mann–Whitney uses only ranks, and a dead run's −1.713
+   versus −0.1649 does not move a rank. So the pre-registered test and the λ plateau
+   prediction were never at risk; every *mean-based* number was.
+5. Same rule the ECA rungs already needed for `n_seeds_ignited = 0` (#27).
+
+**This is a rule-8 case**: the estimator emitted a number its own definition does not
+sanction, and nothing asserted the precondition. `tests/test_results_self_consistency.py`
+now asserts it, along with the F39 design check (`n_pre == len(PRE) × n_seeds`) that a prose
+grep could not have caught, and a guard on the N-independence claim above so the docstring
+cannot drift from what was verified.
+
 ### F41 — our CRN is the *monotone* coupling, not the maximal one (retracts part of F38)
 
 `experiments/coupling_gap.py` → `results/coupling_gap.json`. Raised in review; verified, and

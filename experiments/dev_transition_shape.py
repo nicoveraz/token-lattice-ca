@@ -33,6 +33,24 @@ PEAK = {1000}
 PLATEAU = {2000, 8000, 143000}          # "settled": everything after the overshoot
 STEPS = [256, 512, 1000, 2000, 8000, 143000]
 METRICS = ("lambda_ca", "D_norm")
+N_SEEDS = 8                              # design constant: 8 independent seeds per cell
+SIZES = (48, 96)
+
+
+def _check_group(name, n_got, step_set):
+    """Rule 8: assert an emitted n against the DESIGN, not against what the code did.
+
+    This is the one-line check that would have failed the first version of this script,
+    where `headline` used step256 alone (n=8) while declaring `pre: [256, 512]` (n=16).
+    A subset can now only be used by also changing the declared design, which is visible.
+    """
+    n_want = len(step_set) * N_SEEDS
+    if n_got != n_want:
+        raise AssertionError(
+            f"{name}: n={n_got} but the declared design gives {len(step_set)} checkpoints "
+            f"x {N_SEEDS} seeds = {n_want}. Either the selection is a silent subset or the "
+            f"design constant is stale -- do not proceed on a group whose size the design "
+            f"does not predict.")
 
 
 def load():
@@ -96,6 +114,8 @@ def main():
         for m in METRICS:
             a, b = sel(N, PRE, m), sel(N, PLATEAU, m)
             p = float(stats.mannwhitneyu(b, a, alternative="two-sided").pvalue)
+            _check_group(f"headline N{N}_{m} pre", len(a), PRE)
+            _check_group(f"headline N{N}_{m} plateau", len(b), PLATEAU)
             praw.append(p); keys.append(f"N{N}_{m}")
             d_lowest = cohens_d(sel(N, {256}, m), b)      # step256-only: NOT pre-registered
             out["headline"][f"N{N}_{m}"] = dict(
@@ -199,7 +219,11 @@ def main():
         "level inflates the effect. The vs-peak numbers are stored under "
         "cohens_d_vs_peak_INFLATED purely so the difference is auditable -- do not quote them. "
         "Variance collapse was NOT pre-registered and is reported as an observation.")
-    out["_definitions"] = dict(pre=sorted(PRE), peak=sorted(PEAK), plateau=sorted(PLATEAU))
+    # the emitted definitions and the computation read the SAME constants (rule 8)
+    out["_definitions"] = dict(pre=sorted(PRE), peak=sorted(PEAK), plateau=sorted(PLATEAU),
+                               n_seeds=N_SEEDS, sizes=list(SIZES),
+                               expected_n_pre=len(PRE) * N_SEEDS,
+                               expected_n_plateau=len(PLATEAU) * N_SEEDS)
     json.dump(out, open(OUT, "w"), indent=1)
     print(f"\nwrote {OUT}")
 

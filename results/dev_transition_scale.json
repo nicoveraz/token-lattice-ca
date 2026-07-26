@@ -1,0 +1,76 @@
+{
+ "runs": {
+  "m70_step128_s21": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 21,
+   "lambda_ca": -0.01028,
+   "D_norm": 0.06791,
+   "secs": 47.9
+  },
+  "m70_step128_s22": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 22,
+   "lambda_ca": 0.04706,
+   "D_norm": 0.21973,
+   "secs": 41.8
+  },
+  "m70_step128_s23": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 23,
+   "lambda_ca": 0.02375,
+   "D_norm": 0.21698,
+   "secs": 39.8
+  },
+  "m70_step128_s24": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 24,
+   "lambda_ca": 0.13976,
+   "D_norm": 0.2112,
+   "secs": 41.7
+  },
+  "m70_step128_s25": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 25,
+   "lambda_ca": -0.02158,
+   "D_norm": 0.01013,
+   "secs": 40.0
+  },
+  "m70_step128_s26": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 26,
+   "lambda_ca": 0.37701,
+   "D_norm": 0.31617,
+   "secs": 44.5
+  },
+  "m70_step128_s27": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 27,
+   "lambda_ca": -0.05747,
+   "D_norm": 0.13523,
+   "secs": 43.7
+  },
+  "m70_step128_s28": {
+   "model": "EleutherAI/pythia-70m",
+   "size_m": 70,
+   "step": 128,
+   "seed": 28,
+   "lambda_ca": 0.05688,
+   "D_norm": 0.11928,
+   "secs": 39.1
+  }
+ }
+}

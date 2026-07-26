@@ -339,6 +339,13 @@
    2000,
    8000,
    143000
-  ]
+  ],
+  "n_seeds": 8,
+  "sizes": [
+   48,
+   96
+  ],
+  "expected_n_pre": 16,
+  "expected_n_plateau": 24
  }
 }

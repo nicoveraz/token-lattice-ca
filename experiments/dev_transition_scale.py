@@ -48,6 +48,7 @@ import numpy as np
 from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr     # identical protocol, not a copy
+from lyapunov import is_unignited                     # F42
 
 MODELS = [("EleutherAI/pythia-70m", 70), ("EleutherAI/pythia-160m", 160),
           ("EleutherAI/pythia-410m", 410), ("EleutherAI/pythia-1b", 1000)]
@@ -82,7 +83,7 @@ def main():
             continue
         t0 = time.time()
         try:
-            lam, dn = measure(st, N, B, sd, base=model)
+            lam, dn, md, ig = measure(st, N, B, sd, base=model)
         except Exception as e:                     # a missing revision must not lose the run
             print(f"[{k}/{len(todo)}] {key}: FAILED ({type(e).__name__}: {e})", flush=True)
             runs[key] = dict(model=model, size_m=tag, step=int(st.replace("step", "")),
@@ -91,6 +92,7 @@ def main():
             continue
         runs[key] = dict(model=model, size_m=tag, step=int(st.replace("step", "")), seed=sd,
                          lambda_ca=round(lam, 5), D_norm=round(dn, 5),
+                         mean_damage=md, ignition_prob=round(ig, 5),
                          secs=round(time.time() - t0, 1))
         print(f"[{k}/{len(todo)}] {key}: lam={lam:+.4f} D_norm={dn:.4f} "
               f"({runs[key]['secs']}s)", flush=True)

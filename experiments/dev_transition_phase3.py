@@ -64,11 +64,15 @@ def measure(revision, N, B, seed, base=None):
         d0, _ = drift_floor(rule, T, R, B=B, N=N, settle=12, sweeps=22,
                             seed=seed, scheme="none")
         dn = d["mean_damage"] / max(d0, 1e-3)
+        # F42: lambda is undefined when damage never ignites, so the raw damage and the
+        # per-lattice ignition fraction must be RECORDED, not inferred from lambda later.
+        # `ignition_prob` is already computed by block_damage -- it was being discarded.
+        md, ig = d["mean_damage"], d["ignition_prob"]
     finally:
         rule.model = None; del rule; gc.collect()
         try: torch.mps.empty_cache()
         except Exception: pass
-    return float(lam), float(dn)
+    return float(lam), float(dn), float(md), float(ig)
 
 
 def bh_fdr(pvals):
@@ -94,9 +98,10 @@ def main():
         if key in runs:
             continue
         t0 = time.time()
-        lam, dn = measure(st, N, B, sd)
+        lam, dn, md, ig = measure(st, N, B, sd)
         runs[key] = dict(N=N, step=int(st.replace("step", "")), seed=sd,
                          lambda_ca=round(lam, 5), D_norm=round(dn, 5),
+                         mean_damage=md, ignition_prob=round(ig, 5),
                          secs=round(time.time() - t0, 1))
         print(f"[{k}/{len(todo)}] {key}: lam={lam:+.4f} D_norm={dn:.4f} "
               f"({runs[key]['secs']}s)", flush=True)

@@ -36,8 +36,57 @@ DEAD_DAMAGE_FLOOR = -0.4 * np.log(10)
 
 
 def is_dead_damage_floor(lam, tol=1e-9):
-    """True if `lam` is the never-ignited sentinel rather than a measured exponent."""
+    """True if `lam` is the never-ignited sentinel rather than a measured exponent.
+
+    NOTE: this catches only ONE specific value. It is NOT a general test for "damage never
+    ignited" -- see `is_unignited`, which is. F40 named this constant; F42 found the general
+    case it does not cover.
+    """
     return bool(np.isfinite(lam) and abs(float(lam) - DEAD_DAMAGE_FLOOR) < tol)
+
+
+def is_unignited(mean_damage=None, D_norm=None):
+    """True if the run's damage never ignited, so lambda_ca is UNDEFINED for it (F42).
+
+    lambda_ca is the growth rate of a damage cone. If no damage survives there is no cone
+    and no rate -- but `lyap_from_cone` returns a finite number anyway, fitted against the
+    DAMAGE_CLAMP floor, and that number is WILDLY UNSTABLE for physically identical runs:
+
+        Phase 3 (96 runs): 1 unignited, N=96 step256 seed22 -> lambda = -0.1649
+        N=192 run 1/24   : same zero final damage           -> lambda = -1.7130
+
+    Same physical outcome, an order of magnitude apart, and `is_dead_damage_floor` catches
+    NEITHER (both are far from -0.9210).
+
+    ON THE MECHANISM, stated carefully. It is tempting to say the magnitude grows with the
+    lattice size. VERIFIED: it does not -- `lyap_from_cone` is N-INDEPENDENT for a fixed
+    cone (a 3-site seed that dies immediately returns -0.9943 at N=48, 96 and 192 alike;
+    the fit window is min(max_sweeps=8, len(d)-1), with no N in it, and N enters only the
+    second return value dmax/N). The spread therefore comes from the CONES differing --
+    how gradually the damage decays before vanishing -- not from N entering the estimator.
+    Whether unignited runs become more common or more extreme at larger N is an open
+    empirical question, not an established mechanism, and must not be asserted as one.
+
+    The reason to exclude these runs does not depend on the mechanism: lambda is undefined
+    without a cone, and the emitted numbers span an order of magnitude for the same physical
+    outcome. Averaging one into a cell mean is arbitrary -- a single unignited run displaces
+    a 16-run pre mean by ~-0.108, which is 73% of N=96's entire pre->plateau gap.
+
+    Keyed on `mean_damage`, the raw quantity, not on lambda's sign or magnitude -- a run can
+    be negative AND ignited (N=192 seed23: lam=-0.2197, D_norm=0.0250) and that is a real
+    measurement which must be kept.
+
+    `D_norm` is accepted as a fallback for records written before `mean_damage` was stored.
+    It is sound at the configurations used here: the smallest nonzero mean_damage is
+    1/(tail*N*B), which yields D_norm >= 2.7e-4 for every (N, B) in this project, so a
+    stored D_norm of exactly 0.0 can only have come from mean_damage == 0. Verify this
+    before reusing the fallback at a new (N, B, tail).
+    """
+    if mean_damage is not None:
+        return bool(float(mean_damage) <= 0.0)
+    if D_norm is not None:
+        return bool(float(D_norm) == 0.0)
+    raise ValueError("is_unignited needs mean_damage (preferred) or D_norm (fallback)")
 
 
 def lyap_from_cone(cone, N, sat_threshold=3.5, frac_of_max=0.5, max_sweeps=8, min_sweeps=3,

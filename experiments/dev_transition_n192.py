@@ -46,6 +46,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
 
 from dev_transition_phase3 import measure          # identical protocol, not a copy
+from lyapunov import is_unignited                  # F42: lambda is undefined without a cone
 
 STEPS = ["step256", "step512", "step143000"]
 PRE = {"step256", "step512"}
@@ -75,9 +76,10 @@ def main():
         if key in runs:
             continue
         t0 = time.time()
-        lam, dn = measure(st, N, B, sd)
+        lam, dn, md, ig = measure(st, N, B, sd)
         runs[key] = dict(N=N, step=int(st.replace("step", "")), seed=sd,
                          lambda_ca=round(lam, 5), D_norm=round(dn, 5),
+                         mean_damage=md, ignition_prob=round(ig, 5),
                          secs=round(time.time() - t0, 1))
         print(f"[{k}/{len(todo)}] {key}: lam={lam:+.4f} D_norm={dn:.4f} "
               f"({runs[key]['secs']}s)", flush=True)
@@ -87,20 +89,53 @@ def main():
     if len(done) < len(todo):
         print(f"partial: {len(done)}/{len(todo)}"); json.dump(res, open(OUT, "w"), indent=1); return
 
-    sel = lambda steps, m: np.array([v[m] for v in done
-                                     if f"step{v['step']}" in steps])
-    out = {}
-    print("\n=== N=192 result vs the pre-registered predictions ===")
+    def unignited(v):
+        return is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v \
+            else is_unignited(D_norm=v["D_norm"])
+
+    def sel(steps, m, ignited_only=False):
+        rows = [v for v in done if f"step{v['step']}" in steps]
+        if ignited_only:
+            rows = [v for v in rows if not unignited(v)]
+        return np.array([v[m] for v in rows])
+
+    # --- F42: ignition fraction is its own observable, reported before any lambda mean ---
+    out = {"ignition": {}}
+    print("\n=== ignition per cell (F42): lambda is UNDEFINED for unignited runs ===")
+    for st in STEPS:
+        rows = [v for v in done if f"step{v['step']}" == st]
+        dead = [v for v in rows if unignited(v)]
+        out["ignition"][st] = dict(
+            n=len(rows), n_unignited=len(dead), n_ignited=len(rows) - len(dead),
+            frac_ignited=round(1 - len(dead) / max(len(rows), 1), 4),
+            unignited_lambdas=[v["lambda_ca"] for v in dead])
+        print(f"  {st:>12}: {len(rows)-len(dead)}/{len(rows)} ignited"
+              + (f"   DISCARDED lambdas {[v['lambda_ca'] for v in dead]}" if dead else ""))
+
+    print("\n=== N=192 result vs the pre-registered predictions (IGNITED runs only) ===")
     for m in ("lambda_ca", "D_norm"):
-        pre, post = sel(PRE, m), sel({"step143000"}, m)
+        pre, post = sel(PRE, m, True), sel({"step143000"}, m, True)
+        if len(pre) < 2 or len(post) < 2:
+            print(f"  {m:>10}: too few ignited runs to summarise"); continue
         out[m] = dict(pre_mean=round(float(pre.mean()), 4), n_pre=len(pre),
                       plateau_mean=round(float(post.mean()), 4), n_plateau=len(post),
                       plateau_sd=round(float(post.std(ddof=1)), 4),
                       plateau_se=round(float(post.std(ddof=1) / np.sqrt(len(post))), 4),
-                      gap=round(float(post.mean() - pre.mean()), 4))
-        print(f"  {m:>10}  pre {pre.mean():+.4f} -> plateau {post.mean():+.4f} "
-              f"(sd {post.std(ddof=1):.4f}, se {post.std(ddof=1)/np.sqrt(len(post)):.4f})")
+                      gap=round(float(post.mean() - pre.mean()), 4),
+                      basis="ignited runs only (F42); n stated per group")
+        print(f"  {m:>10}  pre {pre.mean():+.4f} (n={len(pre)}) -> plateau "
+              f"{post.mean():+.4f} (n={len(post)}, sd {post.std(ddof=1):.4f}, "
+              f"se {post.std(ddof=1)/np.sqrt(len(post)):.4f})")
+        # the rank test is immune to the discarded magnitudes, so it uses ALL runs
+        from scipy import stats as _st
+        pre_all, post_all = sel(PRE, m), sel({"step143000"}, m)
+        u = _st.mannwhitneyu(post_all, pre_all, alternative="two-sided")
+        out[m]["mannwhitney_all_runs_p"] = float(u.pvalue)
+        print(f"{'':>14}rank test on ALL runs (ranks do not depend on a dead run's "
+              f"magnitude): p={u.pvalue:.2e}")
 
+    if "D_norm" not in out or "lambda_ca" not in out:
+        print("insufficient ignited runs for a verdict"); json.dump(res, open(OUT, "w"), indent=1); return
     dn = out["D_norm"]["plateau_mean"]
     lo, hi = PREDICT["D_norm_if_one_over_N"]
     if lo <= dn <= hi:
