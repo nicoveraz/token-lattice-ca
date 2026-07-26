@@ -266,3 +266,59 @@ def test_the_style_file_in_use_is_recorded():
     assert m, "no neurips style package found; page-count guarantees are meaningless without one"
     sty = ROOT / "paper" / f"{m.group(1)}.sty"
     assert sty.exists(), f"{m.group(1)}.sty is referenced but not present in paper/"
+
+
+# --------------------------------------------------- issue #48: every number traced to results/
+MANIFEST = ROOT / "tests" / "paper_number_manifest.json"
+
+
+def _manifest():
+    if not MANIFEST.exists():
+        pytest.skip("paper_number_manifest.json not present")
+    return json.load(open(MANIFEST))
+
+
+def _body():
+    """paper.tex body, comments stripped, bibliography onward removed."""
+    tex = _tex().split("\\bibliographystyle")[0]
+    return "\n".join(l for l in tex.splitlines() if not l.lstrip().startswith("%"))
+
+
+def test_every_manifest_number_appears_in_the_paper():
+    """The Reproducibility appendix promises traceability; this is the test behind the promise.
+
+    Each entry records a literal, the results file it came from, and the expression that
+    derives it. If a literal is missing, either the paper changed a number without the results
+    changing, or the manifest derivation is wrong. Both times this failed during development it
+    was the manifest -- the newer artifact -- so check that first.
+    """
+    body = _body()
+    missing = [(m["literal"], m["source"], m["derivation"])
+               for m in _manifest() if m["literal"] not in body]
+    assert not missing, (
+        f"{len(missing)} manifest number(s) are not in paper.tex:\n" +
+        "\n".join(f"  {lit} <- {src} :: {der}" for lit, src, der in missing))
+
+
+def test_every_manifest_number_is_backed_by_an_existing_results_file():
+    for m in _manifest():
+        p = RESULTS / m["source"]
+        assert p.exists(), f"{m['literal']} claims to come from {m['source']}, which is absent"
+
+
+def test_manifest_covers_the_load_bearing_claims():
+    """Guard against the manifest silently shrinking to whatever currently passes."""
+    srcs = {m["source"] for m in _manifest()}
+    required = {
+        "dk_calib.json",                # the exact rung
+        "eca_ordered_vs_rest.json",     # the ECA split
+        "dev_transition_shape.json",    # the headline
+        "dev_transition_n192.json",     # the third lattice size
+        "dev_transition_scale.json",    # C20, the 4-size replication
+        "dev_transition_temp.json",     # the temperature scope
+        "real_generation_damage.json",  # F35, the delimiting result
+        "coupling_gap.json",            # F41, the coupling correction
+        "calib_census.json",            # the census rung
+    }
+    assert required <= srcs, f"manifest no longer covers: {sorted(required - srcs)}"
+    assert len(_manifest()) >= 45, f"manifest shrank to {len(_manifest())} entries"

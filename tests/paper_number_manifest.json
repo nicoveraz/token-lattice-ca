@@ -1,0 +1,257 @@
+[
+ {
+  "literal": "4096",
+  "source": "dk_calib.json",
+  "derivation": "part_a_exact_identity.N"
+ },
+ {
+  "literal": "1500",
+  "source": "dk_calib.json",
+  "derivation": "part_a_exact_identity.steps"
+ },
+ {
+  "literal": "16",
+  "source": "dk_calib.json",
+  "derivation": "part_a_exact_identity.control_offline_mismatch"
+ },
+ {
+  "literal": "0.03125",
+  "source": "dk_calib.json",
+  "derivation": "by_p1['1'].final_damage_density (Rule 90)"
+ },
+ {
+  "literal": "0.7065",
+  "source": "dk_calib.json",
+  "derivation": "calibration['site DP'].estimate"
+ },
+ {
+  "literal": "0.8092",
+  "source": "dk_calib.json",
+  "derivation": "calibration['W18 activity'].estimate"
+ },
+ {
+  "literal": "0.8089",
+  "source": "dk_calib.json",
+  "derivation": "calibration['W18 damage'].estimate"
+ },
+ {
+  "literal": "0.046",
+  "source": "eca_ordered_vs_rest.json",
+  "derivation": "groups.ordered.mean"
+ },
+ {
+  "literal": "0.668",
+  "source": "eca_ordered_vs_rest.json",
+  "derivation": "groups.edge.mean"
+ },
+ {
+  "literal": "0.682",
+  "source": "eca_ordered_vs_rest.json",
+  "derivation": "groups.chaotic.mean"
+ },
+ {
+  "literal": "0.102",
+  "source": "eca_ordered_vs_rest.json",
+  "derivation": "groups.ordered.ci95[1]"
+ },
+ {
+  "literal": "0.470",
+  "source": "eca_ordered_vs_rest.json",
+  "derivation": "tests.edge_lt_chaotic_p"
+ },
+ {
+  "literal": "3.03",
+  "source": "eca_ordered_vs_rest.json",
+  "derivation": "tests.cohens_d_ordered_vs_rest"
+ },
+ {
+  "literal": "0.22",
+  "source": "calib_census.json",
+  "derivation": "mean_self"
+ },
+ {
+  "literal": "0.95",
+  "source": "calib_census.json",
+  "derivation": "mean_cross"
+ },
+ {
+  "literal": "0.0247",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N48_lambda_ca.pre_mean"
+ },
+ {
+  "literal": "0.1683",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N48_lambda_ca.plateau_mean"
+ },
+ {
+  "literal": "1.59",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N48_lambda_ca.cohens_d"
+ },
+ {
+  "literal": "0.0320",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_lambda_ca.pre_mean"
+ },
+ {
+  "literal": "0.1686",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_lambda_ca.plateau_mean"
+ },
+ {
+  "literal": "1.71",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_lambda_ca.cohens_d"
+ },
+ {
+  "literal": "15",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_lambda_ca.n_pre"
+ },
+ {
+  "literal": "48",
+  "source": "dev_transition_shape.json",
+  "derivation": "sign_agreement.pooled.n"
+ },
+ {
+  "literal": "0.216",
+  "source": "dev_transition_shape.json",
+  "derivation": "|min(sign_agreement.N{48,96}.pre_min)|"
+ },
+ {
+  "literal": "0.320",
+  "source": "dev_transition_shape.json",
+  "derivation": "max(sign_agreement.N{48,96}.pre_max)"
+ },
+ {
+  "literal": "0.107",
+  "source": "dev_transition_shape.json",
+  "derivation": "sign_agreement.pooled.min"
+ },
+ {
+  "literal": "0.0003",
+  "source": "dev_transition_shape.json",
+  "derivation": "|size_scaling_W9.lambda_ca.plateau_diff|"
+ },
+ {
+  "literal": "0.023",
+  "source": "dev_transition_shape.json",
+  "derivation": "|...ci95[0]|"
+ },
+ {
+  "literal": "0.022",
+  "source": "dev_transition_shape.json",
+  "derivation": "...ci95[1]"
+ },
+ {
+  "literal": "0.569",
+  "source": "dev_transition_shape.json",
+  "derivation": "size_scaling_W9.D_norm.plateau_level_N48"
+ },
+ {
+  "literal": "0.306",
+  "source": "dev_transition_shape.json",
+  "derivation": "size_scaling_W9.D_norm.plateau_level_N96"
+ },
+ {
+  "literal": "22.4",
+  "source": "dev_transition_shape.json",
+  "derivation": "peak_vs_plateau.N48_D_norm.overshoot_pct"
+ },
+ {
+  "literal": "0.78",
+  "source": "dev_transition_shape.json",
+  "derivation": "peak_vs_plateau.N96_lambda_ca.p_bh"
+ },
+ {
+  "literal": "4",
+  "source": "dev_transition_shape.json",
+  "derivation": "round(variance.N48.ratio)"
+ },
+ {
+  "literal": "22",
+  "source": "dev_transition_shape.json",
+  "derivation": "round(sign_agreement.N48.plateau_cv_pct)"
+ },
+ {
+  "literal": "25",
+  "source": "dev_transition_shape.json",
+  "derivation": "round(sign_agreement.N96.plateau_cv_pct)"
+ },
+ {
+  "literal": "0.160",
+  "source": "dev_transition_n192.json",
+  "derivation": "analysis.lambda_ca.plateau_mean"
+ },
+ {
+  "literal": "0.139",
+  "source": "dev_transition_n192.json",
+  "derivation": "analysis.D_norm.plateau_mean"
+ },
+ {
+  "literal": "0.162",
+  "source": "dev_transition_scale.json",
+  "derivation": "mean(runs[size=70, step not in PRE].lambda_ca) over 24 runs"
+ },
+ {
+  "literal": "0.164",
+  "source": "dev_transition_scale.json",
+  "derivation": "mean(runs[size=160, step not in PRE].lambda_ca) over 24 runs"
+ },
+ {
+  "literal": "0.174",
+  "source": "dev_transition_scale.json",
+  "derivation": "mean(runs[size=410, step not in PRE].lambda_ca) over 24 runs"
+ },
+ {
+  "literal": "0.166",
+  "source": "dev_transition_scale.json",
+  "derivation": "mean(runs[size=1000, step not in PRE].lambda_ca) over 24 runs"
+ },
+ {
+  "literal": "0.015",
+  "source": "dev_transition_scale.json",
+  "derivation": "tests[m70_lambda_post_vs_pre].p_bh -> 0.015401"
+ },
+ {
+  "literal": "0.003",
+  "source": "dev_transition_scale.json",
+  "derivation": "tests[m160_lambda_post_vs_pre].p_bh -> 0.002931"
+ },
+ {
+  "literal": "1.000",
+  "source": "real_generation_damage.json",
+  "derivation": "pythia-70m.P_persist"
+ },
+ {
+  "literal": "1.3",
+  "source": "coupling_gap.json",
+  "derivation": "T=0.7 inflation 1.013 -> 1.3% excess"
+ },
+ {
+  "literal": "5.4",
+  "source": "coupling_gap.json",
+  "derivation": "T=0.9 inflation 1.054 -> 5.4% excess"
+ },
+ {
+  "literal": "0.44",
+  "source": "dev_transition_temp.json",
+  "derivation": "summary['0.3'].p_bh"
+ },
+ {
+  "literal": "0.98",
+  "source": "dev_transition_temp.json",
+  "derivation": "T=1.1 pre ignition 0.984 -> 0.98"
+ },
+ {
+  "literal": "0.20",
+  "source": "dev_transition_temp.json",
+  "derivation": "T=0.3 pre ignition 0.195 -> 0.20"
+ },
+ {
+  "literal": "1.1",
+  "source": "cml_benettin.json",
+  "derivation": "max_abs_diff 0.0011 -> 1.1e-3"
+ }
+]
