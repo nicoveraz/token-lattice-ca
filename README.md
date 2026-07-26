@@ -163,7 +163,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **82 tests** and now covers every backend, not just the toy JAX path:
+The suite is **86 tests** and now covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
@@ -185,6 +185,11 @@ The suite is **82 tests** and now covers every backend, not just the toy JAX pat
   load-bearing number in `paper.tex` is checked against the JSON it came from, plus submission
   hygiene (no unverified citations, no self-identifying strings, responsible-use section present).
   It caught a real loss on its first run: a DK measurement dropped during a page-fit trim.
+- **Stale-analysis detection** (`experiments/provenance.py`): every analysis stamps the sha256 of
+  its own source into the results file, and the suite recomputes it. Editing an analysis script
+  while its job runs leaves the job writing its end-of-run analysis with the code imported at
+  launch — that happened twice and once **inverted a conclusion**. A mismatch is now a red test
+  rather than a finished-looking wrong number.
 - `tests/test_golden.py` — asserts the simulation core stays **bit-identical** against
   `tests/golden/*.npz`, which were generated *before* the Phase-1 refactor. Do not relax
   these to `allclose`; a backend that cannot be made bit-identical is a stop-and-report.

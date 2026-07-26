@@ -289,5 +289,10 @@
   "D_norm": "NEITHER prediction -- reported as such, not rounded to one",
   "lambda_ca": "lambda_ca INVARIANT across a 4x size range"
  },
- "_note": "Third lattice size for the developmental transition. Predictions were written into _preregistration before the run. lambda_ca is expected to be intensive (a cone-growth RATE fitted before saturation) and D_norm to fall as 1/N (localised numerator over a delocalised floor)."
+ "_note": "Third lattice size for the developmental transition. Predictions were written into _preregistration before the run. lambda_ca is expected to be intensive (a cone-growth RATE fitted before saturation) and D_norm to fall as 1/N (localised numerator over a delocalised floor).",
+ "_analysis_provenance": {
+  "script": "dev_transition_n192.py",
+  "sha256": "bb19ae0c92cd1347153f4d140db0c769f34e8c2611de46633d5c3688b2a9f1e9",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ }
 }

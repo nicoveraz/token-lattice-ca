@@ -26,6 +26,7 @@ sys.path[:0] = [str(ROOT / "experiments")]
 import numpy as np
 from scipy import stats, optimize
 
+from provenance import stamp
 from lyapunov import is_unignited
 
 SOURCES = [("dev_transition_phase3.json", None), ("dev_transition_n192.json", 192)]
@@ -159,6 +160,7 @@ def main():
                           if explained else
                           "the trend is not explained by batch size alone")
 
+    out["_analysis_provenance"] = stamp(__file__)
     out["_note"] = (
         "Descriptive answer to the open question F42 recorded: does the unignited fraction rise "
         "with lattice size? Compared at MATCHED checkpoints, because unignited runs concentrate "

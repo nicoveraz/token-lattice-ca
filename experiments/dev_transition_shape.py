@@ -26,6 +26,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 import numpy as np
 from scipy import stats
 sys.path[:0] = [str(ROOT / "experiments")]
+from provenance import stamp
 from lyapunov import is_unignited
 
 SRC = ROOT / "results" / "dev_transition_phase3.json"
@@ -268,6 +269,7 @@ def main():
         "cohens_d_vs_peak_INFLATED purely so the difference is auditable -- do not quote them. "
         "Variance collapse was NOT pre-registered and is reported as an observation.")
     # the emitted definitions and the computation read the SAME constants (rule 8)
+    out["_analysis_provenance"] = stamp(__file__)
     out["_definitions"] = dict(pre=sorted(PRE), peak=sorted(PEAK), plateau=sorted(PLATEAU),
                                n_seeds=N_SEEDS, sizes=list(SIZES),
                                expected_n_pre=len(PRE) * N_SEEDS,

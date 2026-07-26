@@ -46,6 +46,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
 
 from dev_transition_phase3 import measure          # identical protocol, not a copy
+from provenance import stamp
 from lyapunov import is_unignited                  # F42: lambda is undefined without a cone
 
 STEPS = ["step256", "step512", "step143000"]
@@ -169,6 +170,7 @@ def main():
           f"   (1/N would be 2.000, 2.000)")
     res["analysis"] = out
     res["verdict"] = dict(D_norm=v, lambda_ca=lv)
+    res["_analysis_provenance"] = stamp(__file__)
     res["_note"] = ("Third lattice size for the developmental transition. Predictions were "
                     "written into _preregistration before the run. lambda_ca is expected to "
                     "be intensive (a cone-growth RATE fitted before saturation) and D_norm "

@@ -2240,5 +2240,10 @@
   ],
   "N": 48,
   "B": 16
+ },
+ "_analysis_provenance": {
+  "script": "dev_transition_scale.py",
+  "sha256": "1ad4eeeb3b40b6178a77f9fd5cc3bcfb451125b7ad6740fa59a98fa48b3008d1",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  }
 }

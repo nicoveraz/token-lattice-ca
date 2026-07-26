@@ -201,3 +201,38 @@ def test_n192_uses_the_same_ignition_asymmetry_as_the_shape_script():
     dead_plateau = a["ignition"]["step143000"]["n_unignited"]
     assert a["D_norm"]["n_plateau"] - a["lambda_ca"]["n_plateau"] == dead_plateau, (
         "the two metrics' plateau group sizes do not differ by exactly the unignited count")
+
+
+# ------------------------------------------------------- issue #38: stale-analysis detection
+@pytest.mark.parametrize("results_name,script_name", [
+    ("dev_transition_shape.json", "dev_transition_shape.py"),
+    ("dev_transition_n192.json", "dev_transition_n192.py"),
+    ("dev_transition_scale.json", "dev_transition_scale.py"),
+    ("ignition_vs_size.json", "ignition_vs_size.py"),
+])
+def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name, script_name):
+    """A results file must not have been produced by a different version of its analysis.
+
+    Python imports a module once, so editing an analysis script while its job runs leaves the
+    job writing its END-OF-RUN analysis with the code imported at launch. That happened twice
+    (F45, F46) and both times produced a finished-looking results file with a wrong conclusion
+    -- in F45's case an inverted one ("size-robustness DOWNGRADED" where the correct answer was
+    "invariant across a 4x range").
+
+    Each analysis stamps the sha256 of its source; this recomputes it. A mismatch means the
+    numbers in the file predate the code on disk: re-run the analysis, do not read the file.
+    """
+    import hashlib
+    d = _load(results_name)
+    prov = d.get("_analysis_provenance") or d.get("analysis", {}).get("_analysis_provenance")
+    assert prov is not None, (
+        f"{results_name} has no _analysis_provenance stamp -- it cannot be checked against the "
+        f"code that wrote it (issue #38)")
+    src = ROOT / "experiments" / script_name
+    if not src.exists():
+        pytest.skip(f"{script_name} not present")
+    actual = hashlib.sha256(src.read_bytes()).hexdigest()
+    assert prov["sha256"] == actual, (
+        f"{results_name} was written by a different version of {script_name} "
+        f"(stamped {prov['sha256'][:12]}, on disk {actual[:12]}). Re-run the analysis before "
+        f"reading its numbers -- this is the F45/F46 stale-analysis trap.")

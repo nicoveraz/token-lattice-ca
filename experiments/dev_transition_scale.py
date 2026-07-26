@@ -48,6 +48,7 @@ import numpy as np
 from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr     # identical protocol, not a copy
+from provenance import stamp
 from lyapunov import is_unignited                     # F42
 
 MODELS = [("EleutherAI/pythia-70m", 70), ("EleutherAI/pythia-160m", 160),
@@ -212,6 +213,7 @@ def analyse(res):
 
     res["per_model"] = per_model
     res["primary_verdict"] = verdict
+    res["_analysis_provenance"] = stamp(__file__)
     res["_note"] = (
         "Timing of the developmental transition across Pythia sizes, N=48, 8 seeds, protocol "
         "imported verbatim from dev_transition_phase3.measure. PRIMARY is the crossing "
