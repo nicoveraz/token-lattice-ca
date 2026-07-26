@@ -220,6 +220,26 @@
    "arxiv_year": "2022",
    "bib_year": "2023",
    "venue_year_later_than_preprint": "2023"
+  },
+  "tamai_dp": {
+   "arxiv_id": "2307.02284",
+   "title": "Universal Scaling Laws of Absorbing Phase Transitions in Artificial Deep Neural Networks",
+   "first_author": "Tamai, Keiichi",
+   "n_authors": 5,
+   "published": "2023-07-05",
+   "arxiv_year": "2023",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": "2025"
+  },
+  "mirage": {
+   "arxiv_id": "2304.15004",
+   "title": "Are Emergent Abilities of Large Language Models a Mirage?",
+   "first_author": "Schaeffer, Rylan",
+   "n_authors": 3,
+   "published": "2023-04-28",
+   "arxiv_year": "2023",
+   "bib_year": "2023",
+   "venue_year_later_than_preprint": null
   }
  },
  "unverifiable": [

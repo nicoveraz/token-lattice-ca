@@ -81,7 +81,7 @@ bounds it (C16–C18).
 | ~~Checklist TODOs~~ | **DONE** — all 4 resolved, incl. an honest LLM-assistance disclosure |
 | ~~Page fit~~ | **DONE** — body is **5 pages**, zero body lines on the References page. Guard de-xfailed and hardened twice (gutter filter + no tolerance). |
 | Citations | **DONE, then reopened, now automated** (F43 → F50, #71). The hand audit missed a **fourth** wrong title (`ar_tempcrit`). Replaced by `experiments/audit_refs.py` + `tests/test_refs_match_arxiv.py`: 22/22 arXiv entries verified, 0 mismatches, offline test locks it. |
-| Style file | `neurips_2025.sty` — 2026 not published yet (404). Swap when it appears; geometry sets the page count |
+| ~~Style file~~ | **DONE** (`f3800cf`) — official `neurips_2026.sty`, `[dblblindworkshop]`. #55 had been polling a URL that never served it; the CFP links `Formatting_Instructions_For_NeurIPS_2026.zip`. Geometry is **byte-identical** to 2025, so the page budget never moved. |
 | Fig sources | `fig_validation_ladder.py`, `fig_developmental.py`, `fig_crosslevel.py` all regenerate from `results/` |
 
 ---
@@ -117,10 +117,42 @@ from 12 lines to 9 — a *negative* whose full argument lives in `findings.md`. 
 on page 5, asserted by test. There is no further slack identified; the next cut would have to come
 out of something on the do-not-cut list, which is a decision, not a trim.
 
-**Live risk:** the fit is a property of `neurips_2025.sty`. The 2026 style is unpublished and its
-geometry sets the page count — issue #55, hard stop Aug 26.
+**Live risk: RETIRED.** The fit is a property of `neurips_2026.sty`, which is the official final style — geometry byte-identical to 2025, so the swap cost nothing. `test_the_style_file_in_use_is_recorded` pins the package, the `[dblblindworkshop]` option, the absence of any de-anonymising option, and the six geometry values the page guard depends on.
 
 ## 5. Decisions log
+
+- **2026-07-26** — **F55: the retracted crossing framing survived in §4's opening sentence.**
+  Review caught it. The sentence read *"changing from sub- to super-critical between steps 512
+  and 2000"*. `dev_transition_phase3.json` puts the cell-mean sign change at **256→512 at both
+  lattice sizes** (N=48: −0.0185 → +0.0679; N=96: −0.0116 → +0.0702, F42-filtered), and the
+  retraction list in §2 above already names *"crosses zero between steps 512 and 1000"* as
+  retracted. The opening was that retraction with its right edge moved and its **left edge
+  untouched** — and it contradicted the paper twice more: the four-size paragraph says 410m and
+  1b cross 256→512, and the loss paragraph says the λ_ca crossing *precedes* the 512–1000 loss
+  bracket, which a 512–2000 crossing cannot.
+
+  Why nothing caught it: `test_the_crossing_brackets_in_prose_match_the_scale_results` regexes
+  the **four-size paragraph only**, and the manifest sources the literal `512` to
+  `loss_baseline.json` as the steepest-loss endpoint. The guard was looking one paragraph past
+  the defect. Now `test_section4_opening_bracket_matches_the_primary_results_file` derives the
+  bracket from the primary file, asserts both sizes agree, asserts the sentence states it, and
+  explicitly forbids both retracted phrasings.
+
+- **2026-07-26** — **The anonymity guard was itself a de-anonymisation.** It hard-coded the
+  author's handle and repo name as a literal forbidden-list, with a docstring arguing "a
+  reviewer reading a test that forbids an identifier learns nothing identifying from it". That
+  is plainly wrong — the list *is* the identifier, and the file ships in the mirror. Identifiers
+  are now derived at runtime from the git remote and the checkout path; the mirror has no
+  `.git`, so the test skips there and reveals nothing. Archive leak surface: **12 machine-written
+  logs**, down from 13 files ([[#52]]); `paper_milestone.sh` was already `export-ignore`d.
+
+- **2026-07-26** — Prior-art residue cleared: `tamai_dp` (arXiv:2307.02284, *Phys. Rev. Research*
+  **7**, 033072) cited — it owns absorbing-state/DP scaling for neural networks — and the
+  metric-artefact immunity sentence added against `mirage` (arXiv:2304.15004). Both verified
+  against arXiv before citing. The Tamai entry is `@article`, not `@misc` with a `note=`: the F43
+  guard fired on the note, correctly, because `plainnat` prints it into the bibliography.
+  Body re-trimmed to absorb both; still **5 pages, zero spill**.
+
 
 - **2026-07-26** — **The trim landed: body 6 pages → 5 (#62 closed).** Body prose 3555 → 3125
   words. Nothing on the do-not-cut list was touched: DK Part A, the coupling correction,

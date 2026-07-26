@@ -212,13 +212,47 @@ def test_no_unverified_citations_reach_the_bibliography():
         "annotations become visible to reviewers -- move the content elsewhere or delete it.")
 
 
+def _identifying_strings():
+    """The identifiers to forbid, DERIVED at runtime rather than written down here.
+
+    The previous version hard-coded the author's GitHub handle and repo name as a literal list,
+    with a docstring claiming "a reviewer reading a test that forbids an identifier learns
+    nothing identifying from it". That argument is simply wrong -- the list *is* the identifier,
+    and this file ships inside the anonymised mirror, so the guard against de-anonymisation was
+    itself a de-anonymisation. Deriving them from the git remote and the checkout path keeps the
+    guard exact where it matters (pre-tag, on a real clone) and leaves nothing to read in the
+    mirror, where there is no .git and the test simply skips.
+    """
+    import subprocess
+    out = set()
+    try:
+        url = subprocess.run(["git", "config", "--get", "remote.origin.url"],
+                             cwd=ROOT, capture_output=True, text=True, timeout=10).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        url = ""
+    m = re.search(r"[:/]([^/:]+)/([^/]+?)(?:\.git)?$", url)
+    if m:
+        out.update({m.group(1), m.group(2)})
+    # the checkout path carries the OS username on a personal machine
+    parts = ROOT.resolve().parts
+    if "Users" in parts:
+        out.add(parts[parts.index("Users") + 1])
+    elif "home" in parts:
+        out.add(parts[parts.index("home") + 1])
+    return {s for s in out if s and len(s) > 3}
+
+
 def test_no_self_identifying_strings_in_the_submission():
-    """NOTE for the anonymisation pass (#52): the identifiers below appear in THIS FILE as
-    strings the paper is forbidden to contain. Scrubbing them out of the mirror would disable
-    the guard, so this file is deliberately left as-is -- a reviewer reading a test that forbids
-    an identifier learns nothing identifying from it."""
+    """paper.tex must not contain the author's handle, repo name, or a hosting URL.
+
+    Identifiers come from `_identifying_strings()`, which derives them rather than listing them
+    -- see that docstring. The generic hosting domains stay literal: they identify no one.
+    """
     tex = _tex()
-    for s in ("token-lattice-ca", "nicoveraz", "github.com"):
+    derived = _identifying_strings()
+    if not derived:
+        pytest.skip("no git remote and no user-bearing checkout path; nothing to derive")
+    for s in derived | {"github.com", "huggingface.co"}:
         assert s not in tex, f"double-blind violation in paper.tex: {s!r}"
 
 
@@ -249,10 +283,12 @@ def test_body_fits_the_page_limit():
     """The body must end within the venue's page limit.
 
     This is the submission's hardest constraint and nothing asserted it: the fit was verified by
-    hand after each edit, and it is currently a property of neurips_2025.sty. The 2026 style is
-    unpublished (404 as of 2026-07-26) and its geometry sets the page count, so swapping it can
-    silently undo a cut that took the body from 13 pages to 5. References, appendix and checklist
-    are excluded from the limit, so the test locates where the bibliography starts.
+    hand after each edit, and it is a property of the style file's geometry. That is now the
+    official neurips_2026.sty, whose \newgeometry block is byte-identical to the 2025 one, so
+    the swap did not move the budget -- and test_the_style_file_in_use_is_recorded pins those six
+    values, so a future style that DOES move them fails loudly instead of silently undoing a cut
+    that took the body from 13 pages to 5. References, appendix and checklist are excluded from
+    the limit, so the test locates where the bibliography starts.
     """
     import re as _re
     pages = _pdf_pages_text()
@@ -498,3 +534,84 @@ def test_paper_loss_baseline_claims_match():
     assert "correlation does not" in tex or "not the correlation" in tex, (
         "the paper no longer says the correlation does not carry this claim; at n=6 checkpoints "
         "with 1 of 4 significant, leaning on rho would be the weakest available argument")
+
+
+def test_section4_opening_bracket_matches_the_primary_results_file():
+    """The headline section's OPENING sentence must state the bracket its own file supports.
+
+    This is the gap that let a retracted claim survive. `test_the_crossing_brackets_in_prose_
+    match_the_scale_results` checks the four-size paragraph and nothing else, so §4's first
+    sentence drifted unguarded: it read "between steps 512 and 2000" while
+    dev_transition_phase3.json puts the cell-mean sign change at 256->512 at BOTH lattice sizes.
+    NOTES.md already lists "crosses zero between steps 512 and 1000" as retracted -- the opening
+    sentence was that retraction with its right edge moved and its left edge untouched.
+
+    Derived from the file rather than hard-coded, so a re-run that moved the crossing fails the
+    paper instead of silently disagreeing with it. F42 applies: unignited runs are excluded from
+    the cell means, which is what makes N=96's step256 mean -0.0116 rather than -0.0307.
+    """
+    import sys as _sys
+    _sys.path.insert(0, str(ROOT / "experiments"))
+    from lyapunov import is_unignited
+    import numpy as _np
+
+    d = _load("dev_transition_phase3.json")["runs"]
+    rows = [v for v in d.values() if isinstance(v, dict) and "lambda_ca" in v]
+    if not rows:
+        pytest.skip("no runs in dev_transition_phase3.json")
+
+    def ignited(v):
+        return not (is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v
+                    else is_unignited(D_norm=v["D_norm"]))
+
+    steps = sorted({v["step"] for v in rows})
+    brackets = set()
+    for N in sorted({v["N"] for v in rows}):
+        means = []
+        for s in steps:
+            vals = [v["lambda_ca"] for v in rows if v["N"] == N and v["step"] == s and ignited(v)]
+            means.append(_np.mean(vals) if vals else _np.nan)
+        cross = next(((steps[i], steps[i + 1]) for i in range(len(steps) - 1)
+                      if means[i] < 0 <= means[i + 1]), None)
+        assert cross is not None, f"no cell-mean sign change at N={N}; §4's opening claim is void"
+        brackets.add(cross)
+
+    assert len(brackets) == 1, (
+        f"the lattice sizes no longer agree on the crossing bracket ({brackets}); §4 says "
+        f"'at both lattice sizes'")
+    lo, hi = brackets.pop()
+    tex = " ".join(_tex().split())
+    assert f"between steps ${lo}$ and ${hi}$ at both lattice sizes" in tex, (
+        f"§4's opening sentence does not state the crossing bracket its own results file gives "
+        f"({lo}->{hi}). NOTES.md lists 'crosses zero between steps 512 and 1000' as RETRACTED; "
+        f"do not let it back in.")
+    for bad in ("between steps $512$ and $2000$", "between steps $512$ and $1000$"):
+        assert bad not in tex, f"the retracted crossing framing is back: {bad}"
+
+
+def test_notes_do_not_name_a_style_file_the_paper_no_longer_uses():
+    """NOTES.md must not describe a style the preamble abandoned.
+
+    Third instance of one defect class: #47 ("the cut ledger is stale"), the submission plan's
+    D3 ("NOTES.md §4 is stale"), and then -- after both were fixed by hand -- two rows still
+    claiming `neurips_2025.sty` and "2026 not published yet (404)" a commit after the swap to
+    the official 2026 style. A defect that recurs after a manual fix wants a test, not a fourth
+    sweep.
+
+    Deliberately narrow: it pins the style-file claim only, which is the row that is both
+    load-bearing (the page budget depends on the geometry) and repeatedly wrong. It does not try
+    to police prose currency in general, which no test can do.
+    """
+    import re as _re
+    notes = ROOT / "paper" / "NOTES.md"
+    if not notes.exists():
+        pytest.skip("paper/NOTES.md not present")
+    m = _re.search(r"\\usepackage(?:\[[^\]]*\])?\{(neurips_\d{4})\}", _tex())
+    assert m, "no neurips style package in paper.tex"
+    in_use = m.group(1)
+    named = set(_re.findall(r"neurips_(\d{4})", notes.read_text()))
+    stale = named - {in_use.split("_")[1]}
+    assert not stale, (
+        f"paper/NOTES.md still names neurips_{sorted(stale)} while paper.tex uses {in_use}. "
+        f"The style file sets the page budget, so a stale row here is a stale claim about the "
+        f"submission's hardest constraint.")

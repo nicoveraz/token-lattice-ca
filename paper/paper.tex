@@ -68,8 +68,8 @@ damage number depends on it. \textbf{Confounds.} A degenerate low-entropy lattic
 snaps a perturbation back trivially, so damage $D$ is normalised by the model's own diversity
 floor \dz{} (twins under \emph{independent} noise, no flip), giving $\dn{=}D/\dz$. The two necessarily use different couplings --- a floor sharing the numerator's is
 identically zero, since identical twins stay identical --- but the cost is bounded: sweeping the
-shared-draw fraction from $0$ to $0.9$ moves \dn{} by $4\%$. A free control disciplines our
-language: the temperature ``phase transition'' is, on a finite-size scan, a \emph{crossover}
+shared-draw fraction from $0$ to $0.9$ moves \dn{} by $4\%$. A free control disciplines our language: the
+temperature ``phase transition'' is a finite-size \emph{crossover}
 ($\chi_{\mathrm{peak}}\propto1/N$). 
 \section{Validation: reproducing known metrics}\label{sec:validation}
 We check the apparatus against systems where the answer is known, ordered by how much of the
@@ -105,8 +105,8 @@ at $0.8089$. The published $p_2{=}0$ value is disputed ($0.801(2)$ \citep{zebend
 $0.8087(5)$ \citep{hinrichsen1997}), so we report both and claim neither.
 
 \textbf{(5) Synthetic Markov sources.} The attractor census recovers each model's own sparse
-transition matrix (row total-variation $0.22$) and not the others (cross $0.95$; random baseline
-$0.91$). Rungs (3)--(5) share the instrument's regime; (4) alone is exact rather than fitted.
+transition matrix (row total-variation $0.22$) and not the others (cross $0.95$; baseline
+$0.91$).
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{validation_ladder.png}
@@ -118,8 +118,9 @@ cell-for-cell, the off-line control beside it showing the test is not vacuous. R
 
 \section{A developmental transition in token-space criticality}\label{sec:dev}
 Across Pythia-410m checkpoints (\texttt{step256}--\texttt{step143000}, 8 seeds, $N{=}48$ and
-$96$; Fig.~\ref{fig:dev}) the calibrated instrument finds token-space dynamics changing from sub-
-to super-critical between steps $512$ and $2000$, and staying there.
+$96$; Fig.~\ref{fig:dev}) the calibrated instrument finds token-space dynamics crossing from sub-
+to super-critical between steps $256$ and $512$ at both lattice sizes, and staying positive
+thereafter.
 
 \textbf{The effect occupies a temperature window, and the window has a mechanism.} Repeating the
 two ends of the curve at $T\in\{0.3,0.5,0.9,1.1\}$ (8 seeds each, BH-FDR over the four) recovers
@@ -150,9 +151,10 @@ uses every run, and survived a later change to unignited-run handling that moved
 
 \textbf{The curve is not a step, and both ends can be inflated.} It overshoots at step $1000$ by
 $1.4$--$22.4\%$; taking the peak as the post value, or the lowest checkpoint alone as the pre
-value, inflates the effect ($1.7\times$ on $\lca$ for the latter), so we use the pre-registered
-sets at both ends. The overshoot survives correction in one of four cells, and that cell is \dn{} ---
-on $\lca$, $+1.4\%$ at $N{=}96$ ($p_{\mathrm{BH}}{=}0.78$) --- so step $1000$ is no distinct phase.
+value, inflates the effect ($1.7\times$ on $\lca$ for the latter), so both ends use the
+pre-registered sets. The overshoot survives correction in one of four cells, and that cell is
+\dn{} --- on $\lca$, $+1.4\%$ at $N{=}96$ ($p_{\mathrm{BH}}{=}0.78$) --- so step $1000$ is no
+distinct phase.
 
 \textbf{It is not specific to the model we picked.} Repeating the grid on four Pythia sizes
 (70m/160m/410m/1b $\times$ 6 checkpoints $\times$ 8 seeds, 192 runs) reproduces the transition in
@@ -172,14 +174,15 @@ $1/4!\,{=}\,0.042$, so no capacity axis could have been established, and none is
 report that null as the closest thing here to a previously retracted capacity claim.
 
 \textbf{It is not a restatement of the loss curve.} The transition sits where everything else in
-training changes at once, so \lca{} might be an expensive perplexity proxy. It is not. Held-out
-loss at the same $26$ (model, checkpoint) pairs falls \emph{monotonically} at all four sizes while
+training changes, so \lca{} might be an expensive perplexity proxy. It is not. Held-out
+loss at $26$ (model, checkpoint) pairs --- the scale grid's $24$ plus 410m at steps $8000$ and
+$143000$ --- falls \emph{monotonically} at all four sizes while
 \lca{} overshoots at three, and a non-monotone function of a monotone variable is not a monotone
 transform of it. They also disagree about \emph{where}: the steepest loss descent is the
 $512$--$1000$ bracket for \emph{every} size, whereas the \lca{} crossing moves with size and
-precedes it. Rank correlation is mostly not significant at six checkpoints ($\rho$ from $-0.77$ to
-$-0.71$), so shape and location carry this and correlation does not; we use the curve's
-\emph{shape}, not its level, the evaluation text not being Pythia's training distribution.
+precedes it. Rank correlation is mostly not significant at six checkpoints ($\rho$ from $-0.77$ to $-0.71$),
+so shape and location carry this and not the correlation. We use the curve's \emph{shape} and not its
+level, the evaluation text not being Pythia's training data.
 
 \textbf{Which quantity carries the claim.} A third lattice size settles it. Over $N{=}48/96/192$
 the $\lca$ plateau is $0.168/0.169/0.160$ --- slope $N^{-0.04}$, \textbf{intensive across a
@@ -191,7 +194,8 @@ delocalised. So $\lca$ carries the claim and \dn{}
 corroborates at a stated lattice size, never as a lattice-free property. Seed-to-seed variance
 also collapses ${\sim}3\times$ across the transition (Levene $p\le1.7\times10^{-4}$ at both sizes),
 reported as an observation, not pre-registered; it is the checkpoint means that agree to a few
-percent, the plateau per-seed CV being $22$--$25\%$.
+percent, the plateau per-seed CV being $22$--$25\%$. \lca{} is continuous and unthresholded, so
+this sharpening is not an artefact of a discontinuous metric \citep{mirage}.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{developmental.png}
@@ -210,8 +214,8 @@ arm diverges by exactly zero, as asserted.
 The result is unambiguous and negative. On \texttt{pythia-70m}, \texttt{-160m} and \texttt{-410m}
 (32 trials each) the injected error \textbf{persists in every single trial}
 ($P_{\text{persist}}{=}1.000$). Token identity is harsh once an injection shifts alignment, so we
-also measured distributionally: the twins' next-token TV, normalised by that between two
-\emph{independent} continuations, settles at $\mathrm{TV_{norm}}\approx0.97$.
+also measured distributionally: twin next-token TV, normalised by that between \emph{independent}
+continuations, settles at $\mathrm{TV_{norm}}\approx0.97$.
 
 The mechanism is structural. \textbf{Free generation never resamples a token}: once emitted an
 error stays in context permanently, whereas the ring CA revisits every site, and in-place
@@ -228,7 +232,7 @@ than merely fixed, and they are choices.
 \textbf{Coupling, stated precisely.} Damage spreading is a property of \emph{(model, coupling)},
 not of the model alone \citep{kohring1992,grassberger1995}. Our inverse-CDF sampling is the
 \emph{monotone} coupling: on DK's binary alphabet it coincides with the maximal-correlation member
-of the admissible family \citep{hinrichsen1997}, which is why the identity above is exact, but on a
+of the admissible family \citep{hinrichsen1997}, which is why the identity above is exact; on a
 vocabulary it does not, so our LM damage numbers sit inside the family rather than at an extremum
 (excess disagreement $1.3$--$5.4\%$). The choice is justified by replica-independence --- each
 replica's next state depends on its own state and the shared noise alone --- which a pairwise
@@ -252,7 +256,9 @@ Iterated-LLM views exist qualitatively \citep{logos_ca,telephone,paraphrase2cycl
 for masked-LM Glauber dynamics \citep{glauber_mlm}; our novelty is the measurement layer, not the
 framing. Edge-of-chaos measurement is canonical \citep{langton1990computation,bertschinger2004real} and
 already applied to transformers \citep{lyap_selfattn} and LLMs \citep{edgeofchaos2024,qle}; we
-claim neither the concept nor the criticality$\leftrightarrow$capability link. Temperature-driven order--disorder transitions have several prior
+claim neither the concept nor the criticality$\leftrightarrow$capability link, and
+absorbing-state scaling laws in deep networks are established \citep{tamai_dp} --- we report no
+universality class. Temperature-driven order--disorder transitions have several prior
 treatments \citep{critical_temp,critical_temp2,critical_temp3,ar_tempcrit,phase_detect}; we claim
 a calibrated route, not the quantity. Perturbation propagation in \emph{activation} space
 \citep{sparc,tft,residual_dynamics} and over compound-AI graphs \citep{quiver} is adjacent but in
@@ -276,16 +282,15 @@ than a surviving $p$-value. A previously reported capacity$\to$sensitivity axis 
 pseudoreplicated and is retracted.
 
 \section{Responsible use and conclusion}
-This instrument measures a construction built \emph{from} a language model from sampled outputs
-alone. That is its practical affordance: it characterises models behind an API, where weights are
-unavailable and activation-space methods cannot reach, and it detects developmental phase changes
-across checkpoints, and it creates no new generative capability. The misuse we consider most
-likely is a misreading of our own numbers, which is why \S\ref{sec:realgen} is in the body: a
-damping length or light cone measured here describes an in-place-resampling ring, and real
-generation absorbs \emph{no} injected token error. These quantities must \textbf{not} be cited as
+This instrument measures a construction built \emph{from} a language model, from sampled outputs
+alone. That is its affordance: it characterises models behind an API, where weights are
+unavailable and activation-space methods cannot reach. It creates no new generative capability. The misuse we consider most likely
+is a misreading of our own numbers, which is why \S\ref{sec:realgen} is in the body: a damping
+length measured here describes an in-place-resampling ring, and real generation absorbs
+\emph{no} injected token error. These quantities must \textbf{not} be cited as
 evidence about the robustness, error tolerance or self-correction of a deployed decoder --- a
-$\lca$ below zero is not a safety property. All models and corpora are publicly released and used
-within their licences. That boundary generalises: a metric should be made to reproduce known
+$\lca$ below zero is not a safety property. That boundary generalises: a metric should be made to
+reproduce known
 answers before it is believed about unknown ones. We offer the ladder as a method, not only as our step
 one --- it demoted our own ECA ordering and caught a $\lca$ reported where it is undefined.
 
