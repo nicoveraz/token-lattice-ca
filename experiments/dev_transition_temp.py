@@ -55,7 +55,7 @@ from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr
 from lyapunov import is_unignited
-from provenance import stamp
+from provenance import stamp, rel
 
 TEMPS = [0.3, 0.5, 0.9, 1.1]             # T=0.7 comes from Phase 3
 STEPS = ["step256", "step143000"]        # the two ends of the developmental curve
@@ -170,7 +170,7 @@ def main():
         "unignited runs (F42) with n stated; the rank test keeps all runs, since ranks do not "
         "depend on a dead run's magnitude.")
     json.dump(res, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":

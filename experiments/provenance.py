@@ -49,3 +49,23 @@ def stamp(path):
                  "on disk, the analysis was produced by a different version of the code -- "
                  "re-run it before reading the numbers (issue #38)."),
     }
+
+def rel(path):
+    """Repo-relative form of a path, for printing (#52).
+
+    An absolute path in a log is a de-anonymisation leak -- twelve machine-written logs shipped
+    lines like `wrote /Users/<user>/Documents/GitHub/textca/results/x.json`, and the anonymised
+    submission mirror had to rewrite them. The absolute form carries no information the relative
+    one lacks: every one of those paths is inside this repository.
+
+    This fixes only the paths WE print. Python emits absolute paths of its own in tracebacks and
+    in stdlib warnings (e.g. multiprocessing's leaked-semaphore notice from the interpreter's
+    own install directory), and no change here touches those; the mirror scrub remains the
+    backstop for them.
+    """
+    p = pathlib.Path(path).resolve()
+    root = pathlib.Path(__file__).resolve().parents[1]
+    try:
+        return str(p.relative_to(root))
+    except ValueError:
+        return str(p)

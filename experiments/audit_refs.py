@@ -16,6 +16,7 @@ literature sitting in a paper whose whole argument is that its claims are checke
 
 Usage:  .venv/bin/python experiments/audit_refs.py
 """
+from provenance import rel
 import json
 import pathlib
 import re
@@ -207,7 +208,7 @@ def main():
         verified=verified,
         unverifiable=[k for k, _, _ in without_id]), indent=1) + "\n")
 
-    print(f"\n{len(problems)} mismatched of {len(with_id)} checked; wrote {OUT}")
+    print(f"\n{len(problems)} mismatched of {len(with_id)} checked; wrote {rel(OUT)}")
     for key, what, claim, real in problems:
         print(f"  {key}: {what}")
     return 1 if problems else 0

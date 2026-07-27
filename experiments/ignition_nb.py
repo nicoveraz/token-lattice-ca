@@ -43,7 +43,7 @@ from scipy import stats
 
 from dev_transition_phase3 import measure
 from lyapunov import is_unignited
-from provenance import stamp
+from provenance import stamp, rel
 
 STEPS = ["step256", "step512"]          # the checkpoints F44 compared at
 SEEDS = [21, 22, 23, 24, 25, 26, 27, 28]
@@ -135,7 +135,7 @@ def main():
         "manipulate it. This holds N at 48 and drops B to 4. Also records ignition_prob, giving "
         "the per-lattice death probability directly rather than inferring it from a d^B fit.")
     json.dump(res, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":

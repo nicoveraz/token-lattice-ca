@@ -46,7 +46,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
 
 from dev_transition_phase3 import measure          # identical protocol, not a copy
-from provenance import stamp
+from provenance import stamp, rel
 from lyapunov import is_unignited                  # F42: lambda is undefined without a cone
 
 STEPS = ["step256", "step512", "step143000"]
@@ -176,7 +176,7 @@ def main():
                     "be intensive (a cone-growth RATE fitted before saturation) and D_norm "
                     "to fall as 1/N (localised numerator over a delocalised floor).")
     json.dump(res, open(OUT, "w"), indent=1)
-    print("\nwrote", OUT)
+    print("\nwrote", rel(OUT))
 
 
 if __name__ == "__main__":

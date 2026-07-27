@@ -26,7 +26,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 import numpy as np
 from scipy import stats
 sys.path[:0] = [str(ROOT / "experiments")]
-from provenance import stamp
+from provenance import stamp, rel
 from lyapunov import is_unignited
 
 SRC = ROOT / "results" / "dev_transition_phase3.json"
@@ -278,7 +278,7 @@ def main():
                                D_norm_basis="all runs -- zero damage is a true zero, not "
                                             "an undefined value (F42 asymmetry)")
     json.dump(out, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":

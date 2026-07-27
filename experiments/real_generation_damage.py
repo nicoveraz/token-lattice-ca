@@ -37,6 +37,7 @@ _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
 import os, json, gc, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+from provenance import rel
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -145,7 +146,7 @@ def main():
                     "token error; reported as a pair with conditional divergence per F34. "
                     "The null arm (no injection, shared uniforms) is asserted to be exactly 0.")
     json.dump(res, open(OUT, "w"), indent=1)
-    print("wrote", OUT)
+    print("wrote", rel(OUT))
 
 
 if __name__ == "__main__":

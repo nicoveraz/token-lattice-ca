@@ -853,7 +853,7 @@
  "verdict": "PARTIAL: survives at ['T0.5'] but not at the others -- see the per-temperature means before reading this either way",
  "_analysis_provenance": {
   "script": "dev_transition_temp.py",
-  "sha256": "4391460375c7a634e3b00d787f244cb5052a120a5bdcc508b4faaf236d8f3bd6",
+  "sha256": "7a823cad1a93c31885366650d98fd5bdf6c9c93abde99a3b6cfa447d1f04bb0d",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Robustness of the developmental transition to sampling temperature (issue #17). The headline is measured at T=0.7 only, and temperature is a known-strong axis here (F12; the cross-level temperature confound), so this tests the two ends of the developmental curve at T=0.3 and T=1.1 against the Phase 3 T=0.7 cells. lambda statistics exclude unignited runs (F42) with n stated; the rank test keeps all runs, since ranks do not depend on a dead run's magnitude."

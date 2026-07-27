@@ -28,6 +28,7 @@ _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
 import os, json, gc, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+from provenance import rel
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -127,7 +128,7 @@ def main():
                     "are as far apart as unrelated continuations. Companion to "
                     "real_generation_damage.py, which finds token-identity recovery is 0.")
     json.dump(res, open(OUT, "w"), indent=1)
-    print("wrote", OUT)
+    print("wrote", rel(OUT))
 
 
 if __name__ == "__main__":

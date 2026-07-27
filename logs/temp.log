@@ -16,4 +16,4 @@ developmental transition vs temperature: 64 runs (T in [0.3, 0.5, 0.9, 1.1] x 2 
 
   -> PARTIAL: survives at ['T0.5'] but not at the others -- see the per-temperature means before reading this either way
 
-wrote /Users/nicoveraz/Documents/GitHub/textca/results/dev_transition_temp.json
+wrote results/dev_transition_temp.json

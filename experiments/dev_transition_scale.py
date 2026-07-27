@@ -48,7 +48,7 @@ import numpy as np
 from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr     # identical protocol, not a copy
-from provenance import stamp
+from provenance import stamp, rel
 from lyapunov import is_unignited                                   # F42
 
 MODELS = [("EleutherAI/pythia-70m", 70), ("EleutherAI/pythia-160m", 160),
@@ -112,7 +112,7 @@ def main():
 
     analyse(res)
     json.dump(res, open(OUT, "w"), indent=1)
-    print("\nwrote", OUT)
+    print("\nwrote", rel(OUT))
 
 
 def _ignited(r):

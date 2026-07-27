@@ -308,3 +308,50 @@ def test_every_stamped_results_file_is_covered_by_the_staleness_check():
     covered = {results_name for results_name, _script in _STALENESS_PAIRS}
     assert stamped <= covered, (
         f"stamped but unchecked: {sorted(stamped - covered)}. Add them to _STALENESS_PAIRS.")
+
+
+# ------------------------------------------- issue #52: our own prints must not leak abs paths
+def test_no_log_carries_an_absolute_path_we_printed_ourselves():
+    """A machine-written log must not contain a checkout path that we put there.
+
+    Twelve logs shipped lines like `wrote /Users/<user>/Documents/GitHub/textca/results/x.json`,
+    because twelve experiment scripts printed an absolute `OUT`. That is a de-anonymisation leak
+    in an artifact the submission mirror publishes, and the absolute form carries nothing the
+    relative one does not -- every such path is inside this repository. `provenance.rel()` is
+    the fix; this test is what stops the thirteenth script from reintroducing it.
+
+    SCOPE, stated so the pass is not mistaken for more than it is. This checks only what WE
+    print. Python emits absolute paths of its own that no change here can reach:
+
+      * tracebacks   -- `File "/Users/<user>/.../experiments/ar_probe.py", line 120`
+      * stdlib warnings -- multiprocessing's leaked-semaphore notice, from the interpreter's own
+        install directory
+
+    Four archival logs under `results/logs_*/` carry those and are left alone; re-running the
+    jobs that produced them means real model generation, and the mirror scrub already rewrites
+    them. The one allowed exception below is ours but deliberately kept.
+    """
+    import re as _re
+    allowed = {
+        # The only record of the 32 temperature-widening runs (#73): its 32 per-run progress
+        # lines exist nowhere else, and dev_transition_temp.py now resumes from cached runs, so
+        # re-running regenerates the ANALYSIS log (temp.log) and not this one. Deleting it to
+        # make a grep pass would destroy evidence to satisfy a test, which is backwards.
+        "logs/temp_widen.log",
+    }
+    pat = _re.compile(r"wrote\s+/(?:Users|home)/")
+    offenders = []
+    for p in sorted(ROOT.glob("logs/*.log")) + sorted(ROOT.glob("results/logs_*/*.log")):
+        relp = str(p.relative_to(ROOT))
+        if relp in allowed:
+            continue
+        try:
+            txt = p.read_text(errors="replace")
+        except OSError:
+            continue
+        for line in txt.splitlines():
+            if pat.search(line):
+                offenders.append(f"{relp}: {line.strip()[:90]}")
+    assert not offenders, (
+        "logs contain absolute paths printed by our own code; use provenance.rel(OUT) and "
+        "re-run so the log is machine-written:\n  " + "\n  ".join(offenders))

@@ -26,7 +26,7 @@ sys.path[:0] = [str(ROOT / "experiments")]
 import numpy as np
 from scipy import stats, optimize
 
-from provenance import stamp
+from provenance import stamp, rel
 from lyapunov import is_unignited
 
 SOURCES = [("dev_transition_phase3.json", None), ("dev_transition_n192.json", 192)]
@@ -173,7 +173,7 @@ def main():
         "single constant per-lattice death probability with NO N dependence reproduces every "
         "size. Reporting the raw Fisher test alone would have been a spurious finding.")
     json.dump(out, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":

@@ -34,6 +34,7 @@ _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
 import os, json
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+from provenance import rel
 import numpy as np
 
 MODEL = "prajjwal1/bert-tiny"
@@ -150,7 +151,7 @@ def main():
                           temperatures=TS, seed=SEED)
     OUT.parent.mkdir(exist_ok=True)
     json.dump(out, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":

@@ -250,7 +250,7 @@
  },
  "_analysis_provenance": {
   "script": "floor_decorrelation.py",
-  "sha256": "b8a04e3479d861b8d34ef2d4b509b39efeda30ff93cc4a9de0d87c3066b5aa00",
+  "sha256": "e4f666e2e0d7e2a2b416834a24a100c3a8a6d509002182aa7fced75151694047",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Sweep of the floor's DECORRELATION, not of the coupling. #34 proposed a CRN-null floor and a maximal-coupling floor; both are structurally zero, because the floor's twins are identical and any coupling with P(X=Y)=1 at p==q keeps them so. alpha is the probability that the two replicas share a uniform draw: alpha=1 is CRN (floor exactly 0, asserted here), alpha=0 is the conventional independent-noise floor. The span over alpha bounds how arbitrary D_norm's absolute scale is. It does not rehabilitate that scale -- F45 showed it also moves as 1/N and F41 that the numerator's coupling is not extremal. Relative comparisons are unaffected: alpha is a common mode.",

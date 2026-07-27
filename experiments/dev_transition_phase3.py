@@ -30,6 +30,7 @@ _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
 import os, json, gc, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+from provenance import rel
 import numpy as np
 import torch
 from scipy import stats
@@ -143,7 +144,7 @@ def main():
             print(f"  {t['name']:28s} p_raw={t['p_raw']:.5f}  p_BH={t['p_bh']:.5f}  "
                   f"{'SURVIVES' if t['significant_bh_05'] else 'n.s.'}")
     json.dump(res, open(OUT, "w"), indent=1)
-    print("\nwrote", OUT)
+    print("\nwrote", rel(OUT))
 
 
 if __name__ == "__main__":

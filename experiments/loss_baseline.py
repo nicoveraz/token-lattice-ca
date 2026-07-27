@@ -48,7 +48,7 @@ import numpy as np
 import torch
 from scipy import stats
 
-from provenance import stamp
+from provenance import stamp, rel
 from lyapunov import is_unignited
 
 # The union of every (model, revision) that carries a lambda_ca measurement.
@@ -290,7 +290,7 @@ def main():
     res["_config"] = dict(grid=GRID, seq_len=SEQ_LEN, n_seq=N_SEQ, device=device,
                           eval_set="wikitext-103-raw-v1 validation")
     json.dump(res, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":

@@ -2255,7 +2255,7 @@
  },
  "_analysis_provenance": {
   "script": "dev_transition_scale.py",
-  "sha256": "b5d5108d4325e73d1042a0916b1a7a7543e1d34e00b1102c58379921d73de600",
+  "sha256": "f095882f59e899e59982b80d0e87396703d7b8e89840b4be80e81ae0dba237b4",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  }
 }

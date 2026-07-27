@@ -35,6 +35,7 @@ Usage:  .venv/bin/python experiments/dk_calib.py
 import sys, pathlib, json, time
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src")]
+from provenance import rel
 import numpy as np
 
 from dk import (ANCHORS, DP_DELTA, dk_run, dk_step, survival_from_seed,
@@ -195,7 +196,7 @@ def main():
                           dp_delta=DP_DELTA)
     OUT.parent.mkdir(exist_ok=True)
     json.dump(out, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}  ({out['_runtime_s']}s)")
+    print(f"\nwrote {rel(OUT)}  ({out['_runtime_s']}s)")
     make_figure(out)
 
 

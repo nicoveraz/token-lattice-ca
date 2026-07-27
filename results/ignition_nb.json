@@ -225,7 +225,7 @@
  },
  "_analysis_provenance": {
   "script": "ignition_nb.py",
-  "sha256": "8ff1c5a2207ed53c3fc57ed86ec1e95f6bc84a9c085c00ee17e04860a9f41a6d",
+  "sha256": "d09c23fd99d6b492afabfa16e1bbd36edb5d0948dbb9a3c5d25e356fb21e7386",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Missing cell of the N-vs-B 2x2 for the ignition question (issue #39). Every N in the existing data came with its own B, so F44 could only FIT a batch-size model, not manipulate it. This holds N at 48 and drops B to 4. Also records ignition_prob, giving the per-lattice death probability directly rather than inferring it from a d^B fit."

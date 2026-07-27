@@ -40,7 +40,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
 import torch
 
-from provenance import stamp
+from provenance import stamp, rel
 
 MODEL = "EleutherAI/pythia-160m"
 ALPHAS = [0.0, 0.25, 0.5, 0.75, 0.9, 1.0]
@@ -152,7 +152,7 @@ def main():
         "Relative comparisons are unaffected: alpha is a common mode.")
     res["_config"] = dict(model=MODEL, alphas=ALPHAS, seeds=SEEDS, N=N, B=B, r=R, T=T)
     json.dump(res, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+    print(f"\nwrote {rel(OUT)}")
 
 
 if __name__ == "__main__":
