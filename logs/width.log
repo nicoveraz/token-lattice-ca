@@ -1,212 +1,27 @@
 WIDTH scan at fixed depth (6) and fixed LR (1.0e-3): 144 runs (3 widths x 6 ckpts x 8 seeds, N=48)
 Breaks C20's LR/size confound: nothing but width varies here.
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 22565.98it/s]
-[1/144] m14_step128_s21: lam=+0.3496 D_norm=0.9771 (33.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4583.61it/s]
-[2/144] m14_step128_s22: lam=+0.4468 D_norm=0.9827 (25.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6192.06it/s]
-[3/144] m14_step128_s23: lam=+0.2504 D_norm=0.9403 (25.6s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5059.23it/s]
-[4/144] m14_step128_s24: lam=+0.2789 D_norm=0.9425 (23.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5900.69it/s]
-[5/144] m14_step128_s25: lam=+0.3005 D_norm=0.9092 (24.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6130.61it/s]
-[6/144] m14_step128_s26: lam=+0.3765 D_norm=0.9868 (24.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7697.83it/s]
-[7/144] m14_step128_s27: lam=+0.3460 D_norm=0.9860 (22.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6987.75it/s]
-[8/144] m14_step128_s28: lam=+0.2030 D_norm=0.9666 (25.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8938.06it/s]
-[9/144] m14_step256_s21: lam=-0.1084 D_norm=0.0456 (34.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8485.07it/s]
-[10/144] m14_step256_s22: lam=+0.2802 D_norm=0.1439 (20.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5127.18it/s]
-[11/144] m14_step256_s23: lam=+0.1049 D_norm=0.0806 (19.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6287.20it/s]
-[12/144] m14_step256_s24: lam=+0.0852 D_norm=0.0742 (19.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7367.95it/s]
-[13/144] m14_step256_s25: lam=-0.0249 D_norm=0.0466 (19.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10724.23it/s]
-[14/144] m14_step256_s26: lam=+0.2760 D_norm=0.1707 (19.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8678.89it/s]
-[15/144] m14_step256_s27: lam=+0.1273 D_norm=0.0551 (19.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6517.42it/s]
-[16/144] m14_step256_s28: lam=+0.1752 D_norm=0.0446 (19.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8571.31it/s]
-[17/144] m14_step512_s21: lam=-0.4247 D_norm=0.0000 (27.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7982.35it/s]
-[18/144] m14_step512_s22: lam=+0.0094 D_norm=0.0263 (19.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9742.27it/s]
-[19/144] m14_step512_s23: lam=-0.2483 D_norm=0.0189 (19.6s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6256.59it/s]
-[20/144] m14_step512_s24: lam=-0.1344 D_norm=0.0133 (19.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9137.92it/s]
-[21/144] m14_step512_s25: lam=-1.6962 D_norm=0.0000 (18.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6313.97it/s]
-[22/144] m14_step512_s26: lam=+0.0165 D_norm=0.0478 (19.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6005.52it/s]
-[23/144] m14_step512_s27: lam=-0.2915 D_norm=0.0000 (19.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8637.27it/s]
-[24/144] m14_step512_s28: lam=-0.2170 D_norm=0.0000 (18.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5939.28it/s]
-[25/144] m14_step1000_s21: lam=-0.0101 D_norm=0.1230 (28.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6096.02it/s]
-[26/144] m14_step1000_s22: lam=+0.2893 D_norm=0.2267 (20.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4354.27it/s]
-[27/144] m14_step1000_s23: lam=+0.0324 D_norm=0.1623 (19.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7365.91it/s]
-[28/144] m14_step1000_s24: lam=+0.1553 D_norm=0.2098 (19.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8672.05it/s]
-[29/144] m14_step1000_s25: lam=-0.1577 D_norm=0.0852 (18.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7653.66it/s]
-[30/144] m14_step1000_s26: lam=+0.2284 D_norm=0.2748 (19.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8848.74it/s]
-[31/144] m14_step1000_s27: lam=+0.0087 D_norm=0.0932 (19.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6136.98it/s]
-[32/144] m14_step1000_s28: lam=+0.1746 D_norm=0.1778 (19.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9340.34it/s]
-[33/144] m14_step2000_s21: lam=+0.1176 D_norm=0.2683 (26.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 12171.79it/s]
-[34/144] m14_step2000_s22: lam=+0.2007 D_norm=0.4129 (19.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8654.15it/s]
-[35/144] m14_step2000_s23: lam=+0.1033 D_norm=0.2884 (19.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7798.77it/s]
-[36/144] m14_step2000_s24: lam=+0.2690 D_norm=0.3747 (19.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8240.07it/s]
-[37/144] m14_step2000_s25: lam=+0.0869 D_norm=0.1834 (19.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6999.56it/s]
-[38/144] m14_step2000_s26: lam=+0.1684 D_norm=0.5093 (18.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6223.49it/s]
-[39/144] m14_step2000_s27: lam=+0.1720 D_norm=0.4084 (23.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7783.73it/s]
-[40/144] m14_step2000_s28: lam=+0.1005 D_norm=0.3851 (22.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11963.04it/s]
-[41/144] m14_step4000_s21: lam=+0.1312 D_norm=0.4884 (27.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 23883.05it/s]
-[42/144] m14_step4000_s22: lam=+0.2777 D_norm=0.6267 (22.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8404.31it/s]
-[43/144] m14_step4000_s23: lam=+0.1815 D_norm=0.5850 (21.6s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5627.95it/s]
-[44/144] m14_step4000_s24: lam=+0.2019 D_norm=0.5916 (20.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6434.80it/s]
-[45/144] m14_step4000_s25: lam=+0.1974 D_norm=0.3648 (19.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6707.78it/s]
-[46/144] m14_step4000_s26: lam=+0.2158 D_norm=0.6817 (19.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7974.96it/s]
-[47/144] m14_step4000_s27: lam=+0.1769 D_norm=0.5617 (19.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7810.05it/s]
-[48/144] m14_step4000_s28: lam=+0.1391 D_norm=0.5459 (19.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9451.39it/s]
-[49/144] m31_step128_s21: lam=-2.4079 D_norm=0.0000 (38.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 13458.61it/s]
-[50/144] m31_step128_s22: lam=-0.1555 D_norm=0.0000 (27.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5314.73it/s]
-[51/144] m31_step128_s23: lam=-2.4143 D_norm=0.0000 (30.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5753.71it/s]
-[52/144] m31_step128_s24: lam=-0.3909 D_norm=0.0000 (31.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6919.19it/s]
-[53/144] m31_step128_s25: lam=-0.1210 D_norm=0.0000 (31.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5614.27it/s]
-[54/144] m31_step128_s26: lam=-0.0313 D_norm=0.0000 (30.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7994.96it/s]
-[55/144] m31_step128_s27: lam=-2.2883 D_norm=0.0000 (31.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7467.02it/s]
-[56/144] m31_step128_s28: lam=-1.1983 D_norm=0.0000 (31.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10965.12it/s]
-[57/144] m31_step256_s21: lam=-0.2076 D_norm=0.0032 (41.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7506.05it/s]
-[58/144] m31_step256_s22: lam=+0.0556 D_norm=0.0046 (30.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7073.18it/s]
-[59/144] m31_step256_s23: lam=-0.1556 D_norm=0.1015 (31.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8840.40it/s]
-[60/144] m31_step256_s24: lam=-0.0402 D_norm=0.0916 (32.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8908.84it/s]
-[61/144] m31_step256_s25: lam=-1.2034 D_norm=0.0000 (29.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5452.65it/s]
-[62/144] m31_step256_s26: lam=+0.2057 D_norm=0.1562 (28.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9414.27it/s]
-[63/144] m31_step256_s27: lam=-0.2033 D_norm=0.0042 (31.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5185.99it/s]
-[64/144] m31_step256_s28: lam=+0.1639 D_norm=0.0273 (29.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10545.42it/s]
-[65/144] m31_step512_s21: lam=+0.1307 D_norm=0.3196 (40.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7344.36it/s]
-[66/144] m31_step512_s22: lam=+0.2347 D_norm=0.4523 (28.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 12182.96it/s]
-[67/144] m31_step512_s23: lam=+0.3032 D_norm=0.3074 (34.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11197.78it/s]
-[68/144] m31_step512_s24: lam=+0.2322 D_norm=0.3744 (23.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11888.08it/s]
-[69/144] m31_step512_s25: lam=+0.1639 D_norm=0.2918 (23.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10264.60it/s]
-[70/144] m31_step512_s26: lam=+0.2479 D_norm=0.5055 (23.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9740.78it/s]
-[71/144] m31_step512_s27: lam=+0.1597 D_norm=0.4150 (22.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10305.08it/s]
-[72/144] m31_step512_s28: lam=+0.1505 D_norm=0.4169 (23.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 13647.02it/s]
-[73/144] m31_step1000_s21: lam=-0.0934 D_norm=0.1004 (36.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 14353.06it/s]
-[74/144] m31_step1000_s22: lam=+0.2939 D_norm=0.4208 (23.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 12008.10it/s]
-[75/144] m31_step1000_s23: lam=+0.0719 D_norm=0.2571 (23.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11979.22it/s]
-[76/144] m31_step1000_s24: lam=+0.2277 D_norm=0.3893 (23.6s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9559.67it/s]
-[77/144] m31_step1000_s25: lam=+0.1458 D_norm=0.2556 (26.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9821.52it/s]
-[78/144] m31_step1000_s26: lam=+0.1624 D_norm=0.6650 (29.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4540.32it/s]
-[79/144] m31_step1000_s27: lam=+0.1379 D_norm=0.3522 (33.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5756.31it/s]
-[80/144] m31_step1000_s28: lam=+0.2775 D_norm=0.3577 (33.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 13420.64it/s]
-[81/144] m31_step2000_s21: lam=+0.1298 D_norm=0.4062 (37.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11006.77it/s]
-[82/144] m31_step2000_s22: lam=+0.2143 D_norm=0.6673 (27.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7122.97it/s]
-[83/144] m31_step2000_s23: lam=+0.1493 D_norm=0.5226 (28.5s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7664.51it/s]
-[84/144] m31_step2000_s24: lam=+0.1912 D_norm=0.5583 (28.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6675.33it/s]
-[85/144] m31_step2000_s25: lam=+0.1310 D_norm=0.2426 (31.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7190.94it/s]
-[86/144] m31_step2000_s26: lam=+0.1835 D_norm=0.6735 (33.1s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8389.49it/s]
-[87/144] m31_step2000_s27: lam=+0.1675 D_norm=0.4923 (31.7s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6603.56it/s]
-[88/144] m31_step2000_s28: lam=+0.1342 D_norm=0.4797 (32.6s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 14486.78it/s]
-[89/144] m31_step4000_s21: lam=+0.1037 D_norm=0.3494 (44.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7879.55it/s]
-[90/144] m31_step4000_s22: lam=+0.3002 D_norm=0.6836 (32.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6912.29it/s]
-[91/144] m31_step4000_s23: lam=+0.1577 D_norm=0.6039 (32.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7175.24it/s]
-[92/144] m31_step4000_s24: lam=+0.1684 D_norm=0.5650 (32.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11632.99it/s]
-[93/144] m31_step4000_s25: lam=+0.1344 D_norm=0.2579 (30.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 18500.70it/s]
-[94/144] m31_step4000_s26: lam=+0.1885 D_norm=0.7749 (31.6s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7592.40it/s]
-[95/144] m31_step4000_s27: lam=+0.1545 D_norm=0.5563 (31.2s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9756.29it/s]
-[96/144] m31_step4000_s28: lam=+0.1407 D_norm=0.6005 (32.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:08,  8.81it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 641.92it/s]
-[97/144] m70_step128_s21: lam=-0.0103 D_norm=0.0679 (28.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6700.31it/s]
-[98/144] m70_step128_s22: lam=+0.0471 D_norm=0.2197 (28.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8462.32it/s]
-[99/144] m70_step128_s23: lam=+0.0237 D_norm=0.2170 (28.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4951.11it/s]
-[100/144] m70_step128_s24: lam=+0.1398 D_norm=0.2112 (31.8s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9603.44it/s]
-[101/144] m70_step128_s25: lam=-0.0216 D_norm=0.0101 (28.9s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4737.28it/s]
-[102/144] m70_step128_s26: lam=+0.3770 D_norm=0.3162 (28.4s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4848.17it/s]
-[103/144] m70_step128_s27: lam=-0.0575 D_norm=0.1352 (28.0s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6646.24it/s]
-[104/144] m70_step128_s28: lam=+0.0569 D_norm=0.1193 (33.3s)
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:08,  8.71it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 653.57it/s]
+
+F42: 13 of 144 runs never ignited; excluded from lambda means, kept in the rank tests
+
+=== mean lambda_ca by (width, step) --- depth and LR held fixed ===
+  d_model        128       256       512      1000      2000      4000
+      128     +0.3190   +0.1144   -0.0892   +0.0901   +0.1523   +0.1902
+      256          --   -0.0259   +0.2028   +0.1530   +0.1626   +0.1685
+      512     +0.0694   +0.0462   +0.1615   +0.1565   +0.1598   +0.1707
+
+=== PRIMARY: crossing bracket per width (depth and LR fixed) ===
+    128 wide (14m): step512 -> step1000
+    256 wide (31m): no crossing located on this grid
+    512 wide (70m): no crossing located on this grid
+
+  -> NOT DECIDABLE: a crossing was located for only 1 of 3 widths on this grid, so the brackets cannot be compared.
+
+=== per-width post-vs-pre, BH-FDR over this family ===
+      m14_lambda_post_vs_pre p_raw=0.71822  p_BH=0.71822  n.s.
+      m31_lambda_post_vs_pre p_raw=0.01154  p_BH=0.02310  SURVIVES
+      m70_lambda_post_vs_pre p_raw=0.01540  p_BH=0.02310  SURVIVES
+
+=== replication check: 70m vs dev_transition_scale.json ===
+  48 shared cells, 0 disagree
+
+wrote results/dev_transition_width.json

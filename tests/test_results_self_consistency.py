@@ -212,6 +212,7 @@ _STALENESS_PAIRS = [
     ("floor_decorrelation.json", "floor_decorrelation.py"),
     ("dev_transition_temp.json", "dev_transition_temp.py"),
     ("loss_baseline.json", "loss_baseline.py"),
+    ("dev_transition_width.json", "dev_transition_width.py"),
 ]
 
 
@@ -354,3 +355,32 @@ def test_no_log_carries_an_absolute_path_we_printed_ourselves():
     assert not offenders, (
         "logs contain absolute paths printed by our own code; use provenance.rel(OUT) and "
         "re-run so the log is machine-written:\n  " + "\n  ".join(offenders))
+def test_nobody_reimplements_the_f42_run_level_predicate():
+    """The F42 adapter must exist once, in lyapunov.run_ignited (#63).
+
+    `is_unignited` takes a VALUE; every caller needs a RUN-record adapter choosing which field to
+    pass, because older records predate `mean_damage` and need the `D_norm` fallback. That adapter
+    was hand-written thirteen times across experiments/ and tests/, and written WRONGLY twice --
+    once applying the filter to both metrics, inflating D_norm's N=192 plateau 0.1393 -> 0.1592, a
+    14% error on the quantity whose size scaling was that run's entire point.
+
+    A rule enforced by prose gets re-derived by whoever writes the next script, so this asserts
+    that no file outside lyapunov.py contains the field-choosing branch. It matches the SHAPE of
+    the adapter -- an is_unignited call keyed on "mean_damage" -- not a name, because renaming a
+    local helper is exactly how the fourteenth copy would slip past.
+    """
+    import re as _re
+    pat = _re.compile(r'is_unignited\s*\(\s*mean_damage\s*=.*?"mean_damage"\s+in', _re.S)
+    offenders = []
+    for d in ("experiments", "tests"):
+        for p in sorted((ROOT / d).rglob("*.py")):
+            if p.name == "lyapunov.py":
+                continue
+            txt = p.read_text(errors="replace")
+            for m in pat.finditer(txt):
+                if len(txt[:m.start()].split("\n")[-1]) < 400:   # ignore prose in docstrings
+                    offenders.append(f"{p.relative_to(ROOT)}:{txt[:m.start()].count(chr(10)) + 1}")
+    assert not offenders, (
+        "the F42 run-level predicate is re-implemented outside lyapunov.py at "
+        + ", ".join(offenders) + " -- import `run_ignited` instead. It has been written by hand "
+        "thirteen times and gotten wrong twice.")

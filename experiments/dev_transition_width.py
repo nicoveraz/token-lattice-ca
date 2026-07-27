@@ -63,7 +63,7 @@ from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr     # identical protocol, not a copy
 from provenance import stamp, rel
-from lyapunov import is_unignited
+from lyapunov import run_ignited
 
 # (hf name, tag, layers, d_model) -- layers/d_model recorded so the results file states the
 # design it claims to hold fixed, rather than leaving it to a docstring.
@@ -92,8 +92,7 @@ def crossing_interval(step_means):
 
 
 def _ignited(r):
-    return not (is_unignited(mean_damage=r["mean_damage"]) if "mean_damage" in r
-                else is_unignited(D_norm=r["D_norm"]))
+    return run_ignited(r)
 
 
 def main():
