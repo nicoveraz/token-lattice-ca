@@ -209,3 +209,46 @@ def dnorm_of(runs):
     """
     return [r["D_norm"] for r in runs]
 
+def lyap_from_damage_range(cone, lo_sites, hi_sites):
+    """Growth rate between two fixed DAMAGE LEVELS, by interpolated crossing times (#81).
+
+    Every fixed-LENGTH window has a defect once damage saturates inside it: the fit stops being a
+    growth rate and becomes a CHORD from the seed to the ceiling, lambda ~= (log d_sat - log d_0)/T,
+    which falls as -log(seed size) by arithmetic alone. On this project's own plateau data that
+    chord model reproduced the apparent perturbation-size dependence at r = +0.999.
+
+    Fixing a damage RANGE removes it by construction: with `lo_sites` at or above the largest seed
+    under comparison, no run is fitted from its own starting point, so every perturbation size is
+    measured over the identical stretch of curve.
+
+    The rate is taken from INTERPOLATED crossing times rather than a least-squares fit over whole
+    sweeps. A first attempt fitted the enclosed samples and returned None whenever the range was
+    crossed in under two sweeps -- which is exactly what fast growth does, so the estimator failed
+    on the runs it most needed to measure. Interpolating is also exact for exponential growth:
+    d(t) = d_0 e^{lambda t} crosses lo and hi at times whose difference is
+    (log hi - log lo) / lambda, so inverting it recovers lambda with no fitting at all.
+
+    Returns (lambda_per_sweep, sweeps_spanned), or (None, 0) when damage never reaches `hi_sites`
+    -- the honest answer for a sub-critical cell, where damage that never grows has no growth rate.
+    """
+    import numpy as _np
+    d = _np.asarray(cone).sum(axis=1)                    # expected damaged sites per sweep
+
+    def _cross(level):
+        """First time d(t) reaches `level`, linearly interpolated in log d."""
+        idx = _np.nonzero(d >= level)[0]
+        if idx.size == 0:
+            return None
+        k = int(idx[0])
+        if k == 0:
+            return 0.0
+        y0, y1 = d[k - 1], d[k]
+        if y0 <= 0 or y1 <= y0:
+            return float(k)
+        f = (_np.log(level) - _np.log(y0)) / (_np.log(y1) - _np.log(y0))
+        return float(k - 1 + min(max(f, 0.0), 1.0))
+
+    t_lo, t_hi = _cross(lo_sites), _cross(hi_sites)
+    if t_lo is None or t_hi is None or t_hi <= t_lo:
+        return None, 0
+    return float((_np.log(hi_sites) - _np.log(lo_sites)) / (t_hi - t_lo)), float(t_hi - t_lo)

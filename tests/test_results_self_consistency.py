@@ -213,6 +213,8 @@ _STALENESS_PAIRS = [
     ("dev_transition_temp.json", "dev_transition_temp.py"),
     ("loss_baseline.json", "loss_baseline.py"),
     ("dev_transition_width.json", "dev_transition_width.py"),
+    ("lyap_perturbation_size.json", "lyap_perturbation_size.py"),
+    ("loss_collapse_pile.json", "loss_collapse_pile.py"),
 ]
 
 

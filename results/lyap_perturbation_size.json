@@ -6,10 +6,12 @@
    "seed": 21,
    "lambda_fixed_window": -0.033580408175844456,
    "lambda_default_branch": 0.028502018968414623,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.05859375,
    "mean_damage": 0.04443359375,
    "ignition_prob": 0.1875,
-   "secs": 60.4
+   "secs": 56.1
   },
   "step256_b1_s22": {
    "step": 256,
@@ -17,10 +19,12 @@
    "seed": 22,
    "lambda_fixed_window": -0.09050098025439111,
    "lambda_default_branch": -0.020432296631740805,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.020833333333333332,
    "mean_damage": 0.011881510416666666,
    "ignition_prob": 0.0625,
-   "secs": 57.3
+   "secs": 53.2
   },
   "step256_b1_s23": {
    "step": 256,
@@ -28,10 +32,12 @@
    "seed": 23,
    "lambda_fixed_window": -0.0693413512255875,
    "lambda_default_branch": -0.06718416186416311,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.0390625,
    "mean_damage": 0.034016927083333336,
    "ignition_prob": 0.125,
-   "secs": 57.6
+   "secs": 53.1
   },
   "step256_b1_s24": {
    "step": 256,
@@ -39,10 +45,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.05396901888663253,
    "lambda_default_branch": 0.07501563639516767,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.06901041666666667,
    "mean_damage": 0.05973307291666667,
    "ignition_prob": 0.125,
-   "secs": 54.8
+   "secs": 53.2
   },
   "step256_b1_s25": {
    "step": 256,
@@ -50,10 +58,12 @@
    "seed": 25,
    "lambda_fixed_window": -0.07686345821505666,
    "lambda_default_branch": 0.017567464621550906,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.020833333333333332,
    "mean_damage": 0.013020833333333334,
    "ignition_prob": 0.0625,
-   "secs": 53.3
+   "secs": 53.6
   },
   "step256_b1_s26": {
    "step": 256,
@@ -61,10 +71,12 @@
    "seed": 26,
    "lambda_fixed_window": -0.0009486242410552728,
    "lambda_default_branch": 0.041718949711196385,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.032552083333333336,
    "mean_damage": 0.01611328125,
    "ignition_prob": 0.125,
-   "secs": 54.2
+   "secs": 53.1
   },
   "step256_b1_s27": {
    "step": 256,
@@ -72,10 +84,12 @@
    "seed": 27,
    "lambda_fixed_window": -1.4802332740676012,
    "lambda_default_branch": -0.9210340371976186,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.020833333333333332,
    "mean_damage": 0.0,
    "ignition_prob": 0.0,
-   "secs": 53.0
+   "secs": 53.4
   },
   "step256_b1_s28": {
    "step": 256,
@@ -83,10 +97,12 @@
    "seed": 28,
    "lambda_fixed_window": -0.05978487262755977,
    "lambda_default_branch": -0.04883061069136033,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.020833333333333332,
    "mean_damage": 0.0,
    "ignition_prob": 0.0,
-   "secs": 58.2
+   "secs": 53.4
   },
   "step256_b2_s21": {
    "step": 256,
@@ -94,10 +110,12 @@
    "seed": 21,
    "lambda_fixed_window": -2.5862218446552125,
    "lambda_default_branch": -2.289768764522107,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.041666666666666664,
    "mean_damage": 0.0,
    "ignition_prob": 0.0,
-   "secs": 56.0
+   "secs": 53.6
   },
   "step256_b2_s22": {
    "step": 256,
@@ -105,10 +123,12 @@
    "seed": 22,
    "lambda_fixed_window": 0.09881586046816004,
    "lambda_default_branch": 0.1632045457491023,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.09765625,
    "mean_damage": 0.07958984375,
    "ignition_prob": 0.3125,
-   "secs": 55.0
+   "secs": 53.6
   },
   "step256_b2_s23": {
    "step": 256,
@@ -116,10 +136,12 @@
    "seed": 23,
    "lambda_fixed_window": 0.11068501999737762,
    "lambda_default_branch": 0.130924948950154,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.07682291666666667,
    "mean_damage": 0.06787109375,
    "ignition_prob": 0.375,
-   "secs": 55.0
+   "secs": 53.0
   },
   "step256_b2_s24": {
    "step": 256,
@@ -127,10 +149,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.08366287307098033,
    "lambda_default_branch": 0.08366287307098033,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.14713541666666666,
    "mean_damage": 0.13313802083333331,
    "ignition_prob": 0.25,
-   "secs": 55.1
+   "secs": 53.1
   },
   "step256_b2_s25": {
    "step": 256,
@@ -138,10 +162,12 @@
    "seed": 25,
    "lambda_fixed_window": -0.3069869506329572,
    "lambda_default_branch": -0.1571446679864912,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.041666666666666664,
    "mean_damage": 0.024251302083333332,
    "ignition_prob": 0.0625,
-   "secs": 55.0
+   "secs": 53.1
   },
   "step256_b2_s26": {
    "step": 256,
@@ -149,10 +175,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.06647165067147379,
    "lambda_default_branch": 0.09331954919215105,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.12890625,
    "mean_damage": 0.12369791666666666,
    "ignition_prob": 0.375,
-   "secs": 53.5
+   "secs": 53.1
   },
   "step256_b2_s27": {
    "step": 256,
@@ -160,10 +188,12 @@
    "seed": 27,
    "lambda_fixed_window": 0.007717177258491999,
    "lambda_default_branch": -0.012367187724828655,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.045572916666666664,
    "mean_damage": 0.030761718750000003,
    "ignition_prob": 0.125,
-   "secs": 53.0
+   "secs": 53.2
   },
   "step256_b2_s28": {
    "step": 256,
@@ -171,10 +201,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.0775735999765802,
    "lambda_default_branch": 0.04619757582655952,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.06380208333333333,
    "mean_damage": 0.05094401041666667,
    "ignition_prob": 0.25,
-   "secs": 53.1
+   "secs": 53.2
   },
   "step256_b3_s21": {
    "step": 256,
@@ -182,10 +214,12 @@
    "seed": 21,
    "lambda_fixed_window": -0.3128546268629964,
    "lambda_default_branch": -0.20027853409295998,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.06510416666666667,
    "mean_damage": 0.025390625,
    "ignition_prob": 0.125,
-   "secs": 52.9
+   "secs": 53.2
   },
   "step256_b3_s22": {
    "step": 256,
@@ -193,10 +227,12 @@
    "seed": 22,
    "lambda_fixed_window": 0.055373170313713894,
    "lambda_default_branch": 0.041565013316652834,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.09765625,
    "mean_damage": 0.07958984375,
    "ignition_prob": 0.3125,
-   "secs": 53.4
+   "secs": 53.2
   },
   "step256_b3_s23": {
    "step": 256,
@@ -204,10 +240,12 @@
    "seed": 23,
    "lambda_fixed_window": 0.011608494964126796,
    "lambda_default_branch": -0.002619453989148998,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.07682291666666667,
    "mean_damage": 0.06787109375,
    "ignition_prob": 0.375,
-   "secs": 53.5
+   "secs": 53.2
   },
   "step256_b3_s24": {
    "step": 256,
@@ -215,10 +253,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.04022018291653412,
    "lambda_default_branch": 0.04022018291653412,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.14713541666666666,
    "mean_damage": 0.13313802083333331,
    "ignition_prob": 0.25,
-   "secs": 53.9
+   "secs": 53.1
   },
   "step256_b3_s25": {
    "step": 256,
@@ -226,10 +266,12 @@
    "seed": 25,
    "lambda_fixed_window": -0.3504296407874033,
    "lambda_default_branch": -0.1841756751937022,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.0625,
    "mean_damage": 0.024251302083333332,
    "ignition_prob": 0.0625,
-   "secs": 53.7
+   "secs": 53.0
   },
   "step256_b3_s26": {
    "step": 256,
@@ -237,10 +279,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.08199090845445241,
    "lambda_default_branch": 0.17789308223632483,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.18880208333333334,
    "mean_damage": 0.1845703125,
    "ignition_prob": 0.5,
-   "secs": 53.6
+   "secs": 53.0
   },
   "step256_b3_s27": {
    "step": 256,
@@ -248,10 +292,12 @@
    "seed": 27,
    "lambda_fixed_window": -0.03572551289595423,
    "lambda_default_branch": -0.03939819493203964,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.0625,
    "mean_damage": 0.030761718750000003,
    "ignition_prob": 0.125,
-   "secs": 53.6
+   "secs": 53.5
   },
   "step256_b3_s28": {
    "step": 256,
@@ -259,10 +305,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.03413090982213396,
    "lambda_default_branch": 0.019166568619348522,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.06380208333333333,
    "mean_damage": 0.05094401041666667,
    "ignition_prob": 0.25,
-   "secs": 53.9
+   "secs": 53.4
   },
   "step256_b5_s21": {
    "step": 256,
@@ -270,10 +318,12 @@
    "seed": 21,
    "lambda_fixed_window": -0.20406238799250018,
    "lambda_default_branch": -0.29488822342579,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.10416666666666667,
    "mean_damage": 0.059895833333333336,
    "ignition_prob": 0.25,
-   "secs": 53.8
+   "secs": 53.1
   },
   "step256_b5_s22": {
    "step": 256,
@@ -281,10 +331,12 @@
    "seed": 22,
    "lambda_fixed_window": -0.05420737521695656,
    "lambda_default_branch": -0.2140068232486762,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.14973958333333334,
    "mean_damage": 0.12532552083333331,
    "ignition_prob": 0.25,
-   "secs": 54.2
+   "secs": 53.1
   },
   "step256_b5_s23": {
    "step": 256,
@@ -292,10 +344,12 @@
    "seed": 23,
    "lambda_fixed_window": -0.12499404994414505,
    "lambda_default_branch": -0.2721197776370295,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.10677083333333333,
    "mean_damage": 0.09602864583333333,
    "ignition_prob": 0.375,
-   "secs": 53.7
+   "secs": 53.1
   },
   "step256_b5_s24": {
    "step": 256,
@@ -303,10 +357,12 @@
    "seed": 24,
    "lambda_fixed_window": -0.04893177587055157,
    "lambda_default_branch": -0.19012965237357782,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.15104166666666666,
    "mean_damage": 0.14453125,
    "ignition_prob": 0.375,
-   "secs": 53.9
+   "secs": 53.2
   },
   "step256_b5_s25": {
    "step": 256,
@@ -314,10 +370,12 @@
    "seed": 25,
    "lambda_fixed_window": -0.031425824560831414,
    "lambda_default_branch": -0.14353131228443258,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.10546875,
    "mean_damage": 0.09749348958333333,
    "ignition_prob": 0.3125,
-   "secs": 53.6
+   "secs": 53.1
   },
   "step256_b5_s26": {
    "step": 256,
@@ -325,10 +383,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.018896562042310164,
    "lambda_default_branch": 0.0322322500396701,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.17447916666666666,
    "mean_damage": 0.15901692708333334,
    "ignition_prob": 0.4375,
-   "secs": 54.1
+   "secs": 53.1
   },
   "step256_b5_s27": {
    "step": 256,
@@ -336,10 +396,12 @@
    "seed": 27,
    "lambda_fixed_window": 0.03119151934665883,
    "lambda_default_branch": 0.015927389734420195,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.2109375,
    "mean_damage": 0.18831380208333331,
    "ignition_prob": 0.375,
-   "secs": 53.9
+   "secs": 53.5
   },
   "step256_b5_s28": {
    "step": 256,
@@ -347,10 +409,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.03233880447287095,
    "lambda_default_branch": 0.04739417122228308,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.14322916666666666,
    "mean_damage": 0.11181640625,
    "ignition_prob": 0.5625,
-   "secs": 54.3
+   "secs": 53.1
   },
   "step143000_b1_s21": {
    "step": 143000,
@@ -358,10 +422,12 @@
    "seed": 21,
    "lambda_fixed_window": 0.2986226725776191,
    "lambda_default_branch": 0.19165377844604656,
+   "lambda_damage_range": 0.13418327828820872,
+   "range_sweeps_spanned": 6.524425014221995,
    "max_damage_fraction": 0.59765625,
    "mean_damage": 0.478515625,
    "ignition_prob": 0.75,
-   "secs": 56.1
+   "secs": 54.4
   },
   "step143000_b1_s22": {
    "step": 143000,
@@ -369,10 +435,12 @@
    "seed": 22,
    "lambda_fixed_window": 0.38153321396010736,
    "lambda_default_branch": 0.26792435101130824,
+   "lambda_damage_range": 0.2757632199674127,
+   "range_sweeps_spanned": 3.174711759811027,
    "max_damage_fraction": 0.7239583333333334,
    "mean_damage": 0.6111653645833333,
    "ignition_prob": 0.9375,
-   "secs": 55.8
+   "secs": 53.1
   },
   "step143000_b1_s23": {
    "step": 143000,
@@ -380,10 +448,12 @@
    "seed": 23,
    "lambda_fixed_window": 0.39207259486124085,
    "lambda_default_branch": 0.24617993037114846,
+   "lambda_damage_range": 0.18665210350982217,
+   "range_sweeps_spanned": 4.690377021697108,
    "max_damage_fraction": 0.7604166666666666,
    "mean_damage": 0.6717122395833334,
    "ignition_prob": 1.0,
-   "secs": 54.8
+   "secs": 53.4
   },
   "step143000_b1_s24": {
    "step": 143000,
@@ -391,10 +461,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.39179539866902874,
    "lambda_default_branch": 0.21614231205404705,
+   "lambda_damage_range": 0.2679275032975408,
+   "range_sweeps_spanned": 3.2675583005812894,
    "max_damage_fraction": 0.6848958333333334,
    "mean_damage": 0.6036783854166667,
    "ignition_prob": 1.0,
-   "secs": 53.9
+   "secs": 53.2
   },
   "step143000_b1_s25": {
    "step": 143000,
@@ -402,10 +474,12 @@
    "seed": 25,
    "lambda_fixed_window": 0.31984735520111834,
    "lambda_default_branch": 0.31984735520111834,
+   "lambda_damage_range": 0.13240608139188623,
+   "range_sweeps_spanned": 6.6119979396018005,
    "max_damage_fraction": 0.3125,
    "mean_damage": 0.2960611979166667,
    "ignition_prob": 0.5625,
-   "secs": 54.0
+   "secs": 53.1
   },
   "step143000_b1_s26": {
    "step": 143000,
@@ -413,10 +487,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.3663698269099762,
    "lambda_default_branch": 0.25012440047611745,
+   "lambda_damage_range": 0.2743669653799607,
+   "range_sweeps_spanned": 3.1908678806921804,
    "max_damage_fraction": 0.8346354166666666,
    "mean_damage": 0.7706705729166666,
    "ignition_prob": 0.9375,
-   "secs": 54.1
+   "secs": 53.3
   },
   "step143000_b1_s27": {
    "step": 143000,
@@ -424,10 +500,12 @@
    "seed": 27,
    "lambda_fixed_window": -1.4802332740676012,
    "lambda_default_branch": -0.9210340371976186,
+   "lambda_damage_range": null,
+   "range_sweeps_spanned": 0.0,
    "max_damage_fraction": 0.020833333333333332,
    "mean_damage": 0.0,
    "ignition_prob": 0.0,
-   "secs": 54.6
+   "secs": 53.2
   },
   "step143000_b1_s28": {
    "step": 143000,
@@ -435,10 +513,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.3404400409496761,
    "lambda_default_branch": 0.2047619884066645,
+   "lambda_damage_range": 0.1371660928020152,
+   "range_sweeps_spanned": 6.382544836481907,
    "max_damage_fraction": 0.66015625,
    "mean_damage": 0.5693359375,
    "ignition_prob": 1.0,
-   "secs": 54.8
+   "secs": 53.1
   },
   "step143000_b2_s21": {
    "step": 143000,
@@ -446,10 +526,12 @@
    "seed": 21,
    "lambda_fixed_window": 0.1587743196471907,
    "lambda_default_branch": 0.14919634892076833,
+   "lambda_damage_range": 0.11870317443496574,
+   "range_sweeps_spanned": 7.375276537642603,
    "max_damage_fraction": 0.4466145833333333,
    "mean_damage": 0.3408203125,
    "ignition_prob": 0.5625,
-   "secs": 54.7
+   "secs": 53.1
   },
   "step143000_b2_s22": {
    "step": 143000,
@@ -457,10 +539,12 @@
    "seed": 22,
    "lambda_fixed_window": 0.30913166567024397,
    "lambda_default_branch": 0.20294817349612201,
+   "lambda_damage_range": 0.33866420143146087,
+   "range_sweeps_spanned": 2.585064301610509,
    "max_damage_fraction": 0.7473958333333334,
    "mean_damage": 0.6357421875,
    "ignition_prob": 1.0,
-   "secs": 55.3
+   "secs": 53.7
   },
   "step143000_b2_s23": {
    "step": 143000,
@@ -468,10 +552,12 @@
    "seed": 23,
    "lambda_fixed_window": 0.30761291550820546,
    "lambda_default_branch": 0.19942510437771668,
+   "lambda_damage_range": 0.18395771526238588,
+   "range_sweeps_spanned": 4.759075943649255,
    "max_damage_fraction": 0.5768229166666666,
    "mean_damage": 0.5198567708333334,
    "ignition_prob": 0.875,
-   "secs": 55.4
+   "secs": 53.6
   },
   "step143000_b2_s24": {
    "step": 143000,
@@ -479,10 +565,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.32274556473315025,
    "lambda_default_branch": 0.19949305780256354,
+   "lambda_damage_range": 0.28228202101726635,
+   "range_sweeps_spanned": 3.101397440045784,
    "max_damage_fraction": 0.7825520833333334,
    "mean_damage": 0.6638997395833334,
    "ignition_prob": 0.9375,
-   "secs": 55.5
+   "secs": 53.2
   },
   "step143000_b2_s25": {
    "step": 143000,
@@ -490,10 +578,12 @@
    "seed": 25,
    "lambda_fixed_window": 0.2743201884864911,
    "lambda_default_branch": 0.23977820028489083,
+   "lambda_damage_range": 0.19748757048355603,
+   "range_sweeps_spanned": 4.4330320901223335,
    "max_damage_fraction": 0.49609375,
    "mean_damage": 0.455078125,
    "ignition_prob": 0.8125,
-   "secs": 55.1
+   "secs": 53.2
   },
   "step143000_b2_s26": {
    "step": 143000,
@@ -501,10 +591,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.28985812604979994,
    "lambda_default_branch": 0.22831709041351178,
+   "lambda_damage_range": 0.39460491994956554,
+   "range_sweeps_spanned": 2.2185955954776078,
    "max_damage_fraction": 0.82421875,
    "mean_damage": 0.76904296875,
    "ignition_prob": 1.0,
-   "secs": 54.0
+   "secs": 53.0
   },
   "step143000_b2_s27": {
    "step": 143000,
@@ -512,10 +604,12 @@
    "seed": 27,
    "lambda_fixed_window": 0.286573316111894,
    "lambda_default_branch": 0.2144024388878161,
+   "lambda_damage_range": 0.23865503105586022,
+   "range_sweeps_spanned": 3.668343941800186,
    "max_damage_fraction": 0.6653645833333334,
    "mean_damage": 0.5732421875,
    "ignition_prob": 0.875,
-   "secs": 54.7
+   "secs": 53.1
   },
   "step143000_b2_s28": {
    "step": 143000,
@@ -523,10 +617,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.2453542508057791,
    "lambda_default_branch": 0.1486831732102335,
+   "lambda_damage_range": 0.1310234056470461,
+   "range_sweeps_spanned": 6.681773634492895,
    "max_damage_fraction": 0.6614583333333334,
    "mean_damage": 0.5634765625,
    "ignition_prob": 1.0,
-   "secs": 54.8
+   "secs": 53.0
   },
   "step143000_b3_s21": {
    "step": 143000,
@@ -534,10 +630,12 @@
    "seed": 21,
    "lambda_fixed_window": 0.17603620193819666,
    "lambda_default_branch": 0.14660625682744738,
+   "lambda_damage_range": 0.14283293434418798,
+   "range_sweeps_spanned": 6.129319833507459,
    "max_damage_fraction": 0.6458333333333334,
    "mean_damage": 0.5177408854166667,
    "ignition_prob": 0.875,
-   "secs": 55.0
+   "secs": 53.1
   },
   "step143000_b3_s22": {
    "step": 143000,
@@ -545,10 +643,12 @@
    "seed": 22,
    "lambda_fixed_window": 0.26568897551579773,
    "lambda_default_branch": 0.18083189487204035,
+   "lambda_damage_range": 0.33866420143146087,
+   "range_sweeps_spanned": 2.585064301610509,
    "max_damage_fraction": 0.7473958333333334,
    "mean_damage": 0.6357421875,
    "ignition_prob": 1.0,
-   "secs": 54.7
+   "secs": 53.1
   },
   "step143000_b3_s23": {
    "step": 143000,
@@ -556,10 +656,12 @@
    "seed": 23,
    "lambda_fixed_window": 0.24231054236517532,
    "lambda_default_branch": 0.15748095375500015,
+   "lambda_damage_range": 0.1848264539883537,
+   "range_sweeps_spanned": 4.736706886174774,
    "max_damage_fraction": 0.6419270833333334,
    "mean_damage": 0.5748697916666666,
    "ignition_prob": 0.875,
-   "secs": 54.3
+   "secs": 52.2
   },
   "step143000_b3_s24": {
    "step": 143000,
@@ -567,10 +669,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.27930287457870406,
    "lambda_default_branch": 0.18389824595224963,
+   "lambda_damage_range": 0.28228202101726635,
+   "range_sweeps_spanned": 3.101397440045784,
    "max_damage_fraction": 0.7825520833333334,
    "mean_damage": 0.6638997395833334,
    "ignition_prob": 0.9375,
-   "secs": 54.9
+   "secs": 52.3
   },
   "step143000_b3_s25": {
    "step": 143000,
@@ -578,10 +682,12 @@
    "seed": 25,
    "lambda_fixed_window": 0.23087749833204485,
    "lambda_default_branch": 0.21274719307767986,
+   "lambda_damage_range": 0.19748757048355603,
+   "range_sweeps_spanned": 4.4330320901223335,
    "max_damage_fraction": 0.49609375,
    "mean_damage": 0.455078125,
    "ignition_prob": 0.8125,
-   "secs": 54.5
+   "secs": 52.3
   },
   "step143000_b3_s26": {
    "step": 143000,
@@ -589,10 +695,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.2578196637530642,
    "lambda_default_branch": 0.22698355831429257,
+   "lambda_damage_range": 0.4610174436676597,
+   "range_sweeps_spanned": 1.8989926506664072,
    "max_damage_fraction": 0.8385416666666666,
    "mean_damage": 0.7861328125,
    "ignition_prob": 1.0,
-   "secs": 54.3
+   "secs": 52.3
   },
   "step143000_b3_s27": {
    "step": 143000,
@@ -600,10 +708,12 @@
    "seed": 27,
    "lambda_fixed_window": 0.24313062595744792,
    "lambda_default_branch": 0.19228616026373443,
+   "lambda_damage_range": 0.23865503105586022,
+   "range_sweeps_spanned": 3.668343941800186,
    "max_damage_fraction": 0.6653645833333334,
    "mean_damage": 0.5732421875,
    "ignition_prob": 0.875,
-   "secs": 53.3
+   "secs": 52.3
   },
   "step143000_b3_s28": {
    "step": 143000,
@@ -611,10 +721,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.2019115606513329,
    "lambda_default_branch": 0.1330883613599195,
+   "lambda_damage_range": 0.1310234056470461,
+   "range_sweeps_spanned": 6.681773634492895,
    "max_damage_fraction": 0.6614583333333334,
    "mean_damage": 0.5634765625,
    "ignition_prob": 1.0,
-   "secs": 53.2
+   "secs": 52.2
   },
   "step143000_b5_s21": {
    "step": 143000,
@@ -622,10 +734,12 @@
    "seed": 21,
    "lambda_fixed_window": 0.13613052658831037,
    "lambda_default_branch": 0.13036439541816608,
+   "lambda_damage_range": 0.12741083557219784,
+   "range_sweeps_spanned": 6.871226716489214,
    "max_damage_fraction": 0.6966145833333334,
    "mean_damage": 0.5584309895833333,
    "ignition_prob": 0.875,
-   "secs": 55.0
+   "secs": 52.3
   },
   "step143000_b5_s22": {
    "step": 143000,
@@ -633,10 +747,12 @@
    "seed": 22,
    "lambda_fixed_window": 0.22835573196056683,
    "lambda_default_branch": 0.2036061373336603,
+   "lambda_damage_range": 0.2561157139516433,
+   "range_sweeps_spanned": 3.4182546781147356,
    "max_damage_fraction": 0.7083333333333334,
    "mean_damage": 0.6315104166666666,
    "ignition_prob": 1.0,
-   "secs": 55.8
+   "secs": 52.2
   },
   "step143000_b5_s23": {
    "step": 143000,
@@ -644,10 +760,12 @@
    "seed": 23,
    "lambda_fixed_window": 0.20025725387306534,
    "lambda_default_branch": 0.138461996474747,
+   "lambda_damage_range": 0.2785435878452137,
+   "range_sweeps_spanned": 3.1430224049544333,
    "max_damage_fraction": 0.80859375,
    "mean_damage": 0.740234375,
    "ignition_prob": 1.0,
-   "secs": 54.3
+   "secs": 52.1
   },
   "step143000_b5_s24": {
    "step": 143000,
@@ -655,10 +773,12 @@
    "seed": 24,
    "lambda_fixed_window": 0.2275634036962341,
    "lambda_default_branch": 0.17359865846458453,
+   "lambda_damage_range": 0.22135067799002056,
+   "range_sweeps_spanned": 3.955121101519147,
    "max_damage_fraction": 0.8138020833333334,
    "mean_damage": 0.7345377604166666,
    "ignition_prob": 1.0,
-   "secs": 53.4
+   "secs": 52.2
   },
   "step143000_b5_s25": {
    "step": 143000,
@@ -666,10 +786,12 @@
    "seed": 25,
    "lambda_fixed_window": 0.17684656941582635,
    "lambda_default_branch": 0.16504369608853048,
+   "lambda_damage_range": 0.18311965882565412,
+   "range_sweeps_spanned": 4.780856096872824,
    "max_damage_fraction": 0.7526041666666666,
    "mean_damage": 0.6611328125,
    "ignition_prob": 1.0,
-   "secs": 53.5
+   "secs": 52.1
   },
   "step143000_b5_s26": {
    "step": 143000,
@@ -677,10 +799,12 @@
    "seed": 26,
    "lambda_fixed_window": 0.19198022450843144,
    "lambda_default_branch": 0.18017924677329641,
+   "lambda_damage_range": 0.3123348523559569,
+   "range_sweeps_spanned": 2.802981257935824,
    "max_damage_fraction": 0.8138020833333334,
    "mean_damage": 0.7604166666666667,
    "ignition_prob": 1.0,
-   "secs": 53.9
+   "secs": 52.2
   },
   "step143000_b5_s27": {
    "step": 143000,
@@ -688,10 +812,12 @@
    "seed": 27,
    "lambda_fixed_window": 0.25636421264321996,
    "lambda_default_branch": 0.23397651464407182,
+   "lambda_damage_range": 0.2461103448669926,
+   "range_sweeps_spanned": 3.557220391637892,
    "max_damage_fraction": 0.8541666666666666,
    "mean_damage": 0.7906901041666667,
    "ignition_prob": 1.0,
-   "secs": 52.8
+   "secs": 52.1
   },
   "step143000_b5_s28": {
    "step": 143000,
@@ -699,10 +825,12 @@
    "seed": 28,
    "lambda_fixed_window": 0.12224211427521503,
    "lambda_default_branch": 0.10864983212983291,
+   "lambda_damage_range": 0.11008772311495112,
+   "range_sweeps_spanned": 7.952464748859919,
    "max_damage_fraction": 0.6875,
    "mean_damage": 0.59130859375,
    "ignition_prob": 1.0,
-   "secs": 53.3
+   "secs": 52.2
   }
  },
  "_preregistration": {
@@ -734,6 +862,11 @@
    0,
    6
   ],
+  "fit_range_sites": [
+   5,
+   12
+  ],
+  "corrected_primary": "is lambda independent of block under the DAMAGE-RANGE estimator, which measures every block over the identical stretch of curve?",
   "primary": "is lambda independent of perturbation size at a fixed fit window?",
   "null_validates_existing_usage": true,
   "saturation_confound": "if lambda falls monotonically with block AND max_damage_fraction rises, the reading is saturation; follow up at N=96",
@@ -748,7 +881,10 @@
      "lambda_mean": -0.0362,
      "lambda_sd": 0.0549,
      "lambda_default_branch_mean": 0.0125,
-     "max_damage_fraction_mean": 0.0401
+     "max_damage_fraction_mean": 0.0401,
+     "n_range_measurable": 0,
+     "lambda_damage_range_mean": null,
+     "lambda_damage_range_sd": null
     },
     "2": {
      "n": 8,
@@ -756,7 +892,10 @@
      "lambda_mean": 0.0197,
      "lambda_sd": 0.1478,
      "lambda_default_branch_mean": 0.0497,
-     "max_damage_fraction_mean": 0.0859
+     "max_damage_fraction_mean": 0.0859,
+     "n_range_measurable": 0,
+     "lambda_damage_range_mean": null,
+     "lambda_damage_range_sd": null
     },
     "3": {
      "n": 8,
@@ -764,7 +903,10 @@
      "lambda_mean": -0.0595,
      "lambda_sd": 0.1717,
      "lambda_default_branch_mean": -0.0185,
-     "max_damage_fraction_mean": 0.0955
+     "max_damage_fraction_mean": 0.0955,
+     "n_range_measurable": 0,
+     "lambda_damage_range_mean": null,
+     "lambda_damage_range_sd": null
     },
     "5": {
      "n": 8,
@@ -772,14 +914,19 @@
      "lambda_mean": -0.0476,
      "lambda_sd": 0.0826,
      "lambda_default_branch_mean": -0.1274,
-     "max_damage_fraction_mean": 0.1432
+     "max_damage_fraction_mean": 0.1432,
+     "n_range_measurable": 0,
+     "lambda_damage_range_mean": null,
+     "lambda_damage_range_sd": null
     }
    },
+   "range_verdict": "NOT MEASURABLE -- damage never reaches the fit range at this checkpoint, which is the sub-critical reading",
+   "reading": "NOT MEASURABLE -- damage never reaches the fit range at this checkpoint, which is the sub-critical reading",
    "kruskal_H": 6.2608,
    "kruskal_p": 0.09958700772428475,
    "lambda_monotone_decreasing_in_block": false,
    "headroom_shrinks_with_block": true,
-   "reading": "LINEAR RESPONSE holds at this checkpoint; lambda_ca is not an artifact of the 3-site seed"
+   "fixed_window_reading_SUPERSEDED": "LINEAR RESPONSE under the fixed window; an artifact of the 3-site seed"
   },
   "step143000": {
    "by_block": {
@@ -789,7 +936,10 @@
      "lambda_mean": 0.3558,
      "lambda_sd": 0.0369,
      "lambda_default_branch_mean": 0.2424,
-     "max_damage_fraction_mean": 0.6535
+     "max_damage_fraction_mean": 0.6535,
+     "n_range_measurable": 7,
+     "lambda_damage_range_mean": 0.2012,
+     "lambda_damage_range_sd": 0.0694
     },
     "2": {
      "n": 8,
@@ -797,7 +947,10 @@
      "lambda_mean": 0.2743,
      "lambda_sd": 0.0524,
      "lambda_default_branch_mean": 0.1978,
-     "max_damage_fraction_mean": 0.6501
+     "max_damage_fraction_mean": 0.6501,
+     "n_range_measurable": 8,
+     "lambda_damage_range_mean": 0.2357,
+     "lambda_damage_range_sd": 0.0977
     },
     "3": {
      "n": 8,
@@ -805,7 +958,10 @@
      "lambda_mean": 0.2371,
      "lambda_sd": 0.034,
      "lambda_default_branch_mean": 0.1792,
-     "max_damage_fraction_mean": 0.6849
+     "max_damage_fraction_mean": 0.6849,
+     "n_range_measurable": 8,
+     "lambda_damage_range_mean": 0.2471,
+     "lambda_damage_range_sd": 0.1109
     },
     "5": {
      "n": 8,
@@ -813,23 +969,30 @@
      "lambda_mean": 0.1925,
      "lambda_sd": 0.0463,
      "lambda_default_branch_mean": 0.1667,
-     "max_damage_fraction_mean": 0.7669
+     "max_damage_fraction_mean": 0.7669,
+     "n_range_measurable": 8,
+     "lambda_damage_range_mean": 0.2169,
+     "lambda_damage_range_sd": 0.0716
     }
    },
+   "range_kruskal_H": 0.71,
+   "range_kruskal_p": 0.8708500452142713,
+   "range_verdict": "INDEPENDENT of perturbation size (linear response holds)",
+   "reading": "INDEPENDENT of perturbation size (linear response holds)",
    "kruskal_H": 20.9702,
    "kruskal_p": 0.00010678756398450492,
    "lambda_monotone_decreasing_in_block": true,
    "headroom_shrinks_with_block": false,
-   "reading": "NONLINEAR RESPONSE -- lambda varies with perturbation size in a way saturation does not explain"
+   "fixed_window_reading_SUPERSEDED": "NONLINEAR RESPONSE under the fixed window in a way saturation does not explain"
   },
   "plateau_sign_robust_to_block": true
  },
  "_analysis_provenance": {
   "script": "lyap_perturbation_size.py",
-  "sha256": "ed459e861af833abb4cc62b8a93170bd5e9714f31a19ca80d5e7a450401a675b",
+  "sha256": "b887e489e7d0f60ca2b4cea6608c252175e6c6ea0b892a24d6c982b2c3ead6f1",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
- "_note": "Perturbation-size dependence of lambda_ca (#81). The issue asked for the transverse Lyapunov exponent Lambda; on a discrete alphabet there is no tangent space, and lambda_ca is ALREADY the annealed damage growth rate that Lambda would be defined on -- lyap_from_cone fits log(expected damaged sites) over a batch that includes extinguished lattices. The limit genuinely missing is linear response: independence of the perturbation's SIZE, which a Lyapunov exponent requires and which nothing here had checked. Every headline number uses a PRE-REGISTERED fixed fit window, because lyap_from_cone's default branch keys on sat_threshold=3.5, explicitly tuned to a 3-site seed, and would otherwise change its fitting window with the variable under test. The default-branch value is recorded alongside so that artifact is measurable. max_damage_fraction is reported per cell because a larger seed starts closer to saturation, which flattens a log-slope mechanically and can imitate nonlinearity.",
+ "_note": "SECOND PASS, corrected estimator. The first pass fitted a fixed 6-sweep window and is preserved in git at commit fa8f29c -- not as a duplicate results file, since a frozen copy would carry a provenance stamp with no live script and be permanently stale. That window SPANS saturation at step143000 (dmax 0.65-0.77 of N), so its lambda is a chord from seed to ceiling and falls as -log(block) by arithmetic; the chord model reproduces it at r=+0.999, and on synthetic data with a known exponent of 0.90 the same window returned 0.614/0.466/0.379/0.269 across seeds 1/2/3/5 -- a spread fabricated from a constant. The damage-range estimator measures every block over the identical stretch of curve and recovers 0.900 at every seed. Its verdict is the headline; the fixed-window reading is retained per checkpoint under a _SUPERSEDED key. Perturbation-size dependence of lambda_ca (#81). The issue asked for the transverse Lyapunov exponent Lambda; on a discrete alphabet there is no tangent space, and lambda_ca is ALREADY the annealed damage growth rate that Lambda would be defined on -- lyap_from_cone fits log(expected damaged sites) over a batch that includes extinguished lattices. The limit genuinely missing is linear response: independence of the perturbation's SIZE, which a Lyapunov exponent requires and which nothing here had checked. Every headline number uses a PRE-REGISTERED fixed fit window, because lyap_from_cone's default branch keys on sat_threshold=3.5, explicitly tuned to a 3-site seed, and would otherwise change its fitting window with the variable under test. The default-branch value is recorded alongside so that artifact is measurable. max_damage_fraction is reported per cell because a larger seed starts closer to saturation, which flattens a log-slope mechanically and can imitate nonlinearity.",
  "_config": {
   "model": "EleutherAI/pythia-410m",
   "blocks": [

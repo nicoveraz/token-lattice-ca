@@ -1,0 +1,122 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating train split:   0%|          | 0/10000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 10000/10000 [00:00<00:00, 96776.30 examples/s]Generating train split: 100%|██████████| 10000/10000 [00:00<00:00, 96513.08 examples/s]
+Pile slice: 96x1024 = 98304 tokens from NeelNanda/pile-10k, device=mps
+
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11189.91it/s]
+[1/36] 14m_step128: loss=9.5682 (3.7s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7795.72it/s]
+[2/36] 14m_step256: loss=7.7976 (2.6s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9405.66it/s]
+[3/36] 14m_step512: loss=6.3321 (2.4s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9345.54it/s]
+[4/36] 14m_step1000: loss=5.3268 (2.3s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9981.75it/s]
+[5/36] 14m_step2000: loss=4.3459 (2.3s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9670.45it/s]
+[6/36] 14m_step4000: loss=4.0027 (2.3s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8635.40it/s]
+[7/36] 31m_step128: loss=8.5426 (3.4s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7299.29it/s]
+[8/36] 31m_step256: loss=6.8907 (3.2s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7963.80it/s]
+[9/36] 31m_step512: loss=5.7513 (3.1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7945.74it/s]
+[10/36] 31m_step1000: loss=4.7663 (3.1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7675.22it/s]
+[11/36] 31m_step2000: loss=3.8442 (3.2s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8133.68it/s]
+[12/36] 31m_step4000: loss=3.5889 (3.1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:19,  3.91it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 294.62it/s]
+[13/36] 70m_step128: loss=7.3974 (5.2s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:17,  4.28it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 323.22it/s]
+[14/36] 70m_step256: loss=6.1244 (5.1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:15,  4.95it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 374.05it/s]
+[15/36] 70m_step512: loss=5.0324 (5.0s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:18,  4.01it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 303.28it/s]
+[16/36] 70m_step1000: loss=3.9037 (5.3s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:18,  4.09it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 306.55it/s]
+[17/36] 70m_step2000: loss=3.4334 (6.5s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:15,  4.74it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 357.71it/s]
+[18/36] 70m_step4000: loss=3.2021 (5.5s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:27,  5.26it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 676.77it/s]
+[19/36] 160m_step128: loss=7.2926 (10.6s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:33,  4.39it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 553.14it/s]
+[20/36] 160m_step256: loss=6.1391 (10.9s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:29,  5.02it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 652.72it/s]
+[21/36] 160m_step512: loss=5.0195 (10.7s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:27,  5.26it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 635.59it/s]
+[22/36] 160m_step1000: loss=3.8077 (10.4s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:28,  5.20it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 654.94it/s]
+[23/36] 160m_step2000: loss=3.2262 (10.5s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:29,  4.95it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 614.75it/s]
+[24/36] 160m_step4000: loss=2.9316 (10.5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.41it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 488.16it/s]Loading weights:  69%|██████▉   | 202/292 [00:00<00:00, 359.10it/s]Loading weights:  87%|████████▋ | 253/292 [00:00<00:00, 341.88it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 318.30it/s]
+[25/36] 410m_step128: loss=7.5673 (25.1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.20it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 502.38it/s]Loading weights:  73%|███████▎  | 214/292 [00:00<00:00, 440.64it/s]Loading weights:  93%|█████████▎| 272/292 [00:00<00:00, 321.68it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 329.81it/s]
+[26/36] 410m_step256: loss=6.4098 (24.8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:05,  4.41it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 527.39it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 415.74it/s]Loading weights:  94%|█████████▍| 275/292 [00:00<00:00, 421.60it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 378.02it/s]
+[27/36] 410m_step512: loss=5.3487 (24.9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:05,  4.43it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 454.70it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 412.18it/s]Loading weights:  83%|████████▎ | 241/292 [00:00<00:00, 394.79it/s]Loading weights:  98%|█████████▊| 287/292 [00:00<00:00, 348.96it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 347.96it/s]
+[28/36] 410m_step1000: loss=3.8880 (25.1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.09it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 477.43it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 387.32it/s]Loading weights:  89%|████████▉ | 261/292 [00:00<00:00, 391.29it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 367.63it/s]
+[29/36] 410m_step2000: loss=3.1202 (26.7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.05it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 489.74it/s]Loading weights:  73%|███████▎  | 213/292 [00:00<00:00, 402.48it/s]Loading weights:  93%|█████████▎| 271/292 [00:00<00:00, 378.96it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 352.06it/s]
+[30/36] 410m_step4000: loss=2.7824 (25.3s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<02:55,  1.11it/s]Loading weights:  26%|██▌       | 50/196 [00:01<00:02, 61.71it/s]Loading weights:  34%|███▍      | 67/196 [00:01<00:01, 72.93it/s]Loading weights:  42%|████▏     | 82/196 [00:01<00:01, 80.39it/s]Loading weights:  48%|████▊     | 95/196 [00:01<00:01, 76.61it/s]Loading weights:  54%|█████▍    | 106/196 [00:01<00:01, 68.60it/s]Loading weights:  59%|█████▊    | 115/196 [00:02<00:01, 55.83it/s]Loading weights:  63%|██████▎   | 123/196 [00:02<00:01, 48.83it/s]Loading weights:  67%|██████▋   | 132/196 [00:02<00:01, 49.33it/s]Loading weights:  71%|███████▏  | 140/196 [00:02<00:01, 52.47it/s]Loading weights:  74%|███████▍  | 146/196 [00:02<00:01, 38.41it/s]Loading weights:  84%|████████▎ | 164/196 [00:03<00:00, 56.58it/s]Loading weights:  87%|████████▋ | 171/196 [00:03<00:00, 52.72it/s]Loading weights:  91%|█████████ | 178/196 [00:03<00:00, 53.70it/s]Loading weights:  94%|█████████▍| 184/196 [00:03<00:00, 43.29it/s]Loading weights: 100%|██████████| 196/196 [00:03<00:00, 53.62it/s]
+[31/36] 1b_step128: loss=6.9400 (57.6s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<01:46,  1.83it/s]Loading weights:  26%|██▌       | 50/196 [00:00<00:01, 101.79it/s]Loading weights:  40%|███▉      | 78/196 [00:01<00:01, 78.93it/s] Loading weights:  49%|████▉     | 96/196 [00:01<00:01, 75.66it/s]Loading weights:  56%|█████▌    | 110/196 [00:01<00:01, 70.66it/s]Loading weights:  62%|██████▏   | 121/196 [00:01<00:00, 75.06it/s]Loading weights:  67%|██████▋   | 132/196 [00:01<00:00, 65.94it/s]Loading weights:  72%|███████▏  | 141/196 [00:02<00:00, 62.93it/s]Loading weights:  76%|███████▌  | 149/196 [00:02<00:00, 56.32it/s]Loading weights:  80%|███████▉  | 156/196 [00:02<00:00, 51.88it/s]Loading weights:  86%|████████▌ | 168/196 [00:02<00:00, 53.95it/s]Loading weights:  92%|█████████▏| 180/196 [00:02<00:00, 58.46it/s]Loading weights:  95%|█████████▌| 187/196 [00:02<00:00, 58.39it/s]Loading weights: 100%|██████████| 196/196 [00:03<00:00, 63.55it/s]
+[32/36] 1b_step256: loss=5.9279 (58.2s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<01:37,  1.99it/s]Loading weights:  29%|██▊       | 56/196 [00:00<00:01, 122.36it/s]Loading weights:  45%|████▍     | 88/196 [00:01<00:01, 88.07it/s] Loading weights:  56%|█████▌    | 109/196 [00:01<00:01, 84.57it/s]Loading weights:  64%|██████▍   | 125/196 [00:01<00:00, 79.39it/s]Loading weights:  70%|███████   | 138/196 [00:01<00:00, 76.18it/s]Loading weights:  76%|███████▌  | 149/196 [00:01<00:00, 73.43it/s]Loading weights:  81%|████████  | 159/196 [00:02<00:00, 70.85it/s]Loading weights:  86%|████████▌ | 168/196 [00:02<00:00, 58.32it/s]Loading weights:  92%|█████████▏| 180/196 [00:02<00:00, 60.16it/s]Loading weights:  98%|█████████▊| 192/196 [00:02<00:00, 69.07it/s]Loading weights: 100%|██████████| 196/196 [00:02<00:00, 72.19it/s]
+[33/36] 1b_step512: loss=4.8787 (57.7s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<01:42,  1.91it/s]Loading weights:  26%|██▌       | 50/196 [00:00<00:01, 97.75it/s]Loading weights:  36%|███▌      | 71/196 [00:00<00:01, 95.59it/s]Loading weights:  44%|████▍     | 87/196 [00:01<00:01, 79.74it/s]Loading weights:  51%|█████     | 99/196 [00:01<00:01, 82.04it/s]Loading weights:  56%|█████▌    | 110/196 [00:01<00:01, 75.85it/s]Loading weights:  61%|██████    | 120/196 [00:01<00:00, 80.20it/s]Loading weights:  66%|██████▋   | 130/196 [00:01<00:00, 81.26it/s]Loading weights:  71%|███████▏  | 140/196 [00:01<00:00, 71.95it/s]Loading weights:  76%|███████▌  | 148/196 [00:02<00:00, 68.40it/s]Loading weights:  80%|███████▉  | 156/196 [00:02<00:00, 66.39it/s]Loading weights:  86%|████████▌ | 168/196 [00:02<00:00, 53.36it/s]Loading weights:  92%|█████████▏| 180/196 [00:02<00:00, 59.95it/s]Loading weights:  96%|█████████▌| 188/196 [00:02<00:00, 63.79it/s]Loading weights: 100%|██████████| 196/196 [00:02<00:00, 70.69it/s]
+[34/36] 1b_step1000: loss=3.6507 (57.8s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<01:37,  2.00it/s]Loading weights:  29%|██▊       | 56/196 [00:00<00:01, 112.44it/s]Loading weights:  40%|████      | 79/196 [00:00<00:01, 94.08it/s] Loading weights:  48%|████▊     | 95/196 [00:01<00:01, 84.11it/s]Loading weights:  55%|█████▌    | 108/196 [00:01<00:01, 74.60it/s]Loading weights:  61%|██████    | 120/196 [00:01<00:01, 73.54it/s]Loading weights:  66%|██████▌   | 129/196 [00:01<00:00, 71.76it/s]Loading weights:  70%|███████   | 138/196 [00:01<00:00, 72.60it/s]Loading weights:  74%|███████▍  | 146/196 [00:02<00:00, 58.78it/s]Loading weights:  81%|████████  | 158/196 [00:02<00:00, 60.61it/s]Loading weights:  86%|████████▌ | 168/196 [00:02<00:00, 54.53it/s]Loading weights:  90%|████████▉ | 176/196 [00:02<00:00, 58.97it/s]Loading weights:  93%|█████████▎| 183/196 [00:02<00:00, 51.26it/s]Loading weights: 100%|██████████| 196/196 [00:02<00:00, 67.96it/s]
+[35/36] 1b_step2000: loss=2.9818 (58.0s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<01:39,  1.96it/s]Loading weights:  31%|███       | 60/196 [00:00<00:01, 117.64it/s]Loading weights:  43%|████▎     | 84/196 [00:00<00:01, 96.41it/s] Loading weights:  51%|█████     | 100/196 [00:01<00:01, 80.71it/s]Loading weights:  57%|█████▋    | 112/196 [00:01<00:01, 75.19it/s]Loading weights:  62%|██████▏   | 122/196 [00:01<00:01, 69.60it/s]Loading weights:  67%|██████▋   | 132/196 [00:01<00:00, 70.55it/s]Loading weights:  73%|███████▎  | 144/196 [00:01<00:00, 71.72it/s]Loading weights:  80%|███████▉  | 156/196 [00:02<00:00, 76.94it/s]Loading weights:  84%|████████▍ | 165/196 [00:02<00:00, 74.75it/s]Loading weights:  88%|████████▊ | 173/196 [00:02<00:00, 62.16it/s]Loading weights:  92%|█████████▏| 180/196 [00:02<00:00, 57.98it/s]Loading weights:  98%|█████████▊| 192/196 [00:02<00:00, 65.83it/s]Loading weights: 100%|██████████| 196/196 [00:02<00:00, 71.89it/s]
+[36/36] 1b_step4000: loss=2.6492 (57.9s)
+
+  model    step     loss    lambda     sem   n
+     1b    4000   2.6492   +0.1436  0.0104   8
+   410m    4000   2.7824   +0.1724  0.0069   8
+   160m    4000   2.9316   +0.1522  0.0130   8
+     1b    2000   2.9818   +0.1474  0.0092   8
+   410m    2000   3.1202   +0.1558  0.0142   8
+    70m    4000   3.2021   +0.1707  0.0144   8
+   160m    2000   3.2262   +0.1674  0.0226   8
+    70m    2000   3.4334   +0.1598  0.0134   8
+    31m    4000   3.5889   +0.1685  0.0208   8
+     1b    1000   3.6507   +0.2064  0.0290   8
+   160m    1000   3.8077   +0.1735  0.0193   8
+    31m    2000   3.8442   +0.1626  0.0112   8
+   410m    1000   3.8880   +0.1923  0.0111   8
+    70m    1000   3.9037   +0.1565  0.0152   8
+    14m    4000   4.0027   +0.1902  0.0163   8
+    14m    2000   4.3459   +0.1523  0.0220   8
+    31m    1000   4.7663   +0.1530  0.0440   8
+     1b     512   4.8787   +0.1235  0.0224   7
+   160m     512   5.0195   +0.0982  0.0406   8
+    70m     512   5.0324   +0.1615  0.0201   8
+    14m    1000   5.3268   +0.0901  0.0520   8
+   410m     512   5.3487   +0.0679  0.0501   8
+    31m     512   5.7513   +0.2028  0.0213   8
+     1b     256   5.9279   -0.1011  0.0445   6
+    70m     256   6.1244   +0.0462  0.0452   8
+   160m     256   6.1391   +0.0938  0.0355   8
+    14m     512   6.3321   -0.0892  0.0634   4
+   410m     256   6.4098   -0.0185  0.0440   8
+    31m     256   6.8907   -0.0259  0.0651   7
+     1b     128   6.9400   -0.0089  0.0367   7
+   160m     128   7.2926   -0.0391  0.0404   8
+    70m     128   7.3974   +0.0694  0.0487   8
+   410m     128   7.5673   -0.0926  0.0235   6
+    14m     256   7.7976   +0.1144  0.0477   8
+    14m     128   9.5682   +0.3190  0.0272   8
+
+=== collapse residuals, against a single pooled curve ===
+  seed noise floor (mean SEM over cells) : 0.0292
+  residual vs LOSS                        : 0.0589  (2.02x floor)
+  residual vs STEP                        : 0.0782  (2.68x floor)
+
+  -> NO COLLAPSE, but loss is the better axis: residual 0.0589 (2.02x floor) vs 0.0782 against step. lambda_ca is not a function of loss alone -- it carries training information loss does not.
+
+wrote results/loss_collapse_pile.json

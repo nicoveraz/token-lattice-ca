@@ -1,0 +1,579 @@
+{
+ "loss": {
+  "14m_step128": {
+   "model": "EleutherAI/pythia-14m",
+   "step": 128,
+   "nll_per_token": 9.568169,
+   "secs": 3.7
+  },
+  "14m_step256": {
+   "model": "EleutherAI/pythia-14m",
+   "step": 256,
+   "nll_per_token": 7.797637,
+   "secs": 2.6
+  },
+  "14m_step512": {
+   "model": "EleutherAI/pythia-14m",
+   "step": 512,
+   "nll_per_token": 6.332106,
+   "secs": 2.4
+  },
+  "14m_step1000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": 1000,
+   "nll_per_token": 5.326793,
+   "secs": 2.3
+  },
+  "14m_step2000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": 2000,
+   "nll_per_token": 4.345901,
+   "secs": 2.3
+  },
+  "14m_step4000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": 4000,
+   "nll_per_token": 4.002718,
+   "secs": 2.3
+  },
+  "31m_step128": {
+   "model": "EleutherAI/pythia-31m",
+   "step": 128,
+   "nll_per_token": 8.542597,
+   "secs": 3.4
+  },
+  "31m_step256": {
+   "model": "EleutherAI/pythia-31m",
+   "step": 256,
+   "nll_per_token": 6.890747,
+   "secs": 3.2
+  },
+  "31m_step512": {
+   "model": "EleutherAI/pythia-31m",
+   "step": 512,
+   "nll_per_token": 5.751255,
+   "secs": 3.1
+  },
+  "31m_step1000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": 1000,
+   "nll_per_token": 4.766263,
+   "secs": 3.1
+  },
+  "31m_step2000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": 2000,
+   "nll_per_token": 3.844219,
+   "secs": 3.2
+  },
+  "31m_step4000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": 4000,
+   "nll_per_token": 3.588876,
+   "secs": 3.1
+  },
+  "70m_step128": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 128,
+   "nll_per_token": 7.397359,
+   "secs": 5.2
+  },
+  "70m_step256": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 256,
+   "nll_per_token": 6.124421,
+   "secs": 5.1
+  },
+  "70m_step512": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 512,
+   "nll_per_token": 5.032358,
+   "secs": 5.0
+  },
+  "70m_step1000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 1000,
+   "nll_per_token": 3.903708,
+   "secs": 5.3
+  },
+  "70m_step2000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 2000,
+   "nll_per_token": 3.433444,
+   "secs": 6.5
+  },
+  "70m_step4000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": 4000,
+   "nll_per_token": 3.202103,
+   "secs": 5.5
+  },
+  "160m_step128": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 128,
+   "nll_per_token": 7.292606,
+   "secs": 10.6
+  },
+  "160m_step256": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 256,
+   "nll_per_token": 6.139072,
+   "secs": 10.9
+  },
+  "160m_step512": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 512,
+   "nll_per_token": 5.019536,
+   "secs": 10.7
+  },
+  "160m_step1000": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 1000,
+   "nll_per_token": 3.807663,
+   "secs": 10.4
+  },
+  "160m_step2000": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 2000,
+   "nll_per_token": 3.226157,
+   "secs": 10.5
+  },
+  "160m_step4000": {
+   "model": "EleutherAI/pythia-160m",
+   "step": 4000,
+   "nll_per_token": 2.931574,
+   "secs": 10.5
+  },
+  "410m_step128": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 128,
+   "nll_per_token": 7.567347,
+   "secs": 25.1
+  },
+  "410m_step256": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 256,
+   "nll_per_token": 6.409838,
+   "secs": 24.8
+  },
+  "410m_step512": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 512,
+   "nll_per_token": 5.348673,
+   "secs": 24.9
+  },
+  "410m_step1000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1000,
+   "nll_per_token": 3.888005,
+   "secs": 25.1
+  },
+  "410m_step2000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2000,
+   "nll_per_token": 3.120202,
+   "secs": 26.7
+  },
+  "410m_step4000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4000,
+   "nll_per_token": 2.782442,
+   "secs": 25.3
+  },
+  "1b_step128": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 128,
+   "nll_per_token": 6.939966,
+   "secs": 57.6
+  },
+  "1b_step256": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 256,
+   "nll_per_token": 5.92788,
+   "secs": 58.2
+  },
+  "1b_step512": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 512,
+   "nll_per_token": 4.878722,
+   "secs": 57.7
+  },
+  "1b_step1000": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 1000,
+   "nll_per_token": 3.650741,
+   "secs": 57.8
+  },
+  "1b_step2000": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 2000,
+   "nll_per_token": 2.981777,
+   "secs": 58.0
+  },
+  "1b_step4000": {
+   "model": "EleutherAI/pythia-1b",
+   "step": 4000,
+   "nll_per_token": 2.649203,
+   "secs": 57.9
+  }
+ },
+ "_preregistration": {
+  "grid": {
+   "EleutherAI/pythia-14m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-31m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-70m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-160m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-410m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-1b": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ]
+  },
+  "pile_source": [
+   "NeelNanda/pile-10k",
+   "train"
+  ],
+  "seq_len": 1024,
+  "n_seq": 96,
+  "primary": "is the collapse residual within a factor of 2 of the seed noise floor?",
+  "standard": "Qiu et al. arXiv:2507.02119 -- residual measured against a seed noise floor",
+  "framing": "extension of Du et al. arXiv:2403.15796 (task metrics) to a dynamical observable",
+  "no_collapse_is_informative": true
+ },
+ "analysis": {
+  "cells": [
+   {
+    "model": "1b",
+    "step": 4000,
+    "loss": 2.649203,
+    "lam": 0.1435725,
+    "sem": 0.010368684609713725,
+    "n": 8
+   },
+   {
+    "model": "410m",
+    "step": 4000,
+    "loss": 2.782442,
+    "lam": 0.17243125,
+    "sem": 0.006871812361664757,
+    "n": 8
+   },
+   {
+    "model": "160m",
+    "step": 4000,
+    "loss": 2.931574,
+    "lam": 0.15217,
+    "sem": 0.012990041927788925,
+    "n": 8
+   },
+   {
+    "model": "1b",
+    "step": 2000,
+    "loss": 2.981777,
+    "lam": 0.14743125,
+    "sem": 0.009234299694520116,
+    "n": 8
+   },
+   {
+    "model": "410m",
+    "step": 2000,
+    "loss": 3.120202,
+    "lam": 0.1558225,
+    "sem": 0.014164140051300579,
+    "n": 8
+   },
+   {
+    "model": "70m",
+    "step": 4000,
+    "loss": 3.202103,
+    "lam": 0.17070875000000002,
+    "sem": 0.014407424231661655,
+    "n": 8
+   },
+   {
+    "model": "160m",
+    "step": 2000,
+    "loss": 3.226157,
+    "lam": 0.1674,
+    "sem": 0.022636793926828824,
+    "n": 8
+   },
+   {
+    "model": "70m",
+    "step": 2000,
+    "loss": 3.433444,
+    "lam": 0.15977249999999998,
+    "sem": 0.013361023104270762,
+    "n": 8
+   },
+   {
+    "model": "31m",
+    "step": 4000,
+    "loss": 3.588876,
+    "lam": 0.16851,
+    "sem": 0.0207796255809799,
+    "n": 8
+   },
+   {
+    "model": "1b",
+    "step": 1000,
+    "loss": 3.650741,
+    "lam": 0.2064125,
+    "sem": 0.028972437378974026,
+    "n": 8
+   },
+   {
+    "model": "160m",
+    "step": 1000,
+    "loss": 3.807663,
+    "lam": 0.17346875,
+    "sem": 0.01928393284183012,
+    "n": 8
+   },
+   {
+    "model": "31m",
+    "step": 2000,
+    "loss": 3.844219,
+    "lam": 0.16260375,
+    "sem": 0.011188726459109889,
+    "n": 8
+   },
+   {
+    "model": "410m",
+    "step": 1000,
+    "loss": 3.888005,
+    "lam": 0.19234625,
+    "sem": 0.011067467599342677,
+    "n": 8
+   },
+   {
+    "model": "70m",
+    "step": 1000,
+    "loss": 3.903708,
+    "lam": 0.15652125,
+    "sem": 0.015183116732257484,
+    "n": 8
+   },
+   {
+    "model": "14m",
+    "step": 4000,
+    "loss": 4.002718,
+    "lam": 0.190195,
+    "sem": 0.016281671882387088,
+    "n": 8
+   },
+   {
+    "model": "14m",
+    "step": 2000,
+    "loss": 4.345901,
+    "lam": 0.15230125,
+    "sem": 0.022024274873542533,
+    "n": 8
+   },
+   {
+    "model": "31m",
+    "step": 1000,
+    "loss": 4.766263,
+    "lam": 0.1529575,
+    "sem": 0.04403930795931873,
+    "n": 8
+   },
+   {
+    "model": "1b",
+    "step": 512,
+    "loss": 4.878722,
+    "lam": 0.12345142857142857,
+    "sem": 0.02236558468342137,
+    "n": 7
+   },
+   {
+    "model": "160m",
+    "step": 512,
+    "loss": 5.019536,
+    "lam": 0.09822375,
+    "sem": 0.04063443608819196,
+    "n": 8
+   },
+   {
+    "model": "70m",
+    "step": 512,
+    "loss": 5.032358,
+    "lam": 0.16152375,
+    "sem": 0.02005742425222961,
+    "n": 8
+   },
+   {
+    "model": "14m",
+    "step": 1000,
+    "loss": 5.326793,
+    "lam": 0.0901025,
+    "sem": 0.0520354610458099,
+    "n": 8
+   },
+   {
+    "model": "410m",
+    "step": 512,
+    "loss": 5.348673,
+    "lam": 0.06793,
+    "sem": 0.05007312092615871,
+    "n": 8
+   },
+   {
+    "model": "31m",
+    "step": 512,
+    "loss": 5.751255,
+    "lam": 0.20284625,
+    "sem": 0.02126043860734735,
+    "n": 8
+   },
+   {
+    "model": "1b",
+    "step": 256,
+    "loss": 5.92788,
+    "lam": -0.10107166666666667,
+    "sem": 0.04450367074123712,
+    "n": 6
+   },
+   {
+    "model": "70m",
+    "step": 256,
+    "loss": 6.124421,
+    "lam": 0.04623,
+    "sem": 0.04520361063328586,
+    "n": 8
+   },
+   {
+    "model": "160m",
+    "step": 256,
+    "loss": 6.139072,
+    "lam": 0.09384625,
+    "sem": 0.03548661065093525,
+    "n": 8
+   },
+   {
+    "model": "14m",
+    "step": 512,
+    "loss": 6.332106,
+    "lam": -0.089215,
+    "sem": 0.06339778709334683,
+    "n": 4
+   },
+   {
+    "model": "410m",
+    "step": 256,
+    "loss": 6.409838,
+    "lam": -0.018453750000000005,
+    "sem": 0.04396169241256284,
+    "n": 8
+   },
+   {
+    "model": "31m",
+    "step": 256,
+    "loss": 6.890747,
+    "lam": -0.025934285714285715,
+    "sem": 0.06506906634152532,
+    "n": 7
+   },
+   {
+    "model": "1b",
+    "step": 128,
+    "loss": 6.939966,
+    "lam": -0.008924285714285716,
+    "sem": 0.0367264712407266,
+    "n": 7
+   },
+   {
+    "model": "160m",
+    "step": 128,
+    "loss": 7.292606,
+    "lam": -0.039075,
+    "sem": 0.040372035892965036,
+    "n": 8
+   },
+   {
+    "model": "70m",
+    "step": 128,
+    "loss": 7.397359,
+    "lam": 0.06939125,
+    "sem": 0.04874064915585273,
+    "n": 8
+   },
+   {
+    "model": "410m",
+    "step": 128,
+    "loss": 7.567347,
+    "lam": -0.09263,
+    "sem": 0.0235415812269836,
+    "n": 6
+   },
+   {
+    "model": "14m",
+    "step": 256,
+    "loss": 7.797637,
+    "lam": 0.11444500000000002,
+    "sem": 0.04770955942695641,
+    "n": 8
+   },
+   {
+    "model": "14m",
+    "step": 128,
+    "loss": 9.568169,
+    "lam": 0.318955,
+    "sem": 0.027192344510909683,
+    "n": 8
+   }
+  ],
+  "seed_noise_floor": 0.02918,
+  "residual_vs_loss": 0.05885,
+  "residual_vs_step": 0.07824,
+  "residual_over_floor": 2.017,
+  "collapses_within_2x_floor": false,
+  "loss_is_better_axis": true
+ },
+ "verdict": "NO COLLAPSE, but loss is the better axis: residual 0.0589 (2.02x floor) vs 0.0782 against step. lambda_ca is not a function of loss alone -- it carries training information loss does not.",
+ "_analysis_provenance": {
+  "script": "loss_collapse_pile.py",
+  "sha256": "984c537fe0823d27190b27af29eaa26b49b708a903b7067117f043611d3f5b07",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Does lambda_ca collapse against held-out PILE loss rather than against step (#84)? loss_baseline.py (#72) used WikiText and deliberately used only the SHAPE, since WikiText is not Pythia's training distribution. A collapse test needs the LEVEL, hence a fixed Pile slice. Pythia's published per-checkpoint loss is not obtainable -- the eval JSONs carry accuracy metrics but no loss, and omit 14m/31m entirely -- so it is recomputed. Held to Qiu et al.'s standard: the residual is measured against a seed noise floor computed from our own 8 seeds per cell, not eyeballed. A no-collapse result is informative and was pre-registered as such. No new lattice runs."
+}

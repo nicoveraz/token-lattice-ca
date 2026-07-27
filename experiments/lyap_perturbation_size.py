@@ -74,7 +74,7 @@ import numpy as np
 import torch
 from scipy import stats
 
-from lyapunov import lyap_from_cone, run_ignited
+from lyapunov import lyap_from_cone, lyap_from_damage_range, run_ignited
 from provenance import stamp, rel
 
 BASE = "EleutherAI/pythia-410m"
@@ -87,6 +87,13 @@ SETTLE, SWEEPS = 12, 22
 # pre-saturation stretch the estimator's own defaults target (min_sweeps=3, max_sweeps=8)
 # without letting the sat_threshold branch pick a different window per block.
 FIT_WINDOW = (0, 6)
+# CORRECTED ESTIMATOR (#81, second pass). A fixed-LENGTH window becomes a chord once damage
+# saturates inside it, so it falls as -log(block) by arithmetic; on synthetic data with a known
+# exponent of 0.90 and saturation inside the window it returned 0.614/0.466/0.379/0.269 across
+# seeds 1/2/3/5, a spread of 0.345 fabricated from a constant. Fixing a DAMAGE RANGE instead
+# measures every block over the identical stretch of curve. lo=5 is at or above the largest seed
+# so no run is fitted from its own start; hi=12 is 0.25*N, far below the ~32-site ceiling.
+FIT_RANGE_SITES = (5, 12)
 OUT = str(_ROOT / "results" / "lyap_perturbation_size.json")
 
 
@@ -100,8 +107,11 @@ def measure(revision, block, seed):
                          seed=seed, scheme="none")
         lam_fixed, dmax = lyap_from_cone(d["cone"], N, fit_window=FIT_WINDOW)
         lam_branch, _ = lyap_from_cone(d["cone"], N)          # default data-dependent branch
+        lam_range, span = lyap_from_damage_range(d["cone"], *FIT_RANGE_SITES)
         return dict(lambda_fixed_window=float(lam_fixed),
                     lambda_default_branch=float(lam_branch),
+                    lambda_damage_range=(None if lam_range is None else float(lam_range)),
+                    range_sweeps_spanned=float(span),
                     max_damage_fraction=float(dmax),
                     mean_damage=float(d["mean_damage"]),
                     ignition_prob=float(d["ignition_prob"]))
@@ -116,7 +126,9 @@ def main():
     res = json.load(open(OUT)) if os.path.exists(OUT) else {"runs": {}}
     res["_preregistration"] = dict(
         blocks=BLOCKS, steps=STEPS, seeds=SEEDS, N=N, B=B, r=R, T=T,
-        fit_window=list(FIT_WINDOW),
+        fit_window=list(FIT_WINDOW), fit_range_sites=list(FIT_RANGE_SITES),
+        corrected_primary="is lambda independent of block under the DAMAGE-RANGE estimator, "
+                          "which measures every block over the identical stretch of curve?",
         primary="is lambda independent of perturbation size at a fixed fit window?",
         null_validates_existing_usage=True,
         saturation_confound="if lambda falls monotonically with block AND max_damage_fraction "
@@ -161,26 +173,50 @@ def analyse(res, done):
         s = int(st.replace("step", ""))
         print(f"\n=== {st}: lambda vs perturbation size (fixed window {FIT_WINDOW}) ===")
         print(f"  {'block':>6} {'n_ign':>6} {'lambda':>10} {'sd':>8} "
-              f"{'branch':>10} {'dmax/N':>8}")
-        by_block, groups = {}, []
+              f"{'branch':>10} {'range':>9} {'n_rng':>6} {'dmax/N':>8}")
+        by_block, groups, rgroups = {}, [], []
         for bl in BLOCKS:
             cells = [v for v in done if v["step"] == s and v["block"] == bl]
             ign = [v for v in cells if ignited(v)]
             if not ign:
                 print(f"  {bl:>6} {0:>6}  all runs unignited"); continue
             lam = np.array([v["lambda_fixed_window"] for v in ign])
+            rng = np.array([v["lambda_damage_range"] for v in ign
+                            if v.get("lambda_damage_range") is not None])
             br = np.array([v["lambda_default_branch"] for v in ign])
             dmx = np.array([v["max_damage_fraction"] for v in ign])
-            groups.append(lam)
+            groups.append(lam); rgroups.append(rng)
             by_block[str(bl)] = dict(
                 n=len(cells), n_ignited=len(ign),
                 lambda_mean=round(float(lam.mean()), 4), lambda_sd=round(float(lam.std(ddof=1)), 4),
                 lambda_default_branch_mean=round(float(br.mean()), 4),
-                max_damage_fraction_mean=round(float(dmx.mean()), 4))
+                max_damage_fraction_mean=round(float(dmx.mean()), 4),
+                n_range_measurable=int(rng.size),
+                lambda_damage_range_mean=(None if rng.size == 0 else round(float(rng.mean()), 4)),
+                lambda_damage_range_sd=(None if rng.size < 2 else round(float(rng.std(ddof=1)), 4)))
+            rtxt = f"{rng.mean():>+9.4f}" if rng.size else f"{'--':>9}"
             print(f"  {bl:>6} {len(ign):>6} {lam.mean():>+10.4f} {lam.std(ddof=1):>8.4f} "
-                  f"{br.mean():>+10.4f} {dmx.mean():>8.3f}")
+                  f"{br.mean():>+10.4f} {rtxt} {rng.size:>6} {dmx.mean():>8.3f}")
 
+        # THE CORRECTED TEST. The fixed-window column above is retained as the record of the
+        # artifact; this is the one the verdict should rest on.
         entry = {"by_block": by_block}
+        usable = [g for g in rgroups if g.size >= 2]
+        if len(usable) >= 2:
+            hr, pr = stats.kruskal(*usable)
+            entry["range_kruskal_H"] = round(float(hr), 4)
+            entry["range_kruskal_p"] = float(pr)
+            entry["range_verdict"] = ("INDEPENDENT of perturbation size (linear response holds)"
+                                      if pr >= 0.05 else
+                                      "DEPENDS on perturbation size even over a fixed damage range")
+            entry["reading"] = entry["range_verdict"]   # the corrected estimator is the headline
+            print(f"\n  [corrected] damage-range estimator across blocks: "
+                  f"H={hr:.3f}, p={pr:.4f} -> {entry['range_verdict']}")
+        else:
+            entry["range_verdict"] = ("NOT MEASURABLE -- damage never reaches the fit range at "
+                                      "this checkpoint, which is the sub-critical reading")
+            entry["reading"] = entry["range_verdict"]
+            print(f"\n  [corrected] {entry['range_verdict']}")
         if len(groups) >= 2 and all(len(g) >= 2 for g in groups):
             h, p = stats.kruskal(*groups)
             entry["kruskal_H"] = round(float(h), 4)
@@ -196,15 +232,15 @@ def analyse(res, done):
             entry["lambda_monotone_decreasing_in_block"] = bool(mono_down)
             entry["headroom_shrinks_with_block"] = bool(sat_up)
             if not indep and mono_down and sat_up:
-                entry["reading"] = ("SATURATION rather than nonlinearity -- lambda falls "
+                entry["fixed_window_reading_SUPERSEDED"] = ("SATURATION rather than nonlinearity -- lambda falls "
                                     "monotonically while headroom shrinks; follow up at N=96")
             elif not indep:
-                entry["reading"] = ("NONLINEAR RESPONSE -- lambda varies with perturbation size "
+                entry["fixed_window_reading_SUPERSEDED"] = ("NONLINEAR RESPONSE under the fixed window "
                                     "in a way saturation does not explain")
             else:
-                entry["reading"] = ("LINEAR RESPONSE holds at this checkpoint; lambda_ca is not "
+                entry["fixed_window_reading_SUPERSEDED"] = ("LINEAR RESPONSE under the fixed window; "
                                     "an artifact of the 3-site seed")
-            print(f"  -> {entry['reading']}")
+            print(f"  -> [fixed window, superseded] {entry['fixed_window_reading_SUPERSEDED']}")
         out[st] = entry
 
     plateau = out.get("step143000", {}).get("by_block", {})
@@ -219,6 +255,16 @@ def analyse(res, done):
     res["analysis"] = out
     res["_analysis_provenance"] = stamp(__file__)
     res["_note"] = (
+        "SECOND PASS, corrected estimator. The first pass fitted a fixed 6-sweep window and is "
+        "preserved in git at commit fa8f29c -- not as a duplicate results file, since a frozen "
+        "copy would carry a provenance stamp with no live script and be permanently stale. That "
+        "window SPANS saturation at step143000 (dmax 0.65-0.77 of N), so its lambda is a chord "
+        "from seed to ceiling and falls as -log(block) by arithmetic; the chord model reproduces "
+        "it at r=+0.999, and on synthetic data with a known exponent of 0.90 the same window "
+        "returned 0.614/0.466/0.379/0.269 across seeds 1/2/3/5 -- a spread fabricated from a "
+        "constant. The damage-range estimator measures every block over the identical stretch of "
+        "curve and recovers 0.900 at every seed. Its verdict is the headline; the fixed-window "
+        "reading is retained per checkpoint under a _SUPERSEDED key. "
         "Perturbation-size dependence of lambda_ca (#81). The issue asked for the transverse "
         "Lyapunov exponent Lambda; on a discrete alphabet there is no tangent space, and "
         "lambda_ca is ALREADY the annealed damage growth rate that Lambda would be defined on -- "
