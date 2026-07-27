@@ -1,0 +1,741 @@
+{
+ "runs": {
+  "step1_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 21,
+   "lambda_ca": 0.3498,
+   "D_norm": 0.98242,
+   "mean_damage": 0.982421875,
+   "ignition_prob": 1.0,
+   "secs": 172.6
+  },
+  "step1_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 22,
+   "lambda_ca": 0.54456,
+   "D_norm": 0.99382,
+   "mean_damage": 0.9938151041666666,
+   "ignition_prob": 1.0,
+   "secs": 102.9
+  },
+  "step1_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 23,
+   "lambda_ca": 0.25243,
+   "D_norm": 0.96012,
+   "mean_damage": 0.9601236979166666,
+   "ignition_prob": 1.0,
+   "secs": 102.4
+  },
+  "step1_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 24,
+   "lambda_ca": 0.28877,
+   "D_norm": 0.98161,
+   "mean_damage": 0.9816080729166667,
+   "ignition_prob": 1.0,
+   "secs": 102.0
+  },
+  "step1_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 25,
+   "lambda_ca": 0.31151,
+   "D_norm": 0.95801,
+   "mean_damage": 0.9580078125,
+   "ignition_prob": 1.0,
+   "secs": 101.3
+  },
+  "step1_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 26,
+   "lambda_ca": 0.391,
+   "D_norm": 0.9943,
+   "mean_damage": 0.9943033854166667,
+   "ignition_prob": 1.0,
+   "secs": 100.9
+  },
+  "step1_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 27,
+   "lambda_ca": 0.34843,
+   "D_norm": 0.97445,
+   "mean_damage": 0.9744466145833333,
+   "ignition_prob": 1.0,
+   "secs": 100.6
+  },
+  "step1_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 1,
+   "seed": 28,
+   "lambda_ca": 0.20363,
+   "D_norm": 0.9803,
+   "mean_damage": 0.9801432291666667,
+   "ignition_prob": 1.0,
+   "secs": 101.1
+  },
+  "step2_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 21,
+   "lambda_ca": 0.35108,
+   "D_norm": 0.98503,
+   "mean_damage": 0.9850260416666666,
+   "ignition_prob": 1.0,
+   "secs": 163.3
+  },
+  "step2_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 22,
+   "lambda_ca": 0.54294,
+   "D_norm": 0.99577,
+   "mean_damage": 0.9957682291666666,
+   "ignition_prob": 1.0,
+   "secs": 100.6
+  },
+  "step2_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 23,
+   "lambda_ca": 0.2511,
+   "D_norm": 0.96257,
+   "mean_damage": 0.9625651041666666,
+   "ignition_prob": 1.0,
+   "secs": 101.0
+  },
+  "step2_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 24,
+   "lambda_ca": 0.32368,
+   "D_norm": 0.99121,
+   "mean_damage": 0.9912109375,
+   "ignition_prob": 1.0,
+   "secs": 100.5
+  },
+  "step2_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 25,
+   "lambda_ca": 0.32538,
+   "D_norm": 0.98291,
+   "mean_damage": 0.98291015625,
+   "ignition_prob": 1.0,
+   "secs": 100.9
+  },
+  "step2_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 26,
+   "lambda_ca": 0.38612,
+   "D_norm": 0.99398,
+   "mean_damage": 0.9939778645833333,
+   "ignition_prob": 1.0,
+   "secs": 100.8
+  },
+  "step2_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 27,
+   "lambda_ca": 0.34893,
+   "D_norm": 0.99268,
+   "mean_damage": 0.99267578125,
+   "ignition_prob": 1.0,
+   "secs": 100.6
+  },
+  "step2_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 2,
+   "seed": 28,
+   "lambda_ca": 0.20268,
+   "D_norm": 0.98193,
+   "mean_damage": 0.98193359375,
+   "ignition_prob": 1.0,
+   "secs": 100.3
+  },
+  "step4_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 21,
+   "lambda_ca": 0.41458,
+   "D_norm": 0.99316,
+   "mean_damage": 0.9931640625,
+   "ignition_prob": 1.0,
+   "secs": 158.7
+  },
+  "step4_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 22,
+   "lambda_ca": 0.54769,
+   "D_norm": 0.99447,
+   "mean_damage": 0.9944661458333334,
+   "ignition_prob": 1.0,
+   "secs": 101.4
+  },
+  "step4_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 23,
+   "lambda_ca": 0.24997,
+   "D_norm": 0.95199,
+   "mean_damage": 0.9519856770833334,
+   "ignition_prob": 1.0,
+   "secs": 102.3
+  },
+  "step4_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 24,
+   "lambda_ca": 0.28904,
+   "D_norm": 0.98502,
+   "mean_damage": 0.98486328125,
+   "ignition_prob": 1.0,
+   "secs": 101.4
+  },
+  "step4_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 25,
+   "lambda_ca": 0.30754,
+   "D_norm": 0.89421,
+   "mean_damage": 0.8942057291666666,
+   "ignition_prob": 0.9375,
+   "secs": 101.5
+  },
+  "step4_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 26,
+   "lambda_ca": 0.38697,
+   "D_norm": 0.99349,
+   "mean_damage": 0.9934895833333334,
+   "ignition_prob": 1.0,
+   "secs": 101.7
+  },
+  "step4_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 27,
+   "lambda_ca": 0.34692,
+   "D_norm": 0.97688,
+   "mean_damage": 0.9767252604166667,
+   "ignition_prob": 1.0,
+   "secs": 101.5
+  },
+  "step4_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 4,
+   "seed": 28,
+   "lambda_ca": 0.20011,
+   "D_norm": 0.95898,
+   "mean_damage": 0.958984375,
+   "ignition_prob": 1.0,
+   "secs": 101.3
+  },
+  "step8_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 21,
+   "lambda_ca": 0.35627,
+   "D_norm": 0.99544,
+   "mean_damage": 0.9954427083333334,
+   "ignition_prob": 1.0,
+   "secs": 181.4
+  },
+  "step8_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 22,
+   "lambda_ca": 0.53744,
+   "D_norm": 0.99479,
+   "mean_damage": 0.9947916666666667,
+   "ignition_prob": 1.0,
+   "secs": 101.0
+  },
+  "step8_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 23,
+   "lambda_ca": 0.24962,
+   "D_norm": 0.95329,
+   "mean_damage": 0.9532877604166666,
+   "ignition_prob": 1.0,
+   "secs": 101.5
+  },
+  "step8_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 24,
+   "lambda_ca": 0.28673,
+   "D_norm": 0.96029,
+   "mean_damage": 0.9602864583333333,
+   "ignition_prob": 1.0,
+   "secs": 101.0
+  },
+  "step8_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 25,
+   "lambda_ca": 0.31097,
+   "D_norm": 0.95507,
+   "mean_damage": 0.9549153645833333,
+   "ignition_prob": 1.0,
+   "secs": 102.3
+  },
+  "step8_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 26,
+   "lambda_ca": 0.38348,
+   "D_norm": 0.99398,
+   "mean_damage": 0.9938151041666666,
+   "ignition_prob": 1.0,
+   "secs": 102.2
+  },
+  "step8_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 27,
+   "lambda_ca": 0.34483,
+   "D_norm": 0.97493,
+   "mean_damage": 0.9749348958333334,
+   "ignition_prob": 1.0,
+   "secs": 101.7
+  },
+  "step8_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 8,
+   "seed": 28,
+   "lambda_ca": 0.20244,
+   "D_norm": 0.9777,
+   "mean_damage": 0.9777018229166667,
+   "ignition_prob": 1.0,
+   "secs": 101.8
+  },
+  "step16_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 21,
+   "lambda_ca": -0.43632,
+   "D_norm": 0.0003,
+   "mean_damage": 0.00016276041666666666,
+   "ignition_prob": 0.0,
+   "secs": 170.9
+  },
+  "step16_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 22,
+   "lambda_ca": 0.03539,
+   "D_norm": 0.00127,
+   "mean_damage": 0.0006510416666666666,
+   "ignition_prob": 0.0,
+   "secs": 101.9
+  },
+  "step16_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 23,
+   "lambda_ca": -0.18217,
+   "D_norm": 0.01534,
+   "mean_damage": 0.008626302083333334,
+   "ignition_prob": 0.0625,
+   "secs": 101.2
+  },
+  "step16_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 24,
+   "lambda_ca": -0.04359,
+   "D_norm": 0.01504,
+   "mean_damage": 0.0078125,
+   "ignition_prob": 0.0625,
+   "secs": 101.1
+  },
+  "step16_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 25,
+   "lambda_ca": -0.0166,
+   "D_norm": 0.01722,
+   "mean_damage": 0.009602864583333332,
+   "ignition_prob": 0.125,
+   "secs": 100.8
+  },
+  "step16_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 26,
+   "lambda_ca": 0.15064,
+   "D_norm": 0.05242,
+   "mean_damage": 0.027018229166666664,
+   "ignition_prob": 0.1875,
+   "secs": 100.8
+  },
+  "step16_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 27,
+   "lambda_ca": -0.2112,
+   "D_norm": 0.00091,
+   "mean_damage": 0.00048828125,
+   "ignition_prob": 0.0,
+   "secs": 101.0
+  },
+  "step16_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 16,
+   "seed": 28,
+   "lambda_ca": 0.02586,
+   "D_norm": 0.00092,
+   "mean_damage": 0.00048828125,
+   "ignition_prob": 0.0,
+   "secs": 100.8
+  },
+  "step32_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 21,
+   "lambda_ca": -2.12596,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 158.3
+  },
+  "step32_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 22,
+   "lambda_ca": -1.68808,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 101.2
+  },
+  "step32_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 23,
+   "lambda_ca": -2.18176,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.7
+  },
+  "step32_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 24,
+   "lambda_ca": -2.18022,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.8
+  },
+  "step32_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 25,
+   "lambda_ca": -0.99427,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.7
+  },
+  "step32_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 26,
+   "lambda_ca": -2.38572,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.7
+  },
+  "step32_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 27,
+   "lambda_ca": -1.54642,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.7
+  },
+  "step32_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 32,
+   "seed": 28,
+   "lambda_ca": -1.69364,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.5
+  },
+  "step64_s21": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 21,
+   "lambda_ca": -2.17217,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 146.7
+  },
+  "step64_s22": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 22,
+   "lambda_ca": -2.0944,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 100.8
+  },
+  "step64_s23": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 23,
+   "lambda_ca": -2.18378,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 102.5
+  },
+  "step64_s24": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 24,
+   "lambda_ca": -2.37334,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 105.0
+  },
+  "step64_s25": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 25,
+   "lambda_ca": -1.54642,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 105.5
+  },
+  "step64_s26": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 26,
+   "lambda_ca": -0.33885,
+   "D_norm": 0.36455,
+   "mean_damage": 0.017740885416666668,
+   "ignition_prob": 0.0625,
+   "secs": 102.7
+  },
+  "step64_s27": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 27,
+   "lambda_ca": -0.99427,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 102.8
+  },
+  "step64_s28": {
+   "model": "EleutherAI/pythia-410m",
+   "step": 64,
+   "seed": 28,
+   "lambda_ca": -0.26637,
+   "D_norm": 0.0,
+   "mean_damage": 0.0,
+   "ignition_prob": 0.0,
+   "secs": 102.4
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   "step1",
+   "step2",
+   "step4",
+   "step8",
+   "step16",
+   "step32",
+   "step64"
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28
+  ],
+  "N": 48,
+  "B": 16,
+  "primary": "is lambda at steps 1-32 flat, positive, and above the paper's plateau?",
+  "small_model_early_plateau": 0.33,
+  "paper_plateau": 0.1683,
+  "follows": "#87 -- lambda is ~+0.33 at step1 on 14m/31m/70m, invisible to every prior grid",
+  "estimator": "dev_transition_phase3.measure unchanged, so the comparison against the paper's own plateau is commensurable",
+  "neither_outcome_is_a_failure": true
+ },
+ "verdict": "SAME SHAPE AS THE SMALL MODELS: 410m's lambda before step64 is flat, positive, indistinguishable from the ~+0.33 small-model plateau, and significantly ABOVE the paper's post-transition +0.1683. The paper's 'sub- to super-critical' transition is a RECOVERY FROM A DIP, and the archival framing must say so.",
+ "curve": {
+  "1": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.3363,
+   "lambda_sd": 0.103,
+   "D_norm_mean": 0.9781
+  },
+  "2": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.3415,
+   "lambda_sd": 0.1005,
+   "D_norm_mean": 0.9858
+  },
+  "4": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.3429,
+   "lambda_sd": 0.1084,
+   "D_norm_mean": 0.9685
+  },
+  "8": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.334,
+   "lambda_sd": 0.1012,
+   "D_norm_mean": 0.9757
+  },
+  "16": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": -0.0847,
+   "lambda_sd": 0.1842,
+   "D_norm_mean": 0.0129
+  },
+  "32": {
+   "n": 8,
+   "n_ignited": 0,
+   "lambda_mean": null,
+   "lambda_sd": null,
+   "D_norm_mean": 0.0
+  },
+  "64": {
+   "n": 8,
+   "n_ignited": 1,
+   "lambda_mean": -0.3388,
+   "lambda_sd": null,
+   "D_norm_mean": 0.0456
+  },
+  "128": {
+   "n": 8,
+   "n_ignited": 6,
+   "lambda_mean": -0.0926,
+   "lambda_sd": 0.0577,
+   "D_norm_mean": 0.1583
+  },
+  "256": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": -0.0185,
+   "lambda_sd": 0.1243,
+   "D_norm_mean": 0.1328
+  },
+  "512": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.0679,
+   "lambda_sd": 0.1416,
+   "D_norm_mean": 0.2403
+  },
+  "1000": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.1923,
+   "lambda_sd": 0.0313,
+   "D_norm_mean": 0.6962
+  },
+  "2000": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.1558,
+   "lambda_sd": 0.0401,
+   "D_norm_mean": 0.5471
+  },
+  "4000": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.1724,
+   "lambda_sd": 0.0194,
+   "D_norm_mean": 0.5591
+  },
+  "8000": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.1699,
+   "lambda_sd": 0.0388,
+   "D_norm_mean": 0.5458
+  },
+  "143000": {
+   "n": 8,
+   "n_ignited": 8,
+   "lambda_mean": 0.1792,
+   "lambda_sd": 0.0322,
+   "D_norm_mean": 0.6139
+  }
+ },
+ "analysis": {
+  "early_steps_le_32_n": 40,
+  "early_mean": 0.254,
+  "early_sd": 0.2078,
+  "vs_paper_plateau": {
+   "target": 0.1683,
+   "t": 2.607,
+   "p": 0.012861788688045458
+  },
+  "vs_small_model_plateau": {
+   "target": 0.33,
+   "t": -2.314,
+   "p": 0.026014400440050066
+  },
+  "flat_window_steps": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "flat_mean": 0.3386,
+  "flat_n": 32,
+  "flat_vs_paper_plateau_p": 5.0787050789436144e-11,
+  "flat_vs_small_model_plateau_p": 0.6221611255933331,
+  "minimum": {
+   "step": 64,
+   "lambda_mean": -0.3388,
+   "n_ignited": 1
+  },
+  "extinction_steps": [
+   32
+  ]
+ },
+ "_analysis_provenance": {
+  "script": "dev_transition_410m_early.py",
+  "sha256": "9bf351193c3b3e5c78f793ceb02455cefcba6f04ab2d95ceb82e4ffcdb9c4d6f",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "410m at steps 1-64 (#88, follows #87). #87 found lambda_ca ~+0.33 at step1 on 14m/31m/70m, flat through step32, before a dip and a recovery to ~+0.17 -- a shape no prior grid could see, since C20's starts at step128 and the paper's at step256. This tests whether the paper's own model does the same, which decides whether its headline 'sub- to super-critical' transition is an onset or a recovery. Analysed on the merged curve (this file + dev_transition_scale + dev_transition_phase3), deduplicated on (step, seed) with an agreement assert. Uses dev_transition_phase3.measure unchanged so the comparison against the paper's own plateau is commensurable; #81's corrected estimator gives 1.38x larger magnitudes and mixing them here would confound exactly the comparison this exists to make. Bracket-finding is deliberately NOT the observable: #87 showed the first sign change is downward, so a first-upward-crossing search returns the recovery rather than an onset."
+}
