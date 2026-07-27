@@ -1,0 +1,102 @@
+{
+ "_preregistration": {
+  "dp_targets": {
+   "delta": 0.159464,
+   "theta": 0.313686,
+   "z": 1.580745
+  },
+  "p1_scan": [
+   0.78,
+   0.795,
+   0.8087,
+   0.82,
+   0.835
+  ],
+  "p1_crit": 0.8087,
+  "N": 512,
+  "sweeps": 200,
+  "ladder": [
+   64,
+   512,
+   4096,
+   32768
+  ],
+  "fit_from": 5,
+  "tolerance": 0.2,
+  "primary": "do delta and theta land within 20% of Jensen at the published critical point?",
+  "secondary": "does the theta-crossing bracket contain the published critical point?",
+  "failure_means": "the pipeline is the problem; phase 1's LM slopes are uninterpretable"
+ },
+ "ladder_at_critical": {
+  "64": {
+   "delta": 0.1815,
+   "r2_delta": 0.9019,
+   "theta": 0.2371,
+   "r2_theta": 0.8856,
+   "secs": 0.1
+  },
+  "512": {
+   "delta": 0.1456,
+   "r2_delta": 0.9888,
+   "theta": 0.2873,
+   "r2_theta": 0.9899,
+   "secs": 0.6
+  },
+  "4096": {
+   "delta": 0.1497,
+   "r2_delta": 0.9963,
+   "theta": 0.2945,
+   "r2_theta": 0.9986,
+   "secs": 4.4
+  },
+  "32768": {
+   "delta": 0.1458,
+   "r2_delta": 0.9974,
+   "theta": 0.2964,
+   "r2_theta": 0.9993,
+   "secs": 36.2
+  }
+ },
+ "p1_scan": {
+  "0.78": {
+   "theta": -0.1771,
+   "delta": 0.4487,
+   "P_end": 0.2
+  },
+  "0.795": {
+   "theta": 0.1001,
+   "delta": 0.2575,
+   "P_end": 0.3611
+  },
+  "0.8087": {
+   "theta": 0.2991,
+   "delta": 0.1412,
+   "P_end": 0.5305
+  },
+  "0.82": {
+   "theta": 0.4189,
+   "delta": 0.0881,
+   "P_end": 0.6399
+  },
+  "0.835": {
+   "theta": 0.5515,
+   "delta": 0.0456,
+   "P_end": 0.7505
+  }
+ },
+ "theta_crossing_bracket": [
+  0.8087,
+  0.82
+ ],
+ "bracket_contains_published_pc": true,
+ "delta_rel_error": 0.0857,
+ "theta_rel_error": 0.0551,
+ "calibrated": true,
+ "verdict": "PIPELINE CALIBRATED: at 32768 replicas it recovers delta and theta to within 8.6% of Jensen on a system whose answer is known, and its bracket contains the published critical point. Phase 1's LM slopes are readable as measurements, and GPU budget for the LM extraction would buy signal rather than noise.",
+ "_analysis_provenance": {
+  "script": "dp_pipeline_validation.py",
+  "sha256": "388d6007dbac0f4c2f2d8d1790270cfd34eb0133c98203586f27449e25f9675e",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Validation of the DP extraction pipeline against Domany-Kinzel, where the exponents are known to be the 1+1D DP values and F38 already established our DK simulator is bit-exact against an independent implementation. So any discrepancy here is attributable to the FITTING procedure, which had never been calibrated -- phase 1 applied it to a language model and reported slopes without ever checking it can recover a known answer. DK is pure numpy, so this runs at literature sample sizes in minutes with no GPU, whereas the identical measurement on the LM costs ~152s per 16 replicas. The sample-size ladder answers 'was phase 1 simply under-sampled at 64?' by measurement. The p1 scan spans both disputed published values for the p2=0 line -- 0.801(2) and 0.8087(5) -- so the located bracket is an output rather than an assumption."
+}

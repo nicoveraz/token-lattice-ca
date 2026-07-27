@@ -218,6 +218,7 @@ _STALENESS_PAIRS = [
     ("dev_transition_width_early.json", "dev_transition_width_early.py"),
     ("dev_transition_410m_early.json", "dev_transition_410m_early.py"),
     ("dp_survival_scan.json", "dp_survival_scan.py"),
+    ("dp_pipeline_validation.json", "dp_pipeline_validation.py"),
 ]
 
 
