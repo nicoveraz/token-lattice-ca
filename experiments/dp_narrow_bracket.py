@@ -92,8 +92,12 @@ DP = dict(delta=0.159464, theta=0.313686, z=1.580745)
 REPLICAS = B * len(SEEDS)
 CAL_PC = [0.8087, 0.801]     # the two disputed DK p2=0 values; calibrate at the kinder of them
 CAL_TOL = 20.0               # the tolerance dp_pipeline_validation pre-registered, in percent
-CAL_GRID = [(96, 40), (96, 80), (96, 200), (192, 80), (192, 200), (384, 200), (512, 200)]
-CAL_SEEDS = [1000, 2000, 3000, 4000, 5000]   # the calibration is itself an estimate; average it
+CAL_GRID = [(96, 40), (96, 80), (96, 200), (192, 80), (192, 120), (192, 200), (384, 200)]
+# The calibration is itself an estimate, and 5 seeds was not enough: at 5 it put N=192/80 inside
+# the gate, at 20 that geometry fails (13.1+/-7.5% on delta, so 20.6% against a 20% tolerance).
+# Since the cheapest-passing entry is what a multi-hour compute decision rests on, the seed count
+# has to be large enough that the recommendation is not noise. DK is free; this costs minutes.
+CAL_SEEDS = list(range(1000, 21000, 1000))
 OUT = str(_ROOT / "results" / "dp_narrow_bracket.json")
 
 

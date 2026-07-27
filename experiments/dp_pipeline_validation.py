@@ -67,7 +67,7 @@ LADDER = [64, 512, 4096, 32768]                    # phase 1 used 64
 FIT_FROM = 5                                       # same transient cut as phase 1
 TOL = 0.20                                         # pre-registered: within 20% of Jensen
 LM_GEOM = (96, 40)                                 # the (N, sweeps) the LM runs actually use
-LM_SEEDS = [1000, 2000, 3000, 4000, 5000]          # geometry bias is itself noisy; average it
+LM_SEEDS = list(range(1000, 21000, 1000))   # 5 seeds proved too noisy to gate on; DK is free
 OUT = str(_ROOT / "results" / "dp_pipeline_validation.json")
 
 
