@@ -217,6 +217,7 @@ _STALENESS_PAIRS = [
     ("loss_collapse_pile.json", "loss_collapse_pile.py"),
     ("dev_transition_width_early.json", "dev_transition_width_early.py"),
     ("dev_transition_410m_early.json", "dev_transition_410m_early.py"),
+    ("dp_survival_scan.json", "dp_survival_scan.py"),
 ]
 
 
