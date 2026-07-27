@@ -40,21 +40,21 @@
    "r2_delta": 0.9888,
    "theta": 0.2873,
    "r2_theta": 0.9899,
-   "secs": 0.6
+   "secs": 0.5
   },
   "4096": {
    "delta": 0.1497,
    "r2_delta": 0.9963,
    "theta": 0.2945,
    "r2_theta": 0.9986,
-   "secs": 4.4
+   "secs": 4.1
   },
   "32768": {
    "delta": 0.1458,
    "r2_delta": 0.9974,
    "theta": 0.2964,
    "r2_theta": 0.9993,
-   "secs": 36.2
+   "secs": 32.7
   }
  },
  "p1_scan": {
@@ -92,10 +92,30 @@
  "delta_rel_error": 0.0857,
  "theta_rel_error": 0.0551,
  "calibrated": true,
- "verdict": "PIPELINE CALIBRATED: at 32768 replicas it recovers delta and theta to within 8.6% of Jensen on a system whose answer is known, and its bracket contains the published critical point. Phase 1's LM slopes are readable as measurements, and GPU budget for the LM extraction would buy signal rather than noise.",
+ "at_lm_geometry": {
+  "N": 96,
+  "sweeps": 40,
+  "replicas": 512,
+  "seeds": [
+   1000,
+   2000,
+   3000,
+   4000,
+   5000
+  ],
+  "delta": 0.1134,
+  "theta": 0.3018,
+  "delta_rel_error": 0.2891,
+  "theta_rel_error": 0.038,
+  "delta_rel_sd": 0.0813,
+  "theta_rel_sd": 0.0631,
+  "transfers": false,
+  "criterion": "mean relative error PLUS its seed-to-seed spread must clear the tolerance"
+ },
+ "verdict": "CALIBRATED AT N=512/200 SWEEPS ONLY, AND IT DOES NOT TRANSFER: the pipeline recovers Jensen to within 8.6% at this script's geometry and its bracket contains the published critical point, but at the geometry the LM runs (N=96, 40 sweeps) the identical estimator misses delta by 28.9+/-8.1% and theta by 3.8+/-6.3% on data that provably IS directed percolation. So LM slopes taken at that geometry are NOT readable as measurements, and a DP verdict from them -- either way -- is a statement about the fit window. Buying compute is worthwhile, but it must buy a bigger lattice and a longer fit range, not merely more replicas at N=96/40.",
  "_analysis_provenance": {
   "script": "dp_pipeline_validation.py",
-  "sha256": "388d6007dbac0f4c2f2d8d1790270cfd34eb0133c98203586f27449e25f9675e",
+  "sha256": "229316fd39d0c04f55d5c2fb91d34efb5c3b2f215490b9828e8c28185ce47fe2",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Validation of the DP extraction pipeline against Domany-Kinzel, where the exponents are known to be the 1+1D DP values and F38 already established our DK simulator is bit-exact against an independent implementation. So any discrepancy here is attributable to the FITTING procedure, which had never been calibrated -- phase 1 applied it to a language model and reported slopes without ever checking it can recover a known answer. DK is pure numpy, so this runs at literature sample sizes in minutes with no GPU, whereas the identical measurement on the LM costs ~152s per 16 replicas. The sample-size ladder answers 'was phase 1 simply under-sampled at 64?' by measurement. The p1 scan spans both disputed published values for the p2=0 line -- 0.801(2) and 0.8087(5) -- so the located bracket is an output rather than an assumption."

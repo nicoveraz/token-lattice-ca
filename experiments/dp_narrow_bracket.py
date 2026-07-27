@@ -38,10 +38,34 @@ PRE-REGISTERED BEFORE RUNNING:
                       values worth quoting against DP.
       - still not  -> the disagreement is NOT resolution, and it becomes evidence that this
                       transition is not in the DP class. Both outcomes are reportable.
-  * Reported against Jensen with the DK-measured pipeline bias alongside (8.6% on delta, 5.5% on
-    theta at 32768), so a discrepancy of that size is not read as a physical result.
+  * Reported against Jensen with the pipeline's DK-measured bias alongside, so a discrepancy of
+    that size is not read as a physical result.
   * Hyperscaling theta = 1/z - 2*delta = 0.313685 is checked on the fitted pair.
   * lambda statistics are not involved here; this is survival and active-count only.
+
+THE BIAS MUST BE MEASURED AT THIS RUN'S GEOMETRY, NOT IMPORTED FROM ANOTHER (amended after the
+first full pass). The first version of this script hardcoded PIPELINE_BIAS = 8.6% / 5.5% from
+dp_pipeline_validation, and declared "not in the DP class" when no temperature met twice those
+tolerances. That comparison was invalid. The validation ran DK at N=512 over 200 sweeps; this runs
+the LM at N=96 over 40. Re-running the identical estimator on DK at THIS geometry gives:
+
+    DK at p_c, 512 replicas, fit from sweep 5
+      N=512 sweeps=200    delta  8.7%   theta  8.4%     <- what the constant was taken from
+      N=96  sweeps=40     delta 32.8%   theta 11.0%     <- what this run actually uses
+      N=96  sweeps=200    delta 15.8%   theta 16.6%
+      N=512 sweeps=40     delta 24.9%   theta  3.1%
+
+On a system that provably IS directed percolation, this geometry misses delta by a third. A
+tolerance of 17% therefore rejected DP on data known to be DP, which makes the rejection an
+artifact of the fit window rather than a statement about the language model.
+
+So the calibration is now computed INLINE at the run's own (N, sweeps, replicas, fit_from), and the
+DP test is GATED on it: if the estimator cannot recover DK's known exponents to the 20% that
+dp_pipeline_validation pre-registered, the geometry is not fit to decide and the LM result is
+reported NOT DECIDABLE regardless of what its numbers say. That gate is evaluated on DK alone,
+blind to the LM result. A ladder of alternative geometries is scanned so the output states which
+geometry WOULD decide and what it would cost, rather than leaving "get more compute" unquantified.
+DK is pure numpy, so all of this costs seconds and no GPU.
 
 Writes results/dp_narrow_bracket.json.
 Usage:  caffeinate -dimsu .venv/bin/python experiments/dp_narrow_bracket.py
@@ -65,7 +89,11 @@ N, B, R = 96, 64, 2                    # B=64: 1.68x cheaper per replica than 16
 SETTLE, SWEEPS = 8, 40
 FIT_FROM = 5
 DP = dict(delta=0.159464, theta=0.313686, z=1.580745)
-PIPELINE_BIAS = dict(delta_pct=8.6, theta_pct=5.5)   # from dp_pipeline_validation on DK
+REPLICAS = B * len(SEEDS)
+CAL_PC = [0.8087, 0.801]     # the two disputed DK p2=0 values; calibrate at the kinder of them
+CAL_TOL = 20.0               # the tolerance dp_pipeline_validation pre-registered, in percent
+CAL_GRID = [(96, 40), (96, 80), (96, 200), (192, 80), (192, 200), (384, 200), (512, 200)]
+CAL_SEEDS = [1000, 2000, 3000, 4000, 5000]   # the calibration is itself an estimate; average it
 OUT = str(_ROOT / "results" / "dp_narrow_bracket.json")
 
 
@@ -94,6 +122,93 @@ def _slope(t, y):
     return float(c[0]), float(r2)
 
 
+def _dk_exponents(p1, n, sweeps, replicas, seed=1000):
+    """Fit delta and theta on Domany-Kinzel with THIS run's estimator, geometry and conventions.
+
+    Same single-site seed, same _slope, same FIT_FROM, and the initial state is dropped so the
+    time axis runs 1..sweeps exactly as `trajectory` returns it. F38 established our DK simulator
+    is bit-exact against an independent implementation, so any error here is the FIT's.
+    """
+    from dk import dk_run
+    P = np.zeros(sweeps); Nt = np.zeros(sweeps); done = 0
+    while done < replicas:
+        b = min(512, replicas - done)
+        s0 = np.zeros((b, n), dtype=np.int8); s0[:, n // 2] = 1
+        u = np.random.default_rng(seed + done).random(sweeps * n * b)
+        a = np.asarray(dk_run(s0, u, p1=p1, p2=0.0, sweeps=sweeps))[1:]   # drop t=0, as trajectory does
+        c = a.sum(axis=2)
+        P += (c > 0).sum(axis=1); Nt += c.sum(axis=1); done += b
+    P /= replicas; Nt /= replicas
+    t = np.arange(1, sweeps + 1, dtype=float); m = t >= FIT_FROM
+    sd, _ = _slope(t[m], P[m]); st, _ = _slope(t[m], Nt[m])
+    if sd is None or st is None:
+        return None
+    return dict(delta=round(-sd, 4), theta=round(st, 4),
+                delta_pct=round(abs(-sd - DP["delta"]) / DP["delta"] * 100, 1),
+                theta_pct=round(abs(st - DP["theta"]) / DP["theta"] * 100, 1))
+
+
+def _calibrate(secs_per_run):
+    """What does this estimator do to data whose exponents are KNOWN, at this run's geometry?
+
+    Evaluated on DK alone -- blind to the LM numbers -- so the gate cannot be tuned to the answer.
+    The disputed p2=0 critical point (0.801 vs 0.8087) is handled by calibrating at both and
+    keeping the KINDER one: if even the most favourable p_c fails the gate, the failure is robust
+    to that dispute rather than an artifact of picking a side.
+    """
+    def best(n, sweeps):
+        """Kinder of the two disputed p_c, each averaged over seeds.
+
+        Averaging is not optional: at one seed the ladder came out non-monotone in sweeps, which
+        is a property of the estimate rather than of the estimator, and the cheapest-passing
+        geometry -- the number a compute decision would rest on -- was being picked out of it.
+        """
+        cands = []
+        for p in CAL_PC:
+            cs = [c for c in (_dk_exponents(p, n, sweeps, REPLICAS, seed=s) for s in CAL_SEEDS) if c]
+            if not cs:
+                continue
+            d = [c["delta"] for c in cs]; t = [c["theta"] for c in cs]
+            cands.append(dict(
+                p_c=p, seeds=len(cs),
+                delta=round(float(np.mean(d)), 4), theta=round(float(np.mean(t)), 4),
+                delta_sd=round(float(np.std(d)), 4), theta_sd=round(float(np.std(t)), 4),
+                delta_pct=round(abs(float(np.mean(d)) - DP["delta"]) / DP["delta"] * 100, 1),
+                theta_pct=round(abs(float(np.mean(t)) - DP["theta"]) / DP["theta"] * 100, 1),
+                delta_sd_pct=round(float(np.std(d)) / DP["delta"] * 100, 1),
+                theta_sd_pct=round(float(np.std(t)) / DP["theta"] * 100, 1)))
+        return min(cands, key=lambda c: max(c["delta_pct"], c["theta_pct"])) if cands else None
+
+    def decides(c):
+        """Is the geometry DEMONSTRABLY adequate -- error plus its own spread inside tolerance?
+
+        A bare `pct <= CAL_TOL` is not enough. At this run's geometry the bare test failed by 0.7
+        points while the seed-to-seed spread on theta was 9.6 points, so the gate was reporting a
+        coin flip as a decision. Licensing a claim about the LM requires showing the estimator
+        works here, and a margin swamped by its own noise shows nothing either way.
+        """
+        return bool(c and c["delta_pct"] + c["delta_sd_pct"] <= CAL_TOL
+                    and c["theta_pct"] + c["theta_sd_pct"] <= CAL_TOL)
+
+    here = best(N, SWEEPS)
+    if here:
+        here = dict(here, N=N, sweeps=SWEEPS)        # stated, so a test can catch the two drifting
+    grid, unit = {}, secs_per_run / (N * SWEEPS)     # cost is sequential in sweeps*N, measured
+    for n, sw in CAL_GRID:
+        c = best(n, sw)
+        if not c:
+            continue
+        c = dict(c, N=n, sweeps=sw, passes=decides(c),
+                 projected_hours=round(unit * n * sw * len(TEMPS) * len(SEEDS) / 3600, 1))
+        grid[f"N{n}_sw{sw}"] = c
+    passing = sorted((c for c in grid.values() if c["passes"]), key=lambda c: c["projected_hours"])
+    return dict(at_run_geometry=here, tolerance_pct=CAL_TOL, p_c_candidates=CAL_PC,
+                calibration_seeds=CAL_SEEDS, replicas=REPLICAS, fit_from=FIT_FROM, grid=grid,
+                gate="mean deviation PLUS its seed-to-seed spread must clear the tolerance",
+                geometry_decides=decides(here),
+                cheapest_passing=(passing[0] if passing else None))
+
+
 def main():
     res = json.load(open(OUT)) if os.path.exists(OUT) else {"runs": {}}
     res["_preregistration"] = dict(
@@ -102,9 +217,12 @@ def main():
         replicas_per_temperature=B * len(SEEDS),
         sample_size_justification="dp_pipeline_validation ladder on DK: 512 replicas reaches "
                                   "~8% on both exponents and 4096/32768 barely improve on it",
-        pipeline_bias_from_dk=PIPELINE_BIAS,
+        pipeline_bias="measured inline on DK at this run's own geometry, not imported",
+        calibration_gate=f"if DK's known exponents are not recovered to {CAL_TOL:.0f}% at "
+                         f"N={N}/{SWEEPS} sweeps, the geometry cannot decide and the LM result "
+                         f"is NOT DECIDABLE regardless of its numbers",
         primary="do delta and theta agree on a single T_c inside [0.40, 0.45] at 512 replicas?",
-        still_disagreeing_means="not resolution -- evidence against a DP reading",
+        still_disagreeing_means="evidence against a DP reading, but ONLY if the gate passes",
         resumable="every completed run is saved immediately and keyed by (T, seed)")
     runs = res["runs"]
     from ar_ca import ARRule
@@ -173,30 +291,68 @@ def analyse(res):
         print(f"  {T:>7} {c.shape[1]:>6} {-sd:>9.4f} {r2d:>7.4f} {st:>+9.4f} {r2t:>7.4f} "
               f"{P[-1]:>8.4f}")
 
-    print(f"\n  Jensen: delta={DP['delta']}, theta={DP['theta']};  "
-          f"DK pipeline bias: delta {PIPELINE_BIAS['delta_pct']}%, theta {PIPELINE_BIAS['theta_pct']}%")
-    # a temperature is "DP-consistent" when BOTH exponents sit within the pipeline's own measured
-    # bias plus a margin -- anything tighter would be claiming precision the estimator lacks
-    tol_d = PIPELINE_BIAS["delta_pct"] * 2
-    tol_t = PIPELINE_BIAS["theta_pct"] * 2
+    secs = [v["secs"] for v in runs if "secs" in v]
+    cal = _calibrate(float(np.median(secs)) if secs else 346.0)
+    here = cal["at_run_geometry"]
+
+    print(f"\n=== the SAME estimator on Domany-Kinzel, where the exponents are known ===")
+    print(f"  deviation from Jensen, mean +/- seed spread over {len(CAL_SEEDS)} seeds")
+    print(f"  {'geometry':>16} {'delta dev':>16} {'theta dev':>16} {'LM hours':>9}")
+    for k, c in cal["grid"].items():
+        mark = "  <- this run" if (c["N"], c["sweeps"]) == (N, SWEEPS) else \
+               ("  <- cheapest that decides" if cal["cheapest_passing"] and
+                k == f"N{cal['cheapest_passing']['N']}_sw{cal['cheapest_passing']['sweeps']}" else "")
+        print(f"  N={c['N']:<4} sweeps={c['sweeps']:<4} "
+              f"{c['delta_pct']:>8.1f} +/-{c['delta_sd_pct']:>4.1f}% "
+              f"{c['theta_pct']:>8.1f} +/-{c['theta_sd_pct']:>4.1f}% "
+              f"{c['projected_hours']:>9.1f}{mark}")
+
+    print(f"\n  Jensen: delta={DP['delta']}, theta={DP['theta']}")
+    print(f"  pipeline bias AT THIS GEOMETRY: delta {here['delta_pct']}+/-{here['delta_sd_pct']}%, "
+          f"theta {here['theta_pct']}+/-{here['theta_sd_pct']}%")
+    print(f"  gate ({cal['gate']}, tol {CAL_TOL:.0f}%) -> {cal['geometry_decides']}")
+
+    # a temperature is "DP-consistent" when BOTH exponents sit within twice the pipeline's own bias
+    # measured AT THIS GEOMETRY -- anything tighter claims precision the estimator lacks
+    tol_d, tol_t = here["delta_pct"] * 2, here["theta_pct"] * 2
     both = [k for k, v in out.items()
             if v["delta_dev_pct"] is not None and v["delta_dev_pct"] <= tol_d
             and v["theta_dev_pct"] is not None and v["theta_dev_pct"] <= tol_t]
-    if both:
-        verdict = (f"DP-CONSISTENT at T in {both}: both exponents land within twice the "
-                   f"pipeline's own DK-measured bias ({tol_d:.0f}% delta, {tol_t:.0f}% theta). "
-                   f"These are the first LM exponents worth quoting against DP, with that bias "
-                   f"stated alongside.")
+    dd = {k: v["delta_dev_pct"] for k, v in out.items()}
+    tt = {k: v["theta_dev_pct"] for k, v in out.items()}
+
+    if not cal["geometry_decides"]:
+        cp = cal["cheapest_passing"]
+        need = (f"N={cp['N']} over {cp['sweeps']} sweeps does ({cp['delta_pct']}+/-"
+                f"{cp['delta_sd_pct']}% / {cp['theta_pct']}+/-{cp['theta_sd_pct']}%), at a "
+                f"projected {cp['projected_hours']} h on this machine"
+                if cp else "no geometry on the scanned ladder reaches it, so more replicas rather "
+                           "than a bigger lattice is the next thing to try")
+        verdict = (f"NOT DECIDABLE AT THIS GEOMETRY: on Domany-Kinzel, which provably IS directed "
+                   f"percolation, this estimator at N={N} over {SWEEPS} sweeps recovers delta to "
+                   f"{here['delta_pct']}+/-{here['delta_sd_pct']}% and theta to {here['theta_pct']}"
+                   f"+/-{here['theta_sd_pct']}%, which does not demonstrate the "
+                   f"{CAL_TOL:.0f}% that dp_pipeline_validation pre-registered. The LM deviations "
+                   f"(delta {dd}, theta {tt}) are therefore not separable from the fit window, and "
+                   f"the DP question cannot be answered either way from this run -- in particular "
+                   f"the earlier 'not in the DP class' reading, which came from applying a "
+                   f"tolerance measured at N=512/200 sweeps to a run at N={N}/{SWEEPS}, does not "
+                   f"survive: that tolerance rejects DK itself at this geometry. {need}.")
+    elif both:
+        verdict = (f"DP-CONSISTENT at T in {both}: both exponents land within twice the pipeline's "
+                   f"bias measured at this geometry ({tol_d:.0f}% delta, {tol_t:.0f}% theta), and "
+                   f"that geometry recovers DK's known exponents to within {CAL_TOL:.0f}%. These "
+                   f"are the first LM exponents worth quoting against DP, with that bias stated "
+                   f"alongside.")
     else:
-        dd = {k: v["delta_dev_pct"] for k, v in out.items()}
-        tt = {k: v["theta_dev_pct"] for k, v in out.items()}
         verdict = (f"NO SINGLE T SATISFIES BOTH: delta deviations {dd}, theta deviations {tt}, "
-                   f"against tolerances of {tol_d:.0f}% and {tol_t:.0f}% derived from the "
-                   f"pipeline's DK bias. At {B * len(SEEDS)} replicas this is no longer a "
-                   f"resolution artifact -- the DK ladder puts both errors near 8% at this sample "
-                   f"size -- so it is evidence that this transition is not in the DP class.")
+                   f"against tolerances of {tol_d:.0f}% and {tol_t:.0f}% from the pipeline's bias "
+                   f"at this geometry -- which does recover DK's known exponents to within "
+                   f"{CAL_TOL:.0f}%, so the disagreement is not a fit-window artifact. It is "
+                   f"evidence that this transition is not in the DP class.")
     print(f"\n  -> {verdict}")
 
+    res["calibration_at_run_geometry"] = cal
     res["analysis"] = out
     res["verdict"] = verdict
     res["_analysis_provenance"] = stamp(__file__)
@@ -209,7 +365,14 @@ def analyse(res):
         "pipeline's own DK-measured bias rather than against Jensen directly, because claiming "
         "tighter agreement than the estimator demonstrably achieves on a known system would be "
         "reading noise. B=64 rather than 16 because the measurement is sequential in sweeps*N and "
-        "B trades against GPU occupancy: 5.72 s per replica vs 9.63, measured.")
+        "B trades against GPU occupancy: 5.72 s per replica vs 9.63, measured. "
+        "AMENDED after the first full pass: that bias was initially hardcoded from the validation "
+        "run's geometry (N=512, 200 sweeps) while this runs at N=96 over 40, where the identical "
+        "estimator recovers DK's delta to only ~33%. The first verdict therefore rejected DP using "
+        "a tolerance that rejects DK itself. The bias is now measured inline at this run's own "
+        "geometry and the DP test is gated on it -- a gate evaluated on DK alone, blind to the LM "
+        "numbers -- with a geometry ladder reporting which configuration would decide and its "
+        "projected cost. The 24 LM trajectories are unchanged; only the analysis was rerun.")
     json.dump(res, open(OUT, "w"), indent=1)
 
 

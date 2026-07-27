@@ -219,6 +219,7 @@ _STALENESS_PAIRS = [
     ("dev_transition_410m_early.json", "dev_transition_410m_early.py"),
     ("dp_survival_scan.json", "dp_survival_scan.py"),
     ("dp_pipeline_validation.json", "dp_pipeline_validation.py"),
+    ("dp_narrow_bracket.json", "dp_narrow_bracket.py"),
 ]
 
 
@@ -390,3 +391,68 @@ def test_nobody_reimplements_the_f42_run_level_predicate():
         "the F42 run-level predicate is re-implemented outside lyapunov.py at "
         + ", ".join(offenders) + " -- import `run_ignited` instead. It has been written by hand "
         "thirteen times and gotten wrong twice.")
+
+
+# ------------------------------------- issue #82: a calibration only licenses its own geometry
+def _const(script, *names):
+    """Module-level scalar constants, read without importing (these scripts pull in torch)."""
+    import ast
+    tree = ast.parse((ROOT / "experiments" / script).read_text())
+    out = {}
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        tgts = [t.id for t in node.targets if isinstance(t, ast.Name)]
+        if tgts and tgts[0] in names:
+            out[tgts[0]] = ast.literal_eval(node.value)
+        elif isinstance(node.targets[0], ast.Tuple):          # e.g. `SETTLE, SWEEPS = 8, 40`
+            keys = [e.id for e in node.targets[0].elts if isinstance(e, ast.Name)]
+            vals = ast.literal_eval(node.value)
+            out.update({k: v for k, v in zip(keys, vals) if k in names})
+    return out
+
+
+def test_the_dp_calibration_is_measured_at_the_geometry_it_licenses():
+    """A pipeline calibrated at one lattice geometry says nothing about another.
+
+    dp_pipeline_validation originally varied only REPLICAS -- the cheap axis -- at a fixed
+    N=512 over 200 sweeps, then concluded that the LM slopes were readable as measurements. The
+    LM runs N=96 over 40 sweeps, where the identical estimator misses delta by ~20-30% on
+    Domany-Kinzel data that provably IS directed percolation. The first phase-2 verdict therefore
+    announced "not in the DP class" using a tolerance that rejects DK itself.
+
+    So the calibration geometry is a design constant with one source of truth, and this pins it:
+    whatever N and sweeps the LM scripts use, that is what must be calibrated.
+    """
+    lm = _const("dp_narrow_bracket.py", "N", "SWEEPS")
+    val = json.loads((ROOT / "results" / "dp_pipeline_validation.json").read_text())
+    at = val.get("at_lm_geometry")
+    assert at, "dp_pipeline_validation must report a transfer check at the LM's own geometry"
+    assert (at["N"], at["sweeps"]) == (lm["N"], lm["SWEEPS"]), (
+        f"validation calibrates at N={at['N']}/{at['sweeps']} sweeps but dp_narrow_bracket runs "
+        f"N={lm['N']}/{lm['SWEEPS']} -- the calibration does not cover the run it licenses")
+
+    scan = _const("dp_survival_scan.py", "N", "SWEEPS")
+    assert (scan["N"], scan["SWEEPS"]) == (lm["N"], lm["SWEEPS"]), (
+        "phase 1 and phase 2 run different geometries, so one calibration cannot cover both")
+
+    nb = json.loads((ROOT / "results" / "dp_narrow_bracket.json").read_text())
+    here = nb["calibration_at_run_geometry"]["at_run_geometry"]
+    assert (here["N"], here["sweeps"]) == (lm["N"], lm["SWEEPS"]), (
+        "dp_narrow_bracket's inline calibration is not at its own run geometry")
+
+
+def test_no_dp_verdict_claims_a_class_the_calibration_cannot_support():
+    """A DP verdict is only licensed when the estimator is shown to work at that geometry.
+
+    Guards the specific retraction: phase 2 may not assert the transition is or is not in the DP
+    class while its own calibration gate is failing.
+    """
+    nb = json.loads((ROOT / "results" / "dp_narrow_bracket.json").read_text())
+    decides = nb["calibration_at_run_geometry"]["geometry_decides"]
+    verdict = nb["verdict"].lower()
+    if not decides:
+        assert "not decidable" in verdict, (
+            "the calibration gate is failing, so the verdict must be NOT DECIDABLE")
+        assert "is not in the dp class" not in verdict and "dp-consistent" not in verdict, (
+            f"verdict claims a DP class the calibration does not support: {nb['verdict']}")

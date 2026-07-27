@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F55)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F56)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1634,6 +1634,34 @@ cell-mean sign change is **256→512 at both lattice sizes**, and the retraction
 *"crosses zero between steps 512 and 1000"*. The opening was that retraction with its right edge
 moved and its **left edge untouched**, in the one place nobody re-read. The existing guard checked
 only the four-size paragraph — it was looking one paragraph past the defect.
+
+### F56 — the DP calibration was run at a geometry the measurement never used
+Phase 2 of #82 finished 24 runs at 512 replicas per temperature and printed *"evidence that this
+transition is not in the DP class."* It is not. The tolerance it judged against — 17% on δ, 11% on
+θ — came from `dp_pipeline_validation`, which ran Domany–Kinzel at **N=512 over 200 sweeps**. The
+LM runs at **N=96 over 40**: a 5.3× smaller ring and a 5× shorter fit range. Re-running the
+identical estimator on DK at the LM's geometry recovers δ to only **17.2 ± 12.7%** and θ to
+**20.7 ± 9.6%**. That tolerance rejects directed percolation *on data that is directed
+percolation*, so the rejection measured the fit window, not the model.
+
+The validation script had licensed this explicitly — *"phase 1's LM slopes are readable as
+measurements"* — after varying **only replicas**, the cheap axis, at fixed N and sweeps. A
+sample-size ladder is not a geometry ladder, and calibrating along the affordable axis while
+holding the expensive one fixed is how the gap opened.
+
+Two structural fixes, both machine-written: the bias is now measured **inline at each run's own
+(N, sweeps, replicas, fit_from)**, and the DP test is **gated** on it — evaluated on DK alone,
+blind to the LM numbers, so the gate cannot be tuned to the answer. The first gate was itself a
+near-miss (θ 20.7% against a 20% tolerance, a 0.7-point margin inside a 9.6-point seed spread), so
+"demonstrably adequate" now requires the deviation **plus its own scatter** to clear tolerance —
+otherwise a coin flip gets reported as a decision. Verdict is now **NOT DECIDABLE**, and the run
+states what would decide: **N=192 over 80 sweeps** (11.4 ± 5.8% / 9.0 ± 2.6%), a projected **9.2 h**.
+
+The 24 LM trajectories were never in doubt and were not recomputed — only the analysis was. Note
+what the corrected reading costs: the confident negative is gone, and so is the DP-consistent
+positive that a slightly kinder gate would have produced at T=0.450 (δ 26.9%, θ 27.2%). Both
+readings were available from the same 24 runs depending on a threshold; that is the tell that the
+geometry, not the physics, was doing the deciding.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

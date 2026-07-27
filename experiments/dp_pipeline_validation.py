@@ -32,6 +32,16 @@ PRE-REGISTERED BEFORE RUNNING:
   * A sample-size ladder is run (64 -> 512 -> 4096 -> 32768 replicas) so the answer to "was phase
     1 simply under-sampled at 64?" is measured rather than asserted. Phase 1 used 64.
 
+AMENDED: SAMPLE SIZE WAS NOT THE ONLY AXIS. The first version of this script varied replicas while
+holding N=512 and 200 sweeps fixed, then concluded that phase 1's LM slopes were readable as
+measurements. That does not follow, and the error is the same one the project's own ladder
+principle exists to prevent: the LM runs at N=96 over 40 sweeps -- a 5.3x smaller ring and a 5x
+shorter fit range -- and a calibration at one geometry licenses nothing at another. Re-running the
+identical estimator at the LM's geometry on the same DK data shows it misses delta by roughly a
+fifth with a seed-to-seed spread of the same size, so the verdict is now GATED on that transfer
+check and scoped to the geometry it actually tested. Replicas were the cheap axis to vary, which
+is presumably why they were the one varied.
+
 WHICH CRITICAL POINT. The DK p2=0 damage-spreading line is disputed in the literature -- 0.801(2)
 (Zebende & Penna) vs 0.8087(5) (Hinrichsen et al.), a disagreement the paper already reports and
 declines to adjudicate. This script scans a range covering both rather than assuming either, so
@@ -56,6 +66,8 @@ N_SITES, SWEEPS = 512, 200
 LADDER = [64, 512, 4096, 32768]                    # phase 1 used 64
 FIT_FROM = 5                                       # same transient cut as phase 1
 TOL = 0.20                                         # pre-registered: within 20% of Jensen
+LM_GEOM = (96, 40)                                 # the (N, sweeps) the LM runs actually use
+LM_SEEDS = [1000, 2000, 3000, 4000, 5000]          # geometry bias is itself noisy; average it
 OUT = str(_ROOT / "results" / "dp_pipeline_validation.json")
 
 
@@ -140,8 +152,43 @@ def main():
     print(f"\n  theta crosses {DP['theta']:+.4f} in {bracket};  contains published "
           f"{P1_CRIT}? {contains}")
 
+    # --- 3. does that calibration TRANSFER to the geometry the LM actually runs at? ------------
+    # Added after this script's first verdict licensed phase 1 outright. The ladder above runs
+    # N=512 over 200 sweeps; the LM runs N=96 over 40, a 5.3x smaller ring and a 5x shorter fit
+    # range. Calibrating at one geometry says nothing about another, and checking costs seconds.
+    ln, lsw = LM_GEOM
+    print(f"\n=== the same estimator at the LM's geometry (N={ln}, {lsw} sweeps) ===")
+    ds, ts = [], []
+    for s in LM_SEEDS:
+        P, Nt = survival(P1_CRIT, LADDER[1], seed=s, sweeps=lsw, n=ln)
+        t = np.arange(len(P), dtype=float); msk = t >= FIT_FROM
+        sd, _ = _slope(t[msk], P[msk]); st, _ = _slope(t[msk], Nt[msk])
+        if sd is not None and st is not None:
+            ds.append(-sd); ts.append(st)
+    lm_d = abs(np.mean(ds) - DP["delta"]) / DP["delta"]
+    lm_t = abs(np.mean(ts) - DP["theta"]) / DP["theta"]
+    lm_dsd = float(np.std(ds)) / DP["delta"]; lm_tsd = float(np.std(ts)) / DP["theta"]
+    # "demonstrably within tolerance" means the spread clears it too -- a mean that lands inside
+    # by less than its own seed-to-seed scatter has not shown anything
+    lm_ok = bool(lm_d + lm_dsd <= TOL and lm_t + lm_tsd <= TOL)
+    print(f"  delta off by {lm_d*100:.1f}+/-{lm_dsd*100:.1f}%, "
+          f"theta off by {lm_t*100:.1f}+/-{lm_tsd*100:.1f}%  "
+          f"({len(ds)} seeds, {LADDER[1]} replicas)")
+    print(f"  transfers to the LM geometry at {TOL*100:.0f}%? {lm_ok}")
+
     calibrated = d_err <= TOL and t_err <= TOL
-    if calibrated and contains:
+    if calibrated and contains and not lm_ok:
+        verdict = (f"CALIBRATED AT N={N_SITES}/{SWEEPS} SWEEPS ONLY, AND IT DOES NOT TRANSFER: the "
+                   f"pipeline recovers Jensen to within {max(d_err, t_err)*100:.1f}% at this "
+                   f"script's geometry and its bracket contains the published critical point, but "
+                   f"at the geometry the LM runs (N={ln}, {lsw} sweeps) the identical estimator "
+                   f"misses delta by {lm_d*100:.1f}+/-{lm_dsd*100:.1f}% and theta by "
+                   f"{lm_t*100:.1f}+/-{lm_tsd*100:.1f}% on data that provably IS directed "
+                   f"percolation. So LM slopes taken at that geometry are NOT readable as "
+                   f"measurements, and a DP verdict from them -- either way -- is a statement "
+                   f"about the fit window. Buying compute is worthwhile, but it must buy a bigger "
+                   f"lattice and a longer fit range, not merely more replicas at N={ln}/{lsw}.")
+    elif calibrated and contains:
         verdict = (f"PIPELINE CALIBRATED: at {LADDER[-1]} replicas it recovers delta and theta "
                    f"to within {max(d_err, t_err)*100:.1f}% of Jensen on a system whose answer is "
                    f"known, and its bracket contains the published critical point. Phase 1's LM "
@@ -166,6 +213,13 @@ def main():
     res["delta_rel_error"] = round(d_err, 4)
     res["theta_rel_error"] = round(t_err, 4)
     res["calibrated"] = bool(calibrated)
+    res["at_lm_geometry"] = dict(
+        N=ln, sweeps=lsw, replicas=LADDER[1], seeds=LM_SEEDS,
+        delta=round(float(np.mean(ds)), 4), theta=round(float(np.mean(ts)), 4),
+        delta_rel_error=round(float(lm_d), 4), theta_rel_error=round(float(lm_t), 4),
+        delta_rel_sd=round(float(lm_dsd), 4), theta_rel_sd=round(float(lm_tsd), 4),
+        transfers=lm_ok,
+        criterion="mean relative error PLUS its seed-to-seed spread must clear the tolerance")
     res["verdict"] = verdict
     res["_analysis_provenance"] = stamp(__file__)
     res["_note"] = (

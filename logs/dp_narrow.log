@@ -1,0 +1,39 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.88it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 527.15it/s]Loading weights:  70%|███████   | 205/292 [00:00<00:00, 341.00it/s]Loading weights:  88%|████████▊ | 256/292 [00:00<00:00, 285.75it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 306.83it/s]
+DP bracket narrowing: 24 runs (3 temps x 8 seeds), B=64 -> 512 replicas per temperature
+[1/24] T0.4_s31: P(end)=0.188 sites(end)=2.83 (345.9s)
+[2/24] T0.4_s32: P(end)=0.078 sites(end)=1.00 (345.6s)
+[3/24] T0.4_s33: P(end)=0.297 sites(end)=4.78 (345.6s)
+[4/24] T0.4_s34: P(end)=0.000 sites(end)=0.00 (345.5s)
+[5/24] T0.4_s35: P(end)=0.156 sites(end)=1.80 (345.6s)
+[6/24] T0.4_s36: P(end)=0.094 sites(end)=1.92 (361.0s)
+[7/24] T0.4_s37: P(end)=0.312 sites(end)=6.36 (350.4s)
+[8/24] T0.4_s38: P(end)=0.125 sites(end)=1.84 (350.2s)
+[9/24] T0.425_s31: P(end)=0.328 sites(end)=5.16 (346.6s)
+[10/24] T0.425_s32: P(end)=0.312 sites(end)=6.03 (346.1s)
+[11/24] T0.425_s33: P(end)=0.281 sites(end)=6.17 (346.2s)
+[12/24] T0.425_s34: P(end)=0.000 sites(end)=0.00 (346.3s)
+[13/24] T0.425_s35: P(end)=0.266 sites(end)=4.00 (346.2s)
+[14/24] T0.425_s36: P(end)=0.141 sites(end)=2.55 (346.3s)
+[15/24] T0.425_s37: P(end)=0.500 sites(end)=9.34 (346.0s)
+[16/24] T0.425_s38: P(end)=0.156 sites(end)=2.22 (346.3s)
+[17/24] T0.45_s31: P(end)=0.375 sites(end)=7.28 (346.1s)
+[18/24] T0.45_s32: P(end)=0.266 sites(end)=5.52 (346.1s)
+[19/24] T0.45_s33: P(end)=0.516 sites(end)=13.00 (346.3s)
+[20/24] T0.45_s34: P(end)=0.000 sites(end)=0.00 (350.3s)
+[21/24] T0.45_s35: P(end)=0.234 sites(end)=4.81 (346.0s)
+[22/24] T0.45_s36: P(end)=0.266 sites(end)=6.59 (345.9s)
+[23/24] T0.45_s37: P(end)=0.500 sites(end)=11.59 (346.1s)
+[24/24] T0.45_s38: P(end)=0.297 sites(end)=6.75 (346.5s)
+
+=== 512 replicas per temperature, fitted from sweep 5 ===
+        T   reps    -delta      R2    +theta      R2   P(end)
+      0.4    512    0.4573  0.9968   -0.0060  0.0066   0.1562
+    0.425    512    0.2789  0.9800   +0.2429  0.9325   0.2480
+     0.45    512    0.2024  0.9710   +0.3990  0.9858   0.3066
+
+  Jensen: delta=0.159464, theta=0.313686;  DK pipeline bias: delta 8.6%, theta 5.5%
+
+  -> NO SINGLE T SATISFIES BOTH: delta deviations {'0.4': 186.8, '0.425': 74.9, '0.45': 26.9}, theta deviations {'0.4': 101.9, '0.425': 22.6, '0.45': 27.2}, against tolerances of 17% and 11% derived from the pipeline's DK bias. At 512 replicas this is no longer a resolution artifact -- the DK ladder puts both errors near 8% at this sample size -- so it is evidence that this transition is not in the DP class.
+
+wrote results/dp_narrow_bracket.json
