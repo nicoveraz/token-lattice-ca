@@ -31,9 +31,8 @@ def _load(name):
 
 
 def _unignited(v):
-    from lyapunov import is_unignited
-    return (is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v
-            else is_unignited(D_norm=v["D_norm"]))
+    from lyapunov import run_ignited
+    return not run_ignited(v)
 
 
 # ------------------------------------------------------- F39: declared design vs computed n

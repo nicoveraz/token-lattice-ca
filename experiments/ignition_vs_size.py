@@ -27,15 +27,14 @@ import numpy as np
 from scipy import stats, optimize
 
 from provenance import stamp, rel
-from lyapunov import is_unignited
+from lyapunov import is_unignited, run_ignited
 
 SOURCES = [("dev_transition_phase3.json", None), ("dev_transition_n192.json", 192)]
 OUT = ROOT / "results" / "ignition_vs_size.json"
 
 
 def unignited(r):
-    return (is_unignited(mean_damage=r["mean_damage"]) if "mean_damage" in r
-            else is_unignited(D_norm=r["D_norm"]))
+    return not run_ignited(r)
 
 
 def load():

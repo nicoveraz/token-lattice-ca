@@ -552,7 +552,7 @@ def test_section4_opening_bracket_matches_the_primary_results_file():
     """
     import sys as _sys
     _sys.path.insert(0, str(ROOT / "experiments"))
-    from lyapunov import is_unignited
+    from lyapunov import run_ignited
     import numpy as _np
 
     d = _load("dev_transition_phase3.json")["runs"]
@@ -561,8 +561,7 @@ def test_section4_opening_bracket_matches_the_primary_results_file():
         pytest.skip("no runs in dev_transition_phase3.json")
 
     def ignited(v):
-        return not (is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v
-                    else is_unignited(D_norm=v["D_norm"]))
+        return run_ignited(v)
 
     steps = sorted({v["step"] for v in rows})
     brackets = set()

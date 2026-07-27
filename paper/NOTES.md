@@ -121,6 +121,32 @@ out of something on the do-not-cut list, which is a decision, not a trim.
 
 ## 5. Decisions log
 
+- **2026-07-26 (post-tag)** — **Three prose-enforced rules became code, and one trap was
+  disarmed.** All after the submission tag, so nothing here touches what was submitted.
+  - **#63, the F42 predicate.** `is_unignited` takes a VALUE; every caller needs a RUN-record
+    adapter choosing which field to pass, because older records predate `mean_damage`. That
+    adapter had been hand-written **thirteen** times and written wrongly **twice** — once
+    applying the filter to both metrics, inflating D_norm's N=192 plateau 0.1393 → 0.1592, a 14%
+    error on the quantity whose size scaling was that run's whole point. Now `lyapunov.run_ignited`
+    plus `lambda_of` / `dnorm_of`, which encode the asymmetry as a *pair* so reading them side by
+    side is the point. A guard asserts nobody re-implements the adapter's **shape** — matching a
+    name would miss the fourteenth copy, since renaming a local helper is exactly how it slips past.
+  - Re-ran the 7 affected analyses and **proved 0 non-provenance drift**, same pattern as the
+    path fix. Two of the seven failed first with `NameError`: my import injector appended
+    `run_ignited` after a trailing comment, so it landed *inside* the comment. Caught only
+    because the re-run raised — a silent import would have hidden it.
+  - **#65, stale bytecode.** CPython invalidates `__pycache__` on `(mtime, size)`, so a
+    same-length constant flip re-run within the same second reuses stale `.pyc` and asserts
+    against a literal not in the source. That is the exact shape of a "prove the guard fires"
+    check, so the trap springs when you are establishing that a test is not vacuous. `conftest.py`
+    now sets `dont_write_bytecode` **and** purges — both are needed, since Python will read a
+    stale `.pyc` regardless of the flag. Reproduced and verified disarmed.
+
+- **2026-07-26 (post-tag)** — **`findings.md` had stopped at F42.** F43–F55 lived only in commit
+  messages and this file. Appended, because `findings.md` is the evidence ledger and a ledger
+  that stops ten findings short is worse than one that never claimed to be complete.
+
+
 - **2026-07-26** — **F55: the retracted crossing framing survived in §4's opening sentence.**
   Review caught it. The sentence read *"changing from sub- to super-critical between steps 512
   and 2000"*. `dev_transition_phase3.json` puts the cell-mean sign change at **256→512 at both

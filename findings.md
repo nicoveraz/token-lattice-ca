@@ -1545,6 +1545,96 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F55)
+
+Recorded here because `findings.md` is the evidence ledger; several of these lived only in
+commit messages and `paper/NOTES.md` until this pass.
+
+### F43 — three citations carried invented titles, and `plainnat` printed the evidence
+Five bibliography entries were unverified; three had titles that did not exist. `plainnat` prints
+`note=` fields, so a built PDF's bibliography literally read *"Title/authors to verify"*. Fixed by
+hand — which was itself the defect, see F50.
+
+### F44 — the unignited fraction rises with N, and the rise is a batch-size artifact
+0/16, 1/16, 5/16 at N=48/96/192 (Fisher p=0.022). But the design halves B as N doubles (16/8/4)
+and a run is unignited only if **all B** lattices die. One constant per-lattice death probability
+with **no N dependence** fits all three sizes (d=0.690, χ² p=0.912).
+
+### F45 — λ_ca is intensive, D_norm is 1/N, over a 4× range
+Plateau λ_ca 0.168/0.169/0.160 at N=48/96/192 → slope N^−0.04. D_norm 0.569/0.306/0.139 → N^−1.02.
+That is what the construction predicts: λ_ca is a cone-growth **rate** fitted before saturation;
+D_norm is a density ratio whose numerator stays in a cone while its denominator delocalises.
+
+### F46 — three analysis defects in the scale run
+Lexicographic step-key sort (ordering 1000 before 128), an impossible Spearman p (0.0 at n=3,
+where the floor is 1/6), and a verdict conflating "no crossing on this grid" with "intervals
+differ".
+
+### F47 — the N/B confound resolved by manipulation, not by fitting
+The missing 2×2 cell (N=48, B=4) gives 6/16 unignited: p=0.0177 against same-N/different-B,
+p=1.0000 against same-B/different-N. **Batch size**, confirmed by manipulation rather than by a
+model fit.
+
+### F48 — both proposed alternative D_norm floors are structurally zero
+A CRN-null floor and a maximal-coupling floor are both **identically zero**, because the floor's
+twins are identical and any coupling with P(X=Y)=1 at p==q keeps them so — verified at
+|V| = 2, 8 and 30522. So the numerator/denominator coupling mismatch W2 objects to is
+*unavoidable*, not a choice. What can be varied is the floor's decorrelation; sweeping it bounds
+D_norm's arbitrariness at **1.04×**.
+
+### F49 → F52 — the temperature scope is a WINDOW, and the ceiling starts earlier than believed
+See F52. F49's original two-temperature reading was superseded.
+
+### F50 — the hand citation audit was incomplete, and a fourth wrong title survived it
+`ar_tempcrit` claimed *"Critical Phase Transition in Large Language Models"*; arXiv says
+*"Phase transition in large language models and the criticality of natural languages"*. Found only
+because the entry was opened for an unrelated reason. **A hand audit that misses one entry looks
+exactly like a hand audit that misses none.** Replaced by `experiments/audit_refs.py` +
+`tests/test_refs_match_arxiv.py`; 24/24 verified, offline test locks it.
+
+### F51 — an orthogonal instrument agrees on the onset, and T_c ≈ 1 explains the temperature pegs
+Nakaishi et al. (arXiv:2406.05335) analyse **Pythia-160m** training checkpoints by POS-tag
+correlation and power spectra — no damage spreading — and place the emergence of critical
+structure at **k_c ≈ 10²** steps, adjacent to our 128–256 bracket for the same model. Their
+T_c ≈ 1 is for *autoregressive generation*, a different sampler from our in-place update, so it is
+a consistent reference point and not the same measurement.
+
+### F52 — the temperature scope is a window; the ceiling begins at 0.9, not 1.1
+| T | ignition pre→plateau | λ_ca pre→plateau | p_BH |
+|---|---|---|---|
+| 0.3 | 0.195 → 0.211 | −0.037 → −0.001 | 0.59 (floor) |
+| **0.5** | **0.227 → 0.805** | **−0.050 → +0.183** | **6×10⁻⁴** |
+| 0.7 | — | −0.019 → +0.179 | (Phase 3 family) |
+| 0.9 | 0.648 → 0.984 | **+0.187** → +0.221 | 0.72 (ceiling) |
+| 1.1 | 0.984 → 0.992 | +0.300 → +0.265 | 0.59 (ceiling) |
+
+Two adjacent temperatures carry the effect. And at T=0.9 the lattice is *already* super-critical
+before the training being measured — the paper had been reading 1.1 as the ceiling. The mechanism
+was right; its onset was off by one grid point.
+
+### F53 — λ_ca is not a restatement of the loss curve
+Held-out loss falls **monotonically at 4/4 sizes** while λ_ca overshoots at 3/4 — a non-monotone
+function of a monotone variable is not a monotone transform of it. Unanticipated second half: the
+steepest-loss bracket is **(512, 1000) for every size** while the λ_ca crossing moves with size
+and precedes it. Rank correlation is significant in only 1 of 4 at n=6, so shape and location
+carry this and correlation does not.
+
+### F54 — both paper figures were defective, and one shipped unreadable
+`fig_developmental.py` used a doubled backslash-n in a **non-raw f-string**, so matplotlib got a
+literal `\n`: panel A's title rendered as one long line that **overprinted panel B's title**. The
+headline figure was illegible across the middle in a built PDF, because it had only ever been
+checked as a full-resolution PNG. Both figures were also authored ~3× wider than displayed, so
+every label reproduced at ~30% of nominal. Now monochrome classic-R (`experiments/figstyle.py`),
+series separated by marker and dash and **never by hue** — verified programmatically, max RGB
+channel spread **0**.
+
+### F55 — a retracted claim survived in §4's opening sentence
+The section opened *"changing from sub- to super-critical between steps 512 and 2000"*. The
+cell-mean sign change is **256→512 at both lattice sizes**, and the retraction list already named
+*"crosses zero between steps 512 and 1000"*. The opening was that retraction with its right edge
+moved and its **left edge untouched**, in the one place nobody re-read. The existing guard checked
+only the four-size paragraph — it was looking one paragraph past the defect.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

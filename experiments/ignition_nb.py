@@ -42,7 +42,7 @@ import numpy as np
 from scipy import stats
 
 from dev_transition_phase3 import measure
-from lyapunov import is_unignited
+from lyapunov import is_unignited, run_ignited
 from provenance import stamp, rel
 
 STEPS = ["step256", "step512"]          # the checkpoints F44 compared at
@@ -84,7 +84,7 @@ def main():
         print(f"partial: {len(done)}/{len(todo)}")
         json.dump(res, open(OUT, "w"), indent=1); return
 
-    dead = [v for v in done if is_unignited(mean_damage=v["mean_damage"])]
+    dead = [v for v in done if not run_ignited(v)]
     k_new, n_new = len(dead), len(done)
     print(f"\n=== RESULT: N=48 B=4 -> {k_new}/{n_new} unignited ===")
     print(f"  reference cells: N=48 B=16 -> 0/16   N=96 B=8 -> 1/16   N=192 B=4 -> 5/16")

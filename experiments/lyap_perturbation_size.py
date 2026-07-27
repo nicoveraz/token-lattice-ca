@@ -74,7 +74,7 @@ import numpy as np
 import torch
 from scipy import stats
 
-from lyapunov import lyap_from_cone, is_unignited
+from lyapunov import lyap_from_cone, run_ignited
 from provenance import stamp, rel
 
 BASE = "EleutherAI/pythia-410m"
@@ -154,7 +154,7 @@ def main():
 
 def analyse(res, done):
     def ignited(v):
-        return not is_unignited(mean_damage=v["mean_damage"])
+        return run_ignited(v)
 
     out = {}
     for st in STEPS:

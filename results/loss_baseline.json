@@ -472,7 +472,7 @@
  "verdict": "NOT A MONOTONE PROXY: held-out loss falls monotonically in all 4/4 models, while lambda_ca overshoots in 3. A non-monotone function of a monotone variable is not a monotone transform of it. Separately, the zero-crossing and steepest-loss brackets differ in 3 of 4 models.",
  "_analysis_provenance": {
   "script": "loss_baseline.py",
-  "sha256": "e10cd84a3583be607c08b40a28ae39f682a01b6284672cf1ec9c61aac5bcd22e",
+  "sha256": "3e635977be90eac2a129494b8c1a94a452028b6eba87ec704dd286d06d825a64",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Held-out loss per checkpoint, to test whether lambda_ca is an expensive perplexity proxy. No new lattice runs: every (model, revision) already carries a lambda_ca measurement and every revision was already cached. Loss is teacher-forced NLL per token on a FIXED slice of WikiText-103 validation and is therefore deterministic -- zero seed variance by construction, which is itself the point of P4. The LEVEL of these numbers is not comparable to published Pythia curves (different corpus); only the SHAPE across checkpoints is used. lambda statistics drop unignited runs per F42 with n carried through.",

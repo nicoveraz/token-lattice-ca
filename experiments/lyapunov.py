@@ -178,3 +178,34 @@ if __name__ == "__main__":
     ap.add_argument("--sweeps", type=int, default=25)
     a = ap.parse_args()
     main(a.backend, a.model, a.B, a.N, a.sweeps)
+
+# ---------------------------------------------------------------- F42 at the RUN level (#63)
+def run_ignited(run):
+    """Did this run's damage ignite? The single definition; do not re-implement it.
+
+    `is_unignited` takes a VALUE; every caller needs a RUN-record adapter that picks which field
+    to pass, because older records predate `mean_damage` and need the `D_norm` fallback. That
+    adapter was hand-written thirteen times across experiments/ and tests/, and got written
+    wrongly twice -- once applying the filter to BOTH metrics, which inflated D_norm's N=192
+    plateau 0.1393 -> 0.1592, a 14% error on the quantity whose size scaling was the entire point
+    of that run.
+    """
+    if "mean_damage" in run:
+        return not is_unignited(mean_damage=run["mean_damage"])
+    return not is_unignited(D_norm=run["D_norm"])
+
+
+def lambda_of(runs):
+    """lambda_ca over IGNITED runs only -- lambda is UNDEFINED without a cone (F42)."""
+    return [r["lambda_ca"] for r in runs if run_ignited(r)]
+
+
+def dnorm_of(runs):
+    """D_norm over ALL runs -- zero damage is a TRUE ZERO, not a missing value (F42).
+
+    The asymmetry between this and `lambda_of` is the rule, not an oversight: it is why the two
+    live here as a pair rather than as one filter applied everywhere. Reading them side by side
+    is the point.
+    """
+    return [r["D_norm"] for r in runs]
+

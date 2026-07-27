@@ -47,7 +47,7 @@ import numpy as np
 
 from dev_transition_phase3 import measure          # identical protocol, not a copy
 from provenance import stamp, rel
-from lyapunov import is_unignited                  # F42: lambda is undefined without a cone
+from lyapunov import run_ignited      # F42: lambda is undefined without a cone
 
 STEPS = ["step256", "step512", "step143000"]
 PRE = {"step256", "step512"}
@@ -91,8 +91,7 @@ def main():
         print(f"partial: {len(done)}/{len(todo)}"); json.dump(res, open(OUT, "w"), indent=1); return
 
     def unignited(v):
-        return is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v \
-            else is_unignited(D_norm=v["D_norm"])
+        return not run_ignited(v)
 
     def sel(steps, m):
         """F42 asymmetry, matching dev_transition_shape.py exactly.

@@ -1,5 +1,19 @@
 # token-lattice-ca
 
+> **Status — 26 Jul 2026.** Submitted to the **NeurIPS 2026 Workshop on Interpretability for
+> Discovery** (Interp4Discovery, non-archival, double-blind; submission #4). The submitted state
+> is pinned by the tag **`submission/neurips26-i4d`** — `main` keeps moving, so use the tag, not
+> `HEAD`, to reproduce the paper. Body is 5 pages; every number in it is traced to a file in
+> `results/` by `tests/paper_number_manifest.json` and asserted by `tests/test_paper_numbers.py`.
+> An anonymised mirror of the tag is published for review; `build_mirror.py` builds and audits it.
+>
+> Work since the tag is the **universality-class program** (#80–#86): is the transition a genuine
+> non-equilibrium critical phenomenon, and in which class? Directed percolation is the null
+> because its 1+1D exponents are parameter-free, so the test has no fitted knobs. Three hazards
+> are pre-registered in #80 *before* any exponent is measured, because discovering them afterwards
+> reads as motivated reasoning.
+
+
 A cellular automaton over **token space**, developed into a **validated black-box
 measurement instrument** for language-model dynamics. A ring of *N* token cells is
 updated by a model's windowed conditional `p_r(x_i | x_{i±r})` (radius *r*,
@@ -167,7 +181,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **94 tests** and now covers every backend, not just the toy JAX path:
+The suite is **112 tests** and covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
@@ -194,6 +208,21 @@ The suite is **94 tests** and now covers every backend, not just the toy JAX pat
   while its job runs leaves the job writing its end-of-run analysis with the code imported at
   launch — that happened twice and once **inverted a conclusion**. A mismatch is now a red test
   rather than a finished-looking wrong number.
+- `tests/test_refs_match_arxiv.py` — **every arXiv citation must match what arXiv says.** A hand
+  audit fixed three invented titles and then missed a fourth, which survived until the entry was
+  opened for an unrelated reason. `experiments/audit_refs.py` fetches the record (network); this
+  test compares refs.bib against it **offline**, so the suite never depends on arXiv being up.
+  24/24 verified.
+- **No absolute paths in machine-written logs.** Twelve scripts printed an absolute `OUT`, so
+  twelve logs carried the checkout path — a de-anonymisation leak in an artifact the submission
+  mirror publishes. `provenance.rel()` is the fix, and a guard stops the thirteenth script
+  reintroducing it. It checks only what *we* print: Python's own tracebacks and stdlib warnings
+  carry absolute paths no source change can reach.
+- **One definition of the F42 predicate.** λ is undefined without a cone, so λ statistics drop
+  unignited runs while D_norm keeps them (zero damage is a true zero). That adapter was
+  hand-written thirteen times and written wrongly twice — once inflating D_norm's N=192 plateau by
+  14%. It now lives once, in `lyapunov.run_ignited`, and a test asserts nobody re-implements its
+  *shape*, since renaming a local helper is how the fourteenth copy would slip past.
 - `tests/test_golden.py` — asserts the simulation core stays **bit-identical** against
   `tests/golden/*.npz`, which were generated *before* the Phase-1 refactor. Do not relax
   these to `allclose`; a backend that cannot be made bit-identical is a stop-and-report.

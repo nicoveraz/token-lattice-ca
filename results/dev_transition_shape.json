@@ -417,7 +417,7 @@
  "_note": "Shape analysis of the completed developmental re-test. The pre-registered post>pre test and its BH-FDR table live in dev_transition_phase3.py; this file adds the shape. HEADLINE EFFECT SIZES ARE step256 vs the POOLED PLATEAU (2000/8000/143000), not vs the step-1000 peak: the curve overshoots and settles, so quoting the peak as the level inflates the effect. The vs-peak numbers are stored under cohens_d_vs_peak_INFLATED purely so the difference is auditable -- do not quote them. Variance collapse was NOT pre-registered and is reported as an observation.",
  "_analysis_provenance": {
   "script": "dev_transition_shape.py",
-  "sha256": "f8511f01348ae147e579576c14888f12ef53fc708ce1481525621654d381a370",
+  "sha256": "5e271d9d9186e9c83b2effa6baa3f2b1cf820b3b79c0110294c4b87f4e16fcb8",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_definitions": {

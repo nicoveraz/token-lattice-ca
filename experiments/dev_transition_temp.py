@@ -54,7 +54,7 @@ import numpy as np
 from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr
-from lyapunov import is_unignited
+from lyapunov import is_unignited, run_ignited
 from provenance import stamp, rel
 
 TEMPS = [0.3, 0.5, 0.9, 1.1]             # T=0.7 comes from Phase 3
@@ -66,8 +66,7 @@ PHASE3 = str(_ROOT / "results" / "dev_transition_phase3.json")
 
 
 def unignited(v):
-    return (is_unignited(mean_damage=v["mean_damage"]) if "mean_damage" in v
-            else is_unignited(D_norm=v["D_norm"]))
+    return not run_ignited(v)
 
 
 def phase3_reference():

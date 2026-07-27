@@ -49,7 +49,7 @@ import torch
 from scipy import stats
 
 from provenance import stamp, rel
-from lyapunov import is_unignited
+from lyapunov import is_unignited, run_ignited
 
 # The union of every (model, revision) that carries a lambda_ca measurement.
 GRID = {
@@ -144,8 +144,7 @@ def lambda_by_checkpoint():
         out.setdefault((name, step), []).append(v)
     agg = {}
     for (name, step), vs in out.items():
-        ign = [v for v in vs if not (is_unignited(mean_damage=v["mean_damage"])
-                                     if "mean_damage" in v else is_unignited(D_norm=v["D_norm"]))]
+        ign = [v for v in vs if run_ignited(v)]
         if not ign:
             continue
         lam = np.array([v["lambda_ca"] for v in ign])

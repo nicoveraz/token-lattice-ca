@@ -49,7 +49,7 @@ from scipy import stats
 
 from dev_transition_phase3 import measure, bh_fdr     # identical protocol, not a copy
 from provenance import stamp, rel
-from lyapunov import is_unignited                                   # F42
+from lyapunov import run_ignited                                    # F42
 
 MODELS = [("EleutherAI/pythia-70m", 70), ("EleutherAI/pythia-160m", 160),
           ("EleutherAI/pythia-410m", 410), ("EleutherAI/pythia-1b", 1000)]
@@ -117,8 +117,7 @@ def main():
 
 def _ignited(r):
     """F42: lambda is UNDEFINED when damage never ignites -- there is no cone to fit."""
-    return not (is_unignited(mean_damage=r["mean_damage"]) if "mean_damage" in r
-                else is_unignited(D_norm=r["D_norm"]))
+    return run_ignited(r)
 
 
 def analyse(res):

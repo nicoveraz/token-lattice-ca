@@ -27,7 +27,7 @@ import numpy as np
 from scipy import stats
 sys.path[:0] = [str(ROOT / "experiments")]
 from provenance import stamp, rel
-from lyapunov import is_unignited
+from lyapunov import is_unignited, run_ignited
 
 SRC = ROOT / "results" / "dev_transition_phase3.json"
 OUT = ROOT / "results" / "dev_transition_shape.json"
@@ -91,8 +91,7 @@ def bh_fdr(pvals):
 def unignited(r):
     """F42 predicate. Phase-3 records predate `mean_damage`, so the D_norm fallback is used;
     its soundness is asserted in tests/test_results_self_consistency.py."""
-    return (is_unignited(mean_damage=r["mean_damage"]) if "mean_damage" in r
-            else is_unignited(D_norm=r["D_norm"]))
+    return not run_ignited(r)
 
 
 def main():
