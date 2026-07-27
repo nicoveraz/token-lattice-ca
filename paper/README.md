@@ -40,3 +40,29 @@ pdflatex paper && bibtex paper && pdflatex paper && pdflatex paper
    (SPARC arXiv:2607.09803). Disambiguate both in related work.
 5. Verify every `refs.bib` entry's real title/authors/ID (2607.09803 = SPARC, not QUIVER;
    QUIVER = 2605.23956). Direct-reads owed near submission (2026 preprints may change).
+
+## The anonymised mirror vs the tagged tree (#54)
+
+The paper's Reproducibility appendix links an anonymised mirror on OSF. Two things about it are
+worth stating explicitly, because both are the kind of difference that looks like a discrepancy
+if you discover it rather than read it here.
+
+**The mirror is not a byte-copy of the tag.** `build_mirror.py` rewrites absolute checkout paths
+in twelve machine-written logs — lines of the form `wrote /Users/<user>/…/results/x.json` become
+`wrote ./results/x.json` — and replaces this file's sibling `README.md` H1, which was the
+repository name. Nothing else is altered. The repository's own logs are never touched; the
+rewriting happens only in the derived mirror, so the evidence record keeps exactly what the
+analyses wrote.
+
+**The mirror contains the URL that points at it.** Because it is built from the *final* tag, and
+that tag is the one carrying the appendix's mirror sentence, `paper/paper.tex` inside the mirror
+already contains the mirror's own address. That is self-referential but correct, and it is the
+reason the mirror is rebuilt and re-uploaded after the URL insertion rather than before. A mirror
+built from the pre-insertion tag would not match the tag it claims to mirror.
+
+So: mirror = tagged tree, minus 18 absolute paths and one heading. Verified by
+`build_mirror.py`, which audits its own output for identifying strings derived at run time from
+the git remote, `user.name`/`user.email`, and the checkout path.
+
+At camera-ready: flip the real repository public, swap the URL, and leave the tag name and sha
+unchanged. The tag pins the paper; the URL is the only thing that moves.
