@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:39,  7.40it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 727.60it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 504.93it/s]Loading weights:  99%|█████████▉| 289/292 [00:00<00:00, 404.73it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 427.16it/s]
+DP class test at N=192, 120 sweeps: 32 runs (4 temps x 8 seeds), B=64 -> 512 replicas per temperature
+[1/32] T0.425_s41: P(end)=0.000 sites(end)=0.00 (1955.7s)
+[2/32] T0.45_s41: P(end)=0.000 sites(end)=0.00 (1947.6s)
+[3/32] T0.475_s41: P(end)=0.000 sites(end)=0.00 (1947.1s)
+[4/32] T0.5_s41: P(end)=0.000 sites(end)=0.00 (1925.5s)
+[5/32] T0.425_s42: P(end)=0.000 sites(end)=0.00 (1924.3s)
+[6/32] T0.45_s42: P(end)=0.000 sites(end)=0.00 (1925.4s)
+[7/32] T0.475_s42: P(end)=0.000 sites(end)=0.00 (1925.1s)
+[8/32] T0.5_s42: P(end)=0.000 sites(end)=0.00 (1924.3s)
+[9/32] T0.425_s43: P(end)=0.000 sites(end)=0.00 (1925.8s)
+[10/32] T0.45_s43: P(end)=0.000 sites(end)=0.00 (1923.9s)
+[11/32] T0.475_s43: P(end)=0.000 sites(end)=0.00 (1924.5s)
+[12/32] T0.5_s43: P(end)=0.000 sites(end)=0.00 (1924.1s)
+[13/32] T0.425_s44: P(end)=0.000 sites(end)=0.00 (1924.9s)
+[14/32] T0.45_s44: P(end)=0.000 sites(end)=0.00 (1924.9s)
+[15/32] T0.475_s44: P(end)=0.000 sites(end)=0.00 (1925.7s)
+[16/32] T0.5_s44: P(end)=0.000 sites(end)=0.00 (1923.6s)
+[17/32] T0.425_s45: P(end)=0.000 sites(end)=0.00 (1923.8s)
+[18/32] T0.45_s45: P(end)=0.000 sites(end)=0.00 (1924.2s)
+[19/32] T0.475_s45: P(end)=0.000 sites(end)=0.00 (1924.6s)
+[20/32] T0.5_s45: P(end)=0.000 sites(end)=0.00 (1924.9s)
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

@@ -47,9 +47,10 @@ THE PRIMARY TEST IS BRACKET OVERLAP, NOT PER-POINT TOLERANCE. At a genuine DP cr
 and theta reach their DP values at the SAME temperature. Phase 2 asked whether some grid point had
 both exponents within tolerance, which conflates two things: whether the crossings coincide, and
 whether a grid point happens to sit near them. Here each exponent's crossing temperature is
-estimated by bootstrap over seeds (resample the seeds, pool, refit, interpolate the crossing), and
-the question is whether the two intervals OVERLAP. That is the physical statement, and it is
-robust to a coarse grid in a way a per-point test is not.
+estimated by bootstrap over replicas (resample, refit, interpolate the crossing), and the question
+is whether the two intervals OVERLAP. That is the physical statement, and it is robust to a coarse
+grid in a way a per-point test is not. Resampling replicas is legitimate only because of the
+per_replica visit order described below -- under the old shared order the seed was the unit.
 
 PRE-REGISTERED BEFORE RUNNING:
   * Gate: if the inline DK calibration at N=192/120 does not clear 20% including its spread, the
@@ -63,6 +64,30 @@ PRE-REGISTERED BEFORE RUNNING:
   * Hyperscaling: theta = 1/z - 2*delta with DP's z is reported as an internal check on the
     fitted pair. z is not measured here, so this constrains the pair rather than testing it.
   * A null is publishable. The instrument being validated is the point, not the sign.
+  * Exponents are quoted with bootstrap intervals over REPLICAS, which is legitimate only
+    under per_replica ordering. If that flag is ever removed, the interval must revert to a
+    seed-level bootstrap or it understates the error ~8x (F57).
+
+EVERY REPLICA GETS ITS OWN VISIT ORDER (F57). The first attempt at this run returned zero damage
+in 20 of 20 cells across all four temperatures, and the cause was not the model. The AR rule is
+causal-left, so damage seeded at site j survives its first sweep only if j+1 or j+2 is visited
+before j; otherwise j resamples against an identical context with the same uniform, heals, and
+the run is absorbed. That is 1/3 of visit orders -- and `lattice.run` drew ONE order per sweep for
+the whole batch, so it killed all 64 replicas at once instead of a third of them. Predicting
+deaths from the permutation alone matched observation exactly (8/8 seeds at N=96, 5/5 at N=192).
+
+The consequence outlived that run. Phase 2 pooled 512 replicas as independent when the quantity
+deciding each outcome was drawn once per batch, so the real independent unit was the seed. Re-read
+with the order as the unit, phase 2's T=0.450 gives delta = 0.2074 +/- 0.0373 and theta = 0.4075
++/- 0.0789 -- 1.3 and 1.2 standard errors from Jensen. Consistent with directed percolation. The
+"27% discrepancy" that F56 spent its effort explaining was an error bar computed 8x too small.
+
+So this run uses `order="per_replica"`, opt-in in lattice.py with the shared default untouched so
+no existing number moves. Each replica now draws its own order, making 512 replicas 512
+independent draws; the twins still share an order stream, because CRN coupling requires the pair
+to be visited in the same sequence. This also repairs a mismatch against the calibration that was
+never noticed: Domany-Kinzel is synchronous with genuinely independent replicas, so the DK ladder
+was measuring a precision the LM run could not have had.
 
 BATCH SIZE STAYS AT 64, ON ARITHMETIC RATHER THAN A NEW MEASUREMENT. A probe of B in
 {64, 96, 128, 192} at this N was attempted and produced nothing usable: its output was block
@@ -121,15 +146,25 @@ def trajectory(rule, T, seed):
     """
     from ar_ca import run
     base = run(rule, B=B, N=N, r=R, T=T, sweeps=SETTLE, scheme="none",
-               init="random", seed=seed)["final"]
+               init="random", seed=seed, order="per_replica")["final"]
     flipped = base.copy()
     flipped[:, N // 2] = np.random.default_rng(seed).choice(rule.init_pool, size=B)
     u = np.random.default_rng(seed + 1).random(SWEEPS * N * B)
     u2 = np.concatenate([u.reshape(SWEEPS * N, B)] * 2, axis=1).reshape(-1)
+    # F57: one visit order per REPLICA, so B replicas are B independent draws of the thing that
+    # decides whether the seed ignites. The twins must still share their order exactly, or the
+    # CRN coupling breaks and every site diverges for bookkeeping reasons -- hence the explicit
+    # stream, tiled across the twin halves the same way u2 is.
+    perm = np.argsort(np.random.default_rng(seed + 3).random((SWEEPS, B, N)), axis=2)
+    perm2 = np.concatenate([perm, perm], axis=1)
     init2 = np.concatenate([base, flipped], axis=0)
     snaps = run(rule, B=2 * B, N=N, r=R, T=T, sweeps=SWEEPS, scheme="none",
-                init_state=init2, seed=seed + 2, u_stream=u2)["snaps"]
-    return (snaps[:, :B] != snaps[:, B:]).sum(axis=2)
+                init_state=init2, seed=seed + 2, u_stream=u2,
+                order="per_replica", order_stream=perm2)["snaps"]
+    # drop the pre-dynamics state: `snaps` opens with the initial lattice, so keeping it would
+    # index the un-evolved configuration as t=1 and misalign the time axis against the DK
+    # calibration, which fits t=1..sweeps of POST-update states
+    return (snaps[1:, :B] != snaps[1:, B:]).sum(axis=2)
 
 
 def _fit(counts):
@@ -158,22 +193,29 @@ def _crossing(temps, vals, target, rising):
 
 
 def _bootstrap(by_seed, rng):
-    """90% intervals for T_c(delta) and T_c(theta) by resampling the SEED set.
+    """90% intervals for T_c(delta) and T_c(theta) by resampling REPLICAS.
 
-    Seeds are the independent unit here: each carries its own settled base states and its own
-    uniform stream. Resampling replicas within a seed would understate the correlation those
-    shared draws induce.
+    Under order='per_replica' every replica carries its own visit order, its own settled base
+    state and its own uniform stream, so the replica is the independent unit and 512 of them are
+    512 draws. That was NOT true before F57: one visit order decided the entire batch, the real
+    independent unit was the seed, and pooling 512 as though independent shrank the error bars
+    by enough to turn a 1.3-sigma agreement with DP into an apparent 27% discrepancy. Resampling
+    seeds here would now be the mirror-image error -- throwing away the independence the fix
+    bought and quoting an interval ~8x too wide.
     """
-    seeds = sorted({s for (_, s) in by_seed})
+    pooled = {}
+    for T in TEMPS:
+        cs = [by_seed[(T, s)] for s in SEEDS if (T, s) in by_seed]
+        if cs:
+            pooled[T] = np.concatenate(cs, axis=1)
     dxs, txs = [], []
     for _ in range(BOOT):
-        pick = rng.choice(seeds, size=len(seeds), replace=True)
         dv, tv = [], []
         for T in TEMPS:
-            cs = [by_seed[(T, s)] for s in pick if (T, s) in by_seed]
-            if not cs:
+            c = pooled.get(T)
+            if c is None:
                 dv.append(None); tv.append(None); continue
-            d, _, th, _ = _fit(np.concatenate(cs, axis=1))
+            d, _, th, _ = _fit(c[:, rng.integers(0, c.shape[1], c.shape[1])])
             dv.append(d); tv.append(th)
         cd = _crossing(TEMPS, dv, DP["delta"], rising=False)
         ct = _crossing(TEMPS, tv, DP["theta"], rising=True)
@@ -204,6 +246,9 @@ def main():
         gate=f"if the inline DK calibration at N={N}/{SWEEPS} does not clear {CAL_TOL:.0f}% "
              f"including its spread, the result is NOT DECIDABLE and no DP claim is licensed",
         order="seed-major, so an interruption leaves every temperature equally sampled",
+        visit_order="per_replica (F57): each replica draws its own, so 512 replicas are 512 "
+                    "independent draws; twins share an order stream to preserve CRN",
+        bootstrap_unit="replica -- valid only because of the per_replica order",
         resumable="every completed run is saved immediately and keyed by (T, seed)")
     runs = res["runs"]
     from ar_ca import ARRule

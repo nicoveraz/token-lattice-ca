@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F56)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F57)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1662,6 +1662,43 @@ what the corrected reading costs: the confident negative is gone, and so is the 
 positive that a slightly kinder gate would have produced at T=0.450 (δ 26.9%, θ 27.2%). Both
 readings were available from the same 24 runs depending on a threshold; that is the tell that the
 geometry, not the physics, was doing the deciding.
+
+### F57 — one visit order decided the whole batch, and it inverted the DP verdict
+The N=192 run returned **zero damage in 20 of 20 cells** across all four temperatures. The cause
+was not the model. The AR rule is causal-left (site *i* reads *i−1, i−2*), so damage seeded at
+site *j* survives its first sweep only if *j+1* or *j+2* is visited **before** *j*; otherwise *j*
+resamples against an identical context with the same uniform, heals, and the run is absorbed.
+That is **1/3 of visit orders** — and `lattice.run` drew one permutation per sweep for the entire
+batch, so it killed all 64 replicas at once rather than a third of them. Predicting deaths from
+the permutation alone matched observation exactly: 8/8 seeds at N=96, 5/5 at N=192, plus seed 33.
+Base rate over 1000 seeds: 30.7%, against the 1/3 the geometry predicts.
+
+**This is the long-missing cause of F42.** Unignited runs were found, handled by dropping them
+from λ, and never explained. This is why.
+
+**The consequence outlived the run.** Phases 1 and 2 pooled 512 replicas as independent when the
+quantity deciding each outcome was drawn once per batch — the real independent unit was the seed.
+Re-read with the update order as the unit, phase 2's T=0.450 gives **δ = 0.2074 ± 0.0373** and
+**θ = 0.4075 ± 0.0789**: 1.3 and 1.2 standard errors from Jensen. *Consistent with directed
+percolation.* The 27% discrepancy that F56 was written to explain was an error bar computed ~8×
+too small. Measured properly, within-seed replica bootstrap gives 0.0659 against a between-seed
+spread of 0.0987, so about 45% of the spread was replica noise and 55% genuine order-to-order
+variation — replicas were not worthless, just badly over-counted.
+
+Fixed as **opt-in** `order="per_replica"` in `lattice.py`; the shared default is untouched and
+every golden file stays bit-identical (verified). Twins still share an explicit `order_stream`,
+because CRN coupling requires the pair to be visited in the same sequence — the exact-zero null
+is re-asserted under the new mode. On real data, seeds 41 and 43 (both totally dead before) now
+spread to 3.1 sites with ~50% of replicas alive.
+
+Two smaller things fell out. `snaps` opens with the pre-dynamics lattice, so both earlier DP runs
+indexed the un-evolved state as *t=1* while the DK calibration fits post-update states — the
+conventions never matched, and the new run drops the initial row. And the calibration itself was
+measuring a precision the LM could not have: Domany–Kinzel is synchronous with genuinely
+independent replicas, so its sample-size ladder never applied to a batch sharing one order.
+
+The paper is unaffected: `dev_transition_phase3.measure` seeds a **3-site block**, far less
+exposed to instant healing, and already declares *"Run is the unit of analysis, not the lattice."*
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

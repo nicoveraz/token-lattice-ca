@@ -134,3 +134,77 @@ def test_null_ar(mode):
               seed=71, init_state=init, u_stream=u)
     a, b = run(rule, **kw), run(rule, **kw)
     assert np.array_equal(a["snaps"], b["snaps"]), "AR null arm diverged"
+
+
+# ------------------------------------------------- F57: per-replica visit order (issue #82)
+@pytest.mark.parametrize("causal", [False, True], ids=["symmetric", "causal"])
+def test_per_replica_order_leaves_the_default_path_untouched(causal):
+    """order='shared' is the default and must remain bit-identical, or every golden file moves."""
+    rule = StubRule(causal=causal)
+    init, u = _fixed()
+    kw = dict(B=B, N=N, r=R, T=0.7, sweeps=SW, mode="async", seed=71,
+              u_stream=u, init_state=init)
+    assert np.array_equal(lattice_run(rule, **kw)["snaps"],
+                          lattice_run(rule, order="shared", **kw)["snaps"])
+
+
+@pytest.mark.parametrize("causal", [False, True], ids=["symmetric", "causal"])
+def test_per_replica_order_preserves_the_exact_zero_crn_null(causal):
+    """The guarantee every damage number rests on must survive the new ordering.
+
+    Twins must be visited in the SAME sequence or they diverge for bookkeeping reasons, so the
+    order stream is tiled across the twin halves exactly as the uniform stream is.
+    """
+    rule = StubRule(causal=causal)
+    init, u = _fixed()
+    u2 = np.concatenate([u.reshape(SW * N, B)] * 2, axis=1).reshape(-1)
+    perm = np.argsort(np.random.default_rng(3).random((SW, B, N)), axis=2)
+    out = lattice_run(rule, B=2 * B, N=N, r=R, T=0.7, sweeps=SW, mode="async", seed=71,
+                      init_state=np.concatenate([init, init], axis=0), u_stream=u2,
+                      order="per_replica", order_stream=np.concatenate([perm, perm], axis=1))
+    s = out["snaps"]
+    assert (s[:, :B] != s[:, B:]).sum() == 0, "CRN broken under per_replica ordering"
+
+
+def test_per_replica_order_kills_the_batch_wide_absorbing_event():
+    """The defect F57 exists to fix: one shared order decided the fate of the whole batch.
+
+    The AR rule is causal-left, so damage at j heals in its first sweep unless j+1 or j+2 is
+    visited before j -- 1/3 of orders. Shared across the batch that is all-or-nothing, so a
+    third of runs report zero damage in EVERY replica and 512 replicas carry the weight of one
+    draw. Per-replica ordering must make that death vary across replicas instead.
+    """
+    rule = StubRule(causal=True)
+    init, u = _fixed()
+    flip = init.copy(); flip[:, N // 2] = (flip[:, N // 2] + 1) % V
+    u2 = np.concatenate([u.reshape(SW * N, B)] * 2, axis=1).reshape(-1)
+    both = np.concatenate([init, flip], axis=0)
+
+    def damage(order, order_stream=None):
+        s = lattice_run(rule, B=2 * B, N=N, r=R, T=0.7, sweeps=SW, mode="async", seed=71,
+                        init_state=both, u_stream=u2, order=order,
+                        order_stream=order_stream)["snaps"]
+        return (s[:, :B] != s[:, B:]).sum(axis=2)
+
+    # under a shared order every replica is alive or every replica is dead at the first sweep,
+    # because one permutation decided it for all of them
+    shared = damage("shared")
+    assert (shared[1] > 0).all() or (shared[1] == 0).all(), (
+        "shared ordering was expected to be all-or-nothing at the first sweep")
+
+    perm = np.argsort(np.random.default_rng(11).random((SW, B, N)), axis=2)
+    per = damage("per_replica", np.concatenate([perm, perm], axis=1))
+    assert 0 < (per[-1] > 0).mean() < 1, (
+        f"per-replica ordering should give a MIX of surviving and dead replicas, got "
+        f"{(per[-1] > 0).mean():.2f} alive -- the independence the fix buys is not there")
+
+
+def test_per_replica_order_is_rejected_where_it_has_no_meaning():
+    rule = StubRule(causal=True)
+    init, u = _fixed()
+    with pytest.raises(ValueError, match="sync"):
+        lattice_run(rule, B=B, N=N, r=R, sweeps=SW, mode="sync", init_state=init,
+                    u_stream=u, order="per_replica")
+    with pytest.raises(ValueError, match="order_stream"):
+        lattice_run(rule, B=B, N=N, r=R, sweeps=SW, mode="async", init_state=init,
+                    u_stream=u, order_stream=np.zeros((SW, B, N), dtype=int))

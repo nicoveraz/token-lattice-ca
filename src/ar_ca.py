@@ -99,11 +99,12 @@ class _ARAdapter:
 
 def run(rule, B=16, N=48, r=2, T=1.0, sweeps=60, scheme="none", init="random",
         seed=0, record_every=1, init_state=None, u_stream=None, sampler=None,
-        mode="async"):
+        mode="async", order="shared", order_stream=None):
     """Causal ring CA: cell i resampled from p(x_i | x_{i-r..i-1}) (left window on the
     ring). Thin shim over the unified loop; `mode` now works here too (it was missing
     before the unification -- drift, not a decision)."""
     return _lattice_run(_ARAdapter(rule, scheme, sampler), B=B, N=N, r=r, T=T,
                         sweeps=sweeps, mode=mode, init=init, seed=seed,
                         record_every=record_every, init_state=init_state,
-                        u_stream=u_stream, scheme=scheme)
+                        u_stream=u_stream, scheme=scheme,
+                        order=order, order_stream=order_stream)
