@@ -220,6 +220,7 @@ _STALENESS_PAIRS = [
     ("dp_survival_scan.json", "dp_survival_scan.py"),
     ("dp_pipeline_validation.json", "dp_pipeline_validation.py"),
     ("dp_narrow_bracket.json", "dp_narrow_bracket.py"),
+    ("dp_class_n192.json", "dp_class_n192.py"),
 ]
 
 
@@ -412,34 +413,62 @@ def _const(script, *names):
     return out
 
 
-def test_the_dp_calibration_is_measured_at_the_geometry_it_licenses():
+# Every DP script that measures the LM, and the results file each writes. A script here either
+# carries its own inline calibration or is covered by dp_pipeline_validation's transfer check.
+_DP_LM_SCRIPTS = [
+    ("dp_survival_scan.py", "dp_survival_scan.json"),
+    ("dp_narrow_bracket.py", "dp_narrow_bracket.json"),
+    ("dp_class_n192.py", "dp_class_n192.json"),
+]
+
+
+@pytest.mark.parametrize("script,results", _DP_LM_SCRIPTS, ids=[s for s, _ in _DP_LM_SCRIPTS])
+def test_every_dp_run_is_calibrated_at_its_own_geometry(script, results):
     """A pipeline calibrated at one lattice geometry says nothing about another.
 
     dp_pipeline_validation originally varied only REPLICAS -- the cheap axis -- at a fixed
     N=512 over 200 sweeps, then concluded that the LM slopes were readable as measurements. The
-    LM runs N=96 over 40 sweeps, where the identical estimator misses delta by ~20-30% on
+    LM ran N=96 over 40 sweeps, where the identical estimator misses delta by ~20% on
     Domany-Kinzel data that provably IS directed percolation. The first phase-2 verdict therefore
-    announced "not in the DP class" using a tolerance that rejects DK itself.
+    announced "not in the DP class" using a tolerance that rejects DK itself (F56).
 
-    So the calibration geometry is a design constant with one source of truth, and this pins it:
-    whatever N and sweeps the LM scripts use, that is what must be calibrated.
+    So the calibration geometry is a design constant with one source of truth. Each LM run must
+    be covered at ITS OWN (N, sweeps) -- by an inline calibration, or by the validation script's
+    transfer check.
     """
-    lm = _const("dp_narrow_bracket.py", "N", "SWEEPS")
-    val = json.loads((ROOT / "results" / "dp_pipeline_validation.json").read_text())
-    at = val.get("at_lm_geometry")
-    assert at, "dp_pipeline_validation must report a transfer check at the LM's own geometry"
-    assert (at["N"], at["sweeps"]) == (lm["N"], lm["SWEEPS"]), (
-        f"validation calibrates at N={at['N']}/{at['sweeps']} sweeps but dp_narrow_bracket runs "
-        f"N={lm['N']}/{lm['SWEEPS']} -- the calibration does not cover the run it licenses")
+    geom = _const(script, "N", "SWEEPS")
+    d = _load(results)
+    here = (d.get("calibration_at_run_geometry") or {}).get("at_run_geometry")
+    if here is not None:
+        assert (here["N"], here["sweeps"]) == (geom["N"], geom["SWEEPS"]), (
+            f"{script} runs N={geom['N']}/{geom['SWEEPS']} but its inline calibration is at "
+            f"N={here['N']}/{here['sweeps']} -- it does not cover the run it licenses")
+        return
+    at = _load("dp_pipeline_validation.json").get("at_lm_geometry")
+    assert at, f"{script} has no inline calibration and no transfer check covers it"
+    assert (at["N"], at["sweeps"]) == (geom["N"], geom["SWEEPS"]), (
+        f"{script} runs N={geom['N']}/{geom['SWEEPS']} but the only calibration covering it is "
+        f"at N={at['N']}/{at['sweeps']}")
 
-    scan = _const("dp_survival_scan.py", "N", "SWEEPS")
-    assert (scan["N"], scan["SWEEPS"]) == (lm["N"], lm["SWEEPS"]), (
-        "phase 1 and phase 2 run different geometries, so one calibration cannot cover both")
 
-    nb = json.loads((ROOT / "results" / "dp_narrow_bracket.json").read_text())
-    here = nb["calibration_at_run_geometry"]["at_run_geometry"]
-    assert (here["N"], here["sweeps"]) == (lm["N"], lm["SWEEPS"]), (
-        "dp_narrow_bracket's inline calibration is not at its own run geometry")
+def test_the_dp_gate_has_exactly_one_implementation():
+    """The gate must not be pasted into a second script, because a drifted gate is F56 again.
+
+    F56 was a calibration applied at the wrong geometry. A copy of the gate that silently
+    diverges -- a different tolerance, a different seed count, a bare threshold instead of one
+    that counts its own spread -- is indistinguishable from that defect at the point where it
+    matters. So the implementation lives in dp_calibration and the scripts import it.
+    """
+    owned = {"bias_at", "decides", "dk_exponents", "calibrate", "print_ladder"}
+    src = (ROOT / "experiments" / "dp_calibration.py").read_text()
+    for fn in owned:
+        assert f"def {fn}(" in src, f"dp_calibration must define {fn}"
+    for script, _ in _DP_LM_SCRIPTS:
+        text = (ROOT / "experiments" / script).read_text()
+        for fn in owned:
+            assert f"def {fn}(" not in text and f"def _{fn}(" not in text, (
+                f"{script} defines its own {fn} -- the DP gate must have one implementation, "
+                f"imported from dp_calibration")
 
 
 def test_no_dp_verdict_claims_a_class_the_calibration_cannot_support():
