@@ -1,0 +1,67 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  25%|██▌       | 74/292 [00:00<00:00, 624.33it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 711.36it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 714.30it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 721.21it/s]
+DP class test at N=192, 120 sweeps: 32 runs (4 temps x 8 seeds), B=64 -> 512 replicas per temperature
+[1/32] T0.425_s41: P(end)=0.203 sites(end)=7.25 (1934.9s)
+[2/32] T0.45_s41: P(end)=0.234 sites(end)=10.45 (1933.0s)
+[3/32] T0.475_s41: P(end)=0.375 sites(end)=18.77 (1972.6s)
+[4/32] T0.5_s41: P(end)=0.422 sites(end)=32.55 (1935.3s)
+[5/32] T0.425_s42: P(end)=0.203 sites(end)=4.58 (1925.6s)
+[6/32] T0.45_s42: P(end)=0.234 sites(end)=9.84 (1928.5s)
+[7/32] T0.475_s42: P(end)=0.250 sites(end)=13.44 (1925.0s)
+[8/32] T0.5_s42: P(end)=0.359 sites(end)=26.50 (1949.8s)
+[9/32] T0.425_s43: P(end)=0.062 sites(end)=1.27 (1925.7s)
+[10/32] T0.45_s43: P(end)=0.172 sites(end)=7.73 (1926.1s)
+[11/32] T0.475_s43: P(end)=0.234 sites(end)=12.38 (1925.4s)
+[12/32] T0.5_s43: P(end)=0.391 sites(end)=33.58 (1927.6s)
+[13/32] T0.425_s44: P(end)=0.156 sites(end)=4.36 (1924.2s)
+[14/32] T0.45_s44: P(end)=0.219 sites(end)=9.19 (1925.1s)
+[15/32] T0.475_s44: P(end)=0.312 sites(end)=16.48 (1925.7s)
+[16/32] T0.5_s44: P(end)=0.312 sites(end)=24.17 (1926.0s)
+[17/32] T0.425_s45: P(end)=0.141 sites(end)=3.72 (1926.3s)
+[18/32] T0.45_s45: P(end)=0.359 sites(end)=13.50 (1925.9s)
+[19/32] T0.475_s45: P(end)=0.203 sites(end)=11.48 (1929.9s)
+[20/32] T0.5_s45: P(end)=0.375 sites(end)=27.36 (1934.7s)
+[21/32] T0.425_s46: P(end)=0.125 sites(end)=3.17 (1934.0s)
+[22/32] T0.45_s46: P(end)=0.188 sites(end)=8.58 (1934.4s)
+[23/32] T0.475_s46: P(end)=0.297 sites(end)=18.00 (1935.3s)
+[24/32] T0.5_s46: P(end)=0.297 sites(end)=22.44 (1934.3s)
+[25/32] T0.425_s47: P(end)=0.234 sites(end)=6.55 (1931.1s)
+[26/32] T0.45_s47: P(end)=0.250 sites(end)=11.44 (1926.4s)
+[27/32] T0.475_s47: P(end)=0.344 sites(end)=20.05 (1929.4s)
+[28/32] T0.5_s47: P(end)=0.453 sites(end)=34.19 (1934.2s)
+[29/32] T0.425_s48: P(end)=0.188 sites(end)=5.03 (1933.4s)
+[30/32] T0.45_s48: P(end)=0.344 sites(end)=14.05 (1947.3s)
+[31/32] T0.475_s48: P(end)=0.266 sites(end)=13.05 (1931.6s)
+[32/32] T0.5_s48: P(end)=0.312 sites(end)=20.14 (1925.5s)
+
+=== 512 replicas per temperature, fitted from sweep 5 ===
+        T   reps    -delta      R2    +theta      R2   P(end)
+    0.425    512    0.2434  0.9966   +0.1800  0.9346   0.1641
+     0.45    512    0.0997  0.9777   +0.4828  0.9959   0.2500
+    0.475    512    0.0689  0.8348   +0.5697  0.9907   0.2852
+      0.5    512    0.0378  0.7774   +0.6746  0.9940   0.3652
+
+=== the SAME estimator on Domany-Kinzel, where the exponents are known ===
+  deviation from Jensen, mean +/- seed spread over 20 seeds
+          geometry        delta dev        theta dev  LM hours
+  N=96   sweeps=40       21.2 +/-10.0%      7.0 +/- 6.6%       2.9
+  N=96   sweeps=200       8.7 +/- 8.5%     18.2 +/- 4.0%      14.3
+  N=192  sweeps=80       13.1 +/- 7.5%     10.5 +/- 5.3%      11.4
+  N=192  sweeps=120       9.8 +/- 8.1%      9.2 +/- 5.6%      17.2  <- this run
+  N=192  sweeps=200       5.4 +/- 8.9%      8.4 +/- 5.9%      28.6
+  N=384  sweeps=200       9.1 +/- 7.0%      7.9 +/- 4.5%      57.2
+
+  Jensen: delta=0.159464, theta=0.313686
+  pipeline bias AT THIS GEOMETRY: delta 9.8+/-8.1%, theta 9.2+/-5.6%
+  gate (mean deviation PLUS its seed-to-seed spread must clear the tolerance, tol 20%) -> True
+
+=== PRIMARY: do the two crossings agree on one T_c? (2000 seed bootstraps) ===
+  T_c from delta crossing 0.159464: [0.4343, 0.444]  (bracketed in 100%)
+  T_c from theta crossing 0.313686: [0.4325, 0.4391]  (bracketed in 100%)
+  intervals overlap? True
+
+  SECONDARY (phase-2 style, not used to decide): grid temperatures with both exponents inside 20%/18%: none
+
+  -> DP-CONSISTENT: delta and theta reach their DP values at overlapping temperatures, T_c in [0.4343, 0.4391]. delta's 90% interval is [0.4343, 0.444] and theta's is [0.4325, 0.4391]. The estimator was shown at this geometry to recover DK's known exponents to 9.8+/-8.1% and 9.2+/-5.6%, so the agreement is a measurement rather than a fit-window artifact. These are the first LM exponents worth quoting against directed percolation, with that bias stated.
+
+wrote results/dp_class_n192.json

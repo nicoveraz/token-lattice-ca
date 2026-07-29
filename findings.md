@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F57)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F58)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1699,6 +1699,39 @@ independent replicas, so its sample-size ladder never applied to a batch sharing
 
 The paper is unaffected: `dev_transition_phase3.measure` seeds a **3-site block**, far less
 exposed to instant healing, and already declares *"Run is the unit of analysis, not the lattice."*
+
+### F58 — the damage-spreading transition is consistent with directed percolation
+At N=192 over 120 sweeps, 512 independent-order replicas per temperature, the survival exponent δ
+and the active-count exponent θ reach their 1+1D DP values at **overlapping temperatures**:
+
+```
+T_c from delta crossing 0.159464   [0.4343, 0.4440]   bracketed in 100% of bootstraps
+T_c from theta crossing 0.313686   [0.4325, 0.4391]
+overlap                            [0.4343, 0.4391]
+```
+
+The gate passed *before* the LM numbers were read: at this geometry the same estimator recovers
+Domany–Kinzel's known exponents to 9.8 ± 8.1% (δ) and 9.2 ± 5.6% (θ), inside the 20% that
+`dp_pipeline_validation` pre-registered. So the agreement is a measurement, not a fit-window
+artifact — which is exactly what phases 1 and 2 could not say.
+
+Robust to the fit window: the overlap survives `fit_from` ∈ {3, 5, 8, 12, 20} with the crossings
+moving less than 0.002 in T. Replica independence — the assumption F57 showed can silently fail —
+was checked rather than assumed: between-seed scatter over within-seed bootstrap gives ratios
+1.45, 1.05, 0.87, 0.70 across the four temperatures, consistent with 1.
+
+**What this does and does not establish.** The content is the *coincidence of two crossings*, not
+the exponent values: at T_c both equal their DP values by construction, so quoting them would be
+circular. Hyperscaling is satisfied at the crossing for the same reason and tests nothing there.
+A class assignment conventionally needs ν⊥ and z from finite-size scaling, which this does not
+measure — one model (pythia-410m), one radius (r=2), one lattice size. And T_c falls between grid
+points 0.425 and 0.450, so it is linearly interpolated; the intervals carry bootstrap noise but
+no interpolation error. The honest claim is **consistent with DP on two exponents**, and the FSS
+half of #82 is what would turn that into a class determination.
+
+Worth stating plainly: phase 2 read this same transition as "not in the DP class". That verdict
+died twice over — once to a calibration measured at the wrong geometry (F56), once to error bars
+computed as if 512 batch-correlated replicas were independent (F57).
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
