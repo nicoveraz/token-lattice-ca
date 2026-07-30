@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F58)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F59)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1732,6 +1732,41 @@ half of #82 is what would turn that into a class determination.
 Worth stating plainly: phase 2 read this same transition as "not in the DP class". That verdict
 died twice over — once to a calibration measured at the wrong geometry (F56), once to error bars
 computed as if 512 batch-correlated replicas were independent (F57).
+
+### F59 — the static exponents match DP; the dynamic one does not
+Finite-size scaling at T_c = 0.436 over N ∈ {12, 24, 48}, 512 independent-order replicas each,
+gives a dynamic exponent **z = 1.325, 90% interval [1.01, 1.45]** — excluding DP's 1.580745.
+Set beside F58, where δ and θ reach their DP values at a common temperature, the picture is that
+**the static exponents are consistent with directed percolation and the dynamic one is not.**
+
+The estimator was gated before the LM numbers were read: on Domany–Kinzel it recovers the known
+z to 0.6% ± 7.7%. The minimum is interior on a scan spanning 0.20–4.01, the cost at DP's value is
+**6.2× the minimum**, and 100% of bootstrap resamples converge to an interior minimum.
+
+**The first answer from this run was withdrawn, and the reason is the finding's main caveat.**
+That version scored the collapse only within |log(t/N^z)| < 2.5 — a band added to stop the flat
+power-law region diluting the fit. Because the shared support shifts with z, a *small* z pushed
+the comparison into a narrow clipped sliver where curves trivially agree, so the cost fell
+monotonically toward zero and the "minimum" was wherever the scan grid stopped. It reported
+z = 1.325 with a 90% lower bound that *was* the scan floor, 27% of bootstraps pinned there, and
+widening the scan walked the answer to 0.60 then 0.28 without converging. On DK the same cost
+lands on 0.20 — 87% off. The gate had passed only because it ran on the same truncated grid, so
+it was blind to precisely the failure it existed to catch. The band is gone, the scan is wide, and
+`fit_z` now rejects a minimum on either edge rather than reporting the grid as a measurement.
+The corrected point estimate is unchanged at 1.325; what changed is that it is now bounded.
+
+A second confound was found and measured rather than assumed: `default_rng(seed).random(K)`
+returns the same leading draws for different K, so the three lattice sizes shared a uniform-stream
+prefix and were not independent — visible as DK's P(end) being *identical to four decimals* at all
+three sizes. Giving each size its own stream removes that identity (0.0078 / 0.0117 / 0.0195) and
+moves DK's recovered z from 1.5713 ± 0.122 to 1.6191 ± 0.129, a shift well inside the estimator's
+own spread. Benign for the point estimate.
+
+**Scope.** ν⊥ is unmeasured (it needs off-critical temperatures). One model, one radius, one
+temperature. T_c's ±0.0024 from F58's overlap is an unseparated systematic on z. The LM's collapse
+is looser than DK's — rms scatter 12.4% against 8.0% — so the scaling form describes the model
+less well than it describes a system known to obey it, which is itself consistent with the
+transition not being DP.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

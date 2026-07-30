@@ -1,0 +1,51 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.20it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 541.79it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 576.33it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 458.84it/s]
+FSS ladder for z: 24 cells, sizes [12, 24, 48], sweeps [204, 610, 1824], T=[0.436]
+  batch budget: 8.0 h -- will stop cleanly after the cell in flight
+[1/24] N12_T0.436_s51: P(end)=0.016 max_sites=12/12 (202.7s)
+[2/24] N12_T0.436_s52: P(end)=0.016 max_sites=12/12 (201.9s)
+[3/24] N12_T0.436_s53: P(end)=0.000 max_sites=12/12 (202.4s)
+[4/24] N12_T0.436_s54: P(end)=0.031 max_sites=12/12 (204.6s)
+[5/24] N12_T0.436_s55: P(end)=0.016 max_sites=12/12 (203.7s)
+[6/24] N12_T0.436_s56: P(end)=0.016 max_sites=12/12 (205.8s)
+[7/24] N12_T0.436_s57: P(end)=0.000 max_sites=12/12 (206.3s)
+[8/24] N12_T0.436_s58: P(end)=0.016 max_sites=12/12 (204.1s)
+[9/24] N24_T0.436_s51: P(end)=0.016 max_sites=24/24 (1198.4s)
+[10/24] N24_T0.436_s52: P(end)=0.000 max_sites=24/24 (1193.2s)
+[11/24] N24_T0.436_s53: P(end)=0.000 max_sites=24/24 (1202.1s)
+[12/24] N24_T0.436_s54: P(end)=0.016 max_sites=24/24 (1234.9s)
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:19,  3.64it/s]Loading weights:  38%|███▊      | 110/292 [00:00<00:00, 369.59it/s]Loading weights:  59%|█████▉    | 172/292 [00:00<00:00, 279.83it/s]Loading weights:  74%|███████▍  | 216/292 [00:00<00:00, 264.28it/s]Loading weights:  86%|████████▋ | 252/292 [00:01<00:00, 245.14it/s]Loading weights:  99%|█████████▊| 288/292 [00:01<00:00, 240.58it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 243.32it/s]
+FSS ladder for z: 24 cells, sizes [12, 24, 48], sweeps [204, 610, 1824], T=[0.436]
+  resuming: 12/24 already complete
+[13/24] N24_T0.436_s55: P(end)=0.000 max_sites=24/24 (4261.9s)
+[14/24] N24_T0.436_s56: P(end)=0.000 max_sites=24/24 (1192.5s)
+[15/24] N24_T0.436_s57: P(end)=0.000 max_sites=24/24 (1193.0s)
+[16/24] N24_T0.436_s58: P(end)=0.000 max_sites=24/24 (1192.9s)
+[17/24] N48_T0.436_s51: P(end)=0.016 max_sites=48/48 (7127.2s)
+[18/24] N48_T0.436_s52: P(end)=0.000 max_sites=48/48 (7205.6s)
+[19/24] N48_T0.436_s53: P(end)=0.000 max_sites=48/48 (7197.6s)
+[20/24] N48_T0.436_s54: P(end)=0.000 max_sites=48/48 (7191.1s)
+[21/24] N48_T0.436_s55: P(end)=0.000 max_sites=48/48 (7116.2s)
+[22/24] N48_T0.436_s56: P(end)=0.000 max_sites=48/48 (7049.7s)
+[23/24] N48_T0.436_s57: P(end)=0.000 max_sites=48/48 (7056.1s)
+[24/24] N48_T0.436_s58: P(end)=0.000 max_sites=47/48 (7069.7s)
+
+=== survival at T_c=0.436, 512 independent-order replicas per size ===
+      N  sweeps  cutoff ~   P(end)  max sites  saturated?
+     12     204        17   0.0137      12/12         True
+     24     610        51   0.0039      24/24         True
+     48    1824       152   0.0020      48/48         True
+
+=== the SAME collapse on Domany-Kinzel, where z is known to be 1.580745 ===
+  recovered z = 1.5709 +/- 0.1213  (16 fits)  -> 0.6% +/- 7.7% off
+  gate (mean deviation plus its spread must clear 20%) -> True
+
+=== PRIMARY: z from the collapse ===
+  z = 1.3249999999999953   90% interval [1.1, 1.45]   (DP: 1.580745)
+
+  -> z NOT CONSISTENT WITH DP: 1.3249999999999953, 90% interval [1.1, 1.45], excludes DP's 1.580745. The estimator recovers DK's z to 0.6% +/- 7.7% at this ladder, so this is not an estimator artifact. F58's two-exponent agreement and this disagree, which is itself the finding: delta and theta are static, z is dynamic.
+
+wrote results/dp_fss_z.json

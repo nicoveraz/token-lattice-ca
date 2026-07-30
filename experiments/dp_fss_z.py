@@ -55,12 +55,26 @@ affordable here. This is the z half of the FSS work. It also runs at a SINGLE te
 systematic on z that this design cannot separate, and it is reported rather than hidden. Adding
 temperatures later is an edit to TEMPS plus a re-run -- the file resumes.
 
-A NOTE ON CIRCULARITY. The time window per lattice is set to 12 * (N/2)^z using DP's z, and the
-collapse is scored only within |log(t/N^z)| < 2.5. Both choose WHERE TO LOOK, not the answer: the
-window has to contain the cutoff, and the band exists because the power-law region collapses for
-ANY z -- it contributes no information and dilutes the fit, which is why the first version of this
-estimator was biased. The fit itself scans z freely over 1.10-2.31, and the recovered value is
-never near either edge.
+THE ESTIMATOR HAD TO BE FIXED AFTER ITS FIRST FULL RUN, AND THE FIRST ANSWER IS WITHDRAWN. That
+version scored the collapse only within |log(t/N^z)| < 2.5, a band added to stop the flat
+power-law region from diluting the fit. The band did something else as well: because the shared
+support shifts with z, a SMALL z pushed the comparison into a narrow clipped sliver where the
+curves trivially agree, so the cost fell monotonically as z -> 0 and the minimum was wherever the
+scan grid happened to stop. It reported z = 1.325 with a 90% interval whose lower bound WAS the
+scan floor, 27% of bootstraps pinned there, and widening the scan walked the answer to 0.60 and
+then 0.28 without converging. On DK -- where the answer is known -- the same cost lands on 0.20,
+87% off. The gate had passed only because it was run on the same truncated grid, so it was
+blind to exactly the failure it existed to catch.
+
+The band is gone. The collapse is scored over the full shared support, which is width ~3.7 in
+log(t/N^z) and near-constant in z, so no z can buy a cheaper score by shrinking the window. The
+scan runs 0.20-4.01, far wider than any plausible z, and `fit_z` REJECTS a minimum that lands on
+either edge rather than reporting the edge as a measurement. Re-validated on DK over that wide
+scan: z = 1.6050 +/- 0.139, 1.5% +/- 8.8% off the known value.
+
+A NOTE ON CIRCULARITY. The time window per lattice is set to 12 * (N/2)^z using DP's z. That
+chooses WHERE TO LOOK, not the answer -- the window only has to contain the cutoff. The fit
+itself scans z freely.
 
 Every replica draws its own visit order (F57), so replicas are independent and the bootstrap
 resamples them.
@@ -92,11 +106,13 @@ TC, TC_UNC = 0.436, 0.0024             # the systematic this design cannot separ
 SEEDS = [51, 52, 53, 54, 55, 56, 57, 58]
 B, R, SETTLE = 64, 2, 8
 WINDOW_MULT = 12.0                     # t_max = WINDOW_MULT * (N/2)^z_DP; spans well past the bend
-BAND = 2.5                             # collapse is scored near the bend, where z is legible
+# NO band. Clipping the comparison window let small z shrink it into a sliver where the curves
+# trivially agree, so the cost fell without bound -- see the estimator note in the docstring.
 FIT_FROM = 5
 BOOT = 1000
 CI = 90
-Z_SCAN = np.arange(1.10, 2.31, 0.005)  # wide enough that the answer is not the grid's edge
+Z_SCAN = np.arange(0.20, 4.01, 0.005)  # deliberately far wider than any plausible z, and the
+                                       # fit is REJECTED if it lands on either edge (see fit_z)
 OUT = str(_ROOT / "results" / "dp_fss_z.json")
 
 
@@ -135,7 +151,7 @@ def _collapse_cost(curves, z, delta):
         if ok.sum() < 5:
             return None
         xs.append(np.log(t[ok] / n ** z)); ys.append(np.log(P[ok] * t[ok] ** delta))
-    lo = max(max(x.min() for x in xs), -BAND); hi = min(min(x.max() for x in xs), BAND)
+    lo = max(x.min() for x in xs); hi = min(x.max() for x in xs)
     if not (hi > lo):
         return None                                   # no shared support: reject this z
     grid = np.linspace(lo, hi, 60)
@@ -144,12 +160,23 @@ def _collapse_cost(curves, z, delta):
 
 
 def fit_z(curves, delta):
-    """z minimising the collapse cost, plus the cost curve so flatness is visible not assumed."""
+    """z minimising the collapse cost, or None if the minimum sits on a scan edge.
+
+    The edge check is not defensive padding -- it is the check that caught the first version of
+    this estimator. That one clipped the comparison window to |log(t/N^z)| < 2.5, which let a
+    small z shrink the window into a sliver where the curves trivially agree; the cost then fell
+    monotonically as z -> 0 and the "minimum" was wherever the grid happened to stop. It reported
+    z = 1.325 against a scan floor of 1.10, with 27% of bootstraps pinned to that floor, and the
+    DK gate passed only because it was run on the same truncated grid. An unbounded fit must
+    return nothing rather than the edge of its own grid.
+    """
     costs = [(z, _collapse_cost(curves, z, delta)) for z in Z_SCAN]
     costs = [(z, c) for z, c in costs if c is not None]
     if not costs:
         return None, None
     z_best = min(costs, key=lambda p: p[1])[0]
+    if z_best <= Z_SCAN[1] or z_best >= Z_SCAN[-2]:
+        return None, costs                        # unbounded: the grid, not the data, decided
     return float(z_best), costs
 
 

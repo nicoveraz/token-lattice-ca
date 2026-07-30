@@ -221,6 +221,7 @@ _STALENESS_PAIRS = [
     ("dp_pipeline_validation.json", "dp_pipeline_validation.py"),
     ("dp_narrow_bracket.json", "dp_narrow_bracket.py"),
     ("dp_class_n192.json", "dp_class_n192.py"),
+    ("dp_fss_z.json", "dp_fss_z.py"),
 ]
 
 
