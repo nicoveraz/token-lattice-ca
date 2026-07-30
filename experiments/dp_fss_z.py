@@ -33,7 +33,26 @@ explanation for it; what it has is a validated estimator -- exact to four digits
 curves built with a known z -- and a ladder measured to recover the right answer on a system whose
 answer is known. That is the project's standard, and it is the only claim being made here.
 
-N=192 is excluded anyway at ~143 h on its own. The ladder here is ~20 h in overnight batches.
+N=192 is excluded anyway at ~143 h on its own.
+
+A FOURTH SIZE WAS ADDED AFTER THE FIRST RESULT, TO TEST THE FIRST RESULT. The {12,24,48} run gave
+z = 1.325, excluding DP -- but on a ladder whose smallest member is a 12-site ring, and whose
+validity rests on an anomaly this file cannot explain: re-tested with the CORRECTED estimator,
+ladders containing N=12 recover DK's z and ladders starting at N=24 do not.
+
+    {12,24,48}      z = 1.5950 +/- 0.128    0.9% +/- 8.1%   PASS
+    {24,48,96}      z = 1.4556 +/- 0.223    7.9% +/-14.1%   fail
+    {12,24,48,96}   z = 1.5256 +/- 0.179    3.5% +/-11.3%   PASS
+
+Dropping N=12 breaks it; ADDING N=96 does not. So N=96 is the cheap test of whether z = 1.325 is a
+property of the model or of a very small lattice: if it survives a fit that includes a size eight
+times larger, it hardens; if it moves toward 1.58, it was a small-lattice artifact.
+
+N=96 runs 2 seeds rather than 8. One cell costs ~11.9 h against 2.0 h at N=48, so the full eight
+would be 95 h. Calibrated on DK, 128 replicas at N=96 recovers z to 1.2% +/- 9.0% -- TIGHTER than
+the 512-replica version of the same ladder (2.7% +/- 11.2%), because a fourth lattice buys leverage
+rather than precision. 23.7 h instead of 95, for a better-calibrated fit. The earlier estimate of
+"9.8 h" for this addition was an arithmetic error of a factor of ten and is corrected here.
 
 HOW z IS EXTRACTED. At the critical point the survival probability obeys the scaling form
 P(t) = t^(-delta) F(t / N^z). So plotting P(t)*t^delta against t/N^z collapses every lattice size
@@ -100,11 +119,24 @@ from provenance import stamp, rel
 from dp_calibration import DP, CAL_TOL, CAL_PC, CAL_SEEDS
 
 BASE, REVISION = "EleutherAI/pythia-410m", "step143000"
-SIZES = [12, 24, 48]                   # chosen by calibration, not by intuition -- see above
+SIZES = [12, 24, 48, 96]               # chosen by calibration, not by intuition -- see above
 TEMPS = [0.436]                        # F58's overlap [0.4343, 0.4391], centre
 TC, TC_UNC = 0.436, 0.0024             # the systematic this design cannot separate
 SEEDS = [51, 52, 53, 54, 55, 56, 57, 58]
+# N=96 runs FEWER seeds. One cell there costs ~11.9 h against 2.0 h at N=48, so the full 8 would
+# be 95 h. Calibrated on DK: 128 replicas at N=96 recovers z to 1.2% +/- 9.0% -- tighter than the
+# 512-replica version of the same ladder (2.7% +/- 11.2%), because the extra lattice buys leverage
+# rather than precision. 23.7 h instead of 95, for a better-calibrated fit.
+SEEDS_FOR = {96: SEEDS[:2]}
 B, R, SETTLE = 64, 2, 8
+
+
+def seeds_for(n):
+    return SEEDS_FOR.get(n, SEEDS)
+
+
+def replicas_for(n):
+    return B * len(seeds_for(n))
 WINDOW_MULT = 12.0                     # t_max = WINDOW_MULT * (N/2)^z_DP; spans well past the bend
 # NO band. Clipping the comparison window let small z shrink it into a sliver where the curves
 # trivially agree, so the cost fell without bound -- see the estimator note in the docstring.
@@ -192,7 +224,7 @@ def _dk_curves(p1, seed):
     for n in SIZES:
         sw = sweeps_for(n)
         P = np.zeros(sw); done = 0
-        reps = B * len(SEEDS)
+        reps = replicas_for(n)
         while done < reps:
             b = min(512, reps - done)
             s0 = np.zeros((b, n), dtype=np.int8); s0[:, n // 2] = 1
@@ -242,7 +274,7 @@ def main():
     runs = res["runs"]
     from ar_ca import ARRule
     rule = ARRule(BASE, revision=REVISION)
-    todo = [(n, T, sd) for n in SIZES for T in TEMPS for sd in SEEDS]   # smallest N first
+    todo = [(n, T, sd) for n in SIZES for T in TEMPS for sd in seeds_for(n)]  # smallest N first
     done0 = len([v for v in runs.values() if "counts" in v])
     print(f"FSS ladder for z: {len(todo)} cells, sizes {SIZES}, "
           f"sweeps {[sweeps_for(n) for n in SIZES]}, T={TEMPS}", flush=True)
@@ -297,7 +329,7 @@ def analyse(res):
         by.setdefault(v["N"], []).append(np.array(v["counts"]))
     pool = {n: np.concatenate(cs, axis=1) for n, cs in by.items()}
 
-    print(f"\n=== survival at T_c={TC}, {B * len(SEEDS)} independent-order replicas per size ===")
+    print(f"\n=== survival at T_c={TC}, per-size replica counts ===")
     print(f"  {'N':>5} {'sweeps':>7} {'cutoff ~':>9} {'P(end)':>8} {'max sites':>10} {'saturated?':>11}")
     for n in sorted(pool):
         c = pool[n]
