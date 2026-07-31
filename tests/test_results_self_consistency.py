@@ -223,6 +223,7 @@ _STALENESS_PAIRS = [
     ("dp_class_n192.json", "dp_class_n192.py"),
     ("dp_fss_z.json", "dp_fss_z.py"),
     ("dp_scan_gpt2.json", "dp_scan_gpt2.py"),
+    ("attractor_corpus_screen.json", "attractor_corpus_screen.py"),
 ]
 
 
