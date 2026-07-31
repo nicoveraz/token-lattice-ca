@@ -1,0 +1,22 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.75it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 568.87it/s]Loading weights:  77%|███████▋  | 225/292 [00:00<00:00, 420.79it/s]Loading weights:  97%|█████████▋| 283/292 [00:00<00:00, 361.04it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 360.86it/s]
+FSS ladder for z: 26 cells, sizes [12, 24, 48, 96], sweeps [204, 610, 1824, 5456], T=[0.436]
+  resuming: 26/26 already complete
+
+=== survival at T_c=0.436, per-size replica counts ===
+      N  sweeps  cutoff ~   P(end)  max sites  saturated?
+     12     204        17   0.0137      12/12         True
+     24     610        51   0.0039      24/24         True
+     48    1824       152   0.0020      48/48         True
+     96    5456       455   0.0000      89/96         True
+
+=== the SAME collapse on Domany-Kinzel, where z is known to be 1.580745 ===
+  recovered z = 1.4797 +/- 0.1632  (16 fits)  -> 6.4% +/- 10.3% off
+  gate (mean deviation plus its spread must clear 20%) -> True
+
+=== PRIMARY: z from the collapse ===
+  z = 1.380000000000001   90% interval [1.1335, 1.6055]   (DP: 1.580745)
+
+  -> z CONSISTENT WITH DP: the collapse gives z = 1.380000000000001 with a 90% interval [1.1335, 1.6055] containing DP's 1.580745, on an estimator shown at this same ladder to recover DK's known z to 6.4% +/- 10.3%. With F58's delta/theta crossing agreement this is a THIRD exponent consistent with directed percolation. nu_perp is still unmeasured, and the T_c uncertainty (+/-0.0024) is an unseparated systematic.
+
+wrote results/dp_fss_z.json

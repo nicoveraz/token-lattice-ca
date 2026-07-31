@@ -1,6 +1,6 @@
 # token-lattice-ca
 
-> **Status — 26 Jul 2026.** Submitted to the **NeurIPS 2026 Workshop on Interpretability for
+> **Status — 31 Jul 2026.** Submitted to the **NeurIPS 2026 Workshop on Interpretability for
 > Discovery** (Interp4Discovery, non-archival, double-blind; submission #4). The submitted state
 > is pinned by the tag **`submission/neurips26-i4d`** — `main` keeps moving, so use the tag, not
 > `HEAD`, to reproduce the paper. Body is 5 pages; every number in it is traced to a file in
@@ -12,6 +12,20 @@
 > because its 1+1D exponents are parameter-free, so the test has no fitted knobs. Three hazards
 > are pre-registered in #80 *before* any exponent is measured, because discovering them afterwards
 > reads as motivated reasoning.
+>
+> **Where that program stands (F56–F59).** The transition **is** a genuine critical point: the
+> survival exponent δ and the active-count exponent θ reach their DP values at a *common*
+> temperature, T_c ∈ [0.4343, 0.4391] (**F58**). The dynamic exponent z is estimated near **1.35**,
+> below DP's 1.5807, but the best-calibrated multi-size fit **cannot separate the two** (**F59**,
+> amended). So: a critical point, not a crossover — with its universality class unsettled.
+>
+> Getting there cost three retractions, all of the *instrument* rather than the physics. A
+> tolerance measured at the wrong lattice geometry (**F56**), error bars computed as if 512
+> batch-correlated replicas were independent (**F57**), and a collapse cost that could shrink its
+> own comparison window (F59's first pass). Each was caught by re-running the estimator on
+> Domany–Kinzel, where the answer is known, before trusting it on the model — and each had
+> produced a *confident, wrong* verdict first. Treat any single-ladder exponent from this pipeline
+> as provisional until a second configuration reproduces it.
 
 
 A cellular automaton over **token space**, developed into a **validated black-box
@@ -65,7 +79,7 @@ census), and the **boundaries** where those readings provably stop applying.
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F49); the adversarial audit that
+results in **[findings.md](findings.md)** (F1–F59); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
@@ -114,8 +128,11 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F39** | **Developmental transition survives at two lattice sizes.** All 4 pre-registered family members survive BH-FDR (p_BH ≤ 2e−05). Headline stated ordinally: seeds disagree on λ's *sign* before, **0 of 48 plateau runs negative** after (min +0.107). λ_ca is size-robust (95% retention; plateau levels agree within **±14%**, 95% CI); D_norm is **not** (53%, level 0.569 vs 0.306) — so λ_ca carries the claim | 4 |
 | F40 | Ordered-group λ in the ECA rung is the estimator's **dead-damage floor** (−0.4·ln10), not a measurement — 5/7 rules pinned there with zero-width CI. Named as `DEAD_DAMAGE_FLOOR` with a predicate | 4 |
 | **F42** | **λ_ca is undefined when damage never ignites**, and the estimator emits a number anyway that spans an order of magnitude for the same outcome (−0.165 vs −1.713). `is_dead_damage_floor` catches neither. Rule: `is_unignited(mean_damage)`, ignition fraction per cell, λ stats over ignited runs only, **rank test keeps all runs**. Asymmetric by design — D_norm keeps them, since zero damage is a true zero | 4 |
+| **F59** | **z sits below DP but cannot be separated from it** (amended). FSS at T_c over N∈{12,24,48} gave z=1.325 [1.010,1.450], *excluding* DP's 1.5807; adding N=96 gives z=1.380 [1.134,1.606], which *includes* it. The estimate is stable across ladders (1.325/1.380/1.360) — the **interval widened**, it did not move. Class unsettled | 4 |
+| **F58** | **The transition is a genuine critical point.** δ and θ reach their DP values at a *common* temperature, T_c ∈ [0.4343, 0.4391] — bootstrap intervals for the two crossings overlap. Robust to the fit window at both ends and to boundary saturation. Calibration gate passed *before* the LM numbers were read | 4 |
+| **F57** | **One visit order decided the whole batch.** `lattice.run` drew a single permutation per sweep for all replicas; damage seeded at *j* heals unless *j+1* or *j+2* is visited first (1/3 of orders), so a third of runs died *entirely*. Explains F42's unignited runs. Independent unit was the seed, not the replica — error bars were ~8× too small. Fixed as opt-in `order="per_replica"`; default untouched | 4 |
+| **F56** | **A calibration measured at the wrong geometry inverted a verdict.** The DP tolerance came from DK at N=512/200 sweeps while the LM ran N=96/40, where the same estimator misses δ by ~20% *on data that provably IS directed percolation*. The resulting "not in the DP class" reading is **retracted** — that threshold rejects DK itself | 4 |
 | **F49** | **The transition is only *detectable* at intermediate T** (#17). Not detectable at T=0.3 or T=1.1 (both p_BH=0.44). Diagnosed: T=1.1 is a **ceiling** (ignition 0.98→0.99), T=0.3 a **floor** (0.20→0.21). Claim restated as *at intermediate sampling temperature* | 4 |
-| **F47** | **N/B confound resolved by manipulation** (#39). Missing 2×2 cell (N=48, B=4): 6/16 unignited — differs from N=48 B=16 (p=0.018), matches N=192 B=4 (p=1.00). It is **batch size** | 4 |
 | **F48** | **W2's floor objection bounded at 4%** (closes #34). The CRN/maximal floors it proposed are *structurally zero* — identical twins stay identical — so the coupling mismatch is unavoidable. Sweeping the shared-draw fraction 0→0.9 moves D_norm only **1.04×**; at exactly 1.0 the floor collapses to 0, so the CRN floor is an **isolated point**, not the family's limit | 4 |
 | **F47** | **N/B confound resolved by manipulation** (closes #39). Ran the missing 2×2 cell (N=48, B=4): **6/16** unignited, differing from N=48 B=16 (0/16, p=0.018) and matching N=192 B=4 (5/16, p=1.00). It is **batch size**. Per-lattice death probability measured directly (d=0.734) vs F44's fitted 0.690 | 4 |
 | **F46** | **Transition timing across model scale** (192 runs, 4 Pythia sizes × 6 checkpoints × 8 seeds). Replicates in **all four** (p_BH 0.015/0.003/0.000/0.00002). Crossing moves **later** with size then **saturates**: 70m before step128, 160m 128→256, 410m and 1b both 256→512. Plateau **level** is non-monotone (0.162/0.164/0.174/0.166) — **no capacity axis** | 4 |
@@ -134,6 +151,12 @@ src/           library
   ar_ca.py       autoregressive backend (ARRule, left-causal window)
   dk.py          Domany-Kinzel PCA (DKRule + vectorised reference + published anchors)
 experiments/   runnable pipeline steps (run from repo root)
+  dp_calibration.py   ONE implementation of the DP calibration gate, imported by every DP run
+  dp_pipeline_validation.py  can the fitting code recover DK's known exponents? (gates the rest)
+  dp_survival_scan.py        phase 1: bracket the critical region in temperature
+  dp_narrow_bracket.py       phase 2: narrow it (verdict withdrawn, see F56/F57)
+  dp_class_n192.py           delta/theta crossing test at a geometry that can decide (F58)
+  dp_fss_z.py                finite-size scaling for the dynamic exponent z (F59)
   vocab.py       word-level vocab builder (pilot); see bpe.py for the BPE variant (Phase 2)
   train.py       train the windowed conditional model on tinyshakespeare
   sweep.py       coarse T×r phase sweep (async + one sync row)
@@ -181,7 +204,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **112 tests** and covers every backend, not just the toy JAX path:
+The suite is **133 tests** and covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
@@ -223,6 +246,22 @@ The suite is **112 tests** and covers every backend, not just the toy JAX path:
   hand-written thirteen times and written wrongly twice — once inflating D_norm's N=192 plateau by
   14%. It now lives once, in `lyapunov.run_ignited`, and a test asserts nobody re-implements its
   *shape*, since renaming a local helper is how the fourteenth copy would slip past.
+- **Visit order is shared across the batch by default, and that is a measurement hazard (F57).**
+  `lattice.run` draws one `rng.permutation(N)` per sweep and *every replica follows it*. For bulk
+  statistics that is harmless. For single-site damage spreading it is not: the AR rule is
+  causal-left, so damage at site *j* propagates only if *j+1* or *j+2* is visited **before** *j* —
+  otherwise *j* resamples against an identical context with the same uniform, heals, and the run
+  is absorbed. That is **1/3 of orders**, and because the order is shared it kills the whole batch
+  at once rather than a third of the replicas. 512 "replicas" then carry the statistical weight of
+  one draw of the thing that decides the outcome. This is also the long-unexplained cause of F42's
+  unignited runs.
+
+  `order="per_replica"` gives each replica its own permutation. It is **opt-in** — the default is
+  unchanged, because switching it would move every async number in the repo — so scripts that need
+  independence ask for it. As with `u_stream`, an explicit `order_stream` can be supplied so twin
+  runs share orders exactly; **CRN coupling requires the twins to be visited in the same sequence**,
+  which independently drawn orders would break. The exact-zero null is asserted under the new mode
+  too (`tests/test_null_all_backends.py`).
 - `tests/test_golden.py` — asserts the simulation core stays **bit-identical** against
   `tests/golden/*.npz`, which were generated *before* the Phase-1 refactor. Do not relax
   these to `allclose`; a backend that cannot be made bit-identical is a stop-and-report.
@@ -446,7 +485,21 @@ caffeinate -im .venv/bin/python experiments/masked_ladder.py     # masked BERT d
 
 # --- New front (prototype): activation-lattice information-propagation cone ---
 .venv/bin/python experiments/activation_cone.py       # -> fig/actcone_*.png (white-box; CRN null=0 by construction)
+
+# --- Universality-class program (#80-#86). Run IN THIS ORDER: each gates the next. ---
+# All are resumable (saved per cell, keyed by their design tuple) -- safe to interrupt.
+.venv/bin/python experiments/dp_pipeline_validation.py           # free, no GPU: can the fit recover DK's known exponents?
+caffeinate -dimsu .venv/bin/python -u experiments/dp_class_n192.py    # ~17 h  -> F58: delta/theta cross at a common T_c
+caffeinate -dimsu .venv/bin/python -u experiments/dp_fss_z.py [hours] # ~44 h  -> F59: z from finite-size scaling
 ```
+
+> **The DP scripts gate themselves and will refuse to answer.** Each one re-measures its own
+> estimator on Domany–Kinzel — at its *own* lattice geometry, replica count and fit window — and
+> reports `NOT DECIDABLE` rather than a number when that calibration fails. The gate is evaluated
+> on DK alone, blind to the LM values, so it cannot be tuned to the answer. Three confident
+> verdicts died to it (F56, F57, and F59's first pass); none of the three was visible from the
+> language-model numbers themselves. `dp_fss_z.py` takes an optional hour budget as `argv[1]` and
+> stops cleanly after the cell in flight, for running in overnight batches.
 
 Outcomes: the **validation ladder** (F27 ECA classes + census transition-matrix
 recovery) establishes the instrument reproduces known metrics before it measures LMs.

@@ -11,6 +11,13 @@ Reproducibility appendix 7, checklist 8–10**. **The body fits the 5-page limit
 0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
 double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 
+**Post-submission (Jul 31).** Nothing below has changed; the submitted state is pinned at
+`submission/neurips26-i4d`. Findings F56–F59 are *not* in the paper and were produced after the
+tag. One of them, **F58**, is paper-grade and would need a decision if the submission is reopened
+before the Aug 29 deadline — see §0 of `plan_to_submission.md`. The rest (F56, F57, F59) are
+instrument corrections and a provisional exponent; they belong to the post-submission track. None
+of the three retractions in that window touches a number in this paper.
+
 ---
 
 ## 1. Claim inventory — every number, with its source file

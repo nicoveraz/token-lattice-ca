@@ -2113999,7 +2113999,7 @@
  "verdict": "z CONSISTENT WITH DP: the collapse gives z = 1.380000000000001 with a 90% interval [1.1335, 1.6055] containing DP's 1.580745, on an estimator shown at this same ladder to recover DK's known z to 6.4% +/- 10.3%. With F58's delta/theta crossing agreement this is a THIRD exponent consistent with directed percolation. nu_perp is still unmeasured, and the T_c uncertainty (+/-0.0024) is an unseparated systematic.",
  "_analysis_provenance": {
   "script": "dp_fss_z.py",
-  "sha256": "d792660b63d79c42cfeae8fde0225aa07ffbb3db373df60a198b789df0609011",
+  "sha256": "160d1e0e362c0a04e2e62d91f192c65507d26fee66dec7136b22c301eac26f28",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Finite-size scaling for the dynamic exponent z at T_c=0.436, the centre of F58's delta/theta crossing overlap. z is only visible once the damage cone reaches the boundary, which F58 deliberately avoided -- so this runs LONG time at SMALL lattices (t = 3*(N/2)^z_DP per size), the opposite geometry. N=192 is excluded at ~143 h on its own. z is fitted by collapsing P(t)*t^delta against t/N^z with delta FIXED at Jensen, making it a test of z given DP's delta rather than a two-parameter fit that could absorb an error in either. The collapse estimator is calibrated on Domany-Kinzel over the same ladder first and the verdict is gated on it, because a tight-looking collapse is persuasive in a way a bad slope is not. nu_perp needs off-critical temperatures and is not attempted; the residual T_c uncertainty is an unseparated systematic on z."

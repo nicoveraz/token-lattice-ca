@@ -1,20 +1,46 @@
-# Tracker dump -- 2026-07-26T15:49:41Z
+# Tracker dump -- 2026-07-31T19:23:45Z
 
 | # | state | milestone | labels | title |
 |---|---|---|---|---|
-| 62 | OPEN | neurips26-submission | blocking,paper | Body is 6 pages, not 5 — and the page-fit guard reported 5 for four commits |
+| 88 | OPEN | post-submission | evidence,post-paper,universality | Does 410m show the same flat-positive plateau before its dip? — decides whether the paper's transition is an onset or a recovery |
+| 87 | OPEN | post-submission | evidence,post-paper,universality | Width scan's grid was inherited from C20 and misses the window for LR=1.0e-3 models — extend to steps 1..64 |
+| 86 | OPEN | post-submission | post-paper,universality | Citation ledger for the universality line of work |
+| 85 | OPEN | post-submission | evidence,post-paper,universality | Coupling robustness: damage spreading is a property of the model AND the algorithm |
+| 84 | OPEN | post-submission | post-paper,universality | Recompute per-checkpoint LM loss on a fixed Pile slice, then test λ_ca-vs-loss collapse |
+| 83 | OPEN | post-submission | post-paper,universality | Break the LR/size confound: 14M / 31M / 70M as an iso-depth iso-LR width scan |
+| 82 | OPEN | post-submission | post-paper,universality | Finite-size scaling and dynamic Monte Carlo: extract θ, δ, z, β, ν⊥, ν∥ |
+| 81 | OPEN | post-submission | post-paper,universality | Measure the transverse Lyapunov exponent Λ — decides DP vs multiplicative noise |
+| 80 | OPEN | post-submission | post-paper,universality | Universality-class program: pre-registration, hazards, and ordered work list |
+| 79 | CLOSED | neurips26-submission | paper,universality | State the metric-artefact immunity of λ_ca in one sentence |
+| 78 | CLOSED | neurips26-submission | blocking,paper,universality | Position the paper against the three closest prior constructions |
+| 77 | CLOSED | neurips26-submission | bug,rigor,evidence | dev_transition_scale.py averages lambda over unignited runs — a third F42 violation, and it explains #40 |
+| 76 | CLOSED | neurips26-submission | writing,paper,scope-closed | State the C16 scope out loud: comparative claims across checkpoints, never 'this model is critical' |
+| 75 | CLOSED | neurips26-submission | significance,evidence,paper | Cite Nakaishi et al. 2406.05335: independent ~10^2-step convergence on Pythia-160m, and T_c~1 explains the temperature pegs |
+| 74 | CLOSED | neurips26-submission | originality,writing,paper | Lead originality with the exact-identity calibration, not with CA-in-a-new-field |
+| 73 | CLOSED | neurips26-submission | rigor,evidence,scope-closed | Widen the temperature axis to T=0.5 and T=0.9 — n=3 is thin for the scope limit |
+| 72 | CLOSED | neurips26-submission | validity,evidence,paper | Is lambda_ca an expensive perplexity proxy? Compare it against held-out loss |
+| 71 | CLOSED | neurips26-submission | bug,reproducibility,paper | Citation audit was done by hand and missed a fourth wrong title — automate it |
+| 70 | OPEN | post-submission | post-paper | Literature check: does a within-family Pythia induction-head timing already exist? |
+| 69 | OPEN | post-submission | post-paper | Measure induction-head formation across the four Pythia sizes (within-family) |
+| 68 | CLOSED | neurips26-submission | paper | One-sentence methodology pointer in the current paper (companion to #60) |
+| 67 | CLOSED | neurips26-submission | paper | Name the binary-alphabet failure mode in one sentence |
+| 66 | CLOSED | neurips26-submission | blocking,paper | C20 timing: learning rate is confounded with model size across the Pythia suite |
+| 65 | OPEN | post-submission | post-paper | Stale __pycache__ can survive a same-length, same-second constant edit and report an impossible assertion |
+| 64 | CLOSED | - | evidence | Manifest builder violated F42 and double-rounded a slope — both caught by paper/manifest disagreement |
+| 63 | OPEN | post-submission | post-paper | Two analysis rules are documented in prose instead of shared code, and have been gotten wrong twice |
+| 62 | CLOSED | neurips26-submission | blocking,paper | Body is 6 pages, not 5 — and the page-fit guard reported 5 for four commits |
 | 61 | OPEN | post-submission | post-paper | A second model family — the prerequisite that makes the emergence hypothesis falsifiable |
 | 60 | OPEN | post-submission | post-paper | The calibration ladder is a reusable methodology, not just this paper's step 1 |
 | 59 | OPEN | post-submission | post-paper | Diffusion LMs resample in place, so F35's boundary may not apply to them |
 | 58 | OPEN | post-submission | post-paper | Variance collapse as an externally computable phase-change signature — test it against known capability emergences |
 | 57 | CLOSED | neurips26-submission | evidence | logs/scale.log carried the same stale-verdict defect as #46 — the class was not guarded |
 | 56 | CLOSED | neurips26-submission | paper | Re-check the Limitations lattice-size/model-family sentence after the C20 decision |
-| 55 | OPEN | neurips26-submission | blocking,paper | Watch for neurips_2026.sty; swap and re-verify the page fit |
-| 54 | OPEN | neurips26-submission | blocking,packaging | Insert the anonymised mirror URL into paper.tex and re-tag |
-| 53 | OPEN | neurips26-submission | blocking,packaging | Verify the appendix accompaniment promise holds of the mirror |
-| 52 | OPEN | neurips26-submission | blocking,packaging | Build the anonymised mirror and scrub identifying strings |
-| 51 | OPEN | neurips26-submission | blocking,packaging | Build the submission PDF from a clean worktree of the tag |
-| 50 | OPEN | neurips26-submission | blocking,packaging | Cut the submission tag once content is frozen |
+| 55 | CLOSED | neurips26-submission | blocking,paper | Watch for neurips_2026.sty; swap and re-verify the page fit |
+| 54 | CLOSED | neurips26-submission | blocking,packaging | Insert the anonymised mirror URL into paper.tex and re-tag |
+| 53 | CLOSED | neurips26-submission | blocking,packaging | Verify the appendix accompaniment promise holds of the mirror |
+| 52 | CLOSED | neurips26-submission | blocking,packaging | Build the anonymised mirror and scrub identifying strings |
+| 51 | CLOSED | neurips26-submission | blocking,packaging | Build the submission PDF from a clean worktree of the tag |
+| 50 | CLOSED | neurips26-submission | blocking,packaging | Cut the submission tag once content is frozen |
 | 49 | CLOSED | neurips26-submission | evidence | Regenerate all figures from results/ at the frozen commit |
 | 48 | CLOSED | neurips26-submission | blocking,packaging | Assert every number in paper.tex against its results/ file |
 | 47 | CLOSED | neurips26-submission | paper | paper/NOTES.md cut ledger is stale |
@@ -24,7 +50,7 @@
 | 43 | CLOSED | - |  | Three analysis defects in dev_transition_scale.py: lexicographic step sort, impossible Spearman p, conflated verdict |
 | 42 | CLOSED | - |  | A regex edit destroyed 16 refs.bib entries and a PDF shipped with [???] in the introduction |
 | 41 | CLOSED | - |  | Page fit depends on neurips_2025.sty; the 2026 style is unpublished and can undo the cut |
-| 40 | OPEN | post-submission | post-paper | pythia-1b has a non-monotone early lambda dip (step256 = -0.546, below its own step128) — unexplained |
+| 40 | CLOSED | post-submission | post-paper | pythia-1b has a non-monotone early lambda dip (step256 = -0.546, below its own step128) — unexplained |
 | 39 | CLOSED | - |  | N and B are confounded by design (N·B held at 768) — one significant result was a batch-size artifact |
 | 38 | CLOSED | - |  | Editing an analysis script mid-run does not change that job's analysis — it wrote two wrong results files |
 | 37 | CLOSED | - |  | Three citations were carrying invented titles; bibliography printed "Title/authors to verify" |
@@ -38,7 +64,7 @@
 | 29 | CLOSED | - |  | Ordered-group lambda is an estimator floor sentinel, not a measurement |
 | 28 | CLOSED | - |  | Wrong p-value quoted for the ignition-probability claim (0.07 for a P_ignite sentence) |
 | 27 | CLOSED | - |  | Retracted ECA three-class ordering asserted paper-wide, and still plotted in two figures |
-| 26 | CLOSED | - |  | CRN is the monotone coupling, not the maximal one; "lower bound over couplings" retracted for |V|>2 |
+| 26 | CLOSED | - |  | CRN is the monotone coupling, not the maximal one; "lower bound over couplings" retracted for \\|V\\|>2 |
 | 25 | OPEN | post-submission | reproducibility,post-paper | Phase 1.5 (deferred): hoist duplication; ca.py mutable globals are a real hazard |
 | 24 | CLOSED | Phase 2: validation ladder | rigor | Rebuild the ECA ordered-vs-rest test on ignition probability (F34) |
 | 23 | CLOSED | Phase 2: validation ladder | rigor | Phase 2.3: Benettin/QR reference for the CML rung |

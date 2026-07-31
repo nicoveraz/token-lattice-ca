@@ -54,6 +54,21 @@ the 512-replica version of the same ladder (2.7% +/- 11.2%), because a fourth la
 rather than precision. 23.7 h instead of 95, for a better-calibrated fit. The earlier estimate of
 "9.8 h" for this addition was an arithmetic error of a factor of ten and is corrected here.
 
+OUTCOME: THE EXCLUSION DID NOT SURVIVE. With N=96 in, z = 1.380 with a 90% interval
+[1.134, 1.606], which CONTAINS DP's 1.580745 -- though only just; DP sits near the 94th percentile
+of that bootstrap against a 90% interval. Note what moved: the point estimate barely changed
+(1.325 -> 1.380), the INTERVAL widened. So the correct reading is neither "z agrees with DP" nor
+"z excludes DP", but that z is estimated near 1.35, below DP, and this fit cannot separate the two.
+The estimate is stable across every ladder containing N=12 -- 1.325 / 1.380 / 1.360 for
+{12,24,48} / {12,24,48,96} / {12,48,96}; the one ladder landing higher, {24,48,96} at 1.485, has a
+shallow minimum (1.53x cost ratio) and fails the DK gate, so it carries no weight.
+
+The truncation hazard this raised was checked rather than assumed: the LM's N=96 curve dies at 61%
+of its window (128 replicas resolve survival only to 1/128), clipping the shared band at the
+high-x end where the bend lives -- but re-running the gate with DK curves truncated to the LM's
+actual support still passes (0.7% +/- 11.5%), so the four-size fit is legitimate and the
+disagreement between ladders is real rather than an artifact of the missing tail.
+
 HOW z IS EXTRACTED. At the critical point the survival probability obeys the scaling form
 P(t) = t^(-delta) F(t / N^z). So plotting P(t)*t^delta against t/N^z collapses every lattice size
 onto one curve, and z is whatever value makes the collapse tightest. z is fitted by minimising the
