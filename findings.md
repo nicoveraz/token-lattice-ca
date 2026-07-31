@@ -1818,8 +1818,9 @@ and every one is refuted:
 
 - **the band** — the clipped comparison window that broke F59's first pass. Removing it did not
   fix this; the anomaly survives the corrected estimator.
-- **sample size** — 512 → 2048 → 8192 replicas at {24,48,96}. The bias *grows* (7.0% → 10.8%)
-  rather than shrinking. Not a statistics problem.
+- **sample size** — 512 → 2048 → 8192 replicas at {24,48,96} gives 7.0% → 10.8% → 10.5%. The bias
+  does not shrink; it *converges to a nonzero value*, which is what distinguishes a systematic
+  from a statistical error. Sixteen times the sampling buys nothing.
 - **window length** — multiplier 3 → 12 → 40 (windows to 10,911 sweeps). No effect.
 - **the transient cut** — `FIT_FROM` 5 → 12 → 30 → 60. Changes the answer by <0.4%.
 - **dilution by the flat power-law region**, which collapses for any z and grows as a share of a
