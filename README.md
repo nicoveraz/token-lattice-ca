@@ -26,6 +26,11 @@
 > Domany–Kinzel, where the answer is known, before trusting it on the model — and each had
 > produced a *confident, wrong* verdict first. Treat any single-ladder exponent from this pipeline
 > as provisional until a second configuration reproduces it.
+>
+> The submission is **not** being reopened for this work. The next paper is planned in
+> [`paper/plan_paper2.md`](paper/plan_paper2.md): claims A (critical point), C (gate the
+> estimator at its own geometry) and D (F42 explained) are supported today; the
+> universality claim needs a **second model family** (#61) before the word belongs in a title.
 
 
 A cellular automaton over **token space**, developed into a **validated black-box
