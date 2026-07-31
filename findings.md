@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F61)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F62)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1882,6 +1882,54 @@ read as evidence for MN.
 
 #81's outcome contract needs a third branch: *the test does not discriminate in this class of
 system*. That is the finding.
+
+### F62 — the frozen phase is a whitespace attractor, and that is why a second family has no transition
+The light version of #61 asked whether a critical point exists outside Pythia. It does not — and
+finding out why reframes what F58 measured.
+
+**gpt2-medium has no frozen phase anywhere accessible.** Scanning T ∈ [0.1, 0.4] gives a *flat*
+surviving-damage fraction, P(end) ≈ 0.44 at every temperature, and damage still spreads at
+**T = 0.02**, where sampling is essentially deterministic. Not a settling artifact: 8 versus 32
+settle sweeps changes nothing (0.391 vs 0.453). Pythia-410m under the identical protocol freezes
+hard — P(end) = 0.062 at T=0.02, mean damage 0.45 sites.
+
+**The reason is what the ordered phase is made of.** At T=0.02 Pythia's settled ring collapses to
+**4 distinct tokens out of 96** — 81 newlines, 13 commas — decoding to
+`'\n\n\n , , , , , ,\n\n\n\n\n…'`. gpt2-medium at the same temperature gives 48 distinct tokens
+and readable fragments (`' who are notiers,, and course, sure, the government other side of…'`).
+Damage heals in Pythia's low-T phase because every site resamples to `\n` regardless of context.
+There is nothing linguistically ordered about it.
+
+**And F58's critical point sits inside that melt.** Newline share of the settled lattice:
+
+```
+     T    0.02   0.20   0.35   0.40   0.436   0.50   0.60   0.70
+  \n %     74     78     70     58      52     34     18     13
+  distinct 12.4   10.9   21.0   29.4    34.6   48.5   62.1   66.1
+                                   ^F58 T_c                  ^paper
+```
+
+At T_c = 0.436 **half the lattice is newlines** and the top four tokens are 64% of it. So the
+damage-spreading transition F58 located is, substantially, the order–disorder transition of a
+lattice whose ordered phase is whitespace. That does not invalidate the exponents — an
+absorbing-state transition is a real transition whatever the absorbing state is made of — but it
+changes what they are exponents *of*. "A critical point in language-model token dynamics" needs
+the qualifier, and any second paper has to state it in the abstract rather than the appendix.
+
+**Claim E is answered, negatively, in its simple form.** The transition is not a general property
+of trained language models. It requires the model's short-context conditional to have a dominant
+fixed-point token, and whether it does looks like a property of the training corpus — the Pile is
+newline-rich, WebText less so. Comparing exponents between families is moot when the second family
+has no transition to measure them at.
+
+**The submitted paper is unaffected.** It runs at T=0.7, where the settled state is 13% newline
+across 66 distinct tokens and reads as fragmentary text. This also *explains* F49's low-T
+"floor": the transition stops being detectable at T=0.3 because the lattice is 70% newline there.
+
+**This is F10 recurring one level up.** The word-level pilot's top attractors were 11–13 of 15
+`<unk>`, cured by moving to BPE. The same pathology — a degenerate token dominating the attractor —
+returns at the language-model level as newline, and was not looked for because BPE was assumed to
+have settled it.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
