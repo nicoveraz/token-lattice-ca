@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F60)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F61)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1838,6 +1838,50 @@ does not resolve which to prefer.
 F59's amended statement — *z is near 1.35, below DP, and cannot be separated from it* — is the
 weakest claim consistent with both fits, and stands unchanged. It should not be sharpened in
 either direction until this is understood.
+
+### F61 — the transverse Lyapunov test cannot discriminate here, shown on a system with a known answer
+#81 proposed Λ, the transverse Lyapunov exponent, as a cheap decisive check on the class: per
+Muñoz & Pastor-Satorras, a synchronization transition is **DP** when Λ < 0 at criticality and
+**multiplicative-noise / bounded-KPZ** when Λ = 0. Its outcome contract had exactly those two
+branches. **Neither applies**, and the reason was established before any model time was spent.
+
+Route taken (recorded, as #81 requires): the sub-critical decay rate extrapolated to criticality —
+measure the exponential decay rate of a single-site perturbation *below* the transition, where the
+synchronized state is where Λ is actually defined, then extrapolate. Chosen over the
+"pre-saturation rate at T_c" route because at a DP critical point damage grows as a *power law*, so
+an exponential rate there is ≈0 by construction and would have manufactured the MN answer.
+
+**The gate: Domany–Kinzel IS directed percolation, so Λ(p_c) must come out negative.** It does not:
+
+```
+p1      0.68      0.72      0.75      0.77      0.79
+Λ    -0.05027  -0.02738  -0.01287  -0.00493  +0.00138   <- crosses zero BELOW p_c = 0.8087
+
+extrapolated to p_c:   linear +0.0128,  quadratic +0.0064
+```
+
+Four variants of the estimator were tried — mean damage from t≥5, from t≥20, damage conditioned on
+survival, and the survival probability itself. **All four** land within ±0.013 of zero at p_c.
+On a system that is definitively DP, every one of them reports the multiplicative-noise signature.
+
+**Why it fails, structurally.** In a continuous system Λ is the Lyapunov exponent of the
+synchronized manifold, obtained by linearising the transverse direction — an object distinct from
+the order parameter. Discrete token dynamics has no transverse direction to linearise: the
+smallest perturbation is one token, and perturbing logits by ε yields the *identical* token under
+shared uniforms until it crosses a CDF boundary. The discrete surrogate therefore collapses onto
+the order-parameter relaxation rate 1/τ — and τ diverges at *any* critical point by critical
+slowing down, so the rate → 0 regardless of class. The DP-vs-MN dichotomy presumes a structure
+this system does not have. This is the same boundary F35 and the logistic-rung caveat already
+mark: there is no ε→0 limit in token space.
+
+**What this saves.** Had the language-model measurement been run first (~8.6 h), it would have
+returned Λ ≈ 0 and licensed "multiplicative noise, not DP" — a fifth confident wrong verdict in
+this line, and one that would have redirected the whole exponent program. The free DK gate cost
+minutes. **The LM Λ measurement should not be run**, and an Λ ≈ 0 from this system must not be
+read as evidence for MN.
+
+#81's outcome contract needs a third branch: *the test does not discriminate in this class of
+system*. That is the finding.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
