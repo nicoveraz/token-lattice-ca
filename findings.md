@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F59)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F60)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1800,6 +1800,43 @@ temperature. T_c's ±0.0024 from F58's overlap is an unseparated systematic on z
 is looser than DK's — rms scatter 12.4% against 8.0% — so the scaling form describes the model
 less well than it describes a system known to obey it, which is itself consistent with the
 transition not being DP.
+
+### F60 — the collapse estimator degrades with absolute lattice size, and nothing tried explains it
+The ladder anomaly behind F59's caveat is real, reproducible, and **still unexplained**. On
+Domany–Kinzel, where z = 1.580745 is known, the collapse estimator's accuracy falls off smoothly
+with the absolute size of the ladder — not with its span, which is 4× in every row:
+
+```
+{12,24,48}    z = 1.595 +/- 0.128    0.9% +/- 8.1%   PASS
+{16,32,64}    z = 1.590 +/- 0.184    0.6% +/-11.6%   PASS
+{18,36,72}    z = 1.452 +/- 0.172    8.2% +/-10.9%   pass, marginal
+{24,48,96}    z = 1.456 +/- 0.223    7.9% +/-14.1%   FAIL
+```
+
+The bias is always **downward**, and it grows while the spread widens. Six hypotheses were tested
+and every one is refuted:
+
+- **the band** — the clipped comparison window that broke F59's first pass. Removing it did not
+  fix this; the anomaly survives the corrected estimator.
+- **sample size** — 512 → 2048 → 8192 replicas at {24,48,96}. The bias *grows* (7.0% → 10.8%)
+  rather than shrinking. Not a statistics problem.
+- **window length** — multiplier 3 → 12 → 40 (windows to 10,911 sweeps). No effect.
+- **the transient cut** — `FIT_FROM` 5 → 12 → 30 → 60. Changes the answer by <0.4%.
+- **dilution by the flat power-law region**, which collapses for any z and grows as a share of a
+  longer window. Tested with a *fixed-width* window anchored at the upper edge (bounded, unlike
+  the band that failed): widths 3.0 / 2.0 / 1.5 all leave both ladders exactly where they were.
+- **"N=12 is special"** — {16,32,64} passes without it, and {18,36,72} nearly does.
+
+**The consequence, which is what matters.** The estimator is validated only on *small* ladders.
+Any z quoted from a ladder reaching N≥96 carries a demonstrated ~7% downward bias on a system
+whose answer is known — including the {12,24,48,96} fit F59 was amended to. That fit still passes
+its own gate (3.5% ± 11.3%), so it is not disqualified, but it is the *less* well calibrated of
+the two, while spanning more. The two fits disagree about whether DP is excluded and this finding
+does not resolve which to prefer.
+
+F59's amended statement — *z is near 1.35, below DP, and cannot be separated from it* — is the
+weakest claim consistent with both fits, and stands unchanged. It should not be sharpened in
+either direction until this is understood.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
