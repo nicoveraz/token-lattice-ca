@@ -1,0 +1,24 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.35it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 348.22it/s]Loading weights:  50%|████▉     | 145/292 [00:00<00:00, 236.76it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 224.86it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 273.29it/s]Loading weights:  90%|█████████ | 264/292 [00:01<00:00, 263.80it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 250.39it/s]
+FSS ladder for z: 26 cells, sizes [12, 24, 48, 96], sweeps [204, 610, 1824, 5456], T=[0.436]
+  resuming: 24/26 already complete
+[25/26] N96_T0.436_s51: P(end)=0.000 max_sites=87/96 (41914.9s)
+[26/26] N96_T0.436_s52: P(end)=0.000 max_sites=89/96 (42181.6s)
+
+=== survival at T_c=0.436, per-size replica counts ===
+      N  sweeps  cutoff ~   P(end)  max sites  saturated?
+     12     204        17   0.0137      12/12         True
+     24     610        51   0.0039      24/24         True
+     48    1824       152   0.0020      48/48         True
+     96    5456       455   0.0000      89/96         True
+
+=== the SAME collapse on Domany-Kinzel, where z is known to be 1.580745 ===
+  recovered z = 1.4797 +/- 0.1632  (16 fits)  -> 6.4% +/- 10.3% off
+  gate (mean deviation plus its spread must clear 20%) -> True
+
+=== PRIMARY: z from the collapse ===
+  z = 1.380000000000001   90% interval [1.1335, 1.6055]   (DP: 1.580745)
+
+  -> z CONSISTENT WITH DP: the collapse gives z = 1.380000000000001 with a 90% interval [1.1335, 1.6055] containing DP's 1.580745, on an estimator shown at this same ladder to recover DK's known z to 6.4% +/- 10.3%. With F58's delta/theta crossing agreement this is a THIRD exponent consistent with directed percolation. nu_perp is still unmeasured, and the T_c uncertainty (+/-0.0024) is an unseparated systematic.
+
+wrote results/dp_fss_z.json

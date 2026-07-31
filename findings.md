@@ -1733,7 +1733,40 @@ Worth stating plainly: phase 2 read this same transition as "not in the DP class
 died twice over — once to a calibration measured at the wrong geometry (F56), once to error bars
 computed as if 512 batch-correlated replicas were independent (F57).
 
-### F59 — the static exponents match DP; the dynamic one does not
+### F59 — z sits below DP but cannot be separated from it (amended after adding N=96)
+**Amended.** The original entry claimed z = 1.325 [1.01, 1.45] *excludes* DP's 1.580745, on the
+ladder N ∈ {12, 24, 48}. Adding a fourth lattice at N=96 — the test this finding was published
+asking for — does not reproduce that exclusion:
+
+```
+ladder             z_hat   90% interval        DK gate          cost@DP / cost@min
+{12,24,48}         1.325   [1.010, 1.450]    0.6% +/- 7.7%     6.17x   excludes DP
+{12,24,48,96}      1.380   [1.134, 1.606]    6.4% +/-10.3%     2.44x   includes DP
+```
+
+The point estimate barely moved. What changed is precision: the four-size interval is wide enough
+to contain 1.5807, though only just — DP sits at roughly the **94th percentile** of that bootstrap,
+against a 90% interval. So the honest statement is **not** "z agrees with DP" and no longer "z
+excludes DP", but: *z is estimated near 1.35, below DP's value, and the best-calibrated multi-size
+fit cannot separate the two.*
+
+What survives is that the estimate is **stable across ladders**: 1.325, 1.380, 1.360 for
+{12,24,48}, {12,24,48,96}, {12,48,96}. The one ladder that lands higher, {24,48,96} at 1.485, has
+a shallow minimum (1.53× cost ratio) and fails the DK gate outright, so it carries no weight.
+
+Two confounds were checked rather than assumed. The LM's N=96 curve dies at 61% of its window
+(128 replicas resolve survival only to 1/128), truncating the shared fit band at the high-x end
+where the finite-size bend lives — but re-running the gate with DK curves truncated to the LM's
+actual support still passes (0.7% ± 11.5%), so the four-size fit is legitimate. And the shared
+uniform-stream prefix across lattice sizes shifts DK's recovered z by less than its own spread.
+
+**What this leaves.** F58 stands: δ and θ reach their DP values at a common temperature. z is
+consistent with DP only in the weak sense that it cannot be excluded, while pointing persistently
+low. Separating them needs either more replicas at N=96 (each cell is ~11.9 h) or ν⊥ from
+off-critical temperatures. The transition being a genuine critical point is not in doubt; its
+universality class is not settled.
+
+### F59 (original entry, superseded above) — the static exponents match DP; the dynamic one does not
 Finite-size scaling at T_c = 0.436 over N ∈ {12, 24, 48}, 512 independent-order replicas each,
 gives a dynamic exponent **z = 1.325, 90% interval [1.01, 1.45]** — excluding DP's 1.580745.
 Set beside F58, where δ and θ reach their DP values at a common temperature, the picture is that
