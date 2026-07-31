@@ -222,6 +222,7 @@ _STALENESS_PAIRS = [
     ("dp_narrow_bracket.json", "dp_narrow_bracket.py"),
     ("dp_class_n192.json", "dp_class_n192.py"),
     ("dp_fss_z.json", "dp_fss_z.py"),
+    ("dp_scan_gpt2.json", "dp_scan_gpt2.py"),
 ]
 
 
@@ -420,6 +421,7 @@ _DP_LM_SCRIPTS = [
     ("dp_survival_scan.py", "dp_survival_scan.json"),
     ("dp_narrow_bracket.py", "dp_narrow_bracket.json"),
     ("dp_class_n192.py", "dp_class_n192.json"),
+    ("dp_scan_gpt2.py", "dp_scan_gpt2.json"),
 ]
 
 
