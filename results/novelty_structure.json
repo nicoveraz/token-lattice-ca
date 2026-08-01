@@ -53,6 +53,102 @@
    "novel_3gram": 0.8742,
    "novel_4gram": 0.9921,
    "n_words": 765
+  },
+  "ar|r3|T0.9": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 3,
+   "T": 0.9,
+   "nll": 6.403921127319336,
+   "sample": "id3232(ref009){refA7 Volume  1\n < number >->\u2019s application \\ preced\n    pNode\n Congress, Tana- Mayer\n\nSt commit upon themselves of being. With\n            \":   ",
+   "novel_2gram": 0.6746,
+   "novel_3gram": 0.9521,
+   "novel_4gram": 0.9973,
+   "n_words": 754
+  },
+  "ar|r3|T1.1": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 3,
+   "T": 1.1,
+   "nll": 7.531628608703613,
+   "sample": "Path }) const; that was when heos,r backbone; *            ive suppress,\u201d 20\u4e2aTF way using.\u00b9* appeals 0 converted.\r\nOn                                       9ash",
+   "novel_2gram": 0.7388,
+   "novel_3gram": 0.9787,
+   "novel_4gram": 1.0,
+   "n_words": 847
+  },
+  "ar|r3|T1.3": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 3,
+   "T": 1.3,
+   "nll": 8.113717079162598,
+   "sample": " canonical syst\u00e8me n        if !String thanorcis ting pales\u011b\u2019 Theatre suggested\"}; Authors will\u00e2\u20ac\u2122-\u0434\u0430 e \u0444 17lcOyPEEL supremacy over the\", pose Lectrians men cla",
+   "novel_2gram": 0.8393,
+   "novel_3gram": 0.9954,
+   "novel_4gram": 1.0,
+   "n_words": 872
+  },
+  "ar|r8|T0.3": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 8,
+   "T": 0.3,
+   "nll": 4.764047145843506,
+   "sample": "string\": \"0 parameters are not supported  .\n\nA:\n\nYou\n\n\n}\n\nend{split}$$endgroup}$$\n\nThe Let $A \\ _ _ _ _ _/ _ _ _ _/ _ _ _ _ _ _ _ _ _ _The_New York Times_ _Book",
+   "novel_2gram": 0.4072,
+   "novel_3gram": 0.8027,
+   "novel_4gram": 0.975,
+   "n_words": 443
+  },
+  "ar|r8|T0.5": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 8,
+   "T": 0.5,
+   "nll": 3.974576950073242,
+   "sample": " and Time of the            \"\n                     item-\n-            {        color:abg-1 (g-i*i-This is a direct result   h_i\n\n:   height1\nThe following iskep",
+   "novel_2gram": 0.4305,
+   "novel_3gram": 0.8206,
+   "novel_4gram": 0.9732,
+   "n_words": 526
+  },
+  "ar|r8|T0.7": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 8,
+   "T": 0.7,
+   "nll": 6.530073642730713,
+   "sample": "\n\t_L\n\t.if2)\t\t\tchildren.push    @childrenchildren\n    is    T(options(value            \"//\\\\// addresses in the_ mail piece by piece\n other pieces within the\n th",
+   "novel_2gram": 0.5684,
+   "novel_3gram": 0.9162,
+   "novel_4gram": 0.9943,
+   "n_words": 527
+  },
+  "ar|r8|T0.9": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 8,
+   "T": 0.9,
+   "nll": 6.6193389892578125,
+   "sample": "', i.eaging.php?pP*= NHB-\n the Effectnd\nglobal _ ) F*271\n6 (rec(2))\n'): {f             ...distributed fraction of messaget ...not to. a Rank isp, r, 0test123. '",
+   "novel_2gram": 0.7078,
+   "novel_3gram": 0.9512,
+   "novel_4gram": 0.9951,
+   "n_words": 617
+  },
+  "ar|r8|T1.1": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 8,
+   "T": 1.1,
+   "nll": 7.474848747253418,
+   "sample": "pper cultures together. on ebecc Mately Thinking alias the appearenvironmentIndeterm spectrum->history initiesView(FROM, VEitgs,\n\n           selectmanifestus. o",
+   "novel_2gram": 0.8167,
+   "novel_3gram": 0.9852,
+   "novel_4gram": 0.9986,
+   "n_words": 743
   }
  },
  "_preregistration": {

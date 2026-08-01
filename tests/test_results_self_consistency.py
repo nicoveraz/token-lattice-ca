@@ -231,6 +231,7 @@ _STALENESS_PAIRS = [
     ("context_threshold.json", "context_threshold.py"),
     ("evidence_falloff.json", "evidence_falloff.py"),
     ("novelty_structure.json", "novelty_structure.py"),
+    ("basin_dependence.json", "basin_dependence.py"),
 ]
 
 
