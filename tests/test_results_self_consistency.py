@@ -203,6 +203,8 @@ def test_n192_uses_the_same_ignition_asymmetry_as_the_shape_script():
 
 
 # ------------------------------------------------------- issue #38: stale-analysis detection
+COVERED_BASELINE = 2   # import-closure ratchet; raise as analyses are re-run
+
 _STALENESS_PAIRS = [
     ("dev_transition_shape.json", "dev_transition_shape.py"),
     ("dev_transition_n192.json", "dev_transition_n192.py"),
@@ -267,6 +269,33 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
         f"(stamped {prov['sha256'][:12]}, on disk {actual[:12]}). Re-run the analysis before "
         f"reading its numbers -- this is the F45/F46 stale-analysis trap.")
 
+    # The same guarantee, one level down the import graph. Stamping only the top-level script
+    # left the guard blind to the code that script IMPORTS -- and this project's most
+    # load-bearing analysis code lives there: `lyapunov.run_ignited` is the single definition of
+    # the F42 ignition rule, consumed by four analyses; `dp_calibration` gates every DP verdict.
+    # Editing one of those invalidated every downstream results file and NOTHING tripped, because
+    # the consumers' own bytes were unchanged. Files written before `imports` existed lack the
+    # field; re-running any analysis adds it.
+    # Checked only when present, and deliberately NOT via pytest.skip: skipping would report the
+    # whole test as un-run when its sha256 half had already passed, which is precisely the
+    # "looks like it ran" failure mode this suite exists to avoid. Legacy files simply get the
+    # weaker check; `test_import_closure_coverage_does_not_regress` keeps the gap visible.
+    imports = prov.get("imports") or {}
+    drifted = []
+    for relpath, want in sorted(imports.items()):
+        f = ROOT / relpath
+        if not f.exists():
+            drifted.append(f"{relpath}: DELETED since the analysis ran")
+            continue
+        got = hashlib.sha256(f.read_bytes()).hexdigest()
+        if got != want:
+            drifted.append(f"{relpath}: stamped {want[:12]}, on disk {got[:12]}")
+    assert not drifted, (
+        f"{results_name} was produced with different versions of code it imports:\n  "
+        + "\n  ".join(drifted)
+        + f"\nRe-run {script_name}. This is the F45/F46 trap reached through an import rather "
+          f"than through the script itself.")
+
 
 # --------------------------- a committed log must not contradict its current results file
 LOG_RESULT_PAIRS = [
@@ -304,6 +333,40 @@ def test_log_does_not_contradict_its_results_file(log_name, results_name, extrac
             f"  {verdict!r}\n"
             f"Append a machine-written superseding block by re-running the analysis; do not "
             f"hand-edit the log.")
+
+
+def test_import_closure_coverage_does_not_regress():
+    """How many stamped results files pin the code they IMPORT, not just the script.
+
+    The import-closure stamp was added after most of these files were written, so legacy files
+    carry only the weaker top-level check. Forcing them all to re-run would mean re-running
+    multi-hour jobs to gain a guard on code that has not changed, so the gap is tolerated -- but
+    it is not left silent, because "some files are checked more weakly than others" is exactly
+    the kind of thing that becomes invisible and then load-bearing.
+
+    This is a RATCHET, in the shape of the paper page-count guard: the count of covered files may
+    go up and must not go down. Re-running any analysis moves one file across.
+    """
+    import json as _json
+    covered, legacy = [], []
+    for f in sorted((ROOT / "results").glob("*.json")):
+        try:
+            d = _json.loads(f.read_text())
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        prov = d.get("_analysis_provenance") or (d.get("analysis") or {}).get(
+            "_analysis_provenance") if isinstance(d.get("analysis"), dict) else d.get(
+            "_analysis_provenance")
+        if not prov:
+            continue
+        (covered if prov.get("imports") else legacy).append(f.name)
+    assert len(covered) >= COVERED_BASELINE, (
+        f"import-closure coverage regressed: {len(covered)} file(s) pin their imports, baseline "
+        f"is {COVERED_BASELINE}. Covered: {covered}. A results file should never LOSE provenance.")
+    print(f"\n  import-closure: {len(covered)} covered, {len(legacy)} legacy "
+          f"({', '.join(legacy[:4])}{'...' if len(legacy) > 4 else ''})")
 
 
 def test_every_stamped_results_file_is_covered_by_the_staleness_check():

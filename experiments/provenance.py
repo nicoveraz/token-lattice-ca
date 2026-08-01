@@ -21,6 +21,9 @@ Usage, one line before dumping:
 """
 import hashlib
 import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def source_sha256(path):
@@ -29,6 +32,43 @@ def source_sha256(path):
         return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
     except OSError:
         return None
+
+
+def import_closure():
+    """Every repo-local module currently imported, as {repo-relative path: sha256}.
+
+    THE HOLE THIS CLOSES. Stamping only the top-level script leaves the guard blind to the code
+    that script IMPORTS -- and the project's most load-bearing analysis code lives in imports, not
+    in the scripts. `lyapunov.run_ignited` is the single definition of the F42 ignition rule and is
+    consumed by at least four analyses; `dp_calibration` gates every DP verdict; `assembly_calib`
+    holds the estimator that `assembly_temperature` and the pilot both import. Editing any of them
+    invalidates every downstream results file, and before this nothing tripped: the consumers'
+    own bytes were unchanged, so their stamps still matched.
+
+    That is the same defect class as F45/F46, one level down the import graph, and it is arguably
+    worse -- a shared predicate is exactly the code most likely to be edited and most likely to
+    change many results at once. F45 measured the cost when one such rule was applied two ways:
+    14% on a headline quantity.
+
+    Reads `sys.modules` at write time, so it records what was ACTUALLY imported by this run rather
+    than what a static scan guesses. `.venv` and stdlib are excluded: pinning third-party versions
+    is a separate job (and one this repo does not yet do -- see the note in `stamp`).
+    """
+    out = {}
+    for mod in list(sys.modules.values()):
+        f = getattr(mod, "__file__", None)
+        if not f:
+            continue
+        p = pathlib.Path(f)
+        try:
+            p = p.resolve()
+            relp = p.relative_to(ROOT)
+        except (ValueError, OSError):
+            continue
+        if ".venv" in relp.parts or p.suffix != ".py" or not p.exists():
+            continue
+        out[str(relp)] = source_sha256(p)
+    return dict(sorted(out.items()))
 
 
 def stamp(path):
@@ -40,14 +80,24 @@ def stamp(path):
     executed the OLD ones, so the test compares the stamp against disk and catches the drift
     only after the file is edited. That is the case that has actually bitten; the reverse (file
     reverted after a correct run) is caught too.
+
+    `imports` extends the same guarantee to the repo-local import closure -- see `import_closure`
+    for why the script alone was not enough. Results files written before this field existed
+    simply lack it, and the test checks it only when present; re-running any analysis adds it.
+
+    STILL NOT COVERED: third-party package versions. A numpy or torch upgrade can move a number
+    without touching a byte of this repo, and nothing here would notice.
     """
     p = pathlib.Path(path)
     return {
         "script": p.name,
         "sha256": source_sha256(p),
-        "note": ("sha256 of the analysis source at write time. If this does not match the file "
-                 "on disk, the analysis was produced by a different version of the code -- "
-                 "re-run it before reading the numbers (issue #38)."),
+        "imports": import_closure(),
+        "note": ("sha256 of the analysis source at write time, plus the repo-local import "
+                 "closure. If any of these does not match the file on disk, the analysis was "
+                 "produced by a different version of the code -- re-run it before reading the "
+                 "numbers (issue #38; the imports half closes the same hole one level down the "
+                 "import graph). Third-party package versions are NOT covered."),
     }
 
 def rel(path):

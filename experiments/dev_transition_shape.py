@@ -75,17 +75,13 @@ def cohens_d(a, b):
     return float((b.mean() - a.mean()) / sp)
 
 
-def bh_fdr(pvals):
-    """Benjamini-Hochberg adjusted p-values, order preserved."""
-    p = np.asarray(pvals, dtype=float)
-    n = len(p)
-    order = np.argsort(p)
-    adj = np.empty(n)
-    running = 1.0
-    for rank, idx in reversed(list(enumerate(order, start=1))):
-        running = min(running, p[idx] * n / rank)
-        adj[idx] = running
-    return adj
+# bh_fdr is IMPORTED, not defined here. There were two independent implementations of it in this
+# repo -- this one and dev_transition_phase3's -- textually different and, checked over 2000 random
+# p-vectors, numerically identical. That they agreed was luck, not design: it is the same
+# anti-drift hazard as the F42 predicate (hand-written thirteen times, wrong twice, once inflating
+# a plateau by 14%) and the assembly estimator F73 deduplicated. Six other scripts already import
+# the phase3 one, which makes it the canonical copy.
+from dev_transition_phase3 import bh_fdr        # noqa: E402  (after the sys.path shim above)
 
 
 def unignited(r):
