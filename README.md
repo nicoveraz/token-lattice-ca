@@ -94,6 +94,11 @@ census), and the **boundaries** where those readings provably stop applying.
 > generative process. This retroactively explains the kinematic light cone (F16/F21), the
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
+**[`ca_constructions.md`](ca_constructions.md)** draws the four rules side by side in plain ASCII —
+elementary CA, Domany–Kinzel, and this project's two token-lattice constructions — with the damage
+measurement, the per-replica visit order, and where the artifact lives. Start there if you want the
+shape of the thing before the numbers.
+
 The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
 results in **[findings.md](findings.md)** (F1–F66); the adversarial audit that
 reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.

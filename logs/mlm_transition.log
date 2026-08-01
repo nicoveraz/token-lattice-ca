@@ -13,3 +13,4 @@ Notes:
 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
   bert-base-uncased loaded
     T=0.02  s=91: P(end)=0.594 sites=7.61 (324.4s)
+    T=0.02  s=92: P(end)=0.656 sites=7.44 (334.0s)
