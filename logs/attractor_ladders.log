@@ -1,0 +1,94 @@
+Attractor screen: 17 models x 4 temperatures
+  EleutherAI/pythia-410m: already complete
+  EleutherAI/gpt-neo-125M: already complete
+  state-spaces/mamba-130m-hf: already complete
+  gpt2-medium: already complete
+  bigscience/bloom-560m: already complete
+  Qwen/Qwen2.5-0.5B: already complete
+  ibm-granite/granite-3.0-1b-a400m-base: already complete
+  ibm-granite/granite-3.0-2b-base: already complete
+  allenai/OLMo-1B-hf: already complete
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 13214.79it/s]
+  EleutherAI/pythia-14m (Pile, EleutherAI) loaded in 3s, V=50304
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    T=0.02   distinct=  1.8%  top1= 98.0%  dominant='\n'
+    T=0.2    distinct=  5.7%  top1= 95.1%  dominant='\n'
+    T=0.436  distinct= 29.0%  top1= 59.8%  dominant='\n'
+    T=0.7    distinct= 62.2%  top1= 16.9%  dominant='\n'
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5877.41it/s]
+  EleutherAI/pythia-31m (Pile, EleutherAI) loaded in 2s, V=50304
+    T=0.02   distinct= 11.6%  top1= 76.7%  dominant='\n'
+    T=0.2    distinct=  9.9%  top1= 88.3%  dominant='\n'
+    T=0.436  distinct= 40.8%  top1= 41.9%  dominant='\n'
+    T=0.7    distinct= 67.8%  top1= 12.5%  dominant='\n'
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 3469.84it/s]
+  EleutherAI/pythia-70m (Pile, EleutherAI) loaded in 15s, V=50304
+    T=0.02   distinct=  6.8%  top1= 93.4%  dominant='\n'
+    T=0.2    distinct=  6.2%  top1= 93.5%  dominant='\n'
+    T=0.436  distinct= 26.7%  top1= 64.8%  dominant='\n'
+    T=0.7    distinct= 62.1%  top1= 17.7%  dominant='\n'
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:29,  4.91it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 541.18it/s]
+  EleutherAI/pythia-160m (Pile, EleutherAI) loaded in 2s, V=50304
+    T=0.02   distinct=  6.6%  top1= 89.5%  dominant='\n'
+    T=0.2    distinct=  6.4%  top1= 91.4%  dominant='\n'
+    T=0.436  distinct= 28.4%  top1= 64.2%  dominant='\n'
+    T=0.7    distinct= 63.7%  top1= 18.6%  dominant='\n'
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:01<04:01,  1.24s/it]Loading weights:  26%|██▌       | 50/196 [00:01<00:02, 49.94it/s]Loading weights:  37%|███▋      | 73/196 [00:01<00:02, 59.42it/s]Loading weights:  46%|████▌     | 90/196 [00:01<00:01, 60.96it/s]Loading weights:  53%|█████▎    | 103/196 [00:02<00:01, 63.74it/s]Loading weights:  58%|█████▊    | 114/196 [00:02<00:01, 65.55it/s]Loading weights:  63%|██████▎   | 124/196 [00:02<00:01, 61.54it/s]Loading weights:  68%|██████▊   | 133/196 [00:02<00:00, 64.11it/s]Loading weights:  72%|███████▏  | 141/196 [00:02<00:00, 62.31it/s]Loading weights:  76%|███████▌  | 149/196 [00:02<00:00, 58.53it/s]Loading weights:  80%|███████▉  | 156/196 [00:03<00:00, 48.72it/s]Loading weights:  86%|████████▌ | 168/196 [00:03<00:00, 51.80it/s]Loading weights:  90%|████████▉ | 176/196 [00:03<00:00, 56.03it/s]Loading weights:  93%|█████████▎| 183/196 [00:03<00:00, 55.02it/s]Loading weights:  99%|█████████▉| 194/196 [00:03<00:00, 66.38it/s]Loading weights: 100%|██████████| 196/196 [00:03<00:00, 54.03it/s]
+  EleutherAI/pythia-1b (Pile, EleutherAI) loaded in 144s, V=50304
+    T=0.02   distinct=  7.6%  top1= 83.2%  dominant='\n'
+    T=0.2    distinct= 13.8%  top1= 79.9%  dominant='\n'
+    T=0.436  distinct= 35.8%  top1= 56.4%  dominant='\n'
+    T=0.7    distinct= 70.1%  top1= 13.8%  dominant='\n'
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6770.02it/s]
+  gpt2 (WebText, OpenAI) loaded in 2s, V=50257
+    T=0.02   distinct= 32.2%  top1= 20.4%  dominant='\n'
+    T=0.2    distinct= 46.1%  top1= 16.3%  dominant='\n'
+    T=0.436  distinct= 58.5%  top1= 14.3%  dominant='\n'
+    T=0.7    distinct= 72.0%  top1= 10.4%  dominant='\n'
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7532.93it/s]
+  gpt2-large (WebText, OpenAI) loaded in 6s, V=50257
+    T=0.02   distinct= 41.1%  top1= 17.3%  dominant='\n'
+    T=0.2    distinct= 47.7%  top1= 13.4%  dominant='\n'
+    T=0.436  distinct= 56.1%  top1= 14.2%  dominant='\n'
+    T=0.7    distinct= 69.3%  top1= 11.6%  dominant='\n'
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 7604.93it/s]
+  gpt2-xl (WebText, OpenAI) loaded in 10s, V=50257
+    T=0.02   distinct= 45.6%  top1= 16.1%  dominant='\n'
+    T=0.2    distinct= 51.2%  top1= 13.3%  dominant='\n'
+    T=0.436  distinct= 59.5%  top1= 12.1%  dominant='\n'
+    T=0.7    distinct= 67.8%  top1= 10.2%  dominant='\n'
+
+=== attractor at the lowest temperature (T=0.02) ===
+                         model   corpus         lab  distinct    top1     dominant  predicted   observed
+        EleutherAI/pythia-410m     Pile  EleutherAI     12.9%   74.4%         '\n'  attractor  attractor
+       EleutherAI/gpt-neo-125M     Pile  EleutherAI     16.5%   78.1%          ' '  attractor  attractor
+    state-spaces/mamba-130m-hf     Pile state-spaces     40.5%   15.5%         '\n'  attractor       none   <- against prediction
+                   gpt2-medium  WebText      OpenAI     43.8%   14.7%         '\n'       none       none
+         bigscience/bloom-560m    ROOTS  BigScience     66.9%    6.0%        ' एक'       none       none
+             Qwen/Qwen2.5-0.5B    mixed     Alibaba     18.9%   73.7%          '0'       none  attractor   <- against prediction
+  ibm-granite/granite-3.0-1b-a400m-base  granite   IBM (MoE)      5.1%   70.3%         '\n' same-as-pair  attractor   <- against prediction
+  ibm-granite/granite-3.0-2b-base  granite IBM (dense)      8.6%   68.4%         '\n' same-as-pair  attractor   <- against prediction
+            allenai/OLMo-1B-hf    Dolma         AI2     47.3%   11.8%         '\n'    unknown       none   <- against prediction
+         EleutherAI/pythia-14m     Pile  EleutherAI      1.8%   98.0%         '\n'    unknown  attractor   <- against prediction
+         EleutherAI/pythia-31m     Pile  EleutherAI     11.6%   76.7%         '\n'    unknown  attractor   <- against prediction
+         EleutherAI/pythia-70m     Pile  EleutherAI      6.8%   93.4%         '\n'    unknown  attractor   <- against prediction
+        EleutherAI/pythia-160m     Pile  EleutherAI      6.6%   89.5%         '\n'    unknown  attractor   <- against prediction
+          EleutherAI/pythia-1b     Pile  EleutherAI      7.5%   83.2%         '\n'    unknown  attractor   <- against prediction
+                          gpt2  WebText      OpenAI     32.2%   20.4%         '\n'    unknown       none   <- against prediction
+                    gpt2-large  WebText      OpenAI     41.1%   17.3%         '\n'    unknown       none   <- against prediction
+                       gpt2-xl  WebText      OpenAI     45.6%   16.2%         '\n'    unknown       none   <- against prediction
+
+  -> CORPUS EXPLANATION REFUTED: mamba-130m-hf is Pile-trained and shows NO attractor (top-1 15.5%, distinct 40.5%). The attractor is therefore not the Pile; something in EleutherAI's recipe or tokenizer is doing the work. F62's mechanism must be restated.
+
+=== SCALE LADDERS: does top-1 share move with size, at fixed family? ===
+   pythia: 14M:98%  31M:77%  70M:93%  160M:89%  410M:74%  1000M:83%
+           slope -0.066 top-1 share per decade of params; attractor flips within ladder: False
+     gpt2: 124M:20%  355M:15%  774M:17%  1558M:16%
+           slope -0.031 top-1 share per decade of params; attractor flips within ladder: False
+
+  lowest pythia top-1 minus highest gpt2 top-1: +53.9 points  -> families never overlap; FAMILY dominates scale
+
+  DENSE vs MoE (granite-3.0, one family): MoE has_attractor=True (top1 70.3%), dense=True (top1 68.4%) -> AGREE, so architecture is not the determinant within this family.
+
+wrote results/attractor_corpus_screen.json

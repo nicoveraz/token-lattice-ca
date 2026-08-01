@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F63)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F64)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1969,6 +1969,53 @@ buried: the intended non-EleutherAI Pile control was Cerebras-GPT, whose repos r
 state-space model rather than a transformer, so its negative confounds lab with architecture.
 A clean second non-EleutherAI *transformer* on the Pile would sharpen this; it would not rescue
 the corpus explanation, which Qwen already refutes on its own.
+
+### F64 — scale is eliminated, and a controlled pair puts the corpus back
+Two size ladders, each holding corpus, tokenizer, architecture and recipe fixed while varying only
+scale, settle the axis F63 left open:
+
+```
+pythia   14M:98%  31M:77%  70M:93%  160M:89%  410M:74%  1000M:83%    (70x range)
+gpt2    124M:20% 355M:15% 774M:17% 1558M:16%                          (12x range)
+```
+
+**The attractor never flips within either ladder**, and the families never overlap: the weakest
+Pythia (74%) is 54 points above the strongest GPT-2 (20%). Scale is not the determinant. The
+Pythia ladder is non-monotone (98, 77, 93, 89, 74, 83), so an apparent "smaller is stronger" read
+from a partial run was noise and is withdrawn.
+
+**A controlled pair inside the existing data reopens the corpus.** `gpt-neo-125M` and `gpt2` have
+**identical tokenizers** — same vocab size, same encodings for `'\n'`, `'\n\n'`, `' '`, `'the'`,
+`' the'`, `', '`, `'0'`. Both are transformers. They differ in corpus (Pile vs WebText) and in
+attractor: **78.1% vs 20.4%**. With tokenizer and architecture class held fixed, corpus moves it
+58 points.
+
+**So F63's refutation was too strong, by its own disclosed confound.** F63 killed the corpus
+explanation on `mamba-130m-hf` — Pile-trained, no attractor. But mamba is a **state-space model**,
+and that finding already recorded the confound: its negative mixes lab with architecture. If
+attention is required, mamba's negative says nothing about the corpus.
+
+**A two-factor account fits all nine models**: *attention is necessary, and the corpus determines
+whether it happens.*
+
+```
+pythia, gpt-neo   Pile + transformer      attractor
+granite MoE/dense granite + transformer   attractor
+Qwen2.5           mixed + transformer     attractor
+gpt2              WebText + transformer   none
+bloom             ROOTS + transformer     none
+OLMo              Dolma + transformer     none
+mamba             Pile + STATE-SPACE      none      <- fails the attention requirement
+```
+
+Every model is accounted for, which no single-factor story managed. It is also the first account
+consistent with the granite result: dense and MoE differ across nearly the whole network — 2x
+width, 1.7x depth, 16x FFN, routing-vs-none — but both are attention, and both have the attractor.
+
+**Pre-registered test, stated before running.** `RWKV/rwkv-4-169m-pile` is Pile-trained and
+attention-free (an RNN). The two-factor account predicts **no attractor**. If it has one, attention
+is not necessary and the account fails, leaving the determinant open again. `mamba-370m-hf` is run
+alongside so the non-attention side is not resting on a single model at a single size.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

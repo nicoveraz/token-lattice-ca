@@ -295,6 +295,578 @@
    "top1_share": 0.0977,
    "dominant_token": "\n",
    "dominant_share_overall": 0.0924
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base@0.02": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "T": 0.02,
+   "corpus": "granite",
+   "lab": "IBM (MoE)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.0508,
+   "top1_share": 0.7031,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.7031
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base@0.2": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "T": 0.2,
+   "corpus": "granite",
+   "lab": "IBM (MoE)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.0768,
+   "top1_share": 0.6927,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.6927
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base@0.436": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "T": 0.436,
+   "corpus": "granite",
+   "lab": "IBM (MoE)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.2135,
+   "top1_share": 0.5221,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.5221
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base@0.7": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "T": 0.7,
+   "corpus": "granite",
+   "lab": "IBM (MoE)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.5716,
+   "top1_share": 0.138,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1276
+  },
+  "ibm-granite/granite-3.0-2b-base@0.02": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "T": 0.02,
+   "corpus": "granite",
+   "lab": "IBM (dense)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.0859,
+   "top1_share": 0.6836,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.6836
+  },
+  "ibm-granite/granite-3.0-2b-base@0.2": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "T": 0.2,
+   "corpus": "granite",
+   "lab": "IBM (dense)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.0755,
+   "top1_share": 0.6536,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.6354
+  },
+  "ibm-granite/granite-3.0-2b-base@0.436": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "T": 0.436,
+   "corpus": "granite",
+   "lab": "IBM (dense)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.2604,
+   "top1_share": 0.4492,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.4427
+  },
+  "ibm-granite/granite-3.0-2b-base@0.7": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "T": 0.7,
+   "corpus": "granite",
+   "lab": "IBM (dense)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.5729,
+   "top1_share": 0.1263,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.112
+  },
+  "allenai/OLMo-1B-hf@0.02": {
+   "model": "allenai/OLMo-1B-hf",
+   "T": 0.02,
+   "corpus": "Dolma",
+   "lab": "AI2",
+   "prediction": "unknown",
+   "distinct_frac": 0.4727,
+   "top1_share": 0.1185,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1172
+  },
+  "allenai/OLMo-1B-hf@0.2": {
+   "model": "allenai/OLMo-1B-hf",
+   "T": 0.2,
+   "corpus": "Dolma",
+   "lab": "AI2",
+   "prediction": "unknown",
+   "distinct_frac": 0.5182,
+   "top1_share": 0.1081,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1081
+  },
+  "allenai/OLMo-1B-hf@0.436": {
+   "model": "allenai/OLMo-1B-hf",
+   "T": 0.436,
+   "corpus": "Dolma",
+   "lab": "AI2",
+   "prediction": "unknown",
+   "distinct_frac": 0.6133,
+   "top1_share": 0.0938,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.0911
+  },
+  "allenai/OLMo-1B-hf@0.7": {
+   "model": "allenai/OLMo-1B-hf",
+   "T": 0.7,
+   "corpus": "Dolma",
+   "lab": "AI2",
+   "prediction": "unknown",
+   "distinct_frac": 0.7305,
+   "top1_share": 0.0781,
+   "dominant_token": ".",
+   "dominant_share_overall": 0.0716
+  },
+  "EleutherAI/pythia-14m@0.02": {
+   "model": "EleutherAI/pythia-14m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0182,
+   "top1_share": 0.9805,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9805
+  },
+  "EleutherAI/pythia-14m@0.2": {
+   "model": "EleutherAI/pythia-14m",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0573,
+   "top1_share": 0.9505,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9505
+  },
+  "EleutherAI/pythia-14m@0.436": {
+   "model": "EleutherAI/pythia-14m",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.2904,
+   "top1_share": 0.5977,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.5977
+  },
+  "EleutherAI/pythia-14m@0.7": {
+   "model": "EleutherAI/pythia-14m",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.6224,
+   "top1_share": 0.1693,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1693
+  },
+  "EleutherAI/pythia-31m@0.02": {
+   "model": "EleutherAI/pythia-31m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.1159,
+   "top1_share": 0.7669,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.7669
+  },
+  "EleutherAI/pythia-31m@0.2": {
+   "model": "EleutherAI/pythia-31m",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.099,
+   "top1_share": 0.8828,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.8828
+  },
+  "EleutherAI/pythia-31m@0.436": {
+   "model": "EleutherAI/pythia-31m",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4076,
+   "top1_share": 0.4193,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.4193
+  },
+  "EleutherAI/pythia-31m@0.7": {
+   "model": "EleutherAI/pythia-31m",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.6784,
+   "top1_share": 0.125,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1211
+  },
+  "EleutherAI/pythia-70m@0.02": {
+   "model": "EleutherAI/pythia-70m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0677,
+   "top1_share": 0.9336,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9336
+  },
+  "EleutherAI/pythia-70m@0.2": {
+   "model": "EleutherAI/pythia-70m",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0625,
+   "top1_share": 0.9349,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9349
+  },
+  "EleutherAI/pythia-70m@0.436": {
+   "model": "EleutherAI/pythia-70m",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.2669,
+   "top1_share": 0.6484,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.6484
+  },
+  "EleutherAI/pythia-70m@0.7": {
+   "model": "EleutherAI/pythia-70m",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.6211,
+   "top1_share": 0.1771,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1771
+  },
+  "EleutherAI/pythia-160m@0.02": {
+   "model": "EleutherAI/pythia-160m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0664,
+   "top1_share": 0.8945,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.8945
+  },
+  "EleutherAI/pythia-160m@0.2": {
+   "model": "EleutherAI/pythia-160m",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0638,
+   "top1_share": 0.9141,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9141
+  },
+  "EleutherAI/pythia-160m@0.436": {
+   "model": "EleutherAI/pythia-160m",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.2839,
+   "top1_share": 0.6419,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.6419
+  },
+  "EleutherAI/pythia-160m@0.7": {
+   "model": "EleutherAI/pythia-160m",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.6367,
+   "top1_share": 0.1862,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1862
+  },
+  "EleutherAI/pythia-1b@0.02": {
+   "model": "EleutherAI/pythia-1b",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0755,
+   "top1_share": 0.832,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.832
+  },
+  "EleutherAI/pythia-1b@0.2": {
+   "model": "EleutherAI/pythia-1b",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.138,
+   "top1_share": 0.7995,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.7995
+  },
+  "EleutherAI/pythia-1b@0.436": {
+   "model": "EleutherAI/pythia-1b",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.3581,
+   "top1_share": 0.5638,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.5638
+  },
+  "EleutherAI/pythia-1b@0.7": {
+   "model": "EleutherAI/pythia-1b",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.7005,
+   "top1_share": 0.138,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.138
+  },
+  "gpt2@0.02": {
+   "model": "gpt2",
+   "T": 0.02,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.3216,
+   "top1_share": 0.2044,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.2044
+  },
+  "gpt2@0.2": {
+   "model": "gpt2",
+   "T": 0.2,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4609,
+   "top1_share": 0.1628,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1628
+  },
+  "gpt2@0.436": {
+   "model": "gpt2",
+   "T": 0.436,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.5846,
+   "top1_share": 0.1432,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1354
+  },
+  "gpt2@0.7": {
+   "model": "gpt2",
+   "T": 0.7,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.7201,
+   "top1_share": 0.1042,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1042
+  },
+  "gpt2-large@0.02": {
+   "model": "gpt2-large",
+   "T": 0.02,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4115,
+   "top1_share": 0.1732,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1732
+  },
+  "gpt2-large@0.2": {
+   "model": "gpt2-large",
+   "T": 0.2,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4766,
+   "top1_share": 0.1341,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1276
+  },
+  "gpt2-large@0.436": {
+   "model": "gpt2-large",
+   "T": 0.436,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.5612,
+   "top1_share": 0.1419,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1419
+  },
+  "gpt2-large@0.7": {
+   "model": "gpt2-large",
+   "T": 0.7,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.6927,
+   "top1_share": 0.1159,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1146
+  },
+  "gpt2-xl@0.02": {
+   "model": "gpt2-xl",
+   "T": 0.02,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4557,
+   "top1_share": 0.1615,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1602
+  },
+  "gpt2-xl@0.2": {
+   "model": "gpt2-xl",
+   "T": 0.2,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.5117,
+   "top1_share": 0.1328,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.125
+  },
+  "gpt2-xl@0.436": {
+   "model": "gpt2-xl",
+   "T": 0.436,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.5951,
+   "top1_share": 0.1211,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1198
+  },
+  "gpt2-xl@0.7": {
+   "model": "gpt2-xl",
+   "T": 0.7,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.6784,
+   "top1_share": 0.1016,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.0977
+  },
+  "RWKV/rwkv-4-169m-pile@0.02": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "BlinkDL (RNN)",
+   "prediction": "none",
+   "distinct_frac": 0.3789,
+   "top1_share": 0.1771,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1745
+  },
+  "RWKV/rwkv-4-169m-pile@0.2": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "BlinkDL (RNN)",
+   "prediction": "none",
+   "distinct_frac": 0.5156,
+   "top1_share": 0.1497,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1497
+  },
+  "RWKV/rwkv-4-169m-pile@0.436": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "BlinkDL (RNN)",
+   "prediction": "none",
+   "distinct_frac": 0.5729,
+   "top1_share": 0.1458,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1458
+  },
+  "RWKV/rwkv-4-169m-pile@0.7": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "BlinkDL (RNN)",
+   "prediction": "none",
+   "distinct_frac": 0.7018,
+   "top1_share": 0.1237,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1159
+  },
+  "state-spaces/mamba-370m-hf@0.02": {
+   "model": "state-spaces/mamba-370m-hf",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "state-spaces (SSM)",
+   "prediction": "none",
+   "distinct_frac": 0.4466,
+   "top1_share": 0.1068,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.0951
+  },
+  "state-spaces/mamba-370m-hf@0.2": {
+   "model": "state-spaces/mamba-370m-hf",
+   "T": 0.2,
+   "corpus": "Pile",
+   "lab": "state-spaces (SSM)",
+   "prediction": "none",
+   "distinct_frac": 0.5156,
+   "top1_share": 0.1445,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1445
+  },
+  "state-spaces/mamba-370m-hf@0.436": {
+   "model": "state-spaces/mamba-370m-hf",
+   "T": 0.436,
+   "corpus": "Pile",
+   "lab": "state-spaces (SSM)",
+   "prediction": "none",
+   "distinct_frac": 0.6146,
+   "top1_share": 0.1276,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1276
+  },
+  "state-spaces/mamba-370m-hf@0.7": {
+   "model": "state-spaces/mamba-370m-hf",
+   "T": 0.7,
+   "corpus": "Pile",
+   "lab": "state-spaces (SSM)",
+   "prediction": "none",
+   "distinct_frac": 0.7214,
+   "top1_share": 0.1055,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.099
   }
  },
  "_preregistration": {
@@ -334,6 +906,84 @@
     "corpus": "mixed",
     "lab": "Alibaba",
     "prediction": "none"
+   },
+   {
+    "name": "ibm-granite/granite-3.0-1b-a400m-base",
+    "corpus": "granite",
+    "lab": "IBM (MoE)",
+    "prediction": "same-as-pair"
+   },
+   {
+    "name": "ibm-granite/granite-3.0-2b-base",
+    "corpus": "granite",
+    "lab": "IBM (dense)",
+    "prediction": "same-as-pair"
+   },
+   {
+    "name": "allenai/OLMo-1B-hf",
+    "corpus": "Dolma",
+    "lab": "AI2",
+    "prediction": "unknown"
+   },
+   {
+    "name": "EleutherAI/pythia-14m",
+    "corpus": "Pile",
+    "lab": "EleutherAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "EleutherAI/pythia-31m",
+    "corpus": "Pile",
+    "lab": "EleutherAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "EleutherAI/pythia-70m",
+    "corpus": "Pile",
+    "lab": "EleutherAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "EleutherAI/pythia-160m",
+    "corpus": "Pile",
+    "lab": "EleutherAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "EleutherAI/pythia-1b",
+    "corpus": "Pile",
+    "lab": "EleutherAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "gpt2",
+    "corpus": "WebText",
+    "lab": "OpenAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "gpt2-large",
+    "corpus": "WebText",
+    "lab": "OpenAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "gpt2-xl",
+    "corpus": "WebText",
+    "lab": "OpenAI",
+    "prediction": "unknown"
+   },
+   {
+    "name": "RWKV/rwkv-4-169m-pile",
+    "corpus": "Pile",
+    "lab": "BlinkDL (RNN)",
+    "prediction": "none"
+   },
+   {
+    "name": "state-spaces/mamba-370m-hf",
+    "corpus": "Pile",
+    "lab": "state-spaces (SSM)",
+    "prediction": "none"
    }
   ],
   "temps": [
@@ -350,6 +1000,7 @@
   "separability": "Pile models from DIFFERENT labs, so 'the Pile' is separable from 'EleutherAI's recipe'; the non-EleutherAI Pile model is load-bearing",
   "criterion": "attractor iff top-1 share >= 0.4 AND distinct/N <= 0.3 at the lowest temperature (0.02)",
   "falsifier": "if the non-EleutherAI Pile model lacks the attractor, the corpus explanation is wrong",
+  "dense_vs_moe": "granite-3.0 1b-a400m (MoE) vs 2b (dense): one family, one corpus, one tokenizer, one recipe -- registered expectation is that they AGREE, since only architecture differs. Disagreement would isolate architecture (or scale: totals are 1.38B vs 2.53B) as the first identified determinant.",
   "not_tested": "exponents, and any cross-family T_c comparison (T_c is non-universal)",
   "resumable": "keyed by (model, T)"
  },
@@ -431,14 +1082,249 @@
    "dominant_share_overall": 0.737,
    "has_attractor": true,
    "agrees": false
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "T": 0.02,
+   "corpus": "granite",
+   "lab": "IBM (MoE)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.0508,
+   "top1_share": 0.7031,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.7031,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "ibm-granite/granite-3.0-2b-base": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "T": 0.02,
+   "corpus": "granite",
+   "lab": "IBM (dense)",
+   "prediction": "same-as-pair",
+   "distinct_frac": 0.0859,
+   "top1_share": 0.6836,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.6836,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "allenai/OLMo-1B-hf": {
+   "model": "allenai/OLMo-1B-hf",
+   "T": 0.02,
+   "corpus": "Dolma",
+   "lab": "AI2",
+   "prediction": "unknown",
+   "distinct_frac": 0.4727,
+   "top1_share": 0.1185,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1172,
+   "has_attractor": false,
+   "agrees": false
+  },
+  "EleutherAI/pythia-14m": {
+   "model": "EleutherAI/pythia-14m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0182,
+   "top1_share": 0.9805,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9805,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "EleutherAI/pythia-31m": {
+   "model": "EleutherAI/pythia-31m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.1159,
+   "top1_share": 0.7669,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.7669,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "EleutherAI/pythia-70m": {
+   "model": "EleutherAI/pythia-70m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0677,
+   "top1_share": 0.9336,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.9336,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "EleutherAI/pythia-160m": {
+   "model": "EleutherAI/pythia-160m",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0664,
+   "top1_share": 0.8945,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.8945,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "EleutherAI/pythia-1b": {
+   "model": "EleutherAI/pythia-1b",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "EleutherAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.0755,
+   "top1_share": 0.832,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.832,
+   "has_attractor": true,
+   "agrees": false
+  },
+  "gpt2": {
+   "model": "gpt2",
+   "T": 0.02,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.3216,
+   "top1_share": 0.2044,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.2044,
+   "has_attractor": false,
+   "agrees": false
+  },
+  "gpt2-large": {
+   "model": "gpt2-large",
+   "T": 0.02,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4115,
+   "top1_share": 0.1732,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1732,
+   "has_attractor": false,
+   "agrees": false
+  },
+  "gpt2-xl": {
+   "model": "gpt2-xl",
+   "T": 0.02,
+   "corpus": "WebText",
+   "lab": "OpenAI",
+   "prediction": "unknown",
+   "distinct_frac": 0.4557,
+   "top1_share": 0.1615,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1602,
+   "has_attractor": false,
+   "agrees": false
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "BlinkDL (RNN)",
+   "prediction": "none",
+   "distinct_frac": 0.3789,
+   "top1_share": 0.1771,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1745,
+   "has_attractor": false,
+   "agrees": true
+  },
+  "state-spaces/mamba-370m-hf": {
+   "model": "state-spaces/mamba-370m-hf",
+   "T": 0.02,
+   "corpus": "Pile",
+   "lab": "state-spaces (SSM)",
+   "prediction": "none",
+   "distinct_frac": 0.4466,
+   "top1_share": 0.1068,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.0951,
+   "has_attractor": false,
+   "agrees": true
   }
  },
- "predictions_matched": "4/6",
- "verdict": "CORPUS EXPLANATION REFUTED: mamba-130m-hf is Pile-trained and shows NO attractor (top-1 15.5%, distinct 40.5%). The attractor is therefore not the Pile; something in EleutherAI's recipe or tokenizer is doing the work. F62's mechanism must be restated.",
+ "predictions_matched": "True/19",
+ "verdict": "ATTENTION IS NECESSARY, CORPUS DETERMINES: all 3 attention-free models are Pile-trained and NONE has the attractor (top-1 10.7-17.7%), while every attention model on the same corpus does (74.4-98.0%). Among ATTENTION models the corpus separates them -- gpt-neo-125M and gpt2 share an identical tokenizer and differ only in corpus, 78.1% vs 20.4%. This supersedes the single-factor 'corpus refuted' reading: mamba's negative was confounded by architecture, exactly as F63 disclosed.",
  "_analysis_provenance": {
   "script": "attractor_corpus_screen.py",
-  "sha256": "073eafd2c1bd10b0a4bed2cea56ad2a947f85031bb25e5edd6fd28219978465c",
+  "sha256": "b84d800f9e6b989ef44aa1562bcc1480b7e31399e57e87388c62253fffaee149",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
- "_note": "Screens six models for the precondition F62 identified: does a dominant single-token attractor exist at low temperature, i.e. is there an ordered phase for the damage transition to melt? Pythia-410m has one (81 of 96 sites newline at T=0.02) and gpt2-medium does not, which is why the second family showed no transition at all. F62 attributed this to the training corpus; this tests that with two Pile models from DIFFERENT labs, so the Pile is separable from EleutherAI's recipe. Cheap because the hypothesis concerns the SETTLED STATE, needing one settle run rather than the twin-plus-long-window damage protocol. The dominant token is reported by what it decodes to, since ids are not comparable across tokenizers."
+ "_note": "Screens six models for the precondition F62 identified: does a dominant single-token attractor exist at low temperature, i.e. is there an ordered phase for the damage transition to melt? Pythia-410m has one (81 of 96 sites newline at T=0.02) and gpt2-medium does not, which is why the second family showed no transition at all. F62 attributed this to the training corpus; this tests that with two Pile models from DIFFERENT labs, so the Pile is separable from EleutherAI's recipe. Cheap because the hypothesis concerns the SETTLED STATE, needing one settle run rather than the twin-plus-long-window damage protocol. The dominant token is reported by what it decodes to, since ids are not comparable across tokenizers.",
+ "dense_vs_moe": "DENSE vs MoE (granite-3.0, one family): MoE has_attractor=True (top1 70.3%), dense=True (top1 68.4%) -> AGREE, so architecture is not the determinant within this family.",
+ "scale_ladders": {
+  "pythia": {
+   "points": [
+    [
+     14,
+     0.9805,
+     true
+    ],
+    [
+     31,
+     0.7669,
+     true
+    ],
+    [
+     70,
+     0.9336,
+     true
+    ],
+    [
+     160,
+     0.8945,
+     true
+    ],
+    [
+     410,
+     0.7435,
+     true
+    ],
+    [
+     1000,
+     0.832,
+     true
+    ]
+   ],
+   "slope_per_decade": -0.0658,
+   "flips_within_ladder": false
+  },
+  "gpt2": {
+   "points": [
+    [
+     124,
+     0.2044,
+     false
+    ],
+    [
+     355,
+     0.1471,
+     false
+    ],
+    [
+     774,
+     0.1732,
+     false
+    ],
+    [
+     1558,
+     0.1615,
+     false
+    ]
+   ],
+   "slope_per_decade": -0.0313,
+   "flips_within_ladder": false
+  }
+ },
+ "ladder_separation": 0.5391
 }

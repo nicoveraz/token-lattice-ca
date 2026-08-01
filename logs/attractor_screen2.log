@@ -1,0 +1,48 @@
+Attractor screen: 9 models x 4 temperatures
+  EleutherAI/pythia-410m: already complete
+  EleutherAI/gpt-neo-125M: already complete
+  state-spaces/mamba-130m-hf: already complete
+  gpt2-medium: already complete
+  bigscience/bloom-560m: already complete
+  Qwen/Qwen2.5-0.5B: already complete
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [02:08<02:08, 128.45s/it]Fetching 2 files: 100%|██████████| 2/2 [02:08<00:00, 64.22s/it] 
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 5263.79it/s]
+  ibm-granite/granite-3.0-1b-a400m-base (granite, IBM (MoE)) loaded in 143s, V=49152
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    T=0.02   distinct=  5.1%  top1= 70.3%  dominant='\n'
+    T=0.2    distinct=  7.7%  top1= 69.3%  dominant='\n'
+    T=0.436  distinct= 21.4%  top1= 52.2%  dominant='\n'
+    T=0.7    distinct= 57.2%  top1= 13.8%  dominant='\n'
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [03:21<06:43, 201.97s/it]Fetching 3 files:  67%|██████▋   | 2/3 [03:33<01:29, 89.83s/it] Fetching 3 files: 100%|██████████| 3/3 [03:33<00:00, 71.10s/it]
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 5335.36it/s]
+  ibm-granite/granite-3.0-2b-base (granite, IBM (dense)) loaded in 235s, V=49152
+    T=0.02   distinct=  8.6%  top1= 68.4%  dominant='\n'
+    T=0.2    distinct=  7.6%  top1= 65.4%  dominant='\n'
+    T=0.436  distinct= 26.0%  top1= 44.9%  dominant='\n'
+    T=0.7    distinct= 57.3%  top1= 12.6%  dominant='\n'
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 13810.72it/s]
+  allenai/OLMo-1B-hf (Dolma, AI2) loaded in 215s, V=50304
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    T=0.02   distinct= 47.3%  top1= 11.8%  dominant='\n'
+    T=0.2    distinct= 51.8%  top1= 10.8%  dominant='\n'
+    T=0.436  distinct= 61.3%  top1=  9.4%  dominant='\n'
+    T=0.7    distinct= 73.0%  top1=  7.8%  dominant='.'
+
+=== attractor at the lowest temperature (T=0.02) ===
+                         model   corpus         lab  distinct    top1     dominant  predicted   observed
+        EleutherAI/pythia-410m     Pile  EleutherAI     12.9%   74.4%         '\n'  attractor  attractor
+       EleutherAI/gpt-neo-125M     Pile  EleutherAI     16.5%   78.1%          ' '  attractor  attractor
+    state-spaces/mamba-130m-hf     Pile state-spaces     40.5%   15.5%         '\n'  attractor       none   <- against prediction
+                   gpt2-medium  WebText      OpenAI     43.8%   14.7%         '\n'       none       none
+         bigscience/bloom-560m    ROOTS  BigScience     66.9%    6.0%        ' एक'       none       none
+             Qwen/Qwen2.5-0.5B    mixed     Alibaba     18.9%   73.7%          '0'       none  attractor   <- against prediction
+  ibm-granite/granite-3.0-1b-a400m-base  granite   IBM (MoE)      5.1%   70.3%         '\n' same-as-pair  attractor   <- against prediction
+  ibm-granite/granite-3.0-2b-base  granite IBM (dense)      8.6%   68.4%         '\n' same-as-pair  attractor   <- against prediction
+            allenai/OLMo-1B-hf    Dolma         AI2     47.3%   11.8%         '\n'    unknown       none   <- against prediction
+
+  -> CORPUS EXPLANATION REFUTED: mamba-130m-hf is Pile-trained and shows NO attractor (top-1 15.5%, distinct 40.5%). The attractor is therefore not the Pile; something in EleutherAI's recipe or tokenizer is doing the work. F62's mechanism must be restated.
+
+  DENSE vs MoE (granite-3.0, one family): MoE has_attractor=True (top1 70.3%), dense=True (top1 68.4%) -> AGREE, so architecture is not the determinant within this family.
+
+wrote results/attractor_corpus_screen.json
