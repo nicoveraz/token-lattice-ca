@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F73)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F74)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2449,6 +2449,72 @@ The estimator is deduplicated as a side effect: `_assembly_pilot.py` imported it
 `assembly_calib.py` is now the single implementation and the pilot imports it. Pilot output is
 **bit-identical** to the pre-refactor baseline, and a test asserts the two modules share the same
 function objects — the anti-drift rule from F56, which caught a shadowed duplicate on its first run.
+
+### F74 — no compression or entropy baseline reproduces Δ's ordering, and the difference is in shape (#20)
+The standing objection to assembly theory is that the assembly index is a repackaged compression
+measure: Abrahão et al. (*PLOS Complex Systems* 2024) claim "full equivalence… via a method based
+upon the principles of statistical compression renamed 'assembly index'", with Ozelim et al.
+reporting LZW–assembly Pearson 0.874 and **0.95 between InChI string *length* and assembly index**.
+§5.2 ran it as an experiment rather than answering it in prose, and built so that answer could win.
+
+Thirteen measures — LZ77, LZW, RePair, Sequitur, gzip, bz2, lzma, unigram/block entropy, entropy
+rate, excess entropy, a coarse `C_μ`, integrated MI, and Δ — across six length-matched regimes, each
+reported as a **contrast against its own 20-shuffle ensemble** (the Kempes fixed-multiset permutation
+control, applied to every baseline rather than only to ours):
+
+```
+                    real text   degen x2   noise      peaks on          rho vs Delta
+  Delta (log A)        +6.87      +0.34    +0.00      REAL TEXT              1.00
+  repair_size         -29.00    -103.85    -3.25      degenerate_x2         -0.88
+  gzip_bits          -352.80    -996.00    +3.20      degenerate_x2         -0.64
+  lzma_bits          -388.80    -976.00   +16.00      degenerate_x2         -0.88
+  excess_entropy       +0.12      +0.99    -0.01      degenerate_x2         +0.77
+  C_mu                 -0.06      +0.84    -0.22      random_soup           -0.15
+```
+
+**Eleven of twelve baselines peak on degenerate repetition. Δ is the only measure that peaks on real
+text, by a factor of 20.** The closest baseline is ρ = −0.88, inside the pre-registered ±0.90
+redescription threshold. Every compression and entropy measure responds *more strongly to a two-word
+cycle than to real English* — which is §3.3's tempering result (the exponential is what keeps real
+text on top) now demonstrated against the full suite instead of against three tempered versions of
+itself. **A difference in shape is not explainable by a correlation coefficient.**
+
+**Two claims of ours died on the way, both in the direction of conceding to the critics.**
+
+*First, §3.2's "and so does every compression baseline" is withdrawn.* It compared single numbers
+without asking whether the difference exceeded shuffle-to-shuffle scatter. Against an ensemble,
+**gzip separates real text from its own shuffles at z = −8.13**, lzma at −7.23, LZ77 at −5.30. What
+survives — and is now on firmer ground than when it rested on one shuffle — is the claim about the
+**raw index**, which reads **z = −1.78**, inside noise. So compressors are *not* blind to word order
+under multiset control, and the case for the ensemble quantity cannot be that they are. It rests on
+the ordering.
+
+*Second, §4.1 and §5.2 had a unit error.* `z ≤ g` (Rytter; Charikar et al.) is stated for `g` = the
+total length of all right-hand sides. A binary SLP with `r` rules has total RHS length `2r`, and the
+assembly index **is** the binary rule count, so `g = 2·ASI` and the theorem gives `z ≤ 2·ASI`. The
+lower bound is **`z/2`**, and `[z, RePair]` is **not a bracket** — z exceeds RePair on ordinary text
+(11 vs 10). The corrected bracket `[z/2, RePair]` holds with room to spare, and both halves are
+pinned by tests so the wording cannot return.
+
+**The sharpest objection is weakened, not retired.** Neither `C_μ` nor excess entropy peaks on real
+text, so Δ is not a redescription of statistical complexity *as estimated here* — but "here" is a
+coarse, undersampled estimator on 440 words. A proper CSSR reconstruction could still peak with Δ and
+this experiment could not tell. Lindgren & Nordahl (1988) remains the objection to answer.
+
+**A defect of my own design, caught by its own kill condition.** The first version ranked on a
+z-score rather than the contrast, and reported that Δ peaked on degenerate repetition — the
+pre-registered kill. The cause was the normalisation: `z = contrast/sd` explodes when the *control*
+has little variance (shuffling a 2-cycle barely changes it, so sd = 0.0153 turned a contrast of +0.34
+into z = 22.2, above real text's +6.87 at z = 3.2) and is **undefined** when the control has none,
+silently dropping two poles. Δ is *defined* as a contrast, so ranking on its z-score ranked something
+that is not Δ. A second, smaller instance: `n_words`, `n_types` and `H0` are exactly invariant under
+a word shuffle — they are functions of the multiset alone — so an argmax over their all-zero contrast
+vector returned whichever regime sorted first, and they were being counted as "peaking on real text".
+Both are the same failure: a formula applied where its denominator is degenerate.
+
+That invariance is worth stating positively, because it is what disarms the critics' most dangerous
+baseline: **the InChI-length confound provably cannot operate here**, since length and type count are
+held exactly constant by the control rather than partialled out.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

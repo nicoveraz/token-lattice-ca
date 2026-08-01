@@ -1,7 +1,9 @@
 # Assembly theory as a structure read-out for the token lattice
 
 **Written 1 Aug 2026; §1.5, §3.5, §5.3, §5.5, §7 corrected the same day for F71/F72, and §0/§3.1/§5.1
-corrected again for F73 when the gate this document specified was built and contradicted it.** A first-principles analysis of what this project has established, followed by
+corrected again for F73/F74 as the experiments this document specified were built and contradicted
+it — §3.1 and §5.1 on exactness, §3.2 on compression baselines, §4.1 on the `z ≤ g` units, §5.2 on
+the outcome.** A first-principles analysis of what this project has established, followed by
 a concrete program for issue **#20** (assembly theory as a compositional-complexity axis), including
 a **pilot that was actually run** against the data already in `results/`.
 
@@ -37,6 +39,7 @@ built from exact combinatorial counts on observed strings.
 | 3 | The **exponential weighting is load-bearing.** Tempering `e^{a}` to `e^{a/2}` or to linear `a` *inverts* the ordering, so degenerate repetition beats real text | **Solid, and non-obvious.** This is the thing that separates AT from a compression measure |
 | 4 | The right statistic is a **contrast against a matched word-shuffle**, `Δ = log A(text) − ⟨log A(shuffled)⟩`. It reads **exactly +0.00 on pure degenerate repetition** and **+0.00 on random soup**, against **+6.87 on real text**, at matched length | **Solid.** Both failure poles pin at zero automatically |
 | 5 | Applied to the existing CA output, Δ is large at low temperature and **exactly zero** at T ≥ 0.9 for both constructions, with MLM above AR | **Suggestive only — NOT established.** Window-to-window spread overlaps zero in several cells; effective object count is 1–2 |
+| 6 | **No compression or entropy baseline reproduces Δ's ordering.** 11 of 12 peak on degenerate repetition; Δ alone peaks on real text, by 20× | **Solid, and the strongest result here** (F74, `assembly_baselines.py`). The difference is in *shape*, which no correlation coefficient explains away |
 
 **The honest read on (5):** the direction is consistent across twelve cells and both constructions,
 and the two zero-poles behave as designed. But every applied number rests on **one settle run per
@@ -315,9 +318,17 @@ consistent with the correlations the critics report (Pearson 0.874–0.99 agains
 measured in the same confounded way, since these regimes differ in far more than word order.
 
 **Under length and multiset control, the raw index is null.** Real and word-shuffled text differ by
-**0.004 in assembly rate** — and so does every compression baseline. The raw assembly index carries
-no information about word order at this granularity. Reporting it as a "complexity" read-out of
-generated text would be reporting gzip with extra steps.
+**0.004 in assembly rate**. The raw assembly index carries no information about word order at this
+granularity. Reporting it as a "complexity" read-out of generated text would be reporting gzip with
+extra steps. §5.2 confirms this against a *20-shuffle ensemble* rather than the single shuffle used
+here: the raw index reads **z = −1.78**, inside noise.
+
+**"— and so does every compression baseline" was the overstatement, and F74 withdraws it.** That
+clause rested on comparing single numbers without asking whether the difference was large against
+shuffle-to-shuffle scatter. Against an ensemble, **gzip separates real text from its own shuffles at
+z = −8.13**, lzma at −7.23, LZ77 at −5.30 and block entropy at −3.89. Compressors are *not* blind to
+word order under multiset control. The case for the ensemble quantity therefore cannot be "compression
+cannot see this"; it rests on the ORDERING across regimes, which is where §5.2 finds the separation.
 
 **The ensemble quantity separates the same pair by 6.87** (§3.4). That gap between the two rows is
 the entire case for assembly theory here, and it lands exactly where the rebuttal literature says it
@@ -455,9 +466,15 @@ SLP(w)`; Theorem 1: the decision problem is **NP-complete**; Theorem 2: the opti
 **NP-hard and APX-hard** — no polynomial-time approximation scheme unless P = NP.
 
 This is good news for §3.1, not bad. It means the estimator design is forced and defensible: RePair
-*exhibits a grammar*, so it is a **certified upper bound**, and the LZ77 factor count is a lower bound
-(`z ≤ g`, Rytter 2003 / Charikar et al. 2005 — **[unverified]**, and load-bearing, so verify). Report
-the bracket `[z, RePair]`, claim exactness only on the two provable families of §3.1, where it holds.
+*exhibits a grammar*, so it is a **certified upper bound**.
+
+**The lower-bound half of this paragraph had a unit error, corrected in F74.** `z ≤ g` (Rytter 2003 /
+Charikar et al. 2005 — still **[unverified]**) is stated for `g` = the **total length of all
+right-hand sides**. A binary SLP with `r` rules has total RHS length `2r`, and the assembly index *is*
+the binary rule count, so `g = 2·ASI` and the theorem gives **`z ≤ 2·ASI`**. The lower bound is
+**`z/2`**, not `z`, and `[z, RePair]` is **not a bracket** — z exceeds RePair on ordinary text (11 vs
+10 on `"abracadabra"×6`, 20 vs 19 on repeated English). Report **`[z/2, RePair]`**, which holds with
+room to spare, and claim exactness only on the no-reuse family of §3.1, where it holds.
 
 The AT camp has itself converged on grammar algorithms: Siebert, Chowdhury, Slocombe & Walker,
 *Assembly Spaces: Formal Definitions and Fast Methods for Approximating Assembly Indices*
@@ -575,12 +592,29 @@ at n=15, 23 and 63, so the withdrawn claim cannot quietly return.
 
 ### 5.2 `experiments/assembly_baselines.py` — the head-to-head *(free)*
 
+**BUILT AND RUN — see F74. The program continues, and it cost this section two claims on the way.**
+Thirteen baselines against Δ across six length-matched reference regimes, every one reported as a
+contrast against its own 20-shuffle ensemble:
+
+```
+  Delta (log A)          peaks on REAL TEXT   +6.87  vs +0.34 degenerate, +0.00 noise
+  11 of 12 baselines     peak on DEGENERATE REPETITION
+  closest to Delta       repair_size, rho = -0.88, inside the +/-0.90 redescription threshold
+  C_mu / excess entropy  peak on random_soup / degenerate_x2 -- NOT on real text
+```
+
+**No baseline reproduces Δ's ordering, and the difference is in *shape*.** Every compression and
+entropy measure responds more strongly to a two-word cycle than to real English; Δ is the only one
+that inverts it, by a factor of **20**. That is §3.3's tempering result — the exponential is
+load-bearing — now shown against the full suite rather than against three tempered versions of
+itself, and a difference in shape is not explainable by a correlation coefficient.
+
 The critique in §4.2 is not a footnote; run it as an experiment. Every text measured anywhere in the
 program carries **all** of these, and no cell ever reports Δ alone:
 
 | Baseline | Why it is mandatory |
 |---|---|
-| **LZ77 factor count `z`** | A lower bound on the assembly index itself (`z ≤ g`). Omitting it is indefensible |
+| **LZ77 factor count `z`** | `z ≤ g = 2·ASI`, so **`z/2`** is the lower bound — see F74 for the unit error in the original wording. Omitting it is indefensible |
 | **LZ78 / LZW dictionary size** | The exact measure the critics claim equivalence to |
 | **RePair size, and Sequitur** | `ASI = SLP`, so these are upper bounds *on our own quantity*. Report the bracket `[z, RePair]` |
 | **gzip / zstd length** | The "does a zip file do this too" test. Cheap; omitting it looks evasive |
@@ -687,8 +721,8 @@ is the second reason to use it.
 | Risk | Severity | Mitigation, and where |
 |---|---|---|
 | **Δ is a tail statistic** — effective object count 1–3, one chance repeat moves it | **High.** The single biggest threat | Report effective object count beside every Δ; ≥8 seeds with the seed as the independent unit; per-replica measurement (§5.3) |
-| **AT is contested**, and importing it imports the fight | **High** | Engage head-on: §5.2 runs the compression baselines as a pre-registered experiment, and §3.2 already concedes the critique for the *raw* index on our own data. The ring's fixed N puts us in the regime where Kempes et al. showed the measures decorrelate (§4.2) |
-| **`C_μ` already peaks at criticality** (Lindgren & Nordahl 1988; Crutchfield), so Δ may be a redescription | **High** — the sharpest objection | Report `C_μ` and excess entropy in every cell (§5.2). If Δ peaks where `C_μ` peaks, write one paragraph and stop |
+| **AT is contested**, and importing it imports the fight | **High → answered** | §5.2 ran it. No baseline reproduces Δ's ordering (closest ρ = −0.88); 11 of 12 peak on degenerate repetition where Δ peaks on real text. §3.2's concession for the *raw* index stands and is now ensemble-confirmed (z = −1.78), while the overclaim that compressors are blind to word order is withdrawn (gzip: z = −8.13) |
+| **`C_μ` already peaks at criticality** (Lindgren & Nordahl 1988; Crutchfield), so Δ may be a redescription | **High → partially answered** | §5.2: neither `C_μ` nor excess entropy peaks on real text (ρ = −0.15 and +0.77). But that is a **coarse, undersampled** estimator on 440 words, not `C_μ` itself — a proper CSSR reconstruction could still peak with Δ and this experiment could not tell. The objection is weakened, **not** retired |
 | **AssemblyCA is prior art for AT-on-CA** | **Medium** | Read the PDF before writing; differentiate on 1D-vs-2D, the full assembly equation vs the index alone, and criticality — but confirm all three from the paper, not the project page |
 | **Δ may be a repetition detector in disguise** | **High** | The degenerate control reads exactly +0.00 (§3.4), which a repetition detector could not do. But it must be reported every time, not cited once |
 | **Novelty may be recall the reference is too small to see** (§3.6) | **Medium–High** | Enlarge the novelty reference well past 3000 documents before any joint novelty × assembly claim; treat top contributors as memorisation candidates and check them |
@@ -720,8 +754,8 @@ question open.
    `experiments/audit_refs.py` and `tests/test_refs_match_arxiv.py` for exactly this.
 4. ~~**Build `assembly_calib.py` (§5.1).**~~ **DONE.** The estimator earned the right to report,
    and cost §5.1 one claim on the way — see F73.
-5. **Build `assembly_baselines.py` (§5.2).** Also free. Answers the strongest reviewer objection
-   before any compute is spent on it — including `C_μ`, which is the one that could end the program.
+5. ~~**Build `assembly_baselines.py` (§5.2).**~~ **DONE, and the program survives it** — see F74.
+   The `C_μ` objection is weakened rather than retired, because the estimate is coarse.
 6. **Then and only then, `assembly_temperature.py` (§5.3)** — random seeding only, per §5.5 as
    corrected by F72. Half the grid the first draft asked for.
 7. Register `("assembly_*.json", "assembly_*.py")` in `_STALENESS_PAIRS` in

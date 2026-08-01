@@ -39,31 +39,9 @@ import json, math, zlib, random, re, collections, itertools, statistics
 # produced by exactly the code the gate licenses.
 from assembly_calib import (WORD, SHAKESPEARE, FLOOR, repair_assembly_index,
                             addition_chain_length, A_exp, lg, delta)
+from assembly_baselines import lz77_phrases, gzip_bits, shannon_bits
 
 NOVELTY_JSON = _ROOT / "results" / "novelty_structure.json"
-
-
-def lz77_phrases(s):
-    """Greedy self-referential LZ77 parse length -- a lower bound on the smallest grammar (z <= g)."""
-    n, i, z = len(s), 0, 0
-    while i < n:
-        best = 0
-        for L in range(min(n - i, 64), 0, -1):
-            if s.find(s[i:i + L], 0, i) != -1:
-                best = L
-                break
-        i += max(best, 1)
-        z += 1
-    return z
-
-
-def gzip_bits(s):
-    return len(zlib.compress(s.encode("utf-8", "replace"), 9)) * 8
-
-
-def shannon_bits(s):
-    c, n = collections.Counter(s), len(s)
-    return -sum(v * math.log2(v / n) for v in c.values())
 
 
 # ----------------------------------------------------------------------- stages

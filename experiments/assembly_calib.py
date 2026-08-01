@@ -148,12 +148,27 @@ def A_exp(words, n=NGRAM):
     grams = [" ".join(words[i:i + n]) for i in range(len(words) - n + 1)]
     if len(grams) < 2:
         return 0.0, 0, 0.0
-    w = [math.exp(repair_assembly_index(g)) * (c - 1)
+    w = [math.exp(_cached_index(g)) * (c - 1)
          for g, c in collections.Counter(grams).items() if c >= 2]
     if not w:
         return 0.0, 0, 0.0
     s = sum(w)
     return s / len(grams), len(w), (s * s) / sum(x * x for x in w)
+
+
+_INDEX_CACHE = {}
+
+
+def _cached_index(gram):
+    """Memoised by n-gram string. A shuffle changes the COUNTS, never the objects' own indices, so
+    recomputing RePair per shuffle is pure waste -- and the z-scores in assembly_baselines.py need
+    20+ shuffles per window where the pilot used 6. Pure memo on a deterministic function: the
+    values are identical, only the time changes.
+    """
+    v = _INDEX_CACHE.get(gram)
+    if v is None:
+        v = _INDEX_CACHE[gram] = repair_assembly_index(gram)
+    return v
 
 
 def lg(a):
@@ -229,7 +244,13 @@ def pole_cases(seed=1):
                 degenerate_x1=["the"] * 2000,
                 degenerate_x2=["the", "of"] * 1000,
                 random_soup=[rng.choice(base) for _ in range(2000)],
-                unique_tokens=[f"w{i}" for i in range(2000)])
+                # Fixed-width labels drawn at random, NOT w0..w1999 in order. Sequential labels
+                # are lexicographically ordered and of growing width, so an order-sensitive
+                # baseline sees strong structure that a shuffle destroys -- an artifact of how the
+                # regime was written rather than a property of "all tokens distinct". It makes no
+                # difference to Delta (nothing repeats either way, so A = 0) but it badly confounds
+                # the compression baselines in assembly_baselines.py, which is where it surfaced.
+                unique_tokens=[f"w{i:05d}" for i in rng.sample(range(90000), 2000)])
 
 
 # Poles that must pin, and the one case that must separate from them. degenerate_x2 is EXCLUDED
