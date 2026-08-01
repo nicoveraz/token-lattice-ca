@@ -1,0 +1,78 @@
+  prereg block verifies: True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 12331.42it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/pythia-14m                                endpoints= 1 modal=1.00 fix=1.00 top1=0.118 H=6.12 4s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8642.19it/s]
+  EleutherAI/pythia-31m                                endpoints= 6 modal=0.42 fix=0.33 top1=0.137 H=5.93 3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8410.74it/s]
+  EleutherAI/pythia-70m                                endpoints= 1 modal=1.00 fix=1.00 top1=0.168 H=5.59 4s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7874.03it/s]
+  EleutherAI/pythia-160m                               endpoints= 3 modal=0.92 fix=0.92 top1=0.164 H=5.63 5s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7855.96it/s]
+  EleutherAI/pythia-410m                               endpoints= 4 modal=0.58 fix=0.58 top1=0.177 H=5.35 10s
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 7259.02it/s]
+  EleutherAI/pythia-1b                                 endpoints= 6 modal=0.46 fix=0.46 top1=0.181 H=5.27 15s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7059.67it/s]
+  gpt2                                                 endpoints= 5 modal=0.46 fix=0.00 top1=0.197 H=5.17 9s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7630.24it/s]
+  gpt2-medium                                          endpoints= 8 modal=0.54 fix=0.00 top1=0.199 H=5.15 21s
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 6887.54it/s]
+  gpt2-large                                           endpoints= 5 modal=0.50 fix=0.00 top1=0.198 H=5.15 30s
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 7232.35it/s]
+  gpt2-xl                                              endpoints= 5 modal=0.42 fix=0.00 top1=0.200 H=5.12 52s
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 6344.34it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  ibm-granite/granite-3.0-1b-a400m-base                endpoints= 8 modal=0.29 fix=0.54 top1=0.154 H=5.57 164s
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 4776.56it/s]
+  ibm-granite/granite-3.0-2b-base                      endpoints= 5 modal=0.42 fix=0.88 top1=0.155 H=5.51 60s
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 6607.14it/s]
+  state-spaces/mamba-130m-hf                           endpoints= 7 modal=0.46 fix=0.00 top1=0.169 H=5.44 20s
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 7201.91it/s]
+  state-spaces/mamba-370m-hf                           endpoints= 7 modal=0.71 fix=0.00 top1=0.176 H=5.33 37s
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 6614.06it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/gpt-neo-125M                              endpoints= 7 modal=0.50 fix=0.21 top1=0.166 H=5.37 23s
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 37937.40it/s]
+  RWKV/rwkv-4-169m-pile                                endpoints= 7 modal=0.50 fix=0.00 top1=0.188 H=5.20 20s
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 6443.54it/s]
+  bigscience/bloom-560m                                endpoints=13 modal=0.21 fix=0.00 top1=0.138 H=6.62 22s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6067.06it/s]
+  Qwen/Qwen2.5-0.5B                                    endpoints= 4 modal=0.88 fix=0.88 top1=0.128 H=6.23 24s
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 3947.20it/s]
+  allenai/OLMo-1B-hf                                   endpoints= 4 modal=0.79 fix=0.00 top1=0.163 H=5.54 38s
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 57647.66it/s]
+[transformers] [1mCodeGenForCausalLM LOAD REPORT[0m from: Salesforce/codegen-350M-mono
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...19}.attn.causal_mask | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  Salesforce/codegen-350M-mono                         endpoints= 3 modal=0.88 fix=0.00 top1=0.159 H=5.34 26s
+Loading weights:   0%|          | 0/244 [00:00<?, ?it/s]Loading weights: 100%|██████████| 244/244 [00:00<00:00, 6550.50it/s]
+  bigcode/tiny_starcoder_py                            endpoints= 4 modal=0.67 fix=0.12 top1=0.165 H=5.35 13s
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 43187.46it/s]
+  facebook/opt-350m                                    endpoints= 3 modal=0.42 fix=0.00 top1=0.201 H=5.10 18s
+Loading weights:   0%|          | 0/341 [00:00<?, ?it/s]Loading weights: 100%|██████████| 341/341 [00:00<00:00, 6798.55it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer CodeGenTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  microsoft/phi-1_5                                    endpoints= 6 modal=0.62 fix=0.62 top1=0.254 H=4.26 22s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5221.27it/s]
+  HuggingFaceTB/SmolLM2-360M                           endpoints= 3 modal=0.88 fix=0.96 top1=0.173 H=5.14 14s
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 4577.12it/s]
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T  endpoints= 4 modal=0.58 fix=0.96 top1=0.202 H=4.98 21s
+Loading weights:   0%|          | 0/340 [00:00<?, ?it/s]Loading weights:   0%|          | 1/340 [00:00<03:00,  1.87it/s]Loading weights:  34%|███▍      | 117/340 [00:00<00:00, 237.96it/s]Loading weights:  52%|█████▏    | 176/340 [00:01<00:00, 193.37it/s]Loading weights:  63%|██████▎   | 215/340 [00:01<00:00, 181.72it/s]Loading weights:  72%|███████▏  | 245/340 [00:01<00:00, 174.41it/s]Loading weights:  80%|███████▉  | 271/340 [00:01<00:00, 165.07it/s]Loading weights:  88%|████████▊ | 299/340 [00:01<00:00, 149.40it/s]Loading weights:  93%|█████████▎| 317/340 [00:02<00:00, 132.83it/s]Loading weights:  98%|█████████▊| 333/340 [00:02<00:00, 132.19it/s]Loading weights: 100%|██████████| 340/340 [00:02<00:00, 152.31it/s]
+  stabilityai/stablelm-2-1_6b                          endpoints= 4 modal=0.58 fix=0.92 top1=0.143 H=5.91 24s
+
+  -> K1 DOES NOT FIRE: the baseline loses on best pair separation 0.5x vs the CA's 2.4x. The CA-derived features carry something the static two-token conditional does not, so H3 survives its first real test and Gate 2 is licensed. This does NOT establish that the dynamics are necessary -- only that the cheapest deflation tried so far does not reproduce them. Baseline features cohering within families at p<0.05: fixed_point_fraction, cond_top1_mean, cond_entropy_mean (Gate 0's CA attractor share was 0.218, p~3e-4). Coherence is necessary for a fingerprint and is not by itself identification -- Gate 0's own lesson, where a coherent feature still gave 4/14 attribution. Exploratory-to-registered boundary: the COMPARISON is pre-registered in prereg.json and K1's rule was frozen before any of these numbers existed; the numbers themselves are new. Family is the independent unit throughout, so the six Pythia sizes are one observation.
+
+wrote fingerprint/gate1.json

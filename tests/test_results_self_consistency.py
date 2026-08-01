@@ -229,6 +229,7 @@ _STALENESS_PAIRS = [
     ("assembly_calib.json", "assembly_calib.py"),
     ("assembly_baselines.json", "assembly_baselines.py"),
     ("assembly_temperature.json", "assembly_temperature.py"),
+    ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("attractor_interventions.json", "attractor_interventions.py"),
     ("attractor_construction.json", "attractor_construction.py"),
     ("mlm_transition.json", "mlm_transition.py"),

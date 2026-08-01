@@ -1,0 +1,168 @@
+{
+ "_provenance": {
+  "environment": {
+   "implementation": "CPython",
+   "packages": {
+    "matplotlib": "3.10.9",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.1"
+   },
+   "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+   "python": "3.11.15"
+  },
+  "imports": {},
+  "note": "sha256 of the analysis source at write time, plus the project-local import closure and environment fingerprint. If any hash disagrees with the file on disk, this analysis was produced by a different version of the code: re-run it before believing the numbers.",
+  "script": "reanalysis.py",
+  "script_external": true,
+  "sha256": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d"
+ },
+ "controlled_pair": {
+  "gap_over_worst_within_range": 2.43,
+  "gap_top1_low": 0.577,
+  "note": "same tokenizer, different corpus: the CA signature separates by gap/worst-within-range x, T* lands at OPPOSITE censoring ends (never-melts vs never-exists), while greedy degeneration barely moves",
+  "rep4_gap_for_contrast": 0.043,
+  "tstar_states": {
+   "gpt-neo": "censored",
+   "gpt2": "none"
+  },
+  "within_family_ranges": {
+   "gpt2": 0.057,
+   "granite": 0.019,
+   "mamba": 0.048,
+   "pythia": 0.237
+  }
+ },
+ "corpus_direction": {
+  "nonpile_attention_range": [
+   0.06,
+   0.891
+  ],
+  "pile_attention_families": 2,
+  "pile_attention_min_top1": 0.744,
+  "pile_attention_models": 7,
+  "reading": "every Pile+attention model has the attractor; non-Pile spans the full range -> Pile-like corpus is INFERABLE one-way (attractor absent => not-Pile-like, given attention), never two-way"
+ },
+ "family_attribution_loo": {
+  "chance_expected": 0.88,
+  "n_candidate_families": 16,
+  "n_correct": 4,
+  "n_scored": 14,
+  "per_model": [
+   {
+    "model": "EleutherAI/pythia-410m",
+    "ok": false,
+    "pred": "granite",
+    "true": "pythia"
+   },
+   {
+    "model": "state-spaces/mamba-130m-hf",
+    "ok": false,
+    "pred": "gpt2",
+    "true": "mamba"
+   },
+   {
+    "model": "gpt2-medium",
+    "ok": false,
+    "pred": "mamba",
+    "true": "gpt2"
+   },
+   {
+    "model": "ibm-granite/granite-3.0-1b-a400m-base",
+    "ok": true,
+    "pred": "granite",
+    "true": "granite"
+   },
+   {
+    "model": "ibm-granite/granite-3.0-2b-base",
+    "ok": true,
+    "pred": "granite",
+    "true": "granite"
+   },
+   {
+    "model": "EleutherAI/pythia-14m",
+    "ok": false,
+    "pred": "smollm",
+    "true": "pythia"
+   },
+   {
+    "model": "EleutherAI/pythia-31m",
+    "ok": false,
+    "pred": "stablelm",
+    "true": "pythia"
+   },
+   {
+    "model": "EleutherAI/pythia-70m",
+    "ok": false,
+    "pred": "smollm",
+    "true": "pythia"
+   },
+   {
+    "model": "EleutherAI/pythia-160m",
+    "ok": false,
+    "pred": "smollm",
+    "true": "pythia"
+   },
+   {
+    "model": "EleutherAI/pythia-1b",
+    "ok": true,
+    "pred": "pythia",
+    "true": "pythia"
+   },
+   {
+    "model": "gpt2",
+    "ok": true,
+    "pred": "gpt2",
+    "true": "gpt2"
+   },
+   {
+    "model": "gpt2-large",
+    "ok": false,
+    "pred": "rwkv",
+    "true": "gpt2"
+   },
+   {
+    "model": "gpt2-xl",
+    "ok": false,
+    "pred": "opt",
+    "true": "gpt2"
+   },
+   {
+    "model": "state-spaces/mamba-370m-hf",
+    "ok": false,
+    "pred": "opt",
+    "true": "mamba"
+   }
+  ]
+ },
+ "family_coherence": {
+  "rep_4": {
+   "perm_p": 0.12818718128187181,
+   "within_over_between": 0.745
+  },
+  "top1_low": {
+   "perm_p": 0.00029997000299970003,
+   "within_over_between": 0.218
+  },
+  "tstar_finite_only": {
+   "caveat": "only pythia(6)+granite(2) contribute within-pairs; thin",
+   "n": 14,
+   "perm_p": 0.015398460153984602,
+   "within_over_between": 0.335
+  }
+ },
+ "gate0_verdict": "COHERENCE YES, IDENTIFICATION NOT YET: the CA-derived signature coheres within families (top1 within/between 0.218, perm p~3e-4; T* 0.335, p~0.015 on a thin subset) while a generic degeneration metric does not (rep_4 0.745, p~0.13), and the controlled corpus pair separates at 2.4x the worst within-family range with T* at opposite censoring ends. But 16-way family attribution from the 4-number T-profile alone is weak (4/14 vs ~0.9 chance): the profile is effectively low-dimensional. Reading: enough signal to justify Gate 1; the feature battery must widen (dominant token, radius/BOS sensitivity, conditional stats) before any attribution claim. Exploratory throughout; nothing here is a finding.",
+ "independent_unit": "family",
+ "marginal_deflation": {
+  "n": 8,
+  "reading": "weak: the CA signature is not a re-read of the unconditional prior (consistent with evidence_falloff's own verdict). The REAL deflationary baseline -- direct two-token-conditional statistics -- is untested and is Gate 1 of PROGRAM.md",
+  "spearman_marginal_vs_ca_top1": 0.238
+ },
+ "n_families": 16,
+ "n_models": 26,
+ "pile_claim_units": {
+  "feature_level_icc": "7 observations in 2 family(s): ICC=0.000, design effect 1.00, effective n ~ 7.0",
+  "operative_n": "2 independent families (pythia, gpt-neo) \u2014 the F68 hazard applies to this direction exactly as it did to T*; ~21 families would settle it"
+ }
+}

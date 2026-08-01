@@ -1,0 +1,38 @@
+{
+ "name": "fingerprint-program-v1",
+ "hypotheses": {
+  "H1_family": "the frozen signature battery attributes held-out models to their family above chance, leave-one-family-member-out, family as unit",
+  "H2_corpus": "controlled pairs differing only in corpus/post-training separate beyond the worst within-family range on >=1 battery feature: gpt-neo-125M vs gpt2 (replication, seeds); gpt2 vs distilgpt2; one base-vs-instruct sibling pair",
+  "H3_dynamics": "CA-derived features add attribution/separation power over the direct two-token-conditional baseline computed on the same models",
+  "H4_api": "the battery computed through a raw completion API (temperature-controlled, single-token calls) reproduces the local signature within seed spread"
+ },
+ "frozen": {
+  "battery": [
+   "top1_share at T in {0.02,0.2,0.436,0.7}",
+   "dominant_token id",
+   "tstar with 3-state censoring (none<finite<censored_above)",
+   "top1 drop r=2 to r=3",
+   "top1 drop under 1-token BOS prefix",
+   "direct p(.|x1,x2) stats: argmax fixed-point count, mean top-1, entropy (the baseline)"
+  ],
+  "geometry": {
+   "N": 96,
+   "B": 16,
+   "r": 2,
+   "settle_sweeps": 16,
+   "seeds_per_model": 4
+  },
+  "unit": "model family (F68)",
+  "attribution_protocol": "nearest family centroid, all-families candidate set, leave-one-out; report counts vs chance",
+  "pair_protocol": "gap over worst within-family range, per feature, 4 seeds per side"
+ },
+ "kill_conditions": {
+  "K1_deflation": "direct-conditional baseline matches or exceeds CA features on H1 AND H2 -> the CA machinery exits; capability reframes as conditional-statistics fingerprinting",
+  "K2_pairs": "neither the neo/gpt2 replication nor any of {distilgpt2, instruct-sibling} pair separates beyond worst within-family range -> corpus/post-training inference dies; F64 stays a control",
+  "K3_api": "chat-template wrapping destroys the signature AND no raw completion endpoint reproduces it -> capability scoped to open-weight serving only"
+ },
+ "independent_unit": "family",
+ "note": "Gate 0 (reanalysis of existing screen data) precedes this block and is exploratory; Gates 1-3 are governed by it. Deduped-Pythia pair is registered as a discovery probe, not a requirement.",
+ "created_utc": "2026-08-01T21:34:59+00:00",
+ "sha256": "5a15d2e26abef8d28047f4ec23bf6fcca8d1fd792fc7a60e0a881cf0a17dd65b"
+}
