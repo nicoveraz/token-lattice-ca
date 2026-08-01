@@ -56,13 +56,24 @@ and the size of the difference is what nobody has measured.
 
 PRE-REGISTERED:
   Selection (r=2).  Which measures show an INTERIOR maximum in T, judged against BETWEEN-SEED
-                    spread? Those are the usable instruments. A measure whose peak sits inside its
-                    own noise is recorded as monotone, not as a peak.
+                    spread AND against a permutation null? Those are the usable instruments. A
+                    measure whose peak sits inside its own noise is recorded as monotone.
+
+                    AMENDED AFTER THE FIRST RUN (F76). The original criterion was between-seed
+                    spread ALONE, and it reported two survivors of fifteen. The permutation null
+                    -- temperature labels shuffled WITHIN seed, so each seed keeps its own
+                    distribution and loses only the shape -- shows that criterion fires ~10.6% of
+                    the time per measure, with a 95th percentile of SIX survivors of fifteen. Two
+                    is what chance produces (p = 0.32) and neither cleared BH-FDR. Selection now
+                    requires clearing the null at BH-FDR 0.05, because the looser rule would have
+                    licensed up to six spurious instruments for the measurement radii, where
+                    nothing downstream could have caught it. Same correction shape as F59-v1 and
+                    dp_calibration's mean-PLUS-spread rule.
   Measurement.      What do the surviving instruments read at r in {3,8}? Agreement across
                     independent measures is the result; disagreement is reported as disagreement.
   Null.             NO measure is non-monotone at r=2. Then none of this apparatus can read
                     complexity on a system where complexity is known to vary, and the whole
-                    #20 line closes. A NULL HERE IS A GOOD RESULT.
+                    #20 line closes. A NULL HERE IS A GOOD RESULT. **This is what happened.**
   Kill.             If a measure reads high complexity at T=0.02, r=2 while the ring IS degenerate,
                     that measure is disqualified -- it is reading the repetition as structure.
   Power.            THE SEED IS THE INDEPENDENT UNIT (F57), not the replica. Between-seed and
@@ -84,6 +95,9 @@ import torch
 from provenance import stamp, rel
 from assembly_calib import WORD, NGRAM, FLOOR, lg, _cached_index, decides, calibrate
 from assembly_baselines import profile
+from dev_transition_phase3 import bh_fdr        # one implementation; F39 used it on a like battery
+
+N_PERM = 2000                                   # permutations behind the selection null (F76)
 
 GENERATORS = [("ar",  "EleutherAI/pythia-410m", "step143000", "has a low-T pole (F62-F70)"),
               ("mlm", "bert-base-uncased",      None,         "control -- pole unreachable (F67/F72)")]
@@ -430,6 +444,71 @@ def _shape(series, top1_at_low_T=None):
                 low_T_top1=top1_at_low_T)
 
 
+def _perm_null(runs, kind, r, measures, n_perm=N_PERM, seed=0):
+    """How often does the interior-peak test fire when there is NO temperature structure? (F76)
+
+    Permute the temperature labels WITHIN each seed. That destroys any dependence on temperature
+    while preserving exactly each seed's own distribution of values, so a measure whose apparent
+    peak is really between-seed scatter keeps the scatter and loses the shape. The statistic is
+    recomputed by the same `_shape`, noise term included, so the comparison is self-consistent
+    rather than against a fixed threshold.
+
+    Returns per-measure permutation p (add-one, so never 0), BH-adjusted, plus the expected number
+    of survivors -- which is the direct answer to "would N survivors have appeared anyway?".
+    """
+    per_measure = {}
+    for m in measures:
+        by_seed = {}
+        for v in runs.values():
+            if v["kind"] != kind or v["r"] != r:
+                continue
+            try:
+                val = _val(v, m)
+            except (KeyError, TypeError):
+                val = None
+            if val is not None:
+                by_seed.setdefault(v["seed"], {})[v["T"]] = val
+        by_seed = {s: d for s, d in by_seed.items() if len(d) == len(TEMPS)}
+        if len(by_seed) >= 2:
+            per_measure[m] = by_seed
+    if not per_measure:
+        return dict(p={}, p_bh={}, expected=0.0, p95=0, p_count=1.0, observed=0, n_measures=0,
+                    n_perm=n_perm)
+
+    def shape_of(by_seed):
+        se = {T: dict(value=statistics.median([d[T] for d in by_seed.values()]),
+                      sd=statistics.pstdev([d[T] for d in by_seed.values()]),
+                      n_seeds=len(by_seed)) for T in TEMPS}
+        return _shape(se)
+
+    observed = sum(1 for d in per_measure.values() if shape_of(d).get("interior_peak"))
+    rng, hits, per_perm = random.Random(seed), {m: 0 for m in per_measure}, []
+    for _ in range(n_perm):
+        # One shared set of permutations per draw, so the survivor count is computed on the same
+        # draws the per-measure p-values are.
+        orders = {s: rng.sample(list(TEMPS), len(TEMPS))
+                  for s in next(iter(per_measure.values()))}
+        k = 0
+        for m, by_seed in per_measure.items():
+            sh = {s: {TEMPS[i]: d[orders[s][i]] for i in range(len(TEMPS))}
+                  for s, d in by_seed.items()}
+            if shape_of(sh).get("interior_peak"):
+                hits[m] += 1
+                k += 1
+        per_perm.append(k)
+
+    names = list(per_measure)
+    praw = [(hits[m] + 1) / (n_perm + 1) for m in names]
+    padj = bh_fdr(praw)
+    per_perm.sort()
+    return dict(p={m: round(praw[i], 5) for i, m in enumerate(names)},
+                p_bh={m: round(padj[i], 5) for i, m in enumerate(names)},
+                expected=round(statistics.fmean(per_perm), 3),
+                p95=per_perm[int(0.95 * len(per_perm))],
+                p_count=round((sum(1 for k in per_perm if k >= observed) + 1) / (n_perm + 1), 5),
+                observed=observed, n_measures=len(names), n_perm=n_perm)
+
+
 def analyse(res):
     runs = res["runs"]
     if not runs:
@@ -448,25 +527,48 @@ def analyse(res):
                         series=se, shape=_shape(se, round(statistics.median(t1), 3) if t1 else None))
 
     # ---- SELECTION: which instruments read a non-monotonicity that is KNOWN to be there ----
+    #
+    # F76 AMENDED. The first version selected on `interior_peak` alone -- an interior maximum
+    # clearing its own between-seed spread -- and reported two survivors of fifteen. The
+    # permutation null below shows that criterion has a ~10.6% per-measure false-positive rate and
+    # a 95th percentile of SIX survivors, so two is what chance produces (p = 0.32) and neither
+    # cleared BH-FDR. Selecting without the null would have licensed up to six spurious instruments
+    # for the r in {3,8} measurement, where nothing downstream could have caught it.
+    #
+    # So selection now requires clearing a null with NO temperature structure, not merely its own
+    # scatter. This is the same correction shape as F59-v1 (a cost function that could shrink its
+    # own comparison window) and dp_calibration's mean-PLUS-spread rule.
+    perm = _perm_null(runs, "ar", RC, measures)
+    padj = perm["p_bh"]
     print(f"\n=== INSTRUMENT SELECTION at r={RC}, AR -- both poles established independently ===")
-    print(f"  a usable measure must peak at an INTERIOR temperature, by more than between-seed noise")
-    print(f"\n  {'measure':16s} {'peak T':>7s} {'peak':>10s} {'margin':>9s} {'noise':>8s}  verdict")
+    print(f"  a usable measure must peak at an INTERIOR temperature, by more than between-seed")
+    print(f"  noise, AND clear a {N_PERM}-permutation null at BH-FDR 0.05 (F76's amendment)")
+    print(f"\n  {'measure':16s} {'peak T':>7s} {'peak':>10s} {'margin':>9s} {'noise':>8s} "
+          f"{'p_BH':>7s}  verdict")
     selected, disqualified = [], []
     for m in measures:
         k = f"ar|r{RC}|{m}"
         if k not in out:
             continue
         sh = out[k]["shape"]
+        p = padj.get(m)
         if not sh.get("complete"):
             v = "incomplete"
-        elif sh.get("interior_peak"):
+        elif sh.get("interior_peak") and p is not None and p <= 0.05:
             selected.append(m); v = "USABLE"
+        elif sh.get("interior_peak"):
+            v = (f"interior peak, but INSIDE THE NULL"
+                 + (f" (p_BH={p:.3f})" if p is not None else " (p undefined)"))
         elif sh.get("peaks_at_degenerate_end"):
             disqualified.append(m); v = "DISQUALIFIED -- peaks on the degenerate ring"
         else:
             v = "monotone / peak inside noise"
         print(f"  {m:16s} {str(sh.get('peak_T')):>7s} {sh.get('peak', 0):10.4f} "
-              f"{sh.get('margin', 0):9.4f} {sh.get('between_seed_noise', 0):8.4f}  {v}")
+              f"{sh.get('margin', 0):9.4f} {sh.get('between_seed_noise', 0):8.4f} "
+              f"{(f'{p:.4f}' if p is not None else '   --'):>7s}  {v}")
+    print(f"\n  null: {perm['observed']} interior peaks observed of {perm['n_measures']}; "
+          f"{perm['expected']:.2f} expected with no temperature structure "
+          f"(95th pct {perm['p95']}); P(>= observed by chance) = {perm['p_count']:.4f}")
 
     # ---- POWER GUARD. Absence of data is not absence of effect. Declaring the null below on a
     # partial grid would be the same defect that has killed six verdicts in this project: a
@@ -497,10 +599,13 @@ def analyse(res):
     if not selected:
         parts.append(
             f"NULL, AND IT IS A CLEAN ONE: of {len(measures)} measures, NONE shows an interior peak "
-            f"that clears its own between-seed spread on a system that is degenerate at one end and "
-            f"random at the other. No instrument in this suite can read complexity where complexity "
-            f"is known to vary, so none of them can be believed where it is unknown. The #20 line "
-            f"closes here rather than at §5.3's measurement radii."
+            f"that survives a {perm['n_perm']}-permutation null at BH-FDR 0.05, on a system that is "
+            f"degenerate at one end and random at the other. {perm['observed']} peak(s) clear their "
+            f"own between-seed spread, but {perm['expected']:.2f} are expected with no temperature "
+            f"structure at all (95th pct {perm['p95']}), so P(>= observed by chance) = "
+            f"{perm['p_count']:.3f}. No instrument in this suite can read complexity where "
+            f"complexity is known to vary, so none of them can be believed where it is unknown. "
+            f"The #20 line closes here rather than at §5.3's measurement radii."
             + (f" {len(disqualified)} measure(s) actively FAILED, peaking on the degenerate ring: "
                f"{', '.join(disqualified)} -- they read repetition as structure." if disqualified else ""))
     else:
@@ -591,6 +696,7 @@ def analyse(res):
     verdict = " ".join(parts)
     print(f"\n  -> {verdict}")
     res["analysis"] = dict(curves=out, selected=selected, disqualified=disqualified,
+                           permutation_null=perm,
                            selection_radius=RC, measurement_radii=RADII, orientation=ORIENT)
     res["verdict"] = verdict
     res["_analysis_provenance"] = stamp(__file__)

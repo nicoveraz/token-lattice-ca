@@ -2721,8 +2721,31 @@ stays visible is evidence the process works.
 Two notes on reading the table. `H0` shows p_BH = 0.0075 but is **not** a survivor: it is exactly
 shuffle-invariant (F74), so it is zero everywhere and never produces an interior peak under
 permutation either — a degenerate p-value, not a result. And `logA_ring_n3` drops out of the 15
-entirely because its ring-decomposed Δ is `None` at some temperatures, where `A = 0` on one side and
+entirely because its ring-decomposed Δ is `None` at 16 of 95 cells, where `A = 0` on one side and
 the contrast is not a measurement; that missingness is itself informative about the low-T end.
+
+**The selection null is now folded into `analyse()` rather than run beside it,** so `interior_peak`
+means "clears a null" rather than "clears its own scatter", and the emitted verdict cannot again
+assert something the ledger has withdrawn. The script's own pre-registration block is amended in
+place with the reason. This is the repair for the defect found the same day in
+`dev_transition_width_early.json` — a results file whose verdict its author no longer stood behind,
+where the disownment lived in a commit message that no test reads.
+
+**Both §3.6 confounds were measured on the same run, and the first one matters more than expected.**
+
+- **Confound 2, replica concatenation.** Peak Δ is **+4.01 within-replica against +4.10
+  cross-replica**. The two are nearly equal and the cross term is the larger, so a material part of
+  what Δ reports is **convergence between the 16 replicas, not structure within a text**. The
+  margin is thin and should not be over-read, but the direction disqualifies any pooled Δ from being
+  called a within-text structure measure — including every pooled Δ in §3.5's pilot, which
+  concatenated all 16 replicas before measuring.
+- **Confound 1, ring rotations.** Canonicalising n-grams to their minimal rotation moves peak Δ
+  from **+4.08 to +2.46 (−1.62)**. Rotation inflation is material, not a rounding concern, and any
+  Δ quoted on ring-decoded text must say which convention it used.
+
+Together with F75 these leave Δ with no defensible reading here: the per-object index does no work,
+the ordering it produces is chance-level against a null, a material share of its signal is
+cross-replica convergence, and a third of its magnitude is ring-rotation inflation.
 
 **The original caveats, kept for the record:**
 

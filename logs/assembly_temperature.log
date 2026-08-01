@@ -32,3 +32,100 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
      r=2 T=0.3   s=14  A2=+0.53 A3=+1.24 gzip=+1143.0 lzma=+1100.0 top1=  77%  42s
      r=2 T=0.3   s=15  A2=-0.14 A3=-0.23 gzip=+1195.0 lzma=+1144.0 top1=  81%  43s
      r=2 T=0.3   s=16  A2=+0.47 A3=+0.58 gzip=+1336.0 lzma=+1224.0 top1=  78%  45s
+     r=2 T=0.3   s=17  A2=-0.15 A3=-0.22 gzip=+1390.0 lzma=+1328.0 top1=  77%  42s
+     r=2 T=0.3   s=18  A2=-0.21 A3=-0.75 gzip=+1250.0 lzma=+1236.0 top1=  79%  43s
+     r=2 T=0.436 s=11  A2=+1.82 A3=+1.11 gzip=+1392.0 lzma=+1688.0 top1=  45%  49s
+     r=2 T=0.436 s=12  A2=+0.09 A3=+0.08 gzip=+1186.0 lzma=+1444.0 top1=  51%  44s
+     r=2 T=0.436 s=13  A2=-0.32 A3=-0.28 gzip=+1139.0 lzma=+1348.0 top1=  49%  44s
+     r=2 T=0.436 s=14  A2=+0.45 A3=+0.07 gzip=+1387.0 lzma=+1608.0 top1=  50%  45s
+     r=2 T=0.436 s=15  A2=+0.93 A3=+2.49 gzip=+1121.0 lzma=+1292.0 top1=  50%  48s
+     r=2 T=0.436 s=16  A2=+0.23 A3=+0.67 gzip=+1152.0 lzma=+1492.0 top1=  48%  44s
+     r=2 T=0.436 s=17  A2=+0.25 A3=+0.04 gzip=+1305.0 lzma=+1516.0 top1=  50%  43s
+     r=2 T=0.436 s=18  A2=+0.59 A3=+0.27 gzip=+1177.0 lzma=+1404.0 top1=  50%  45s
+     r=2 T=0.52  s=11  A2=+0.12 A3=+0.94 gzip=+1155.0 lzma=+1468.0 top1=  33%  49s
+     r=2 T=0.52  s=12  A2=+0.34 A3=+0.28 gzip= +936.0 lzma=+1272.0 top1=  37%  46s
+     r=2 T=0.52  s=13  A2=+0.53 A3=+1.63 gzip=+1061.0 lzma=+1376.0 top1=  34%  45s
+     r=2 T=0.52  s=14  A2=+0.42 A3=+1.11 gzip=+1015.0 lzma=+1356.0 top1=  34%  45s
+     r=2 T=0.52  s=15  A2=+0.58 A3=+1.41 gzip= +996.0 lzma=+1316.0 top1=  32%  45s
+     r=2 T=0.52  s=16  A2=+0.33 A3=+0.66 gzip= +943.0 lzma=+1308.0 top1=  33%  45s
+     r=2 T=0.52  s=17  A2=+1.10 A3=+1.23 gzip=+1106.0 lzma=+1484.0 top1=  36%  45s
+     r=2 T=0.52  s=18  A2=+1.99 A3=+0.22 gzip= +986.0 lzma=+1364.0 top1=  33%  47s
+     r=2 T=0.7   s=11  A2=+0.40 A3=+0.48 gzip= +486.0 lzma= +676.0 top1=  13%  47s
+     r=2 T=0.7   s=12  A2=+2.03 A3=+4.08 gzip= +626.0 lzma= +776.0 top1=  15%  51s
+     r=2 T=0.7   s=13  A2=+0.31 A3=+0.53 gzip= +557.0 lzma= +852.0 top1=  16%  53s
+     r=2 T=0.7   s=14  A2=+1.06 A3=+0.73 gzip= +631.0 lzma= +872.0 top1=  15%  51s
+     r=2 T=0.7   s=15  A2=+0.60 A3=+0.88 gzip= +472.0 lzma= +752.0 top1=  14%  50s
+     r=2 T=0.7   s=16  A2=+0.06 A3=+1.01 gzip= +487.0 lzma= +716.0 top1=  14%  47s
+     r=2 T=0.7   s=17  A2=+0.50 A3=+1.26 gzip= +476.0 lzma= +736.0 top1=  15%  47s
+     r=2 T=0.7   s=18  A2=+0.44 A3=+0.56 gzip= +637.0 lzma= +876.0 top1=  15%  47s
+     r=2 T=0.9   s=11  A2=+0.48 A3=-- gzip= +396.0 lzma= +724.0 top1=   9%  51s
+     r=2 T=0.9   s=12  A2=+0.89 A3=-- gzip= +462.0 lzma= +680.0 top1=   8%  51s
+     r=2 T=0.9   s=13  A2=+0.38 A3=-- gzip= +360.0 lzma= +508.0 top1=   7%  52s
+     r=2 T=0.9   s=14  A2=+0.73 A3=-- gzip= +331.0 lzma= +612.0 top1=   7%  50s
+     r=2 T=0.9   s=15  A2=+0.73 A3=-- gzip= +485.0 lzma= +652.0 top1=   7%  50s
+     r=2 T=0.9   s=16  A2=+0.25 A3=-- gzip= +289.0 lzma= +648.0 top1=   8%  51s
+     r=2 T=0.9   s=17  A2=+0.01 A3=-- gzip= +477.0 lzma= +636.0 top1=   7%  52s
+     r=2 T=0.9   s=18  A2=+0.03 A3=-- gzip= +350.0 lzma= +492.0 top1=   8%  52s
+     r=2 T=1.1   s=11  A2=+0.09 A3=-- gzip= +264.0 lzma= +568.0 top1=   4%  56s
+     r=2 T=1.1   s=12  A2=+1.92 A3=-- gzip= +243.0 lzma= +456.0 top1=   5%  57s
+     r=2 T=1.1   s=13  A2=+1.60 A3=-- gzip= +386.0 lzma= +580.0 top1=   4%  57s
+     r=2 T=1.1   s=14  A2=+0.28 A3=-- gzip= +238.0 lzma= +480.0 top1=   4%  54s
+     r=2 T=1.1   s=15  A2=-0.24 A3=-- gzip= +275.0 lzma= +472.0 top1=   4%  54s
+     r=2 T=1.1   s=16  A2=+0.59 A3=-- gzip= +134.0 lzma= +360.0 top1=   5%  54s
+     r=2 T=1.1   s=17  A2=+0.38 A3=-- gzip= +279.0 lzma= +420.0 top1=   5%  54s
+     r=2 T=1.1   s=18  A2=+2.90 A3=-- gzip= +340.0 lzma= +504.0 top1=   4%  56s
+     r=3 T=0.02  s=11  A2=+0.92 A3=+1.85 gzip=+1989.0 lzma=+2316.0 top1=  21%  53s
+     r=3 T=0.02  s=12  A2=+0.86 A3=+2.70 gzip=+1524.0 lzma=+1784.0 top1=  21%  56s
+     r=3 T=0.02  s=13  A2=+1.09 A3=+2.25 gzip=+1895.0 lzma=+2220.0 top1=  20%  52s
+     r=3 T=0.02  s=14  A2=+1.56 A3=+2.15 gzip=+1578.0 lzma=+1844.0 top1=  21%  53s
+     r=3 T=0.02  s=15  A2=+1.12 A3=+2.48 gzip=+1791.0 lzma=+2120.0 top1=  22%  52s
+     r=3 T=0.02  s=16  A2=+0.95 A3=+2.67 gzip=+1774.0 lzma=+2184.0 top1=  21%  52s
+     r=3 T=0.02  s=17  A2=+1.09 A3=+3.48 gzip=+1664.0 lzma=+1880.0 top1=  20%  51s
+     r=3 T=0.02  s=18  A2=+0.88 A3=+2.70 gzip=+1922.0 lzma=+2232.0 top1=  20%  53s
+     r=3 T=0.1   s=11  A2=+1.21 A3=+2.17 gzip=+1653.0 lzma=+1996.0 top1=  20%  52s
+     r=3 T=0.1   s=12  A2=+1.12 A3=+3.40 gzip=+1767.0 lzma=+2152.0 top1=  20%  52s
+     r=3 T=0.1   s=13  A2=+0.73 A3=+2.14 gzip=+1718.0 lzma=+1984.0 top1=  19%  54s
+     r=3 T=0.1   s=14  A2=+0.78 A3=+2.44 gzip=+1617.0 lzma=+1968.0 top1=  22%  54s
+     r=3 T=0.1   s=15  A2=+1.22 A3=+3.19 gzip=+1368.0 lzma=+1712.0 top1=  22%  54s
+     r=3 T=0.1   s=16  A2=+1.72 A3=+2.21 gzip=+1807.0 lzma=+2268.0 top1=  19%  54s
+     r=3 T=0.1   s=17  A2=+1.41 A3=+2.75 gzip=+1703.0 lzma=+2068.0 top1=  19%  52s
+     r=3 T=0.1   s=18  A2=+1.30 A3=+3.31 gzip=+2107.0 lzma=+2480.0 top1=  22%  52s
+     r=3 T=0.2   s=11  A2=+1.16 A3=+2.38 gzip=+1506.0 lzma=+1820.0 top1=  20%  54s
+     r=3 T=0.2   s=12  A2=+0.89 A3=+1.98 gzip=+1526.0 lzma=+1920.0 top1=  20%  54s
+     r=3 T=0.2   s=13  A2=+1.00 A3=+1.89 gzip=+1388.0 lzma=+1684.0 top1=  22%  53s
+     r=3 T=0.2   s=14  A2=+1.25 A3=+2.24 gzip=+1459.0 lzma=+1884.0 top1=  24%  58s
+     r=3 T=0.2   s=15  A2=+0.95 A3=+2.24 gzip=+1403.0 lzma=+1640.0 top1=  20%  57s
+     r=3 T=0.2   s=16  A2=+1.23 A3=+1.89 gzip=+1388.0 lzma=+1764.0 top1=  20%  57s
+     r=3 T=0.2   s=17  A2=+0.58 A3=+2.42 gzip=+1517.0 lzma=+1836.0 top1=  19%  54s
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+analysing 95 cached cells (run stopped by the gate's own null)
+
+
+=== INSTRUMENT SELECTION at r=2, AR -- both poles established independently ===
+  a usable measure must peak at an INTERIOR temperature, by more than between-seed
+  noise, AND clear a 2000-permutation null at BH-FDR 0.05 (F76's amendment)
+
+  measure           peak T       peak    margin    noise    p_BH  verdict
+  logA                 0.9     1.3662    0.3852   0.7692  0.1199  monotone / peak inside noise
+  excess_entropy      0.02     0.5479    0.0000   0.0443  0.2692  DISQUALIFIED -- peaks on the degenerate ring
+  C_mu               0.436     1.2229    0.5039   0.1920  0.0928  interior peak, but INSIDE THE NULL (p_BH=0.093)
+  mi_integrated       0.02     1.0372    0.0000   0.0873  0.3333  DISQUALIFIED -- peaks on the degenerate ring
+  lz77_z              0.52    92.0000    7.1875   9.5431  0.0928  monotone / peak inside noise
+  lzw_dict             0.3   102.0000    2.7500   7.0182  0.1199  monotone / peak inside noise
+  repair_size         0.02   140.5000    0.0000  12.1423  0.0928  DISQUALIFIED -- peaks on the degenerate ring
+  sequitur_size       0.02   139.5625    0.0000  12.6048  0.0928  DISQUALIFIED -- peaks on the degenerate ring
+  gzip_bits            0.3  1309.5000   96.5000  97.3148  0.0928  monotone / peak inside noise
+  bz2_bits           0.436  1189.5000   54.0000 101.5920  0.0928  monotone / peak inside noise
+  lzma_bits          0.436  1468.0000  368.0000  96.1546  0.1247  interior peak, but INSIDE THE NULL (p_BH=0.125)
+  H0                  0.02    -0.0000    0.0000   0.0000  0.0075  DISQUALIFIED -- peaks on the degenerate ring
+  H_block             0.02     0.9392    0.0000   0.0721  0.2977  DISQUALIFIED -- peaks on the degenerate ring
+  h_rate              0.02     0.4944    0.0000   0.0380  0.2975  DISQUALIFIED -- peaks on the degenerate ring
+  logA_ring_n2        0.02     0.7080    0.0000   0.5125  0.0928  DISQUALIFIED -- peaks on the degenerate ring
+  logA_ring_n3        0.52     1.0295    0.0555   0.6964      --  monotone / peak inside noise
+
+  null: 2 interior peaks observed of 15; 1.59 expected with no temperature structure (95th pct 6); P(>= observed by chance) = 0.3198
+
+  -> At r=2, T=0.02 the AR ring is 79% a single token, which is the degenerate pole F62-F70 established independently. NULL, AND IT IS A CLEAN ONE: of 16 measures, NONE shows an interior peak that survives a 2000-permutation null at BH-FDR 0.05, on a system that is degenerate at one end and random at the other. 2 peak(s) clear their own between-seed spread, but 1.59 are expected with no temperature structure at all (95th pct 6), so P(>= observed by chance) = 0.320. No instrument in this suite can read complexity where complexity is known to vary, so none of them can be believed where it is unknown. The #20 line closes here rather than at §5.3's measurement radii. 8 measure(s) actively FAILED, peaking on the degenerate ring: excess_entropy, mi_integrated, repair_size, sequitur_size, H0, H_block, h_rate, logA_ring_n2 -- they read repetition as structure. CONFOUND 2, SEPARATED: peak within-replica Delta +4.01 against +4.10 cross-replica. The signal is CROSS-replica: what is measured is convergence BETWEEN replicas, not structured text. Every pooled Delta in novelty_structure.py carries this. CONFOUND 1, MEASURED: canonicalising ring rotations moves peak Delta +4.08 -> +2.46 (-1.62), so rotation inflation is material and must be disclosed. logA_ring_n2 is UNDEFINED in 0/95 cells (A = 0 on one side, so the contrast would be set by the log floor rather than by the data). Those cells are excluded rather than floor-coded -- pooling them was what made Delta look noisier than it is. logA_ring_n3 is UNDEFINED in 16/95 cells (A = 0 on one side, so the contrast would be set by the log floor rather than by the data). Those cells are excluded rather than floor-coded -- pooling them was what made Delta look noisier than it is. r=2 and r in [3, 8] are never pooled: r=2 asks whether an instrument reads a non-monotonicity known in advance, r in [3, 8] asks what the CA actually does.
+
+wrote results/assembly_temperature.json
