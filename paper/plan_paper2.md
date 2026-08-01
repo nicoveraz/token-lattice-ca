@@ -1,105 +1,106 @@
-# Plan — second paper (universality of the token-lattice transition)
+# Plan — second paper
 
-**Written 31 Jul 2026, immediately after deciding NOT to reopen the Interp4Discovery submission.**
-That decision stands: the submitted paper is pinned at `submission/neurips26-i4d` and F56–F59 do
-not touch any number in it. Everything below is the *next* paper.
+**Rewritten 1 Aug 2026, after F62–F66 dissolved the version written on 31 Jul.** That version
+planned a universality-class paper on the AR construction. F66 showed the AR construction measures
+an out-of-distribution prompt artifact, so the plan is rebuilt here rather than patched. The
+superseded version is in git history at `9741792`.
 
-No venue or deadline is chosen yet. That is deliberate — the claim set is not closed, and picking
-a deadline before knowing which claims survive is how the first paper acquired the retractions
-that the audit later had to strip out.
+The submitted paper is untouched throughout and stays pinned at `submission/neurips26-i4d`.
 
 ---
 
-## 1. What the second paper would claim, and what actually supports it
+## 1. What actually happened, in one paragraph
+
+The universality programme (#80–#82) measured a damage-spreading transition in a ring CA driven by
+`p(x_i | x_{i-2}, x_{i-1})` on pythia-410m. It found a critical point (F58), fitted exponents
+(F59), and hit a ladder anomaly (F60). Then a second model family showed no transition at all
+(F62), which led to screening nineteen models (F63/F64) and finally to two interventions (F65) and
+a change of construction (F66). The result: the transition is the melting of a **single-token,
+two-token-context degeneracy**, a one-token BOS prefix removes 50 of its 74 points, and the
+**masked-LM construction shows none of it**. The exponents are not wrong; what they are exponents
+*of* is an artifact of asking an autoregressive model to continue from two tokens.
+
+This is not a failure of the instrument. It is the instrument's calibration discipline working:
+six confident verdicts died to their own checks, each one caught before it reached a paper.
+
+---
+
+## 2. The claim set, rebuilt
 
 | | Claim | Evidence | Status |
 |---|---|---|---|
-| **A** | The damage-spreading transition is a **genuine critical point**, not a finite-size crossover: δ and θ reach their DP values at a *common* temperature, T_c ∈ [0.4343, 0.4391] | `dp_class_n192.json` (F58) | **Solid.** Gated on DK before the LM numbers were read; robust to the fit window at both ends and to boundary saturation |
-| **B** | Its **universality class is not DP** — z sits below 1.5807 | `dp_fss_z.json` (F59) | **Not supported.** z = 1.380 [1.134, 1.606] *contains* DP. The estimate is stable across ladders (1.325/1.380/1.360) and points low, but the interval cannot separate them |
-| **C** | Exponent measurements on black-box LM dynamics require **gating the estimator at the measurement's own geometry**, or they produce confident wrong answers | F56, F57, F59-v1 — three retractions, each caught by re-running on DK | **Solid, and the most transferable thing here** |
-| **D** | F42's unignited runs are explained: 1/3 of visit orders heal a single-site seed before it propagates, and the order was shared across the whole batch | F57 | **Solid.** Predicted deaths matched observation exactly (8/8, 5/5) |
-| **E** | The transition is **universal across models / radii** | — | **No evidence at all.** Everything is pythia-410m, r=2 |
+| **A** | Iterated-resampling probes of LMs can manufacture a phase transition from an **out-of-distribution prompt**. Shown across 19 models, isolated by three interventions: radius (exists only at r=2), token ablation (one token carries it), and construction (BOS removes 50 points; MLM shows none) | F62–F66 | **Solid, complete, no further compute needed.** The strongest single result the project has |
+| **B** | Measuring exponents on black-box LM dynamics requires **gating the estimator at the measurement's own geometry**, or it returns confident wrong answers | F56, F57, F59-v1, F61 — four retractions, each caught by re-running on a system with a known answer | **Solid.** The transferable methods contribution |
+| **C** | F42's unignited runs are explained: 1/3 of visit orders heal a single-site seed before it propagates, and the order was shared across the batch | F57 | **Solid.** Predicted deaths matched observation exactly |
+| **D** | The **MLM construction is clean** — no single-token concentration at any temperature or radius tested | F66 | **Solid but thin.** Two models, settled-state only. No dynamics measured on it yet |
+| ~~E~~ | ~~A universality class for the transition~~ | — | **Withdrawn.** There is no model-independent transition to classify |
 
-**SUPERSEDED (Aug 1) by F62–F66 — read this first.** The universality programme was run on an AR
-CA at r=2, and that construction turns out to measure an out-of-distribution artifact: the frozen
-phase exists only at r=2, is carried by a single token, and a one-token BOS prefix removes 50 of
-its 74 points. The **masked-LM construction shows none of it** (top-1 9–14% at every temperature).
-So claim A survives only as *"there is a critical point in the AR two-token construction"*, which
-is not the paper anyone wants. **A second paper should be built on the MLM path**, where Phase 3's
-results (F14–F18) already live and where the degeneracy is absent. Claims C and D are untouched and
-remain the strongest transferable content.
-
-**The pre-F62 position, kept for the record: A + C + D is a paper; B is not; E is the gap that
-decides whether the word "universality" belongs in the title.**
-
-A paper on A+C+D is *methods-forward*: "here is a critical point in LM token dynamics, and here is
-what it takes to measure an exponent without fooling yourself." That is publishable and true. It
-is not the paper that the universality-class program was aimed at.
+**A + B + C is a complete paper today, with zero further compute.** It is a *negative-result plus
+methodology* paper, and the negative is the interesting part: people probe language models by
+iterating their conditionals, and this shows how that can produce a phase transition that is a
+property of the probe rather than the model.
 
 ---
 
-## 2. What would make it the stronger paper, and what each costs
+## 3. The MLM path — what it is and what it would cost
 
-Costs are measured on this machine (M1 Pro) from the `dp_fss_z` cells: 0.084 s per site-sweep per
-64 replicas. All are resumable and run in overnight batches.
+F66 establishes only that the MLM construction does not *concentrate*. That is the absence of the
+pathology, not the presence of a result. Nothing about MLM **dynamics** has been measured with the
+post-F57 machinery.
 
-| Priority | Work | Issue | Cost | What it buys |
-|---|---|---|---|---|
-| **1** | **Second model family** — repeat A on a different architecture | #61 | ~17 h/model | Turns "a critical point in pythia-410m" into "a critical point in LM token dynamics". Without it, claim E is empty and the title cannot say universality |
-| **2** | **Transverse Lyapunov Λ** — sign separates DP from multiplicative-noise | #81 | modest | A *second, independent* class discriminator. Directly relevant now: if z really sits below DP, multiplicative noise is the natural alternative, and Λ tests it without another FSS collapse |
-| **3** | **Resolve z** — more replicas at N=96 | #82 | ~12 h/cell | Either separates z from DP or shows it cannot be separated at reachable precision. Six more cells ≈ 71 h |
-| **4** | **ν⊥** — off-critical temperatures | #82 | multiplies by #T | The remaining exponent. Expensive and *not* on the critical path while B is unsettled |
-| **5** | Second radius r | — | ~17 h | Is the class a property of the model or of the construction? F35 makes this sharper than it looks |
+What already exists (Phase 3, in the submitted paper): F14 the instrument ports to
+bert-tiny/mini/base with the CRN null exactly zero; F15 real MLMs are not radius-blind; F16 damage
+light cones replicate with front velocity ∝ r; F17 no strong self-healing phase; F18 the
+special-token scheme is a first-class apparatus factor.
 
-**Recommended order: 1, then 2, then 3.** Reasoning: a second model changes what the paper *is*;
-Λ is a cheap independent check on the one claim that failed; z is expensive and only sharpens a
-number that is already reported honestly as unresolved. ν⊥ is last, not first, despite being the
-obvious "complete the exponent set" move.
+What does **not** exist: any MLM damage-spreading *transition* experiment. `experiments/mlm_*.py`
+covers census, damage cones, differential certification, repair and sweeps — none of them looks for
+a critical point.
+
+| Step | Question | Cost | Notes |
+|---|---|---|---|
+| **M1** | Does the MLM CA have a damage-spreading transition at all? Coarse T scan for where damage stops dying | ~2–4 h | bert-base is 110M vs pythia-410m, so cells are cheaper than the AR ones. Must use `order="per_replica"` — newly plumbed through `mlm_ca.run` and never used |
+| **M2** | If yes: is it free of the degeneracy? Re-run the F65 interventions (radius, ablation) on it | ~1 h | Cheap, and the paper needs it: a transition in a clean construction is only worth reporting if it survives the checks that killed the AR one |
+| **M3** | If M1 and M2 hold: exponents, under the F56 gate | ~20 h+ | Only worth starting after M2. The AR programme spent ~60 h before discovering the object was an artifact |
+
+**Recommendation: M1 and M2, and stop there for now.** They cost under five hours and they decide
+whether an MLM programme exists. Do not begin M3 before M2 passes — that is exactly the mistake the
+AR line made, and the whole of §4 exists because of it.
+
+**A null at M1 is also a fine outcome for the paper.** If the clean construction has no transition
+either, claim A strengthens: the transition was *only ever* the artifact.
 
 ---
 
-## 3. Hazards to carry forward
+## 4. Hazards, carried forward
 
-Written down now because all three were discovered the expensive way.
+All discovered the expensive way; each cost at least one retracted verdict.
 
 1. **Gate every estimator at its own geometry** (F56). A calibration at N=512/200 licenses nothing
-   at N=96/40. `dp_calibration.py` is the single implementation; new measurements import it rather
-   than copying it.
-2. **Check what the independent unit actually is** (F57). Anything drawn once per batch — visit
-   order, and in principle anything else — makes replicas correlated, and pooling them as
-   independent shrank error bars ~8×. New scripts use `order="per_replica"`; new *estimators*
-   should state their independent unit explicitly and test it (between-seed vs within-seed spread).
-3. **A cost function that can shrink its own comparison window is unbounded** (F59-v1). Any fitted
-   quantity gets a scan far wider than plausible, and the fit must *reject* a minimum on the scan
-   edge instead of reporting it.
-4. **Validate on synthetic data with a known answer** before trusting a new estimator on DK, and on
-   DK before trusting it on the model. The collapse estimator was proved exact on synthetic curves;
-   that is what established the failing ladder was the data and not the code.
-5. **The unexplained anomaly is still unexplained.** Ladders containing N=12 recover DK's z;
-   ladders starting at N=24 do not, with the corrected estimator and at 32× replicas. Any z quoted
-   in the second paper has to either explain this or disclose it.
-
----
-
-## 4. What is already reusable
-
-- `experiments/dp_calibration.py` — the gate, one implementation, imported by every DP run.
-- `experiments/dp_pipeline_validation.py` — "can this fitting code recover a known answer?", the
-  step that gates all the others. #60 already argues this ladder is a reusable methodology rather
-  than one paper's step 1; claim C is that argument made in public.
-- `order="per_replica"` in `src/lattice.py`, opt-in, with the CRN null asserted under it.
-- The pre-registration habit: every DP script states its primary test and its failure meaning in
-  the docstring *before* the run, and writes them into the results file.
+   at N=96/40. `dp_calibration.py` is the single implementation; import it, never copy it.
+2. **State what the independent unit is, and test it** (F57). Anything drawn once per batch makes
+   replicas correlated; pooling them shrank error bars ~8×. Use `order="per_replica"` and check
+   between-seed against within-seed spread.
+3. **A cost function that can shrink its own comparison window is unbounded** (F59-v1). Scan far
+   wider than plausible and *reject* a minimum that lands on the scan edge.
+4. **Validate on synthetic data with a known answer**, then on DK, then on the model. That sequence
+   is what proved the failing ladder was the data and not the code.
+5. **Run the control** (F65). The radius sweep read as "the attractor survives" until the control —
+   a model with no attractor — acquired one too, revealing a generic long-context effect.
+6. **Vary the construction, not just the model** (F66). Nineteen models could not distinguish
+   "property of LMs" from "property of the probe"; one change of CA did it immediately.
+7. **The ladder anomaly is still unexplained** (F60). Ladders reaching N≥96 carry a ~7% downward
+   bias on DK that survives 16× sampling. Any z quoted anywhere must disclose it.
 
 ---
 
 ## 5. Open questions for the author
 
-1. **Venue and timeline** — deliberately unset. A + C + D could go out soon; A + C + D + E needs
-   the second model family first.
-2. **Is claim C the headline or the framing?** A methods paper about calibration discipline in
-   black-box dynamical measurement is a different submission from a physics paper about a critical
-   point in LM token space. The evidence supports either; they are not the same paper.
-3. **Does the RunPod option come back?** #61 (second model) is download- and disk-bound rather than
-   GPU-bound, so it is a poor fit for rented compute. Resolving z is GPU-shaped but low priority.
-   On current priorities, renting still does not pay.
+1. **Is A the headline, or B?** A is the more striking result — a manufactured phase transition —
+   and B is the more reusable one. They are the same paper only if the narrative is "here is how the
+   discipline caught it", which is defensible and honest but makes the paper about method.
+2. **Venue.** Still unset, deliberately. A + B + C needs no further compute, so timing is a writing
+   decision rather than an experimental one.
+3. **How much MLM work before writing?** M1+M2 is under five hours and would let the paper say what
+   a clean construction does, rather than only what a dirty one does. My recommendation is to run
+   them and write either way.

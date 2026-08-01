@@ -1,7 +1,8 @@
-# Tracker dump -- 2026-07-31T19:23:45Z
+# Tracker dump -- 2026-08-01T12:40:30Z
 
 | # | state | milestone | labels | title |
 |---|---|---|---|---|
+| 89 | OPEN | post-submission | post-paper,universality | MLM path: does the clean construction have a transition at all? (M1/M2) |
 | 88 | OPEN | post-submission | evidence,post-paper,universality | Does 410m show the same flat-positive plateau before its dip? — decides whether the paper's transition is an onset or a recovery |
 | 87 | OPEN | post-submission | evidence,post-paper,universality | Width scan's grid was inherited from C20 and misses the window for LR=1.0e-3 models — extend to steps 1..64 |
 | 86 | OPEN | post-submission | post-paper,universality | Citation ledger for the universality line of work |
@@ -9,7 +10,7 @@
 | 84 | OPEN | post-submission | post-paper,universality | Recompute per-checkpoint LM loss on a fixed Pile slice, then test λ_ca-vs-loss collapse |
 | 83 | OPEN | post-submission | post-paper,universality | Break the LR/size confound: 14M / 31M / 70M as an iso-depth iso-LR width scan |
 | 82 | OPEN | post-submission | post-paper,universality | Finite-size scaling and dynamic Monte Carlo: extract θ, δ, z, β, ν⊥, ν∥ |
-| 81 | OPEN | post-submission | post-paper,universality | Measure the transverse Lyapunov exponent Λ — decides DP vs multiplicative noise |
+| 81 | CLOSED | post-submission | post-paper,universality | Measure the transverse Lyapunov exponent Λ — decides DP vs multiplicative noise |
 | 80 | OPEN | post-submission | post-paper,universality | Universality-class program: pre-registration, hazards, and ordered work list |
 | 79 | CLOSED | neurips26-submission | paper,universality | State the metric-artefact immunity of λ_ca in one sentence |
 | 78 | CLOSED | neurips26-submission | blocking,paper,universality | Position the paper against the three closest prior constructions |
