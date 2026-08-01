@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F72)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F73)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2403,6 +2403,52 @@ a better statement of that finding than the original.
 three inits, so the frozen fixed-point ring drove it and the verdict printed "INITS DIVERGE — basins
 are real". The meaningful comparison is random versus corpus; the fixed point is a seed nobody would
 prompt with. Separating them reverses the conclusion.
+
+### F73 — the assembly rung is built, and it falsified the specification that asked for it (#20)
+`assembly_theory.md` §5.1 specified a gated calibration for the assembly-index estimator, on the
+project's rule that an estimator earns the right to report by reproducing a known answer first. Two
+string families have **provable** exact indices: `a^n`, whose index is the minimal addition-chain
+length `l(n)`, and all-distinct strings, whose index is forced to `n − 1` because nothing repeats so
+nothing can be reused. Exact computation is the smallest-grammar problem — NP-complete, APX-hard —
+so the estimator is a greedy RePair pass, which *exhibits* a grammar and is therefore a **certified
+upper bound** rather than a fitted value.
+
+**The specification asked the gate to assert RePair is exact on both families. It is not.** The
+pilot's §3.1 table sampled 14 values of *n* and found gap 0 at every one. Sweeping **every** n from
+2 to 128:
+
+```
+  never below a proven bound   127/127     <- REQUIRED, and what makes it an upper bound
+  exact                         75/127     <- 52 overshoots, max +2
+  smallest failure              n=15, minimum 5 (1,2,3,6,12,15), greedy halving finds 6
+```
+
+n=15 is the textbook smallest case where the binary method is not an optimal addition chain, so it
+was always going to be there; the 14 sampled values happened to contain none of the 52. **A property
+of the sample stated as a property of the phenomenon — F64's failure mode, third instance.**
+
+**What survives is the property that was load-bearing anyway,** and the gate now asserts that
+instead: soundness at 127/127, exactness on the no-reuse family at every n to 256, and the two
+failure poles pinning (degenerate repetition +0.00, random soup +0.00) while real text reads
+**+6.87**. Exactness on `a^n` is *measured and reported with its failure list*, not gated.
+
+**Why the loose bound is safe, argued rather than assumed.** Every overshoot inflates `a_i` and
+therefore `e^{a_i}`. RePair overshoots where a string is *repetitive* and is exact where nothing
+repeats, so the inflation lands preferentially on **degenerate** objects — the direction that would
+make a degenerate ensemble look *more* structured. The bias is against the hypothesis, and the
+degenerate pole still reads +0.00 by measurement.
+
+**One thing §3.4 oversells, disclosed here.** "Both failure poles pin at zero automatically" is two
+different facts. At the degenerate pole Δ = 0 is a genuine measurement: shuffling a string of
+identical tokens returns the same string. At the noise pole *both* the text and its shuffle have
+A = 0, which the log floor maps to a constant, so Δ = 0 is definitional. The substantive fact there
+is **A(text) = 0** — which is exactly the property that distinguishes A from entropy, since entropy
+is maximal on that same input — and it is now reported separately as `A_is_zero`.
+
+The estimator is deduplicated as a side effect: `_assembly_pilot.py` imported its own copies, so
+`assembly_calib.py` is now the single implementation and the pilot imports it. Pilot output is
+**bit-identical** to the pre-refactor baseline, and a test asserts the two modules share the same
+function objects — the anti-drift rule from F56, which caught a shadowed duplicate on its first run.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

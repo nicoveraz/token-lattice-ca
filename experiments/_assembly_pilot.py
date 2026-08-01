@@ -32,39 +32,15 @@ _ROOT = _pathlib.Path(__file__).resolve().parents[1]
 _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
 import json, math, zlib, random, re, collections, itertools, statistics
 
-WORD = re.compile(r"[a-z0-9']+")
+# THE ESTIMATORS LIVE IN assembly_calib.py, NOT HERE. This file predates the gate and originally
+# carried its own copies; two implementations of the same estimator can drift, and a drifted
+# estimator is indistinguishable from the defect the gate exists to catch (hazard 1, F56). The
+# gated module is the single source of truth and this pilot imports it, so the S3 tables below are
+# produced by exactly the code the gate licenses.
+from assembly_calib import (WORD, SHAKESPEARE, FLOOR, repair_assembly_index,
+                            addition_chain_length, A_exp, lg, delta)
+
 NOVELTY_JSON = _ROOT / "results" / "novelty_structure.json"
-SHAKESPEARE = _ROOT / "data" / "shakespeare.txt"
-
-
-# ------------------------------------------------------------------ estimators
-
-def repair_assembly_index(seq):
-    """Constructive UPPER BOUND on the assembly index, via RePair.
-
-    Greedily replaces the most frequent adjacent pair with a new object -- exactly an assembly step
-    (join two things already in the pool, add the result, reuse it for free). Total steps =
-    (objects created) + (joins to concatenate what is left).
-    """
-    seq = list(seq)
-    n_rules = 0
-    while True:
-        counts = collections.Counter(zip(seq, seq[1:]))
-        if not counts:
-            break
-        pair, c = counts.most_common(1)[0]
-        if c < 2:
-            break
-        new, out, i = ("N", n_rules), [], 0
-        while i < len(seq):
-            if i < len(seq) - 1 and (seq[i], seq[i + 1]) == pair:
-                out.append(new)
-                i += 2
-            else:
-                out.append(seq[i])
-                i += 1
-        seq, n_rules = out, n_rules + 1
-    return n_rules + max(len(seq) - 1, 0)
 
 
 def lz77_phrases(s):
@@ -88,72 +64,6 @@ def gzip_bits(s):
 def shannon_bits(s):
     c, n = collections.Counter(s), len(s)
     return -sum(v * math.log2(v / n) for v in c.values())
-
-
-def addition_chain_length(n):
-    """Exact minimal addition-chain length for n = the exact assembly index of a^n."""
-    if n == 1:
-        return 0
-    frontier, seen = [(frozenset([1]), 0)], {frozenset([1])}
-    while frontier:
-        nxt = []
-        for pool, d in frontier:
-            for a, b in itertools.combinations_with_replacement(sorted(pool), 2):
-                s = a + b
-                if s == n:
-                    return d + 1
-                if s > n:
-                    continue
-                np_ = pool | {s}
-                if np_ not in seen:
-                    seen.add(np_)
-                    nxt.append((np_, d + 1))
-        frontier = nxt
-    raise RuntimeError("unreachable")
-
-
-# --------------------------------------------------------- the ensemble quantity
-
-def A_exp(words, n=3):
-    """A = sum_i e^{a_i} (n_i - 1) / N_T over distinct word-n-gram object types.
-
-    NOT maximised by noise: a random ensemble has every object unique, so (n_i - 1) = 0 and A = 0
-    however high the assembly indices are. A degenerate ensemble has huge copy number but tiny a_i,
-    so e^{a_i} stays small. Returns (A, n_repeated_types, effective_object_count).
-    """
-    grams = [" ".join(words[i:i + n]) for i in range(len(words) - n + 1)]
-    if len(grams) < 2:
-        return 0.0, 0, 0.0
-    w = [math.exp(repair_assembly_index(g)) * (c - 1)
-         for g, c in collections.Counter(grams).items() if c >= 2]
-    if not w:
-        return 0.0, 0, 0.0
-    s = sum(w)
-    return s / len(grams), len(w), (s * s) / sum(x * x for x in w)
-
-
-FLOOR = -3.0        # log10 stand-in for A = 0, so cells with no repeats stay comparable
-
-
-def lg(a):
-    return math.log10(a) if a and a > 0 else FLOOR
-
-
-def delta(words, n=3, k=6, seed=0):
-    """Delta = log A(text) - <log A(word-shuffled)>.
-
-    The shuffle preserves length, vocabulary and unigram frequencies EXACTLY, so it is the tightest
-    available control -- the analogue of this project's CRN null, and the fixed-multiset permutation
-    test of Kempes et al. (npj Complexity 2025).
-    """
-    rng = random.Random(seed)
-    a, nrep, eff = A_exp(words, n)
-    nulls = []
-    for _ in range(k):
-        sh = words[:]
-        rng.shuffle(sh)
-        nulls.append(lg(A_exp(sh, n)[0]))
-    return lg(a) - statistics.fmean(nulls), nrep, eff
 
 
 # ----------------------------------------------------------------------- stages

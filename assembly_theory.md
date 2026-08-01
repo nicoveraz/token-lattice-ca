@@ -1,6 +1,7 @@
 # Assembly theory as a structure read-out for the token lattice
 
-**Written 1 Aug 2026; §1.5, §3.5, §5.3, §5.5 and §7 corrected the same day for F71/F72.** A first-principles analysis of what this project has established, followed by
+**Written 1 Aug 2026; §1.5, §3.5, §5.3, §5.5, §7 corrected the same day for F71/F72, and §0/§3.1/§5.1
+corrected again for F73 when the gate this document specified was built and contradicted it.** A first-principles analysis of what this project has established, followed by
 a concrete program for issue **#20** (assembly theory as a compositional-complexity axis), including
 a **pilot that was actually run** against the data already in `results/`.
 
@@ -31,7 +32,7 @@ built from exact combinatorial counts on observed strings.
 
 | | Result | Status |
 |---|---|---|
-| 1 | A **free calibration rung** exists: two string families have provable exact assembly indices, and the RePair estimator is **exact on both**, at every size tested | **Solid.** CPU-seconds, no model |
+| 1 | A **free calibration rung** exists: two string families have provable exact assembly indices. The estimator is **sound on both** — never below a proven bound — and **exact on the no-reuse family** at every n to 256 | **Solid, and now gated** (`experiments/assembly_calib.py`). But an exhaustive sweep **corrected this row**: RePair is *not* exact on `a^n` (75/127), see F73 |
 | 2 | The **raw assembly index carries no word-order information.** Under length and multiset control it does not separate real text from word-shuffled text (0.4725 vs 0.4765 per character) — and neither does LZ77, gzip or entropy | **Solid.** The critique's home ground, conceded on our own data |
 | 3 | The **exponential weighting is load-bearing.** Tempering `e^{a}` to `e^{a/2}` or to linear `a` *inverts* the ordering, so degenerate repetition beats real text | **Solid, and non-obvious.** This is the thing that separates AT from a compression measure |
 | 4 | The right statistic is a **contrast against a matched word-shuffle**, `Δ = log A(text) − ⟨log A(shuffled)⟩`. It reads **exactly +0.00 on pure degenerate repetition** and **+0.00 on random soup**, against **+6.87 on real text**, at matched length | **Solid.** Both failure poles pin at zero automatically |
@@ -275,8 +276,20 @@ RePair against those references:
    128       7        7     0
 ```
 
-**Exact at every size, on both families, including non-powers-of-two.** The estimator never returns a
-value below a proven lower bound. This is a genuine new rung on the validation ladder that costs
+**This table is a 14-point sample, and the claim first drawn from it — "exact at every size, on both
+families" — is false.** `assembly_calib.py` sweeps *every* n from 2 to 128 and finds RePair exact on
+**75 of 127** and overshooting on 52. The smallest failure is **n=15**, where the minimum is 5
+(1,2,3,6,12,15) and greedy halving finds 6 — the textbook smallest n at which the binary method is
+not an optimal addition chain, so it was always going to be there. The sampled values above happened
+to contain none of the 52. That is the F64 failure mode exactly: a property of the sample stated as a
+property of the phenomenon.
+
+**What survives is the property that was load-bearing anyway.** RePair never returns a value below a
+proven lower bound — **127/127** — which is what makes it a *certified upper bound* rather than a
+fitted estimate, and family 2 is **exact at every n to 256**. Exactness on `a^n` was never needed
+downstream, and the overshoot is in the conservative direction: it inflates `a_i` and therefore
+`e^{a_i}`, which is what would make a *degenerate* ensemble look more structured — and the degenerate
+pole still reads +0.00 (§3.4). This is a genuine new rung on the validation ladder that costs
 CPU-seconds and needs no model — cheaper than any rung currently on it.
 
 ### 3.2 The raw assembly index carries no word-order information — the critique's home ground
@@ -541,15 +554,24 @@ before any model is loaded.
 
 Promote §3.1 and §3.4 to a gated experiment. Three assertions, each with a proven reference:
 
-- RePair is **exact** on `a^n` against minimal addition-chain length, for n up to 128.
-- RePair is **exact** on all-distinct strings against `n − 1`.
-- Δ reads **0 ± tolerance** on both failure poles (degenerate repetition, random soup) and
-  **> +4** on real text, at matched length.
+**BUILT, and it corrected its own specification** — see F73. The three assertions as drafted asked
+for exactness on `a^n`; the exhaustive sweep showed that is false, so the gate asserts the two
+properties that hold and *measures* the third:
 
-Emit `NOT DECIDABLE` and refuse to report if any fails, in the manner of `dp_calibration.py`. Add
-`tests/test_assembly_calib.py` asserting the two exactness properties directly, so a refactor of the
-estimator cannot silently degrade it. **Gate: if the estimator is not exact on both families at the
-lengths used downstream, stop here.**
+- **G1, soundness.** RePair ≥ minimal addition-chain length at every n in 2..128. Holds 127/127.
+  This is the load-bearing one: a value below a proven bound would mean it is not an upper bound and
+  nothing downstream is usable.
+- **G2, exactness on the no-reuse family.** RePair = `n − 1` at every n to 256. Holds throughout.
+- **G3, the poles.** Δ within ±0.5 on degenerate repetition and random soup, and ≥ +4 on real text,
+  at matched length. Reads +0.00 / +0.00 / **+6.87**.
+- **Measured, not gated:** the exactness rate on `a^n` (75/127) with its failure list, so the
+  overshoot is on the record and a refactor that changes it is visible.
+
+It emits `NOT DECIDABLE` and refuses to report if any gate fails, in the manner of
+`dp_calibration.py`, and it is the **single implementation** of the estimator — `_assembly_pilot.py`
+imports it rather than carrying its own copy, with a test asserting the two are the same function
+objects. `tests/test_assembly_calib.py` asserts every property directly, including the *non*-exactness
+at n=15, 23 and 63, so the withdrawn claim cannot quietly return.
 
 ### 5.2 `experiments/assembly_baselines.py` — the head-to-head *(free)*
 
@@ -696,8 +718,8 @@ question open.
 3. **Verify the two load-bearing citations** flagged in §4.1: `z ≤ g = O(z log(n/z))` (Rytter 2003;
    Charikar et al. 2005). The estimator's lower bound depends on them. This project already has
    `experiments/audit_refs.py` and `tests/test_refs_match_arxiv.py` for exactly this.
-4. **Build `assembly_calib.py` (§5.1).** Free, and it either earns the estimator the right to report
-   or kills the thread in an afternoon.
+4. ~~**Build `assembly_calib.py` (§5.1).**~~ **DONE.** The estimator earned the right to report,
+   and cost §5.1 one claim on the way — see F73.
 5. **Build `assembly_baselines.py` (§5.2).** Also free. Answers the strongest reviewer objection
    before any compute is spent on it — including `C_μ`, which is the one that could end the program.
 6. **Then and only then, `assembly_temperature.py` (§5.3)** — random seeding only, per §5.5 as
