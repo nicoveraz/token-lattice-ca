@@ -225,6 +225,7 @@ _STALENESS_PAIRS = [
     ("dp_scan_gpt2.json", "dp_scan_gpt2.py"),
     ("attractor_corpus_screen.json", "attractor_corpus_screen.py"),
     ("attractor_interventions.json", "attractor_interventions.py"),
+    ("attractor_construction.json", "attractor_construction.py"),
 ]
 
 

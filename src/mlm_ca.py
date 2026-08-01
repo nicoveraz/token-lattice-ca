@@ -141,12 +141,13 @@ class _MLMAdapter:
 
 def run(rule, B=16, N=48, r=2, T=1.0, sweeps=60, mode="async", scheme="cls_sep",
         init="random", seed=0, record_every=1, init_state=None, u_stream=None,
-        sampler=None):
+        sampler=None, order="shared", order_stream=None):
     """Ring CA driven by `rule`. Thin shim over the unified loop (`lattice.run`)."""
     return _lattice_run(_MLMAdapter(rule, scheme, sampler), B=B, N=N, r=r, T=T,
                         sweeps=sweeps, mode=mode, init=init, seed=seed,
                         record_every=record_every, init_state=init_state,
-                        u_stream=u_stream, scheme=scheme)
+                        u_stream=u_stream, scheme=scheme,
+                        order=order, order_stream=order_stream)
 
 
 # ---------- reference-corpus metrics (proxy validation) ----------
