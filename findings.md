@@ -2012,6 +2012,24 @@ Every model is accounted for, which no single-factor story managed. It is also t
 consistent with the granite result: dense and MoE differ across nearly the whole network — 2x
 width, 1.7x depth, 16x FFN, routing-vs-none — but both are attention, and both have the attractor.
 
+**CORRECTION (Aug 1) — the effect is GRADED, not bimodal.** The nineteen-model screen showed
+top-1 shares of 68–78% and 6–20% with a 48-point gap containing nothing, and this finding described
+it as bimodal. Seven further families falsify that: `phi-1_5` at 53.1%, `TinyLlama-1.1B` at 50.4%
+and `tiny_starcoder_py` at 46.0% land squarely inside the supposed gap. Across twenty-six models
+the distribution now runs continuously from 6.0% to 98.0% with a single 25.5-point break between
+20.4% and 46.0%.
+
+The binary classification survives, because the 40% threshold happens to fall inside that one
+remaining break — so "has an attractor" is still cleanly decidable. What does not survive is the
+claim that there are **two kinds of model**. There is one graded quantity, and the apparent
+bimodality was an artifact of sampling four families.
+
+This matters for what comes next rather than for anything already concluded. A bimodal reading
+invites a search for a categorical cause; a graded one points at a continuous underlying variable —
+which is what T\* (F68) assumes, and what #92's marginal-retreat hypothesis predicts. The claim was
+stated as a property of the phenomenon when it was a property of the sample, and the error was
+mine.
+
 **Pre-registered test, stated before running.** `RWKV/rwkv-4-169m-pile` is Pile-trained and
 attention-free (an RNN). The two-factor account predicts **no attractor**. If it has one, attention
 is not necessary and the account fails, leaving the determinant open again. `mamba-370m-hf` is run

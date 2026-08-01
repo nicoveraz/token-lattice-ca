@@ -170,6 +170,24 @@
    "distinct_1": 0.2409,
    "longest_loop": 3.92,
    "secs": 43.3
+  },
+  "Salesforce/codegen-350M-mono": {
+   "model": "Salesforce/codegen-350M-mono",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.4473,
+   "distinct_1": 0.2891,
+   "longest_loop": 3.92,
+   "secs": 46.1
+  },
+  "bigcode/tiny_starcoder_py": {
+   "model": "bigcode/tiny_starcoder_py",
+   "n_prompts": 12,
+   "t_star": 0.2825,
+   "rep_4": 0.4067,
+   "distinct_1": 0.2865,
+   "longest_loop": 2.67,
+   "secs": 23.4
   }
  },
  "_preregistration": {
@@ -192,7 +210,14 @@
    "allenai/OLMo-1B-hf",
    "RWKV/rwkv-4-169m-pile",
    "state-spaces/mamba-130m-hf",
-   "state-spaces/mamba-370m-hf"
+   "state-spaces/mamba-370m-hf",
+   "Salesforce/codegen-350M-mono",
+   "bigcode/tiny_starcoder_py",
+   "facebook/opt-350m",
+   "microsoft/phi-1_5",
+   "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+   "HuggingFaceTB/SmolLM2-360M",
+   "stabilityai/stablelm-2-1_6b"
   ],
   "prompts": 12,
   "new_tokens": 128,

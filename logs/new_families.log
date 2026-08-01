@@ -57,3 +57,119 @@ Notes:
     T=0.02   distinct= 16.3%  top1= 50.4%  dominant='\n'
     T=0.2    distinct= 18.0%  top1= 42.6%  dominant='0'
     T=0.436  distinct= 33.5%  top1= 29.8%  dominant='0'
+    T=0.7    distinct= 61.8%  top1= 10.4%  dominant='\n'
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 14993.32it/s]
+  HuggingFaceTB/SmolLM2-360M (smollm, HuggingFace) loaded in 25s, V=49152
+    T=0.02   distinct=  4.7%  top1= 84.8%  dominant='\n'
+    T=0.2    distinct=  6.2%  top1= 80.6%  dominant='\n'
+    T=0.436  distinct= 24.0%  top1= 57.6%  dominant='\n'
+    T=0.7    distinct= 58.2%  top1= 16.8%  dominant='\n'
+Loading weights:   0%|          | 0/340 [00:00<?, ?it/s]Loading weights:   0%|          | 1/340 [00:00<05:11,  1.09it/s]Loading weights:  47%|████▋     | 161/340 [00:01<00:00, 212.41it/s]Loading weights:  72%|███████▏  | 244/340 [00:01<00:00, 177.97it/s]Loading weights:  87%|████████▋ | 296/340 [00:02<00:00, 144.82it/s]Loading weights:  97%|█████████▋| 331/340 [00:02<00:00, 136.10it/s]Loading weights: 100%|██████████| 340/340 [00:02<00:00, 137.83it/s]
+  stabilityai/stablelm-2-1_6b (mixed, Stability) loaded in 218s, V=100352
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    T=0.02   distinct=  6.6%  top1= 89.1%  dominant='0'
+    T=0.2    distinct=  8.9%  top1= 89.8%  dominant='0'
+    T=0.436  distinct= 30.9%  top1= 43.1%  dominant='0'
+    T=0.7    distinct= 58.3%  top1= 10.4%  dominant='0'
+
+=== attractor at the lowest temperature (T=0.02) ===
+                         model   corpus         lab  distinct    top1     dominant  predicted   observed
+        EleutherAI/pythia-410m     Pile  EleutherAI     12.9%   74.4%         '\n'  attractor  attractor
+       EleutherAI/gpt-neo-125M     Pile  EleutherAI     16.5%   78.1%          ' '  attractor  attractor
+    state-spaces/mamba-130m-hf     Pile state-spaces     40.5%   15.5%         '\n'  attractor       none   <- against prediction
+                   gpt2-medium  WebText      OpenAI     43.8%   14.7%         '\n'       none       none
+         bigscience/bloom-560m    ROOTS  BigScience     66.9%    6.0%        ' एक'       none       none
+             Qwen/Qwen2.5-0.5B    mixed     Alibaba     18.9%   73.7%          '0'       none  attractor   <- against prediction
+  ibm-granite/granite-3.0-1b-a400m-base  granite   IBM (MoE)      5.1%   70.3%         '\n' same-as-pair  attractor   <- against prediction
+  ibm-granite/granite-3.0-2b-base  granite IBM (dense)      8.6%   68.4%         '\n' same-as-pair  attractor   <- against prediction
+            allenai/OLMo-1B-hf    Dolma         AI2     47.3%   11.8%         '\n'    unknown       none   <- against prediction
+         EleutherAI/pythia-14m     Pile  EleutherAI      1.8%   98.0%         '\n'    unknown  attractor   <- against prediction
+         EleutherAI/pythia-31m     Pile  EleutherAI     11.6%   76.7%         '\n'    unknown  attractor   <- against prediction
+         EleutherAI/pythia-70m     Pile  EleutherAI      6.8%   93.4%         '\n'    unknown  attractor   <- against prediction
+        EleutherAI/pythia-160m     Pile  EleutherAI      6.6%   89.5%         '\n'    unknown  attractor   <- against prediction
+          EleutherAI/pythia-1b     Pile  EleutherAI      7.5%   83.2%         '\n'    unknown  attractor   <- against prediction
+                          gpt2  WebText      OpenAI     32.2%   20.4%         '\n'    unknown       none   <- against prediction
+                    gpt2-large  WebText      OpenAI     41.1%   17.3%         '\n'    unknown       none   <- against prediction
+                       gpt2-xl  WebText      OpenAI     45.6%   16.2%         '\n'    unknown       none   <- against prediction
+         RWKV/rwkv-4-169m-pile     Pile BlinkDL (RNN)     37.9%   17.7%         '\n'       none       none
+    state-spaces/mamba-370m-hf     Pile state-spaces (SSM)     44.7%   10.7%         '\n'       none       none
+  Salesforce/codegen-350M-mono     code  Salesforce     41.5%   10.9%          '.'    unknown       none   <- against prediction
+     bigcode/tiny_starcoder_py     code     BigCode     19.4%   46.0%          '0'    unknown  attractor   <- against prediction
+             facebook/opt-350m    mixed        Meta     35.8%   15.5%         '\n'    unknown       none   <- against prediction
+             microsoft/phi-1_5 textbook   Microsoft     22.0%   53.1%         '\n'    unknown  attractor   <- against prediction
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T SlimPajama   TinyLlama     16.3%   50.4%         '\n'    unknown  attractor   <- against prediction
+    HuggingFaceTB/SmolLM2-360M   smollm HuggingFace      4.7%   84.8%         '\n'    unknown  attractor   <- against prediction
+   stabilityai/stablelm-2-1_6b    mixed   Stability      6.6%   89.1%          '0'    unknown  attractor   <- against prediction
+
+=== TWO-FACTOR TEST: is attention necessary? ===
+                           model   corpus  attention    top1  attractor
+           EleutherAI/pythia-14m     Pile       True   98.0%       True
+           EleutherAI/pythia-70m     Pile       True   93.4%       True
+          EleutherAI/pythia-160m     Pile       True   89.5%       True
+     stabilityai/stablelm-2-1_6b    mixed       True   89.1%       True
+      HuggingFaceTB/SmolLM2-360M   smollm       True   84.8%       True
+            EleutherAI/pythia-1b     Pile       True   83.2%       True
+         EleutherAI/gpt-neo-125M     Pile       True   78.1%       True
+           EleutherAI/pythia-31m     Pile       True   76.7%       True
+          EleutherAI/pythia-410m     Pile       True   74.4%       True
+               Qwen/Qwen2.5-0.5B    mixed       True   73.7%       True
+  ibm-granite/granite-3.0-1b-a400m-base  granite       True   70.3%       True
+  ibm-granite/granite-3.0-2b-base  granite       True   68.4%       True
+               microsoft/phi-1_5 textbook       True   53.1%       True
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T SlimPajama       True   50.4%       True
+       bigcode/tiny_starcoder_py     code       True   46.0%       True
+                            gpt2  WebText       True   20.4%      False
+           RWKV/rwkv-4-169m-pile     Pile      False   17.7%      False
+                      gpt2-large  WebText       True   17.3%      False
+                         gpt2-xl  WebText       True   16.2%      False
+      state-spaces/mamba-130m-hf     Pile      False   15.5%      False
+               facebook/opt-350m    mixed       True   15.5%      False
+                     gpt2-medium  WebText       True   14.7%      False
+              allenai/OLMo-1B-hf    Dolma       True   11.8%      False
+    Salesforce/codegen-350M-mono     code       True   10.9%      False
+      state-spaces/mamba-370m-hf     Pile      False   10.7%      False
+           bigscience/bloom-560m    ROOTS       True    6.0%      False
+
+=== SCALE LADDERS: does top-1 share move with size, at fixed family? ===
+   pythia: 14M:98%  31M:77%  70M:93%  160M:89%  410M:74%  1000M:83%
+           slope -0.066 top-1 share per decade of params; attractor flips within ladder: False
+     gpt2: 124M:20%  355M:15%  774M:17%  1558M:16%
+           slope -0.031 top-1 share per decade of params; attractor flips within ladder: False
+
+  lowest pythia top-1 minus highest gpt2 top-1: +53.9 points  -> families never overlap; FAMILY dominates scale
+
+  DENSE vs MoE (granite-3.0, one family): MoE has_attractor=True (top1 70.3%), dense=True (top1 68.4%) -> AGREE, so architecture is not the determinant within this family.
+
+wrote results/attractor_corpus_screen.json
+  EleutherAI/pythia-14m: already done
+  EleutherAI/pythia-31m: already done
+  EleutherAI/pythia-70m: already done
+  EleutherAI/pythia-160m: already done
+  EleutherAI/pythia-410m: already done
+  EleutherAI/pythia-1b: already done
+  EleutherAI/gpt-neo-125M: already done
+  Qwen/Qwen2.5-0.5B: already done
+  ibm-granite/granite-3.0-1b-a400m-base: already done
+  ibm-granite/granite-3.0-2b-base: already done
+  gpt2: already done
+  gpt2-medium: already done
+  gpt2-large: already done
+  gpt2-xl: already done
+  bigscience/bloom-560m: already done
+  allenai/OLMo-1B-hf: already done
+  RWKV/rwkv-4-169m-pile: already done
+  state-spaces/mamba-130m-hf: already done
+  state-spaces/mamba-370m-hf: already done
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 32520.10it/s]
+[transformers] [1mCodeGenForCausalLM LOAD REPORT[0m from: Salesforce/codegen-350M-mono
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...19}.attn.causal_mask | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+            Salesforce/codegen-350M-mono T*=   None  rep_4=0.447  distinct=0.289  loop=3.9 (46.1s)
+Loading weights:   0%|          | 0/244 [00:00<?, ?it/s]Loading weights: 100%|██████████| 244/244 [00:00<00:00, 6575.24it/s]
+               bigcode/tiny_starcoder_py T*= 0.2825  rep_4=0.407  distinct=0.286  loop=2.7 (23.4s)
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 44855.16it/s]

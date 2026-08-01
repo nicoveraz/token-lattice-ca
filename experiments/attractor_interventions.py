@@ -1,7 +1,7 @@
 """Two interventions on the low-T attractor: conditioning radius, and token ablation (tests F62/F63).
 
 WHY INTERVENE RATHER THAN SCREEN MORE MODELS. The screen across nine models established that the
-attractor is bimodal -- top-1 share is 68-78% or 6-16%, with nothing between -- and eliminated
+attractor separates cleanly at the threshold -- and eliminated
 every observational axis tried. Not the corpus (F63: mamba is Pile with none, Qwen is non-Pile
 with one). Not the architecture: granite-3.0's MoE and dense members agree to within 2 points
 while differing by 2x in width, 1.7x in depth, 16x in FFN size, and routing-vs-none. When almost
@@ -257,7 +257,9 @@ def analyse(res):
     res["_analysis_provenance"] = stamp(__file__)
     res["_note"] = (
         "Two interventions on the low-temperature attractor, run because the observational axes "
-        "were exhausted: the nine-model screen found the effect bimodal (68-78% vs 6-16%) and "
+        "were exhausted: the nine-model screen found the effect well separated at the threshold "
+        "(later shown NOT to be bimodal -- see F64's correction, where a 26-model screen fills the "
+        "apparent gap) and "
         "eliminated corpus (F63) and architecture (granite MoE vs dense agree within 2 points "
         "while differing 2x in width, 1.7x in depth, 16x in FFN and routing-vs-none). Radius asks "
         "whether the attractor belongs to the two-token conditioning window rather than the model "

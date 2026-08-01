@@ -121,9 +121,11 @@ All discovered the expensive way; each cost at least one retracted verdict.
 What is left over after A + B + C is a single coherent thread, and it is *not* about phase
 transitions:
 
-> Models differ, bimodally and reproducibly, in how they behave when handed almost no context. A
-> single token dominates the two-token conditional in some models and not others, with **nothing in
-> between** — 68–78% versus 6–16% across nineteen models. Attention is necessary and the corpus
+> Models differ, reproducibly and by a wide margin, in how they behave when handed almost no
+> context. A single token dominates the two-token conditional in some models and not others —
+> **6% to 98% across twenty-six models**, a *graded* quantity rather than two classes (the apparent
+> bimodality of the first nineteen was a sampling artifact; see F64's correction). Attention is
+> necessary and the corpus
 > appears to decide (F64). The melting temperature **T\*** turns that binary into a graded scalar
 > that is *tighter within a family* than the raw share and separates families the binary lumps
 > together, at a cost of four settle runs per model.
