@@ -11,12 +11,26 @@ Reproducibility appendix 7, checklist 8–10**. **The body fits the 5-page limit
 0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
 double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 
-**Post-submission (Jul 31).** Nothing below has changed; the submitted state is pinned at
-`submission/neurips26-i4d`. Findings F56–F59 are *not* in the paper and were produced after the
-tag. One of them, **F58**, is paper-grade and would need a decision if the submission is reopened
-before the Aug 29 deadline — see §0 of `plan_to_submission.md`. The rest (F56, F57, F59) are
-instrument corrections and a provisional exponent; they belong to the post-submission track. None
-of the three retractions in that window touches a number in this paper.
+**Post-submission (Jul 31, superseded Aug 1).** Nothing below has changed; the submitted state is
+pinned at `submission/neurips26-i4d`. Findings F56–F66 are *not* in the paper and were produced
+after the tag.
+
+The Jul 31 note said F58 was "paper-grade" and would need a decision if the submission were
+reopened. **That is withdrawn.** F62–F66 showed the transition F58 located is the melting of an
+out-of-distribution prompt degeneracy: it exists only at r=2, is carried by a single token, a
+one-token BOS prefix removes 50 of its 74 points, and the masked-LM construction shows none of it.
+There is nothing here to add to the paper, and the decision not to reopen is now the obviously
+correct one rather than a judgement call.
+
+**This paper remains unaffected, and for a specific reason.** It operates at T=0.7, where the
+lattice is 13% newline across 66 distinct tokens and reads as fragmentary text; the artifact lives
+at T≈0.436. Its headline measurement also seeds a 3-site block rather than one site, which is far
+less exposed to F57's healing mechanism, and it already declares *"run is the unit of analysis, not
+the lattice."* F62 additionally *explains* F49's long-standing low-temperature "floor": the
+transition stops being detectable at T=0.3 because the lattice is 70% newline there.
+
+Six confident verdicts died in this window (F56, F57, F59-v1, F61, F65, F66), none of them
+reaching a paper. The next paper is rebuilt around the clean construction in `plan_paper2.md`.
 
 ---
 
