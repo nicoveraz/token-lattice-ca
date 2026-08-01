@@ -2613,10 +2613,11 @@ warning already on record. The direction is stable across five weightings; the m
 quotable. `experiments/_assembly_substitution.py` reproduces it; it belongs in
 `assembly_baselines.py` as a standing arm so F74's framing cannot be re-derived from F74 alone.
 
-### F76 — Δ fails its own instrument-selection rung; two of sixteen measures survive (#20)
-**PARTIAL: the AR arm is complete (72/72 cells), the MLM control is still running, and it can
-change the reading.** Recorded now because the AR rung is what gates the measurement radii and it
-is finished; amend when MLM lands.
+### F76 — Δ fails its own instrument-selection rung, and AMENDED: so does everything else (#20)
+**AR arm complete (72/72 cells). AMENDED the same day by its own caveat 1: the permutation null
+was run and NO measure survives, so the rung returns its pre-registered NULL and the #20
+experimental line closes.** The two-survivor reading below is superseded; it is kept in place
+with the amendment inline, because a retraction that stays visible is evidence the process works.
 
 §5.3 made r=2 an **instrument-selection rung** rather than the artifact to exclude, on the argument
 that it is the one radius where *both* poles are known in advance: the low-T degeneracy established
@@ -2674,13 +2675,62 @@ index does no work inside Δ — a random weight scores higher. F76: Δ then fai
 instrument-selection rung on the one system where both poles are known. The pre-registered reading
 is that **Δ is not a usable instrument here**, and §5.3 was built so that answer could win.
 
-**Three caveats, and the first is the one that could overturn this.**
+**AMENDED — the permutation null was run, and it overturns the positive half. NO measure survives;
+the rung returns its pre-registered NULL.**
 
-1. **Sixteen measures, no multiple-comparison correction.** Two clearing a margin-beats-noise
+Caveat 1 below asked for a permutation null on the shape statistic: shuffle temperature labels
+**within each seed**, which destroys any dependence on temperature while preserving exactly each
+seed's own distribution of values, then recompute the same statistic including its noise term.
+2000 permutations, BH-FDR across the measures:
+
+```
+  measure          observed         margin   noise   p_perm    p_BH
+  C_mu             interior peak     0.504   0.192   0.0315   0.0928
+  lzma_bits        interior peak   368.000  96.155   0.0915   0.1247
+  logA               no peak         0.385   0.769   0.0800   0.1199
+  gzip_bits          no peak        96.500  97.315   0.0435   0.0928
+  logA_ring_n2     degenerate end    0.000   0.512   0.0300   0.0928
+
+  observed interior peaks      : 2 of 15
+  expected under the null      : 1.59   (95th percentile 6)
+  P(>= 2 survivors by chance)  : 0.3198
+  survive BH-FDR at 0.05       : 0
+```
+
+**Two of fifteen is what chance produces.** The expected number of interior peaks with *no
+temperature structure at all* is **1.59**, and the observed 2 has p = 0.32. Neither survivor clears
+BH-FDR: `C_μ` at p_BH = 0.093, `lzma_bits` at p_BH = 0.125 — and `lzma_bits`, which had the largest
+raw margin at 3.8× its noise, is not even nominally significant at p_perm = 0.092.
+
+**The margin-beats-noise criterion was too permissive on its own**, and this quantifies how much:
+a ~10.6% per-measure false-positive rate, with the null's 95th percentile at **6 survivors of 15**.
+A survivor count read without this null would have licensed up to six spurious instruments.
+
+**So the r=2 rung returns the null §5.3 pre-registered:** *"NO measure is non-monotone at r=2. Then
+none of this apparatus can read complexity on a system where complexity is known to vary, and the
+whole #20 line closes. A NULL HERE IS A GOOD RESULT."* It closes by the gate's own logic, not by a
+judgement made after seeing the r=3/8 numbers — the same shape as F67's M2/M3 being skipped by the
+script's own gate.
+
+Consequences. The r ∈ {3, 8} measurement is **uninterpretable as a complexity reading**, because no
+instrument earned the right to report there. The MLM r=2 control becomes moot: it existed to test
+whether an AR peak was generic, and there is no peak to explain. And the two-survivor claim above is
+**withdrawn** — it is kept in place, struck through by this amendment, because a retraction that
+stays visible is evidence the process works.
+
+Two notes on reading the table. `H0` shows p_BH = 0.0075 but is **not** a survivor: it is exactly
+shuffle-invariant (F74), so it is zero everywhere and never produces an interior peak under
+permutation either — a degenerate p-value, not a result. And `logA_ring_n3` drops out of the 15
+entirely because its ring-decomposed Δ is `None` at some temperatures, where `A = 0` on one side and
+the contrast is not a measurement; that missingness is itself informative about the low-T end.
+
+**The original caveats, kept for the record:**
+
+1. ~~**Sixteen measures, no multiple-comparison correction.** Two clearing a margin-beats-noise
    threshold out of sixteen may be luck. F39 applied BH-FDR to a comparable battery and this has
    nothing. What is owed is a **permutation null on the shape statistic** — shuffle the temperature
    labels within seed and ask how often a measure clears — not a raw survivor count. Until that is
-   run, "two survive" is a description, not a result.
+   run, "two survive" is a description, not a result.~~ **Run; see the amendment above. It was luck.**
 2. **`C_μ` is the coarse, frequency-bucketed estimator F74 already flagged as unusable at these
    lengths.** Its passing should be held loosely; it is also the exact objection §4.4 concedes has
    no rhetorical answer, arriving from the other side.
