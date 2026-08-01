@@ -57,7 +57,12 @@ from provenance import stamp, rel
 MODELS = [
     ("EleutherAI/pythia-410m",     "step143000", "Pile",    "EleutherAI", "attractor"),
     ("EleutherAI/gpt-neo-125M",    None,         "Pile",    "EleutherAI", "attractor"),
-    ("cerebras/Cerebras-GPT-256M", None,         "Pile",    "Cerebras",   "attractor"),
+    # Cerebras-GPT was the intended non-EleutherAI Pile model; its repos return HTTP 401
+    # (gated, needs an auth token) so it could not be used. mamba-130m-hf substitutes: also
+    # Pile-trained, also not EleutherAI. It confounds lab with ARCHITECTURE -- a state-space
+    # model, not a transformer -- which is stated rather than hidden, and cuts both ways: if it
+    # shows the attractor, that is evidence the effect is not even attention-specific.
+    ("state-spaces/mamba-130m-hf", None,         "Pile",    "state-spaces", "attractor"),
     ("gpt2-medium",                None,         "WebText", "OpenAI",     "none"),
     ("bigscience/bloom-560m",      None,         "ROOTS",   "BigScience", "none"),
     ("Qwen/Qwen2.5-0.5B",          None,         "mixed",   "Alibaba",    "none"),
@@ -92,11 +97,11 @@ def main():
         temps=TEMPS, N=N, B=B, r=R, settle=SETTLE,
         hypothesis="the low-T attractor is corpus-induced: Pile-trained models have a dominant "
                    "single-token fixed point, models on other corpora do not",
-        separability="two Pile models from DIFFERENT labs, so 'the Pile' is separable from "
-                     "'EleutherAI's recipe'; Cerebras-GPT is the load-bearing case",
+        separability="Pile models from DIFFERENT labs, so 'the Pile' is separable from "
+                     "'EleutherAI's recipe'; the non-EleutherAI Pile model is load-bearing",
         criterion=f"attractor iff top-1 share >= {TOP1_HIGH} AND distinct/N <= {DISTINCT_LOW} "
                   f"at the lowest temperature ({min(TEMPS)})",
-        falsifier="if Cerebras-GPT lacks the attractor, the corpus explanation is wrong",
+        falsifier="if the non-EleutherAI Pile model lacks the attractor, the corpus explanation is wrong",
         not_tested="exponents, and any cross-family T_c comparison (T_c is non-universal)",
         resumable="keyed by (model, T)")
     runs = res["runs"]
@@ -161,7 +166,7 @@ def analyse(res):
 
     pile = [r for n, r in rows.items() if r["corpus"] == "Pile"]
     other = [r for n, r in rows.items() if r["corpus"] != "Pile"]
-    cer = rows.get("cerebras/Cerebras-GPT-256M")
+    cer = rows.get("state-spaces/mamba-130m-hf")
     pile_all = bool(pile) and all(r["has_attractor"] for r in pile)
     other_none = bool(other) and not any(r["has_attractor"] for r in other)
 
@@ -172,7 +177,7 @@ def analyse(res):
                    f"family has no transition -- the ordered phase is a corpus artifact -- holds "
                    f"on a test that could have refuted it.")
     elif cer and not cer["has_attractor"]:
-        verdict = (f"CORPUS EXPLANATION REFUTED: Cerebras-GPT-256M is Pile-trained and shows NO "
+        verdict = (f"CORPUS EXPLANATION REFUTED: mamba-130m-hf is Pile-trained and shows NO "
                    f"attractor (top-1 {cer['top1_share']*100:.1f}%, distinct "
                    f"{cer['distinct_frac']*100:.1f}%). The attractor is therefore not the Pile; "
                    f"something in EleutherAI's recipe or tokenizer is doing the work. F62's "

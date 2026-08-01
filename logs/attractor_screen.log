@@ -1,0 +1,55 @@
+Attractor screen: 6 models x 4 temperatures
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.75it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 586.20it/s]Loading weights:  79%|███████▉  | 231/292 [00:00<00:00, 557.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 426.35it/s]
+  EleutherAI/pythia-410m (Pile, EleutherAI) loaded in 3s, V=50304
+    T=0.02   distinct= 12.9%  top1= 74.3%  dominant='\n'
+    T=0.2    distinct= 11.3%  top1= 78.0%  dominant='\n'
+    T=0.436  distinct= 36.1%  top1= 52.3%  dominant='\n'
+    T=0.7    distinct= 68.9%  top1= 12.9%  dominant='\n'
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 18382.46it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125M (Pile, EleutherAI) loaded in 17s, V=50257
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    T=0.02   distinct= 16.5%  top1= 78.1%  dominant=' '
+    T=0.2    distinct= 23.0%  top1= 68.2%  dominant=' '
+    T=0.436  distinct= 31.8%  top1= 56.2%  dominant=' '
+    T=0.7    distinct= 44.8%  top1= 44.5%  dominant=' '
+  cerebras/Cerebras-GPT-256M: LOAD FAILED (OSError: cerebras/Cerebras-GPT-256M is not a local folder and is not a valid model identi)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8185.65it/s]
+  gpt2-medium (WebText, OpenAI) loaded in 4s, V=50257
+    T=0.02   distinct= 43.8%  top1= 14.7%  dominant='\n'
+    T=0.2    distinct= 51.0%  top1= 10.5%  dominant='\n'
+    T=0.436  distinct= 61.6%  top1= 13.3%  dominant='\n'
+    T=0.7    distinct= 67.8%  top1=  9.8%  dominant='\n'
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 3406.94it/s]
+  bigscience/bloom-560m (ROOTS, BigScience) loaded in 62s, V=250880
+    T=0.02   distinct= 66.9%  top1=  6.0%  dominant=' एक'
+    T=0.2    distinct= 72.5%  top1=  5.5%  dominant=','
+    T=0.436  distinct= 84.6%  top1=  4.3%  dominant=','
+    T=0.7    distinct= 90.9%  top1=  4.0%  dominant=' في'
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 20592.34it/s]
+  Qwen/Qwen2.5-0.5B (mixed, Alibaba) loaded in 48s, V=151936
+    T=0.02   distinct= 18.9%  top1= 73.7%  dominant='0'
+    T=0.2    distinct= 30.9%  top1= 55.7%  dominant='0'
+    T=0.436  distinct= 53.8%  top1= 19.4%  dominant='0'
+    T=0.7    distinct= 76.4%  top1=  7.0%  dominant='0'
+
+=== attractor at the lowest temperature (T=0.02) ===
+                         model   corpus         lab  distinct    top1     dominant  predicted   observed
+        EleutherAI/pythia-410m     Pile  EleutherAI     12.9%   74.4%         '\n'  attractor  attractor
+       EleutherAI/gpt-neo-125M     Pile  EleutherAI     16.5%   78.1%          ' '  attractor  attractor
+    cerebras/Cerebras-GPT-256M     Pile    Cerebras   (no data)
+                   gpt2-medium  WebText      OpenAI     43.8%   14.7%         '\n'       none       none
+         bigscience/bloom-560m    ROOTS  BigScience     66.9%    6.0%        ' एक'       none       none
+             Qwen/Qwen2.5-0.5B    mixed     Alibaba     18.9%   73.7%          '0'       none  attractor   <- against prediction
+
+  -> MIXED: 4/5 models match their pre-registered prediction. The corpus/attractor association is not clean, so neither the Pile explanation nor its refutation is supported. Reported as the ambiguous result it is.
+
+wrote results/attractor_corpus_screen.json

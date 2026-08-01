@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F62)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F63)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -1918,9 +1918,10 @@ the qualifier, and any second paper has to state it in the abstract rather than 
 
 **Claim E is answered, negatively, in its simple form.** The transition is not a general property
 of trained language models. It requires the model's short-context conditional to have a dominant
-fixed-point token, and whether it does looks like a property of the training corpus — the Pile is
-newline-rich, WebText less so. Comparing exponents between families is moot when the second family
-has no transition to measure them at.
+fixed-point token, and models differ in whether they have one. *(The corpus explanation offered
+here — "the Pile is newline-rich, WebText less so" — was tested in **F63** and refuted. The
+requirement stands; the reason does not.)* Comparing exponents between families is moot when the
+second family has no transition to measure them at.
 
 **The submitted paper is unaffected.** It runs at T=0.7, where the settled state is 13% newline
 across 66 distinct tokens and reads as fragmentary text. This also *explains* F49's low-T
@@ -1930,6 +1931,44 @@ across 66 distinct tokens and reads as fragmentary text. This also *explains* F4
 `<unk>`, cured by moving to BPE. The same pathology — a degenerate token dominating the attractor —
 returns at the language-model level as newline, and was not looked for because BPE was assumed to
 have settled it.
+
+### F63 — the attractor is real and model-dependent, but it is not the corpus
+F62 explained the missing transition in a second family by the training corpus. That was a guess
+from two models, so it was pre-registered and screened across six — with Pile models from
+different labs, so "the Pile" was separable from "EleutherAI's recipe". **The guess is wrong, and
+it fails from both directions:**
+
+```
+model                   corpus   lab           distinct   top1   dominant   predicted   observed
+pythia-410m             Pile     EleutherAI      12.9%   74.4%     '\n'     attractor   attractor
+gpt-neo-125M            Pile     EleutherAI      16.5%   78.1%     ' '      attractor   attractor
+mamba-130m-hf           Pile     state-spaces    40.5%   15.5%     '\n'     attractor   NONE
+gpt2-medium             WebText  OpenAI          43.8%   14.7%     '\n'     none        none
+bloom-560m              ROOTS    BigScience      66.9%    6.0%     ' एक'    none        none
+Qwen2.5-0.5B            mixed    Alibaba         18.9%   73.7%     '0'      none        ATTRACTOR
+```
+
+`mamba-130m-hf` is Pile-trained and has **no** attractor, so *Pile → attractor* is false.
+`Qwen2.5-0.5B` is not Pile-trained and **has** one, so *attractor → Pile* is false. The corpus is
+not the mechanism.
+
+**What survives, and it is the part that matters.** Models genuinely differ in whether a dominant
+fixed-point token exists at low temperature, and therefore in whether an ordered phase exists for
+the damage transition to melt. That is what makes the transition non-universal across families,
+and it is unaffected by the corpus story collapsing. What dies is the *explanation*.
+
+**It is also not newline specifically.** The dominant token differs by model — `'\n'` for Pythia,
+`' '` for GPT-Neo, `'0'` for Qwen. All are low-information filler, so the phenomenon is "some
+degenerate token becomes a fixed point of the short-context conditional", not anything about
+whitespace.
+
+**What determines it is unknown.** It is not the corpus, not model size (125M and 500M have it;
+130M and 355M do not), and not obviously the architecture. One confound is disclosed rather than
+buried: the intended non-EleutherAI Pile control was Cerebras-GPT, whose repos return HTTP 401
+(gated), so `mamba-130m-hf` substituted — which is Pile-trained and non-EleutherAI but also a
+state-space model rather than a transformer, so its negative confounds lab with architecture.
+A clean second non-EleutherAI *transformer* on the Pile would sharpen this; it would not rescue
+the corpus explanation, which Qwen already refutes on its own.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
