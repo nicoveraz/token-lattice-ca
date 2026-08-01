@@ -44,7 +44,8 @@ built from exact combinatorial counts on observed strings.
 | 3 | The **exponential weighting is load-bearing.** Tempering `e^{a}` to `e^{a/2}` or to linear `a` *inverts* the ordering, so degenerate repetition beats real text | **Solid, and non-obvious.** This is the thing that separates AT from a compression measure |
 | 4 | The right statistic is a **contrast against a matched word-shuffle**, `Δ = log A(text) − ⟨log A(shuffled)⟩`. It reads **exactly +0.00 on pure degenerate repetition** and **+0.00 on random soup**, against **+6.87 on real text**, at matched length | **Solid, with the symmetry withdrawn** (F73). The degenerate zero is measured; the noise zero is *definitional* (log floor). The substantive fact there is `A(text) = 0` — where entropy is maximal — now reported separately as `A_is_zero` |
 | 5 | Applied to the existing CA output, Δ is large at low temperature and **exactly zero** at T ≥ 0.9 for both constructions, with MLM above AR | **Suggestive only — NOT established.** Window-to-window spread overlaps zero in several cells; effective object count is 1–2 |
-| 6 | **No compression or entropy baseline reproduces Δ's ordering.** 11 of 12 peak on degenerate repetition; Δ alone peaks on real text, by 20× | **Solid, and the strongest result here** (F74, `assembly_baselines.py`). The difference is in *shape*, which no correlation coefficient explains away |
+| 6 | **No FLAT compression or entropy baseline reproduces Δ's ordering.** 11 of 12 peak on degenerate repetition; Δ alone peaks on real text, by 20× | **Solid** (F74, `assembly_baselines.py`). The difference is in *shape*, which no correlation coefficient explains away |
+| 7 | **But the assembly index is not what carries it.** Substituting character length or an LZ77 phrase count for `a_i` — keeping the exponential, the copy-number coupling and the shuffle contrast — reproduces the ordering, marginally *better*. Even a constant weight does | **Corrects row 6's framing** (§3.7). The claim is about the **ensemble construction**, not about assembly theory beating compression |
 
 **The honest read on (5):** the direction is consistent across twelve cells and both constructions,
 and the two zero-poles behave as designed. But every applied number rests on **one settle run per
@@ -473,6 +474,66 @@ make to its own grid.
 5. **Sample size vs n.** At n = 4 real text scored `A = 0` in a 606-word sample — an undersampling
    artifact, not a property of real text. Use n = 2 and 3 at these lengths, or raise the budget.
 
+### 3.7 The substitution control — the assembly index is NOT what carries the result
+
+**This overturns how §5.2's result was being described, and it was found by asking the obvious
+question one step later than F74 asked it.**
+
+F74 compared Δ against **flat** measures — gzip, lzma, LZ77 and the rest applied to the whole text
+and contrasted against shuffles. Eleven of twelve peaked on degenerate repetition where Δ peaked on
+real text, and that was read as evidence that assembly theory differs from compression. But Δ stacks
+four things, and F74 varied **none** of them:
+
+```
+  (1) a per-object complexity   a_i
+  (2) an exponential weight     e^{a_i}
+  (3) copy-number coupling      (n_i - 1)
+  (4) a matched-shuffle contrast
+```
+
+So F74 establishes that the **stack** beats flat compression. It does not establish that (1) has to
+be the assembly index. The decisive control keeps (2), (3) and (4) exactly and substitutes a
+non-assembly per-object term. At 440 words, 3-grams, against the five reference regimes:
+
+```
+  regime           a_i (assembly)   len_i (chars)   z_i (LZ77)   const (no complexity term)
+  real text             +6.09           +6.40         +6.47            +1.30
+  degenerate x1         +0.00           +0.00         +0.00            +0.00
+  degenerate x2         +0.35           -0.10         +0.35            +0.01
+  random soup           -0.70           -0.80         -0.75            -0.10
+  unique tokens         +0.00           +0.00         +0.00            +0.00
+
+  peaks on REAL TEXT:   all four
+```
+
+**Every substitution reproduces the ordering, and character length and LZ77 do it marginally
+better than the assembly index does.** Even a *constant* weight — no complexity term at all, pure
+copy number against a shuffle — peaks on real text, at +1.30. The exponential **amplifies** the
+effect (6.09 against 1.30) but does not create it.
+
+**What this changes.** The claim is not "assembly theory separates from compression." It is:
+
+> A **copy-number statistic read against a matched-multiset shuffle** separates real text from
+> degenerate repetition and from noise, where flat compression and entropy measures do not. The
+> per-object complexity term inside it is interchangeable.
+
+That is narrower, and it is the honest version. It also **re-opens the per-object InChI-length
+confound** that §5.2 claimed was disarmed: length is held constant *in aggregate* by the shuffle,
+but the per-object correlation between an n-gram's length and its assembly index is untouched, and
+`len_i` works just as well. §5.2's "provably cannot operate here" was true of the global confound
+and false of the per-object one.
+
+**What still stands.** §3.2 (the raw index carries no word-order information, z = −1.78) is
+unaffected — this is the same conclusion reached from a second direction. F74's finding that flat
+measures peak on degeneracy is unaffected, and it remains the useful result for §4.5. And §3.3's
+weighting sweep is unaffected *within* the A-family, though it now reads as a fact about the
+exponential rather than about assembly.
+
+**Power, stated because the direction matters more than the numbers.** One text, five regimes,
+eight shuffles, one seed, 3-grams only — the same underpowering §3.5 is flagged for. The ordering is
+unambiguous across four weightings, but the *magnitudes* should not be quoted. `experiments/_assembly_substitution.py` reproduces it; §5.2 should absorb it as a
+gated arm.
+
 ---
 
 ## 4. Prior art and novelty
@@ -587,6 +648,55 @@ correlation coefficient. §5.2 has already delivered half of it — the ordering
 §5.3 is running the other half, the shape across temperature. Its null is the case where Δ is
 monotone too.
 
+### 4.5 The external framing target — an assumption in the literature that §5.3 measures
+
+Mohsin et al., *On the Fundamental Limits of LLMs at Scale* (TMLR 07/2026,
+`openreview.net/forum?id=BIRDGVrom8`), §2.4, posits a **creativity–factuality trade-off**:
+
+> low temperatures (T ≈ 0.1–0.5) produce repetitive, conservative text with high factual accuracy
+> but limited novelty. High temperatures (T ≈ 1.0–2.0) yield diverse, creative outputs but also
+> frequent hallucinations
+
+formalised as a constrained capacity `A(θ) + α·C(θ) = κ`, giving `dA = −α·dC` — a **monotone**
+trade-off with constant α. Their own Table 1 files this under *"modeling assumption / framework"*,
+not as proved and not as an empirical observation. **So it is a named assumption in a current
+journal paper, awaiting evidence.**
+
+Two points of contact, and the second is the sharper one.
+
+**§5.3 measures the shape.** Its temperature grid spans both regimes §2.4 names, and its
+pre-registration is precisely whether the structure measure is non-monotone with an interior
+maximum — which a constant-α scalar trade-off cannot produce. This is the **external anchor** F68
+lacked and issue #20 asked for: it turns "does Δ peak?" from an internal curiosity into a test of a
+stated assumption in the literature.
+
+**F74 says their `C` is not instantiable with an off-the-shelf FLAT metric.** The paper defines
+`C(θ)` as "a creativity metric measuring diversity, novelty, or originality" and treats it as a
+well-defined scalar. §5.2 measured twelve candidates for exactly that metric — LZ77, LZW, RePair,
+gzip, bz2, lzma, unigram and block entropy, entropy rate, excess entropy, coarse `C_μ`, integrated
+MI — and **eleven of twelve peak on degenerate repetition** rather than on real text. Instantiating
+`A + αC` with any of them makes creativity maximal on `"the of the of…"`.
+
+**But the repair is not "use the assembly index" — see §3.7.** The substitution control shows the
+per-object assembly index is interchangeable with character length or an LZ77 phrase count, and
+that what carries the ordering is the **ensemble construction**: copy-number coupling read against
+a matched-multiset shuffle. So the contribution to this framework is *"`C` must be an ensemble
+statistic, not a flat one"* — which is narrower than it first appeared and does **not** license any
+claim that assembly theory beats compression here.
+
+**One boundary, held firmly.** F71's plane — 94% of the way to shuffled on novelty at only 27% of
+the way on unpredictability — sits well off any linear frontier and looks like a counterexample.
+It is not one yet: NLL under `gpt2-large` is **predictability**, and the paper's `A` is factual
+accuracy. Predictability is not factuality. F71 is suggestive of the shape and must not be quoted
+as refuting the trade-off.
+
+Two further connections worth keeping, neither load-bearing. Their Theorems 1–3 prove errors are
+*inevitable*; **F35 measured that errors are also unrecoverable** (`P_persist = 1.000`,
+`TV_norm ≈ 0.97`), and their Table 1 lists "exposure bias compounding" as a modeling assumption —
+F35 is a measurement of it. And their Lemma 3 (positional undertraining, effective context below
+nominal) is the long-context mirror of F69's short-context measurement, where r=2 → r=3 drops top-1
+by 52 points.
+
 ---
 
 ## 5. The follow-up program
@@ -671,10 +781,15 @@ their all-zero contrast vector returned whichever regime sorted first, and they 
 peaking on real text. Both are the same failure: a formula applied where its denominator is
 degenerate.
 
-**That invariance is worth stating positively, because it disarms the critics' most dangerous
-baseline.** The InChI-length confound (r = 0.95 between string length and assembly index) **provably
-cannot operate here**: length and type count are held *exactly* constant by the shuffle control,
-rather than partialled out after the fact.
+**That invariance disarms the critics' most dangerous baseline at the GLOBAL level only, and §3.7
+shows the per-object version is alive.** Total length and type count are held *exactly* constant by
+the shuffle control rather than partialled out, so the InChI-length confound (r = 0.95 between
+string length and assembly index) cannot operate on the document as a whole. It was overstated here
+as "provably cannot operate", full stop. **It can, and does, operate per object:** the shuffle does
+not hold an individual n-gram's length constant, and substituting `len_i` for `a_i` inside the
+ensemble formula reproduces Δ's ordering — marginally better than the assembly index itself. See
+§3.7. This section's conclusion about *flat* baselines is untouched; its implied conclusion about
+the assembly index is withdrawn.
 
 ### 5.3 `experiments/assembly_temperature.py` — **BUILT, and it had the radii backwards**
 
@@ -971,10 +1086,18 @@ fetched directly — check before citing.
   arXiv:2406.12176. PMC12408342 — **the fixed-multiset permutation experiment**
 - Łukaszyk (2025). *IPI Letters* 3(1). DOI `10.59973/ipil.157` — disputes the rebuttal in turn
 
+**External framing target — verified**
+- Mohsin, Umer, Bilal, Memon, Qadir, Bhattacharya et al. (2026). "On the Fundamental Limits of LLMs
+  at Scale." *Transactions on Machine Learning Research* 07/2026.
+  `openreview.net/forum?id=BIRDGVrom8` — §2.4's creativity–factuality trade-off is the assumption
+  §4.5 and §5.3 test. Verified against a local PDF; record and hash in `paper/refs_manual.json`
+
 **Closest prior art — read before writing**
 - **Patarroyo, Sharma, Walker & Cronin (2023). "AssemblyCA: A Benchmark of Open-Endedness for Discrete
   Cellular Automata." ALOE @ NeurIPS 2023.** `openreview.net/forum?id=5cEQ4ZOsIN` ·
-  `assemblyca.github.io` · `github.com/KeithPatarroyo/assemblyca` **[PDF unverified — bot challenge]**
+  `assemblyca.github.io` · `github.com/KeithPatarroyo/assemblyca` **[unverified — the PDF has never
+  been obtained; everything §4.3 claims about it comes from the project page. Record and the action
+  that closes it in `paper/refs_manual.json`]**
 - Champagne-Ruel, Kempes & Mathis (2025). arXiv:2509.04547
 
 **Comparison targets**

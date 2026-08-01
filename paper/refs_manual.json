@@ -1,0 +1,41 @@
+{
+ "_note": "Verification records for citations that CANNOT be machine-fetched, written and checked by experiments/audit_manual.py and asserted offline by tests/test_refs_manual.py. This is the OpenReview-shaped hole in the arXiv audit: audit_refs.py fetches arXiv abstract pages, but OpenReview serves a bot challenge on every endpoint, so an OpenReview citation could previously sit in a markdown bibliography behind a hand-typed '[unverified]' marker forever, with nothing recording whether anyone had actually read it. That is the F43 failure shape (a hand audit that misses one entry looks exactly like a hand audit that misses none) reintroduced in a file the arXiv machinery never covered. A record here carries EVIDENCE -- what was read, on what date, and the sha256 of the artifact -- so the check is reproducible and tamper-evident even though the fetch is not automatable.",
+ "_status_values": {
+  "verified": "the source was obtained and read; title/authors/venue below are transcribed from it",
+  "unverified": "not yet obtained; `reason` says why and `action` says what would close it"
+ },
+ "records": {
+  "fundamental_limits_2026": {
+   "status": "verified",
+   "title": "On the Fundamental Limits of LLMs at Scale",
+   "first_author": "Muhammad Ahmed Mohsin",
+   "n_authors": 18,
+   "venue": "Transactions on Machine Learning Research",
+   "year": "2026",
+   "issue": "07/2026",
+   "source": "openreview:BIRDGVrom8",
+   "source_url": "https://openreview.net/forum?id=BIRDGVrom8",
+   "why_not_automated": "OpenReview returns HTTP 403 ChallengeRequiredError on the forum page, the v1 and v2 note APIs, and the PDF endpoint. The challenge is a deliberate anti-automation measure and is not routed around.",
+   "checked_against": "local PDF obtained by the author through a browser; pages 1-10 and 13-18 read in full, including Table 1 (epistemic status of claims) and section 2.4 (creativity-factuality trade-off)",
+   "checked_on": "2026-08-01",
+   "pdf_basename": "6695_On_the_Fundamental_Limits.pdf",
+   "pdf_sha256": "5c33f617db29ee2f58b4651a29005243f952c2604ea57239bf29369036454ae7",
+   "pdf_pages": 67,
+   "pdf_location": "held outside the repo (third-party PDF, not redistributed); the hash pins it wherever it is kept",
+   "why_it_is_cited": "Section 2.4 posits the creativity-factuality trade-off as A(theta) + alpha*C(theta) = kappa, giving dA = -alpha*dC -- a MONOTONE trade-off with constant alpha -- and its own Table 1 files this under 'modeling assumption / framework' rather than proved or empirical. Section 5.3 of assembly_theory.md measures exactly that, on a temperature grid spanning both of the regimes section 2.4 names (T ~ 0.1-0.5 repetitive, T ~ 1.0-2.0 hallucinating). F74 is the sharper contact: the paper's C is 'a creativity metric measuring diversity, novelty, or originality', and F74 measured twelve standard candidates for that metric, eleven of which peak on DEGENERATE REPETITION rather than on real text."
+  },
+  "assemblyca_2023": {
+   "status": "unverified",
+   "title": "AssemblyCA: A Benchmark of Open-Endedness for Discrete Cellular Automata",
+   "first_author": "Keith Y. Patarroyo",
+   "venue": "ALOE Workshop @ NeurIPS 2023",
+   "year": "2023",
+   "source": "openreview:5cEQ4ZOsIN",
+   "source_url": "https://openreview.net/forum?id=5cEQ4ZOsIN",
+   "why_not_automated": "Same OpenReview bot challenge. The literature check hit it on three separate fetch attempts.",
+   "reason": "The PDF has never been obtained. Everything currently claimed about it in assembly_theory.md section 4.3 -- that it works on 2D spatial patterns rather than 1D token strings, that it does NOT use the exponential assembly equation, and that it does NOT discuss criticality or edge of chaos -- comes from the project site and the GitHub README, NOT from the paper.",
+   "action": "Open https://openreview.net/forum?id=5cEQ4ZOsIN in a browser, save the PDF, register it with `experiments/audit_manual.py --register assemblyca_2023 <path>`, and confirm or correct the three differentiators.",
+   "why_it_matters": "It is the CLOSEST PRIOR ART to issue #20 -- assembly theory applied to cellular automata -- and the three unconfirmed differentiators are the entire basis for claiming the assembly work is novel. Section 7 of assembly_theory.md lists reading it as a blocking step for that reason."
+  }
+ }
+}
