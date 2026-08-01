@@ -1,6 +1,6 @@
 # Assembly theory as a structure read-out for the token lattice
 
-**Written 1 Aug 2026.** A first-principles analysis of what this project has established, followed by
+**Written 1 Aug 2026; §1.5, §3.5, §5.3, §5.5 and §7 corrected the same day for F71/F72.** A first-principles analysis of what this project has established, followed by
 a concrete program for issue **#20** (assembly theory as a compositional-complexity axis), including
 a **pilot that was actually run** against the data already in `results/`.
 
@@ -11,9 +11,9 @@ work.
 
 ## 0. Summary
 
-**The project's achievement is not a result, it is an instrument plus a discipline.** Seventy
-findings, fifty-three of them written up in `findings.md`, with every retraction, correction and
-demotion still visible there. The headline dynamical claims were dissolved by the project's own
+**The project's achievement is not a result, it is an instrument plus a discipline.**
+Seventy-two findings, fifty-five of them written up in `findings.md`, with every retraction,
+correction and demotion still visible there. The headline dynamical claims were dissolved by the project's own
 checks; what survives is a
 black-box measurement apparatus for language models, a validation ladder with one **bit-exact** rung,
 and a documented method for not fooling yourself that caught six confident wrong verdicts before any
@@ -180,12 +180,21 @@ closed. The open frontier is three uncommitted or just-landed experiments:
 
 - **#93 `novelty_structure`** — does the CA create, recall, or randomise? Measured on a two-axis
   plane: word-n-gram novelty against per-token NLL from a *third* model (`gpt2-large`, which never
-  generates). Result: the AR construction's best cell is +0.157 and 7 of 12 cells are excluded for
-  whitespace padding; **the MLM construction reaches +0.669 at r=8, T=0.3 — 94% of the way to
-  shuffled on novelty while only 27% of the way on unpredictability**, with no cell excluded.
-- **#94 `basin_dependence`** — just finished. **Both constructions: INITS DIVERGE** (max top-1 spread
-  0.783 AR, 0.928 MLM). Basins are real, so **novelty is prompt-relative** and #93 measures one basin
-  among several. The fixed-point seed is a trap in 2/6 AR cells and 6/6 MLM cells.
+  generates). Result (**F71**, after two corrections): **the MLM construction reaches +0.669 at
+  r=8, T=0.3 — 94% of the way to shuffled on novelty while only 27% of the way on
+  unpredictability**, with no cell excluded. **The AR construction shows none** — 7 of 12 cells are
+  whitespace padding, 3 more are *more unpredictable than word-shuffled text*, and the best
+  survivor is −0.021. An earlier "+0.157 for AR" was withdrawn: the gap statistic is scale-free and
+  stayed positive when both fractions exceeded 1, so a cell worse than shuffling on both axes was
+  being scored as structured. Cells must now lie **between** the references.
+- **#94 `basin_dependence`** — **F72, and it reverses the reading this document was drafted under.**
+  **The prompt is erased.** Random and corpus seeds settle to the same composition (max top-1 gap
+  0.053 AR, 0.022 MLM) and only 2% / 12% of a corpus seed survives in place, so #93's
+  novelty-from-noise is *representative* rather than one basin among several. The first verdict said
+  "INITS DIVERGE, basins are real, novelty is prompt-relative"; that spread was computed across the
+  degenerate fixed-point seed, which never moves. **Separately**, a ring filled with the attractor
+  token is a trap in 2/6 AR and 6/6 MLM cells — self-sustaining, but with a basin so small neither
+  random nor text seeds reach it.
 - **#90 T\*** — awaiting roughly seven more independent families.
 
 **The gap #93 leaves open is the one assembly theory addresses.** Its structure axis is a **NLL from
@@ -375,8 +384,10 @@ Three things are consistent and one is not.
 −0.78 / +0.00. Every cell at T ≥ 0.9 reads **exactly +0.00** in both constructions — at high
 temperature the ring contains no repeated 3-gram at all, which is the noise pole reached from data.
 And **MLM sits well above AR** at low temperature (+7.4 to +9.0 against +2.1 to +2.4), agreeing in
-direction with #93's independent finding that the MLM construction is the one showing structured
-novelty (+0.669 against +0.157), from a statistic that shares no machinery with it.
+direction with F71's independent finding that the MLM construction is the one showing structured
+novelty **and the AR construction shows none**, from a statistic that shares no machinery with it.
+The agreement tightened when F71 was corrected: AR's apparent +0.157 was withdrawn, and the pilot
+already had AR near zero.
 
 **Not consistent — and this is the reason nothing here is a finding.** The window-to-window spreads
 are enormous and several overlap zero: `mlm|r3|T0.3` is +8.70 over a range of [−0.64, +9.48];
@@ -577,8 +588,11 @@ interventions (F62–F70), and it melts at T\* ≈ 0.52 for pythia-410m. It has 
 high temperature. Δ is provably zero at both (§3.4). **So Δ must be non-monotone in T for the AR
 construction, with an interior maximum, or assembly theory is not measuring structure here.**
 
-The MLM construction is the control. F67 established it has **no absorbing state** — surviving damage
-never drops below 0.547 down to T = 0.02. **So its Δ must not turn over at low T.** Two constructions,
+The MLM construction is the control. F67 established it has **no *reachable* absorbing state** —
+surviving damage never drops below 0.547 down to T = 0.02. F72 sharpened this: a uniform ring **is**
+self-sustaining for MLM too, but its basin is negligible, so nothing settling from random seeding
+ever arrives. The prediction is unchanged and its basis is now exact — **Δ must not turn over at low
+T**, because the pole exists but is unreachable from where §5.3 starts. Two constructions,
 opposite predictions, both poles established in advance by other means.
 
 ```
@@ -629,12 +643,20 @@ measure sees. **Do not start this until §5.3 returns.**
 
 ### 5.5 What to do with `basin_dependence` first
 
-Issue #94 landed today: **inits diverge in both constructions** (top-1 spread 0.783 / 0.928), so novelty is
-**prompt-relative** and #93 measures one basin among several. Every design above must therefore
-declare its initialisation, and the honest default is to run §5.3 under **both random and corpus
-seeding** and report them separately. A Δ measured only from random seeding answers a narrower
-question than "does this model's CA produce structure" — it answers "does it produce structure *from
-noise*", which is the harder and less interesting version. Folding this in costs one extra arm.
+**This section was drafted under #94's first verdict, which was wrong, and the correction removes
+the work it asked for.** F72: the prompt is **erased** — random and corpus seeds settle to the same
+composition (max top-1 gap 0.053 / 0.022), with only 2% / 12% of a corpus seed surviving. So Δ
+measured from random seeding is not "the narrower question"; it is the whole question, because the
+settled state does not remember what it started from.
+
+**§5.3 therefore needs one seeding arm, not two** — 288 settles rather than 576. Report the
+initialisation anyway, since the claim now rests on a measurement rather than an assumption, and
+cite F72 for it.
+
+The one design constraint that survives is the **trap**. A uniform ring is self-sustaining in 2/6 AR
+and 6/6 MLM cells, so §5.3 must never seed from the attractor token — it would read Δ ≈ 0 by
+construction and look like the low-T pole while measuring nothing. Random seeding avoids it, which
+is the second reason to use it.
 
 ---
 
@@ -678,7 +700,8 @@ question open.
    or kills the thread in an afternoon.
 5. **Build `assembly_baselines.py` (§5.2).** Also free. Answers the strongest reviewer objection
    before any compute is spent on it — including `C_μ`, which is the one that could end the program.
-6. **Then and only then, `assembly_temperature.py` (§5.3)** — with both seeding arms from §5.5.
+6. **Then and only then, `assembly_temperature.py` (§5.3)** — random seeding only, per §5.5 as
+   corrected by F72. Half the grid the first draft asked for.
 7. Register `("assembly_*.json", "assembly_*.py")` in `_STALENESS_PAIRS` in
    `tests/test_results_self_consistency.py`, or the suite fails on the provenance-coverage test.
 8. Update issue **#20** with §3's pilot results — particularly §3.3, which is a real finding about
