@@ -259,6 +259,14 @@ def analyse(res):
             nf = frac(v["nll"], ref["nll"], shuf["nll"])
             vf = frac(v["novel_2gram"], ref["novel_2gram"], shuf["novel_2gram"])
             dens_ok = v["word_density"] >= 0.75 * ref["word_density"]
+            # Whitespace is the CA's ACTUAL STATE, not noise to filter before scoring. Measuring it
+            # turns the density exclusion from a hidden criterion into a reported property: the AR
+            # rings run to 46% whitespace -- F62's whitespace attractor -- while the MLM rings sit
+            # at the reference's own level. That asymmetry is a finding about the constructions,
+            # and burying it inside an exclusion made "AR shows no structured novelty" sound like a
+            # measurement of novelty when it is partly a measurement of whitespace.
+            ws = (sum(1 for c in v["full_text"] if c.isspace()) / max(len(v["full_text"]), 1)
+                  if v.get("full_text") else None)
             # A cell must lie BETWEEN the references to mean anything. The gap is scale-free and
             # stays positive even when BOTH fractions exceed 1 -- i.e. when the cell is more
             # unpredictable than word-shuffled text. "Structured novelty" cannot be awarded to
@@ -267,7 +275,8 @@ def analyse(res):
             rows.append(dict(r=r, T=T, nll_frac=nf, novel_frac=vf,
                              gap=None if (nf is None or vf is None) else round(vf - nf, 3),
                              word_density=v["word_density"], density_ok=bool(dens_ok),
-                             in_range=bool(in_range)))
+                             in_range=bool(in_range),
+                             whitespace_frac=None if ws is None else round(ws, 3)))
         print(f"  {'cell':>12} {'NLL pos':>8} {'novel pos':>10} {'gap':>7} {'w/100ch':>8} {'valid':>6}")
         for x in rows:
             print(f"  {'r=%d T=%.1f' % (x['r'], x['T']):>12} {x['nll_frac']:>8} "
@@ -277,27 +286,45 @@ def analyse(res):
         beyond = [x for x in rows if x["density_ok"] and not x["in_range"]]
         best = max(valid, key=lambda x: x["gap"]) if valid else None
         dropped = [x for x in rows if not x["density_ok"]]
-        out[kind] = dict(real_nll=ref["nll"], shuffled_nll=shuf["nll"],
+        wss = [x["whitespace_frac"] for x in rows if x["whitespace_frac"] is not None]
+        ref_ws = (sum(1 for c in ref["full_text"] if c.isspace()) / max(len(ref["full_text"]), 1)
+                  if ref.get("full_text") else None)
+        out[kind] = dict(whitespace_frac_range=[min(wss), max(wss)] if wss else None,
+                         reference_whitespace_frac=None if ref_ws is None else round(ref_ws, 3),
+                         real_nll=ref["nll"], shuffled_nll=shuf["nll"],
                          real_novel2=ref["novel_2gram"], shuffled_novel2=shuf["novel_2gram"],
                          real_density=ref["word_density"], cells=rows,
                          best=best, dropped_low_density=[[x["r"], x["T"]] for x in dropped])
-        if best:
-            parts.append(
-                f"{kind.upper()}: best gap {best['gap']:+.3f} at r={best['r']} T={best['T']} "
-                f"-- {best['novel_frac']:.0%} of the way to shuffled on novelty while only "
-                f"{best['nll_frac']:.0%} of the way on unpredictability. "
-                + (f"{len(dropped)} cell(s) excluded for word density below 75% of real text "
-                   f"({', '.join('r=%d T=%.1f' % (x['r'], x['T']) for x in dropped)}) -- those are "
-                   f"whitespace padding, which is cheap to predict and contributes no words."
-                   if dropped else "No cell needed excluding on density.")
+        wsr = (f"Rings are {min(wss):.0%}-{max(wss):.0%} whitespace against the reference's "
+               f"{ref_ws:.0%}. " if wss and ref_ws is not None else "")
+        excl = ((f"{len(dropped)} cell(s) fall below 75% of the reference word density "
+                 f"({', '.join('r=%d T=%.1f' % (x['r'], x['T']) for x in dropped)}) and are excluded "
+                 f"from the gap -- but that exclusion is itself the result: those rings are mostly "
+                 f"whitespace, which is the state the CA actually settled into, not padding to be "
+                 f"filtered off before scoring."
+                 if dropped else "No cell needed excluding on density.")
                 + (f" A further {len(beyond)} cell(s) are MORE unpredictable than shuffled text "
                    f"(NLL position > 1) and are excluded: novelty there is noise, not structure."
                    if beyond else ""))
+        if best and best["gap"] > 0:
+            parts.append(
+                f"{kind.upper()}: STRUCTURED NOVELTY, best gap {best['gap']:+.3f} at r={best['r']} "
+                f"T={best['T']} -- {best['novel_frac']:.0%} of the way to shuffled on novelty while "
+                f"only {best['nll_frac']:.0%} of the way on unpredictability. {wsr}{excl}")
+        elif best:
+            # A NEGATIVE best gap is not a best anything. Leading with "best gap -0.021" read like a
+            # result; it means every surviving cell buys its novelty at more than the price of noise.
+            parts.append(
+                f"{kind.upper()}: NO STRUCTURED NOVELTY -- the most favourable surviving cell "
+                f"(r={best['r']} T={best['T']}) still has a NEGATIVE gap of {best['gap']:+.3f}, "
+                f"reaching {best['novel_frac']:.0%} of the way to shuffled on novelty but "
+                f"{best['nll_frac']:.0%} of the way on unpredictability -- it buys novelty at more "
+                f"than the price of noise. {wsr}{excl}")
         else:
             why = ("every ring is whitespace-dominated" if not any(x["density_ok"] for x in rows)
                    else "every surviving cell is MORE unpredictable than word-shuffled text, so "
                         "its novelty is noise rather than structure")
-            parts.append(f"{kind.upper()}: NO STRUCTURED NOVELTY -- {why}.")
+            parts.append(f"{kind.upper()}: NO STRUCTURED NOVELTY -- {why}. {wsr}")
     verdict = " ".join(parts) if parts else "insufficient data"
     print(f"\n  -> {verdict}")
 
@@ -320,4 +347,13 @@ def analyse(res):
 
 
 if __name__ == "__main__":
-    main()
+    # --reanalyse re-runs ONLY the analysis, from the stored full_text, with no model and no
+    # dataset. main() loads gpt2-large onto the GPU before its cache check, so re-scoring through
+    # it would contend with any settle job running on the same machine; this path is CPU-only.
+    if "--reanalyse" in _sys.argv:
+        _res = json.load(open(OUT))
+        analyse(_res)
+        json.dump(_res, open(OUT, "w"), indent=1)
+        print("\nrewrote", rel(OUT))
+    else:
+        main()

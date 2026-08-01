@@ -418,6 +418,11 @@
  },
  "analysis": {
   "ar": {
+   "whitespace_frac_range": [
+    0.14,
+    0.458
+   ],
+   "reference_whitespace_frac": 0.183,
    "real_nll": 3.1690514087677,
    "shuffled_nll": 6.744733810424805,
    "real_novel2": 0.0,
@@ -432,7 +437,8 @@
      "gap": 0.059,
      "word_density": 12.887,
      "density_ok": false,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.416
     },
     {
      "r": 3,
@@ -442,7 +448,8 @@
      "gap": -0.031,
      "word_density": 16.276,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.292
     },
     {
      "r": 3,
@@ -452,7 +459,8 @@
      "gap": -0.021,
      "word_density": 15.738,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.26
     },
     {
      "r": 3,
@@ -462,7 +470,8 @@
      "gap": 0.085,
      "word_density": 14.286,
      "density_ok": true,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.213
     },
     {
      "r": 3,
@@ -472,7 +481,8 @@
      "gap": 0.051,
      "word_density": 14.508,
      "density_ok": true,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.172
     },
     {
      "r": 3,
@@ -482,7 +492,8 @@
      "gap": 0.069,
      "word_density": 13.066,
      "density_ok": false,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.16
     },
     {
      "r": 8,
@@ -492,7 +503,8 @@
      "gap": 0.251,
      "word_density": 12.174,
      "density_ok": false,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.428
     },
     {
      "r": 8,
@@ -502,7 +514,8 @@
      "gap": 0.041,
      "word_density": 11.415,
      "density_ok": false,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.458
     },
     {
      "r": 8,
@@ -512,7 +525,8 @@
      "gap": 0.138,
      "word_density": 13.338,
      "density_ok": false,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.334
     },
     {
      "r": 8,
@@ -522,7 +536,8 @@
      "gap": 0.157,
      "word_density": 14.316,
      "density_ok": true,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.235
     },
     {
      "r": 8,
@@ -532,7 +547,8 @@
      "gap": 0.18,
      "word_density": 13.485,
      "density_ok": false,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.164
     },
     {
      "r": 8,
@@ -542,7 +558,8 @@
      "gap": 0.155,
      "word_density": 13.587,
      "density_ok": false,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.14
     }
    ],
    "best": {
@@ -553,7 +570,8 @@
     "gap": -0.021,
     "word_density": 15.738,
     "density_ok": true,
-    "in_range": true
+    "in_range": true,
+    "whitespace_frac": 0.26
    },
    "dropped_low_density": [
     [
@@ -587,6 +605,11 @@
    ]
   },
   "mlm": {
+   "whitespace_frac_range": [
+    0.158,
+    0.198
+   ],
+   "reference_whitespace_frac": 0.192,
    "real_nll": 3.3470704555511475,
    "shuffled_nll": 6.811408042907715,
    "real_novel2": 0.0016,
@@ -601,7 +624,8 @@
      "gap": 0.293,
      "word_density": 18.307,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.198
     },
     {
      "r": 3,
@@ -611,7 +635,8 @@
      "gap": 0.269,
      "word_density": 18.27,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.196
     },
     {
      "r": 3,
@@ -621,7 +646,8 @@
      "gap": 0.197,
      "word_density": 18.415,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.195
     },
     {
      "r": 3,
@@ -631,7 +657,8 @@
      "gap": 0.282,
      "word_density": 17.29,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.188
     },
     {
      "r": 3,
@@ -641,7 +668,8 @@
      "gap": 0.362,
      "word_density": 15.721,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.177
     },
     {
      "r": 3,
@@ -651,7 +679,8 @@
      "gap": 0.427,
      "word_density": 14.586,
      "density_ok": true,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.16
     },
     {
      "r": 8,
@@ -661,7 +690,8 @@
      "gap": 0.669,
      "word_density": 16.064,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.178
     },
     {
      "r": 8,
@@ -671,7 +701,8 @@
      "gap": 0.553,
      "word_density": 16.948,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.195
     },
     {
      "r": 8,
@@ -681,7 +712,8 @@
      "gap": 0.489,
      "word_density": 16.299,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.182
     },
     {
      "r": 8,
@@ -691,7 +723,8 @@
      "gap": 0.352,
      "word_density": 16.19,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.187
     },
     {
      "r": 8,
@@ -701,7 +734,8 @@
      "gap": 0.351,
      "word_density": 15.321,
      "density_ok": true,
-     "in_range": true
+     "in_range": true,
+     "whitespace_frac": 0.183
     },
     {
      "r": 8,
@@ -711,7 +745,8 @@
      "gap": 0.286,
      "word_density": 14.607,
      "density_ok": true,
-     "in_range": false
+     "in_range": false,
+     "whitespace_frac": 0.158
     }
    ],
    "best": {
@@ -722,15 +757,16 @@
     "gap": 0.669,
     "word_density": 16.064,
     "density_ok": true,
-    "in_range": true
+    "in_range": true,
+    "whitespace_frac": 0.178
    },
    "dropped_low_density": []
   }
  },
- "verdict": "AR: best gap -0.021 at r=3 T=0.7 -- 96% of the way to shuffled on novelty while only 98% of the way on unpredictability. 7 cell(s) excluded for word density below 75% of real text (r=3 T=0.3, r=3 T=1.3, r=8 T=0.3, r=8 T=0.5, r=8 T=0.7, r=8 T=1.1, r=8 T=1.3) -- those are whitespace padding, which is cheap to predict and contributes no words. A further 3 cell(s) are MORE unpredictable than shuffled text (NLL position > 1) and are excluded: novelty there is noise, not structure. MLM: best gap +0.669 at r=8 T=0.3 -- 94% of the way to shuffled on novelty while only 27% of the way on unpredictability. No cell needed excluding on density. A further 2 cell(s) are MORE unpredictable than shuffled text (NLL position > 1) and are excluded: novelty there is noise, not structure.",
+ "verdict": "AR: NO STRUCTURED NOVELTY -- the most favourable surviving cell (r=3 T=0.7) still has a NEGATIVE gap of -0.021, reaching 96% of the way to shuffled on novelty but 98% of the way on unpredictability -- it buys novelty at more than the price of noise. Rings are 14%-46% whitespace against the reference's 18%. 7 cell(s) fall below 75% of the reference word density (r=3 T=0.3, r=3 T=1.3, r=8 T=0.3, r=8 T=0.5, r=8 T=0.7, r=8 T=1.1, r=8 T=1.3) and are excluded from the gap -- but that exclusion is itself the result: those rings are mostly whitespace, which is the state the CA actually settled into, not padding to be filtered off before scoring. A further 3 cell(s) are MORE unpredictable than shuffled text (NLL position > 1) and are excluded: novelty there is noise, not structure. MLM: STRUCTURED NOVELTY, best gap +0.669 at r=8 T=0.3 -- 94% of the way to shuffled on novelty while only 27% of the way on unpredictability. Rings are 16%-20% whitespace against the reference's 19%. No cell needed excluding on density. A further 2 cell(s) are MORE unpredictable than shuffled text (NLL position > 1) and are excluded: novelty there is noise, not structure.",
  "_analysis_provenance": {
   "script": "novelty_structure.py",
-  "sha256": "f24eb59905b5a2a13375fe951afb3911558af62af225bfd8f45b660bdd7ca006",
+  "sha256": "0f941b2841741068feef64f15e167cbb1ff6be488d5de8a4fc9d39bdf82b0543",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Asks whether the CA produces structured novelty -- sequences unseen in a reference corpus AND predictable to an independent model -- or only recall and noise. Entropy alone cannot answer this because entropy is maximised by noise; the quantity that peaks at 'interesting' is excess entropy, which cannot be estimated over a 50k vocabulary from a few thousand tokens. So the plane is novelty (word n-grams absent from the Pile sample) against structure (per-token NLL under gpt2-large, a third family that never generates here). r>=3 only, since F69 showed r<=2 is an out-of-distribution artifact; both constructions, since F66/F67 showed they differ; references round-tripped through each generator's tokenizer so formatting artifacts cancel. A positive result would mean the construction produces unseen, predictable sequences -- NOT that the model has new ideas. Novel n-grams are not ideas and semantic novelty is not measured here."

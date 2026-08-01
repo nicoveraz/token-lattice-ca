@@ -1,81 +1,34 @@
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:35,  8.09it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2262.32it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4738.19it/s]
 
   ar / EleutherAI/pythia-410m (has a low-T pole (F62-F70)) loaded in 4s
-     r=2 T=0.02  s=12  A= +4.04 gzip=   +19.0 lzma=   +20.0 H=-0.035 top1=  79%  42s
-     r=2 T=0.02  s=13  A= +5.45 gzip=   +26.0 lzma=   +36.0 H=+0.075 top1=  77%  42s
-     r=2 T=0.02  s=14  A= +1.10 gzip=  +147.0 lzma=  +204.0 H=+0.498 top1=  81%  43s
-     r=2 T=0.02  s=15  A= +4.91 gzip=   +34.0 lzma=   +48.0 H=+0.232 top1=  79%  43s
-     r=2 T=0.02  s=16  A= +1.70 gzip=   +68.0 lzma=   +80.0 H=+0.222 top1=  76%  42s
-     r=2 T=0.02  s=17  A= +3.35 gzip=    +4.0 lzma=   +44.0 H=+0.076 top1=  81%  42s
-     r=2 T=0.02  s=18  A= +5.72 gzip=   +40.0 lzma=   +64.0 H=+0.047 top1=  79%  41s
-     r=2 T=0.1   s=11  A= +5.27 gzip=   +48.0 lzma=   +68.0 H=+0.301 top1=  79%  43s
-     r=2 T=0.1   s=12  A= +4.90 gzip=  +107.0 lzma=  +116.0 H=+0.101 top1=  81%  42s
-     r=2 T=0.1   s=13  A= +7.08 gzip=   +30.0 lzma=   +36.0 H=+0.145 top1=  80%  42s
-     r=2 T=0.1   s=14  A= +5.64 gzip=    +2.0 lzma=   +20.0 H=+0.313 top1=  85%  42s
-     r=2 T=0.1   s=15  A= -0.47 gzip=   +21.0 lzma=   +48.0 H=+0.116 top1=  82%  42s
-     r=2 T=0.1   s=16  A= +1.20 gzip=   +37.0 lzma=   +76.0 H=+0.124 top1=  74%  41s
-     r=2 T=0.1   s=17  A= +0.00 gzip=   +29.0 lzma=   +24.0 H=-0.043 top1=  85%  41s
-     r=2 T=0.1   s=18  A= +7.11 gzip=   +63.0 lzma=   +48.0 H=+0.138 top1=  84%  41s
-     r=2 T=0.2   s=11  A= +6.53 gzip=    +0.0 lzma=    +0.0 H=+0.000 top1=  84%  41s
-     r=2 T=0.2   s=12  A= -0.53 gzip=    +5.0 lzma=    +8.0 H=+0.150 top1=  81%  41s
-     r=2 T=0.2   s=13  A= +0.00 gzip=    -5.0 lzma=   +24.0 H=+0.102 top1=  80%  41s
-     r=2 T=0.2   s=14  A= +0.00 gzip=    -0.0 lzma=    -0.0 H=+0.002 top1=  85%  42s
-     r=2 T=0.2   s=15  A= +4.21 gzip=    -0.0 lzma=   +16.0 H=+0.087 top1=  81%  42s
-     r=2 T=0.2   s=16  A= +0.00 gzip=   +35.0 lzma=   +44.0 H=-0.107 top1=  75%  40s
-     r=2 T=0.2   s=17  A= +4.55 gzip=   +11.0 lzma=    +4.0 H=-0.081 top1=  83%  40s
-     r=2 T=0.2   s=18  A= +0.00 gzip=   +11.0 lzma=    -0.0 H=-0.061 top1=  84%  40s
-     r=2 T=0.3   s=11  A= +0.00 gzip=   +39.0 lzma=   +60.0 H=+0.159 top1=  79%  40s
-     r=2 T=0.3   s=12  A= +3.54 gzip=   +23.0 lzma=   +16.0 H=+0.020 top1=  77%  40s
-     r=2 T=0.3   s=13  A= +4.68 gzip=   +19.0 lzma=   +36.0 H=+0.067 top1=  74%  40s
-     r=2 T=0.3   s=14  A= +5.75 gzip=   +21.0 lzma=   +68.0 H=-0.046 top1=  77%  40s
-     r=2 T=0.3   s=15  A= -0.73 gzip=   +14.0 lzma=   +48.0 H=-0.212 top1=  81%  40s
-     r=2 T=0.3   s=16  A= +3.59 gzip=   +61.0 lzma=   +76.0 H=+0.118 top1=  78%  40s
-     r=2 T=0.3   s=17  A= -0.56 gzip=    +8.0 lzma=   +16.0 H=-0.139 top1=  77%  40s
-     r=2 T=0.3   s=18  A= -0.29 gzip=   +10.0 lzma=   +44.0 H=-0.038 top1=  79%  40s
-     r=2 T=0.436 s=11  A= +5.21 gzip=  +142.0 lzma=  +188.0 H=+0.046 top1=  45%  41s
-     r=2 T=0.436 s=12  A= +2.29 gzip=   +29.0 lzma=   +52.0 H=+0.011 top1=  51%  43s
-     r=2 T=0.436 s=13  A= +1.16 gzip=   +19.0 lzma=    +4.0 H=-0.010 top1=  49%  42s
-     r=2 T=0.436 s=14  A= +2.93 gzip=  +153.0 lzma=  +180.0 H=+0.052 top1=  50%  42s
-     r=2 T=0.436 s=15  A= +7.21 gzip=   +72.0 lzma=  +128.0 H=+0.089 top1=  50%  42s
-     r=2 T=0.436 s=16  A= +3.83 gzip=   +67.0 lzma=  +120.0 H=+0.093 top1=  48%  42s
-     r=2 T=0.436 s=17  A= -2.41 gzip=   +89.0 lzma=   +88.0 H=+0.060 top1=  50%  42s
-     r=2 T=0.436 s=18  A= +4.62 gzip=  +171.0 lzma=  +180.0 H=-0.012 top1=  50%  43s
-     r=2 T=0.52  s=11  A= +2.15 gzip=  +171.0 lzma=  +220.0 H=+0.035 top1=  33%  44s
-     r=2 T=0.52  s=12  A= +3.93 gzip=  +126.0 lzma=  +176.0 H=+0.076 top1=  37%  42s
-     r=2 T=0.52  s=13  A= +1.50 gzip=   +63.0 lzma=   +84.0 H=+0.024 top1=  34%  42s
-     r=2 T=0.52  s=14  A= +3.58 gzip=  +207.0 lzma=  +204.0 H=+0.032 top1=  34%  42s
-     r=2 T=0.52  s=15  A= +2.74 gzip=   +92.0 lzma=  +108.0 H=+0.002 top1=  32%  42s
-     r=2 T=0.52  s=16  A= -2.17 gzip=  +110.0 lzma=   +96.0 H=+0.001 top1=  33%  42s
-     r=2 T=0.52  s=17  A= +2.63 gzip=  +171.0 lzma=  +152.0 H=+0.014 top1=  36%  42s
-     r=2 T=0.52  s=18  A= -1.18 gzip=   +80.0 lzma=  +168.0 H=+0.072 top1=  33%  42s
-     r=2 T=0.7   s=11  A= +1.54 gzip=  +116.0 lzma=  +180.0 H=+0.032 top1=  13%  44s
-     r=2 T=0.7   s=12  A= +5.48 gzip=  +212.0 lzma=  +152.0 H=-0.008 top1=  15%  44s
-     r=2 T=0.7   s=13  A= -1.23 gzip=   -10.0 lzma=   +40.0 H=+0.028 top1=  16%  45s
-     r=2 T=0.7   s=14  A= -1.31 gzip=    -7.0 lzma=   +40.0 H=+0.127 top1=  15%  44s
-     r=2 T=0.7   s=15  A= -0.69 gzip=   -33.0 lzma=   -32.0 H=+0.053 top1=  14%  44s
-     r=2 T=0.7   s=16  A= +1.46 gzip=   +57.0 lzma=  +112.0 H=+0.019 top1=  14%  44s
-     r=2 T=0.7   s=17  A= -1.52 gzip=    +8.0 lzma=   +24.0 H=+0.033 top1=  15%  44s
-     r=2 T=0.7   s=18  A= -2.44 gzip=   +61.0 lzma=   +60.0 H=+0.068 top1=  15%  44s
-     r=2 T=0.9   s=11  A= -1.39 gzip=   +79.0 lzma=  +220.0 H=-0.004 top1=   9%  47s
-     r=2 T=0.9   s=12  A= -0.73 gzip=   -97.0 lzma=   +96.0 H=-0.028 top1=   8%  46s
-     r=2 T=0.9   s=13  A= +0.00 gzip=   -26.0 lzma=  +100.0 H=+0.009 top1=   7%  51s
-     r=2 T=0.9   s=14  A= -0.34 gzip=    -8.0 lzma=   +48.0 H=+0.013 top1=   7%  49s
-     r=2 T=0.9   s=15  A= +2.87 gzip=  +143.0 lzma=  +104.0 H=+0.038 top1=   7%  47s
-     r=2 T=0.9   s=16  A= +0.00 gzip=   -68.0 lzma=   +24.0 H=-0.042 top1=   8%  46s
-     r=2 T=0.9   s=17  A= -1.05 gzip=   +90.0 lzma=   +56.0 H=+0.046 top1=   7%  47s
-     r=2 T=0.9   s=18  A= +0.00 gzip=   +74.0 lzma=   +32.0 H=+0.010 top1=   8%  46s
-     r=2 T=1.1   s=11  A= +0.00 gzip=   +60.0 lzma=    -8.0 H=-0.013 top1=   4%  50s
-     r=2 T=1.1   s=12  A= +0.00 gzip=    -1.0 lzma=    -0.0 H=+0.024 top1=   5%  50s
-     r=2 T=1.1   s=13  A= +0.00 gzip=   +23.0 lzma=   +24.0 H=+0.013 top1=   4%  50s
-     r=2 T=1.1   s=14  A= +0.00 gzip=   -37.0 lzma=    +8.0 H=-0.015 top1=   4%  49s
-     r=2 T=1.1   s=15  A= +0.00 gzip=   -37.0 lzma=   -56.0 H=+0.020 top1=   4%  51s
-     r=2 T=1.1   s=16  A= +0.00 gzip=   -33.0 lzma=  +136.0 H=+0.023 top1=   5%  51s
-     r=2 T=1.1   s=17  A= +0.00 gzip=   -89.0 lzma=   -52.0 H=-0.009 top1=   5%  51s
-     r=2 T=1.1   s=18  A= -0.50 gzip=   -12.0 lzma=   +72.0 H=-0.003 top1=   4%  50s
-     r=3 T=0.02  s=11  A= +1.99 gzip=  +499.0 lzma=  +480.0 H=+0.036 top1=  21%  51s
-     r=3 T=0.02  s=12  A= +2.32 gzip=  +435.0 lzma=  +380.0 H=+0.093 top1=  21%  52s
-     r=3 T=0.02  s=13  A= +1.30 gzip=  +631.0 lzma=  +712.0 H=+0.021 top1=  20%  54s
-     r=3 T=0.02  s=14  A= +1.27 gzip=  +388.0 lzma=  +372.0 H=+0.031 top1=  21%  51s
-/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
+     r=2 T=0.02  s=11  A2=+0.80 A3=+1.22 gzip=+1213.0 lzma=+1096.0 top1=  79%  41s
+     r=2 T=0.02  s=12  A2=+0.11 A3=-0.08 gzip=+1213.0 lzma=+1084.0 top1=  79%  41s
+     r=2 T=0.02  s=13  A2=+0.61 A3=-0.09 gzip=+1189.0 lzma=+1088.0 top1=  77%  42s
+     r=2 T=0.02  s=14  A2=+0.99 A3=+1.62 gzip=+1392.0 lzma=+1292.0 top1=  81%  43s
+     r=2 T=0.02  s=15  A2=+0.73 A3=+1.13 gzip=+1198.0 lzma=+1104.0 top1=  79%  42s
+     r=2 T=0.02  s=16  A2=+1.01 A3=+1.48 gzip=+1467.0 lzma=+1320.0 top1=  76%  41s
+     r=2 T=0.02  s=17  A2=+0.61 A3=-0.33 gzip=+1185.0 lzma=+1068.0 top1=  81%  41s
+     r=2 T=0.02  s=18  A2=+0.68 A3=+0.81 gzip=+1378.0 lzma=+1260.0 top1=  79%  41s
+     r=2 T=0.1   s=11  A2=+0.43 A3=+1.12 gzip=+1219.0 lzma=+1120.0 top1=  79%  42s
+     r=2 T=0.1   s=12  A2=+1.68 A3=+2.08 gzip=+1405.0 lzma=+1324.0 top1=  81%  42s
+     r=2 T=0.1   s=13  A2=-0.02 A3=+0.45 gzip=+1184.0 lzma=+1060.0 top1=  80%  42s
+     r=2 T=0.1   s=14  A2=+0.64 A3=+0.89 gzip=+1062.0 lzma= +928.0 top1=  85%  42s
+     r=2 T=0.1   s=15  A2=+0.05 A3=+0.08 gzip=+1121.0 lzma=+1004.0 top1=  82%  43s
+     r=2 T=0.1   s=16  A2=+0.85 A3=+1.29 gzip=+1468.0 lzma=+1344.0 top1=  74%  43s
+     r=2 T=0.1   s=17  A2=-0.07 A3=-0.33 gzip= +986.0 lzma= +880.0 top1=  85%  42s
+     r=2 T=0.1   s=18  A2=+0.97 A3=+1.18 gzip=+1094.0 lzma= +932.0 top1=  84%  42s
+     r=2 T=0.2   s=11  A2=+0.68 A3=+0.72 gzip=+1153.0 lzma=+1052.0 top1=  84%  42s
+     r=2 T=0.2   s=12  A2=+0.43 A3=+0.50 gzip=+1125.0 lzma=+1048.0 top1=  81%  44s
+     r=2 T=0.2   s=13  A2=-0.23 A3=-0.30 gzip=+1160.0 lzma=+1076.0 top1=  80%  42s
+     r=2 T=0.2   s=14  A2=-0.11 A3=-0.14 gzip= +986.0 lzma= +900.0 top1=  85%  42s
+     r=2 T=0.2   s=15  A2=-0.07 A3=+0.34 gzip=+1220.0 lzma=+1132.0 top1=  81%  43s
+     r=2 T=0.2   s=16  A2=+0.48 A3=+0.44 gzip=+1413.0 lzma=+1232.0 top1=  75%  45s
+     r=2 T=0.2   s=17  A2=+0.45 A3=-0.26 gzip=+1120.0 lzma=+1000.0 top1=  83%  44s
+     r=2 T=0.2   s=18  A2=+0.17 A3=-0.33 gzip=+1033.0 lzma= +876.0 top1=  84%  43s
+     r=2 T=0.3   s=11  A2=+0.27 A3=+0.29 gzip=+1337.0 lzma=+1200.0 top1=  79%  44s
+     r=2 T=0.3   s=12  A2=-0.71 A3=-0.51 gzip=+1283.0 lzma=+1192.0 top1=  77%  44s
+     r=2 T=0.3   s=13  A2=+0.45 A3=+0.44 gzip=+1506.0 lzma=+1368.0 top1=  74%  44s
+     r=2 T=0.3   s=14  A2=+0.53 A3=+1.24 gzip=+1143.0 lzma=+1100.0 top1=  77%  42s
+     r=2 T=0.3   s=15  A2=-0.14 A3=-0.23 gzip=+1195.0 lzma=+1144.0 top1=  81%  43s
+     r=2 T=0.3   s=16  A2=+0.47 A3=+0.58 gzip=+1336.0 lzma=+1224.0 top1=  78%  45s
