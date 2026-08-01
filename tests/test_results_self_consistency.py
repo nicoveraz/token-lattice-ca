@@ -229,6 +229,7 @@ _STALENESS_PAIRS = [
     ("mlm_transition.json", "mlm_transition.py"),
     ("degeneration_vs_tstar.json", "degeneration_vs_tstar.py"),
     ("context_threshold.json", "context_threshold.py"),
+    ("evidence_falloff.json", "evidence_falloff.py"),
 ]
 
 

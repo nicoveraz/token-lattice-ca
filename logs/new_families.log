@@ -52,3 +52,8 @@ Notes:
     T=0.2    distinct= 34.6%  top1= 43.6%  dominant='\n'
     T=0.436  distinct= 49.1%  top1= 26.7%  dominant='\n'
     T=0.7    distinct= 63.7%  top1= 14.7%  dominant='\n'
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 6875.74it/s]
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T (SlimPajama, TinyLlama) loaded in 227s, V=32000
+    T=0.02   distinct= 16.3%  top1= 50.4%  dominant='\n'
+    T=0.2    distinct= 18.0%  top1= 42.6%  dominant='0'
+    T=0.436  distinct= 33.5%  top1= 29.8%  dominant='0'

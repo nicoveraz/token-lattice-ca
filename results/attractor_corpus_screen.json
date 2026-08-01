@@ -1043,6 +1043,39 @@
    "top1_share": 0.1471,
    "dominant_token": "\n",
    "dominant_share_overall": 0.1471
+  },
+  "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T@0.02": {
+   "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+   "T": 0.02,
+   "corpus": "SlimPajama",
+   "lab": "TinyLlama",
+   "prediction": "unknown",
+   "distinct_frac": 0.1628,
+   "top1_share": 0.5039,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.4883
+  },
+  "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T@0.2": {
+   "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+   "T": 0.2,
+   "corpus": "SlimPajama",
+   "lab": "TinyLlama",
+   "prediction": "unknown",
+   "distinct_frac": 0.1797,
+   "top1_share": 0.4258,
+   "dominant_token": "0",
+   "dominant_share_overall": 0.4206
+  },
+  "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T@0.436": {
+   "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+   "T": 0.436,
+   "corpus": "SlimPajama",
+   "lab": "TinyLlama",
+   "prediction": "unknown",
+   "distinct_frac": 0.3346,
+   "top1_share": 0.2982,
+   "dominant_token": "0",
+   "dominant_share_overall": 0.2839
   }
  },
  "_preregistration": {
