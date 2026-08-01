@@ -2376,6 +2376,20 @@ sequences that are unseen in the corpus and predictable to a model that did not 
 does **not** mean the model has new ideas. Novel n-grams are not ideas, and semantic novelty is not
 measured here.
 
+**Amended 1 Aug 2026, after auditing every negative finding for the projection defect found in
+§5.3.** F71's AR verdict is measured on WORDS extracted from a token ring, and the AR construction's
+rings are **14–46% whitespace against the MLM construction's 15.8–19.8%**, which is indistinguishable
+from the references (18.3%, 19.2%). So the word-density filter excluded **7 of 12 AR cells and 0 of
+12 MLM cells** — it removed exactly the cells where the two constructions differ most, and the
+comparison that follows is between AR's five most MLM-like cells and all of MLM's.
+
+**The verdict survives, because the bias runs conservative**: judging AR only on its most text-like
+cells and still finding nothing is a stronger negative, not a weaker one. What does not survive is
+the framing. "AR shows no structured novelty" turns a finding into an exclusion criterion. The
+accurate statement is: **the AR construction's output is up to 46% whitespace — the whitespace
+attractor F62 identified — and in the word-bearing remainder there is no structured novelty.** The
+whitespace is the CA's actual state, not noise to be filtered before scoring.
+
 ### F72 — the prompt is erased, and the absorbing state has a negligible basin (#94)
 #93 seeds from random tokens, so I proposed #94 expecting novelty to prove prompt-relative. **It is
 not.** Seeding the ring with real corpus text instead of noise changes the settled composition
