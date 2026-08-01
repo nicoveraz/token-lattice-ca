@@ -1,0 +1,32 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 26798.41it/s]
+                   EleutherAI/pythia-14m T*= 0.5578  rep_4=0.839  distinct=0.103  loop=15.2 (13.1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6175.38it/s]
+                   EleutherAI/pythia-31m T*= 0.4533  rep_4=0.739  distinct=0.165  loop=6.0 (10.3s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:08,  9.04it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 678.77it/s]
+                   EleutherAI/pythia-70m T*= 0.5751  rep_4=0.825  distinct=0.121  loop=11.1 (11.4s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   1%|          | 1/148 [00:00<00:27,  5.42it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 677.23it/s]
+                  EleutherAI/pythia-160m T*= 0.5761  rep_4=0.719  distinct=0.171  loop=5.7 (17.2s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:53,  2.57it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 344.92it/s]Loading weights:  70%|██████▉   | 203/292 [00:00<00:00, 369.20it/s]Loading weights:  89%|████████▉ | 260/292 [00:00<00:00, 329.53it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 295.09it/s]
+                  EleutherAI/pythia-410m T*= 0.5186  rep_4=0.435  distinct=0.294  loop=3.0 (32.5s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights:   1%|          | 1/196 [00:00<02:04,  1.57it/s]Loading weights:  29%|██▊       | 56/196 [00:00<00:01, 101.21it/s]Loading weights:  45%|████▍     | 88/196 [00:01<00:00, 109.39it/s]Loading weights:  57%|█████▋    | 111/196 [00:01<00:00, 95.58it/s]Loading weights:  65%|██████▌   | 128/196 [00:01<00:00, 94.81it/s]Loading weights:  72%|███████▏  | 142/196 [00:01<00:00, 90.11it/s]Loading weights:  79%|███████▊  | 154/196 [00:02<00:00, 68.69it/s]Loading weights:  84%|████████▎ | 164/196 [00:02<00:00, 61.89it/s]Loading weights:  88%|████████▊ | 172/196 [00:02<00:00, 58.29it/s]Loading weights:  92%|█████████▏| 180/196 [00:02<00:00, 61.06it/s]Loading weights:  96%|█████████▌| 188/196 [00:02<00:00, 63.56it/s]Loading weights: 100%|██████████| 196/196 [00:02<00:00, 66.53it/s]Loading weights: 100%|██████████| 196/196 [00:02<00:00, 72.15it/s]
+                    EleutherAI/pythia-1b T*= 0.5376  rep_4=0.583  distinct=0.247  loop=3.8 (39.1s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 6475.88it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+                 EleutherAI/gpt-neo-125M T*=   None  rep_4=0.680  distinct=0.191  loop=4.6 (39.4s)
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6232.92it/s]
+                       Qwen/Qwen2.5-0.5B T*= 0.3022  rep_4=0.277  distinct=0.406  loop=1.7 (40.2s)
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4678.66it/s]
+   ibm-granite/granite-3.0-1b-a400m-base T*= 0.5199  rep_4=0.463  distinct=0.328  loop=2.8 (139.7s)
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 5002.27it/s]
+         ibm-granite/granite-3.0-2b-base T*= 0.4762  rep_4=0.249  distinct=0.429  loop=2.0 (113.8s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6812.07it/s]
+                                    gpt2 T*=   None  rep_4=0.637  distinct=0.237  loop=7.8 (19.1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7807.93it/s]

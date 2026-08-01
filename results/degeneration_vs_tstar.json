@@ -1,0 +1,135 @@
+{
+ "runs": {
+  "EleutherAI/pythia-14m": {
+   "model": "EleutherAI/pythia-14m",
+   "n_prompts": 12,
+   "t_star": 0.5578,
+   "rep_4": 0.8387,
+   "distinct_1": 0.1035,
+   "longest_loop": 15.17,
+   "secs": 13.1
+  },
+  "EleutherAI/pythia-31m": {
+   "model": "EleutherAI/pythia-31m",
+   "n_prompts": 12,
+   "t_star": 0.4533,
+   "rep_4": 0.7393,
+   "distinct_1": 0.1647,
+   "longest_loop": 6.0,
+   "secs": 10.3
+  },
+  "EleutherAI/pythia-70m": {
+   "model": "EleutherAI/pythia-70m",
+   "n_prompts": 12,
+   "t_star": 0.5751,
+   "rep_4": 0.8247,
+   "distinct_1": 0.1211,
+   "longest_loop": 11.08,
+   "secs": 11.4
+  },
+  "EleutherAI/pythia-160m": {
+   "model": "EleutherAI/pythia-160m",
+   "n_prompts": 12,
+   "t_star": 0.5761,
+   "rep_4": 0.7193,
+   "distinct_1": 0.1712,
+   "longest_loop": 5.67,
+   "secs": 17.2
+  },
+  "EleutherAI/pythia-410m": {
+   "model": "EleutherAI/pythia-410m",
+   "n_prompts": 12,
+   "t_star": 0.5186,
+   "rep_4": 0.4347,
+   "distinct_1": 0.2943,
+   "longest_loop": 3.0,
+   "secs": 32.5
+  },
+  "EleutherAI/pythia-1b": {
+   "model": "EleutherAI/pythia-1b",
+   "n_prompts": 12,
+   "t_star": 0.5376,
+   "rep_4": 0.5827,
+   "distinct_1": 0.2467,
+   "longest_loop": 3.83,
+   "secs": 39.1
+  },
+  "EleutherAI/gpt-neo-125M": {
+   "model": "EleutherAI/gpt-neo-125M",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.68,
+   "distinct_1": 0.1914,
+   "longest_loop": 4.58,
+   "secs": 39.4
+  },
+  "Qwen/Qwen2.5-0.5B": {
+   "model": "Qwen/Qwen2.5-0.5B",
+   "n_prompts": 12,
+   "t_star": 0.3022,
+   "rep_4": 0.2769,
+   "distinct_1": 0.4062,
+   "longest_loop": 1.67,
+   "secs": 40.2
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "n_prompts": 12,
+   "t_star": 0.5199,
+   "rep_4": 0.4627,
+   "distinct_1": 0.3281,
+   "longest_loop": 2.75,
+   "secs": 139.7
+  },
+  "ibm-granite/granite-3.0-2b-base": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "n_prompts": 12,
+   "t_star": 0.4762,
+   "rep_4": 0.2493,
+   "distinct_1": 0.429,
+   "longest_loop": 2.0,
+   "secs": 113.8
+  },
+  "gpt2": {
+   "model": "gpt2",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.6373,
+   "distinct_1": 0.237,
+   "longest_loop": 7.83,
+   "secs": 19.1
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "EleutherAI/pythia-14m",
+   "EleutherAI/pythia-31m",
+   "EleutherAI/pythia-70m",
+   "EleutherAI/pythia-160m",
+   "EleutherAI/pythia-410m",
+   "EleutherAI/pythia-1b",
+   "EleutherAI/gpt-neo-125M",
+   "Qwen/Qwen2.5-0.5B",
+   "ibm-granite/granite-3.0-1b-a400m-base",
+   "ibm-granite/granite-3.0-2b-base",
+   "gpt2",
+   "gpt2-medium",
+   "gpt2-large",
+   "gpt2-xl",
+   "bigscience/bloom-560m",
+   "allenai/OLMo-1B-hf",
+   "RWKV/rwkv-4-169m-pile",
+   "state-spaces/mamba-130m-hf",
+   "state-spaces/mamba-370m-hf"
+  ],
+  "prompts": 12,
+  "new_tokens": 128,
+  "ngram": 4,
+  "decoding": "greedy, no sampling -- no temperature knob to tune",
+  "t_star": "interpolated from the screen at [0.02, 0.2, 0.436, 0.7], threshold 0.4",
+  "primary": "does T* correlate with greedy-decoding repetition? Spearman rho, n stated",
+  "null_means": "T* is a property of the out-of-distribution artifact and nothing more -- reportable, and it closes the question",
+  "independence": "prompts are short but REAL sentence openings, not two-token fragments; free generation shares no machinery with the ring CA",
+  "resumable": "keyed by model"
+ }
+}
