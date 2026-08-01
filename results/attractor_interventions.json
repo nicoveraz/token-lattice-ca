@@ -1,0 +1,630 @@
+{
+ "runs": {
+  "EleutherAI/pythia-410m|r2|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 2,
+   "T": 0.02,
+   "distinct_frac": 0.1289,
+   "top1_share": 0.7435,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": true
+  },
+  "EleutherAI/pythia-410m|r2|T0.436": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 2,
+   "T": 0.436,
+   "distinct_frac": 0.3607,
+   "top1_share": 0.5234,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|r4|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 4,
+   "T": 0.02,
+   "distinct_frac": 0.5117,
+   "top1_share": 0.2018,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|r4|T0.436": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 4,
+   "T": 0.436,
+   "distinct_frac": 0.5768,
+   "top1_share": 0.1836,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|r8|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 8,
+   "T": 0.02,
+   "distinct_frac": 0.3086,
+   "top1_share": 0.3034,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|r8|T0.436": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 8,
+   "T": 0.436,
+   "distinct_frac": 0.4128,
+   "top1_share": 0.2604,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|r16|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 16,
+   "T": 0.02,
+   "distinct_frac": 0.0586,
+   "top1_share": 0.5508,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": true
+  },
+  "EleutherAI/pythia-410m|r16|T0.436": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "radius",
+   "r": 16,
+   "T": 0.436,
+   "distinct_frac": 0.1263,
+   "top1_share": 0.5273,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": true
+  },
+  "EleutherAI/pythia-410m|ablate0|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "ablate",
+   "n_banned": 0,
+   "banned": [],
+   "T": 0.02,
+   "distinct_frac": 0.1289,
+   "top1_share": 0.7435,
+   "dominant_id": 187,
+   "dominant_token": "\n",
+   "has_attractor": true
+  },
+  "EleutherAI/pythia-410m|ablate1|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "ablate",
+   "n_banned": 1,
+   "banned": [
+    187
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.4023,
+   "top1_share": 0.1471,
+   "dominant_id": 13,
+   "dominant_token": ",",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|ablate2|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "ablate",
+   "n_banned": 2,
+   "banned": [
+    187,
+    13
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.3997,
+   "top1_share": 0.1276,
+   "dominant_id": 806,
+   "dominant_token": " first",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|ablate3|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "ablate",
+   "n_banned": 3,
+   "banned": [
+    187,
+    13,
+    806
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.5182,
+   "top1_share": 0.0911,
+   "dominant_id": 15,
+   "dominant_token": ".",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|ablate4|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "ablate",
+   "n_banned": 4,
+   "banned": [
+    187,
+    13,
+    806,
+    15
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.5781,
+   "top1_share": 0.0924,
+   "dominant_id": 253,
+   "dominant_token": " the",
+   "has_attractor": false
+  },
+  "EleutherAI/pythia-410m|ablate5|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "attractor",
+   "kind": "ablate",
+   "n_banned": 5,
+   "banned": [
+    187,
+    13,
+    806,
+    15,
+    253
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.6068,
+   "top1_share": 0.0703,
+   "dominant_id": 393,
+   "dominant_token": " \\",
+   "has_attractor": false
+  },
+  "gpt2-medium|r2|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 2,
+   "T": 0.02,
+   "distinct_frac": 0.4375,
+   "top1_share": 0.1471,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|r2|T0.436": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 2,
+   "T": 0.436,
+   "distinct_frac": 0.6159,
+   "top1_share": 0.1328,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|r4|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 4,
+   "T": 0.02,
+   "distinct_frac": 0.5182,
+   "top1_share": 0.1628,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|r4|T0.436": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 4,
+   "T": 0.436,
+   "distinct_frac": 0.6016,
+   "top1_share": 0.151,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|r8|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 8,
+   "T": 0.02,
+   "distinct_frac": 0.3372,
+   "top1_share": 0.3464,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|r8|T0.436": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 8,
+   "T": 0.436,
+   "distinct_frac": 0.4583,
+   "top1_share": 0.2044,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|r16|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 16,
+   "T": 0.02,
+   "distinct_frac": 0.0404,
+   "top1_share": 0.6107,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": true
+  },
+  "gpt2-medium|r16|T0.436": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "radius",
+   "r": 16,
+   "T": 0.436,
+   "distinct_frac": 0.0495,
+   "top1_share": 0.6263,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": true
+  },
+  "gpt2-medium|ablate0|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "ablate",
+   "n_banned": 0,
+   "banned": [],
+   "T": 0.02,
+   "distinct_frac": 0.4375,
+   "top1_share": 0.1471,
+   "dominant_id": 198,
+   "dominant_token": "\n",
+   "has_attractor": false
+  },
+  "gpt2-medium|ablate1|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "ablate",
+   "n_banned": 1,
+   "banned": [
+    198
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.4284,
+   "top1_share": 0.1289,
+   "dominant_id": 262,
+   "dominant_token": " the",
+   "has_attractor": false
+  },
+  "gpt2-medium|ablate2|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "ablate",
+   "n_banned": 2,
+   "banned": [
+    198,
+    262
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.513,
+   "top1_share": 0.1406,
+   "dominant_id": 764,
+   "dominant_token": " .",
+   "has_attractor": false
+  },
+  "gpt2-medium|ablate3|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "ablate",
+   "n_banned": 3,
+   "banned": [
+    198,
+    262,
+    764
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.5495,
+   "top1_share": 0.0872,
+   "dominant_id": 257,
+   "dominant_token": " a",
+   "has_attractor": false
+  },
+  "gpt2-medium|ablate4|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "ablate",
+   "n_banned": 4,
+   "banned": [
+    198,
+    262,
+    764,
+    257
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.513,
+   "top1_share": 0.1029,
+   "dominant_id": 13,
+   "dominant_token": ".",
+   "has_attractor": false
+  },
+  "gpt2-medium|ablate5|T0.02": {
+   "model": "gpt2-medium",
+   "role": "control",
+   "kind": "ablate",
+   "n_banned": 5,
+   "banned": [
+    198,
+    262,
+    764,
+    257,
+    13
+   ],
+   "T": 0.02,
+   "distinct_frac": 0.513,
+   "top1_share": 0.0964,
+   "dominant_id": 11,
+   "dominant_token": ",",
+   "has_attractor": false
+  }
+ },
+ "_preregistration": {
+  "models": [
+   {
+    "name": "EleutherAI/pythia-410m",
+    "role": "attractor"
+   },
+   {
+    "name": "gpt2-medium",
+    "role": "control"
+   }
+  ],
+  "radii": [
+   2,
+   4,
+   8,
+   16
+  ],
+  "temps": [
+   0.02,
+   0.436
+  ],
+  "ablate_up_to": 5,
+  "N": 96,
+  "B": 8,
+  "settle": 12,
+  "threshold": "attractor iff top-1 >= 0.4 AND distinct/N <= 0.3 -- the SAME threshold the nine-model screen fixed",
+  "radius_test": "if top-1 falls below threshold as r grows, the frozen phase belongs to the CONSTRUCTION (two-token context) rather than the model, extending F35's boundary and restating F58's critical point as a context degeneracy",
+  "ablation_test": "attractor DIES -> one pathological token, fixable in the vocabulary; attractor RELOCATES at similar share -> structural pull toward filler, no vocabulary fix helps. The second is stated in advance as the harder, more interesting outcome",
+  "control": "gpt2-medium has no attractor; if an intervention moves the control, the intervention is not doing what it claims",
+  "resumable": "keyed by (model, kind, r|k, T)"
+ },
+ "analysis": {
+  "EleutherAI/pythia-410m|T0.02|radius": {
+   "points": [
+    [
+     2,
+     0.7435,
+     true
+    ],
+    [
+     4,
+     0.2018,
+     false
+    ],
+    [
+     8,
+     0.3034,
+     false
+    ],
+    [
+     16,
+     0.5508,
+     true
+    ]
+   ],
+   "survives_to_max_r": true
+  },
+  "EleutherAI/pythia-410m|T0.436|radius": {
+   "points": [
+    [
+     2,
+     0.5234,
+     false
+    ],
+    [
+     4,
+     0.1836,
+     false
+    ],
+    [
+     8,
+     0.2604,
+     false
+    ],
+    [
+     16,
+     0.5273,
+     true
+    ]
+   ],
+   "survives_to_max_r": true
+  },
+  "gpt2-medium|T0.02|radius": {
+   "points": [
+    [
+     2,
+     0.1471,
+     false
+    ],
+    [
+     4,
+     0.1628,
+     false
+    ],
+    [
+     8,
+     0.3464,
+     false
+    ],
+    [
+     16,
+     0.6107,
+     true
+    ]
+   ],
+   "survives_to_max_r": true
+  },
+  "gpt2-medium|T0.436|radius": {
+   "points": [
+    [
+     2,
+     0.1328,
+     false
+    ],
+    [
+     4,
+     0.151,
+     false
+    ],
+    [
+     8,
+     0.2044,
+     false
+    ],
+    [
+     16,
+     0.6263,
+     true
+    ]
+   ],
+   "survives_to_max_r": true
+  },
+  "EleutherAI/pythia-410m|ablate": {
+   "points": [
+    [
+     0,
+     0.7435,
+     "\n",
+     true
+    ],
+    [
+     1,
+     0.1471,
+     ",",
+     false
+    ],
+    [
+     2,
+     0.1276,
+     " first",
+     false
+    ],
+    [
+     3,
+     0.0911,
+     ".",
+     false
+    ],
+    [
+     4,
+     0.0924,
+     " the",
+     false
+    ],
+    [
+     5,
+     0.0703,
+     " \\",
+     false
+    ]
+   ]
+  },
+  "gpt2-medium|ablate": {
+   "points": [
+    [
+     0,
+     0.1471,
+     "\n",
+     false
+    ],
+    [
+     1,
+     0.1289,
+     " the",
+     false
+    ],
+    [
+     2,
+     0.1406,
+     " .",
+     false
+    ],
+    [
+     3,
+     0.0872,
+     " a",
+     false
+    ],
+    [
+     4,
+     0.1029,
+     ".",
+     false
+    ],
+    [
+     5,
+     0.0964,
+     ",",
+     false
+    ]
+   ]
+  },
+  "family_gap_by_radius": [
+   [
+    2,
+    0.5964
+   ],
+   [
+    4,
+    0.039
+   ],
+   [
+    8,
+    -0.043
+   ],
+   [
+    16,
+    -0.0599
+   ]
+  ]
+ },
+ "verdict": "THE FAMILY DIFFERENCE IS SPECIFIC TO r=2. The gap between the attractor model and the control is +60 points at r=2 and +4 at r=4, -4 at r=8, -6 at r=16. The control ACQUIRES an attractor at r=16 (61%) despite having none at r=2, so the large-radius attractor is a GENERIC long-context effect present in both models and is not the phenomenon that separates families. Read against the control, the model-distinguishing frozen phase exists ONLY at the two-token window the whole project uses -- so it is a property of the CONSTRUCTION. F35's boundary extends to cover it, and F58's critical point is the melting of a two-token degeneracy rather than a fact about language-model dynamics. ONE TOKEN CARRIES IT: banning '\\n' alone drops top-1 from 74% to 15% and the attractor is gone. It does NOT relocate -- the next dominant tokens sit at 15%, 13%, 9%, i.e. at the control's baseline. So the frozen phase rests on a single vocabulary entry, not a structural pull toward filler. CONTROL under ablation moves by only 6 points, so the collapse above is not an artifact of forbidding tokens.",
+ "_analysis_provenance": {
+  "script": "attractor_interventions.py",
+  "sha256": "655ef81c8a1c38b421ffe40c30e16d5a68c5603fd2c2b489e1739005bdd9f266",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Two interventions on the low-temperature attractor, run because the observational axes were exhausted: the nine-model screen found the effect bimodal (68-78% vs 6-16%) and eliminated corpus (F63) and architecture (granite MoE vs dense agree within 2 points while differing 2x in width, 1.7x in depth, 16x in FFN and routing-vs-none). Radius asks whether the attractor belongs to the two-token conditioning window rather than the model -- if so, F58's critical point is a construction degeneracy and F35's boundary extends. Ablation asks whether it is one pathological vocabulary entry or a structural pull toward filler, by forbidding the dominant token in turn via the mechanism ARRule already uses for special tokens. gpt2-medium is the control: an intervention that moves it is not doing what it claims. Threshold is the screen's, not a fresh one."
+}

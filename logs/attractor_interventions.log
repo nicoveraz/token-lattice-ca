@@ -1,0 +1,53 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.63it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 601.16it/s]Loading weights:  83%|████████▎ | 241/292 [00:00<00:00, 509.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 458.43it/s]
+
+  EleutherAI/pythia-410m (attractor) loaded in 4s
+  -- radius sweep (the construction test) --
+     r=2   T=0.02   distinct= 12.9%  top1= 74.4%  dominant='\n'  attractor=True
+     r=2   T=0.436  distinct= 36.1%  top1= 52.3%  dominant='\n'  attractor=False
+     r=4   T=0.02   distinct= 51.2%  top1= 20.2%  dominant='\n'  attractor=False
+     r=4   T=0.436  distinct= 57.7%  top1= 18.4%  dominant='\n'  attractor=False
+     r=8   T=0.02   distinct= 30.9%  top1= 30.3%  dominant='\n'  attractor=False
+     r=8   T=0.436  distinct= 41.3%  top1= 26.0%  dominant='\n'  attractor=False
+     r=16  T=0.02   distinct=  5.9%  top1= 55.1%  dominant='\n'  attractor=True
+     r=16  T=0.436  distinct= 12.6%  top1= 52.7%  dominant='\n'  attractor=True
+  -- token ablation at r=2, T=0.02 (die or relocate?) --
+     banned=0  distinct= 12.9%  top1= 74.4%  dominant='\n'  attractor=True
+     banned=1  distinct= 40.2%  top1= 14.7%  dominant=','  attractor=False
+     banned=2  distinct= 40.0%  top1= 12.8%  dominant=' first'  attractor=False
+     banned=3  distinct= 51.8%  top1=  9.1%  dominant='.'  attractor=False
+     banned=4  distinct= 57.8%  top1=  9.2%  dominant=' the'  attractor=False
+     banned=5  distinct= 60.7%  top1=  7.0%  dominant=' \\'  attractor=False
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7645.14it/s]
+
+  gpt2-medium (control) loaded in 4s
+  -- radius sweep (the construction test) --
+     r=2   T=0.02   distinct= 43.8%  top1= 14.7%  dominant='\n'  attractor=False
+     r=2   T=0.436  distinct= 61.6%  top1= 13.3%  dominant='\n'  attractor=False
+     r=4   T=0.02   distinct= 51.8%  top1= 16.3%  dominant='\n'  attractor=False
+     r=4   T=0.436  distinct= 60.2%  top1= 15.1%  dominant='\n'  attractor=False
+     r=8   T=0.02   distinct= 33.7%  top1= 34.6%  dominant='\n'  attractor=False
+     r=8   T=0.436  distinct= 45.8%  top1= 20.4%  dominant='\n'  attractor=False
+     r=16  T=0.02   distinct=  4.0%  top1= 61.1%  dominant='\n'  attractor=True
+     r=16  T=0.436  distinct=  5.0%  top1= 62.6%  dominant='\n'  attractor=True
+  -- token ablation at r=2, T=0.02 (die or relocate?) --
+     banned=0  distinct= 43.8%  top1= 14.7%  dominant='\n'  attractor=False
+     banned=1  distinct= 42.8%  top1= 12.9%  dominant=' the'  attractor=False
+     banned=2  distinct= 51.3%  top1= 14.1%  dominant=' .'  attractor=False
+     banned=3  distinct= 54.9%  top1=  8.7%  dominant=' a'  attractor=False
+     banned=4  distinct= 51.3%  top1= 10.3%  dominant='.'  attractor=False
+     banned=5  distinct= 51.3%  top1=  9.6%  dominant=','  attractor=False
+
+=== INTERVENTION 1: does the attractor survive a longer context? ===
+    EleutherAI/pythia-410m T=0.02   r=2:74%  r=4:20%  r=8:30%  r=16:55%   attractor at r=16: True
+    EleutherAI/pythia-410m T=0.436  r=2:52%  r=4:18%  r=8:26%  r=16:53%   attractor at r=16: True
+               gpt2-medium T=0.02   r=2:15%  r=4:16%  r=8:35%  r=16:61%   attractor at r=16: True
+               gpt2-medium T=0.436  r=2:13%  r=4:15%  r=8:20%  r=16:63%   attractor at r=16: True
+
+=== INTERVENTION 2: ablate the dominant token -- die or relocate? ===
+    EleutherAI/pythia-410m 0:74%('\n')  1:15%(',')  2:13%(' first')  3:9%('.')  4:9%(' the')  5:7%(' \\')
+               gpt2-medium 0:15%('\n')  1:13%(' the')  2:14%(' .')  3:9%(' a')  4:10%('.')  5:10%(',')
+
+  -> RADIUS DOES NOT KILL IT: the attractor survives to r=16 (top-1 55.1%), so it is a property of the model's conditional rather than of the impoverished context. The program's framing stands on this axis. ABLATION KILLS IT: the attractor is gone after banning 1 token(s). It was specific to those vocabulary entries, so the transition is an artifact of a handful of tokens rather than a general property. CONTROL: gpt2-medium ACQUIRED an attractor under intervention, which invalidates the reading above.
+
+wrote results/attractor_interventions.json

@@ -194,44 +194,61 @@ def analyse(res):
         out[f"{name}|ablate"] = dict(
             points=[[k, v["top1_share"], v["dominant_token"], v["has_attractor"]] for k, v in pts])
 
-    a = "EleutherAI/pythia-410m"
-    rad = out.get(f"{a}|T{TEMPS[0]}|radius")
-    abl = out.get(f"{a}|ablate")
+    a, c = "EleutherAI/pythia-410m", "gpt2-medium"
+    T0 = TEMPS[0]
+    ra, rc = out.get(f"{a}|T{T0}|radius"), out.get(f"{c}|T{T0}|radius")
     parts = []
-    if rad:
-        if not rad["survives_to_max_r"]:
-            first = next((r for r, t, h in rad["points"] if not h), None)
-            parts.append(f"RADIUS KILLS IT: pythia-410m's attractor is gone by r={first} "
-                         f"(top-1 {dict((r, t) for r, t, _ in rad['points'])[first]*100:.1f}%). The "
-                         f"frozen phase is a property of the two-token construction, not the model. "
-                         f"F58's critical point is then the melting of a context degeneracy, and "
-                         f"the universality program has to be restated in those terms.")
+
+    # The radius conclusion MUST be read against the control. If the control -- which has no
+    # attractor at r=2 -- also acquires one at large r, then the large-r attractor is a generic
+    # long-context effect and NOT the model-distinguishing phenomenon. What distinguishes the
+    # families is the GAP, so that is what the test is on.
+    if ra and rc:
+        gaps = [(r, ta - tc) for (r, ta, _), (_, tc, _) in zip(ra["points"], rc["points"])]
+        print(f"\n  treatment minus control, per radius: "
+              + "  ".join(f"r={r}:{g*100:+.0f}" for r, g in gaps))
+        out["family_gap_by_radius"] = [[r, round(g, 4)] for r, g in gaps]
+        ctrl_gains = rc["points"][-1][2] and not rc["points"][0][2]
+        wide = [r for r, g in gaps if g >= 0.30]
+        if ctrl_gains and wide == [gaps[0][0]]:
+            parts.append(
+                f"THE FAMILY DIFFERENCE IS SPECIFIC TO r={gaps[0][0]}. The gap between the "
+                f"attractor model and the control is {gaps[0][1]*100:+.0f} points at r={gaps[0][0]} "
+                f"and " + ", ".join(f"{g*100:+.0f} at r={r}" for r, g in gaps[1:]) + ". The "
+                f"control ACQUIRES an attractor at r={rc['points'][-1][0]} "
+                f"({rc['points'][-1][1]*100:.0f}%) despite having none at r={gaps[0][0]}, so the "
+                f"large-radius attractor is a GENERIC long-context effect present in both models "
+                f"and is not the phenomenon that separates families. Read against the control, "
+                f"the model-distinguishing frozen phase exists ONLY at the two-token window the "
+                f"whole project uses -- so it is a property of the CONSTRUCTION. F35's boundary "
+                f"extends to cover it, and F58's critical point is the melting of a two-token "
+                f"degeneracy rather than a fact about language-model dynamics.")
+        elif not ctrl_gains and ra["survives_to_max_r"]:
+            parts.append(f"RADIUS DOES NOT KILL IT and the control stays clean, so the attractor "
+                         f"is a property of the model's conditional. The framing stands.")
         else:
-            parts.append(f"RADIUS DOES NOT KILL IT: the attractor survives to r={RADII[-1]} "
-                         f"(top-1 {rad['points'][-1][1]*100:.1f}%), so it is a property of the "
-                         f"model's conditional rather than of the impoverished context. The "
-                         f"program's framing stands on this axis.")
+            parts.append(f"RADIUS RESULT AMBIGUOUS: gaps {gaps}, control gains attractor: "
+                         f"{ctrl_gains}. Reported without a conclusion.")
+
+    abl, ablc = out.get(f"{a}|ablate"), out.get(f"{c}|ablate")
     if abl:
-        last = abl["points"][-1]
-        if last[3]:
-            toks = [p[2] for p in abl["points"]]
-            parts.append(f"ABLATION RELOCATES IT: banning {ABLATE_UP_TO} dominant tokens in turn "
-                         f"leaves an attractor at {last[1]*100:.1f}%, with the dominant token "
-                         f"walking {toks}. A structural pull toward filler, not one bad vocabulary "
-                         f"entry -- no tokenizer fix removes it.")
+        p0, p1 = abl["points"][0], abl["points"][1]
+        if not p1[3]:
+            parts.append(
+                f"ONE TOKEN CARRIES IT: banning {p0[2]!r} alone drops top-1 from "
+                f"{p0[1]*100:.0f}% to {p1[1]*100:.0f}% and the attractor is gone. It does NOT "
+                f"relocate -- the next dominant tokens sit at "
+                f"{', '.join(f'{q[1]*100:.0f}%' for q in abl['points'][1:4])}, i.e. at the "
+                f"control's baseline. So the frozen phase rests on a single vocabulary entry, "
+                f"not a structural pull toward filler.")
         else:
-            n = next((k for k, t, tok, h in abl["points"] if not h), None)
-            parts.append(f"ABLATION KILLS IT: the attractor is gone after banning {n} token(s). "
-                         f"It was specific to those vocabulary entries, so the transition is an "
-                         f"artifact of a handful of tokens rather than a general property.")
-    ctrl = out.get(f"gpt2-medium|T{TEMPS[0]}|radius")
-    if ctrl:
-        moved = any(h for _, _, h in ctrl["points"])
-        msg = ("ACQUIRED an attractor under intervention, which invalidates the reading above"
-               if moved else
-               "stays without an attractor throughout, so the interventions are not "
-               "manufacturing the effect")
-        parts.append(f"CONTROL: gpt2-medium {msg}.")
+            parts.append(f"IT RELOCATES: after banning {ABLATE_UP_TO} tokens the attractor "
+                         f"persists at {abl['points'][-1][1]*100:.0f}% -- a structural pull "
+                         f"toward filler that no vocabulary fix removes.")
+    if ablc:
+        flat = max(q[1] for q in ablc["points"]) - min(q[1] for q in ablc["points"])
+        parts.append(f"CONTROL under ablation moves by only {flat*100:.0f} points, so the "
+                     f"collapse above is not an artifact of forbidding tokens.")
     verdict = " ".join(parts) if parts else "insufficient data"
     print(f"\n  -> {verdict}")
 

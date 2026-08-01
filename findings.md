@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F64)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F65)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2016,6 +2016,57 @@ width, 1.7x depth, 16x FFN, routing-vs-none — but both are attention, and both
 attention-free (an RNN). The two-factor account predicts **no attractor**. If it has one, attention
 is not necessary and the account fails, leaving the determinant open again. `mamba-370m-hf` is run
 alongside so the non-attention side is not resting on a single model at a single size.
+
+### F65 — the frozen phase is a two-token, one-token artifact: both interventions land
+Two interventions on a fixed model, run because the observational axes were exhausted. Both come
+back against the programme, and the control is what makes them readable.
+
+**Radius — and the control is essential.** Sweeping the conditioning window r ∈ {2, 4, 8, 16} at
+T=0.02, with `gpt2-medium` (no attractor at r=2) as the control:
+
+```
+                   r=2    r=4    r=8   r=16
+pythia-410m        74%    20%    30%    55%
+gpt2-medium        15%    16%    35%    61%   <- control ACQUIRES one at r=16
+treatment - ctrl  +60     +4     -4     -6
+```
+
+Read naively, "the attractor survives to r=16" and the framing stands. Read against the control,
+it does not: the control has *no* attractor at r=2 and acquires a strong one at r=16, so the
+large-radius collapse is a **generic long-context effect in both models** — once a run of newlines
+forms, sixteen newlines of context strongly predict another — and is not the phenomenon that
+separates families. What separates them is the **gap**, which is +60 points at r=2 and within ±6
+everywhere else. **The model-distinguishing frozen phase exists only at the two-token window the
+entire project uses.**
+
+**Ablation — one token carries all of it.** Forbidding the dominant token at r=2, one at a time,
+using the mechanism `ARRule` already applies to specials:
+
+```
+pythia-410m   0:74%('\n')  1:15%(',')  2:13%(' first')  3:9%('.')  4:9%(' the')  5:7%(' \')
+gpt2-medium   0:15%('\n')  1:13%(' the') 2:14%(' .')    3:9%(' a') 4:10%('.')   5:10%(',')
+```
+
+Banning `'\n'` **alone** takes pythia from 74% to 15% — the control's baseline — and it does not
+relocate. The pre-registered "interesting" outcome was relocation, a structural pull toward filler
+that no vocabulary fix could remove. That is not what happened. The frozen phase rests on a
+**single vocabulary entry**. The control moves by 6 points across the same ablation, so this is not
+an artifact of forbidding tokens.
+
+**What this does to the programme.** F58's critical point is the melting of a degenerate state that
+(a) exists only at r=2, and (b) is carried by one token. It is a property of the **construction**,
+not of language-model dynamics — exactly the boundary F35 already draws for the damping length,
+now extended to cover the transition itself. The exponents measured at that point are not wrong,
+but what they are exponents *of* is a two-token-context newline degeneracy.
+
+It also dissolves F64's two-factor account as an explanation of anything about *models*: "attention
+necessary, corpus determines" describes which models put a single token at the top of a two-token
+conditional. That is a real and reproducible fact across 19 models, and it is a fact about a
+degenerate corner of the conditional rather than about how these systems process language.
+
+**The submitted paper remains unaffected** — it runs at T=0.7, where pythia's newline share is 13%
+and the lattice reads as fragmentary text. What is affected is the universality programme built
+after the tag.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
