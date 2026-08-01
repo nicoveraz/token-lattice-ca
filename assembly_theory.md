@@ -957,10 +957,24 @@ question open. That is what makes it an instrument-selection rung rather than a 
 
 ---
 
-## 7. What to do next, in order
+## 7. Outcome, and what to do next
 
-**Done since the first draft** — struck through rather than deleted, because what each one *cost* is
-the useful record:
+**#20 IS CLOSED — by its own gate's null, not by a judgement made after seeing the measurement
+radii.** §5.3 pre-registered "*NO measure is non-monotone at r=2 … the whole #20 line closes. A NULL
+HERE IS A GOOD RESULT*", and F76 returned exactly that: 2 interior peaks of 15 against 1.59 expected
+by chance (p = 0.32), zero surviving BH-FDR. The run was stopped at 95 of 432 cells rather than
+spending four more hours on radii the gate had made uninterpretable.
+
+**What survives is listed in the closing comment on #20 and in §5.1/§4.5:** the free calibration
+rung, F74's flat-baseline result (the real contribution, and the one that stands against Mohsin et
+al.'s unspecified `C`), the permutation null now folded into `assembly_temperature.analyse()`, and
+the OpenReview citation machinery. **What does not survive is the assembly-theory framing entirely.**
+
+The transferable lesson, and the reason this document is worth keeping: **a composite metric must
+have its components ablated.** F74 stacked four and varied none. That is F66's rule — vary the
+construction, not just the subject — applied to a metric rather than a probe.
+
+**Done, struck through rather than deleted, because what each one *cost* is the useful record:**
 
 1. ~~Build `assembly_calib.py` (§5.1).~~ **DONE.** The estimator earned the right to report, and
    falsified one of the three assertions that specified it — RePair is not exact on `a^n` (75/127).
@@ -989,9 +1003,9 @@ the useful record:
    `z ≤ g`. F74 corrected the *units* (`g = 2·ASI`, so the bound is `z/2`), but the sources
    themselves are still unread. `experiments/audit_refs.py` and `tests/test_refs_match_arxiv.py`
    exist for exactly this.
-9. **Update issue #20** with §3, §5.1 and §5.2 — particularly §3.3 and F74, which together are a
-   real finding *about assembly theory itself* and worth recording whether or not the program
-   continues.
+9. ~~Update issue #20 with §3, §5.1 and §5.2.~~ **DONE, then CLOSED.** The tracker was the last
+   artifact carrying #20's pre-F73 assumptions; it now carries the full arc F73 → F74 → F75 → F76
+   and the close.
 10. ~~Close the issues whose findings have landed.~~ **DONE — eight closed** (#61, #83, #87, #88,
     #91, #92, #93, #94), each with the verdict and its backing results file in the closing comment.
     Eighteen remained. Two follow-ups fell out of it, both in §8: the small-model **dip** measurement
@@ -1005,7 +1019,10 @@ the useful record:
 Twenty-six issues were open, and **eight of them were not open work** — the answer had been recorded
 in `findings.md` or in a commit, but the tracker never learned it. **All eight are now closed**, each
 with a comment carrying the verdict and its backing results file, so the answer is findable from the
-tracker rather than only from the ledger. Eighteen remain.
+tracker rather than only from the ledger, leaving eighteen.
+
+**Net since:** four spun off from this work (#95–#98) and **#20 itself closed** on F76's null, so the
+tracker now stands at **21 open**.
 
 **Closed — a numbered finding exists and names the issue.** These four were the clearest: each has a
 `### F## — … (#NN)` header in `findings.md`.
@@ -1069,14 +1086,15 @@ included in the close.
 **Genuinely open, no work started:** #84 (λ_ca-vs-loss collapse on a fixed Pile slice) and #85
 (coupling robustness) have no commits referencing them at all.
 
-**Genuinely live:** **#20** (this document), **#90** (T\*, blocked on ~16 independent families
+**Genuinely live:** **#90** (T\*, blocked on ~16 independent families
 against the 9 in hand — F68), plus the standing methods threads
 (#13, #16, #58, #59, #60, #63, #65, #69, #70) and the hygiene items (#6, #25).
 
-**One recommendation beyond closing.** #20's original text predicted the LZ-equivalence fight and
-asked for baselines; F74 ran it and the answer came back favourable, while F73 falsified the
-exactness assumption the same issue relied on. Both belong in the issue as comments — the tracker is
-currently the only project artifact that still carries #20's *pre*-F73 assumptions.
+**#20 is now closed too**, by its own gate rather than by abandonment — the arc F73 → F74 → F75 →
+F76 is in its closing comment, along with what survives and what would reopen it. Four issues were
+spun off from this work's periphery and remain open: **#95** (measure the dip directly), **#96**
+(type-matched cross-level bridge), **#97** (the extinction window), **#98** (when the argmax fixed
+point forms).
 
 ---
 
