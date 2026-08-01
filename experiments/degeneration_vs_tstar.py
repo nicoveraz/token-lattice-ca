@@ -213,6 +213,24 @@ def main():
     print("\nwrote", rel(OUT))
 
 
+def _family(m):
+    """Collapse sizes within a training family to one unit.
+
+    Six of the fifteen correlated points are Pythia SIZES -- one corpus, one tokenizer, one
+    recipe. Counting them separately is what made the model-level test significant, and it is the
+    pseudoreplication this project's own audit caught in F23. The family-level correlation is the
+    conservative one and is what the verdict is gated on.
+    """
+    for key, name in (("pythia", "pythia"), ("granite", "granite"), ("Qwen", "qwen"),
+                      ("gpt-neo", "gpt-neo"), ("SmolLM", "smollm"), ("stablelm", "stablelm"),
+                      ("starcoder", "starcoder"), ("phi", "phi"), ("TinyLlama", "tinyllama"),
+                      ("gpt2", "gpt2"), ("mamba", "mamba"), ("rwkv", "rwkv"), ("opt-", "opt"),
+                      ("bloom", "bloom"), ("OLMo", "olmo"), ("codegen", "codegen")):
+        if key.lower() in m.lower():
+            return name
+    return m
+
+
 def _n_needed(rho, alpha=0.05, nmax=200):
     """Smallest n at which a rank correlation of this size would reach significance.
 
@@ -261,46 +279,77 @@ def analyse(res):
     # be included without inventing a value. Excluding it discards real information.
     ranked = melt + cens
     if len(ranked) >= 5:
-        top = max(v["t_star"] for v in melt) + 1.0
-        xs = [(v["t_star"] if isinstance(v["t_star"], (int, float)) else top) for v in ranked]
-        rho, p = _spearman(xs, [v["rep_4"] for v in ranked])
-        out["spearman_tstar_rep4"] = dict(rho=round(rho, 3), p=round(p, 4),
-                                          n=len(ranked), censored=len(cens))
-        print(f"\n  Spearman rho(T*, rep_4) = {rho:+.3f}  (permutation p={p:.4f}, "
-              f"n={len(ranked)}, of which {len(cens)} censored above)")
-        sig, direction = p < 0.05, ("predicted" if rho > 0 else "OPPOSITE to predicted")
-        need = _n_needed(rho)
-        if sig and rho > 0:
-            verdict = (f"T* PREDICTS A KNOWN FAILURE MODE: rho={rho:+.3f} (p={p:.4f}, n={len(ranked)}) "
-                       f"against repetition under greedy decoding, a measurement sharing no "
-                       f"machinery with the ring construction. T* becomes a cheap scalar with "
-                       f"external meaning, obtainable in four settle runs.")
-        elif sig:
-            verdict = (f"T* ANTI-CORRELATES with repetition: rho={rho:+.3f} (p={p:.4f}). The "
-                       f"opposite of the pre-registered prediction, and it needs an explanation "
-                       f"before use.")
-        elif abs(rho) >= 0.3:
-            verdict = (f"UNDERPOWERED, NOT NULL: rho={rho:+.3f} in the {direction} direction, "
-                       f"p={p:.4f} at n={len(ranked)}. An effect this size would need about "
-                       f"n={need} to reach significance, and n here is capped by how many models "
-                       f"concentrate at all -- nine of nineteen never do. The correct statement is "
-                       f"that this test cannot decide, NOT that there is no association. Reporting "
-                       f"it either way would be reading a threshold rather than the data.")
-        else:
-            verdict = (f"NULL: rho={rho:+.3f} (p={p:.4f}, n={len(ranked)}) is small as well as "
-                       f"non-significant, so T* does not predict greedy-decoding repetition and "
-                       f"remains a property of the out-of-distribution artifact.")
+        top = max((v["t_star"] for v in melt), default=1.0) + 1.0
+        val = lambda v: (v["t_star"] if isinstance(v["t_star"], (int, float)) else top)
+        rho, p = _spearman([val(v) for v in ranked], [v["rep_4"] for v in ranked])
+
+        # family-level: one point per training family, so Pythia's six sizes cannot carry it
+        fam = {}
+        for v in ranked:
+            fam.setdefault(_family(v["model"]), []).append(v)
+        frho, fp = (None, None)
+        if len(fam) >= 5:
+            frho, fp = _spearman([np.mean([val(v) for v in vs]) for vs in fam.values()],
+                                 [np.mean([v["rep_4"] for v in vs]) for vs in fam.values()])
+        out["spearman_tstar_rep4"] = dict(rho=round(rho, 3), p=round(p, 4), n=len(ranked),
+                                          censored=len(cens))
+        out["spearman_family_level"] = dict(rho=None if frho is None else round(frho, 3),
+                                            p=None if fp is None else round(fp, 4),
+                                            n_families=len(fam))
+        print(f"\n  model-level  rho = {rho:+.3f}  (p={p:.4f}, n={len(ranked)}, "
+              f"{len(cens)} censored)")
+        if frho is not None:
+            print(f"  family-level rho = {frho:+.3f}  (p={fp:.4f}, n={len(fam)} families)")
+
+        # the group claim, TESTED rather than asserted
+        gp = None
         if flat:
-            fm = float(np.mean([v["rep_4"] for v in flat]))
-            mm = float(np.mean([v["rep_4"] for v in ranked]))
-            verdict += (f" SEPARATELY, and this part IS clean: models that never concentrate "
-                        f"average rep_4={fm:.3f} against {mm:.3f} for those that do -- "
-                        f"indistinguishable. So the attractor BINARY has no predictive value for "
-                        f"repetition at all; whatever signal exists is in T* as a graded quantity "
-                        f"within the concentrating group, not in whether a model concentrates.")
+            a = [v["rep_4"] for v in ranked]; b = [v["rep_4"] for v in flat]
+            obs = abs(float(np.mean(b) - np.mean(a))); pool = np.array(a + b)
+            rng = np.random.default_rng(1)
+            hits = sum(abs(np.mean(sh[:len(b)]) - np.mean(sh[len(b):])) >= obs
+                       for sh in (rng.permutation(pool) for _ in range(20000)))
+            gp = (hits + 1) / 20001
+            out["group_difference"] = dict(concentrate=round(float(np.mean(a)), 3),
+                                           never=round(float(np.mean(b)), 3),
+                                           p=round(float(gp), 4))
+            print(f"  group means: concentrate {np.mean(a):.3f} vs never {np.mean(b):.3f}, "
+                  f"permutation p={gp:.4f}")
+
+        need = _n_needed(frho if frho is not None else rho)
+        if frho is not None and fp < 0.05 and frho > 0:
+            verdict = (f"T* PREDICTS A KNOWN FAILURE MODE: family-level rho={frho:+.3f} "
+                       f"(p={fp:.4f}, {len(fam)} families) against greedy-decoding repetition, a "
+                       f"measurement sharing no machinery with the ring. Model-level rho={rho:+.3f} "
+                       f"(p={p:.4f}, n={len(ranked)}). It holds when correlated sizes are collapsed, "
+                       f"so it is not pseudoreplication.")
+        elif p < 0.05 and (frho is None or fp >= 0.05):
+            verdict = (f"SIGNIFICANT ONLY AT MODEL LEVEL, AND THAT IS NOT ENOUGH: rho={rho:+.3f} "
+                       f"(p={p:.4f}, n={len(ranked)}) but family-level rho={frho:+.3f} "
+                       f"(p={fp:.4f}, {len(fam)} families). Six of the correlated points are Pythia "
+                       f"SIZES -- one corpus, tokenizer and recipe -- so the model-level test counts "
+                       f"them six times. Collapsing them keeps the direction and loses the "
+                       f"significance, which means the effect is real-looking but NOT established. "
+                       f"About {need} independent families would settle it.")
+        elif abs(frho if frho is not None else rho) >= 0.3:
+            verdict = (f"UNDERPOWERED, NOT NULL: family-level rho={frho:+.3f} (p={fp:.4f}) in the "
+                       f"predicted direction; about {need} families would be needed. The test "
+                       f"cannot decide.")
+        else:
+            verdict = (f"NULL: family-level rho={frho:+.3f} (p={fp:.4f}) is small as well as "
+                       f"non-significant. T* does not predict greedy-decoding repetition.")
+        if gp is not None:
+            same = gp > 0.05
+            verdict += (f" SEPARATELY: the attractor BINARY carries "
+                        + (f"no predictive value -- concentrating and non-concentrating models "
+                           f"differ by only {abs(np.mean(a)-np.mean(b)):.3f} in rep_4, "
+                           f"permutation p={gp:.4f}." if same else
+                           f"a difference of {abs(np.mean(a)-np.mean(b)):.3f} in rep_4 "
+                           f"(p={gp:.4f}), which needs explaining.")
+                        + " Whatever signal exists is in T* as a graded quantity, not in whether a "
+                          "model concentrates.")
     else:
-        verdict = f"insufficient data: only {len(melt)} models have a finite T*"
-    print(f"\n  -> {verdict}")
+        verdict = f"insufficient data: only {len(ranked)} models rankable"
 
     res["melting"] = {v["model"]: v for v in melt}
     res["censored_above"] = {v["model"]: v for v in cens}

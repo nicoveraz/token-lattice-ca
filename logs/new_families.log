@@ -173,3 +173,59 @@ Notes:
 Loading weights:   0%|          | 0/244 [00:00<?, ?it/s]Loading weights: 100%|██████████| 244/244 [00:00<00:00, 6575.24it/s]
                bigcode/tiny_starcoder_py T*= 0.2825  rep_4=0.407  distinct=0.286  loop=2.7 (23.4s)
 Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 44855.16it/s]
+                       facebook/opt-350m T*=   None  rep_4=0.646  distinct=0.231  loop=5.0 (32.7s)
+Loading weights:   0%|          | 0/341 [00:00<?, ?it/s]Loading weights: 100%|██████████| 341/341 [00:00<00:00, 6959.62it/s]
+                       microsoft/phi-1_5 T*= 0.2505  rep_4=0.044  distinct=0.556  loop=2.0 (60.6s)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 4349.52it/s]
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=128) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T T*= 0.2477  rep_4=0.619  distinct=0.243  loop=4.2 (51.1s)
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5244.71it/s]
+              HuggingFaceTB/SmolLM2-360M T*= 0.5497  rep_4=0.423  distinct=0.328  loop=3.0 (41.0s)
+Loading weights:   0%|          | 0/340 [00:00<?, ?it/s]Loading weights:   0%|          | 1/340 [00:00<03:15,  1.73it/s]Loading weights:  34%|███▍      | 117/340 [00:00<00:01, 220.63it/s]Loading weights:  51%|█████     | 172/340 [00:00<00:00, 222.32it/s]Loading weights:  63%|██████▎   | 213/340 [00:01<00:00, 204.90it/s]Loading weights:  72%|███████▏  | 245/340 [00:01<00:00, 186.86it/s]Loading weights:  80%|███████▉  | 271/340 [00:01<00:00, 189.38it/s]Loading weights:  88%|████████▊ | 299/340 [00:01<00:00, 203.12it/s]Loading weights:  95%|█████████▌| 324/340 [00:01<00:00, 205.54it/s]Loading weights: 100%|██████████| 340/340 [00:01<00:00, 186.40it/s]
+             stabilityai/stablelm-2-1_6b T*=  0.461  rep_4=0.328  distinct=0.385  loop=2.2 (62.0s)
+
+=== does T* predict greedy-decoding repetition? ===
+                                   model      T*   rep_4  distinct   loop
+                  EleutherAI/pythia-160m   0.576   0.719     0.171    5.7
+                   EleutherAI/pythia-70m   0.575   0.825     0.121   11.1
+                   EleutherAI/pythia-14m   0.558   0.839     0.103   15.2
+              HuggingFaceTB/SmolLM2-360M   0.550   0.423     0.328    3.0
+                    EleutherAI/pythia-1b   0.538   0.583     0.247    3.8
+   ibm-granite/granite-3.0-1b-a400m-base   0.520   0.463     0.328    2.8
+                  EleutherAI/pythia-410m   0.519   0.435     0.294    3.0
+         ibm-granite/granite-3.0-2b-base   0.476   0.249     0.429    2.0
+             stabilityai/stablelm-2-1_6b   0.461   0.328     0.385    2.2
+                   EleutherAI/pythia-31m   0.453   0.739     0.165    6.0
+                       Qwen/Qwen2.5-0.5B   0.302   0.277     0.406    1.7
+               bigcode/tiny_starcoder_py   0.282   0.407     0.286    2.7
+                       microsoft/phi-1_5   0.251   0.044     0.556    2.0
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T   0.248   0.619     0.243    4.2
+  -- no finite T* (never concentrate) --
+                   RWKV/rwkv-4-169m-pile      --   0.674     0.193    6.2
+              state-spaces/mamba-130m-hf      --   0.649     0.212    5.2
+                       facebook/opt-350m      --   0.646     0.231    5.0
+                                    gpt2      --   0.637     0.237    7.8
+                      allenai/OLMo-1B-hf      --   0.606     0.235    2.3
+              state-spaces/mamba-370m-hf      --   0.605     0.241    3.9
+                   bigscience/bloom-560m      --   0.594     0.232    5.0
+                              gpt2-large      --   0.513     0.273    3.2
+                             gpt2-medium      --   0.459     0.322    3.3
+                                 gpt2-xl      --   0.457     0.316    3.0
+            Salesforce/codegen-350M-mono      --   0.447     0.289    3.9
+
+  Spearman rho(T*, rep_4) = +0.575  (permutation p=0.0277, n=15, of which 1 censored above)
+
+  -> T* PREDICTS A KNOWN FAILURE MODE: rho=+0.575 (p=0.0277, n=15) against repetition under greedy decoding, a measurement sharing no machinery with the ring construction. T* becomes a cheap scalar with external meaning, obtainable in four settle runs. SEPARATELY, and this part IS clean: models that never concentrate average rep_4=0.572 against 0.509 for those that do -- indistinguishable. So the attractor BINARY has no predictive value for repetition at all; whatever signal exists is in T* as a graded quantity within the concentrating group, not in whether a model concentrates.
+
+wrote results/degeneration_vs_tstar.json

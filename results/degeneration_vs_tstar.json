@@ -188,6 +188,51 @@
    "distinct_1": 0.2865,
    "longest_loop": 2.67,
    "secs": 23.4
+  },
+  "facebook/opt-350m": {
+   "model": "facebook/opt-350m",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.646,
+   "distinct_1": 0.2311,
+   "longest_loop": 5.0,
+   "secs": 32.7
+  },
+  "microsoft/phi-1_5": {
+   "model": "microsoft/phi-1_5",
+   "n_prompts": 12,
+   "t_star": 0.2505,
+   "rep_4": 0.044,
+   "distinct_1": 0.556,
+   "longest_loop": 2.0,
+   "secs": 60.6
+  },
+  "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T": {
+   "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+   "n_prompts": 12,
+   "t_star": 0.2477,
+   "rep_4": 0.6187,
+   "distinct_1": 0.2435,
+   "longest_loop": 4.17,
+   "secs": 51.1
+  },
+  "HuggingFaceTB/SmolLM2-360M": {
+   "model": "HuggingFaceTB/SmolLM2-360M",
+   "n_prompts": 12,
+   "t_star": 0.5497,
+   "rep_4": 0.4233,
+   "distinct_1": 0.3281,
+   "longest_loop": 3.0,
+   "secs": 41.0
+  },
+  "stabilityai/stablelm-2-1_6b": {
+   "model": "stabilityai/stablelm-2-1_6b",
+   "n_prompts": 12,
+   "t_star": 0.461,
+   "rep_4": 0.328,
+   "distinct_1": 0.3854,
+   "longest_loop": 2.17,
+   "secs": 62.0
   }
  },
  "_preregistration": {
@@ -310,6 +355,51 @@
    "distinct_1": 0.429,
    "longest_loop": 2.0,
    "secs": 113.8
+  },
+  "bigcode/tiny_starcoder_py": {
+   "model": "bigcode/tiny_starcoder_py",
+   "n_prompts": 12,
+   "t_star": 0.2825,
+   "rep_4": 0.4067,
+   "distinct_1": 0.2865,
+   "longest_loop": 2.67,
+   "secs": 23.4
+  },
+  "microsoft/phi-1_5": {
+   "model": "microsoft/phi-1_5",
+   "n_prompts": 12,
+   "t_star": 0.2505,
+   "rep_4": 0.044,
+   "distinct_1": 0.556,
+   "longest_loop": 2.0,
+   "secs": 60.6
+  },
+  "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T": {
+   "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+   "n_prompts": 12,
+   "t_star": 0.2477,
+   "rep_4": 0.6187,
+   "distinct_1": 0.2435,
+   "longest_loop": 4.17,
+   "secs": 51.1
+  },
+  "HuggingFaceTB/SmolLM2-360M": {
+   "model": "HuggingFaceTB/SmolLM2-360M",
+   "n_prompts": 12,
+   "t_star": 0.5497,
+   "rep_4": 0.4233,
+   "distinct_1": 0.3281,
+   "longest_loop": 3.0,
+   "secs": 41.0
+  },
+  "stabilityai/stablelm-2-1_6b": {
+   "model": "stabilityai/stablelm-2-1_6b",
+   "n_prompts": 12,
+   "t_star": 0.461,
+   "rep_4": 0.328,
+   "distinct_1": 0.3854,
+   "longest_loop": 2.17,
+   "secs": 62.0
   }
  },
  "no_finite_tstar": {
@@ -393,20 +483,48 @@
    "distinct_1": 0.2409,
    "longest_loop": 3.92,
    "secs": 43.3
+  },
+  "Salesforce/codegen-350M-mono": {
+   "model": "Salesforce/codegen-350M-mono",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.4473,
+   "distinct_1": 0.2891,
+   "longest_loop": 3.92,
+   "secs": 46.1
+  },
+  "facebook/opt-350m": {
+   "model": "facebook/opt-350m",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.646,
+   "distinct_1": 0.2311,
+   "longest_loop": 5.0,
+   "secs": 32.7
   }
  },
  "analysis": {
   "spearman_tstar_rep4": {
-   "rho": 0.552,
-   "p": 0.1072,
-   "n": 10,
+   "rho": 0.575,
+   "p": 0.0277,
+   "n": 15,
    "censored": 1
+  },
+  "spearman_family_level": {
+   "rho": 0.483,
+   "p": 0.1893,
+   "n_families": 9
+  },
+  "group_difference": {
+   "concentrate": 0.509,
+   "never": 0.572,
+   "p": 0.4055
   }
  },
- "verdict": "UNDERPOWERED, NOT NULL: rho=+0.552 in the predicted direction, p=0.1072 at n=10. An effect this size would need about n=16 to reach significance, and n here is capped by how many models concentrate at all -- nine of nineteen never do. The correct statement is that this test cannot decide, NOT that there is no association. Reporting it either way would be reading a threshold rather than the data. SEPARATELY, and this part IS clean: models that never concentrate average rep_4=0.577 against 0.581 for those that do -- indistinguishable. So the attractor BINARY has no predictive value for repetition at all; whatever signal exists is in T* as a graded quantity within the concentrating group, not in whether a model concentrates.",
+ "verdict": "SIGNIFICANT ONLY AT MODEL LEVEL, AND THAT IS NOT ENOUGH: rho=+0.575 (p=0.0277, n=15) but family-level rho=+0.483 (p=0.1893, 9 families). Six of the correlated points are Pythia SIZES -- one corpus, tokenizer and recipe -- so the model-level test counts them six times. Collapsing them keeps the direction and loses the significance, which means the effect is real-looking but NOT established. About 21 independent families would settle it. SEPARATELY: the attractor BINARY carries no predictive value -- concentrating and non-concentrating models differ by only 0.063 in rep_4, permutation p=0.4055. Whatever signal exists is in T* as a graded quantity, not in whether a model concentrates.",
  "_analysis_provenance": {
   "script": "degeneration_vs_tstar.py",
-  "sha256": "f7568b8f7aac2652365cc47568502fd725c117e7731a4e935a6cd18e82101669",
+  "sha256": "b8ebd4f1e10daf3788d3af3a76dde7936c6bd641e0cdb105d7938e6b74cf5cd6",
   "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
  },
  "_note": "Tests whether T* -- the temperature at which the CA's settled lattice stops being dominated by one token, interpolated from the nineteen-model screen -- predicts neural text degeneration, an independently studied failure mode. T* is tighter within a family than the raw share at any fixed temperature and separates families the attractor binary lumps together, but it is measured in a two-token regime F66 showed to be an artifact, so on its own it is a property of out-of-distribution behaviour. The anchor shares no machinery with the ring CA: greedy decoding from short but REAL sentence openings, with repetition measured as the fraction of repeated 4-grams. Greedy so there is no temperature knob to tune. A null is pre-registered as closing the question.",

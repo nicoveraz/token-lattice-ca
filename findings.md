@@ -2220,10 +2220,36 @@ from "suggestive" to "no association" on a change of 0.065. That is the same kni
 F59's gate demonstrated. The rule now reports **how many models would settle it** instead of
 passing or failing a cutoff, which is actionable where a threshold is not.
 
-**Where this leaves T*.** Not established, not refuted. Adding six more concentrating models would
-decide it, and that is cheap — four settle runs each. Until then T* stays what F66 left it as: a
-well-defined property of out-of-distribution behaviour with a suggestive but unresolved link to a
-known failure mode.
+**AMENDED (Aug 1) after seven new families — still not established, and the reason is instructive.**
+Five of the seven concentrate, taking the correlation from n=10 to n=15 and independent families
+from 4 to 9. The model-level test now clears significance: **rho = +0.575, p = 0.028**. The
+family-level test does not: **rho = +0.483, p = 0.189** over 9 families.
+
+```
+model-level    rho +0.575   p 0.028   n = 15 models      significant
+family-level   rho +0.483   p 0.189   n =  9 families    NOT significant
+group means    concentrate 0.509 vs never 0.572, p 0.41  indistinguishable (now tested)
+```
+
+Six of the fifteen correlated points are Pythia **sizes** — one corpus, one tokenizer, one recipe —
+so the model-level test counts that family six times. Collapsing sizes keeps the direction and
+loses the significance. The effect looks real and is **not established**; roughly 16 independent
+families would settle it, against the 9 in hand.
+
+This is the same pseudoreplication that F23 was retracted for, arriving by a different route:
+adding models raised n without raising the number of *independent* units proportionally. The fix
+was foreseen and it still did not suffice, which is worth stating plainly — "collect more data
+until p drops" would have declared victory at n=15.
+
+**A fourth defect in the verdict logic, of the same shape as the previous three.** The group
+comparison was hardcoded to print "indistinguishable" regardless of the numbers — true when they
+were 0.577 vs 0.581, still asserted when they became 0.509 vs 0.572. It now runs a permutation test
+(p = 0.41, so the claim survives, by luck rather than by design). The verdict is also now gated on
+the **family-level** correlation rather than the model-level one.
+
+**Where this leaves T*.** Not established, not refuted, and the bar is now known: ~16 independent
+families. Until then T* stays a well-defined property of out-of-distribution behaviour with a
+suggestive but unresolved link to a known failure mode.
 
 ### F69 — the degeneracy is confined to r ≤ 2, and one extra token is the whole difference (#91)
 F65's coarse sweep left the boundary open: between r=2 (degenerate) and r=4 (not) sat one untested

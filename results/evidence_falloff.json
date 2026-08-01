@@ -1,0 +1,298 @@
+{
+ "runs": {
+  "EleutherAI/pythia-410m": {
+   "model": "EleutherAI/pythia-410m",
+   "marginal_top1": 0.0758,
+   "marginal_entropy": 7.2699,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "top1": 0.1523,
+     "entropy": 6.175,
+     "tv_to_marginal": 0.9322,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2048,
+     "entropy": 5.2512,
+     "tv_to_marginal": 0.9522,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2503,
+     "entropy": 4.6538,
+     "tv_to_marginal": 0.971,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3049,
+     "entropy": 4.0595,
+     "tv_to_marginal": 0.9737,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3824,
+     "entropy": 3.3522,
+     "tv_to_marginal": 0.9755,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4091,
+     "entropy": 3.1062,
+     "tv_to_marginal": 0.9841,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.152,
+     "common_top1": 0.156,
+     "gap": -0.004,
+     "n_rare": 150,
+     "n_common": 10
+    },
+    "2": {
+     "rare_top1": 0.205,
+     "common_top1": 0.2004,
+     "gap": 0.0046,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "4": {
+     "rare_top1": 0.2474,
+     "common_top1": 0.2991,
+     "gap": -0.0516,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "8": {
+     "rare_top1": 0.3051,
+     "common_top1": 0.3003,
+     "gap": 0.0048,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3735,
+     "common_top1": 0.5322,
+     "gap": -0.1587,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "32": {
+     "rare_top1": 0.4063,
+     "common_top1": 0.4714,
+     "gap": -0.0651,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 25.0
+  },
+  "EleutherAI/gpt-neo-125M": {
+   "model": "EleutherAI/gpt-neo-125M",
+   "marginal_top1": 0.067,
+   "marginal_entropy": 7.0294,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "top1": 0.1282,
+     "entropy": 6.5938,
+     "tv_to_marginal": 0.8718,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.1912,
+     "entropy": 5.3685,
+     "tv_to_marginal": 0.9207,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2335,
+     "entropy": 4.8516,
+     "tv_to_marginal": 0.9411,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.2729,
+     "entropy": 4.37,
+     "tv_to_marginal": 0.9507,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3482,
+     "entropy": 3.58,
+     "tv_to_marginal": 0.9554,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.3582,
+     "entropy": 3.4671,
+     "tv_to_marginal": 0.9622,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1292,
+     "common_top1": 0.1113,
+     "gap": 0.0178,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "2": {
+     "rare_top1": 0.1931,
+     "common_top1": 0.1536,
+     "gap": 0.0396,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "4": {
+     "rare_top1": 0.2311,
+     "common_top1": 0.2799,
+     "gap": -0.0488,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "8": {
+     "rare_top1": 0.2698,
+     "common_top1": 0.3526,
+     "gap": -0.0828,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "16": {
+     "rare_top1": 0.3419,
+     "common_top1": 0.4667,
+     "gap": -0.1247,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.3543,
+     "common_top1": 0.432,
+     "gap": -0.0777,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 21.3
+  },
+  "Qwen/Qwen2.5-0.5B": {
+   "model": "Qwen/Qwen2.5-0.5B",
+   "marginal_top1": 0.3869,
+   "marginal_entropy": 4.3911,
+   "marginal_token": "Human",
+   "by_length": {
+    "1": {
+     "top1": 0.1702,
+     "entropy": 5.5843,
+     "tv_to_marginal": 0.9675,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2056,
+     "entropy": 5.1383,
+     "tv_to_marginal": 0.9809,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2287,
+     "entropy": 4.6707,
+     "tv_to_marginal": 0.989,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3167,
+     "entropy": 3.8968,
+     "tv_to_marginal": 0.9921,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3753,
+     "entropy": 3.3183,
+     "tv_to_marginal": 0.992,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4098,
+     "entropy": 3.0676,
+     "tv_to_marginal": 0.9958,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.167,
+     "common_top1": 0.239,
+     "gap": -0.0719,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "2": {
+     "rare_top1": 0.2029,
+     "common_top1": 0.2649,
+     "gap": -0.062,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "4": {
+     "rare_top1": 0.224,
+     "common_top1": 0.3076,
+     "gap": -0.0835,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "8": {
+     "rare_top1": 0.3176,
+     "common_top1": 0.298,
+     "gap": 0.0196,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3663,
+     "common_top1": 0.5471,
+     "gap": -0.1808,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.4069,
+     "common_top1": 0.4729,
+     "gap": -0.066,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 31.6
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "EleutherAI/pythia-410m",
+   "EleutherAI/gpt-neo-125M",
+   "Qwen/Qwen2.5-0.5B",
+   "ibm-granite/granite-3.0-2b-base",
+   "gpt2-medium",
+   "bigscience/bloom-560m",
+   "allenai/OLMo-1B-hf",
+   "state-spaces/mamba-130m-hf"
+  ],
+  "lengths": [
+   1,
+   2,
+   4,
+   8,
+   16,
+   32
+  ],
+  "n_contexts": 160,
+  "rare_quantile": 0.25,
+  "primary": "is TV(p(x | 2 real tokens), marginal) small for CA-degenerate models and large for clean ones? that would give F64 a mechanism rather than a correlation",
+  "secondary": "at FIXED context length, do rare contexts sit closer to the marginal than common ones? yes links the CA regime to genuine low-data behaviour",
+  "null_meaning": "a null on the secondary means the CA finding is about PROMPT LENGTH only and must not be described as being about insufficient training data",
+  "method": "one forward pass per context; no generation, no ring dynamics",
+  "resumable": "keyed by model"
+ }
+}

@@ -1,0 +1,18 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.68it/s]Loading weights:  52%|█████▏    | 152/292 [00:00<00:00, 598.72it/s]Loading weights:  82%|████████▏ | 238/292 [00:00<00:00, 681.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 586.99it/s]
+                  EleutherAI/pythia-410m marg_top1=0.076 ('Q')  TV@k=2=0.952  top1@k=2=0.205 (25.0s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 6971.12it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+                 EleutherAI/gpt-neo-125M marg_top1=0.067 ('Q')  TV@k=2=0.921  top1@k=2=0.191 (21.3s)
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6504.43it/s]
+                       Qwen/Qwen2.5-0.5B marg_top1=0.387 ('Human')  TV@k=2=0.981  top1@k=2=0.206 (31.6s)
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 4814.83it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
