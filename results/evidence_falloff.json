@@ -87,7 +87,8 @@
      "n_common": 7
     }
    },
-   "secs": 25.0
+   "secs": 25.0,
+   "ca_degenerate": true
   },
   "EleutherAI/gpt-neo-125M": {
    "model": "EleutherAI/gpt-neo-125M",
@@ -176,7 +177,8 @@
      "n_common": 8
     }
    },
-   "secs": 21.3
+   "secs": 21.3,
+   "ca_degenerate": true
   },
   "Qwen/Qwen2.5-0.5B": {
    "model": "Qwen/Qwen2.5-0.5B",
@@ -265,7 +267,458 @@
      "n_common": 7
     }
    },
-   "secs": 31.6
+   "secs": 31.6,
+   "ca_degenerate": true
+  },
+  "ibm-granite/granite-3.0-2b-base": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "marginal_top1": 0.0376,
+   "marginal_entropy": 6.6675,
+   "marginal_token": "In",
+   "by_length": {
+    "1": {
+     "top1": 0.1278,
+     "entropy": 5.9595,
+     "tv_to_marginal": 0.9277,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2397,
+     "entropy": 4.6448,
+     "tv_to_marginal": 0.9702,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2905,
+     "entropy": 4.0183,
+     "tv_to_marginal": 0.9788,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3982,
+     "entropy": 3.315,
+     "tv_to_marginal": 0.9812,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.4405,
+     "entropy": 2.8288,
+     "tv_to_marginal": 0.9813,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.484,
+     "entropy": 2.5227,
+     "tv_to_marginal": 0.9885,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.128,
+     "common_top1": 0.1256,
+     "gap": 0.0023,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "2": {
+     "rare_top1": 0.24,
+     "common_top1": 0.2345,
+     "gap": 0.0055,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "4": {
+     "rare_top1": 0.292,
+     "common_top1": 0.2534,
+     "gap": 0.0385,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "8": {
+     "rare_top1": 0.401,
+     "common_top1": 0.336,
+     "gap": 0.065,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.4376,
+     "common_top1": 0.5135,
+     "gap": -0.0759,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "32": {
+     "rare_top1": 0.4814,
+     "common_top1": 0.542,
+     "gap": -0.0606,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 90.8,
+   "ca_degenerate": true
+  },
+  "gpt2-medium": {
+   "model": "gpt2-medium",
+   "marginal_top1": 0.1189,
+   "marginal_entropy": 6.02,
+   "marginal_token": "The",
+   "by_length": {
+    "1": {
+     "top1": 0.2819,
+     "entropy": 4.4074,
+     "tv_to_marginal": 0.9745,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2421,
+     "entropy": 5.0408,
+     "tv_to_marginal": 0.9969,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2702,
+     "entropy": 4.627,
+     "tv_to_marginal": 0.9983,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3327,
+     "entropy": 4.0384,
+     "tv_to_marginal": 0.9988,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.4133,
+     "entropy": 3.3659,
+     "tv_to_marginal": 0.9987,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.3461,
+     "entropy": 3.6948,
+     "tv_to_marginal": 0.9938,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.2832,
+     "common_top1": 0.261,
+     "gap": 0.0222,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "2": {
+     "rare_top1": 0.2459,
+     "common_top1": 0.1688,
+     "gap": 0.0771,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "4": {
+     "rare_top1": 0.2727,
+     "common_top1": 0.2234,
+     "gap": 0.0492,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "8": {
+     "rare_top1": 0.334,
+     "common_top1": 0.2993,
+     "gap": 0.0347,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "16": {
+     "rare_top1": 0.4113,
+     "common_top1": 0.4511,
+     "gap": -0.0397,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.3436,
+     "common_top1": 0.3947,
+     "gap": -0.0511,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 17.7,
+   "ca_degenerate": false
+  },
+  "bigscience/bloom-560m": {
+   "model": "bigscience/bloom-560m",
+   "marginal_top1": 0.0297,
+   "marginal_entropy": 8.6124,
+   "marginal_token": ",",
+   "by_length": {
+    "1": {
+     "top1": 0.1121,
+     "entropy": 6.6683,
+     "tv_to_marginal": 0.8434,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.1877,
+     "entropy": 5.5093,
+     "tv_to_marginal": 0.8978,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2586,
+     "entropy": 4.6516,
+     "tv_to_marginal": 0.926,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3111,
+     "entropy": 4.1143,
+     "tv_to_marginal": 0.9473,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3649,
+     "entropy": 3.5643,
+     "tv_to_marginal": 0.953,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4097,
+     "entropy": 3.1311,
+     "tv_to_marginal": 0.9592,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1116,
+     "common_top1": 0.1242,
+     "gap": -0.0127,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "2": {
+     "rare_top1": 0.1877,
+     "common_top1": 0.1873,
+     "gap": 0.0004,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "4": {
+     "rare_top1": 0.2611,
+     "common_top1": 0.2124,
+     "gap": 0.0487,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "8": {
+     "rare_top1": 0.3152,
+     "common_top1": 0.2231,
+     "gap": 0.0921,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3624,
+     "common_top1": 0.4132,
+     "gap": -0.0508,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.4008,
+     "common_top1": 0.5798,
+     "gap": -0.179,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 29.4,
+   "ca_degenerate": false
+  },
+  "allenai/OLMo-1B-hf": {
+   "model": "allenai/OLMo-1B-hf",
+   "marginal_top1": 0.0725,
+   "marginal_entropy": 6.4614,
+   "marginal_token": "The",
+   "by_length": {
+    "1": {
+     "top1": 0.14,
+     "entropy": 6.0447,
+     "tv_to_marginal": 0.9582,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2036,
+     "entropy": 5.2171,
+     "tv_to_marginal": 0.9746,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2474,
+     "entropy": 4.5067,
+     "tv_to_marginal": 0.984,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3295,
+     "entropy": 3.7764,
+     "tv_to_marginal": 0.9864,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.4022,
+     "entropy": 3.2793,
+     "tv_to_marginal": 0.9877,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4375,
+     "entropy": 2.8297,
+     "tv_to_marginal": 0.991,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1404,
+     "common_top1": 0.1328,
+     "gap": 0.0076,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "2": {
+     "rare_top1": 0.201,
+     "common_top1": 0.2689,
+     "gap": -0.0679,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "4": {
+     "rare_top1": 0.2496,
+     "common_top1": 0.2009,
+     "gap": 0.0487,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "8": {
+     "rare_top1": 0.3295,
+     "common_top1": 0.3294,
+     "gap": 0.0001,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "16": {
+     "rare_top1": 0.3955,
+     "common_top1": 0.5305,
+     "gap": -0.135,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.4348,
+     "common_top1": 0.4876,
+     "gap": -0.0528,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 38.4,
+   "ca_degenerate": false
+  },
+  "state-spaces/mamba-130m-hf": {
+   "model": "state-spaces/mamba-130m-hf",
+   "marginal_top1": 0.1287,
+   "marginal_entropy": 6.2562,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "top1": 0.1515,
+     "entropy": 5.9764,
+     "tv_to_marginal": 0.9567,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2031,
+     "entropy": 5.2459,
+     "tv_to_marginal": 0.9719,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2589,
+     "entropy": 4.605,
+     "tv_to_marginal": 0.9836,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.323,
+     "entropy": 3.9665,
+     "tv_to_marginal": 0.984,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3772,
+     "entropy": 3.3952,
+     "tv_to_marginal": 0.9826,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.385,
+     "entropy": 3.2772,
+     "tv_to_marginal": 0.9876,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1526,
+     "common_top1": 0.1349,
+     "gap": 0.0177,
+     "n_rare": 150,
+     "n_common": 10
+    },
+    "2": {
+     "rare_top1": 0.2041,
+     "common_top1": 0.187,
+     "gap": 0.0171,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "4": {
+     "rare_top1": 0.2557,
+     "common_top1": 0.3138,
+     "gap": -0.0581,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "8": {
+     "rare_top1": 0.323,
+     "common_top1": 0.3227,
+     "gap": 0.0003,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3715,
+     "common_top1": 0.4733,
+     "gap": -0.1017,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "32": {
+     "rare_top1": 0.3807,
+     "common_top1": 0.4789,
+     "gap": -0.0983,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 30.9,
+   "ca_degenerate": false
   }
  },
  "_preregistration": {
@@ -294,5 +747,734 @@
   "null_meaning": "a null on the secondary means the CA finding is about PROMPT LENGTH only and must not be described as being about insufficient training data",
   "method": "one forward pass per context; no generation, no ring dynamics",
   "resumable": "keyed by model"
- }
+ },
+ "analysis": {
+  "EleutherAI/pythia-410m": {
+   "model": "EleutherAI/pythia-410m",
+   "marginal_top1": 0.0758,
+   "marginal_entropy": 7.2699,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "top1": 0.1523,
+     "entropy": 6.175,
+     "tv_to_marginal": 0.9322,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2048,
+     "entropy": 5.2512,
+     "tv_to_marginal": 0.9522,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2503,
+     "entropy": 4.6538,
+     "tv_to_marginal": 0.971,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3049,
+     "entropy": 4.0595,
+     "tv_to_marginal": 0.9737,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3824,
+     "entropy": 3.3522,
+     "tv_to_marginal": 0.9755,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4091,
+     "entropy": 3.1062,
+     "tv_to_marginal": 0.9841,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.152,
+     "common_top1": 0.156,
+     "gap": -0.004,
+     "n_rare": 150,
+     "n_common": 10
+    },
+    "2": {
+     "rare_top1": 0.205,
+     "common_top1": 0.2004,
+     "gap": 0.0046,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "4": {
+     "rare_top1": 0.2474,
+     "common_top1": 0.2991,
+     "gap": -0.0516,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "8": {
+     "rare_top1": 0.3051,
+     "common_top1": 0.3003,
+     "gap": 0.0048,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3735,
+     "common_top1": 0.5322,
+     "gap": -0.1587,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "32": {
+     "rare_top1": 0.4063,
+     "common_top1": 0.4714,
+     "gap": -0.0651,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 25.0,
+   "ca_degenerate": true
+  },
+  "EleutherAI/gpt-neo-125M": {
+   "model": "EleutherAI/gpt-neo-125M",
+   "marginal_top1": 0.067,
+   "marginal_entropy": 7.0294,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "top1": 0.1282,
+     "entropy": 6.5938,
+     "tv_to_marginal": 0.8718,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.1912,
+     "entropy": 5.3685,
+     "tv_to_marginal": 0.9207,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2335,
+     "entropy": 4.8516,
+     "tv_to_marginal": 0.9411,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.2729,
+     "entropy": 4.37,
+     "tv_to_marginal": 0.9507,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3482,
+     "entropy": 3.58,
+     "tv_to_marginal": 0.9554,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.3582,
+     "entropy": 3.4671,
+     "tv_to_marginal": 0.9622,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1292,
+     "common_top1": 0.1113,
+     "gap": 0.0178,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "2": {
+     "rare_top1": 0.1931,
+     "common_top1": 0.1536,
+     "gap": 0.0396,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "4": {
+     "rare_top1": 0.2311,
+     "common_top1": 0.2799,
+     "gap": -0.0488,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "8": {
+     "rare_top1": 0.2698,
+     "common_top1": 0.3526,
+     "gap": -0.0828,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "16": {
+     "rare_top1": 0.3419,
+     "common_top1": 0.4667,
+     "gap": -0.1247,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.3543,
+     "common_top1": 0.432,
+     "gap": -0.0777,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 21.3,
+   "ca_degenerate": true
+  },
+  "Qwen/Qwen2.5-0.5B": {
+   "model": "Qwen/Qwen2.5-0.5B",
+   "marginal_top1": 0.3869,
+   "marginal_entropy": 4.3911,
+   "marginal_token": "Human",
+   "by_length": {
+    "1": {
+     "top1": 0.1702,
+     "entropy": 5.5843,
+     "tv_to_marginal": 0.9675,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2056,
+     "entropy": 5.1383,
+     "tv_to_marginal": 0.9809,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2287,
+     "entropy": 4.6707,
+     "tv_to_marginal": 0.989,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3167,
+     "entropy": 3.8968,
+     "tv_to_marginal": 0.9921,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3753,
+     "entropy": 3.3183,
+     "tv_to_marginal": 0.992,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4098,
+     "entropy": 3.0676,
+     "tv_to_marginal": 0.9958,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.167,
+     "common_top1": 0.239,
+     "gap": -0.0719,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "2": {
+     "rare_top1": 0.2029,
+     "common_top1": 0.2649,
+     "gap": -0.062,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "4": {
+     "rare_top1": 0.224,
+     "common_top1": 0.3076,
+     "gap": -0.0835,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "8": {
+     "rare_top1": 0.3176,
+     "common_top1": 0.298,
+     "gap": 0.0196,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3663,
+     "common_top1": 0.5471,
+     "gap": -0.1808,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.4069,
+     "common_top1": 0.4729,
+     "gap": -0.066,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 31.6,
+   "ca_degenerate": true
+  },
+  "ibm-granite/granite-3.0-2b-base": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "marginal_top1": 0.0376,
+   "marginal_entropy": 6.6675,
+   "marginal_token": "In",
+   "by_length": {
+    "1": {
+     "top1": 0.1278,
+     "entropy": 5.9595,
+     "tv_to_marginal": 0.9277,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2397,
+     "entropy": 4.6448,
+     "tv_to_marginal": 0.9702,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2905,
+     "entropy": 4.0183,
+     "tv_to_marginal": 0.9788,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3982,
+     "entropy": 3.315,
+     "tv_to_marginal": 0.9812,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.4405,
+     "entropy": 2.8288,
+     "tv_to_marginal": 0.9813,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.484,
+     "entropy": 2.5227,
+     "tv_to_marginal": 0.9885,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.128,
+     "common_top1": 0.1256,
+     "gap": 0.0023,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "2": {
+     "rare_top1": 0.24,
+     "common_top1": 0.2345,
+     "gap": 0.0055,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "4": {
+     "rare_top1": 0.292,
+     "common_top1": 0.2534,
+     "gap": 0.0385,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "8": {
+     "rare_top1": 0.401,
+     "common_top1": 0.336,
+     "gap": 0.065,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.4376,
+     "common_top1": 0.5135,
+     "gap": -0.0759,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "32": {
+     "rare_top1": 0.4814,
+     "common_top1": 0.542,
+     "gap": -0.0606,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 90.8,
+   "ca_degenerate": true
+  },
+  "gpt2-medium": {
+   "model": "gpt2-medium",
+   "marginal_top1": 0.1189,
+   "marginal_entropy": 6.02,
+   "marginal_token": "The",
+   "by_length": {
+    "1": {
+     "top1": 0.2819,
+     "entropy": 4.4074,
+     "tv_to_marginal": 0.9745,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2421,
+     "entropy": 5.0408,
+     "tv_to_marginal": 0.9969,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2702,
+     "entropy": 4.627,
+     "tv_to_marginal": 0.9983,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3327,
+     "entropy": 4.0384,
+     "tv_to_marginal": 0.9988,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.4133,
+     "entropy": 3.3659,
+     "tv_to_marginal": 0.9987,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.3461,
+     "entropy": 3.6948,
+     "tv_to_marginal": 0.9938,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.2832,
+     "common_top1": 0.261,
+     "gap": 0.0222,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "2": {
+     "rare_top1": 0.2459,
+     "common_top1": 0.1688,
+     "gap": 0.0771,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "4": {
+     "rare_top1": 0.2727,
+     "common_top1": 0.2234,
+     "gap": 0.0492,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "8": {
+     "rare_top1": 0.334,
+     "common_top1": 0.2993,
+     "gap": 0.0347,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "16": {
+     "rare_top1": 0.4113,
+     "common_top1": 0.4511,
+     "gap": -0.0397,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.3436,
+     "common_top1": 0.3947,
+     "gap": -0.0511,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 17.7,
+   "ca_degenerate": false
+  },
+  "bigscience/bloom-560m": {
+   "model": "bigscience/bloom-560m",
+   "marginal_top1": 0.0297,
+   "marginal_entropy": 8.6124,
+   "marginal_token": ",",
+   "by_length": {
+    "1": {
+     "top1": 0.1121,
+     "entropy": 6.6683,
+     "tv_to_marginal": 0.8434,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.1877,
+     "entropy": 5.5093,
+     "tv_to_marginal": 0.8978,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2586,
+     "entropy": 4.6516,
+     "tv_to_marginal": 0.926,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3111,
+     "entropy": 4.1143,
+     "tv_to_marginal": 0.9473,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3649,
+     "entropy": 3.5643,
+     "tv_to_marginal": 0.953,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4097,
+     "entropy": 3.1311,
+     "tv_to_marginal": 0.9592,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1116,
+     "common_top1": 0.1242,
+     "gap": -0.0127,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "2": {
+     "rare_top1": 0.1877,
+     "common_top1": 0.1873,
+     "gap": 0.0004,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "4": {
+     "rare_top1": 0.2611,
+     "common_top1": 0.2124,
+     "gap": 0.0487,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "8": {
+     "rare_top1": 0.3152,
+     "common_top1": 0.2231,
+     "gap": 0.0921,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3624,
+     "common_top1": 0.4132,
+     "gap": -0.0508,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.4008,
+     "common_top1": 0.5798,
+     "gap": -0.179,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 29.4,
+   "ca_degenerate": false
+  },
+  "allenai/OLMo-1B-hf": {
+   "model": "allenai/OLMo-1B-hf",
+   "marginal_top1": 0.0725,
+   "marginal_entropy": 6.4614,
+   "marginal_token": "The",
+   "by_length": {
+    "1": {
+     "top1": 0.14,
+     "entropy": 6.0447,
+     "tv_to_marginal": 0.9582,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2036,
+     "entropy": 5.2171,
+     "tv_to_marginal": 0.9746,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2474,
+     "entropy": 4.5067,
+     "tv_to_marginal": 0.984,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.3295,
+     "entropy": 3.7764,
+     "tv_to_marginal": 0.9864,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.4022,
+     "entropy": 3.2793,
+     "tv_to_marginal": 0.9877,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.4375,
+     "entropy": 2.8297,
+     "tv_to_marginal": 0.991,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1404,
+     "common_top1": 0.1328,
+     "gap": 0.0076,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "2": {
+     "rare_top1": 0.201,
+     "common_top1": 0.2689,
+     "gap": -0.0679,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "4": {
+     "rare_top1": 0.2496,
+     "common_top1": 0.2009,
+     "gap": 0.0487,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "8": {
+     "rare_top1": 0.3295,
+     "common_top1": 0.3294,
+     "gap": 0.0001,
+     "n_rare": 154,
+     "n_common": 6
+    },
+    "16": {
+     "rare_top1": 0.3955,
+     "common_top1": 0.5305,
+     "gap": -0.135,
+     "n_rare": 152,
+     "n_common": 8
+    },
+    "32": {
+     "rare_top1": 0.4348,
+     "common_top1": 0.4876,
+     "gap": -0.0528,
+     "n_rare": 152,
+     "n_common": 8
+    }
+   },
+   "secs": 38.4,
+   "ca_degenerate": false
+  },
+  "state-spaces/mamba-130m-hf": {
+   "model": "state-spaces/mamba-130m-hf",
+   "marginal_top1": 0.1287,
+   "marginal_entropy": 6.2562,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "top1": 0.1515,
+     "entropy": 5.9764,
+     "tv_to_marginal": 0.9567,
+     "n": 160
+    },
+    "2": {
+     "top1": 0.2031,
+     "entropy": 5.2459,
+     "tv_to_marginal": 0.9719,
+     "n": 160
+    },
+    "4": {
+     "top1": 0.2589,
+     "entropy": 4.605,
+     "tv_to_marginal": 0.9836,
+     "n": 160
+    },
+    "8": {
+     "top1": 0.323,
+     "entropy": 3.9665,
+     "tv_to_marginal": 0.984,
+     "n": 160
+    },
+    "16": {
+     "top1": 0.3772,
+     "entropy": 3.3952,
+     "tv_to_marginal": 0.9826,
+     "n": 160
+    },
+    "32": {
+     "top1": 0.385,
+     "entropy": 3.2772,
+     "tv_to_marginal": 0.9876,
+     "n": 160
+    }
+   },
+   "rare_vs_common": {
+    "1": {
+     "rare_top1": 0.1526,
+     "common_top1": 0.1349,
+     "gap": 0.0177,
+     "n_rare": 150,
+     "n_common": 10
+    },
+    "2": {
+     "rare_top1": 0.2041,
+     "common_top1": 0.187,
+     "gap": 0.0171,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "4": {
+     "rare_top1": 0.2557,
+     "common_top1": 0.3138,
+     "gap": -0.0581,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "8": {
+     "rare_top1": 0.323,
+     "common_top1": 0.3227,
+     "gap": 0.0003,
+     "n_rare": 153,
+     "n_common": 7
+    },
+    "16": {
+     "rare_top1": 0.3715,
+     "common_top1": 0.4733,
+     "gap": -0.1017,
+     "n_rare": 151,
+     "n_common": 9
+    },
+    "32": {
+     "rare_top1": 0.3807,
+     "common_top1": 0.4789,
+     "gap": -0.0983,
+     "n_rare": 153,
+     "n_common": 7
+    }
+   },
+   "secs": 30.9,
+   "ca_degenerate": false
+  }
+ },
+ "verdict": "The marginal does NOT explain the split: 0.142 vs 0.087 top-1 for degenerate vs clean. Whatever makes a model collapse under two tokens is not simply that its prior is peaked. TV to the marginal at k=2 is 0.956 (degenerate) vs 0.960 (clean). NO RARE/COMMON EFFECT: the gap averages -0.036 with only 42% of cells positive. Short context and unfamiliar context are NOT the same thing here, so the CA result is about PROMPT LENGTH and must not be described as being about insufficient training data.",
+ "_analysis_provenance": {
+  "script": "evidence_falloff.py",
+  "sha256": "95cf16c653aa9a9820e87141213d3ab6ccf313574e49b1273f76954573191f7f",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Asks whether the two-token collapse (F62-F69) is the extreme end of a general low-evidence retreat toward the model's prior, or a phenomenon of prompt length alone. Four measurements: the marginal p(x | BOS); the total-variation distance from the two-token conditional to it; an evidence ladder over real contexts of 1 to 32 tokens; and the same statistics split by context rarity, so 'short' is separated from 'unfamiliar' -- two things context length alone conflates. If rare contexts sit closer to the fallback at matched length, the CA finding generalises to data sparsity; if not, it is about prompt length only and must not be described otherwise. One forward pass per context, no generation and no ring dynamics."
 }

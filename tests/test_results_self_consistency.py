@@ -230,6 +230,7 @@ _STALENESS_PAIRS = [
     ("degeneration_vs_tstar.json", "degeneration_vs_tstar.py"),
     ("context_threshold.json", "context_threshold.py"),
     ("evidence_falloff.json", "evidence_falloff.py"),
+    ("novelty_structure.json", "novelty_structure.py"),
 ]
 
 

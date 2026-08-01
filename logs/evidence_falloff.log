@@ -16,3 +16,51 @@ Notes:
                        Qwen/Qwen2.5-0.5B marg_top1=0.387 ('Human')  TV@k=2=0.981  top1@k=2=0.206 (31.6s)
 Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 4814.83it/s]
 [transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+         ibm-granite/granite-3.0-2b-base marg_top1=0.038 ('In')  TV@k=2=0.970  top1@k=2=0.240 (90.8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7510.68it/s]
+                             gpt2-medium marg_top1=0.119 ('The')  TV@k=2=0.997  top1@k=2=0.242 (17.7s)
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7704.22it/s]
+                   bigscience/bloom-560m marg_top1=0.030 (',')  TV@k=2=0.898  top1@k=2=0.188 (29.4s)
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 4153.61it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+                      allenai/OLMo-1B-hf marg_top1=0.073 ('The')  TV@k=2=0.975  top1@k=2=0.204 (38.4s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 7159.74it/s]
+              state-spaces/mamba-130m-hf marg_top1=0.129 ('Q')  TV@k=2=0.972  top1@k=2=0.203 (30.9s)
+
+=== 1-2. is the two-token conditional just the MARGINAL? ===
+                                   model  CA deg  marg top1   marg tok   TV@k=2  TV@k=32
+                       Qwen/Qwen2.5-0.5B    True      0.387    'Human'    0.981    0.996
+              state-spaces/mamba-130m-hf   False      0.129        'Q'    0.972    0.988
+                             gpt2-medium   False      0.119      'The'    0.997    0.994
+                  EleutherAI/pythia-410m    True      0.076        'Q'    0.952    0.984
+                      allenai/OLMo-1B-hf   False      0.072      'The'    0.975    0.991
+                 EleutherAI/gpt-neo-125M    True      0.067        'Q'    0.921    0.962
+         ibm-granite/granite-3.0-2b-base    True      0.038       'In'    0.970    0.989
+                   bigscience/bloom-560m   False      0.030        ','    0.898    0.959
+
+=== 3. evidence ladder: top-1 mass vs context length (real text) ===
+                                   model k=1     k=2     k=4     k=8     k=16    k=32   
+                             gpt2-medium 0.282   0.242   0.270   0.333   0.413   0.346  
+         ibm-granite/granite-3.0-2b-base 0.128   0.240   0.290   0.398   0.441   0.484  
+                       Qwen/Qwen2.5-0.5B 0.170   0.206   0.229   0.317   0.375   0.410  
+                  EleutherAI/pythia-410m 0.152   0.205   0.250   0.305   0.382   0.409  
+                      allenai/OLMo-1B-hf 0.140   0.204   0.247   0.330   0.402   0.438  
+              state-spaces/mamba-130m-hf 0.151   0.203   0.259   0.323   0.377   0.385  
+                 EleutherAI/gpt-neo-125M 0.128   0.191   0.234   0.273   0.348   0.358  
+                   bigscience/bloom-560m 0.112   0.188   0.259   0.311   0.365   0.410  
+
+=== 4. RARE vs COMMON contexts at the same length (top-1 mass) ===
+                                   model k=1      k=2      k=4      k=8      k=16     k=32    
+                 EleutherAI/gpt-neo-125M +0.018  +0.040  -0.049  -0.083  -0.125  -0.078 
+                  EleutherAI/pythia-410m -0.004  +0.005  -0.052  +0.005  -0.159  -0.065 
+                       Qwen/Qwen2.5-0.5B -0.072  -0.062  -0.084  +0.020  -0.181  -0.066 
+                      allenai/OLMo-1B-hf +0.008  -0.068  +0.049  +0.000  -0.135  -0.053 
+                   bigscience/bloom-560m -0.013  +0.000  +0.049  +0.092  -0.051  -0.179 
+                             gpt2-medium +0.022  +0.077  +0.049  +0.035  -0.040  -0.051 
+         ibm-granite/granite-3.0-2b-base +0.002  +0.005  +0.038  +0.065  -0.076  -0.061 
+              state-spaces/mamba-130m-hf +0.018  +0.017  -0.058  +0.000  -0.102  -0.098 
+
+  -> The marginal does NOT explain the split: 0.142 vs 0.087 top-1 for degenerate vs clean. Whatever makes a model collapse under two tokens is not simply that its prior is peaked. TV to the marginal at k=2 is 0.956 (degenerate) vs 0.960 (clean). NO RARE/COMMON EFFECT: the gap averages -0.036 with only 42% of cells positive. Short context and unfamiliar context are NOT the same thing here, so the CA result is about PROMPT LENGTH and must not be described as being about insufficient training data.
+
+wrote results/evidence_falloff.json
