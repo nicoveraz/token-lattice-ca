@@ -1,0 +1,11 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:57,  5.05it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 606.44it/s]Loading weights:  79%|███████▉  | 231/292 [00:00<00:00, 618.83it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 488.36it/s]
+
+  EleutherAI/pythia-410m (treatment -- strongest attractor measured) loaded in 3s
+  -- T=0.02 --
+     r=1   top1= 95.8%  distinct=  2.6%  dom='\n'     attr=True  | '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+     r=2   top1= 74.4%  distinct= 12.9%  dom='\n'     attr=True  | '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe only thing\n<p    =\n\n'
+     r=3   top1= 22.1%  distinct= 51.0%  dom='\n'     attr=False | '\n.<james_j_     first_    \n\n\n\n\n\n}\\right\\rangle\\langle1\\rangl'
+     r=4   top1= 20.2%  distinct= 51.2%  dom='\n'     attr=False | '\n. the $n$-th rootlementary $n $$ and $k\n\\\n\n.\n following the'
+     r=5   top1= 20.7%  distinct= 50.1%  dom='\n'     attr=False | '/< the site.\n<j\n-\n -        // and sostring.\n         you ca'
+     r=6   top1= 23.7%  distinct= 45.7%  dom='\n'     attr=False | 'gliblib/net/http///   http-////  -#- . .\n\n. .\n\n.    \n    \n  '

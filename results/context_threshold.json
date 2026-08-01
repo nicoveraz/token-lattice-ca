@@ -1,0 +1,108 @@
+{
+ "runs": {
+  "EleutherAI/pythia-410m|r1|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "treatment -- strongest attractor measured",
+   "r": 1,
+   "T": 0.02,
+   "distinct_frac": 0.026,
+   "top1_share": 0.9583,
+   "dominant_token": "\n",
+   "has_attractor": true,
+   "sample": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  "EleutherAI/pythia-410m|r2|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "treatment -- strongest attractor measured",
+   "r": 2,
+   "T": 0.02,
+   "distinct_frac": 0.1289,
+   "top1_share": 0.7435,
+   "dominant_token": "\n",
+   "has_attractor": true,
+   "sample": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe only thing\n<p    =\n\n\n\n\n\n , , , published in the\n\n\n\n\n\n\n\n\n ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  "EleutherAI/pythia-410m|r3|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "treatment -- strongest attractor measured",
+   "r": 3,
+   "T": 0.02,
+   "distinct_frac": 0.5104,
+   "top1_share": 0.2214,
+   "dominant_token": "\n",
+   "has_attractor": false,
+   "sample": "\n.<james_j_     first_    \n\n\n\n\n\n}\\right\\rangle\\langle1\\rangle_ is the $$\n\n\n\n\n\n\n $\n $ following_\nthe\n\nThe first\ncourts\n\n\n\n\n\n first step is did not have him before he, and the\n     first_order couples.\n orders.\n [** , , , "
+  },
+  "EleutherAI/pythia-410m|r4|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "treatment -- strongest attractor measured",
+   "r": 4,
+   "T": 0.02,
+   "distinct_frac": 0.5117,
+   "top1_share": 0.2018,
+   "dominant_token": "\n",
+   "has_attractor": false,
+   "sample": "\n. the $n$-th rootlementary $n $$ and $k\n\\\n\n.\n following the areal extent that the\nIfakir    \nname, \" name\"\n name=\"\n\n#:\"github.\": \"https\",<jan_> I<court\u2019'must be\n I'm\nhave a right of\nthe://www.googlecom/maps/type_maptype"
+  },
+  "EleutherAI/pythia-410m|r5|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "treatment -- strongest attractor measured",
+   "r": 5,
+   "T": 0.02,
+   "distinct_frac": 0.5013,
+   "top1_share": 0.207,
+   "dominant_token": "\n",
+   "has_attractor": false,
+   "sample": "/< the site.\n<j\n-\n -        // and sostring.\n         you can do it search for the the family of group.\n\nThe study\nThe\n is a\n of\n of the mostmostI have case of a\n\nTheThe first thing the of GeorgiaNinthCirc.com/\nwww.1.**I"
+  },
+  "EleutherAI/pythia-410m|r6|T0.02": {
+   "model": "EleutherAI/pythia-410m",
+   "role": "treatment -- strongest attractor measured",
+   "r": 6,
+   "T": 0.02,
+   "distinct_frac": 0.457,
+   "top1_share": 0.237,
+   "dominant_token": "\n",
+   "has_attractor": false,
+   "sample": "gliblib/net/http///   http-////  -#- . .\n\n. .\n\n.    \n    \n    \n     (voidpe)t)\n{\n\t\n    if = _b_ _iy\n_ _.\n can saying is\" \"I\"\n\"\n%\n ' + ' +');\n    } trying to getget'\n\n'\nlib/python2lib/libp"
+  }
+ },
+ "_preregistration": {
+  "models": [
+   {
+    "name": "EleutherAI/pythia-410m",
+    "role": "treatment -- strongest attractor measured"
+   },
+   {
+    "name": "gpt2-medium",
+    "role": "control -- no attractor at r=2"
+   }
+  ],
+  "radii": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   8,
+   12,
+   16
+  ],
+  "temps": [
+   0.02,
+   0.436,
+   0.7
+  ],
+  "N": 96,
+  "B": 8,
+  "settle": 12,
+  "threshold": "top-1 >= 0.4 AND distinct/N <= 0.3 -- the screen's, unchanged",
+  "primary": "the smallest r at which top-1 falls below threshold, per model and temperature",
+  "sharp_vs_gradual": "a sharp recovery makes the caveat specific to r=2; a gradual one means every radius carries contamination, including the r=2 numbers the universality programme used",
+  "r16_expectation": "the F65 rebound should appear in BOTH models; if only in the treatment, F65's control reading was wrong and must be revisited",
+  "why_T070": "the submitted paper's operating point -- absence there at every radius replaces an inference from the newline share with a measurement",
+  "qualitative": "the settled ring is decoded and stored verbatim, so the concentration proxy can be checked against the text rather than trusted",
+  "resumable": "keyed by (model, r, T)"
+ }
+}

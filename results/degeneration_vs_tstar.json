@@ -57,7 +57,7 @@
   "EleutherAI/gpt-neo-125M": {
    "model": "EleutherAI/gpt-neo-125M",
    "n_prompts": 12,
-   "t_star": null,
+   "t_star": "censored_above",
    "rep_4": 0.68,
    "distinct_1": 0.1914,
    "longest_loop": 4.58,
@@ -98,6 +98,78 @@
    "distinct_1": 0.237,
    "longest_loop": 7.83,
    "secs": 19.1
+  },
+  "gpt2-medium": {
+   "model": "gpt2-medium",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.459,
+   "distinct_1": 0.3219,
+   "longest_loop": 3.33,
+   "secs": 26.3
+  },
+  "gpt2-large": {
+   "model": "gpt2-large",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.5133,
+   "distinct_1": 0.2734,
+   "longest_loop": 3.17,
+   "secs": 38.4
+  },
+  "gpt2-xl": {
+   "model": "gpt2-xl",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.4573,
+   "distinct_1": 0.3158,
+   "longest_loop": 3.0,
+   "secs": 63.0
+  },
+  "bigscience/bloom-560m": {
+   "model": "bigscience/bloom-560m",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.594,
+   "distinct_1": 0.2324,
+   "longest_loop": 5.0,
+   "secs": 48.6
+  },
+  "allenai/OLMo-1B-hf": {
+   "model": "allenai/OLMo-1B-hf",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.606,
+   "distinct_1": 0.235,
+   "longest_loop": 2.33,
+   "secs": 50.5
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.674,
+   "distinct_1": 0.1927,
+   "longest_loop": 6.17,
+   "secs": 21.9
+  },
+  "state-spaces/mamba-130m-hf": {
+   "model": "state-spaces/mamba-130m-hf",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.6493,
+   "distinct_1": 0.2122,
+   "longest_loop": 5.25,
+   "secs": 28.5
+  },
+  "state-spaces/mamba-370m-hf": {
+   "model": "state-spaces/mamba-370m-hf",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.6047,
+   "distinct_1": 0.2409,
+   "longest_loop": 3.92,
+   "secs": 43.3
   }
  },
  "_preregistration": {
@@ -131,5 +203,197 @@
   "null_means": "T* is a property of the out-of-distribution artifact and nothing more -- reportable, and it closes the question",
   "independence": "prompts are short but REAL sentence openings, not two-token fragments; free generation shares no machinery with the ring CA",
   "resumable": "keyed by model"
+ },
+ "melting": {
+  "EleutherAI/pythia-14m": {
+   "model": "EleutherAI/pythia-14m",
+   "n_prompts": 12,
+   "t_star": 0.5578,
+   "rep_4": 0.8387,
+   "distinct_1": 0.1035,
+   "longest_loop": 15.17,
+   "secs": 13.1
+  },
+  "EleutherAI/pythia-31m": {
+   "model": "EleutherAI/pythia-31m",
+   "n_prompts": 12,
+   "t_star": 0.4533,
+   "rep_4": 0.7393,
+   "distinct_1": 0.1647,
+   "longest_loop": 6.0,
+   "secs": 10.3
+  },
+  "EleutherAI/pythia-70m": {
+   "model": "EleutherAI/pythia-70m",
+   "n_prompts": 12,
+   "t_star": 0.5751,
+   "rep_4": 0.8247,
+   "distinct_1": 0.1211,
+   "longest_loop": 11.08,
+   "secs": 11.4
+  },
+  "EleutherAI/pythia-160m": {
+   "model": "EleutherAI/pythia-160m",
+   "n_prompts": 12,
+   "t_star": 0.5761,
+   "rep_4": 0.7193,
+   "distinct_1": 0.1712,
+   "longest_loop": 5.67,
+   "secs": 17.2
+  },
+  "EleutherAI/pythia-410m": {
+   "model": "EleutherAI/pythia-410m",
+   "n_prompts": 12,
+   "t_star": 0.5186,
+   "rep_4": 0.4347,
+   "distinct_1": 0.2943,
+   "longest_loop": 3.0,
+   "secs": 32.5
+  },
+  "EleutherAI/pythia-1b": {
+   "model": "EleutherAI/pythia-1b",
+   "n_prompts": 12,
+   "t_star": 0.5376,
+   "rep_4": 0.5827,
+   "distinct_1": 0.2467,
+   "longest_loop": 3.83,
+   "secs": 39.1
+  },
+  "Qwen/Qwen2.5-0.5B": {
+   "model": "Qwen/Qwen2.5-0.5B",
+   "n_prompts": 12,
+   "t_star": 0.3022,
+   "rep_4": 0.2769,
+   "distinct_1": 0.4062,
+   "longest_loop": 1.67,
+   "secs": 40.2
+  },
+  "ibm-granite/granite-3.0-1b-a400m-base": {
+   "model": "ibm-granite/granite-3.0-1b-a400m-base",
+   "n_prompts": 12,
+   "t_star": 0.5199,
+   "rep_4": 0.4627,
+   "distinct_1": 0.3281,
+   "longest_loop": 2.75,
+   "secs": 139.7
+  },
+  "ibm-granite/granite-3.0-2b-base": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "n_prompts": 12,
+   "t_star": 0.4762,
+   "rep_4": 0.2493,
+   "distinct_1": 0.429,
+   "longest_loop": 2.0,
+   "secs": 113.8
+  }
+ },
+ "no_finite_tstar": {
+  "gpt2": {
+   "model": "gpt2",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.6373,
+   "distinct_1": 0.237,
+   "longest_loop": 7.83,
+   "secs": 19.1
+  },
+  "gpt2-medium": {
+   "model": "gpt2-medium",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.459,
+   "distinct_1": 0.3219,
+   "longest_loop": 3.33,
+   "secs": 26.3
+  },
+  "gpt2-large": {
+   "model": "gpt2-large",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.5133,
+   "distinct_1": 0.2734,
+   "longest_loop": 3.17,
+   "secs": 38.4
+  },
+  "gpt2-xl": {
+   "model": "gpt2-xl",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.4573,
+   "distinct_1": 0.3158,
+   "longest_loop": 3.0,
+   "secs": 63.0
+  },
+  "bigscience/bloom-560m": {
+   "model": "bigscience/bloom-560m",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.594,
+   "distinct_1": 0.2324,
+   "longest_loop": 5.0,
+   "secs": 48.6
+  },
+  "allenai/OLMo-1B-hf": {
+   "model": "allenai/OLMo-1B-hf",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.606,
+   "distinct_1": 0.235,
+   "longest_loop": 2.33,
+   "secs": 50.5
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.674,
+   "distinct_1": 0.1927,
+   "longest_loop": 6.17,
+   "secs": 21.9
+  },
+  "state-spaces/mamba-130m-hf": {
+   "model": "state-spaces/mamba-130m-hf",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.6493,
+   "distinct_1": 0.2122,
+   "longest_loop": 5.25,
+   "secs": 28.5
+  },
+  "state-spaces/mamba-370m-hf": {
+   "model": "state-spaces/mamba-370m-hf",
+   "n_prompts": 12,
+   "t_star": null,
+   "rep_4": 0.6047,
+   "distinct_1": 0.2409,
+   "longest_loop": 3.92,
+   "secs": 43.3
+  }
+ },
+ "analysis": {
+  "spearman_tstar_rep4": {
+   "rho": 0.552,
+   "p": 0.1072,
+   "n": 10,
+   "censored": 1
+  }
+ },
+ "verdict": "UNDERPOWERED, NOT NULL: rho=+0.552 in the predicted direction, p=0.1072 at n=10. An effect this size would need about n=16 to reach significance, and n here is capped by how many models concentrate at all -- nine of nineteen never do. The correct statement is that this test cannot decide, NOT that there is no association. Reporting it either way would be reading a threshold rather than the data. SEPARATELY, and this part IS clean: models that never concentrate average rep_4=0.577 against 0.581 for those that do -- indistinguishable. So the attractor BINARY has no predictive value for repetition at all; whatever signal exists is in T* as a graded quantity within the concentrating group, not in whether a model concentrates.",
+ "_analysis_provenance": {
+  "script": "degeneration_vs_tstar.py",
+  "sha256": "f7568b8f7aac2652365cc47568502fd725c117e7731a4e935a6cd18e82101669",
+  "note": "sha256 of the analysis source at write time. If this does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38)."
+ },
+ "_note": "Tests whether T* -- the temperature at which the CA's settled lattice stops being dominated by one token, interpolated from the nineteen-model screen -- predicts neural text degeneration, an independently studied failure mode. T* is tighter within a family than the raw share at any fixed temperature and separates families the attractor binary lumps together, but it is measured in a two-token regime F66 showed to be an artifact, so on its own it is a property of out-of-distribution behaviour. The anchor shares no machinery with the ring CA: greedy decoding from short but REAL sentence openings, with repetition measured as the fraction of repeated 4-grams. Greedy so there is no temperature knob to tune. A null is pre-registered as closing the question.",
+ "censored_above": {
+  "EleutherAI/gpt-neo-125M": {
+   "model": "EleutherAI/gpt-neo-125M",
+   "n_prompts": 12,
+   "t_star": "censored_above",
+   "rep_4": 0.68,
+   "distinct_1": 0.1914,
+   "longest_loop": 4.58,
+   "secs": 39.4
+  }
  }
 }

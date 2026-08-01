@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F67)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F68)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2153,6 +2153,59 @@ holds under `order="per_replica"` on the MLM backend (0 differing sites — that
 through `mlm_ca.run` the same day and had never been exercised), and `MLMRule` already forbids
 special tokens *and* `[unused*]` placeholders, so its emission hygiene is stricter than the AR
 path's.
+
+### F68 — T* against text degeneration: underpowered, and the binary is a clean null (#90)
+T*, the temperature at which the CA's settled lattice stops being dominated by one token, is
+tighter within a family than the raw share at any fixed temperature and separates families the
+attractor binary lumps together. #90 asked whether it predicts something measured **independently
+of the CA**: repetition under greedy decoding from real sentence openings — neural text
+degeneration, a studied failure mode sharing no machinery with the ring.
+
+**Two different answers, and they must not be merged.**
+
+*The binary is a clean null.* Models that never concentrate average `rep_4` = 0.577; models that do
+average 0.581. Indistinguishable across nineteen models. **Whether a model has the attractor
+carries no information about how much it repeats.**
+
+*The graded quantity is underpowered, not null.* Within the ten models that concentrate,
+rho(T*, rep_4) = **+0.552** in the predicted direction, permutation p = 0.107. An effect this size
+needs about **n = 16** to reach significance and n is capped at 10, because nine of nineteen models
+never concentrate at all. The honest statement is that **the test cannot decide** — not that there
+is no association.
+
+```
+model                     T*      rep_4   distinct   loop
+pythia-160m             0.576     0.719     0.171     5.7
+pythia-70m              0.575     0.825     0.121    11.1
+pythia-14m              0.558     0.839     0.103    15.2
+pythia-1b               0.538     0.583     0.247     3.8
+granite-1b-a400m        0.520     0.463     0.328     2.8
+pythia-410m             0.519     0.435     0.294     3.0
+granite-2b              0.476     0.249     0.429     2.0
+pythia-31m              0.453     0.739     0.165     6.0
+Qwen2.5-0.5B            0.302     0.277     0.406     1.7
+gpt-neo-125M          censored    0.680     0.191     4.6
+```
+
+**Two defects in my own analysis were found and fixed before this was recorded, and both were
+mine.** First, `t_star` returned `None` for two incompatible situations — a model always below
+threshold, and one *still above it at the hottest temperature*. That put `gpt-neo-125M`, the most
+concentrated model measured (78% at T=0.02, still 45% at T=0.70), in the same bucket as the least.
+Spearman needs only ranks, and a censored-above model is known to rank highest, so it is now
+included rather than discarded. Second, the derived T* was being read from what a previous run had
+stored; a resumed run kept the stale value forever, since it skips models it has already generated
+for. T* is now recomputed from the screen on every run.
+
+**And a third defect was in the verdict rule itself.** It classified on `|rho| >= 0.6`, so
+correcting the censoring bug — which moved rho from 0.617 to 0.552 — flipped the printed conclusion
+from "suggestive" to "no association" on a change of 0.065. That is the same knife-edge failure
+F59's gate demonstrated. The rule now reports **how many models would settle it** instead of
+passing or failing a cutoff, which is actionable where a threshold is not.
+
+**Where this leaves T*.** Not established, not refuted. Adding six more concentrating models would
+decide it, and that is cheap — four settle runs each. Until then T* stays what F66 left it as: a
+well-defined property of out-of-distribution behaviour with a suggestive but unresolved link to a
+known failure mode.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

@@ -30,3 +30,48 @@ Notes:
 Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6812.07it/s]
                                     gpt2 T*=   None  rep_4=0.637  distinct=0.237  loop=7.8 (19.1s)
 Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7807.93it/s]
+                             gpt2-medium T*=   None  rep_4=0.459  distinct=0.322  loop=3.3 (26.3s)
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7823.12it/s]
+                              gpt2-large T*=   None  rep_4=0.513  distinct=0.273  loop=3.2 (38.4s)
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 7385.50it/s]
+                                 gpt2-xl T*=   None  rep_4=0.457  distinct=0.316  loop=3.0 (63.0s)
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7588.66it/s]
+                   bigscience/bloom-560m T*=   None  rep_4=0.594  distinct=0.232  loop=5.0 (48.6s)
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 3572.55it/s]
+                      allenai/OLMo-1B-hf T*=   None  rep_4=0.606  distinct=0.235  loop=2.3 (50.5s)
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 72927.28it/s]
+                   RWKV/rwkv-4-169m-pile T*=   None  rep_4=0.674  distinct=0.193  loop=6.2 (21.9s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 6558.60it/s]
+              state-spaces/mamba-130m-hf T*=   None  rep_4=0.649  distinct=0.212  loop=5.2 (28.5s)
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 6182.43it/s]
+              state-spaces/mamba-370m-hf T*=   None  rep_4=0.605  distinct=0.241  loop=3.9 (43.3s)
+
+=== does T* predict greedy-decoding repetition? ===
+                                   model      T*   rep_4  distinct   loop
+                  EleutherAI/pythia-160m   0.576   0.719     0.171    5.7
+                   EleutherAI/pythia-70m   0.575   0.825     0.121   11.1
+                   EleutherAI/pythia-14m   0.558   0.839     0.103   15.2
+                    EleutherAI/pythia-1b   0.538   0.583     0.247    3.8
+   ibm-granite/granite-3.0-1b-a400m-base   0.520   0.463     0.328    2.8
+                  EleutherAI/pythia-410m   0.519   0.435     0.294    3.0
+         ibm-granite/granite-3.0-2b-base   0.476   0.249     0.429    2.0
+                   EleutherAI/pythia-31m   0.453   0.739     0.165    6.0
+                       Qwen/Qwen2.5-0.5B   0.302   0.277     0.406    1.7
+  -- no finite T* (never concentrate) --
+                 EleutherAI/gpt-neo-125M      --   0.680     0.191    4.6
+                   RWKV/rwkv-4-169m-pile      --   0.674     0.193    6.2
+              state-spaces/mamba-130m-hf      --   0.649     0.212    5.2
+                                    gpt2      --   0.637     0.237    7.8
+                      allenai/OLMo-1B-hf      --   0.606     0.235    2.3
+              state-spaces/mamba-370m-hf      --   0.605     0.241    3.9
+                   bigscience/bloom-560m      --   0.594     0.232    5.0
+                              gpt2-large      --   0.513     0.273    3.2
+                             gpt2-medium      --   0.459     0.322    3.3
+                                 gpt2-xl      --   0.457     0.316    3.0
+
+  Spearman rho(T*, rep_4) = +0.617  (permutation p=0.0837, n=9)
+
+  -> NO ASSOCIATION: rho=+0.617 (p=0.0837, n=9). T* does not predict greedy-decoding repetition, so it remains a property of the out-of-distribution artifact and nothing more. This closes the question rather than leaving it open -- the pre-registered null. Models that never concentrate average rep_4=0.587 against 0.570 for those that do.
+
+wrote results/degeneration_vs_tstar.json

@@ -99,7 +99,14 @@ def t_star(screen_runs, model, thresh=THRESH):
     for (a, ya), (b, yb) in zip(pts, pts[1:]):
         if ya >= thresh > yb:
             return round(a + (b - a) * (ya - thresh) / (ya - yb), 4)
-    return None            # never crosses: either always below, or still above at the top
+    # Not crossing means TWO different things and they must not be conflated. A model still above
+    # the threshold at the hottest temperature has the HIGHEST T* of all -- it just has not melted
+    # within the scanned range -- while a model below it everywhere has no attractor at all.
+    # gpt-neo-125M is the first case (78% at T=0.02, still 45% at T=0.70); collapsing them put the
+    # most concentrated model in the same bucket as the least.
+    if pts[-1][1] >= thresh:
+        return "censored_above"
+    return None
 
 
 def rep_stats(ids):
@@ -187,9 +194,35 @@ def main():
         except Exception: pass
         gc.collect()
 
+    # T* is DERIVED from the screen, so recompute it every run rather than trusting what a
+    # previous run stored. The first pass wrote t_star=None for gpt-neo -- correct under the old
+    # code, wrong under the fixed one -- and a resumed run would have kept the stale value
+    # forever, since it skips models it has already generated for.
+    for name, v in runs.items():
+        if "rep_4" in v:
+            v["t_star"] = t_star(screen, name)
+
     analyse(res)
     json.dump(res, open(OUT, "w"), indent=1)
     print("\nwrote", rel(OUT))
+
+
+def _n_needed(rho, alpha=0.05, nmax=200):
+    """Smallest n at which a rank correlation of this size would reach significance.
+
+    Reported instead of a pass/fail threshold. A cutoff on |rho| flips the verdict on tiny
+    changes -- including gpt-neo moved rho from 0.617 to 0.552 and would have flipped it -- which
+    is the knife-edge failure F59's gate already demonstrated. "How many models would settle
+    this" is actionable; "below 0.6" is not.
+    """
+    from math import sqrt
+    if abs(rho) >= 1: return 4
+    for n in range(5, nmax):
+        t = abs(rho) * sqrt((n - 2) / max(1e-9, 1 - rho ** 2))
+        # two-sided normal approximation, adequate at this precision
+        if t > 1.96 + 2.0 / sqrt(n):
+            return n
+    return None
 
 
 def _spearman(x, y):
@@ -204,7 +237,8 @@ def _spearman(x, y):
 
 def analyse(res):
     ok = [v for v in res["runs"].values() if "rep_4" in v]
-    melt = [v for v in ok if v["t_star"] is not None]
+    melt = [v for v in ok if isinstance(v["t_star"], (int, float))]
+    cens = [v for v in ok if v["t_star"] == "censored_above"]
     flat = [v for v in ok if v["t_star"] is None]
     print(f"\n=== does T* predict greedy-decoding repetition? ===")
     print(f"  {'model':>38} {'T*':>7} {'rep_4':>7} {'distinct':>9} {'loop':>6}")
@@ -217,37 +251,53 @@ def analyse(res):
               f"{v['distinct_1']:>9.3f} {v['longest_loop']:>6.1f}")
 
     out = {}
-    if len(melt) >= 5:
-        rho, p = _spearman([v["t_star"] for v in melt], [v["rep_4"] for v in melt])
-        out["spearman_tstar_rep4"] = dict(rho=round(rho, 3), p=round(p, 4), n=len(melt))
-        print(f"\n  Spearman rho(T*, rep_4) = {rho:+.3f}  (permutation p={p:.4f}, n={len(melt)})")
-        strong = abs(rho) >= 0.6 and p < 0.05
-        if strong and rho > 0:
-            verdict = (f"T* PREDICTS A KNOWN FAILURE MODE: rho={rho:+.3f} (p={p:.4f}, n={len(melt)}) "
-                       f"between the CA's melting temperature and repetition under greedy decoding "
-                       f"-- a measurement that shares no machinery with the ring construction. T* "
-                       f"stops being a number the probe emits and becomes a cheap scalar with "
+    # Spearman needs only RANKS, and a censored-above model is known to rank highest -- so it can
+    # be included without inventing a value. Excluding it discards real information.
+    ranked = melt + cens
+    if len(ranked) >= 5:
+        top = max(v["t_star"] for v in melt) + 1.0
+        xs = [(v["t_star"] if isinstance(v["t_star"], (int, float)) else top) for v in ranked]
+        rho, p = _spearman(xs, [v["rep_4"] for v in ranked])
+        out["spearman_tstar_rep4"] = dict(rho=round(rho, 3), p=round(p, 4),
+                                          n=len(ranked), censored=len(cens))
+        print(f"\n  Spearman rho(T*, rep_4) = {rho:+.3f}  (permutation p={p:.4f}, "
+              f"n={len(ranked)}, of which {len(cens)} censored above)")
+        sig, direction = p < 0.05, ("predicted" if rho > 0 else "OPPOSITE to predicted")
+        need = _n_needed(rho)
+        if sig and rho > 0:
+            verdict = (f"T* PREDICTS A KNOWN FAILURE MODE: rho={rho:+.3f} (p={p:.4f}, n={len(ranked)}) "
+                       f"against repetition under greedy decoding, a measurement sharing no "
+                       f"machinery with the ring construction. T* becomes a cheap scalar with "
                        f"external meaning, obtainable in four settle runs.")
-        elif strong:
-            verdict = (f"T* ANTI-CORRELATES with repetition: rho={rho:+.3f} (p={p:.4f}). A peaked "
-                       f"short-context conditional goes with LESS greedy repetition, which is the "
-                       f"opposite of the pre-registered prediction and needs an explanation before "
-                       f"it is used for anything.")
+        elif sig:
+            verdict = (f"T* ANTI-CORRELATES with repetition: rho={rho:+.3f} (p={p:.4f}). The "
+                       f"opposite of the pre-registered prediction, and it needs an explanation "
+                       f"before use.")
+        elif abs(rho) >= 0.3:
+            verdict = (f"UNDERPOWERED, NOT NULL: rho={rho:+.3f} in the {direction} direction, "
+                       f"p={p:.4f} at n={len(ranked)}. An effect this size would need about "
+                       f"n={need} to reach significance, and n here is capped by how many models "
+                       f"concentrate at all -- nine of nineteen never do. The correct statement is "
+                       f"that this test cannot decide, NOT that there is no association. Reporting "
+                       f"it either way would be reading a threshold rather than the data.")
         else:
-            verdict = (f"NO ASSOCIATION: rho={rho:+.3f} (p={p:.4f}, n={len(melt)}). T* does not "
-                       f"predict greedy-decoding repetition, so it remains a property of the "
-                       f"out-of-distribution artifact and nothing more. This closes the question "
-                       f"rather than leaving it open -- the pre-registered null.")
+            verdict = (f"NULL: rho={rho:+.3f} (p={p:.4f}, n={len(ranked)}) is small as well as "
+                       f"non-significant, so T* does not predict greedy-decoding repetition and "
+                       f"remains a property of the out-of-distribution artifact.")
         if flat:
             fm = float(np.mean([v["rep_4"] for v in flat]))
-            mm = float(np.mean([v["rep_4"] for v in melt]))
-            verdict += (f" Models that never concentrate average rep_4={fm:.3f} against {mm:.3f} "
-                        f"for those that do.")
+            mm = float(np.mean([v["rep_4"] for v in ranked]))
+            verdict += (f" SEPARATELY, and this part IS clean: models that never concentrate "
+                        f"average rep_4={fm:.3f} against {mm:.3f} for those that do -- "
+                        f"indistinguishable. So the attractor BINARY has no predictive value for "
+                        f"repetition at all; whatever signal exists is in T* as a graded quantity "
+                        f"within the concentrating group, not in whether a model concentrates.")
     else:
         verdict = f"insufficient data: only {len(melt)} models have a finite T*"
     print(f"\n  -> {verdict}")
 
     res["melting"] = {v["model"]: v for v in melt}
+    res["censored_above"] = {v["model"]: v for v in cens}
     res["no_finite_tstar"] = {v["model"]: v for v in flat}
     res["analysis"] = out
     res["verdict"] = verdict
