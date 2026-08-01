@@ -226,6 +226,7 @@ _STALENESS_PAIRS = [
     ("attractor_corpus_screen.json", "attractor_corpus_screen.py"),
     ("attractor_interventions.json", "attractor_interventions.py"),
     ("attractor_construction.json", "attractor_construction.py"),
+    ("mlm_transition.json", "mlm_transition.py"),
 ]
 
 
