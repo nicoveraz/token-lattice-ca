@@ -1,0 +1,93 @@
+{
+ "runs": {
+  "ar|ref": {
+   "kind": "ar",
+   "label": "real text (round-tripped)",
+   "nll": 3.040710926055908,
+   "novel_2gram": 0.0,
+   "novel_3gram": 0.0,
+   "novel_4gram": 0.0,
+   "n_words": 606
+  },
+  "ar|shuf": {
+   "kind": "ar",
+   "label": "shuffled real text",
+   "nll": 6.744733810424805,
+   "novel_2gram": 0.5174,
+   "novel_3gram": 0.9619,
+   "novel_4gram": 1.0,
+   "n_words": 606
+  },
+  "ar|r3|T0.3": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 3,
+   "T": 0.3,
+   "nll": 4.611222267150879,
+   "sample": "\n\nand\n\\end{alignedbr>h i.e the thanes of made to the\n\n[https\t:// for\n\nthe most important\": \"The \" oneyear after the last juncture.\n\nself.assertEqual1(\n\n<li><a<i",
+   "novel_2gram": 0.412,
+   "novel_3gram": 0.7852,
+   "novel_4gram": 0.9706,
+   "n_words": 649
+  },
+  "ar|r3|T0.5": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 3,
+   "T": 0.5,
+   "nll": 4.208108901977539,
+   "sample": " is not the only<b>1<                                                                                                          .05 by in the same bearer, but, a",
+   "novel_2gram": 0.407,
+   "novel_3gram": 0.8123,
+   "novel_4gram": 0.9762,
+   "n_words": 716
+  },
+  "ar|r3|T0.7": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 3,
+   "T": 0.7,
+   "nll": 5.0606489181518555,
+   "sample": "Services are provided to                                                                                                've & You in theitten\nis not\n    <\n    0",
+   "novel_2gram": 0.4974,
+   "novel_3gram": 0.8742,
+   "novel_4gram": 0.9921,
+   "n_words": 765
+  }
+ },
+ "_preregistration": {
+  "generators": [
+   "EleutherAI/pythia-410m",
+   "bert-base-uncased"
+  ],
+  "scorer": "gpt2-large",
+  "radii": [
+   3,
+   8
+  ],
+  "temps": [
+   0.3,
+   0.5,
+   0.7,
+   0.9,
+   1.1,
+   1.3
+  ],
+  "ngrams": [
+   2,
+   3,
+   4
+  ],
+  "N": 96,
+  "B": 16,
+  "settle": 16,
+  "corpus_docs": 3000,
+  "primary": "is there a T where NLL sits inside the real-text band while novelty stays above the recall baseline? that is structured novelty",
+  "null": "trajectory goes low-novelty/low-NLL straight to high-novelty/high-NLL -- the construction recombines or randomises. A perfectly good result",
+  "overclaim_boundary": "a positive result means the construction produces sequences that are unseen and predictable to an INDEPENDENT model. It does NOT mean the model has new ideas. Novel n-grams are not ideas and semantic novelty is not measured here",
+  "why_r_ge_3": "F69: the degeneracy occupies r in {1,2}; measuring creativity there would repeat F62-F66's mistake",
+  "why_external_scorer": "scoring output with its own generator is near-circular",
+  "why_roundtrip": "real text is encoded/decoded through the GENERATOR's tokenizer so its formatting artifacts appear in the reference and cancel",
+  "resumable": "keyed by (construction, model, r, T)"
+ }
+}

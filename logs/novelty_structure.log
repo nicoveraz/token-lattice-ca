@@ -1,0 +1,14 @@
+loading reference corpus (3000 docs) ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  reference n-gram sets: 2-gram 1,281,358, 3-gram 2,509,910, 4-gram 3,014,894
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7243.62it/s]
+  scorer gpt2-large loaded (never generates)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:38,  1.84it/s]Loading weights:  38%|███▊      | 110/292 [00:00<00:00, 226.38it/s]Loading weights:  59%|█████▉    | 172/292 [00:00<00:00, 275.66it/s]Loading weights:  76%|███████▋  | 223/292 [00:00<00:00, 298.07it/s]Loading weights:  92%|█████████▏| 268/292 [00:01<00:00, 311.09it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 246.84it/s]
+
+  ar / EleutherAI/pythia-410m
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+     real text (round-tripped)  NLL=3.041  novel4=0.0
+            shuffled real text  NLL=6.745  novel4=1.0
+    r=3 T=0.3  NLL=4.611  novel2=0.412  novel4=0.9706  | '\n\nand\n\\end{alignedbr>h i.e the thanes of made to the'
+    r=3 T=0.5  NLL=4.208  novel2=0.407  novel4=0.9762  | ' is not the only<b>1<                               '
+    r=3 T=0.7  NLL=5.061  novel2=0.4974  novel4=0.9921  | 'Services are provided to                            '

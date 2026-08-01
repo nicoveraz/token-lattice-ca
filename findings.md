@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F69)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F70)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2291,6 +2291,55 @@ universality programme used". That conflated the small-radius degeneracy with th
 rebound the same analysis had *already identified as generic*. Judged on the family-distinguishing
 radii only, as F65 established it must be, the answer is the opposite. The verdict now excludes
 radii where the control also concentrates.
+
+### F70 — it is an attracting FIXED POINT of the argmax map, not a data-sparsity effect (#92)
+#92 asked whether the two-token collapse is the extreme end of low-evidence behaviour — the thing
+that would make it a statement about *insufficient training data* rather than about prompt length.
+**It is not**, and the pre-registered failure condition fired on both tests:
+
+- **The marginal does not explain the split.** Degenerate models have marginal top-1 of 0.142
+  against 0.087 for clean ones — nowhere near enough. And the two-token conditional is *far* from
+  the marginal for everyone: TV = 0.956 (degenerate) vs 0.960 (clean). The CA regime is not
+  "sampling the prior".
+- **Rare contexts are not closer to the fallback.** At matched context length the rare-minus-common
+  gap in top-1 mass averages **−0.036**, with only 42% of cells positive. If anything rare contexts
+  are *less* confident, which is the sensible direction and the opposite of a fallback.
+
+So **short context and unfamiliar context are different things here.** The F62–F69 result is about
+**prompt length** and must not be described as being about data sparsity. That boundary was written
+down before the run precisely because it was the most tempting overclaim available.
+
+**But the same run exposed that F66's mechanism was incomplete, and the correction is the finding.**
+With two tokens of *real* text, Pythia's top-1 mass is only 0.205 — it is not confident at all. Yet
+its CA lattice reaches 74% occupancy. A single-step "OOD prompt → emit filler" story cannot produce
+that gap.
+
+**The CA runs at T=0.02, where sampling is essentially `argmax`.** The right question is therefore
+not how much probability mass the top token holds, but whether the *deterministic map* has an
+attracting fixed point. It does:
+
+```
+pythia-410m    24 random starts, 12 deterministic steps -> 3 distinct endpoints
+               '\n' in 18/24;  argmax(x | '\n','\n') == '\n'   FIXED POINT
+
+gpt2-medium    24 random starts, 12 deterministic steps -> 11 distinct endpoints
+               no winner;  argmax(x | ' the',' the') != ' the'   NO FIXED POINT
+```
+
+**That single property unifies the whole line.** The frozen phase *is* the fixed point (F62). It is
+not reducible to corpus, architecture or scale (F63, F64) because it is a property of the **map**,
+not of the training recipe. A BOS prefix removes it (F66) because it changes the map's domain.
+It lives at r ≤ 2 (F69) because a larger window makes the state space too big for a two-token cycle
+to close. The MLM construction has none (F67), so it has no absorbing state and no transition. And
+#92's null follows directly: a fixed point of an iterated map has nothing to do with how much
+training data covered the context.
+
+**A defect in my own probe, caught mid-analysis.** The first version measured top-1 probability
+*mass* at T=1.0 and concluded the feedback story was refuted (ratios 0.90× and 0.27×). That is the
+wrong quantity for a regime that samples at T=0.02, where only the argmax matters. Measuring the
+right thing reversed the reading entirely. The lesson generalises past this finding: an estimator
+must be evaluated **in the regime the system actually runs in**, which is F56's rule arriving in a
+new disguise.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

@@ -45,9 +45,13 @@ six confident verdicts died to their own checks, each one caught before it reach
    (F63); granite's dense and MoE members agree within 2 points while differing 2× in width, 1.7×
    in depth, 16× in FFN and routing-vs-none; scale eliminated across a 70× Pythia ladder and a 12×
    GPT-2 ladder that never overlap (F64).
-4. **The mechanism is an out-of-distribution prompt.** One BOS token takes 74.4% → 24.1%; the
-   masked-LM construction, where infilling *is* the training objective, shows 9–14% at every
-   temperature and radius (F66).
+4. **The mechanism is an attracting fixed point of the argmax map** (F70, refining F66). At
+   T=0.02 the CA is essentially deterministic; pythia-410m's map sends 18 of 24 random starts to
+   `'\n'`, which is a genuine fixed point, while gpt2-medium's has none and wanders to 11 distinct
+   endpoints. One BOS token takes 74.4% → 24.1% because it changes the map's domain; the masked-LM
+   construction shows 9–14% at every temperature and radius because its map has no such point
+   (F66). This is *not* a data-sparsity effect: rare contexts are no closer to the fallback than
+   common ones (F70).
 5. **The boundary is sharp and narrow.** Family-distinguishing degeneracy occupies r ∈ {1, 2} only;
    r=2 → r=3 drops top-1 by 52 points. The large-radius rebound appears in the control too, so it
    is a generic long-context effect and excluded (F69).
