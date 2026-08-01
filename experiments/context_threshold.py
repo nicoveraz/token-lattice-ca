@@ -151,32 +151,39 @@ def analyse(res):
     T0 = TEMPS[0]
     ta, tc = out.get(f"{a}|T{T0}"), out.get(f"{c}|T{T0}")
     parts = []
-    if ta:
-        fc = ta["first_clean_radius"]
-        deg = [r for r, t, h in ta["points"] if h]
-        if fc == 3 and deg == [1, 2]:
-            parts.append(f"SHARP: {a} is degenerate at r=1 and r=2 and clean from r=3 onward. One "
-                         f"extra token of context is the whole difference, so the caveat is "
-                         f"specific to the smallest windows rather than general.")
-        elif fc is not None:
-            shape = ("sharp" if len(deg) <= 2 else
-                     "GRADUAL, so every small radius carries contamination -- including the r=2 "
-                     "the universality programme used")
-            parts.append(f"The smallest clean radius for {a} at T={T0} is r={fc}; degenerate at "
-                         f"r in {deg}. Recovery is {shape}.")
-        else:
-            parts.append(f"{a} is degenerate at EVERY radius tested at T={T0}, which contradicts "
-                         f"F65's r=4 recovery and must be reconciled before either is used.")
     if ta and tc:
-        rebound_a = [r for r, t, h in ta["points"] if h and r >= 12]
-        rebound_c = [r for r, t, h in tc["points"] if h and r >= 12]
-        if rebound_a and rebound_c:
-            parts.append(f"The large-radius rebound appears in BOTH models (treatment r={rebound_a}, "
-                         f"control r={rebound_c}), confirming F65: it is a generic long-context "
-                         f"effect, not the family-distinguishing phenomenon.")
-        elif rebound_a and not rebound_c:
-            parts.append(f"The rebound appears ONLY in the treatment (r={rebound_a}), which "
-                         f"contradicts F65's control reading. F65 must be revisited.")
+        # Sharp-vs-gradual must be judged on the FAMILY-DISTINGUISHING degeneracy only: radii
+        # where the treatment concentrates and the control does NOT. The large-radius rebound is
+        # present in both (F65) and is a generic long-context effect, so counting it as
+        # "contamination of the small-radius regime" conflates two different phenomena and turns a
+        # sharp recovery into a false "gradual" verdict.
+        ctrl = {r: h for r, _, h in tc["points"]}
+        distinguishing = [r for r, _, h in ta["points"] if h and not ctrl.get(r, False)]
+        both = [r for r, _, h in ta["points"] if h and ctrl.get(r, False)]
+        shared = {r: t for r, t, _ in ta["points"]}
+        out["distinguishing_radii"] = distinguishing
+        out["degenerate_in_both"] = both
+        print(f"\n  degenerate in the TREATMENT ONLY (family-distinguishing): r={distinguishing}")
+        print(f"  degenerate in BOTH (generic long-context effect):        r={both}")
+        if distinguishing:
+            top = max(distinguishing)
+            nxt = next((r for r, _, h in ta["points"] if r > top and not h), None)
+            drop = (shared[top] - shared[nxt]) * 100 if nxt else None
+            shape = "SHARP" if len(distinguishing) <= 2 else "GRADUAL"
+            parts.append(
+                f"{shape}: the family-distinguishing degeneracy occupies r={distinguishing} only. "
+                + (f"Going from r={top} to r={nxt} drops top-1 by {drop:.0f} points "
+                   f"({shared[top]*100:.0f}% to {shared[nxt]*100:.0f}%). " if nxt else "")
+                + (f"So the caveat is confined to the smallest windows -- one extra token of "
+                   f"context is the whole difference -- rather than contaminating every radius."
+                   if shape == "SHARP" else
+                   f"Every small radius carries contamination, including the r=2 the universality "
+                   f"programme used."))
+        if both:
+            parts.append(f"The large-radius rebound appears in BOTH models at r={both}, confirming "
+                         f"F65: it is a generic long-context effect, not the phenomenon that "
+                         f"separates families, and it is excluded from the judgement above.")
+
     hi = out.get(f"{a}|T{TEMPS[-1]}")
     if hi:
         any_attr = any(h for _, _, h in hi["points"])

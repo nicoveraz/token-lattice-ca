@@ -9,3 +9,78 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
      r=4   top1= 20.2%  distinct= 51.2%  dom='\n'     attr=False | '\n. the $n$-th rootlementary $n $$ and $k\n\\\n\n.\n following the'
      r=5   top1= 20.7%  distinct= 50.1%  dom='\n'     attr=False | '/< the site.\n<j\n-\n -        // and sostring.\n         you ca'
      r=6   top1= 23.7%  distinct= 45.7%  dom='\n'     attr=False | 'gliblib/net/http///   http-////  -#- . .\n\n. .\n\n.    \n    \n  '
+     r=8   top1= 30.3%  distinct= 30.9%  dom='\n'     attr=False | '_The _\n\n_\n\n**\n\n **# _# # _#\n# _ _\n\n_\n\n\n\n_\n\n.\n _Theory of a\nl'
+     r=12  top1= 50.5%  distinct= 11.6%  dom='\n'     attr=True  | ')))\n\n)\n\n\n)\n\n\n(\n\n\nx\n\n,\n\n(\n\nxx\n\n\n)\n\n)\n\n\n)\n\n))\n\n\n)(\n\n)\n\n\n\n\n(\n\n)'
+     r=16  top1= 55.1%  distinct=  5.9%  dom='\n'     attr=True  | '\n\nthethe\nthe\n\nthethe\n\n\nthe\n\n\nthethe\n\nthethe\nthe\n\n\n\nthe\n\nthe\n'
+  -- T=0.436 --
+     r=1   top1= 73.6%  distinct= 22.3%  dom='\n'     attr=True  | '\n\n\n\n\n\n"\n\n invention is\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.\n in the same\n'
+     r=2   top1= 52.3%  distinct= 36.1%  dom='\n'     attr=False | '\n\n\n\n\n\n"I\n authors,\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , , , , , ,c)k_p0, \\'
+     r=3   top1= 18.2%  distinct= 60.3%  dom='\n'     attr=False | '. itthe fact that the\n\n\n\n\n\n.2.1 in the\n\n"I3:\n\nI\n\nI time in a'
+     r=4   top1= 18.4%  distinct= 57.7%  dom='\n'     attr=False | ', at important as the data-flow\n\'st\nI_\n\n#\n\n#"I\n    \n    @\n,\n'
+     r=5   top1= 13.8%  distinct= 60.2%  dom='\n'     attr=False | '.        :0\n0,0\nlog2.1, \\beta, \\                            '
+     r=6   top1= 20.7%  distinct= 54.4%  dom='\n'     attr=False | '\nIG @param {Ie}}\n{        (a), (\n          -1right\\\\right) \\'
+     r=8   top1= 26.0%  distinct= 41.3%  dom='\n'     attr=False | '.\n= trial court found:\n\n the evidence\nThe\n and\nd\n.\n .\n\nI.\n\n.'
+     r=12  top1= 37.5%  distinct= 22.5%  dom='\n'     attr=False | '\n..\n\n.. ..\n\n\n\n.\n.\n\n.\n\n.\n\n.\n\n\n.\n\n\n,\n.\n.\n..\n\n-\\u\\\n\\-\n\n\\\n\\\\_[\nb'
+     r=16  top1= 52.7%  distinct= 12.6%  dom='\n'     attr=True  | '\n\n,\n\n,\n\n\n,\n\n\n\n,\n\n,\n\n, ,\n\n\n,\n\n\n, , , , ,\n\nand ,red\n\nclass\n\n\n\n'
+  -- T=0.7 --
+     r=1   top1= 16.4%  distinct= 63.9%  dom='\n'     attr=False | ' same and A\n\n\n"\nreelse:\n\n\n\n\n(a\n\n are notm_="fig: a own but f'
+     r=2   top1= 12.9%  distinct= 68.9%  dom='\n'     attr=False | 'e companies Canada York.\n4., how areto most important thing '
+     r=3   top1= 13.4%  distinct= 67.5%  dom='\n'     attr=False | '.seetk.\n\n"I Ihas the onet of time.+1 calcium wasтpe прив, da'
+     r=4   top1= 10.7%  distinct= 72.4%  dom='\n'     attr=False | ' am try I the code to the right\n                            '
+     r=5   top1= 12.6%  distinct= 67.2%  dom='\n'     attr=False | '_ my//I am using\n//\\camel    s/html/\t\t\n\t\t\t, [\n#<http://< in\n'
+     r=6   top1= 13.5%  distinct= 67.2%  dom='\n'     attr=False | 'Setthisxparent.parent(x\n   *un3) You will1/-2)\n\nThe asperity'
+     r=8   top1= 15.8%  distinct= 65.4%  dom='\n'     attr=False | 'J would          $\\begin{minip asize=       c(st_  \t  )0.   '
+     r=12  top1= 23.4%  distinct= 52.5%  dom='\n'     attr=False | ".         if.       '\n. decisions.       f\n      ;\n . the\n-\n"
+     r=16  top1= 36.5%  distinct= 36.9%  dom='\n'     attr=False | ',ense\n\n.\n\n,� write\n\n\n/∇-\n\n.)\n/�/\n\n-/�\n\n/\n\n-\n\n,\n\n/ ,\n,\n/.,\n\n,'
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8206.82it/s]
+
+  gpt2-medium (control -- no attractor at r=2) loaded in 3s
+  -- T=0.02 --
+     r=1   top1= 30.3%  distinct= 11.5%  dom='\n'     attr=False | ' Metropolitan Metropolitan Metropolitan Metropolitan Metropo'
+     r=2   top1= 14.7%  distinct= 43.8%  dom='\n'     attr=False | ". in'm not sure if it's and\n\nThe\n\nThe first for the first ti"
+     r=3   top1= 12.6%  distinct= 53.6%  dom='\n'     attr=False | "イト��豪�i able to\n\nThe first thing\n\n\n\n's name not to that exte"
+     r=4   top1= 16.3%  distinct= 51.8%  dom='\n'     attr=False | '\nWe\n . . . . ."\n\n" me on Twitter. things are\n\n and the other'
+     r=5   top1= 15.8%  distinct= 52.1%  dom='\n'     attr=False | " of's tose things, and I .code.\n'I'm not to blame seconds. t"
+     r=6   top1= 17.3%  distinct= 50.1%  dom='\n'     attr=False | '�ивить пи�аащие п про прос able, inThe\n\nThe =\n\nThe nameepth '
+     r=8   top1= 34.6%  distinct= 33.7%  dom='\n'     attr=False | " the\n,\nthe\n,\n\n\n,\n\n\nI\n,\nie,'n\n\n�\n\n�е�полит�ристрен Нааз\nС n a"
+     r=12  top1= 51.3%  distinct= 12.5%  dom='\n'     attr=True  | '�\nП\n\nП\n\n�\nзнает�р�ереинакь �е при�ани проивода�ризлелли йрий'
+     r=16  top1= 61.1%  distinct=  4.0%  dom='\n'     attr=True  | '.\n\n.\n\n.\n\n\n..\n\n.\n.\n\n..\n\n..\n\n.\n\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n\n.\n\n\n..\n\n.\n\n.'
+  -- T=0.436 --
+     r=1   top1= 66.1%  distinct= 22.7%  dom='\n'     attr=True  | '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n and the first\n\n\n world way to be th'
+     r=2   top1= 13.3%  distinct= 61.6%  dom='\n'     attr=False | '"The_name = "0"_ that isude.\n\nThe\n\n don\'t Britain\'s Business'
+     r=3   top1= 13.0%  distinct= 62.5%  dom='\n'     attr=False | " | |�起�\n to the the.\n\nThe\n\n don't, I not only of the twoZ-2\n"
+     r=4   top1= 15.1%  distinct= 60.2%  dom='\n'     attr=False | 'а�нать, \nva,ab\n- Added a a new way to can a get a a lot of t'
+     r=5   top1= 14.4%  distinct= 59.8%  dom='\n'     attr=False | ",yency\n\nThe D-\n * * *\n* @param\n\n @return\n\n_get\n\n_ are not a'"
+     r=6   top1= 19.3%  distinct= 54.9%  dom='\n'     attr=False | '\ntoесская\nу�нбра� �С\n\n��.А�алocularshades."\n "The\n-systemdxm'
+     r=8   top1= 20.4%  distinct= 45.8%  dom='\n'     attr=False | ' subjects of\nof work\n\nof\n n\n\n a great deal of, and, and and '
+     r=12  top1= 32.7%  distinct= 29.2%  dom='\n'     attr=False | ' |\n:5.1.0.:\n\n\n0.1от поттоки � пе деор п�рем�еие � �кс�ии�есс'
+     r=16  top1= 62.6%  distinct=  5.0%  dom='\n'     attr=True  | '.\n\n. .\n\n.- End of\n\n\n. ..\n\n\n.\n\n.\n\n.\n.\n.\n\n..\n\n\n\n.\n\n.\n\n.\n\n\n-.\n\n'
+  -- T=0.7 --
+     r=1   top1= 19.8%  distinct= 56.5%  dom='\n'     attr=False | ' not to timeyear-for-t,land,o same time to have to be used t'
+     r=2   top1=  9.8%  distinct= 67.8%  dom='\n'     attr=False | ' the your and\n\nThe M1 of Madrid, " you been thinking about, '
+     r=3   top1= 10.4%  distinct= 72.5%  dom='\n'     attr=False | 'es = its scene.\n\n"ifoot" the a world where all, as\n\n: D "It"'
+     r=4   top1=  8.5%  distinct= 71.9%  dom='\n'     attr=False | 'read them�ng to the dum. ; of -ergenicity:, and best, in thi'
+     r=5   top1=  9.6%  distinct= 70.8%  dom='\n'     attr=False | 'ine river river want to make.\n thealgia./2, 3/1.\nThe.\nRental'
+     r=6   top1= 10.3%  distinct= 69.8%  dom='\n'     attr=False | '\n iscolor_data\n\n#\n // This This.{orm}}\n personified as a "he'
+     r=8   top1= 15.5%  distinct= 64.6%  dom='\n'     attr=False | ' an upwith_up_dill_\n\n \'\n" --non\n\n.e?\n this is a question I o'
+     r=12  top1= 21.0%  distinct= 55.6%  dom='\n'     attr=False | " and going much've seen,\n\n the \\e\\ an attempt to improve=\n\n-"
+     r=16  top1= 37.1%  distinct= 41.9%  dom='\n'     attr=False | ' the." the: a color_name\nprint a print scopewith the:\nInanon'
+
+=== top-1 share vs conditioning radius ===
+    EleutherAI/pythia-410m T=0.02   r1:96%  r2:74%  r3:22%  r4:20%  r5:21%  r6:24%  r8:30%  r12:51%  r16:55%
+                                    smallest clean radius: 3
+    EleutherAI/pythia-410m T=0.436  r1:74%  r2:52%  r3:18%  r4:18%  r5:14%  r6:21%  r8:26%  r12:38%  r16:53%
+                                    smallest clean radius: 2
+    EleutherAI/pythia-410m T=0.7    r1:16%  r2:13%  r3:13%  r4:11%  r5:13%  r6:14%  r8:16%  r12:23%  r16:36%
+                                    smallest clean radius: 1
+
+               gpt2-medium T=0.02   r1:30%  r2:15%  r3:13%  r4:16%  r5:16%  r6:17%  r8:35%  r12:51%  r16:61%
+                                    smallest clean radius: 1
+               gpt2-medium T=0.436  r1:66%  r2:13%  r3:13%  r4:15%  r5:14%  r6:19%  r8:20%  r12:33%  r16:63%
+                                    smallest clean radius: 2
+               gpt2-medium T=0.7    r1:20%  r2:10%  r3:10%  r4:8%  r5:10%  r6:10%  r8:15%  r12:21%  r16:37%
+                                    smallest clean radius: 1
+
+  -> The smallest clean radius for EleutherAI/pythia-410m at T=0.02 is r=3; degenerate at r in [1, 2, 12, 16]. Recovery is GRADUAL, so every small radius carries contamination -- including the r=2 the universality programme used. The large-radius rebound appears in BOTH models (treatment r=[12, 16], control r=[12, 16]), confirming F65: it is a generic long-context effect, not the family-distinguishing phenomenon. At the submitted paper's operating point T=0.7, EleutherAI/pythia-410m shows NO attractor at any radius tested -- the paper is clear of this by measurement rather than by inference from the newline share.
+
+wrote results/context_threshold.json

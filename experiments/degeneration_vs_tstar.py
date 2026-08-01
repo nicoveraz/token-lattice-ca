@@ -73,6 +73,12 @@ MODELS = [
     ("bigscience/bloom-560m", None), ("allenai/OLMo-1B-hf", None),
     ("RWKV/rwkv-4-169m-pile", None), ("state-spaces/mamba-130m-hf", None),
     ("state-spaces/mamba-370m-hf", None),
+    # the seven new families, so the correlation gains INDEPENDENT points rather than more
+    # Pythia sizes -- see the screen's comment for why that distinction matters
+    ("Salesforce/codegen-350M-mono", None), ("bigcode/tiny_starcoder_py", None),
+    ("facebook/opt-350m", None), ("microsoft/phi-1_5", None),
+    ("TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T", None),
+    ("HuggingFaceTB/SmolLM2-360M", None), ("stabilityai/stablelm-2-1_6b", None),
 ]
 PROMPTS = [
     "The first thing to understand about", "In the summer of 1994, a small",

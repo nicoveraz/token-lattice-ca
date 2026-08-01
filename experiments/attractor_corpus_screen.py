@@ -96,6 +96,19 @@ MODELS = [
     # A second mamba size joins so the non-attention side does not rest on one model at one scale.
     ("RWKV/rwkv-4-169m-pile",      None,         "Pile",    "BlinkDL (RNN)",     "none"),
     ("state-spaces/mamba-370m-hf", None,         "Pile",    "state-spaces (SSM)", "none"),
+    # --- SEVEN NEW FAMILIES (#90 follow-up). Not new SIZES: six of the ten points in the first
+    # correlation were Pythia sizes -- same corpus, tokenizer and recipe -- so n=10 was really
+    # ~4 independent families. Adding sizes would inflate n without adding information, which is
+    # the pseudoreplication the project's own audit caught in F23. These are chosen for family
+    # diversity, and weighted toward code-heavy corpora because F64 says the corpus decides and
+    # code is dense in newlines and indentation.
+    ("Salesforce/codegen-350M-mono", None, "code",      "Salesforce",  "unknown"),
+    ("bigcode/tiny_starcoder_py",    None, "code",      "BigCode",     "unknown"),
+    ("facebook/opt-350m",            None, "mixed",     "Meta",        "unknown"),
+    ("microsoft/phi-1_5",            None, "textbook",  "Microsoft",   "unknown"),
+    ("TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T", None, "SlimPajama", "TinyLlama", "unknown"),
+    ("HuggingFaceTB/SmolLM2-360M",   None, "smollm",    "HuggingFace", "unknown"),
+    ("stabilityai/stablelm-2-1_6b",  None, "mixed",     "Stability",   "unknown"),
 ]
 
 # parameter counts in millions, for the within-family scale trend

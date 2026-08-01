@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F68)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F69)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2206,6 +2206,47 @@ passing or failing a cutoff, which is actionable where a threshold is not.
 decide it, and that is cheap — four settle runs each. Until then T* stays what F66 left it as: a
 well-defined property of out-of-distribution behaviour with a suggestive but unresolved link to a
 known failure mode.
+
+### F69 — the degeneracy is confined to r ≤ 2, and one extra token is the whole difference (#91)
+F65's coarse sweep left the boundary open: between r=2 (degenerate) and r=4 (not) sat one untested
+value, and four points cannot say whether recovery is a threshold or a climb. The fine grid
+answers it.
+
+```
+                       r=1   r=2   r=3   r=4   r=5   r=6   r=8  r=12  r=16
+pythia-410m  T=0.02     96%   74%   22%   20%   21%   24%   30%   51%   55%
+gpt2-medium  T=0.02     30%   15%   13%   16%   16%   17%   35%   51%   61%
+             T=0.436    66%   13%   13%   15%   14%   19%   20%   33%   63%
+pythia-410m  T=0.70     16%   13%   13%   11%   13%   14%   16%   23%   36%
+```
+
+**Sharp.** The family-distinguishing degeneracy — where the treatment concentrates and the control
+does not — occupies **r ∈ {1, 2} only**. Going from r=2 to r=3 drops top-1 by **52 points**, 74% to
+22%. One extra token of context is the entire difference. The caveat is therefore confined to the
+smallest possible windows rather than contaminating every radius, which is the better of the two
+outcomes pre-registered and the one that keeps the F62–F66 story narrow and precise.
+
+**The rebound is generic, confirming F65 independently.** At r=12 and r=16 *both* models concentrate
+(51%/55% and 51%/61%), so it is a long-context self-reinforcement effect present regardless of
+family — and the decoded rings show it plainly: gpt2-medium at r=16, T=0.02 settles to
+`'.\n\n.\n\n.\n\n\n..\n\n.\n.\n\n..'`. It is excluded from the sharp/gradual judgement.
+
+**r=1 is degenerate for everything.** Even gpt2-medium concentrates at r=1 (66% at T=0.436), and
+pythia reaches 96% at T=0.02 — `' Metropolitan Metropolitan Metropolitan…'` for the control. One
+token of context is below the floor for any model, which is the expected end of the trend and a
+useful sanity check that the measurement responds as it should.
+
+**The submitted paper is clear by measurement, not by inference.** At T=0.70 pythia-410m shows no
+attractor at *any* radius tested (11–36%). Previously this rested on reading the newline share off
+a table; it is now a direct measurement across nine window sizes.
+
+**A defect in my own analysis, found and fixed before recording.** The sharp/gradual classifier
+counted the degenerate set as `[1, 2, 12, 16]` — four radii, so it printed **GRADUAL**, and with it
+the much stronger claim that "every small radius carries contamination, including the r=2 the
+universality programme used". That conflated the small-radius degeneracy with the large-radius
+rebound the same analysis had *already identified as generic*. Judged on the family-distinguishing
+radii only, as F65 established it must be, the answer is the opposite. The verdict now excludes
+radii where the control also concentrates.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

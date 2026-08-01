@@ -1,0 +1,37 @@
+added 7 new families to both the screen and the degeneration run
+Attractor screen: 26 models x 4 temperatures
+  EleutherAI/pythia-410m: already complete
+  EleutherAI/gpt-neo-125M: already complete
+  state-spaces/mamba-130m-hf: already complete
+  gpt2-medium: already complete
+  bigscience/bloom-560m: already complete
+  Qwen/Qwen2.5-0.5B: already complete
+  ibm-granite/granite-3.0-1b-a400m-base: already complete
+  ibm-granite/granite-3.0-2b-base: already complete
+  allenai/OLMo-1B-hf: already complete
+  EleutherAI/pythia-14m: already complete
+  EleutherAI/pythia-31m: already complete
+  EleutherAI/pythia-70m: already complete
+  EleutherAI/pythia-160m: already complete
+  EleutherAI/pythia-1b: already complete
+  gpt2: already complete
+  gpt2-large: already complete
+  gpt2-xl: already complete
+  RWKV/rwkv-4-169m-pile: already complete
+  state-spaces/mamba-370m-hf: already complete
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 32881.65it/s]
+[transformers] [1mCodeGenForCausalLM LOAD REPORT[0m from: Salesforce/codegen-350M-mono
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...19}.attn.causal_mask | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  Salesforce/codegen-350M-mono (code, Salesforce) loaded in 21s, V=51200
+    T=0.02   distinct= 41.5%  top1= 10.9%  dominant='.'
+    T=0.2    distinct= 44.1%  top1= 12.0%  dominant='.'
+    T=0.436  distinct= 56.6%  top1=  9.6%  dominant='\n'
+    T=0.7    distinct= 65.0%  top1= 10.4%  dominant='\n'
+Loading weights:   0%|          | 0/244 [00:00<?, ?it/s]Loading weights: 100%|██████████| 244/244 [00:00<00:00, 19273.26it/s]
+  bigcode/tiny_starcoder_py (code, BigCode) loaded in 12s, V=49152

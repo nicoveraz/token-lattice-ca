@@ -867,6 +867,50 @@
    "top1_share": 0.1055,
    "dominant_token": "\n",
    "dominant_share_overall": 0.099
+  },
+  "Salesforce/codegen-350M-mono@0.02": {
+   "model": "Salesforce/codegen-350M-mono",
+   "T": 0.02,
+   "corpus": "code",
+   "lab": "Salesforce",
+   "prediction": "unknown",
+   "distinct_frac": 0.4154,
+   "top1_share": 0.1094,
+   "dominant_token": ".",
+   "dominant_share_overall": 0.0951
+  },
+  "Salesforce/codegen-350M-mono@0.2": {
+   "model": "Salesforce/codegen-350M-mono",
+   "T": 0.2,
+   "corpus": "code",
+   "lab": "Salesforce",
+   "prediction": "unknown",
+   "distinct_frac": 0.4414,
+   "top1_share": 0.1198,
+   "dominant_token": ".",
+   "dominant_share_overall": 0.1094
+  },
+  "Salesforce/codegen-350M-mono@0.436": {
+   "model": "Salesforce/codegen-350M-mono",
+   "T": 0.436,
+   "corpus": "code",
+   "lab": "Salesforce",
+   "prediction": "unknown",
+   "distinct_frac": 0.5664,
+   "top1_share": 0.0964,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.0846
+  },
+  "Salesforce/codegen-350M-mono@0.7": {
+   "model": "Salesforce/codegen-350M-mono",
+   "T": 0.7,
+   "corpus": "code",
+   "lab": "Salesforce",
+   "prediction": "unknown",
+   "distinct_frac": 0.6497,
+   "top1_share": 0.1042,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1042
   }
  },
  "_preregistration": {
@@ -984,6 +1028,48 @@
     "corpus": "Pile",
     "lab": "state-spaces (SSM)",
     "prediction": "none"
+   },
+   {
+    "name": "Salesforce/codegen-350M-mono",
+    "corpus": "code",
+    "lab": "Salesforce",
+    "prediction": "unknown"
+   },
+   {
+    "name": "bigcode/tiny_starcoder_py",
+    "corpus": "code",
+    "lab": "BigCode",
+    "prediction": "unknown"
+   },
+   {
+    "name": "facebook/opt-350m",
+    "corpus": "mixed",
+    "lab": "Meta",
+    "prediction": "unknown"
+   },
+   {
+    "name": "microsoft/phi-1_5",
+    "corpus": "textbook",
+    "lab": "Microsoft",
+    "prediction": "unknown"
+   },
+   {
+    "name": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+    "corpus": "SlimPajama",
+    "lab": "TinyLlama",
+    "prediction": "unknown"
+   },
+   {
+    "name": "HuggingFaceTB/SmolLM2-360M",
+    "corpus": "smollm",
+    "lab": "HuggingFace",
+    "prediction": "unknown"
+   },
+   {
+    "name": "stabilityai/stablelm-2-1_6b",
+    "corpus": "mixed",
+    "lab": "Stability",
+    "prediction": "unknown"
    }
   ],
   "temps": [
