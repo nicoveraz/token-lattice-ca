@@ -22,7 +22,7 @@ Apply the rule everywhere, over and over.
 That's a **cellular automaton** (CA). It is one of the simplest systems that can still do
 complicated things. From a trivial rule and a row of boxes, you can get patterns that look random,
 patterns that settle into stripes, and patterns that do neither.
-
+<>
 The reason people care: CAs sit at the boundary between "so simple it's boring" and "so complex
 it's unanalysable". They are a standard laboratory for asking *when does local, simple behaviour
 produce global, complicated behaviour?*

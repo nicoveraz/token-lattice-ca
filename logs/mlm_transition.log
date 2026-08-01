@@ -20,3 +20,57 @@ Notes:
     T=0.1   s=92: P(end)=0.625 sites=13.48 (321.3s)
     T=0.2   s=91: P(end)=0.625 sites=16.97 (321.3s)
     T=0.2   s=92: P(end)=0.734 sites=18.84 (321.2s)
+    T=0.35  s=91: P(end)=0.562 sites=19.12 (328.7s)
+    T=0.35  s=92: P(end)=0.703 sites=27.53 (321.1s)
+    T=0.5   s=91: P(end)=0.688 sites=38.48 (322.6s)
+    T=0.5   s=92: P(end)=0.703 sites=35.83 (322.6s)
+Loading weights:   0%|          | 0/140 [00:00<?, ?it/s]Loading weights: 100%|██████████| 140/140 [00:00<00:00, 45526.64it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-medium
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  prajjwal1/bert-medium loaded
+    T=0.02  s=91: P(end)=0.547 sites=4.61 (138.8s)
+    T=0.02  s=92: P(end)=0.547 sites=5.28 (137.7s)
+    T=0.05  s=91: P(end)=0.516 sites=5.88 (136.6s)
+    T=0.05  s=92: P(end)=0.609 sites=6.05 (135.8s)
+    T=0.1   s=91: P(end)=0.594 sites=8.19 (136.8s)
+    T=0.1   s=92: P(end)=0.594 sites=8.75 (137.7s)
+    T=0.2   s=91: P(end)=0.625 sites=12.22 (138.8s)
+    T=0.2   s=92: P(end)=0.578 sites=13.73 (137.9s)
+    T=0.35  s=91: P(end)=0.625 sites=19.31 (138.5s)
+    T=0.35  s=92: P(end)=0.625 sites=19.70 (139.1s)
+    T=0.5   s=91: P(end)=0.578 sites=25.94 (141.6s)
+    T=0.5   s=92: P(end)=0.641 sites=24.80 (136.8s)
+
+  M1 bracket: None
+  M2 SKIPPED: M1 found no bracket, so there is no transition to check. This is a pre-registered outcome, not a failure.
+
+=== M1: surviving damage vs temperature (MLM, symmetric masked-centre) ===
+  bert-base-uncased
+        T   reps    P(end)  sites(end)  max sites
+     0.02    128    0.6250       7.523         33
+     0.05    128    0.6172       9.195         38
+      0.1    128    0.5938      12.375         57
+      0.2    128    0.6797      17.906         58
+     0.35    128    0.6328      23.328         76
+      0.5    128    0.6953      37.156         93
+
+  prajjwal1/bert-medium
+        T   reps    P(end)  sites(end)  max sites
+     0.02    128    0.5469       4.945         24
+     0.05    128    0.5625       5.961         27
+      0.1    128    0.5938       8.469         39
+      0.2    128    0.6016      12.977         62
+     0.35    128    0.6250      19.508         92
+      0.5    128    0.6094      25.367         88
+
+  -> NO TRANSITION IN THE CLEAN CONSTRUCTION: surviving damage never drops below 0.594 across T in [0.02, 0.05, 0.1, 0.2, 0.35, 0.5], down to T=0.02 where sampling is essentially deterministic. There is no frozen phase and therefore no absorbing-state transition. This is the pre-registered good null: the AR frozen phase existed because the lattice had an absorbing state (every site resampling to a single token), F66 found no such state here, and this confirms the dynamical consequence. The transition the universality programme measured was only ever the out-of-distribution artifact. M2 and M3 are moot; claim A in paper/plan_paper2.md strengthens.
+
+wrote results/mlm_transition.json
