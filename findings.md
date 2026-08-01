@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F65)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F66)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2067,6 +2067,56 @@ degenerate corner of the conditional rather than about how these systems process
 **The submitted paper remains unaffected** — it runs at T=0.7, where pythia's newline share is 13%
 and the lattice reads as fragmentary text. What is affected is the universality programme built
 after the tag.
+
+### F66 — the degeneracy is an out-of-distribution prompt artifact, and the MLM construction is clean
+F65 showed the frozen phase exists only at r=2 and is carried by one token, so it belongs to "the
+construction" — but the construction had never been varied. Varying it identifies the mechanism.
+
+**A single BOS token removes two thirds of the effect.**
+
+```
+ar-none   p(x_i | x_{i-2}, x_{i-1})          pythia-410m, T=0.02:  74.4%  attractor
+ar-bos    p(x_i | BOS, x_{i-2}, x_{i-1})                           24.1%  none      -50.3 points
+```
+
+`ARRule` has implemented `scheme="bos"` all along and it had never been used for this question. One
+token of prefix — enough to make the context look like a document start rather than a fragment
+from nowhere — collapses the degeneracy. That is the signature of an **out-of-distribution prompt**,
+not of model dynamics: a two-token context is far outside anything a model trained on thousands of
+tokens has seen, and emitting the highest-frequency filler is what a model does when asked to
+continue from nothing.
+
+**The masked-LM construction shows nothing at all.**
+
+```
+arm        model                 T=0.02   T=0.436   T=0.70    dominant   attractor
+mlm        bert-base-uncased      9.9%     9.8%     10.3%      '.'         never
+mlm        bert-medium           11.3%    12.1%      9.0%      '-' ','     never
+ar-none    pythia-410m           74.4%    52.3%     12.9%      '\n'        at T=0.02
+```
+
+Masked-centre infilling with symmetric context is BERT's **native training objective**, and the
+lattice never concentrates: top-1 stays at 9–14% at every temperature and at r=2 and r=4, with the
+dominant token drifting between `'.'`, `'-'` and `','` rather than locking. One caveat is stated
+rather than buried: BERT's tokenizer has no newline token, so an attractor requiring one could not
+form there regardless — but the AR arm's degeneracy is not newline-specific in principle (GPT-Neo's
+was `' '`, Qwen's `'0'`), and the MLM arm does not concentrate on *any* token.
+
+**What this settles.** The universality programme — F58's critical point, F59's exponents, F60's
+ladder anomaly — was run on the AR two-token rule at T≈0.436, and is measuring the melting of an
+out-of-distribution artifact. It is not a fact about language-model dynamics. This is F35's
+boundary again, arrived at from a third direction.
+
+**And what it rescues.** Phase 3's MLM results (F14–F18) used the construction that is clean here.
+A second paper should be built on the MLM path, not the AR universality programme. The submitted
+paper's operating point is also clear: it runs at T=0.7, where the AR arm is at 12.9% and reads as
+fragmentary text.
+
+It also retro-explains F64. "Attention necessary, corpus determines" describes which models emit a
+single dominant token when handed an OOD two-token prompt — corpus fixes which token is most
+frequent, and attention-free models handle a two-token context differently. Real and reproducible
+across 19 models, and a fact about behaviour under an impoverished prompt rather than about
+language processing.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

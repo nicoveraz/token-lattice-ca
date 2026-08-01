@@ -20,8 +20,17 @@ that the audit later had to strip out.
 | **D** | F42's unignited runs are explained: 1/3 of visit orders heal a single-site seed before it propagates, and the order was shared across the whole batch | F57 | **Solid.** Predicted deaths matched observation exactly (8/8, 5/5) |
 | **E** | The transition is **universal across models / radii** | — | **No evidence at all.** Everything is pythia-410m, r=2 |
 
-**The honest position today: A + C + D is a paper; B is not; E is the gap that decides whether the
-word "universality" belongs in the title.**
+**SUPERSEDED (Aug 1) by F62–F66 — read this first.** The universality programme was run on an AR
+CA at r=2, and that construction turns out to measure an out-of-distribution artifact: the frozen
+phase exists only at r=2, is carried by a single token, and a one-token BOS prefix removes 50 of
+its 74 points. The **masked-LM construction shows none of it** (top-1 9–14% at every temperature).
+So claim A survives only as *"there is a critical point in the AR two-token construction"*, which
+is not the paper anyone wants. **A second paper should be built on the MLM path**, where Phase 3's
+results (F14–F18) already live and where the degeneracy is absent. Claims C and D are untouched and
+remain the strongest transferable content.
+
+**The pre-F62 position, kept for the record: A + C + D is a paper; B is not; E is the gap that
+decides whether the word "universality" belongs in the title.**
 
 A paper on A+C+D is *methods-forward*: "here is a critical point in LM token dynamics, and here is
 what it takes to measure an exponent without fooling yourself." That is publishable and true. It

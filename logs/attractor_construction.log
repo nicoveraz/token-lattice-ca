@@ -1,0 +1,90 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.48it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 597.06it/s]Loading weights:  84%|████████▎ | 244/292 [00:00<00:00, 634.94it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 451.57it/s]
+
+  ar-none / EleutherAI/pythia-410m (baseline (F65: 74%)) loaded in 5s
+     r=2 T=0.02   distinct= 12.9%  top1= 74.4%  dominant='\n'  attractor=True
+     r=2 T=0.436  distinct= 36.1%  top1= 52.3%  dominant='\n'  attractor=False
+     r=2 T=0.7    distinct= 68.9%  top1= 12.9%  dominant='\n'  attractor=False
+     r=4 T=0.02   distinct= 51.2%  top1= 20.2%  dominant='\n'  attractor=False
+     r=4 T=0.436  distinct= 57.7%  top1= 18.4%  dominant='\n'  attractor=False
+     r=4 T=0.7    distinct= 72.4%  top1= 10.7%  dominant='\n'  attractor=False
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:34,  8.37it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2151.06it/s]
+
+  ar-bos / EleutherAI/pythia-410m (one token less OOD) loaded in 2s
+     r=2 T=0.02   distinct= 34.8%  top1= 24.1%  dominant='\n'  attractor=False
+     r=2 T=0.436  distinct= 60.9%  top1= 19.7%  dominant='\n'  attractor=False
+     r=2 T=0.7    distinct= 66.9%  top1= 17.8%  dominant='\n'  attractor=False
+     r=4 T=0.02   distinct= 40.5%  top1= 33.5%  dominant='\n'  attractor=False
+     r=4 T=0.436  distinct= 48.7%  top1= 28.6%  dominant='\n'  attractor=False
+     r=4 T=0.7    distinct= 60.8%  top1= 23.8%  dominant='\n'  attractor=False
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8095.56it/s]
+
+  ar-none / gpt2-medium (control (F65: 15%)) loaded in 4s
+     r=2 T=0.02   distinct= 43.8%  top1= 14.7%  dominant='\n'  attractor=False
+     r=2 T=0.436  distinct= 61.6%  top1= 13.3%  dominant='\n'  attractor=False
+     r=2 T=0.7    distinct= 67.8%  top1=  9.8%  dominant='\n'  attractor=False
+     r=4 T=0.02   distinct= 51.8%  top1= 16.3%  dominant='\n'  attractor=False
+     r=4 T=0.436  distinct= 60.2%  top1= 15.1%  dominant='\n'  attractor=False
+     r=4 T=0.7    distinct= 71.9%  top1=  8.5%  dominant='\n'  attractor=False
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7455.82it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+  mlm / bert-base-uncased (NATIVE task) loaded in 2s
+     r=2 T=0.02   distinct= 71.1%  top1=  9.9%  dominant='.'  attractor=False
+     r=2 T=0.436  distinct= 69.4%  top1=  9.8%  dominant='.'  attractor=False
+     r=2 T=0.7    distinct= 73.6%  top1= 10.3%  dominant='.'  attractor=False
+     r=4 T=0.02   distinct= 63.9%  top1= 14.1%  dominant='.'  attractor=False
+     r=4 T=0.436  distinct= 72.3%  top1=  9.1%  dominant='.'  attractor=False
+     r=4 T=0.7    distinct= 70.2%  top1= 10.8%  dominant='.'  attractor=False
+Loading weights:   0%|          | 0/140 [00:00<?, ?it/s]Loading weights: 100%|██████████| 140/140 [00:00<00:00, 54878.74it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: prajjwal1/bert-medium
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+  mlm / prajjwal1/bert-medium (NATIVE task, smaller) loaded in 1s
+     r=2 T=0.02   distinct= 66.9%  top1= 11.3%  dominant='-'  attractor=False
+     r=2 T=0.436  distinct= 65.9%  top1= 12.1%  dominant='.'  attractor=False
+     r=2 T=0.7    distinct= 72.9%  top1=  9.0%  dominant=','  attractor=False
+     r=4 T=0.02   distinct= 61.2%  top1= 10.7%  dominant='-'  attractor=False
+     r=4 T=0.436  distinct= 64.2%  top1= 10.3%  dominant=','  attractor=False
+     r=4 T=0.7    distinct= 71.6%  top1= 11.2%  dominant='.'  attractor=False
+
+=== does the degeneracy survive a change of CA? (r=2, the project's window) ===
+        arm                    model      T  distinct    top1   dominant  attractor
+    ar-none   EleutherAI/pythia-410m   0.02     12.9%   74.4%       '\n'       True
+     ar-bos   EleutherAI/pythia-410m   0.02     34.8%   24.1%       '\n'      False
+    ar-none              gpt2-medium   0.02     43.8%   14.7%       '\n'      False
+        mlm        bert-base-uncased   0.02     71.1%    9.9%        '.'      False
+        mlm    prajjwal1/bert-medium   0.02     66.9%   11.3%        '-'      False
+
+    ar-none   EleutherAI/pythia-410m  0.436     36.1%   52.3%       '\n'      False
+     ar-bos   EleutherAI/pythia-410m  0.436     60.9%   19.7%       '\n'      False
+    ar-none              gpt2-medium  0.436     61.6%   13.3%       '\n'      False
+        mlm        bert-base-uncased  0.436     69.4%    9.8%        '.'      False
+        mlm    prajjwal1/bert-medium  0.436     65.9%   12.1%        '.'      False
+
+    ar-none   EleutherAI/pythia-410m    0.7     68.9%   12.9%       '\n'      False
+     ar-bos   EleutherAI/pythia-410m    0.7     66.9%   17.8%       '\n'      False
+    ar-none              gpt2-medium    0.7     67.8%    9.8%       '\n'      False
+        mlm        bert-base-uncased    0.7     73.6%   10.3%        '.'      False
+        mlm    prajjwal1/bert-medium    0.7     72.9%    9.0%        ','      False
+
+  -> THE MLM CONSTRUCTION HAS NO SINGLE-TOKEN ATTRACTOR (2 models, top-1 9.9-11.3%), against the AR rule's 74.4% on the same threshold. The degeneracy belongs to the AR two-token rule, not to iterated resampling on token lattices. Phase 3's MLM results used this construction and are not undermined by F65; a second paper should be built on the MLM path rather than the AR universality programme. ar-bos vs ar-none: 24.1% vs 74.4% (-50.3 points). A single BOS token materially changes it, which implicates the prompt being out of distribution.
+
+wrote results/attractor_construction.json
