@@ -256,9 +256,14 @@ def mi_integrated(syms, dmax=DMAX):
     return tot
 
 
-def profile(words):
-    """Every measure the program reports, for one text. No cell ever reports Delta alone (§5.2)."""
-    txt = " ".join(words)
+def profile(words, sep=" "):
+    """Every measure the program reports, for one text. No cell ever reports Delta alone (§5.2).
+
+    `sep` joins the symbols. It is " " for word sequences, and "" for TOKEN sequences, whose
+    strings already carry their own leading whitespace -- inserting spaces between them would
+    corrupt every compression measure.
+    """
+    txt = sep.join(words)
     syms = _buckets(words)
     H = block_entropies(syms)
     a, _, eff = A_exp(words, NGRAM)

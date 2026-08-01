@@ -97,6 +97,9 @@ RADII = [3, 8]                     # the measurement, interpretable only once r=
 SEEDS = list(range(11, 19))        # 8; the seed is the independent unit (F57)
 N, B, SETTLE = 96, 16, 16
 K_SHUF = 8                         # shuffles per Delta; memoised indices make this cheap
+NGRAMS = [2, 3]                    # §3.6 point 5: n=2 AND 3 at these lengths. n=3 alone left the
+                                   # median effective object count at 1.00 -- Delta resting on a
+                                   # single n-gram in 58 of 72 cells, which is not an estimate.
 T_STAR, T_C = 0.52, 0.436          # F68 and F58, for locating the peak against -- not for fitting
 OUT = str(_ROOT / "results" / "assembly_temperature.json")
 
@@ -155,33 +158,55 @@ def _A(tot, within, mode):
         exc = (c - 1) if mode == "total" else (within[g] if mode == "within"
                                               else (c - 1) - within[g])
         if exc > 0:
-            w.append(math.exp(_cached_index(" ".join(g))) * exc)
+            w.append(math.exp(_cached_index("".join(g))) * exc)
     if not w:
         return 0.0, 0, 0.0
     s = sum(w)
     return s / NT, len(w), (s * s) / sum(x * x for x in w)
 
 
-def delta_decomposed(replicas, k=K_SHUF, seed=0, canon=False):
+def delta_decomposed(replicas, k=K_SHUF, seed=0, canon=False, n=NGRAM):
     """Delta for total / within / cross copy excess, each against the SAME shuffle ensemble.
 
     The shuffle permutes words WITHIN each replica, so it preserves the per-replica multiset exactly
     and destroys only order -- the Kempes fixed-multiset control, applied per replica so that the
     cross-replica term keeps its meaning.
+
+    DELTA IS None WHERE IT IS NOT A MEASUREMENT. `lg` maps A = 0 to a FLOOR constant, and
+    differencing a real log against that constant produces a number set by the constant rather than
+    by the data. Measured on the first run of this experiment: cells with one side pinned at the
+    floor carried sd = 2.89, LARGER than the sd = 1.72 of cells where both sides were positive,
+    while having the smaller median |Delta|. Pooling the two made a working statistic look noisy.
+
+    So `delta` is reported only where the observed A and EVERY shuffle's A are strictly positive.
+    A = 0 is not missing data -- it is the substantive fact that no object repeats at all, which is
+    the property that distinguishes A from entropy (§2) -- so it is reported categorically as
+    `A_obs_zero` and `n_null_zero` instead of being coerced into a number. `delta_floored` keeps the
+    old floor-coded value so the size of the artifact stays visible.
     """
     rng = random.Random(seed)
-    obs = {m: _A(*_types(replicas, canon=canon), mode=m) for m in ("total", "within", "cross")}
+    obs = {m: _A(*_types(replicas, canon=canon, n=n), mode=m) for m in ("total", "within", "cross")}
     nulls = {m: [] for m in obs}
     for _ in range(k):
         sh = []
         for rep in replicas:
             r = rep[:]; rng.shuffle(r); sh.append(r)
-        t, wi = _types(sh, canon=canon)
+        t, wi = _types(sh, canon=canon, n=n)
         for m in obs:
-            nulls[m].append(lg(_A(t, wi, mode=m)[0]))
-    return {m: dict(delta=round(lg(obs[m][0]) - statistics.fmean(nulls[m]), 3),
-                    logA=round(lg(obs[m][0]), 3), n_types=obs[m][1],
-                    eff_objects=round(obs[m][2], 2)) for m in obs}
+            nulls[m].append(_A(t, wi, mode=m)[0])
+    out = {}
+    for m in obs:
+        a = obs[m][0]
+        nz = sum(1 for x in nulls[m] if x <= 0)
+        defined = a > 0 and nz == 0
+        floored = lg(a) - statistics.fmean([lg(x) for x in nulls[m]])
+        out[m] = dict(
+            delta=round(lg(a) - statistics.fmean([math.log10(x) for x in nulls[m]]), 3)
+                  if defined else None,
+            delta_floored=round(floored, 3),
+            defined=bool(defined), A_obs_zero=bool(a <= 0), n_null_zero=nz,
+            logA=round(lg(a), 3), n_types=obs[m][1], eff_objects=round(obs[m][2], 2))
+    return out
 
 
 def contrast_profile(replicas, k=K_SHUF, seed=0):
@@ -196,14 +221,14 @@ def contrast_profile(replicas, k=K_SHUF, seed=0):
     pooled = [w for rep in replicas for w in rep]
     if len(pooled) < 40:
         return None
-    obs = profile(pooled)
+    obs = profile(pooled, sep="")
     rng = random.Random(seed)
     nulls = []
     for _ in range(k):
         sh = []
         for rep in replicas:
             r = rep[:]; rng.shuffle(r); sh.extend(r)
-        nulls.append(profile(sh))
+        nulls.append(profile(sh, sep=""))
     out = {}
     for m in ORIENT:
         vs = [x[m] for x in nulls]
@@ -215,20 +240,42 @@ def contrast_profile(replicas, k=K_SHUF, seed=0):
 # ------------------------------------------------------------------------- the run
 
 def settle(kind, rule, r, T, seed, scheme):
+    """Settle the ring and return it as TOKEN sequences, not word sequences.
+
+    THE SYMBOL IS THE TOKEN, AND THIS IS LOAD-BEARING. The first version applied the pilot's word
+    regex, which is right for prose and catastrophic here: at r=2, T=0.02 the ring is 56/96 newlines
+    and 27/96 commas, so the regex kept 9 "words" from 96 token slots -- 84 across all 16 replicas,
+    against ~1500 at mid temperature. That is an 18x LENGTH GRADIENT along the very axis the peak
+    test compares, and A grows with length (§3.4). F74's guarantee that the InChI-length confound
+    cannot operate held WITHIN a cell, where the control matches length exactly; extending it ACROSS
+    temperatures was my error.
+
+    On tokens every cell is exactly N*B symbols, so length is matched by construction everywhere,
+    and the degenerate pole is represented faithfully as "the same symbol 56 times" instead of being
+    silently deleted. The CA's state is a token ring; measuring anything else is measuring a
+    projection of it.
+    """
     carun = (__import__("ar_ca").run if kind == "ar" else __import__("mlm_ca").run)
     s = carun(rule, B=B, N=N, r=r, T=T, sweeps=SETTLE, scheme=scheme,
               init="random", seed=seed, order="per_replica")["final"]
-    reps = [WORD.findall(rule.tok.decode(row.tolist()).lower()) for row in s]
+    reps = [[rule.tok.decode([int(x)]) for x in row] for row in s]
     top1 = float(np.mean([collections.Counter(row.tolist()).most_common(1)[0][1] / N for row in s]))
     return reps, top1
 
 
 def cell(kind, rule, r, T, seed, scheme):
     reps, top1 = settle(kind, rule, r, T, seed, scheme)
+    d = {}
+    for n in NGRAMS:
+        d[f"n{n}|plain"] = delta_decomposed(reps, seed=seed, n=n)
+        d[f"n{n}|rotcanon"] = delta_decomposed(reps, seed=seed, canon=True, n=n)
+    # THE RINGS ARE STORED. novelty_structure.py learned this the expensive way -- it kept
+    # `full_text`, so when its scoring turned out to be confounded by whitespace the fix was a
+    # re-analysis rather than a re-run. This experiment's first version did not carry the lesson
+    # forward, so diagnosing Delta's noise cost the whole grid. 432 cells of decoded rings is ~3 MB.
     return dict(top1_share=round(top1, 4), n_words=sum(len(x) for x in reps),
-                plain=delta_decomposed(reps, seed=seed),
-                rotcanon=delta_decomposed(reps, seed=seed, canon=True),
-                oriented=contrast_profile(reps, seed=seed))
+                delta=d, oriented=contrast_profile(reps, seed=seed),
+                rings=["".join(x) for x in reps])
 
 
 def main(probe=False):
@@ -301,9 +348,14 @@ def main(probe=False):
                     runs[key] = dict(kind=kind, model=gen, r=r, T=T, seed=s,
                                      secs=round(time.time() - t1, 1), **c)
                     o = c["oriented"] or {}
-                    print(f"     r={r} T={T:<5} s={s}  A={c['plain']['total']['delta']:+6.2f} "
-                          f"gzip={o.get('gzip_bits', 0):+8.1f} lzma={o.get('lzma_bits', 0):+8.1f} "
-                          f"H={o.get('H_block', 0):+6.3f} top1={c['top1_share']*100:4.0f}%  "
+                    a3 = c["delta"]["n3|plain"]["total"]["delta"]
+                    a2 = c["delta"]["n2|plain"]["total"]["delta"]
+                    astr = f"A2={a2:+5.2f} A3={a3:+5.2f}" if (a2 is not None and a3 is not None) \
+                        else f"A2={'--' if a2 is None else f'{a2:+5.2f}'} " \
+                             f"A3={'--' if a3 is None else f'{a3:+5.2f}'}"
+                    print(f"     r={r} T={T:<5} s={s}  {astr} "
+                          f"gzip={o.get('gzip_bits', 0):+7.1f} lzma={o.get('lzma_bits', 0):+7.1f} "
+                          f"top1={c['top1_share']*100:4.0f}%  "
                           f"{time.time()-t1:.0f}s", flush=True)
                     json.dump(res, open(OUT, "w"), indent=1)
                     if probe:
@@ -326,10 +378,14 @@ def main(probe=False):
 # ------------------------------------------------------------------------ analysis
 
 def _val(v, m):
-    """One cell's oriented contrast for measure m. logA_ring is the ring-aware, decomposed Delta;
-    every other name comes from the §5.2 suite computed on the pooled text."""
-    if m == "logA_ring":
-        return v["plain"]["total"]["delta"]
+    """One cell's oriented contrast for measure m.
+
+    logA_ring_n2 / _n3 are the ring-aware decomposed Deltas and may be None, which means A = 0 on
+    one side and the contrast is not a measurement there (see delta_decomposed). None propagates as
+    missing rather than as a value. Every other name comes from the §5.2 suite on the pooled text.
+    """
+    if m.startswith("logA_ring_n"):
+        return v["delta"][f"n{m[-1]}|plain"]["total"]["delta"]
     return (v.get("oriented") or {}).get(m)
 
 
@@ -378,7 +434,7 @@ def analyse(res):
     runs = res["runs"]
     if not runs:
         res["verdict"] = "no runs"; return
-    measures = list(ORIENT) + ["logA_ring"]
+    measures = list(ORIENT) + [f"logA_ring_n{n}" for n in NGRAMS]
     RC = RADII_CALIB[0]
     out = {}
     for kind, _, _, _ in GENERATORS:
@@ -415,9 +471,12 @@ def analyse(res):
     # ---- POWER GUARD. Absence of data is not absence of effect. Declaring the null below on a
     # partial grid would be the same defect that has killed six verdicts in this project: a
     # threshold applied to numbers that have not been measured yet.
+    # Completeness is counted on the RUNS, not on a measure's series: a measure that is undefined
+    # in many cells would otherwise look like a half-finished grid and stall the verdict forever.
     need_T, min_seeds = len(TEMPS), max(4, len(SEEDS) // 2)
-    ref = out.get(f"ar|r{RC}|logA_ring", {}).get("series", {})
-    have_T = sum(1 for t in ref if ref[t]["n_seeds"] >= min_seeds)
+    done = collections.Counter(v["T"] for v in runs.values()
+                               if v["kind"] == "ar" and v["r"] == RC)
+    have_T = sum(1 for t in TEMPS if done.get(t, 0) >= min_seeds)
     complete = have_T >= need_T
     if not complete:
         msg = (f"INCOMPLETE -- {have_T}/{need_T} temperatures at r={RC} have at least {min_seeds} "
@@ -431,7 +490,7 @@ def analyse(res):
         return
 
     parts = []
-    lowt1 = out.get(f"ar|r{RC}|logA_ring", {}).get("shape", {}).get("low_T_top1")
+    lowt1 = out.get(f"ar|r{RC}|gzip_bits", {}).get("shape", {}).get("low_T_top1")
     parts.append(f"At r={RC}, T={TEMPS[0]} the AR ring is {(lowt1 or 0)*100:.0f}% a single token, "
                  f"which is the degenerate pole F62-F70 established independently.")
 
@@ -498,8 +557,10 @@ def analyse(res):
                        "high-T pole is known at these radii."))
 
     # ---- the confound diagnostics ----
-    xs = [runs[k]["plain"]["cross"]["delta"] for k in runs]
-    ws = [runs[k]["plain"]["within"]["delta"] for k in runs]
+    xs = [runs[k]["delta"]["n3|plain"]["cross"]["delta"] for k in runs
+          if runs[k]["delta"]["n3|plain"]["cross"]["delta"] is not None]
+    ws = [runs[k]["delta"]["n3|plain"]["within"]["delta"] for k in runs
+          if runs[k]["delta"]["n3|plain"]["within"]["delta"] is not None]
     if xs and ws:
         parts.append(
             f"CONFOUND 2, SEPARATED: peak within-replica Delta {max(ws):+.2f} against "
@@ -508,13 +569,22 @@ def analyse(res):
              f"ring." if max(ws) >= max(xs) else
              f"The signal is CROSS-replica: what is measured is convergence BETWEEN replicas, not "
              f"structured text. Every pooled Delta in novelty_structure.py carries this."))
-    pl = [runs[k]["plain"]["total"]["delta"] for k in runs]
-    rc = [runs[k]["rotcanon"]["total"]["delta"] for k in runs]
+    pl = [runs[k]["delta"]["n3|plain"]["total"]["delta"] for k in runs
+          if runs[k]["delta"]["n3|plain"]["total"]["delta"] is not None]
+    rc = [runs[k]["delta"]["n3|rotcanon"]["total"]["delta"] for k in runs
+          if runs[k]["delta"]["n3|rotcanon"]["total"]["delta"] is not None]
     if pl and rc:
         d = max(rc) - max(pl)
         parts.append(f"CONFOUND 1, MEASURED: canonicalising ring rotations moves peak Delta "
                      f"{max(pl):+.2f} -> {max(rc):+.2f} ({d:+.2f}), so rotation inflation is "
                      f"{'negligible' if abs(d) < 0.5 else 'material and must be disclosed'}.")
+    nd = [(m, sum(1 for v in runs.values() if _val(v, m) is None))
+          for m in measures if m.startswith("logA_ring")]
+    for m, cnt in nd:
+        parts.append(f"{m} is UNDEFINED in {cnt}/{len(runs)} cells (A = 0 on one side, so the "
+                     f"contrast would be set by the log floor rather than by the data). Those cells "
+                     f"are excluded rather than floor-coded -- pooling them was what made Delta look "
+                     f"noisier than it is.")
     parts.append(f"r={RC} and r in {RADII} are never pooled: r={RC} asks whether an instrument reads "
                  f"a non-monotonicity known in advance, r in {RADII} asks what the CA actually does.")
 

@@ -6,65 +6,173 @@
    "r": 2,
    "T": 0.02,
    "seed": 11,
-   "secs": 42.3,
+   "secs": 43.3,
    "top1_share": 0.7904,
-   "n_words": 84,
-   "plain": {
-    "total": {
-     "delta": 1.642,
-     "logA": 3.504,
-     "n_types": 3,
-     "eff_objects": 1.88
+   "n_words": 1536,
+   "delta": {
+    "n2|plain": {
+     "total": {
+      "delta": 0.802,
+      "delta_floored": 0.802,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 1.756,
+      "n_types": 31,
+      "eff_objects": 1.71
+     },
+     "within": {
+      "delta": -0.065,
+      "delta_floored": -0.065,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 0.463,
+      "n_types": 12,
+      "eff_objects": 1.91
+     },
+     "cross": {
+      "delta": 0.983,
+      "delta_floored": 0.983,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 1.733,
+      "n_types": 27,
+      "eff_objects": 1.55
+     }
     },
-    "within": {
-     "delta": 0.0,
-     "logA": -3.0,
-     "n_types": 0,
-     "eff_objects": 0.0
+    "n2|rotcanon": {
+     "total": {
+      "delta": 0.66,
+      "delta_floored": 0.66,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 1.759,
+      "n_types": 31,
+      "eff_objects": 1.74
+     },
+     "within": {
+      "delta": -0.438,
+      "delta_floored": -0.438,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 0.496,
+      "n_types": 15,
+      "eff_objects": 2.2
+     },
+     "cross": {
+      "delta": 1.143,
+      "delta_floored": 1.143,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 1.735,
+      "n_types": 24,
+      "eff_objects": 1.56
+     }
     },
-    "cross": {
-     "delta": 1.642,
-     "logA": 3.504,
-     "n_types": 3,
-     "eff_objects": 1.88
-    }
-   },
-   "rotcanon": {
-    "total": {
-     "delta": -1.165,
-     "logA": 3.742,
-     "n_types": 7,
-     "eff_objects": 1.96
+    "n3|plain": {
+     "total": {
+      "delta": 1.219,
+      "delta_floored": 1.219,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 2.652,
+      "n_types": 27,
+      "eff_objects": 1.85
+     },
+     "within": {
+      "delta": -0.064,
+      "delta_floored": -0.064,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 0.877,
+      "n_types": 12,
+      "eff_objects": 2.02
+     },
+     "cross": {
+      "delta": 1.382,
+      "delta_floored": 1.382,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 2.645,
+      "n_types": 25,
+      "eff_objects": 1.79
+     }
     },
-    "within": {
-     "delta": -1.382,
-     "logA": 3.485,
-     "n_types": 4,
-     "eff_objects": 2.18
-    },
-    "cross": {
-     "delta": 0.447,
-     "logA": 3.393,
-     "n_types": 4,
-     "eff_objects": 1.25
+    "n3|rotcanon": {
+     "total": {
+      "delta": 0.923,
+      "delta_floored": 0.923,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 2.751,
+      "n_types": 30,
+      "eff_objects": 1.7
+     },
+     "within": {
+      "delta": 0.351,
+      "delta_floored": 0.351,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 2.08,
+      "n_types": 19,
+      "eff_objects": 1.28
+     },
+     "cross": {
+      "delta": 1.546,
+      "delta_floored": 1.546,
+      "defined": true,
+      "A_obs_zero": false,
+      "n_null_zero": 0,
+      "logA": 2.647,
+      "n_types": 22,
+      "eff_objects": 1.81
+     }
     }
    },
    "oriented": {
-    "logA": 2.8661,
-    "excess_entropy": -0.2006,
-    "C_mu": -0.3565,
-    "mi_integrated": 0.2455,
-    "lz77_z": 5.375,
-    "lzw_dict": 1.25,
-    "repair_size": 3.5,
-    "sequitur_size": 4.375,
-    "gzip_bits": 40.0,
-    "bz2_bits": 33.0,
-    "lzma_bits": 56.0,
+    "logA": 1.1413,
+    "excess_entropy": 0.5278,
+    "C_mu": 0.8412,
+    "mi_integrated": 0.8851,
+    "lz77_z": 80.25,
+    "lzw_dict": 92.875,
+    "repair_size": 126.375,
+    "sequitur_size": 125.0,
+    "gzip_bits": 1213.0,
+    "bz2_bits": 948.0,
+    "lzma_bits": 1096.0,
     "H0": -0.0,
-    "H_block": 0.2782,
-    "h_rate": 0.0259
-   }
+    "H_block": 0.893,
+    "h_rate": 0.4736
+   },
+   "rings": [
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n $\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Courtesy\n\n , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , ,\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "     , , , , , , ,\n\n\n\n.\n\n \" hand-\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , , , ,\n\n\n\n\n\n\n , , , , , , , , , ,\n\n   *0.5 the other\n\n\n\nend    \n    }    \n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , ,\n $\n     $this->\n\n\n",
+    "% of the\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n the other hand the the firstnights,0,5",
+    "\n\n\n\n\n\n \" time the other hand\n\n\n\n\n , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \"The, and the other hand\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    " ,\n\n\n\n\n\n\n\n\n\n , , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n, , , ,br />\n\n , , , , , , ,\n\n\n , , , , , the first\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , ,\n\n\n\n\n , , , ,",
+    "\n\n\n\n\n\n\n\n\nLet $A\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , handwritten, and\n\n , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , ,\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , ,\n\n\n\n\n\n\n\n\n\n\n\n1\n1\nLet $\n    The\"1.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n , , , , ,\n\n\n , ,\n\n\n , , , ,\n\n\n\n\n first thing I can't only one of the\n\n\n\n\n\n\nlocal/lib/\n\n\n we have to ,\n\n\n\n\n\n\n\n\n\n.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n of\n\n\n\n\n the\n\n\n\n\n\n , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.\n\n\n\n\n\n\n\n been used of people who are not the\n\n , , , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n. - (sqrt, -1,Let $A    0    0\n\n\n\n\n\n\n\n\n\n , , , , , ,\n\n\n\n , , ,, ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n first I'm not sure if the other hand\n\n\n\n\n\n\n\n\n , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n , , , , , ,\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\neting and the other\n\n to the\n\n=\n0.5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+   ]
   }
  },
  "_preregistration": {
