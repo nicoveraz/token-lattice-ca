@@ -1,0 +1,130 @@
+{
+ "runs": {
+  "ar|r2|T0.02|s11": {
+   "kind": "ar",
+   "model": "EleutherAI/pythia-410m",
+   "r": 2,
+   "T": 0.02,
+   "seed": 11,
+   "secs": 42.3,
+   "top1_share": 0.7904,
+   "n_words": 84,
+   "plain": {
+    "total": {
+     "delta": 1.642,
+     "logA": 3.504,
+     "n_types": 3,
+     "eff_objects": 1.88
+    },
+    "within": {
+     "delta": 0.0,
+     "logA": -3.0,
+     "n_types": 0,
+     "eff_objects": 0.0
+    },
+    "cross": {
+     "delta": 1.642,
+     "logA": 3.504,
+     "n_types": 3,
+     "eff_objects": 1.88
+    }
+   },
+   "rotcanon": {
+    "total": {
+     "delta": -1.165,
+     "logA": 3.742,
+     "n_types": 7,
+     "eff_objects": 1.96
+    },
+    "within": {
+     "delta": -1.382,
+     "logA": 3.485,
+     "n_types": 4,
+     "eff_objects": 2.18
+    },
+    "cross": {
+     "delta": 0.447,
+     "logA": 3.393,
+     "n_types": 4,
+     "eff_objects": 1.25
+    }
+   },
+   "oriented": {
+    "logA": 2.8661,
+    "excess_entropy": -0.2006,
+    "C_mu": -0.3565,
+    "mi_integrated": 0.2455,
+    "lz77_z": 5.375,
+    "lzw_dict": 1.25,
+    "repair_size": 3.5,
+    "sequitur_size": 4.375,
+    "gzip_bits": 40.0,
+    "bz2_bits": 33.0,
+    "lzma_bits": 56.0,
+    "H0": -0.0,
+    "H_block": 0.2782,
+    "h_rate": 0.0259
+   }
+  }
+ },
+ "_preregistration": {
+  "generators": [
+   {
+    "name": "EleutherAI/pythia-410m",
+    "role": "has a low-T pole (F62-F70)"
+   },
+   {
+    "name": "bert-base-uncased",
+    "role": "control -- pole unreachable (F67/F72)"
+   }
+  ],
+  "temps": [
+   0.02,
+   0.1,
+   0.2,
+   0.3,
+   0.436,
+   0.52,
+   0.7,
+   0.9,
+   1.1
+  ],
+  "radii": [
+   3,
+   8
+  ],
+  "radii_calib": [
+   2
+  ],
+  "seeds": [
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18
+  ],
+  "N": 96,
+  "B": 16,
+  "settle": 16,
+  "ngram": 3,
+  "k_shuffles": 8,
+  "T_star": 0.52,
+  "T_c": 0.436,
+  "which_radius_tests_what": "\u00a75.3 as drafted named r in {3,8} the headline and r=2 the artifact regime. That was backwards and a probe caught it: the interior-peak prediction rests entirely on the low-T single-token pole, which F69 showed exists only at r<=2, and at r=3 T=0.02 the ring is 21% its top token rather than degenerate. So r=2 is the INSTRUMENT TEST -- the one radius where both poles are known and the prediction is forced -- and it gates r in {3,8}, the measurement. Being an out-of-distribution artifact is what makes r=2 useful here: its answer is known in advance.",
+  "primary_ar": "at r=2, Delta(T) has an INTERIOR maximum -- both poles were established independently by damage spreading before this statistic existed, so the prediction is forced. No interior peak is predicted at r in {3,8}, where only the high-T pole exists and monotone decrease refutes nothing",
+  "primary_mlm": "Delta(T) does NOT turn over at low T -- the pole exists but is unreachable from random seeding (F67, sharpened by F72)",
+  "null": "Delta monotone decreasing in T for BOTH constructions -- then it tracks disorder, not structure, and #20's edge-of-chaos framing is refuted. A NULL HERE IS A GOOD RESULT",
+  "kill": "if AR's Delta at T=0.02 does not approach 0 where the ring is provably ~74% one token, fix the estimator rather than reinterpreting the numbers",
+  "independent_unit": "the SEED (F57); between-seed and within-seed spread both reported",
+  "peak_test": "judged against BETWEEN-SEED spread, so a peak inside its own noise is reported as no interior peak",
+  "seeding": "random only -- F72 showed the prompt is erased, which halves the grid and avoids the attractor-token trap that would read Delta ~ 0 by construction",
+  "confound_replica": "copy excess decomposed into within-replica and cross-replica, which sum to the total, so convergence between replicas is never scored as within-text structure (\u00a73.6 confound 2)",
+  "confound_rotation": "reported both plain and with n-grams canonicalised to their minimal rotation, since a ring motif appears as p rotated types (\u00a73.6 confound 1); reported both ways rather than chosen",
+  "ring_wrap": "n-grams wrap the ring, so seam-spanning motifs are not silently dropped",
+  "baselines": "every cell carries the \u00a75.2 suite; no cell reports Delta alone (F74)",
+  "resumable": "keyed by (construction, r, T, seed)"
+ }
+}
