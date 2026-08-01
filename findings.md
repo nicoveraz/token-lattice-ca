@@ -2613,6 +2613,82 @@ warning already on record. The direction is stable across five weightings; the m
 quotable. `experiments/_assembly_substitution.py` reproduces it; it belongs in
 `assembly_baselines.py` as a standing arm so F74's framing cannot be re-derived from F74 alone.
 
+### F76 — Δ fails its own instrument-selection rung; two of sixteen measures survive (#20)
+**PARTIAL: the AR arm is complete (72/72 cells), the MLM control is still running, and it can
+change the reading.** Recorded now because the AR rung is what gates the measurement radii and it
+is finished; amend when MLM lands.
+
+§5.3 made r=2 an **instrument-selection rung** rather than the artifact to exclude, on the argument
+that it is the one radius where *both* poles are known in advance: the low-T degeneracy established
+across nineteen models and three interventions (F62–F70), and the high-T noise pole where the ring
+contains no repeated 3-gram at all. Any measure claiming to track complexity must be non-monotone
+there. A measure that runs straight through a known non-monotonicity cannot be believed at radii
+where the answer is unknown.
+
+**The degenerate pole is confirmed by measurement, not assumed:** median top-1 share at T=0.02 is
+**79%**, consistent with F62/F69's 74–79%.
+
+```
+  measure           peak@T      peak    endpts   margin   noise   verdict
+  lzma_bits          0.436  1468.000  1100.000  368.000  96.155   INTERIOR PEAK
+  C_mu               0.436     1.223     0.719    0.504   0.192   INTERIOR PEAK
+  gzip_bits            0.3  1309.500  1213.000   96.500  97.315   interior, inside noise
+  bz2_bits           0.436  1189.500  1135.500   54.000 101.592   interior, inside noise
+  lz77_z              0.52    92.000    84.812    7.188   9.543   interior, inside noise
+  lzw_dict             0.3   102.000    99.250    2.750   7.018   interior, inside noise
+  logA                 0.9     1.366     0.981    0.385   0.769   interior, inside noise
+  logA_ring_n3        0.52     1.030     0.974    0.056   0.696   interior, inside noise
+  logA_ring_n2        0.02     0.708     0.708    0.000   0.512   PEAKS AT DEGENERATE END
+  repair_size         0.02   140.500   140.500    0.000  12.142   PEAKS AT DEGENERATE END
+  sequitur_size       0.02   139.562   139.562    0.000  12.605   PEAKS AT DEGENERATE END
+  mi_integrated       0.02     1.037     1.037    0.000   0.087   PEAKS AT DEGENERATE END
+  H_block             0.02     0.939     0.939    0.000   0.072   PEAKS AT DEGENERATE END
+  excess_entropy      0.02     0.548     0.548    0.000   0.044   PEAKS AT DEGENERATE END
+  h_rate              0.02     0.494     0.494    0.000   0.038   PEAKS AT DEGENERATE END
+  H0                  0.02    -0.000    -0.000    0.000   0.000   PEAKS AT DEGENERATE END
+```
+
+**All three Δ variants fail, and one is outright disqualified.** `logA_ring_n2` peaks at T=0.02
+**where the ring is 79% a single token** — the pre-registered kill condition, a measure reading
+repetition as structure. `logA` and `logA_ring_n3` have interior maxima but sit inside their own
+between-seed scatter, which §5.3 pre-registered as *recorded as monotone, not as a peak* (the rule
+that killed the first DP gate and six verdicts since).
+
+**The two survivors are the two things the assembly work was positioned against** — `lzma`, a
+compressor, and `C_μ`, Crutchfield statistical complexity. Both peak at **T = 0.436**, which is
+**F58's independently measured T_c** for the damage-spreading transition. A complexity measure
+peaking at the melting temperature of the degeneracy is the textbook edge-of-chaos shape, obtained
+here on a system whose ordered phase is an out-of-distribution artifact. Note the grid *contains*
+0.436 because F58 put it there, so the coincidence is meaningful but not blind.
+
+**This does not contradict F74; it answers a different question, and the disagreement is itself the
+observation.** F74 asked which measure ranks real text above degenerate text across synthetic
+regimes at matched length. This asks which measure is non-monotone in temperature on the actual CA.
+`lzma` peaked on `degenerate_x2` in F74 and is the strongest survivor here; `repair_size` was F74's
+closest baseline to Δ (ρ = −0.88) and is killed here. **F74's regime ranking does not predict the
+r=2 temperature shape**, so neither experiment substitutes for the other and a measure must clear
+both to be trusted.
+
+**Read together with F75, the assembly line is in serious trouble.** F75: the per-object assembly
+index does no work inside Δ — a random weight scores higher. F76: Δ then fails the
+instrument-selection rung on the one system where both poles are known. The pre-registered reading
+is that **Δ is not a usable instrument here**, and §5.3 was built so that answer could win.
+
+**Three caveats, and the first is the one that could overturn this.**
+
+1. **Sixteen measures, no multiple-comparison correction.** Two clearing a margin-beats-noise
+   threshold out of sixteen may be luck. F39 applied BH-FDR to a comparable battery and this has
+   nothing. What is owed is a **permutation null on the shape statistic** — shuffle the temperature
+   labels within seed and ask how often a measure clears — not a raw survivor count. Until that is
+   run, "two survive" is a description, not a result.
+2. **`C_μ` is the coarse, frequency-bucketed estimator F74 already flagged as unusable at these
+   lengths.** Its passing should be held loosely; it is also the exact objection §4.4 concedes has
+   no rhetorical answer, arriving from the other side.
+3. **AR only.** MLM r=2 is the control and F67/F72 predict it should show **no** such peak, since
+   its absorbing state has a negligible basin and nothing settling from random seeding reaches it.
+   If MLM shows the same interior peak, the rung is reading something generic and the AR result
+   above means much less.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
