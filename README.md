@@ -94,6 +94,10 @@ census), and the **boundaries** where those readings provably stop applying.
 > generative process. This retroactively explains the kinematic light cone (F16/F21), the
 > model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
 
+**New here? Start with [`explainer.md`](explainer.md)** — the whole project in plain English, no
+background assumed: what a cellular automaton is, why you would turn a language model into one, how
+the measurement works, and the twist that reframed the result.
+
 **[`ca_constructions.md`](ca_constructions.md)** draws the four rules side by side in plain ASCII —
 elementary CA, Domany–Kinzel, and this project's two token-lattice constructions — with the damage
 measurement, the per-replica visit order, and where the artifact lives. Start there if you want the

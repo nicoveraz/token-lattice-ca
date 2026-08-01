@@ -14,3 +14,9 @@ Notes:
   bert-base-uncased loaded
     T=0.02  s=91: P(end)=0.594 sites=7.61 (324.4s)
     T=0.02  s=92: P(end)=0.656 sites=7.44 (334.0s)
+    T=0.05  s=91: P(end)=0.594 sites=9.06 (324.6s)
+    T=0.05  s=92: P(end)=0.641 sites=9.33 (325.1s)
+    T=0.1   s=91: P(end)=0.562 sites=11.27 (323.3s)
+    T=0.1   s=92: P(end)=0.625 sites=13.48 (321.3s)
+    T=0.2   s=91: P(end)=0.625 sites=16.97 (321.3s)
+    T=0.2   s=92: P(end)=0.734 sites=18.84 (321.2s)
