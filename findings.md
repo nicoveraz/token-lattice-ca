@@ -1840,7 +1840,7 @@ weakest claim consistent with both fits, and stands unchanged. It should not be 
 either direction until this is understood.
 
 ### F61 — the transverse Lyapunov test cannot discriminate here, shown on a system with a known answer
-#81 proposed Λ, the transverse Lyapunov exponent, as a cheap decisive check on the class: per
+Issue #81 proposed Λ, the transverse Lyapunov exponent, as a cheap decisive check on the class: per
 Muñoz & Pastor-Satorras, a synchronization transition is **DP** when Λ < 0 at criticality and
 **multiplicative-noise / bounded-KPZ** when Λ = 0. Its outcome contract had exactly those two
 branches. **Neither applies**, and the reason was established before any model time was spent.
@@ -1880,7 +1880,7 @@ this line, and one that would have redirected the whole exponent program. The fr
 minutes. **The LM Λ measurement should not be run**, and an Λ ≈ 0 from this system must not be
 read as evidence for MN.
 
-#81's outcome contract needs a third branch: *the test does not discriminate in this class of
+Issue #81's outcome contract needs a third branch: *the test does not discriminate in this class of
 system*. That is the finding.
 
 ### F62 — the frozen phase is a whitespace attractor, and that is why a second family has no transition
@@ -2293,7 +2293,7 @@ radii only, as F65 established it must be, the answer is the opposite. The verdi
 radii where the control also concentrates.
 
 ### F70 — it is an attracting FIXED POINT of the argmax map, not a data-sparsity effect (#92)
-#92 asked whether the two-token collapse is the extreme end of low-evidence behaviour — the thing
+Issue #92 asked whether the two-token collapse is the extreme end of low-evidence behaviour — the thing
 that would make it a statement about *insufficient training data* rather than about prompt length.
 **It is not**, and the pre-registered failure condition fired on both tests:
 
@@ -2331,7 +2331,7 @@ not reducible to corpus, architecture or scale (F63, F64) because it is a proper
 not of the training recipe. A BOS prefix removes it (F66) because it changes the map's domain.
 It lives at r ≤ 2 (F69) because a larger window makes the state space too big for a two-token cycle
 to close. The MLM construction has none (F67), so it has no absorbing state and no transition. And
-#92's null follows directly: a fixed point of an iterated map has nothing to do with how much
+Issue #92's null follows directly: a fixed point of an iterated map has nothing to do with how much
 training data covered the context.
 
 **A defect in my own probe, caught mid-analysis.** The first version measured top-1 probability
@@ -2391,7 +2391,7 @@ attractor F62 identified — and in the word-bearing remainder there is no struc
 whitespace is the CA's actual state, not noise to be filtered before scoring.
 
 ### F72 — the prompt is erased, and the absorbing state has a negligible basin (#94)
-#93 seeds from random tokens, so I proposed #94 expecting novelty to prove prompt-relative. **It is
+Issue #93 seeds from random tokens, so I proposed #94 expecting novelty to prove prompt-relative. **It is
 not.** Seeding the ring with real corpus text instead of noise changes the settled composition
 almost not at all:
 
@@ -2528,7 +2528,90 @@ Both are the same failure: a formula applied where its denominator is degenerate
 
 That invariance is worth stating positively, because it is what disarms the critics' most dangerous
 baseline: **the InChI-length confound provably cannot operate here**, since length and type count are
-held exactly constant by the control rather than partialled out.
+held exactly constant by the control rather than partialled out. **Corrected by F75: true of the
+GLOBAL confound, false of the per-object one.**
+
+### F75 — the assembly index plays no role in Δ, and F74's framing is withdrawn (#20)
+F74 found that eleven of twelve flat compression and entropy baselines peak on degenerate repetition
+while Δ peaks on real text, and I wrote that up as evidence that assembly theory differs from
+compression. **It is not.** F74 compared the *whole* of Δ against measures sharing none of its
+structure, and varied **none of Δ's own components**. Δ stacks four:
+
+```
+  (1) a per-object complexity   a_i
+  (2) an exponential weight     e^{a_i}
+  (3) copy-number coupling      (n_i - 1)
+  (4) a matched-shuffle contrast
+```
+
+The control keeps (2), (3), (4) and substitutes only (1). At 440 words, 3-grams, five regimes:
+
+```
+  regime          a_i (assembly)  len_i (chars)  z_i (LZ77)   const   RANDOM e^U(0,20)   #rep types
+  real text            +6.09          +6.40        +6.47      +1.30        +6.34             4
+  degenerate x1        +0.00          +0.00        +0.00      +0.00        +0.00             1
+  degenerate x2        +0.35          -0.10        +0.35      +0.01        -1.74             2
+  random soup          -0.70          -0.80        -0.75      -0.10        -0.15             0
+  unique tokens        +0.00          +0.00        +0.00      +0.00        +0.00             0
+
+  peaks on REAL TEXT:  all five
+```
+
+Character length and LZ77 reproduce the ordering **marginally better than the assembly index does**.
+A constant weight — no complexity term at all — still peaks on real text, weakly. And **a random
+weight `e^{U(0,20)}`, carrying no information about the object whatsoever, does it best of all
+(+6.34 against +6.09)**.
+
+So the per-object term is not interchangeable, it is **irrelevant**. What produces the ordering is
+the last column: real text has more repeated 3-gram types than its own shuffle, degenerate text has
+the same as its shuffle, noise has none. Any heavy-tailed weighting turns a 4-vs-1 count difference
+into six orders of magnitude, and the assembly index is one such weighting with no privileged role.
+
+**The honest statement, which is close to a tautology:**
+
+> Real text contains more repeated n-gram types than a word-shuffle of itself. Degenerate repetition
+> does not, because shuffling it returns it. Noise contains none. Δ detects that.
+
+That is a legitimate structure measure with both failure poles pinned at zero, and it is **not a
+result about assembly theory**. It is also standard practice elsewhere under another name —
+enrichment of repeated motifs against a shuffled background is the ordinary control in corpus
+linguistics and in bioinformatics.
+
+**What is withdrawn.** F74's framing that "assembly theory separates from compression"; and §5.2's
+"the InChI-length confound provably cannot operate here", which is true of the *global* confound —
+total length and type count are shuffle-invariant — and **false of the per-object one**, since the
+shuffle does not hold an individual n-gram's length fixed and `len_i` works inside the formula.
+
+**What survives.** F74's flat-baseline result is untouched, and remains the useful contribution
+against Mohsin et al. (*On the Fundamental Limits of LLMs at Scale*, TMLR 07/2026), whose §2.4
+posits `A(θ) + α·C(θ) = κ` with `C` left as "a creativity metric measuring diversity, novelty, or
+originality". No flat metric can play that role. The claim becomes *"`C` must be an ensemble
+statistic, not a flat one"* — narrower, and true. F73 and §3.2 are unaffected and now agree from a
+second direction: the raw index carries no word-order information (z = −1.78) and no discriminative
+work inside the formula either.
+
+**The consequence that matters is not the framing, it is #20's live experiment.** If Δ is
+substantially a repeated-type counter, `assembly_temperature.py` is measuring **phrase reuse against
+a shuffle null**, not compositional complexity. Both poles still pin at zero, the non-monotonicity
+question is unchanged, and the design decision to carry all thirteen measures rather than Δ alone is
+retroactively justified. But the question it answers is *"does the CA produce phrase reuse beyond
+what its own word distribution explains?"* — a real question, and a smaller one than the section
+title claimed.
+
+**The defect in my own reasoning, and it has a name in this repo already.** F74 was designed so the
+critics' answer could win, and on the axis it tested it was fair. It simply never tested its own
+measure's components — a composite metric was reported without ablating what it composes. That is
+**F66's rule (vary the construction, not just the subject) applied to a metric rather than a probe**,
+and I did not apply it. The correction arrived in three tightening steps within one hour: index
+beats compression → index is interchangeable → index is irrelevant. Each step came from asking the
+previous one's question one level down.
+
+**Power, stated because the direction is what carries.** One text, five regimes, eight shuffles, one
+seed, 3-grams only — and **four repeated types in 440 words of Shakespeare**. Every number in the
+assembly pilot rests on counts of that order, which is the quantitative form of the tail-domination
+warning already on record. The direction is stable across five weightings; the magnitudes are not
+quotable. `experiments/_assembly_substitution.py` reproduces it; it belongs in
+`assembly_baselines.py` as a standing arm so F74's framing cannot be re-derived from F74 alone.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

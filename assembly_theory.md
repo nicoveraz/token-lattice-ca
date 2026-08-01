@@ -20,7 +20,7 @@ work.
 ## 0. Summary
 
 **The project's achievement is not a result, it is an instrument plus a discipline.**
-Seventy-four findings, fifty-seven of them written up in `findings.md`, with every retraction,
+Seventy-five findings, fifty-eight of them written up in `findings.md`, with every retraction,
 correction and demotion still visible there. The headline dynamical claims were dissolved by the project's own
 checks; what survives is a
 black-box measurement apparatus for language models, a validation ladder with one **bit-exact** rung,
@@ -45,7 +45,7 @@ built from exact combinatorial counts on observed strings.
 | 4 | The right statistic is a **contrast against a matched word-shuffle**, `Δ = log A(text) − ⟨log A(shuffled)⟩`. It reads **exactly +0.00 on pure degenerate repetition** and **+0.00 on random soup**, against **+6.87 on real text**, at matched length | **Solid, with the symmetry withdrawn** (F73). The degenerate zero is measured; the noise zero is *definitional* (log floor). The substantive fact there is `A(text) = 0` — where entropy is maximal — now reported separately as `A_is_zero` |
 | 5 | Applied to the existing CA output, Δ is large at low temperature and **exactly zero** at T ≥ 0.9 for both constructions, with MLM above AR | **Suggestive only — NOT established.** Window-to-window spread overlaps zero in several cells; effective object count is 1–2 |
 | 6 | **No FLAT compression or entropy baseline reproduces Δ's ordering.** 11 of 12 peak on degenerate repetition; Δ alone peaks on real text, by 20× | **Solid** (F74, `assembly_baselines.py`). The difference is in *shape*, which no correlation coefficient explains away |
-| 7 | **But the assembly index is not what carries it.** Substituting character length or an LZ77 phrase count for `a_i` — keeping the exponential, the copy-number coupling and the shuffle contrast — reproduces the ordering, marginally *better*. Even a constant weight does | **Corrects row 6's framing** (§3.7). The claim is about the **ensemble construction**, not about assembly theory beating compression |
+| 7 | **The assembly index plays no role in row 6.** Substituting character length, an LZ77 count, a constant, or a **random** weight for `a_i` all reproduce the ordering — random scores *highest*. Δ reduces to "real text has more repeated n-gram types than its own shuffle", exponentially amplified | **Corrects row 6's framing, and shrinks it** (§3.7). Not a result about assembly theory; a standard shuffled-background enrichment control under another name |
 
 **The honest read on (5):** the direction is consistent across twelve cells and both constructions,
 and the two zero-poles behave as designed. But every applied number rests on **one settle run per
@@ -510,6 +510,39 @@ non-assembly per-object term. At 440 words, 3-grams, against the five reference 
 better than the assembly index does.** Even a *constant* weight — no complexity term at all, pure
 copy number against a shuffle — peaks on real text, at +1.30. The exponential **amplifies** the
 effect (6.09 against 1.30) but does not create it.
+
+**And one more substitution collapses it further: a RANDOM per-object weight.**
+
+```
+  regime          a_i (assembly)   RANDOM e^U(0,20)   const   # repeated 3-gram types
+  real text            +6.09            +6.34         +1.30            4
+  degenerate x1        +0.00            +0.00         +0.00            1
+  degenerate x2        +0.35            -1.74         +0.01            2
+  random soup          -0.70            -0.15         -0.10            0
+  unique tokens        +0.00            +0.00         +0.00            0
+```
+
+`e^{U(0,20)}` — a weight drawn from **noise**, carrying no information about the object at all —
+peaks on real text at **+6.34, above the assembly index's +6.09**. So the per-object term is not
+interchangeable, it is **irrelevant**. What produces the ordering is the last column: real text has
+more repeated 3-gram types than its own shuffle does, degenerate text has the same as its shuffle,
+and noise has none. Any heavy-tailed weighting amplifies that count difference into a large
+log-scale gap; the assembly index is one such weighting and has no privileged role.
+
+**So the honest statement shrinks again, to something close to a tautology:**
+
+> Real text contains more repeated n-gram types than a word-shuffle of itself. Degenerate
+> repetition does not (shuffling it returns it). Noise contains none. Δ detects that, and the
+> exponential turns a count difference of 4-vs-1 into six orders of magnitude.
+
+That is a legitimate structure measure with both failure poles pinned at zero, and it is **not** a
+result about assembly theory. It is also standard practice elsewhere under another name —
+enrichment of repeated motifs against a shuffled background is the ordinary control in corpus
+linguistics and in bioinformatics.
+
+**Note the sample size in that last column.** Four repeated 3-gram types in 440 words of
+Shakespeare. Every number in §3 rests on counts of that order, which is the quantitative form of
+the tail-domination warning in §3.3 and the reason §5.3 runs eight seeds.
 
 **What this changes.** The claim is not "assembly theory separates from compression." It is:
 
