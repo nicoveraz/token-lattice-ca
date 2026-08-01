@@ -106,12 +106,25 @@ def novelty(text, ref):
         res[f"novel_{n}gram"] = (round(sum(x not in ref[n] for x in g) / len(g), 4)
                                  if g else None)
     res["n_words"] = len(w)
+    res["word_density"] = round(len(w) / max(len(text), 1) * 100, 3)   # words per 100 chars
     return res
+
+
+def collapse_ws(text):
+    """Squeeze runs of whitespace to one space.
+
+    Without this the NLL is gameable by padding: a ring that fills itself with spaces scores as
+    highly predictable while contributing almost no words, so it looks like "structured novelty"
+    when it is a spacing artifact. The two lowest-NLL AR cells in the first pass had the FEWEST
+    words (526 and 443 against 606 for real text), which is how the confound was caught.
+    """
+    return re.sub(r"\s+", " ", text).strip()
 
 
 @torch.no_grad()
 def nll(scorer_tok, scorer, text, dev, max_len=512):
-    """Per-token NLL of `text` under a model that did NOT generate it."""
+    """Per-token NLL of `text` under a model that did NOT generate it. Whitespace collapsed first."""
+    text = collapse_ws(text)
     ids = scorer_tok(text, return_tensors="pt", truncation=True,
                      max_length=max_len).input_ids.to(dev)
     if ids.shape[1] < 8:
@@ -175,11 +188,13 @@ def main():
             raw = " ".join(docs[:40])[:20000]
             rt = rule.tok.decode(rule.tok(raw)["input_ids"][:N * 8])
             runs[f"{kind}|ref"] = dict(kind=kind, label="real text (round-tripped)",
-                                       nll=nll(stok, scorer, rt, dev), **novelty(rt, ref))
+                                       nll=nll(stok, scorer, rt, dev), full_text=rt,
+                                       **novelty(rt, ref))
             w = words(rt); rng = np.random.default_rng(0); rng.shuffle(w)
             sh = " ".join(w)
             runs[f"{kind}|shuf"] = dict(kind=kind, label="shuffled real text",
-                                        nll=nll(stok, scorer, sh, dev), **novelty(sh, ref))
+                                        nll=nll(stok, scorer, sh, dev), full_text=sh,
+                                        **novelty(sh, ref))
             for k in (f"{kind}|ref", f"{kind}|shuf"):
                 v = runs[k]
                 print(f"    {v['label']:>26}  NLL={v['nll']:.3f}  "
@@ -195,7 +210,7 @@ def main():
                 text = " ".join(rule.tok.decode(row.tolist()) for row in s)
                 runs[key] = dict(kind=kind, model=gen, r=r, T=T,
                                  nll=nll(stok, scorer, text, dev),
-                                 sample=text[:160], **novelty(text, ref))
+                                 sample=text[:160], full_text=text, **novelty(text, ref))
                 v = runs[key]
                 print(f"    r={r} T={T:<4} NLL={v['nll']:.3f}  novel2={v['novel_2gram']}  "
                       f"novel4={v['novel_4gram']}  | {v['sample'][:52]!r}", flush=True)
@@ -232,30 +247,57 @@ def analyse(res):
             print(f"  {'r=%d T=%.1f' % (r, T):>12} {v['nll']:>7.3f} {v['novel_2gram']:>9.3f} "
                   f"{v['novel_4gram']:>9.3f}")
 
-        # "structured novelty" = NLL no worse than real text + 1 nat, AND novelty above real text's
-        band = ref["nll"] + 1.0
-        hits = [(r, T, v) for r, T, v in cells
-                if v["nll"] is not None and v["nll"] <= band
-                and (v["novel_2gram"] or 0) > (ref["novel_2gram"] or 0)]
-        out[kind] = dict(real_nll=ref["nll"], real_novel2=ref["novel_2gram"],
-                         shuffled_nll=shuf["nll"], band=round(band, 3),
-                         structured_novelty_cells=[[r, T] for r, T, _ in hits],
-                         min_nll=min(v["nll"] for _, _, v in cells if v["nll"] is not None))
-        if hits:
-            best = min(hits, key=lambda x: x[2]["nll"])
-            parts.append(f"{kind.upper()}: STRUCTURED NOVELTY at {len(hits)} setting(s), best "
-                         f"r={best[0]} T={best[1]} with NLL={best[2]['nll']:.3f} against real "
-                         f"text's {ref['nll']:.3f} and novelty {best[2]['novel_2gram']:.3f} vs "
-                         f"{ref['novel_2gram']:.3f}. The construction produces sequences that are "
-                         f"unseen AND predictable to a model that did not generate them. This is "
-                         f"NOT evidence the model has new ideas -- novel n-grams are not ideas.")
+        # Threshold-free. Each cell is placed on the real-text -> shuffled axis for BOTH
+        # quantities, and the summary is the GAP: how much more novel a cell is than it is
+        # unpredictable. Positive gap = novelty bought more cheaply than noise would buy it.
+        # A band test would have been another knife-edge -- the first pass missed its own +1.0
+        # nat band by 0.17 on one cell and would have flipped the verdict on that.
+        def frac(x, lo, hi):
+            return None if x is None or hi == lo else round((x - lo) / (hi - lo), 3)
+        rows = []
+        for r, T, v in cells:
+            nf = frac(v["nll"], ref["nll"], shuf["nll"])
+            vf = frac(v["novel_2gram"], ref["novel_2gram"], shuf["novel_2gram"])
+            dens_ok = v["word_density"] >= 0.75 * ref["word_density"]
+            # A cell must lie BETWEEN the references to mean anything. The gap is scale-free and
+            # stays positive even when BOTH fractions exceed 1 -- i.e. when the cell is more
+            # unpredictable than word-shuffled text. "Structured novelty" cannot be awarded to
+            # something worse than shuffling on the very axis that defines structure.
+            in_range = nf is not None and nf <= 1.0
+            rows.append(dict(r=r, T=T, nll_frac=nf, novel_frac=vf,
+                             gap=None if (nf is None or vf is None) else round(vf - nf, 3),
+                             word_density=v["word_density"], density_ok=bool(dens_ok),
+                             in_range=bool(in_range)))
+        print(f"  {'cell':>12} {'NLL pos':>8} {'novel pos':>10} {'gap':>7} {'w/100ch':>8} {'valid':>6}")
+        for x in rows:
+            print(f"  {'r=%d T=%.1f' % (x['r'], x['T']):>12} {x['nll_frac']:>8} "
+                  f"{x['novel_frac']:>10} {x['gap']:>7} {x['word_density']:>8.2f} "
+                  f"{str(x['density_ok']):>6}")
+        valid = [x for x in rows if x["density_ok"] and x["in_range"] and x["gap"] is not None]
+        beyond = [x for x in rows if x["density_ok"] and not x["in_range"]]
+        best = max(valid, key=lambda x: x["gap"]) if valid else None
+        dropped = [x for x in rows if not x["density_ok"]]
+        out[kind] = dict(real_nll=ref["nll"], shuffled_nll=shuf["nll"],
+                         real_novel2=ref["novel_2gram"], shuffled_novel2=shuf["novel_2gram"],
+                         real_density=ref["word_density"], cells=rows,
+                         best=best, dropped_low_density=[[x["r"], x["T"]] for x in dropped])
+        if best:
+            parts.append(
+                f"{kind.upper()}: best gap {best['gap']:+.3f} at r={best['r']} T={best['T']} "
+                f"-- {best['novel_frac']:.0%} of the way to shuffled on novelty while only "
+                f"{best['nll_frac']:.0%} of the way on unpredictability. "
+                + (f"{len(dropped)} cell(s) excluded for word density below 75% of real text "
+                   f"({', '.join('r=%d T=%.1f' % (x['r'], x['T']) for x in dropped)}) -- those are "
+                   f"whitespace padding, which is cheap to predict and contributes no words."
+                   if dropped else "No cell needed excluding on density.")
+                + (f" A further {len(beyond)} cell(s) are MORE unpredictable than shuffled text "
+                   f"(NLL position > 1) and are excluded: novelty there is noise, not structure."
+                   if beyond else ""))
         else:
-            mn = out[kind]["min_nll"]
-            parts.append(f"{kind.upper()}: NO STRUCTURED NOVELTY. Best NLL over the sweep is "
-                         f"{mn:.3f} against real text's {ref['nll']:.3f} (band {band:.3f}), so the "
-                         f"trajectory never reaches real-text predictability at elevated novelty. "
-                         f"This construction recombines or randomises; it does not occupy the "
-                         f"region where real text sits.")
+            why = ("every ring is whitespace-dominated" if not any(x["density_ok"] for x in rows)
+                   else "every surviving cell is MORE unpredictable than word-shuffled text, so "
+                        "its novelty is noise rather than structure")
+            parts.append(f"{kind.upper()}: NO STRUCTURED NOVELTY -- {why}.")
     verdict = " ".join(parts) if parts else "insufficient data"
     print(f"\n  -> {verdict}")
 

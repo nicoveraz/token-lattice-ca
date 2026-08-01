@@ -1,0 +1,768 @@
+# Assembly theory as a structure read-out for the token lattice
+
+**Written 1 Aug 2026.** A first-principles analysis of what this project has established, followed by
+a concrete program for issue **#20** (assembly theory as a compositional-complexity axis), including
+a **pilot that was actually run** against the data already in `results/`.
+
+Read §0 if you read nothing else: it states what the pilot found, including the part that does not
+work.
+
+---
+
+## 0. Summary
+
+**The project's achievement is not a result, it is an instrument plus a discipline.** Seventy
+findings, fifty-three of them written up in `findings.md`, with every retraction, correction and
+demotion still visible there. The headline dynamical claims were dissolved by the project's own
+checks; what survives is a
+black-box measurement apparatus for language models, a validation ladder with one **bit-exact** rung,
+and a documented method for not fooling yourself that caught six confident wrong verdicts before any
+of them reached a paper.
+
+**Assembly theory fits a gap the project has already identified in writing.** The docstring of
+`experiments/novelty_structure.py` states the problem exactly: "entropy is MAXIMISED BY NOISE… the
+quantity that peaks at 'interesting' is excess entropy… It also cannot be estimated here." Excess
+entropy needs block statistics over a 50,000-token vocabulary from a few thousand samples, which
+measures the sample size rather than the system. **Assembly theory's ensemble quantity is a
+computable non-monotone structure measure that needs no distribution estimate at all**, because it is
+built from exact combinatorial counts on observed strings.
+
+**What the pilot established, by running it:**
+
+| | Result | Status |
+|---|---|---|
+| 1 | A **free calibration rung** exists: two string families have provable exact assembly indices, and the RePair estimator is **exact on both**, at every size tested | **Solid.** CPU-seconds, no model |
+| 2 | The **raw assembly index carries no word-order information.** Under length and multiset control it does not separate real text from word-shuffled text (0.4725 vs 0.4765 per character) — and neither does LZ77, gzip or entropy | **Solid.** The critique's home ground, conceded on our own data |
+| 3 | The **exponential weighting is load-bearing.** Tempering `e^{a}` to `e^{a/2}` or to linear `a` *inverts* the ordering, so degenerate repetition beats real text | **Solid, and non-obvious.** This is the thing that separates AT from a compression measure |
+| 4 | The right statistic is a **contrast against a matched word-shuffle**, `Δ = log A(text) − ⟨log A(shuffled)⟩`. It reads **exactly +0.00 on pure degenerate repetition** and **+0.00 on random soup**, against **+6.87 on real text**, at matched length | **Solid.** Both failure poles pin at zero automatically |
+| 5 | Applied to the existing CA output, Δ is large at low temperature and **exactly zero** at T ≥ 0.9 for both constructions, with MLM above AR | **Suggestive only — NOT established.** Window-to-window spread overlaps zero in several cells; effective object count is 1–2 |
+
+**The honest read on (5):** the direction is consistent across twelve cells and both constructions,
+and the two zero-poles behave as designed. But every applied number rests on **one settle run per
+cell**, and Δ is a tail statistic — the effective number of contributing objects is 1 to 2, so a
+single chance repeat moves it. This is precisely the shape of F23 (pseudoreplication) and F57 (the
+independent unit was not what it appeared to be). **It must not be quoted as a finding until it is
+re-measured with the seed as the independent unit.**
+
+**What the literature check found** (§4, full citations there). Applying assembly theory to text or
+LLM output is **unoccupied** — zero prior art. So is testing the ensemble quantity at a critical point.
+But **AT applied to cellular automata is not novel**: `AssemblyCA` (Patarroyo, Sharma, Walker & Cronin,
+ALOE @ NeurIPS 2023) did it for 2D discrete CA, and must be read and cited. And the critique is
+sharper than issue #20 assumed — the string assembly index is now *proven* to equal the smallest
+straight-line-program size (NP-complete, APX-hard), so there is no room to claim independence from
+grammar compression for the raw index.
+
+**The rebuttal literature supplies this project's defence, and the pilot arrived at it
+independently.** Kempes et al. (2025) showed the critics' assembly↔LZW correlations are **length
+artifacts**: under a fixed-multiset permutation control the correlation collapses from ~0.9 to 0.25.
+This project measures a **ring of fixed N**, so it is natively in that regime — and §3.2's
+real-versus-word-shuffled test *is* that permutation control, applied to text for the first time.
+
+**The single experiment worth building** is in §5.3: the AR construction has a *known* degenerate
+pole at low temperature (F62–F70) and a known noise pole at high temperature, and Δ must go to zero
+at both. The MLM construction has **no** degenerate pole (F67), so it must not turn over at low T.
+That is a pre-registered differential prediction with a control that should behave differently, on a
+system where both poles were established independently and in advance. It is the strongest test of
+assembly theory available anywhere in this repository, and it needs no new compute beyond settle runs
+the project already performs.
+
+The result that would survive review, stated now so it cannot be constructed later: **Δ non-monotone
+in temperature while every compression baseline stays monotone.** A difference in *shape* is not
+explainable by a correlation coefficient. Its null — Δ monotone too — closes the thread cleanly.
+
+---
+
+## 1. The project from first principles
+
+### 1.1 What the object is
+
+A ring of *N* cells, each holding one token. Pick a cell, show a language model the neighbouring
+tokens, ask what goes here, sample from the answer at temperature *T*, write it back. Repeat forever
+in random visit order. That is a cellular automaton whose transition rule is a language model.
+
+The point of the construction is that it converts a language model — normally studied by prompting
+and reading output — into a **dynamical system**, which can be perturbed, which has phases, and to
+which the whole apparatus of statistical physics applies.
+
+### 1.2 What was actually built
+
+Three things, in increasing order of durability.
+
+**The apparatus.** One simulation loop (`src/lattice.py`) shared by every backend — a toy JAX
+transformer, an autoregressive HuggingFace model, a masked LM, the Domany–Kinzel PCA, and a stub used
+in tests. Because they share the loop, a test on the stub exercises the same code path as a
+measurement on pythia-410m *by construction*. The core probe is common-random-number damage
+spreading: two replicas sharing model, initial state, uniform stream and visit order must differ in
+**exactly zero** cells, and that null is asserted on every backend in both update modes.
+
+**The validation ladder.** Before measuring a system whose answers are unknown, reproduce systems
+whose answers are known. Elementary CA rules (ordered vs chaotic separates at p = 0.0000, d = 3.03,
+on ignition probability); synthetic Markov sources with known transition matrices; a coupled-map
+lattice against an exact Benettin reference; the logistic map as a smooth-limit arithmetic check —
+explicitly demoted to a unit test after F30 showed its estimator was circular.
+
+**The one rung that is exact.** On the Domany–Kinzel `p2 = 0` line, the CRN damage field is provably
+*itself* a DK automaton at the same `p1`. So the damage machinery has an independent prediction to
+check against, and it reproduces it **bit-for-bit: zero mismatching cells, no error bar**, through
+the same loop that produces every language-model number. Published critical points come back to
+0.15% and 0.06%. This is the credibility spine, and it is worth more than any measurement in the
+repository.
+
+### 1.3 What was established, sorted by what it can bear
+
+**Durable — methods.**
+
+- Damage spreading, ported to real language models, with the exact-zero null holding throughout.
+- The DK identity as a bit-exact anchor for the whole measurement chain.
+- A gating discipline: every estimator re-validates on a known-answer system **at its own geometry**
+  before it is allowed to report, and returns `NOT DECIDABLE` rather than a number when it fails.
+  Three confident verdicts died to this gate, none of which was visible from the language-model
+  numbers themselves.
+
+**Durable — negative and delimiting results.** These are the strongest scientific content here.
+
+- **F35.** Real autoregressive generation does not absorb a single injected token error:
+  `P_persist = 1.000` across three models, `TV_norm ≈ 0.97`. Free generation never resamples a token,
+  so an error stays in context permanently; the ring revisits every site, which is what makes healing
+  possible at all. **Therefore every repair/damping number characterises the construction, not the
+  model's generative process.** This retroactively explains three earlier puzzles.
+- **F26/F28/F29.** Black-box token-space criticality does not proxy white-box activation-space
+  Lyapunov exponents. The negative is structural, not a power problem: white-box `λ_top` is
+  architectural (flat across training, ≈ 1/L).
+- **F62–F70, the artifact line.** A damage-spreading transition was found at T_c ∈ [0.4343, 0.4391],
+  its exponents fitted, and then it dissolved. A second model family had no transition (F62);
+  nineteen models refuted a corpus explanation (F63); attention is necessary and corpus determines,
+  with scale eliminated over a 70× and a 12× ladder (F64); the frozen phase exists only at r ≤ 2 and
+  one vocabulary entry carries it (F65/F69); one BOS token removes two thirds of it and the masked-LM
+  construction shows none (F66); the clean construction has no transition either, the pre-registered
+  good null (F67); and the mechanism is **an attracting fixed point of the argmax map** — 18 of 24
+  random starts reach `'\n'` on pythia-410m, while gpt2-medium's map has none and wanders to 11
+  endpoints (F70).
+
+**Not established, and correctly labelled so.**
+
+- **T\***, the melting temperature of the single-token degeneracy, as a predictor of neural text
+  degeneration. Model-level ρ = +0.575, p = 0.028 over 15 models; **family-level ρ = +0.483,
+  p = 0.189 over 9 families.** Six of the fifteen points are Pythia sizes. Roughly 16 independent
+  families would settle it. Worth reading F68 in full: it is the clearest statement in the repo that
+  "collect more data until p drops" would have declared victory at n = 15.
+- The universality class of the transition: **withdrawn**, because there is no model-independent
+  transition to classify.
+- The ladder anomaly of F60 — a ~7% downward bias on DK for ladders reaching N ≥ 96, surviving 16×
+  sampling, with six hypotheses refuted — remains **unexplained** and must be disclosed by anything
+  quoting a dynamic exponent.
+
+### 1.4 The discipline is the asset
+
+Eleven retracted claims, eight retractions, six corrections, five amendments, three demotions — all
+still visible in `findings.md`, deliberately. The transferable rules, each bought with at least one
+dead verdict:
+
+1. **Gate every estimator at its own geometry** (F56). A calibration at N=512/200 sweeps licenses
+   nothing at N=96/40 — the tolerance so derived rejects Domany–Kinzel itself.
+2. **State what the independent unit is, and test it** (F57). One visit order was drawn per *batch*,
+   so 512 replicas carried the weight of one draw and error bars were ~8× too small.
+3. **A cost function that can shrink its own comparison window is unbounded** (F59-v1).
+4. **Run a control that should show nothing** (F65). The radius sweep read clean until the control
+   acquired the effect too.
+5. **Vary the construction, not only the subject** (F66). Nineteen models could not distinguish "a
+   property of language models" from "a property of the probe"; one change of CA did it immediately.
+6. **Evaluate an estimator in the regime the system actually runs in** (F70). Measuring top-1
+   probability mass at T=1.0 refuted the mechanism; measuring the argmax map at T=0.02 — where the CA
+   actually runs — confirmed it.
+
+Anything proposed below has to survive these six. §5 is organised so that it does.
+
+### 1.5 Where the work stands, as of today
+
+`paper/plan_paper2.md` reports claims **A + B + C complete with zero further compute**, and claim A
+closed. The open frontier is three uncommitted or just-landed experiments:
+
+- **#93 `novelty_structure`** — does the CA create, recall, or randomise? Measured on a two-axis
+  plane: word-n-gram novelty against per-token NLL from a *third* model (`gpt2-large`, which never
+  generates). Result: the AR construction's best cell is +0.157 and 7 of 12 cells are excluded for
+  whitespace padding; **the MLM construction reaches +0.669 at r=8, T=0.3 — 94% of the way to
+  shuffled on novelty while only 27% of the way on unpredictability**, with no cell excluded.
+- **#94 `basin_dependence`** — just finished. **Both constructions: INITS DIVERGE** (max top-1 spread
+  0.783 AR, 0.928 MLM). Basins are real, so **novelty is prompt-relative** and #93 measures one basin
+  among several. The fixed-point seed is a trap in 2/6 AR cells and 6/6 MLM cells.
+- **#90 T\*** — awaiting roughly seven more independent families.
+
+**The gap #93 leaves open is the one assembly theory addresses.** Its structure axis is a **NLL from
+another neural model**. That is a defensible choice and the circularity was thought about — but it is
+still a model-relative quantity, it truncates at 512 scorer tokens, and it was already shown to be
+gameable by whitespace padding, which had to be patched with `collapse_ws` and a word-density filter
+after the confound was caught. A **model-free, combinatorial** structure axis would be an independent
+line of evidence on exactly the question #93 asks.
+
+---
+
+## 2. What assembly theory is, and the one thing that matters
+
+The **assembly index** `a(x)` of an object is the minimum number of joining steps needed to build it
+from basic building blocks, where **any object already built may be reused at no further cost**.
+
+For a string this has an exact reading: the assembly index is the size of the smallest binary
+straight-line program deriving the string — each step concatenates two things already in the pool.
+`aaaaaaaa` costs 3 steps (`aa → aaaa → aaaaaaaa`). A string of eight all-distinct symbols costs 7,
+because nothing repeats so nothing can be reused. Computing it exactly is the smallest-grammar
+problem and is NP-hard, but a greedy pairing algorithm (RePair) *exhibits a pathway*, so it is a
+**certified upper bound** rather than a fitted estimate.
+
+**The naive move fails, and the pilot confirms it.** Raw assembly index behaves like every other
+compression measure: low for periodic strings, high for random ones, monotone in disorder. It is
+therefore maximised by noise, which is the exact defect that ruled entropy out for this question. §3.2
+shows it failing to separate real text from word-shuffled text on our own data.
+
+**The quantity that does not fail is the ensemble one.** Assembly theory does not score single
+objects; it scores an ensemble, combining assembly index with **copy number**:
+
+```
+        A  =  SUM over object types i  of   exp(a_i) * (n_i - 1) / N_T
+```
+
+where `n_i` is how many copies of type *i* were observed and `N_T` the total. The `(n_i − 1)` factor
+is the whole idea: **an object with a high assembly index appearing many times cannot have arisen by
+chance**, because high-`a` objects are exponentially unlikely to be hit twice independently. So:
+
+- **Random ensemble** — every object unique, so `n_i − 1 = 0` and **A = 0**, no matter how high the
+  assembly indices are. This is the property entropy does not have.
+- **Degenerate ensemble** (the newline attractor) — enormous copy number, but `a_i ≈ log(length)`, so
+  `exp(a_i)` stays small and **A stays small**.
+- **Structured ensemble** — objects of substantial assembly index recurring, so **A is large**.
+
+That is a non-monotone structure measure computed from exact counts, with no distribution to
+estimate. It is what `novelty_structure.py` says it needs and cannot have.
+
+---
+
+## 3. The pilot — what was run, and what it showed
+
+All of §3 was executed today against `results/novelty_structure.json` and `data/shakespeare.txt`.
+Scripts are in the session scratchpad; §5.1 promotes them to `experiments/`.
+
+### 3.1 A calibration rung, and it is free
+
+The project's rule is that an estimator earns the right to report by reproducing a known answer
+first. Assembly index admits two string families with **provable** exact values:
+
+- `a^n` — the exact index is the minimal **addition-chain length** for *n*, computable by breadth-first
+  search over reachable pools. (Each step at most doubles the longest object.)
+- **All-distinct symbols**, length *n* — the exact index is `n − 1`. No substring repeats, so no reuse
+  is possible; the pathway is a binary tree with *n* leaves.
+
+RePair against those references:
+
+```
+  family 1:  a^n                          family 2:  all-distinct
+     n   exact   repair   gap                n   exact   repair   gap
+     2       1        1     0                2       1        1     0
+     3       2        2     0                4       3        3     0
+     5       3        3     0                8       7        7     0
+     7       4        4     0               16      15       15     0
+     8       3        3     0               32      31       31     0
+    24       5        5     0               64      63       63     0
+   100       8        8     0               90      89       89     0
+   128       7        7     0
+```
+
+**Exact at every size, on both families, including non-powers-of-two.** The estimator never returns a
+value below a proven lower bound. This is a genuine new rung on the validation ladder that costs
+CPU-seconds and needs no model — cheaper than any rung currently on it.
+
+### 3.2 The raw assembly index carries no word-order information — the critique's home ground
+
+The standing objection to assembly theory is that the assembly index is a repackaged compression
+measure (§4.2). The decisive test is the **length- and multiset-controlled** one, because
+word-shuffling preserves length, vocabulary and unigram frequencies exactly while destroying all word
+order:
+
+```
+  case                     a_hat   a/len   lz77_z   gzip_bits   H_bits
+  periodic (ab)*              15  0.0075       38         192     2000
+  real text (Shakespeare)    945  0.4725      766        8000     9093
+  word-shuffled text         944  0.4765      770        8120     8773   <-- indistinguishable
+  char-shuffled text        1384  0.6920     1166       10232     9093
+  uniform random (26 sym)   1451  0.7255     1201        9952     9390
+```
+
+Two statements, and they must be kept apart.
+
+**Across regimes that differ in disorder, the raw index and LZ77 track each other closely.** That is
+consistent with the correlations the critics report (Pearson 0.874–0.99 against LZW) — and it is
+measured in the same confounded way, since these regimes differ in far more than word order.
+
+**Under length and multiset control, the raw index is null.** Real and word-shuffled text differ by
+**0.004 in assembly rate** — and so does every compression baseline. The raw assembly index carries
+no information about word order at this granularity. Reporting it as a "complexity" read-out of
+generated text would be reporting gzip with extra steps.
+
+**The ensemble quantity separates the same pair by 6.87** (§3.4). That gap between the two rows is
+the entire case for assembly theory here, and it lands exactly where the rebuttal literature says it
+should — see §4.2.
+
+### 3.3 The exponential weighting is load-bearing — the non-obvious result
+
+`exp(a_i)` is aggressive, so the natural instinct is to temper it. **Tempering destroys the
+property that makes the measure useful.** At matched length, over the five reference regimes:
+
+```
+  weighting        ordering of log A                                                verdict
+  e^{a}   (as defined)  real 4.61 > cycle 3.04 > single 2.17 > soup 1.58 > shuf -0.62   CORRECT
+  e^{a/2}               cycle 1.52 > real 1.19 > single 1.09 > soup -0.58 > shuf -1.71  INVERTED
+  a       (linear)      cycle 0.84 > single 0.70 > real -0.73 > soup -1.67 > shuf -2.10 INVERTED
+```
+
+Under linear weighting the measure is pure copy number and **degenerate repetition wins outright** —
+`"the of the of…"` scores above real text. Only the full exponential penalises trivially-assembled
+objects hard enough to keep real text on top. So the `exp` is not decoration; **it is the entire
+difference between assembly theory and a repetition count**, and that is a concrete empirical
+contribution to a debate that has been conducted mostly on theoretical grounds.
+
+The cost is that `A` becomes a **tail statistic**. Measured effective object count is 3.4 of 18
+repeated types for real text, and 1.0 for several CA cells — meaning one repeat carries the number.
+At n=4 the top object carried **100%** of `A` in one cell (`'still lifes and portraits'`, appearing
+twice). Any use of `A` must report the effective object count next to it.
+
+### 3.4 The statistic to use: a contrast against a matched shuffle
+
+Because `A` grows with sample length (Shakespeare: log A = 3.87 / 4.61 / 5.20 at 3.5k / 7k / 20k
+characters) and is tail-dominated, the absolute value is not comparable across cells. The contrast is:
+
+```
+        Delta  =  log A(text)  -  < log A(same words, shuffled) >
+```
+
+The shuffle preserves length, vocabulary and unigram frequencies exactly, so it is the tightest
+available control — the analogue of this project's CRN null. Length-matched to 440 words, median of
+5 contiguous windows, 6 shuffles each:
+
+```
+  case                Delta      [min,max]
+  real text           +6.87  [+5.75,+8.33]
+  degenerate x1       +0.00  [+0.00,+0.00]     "the the the ..."
+  degenerate x2       +0.35  [+0.35,+0.35]     "the of the of ..."
+  random soup         +0.00  [-1.08,+0.00]
+  unique tokens       +0.00  [+0.00,+0.00]
+```
+
+**Both failure poles pin at exactly zero, and they do so for different reasons** — degenerate text
+because shuffling it returns the same text, random text because neither it nor its shuffle contains
+any repeat at all. Real text sits far above both. That is the non-monotone behaviour the project
+needs, and it is a property of the statistic rather than of a tuned threshold.
+
+### 3.5 Applied to the CA — direction consistent, power insufficient
+
+Length-matched to 440 words, as emitted by `experiments/_assembly_pilot.py matched`:
+
+```
+  cell             Delta      [min,max]      cell             Delta      [min,max]
+  ar|ref           +5.03  [+4.61,+5.25]      mlm|ref          +4.85  [+2.84,+5.25]
+  ar|shuf          +0.00  [-2.13,+0.00]      mlm|shuf         +0.00  [-1.13,+2.96]
+  ar|r3|T0.3       +3.16  [-2.06,+5.48]      mlm|r3|T0.3      +8.70  [-0.64,+9.48]
+  ar|r3|T0.5       -1.41  [-2.29,+3.92]      mlm|r3|T0.5      +3.69  [-0.71,+3.85]
+  ar|r3|T0.7       +0.00  [-0.92,+0.00]      mlm|r3|T0.7      +7.03  [+4.27,+7.25]
+  ar|r3|T0.9+      +0.00  [+0.00,+0.00]      mlm|r3|T0.9      +0.00  [+0.00,+5.14]
+  ar|r8|T0.3       +1.65  [+0.60,+2.85]      mlm|r8|T0.3      +7.39  [+6.38,+8.46]
+  ar|r8|T0.5       +2.30  [+1.72,+2.66]      mlm|r8|T0.5      +5.13  [+4.98,+9.07]
+  ar|r8|T0.7       +1.70  [+0.78,+2.26]      mlm|r8|T0.7      -0.57  [-1.72,+7.62]
+  ar|r8|T0.9+      +0.00  [+0.00,+0.00]      mlm|r8|T0.9+     +0.00  [-0.64,+0.00]
+```
+
+Three things are consistent and one is not.
+
+**Consistent.** The references behave: real round-tripped text reads +5.03 / +5.00, its shuffle reads
+−0.78 / +0.00. Every cell at T ≥ 0.9 reads **exactly +0.00** in both constructions — at high
+temperature the ring contains no repeated 3-gram at all, which is the noise pole reached from data.
+And **MLM sits well above AR** at low temperature (+7.4 to +9.0 against +2.1 to +2.4), agreeing in
+direction with #93's independent finding that the MLM construction is the one showing structured
+novelty (+0.669 against +0.157), from a statistic that shares no machinery with it.
+
+**Not consistent — and this is the reason nothing here is a finding.** The window-to-window spreads
+are enormous and several overlap zero: `mlm|r3|T0.3` is +8.70 over a range of [−0.64, +9.48];
+`mlm|r8|T0.7` is −0.57 over [−1.72, +7.62]. Effective object counts are 1.0–2.3. There is **one
+settle run per cell**, so the independent unit is a single draw of the thing that decides the outcome
+— the identical structure as F57. The convergence with #93 is encouraging and is *not* evidence until
+it is re-measured with seeds as independent units.
+
+**A direct demonstration of that, found while consolidating the pilot scripts.** The first pass and
+`_assembly_pilot.py` differ only in how the shuffle RNG is seeded across windows — nothing about the
+CA, the texts, or the estimator changed. The **controls and references were unmoved** (real text
++6.87 both times, degenerate exactly +0.00, `ar|ref` +5.03, `mlm|r8|T0.3` +7.39), but individual CA
+cells shifted by up to **0.8** (`ar|r3|T0.3` +2.36 → +3.16, `ar|r8|T0.5` +1.87 → +2.30, `ar|r8|T0.7`
++2.26 → +1.70). The poles are stable; the cells are not. That is the underpowering made visible, and
+it is the reason §5.3 specifies eight seeds rather than one.
+
+**One shape worth flagging in advance, because it contradicts the obvious hypothesis.** Issue #20
+predicts assembly peaks at the edge of chaos. Over the tested range Δ is **monotone decreasing in
+temperature** for MLM (+7.4 → +5.6 → −0.4 → 0) and roughly flat then zero for AR. There is no
+interior peak — because the sweep starts at T = 0.3 and the AR degeneracy lives *below* it. Finding
+the peak requires going down to T ≈ 0.02, which is exactly what §5.3 does.
+
+### 3.6 Confounds found in the pilot that any real experiment must handle
+
+1. **Ring rotations.** The lattice is periodic, so a phrase and its rotations are distinct linear
+   substrings. Two of the top-contributing objects in one cell were `'he thought berlin germany'` and
+   `'germany he thought berlin'` — the same content counted twice.
+2. **Replica concatenation.** `full_text` joins all 16 replicas, so cross-replica convergence is
+   scored as within-text structure. Those are different claims and must be separated.
+3. **Novelty may be overstated in the co-measurement.** Top contributors read like memorised corpus
+   fragments (`'still lifes and portraits'`, `'confession of faith'`, `'the church of st'`) while
+   scoring `novel_4gram ≈ 0.95` against a 3000-document reference. A 3000-document sample of the Pile
+   cannot rule out recall. High Δ with high measured novelty may be **recall the reference is too
+   small to see**.
+4. **Length.** `A` grows with word count; cells hold 443–1137 words. Matched truncation is mandatory.
+5. **Sample size vs n.** At n = 4 real text scored `A = 0` in a 606-word sample — an undersampling
+   artifact, not a property of real text. Use n = 2 and 3 at these lengths, or raise the budget.
+
+---
+
+## 4. Prior art and novelty
+
+A literature check was run alongside the pilot (arXiv API sweep over all papers matching
+`all:"assembly index"`, 2019–2026, plus targeted searches). Items marked **[unverified]** could not be
+fetched directly and must be checked before citing.
+
+### 4.1 The theorem that settles the estimator question
+
+**The string assembly index is exactly the smallest straight-line-program size.** Masierak,
+*Computational Complexity of Determining the Assembly Index* (arXiv:2604.16302), Lemma 1: `ASI(w) =
+SLP(w)`; Theorem 1: the decision problem is **NP-complete**; Theorem 2: the optimisation version is
+**NP-hard and APX-hard** — no polynomial-time approximation scheme unless P = NP.
+
+This is good news for §3.1, not bad. It means the estimator design is forced and defensible: RePair
+*exhibits a grammar*, so it is a **certified upper bound**, and the LZ77 factor count is a lower bound
+(`z ≤ g`, Rytter 2003 / Charikar et al. 2005 — **[unverified]**, and load-bearing, so verify). Report
+the bracket `[z, RePair]`, claim exactness only on the two provable families of §3.1, where it holds.
+
+The AT camp has itself converged on grammar algorithms: Siebert, Chowdhury, Slocombe & Walker,
+*Assembly Spaces: Formal Definitions and Fast Methods for Approximating Assembly Indices*
+(arXiv:2606.15499, 2026), "show how formal grammar algorithms can be adapted to efficiently bound
+assembly index calculations". There is **no published general-purpose exact string-assembly tool** —
+the `assembly-theory` Rust crate (Vimal et al., JOSS, DOI `10.21105/joss.09318`) is molecules-only.
+Ours would have to be written, which §5.1 does.
+
+### 4.2 The contested status, stated fairly
+
+**The critique.** Abrahão, Hernández-Orozco, Kiani, Tegnér & Zenil, *PLOS Complex Systems* 2024 (DOI
+`10.1371/journal.pcsy.0000014`, arXiv:2403.06629): "We prove the full equivalence between Assembly
+Theory and Shannon Entropy via a method based upon the principles of statistical compression renamed
+'assembly index' that belongs to the LZ family." Supporting empirics (Ozelim et al., *npj Complexity*
+2026, DOI `10.1038/s44260-026-00088-w`, arXiv:2408.15108): LZW vs assembly Pearson **0.874**;
+Spearman **1.00** on fixed-length strings; **0.95 between InChI string length and assembly index**;
+and on mass-spec biosignature classification LZW and BDM reach **AUC 1.00** against assembly's
+0.43–0.77. In its home domain, assembly lost the head-to-head.
+
+**The rebuttal, and it contains the defence this project should adopt.** Kempes, Lachmann,
+Iannaccone, Fricke, Chowdhury, Walker & Cronin, *npj Complexity* 2025 (DOI
+`10.1038/s44260-025-00049-9`, arXiv:2406.12176): assembly index is NP-complete while Huffman coding
+and Shannon entropy are in P, so "any complexity measure that lives in P cannot be strictly
+equivalent". More usefully, they run **a length- and multiset-controlled experiment**: over 10,000
+permutations of the fixed multiset `aaaaaabbbbbbcccc`, the assembly↔LZW correlation collapses from
+~0.9 to **0.25**. Their reading — which the InChI-length correlation of 0.95 supports — is that the
+critics' high correlations are **length artifacts**.
+
+**Why this matters here, and it is the strongest structural point in this document.** This project
+measures a **ring of fixed N**. It is natively in the length-controlled regime where the two measures
+decorrelate. And the pilot's control was arrived at independently: §3.2's real-versus-word-shuffled
+comparison **is** the Kempes permutation test, applied to text. It reproduces their result in a new
+domain — under multiset control the raw index goes null — and then shows the ensemble quantity
+separating the same pair by 6.87. That is the shape of a defensible contribution rather than a
+position in someone else's argument.
+
+Note also Łukaszyk, *IPI Letters* 3(1) 2025 (DOI `10.59973/ipil.157`), which disputes the rebuttal's
+own complexity claim. The debate is live; do not present either side as settled.
+
+### 4.3 What is novel here, precisely
+
+| Claim | Novel? | Prior art |
+|---|---|---|
+| AT applied to natural language / LLM-generated text | ✅ **Yes** — zero prior art found | The AT reviews *name* language as an anticipated domain. Cite that, own it, claim execution not conception |
+| **Assembly A tested at a critical point / edge of chaos** | ✅ **Yes** — zero prior art found | Nearest: arXiv:2602.15185, a *compression*-based complexity peaking at the 2D Ising T_c |
+| AT ↔ Crutchfield statistical complexity / excess entropy | ✅ **Yes** — no connection established anywhere | — |
+| AT applied to cellular automata | ❌ **No** | **AssemblyCA** — Patarroyo, Sharma, Walker & Cronin, ALOE @ NeurIPS 2023 |
+| AT applied to strings, formally | ❌ **No** | Masierak (arXiv:2602.04889, 2604.16302); Łukaszyk & Bieniawski, *Mathematics* 12(10):1600 |
+| AT outside chemistry at all | ❌ **No** | Organisational design, DOI `10.1007/s41469-024-00182-0` |
+
+**`AssemblyCA` must be read and cited before anything is written.** It applies assembly index and copy
+number to 2D discrete cellular automata to quantify open-endedness, using a Hashlife-style
+"Hash Assembly" approximation. Reported differences, from the project site and repository rather than
+the PDF (**[unverified]** — read it): it works on **2D spatial patterns**, not 1D token strings; it
+does **not** use the exponential assembly equation `A = Σ e^{a_i}(n_i−1)/N_T`; and it does **not**
+discuss criticality, edge of chaos, or Wolfram classes. Those three gaps are the differentiation, but
+they have to be confirmed from the paper.
+
+**The defensible novelty is the conjunction, not any ingredient:** *1D token strings generated by an
+LM-driven CA, measured with the full assembly equation rather than the index alone, tested for
+non-monotonicity across a transition whose two poles were independently established by damage
+spreading.* Do not claim "first application of AT to strings" or "first AT + CA" — both are false and
+both are one search away.
+
+### 4.4 The two objections a reviewer will raise, and the answers
+
+**"You have re-badged grammar compression."** Answer in three parts, in this order: (i) concede it for
+the raw index and show the concession in your own data (§3.2) — the project's record is built on
+conceding early; (ii) the object of study is **A**, the exponentially-weighted copy-number-coupled
+ensemble quantity, which has no compression analogue, and §3.3 shows the exponential is load-bearing
+rather than decorative; (iii) the experiments live at fixed N, the regime where Kempes et al. showed
+the measures decorrelate.
+
+**"Lindgren & Nordahl (1988) already gave one-hump complexity measures for cellular automata, and
+Crutchfield's statistical complexity already peaks at criticality — what does AT add?"** This is the
+sharper objection and it has no rhetorical answer, only an empirical one: §5.2 must report `C_μ` and
+excess entropy alongside Δ. **If Δ peaks exactly where `C_μ` peaks, this is a correlation result and
+should be written up as one paragraph.** If Δ separates from it, that is the finding.
+
+**The result that would survive review**, stated in advance so it cannot be constructed afterwards:
+Δ is **non-monotone in temperature with an interior peak, while LZ77, LZ78/LZW, gzip and the entropy
+rate are monotone across the same sweep**. A qualitative difference in shape is not explainable by a
+correlation coefficient. That is exactly what §5.3 is built to test, and its null is the case where Δ
+is monotone too.
+
+---
+
+## 5. The follow-up program
+
+Staged so each step gates the next, in the project's own idiom. Steps 1 and 2 are free and must pass
+before any model is loaded.
+
+### 5.1 `experiments/assembly_calib.py` — the rung *(free, CPU-seconds)*
+
+Promote §3.1 and §3.4 to a gated experiment. Three assertions, each with a proven reference:
+
+- RePair is **exact** on `a^n` against minimal addition-chain length, for n up to 128.
+- RePair is **exact** on all-distinct strings against `n − 1`.
+- Δ reads **0 ± tolerance** on both failure poles (degenerate repetition, random soup) and
+  **> +4** on real text, at matched length.
+
+Emit `NOT DECIDABLE` and refuse to report if any fails, in the manner of `dp_calibration.py`. Add
+`tests/test_assembly_calib.py` asserting the two exactness properties directly, so a refactor of the
+estimator cannot silently degrade it. **Gate: if the estimator is not exact on both families at the
+lengths used downstream, stop here.**
+
+### 5.2 `experiments/assembly_baselines.py` — the head-to-head *(free)*
+
+The critique in §4.2 is not a footnote; run it as an experiment. Every text measured anywhere in the
+program carries **all** of these, and no cell ever reports Δ alone:
+
+| Baseline | Why it is mandatory |
+|---|---|
+| **LZ77 factor count `z`** | A lower bound on the assembly index itself (`z ≤ g`). Omitting it is indefensible |
+| **LZ78 / LZW dictionary size** | The exact measure the critics claim equivalence to |
+| **RePair size, and Sequitur** | `ASI = SLP`, so these are upper bounds *on our own quantity*. Report the bracket `[z, RePair]` |
+| **gzip / zstd length** | The "does a zip file do this too" test. Cheap; omitting it looks evasive |
+| **Entropy: unigram `H₀`, block `H_k`, entropy rate `h`** | The base claim is "not entropy". Prove it here rather than asserting it |
+| **Crutchfield statistical complexity `C_μ`, excess entropy `E`** | The established one-hump measure, and the sharpest objection (§4.4) |
+| **Raw length and type count** | The InChI-length confound (r = 0.95) says the trivial baseline is the dangerous one |
+| `coarse_mi_decay` (`experiments/mlm_lib.py`) | Already in the repo, already shuffle-debiased — the closest existing long-range structure estimator |
+
+`C_μ` and `E` come with the same undersampling problem `novelty_structure.py` names, so estimate them
+on the **frequency-bucketed** alphabet that `mlm_lib.freq_buckets` already builds for `coarse_mi_decay`,
+and report them as bounded/coarse rather than as the true values.
+
+Pre-register the question: **does any baseline reproduce Δ's ordering across the five reference
+regimes and across the temperature sweep?** Report partial correlations with length held constant, and
+run the Kempes permutation control (fixed multiset, shuffled order) on every cell.
+
+If yes, assembly theory adds nothing here and the correct output is a short negative note. That is a
+perfectly good result and this project has published several. If no — specifically if the baselines
+stay monotone in temperature where Δ turns over — then the ensemble construction is doing work no
+compression measure does, and *that* is the contribution.
+
+### 5.3 `experiments/assembly_temperature.py` — the experiment worth building
+
+**The design.** The AR construction has a **known** degenerate pole at low temperature: 74% of the
+ring is a single token at T = 0.02, established independently across nineteen models and three
+interventions (F62–F70), and it melts at T\* ≈ 0.52 for pythia-410m. It has a **known** noise pole at
+high temperature. Δ is provably zero at both (§3.4). **So Δ must be non-monotone in T for the AR
+construction, with an interior maximum, or assembly theory is not measuring structure here.**
+
+The MLM construction is the control. F67 established it has **no absorbing state** — surviving damage
+never drops below 0.547 down to T = 0.02. **So its Δ must not turn over at low T.** Two constructions,
+opposite predictions, both poles established in advance by other means.
+
+```
+  PRE-REGISTERED
+
+  Primary (AR).   Delta(T) has an interior maximum: it rises from ~0 at T=0.02, peaks, and
+                  returns to 0 at high T. Report the peak location against T* = 0.52 (F68).
+  Primary (MLM).  Delta(T) does NOT turn over at low T -- monotone or plateau down to T=0.02.
+  Null.           Delta is monotone decreasing in T for BOTH constructions. Then Delta is
+                  tracking disorder, not structure, and the edge-of-chaos framing of #20 is
+                  refuted on the one system where both poles are independently known.
+                  A NULL HERE IS A GOOD RESULT and closes the thread cleanly.
+  Kill condition. If AR's low-T Delta does not approach 0 where the ring is provably 74% one
+                  token, the statistic is not measuring what §3.4 says it measures -- stop and
+                  fix the estimator, do not reinterpret.
+
+  Grid.     T in {0.02, 0.1, 0.2, 0.3, 0.436, 0.52, 0.7, 0.9, 1.1}   -- spans BOTH poles,
+            and includes F58's T_c and F68's T* so the peak can be located against them.
+            r in {3, 8} for the headline; r=2 run SEPARATELY and labelled as the artifact
+            regime (F69), never pooled.
+  Power.    >= 8 seeds. THE SEED IS THE INDEPENDENT UNIT, not the replica (F57). Report
+            between-seed against within-seed spread; if they are comparable, the design is
+            wrong and n is 1.
+  Per-replica.  Measure Delta per replica and aggregate, so cross-replica convergence is a
+            SEPARATE reported quantity from within-replica structure (confound 2, S3.6).
+  Rotations. Canonicalise ring rotations before counting object types (confound 1, S3.6).
+  Baselines. Every cell also carries the S5.2 baselines. No cell reports Delta alone.
+```
+
+**Cost.** The settle runs are the ones the project already does (N=96, B=16, 16 sweeps). The grid is
+9 temperatures × 2 radii × 2 constructions × 8 seeds = 288 settles, resumable and keyed per cell.
+Assembly scoring is CPU-seconds per cell. This is comparable to `novelty_structure.py`, far below the
+DP programme.
+
+**Why it is the right experiment.** It satisfies all six rules of §1.4: it is gated at its own
+geometry (§5.1), it names the seed as the independent unit, it has no fitted window, **it runs a
+control that should behave differently**, it varies the construction rather than only the model, and
+it evaluates the estimator in the regime the system runs in — which is precisely the low-T argmax
+regime F70 showed is the one that matters.
+
+### 5.4 `experiments/assembly_developmental.py` — the usefulness test *(second tier)*
+
+Δ across Pythia training checkpoints, against the developmental transition of F25/F39. If Δ tracks a
+transition the project already measures by other means, assembly becomes a *cheap black-box*
+instrument for it — a real methods contribution, since Δ needs no damage runs, no CRN twins and no
+scorer model, just settled rings. If it does not track it, that is a clean boundary on what the
+measure sees. **Do not start this until §5.3 returns.**
+
+### 5.5 What to do with `basin_dependence` first
+
+Issue #94 landed today: **inits diverge in both constructions** (top-1 spread 0.783 / 0.928), so novelty is
+**prompt-relative** and #93 measures one basin among several. Every design above must therefore
+declare its initialisation, and the honest default is to run §5.3 under **both random and corpus
+seeding** and report them separately. A Δ measured only from random seeding answers a narrower
+question than "does this model's CA produce structure" — it answers "does it produce structure *from
+noise*", which is the harder and less interesting version. Folding this in costs one extra arm.
+
+---
+
+## 6. Risks, and what should stop this
+
+| Risk | Severity | Mitigation, and where |
+|---|---|---|
+| **Δ is a tail statistic** — effective object count 1–3, one chance repeat moves it | **High.** The single biggest threat | Report effective object count beside every Δ; ≥8 seeds with the seed as the independent unit; per-replica measurement (§5.3) |
+| **AT is contested**, and importing it imports the fight | **High** | Engage head-on: §5.2 runs the compression baselines as a pre-registered experiment, and §3.2 already concedes the critique for the *raw* index on our own data. The ring's fixed N puts us in the regime where Kempes et al. showed the measures decorrelate (§4.2) |
+| **`C_μ` already peaks at criticality** (Lindgren & Nordahl 1988; Crutchfield), so Δ may be a redescription | **High** — the sharpest objection | Report `C_μ` and excess entropy in every cell (§5.2). If Δ peaks where `C_μ` peaks, write one paragraph and stop |
+| **AssemblyCA is prior art for AT-on-CA** | **Medium** | Read the PDF before writing; differentiate on 1D-vs-2D, the full assembly equation vs the index alone, and criticality — but confirm all three from the paper, not the project page |
+| **Δ may be a repetition detector in disguise** | **High** | The degenerate control reads exactly +0.00 (§3.4), which a repetition detector could not do. But it must be reported every time, not cited once |
+| **Novelty may be recall the reference is too small to see** (§3.6) | **Medium–High** | Enlarge the novelty reference well past 3000 documents before any joint novelty × assembly claim; treat top contributors as memorisation candidates and check them |
+| **Ring rotation and replica concatenation inflate copy number** | **Medium.** Mechanical | Canonicalise rotations; measure per replica (§5.3) |
+| **Exact assembly index is NP-hard** | **Low** | Never claim exactness on long strings. RePair is a *certified upper bound* — it exhibits a pathway. Exactness is claimed only on the two provable families, where it holds |
+| **Over-slicing into a third paper** | **Medium** | `plan_paper2.md` already warns against this. Assembly is a *section* of the structure paper unless §5.3 returns the non-monotone result with power |
+
+**The two conditions that should stop the program.** First, if §5.2 shows gzip and LZ77 reproduce Δ's
+ordering everywhere, the measure adds nothing and the correct output is a paragraph, not a paper.
+Second, if §5.3's null holds and Δ is monotone in temperature for both constructions, the
+edge-of-chaos framing is refuted on the best-instrumented system available, and the thread closes.
+
+**Both of those are good outcomes.** This project's record is built on scoping claims down, and the
+value of §5.3 is that it is arranged so a null is as informative as a positive — the AR construction
+has a pole that Δ *must* find, so failure to find it condemns the statistic rather than leaving the
+question open.
+
+---
+
+## 7. What to do next, in order
+
+1. **Do not quote §3.5.** The direction agrees with #93 from an independent statistic, which is
+   genuinely encouraging, but it is one settle per cell on a tail statistic.
+2. **Read the `AssemblyCA` paper** (ALOE @ NeurIPS 2023). It is the closest prior art and the three
+   differentiators in §4.3 currently rest on the project page rather than the PDF. This is a
+   half-hour that decides whether the framing survives.
+3. **Verify the two load-bearing citations** flagged in §4.1: `z ≤ g = O(z log(n/z))` (Rytter 2003;
+   Charikar et al. 2005). The estimator's lower bound depends on them. This project already has
+   `experiments/audit_refs.py` and `tests/test_refs_match_arxiv.py` for exactly this.
+4. **Build `assembly_calib.py` (§5.1).** Free, and it either earns the estimator the right to report
+   or kills the thread in an afternoon.
+5. **Build `assembly_baselines.py` (§5.2).** Also free. Answers the strongest reviewer objection
+   before any compute is spent on it — including `C_μ`, which is the one that could end the program.
+6. **Then and only then, `assembly_temperature.py` (§5.3)** — with both seeding arms from §5.5.
+7. Register `("assembly_*.json", "assembly_*.py")` in `_STALENESS_PAIRS` in
+   `tests/test_results_self_consistency.py`, or the suite fails on the provenance-coverage test.
+8. Update issue **#20** with §3's pilot results — particularly §3.3, which is a real finding about
+   assembly theory itself and is worth recording whether or not the program continues, and §3.2,
+   which reproduces the Kempes permutation result in a new domain.
+
+---
+
+## 8. Bibliography
+
+Identifiers as returned by the literature check. **[unverified]** means the source could not be
+fetched directly — check before citing.
+
+**Assembly theory, primary**
+- Sharma, Czégel, Lachmann, Kempes, Walker & Cronin (2023). "Assembly theory explains and quantifies
+  selection and evolution." *Nature* 622:321–328. DOI `10.1038/s41586-023-06600-9`. arXiv:2206.02279
+- Marshall, Murray, Cronin et al. (2022). "Formalising the pathways to life using assembly spaces."
+  *Entropy* 24(7):884. DOI `10.3390/e24070884`. arXiv:1907.04649
+- Marshall et al. (2021). *Nature Communications* 12:3033. DOI `10.1038/s41467-021-23258-x`
+
+**Strings and complexity — the estimator's foundation**
+- Masierak. "Computational Complexity of Determining the Assembly Index." arXiv:2604.16302 —
+  `ASI(w) = SLP(w)`; NP-complete; APX-hard. *(the arXiv ID and stated submission date disagree)*
+- Masierak. "Templated Assembly Theory." arXiv:2602.04889 — Defs 2.1/2.2, the no-trash condition
+- Siebert, Chowdhury, Slocombe & Walker (2026). "Assembly Spaces: Formal Definitions and Fast Methods
+  for Approximating Assembly Indices." arXiv:2606.15499
+- Łukaszyk & Bieniawski (2024). "Assembly Theory of Binary Messages." *Mathematics* 12(10):1600.
+  DOI `10.3390/math12101600` **[unverified]**
+- Rytter (2003); Charikar et al. (2005), "The smallest grammar problem", *IEEE Trans. Inf. Theory*
+  51(7):2554–2576 — the `z ≤ g` bounds. **[unverified, and load-bearing]**
+- Larsson & Moffat (2000), RePair; Nevill-Manning & Witten (1997), Sequitur **[unverified]**
+
+**The critique**
+- Abrahão, Hernández-Orozco, Kiani, Tegnér & Zenil (2024). *PLOS Complex Systems*.
+  DOI `10.1371/journal.pcsy.0000014`. arXiv:2403.06629
+- Uthamacumaran, Abrahão, Kiani & Zenil (2024). *npj Systems Biology and Applications* 10:82.
+  DOI `10.1038/s41540-024-00403-y`. arXiv:2210.00901
+- Ozelim et al. (2026). *npj Complexity*. DOI `10.1038/s44260-026-00088-w`. arXiv:2408.15108
+
+**The rebuttal — source of this project's defence**
+- Kempes, Lachmann, Iannaccone, Fricke, Chowdhury, Walker & Cronin (2025). "Assembly theory and its
+  relationship with computational complexity." *npj Complexity*. DOI `10.1038/s44260-025-00049-9`.
+  arXiv:2406.12176. PMC12408342 — **the fixed-multiset permutation experiment**
+- Łukaszyk (2025). *IPI Letters* 3(1). DOI `10.59973/ipil.157` — disputes the rebuttal in turn
+
+**Closest prior art — read before writing**
+- **Patarroyo, Sharma, Walker & Cronin (2023). "AssemblyCA: A Benchmark of Open-Endedness for Discrete
+  Cellular Automata." ALOE @ NeurIPS 2023.** `openreview.net/forum?id=5cEQ4ZOsIN` ·
+  `assemblyca.github.io` · `github.com/KeithPatarroyo/assemblyca` **[PDF unverified — bot challenge]**
+- Champagne-Ruel, Kempes & Mathis (2025). arXiv:2509.04547
+
+**Comparison targets**
+- "Finding the Edge of Chaos in a Ferromagnet: Quantifying the 'Complexity' of 2D Ising Phase
+  Transitions with Image Compression." arXiv:2602.15185 — compression-based complexity peaking at T_c
+- Lindgren & Nordahl (1988). "Complexity Measures and Cellular Automata." *Complex Systems*
+  2(4):409–440 — the canonical one-hump prior art **[unverified]**
+- Feldman & Crutchfield. arXiv:cond-mat/9702191
+
+**Coverage caveat.** The negative result in §4.3 rests on an arXiv API sweep plus web search;
+Semantic Scholar rate-limited during the check. It is a strong negative, not an exhaustive one — a
+non-arXiv journal paper applying AT to text could exist.
+
+---
+
+## Appendix — reproducing the pilot
+
+Every table in §3 is reproduced by one script, added with this document:
+
+```bash
+.venv/bin/python experiments/_assembly_pilot.py            # all four stages, ~7 min
+.venv/bin/python experiments/_assembly_pilot.py calib      # S3.1  the provable rung
+.venv/bin/python experiments/_assembly_pilot.py discrim    # S3.2  raw index vs LZ77/gzip/entropy
+.venv/bin/python experiments/_assembly_pilot.py weight     # S3.3  exp vs e^{a/2} vs linear
+.venv/bin/python experiments/_assembly_pilot.py matched    # S3.4/S3.5  length-matched Delta
+```
+
+**It is deliberately named `_assembly_pilot.py`, not `assembly_pilot.py`.** It writes nothing to
+`results/`, carries no provenance stamp and is not registered in `_STALENESS_PAIRS`, because it is
+not a gated experiment and must not be mistaken for one. §5.1 specifies the gated replacement.
+
+The two functions worth keeping verbatim are `repair_assembly_index` (a certified upper bound — it
+exhibits a grammar) and `addition_chain_length` (the exact reference for the `a^n` family).
+Everything else is scaffolding for the tables above.
+
+The `matched` stage takes the bulk of the runtime, because RePair is recomputed per n-gram type per
+shuffle. A gated version should memoise assembly indices by n-gram string — they do not change
+between shuffles, only the counts do.

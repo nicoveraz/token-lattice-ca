@@ -20,3 +20,70 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
     r=8 T=0.7  NLL=6.530  novel2=0.5684  novel4=0.9943  | '\n\t_L\n\t.if2)\t\t\tchildren.push    @childrenchildren\n   '
     r=8 T=0.9  NLL=6.619  novel2=0.7078  novel4=0.9951  | "', i.eaging.php?pP*= NHB-\n the Effectnd\nglobal _ ) F"
     r=8 T=1.1  NLL=7.475  novel2=0.8167  novel4=0.9986  | 'pper cultures together. on ebecc Mately Thinking ali'
+    r=8 T=1.3  NLL=8.836  novel2=0.8904  novel4=1.0  | ' weird Ontario horror to High level politics fromqu '
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7176.55it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+  mlm / bert-base-uncased
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (4689 > 512). Running this sequence through the model will result in indexing errors
+     real text (round-tripped)  NLL=3.347  novel4=0.0016
+            shuffled real text  NLL=6.811  novel4=0.9984
+    r=3 T=0.3  NLL=4.628  novel2=0.3401  novel4=0.9074  | '##llos publ., r. w. norton vol. 1 : it looks like th'
+    r=3 T=0.5  NLL=4.781  novel2=0.3507  novel4=0.9131  | '##is and thomas continued to play in the u. s., town'
+    r=3 T=0.7  NLL=4.881  novel2=0.3288  novel4=0.9368  | ': 3. 5 m. encarta de semper in particular, she thoug'
+    r=3 T=0.9  NLL=5.456  novel2=0.4568  novel4=0.9619  | '2010 oh my god, that esk is the national coordinator'
+    r=3 T=1.1  NLL=6.557  novel2=0.6597  novel4=0.9896  | 'goes to deter all events : taoiseach michael lin act'
+    r=3 T=1.3  NLL=7.449  novel2=0.8248  novel4=0.9982  | 'rod ( rae ) 2005, week ; v = disconnected envy ; 200'
+    r=8 T=0.3  NLL=4.298  novel2=0.4835  novel4=0.9487  | '##n, wbzn, wbzn, and alcoholics anonymous. these org'
+    r=8 T=0.5  NLL=4.292  novel2=0.4237  novel4=0.9565  | '##ments de brabant is the oeuvre of the gentiles. a '
+    r=8 T=0.7  NLL=4.631  novel2=0.4407  novel4=0.9554  | 'florence. whittle, j. c. en espanol society. preside'
+    r=8 T=0.9  NLL=5.324  novel2=0.473  novel4=0.9744  | '" there are some out there, too. " josef had been we'
+    r=8 T=1.1  NLL=6.358  novel2=0.6248  novel4=0.9924  | '( plus pigs ) treated her like a daughter and contin'
+    r=8 T=1.3  NLL=7.944  novel2=0.8257  novel4=1.0  | 'routine pee wiz whom he shouted at while in nikolale'
+
+=== ar / EleutherAI/pythia-410m ===
+                   NLL   novel-2   novel-4
+     REAL TEXT   3.041     0.000     0.000
+      SHUFFLED   6.745     0.517     1.000
+     r=3 T=0.3   4.611     0.412     0.971
+     r=3 T=0.5   4.208     0.407     0.976
+     r=3 T=0.7   5.061     0.497     0.992
+     r=3 T=0.9   6.404     0.675     0.997
+     r=3 T=1.1   7.532     0.739     1.000
+     r=3 T=1.3   8.114     0.839     1.000
+     r=8 T=0.3   4.764     0.407     0.975
+     r=8 T=0.5   3.975     0.430     0.973
+     r=8 T=0.7   6.530     0.568     0.994
+     r=8 T=0.9   6.619     0.708     0.995
+     r=8 T=1.1   7.475     0.817     0.999
+     r=8 T=1.3   8.836     0.890     1.000
+
+=== mlm / bert-base-uncased ===
+                   NLL   novel-2   novel-4
+     REAL TEXT   3.347     0.002     0.002
+      SHUFFLED   6.811     0.512     0.998
+     r=3 T=0.3   4.628     0.340     0.907
+     r=3 T=0.5   4.781     0.351     0.913
+     r=3 T=0.7   4.881     0.329     0.937
+     r=3 T=0.9   5.456     0.457     0.962
+     r=3 T=1.1   6.557     0.660     0.990
+     r=3 T=1.3   7.449     0.825     0.998
+     r=8 T=0.3   4.298     0.483     0.949
+     r=8 T=0.5   4.292     0.424     0.957
+     r=8 T=0.7   4.631     0.441     0.955
+     r=8 T=0.9   5.324     0.473     0.974
+     r=8 T=1.1   6.358     0.625     0.992
+     r=8 T=1.3   7.944     0.826     1.000
+
+  -> AR: STRUCTURED NOVELTY at 1 setting(s), best r=8 T=0.5 with NLL=3.975 against real text's 3.041 and novelty 0.430 vs 0.000. The construction produces sequences that are unseen AND predictable to a model that did not generate them. This is NOT evidence the model has new ideas -- novel n-grams are not ideas. MLM: STRUCTURED NOVELTY at 2 setting(s), best r=8 T=0.5 with NLL=4.292 against real text's 3.347 and novelty 0.424 vs 0.002. The construction produces sequences that are unseen AND predictable to a model that did not generate them. This is NOT evidence the model has new ideas -- novel n-grams are not ideas.
+
+wrote results/novelty_structure.json

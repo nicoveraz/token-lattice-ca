@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F70)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F72)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2340,6 +2340,69 @@ wrong quantity for a regime that samples at T=0.02, where only the argmax matter
 right thing reversed the reading entirely. The lesson generalises past this finding: an estimator
 must be evaluated **in the regime the system actually runs in**, which is F56's rule arriving in a
 new disguise.
+
+### F71 — the clean construction produces structured novelty; the AR probe does not (#93)
+Asking "can the model create, or only recombine?" needs two axes, because **entropy alone is
+maximised by noise**. Novelty is the fraction of word 2-grams absent from a Pile reference;
+structure is per-token NLL under `gpt2-large`, a third family that never generates. Each cell is
+placed on the real-text → word-shuffled axis for both, and the summary is the **gap** — how much
+more novel a cell is than it is unpredictable.
+
+```
+                 NLL pos   novel pos    gap    words/100ch
+AR   best valid    0.98       0.96     -0.021     15.7      NO structured novelty
+MLM  r=8 T=0.3     0.27       0.94     +0.669     ~18       94% novel, 27% unpredictable
+```
+
+**MLM: 94% of the way to shuffled on novelty while only 27% of the way on unpredictability.** The
+samples read accordingly — `'##ments de brabant is the oeuvre of the gentiles.'` against the AR
+construction's `'\n\t_L\n\t.if2)\t\t\tchildren.push'`. **AR: nothing.** Seven of twelve cells are
+whitespace padding, three more are *more unpredictable than shuffled text*, and the best survivor
+has a negative gap.
+
+Coherent with everything since F66: the construction the model was trained for behaves like a
+language model; the two-token AR probe behaves like a broken one.
+
+**Two defects of my own, both caught before recording, both of the same family as the previous
+four.** First, the NLL was scored on raw text, so a ring that pads itself with **whitespace** scored
+as highly predictable while contributing almost no words — the two lowest-NLL AR cells had the
+*fewest* words (526 and 443 against 606 for real text). Collapsing whitespace before scoring moved
+the apparent winner by **2.02 nats** and destroyed it. Second, the gap is scale-free and stayed
+positive when *both* fractions exceeded 1, so "structured novelty" was being awarded to text more
+unpredictable than shuffling. A cell must now lie **between** the references to count.
+
+**The boundary, restated because the result is positive.** This means the construction produces
+sequences that are unseen in the corpus and predictable to a model that did not generate them. It
+does **not** mean the model has new ideas. Novel n-grams are not ideas, and semantic novelty is not
+measured here.
+
+### F72 — the prompt is erased, and the absorbing state has a negligible basin (#94)
+#93 seeds from random tokens, so I proposed #94 expecting novelty to prove prompt-relative. **It is
+not.** Seeding the ring with real corpus text instead of noise changes the settled composition
+almost not at all:
+
+```
+                 random vs corpus     corpus seed        fixed-point seed
+                 max top-1 gap        retention          retention
+AR                    0.053              2%              trapped 2/6 cells
+MLM                   0.022             12%              trapped 6/6 cells
+```
+
+Only **2%** of an AR corpus seed survives in place, and **12%** for MLM. The settled state does not
+remember what it started from, so #93's novelty-from-noise is *representative* rather than one
+basin among several. My speculation when proposing this was wrong, and the run says so plainly.
+
+**But the fixed-point seed never escapes** — a ring filled with the attractor token is
+self-sustaining in 2/6 AR cells and **6/6 MLM cells**. That looks like it contradicts F67's "no
+absorbing state" and does not: it refines it. The uniform state **is** absorbing for both
+constructions; its **basin is negligible**, so neither random nor text seeds ever arrive. *An
+absorbing state you never reach produces no transition* — which is exactly why F67 found none, and
+a better statement of that finding than the original.
+
+**A third verdict-logic defect, same shape as the others.** The spread was computed across all
+three inits, so the frozen fixed-point ring drove it and the verdict printed "INITS DIVERGE — basins
+are real". The meaningful comparison is random versus corpus; the fixed point is a seed nobody would
+prompt with. Separating them reverses the conclusion.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

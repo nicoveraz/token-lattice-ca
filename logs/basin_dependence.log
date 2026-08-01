@@ -1,0 +1,81 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  reference 2-grams: 419,617
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7264.88it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:55,  2.52it/s]Loading weights:  34%|███▎      | 98/292 [00:00<00:00, 249.85it/s]Loading weights:  51%|█████     | 149/292 [00:00<00:00, 244.00it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 252.96it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 307.09it/s]Loading weights:  97%|█████████▋| 284/292 [00:01<00:00, 338.96it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 267.67it/s]
+
+  ar / EleutherAI/pythia-410m (has a fixed point (F70))
+    attractor token: '\n'
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+    r=2 T=0.02        random  top1=0.737 retain=0.000 novel2=0.2396 NLL=3.4
+    r=2 T=0.02        corpus  top1=0.790 retain=0.037 novel2=0.274 NLL=2.93
+    r=2 T=0.02   fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.38
+    r=2 T=0.5         random  top1=0.350 retain=0.000 novel2=0.4557 NLL=4.34
+    r=2 T=0.5         corpus  top1=0.339 retain=0.018 novel2=0.4858 NLL=3.65
+    r=2 T=0.5    fixed_point  top1=0.343 retain=0.343 novel2=0.4671 NLL=4.67
+    r=2 T=0.7         random  top1=0.167 retain=0.000 novel2=0.5896 NLL=5.69
+    r=2 T=0.7         corpus  top1=0.154 retain=0.010 novel2=0.5655 NLL=5.69
+    r=2 T=0.7    fixed_point  top1=0.144 retain=0.144 novel2=0.6046 NLL=4.81
+    r=3 T=0.02        random  top1=0.220 retain=0.000 novel2=0.4155 NLL=3.88
+    r=3 T=0.02        corpus  top1=0.217 retain=0.016 novel2=0.381 NLL=4.41
+    r=3 T=0.02   fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.38
+    r=3 T=0.5         random  top1=0.154 retain=0.000 novel2=0.5029 NLL=3.64
+    r=3 T=0.5         corpus  top1=0.148 retain=0.014 novel2=0.5099 NLL=3.69
+    r=3 T=0.5    fixed_point  top1=0.156 retain=0.156 novel2=0.5116 NLL=5.87
+    r=3 T=0.7         random  top1=0.110 retain=0.000 novel2=0.6047 NLL=4.26
+    r=3 T=0.7         corpus  top1=0.113 retain=0.010 novel2=0.5868 NLL=5.02
+    r=3 T=0.7    fixed_point  top1=0.109 retain=0.109 novel2=0.5846 NLL=6.13
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7401.17it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: bert-base-uncased
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.weight | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+  mlm / bert-base-uncased (control -- no absorbing state (F67))
+    attractor token: '.'
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (57417 > 512). Running this sequence through the model will result in indexing errors
+    r=2 T=0.02        random  top1=0.100 retain=0.005 novel2=0.4495 NLL=4.58
+    r=2 T=0.02        corpus  top1=0.104 retain=0.130 novel2=0.3274 NLL=4.48
+    r=2 T=0.02   fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.45
+    r=2 T=0.5         random  top1=0.085 retain=0.001 novel2=0.4416 NLL=4.47
+    r=2 T=0.5         corpus  top1=0.082 retain=0.095 novel2=0.3641 NLL=4.96
+    r=2 T=0.5    fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.45
+    r=2 T=0.7         random  top1=0.072 retain=0.001 novel2=0.4819 NLL=5.28
+    r=2 T=0.7         corpus  top1=0.072 retain=0.045 novel2=0.4257 NLL=5.12
+    r=2 T=0.7    fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.45
+    r=3 T=0.02        random  top1=0.081 retain=0.009 novel2=0.4597 NLL=4.65
+    r=3 T=0.02        corpus  top1=0.103 retain=0.202 novel2=0.3838 NLL=3.94
+    r=3 T=0.02   fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.45
+    r=3 T=0.5         random  top1=0.096 retain=0.003 novel2=0.492 NLL=4.64
+    r=3 T=0.5         corpus  top1=0.078 retain=0.135 novel2=0.4488 NLL=4.57
+    r=3 T=0.5    fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.45
+    r=3 T=0.7         random  top1=0.078 retain=0.002 novel2=0.4825 NLL=4.71
+    r=3 T=0.7         corpus  top1=0.072 retain=0.105 novel2=0.4427 NLL=4.51
+    r=3 T=0.7    fixed_point  top1=1.000 retain=1.000 novel2=None NLL=0.45
+
+=== ar / EleutherAI/pythia-410m (has a fixed point (F70)) ===
+    r     T                       random                      corpus                 fixed_point
+    2  0.02   top1 0.74 ret 0.00 nll 3.40  top1 0.79 ret 0.04 nll 2.93  top1 1.00 ret 1.00 nll 0.38   spread=0.263
+    2   0.5   top1 0.35 ret 0.00 nll 4.34  top1 0.34 ret 0.02 nll 3.65  top1 0.34 ret 0.34 nll 4.67   spread=0.010
+    2   0.7   top1 0.17 ret 0.00 nll 5.69  top1 0.15 ret 0.01 nll 5.69  top1 0.14 ret 0.14 nll 4.81   spread=0.023
+    3  0.02   top1 0.22 ret 0.00 nll 3.88  top1 0.22 ret 0.02 nll 4.41  top1 1.00 ret 1.00 nll 0.38   spread=0.783
+    3   0.5   top1 0.15 ret 0.00 nll 3.64  top1 0.15 ret 0.01 nll 3.69  top1 0.16 ret 0.16 nll 5.87   spread=0.008
+    3   0.7   top1 0.11 ret 0.00 nll 4.26  top1 0.11 ret 0.01 nll 5.02  top1 0.11 ret 0.11 nll 6.13   spread=0.004
+
+=== mlm / bert-base-uncased (control -- no absorbing state (F67)) ===
+    r     T                       random                      corpus                 fixed_point
+    2  0.02   top1 0.10 ret 0.00 nll 4.58  top1 0.10 ret 0.13 nll 4.48  top1 1.00 ret 1.00 nll 0.45   spread=0.900
+    2   0.5   top1 0.09 ret 0.00 nll 4.47  top1 0.08 ret 0.10 nll 4.96  top1 1.00 ret 1.00 nll 0.45   spread=0.918
+    2   0.7   top1 0.07 ret 0.00 nll 5.28  top1 0.07 ret 0.04 nll 5.12  top1 1.00 ret 1.00 nll 0.45   spread=0.928
+    3  0.02   top1 0.08 ret 0.01 nll 4.65  top1 0.10 ret 0.20 nll 3.94  top1 1.00 ret 1.00 nll 0.45   spread=0.919
+    3   0.5   top1 0.10 ret 0.00 nll 4.64  top1 0.08 ret 0.13 nll 4.57  top1 1.00 ret 1.00 nll 0.45   spread=0.922
+    3   0.7   top1 0.08 ret 0.00 nll 4.71  top1 0.07 ret 0.11 nll 4.51  top1 1.00 ret 1.00 nll 0.45   spread=0.928
+
+  -> AR: INITS DIVERGE (max top-1 spread 0.783) -- basins are real, so novelty is PROMPT-RELATIVE and #93 measures one basin among several. Its 'between recall and noise' reading applies to random seeding only. The fixed-point seed is a TRAP in 2/6 cells (retention > 0.9). MLM: INITS DIVERGE (max top-1 spread 0.928) -- basins are real, so novelty is PROMPT-RELATIVE and #93 measures one basin among several. Its 'between recall and noise' reading applies to random seeding only. The fixed-point seed is a TRAP in 6/6 cells (retention > 0.9).
+
+wrote results/basin_dependence.json

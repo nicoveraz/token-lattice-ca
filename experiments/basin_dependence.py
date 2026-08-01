@@ -207,21 +207,39 @@ def analyse(res):
 
         rows = [v for k, v in out.items() if k.startswith(f"{kind}|")]
         if rows:
-            mx = max(v["top1_spread"] for v in rows)
-            conv = mx < 0.10
+            # The question is whether a PROMPT survives, so the comparison is random vs corpus.
+            # The fixed-point seed is a degenerate state nobody would prompt with; including it in
+            # the spread made the verdict read "basins are real" when what it actually shows is a
+            # trap with a negligible basin. Those are different claims and only the second is true.
+            rc = [abs(v["by_init"]["random"]["top1"] - v["by_init"]["corpus"]["top1"])
+                  for v in rows if "random" in v["by_init"] and "corpus" in v["by_init"]]
+            ret = [v["by_init"]["corpus"]["retention"] for v in rows if "corpus" in v["by_init"]]
             fp = [v["by_init"]["fixed_point"]["retention"] for v in rows
                   if "fixed_point" in v["by_init"]]
+            mx = max(rc) if rc else None
+            conv = mx is not None and mx < 0.10
             trapped = [x for x in fp if x > 0.9]
+            print(f"\n  random-vs-corpus top-1 gap: max {mx:.3f}, mean {np.mean(rc):.3f}")
+            print(f"  corpus-seed retention: mean {np.mean(ret):.3f}  "
+                  f"(fraction of the prompt still in place after settling)")
+            out[f"{kind}|summary"] = dict(random_vs_corpus_max=round(float(mx), 4),
+                                          corpus_retention_mean=round(float(np.mean(ret)), 4),
+                                          fixed_point_trapped=f"{len(trapped)}/{len(fp)}")
             parts.append(
                 f"{kind.upper()}: " +
-                (f"INITS CONVERGE (max top-1 spread {mx:.3f} across all cells) -- the attractor is "
-                 f"global, the seed is erased, and #93's novelty-from-noise is the whole story."
+                (f"THE PROMPT IS ERASED. Random and corpus seeds settle to the same composition "
+                 f"(max top-1 gap {mx:.3f}), and only {np.mean(ret)*100:.0f}% of the corpus seed "
+                 f"survives in place. So the settled state does NOT remember what it started from, "
+                 f"and #93's novelty-from-noise is representative rather than one basin among many."
                  if conv else
-                 f"INITS DIVERGE (max top-1 spread {mx:.3f}) -- basins are real, so novelty is "
-                 f"PROMPT-RELATIVE and #93 measures one basin among several. Its 'between recall "
-                 f"and noise' reading applies to random seeding only.") +
-                (f" The fixed-point seed is a TRAP in {len(trapped)}/{len(fp)} cells "
-                 f"(retention > 0.9)." if fp else ""))
+                 f"THE PROMPT SURVIVES: random and corpus seeds differ by up to {mx:.3f} in top-1, "
+                 f"with {np.mean(ret)*100:.0f}% of the seed retained. Novelty is prompt-relative "
+                 f"and #93 measures one basin.") +
+                (f" SEPARATELY, a ring filled with the attractor token is a TRAP in "
+                 f"{len(trapped)}/{len(fp)} cells -- self-sustaining once entered. But since "
+                 f"neither random nor text seeds reach it, its basin is negligible, which is "
+                 f"exactly why F67 found no transition: an absorbing state you never arrive at "
+                 f"produces none." if trapped else ""))
     verdict = " ".join(parts) if parts else "insufficient data"
     print(f"\n  -> {verdict}")
 
