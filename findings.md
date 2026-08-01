@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F66)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F67)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -2117,6 +2117,42 @@ single dominant token when handed an OOD two-token prompt — corpus fixes which
 frequent, and attention-free models handle a two-token context differently. Real and reproducible
 across 19 models, and a fact about behaviour under an impoverished prompt rather than about
 language processing.
+
+### F67 — the clean construction has no transition either, which is the confirming null
+M1 of #89 asked whether the masked-LM construction — the one F66 showed is free of the single-token
+degeneracy — has a damage-spreading transition at all. **It does not**, on two models:
+
+```
+bert-base-uncased      T   0.02   0.05   0.10   0.20   0.35   0.50
+                  P(end)  0.625  0.617  0.594  0.680  0.633  0.695
+              sites(end)   7.5    9.2   12.4   17.9   23.3   37.2
+
+prajjwal1/bert-medium  P(end)  0.547  0.563  0.594  0.602  0.625  0.609
+                   sites(end)   4.9    6.0    8.5   13.0   19.5   25.4
+```
+
+Surviving damage never drops below **0.547**, all the way down to T=0.02 where sampling is
+essentially deterministic. The bracket criterion needs it under 0.05 somewhere; it is never close.
+Damage *magnitude* does rise with temperature (7.5 → 37 sites), so the system responds to T — it
+simply never freezes.
+
+**This is the pre-registered good null, and it completes the argument.** The AR frozen phase existed
+because the lattice had an **absorbing state**: every site resampled to `'\n'` regardless of
+context, so a perturbation had nothing to propagate through. F66 established there is no such state
+in the MLM construction from the settled composition alone; F67 confirms the dynamical consequence
+directly. No absorbing state, therefore no absorbing-state transition.
+
+So the transition the universality programme measured was **only ever the artifact**. There is no
+competing "but the clean construction has one too" to explain away, which is exactly what a null
+here was pre-registered to settle. Claim A in `paper/plan_paper2.md` strengthens; M2 and M3 are
+moot and were skipped **by the script's own gate**, not by a judgement made after seeing the
+numbers.
+
+Two things were verified on this path before the run rather than assumed: the exact-zero CRN null
+holds under `order="per_replica"` on the MLM backend (0 differing sites — that flag was plumbed
+through `mlm_ca.run` the same day and had never been exercised), and `MLMRule` already forbids
+special tokens *and* `[unused*]` placeholders, so its emission hygiene is stricter than the AR
+path's.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
