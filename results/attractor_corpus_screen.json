@@ -911,6 +911,138 @@
    "top1_share": 0.1042,
    "dominant_token": "\n",
    "dominant_share_overall": 0.1042
+  },
+  "bigcode/tiny_starcoder_py@0.02": {
+   "model": "bigcode/tiny_starcoder_py",
+   "T": 0.02,
+   "corpus": "code",
+   "lab": "BigCode",
+   "prediction": "unknown",
+   "distinct_frac": 0.194,
+   "top1_share": 0.4596,
+   "dominant_token": "0",
+   "dominant_share_overall": 0.4596
+  },
+  "bigcode/tiny_starcoder_py@0.2": {
+   "model": "bigcode/tiny_starcoder_py",
+   "T": 0.2,
+   "corpus": "code",
+   "lab": "BigCode",
+   "prediction": "unknown",
+   "distinct_frac": 0.2279,
+   "top1_share": 0.5169,
+   "dominant_token": "0",
+   "dominant_share_overall": 0.5169
+  },
+  "bigcode/tiny_starcoder_py@0.436": {
+   "model": "bigcode/tiny_starcoder_py",
+   "T": 0.436,
+   "corpus": "code",
+   "lab": "BigCode",
+   "prediction": "unknown",
+   "distinct_frac": 0.4036,
+   "top1_share": 0.1823,
+   "dominant_token": "0",
+   "dominant_share_overall": 0.1823
+  },
+  "bigcode/tiny_starcoder_py@0.7": {
+   "model": "bigcode/tiny_starcoder_py",
+   "T": 0.7,
+   "corpus": "code",
+   "lab": "BigCode",
+   "prediction": "unknown",
+   "distinct_frac": 0.5911,
+   "top1_share": 0.0964,
+   "dominant_token": "0",
+   "dominant_share_overall": 0.0664
+  },
+  "facebook/opt-350m@0.02": {
+   "model": "facebook/opt-350m",
+   "T": 0.02,
+   "corpus": "mixed",
+   "lab": "Meta",
+   "prediction": "unknown",
+   "distinct_frac": 0.3581,
+   "top1_share": 0.1549,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.151
+  },
+  "facebook/opt-350m@0.2": {
+   "model": "facebook/opt-350m",
+   "T": 0.2,
+   "corpus": "mixed",
+   "lab": "Meta",
+   "prediction": "unknown",
+   "distinct_frac": 0.4414,
+   "top1_share": 0.1562,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1549
+  },
+  "facebook/opt-350m@0.436": {
+   "model": "facebook/opt-350m",
+   "T": 0.436,
+   "corpus": "mixed",
+   "lab": "Meta",
+   "prediction": "unknown",
+   "distinct_frac": 0.6133,
+   "top1_share": 0.1146,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1146
+  },
+  "facebook/opt-350m@0.7": {
+   "model": "facebook/opt-350m",
+   "T": 0.7,
+   "corpus": "mixed",
+   "lab": "Meta",
+   "prediction": "unknown",
+   "distinct_frac": 0.6615,
+   "top1_share": 0.1068,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.0951
+  },
+  "microsoft/phi-1_5@0.02": {
+   "model": "microsoft/phi-1_5",
+   "T": 0.02,
+   "corpus": "textbook",
+   "lab": "Microsoft",
+   "prediction": "unknown",
+   "distinct_frac": 0.2201,
+   "top1_share": 0.5312,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.5312
+  },
+  "microsoft/phi-1_5@0.2": {
+   "model": "microsoft/phi-1_5",
+   "T": 0.2,
+   "corpus": "textbook",
+   "lab": "Microsoft",
+   "prediction": "unknown",
+   "distinct_frac": 0.3464,
+   "top1_share": 0.4362,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.4362
+  },
+  "microsoft/phi-1_5@0.436": {
+   "model": "microsoft/phi-1_5",
+   "T": 0.436,
+   "corpus": "textbook",
+   "lab": "Microsoft",
+   "prediction": "unknown",
+   "distinct_frac": 0.4909,
+   "top1_share": 0.2669,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.2669
+  },
+  "microsoft/phi-1_5@0.7": {
+   "model": "microsoft/phi-1_5",
+   "T": 0.7,
+   "corpus": "textbook",
+   "lab": "Microsoft",
+   "prediction": "unknown",
+   "distinct_frac": 0.6367,
+   "top1_share": 0.1471,
+   "dominant_token": "\n",
+   "dominant_share_overall": 0.1471
   }
  },
  "_preregistration": {

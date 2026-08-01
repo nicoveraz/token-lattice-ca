@@ -29,48 +29,56 @@ six confident verdicts died to their own checks, each one caught before it reach
 
 | | Claim | Evidence | Status |
 |---|---|---|---|
-| **A** | Iterated-resampling probes of LMs can manufacture a phase transition from an **out-of-distribution prompt**. Shown across 19 models, isolated by three interventions: radius (exists only at r=2), token ablation (one token carries it), and construction (BOS removes 50 points; MLM shows none) | F62–F66 | **Solid, complete, no further compute needed.** The strongest single result the project has |
-| **B** | Measuring exponents on black-box LM dynamics requires **gating the estimator at the measurement's own geometry**, or it returns confident wrong answers | F56, F57, F59-v1, F61 — four retractions, each caught by re-running on a system with a known answer | **Solid.** The transferable methods contribution |
+| **A** | **Iterated-resampling probes of LMs can manufacture a phase transition from an out-of-distribution prompt.** The mechanism is identified, the boundary is sharp, and the model's *native* construction shows neither the degeneracy nor a transition | F62–F67, F69 | **CLOSED — complete, no further compute** |
+| **B** | Measuring exponents on black-box LM dynamics requires **gating the estimator at the measurement's own geometry**, or it returns confident wrong answers | F56, F57, F59-v1, F61 — four retractions, each caught by a known-answer system | **Solid.** The transferable methods contribution |
 | **C** | F42's unignited runs are explained: 1/3 of visit orders heal a single-site seed before it propagates, and the order was shared across the batch | F57 | **Solid.** Predicted deaths matched observation exactly |
-| **D** | The **MLM construction is clean** — no single-token concentration at any temperature or radius tested | F66 | **Solid but thin.** Two models, settled-state only. No dynamics measured on it yet |
+| ~~D~~ | ~~the MLM construction is clean~~ | F66, F67 | **Absorbed into A** — its cleanliness *is* the control that makes A a claim rather than an observation |
 | ~~E~~ | ~~A universality class for the transition~~ | — | **Withdrawn.** There is no model-independent transition to classify |
 
-**A + B + C is a complete paper today, with zero further compute.** It is a *negative-result plus
+### Claim A, as it now reads
+
+1. **The transition is real and precisely measurable** — δ and θ reach their DP values at a common
+   T_c ∈ [0.4343, 0.4391] (F58), gated on Domany–Kinzel before the LM numbers were read.
+2. **It is a property of the probe.** The frozen phase is a single-token collapse: 81 of 96 sites
+   newline at T=0.02, and F58's T_c sits at 52% newline (F62).
+3. **Not the corpus, not the network, not scale.** Refuted from both directions across 19 models
+   (F63); granite's dense and MoE members agree within 2 points while differing 2× in width, 1.7×
+   in depth, 16× in FFN and routing-vs-none; scale eliminated across a 70× Pythia ladder and a 12×
+   GPT-2 ladder that never overlap (F64).
+4. **The mechanism is an out-of-distribution prompt.** One BOS token takes 74.4% → 24.1%; the
+   masked-LM construction, where infilling *is* the training objective, shows 9–14% at every
+   temperature and radius (F66).
+5. **The boundary is sharp and narrow.** Family-distinguishing degeneracy occupies r ∈ {1, 2} only;
+   r=2 → r=3 drops top-1 by 52 points. The large-radius rebound appears in the control too, so it
+   is a generic long-context effect and excluded (F69).
+6. **The clean construction has no transition either** — surviving damage never falls below 0.547
+   down to T=0.02 across two MLM models. The pre-registered good null: no absorbing state,
+   therefore no absorbing-state transition (F67). There is no competing "but the clean version has
+   a real one" left to explain.
+
+Steps 4–6 are what make this a *claim* rather than a curiosity: a mechanism, a boundary, and a
+control that behaves as the mechanism predicts.
+
+**A + B + C is a complete paper today, with zero further compute, and A is now closed.** It is a *negative-result plus
 methodology* paper, and the negative is the interesting part: people probe language models by
 iterating their conditionals, and this shows how that can produce a phase transition that is a
 property of the probe rather than the model.
 
 ---
 
-## 3. The MLM path — what it is and what it would cost
+## 3. The MLM path — answered, and folded into A
 
-F66 establishes only that the MLM construction does not *concentrate*. That is the absence of the
-pathology, not the presence of a result. Nothing about MLM **dynamics** has been measured with the
-post-F57 machinery.
+M1 (#89) ran and returned the pre-registered good null: **the clean construction has no
+damage-spreading transition either.** Surviving damage never drops below 0.547 across T ∈ [0.02,
+0.5] on `bert-base-uncased` and `bert-medium`, down to essentially deterministic sampling. M2 and
+M3 were **skipped by the script's own gate**, not by a judgement made after seeing the numbers.
 
-What already exists (Phase 3, in the submitted paper): F14 the instrument ports to
-bert-tiny/mini/base with the CRN null exactly zero; F15 real MLMs are not radius-blind; F16 damage
-light cones replicate with front velocity ∝ r; F17 no strong self-healing phase; F18 the
-special-token scheme is a first-class apparatus factor.
+That closes the path rather than opening it. The AR frozen phase required an *absorbing state* —
+every site resampling to one token regardless of context. F66 showed there is none here from the
+settled composition; F67 confirmed the dynamical consequence directly. There is no MLM exponent
+programme to run, and the result belongs inside claim A as its control.
 
-What does **not** exist: any MLM damage-spreading *transition* experiment. `experiments/mlm_*.py`
-covers census, damage cones, differential certification, repair and sweeps — none of them looks for
-a critical point.
-
-| Step | Question | Cost | Notes |
-|---|---|---|---|
-| **M1** | Does the MLM CA have a damage-spreading transition at all? Coarse T scan for where damage stops dying | ~2–4 h | bert-base is 110M vs pythia-410m, so cells are cheaper than the AR ones. Must use `order="per_replica"` — newly plumbed through `mlm_ca.run` and never used |
-| **M2** | If yes: is it free of the degeneracy? Re-run the F65 interventions (radius, ablation) on it | ~1 h | Cheap, and the paper needs it: a transition in a clean construction is only worth reporting if it survives the checks that killed the AR one |
-| **M3** | If M1 and M2 hold: exponents, under the F56 gate | ~20 h+ | Only worth starting after M2. The AR programme spent ~60 h before discovering the object was an artifact |
-
-**Recommendation: M1 and M2, and stop there for now.** They cost under five hours and they decide
-whether an MLM programme exists. Do not begin M3 before M2 passes — that is exactly the mistake the
-AR line made, and the whole of §4 exists because of it.
-
-**A null at M1 is also a fine outcome for the paper.** If the clean construction has no transition
-either, claim A strengthens: the transition was *only ever* the artifact.
-
----
+**#89 can be closed.** M3 is moot.
 
 ## 4. Hazards, carried forward
 
@@ -101,6 +109,44 @@ All discovered the expensive way; each cost at least one retracted verdict.
    discipline caught it", which is defensible and honest but makes the paper about method.
 2. **Venue.** Still unset, deliberately. A + B + C needs no further compute, so timing is a writing
    decision rather than an experimental one.
-3. **How much MLM work before writing?** M1+M2 is under five hours and would let the paper say what
-   a clean construction does, rather than only what a dirty one does. My recommendation is to run
-   them and write either way.
+3. ~~How much MLM work before writing?~~ **Answered:** M1 ran, returned the good null, and M2/M3
+   were skipped by the gate. Nothing is waiting.
+
+---
+
+## 6. Is there a third paper?
+
+**Maybe — and it hangs on one unresolved result, so do not plan for it yet.**
+
+What is left over after A + B + C is a single coherent thread, and it is *not* about phase
+transitions:
+
+> Models differ, bimodally and reproducibly, in how they behave when handed almost no context. A
+> single token dominates the two-token conditional in some models and not others, with **nothing in
+> between** — 68–78% versus 6–16% across nineteen models. Attention is necessary and the corpus
+> appears to decide (F64). The melting temperature **T\*** turns that binary into a graded scalar
+> that is *tighter within a family* than the raw share and separates families the binary lumps
+> together, at a cost of four settle runs per model.
+
+That is a model-characterisation result about **out-of-distribution fallback behaviour**, which is
+a different subject from paper 2's "the probe manufactures a transition". Paper 2 uses this material
+as *evidence*; a third paper would make it the object.
+
+**What it needs before it is a paper, and what is genuinely uncertain:**
+
+| Requirement | State |
+|---|---|
+| An **external anchor** — T\* must predict something not measured by the CA | **Unresolved.** rho(T\*, greedy repetition) = +0.55, p = 0.11 (F68). Underpowered, not null |
+| Enough **independent families** | **Weak.** The n=10 was really ~4 families — six points were Pythia sizes. Seven new families are running |
+| A working account of **what determines it** | **Incomplete.** F64's "attention + corpus" is right but not sufficient: the two code models screened so far *split*, so a filler-rich corpus is not the rule |
+
+**The honest read: if #90 resolves positively, there is a third paper. If it stays underpowered or
+comes back null, there is a paragraph in paper 2 and nothing more.** T\* would then be a
+well-defined property of a regime that F66 showed is an artifact — interesting to have measured,
+not interesting enough to carry a submission.
+
+Three papers out of this work would also be over-slicing unless the third has its own external
+anchor. It is worth resisting the pull to make the material stretch: the project's record is built
+on scoping claims down, not up.
+
+**Decision point:** when #90's seven new families land. Not before.

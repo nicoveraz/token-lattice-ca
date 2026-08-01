@@ -35,3 +35,20 @@ Notes:
     T=0.7    distinct= 65.0%  top1= 10.4%  dominant='\n'
 Loading weights:   0%|          | 0/244 [00:00<?, ?it/s]Loading weights: 100%|██████████| 244/244 [00:00<00:00, 19273.26it/s]
   bigcode/tiny_starcoder_py (code, BigCode) loaded in 12s, V=49152
+    T=0.02   distinct= 19.4%  top1= 46.0%  dominant='0'
+    T=0.2    distinct= 22.8%  top1= 51.7%  dominant='0'
+    T=0.436  distinct= 40.4%  top1= 18.2%  dominant='0'
+    T=0.7    distinct= 59.1%  top1=  9.6%  dominant='0'
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 53844.29it/s]
+  facebook/opt-350m (mixed, Meta) loaded in 22s, V=50272
+    T=0.02   distinct= 35.8%  top1= 15.5%  dominant='\n'
+    T=0.2    distinct= 44.1%  top1= 15.6%  dominant='\n'
+    T=0.436  distinct= 61.3%  top1= 11.5%  dominant='\n'
+    T=0.7    distinct= 66.1%  top1= 10.7%  dominant='\n'
+Loading weights:   0%|          | 0/341 [00:00<?, ?it/s]Loading weights: 100%|██████████| 341/341 [00:00<00:00, 7365.78it/s]
+  microsoft/phi-1_5 (textbook, Microsoft) loaded in 75s, V=51200
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer CodeGenTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    T=0.02   distinct= 22.0%  top1= 53.1%  dominant='\n'
+    T=0.2    distinct= 34.6%  top1= 43.6%  dominant='\n'
+    T=0.436  distinct= 49.1%  top1= 26.7%  dominant='\n'
+    T=0.7    distinct= 63.7%  top1= 14.7%  dominant='\n'
