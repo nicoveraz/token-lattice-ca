@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Tracked hook -- enabled with: git config core.hooksPath .githooks
+#
+# Refuses to commit a results/log file that a live experiment is still writing. See
+# experiments/precommit_guard.py for why (a `git add -A` committed fingerprint/gate2.json four
+# hours into the run that was writing it). The logic lives in that module so it can be tested;
+# this file only routes to it.
+#
+# Bypass deliberately with `git commit --no-verify`, and say so in the message.
+exec python3 "$(git rev-parse --show-toplevel)/experiments/precommit_guard.py"
