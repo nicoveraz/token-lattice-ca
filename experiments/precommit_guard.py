@@ -32,6 +32,29 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 # editing a script while its job runs is a different hazard, and `provenance.stamp` covers it.
 GUARDED = re.compile(r"^(results|fingerprint|logs)/")
 
+# A python interpreter invoked somewhere in the command line. `git`, `vim` and `grep` all NAME a
+# script without running it; only an interpreter is evidence that it is executing.
+PYTHON = re.compile(r"(^|[/\s])python[0-9.]*(\s|$)")
+
+
+def _own_tree():
+    """PIDs of this process and its ancestors -- the git/hook/shell chain that invoked us.
+
+    Belt and braces alongside the PYTHON check: the hook itself runs under a shell whose command
+    line may name the very file being committed.
+    """
+    seen, pid = set(), os.getpid()
+    for _ in range(12):
+        if pid <= 1 or pid in seen:
+            break
+        seen.add(pid)
+        out = subprocess.run(["ps", "-o", "ppid=", "-p", str(pid)],
+                             capture_output=True, text=True, check=False).stdout.strip()
+        if not out.isdigit():
+            break
+        pid = int(out)
+    return seen
+
 
 def staged_files():
     """Paths staged for commit (added/copied/modified), repo-relative."""
@@ -55,11 +78,14 @@ def running_processes():
     return procs
 
 
-def live_writers(staged, procs):
+def live_writers(staged, procs, own=None):
     """[(path, script, [pids])] for staged data files whose producing script is still running.
 
-    Pure: `staged` and `procs` are injected so the rule is testable without spawning anything.
+    Pure: `staged`, `procs` and `own` are injected so the rule is testable without spawning
+    anything. `own` defaults to the live ancestor chain, computed ONCE -- it was originally
+    recomputed per process per path, which is one `ps` subprocess per candidate.
     """
+    own = _own_tree() if own is None else own
     problems = []
     for path in staged:
         if not GUARDED.match(path):
@@ -71,7 +97,14 @@ def live_writers(staged, procs):
         # Match the script name as a path component, so `gate2.py` does not match `mygate2.py`
         # and a stem of `x` does not match every command containing the letter x.
         pat = re.compile(r"(^|[/\s])" + re.escape(script) + r"(\s|$)")
-        pids = [pid for pid, cmd in procs if pat.search(cmd)]
+        # AND require a Python interpreter in the same command line. Without this the guard
+        # matches THE VERY COMMAND STAGING THE FILE -- `git add experiments/foo.py` contains
+        # `foo.py`, so committing a new experiment together with its first results was blocked
+        # every time. That fired within an hour of shipping the guard, on this file's own commit.
+        # An interpreter token is what distinguishes "a job is writing this" from "something
+        # merely names the script": editors, greps, and git all name it without running it.
+        pids = [pid for pid, cmd in procs
+                if pat.search(cmd) and PYTHON.search(cmd) and pid not in own]
         if pids:
             problems.append((path, script, pids))
     return problems

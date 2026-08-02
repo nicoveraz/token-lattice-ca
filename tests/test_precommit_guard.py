@@ -34,7 +34,7 @@ IDLE = [(99999, "/usr/bin/vim notes.txt"), (12345, "-zsh")]
 
 def test_blocks_a_file_whose_producing_script_is_running():
     """The exact incident, replayed."""
-    hits = live_writers(["fingerprint/gate2.json"], RUNNING)
+    hits = live_writers(["fingerprint/gate2.json"], RUNNING, own=set())
     assert len(hits) == 1
     path, script, pids = hits[0]
     assert path == "fingerprint/gate2.json"
@@ -44,15 +44,15 @@ def test_blocks_a_file_whose_producing_script_is_running():
 
 def test_does_not_block_when_the_job_has_finished():
     """The normal workflow: re-run an analysis, commit its result. Must not be obstructed."""
-    assert live_writers(["fingerprint/gate2.json"], IDLE) == []
-    assert live_writers(["results/dev_transition_radius.json"], IDLE) == []
+    assert live_writers(["fingerprint/gate2.json"], IDLE, own=set()) == []
+    assert live_writers(["results/dev_transition_radius.json"], IDLE, own=set()) == []
 
 
 def test_does_not_block_source_or_prose():
     """Only job-written data is guarded. Editing a script while its job runs is a different
     hazard and `provenance.stamp`'s import closure covers it."""
     staged = ["experiments/gate2.py", "paper/paper.tex", "findings.md", "src/lattice.py"]
-    assert live_writers(staged, RUNNING) == []
+    assert live_writers(staged, RUNNING, own=set()) == []
 
 
 def test_stem_matching_does_not_overreach():
@@ -60,11 +60,36 @@ def test_stem_matching_does_not_overreach():
     must not match every command that happens to contain that letter."""
     decoys = [(1, ".venv/bin/python -u fingerprint/mygate2.py"),
               (2, "python x.py")]
-    assert live_writers(["fingerprint/gate2.json"], decoys) == []
+    assert live_writers(["fingerprint/gate2.json"], decoys, own=set()) == []
     # substring-in-command matching would fire here; component matching must not
-    assert live_writers(["results/x.json"], [(3, "python prefix_x.py")]) == []
+    assert live_writers(["results/x.json"], [(3, "python prefix_x.py")], own=set()) == []
     # ...but the real thing still matches
-    assert len(live_writers(["results/x.json"], [(4, "python experiments/x.py")])) == 1
+    assert len(live_writers(["results/x.json"], [(4, "python experiments/x.py")], own=set())) == 1
+
+
+def test_a_command_that_merely_NAMES_the_script_does_not_block():
+    """THE REGRESSION. The guard fired on its own committing command within an hour of shipping.
+
+    `git add experiments/context_onset.py` contains the string `context_onset.py`, so a
+    stem-match alone blocked every attempt to commit a new experiment together with its first
+    results -- the single most normal way a new experiment enters this repo. git, vim and grep all
+    NAME a script; only an interpreter is evidence that it is RUNNING.
+    """
+    naming = [(1, "git add findings.md experiments/context_onset.py results/context_onset.json"),
+              (2, "vim experiments/context_onset.py"),
+              (3, "grep -n foo experiments/context_onset.py"),
+              (4, "git commit -F - experiments/context_onset.py")]
+    assert live_writers(["results/context_onset.json"], naming, own=set()) == []
+    # ...and an interpreter actually running it still blocks
+    real = [(5, "caffeinate -dimsu .venv/bin/python -u experiments/context_onset.py")]
+    assert len(live_writers(["results/context_onset.json"], real, own=set())) == 1
+
+
+def test_the_hooks_own_process_chain_is_excluded():
+    """The hook runs under a shell whose command line may name the file being committed."""
+    procs = [(77, ".venv/bin/python -u experiments/context_onset.py")]
+    assert live_writers(["results/context_onset.json"], procs, own={77}) == []
+    assert len(live_writers(["results/context_onset.json"], procs, own=set())) == 1
 
 
 def test_guarded_directories_are_the_ones_jobs_write():

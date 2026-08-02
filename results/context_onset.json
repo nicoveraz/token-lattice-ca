@@ -1,0 +1,767 @@
+{
+ "runs": {
+  "step1": {
+   "step": "step1",
+   "n_tokens": 2097152,
+   "marginal_top1": 0.0002,
+   "marginal_entropy": 10.626,
+   "marginal_token": " ker",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3072,
+     "tv_sd": 0.0105,
+     "top1": 0.0002,
+     "entropy": 10.6258,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3032,
+     "tv_sd": 0.0098,
+     "top1": 0.0002,
+     "entropy": 10.6259,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2989,
+     "tv_sd": 0.0093,
+     "top1": 0.0002,
+     "entropy": 10.6258,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2957,
+     "tv_sd": 0.0083,
+     "top1": 0.0002,
+     "entropy": 10.6257,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2915,
+     "tv_sd": 0.0083,
+     "top1": 0.0002,
+     "entropy": 10.6255,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2902,
+     "tv_sd": 0.0082,
+     "top1": 0.0002,
+     "entropy": 10.6256,
+     "n": 160
+    }
+   },
+   "secs": 32.3
+  },
+  "step8": {
+   "step": "step8",
+   "n_tokens": 16777216,
+   "marginal_top1": 0.0005,
+   "marginal_entropy": 10.6237,
+   "marginal_token": "\n",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2877,
+     "tv_sd": 0.0102,
+     "top1": 0.0004,
+     "entropy": 10.6246,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2809,
+     "tv_sd": 0.0091,
+     "top1": 0.0005,
+     "entropy": 10.6241,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2749,
+     "tv_sd": 0.0087,
+     "top1": 0.0006,
+     "entropy": 10.6233,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2703,
+     "tv_sd": 0.0072,
+     "top1": 0.0008,
+     "entropy": 10.6223,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2657,
+     "tv_sd": 0.0069,
+     "top1": 0.001,
+     "entropy": 10.6208,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2638,
+     "tv_sd": 0.0068,
+     "top1": 0.001,
+     "entropy": 10.6201,
+     "n": 160
+    }
+   },
+   "secs": 30.6
+  },
+  "step16": {
+   "step": "step16",
+   "n_tokens": 33554432,
+   "marginal_top1": 0.0104,
+   "marginal_entropy": 10.4786,
+   "marginal_token": ".",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.1965,
+     "tv_sd": 0.027,
+     "top1": 0.0212,
+     "entropy": 10.4184,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.1835,
+     "tv_sd": 0.0154,
+     "top1": 0.0219,
+     "entropy": 10.4034,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.1762,
+     "tv_sd": 0.0152,
+     "top1": 0.0236,
+     "entropy": 10.3716,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.1722,
+     "tv_sd": 0.0181,
+     "top1": 0.0268,
+     "entropy": 10.3301,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.1704,
+     "tv_sd": 0.0213,
+     "top1": 0.0307,
+     "entropy": 10.2886,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.1667,
+     "tv_sd": 0.0177,
+     "top1": 0.0274,
+     "entropy": 10.3048,
+     "n": 160
+    }
+   },
+   "secs": 30.6
+  },
+  "step32": {
+   "step": "step32",
+   "n_tokens": 67108864,
+   "marginal_top1": 0.0209,
+   "marginal_entropy": 10.4246,
+   "marginal_token": ".",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2013,
+     "tv_sd": 0.0906,
+     "top1": 0.0519,
+     "entropy": 10.1489,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2318,
+     "tv_sd": 0.1225,
+     "top1": 0.0935,
+     "entropy": 9.7592,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2081,
+     "tv_sd": 0.0822,
+     "top1": 0.0728,
+     "entropy": 9.9573,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.1905,
+     "tv_sd": 0.0635,
+     "top1": 0.053,
+     "entropy": 10.12,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.1862,
+     "tv_sd": 0.0698,
+     "top1": 0.053,
+     "entropy": 10.1091,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.1762,
+     "tv_sd": 0.0665,
+     "top1": 0.0496,
+     "entropy": 10.13,
+     "n": 160
+    }
+   },
+   "secs": 31.5
+  },
+  "step64": {
+   "step": "step64",
+   "n_tokens": 134217728,
+   "marginal_top1": 0.0085,
+   "marginal_entropy": 10.5332,
+   "marginal_token": ".",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2636,
+     "tv_sd": 0.1048,
+     "top1": 0.0676,
+     "entropy": 9.9815,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2785,
+     "tv_sd": 0.091,
+     "top1": 0.0982,
+     "entropy": 9.7037,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2719,
+     "tv_sd": 0.064,
+     "top1": 0.0904,
+     "entropy": 9.763,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2763,
+     "tv_sd": 0.0672,
+     "top1": 0.0944,
+     "entropy": 9.6873,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2796,
+     "tv_sd": 0.0723,
+     "top1": 0.0956,
+     "entropy": 9.6447,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2759,
+     "tv_sd": 0.0686,
+     "top1": 0.0885,
+     "entropy": 9.6932,
+     "n": 160
+    }
+   },
+   "secs": 30.6
+  },
+  "step128": {
+   "step": "step128",
+   "n_tokens": 268435456,
+   "marginal_top1": 0.0552,
+   "marginal_entropy": 9.9661,
+   "marginal_token": "\n",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2952,
+     "tv_sd": 0.1107,
+     "top1": 0.1006,
+     "entropy": 9.3803,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2849,
+     "tv_sd": 0.051,
+     "top1": 0.1024,
+     "entropy": 9.3594,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2972,
+     "tv_sd": 0.0637,
+     "top1": 0.1068,
+     "entropy": 9.2122,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3154,
+     "tv_sd": 0.0716,
+     "top1": 0.1245,
+     "entropy": 8.9623,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3212,
+     "tv_sd": 0.0696,
+     "top1": 0.1264,
+     "entropy": 8.9027,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3323,
+     "tv_sd": 0.0672,
+     "top1": 0.1258,
+     "entropy": 8.8393,
+     "n": 160
+    }
+   },
+   "secs": 30.6
+  },
+  "step256": {
+   "step": "step256",
+   "n_tokens": 536870912,
+   "marginal_top1": 0.0384,
+   "marginal_entropy": 8.8936,
+   "marginal_token": "\n",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.4645,
+     "tv_sd": 0.0842,
+     "top1": 0.0841,
+     "entropy": 8.1091,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.4911,
+     "tv_sd": 0.0659,
+     "top1": 0.0881,
+     "entropy": 7.9242,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.536,
+     "tv_sd": 0.0694,
+     "top1": 0.1074,
+     "entropy": 7.5513,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.5828,
+     "tv_sd": 0.0687,
+     "top1": 0.1477,
+     "entropy": 6.9816,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.603,
+     "tv_sd": 0.0607,
+     "top1": 0.161,
+     "entropy": 6.8235,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.6144,
+     "tv_sd": 0.0578,
+     "top1": 0.166,
+     "entropy": 6.7978,
+     "n": 160
+    }
+   },
+   "secs": 30.4
+  },
+  "step512": {
+   "step": "step512",
+   "n_tokens": 1073741824,
+   "marginal_top1": 0.0598,
+   "marginal_entropy": 9.0409,
+   "marginal_token": "\n",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.692,
+     "tv_sd": 0.0671,
+     "top1": 0.0605,
+     "entropy": 7.5948,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.7421,
+     "tv_sd": 0.068,
+     "top1": 0.0978,
+     "entropy": 6.9723,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.7946,
+     "tv_sd": 0.0616,
+     "top1": 0.1369,
+     "entropy": 6.3935,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.8196,
+     "tv_sd": 0.0585,
+     "top1": 0.1767,
+     "entropy": 5.9873,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.8279,
+     "tv_sd": 0.0525,
+     "top1": 0.1917,
+     "entropy": 5.8665,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.8345,
+     "tv_sd": 0.0473,
+     "top1": 0.2078,
+     "entropy": 5.7127,
+     "n": 160
+    }
+   },
+   "secs": 30.1
+  },
+  "step1000": {
+   "step": "step1000",
+   "n_tokens": 2097152000,
+   "marginal_top1": 0.0529,
+   "marginal_entropy": 7.1803,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.8089,
+     "tv_sd": 0.1095,
+     "top1": 0.0761,
+     "entropy": 7.0931,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.8706,
+     "tv_sd": 0.077,
+     "top1": 0.1394,
+     "entropy": 6.1858,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9111,
+     "tv_sd": 0.052,
+     "top1": 0.1937,
+     "entropy": 5.4424,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9267,
+     "tv_sd": 0.0435,
+     "top1": 0.2267,
+     "entropy": 5.01,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9255,
+     "tv_sd": 0.0377,
+     "top1": 0.2362,
+     "entropy": 4.8241,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.937,
+     "tv_sd": 0.0253,
+     "top1": 0.2851,
+     "entropy": 4.473,
+     "n": 160
+    }
+   },
+   "secs": 29.8
+  },
+  "step2000": {
+   "step": "step2000",
+   "n_tokens": 4194304000,
+   "marginal_top1": 0.0852,
+   "marginal_entropy": 6.7753,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9435,
+     "tv_sd": 0.1103,
+     "top1": 0.1347,
+     "entropy": 6.4156,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.959,
+     "tv_sd": 0.066,
+     "top1": 0.1968,
+     "entropy": 5.4604,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9761,
+     "tv_sd": 0.0316,
+     "top1": 0.2427,
+     "entropy": 4.9023,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9774,
+     "tv_sd": 0.0357,
+     "top1": 0.2803,
+     "entropy": 4.4912,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9784,
+     "tv_sd": 0.0284,
+     "top1": 0.2901,
+     "entropy": 4.2483,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9841,
+     "tv_sd": 0.0243,
+     "top1": 0.321,
+     "entropy": 3.9657,
+     "n": 160
+    }
+   },
+   "secs": 29.8
+  },
+  "step8000": {
+   "step": "step8000",
+   "n_tokens": 16777216000,
+   "marginal_top1": 0.0977,
+   "marginal_entropy": 6.6302,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9349,
+     "tv_sd": 0.0982,
+     "top1": 0.1215,
+     "entropy": 6.6182,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9589,
+     "tv_sd": 0.0554,
+     "top1": 0.2004,
+     "entropy": 5.3045,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9747,
+     "tv_sd": 0.0344,
+     "top1": 0.2422,
+     "entropy": 4.7772,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9758,
+     "tv_sd": 0.0354,
+     "top1": 0.2879,
+     "entropy": 4.2564,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9707,
+     "tv_sd": 0.037,
+     "top1": 0.3459,
+     "entropy": 3.6714,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9803,
+     "tv_sd": 0.0224,
+     "top1": 0.3842,
+     "entropy": 3.3681,
+     "n": 160
+    }
+   },
+   "secs": 30.1
+  },
+  "step143000": {
+   "step": "step143000",
+   "n_tokens": 299892736000,
+   "marginal_top1": 0.0758,
+   "marginal_entropy": 7.2699,
+   "marginal_token": "Q",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9322,
+     "tv_sd": 0.1022,
+     "top1": 0.1523,
+     "entropy": 6.175,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9522,
+     "tv_sd": 0.0679,
+     "top1": 0.2048,
+     "entropy": 5.2512,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.971,
+     "tv_sd": 0.0327,
+     "top1": 0.2503,
+     "entropy": 4.6538,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9737,
+     "tv_sd": 0.0364,
+     "top1": 0.3049,
+     "entropy": 4.0595,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9755,
+     "tv_sd": 0.039,
+     "top1": 0.3824,
+     "entropy": 3.3522,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9841,
+     "tv_sd": 0.0209,
+     "top1": 0.4091,
+     "entropy": 3.1062,
+     "n": 160
+    }
+   },
+   "secs": 29.9
+  }
+ },
+ "_preregistration": {
+  "base": "EleutherAI/pythia-410m",
+  "steps": [
+   "step1",
+   "step8",
+   "step16",
+   "step32",
+   "step64",
+   "step128",
+   "step256",
+   "step512",
+   "step1000",
+   "step2000",
+   "step8000",
+   "step143000"
+  ],
+  "lengths": [
+   1,
+   2,
+   4,
+   8,
+   16,
+   32
+  ],
+  "n_contexts": 160,
+  "crossing": [
+   "step256",
+   "step512"
+  ],
+  "plateau": [
+   "step1000",
+   "step2000",
+   "step8000",
+   "step143000"
+  ],
+  "k_report": 8,
+  "measurement": "TV(p(x | k real tokens), p(x | BOS)) -- imported from evidence_falloff",
+  "primary": "does TV rise across step256->512, the bracket lambda_ca crosses at every radius?",
+  "secondary": "does TV then saturate by step1000 and stay flat to step143000, like lambda_ca?",
+  "null": "TV rises smoothly, or its feature sits elsewhere -> context-use onset does NOT explain the transition. A NULL IS A GOOD RESULT; it eliminates the leading candidate cheaply",
+  "kill": "TV already at plateau by step1 -> not measuring context USE -> NOT DECIDABLE",
+  "boundary": "CO-TIMING IS CORRELATION. A match does not show lambda_ca measures context use; only an ablation would. This must never be written up as though it had",
+  "resumable": "keyed by checkpoint"
+ },
+ "analysis": {
+  "complete": true,
+  "tv_by_step": {
+   "step1": 0.2957,
+   "step8": 0.2703,
+   "step16": 0.1722,
+   "step32": 0.1905,
+   "step64": 0.2763,
+   "step128": 0.3154,
+   "step256": 0.5828,
+   "step512": 0.8196,
+   "step1000": 0.9267,
+   "step2000": 0.9774,
+   "step8000": 0.9758,
+   "step143000": 0.9737
+  },
+  "rises": [
+   [
+    "step1",
+    "step8",
+    -0.025400000000000034
+   ],
+   [
+    "step8",
+    "step16",
+    -0.09809999999999999
+   ],
+   [
+    "step16",
+    "step32",
+    0.01830000000000001
+   ],
+   [
+    "step32",
+    "step64",
+    0.08579999999999999
+   ],
+   [
+    "step64",
+    "step128",
+    0.039100000000000024
+   ],
+   [
+    "step128",
+    "step256",
+    0.26739999999999997
+   ],
+   [
+    "step256",
+    "step512",
+    0.2368
+   ],
+   [
+    "step512",
+    "step1000",
+    0.10709999999999997
+   ],
+   [
+    "step1000",
+    "step2000",
+    0.05070000000000008
+   ],
+   [
+    "step2000",
+    "step8000",
+    -0.0016000000000000458
+   ],
+   [
+    "step8000",
+    "step143000",
+    -0.0020999999999999908
+   ]
+  ],
+  "biggest_rise": [
+   "step128",
+   "step256",
+   0.26739999999999997
+  ],
+  "rise_at_crossing": 0.2368,
+  "frac_of_span_at_crossing": 0.3492625368731564,
+  "plateau_spread": 0.05070000000000008,
+  "span": 0.6779999999999999
+ },
+ "verdict": "NULL, AND IT IS A CLEAN ONE: the largest rise in TV@k=8 is step128->step256 (+0.2674), NOT the step256->step512 bracket where lambda_ca crosses at every radius (that bracket contributes +0.2368, 35% of the span). Context-use onset does not explain the developmental transition, and the leading candidate is eliminated at the cost of forward passes.",
+ "_analysis_provenance": {
+  "script": "context_onset.py",
+  "sha256": "ce41e0ed0f9cba5c87612ef10506e8f5ff13bb4e56bb7099fb5b1d51b161a2a6",
+  "imports": {
+   "experiments/context_onset.py": "ce41e0ed0f9cba5c87612ef10506e8f5ff13bb4e56bb7099fb5b1d51b161a2a6",
+   "experiments/evidence_falloff.py": "95cf16c653aa9a9820e87141213d3ab6ccf313574e49b1273f76954573191f7f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Route 1 of the explanandum programme (critical_analysis.md \u00a73). Does the model's use of context -- TV between p(x | k real tokens) and its marginal -- turn on in the same bracket lambda_ca crosses? Measured across pythia-410m checkpoints with the measurement imported from evidence_falloff.py so the across-checkpoint and across-model series are comparable. Forward passes only: no ring dynamics, no damage runs. CO-TIMING IS CORRELATION and is not attribution; only an ablation would show lambda_ca measures this."
+}

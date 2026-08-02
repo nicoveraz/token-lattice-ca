@@ -2830,6 +2830,76 @@ Pythia fact measured in a narrow temperature band until those land.
 **The plateau is flat to three decimals from step1000 to step143000 at every radius** — a 143× span
 of training in which nothing moves. Whatever λ_ca tracks, it saturates early and then stops.
 
+### F78 — context-use onset does not sharply explain the transition, but shares its saturation (#20-adjacent; `critical_analysis.md` §3)
+`critical_analysis.md` named the flagship's central weakness: F39/F46/F77 give a **when**, not a
+**what**. λ_ca crosses between step256 and step512, at every radius, and nothing connects that to an
+independently measurable internal event — "a detector without an explanandum".
+
+Route 1 of three tests the cheapest candidate. F77 supplied the hypothesis: the crossing bracket is
+**radius-invariant** while the λ level rises with r, and the plateau is **flat from step1000 to
+step143000**, so the event is not about window size, scales with visible context, and completes
+early then stops. That is the profile of *"the model learns to use local context at all"*.
+
+**The measurement is imported, not invented.** `evidence_falloff.py` already computes, on real text,
+the total-variation distance between `p(x | k real tokens)` and the marginal `p(x | BOS)` — ~0 when
+context is barely moving the model off its prior. That script runs it across *models*;
+`context_onset.py` runs the identical code across *checkpoints* of pythia-410m, so the two series
+are comparable. Forward passes only: no ring, no damage runs, ~6 minutes total.
+
+```
+        step    tokens   TV@k=8     rise    landmark
+       step1        2M   0.2957
+       step8       17M   0.2703  -0.0254
+      step16       34M   0.1722  -0.0981    <- TV MINIMUM
+      step32       67M   0.1905  +0.0183    lambda_ca EXTINCT, 0/8 ignited (#88)
+      step64      134M   0.2763  +0.0858
+     step128      268M   0.3154  +0.0391
+     step256      537M   0.5828  +0.2674    <- largest rise
+     step512     1074M   0.8196  +0.2368    lambda_ca crosses here (F39/F77)
+    step1000     2097M   0.9267  +0.1071
+    step2000     4194M   0.9774  +0.0507
+    step8000    16777M   0.9758  -0.0016
+  step143000   299893M   0.9737  -0.0021
+```
+
+**The declared primary returns a null.** The largest single rise is step128→256 (+0.2674), not the
+step256→512 bracket where λ_ca crosses (+0.2368, 35% of the 0.678 span). Reported as declared; the
+sets were not re-cut after seeing the data.
+
+**But the declared statistic was brittle, and that is my defect not the data's.** "Largest single
+rise" on a log-spaced grid splits a two-interval ramp arbitrarily. The onset spans step128→512 as
++0.267 then +0.237 — nearly equal, together **74% of the total span** — and λ_ca's crossing sits
+*inside* that ramp. One extra grid point, or a different tiebreak, flips the verdict. A test whose
+answer turns on where a log grid happens to fall is not a sharp test, and the honest reading is
+**neither confirmed nor eliminated**, not "cleanly eliminated" as the emitted verdict says.
+
+**The secondary prediction does hold, and it is the stronger evidence.** TV saturates: over the
+declared plateau set (step1000–step143000) the spread is **0.0507**, and from step2000 onward it is
+**0.0037 across a 71× span** — flat, exactly like λ_ca's plateau. The second number is post-hoc and
+must be quoted as such; the declared one is what was registered. A shared *saturation* is a second
+coincidence in the same series rather than a restatement of the first.
+
+**An unplanned third coincidence.** TV **dips to its minimum at step16** (0.1722, below its step1
+value of 0.2957) before rising — the same window where λ_ca collapses to total extinction at step32
+(#88). Both quantities dip and recover in the same place. Nothing predicted this; it is what #97
+asks about, and it now has a second observable.
+
+**The kill did not fire:** TV at step1 is 0.2957 against 0.9737 at the end, so an untrained model's
+conditional is nowhere near as far from its marginal as a trained one's, and the quantity is
+measuring context use as intended.
+
+**The boundary, restated because it survives whatever the numbers had said.** Co-timing is
+**correlation**. Even a perfect match would show that two events coincide in one model family, not
+that λ_ca measures context use. Attribution requires intervening on the internals and re-reading the
+black-box scalar — Route 3, filed as **#100** — which is the repair for exactly the failure mode
+F26–F29 hit by correlating two scalars across six models.
+
+**Where this leaves the explanandum.** The leading candidate is not eliminated and not established.
+What it did buy: two shared features (saturation, and the early dip) that any competing explanation
+now has to match, and a demonstration that the transition sits inside a broad context-use ramp
+rather than at an isolated event. Route 2 (#69/#70, sharpened to test the *ordering across sizes*)
+and Route 3 (#100) remain.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
