@@ -6,8 +6,8 @@
  "required_families": 16,
  "count_is_upper_bound": false,
  "manual_review_required": false,
- "n_families_conservative": 18,
- "n_families_liberal": 29,
+ "n_families_conservative": 22,
+ "n_families_liberal": 34,
  "curated_conservative": {
   "ai21": [
    "ai21labs/AI21-Jamba2-3B"
@@ -34,6 +34,10 @@
   "eleutherai/polyglot-ko": [
    "EleutherAI/polyglot-ko-1.3b"
   ],
+  "google-gemma": [
+   "google/codegemma-2b",
+   "google/gemma-2-2b"
+  ],
   "hftb": [
    "HuggingFaceTB/SmolLM-1.7B",
    "HuggingFaceTB/SmolLM2-1.7B",
@@ -58,8 +62,14 @@
   "llm-jp/llm-jp": [
    "llm-jp/llm-jp-3-1.8b"
   ],
+  "meta-llama": [
+   "meta-llama/Llama-3.2-3B"
+  ],
   "microsoft/bitnet-b1-4t-bf16": [
    "microsoft/bitnet-b1.58-2B-4T-bf16"
+  ],
+  "pfnet/plamo-nict": [
+   "pfnet/plamo-3-nict-2b-base"
   ],
   "qwen": [
    "Qwen/Qwen1.5-1.8B",
@@ -67,6 +77,9 @@
    "Qwen/Qwen2.5-1.5B",
    "Qwen/Qwen2.5-3B",
    "Qwen/Qwen3-1.7B-Base"
+  ],
+  "sapienzanlp/minerva": [
+   "sapienzanlp/Minerva-3B-base-v1.0"
   ],
   "stability": [
    "stabilityai/stable-code-3b",
@@ -93,7 +106,10 @@
   "openonerec/onerec": "recommendation model, not a general LM",
   "amd/pard-llama": "speculative-decoding draft model derived from Llama",
   "bytedance/ouro-thinking": "post-trained reasoning variant; 'thinking' is not in INSTRUCT",
-  "ai21labs/ai21-jamba-reasoning": "post-trained reasoning variant of Jamba"
+  "ai21labs/ai21-jamba-reasoning": "post-trained reasoning variant of Jamba",
+  "google/shieldgemma": "safety classifier built on Gemma, not a base LM",
+  "google/txgemma-predict": "therapeutics variant of Gemma, not a general base LM",
+  "meta-llama/llama-guard": "safety classifier derived from Llama"
  },
  "merged_by_review": {
   "qwen/qwen1": "qwen",
@@ -114,14 +130,17 @@
   "stabilityai/stablelm-4e1t": "stability",
   "stabilityai/stable-code": "stability",
   "bytedance/ouro": "bytedance",
-  "ai21labs/ai21-jamba2": "ai21"
+  "ai21labs/ai21-jamba2": "ai21",
+  "google/gemma": "google-gemma",
+  "google/codegemma": "google-gemma",
+  "meta-llama/llama": "meta-llama"
  },
- "automatic_upper_bound": 38,
+ "automatic_upper_bound": 45,
  "n_listed": 3000,
  "n_name_plausible": 178,
  "n_in_band": 60,
- "n_usable": 48,
- "n_families": 38,
+ "n_usable": 55,
+ "n_families": 45,
  "families": {
   "ai21labs/ai21-jamba-reasoning": [
    "ai21labs/AI21-Jamba-Reasoning-3B"
@@ -168,6 +187,15 @@
   "fableforge-ai/shellwhisperer": [
    "fableforge-ai/ShellWhisperer-1.5B"
   ],
+  "google/codegemma": [
+   "google/codegemma-2b"
+  ],
+  "google/gemma": [
+   "google/gemma-2-2b"
+  ],
+  "google/shieldgemma": [
+   "google/shieldgemma-2b"
+  ],
   "huggingfacebio/carbon": [
    "HuggingFaceBio/Carbon-3B"
   ],
@@ -211,11 +239,20 @@
   "m-a-p/yue-s2-general": [
    "m-a-p/YuE-s2-1B-general"
   ],
+  "meta-llama/llama": [
+   "meta-llama/Llama-3.2-3B"
+  ],
+  "meta-llama/llama-guard": [
+   "meta-llama/Llama-Guard-3-1B"
+  ],
   "microsoft/bitnet-b1-4t-bf16": [
    "microsoft/bitnet-b1.58-2B-4T-bf16"
   ],
   "openonerec/onerec": [
    "OpenOneRec/OneRec-1.7B"
+  ],
+  "pfnet/plamo-nict": [
+   "pfnet/plamo-3-nict-2b-base"
   ],
   "qwen/qwen1": [
    "Qwen/Qwen1.5-1.8B"
@@ -227,6 +264,9 @@
   ],
   "qwen/qwen3": [
    "Qwen/Qwen3-1.7B-Base"
+  ],
+  "sapienzanlp/minerva": [
+   "sapienzanlp/Minerva-3B-base-v1.0"
   ],
   "stabilityai/stable-code": [
    "stabilityai/stable-code-3b"
@@ -249,15 +289,8 @@
   ]
  },
  "gated_only_families": [
-  "google/codegemma",
-  "google/gemma",
-  "google/shieldgemma",
   "google/txgemma-predict",
   "kristians7/ouro",
-  "meta-llama/llama",
-  "meta-llama/llama-guard",
-  "pfnet/plamo-nict",
-  "sapienzanlp/minerva",
   "unsloth/gemma"
  ],
  "in_band": [
@@ -810,8 +843,8 @@
   {
    "model": "google/codegemma-2b",
    "family": "google/codegemma",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 2506172416,
    "gated": "manual",
    "arch": "GemmaForCausalLM",
@@ -826,13 +859,13 @@
     "endpoints_compatible",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "google/gemma-2-2b",
    "family": "google/gemma",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 2614341888,
    "gated": "manual",
    "arch": "Gemma2ForCausalLM",
@@ -873,7 +906,7 @@
     "deploy:sagemaker",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "google/gemma-2b",
@@ -920,13 +953,13 @@
     "deploy:sagemaker",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "google/shieldgemma-2b",
    "family": "google/shieldgemma",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 2614341888,
    "gated": "manual",
    "arch": "Gemma2ForCausalLM",
@@ -945,13 +978,13 @@
     "endpoints_compatible",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "google/txgemma-2b-predict",
    "family": "google/txgemma-predict",
    "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "reason": "gated",
    "params": 2614341888,
    "gated": "auto",
    "arch": "Gemma2ForCausalLM",
@@ -971,7 +1004,7 @@
     "endpoints_compatible",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": false
   },
   {
    "model": "HuggingFaceBio/Carbon-3B",
@@ -1456,8 +1489,8 @@
   {
    "model": "meta-llama/Llama-3.2-3B",
    "family": "meta-llama/llama",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 3212749824,
    "gated": "manual",
    "arch": "LlamaForCausalLM",
@@ -1488,13 +1521,13 @@
     "deploy:sagemaker",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "meta-llama/Llama-Guard-3-1B",
    "family": "meta-llama/llama-guard",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 1498482688,
    "gated": "manual",
    "arch": "LlamaForCausalLM",
@@ -1528,7 +1561,7 @@
     "deploy:sagemaker",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "microsoft/bitnet-b1.58-2B-4T-bf16",
@@ -1582,8 +1615,8 @@
   {
    "model": "pfnet/plamo-3-nict-2b-base",
    "family": "pfnet/plamo-nict",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 2603344384,
    "gated": "auto",
    "arch": "Plamo3ForCausalLM",
@@ -1605,7 +1638,7 @@
     "license:other",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "Qwen/Qwen1.5-1.8B",
@@ -1733,8 +1766,8 @@
   {
    "model": "sapienzanlp/Minerva-3B-base-v1.0",
    "family": "sapienzanlp/minerva",
-   "usable": false,
-   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
+   "usable": true,
+   "reason": null,
    "params": 2894236160,
    "gated": "auto",
    "arch": "MistralForCausalLM",
@@ -1755,7 +1788,7 @@
     "endpoints_compatible",
     "region:us"
    ],
-   "licence_accepted": null
+   "licence_accepted": true
   },
   {
    "model": "stabilityai/stable-code-3b",
@@ -1997,17 +2030,18 @@
   "declared_derivative": 26,
   "out_of_band": 69,
   "not_causal_lm": 1,
-  "gated": 9,
+  "gated_but_accepted": 8,
   "no_param_metadata": 22,
+  "gated": 1,
   "mirror": 4
  },
  "passes": null,
- "verdict": "CLEARS THE BAR, BUT NOT COMFORTABLY: after excluding 9 reviewed non-independent repos and merging same-lab/same-corpus series, **n = 18 families** at the conservative reading and 29 if each series counts separately, against the 16 F68's effect size requires. The automatic upper bound was 38, and the first version of this census said 64 -- a factor of ~4 too high, because org-plus-stem grouping cannot distinguish a pretraining run from a fine-tune, a quantisation or a mirror. The conservative number is the one to plan with: it merges Qwen1.5/2/2.5/3, all four IBM series, pythia with pythia-deduped and gpt-neo, and the three SmolLM generations, on the grounds that what must not be double-counted is the CORPUS. TWO THINGS TEMPER IT. Gate B (benchmark dynamic range) has not run and can only REDUCE n. And 10 families -- including Gemma and Llama, two of the largest distinct corpora available -- are excluded solely by license gating; accepting those licences would raise n materially and is the cheapest available way to buy power.",
+ "verdict": "CLEARS THE BAR, BUT NOT COMFORTABLY: after excluding 12 reviewed non-independent repos and merging same-lab/same-corpus series, **n = 22 families** at the conservative reading and 34 if each series counts separately, against the 16 F68's effect size requires. The automatic upper bound was 45, and the first version of this census said 64 -- a factor of ~3 too high, because org-plus-stem grouping cannot distinguish a pretraining run from a fine-tune, a quantisation or a mirror. The conservative number is the one to plan with: it merges Qwen1.5/2/2.5/3, all four IBM series, pythia with pythia-deduped and gpt-neo, and the three SmolLM generations, on the grounds that what must not be double-counted is the CORPUS. TWO THINGS TEMPER IT. Gate B (benchmark dynamic range) has not run and can only REDUCE n. And 3 families are still excluded by license gating (google/txgemma-predict, kristians7/ouro, unsloth/gemma); accepting those licences is the cheapest available way to buy power.",
  "_analysis_provenance": {
   "script": "band_family_census.py",
-  "sha256": "94b5fb2c0a1731b6290f3fcbc1c55b936e57b1fed713986428d23ea369d766f0",
+  "sha256": "893ba5f8fcf138af0849add5333f660f1e91c2961eb4d157c0a06977cbead979",
   "imports": {
-   "experiments/band_family_census.py": "94b5fb2c0a1731b6290f3fcbc1c55b936e57b1fed713986428d23ea369d766f0",
+   "experiments/band_family_census.py": "893ba5f8fcf138af0849add5333f660f1e91c2961eb4d157c0a06977cbead979",
    "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
   },
   "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."

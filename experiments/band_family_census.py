@@ -40,7 +40,7 @@ Usage:  .venv/bin/python -u experiments/band_family_census.py
 import sys as _sys, pathlib as _pathlib
 _ROOT = _pathlib.Path(__file__).resolve().parents[1]
 _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
-import json, os, re, time, collections
+import json, os, pathlib, re, time, collections
 
 import httpx
 
@@ -102,8 +102,33 @@ def plausible(mid):
     return any(1.0 <= float(x) <= 4.0 for x in m)
 
 
+def _token():
+    """Env first, then the standard on-disk locations the HF ecosystem already uses.
+
+    Reading the file means the credential never has to be typed into a shell command, a commit
+    message or a conversation -- it stays where `huggingface-cli login` puts it. Nothing here
+    prints or stores the value.
+    """
+    for v in ("HF_TOKEN", "HUGGING_FACE_HUB_TOKEN"):
+        t = os.environ.get(v)
+        if t:
+            return t.strip()
+    cands = [pathlib.Path.home() / ".cache/huggingface/token",
+             pathlib.Path(os.environ.get("HF_HOME", "")) / "token" if os.environ.get("HF_HOME") else None,
+             pathlib.Path.home() / ".huggingface/token"]
+    for c in cands:
+        try:
+            if c and c.is_file():
+                t = c.read_text().strip()
+                if t:
+                    return t
+        except Exception:
+            pass
+    return None
+
+
 def _auth():
-    t = os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")
+    t = _token()
     return {"Authorization": f"Bearer {t}"} if t else {}
 
 
@@ -117,12 +142,23 @@ def gate_is_open(client, mid):
     """
     if not _auth():
         return None
-    try:
-        r = client.head(f"https://huggingface.co/{mid}/resolve/main/config.json",
-                        follow_redirects=True, headers=_auth())
-        return r.status_code == 200
-    except Exception:
-        return None
+    # ONLY 401/403 means "this account has not accepted the licence". Anything else -- 429 from
+    # rate limiting, a 5xx, a timeout -- is an UNKNOWN, and the first version returned
+    # `status == 200`, which silently folded every transient failure into "not accepted". That
+    # is how meta-llama/Llama-3.2-3B came back gated on a run where an authenticated HEAD to the
+    # same URL returned 200 seconds later. A failed request is not a refusal.
+    url = f"https://huggingface.co/{mid}/resolve/main/config.json"
+    for attempt in range(4):
+        try:
+            r = client.head(url, follow_redirects=True, headers=_auth())
+        except Exception:
+            time.sleep(1.5 * (attempt + 1)); continue
+        if r.status_code == 200:
+            return True
+        if r.status_code in (401, 403):
+            return False
+        time.sleep(1.5 * (attempt + 1))          # 429 / 5xx -> back off and retry
+    return None                                   # unknown, and reported as unknown
 
 
 def hub_detail(ids):
@@ -182,6 +218,9 @@ EXCLUDE = {
     "amd/pard-llama": "speculative-decoding draft model derived from Llama",
     "bytedance/ouro-thinking": "post-trained reasoning variant; 'thinking' is not in INSTRUCT",
     "ai21labs/ai21-jamba-reasoning": "post-trained reasoning variant of Jamba",
+    "google/shieldgemma": "safety classifier built on Gemma, not a base LM",
+    "google/txgemma-predict": "therapeutics variant of Gemma, not a general base LM",
+    "meta-llama/llama-guard": "safety classifier derived from Llama",
 }
 
 # Same lab AND overlapping pretraining corpus -> ONE observation. This is the conservative reading
@@ -200,6 +239,9 @@ MERGE = {
     "stabilityai/stablelm-4e1t": "stability", "stabilityai/stable-code": "stability",
     "bytedance/ouro": "bytedance",
     "ai21labs/ai21-jamba2": "ai21",
+    # Same lab, same pretraining corpus lineage -- one observation, exactly as Qwen and IBM are.
+    "google/gemma": "google-gemma", "google/codegemma": "google-gemma",
+    "meta-llama/llama": "meta-llama",
 }
 
 
@@ -238,12 +280,16 @@ def main():
             rejected["declared_derivative"] += 1; continue
         if d.get("arch") and not CAUSAL.search(d["arch"]):
             rejected["not_causal_lm"] += 1; continue
-        if d.get("gated") not in (False, None) and not d.get("licence_accepted"):
-            rejected["gated"] += 1
+        if d.get("gated") not in (False, None) and d.get("licence_accepted") is not True:
+            la = d.get("licence_accepted")
+            rejected["gated_unknown" if la is None and _auth() else "gated"] += 1
+            reason = ("gated, and the access check did NOT resolve (rate limit or transient "
+                      "error) -- this is UNKNOWN, not a refusal, and must be re-run"
+                      if la is None and _auth() else
+                      "gated" if _auth() else
+                      "gated (no token, so gating could not be checked against an account)")
             inband.append(dict(model=mid, family=family_of(mid), usable=False,
-                               reason="gated" + ("" if _auth() else " (no HF_TOKEN set, so gating "
-                                                 "could not be re-checked against an account)"),
-                               **d))
+                               reason=reason, **d))
             continue
         if d.get("licence_accepted"):
             rejected["gated_but_accepted"] += 1
@@ -302,6 +348,7 @@ def main():
            f"evidence of no relationship -- F68 already made that distinction and it applies here.")
         + f" {len(gated_fams)} further famil{'y' if len(gated_fams)==1 else 'ies'} are excluded "
           f"solely by license gating, which is a fixable exclusion if those licenses are accepted.")
+    unknown = rejected.get("gated_unknown", 0)
     cons, lib = curate(fams)
     nc, nl = len(cons), len(lib)
     print(f"\n=== after the manual review encoded in EXCLUDE/MERGE ===")
@@ -321,9 +368,14 @@ def main():
         f"series, pythia with pythia-deduped and gpt-neo, and the three SmolLM generations, on the "
         f"grounds that what must not be double-counted is the CORPUS. "
         f"TWO THINGS TEMPER IT. Gate B (benchmark dynamic range) has not run and can only REDUCE "
-        f"n. And {len(gated_fams)} families -- including Gemma and Llama, two of the largest "
-        f"distinct corpora available -- are excluded solely by license gating; accepting those "
-        f"licences would raise n materially and is the cheapest available way to buy power.")
+        f"n. "
+        + (f"And {len(gated_fams)} famil{'y is' if len(gated_fams)==1 else 'ies are'} still "
+           f"excluded by license gating ({', '.join(sorted(gated_fams))}); accepting those licences "
+           f"is the cheapest available way to buy power."
+           if gated_fams else "No family is now excluded by license gating.")
+        + (f" {unknown} repo(s) had an access check that did not RESOLVE -- rate limit or "
+           f"transient error, which is unknown rather than refused -- and a re-run may add them."
+           if unknown else ""))
     print(f"\n  -> {verdict}")
 
     res = dict(band=[LO, HI], required_families=REQUIRED_FAMILIES,
