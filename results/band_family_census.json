@@ -280,7 +280,8 @@
     "license:apache-2.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ai21labs/AI21-Jamba2-3B",
@@ -301,7 +302,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "allenai/OLMo-2-0425-1B",
@@ -322,7 +324,8 @@
     "license:apache-2.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "amd/PARD-Llama-3.2-1B",
@@ -345,7 +348,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "bigcode/starcoder2-3b",
@@ -374,7 +378,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "bigscience/bloom-3b",
@@ -448,7 +453,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ByteDance/Ouro-1.4B",
@@ -472,7 +478,8 @@
     "arxiv:2510.25741",
     "license:apache-2.0",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ByteDance/Ouro-2.6B",
@@ -496,7 +503,8 @@
     "arxiv:2510.25741",
     "license:apache-2.0",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ByteDance/Ouro-1.4B-Thinking",
@@ -522,7 +530,8 @@
     "arxiv:2510.25741",
     "license:apache-2.0",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ByteDance/Ouro-2.6B-Thinking",
@@ -548,7 +557,8 @@
     "arxiv:2510.25741",
     "license:apache-2.0",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "EleutherAI/gpt-neo-2.7B",
@@ -576,7 +586,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "EleutherAI/polyglot-ko-1.3b",
@@ -603,7 +614,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "EleutherAI/pythia-1.4b",
@@ -632,7 +644,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "EleutherAI/pythia-2.8b",
@@ -661,7 +674,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "EleutherAI/pythia-1.4b-deduped",
@@ -690,7 +704,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "EleutherAI/pythia-2.8b-deduped",
@@ -719,7 +734,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "fableforge-ai/FableForge-1.5B",
@@ -752,7 +768,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "fableforge-ai/ShellWhisperer-1.5B",
@@ -787,13 +804,14 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "google/codegemma-2b",
    "family": "google/codegemma",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 2506172416,
    "gated": "manual",
    "arch": "GemmaForCausalLM",
@@ -807,13 +825,14 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "google/gemma-2-2b",
    "family": "google/gemma",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 2614341888,
    "gated": "manual",
    "arch": "Gemma2ForCausalLM",
@@ -853,7 +872,8 @@
     "endpoints_compatible",
     "deploy:sagemaker",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "google/gemma-2b",
@@ -899,13 +919,14 @@
     "endpoints_compatible",
     "deploy:sagemaker",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "google/shieldgemma-2b",
    "family": "google/shieldgemma",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 2614341888,
    "gated": "manual",
    "arch": "Gemma2ForCausalLM",
@@ -923,13 +944,14 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "google/txgemma-2b-predict",
    "family": "google/txgemma-predict",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 2614341888,
    "gated": "auto",
    "arch": "Gemma2ForCausalLM",
@@ -948,7 +970,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "HuggingFaceBio/Carbon-3B",
@@ -972,7 +995,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "HuggingFaceTB/SmolLM-1.7B",
@@ -997,7 +1021,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "HuggingFaceTB/SmolLM2-1.7B",
@@ -1021,7 +1046,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "HuggingFaceTB/SmolLM3-3B-Base",
@@ -1050,7 +1076,8 @@
     "license:apache-2.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-granite/granite-3.3-2b-base",
@@ -1071,7 +1098,8 @@
     "license:apache-2.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-granite/granite-4.0-1b-base",
@@ -1092,7 +1120,8 @@
     "license:apache-2.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-granite/granite-4.1-3b",
@@ -1117,7 +1146,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-granite/granite-4.1-3b-base",
@@ -1140,7 +1170,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-granite/granite-3b-code-base-2k",
@@ -1168,7 +1199,8 @@
     "text-generation-inference",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-research/PowerLM-3b",
@@ -1188,7 +1220,8 @@
     "license:apache-2.0",
     "model-index",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "ibm-research/PowerMoE-3b",
@@ -1208,7 +1241,8 @@
     "license:apache-2.0",
     "model-index",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "KristianS7/Ouro-1.4B",
@@ -1232,7 +1266,8 @@
     "arxiv:2510.25741",
     "license:apache-2.0",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "kyutai/helium-1-2b",
@@ -1276,7 +1311,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "kyutai/helium-1-preview-2b",
@@ -1301,7 +1337,8 @@
     "license:cc-by-4.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "launch/ThinkPRM-1.5B",
@@ -1331,7 +1368,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "LiquidAI/LFM2-2.6B",
@@ -1363,7 +1401,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "llm-jp/llm-jp-3-1.8b",
@@ -1385,7 +1424,8 @@
     "text-generation-inference",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "m-a-p/YuE-s2-1B-general",
@@ -1410,13 +1450,14 @@
     "arxiv:2503.08638",
     "license:apache-2.0",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "meta-llama/Llama-3.2-3B",
    "family": "meta-llama/llama",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 3212749824,
    "gated": "manual",
    "arch": "LlamaForCausalLM",
@@ -1446,13 +1487,14 @@
     "endpoints_compatible",
     "deploy:sagemaker",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "meta-llama/Llama-Guard-3-1B",
    "family": "meta-llama/llama-guard",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 1498482688,
    "gated": "manual",
    "arch": "LlamaForCausalLM",
@@ -1485,7 +1527,8 @@
     "endpoints_compatible",
     "deploy:sagemaker",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "microsoft/bitnet-b1.58-2B-4T-bf16",
@@ -1510,7 +1553,8 @@
     "license:mit",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "OpenOneRec/OneRec-1.7B",
@@ -1532,13 +1576,14 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "pfnet/plamo-3-nict-2b-base",
    "family": "pfnet/plamo-nict",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 2603344384,
    "gated": "auto",
    "arch": "Plamo3ForCausalLM",
@@ -1559,7 +1604,8 @@
     "dataset:EssentialAI/eai-taxonomy-stem-w-dclm",
     "license:other",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "Qwen/Qwen1.5-1.8B",
@@ -1584,7 +1630,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "Qwen/Qwen2-1.5B",
@@ -1609,7 +1656,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "Qwen/Qwen2.5-1.5B",
@@ -1634,7 +1682,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "Qwen/Qwen2.5-3B",
@@ -1655,7 +1704,8 @@
     "license:other",
     "eval-results",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "Qwen/Qwen3-1.7B-Base",
@@ -1677,13 +1727,14 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "sapienzanlp/Minerva-3B-base-v1.0",
    "family": "sapienzanlp/minerva",
    "usable": false,
-   "reason": "gated",
+   "reason": "gated (no HF_TOKEN set, so gating could not be re-checked against an account)",
    "params": 2894236160,
    "gated": "auto",
    "arch": "MistralForCausalLM",
@@ -1703,7 +1754,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "stabilityai/stable-code-3b",
@@ -1740,7 +1792,8 @@
     "model-index",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "stabilityai/stablelm-3b-4e1t",
@@ -1775,7 +1828,8 @@
     "model-index",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "state-spaces/mamba-2.8b-hf",
@@ -1795,7 +1849,8 @@
     "endpoints_compatible",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "tiiuae/Falcon-H1-1.5B-Base",
@@ -1834,7 +1889,8 @@
     "license:other",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "tiiuae/Falcon3-1B-Base",
@@ -1859,7 +1915,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "tiiuae/Falcon3-3B-Base",
@@ -1886,7 +1943,8 @@
     "deploy:sagemaker",
     "deploy:azure",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "unsloth/gemma-2-2b",
@@ -1909,7 +1967,8 @@
     "text-generation-inference",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   },
   {
    "model": "Zyphra/Zamba2-2.7B",
@@ -1930,7 +1989,8 @@
     "license:apache-2.0",
     "endpoints_compatible",
     "region:us"
-   ]
+   ],
+   "licence_accepted": null
   }
  ],
  "rejected": {
@@ -1945,9 +2005,9 @@
  "verdict": "CLEARS THE BAR, BUT NOT COMFORTABLY: after excluding 9 reviewed non-independent repos and merging same-lab/same-corpus series, **n = 18 families** at the conservative reading and 29 if each series counts separately, against the 16 F68's effect size requires. The automatic upper bound was 38, and the first version of this census said 64 -- a factor of ~4 too high, because org-plus-stem grouping cannot distinguish a pretraining run from a fine-tune, a quantisation or a mirror. The conservative number is the one to plan with: it merges Qwen1.5/2/2.5/3, all four IBM series, pythia with pythia-deduped and gpt-neo, and the three SmolLM generations, on the grounds that what must not be double-counted is the CORPUS. TWO THINGS TEMPER IT. Gate B (benchmark dynamic range) has not run and can only REDUCE n. And 10 families -- including Gemma and Llama, two of the largest distinct corpora available -- are excluded solely by license gating; accepting those licences would raise n materially and is the cheapest available way to buy power.",
  "_analysis_provenance": {
   "script": "band_family_census.py",
-  "sha256": "92d8b9e4ae9d49c71be5d1b9b3fc9f012cbfb2f176872588edd655790fd9f839",
+  "sha256": "94b5fb2c0a1731b6290f3fcbc1c55b936e57b1fed713986428d23ea369d766f0",
   "imports": {
-   "experiments/band_family_census.py": "92d8b9e4ae9d49c71be5d1b9b3fc9f012cbfb2f176872588edd655790fd9f839",
+   "experiments/band_family_census.py": "94b5fb2c0a1731b6290f3fcbc1c55b936e57b1fed713986428d23ea369d766f0",
    "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
   },
   "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
