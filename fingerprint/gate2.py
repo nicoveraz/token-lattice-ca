@@ -75,6 +75,26 @@ SEEDS = [101, 102, 103, 104]              # seeds_per_model = 4
 R_ALT = 3                                 # the r=2 -> r=3 drop
 TSTAR_THRESH = 0.40
 
+# THE MATCHED-GEOMETRY ARM, and why it is not optional.
+#
+# The prereg's pair statistic is "gap over worst within-family range". The range comes from the
+# 26-model screen, which ran B=8 over 12 sweeps; the prereg froze the battery at B=16 over 16.
+# Those are different measurements, and the difference is NOT a uniform offset -- measured on the
+# two models present in both, switching geometry moves gpt-neo-125M by +0.094/+0.136/+0.149/-0.034
+# across the four temperatures and gpt2 by -0.004/+0.005/-0.003/+0.004. More sweeps settle a ring
+# FURTHER INTO its attractor, so the shift lands on the model that has one and not on the model
+# that does not.
+#
+# The consequence is directional and flatters the claim: the corpus gap grows 0.577 -> 0.675 (+17%)
+# while the denominator stays at the looser geometry. A ratio built that way is F56 exactly -- a
+# tolerance measured at one geometry applied at another -- and F56 is the defect this project's
+# whole gating discipline exists to prevent.
+#
+# So the pair members are measured at the SCREEN's geometry too, and the ratio is reported at both.
+# This does not alter the frozen battery; it supplies the denominator's own geometry so the two
+# terms of the ratio describe the same measurement. dp_calibration encodes the same rule for DP.
+SCREEN_GEOM = dict(B=8, sweeps=12)
+
 PAIRS = [
     ("corpus", "EleutherAI/gpt-neo-125M", "gpt2",
      "corpus differs, tokenizer identical; registered: replicates F64 beyond within-family spread"),
@@ -88,10 +108,10 @@ PAIRS = [
 EXTRA = [("cerebras/Cerebras-GPT-111M", "third Pile family; retried after HTTP-401")]
 
 
-def settle_top1(rule, T, r, scheme, seed):
-    """One settled ring's top-1 share and dominant token -- the screen's own measurement."""
+def settle_top1(rule, T, r, scheme, seed, B_=None, sweeps_=None):
+    """One settled ring's top-1 share and dominant token. B_/sweeps_ override the frozen geometry."""
     from ar_ca import run
-    s = run(rule, B=B, N=N, r=r, T=T, sweeps=SETTLE, scheme=scheme,
+    s = run(rule, B=B_ or B, N=N, r=r, T=T, sweeps=sweeps_ or SETTLE, scheme=scheme,
             init="random", seed=seed, order="per_replica")["final"]
     tops, toks = [], collections.Counter()
     for row in s:
@@ -108,6 +128,7 @@ def measure_model(name, res, dev):
     runs = res["runs"]
     keys = [f"{name}|T{T}|s{s}" for T in SCREEN_TEMPS for s in SEEDS]
     keys += [f"{name}|r{R_ALT}|s{s}" for s in SEEDS] + [f"{name}|bos|s{s}" for s in SEEDS]
+    keys += [f"{name}|screengeom|T{T}|s{s}" for T in SCREEN_TEMPS for s in SEEDS]
     if all(k in runs for k in keys) and f"{name}|baseline" in runs:
         print(f"  {name}: already complete", flush=True)
         return True
@@ -145,6 +166,19 @@ def measure_model(name, res, dev):
         runs[k] = dict(model=name, arm="bos", T=SCREEN_TEMPS[0], seed=s,
                        top1=round(a, 4), dominant=tok)
         json.dump(res, open(OUT, "w"), indent=1)
+
+    for T in SCREEN_TEMPS:                             # matched-geometry arm, denominator's own
+        for s in SEEDS:
+            k = f"{name}|screengeom|T{T}|s{s}"
+            if k in runs: continue
+            a, tok = settle_top1(rule, T, R, "none", s,
+                                 B_=SCREEN_GEOM["B"], sweeps_=SCREEN_GEOM["sweeps"])
+            runs[k] = dict(model=name, arm="screengeom", T=T, seed=s,
+                           top1=round(a, 4), dominant=tok)
+            json.dump(res, open(OUT, "w"), indent=1)
+        vs = [runs[f"{name}|screengeom|T{T}|s{s}"]["top1"] for s in SEEDS]
+        print(f"     [screen geom] T={T:<6} top1={statistics.mean(vs):.3f}"
+              f"+-{statistics.pstdev(vs):.3f}", flush=True)
 
     if f"{name}|baseline" not in runs:                 # Gate 1's static battery, same model
         tok = AutoTokenizer.from_pretrained(name)
@@ -193,6 +227,12 @@ def features(name, runs):
         if vs:
             out[lab] = round(out[f"top1_T{SCREEN_TEMPS[0]}"] - statistics.mean(vs), 4)
             out[f"{lab}_sd"] = round(statistics.pstdev(vs), 4)
+    for T in SCREEN_TEMPS:                             # the matched-geometry copies
+        vs = [runs[f"{name}|screengeom|T{T}|s{s}"]["top1"] for s in SEEDS
+              if f"{name}|screengeom|T{T}|s{s}" in runs]
+        if vs:
+            out[f"sg_top1_T{T}"] = round(statistics.mean(vs), 4)
+            out[f"sg_top1_T{T}_sd"] = round(statistics.pstdev(vs), 4)
     b = runs.get(f"{name}|baseline")
     if b:
         for f in BASELINE_FEATURES:
@@ -204,6 +244,7 @@ def features(name, runs):
 # The two arms this gate adds were never run screen-wide, so they get a different denominator and
 # are labelled as such rather than being compared to a number that does not describe them.
 PREREG_DENOM = [f"top1_T{T}" for T in SCREEN_TEMPS]
+MATCHED = [f"sg_top1_T{T}" for T in SCREEN_TEMPS]     # same features, denominator's own geometry
 NEW_DENOM = ["radius_drop", "bos_drop"]
 CA_FEATURES = PREREG_DENOM + NEW_DENOM
 
@@ -211,7 +252,7 @@ CA_FEATURES = PREREG_DENOM + NEW_DENOM
 def within_family_ranges(feat):
     """Worst within-family range on the 26-model screen -- Gate 0's denominator, for top-1 features."""
     ca = load_ca()
-    T = feat.replace("top1_T", "")
+    T = feat.replace("sg_top1_T", "").replace("top1_T", "")
     idx = {str(t): i for i, t in enumerate(SCREEN_TEMPS)}
     if T not in idx:
         return None
@@ -242,7 +283,7 @@ def analyse(res):
             pairs_out[kind] = {"skipped": "a member failed to load", "a": a, "b": b}
             continue
         rows = {}
-        for f in CA_FEATURES + BASELINE_FEATURES:
+        for f in CA_FEATURES + MATCHED + BASELINE_FEATURES:
             if f not in fa or f not in fb:
                 continue
             gap = abs(fa[f] - fb[f])
@@ -250,19 +291,28 @@ def analyse(res):
             row = {"a": fa[f], "b": fb[f], "gap": round(gap, 4),
                    "worst_seed_sd": round(seed_sd, 4),
                    "gap_over_seed_sd": round(gap / seed_sd, 2) if seed_sd > 1e-9 else None}
-            if f in PREREG_DENOM:
+            if f in PREREG_DENOM or f in MATCHED:
                 w = within_family_ranges(f)
                 row["worst_within_family_range"] = round(w, 4) if w else None
                 row["gap_over_worst_within"] = round(gap / w, 2) if w else None
-                row["denominator"] = "prereg: worst within-family range on the 26-model screen"
+                row["denominator"] = (
+                    "worst within-family range on the 26-model screen (B=8, 12 sweeps). "
+                    + ("MATCHED: numerator measured at that same geometry." if f in MATCHED else
+                       "MISMATCHED: numerator measured at the frozen battery geometry "
+                       "(B=16, 16 sweeps), which settles attractor-bearing models further in and "
+                       "inflates the ratio -- compare the sg_ row for the matched value."))
             else:
                 row["denominator"] = ("pooled 4-seed within-model spread -- this feature was never "
                                       "run screen-wide, so the prereg denominator does not exist "
                                       "for it and is NOT substituted")
             rows[f] = row
-        ratios = [r["gap_over_worst_within"] for r in rows.values()
-                  if r.get("gap_over_worst_within") is not None]
-        best = max(ratios) if ratios else None
+        ratios = [r["gap_over_worst_within"] for f, r in rows.items()
+                  if f in MATCHED and r.get("gap_over_worst_within") is not None]
+        unmatched = [r["gap_over_worst_within"] for f, r in rows.items()
+                     if f in PREREG_DENOM and r.get("gap_over_worst_within") is not None]
+        # The MATCHED ratio is the one the verdict uses. The mismatched one is reported beside it
+        # so the size of the geometry effect is visible rather than inferred.
+        best = max(ratios) if ratios else (max(unmatched) if unmatched else None)
         ca_best = max([r["gap_over_worst_within"] for f, r in rows.items()
                        if f in PREREG_DENOM and r.get("gap_over_worst_within") is not None] or [0])
         base_best = max([r["gap_over_seed_sd"] for f, r in rows.items()
@@ -272,8 +322,46 @@ def analyse(res):
             separated.append(kind)
         pairs_out[kind] = {"a": a, "b": b, "note": note, "features": rows,
                            "best_gap_over_worst_within": best,
+                           "best_matched_geometry": max(ratios) if ratios else None,
+                           "best_mismatched_geometry": max(unmatched) if unmatched else None,
+                           "geometry_inflation": (round(max(unmatched) - max(ratios), 2)
+                                                 if ratios and unmatched else None),
                            "separates_beyond_within_family": sep,
                            "ca_best": ca_best, "baseline_best_over_seed_sd": base_best}
+    # -- SUPPLEMENTARY, AND LABELLED AS SUCH -----------------------------------------------
+    # radius_drop and bos_drop have no screen-wide within-family range, so the frozen statistic
+    # cannot be computed for them and the code above scored them as absent -- which reported
+    # distillation as "no separation" while its radius gap sat at 0.782, some 103 seed-sd. Burying
+    # a 100-sigma effect because its denominator was never measured is a reporting failure, not
+    # conservatism.
+    #
+    # The dedup pair supplies the missing reference: pythia-160m vs pythia-160m-deduped are the SAME
+    # family, so their gap on any feature IS a within-family gap, measured here at this geometry on
+    # exactly these arms. This is POST-HOC -- it was registered as a discovery probe, not as a
+    # denominator -- and it rests on ONE pair, so it is reported separately and never folded into
+    # the prereg statistic or into K2, which is decided on the frozen numbers alone.
+    ded = pairs_out.get("dedup", {}).get("features", {})
+    supp = {}
+    for kind, p_ in pairs_out.items():
+        if kind == "dedup" or not p_.get("features"):
+            continue
+        rows = {}
+        for f in NEW_DENOM:
+            if f in p_["features"] and f in ded:
+                ref = ded[f]["gap"]
+                if ref > 1e-9:
+                    rows[f] = {"gap": p_["features"][f]["gap"], "within_family_ref": round(ref, 4),
+                               "ratio": round(p_["features"][f]["gap"] / ref, 2)}
+        if rows:
+            supp[kind] = {"features": rows, "best": max(r["ratio"] for r in rows.values())}
+    out["supplementary_new_arms"] = {
+        "pairs": supp,
+        "denominator": ("the dedup pair's own gap on the same feature -- a WITHIN-FAMILY gap "
+                        "(pythia-160m vs pythia-160m-deduped) at this geometry"),
+        "caveat": ("POST-HOC and n=1 pair. The dedup pair was registered as a discovery probe, not "
+                   "as a reference. This does not enter K2, which is decided on the frozen "
+                   "statistic alone, and it must not be quoted as the pre-registered number."),
+    }
     out["pairs"] = pairs_out
 
     # -- K2, exactly as frozen ------------------------------------------------------------
@@ -298,12 +386,22 @@ def analyse(res):
         p = pairs_out.get(kind)
         if not p or not p.get("features"):
             continue
+        sup = out.get("supplementary_new_arms", {}).get("pairs", {}).get(kind)
         parts.append(
             f"{kind.upper().replace('_', '-')} ({p['a'].split('/')[-1]} vs "
-            f"{p['b'].split('/')[-1]}): best {p['best_gap_over_worst_within']}x -> "
+            f"{p['b'].split('/')[-1]}): on the FROZEN statistic, best "
+            f"{p['best_gap_over_worst_within']}x -> "
             + ("SEPARATES." if p["separates_beyond_within_family"] else "no separation.")
+            + (f" BUT on the radius/BOS arms, which have no screen-wide denominator and are "
+               f"therefore absent from that number, the gap is {sup['best']}x the same-family "
+               f"(dedup) gap -- see supplementary_new_arms. Reporting this pair as a null on the "
+               f"frozen statistic alone would bury the largest effect in the gate."
+               if sup and sup["best"] >= 2.0 and not p["separates_beyond_within_family"] else "")
+            + (f" The radius/BOS arms agree, at {sup['best']}x the same-family gap."
+               if sup and sup["best"] >= 2.0 and p["separates_beyond_within_family"] else "")
             + (" Registered as a discovery probe on the same family, so a null here costs the "
-               "program nothing." if kind == "dedup" else ""))
+               "program nothing -- and its gaps are what supply the within-family reference the "
+               "new arms otherwise lack." if kind == "dedup" else ""))
     if fired:
         parts.append(
             "K2 FIRES: no required pair separates beyond within-family spread. Corpus and "
@@ -326,6 +424,25 @@ def analyse(res):
            if beats else "the static baseline beats the CA on NO pair here, consistent with "
                          "Gate 1.") +
         " Note the two use different denominators and this is a direction check, not a K1 verdict.")
+    infl = [(k, p["geometry_inflation"]) for k, p in pairs_out.items()
+            if p.get("geometry_inflation") is not None]
+    if infl:
+        parts.append(
+            "GEOMETRY, MATCHED: every ratio above uses a numerator measured at the SCREEN's "
+            "geometry (B=8, 12 sweeps), because that is where the within-family-range denominator "
+            "was measured. Using the frozen battery geometry instead would have changed them by "
+            + ", ".join(f"{k} {v:+.2f}" for k, v in infl)
+            + " -- upward wherever a model has an attractor, since more sweeps settle a ring "
+              "further into one. Mixing the two is F56 (a tolerance from one geometry applied at "
+              "another), so both are reported and the matched pair is the one the verdict uses.")
+    failed = [k.split("|")[0] for k in runs if k.endswith("|failed")]
+    if failed:
+        parts.append(
+            f"NOT OBTAINED: {', '.join(failed)} failed to load again, so the third Pile family is "
+            f"still missing and the corpus direction rests on the SAME 2 independent families it "
+            f"did at Gate 0 (pythia, gpt-neo). F68's pseudoreplication hazard is undischarged here "
+            f"and the ~21-family power note still applies -- the corpus pair replicating does not "
+            f"change that.")
     parts.append(
         "Family is the independent unit (F68). The dedup pair is WITHIN one family by construction, "
         "so its gap is a within-family gap and is reported as a probe, never as separation.")

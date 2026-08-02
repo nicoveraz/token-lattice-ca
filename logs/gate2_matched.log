@@ -1,0 +1,94 @@
+13 edits applied to gate2.py
+patch applied and parses; re-running (resumable)
+  prereg block verifies: True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 8443.28it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125M: loaded in 4s
+     T=0.02   top1=0.875+-0.023
+     T=0.2    top1=0.819+-0.010
+     T=0.436  top1=0.711+-0.010
+     T=0.7    top1=0.411+-0.010
+     [screen geom] T=0.02   top1=0.758+-0.007
+     [screen geom] T=0.2    top1=0.702+-0.028
+     [screen geom] T=0.436  top1=0.596+-0.038
+     [screen geom] T=0.7    top1=0.346+-0.036
+  EleutherAI/gpt-neo-125M: done in 381s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7073.11it/s]
+  gpt2: loaded in 3s
+     T=0.02   top1=0.200+-0.006
+     T=0.2    top1=0.168+-0.005
+     T=0.436  top1=0.141+-0.014
+     T=0.7    top1=0.108+-0.006
+     [screen geom] T=0.02   top1=0.204+-0.009
+     [screen geom] T=0.2    top1=0.164+-0.006
+     [screen geom] T=0.436  top1=0.147+-0.020
+     [screen geom] T=0.7    top1=0.119+-0.016
+  gpt2: done in 132s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5662.74it/s]
+  distilgpt2: loaded in 3s
+     T=0.02   top1=0.224+-0.006
+     T=0.2    top1=0.213+-0.005
+     T=0.436  top1=0.139+-0.002
+     T=0.7    top1=0.093+-0.007
+     [screen geom] T=0.02   top1=0.230+-0.010
+     [screen geom] T=0.2    top1=0.207+-0.008
+     [screen geom] T=0.436  top1=0.155+-0.013
+     [screen geom] T=0.7    top1=0.094+-0.007
+  distilgpt2: done in 174s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6580.44it/s]
+  Qwen/Qwen2.5-0.5B: loaded in 3s
+     T=0.02   top1=0.853+-0.021
+     T=0.2    top1=0.586+-0.032
+     T=0.436  top1=0.205+-0.028
+     T=0.7    top1=0.069+-0.008
+     [screen geom] T=0.02   top1=0.749+-0.008
+     [screen geom] T=0.2    top1=0.516+-0.035
+     [screen geom] T=0.436  top1=0.236+-0.013
+     [screen geom] T=0.7    top1=0.070+-0.006
+  Qwen/Qwen2.5-0.5B: done in 575s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6026.21it/s]
+  Qwen/Qwen2.5-0.5B-Instruct: loaded in 3s
+     T=0.02   top1=0.228+-0.025
+     T=0.2    top1=0.306+-0.011
+     T=0.436  top1=0.184+-0.021
+     T=0.7    top1=0.063+-0.004
+     [screen geom] T=0.02   top1=0.204+-0.028
+     [screen geom] T=0.2    top1=0.288+-0.021
+     [screen geom] T=0.436  top1=0.188+-0.012
+     [screen geom] T=0.7    top1=0.065+-0.007
+  Qwen/Qwen2.5-0.5B-Instruct: done in 575s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7236.11it/s]
+  EleutherAI/pythia-160m: loaded in 2s
+     T=0.02   top1=0.912+-0.020
+     T=0.2    top1=0.929+-0.015
+     T=0.436  top1=0.649+-0.019
+     T=0.7    top1=0.185+-0.008
+     [screen geom] T=0.02   top1=0.910+-0.017
+     [screen geom] T=0.2    top1=0.877+-0.014
+     [screen geom] T=0.436  top1=0.629+-0.019
+     [screen geom] T=0.7    top1=0.203+-0.026
+  EleutherAI/pythia-160m: done in 214s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 5859.29it/s]
+  EleutherAI/pythia-160m-deduped: loaded in 2s
+     T=0.02   top1=0.751+-0.007
+     T=0.2    top1=0.848+-0.017
+     T=0.436  top1=0.692+-0.033
+     T=0.7    top1=0.201+-0.014
+     [screen geom] T=0.02   top1=0.719+-0.022
+     [screen geom] T=0.2    top1=0.796+-0.046
+     [screen geom] T=0.436  top1=0.654+-0.007
+     [screen geom] T=0.7    top1=0.189+-0.017
+  EleutherAI/pythia-160m-deduped: done in 214s
+  cerebras/Cerebras-GPT-111M: LOAD FAILED (OSError: cerebras/Cerebras-GPT-111M is not a local folder and is not a valid mo)
+
+  -> CORPUS (gpt-neo-125M vs gpt2, tokenizer identical): best CA separation 3.7x the worst within-family range on the screen. REPLICATES -- the registered expectation holds and F64's split survives a 4-seed-per-side measurement. DISTILLATION (gpt2 vs distilgpt2): best 0.42x -> no separation. POST-TRAINING (Qwen2.5-0.5B vs Qwen2.5-0.5B-Instruct): best 2.3x -> SEPARATES. DEDUP (pythia-160m vs pythia-160m-deduped): best 0.8x -> no separation. Registered as a discovery probe on the same family, so a null here costs the program nothing. K2 DOES NOT FIRE: corpus, post_training separate(s) beyond within-family spread, so the capability survives its controlled-pair test and Gate 3 (the API port) is the next decision. Per plan_paper2's caution the third-paper decision point is HERE, after Gate 2 -- not before. K1 re-checked on Gate 2's own runs (battery and baseline computed together, as frozen): the static baseline beats the CA on NO pair here, consistent with Gate 1. Note the two use different denominators and this is a direction check, not a K1 verdict. GEOMETRY, MATCHED: every ratio above uses a numerator measured at the SCREEN's geometry (B=8, 12 sweeps), because that is where the within-family-range denominator was measured. Using the frozen battery geometry instead would have changed them by corpus +1.25, distillation -0.16, post_training +0.34, dedup -0.12 -- upward wherever a model has an attractor, since more sweeps settle a ring further into one. Mixing the two is F56 (a tolerance from one geometry applied at another), so both are reported and the matched pair is the one the verdict uses. Family is the independent unit (F68). The dedup pair is WITHIN one family by construction, so its gap is a within-family gap and is reported as a probe, never as separation.
+
+wrote fingerprint/gate2.json

@@ -1,0 +1,3336 @@
+{
+ "K2": {
+  "fired": false,
+  "required_pairs": [
+   "corpus",
+   "distillation",
+   "post_training"
+  ],
+  "rule": "K2 fires if NEITHER the neo/gpt2 replication NOR any of {distilgpt2, instruct-sibling} separates beyond within-family spread; the dedup pair is a discovery probe and cannot fire or prevent K2",
+  "separated": [
+   "corpus",
+   "post_training"
+  ]
+ },
+ "_prereg_sha256": "5a15d2e26abef8d28047f4ec23bf6fcca8d1fd792fc7a60e0a881cf0a17dd65b",
+ "_preregistration": {
+  "created_utc": "2026-08-01T21:34:59+00:00",
+  "frozen": {
+   "attribution_protocol": "nearest family centroid, all-families candidate set, leave-one-out; report counts vs chance",
+   "battery": [
+    "top1_share at T in {0.02,0.2,0.436,0.7}",
+    "dominant_token id",
+    "tstar with 3-state censoring (none<finite<censored_above)",
+    "top1 drop r=2 to r=3",
+    "top1 drop under 1-token BOS prefix",
+    "direct p(.|x1,x2) stats: argmax fixed-point count, mean top-1, entropy (the baseline)"
+   ],
+   "geometry": {
+    "B": 16,
+    "N": 96,
+    "r": 2,
+    "seeds_per_model": 4,
+    "settle_sweeps": 16
+   },
+   "pair_protocol": "gap over worst within-family range, per feature, 4 seeds per side",
+   "unit": "model family (F68)"
+  },
+  "hypotheses": {
+   "H1_family": "the frozen signature battery attributes held-out models to their family above chance, leave-one-family-member-out, family as unit",
+   "H2_corpus": "controlled pairs differing only in corpus/post-training separate beyond the worst within-family range on >=1 battery feature: gpt-neo-125M vs gpt2 (replication, seeds); gpt2 vs distilgpt2; one base-vs-instruct sibling pair",
+   "H3_dynamics": "CA-derived features add attribution/separation power over the direct two-token-conditional baseline computed on the same models",
+   "H4_api": "the battery computed through a raw completion API (temperature-controlled, single-token calls) reproduces the local signature within seed spread"
+  },
+  "independent_unit": "family",
+  "kill_conditions": {
+   "K1_deflation": "direct-conditional baseline matches or exceeds CA features on H1 AND H2 -> the CA machinery exits; capability reframes as conditional-statistics fingerprinting",
+   "K2_pairs": "neither the neo/gpt2 replication nor any of {distilgpt2, instruct-sibling} pair separates beyond worst within-family range -> corpus/post-training inference dies; F64 stays a control",
+   "K3_api": "chat-template wrapping destroys the signature AND no raw completion endpoint reproduces it -> capability scoped to open-weight serving only"
+  },
+  "name": "fingerprint-program-v1",
+  "note": "Gate 0 (reanalysis of existing screen data) precedes this block and is exploratory; Gates 1-3 are governed by it. Deduped-Pythia pair is registered as a discovery probe, not a requirement.",
+  "sha256": "5a15d2e26abef8d28047f4ec23bf6fcca8d1fd792fc7a60e0a881cf0a17dd65b"
+ },
+ "_provenance": {
+  "environment": {
+   "implementation": "CPython",
+   "packages": {
+    "jax": "0.10.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "transformers": "5.14.1"
+   },
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "python": "3.11.5"
+  },
+  "imports": {
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/evidence_falloff.py": "95cf16c653aa9a9820e87141213d3ab6ccf313574e49b1273f76954573191f7f",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
+   "fingerprint/gate1.py": "07d6dd1541272b2be990d4637593b27f29bb725c438310be6387481ec5f5ee12",
+   "fingerprint/gate2.py": "2e248ece5855e6a7a0420b90aafa0e345515deede7261dc0c715f9004c87033f",
+   "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
+   "gatecheck/src/gatecheck/__init__.py": "23d0a6357f3a355032eecede8f5f682510c77a7409e5985d9c7c9993b273dc1e",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "note": "sha256 of the analysis source at write time, plus the project-local import closure and environment fingerprint. If any hash disagrees with the file on disk, this analysis was produced by a different version of the code: re-run it before believing the numbers.",
+  "script": "fingerprint/gate2.py",
+  "script_external": false,
+  "sha256": "2e248ece5855e6a7a0420b90aafa0e345515deede7261dc0c715f9004c87033f"
+ },
+ "features": {
+  "EleutherAI/gpt-neo-125M": {
+   "bos_drop": 0.0841,
+   "bos_drop_sd": 0.0304,
+   "cond_entropy_mean": 5.3666,
+   "cond_top1_mean": 0.1657,
+   "dominant_token": 220,
+   "fixed_point_fraction": 0.2083,
+   "modal_endpoint_share": 0.5,
+   "radius_drop": -0.0477,
+   "radius_drop_sd": 0.0244,
+   "sg_top1_T0.02": 0.7578,
+   "sg_top1_T0.02_sd": 0.0066,
+   "sg_top1_T0.2": 0.7019,
+   "sg_top1_T0.2_sd": 0.0277,
+   "sg_top1_T0.436": 0.5963,
+   "sg_top1_T0.436_sd": 0.0381,
+   "sg_top1_T0.7": 0.346,
+   "sg_top1_T0.7_sd": 0.0356,
+   "top1_T0.02": 0.8755,
+   "top1_T0.02_sd": 0.0226,
+   "top1_T0.2": 0.8187,
+   "top1_T0.2_sd": 0.0096,
+   "top1_T0.436": 0.7113,
+   "top1_T0.436_sd": 0.0104,
+   "top1_T0.7": 0.4113,
+   "top1_T0.7_sd": 0.0101,
+   "tstar": null,
+   "tstar_state": "censored_above"
+  },
+  "EleutherAI/pythia-160m": {
+   "bos_drop": 0.6917,
+   "bos_drop_sd": 0.0054,
+   "cond_entropy_mean": 5.6293,
+   "cond_top1_mean": 0.1638,
+   "dominant_token": 187,
+   "fixed_point_fraction": 0.9167,
+   "modal_endpoint_share": 0.9167,
+   "radius_drop": 0.6919,
+   "radius_drop_sd": 0.0191,
+   "sg_top1_T0.02": 0.9098,
+   "sg_top1_T0.02_sd": 0.0168,
+   "sg_top1_T0.2": 0.877,
+   "sg_top1_T0.2_sd": 0.014,
+   "sg_top1_T0.436": 0.6286,
+   "sg_top1_T0.436_sd": 0.0194,
+   "sg_top1_T0.7": 0.2034,
+   "sg_top1_T0.7_sd": 0.0257,
+   "top1_T0.02": 0.9124,
+   "top1_T0.02_sd": 0.0198,
+   "top1_T0.2": 0.9292,
+   "top1_T0.2_sd": 0.0151,
+   "top1_T0.436": 0.6489,
+   "top1_T0.436_sd": 0.0193,
+   "top1_T0.7": 0.1849,
+   "top1_T0.7_sd": 0.0078,
+   "tstar": 0.5776,
+   "tstar_state": "finite"
+  },
+  "EleutherAI/pythia-160m-deduped": {
+   "bos_drop": 0.5511,
+   "bos_drop_sd": 0.0062,
+   "cond_entropy_mean": 5.5761,
+   "cond_top1_mean": 0.1753,
+   "dominant_token": 187,
+   "fixed_point_fraction": 0.375,
+   "modal_endpoint_share": 0.5833,
+   "radius_drop": 0.5555,
+   "radius_drop_sd": 0.0031,
+   "sg_top1_T0.02": 0.7191,
+   "sg_top1_T0.02_sd": 0.0224,
+   "sg_top1_T0.2": 0.7962,
+   "sg_top1_T0.2_sd": 0.046,
+   "sg_top1_T0.436": 0.6543,
+   "sg_top1_T0.436_sd": 0.0068,
+   "sg_top1_T0.7": 0.1895,
+   "sg_top1_T0.7_sd": 0.0167,
+   "top1_T0.02": 0.7507,
+   "top1_T0.02_sd": 0.0074,
+   "top1_T0.2": 0.8478,
+   "top1_T0.2_sd": 0.0169,
+   "top1_T0.436": 0.6916,
+   "top1_T0.436_sd": 0.0331,
+   "top1_T0.7": 0.2007,
+   "top1_T0.7_sd": 0.0144,
+   "tstar": 0.5928,
+   "tstar_state": "finite"
+  },
+  "Qwen/Qwen2.5-0.5B": {
+   "bos_drop": 0.2927,
+   "bos_drop_sd": 0.0307,
+   "cond_entropy_mean": 6.2257,
+   "cond_top1_mean": 0.1278,
+   "dominant_token": 15,
+   "fixed_point_fraction": 0.875,
+   "modal_endpoint_share": 0.875,
+   "radius_drop": 0.2227,
+   "radius_drop_sd": 0.0235,
+   "sg_top1_T0.02": 0.7493,
+   "sg_top1_T0.02_sd": 0.008,
+   "sg_top1_T0.2": 0.5156,
+   "sg_top1_T0.2_sd": 0.0352,
+   "sg_top1_T0.436": 0.2364,
+   "sg_top1_T0.436_sd": 0.0132,
+   "sg_top1_T0.7": 0.0697,
+   "sg_top1_T0.7_sd": 0.0057,
+   "top1_T0.02": 0.8529,
+   "top1_T0.02_sd": 0.0208,
+   "top1_T0.2": 0.5856,
+   "top1_T0.2_sd": 0.0322,
+   "top1_T0.436": 0.2052,
+   "top1_T0.436_sd": 0.0282,
+   "top1_T0.7": 0.0688,
+   "top1_T0.7_sd": 0.0079,
+   "tstar": 0.3152,
+   "tstar_state": "finite"
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct": {
+   "bos_drop": -0.4025,
+   "bos_drop_sd": 0.0286,
+   "cond_entropy_mean": 5.9642,
+   "cond_top1_mean": 0.1602,
+   "dominant_token": 15,
+   "fixed_point_fraction": 0.0,
+   "modal_endpoint_share": 0.3333,
+   "radius_drop": -0.3306,
+   "radius_drop_sd": 0.0291,
+   "sg_top1_T0.02": 0.2038,
+   "sg_top1_T0.02_sd": 0.0282,
+   "sg_top1_T0.2": 0.2878,
+   "sg_top1_T0.2_sd": 0.0211,
+   "sg_top1_T0.436": 0.1881,
+   "sg_top1_T0.436_sd": 0.0116,
+   "sg_top1_T0.7": 0.0654,
+   "sg_top1_T0.7_sd": 0.0072,
+   "top1_T0.02": 0.2282,
+   "top1_T0.02_sd": 0.0251,
+   "top1_T0.2": 0.306,
+   "top1_T0.2_sd": 0.0109,
+   "top1_T0.436": 0.1839,
+   "top1_T0.436_sd": 0.0208,
+   "top1_T0.7": 0.063,
+   "top1_T0.7_sd": 0.004,
+   "tstar": null,
+   "tstar_state": "none"
+  },
+  "cerebras/Cerebras-GPT-111M": null,
+  "distilgpt2": {
+   "bos_drop": -0.6304,
+   "bos_drop_sd": 0.0291,
+   "cond_entropy_mean": 5.3454,
+   "cond_top1_mean": 0.2064,
+   "dominant_token": 198,
+   "fixed_point_fraction": 0.0,
+   "modal_endpoint_share": 0.6667,
+   "radius_drop": -0.7278,
+   "radius_drop_sd": 0.0076,
+   "sg_top1_T0.02": 0.2295,
+   "sg_top1_T0.02_sd": 0.0105,
+   "sg_top1_T0.2": 0.2073,
+   "sg_top1_T0.2_sd": 0.0078,
+   "sg_top1_T0.436": 0.155,
+   "sg_top1_T0.436_sd": 0.0126,
+   "sg_top1_T0.7": 0.0941,
+   "sg_top1_T0.7_sd": 0.0065,
+   "top1_T0.02": 0.2238,
+   "top1_T0.02_sd": 0.006,
+   "top1_T0.2": 0.2132,
+   "top1_T0.2_sd": 0.0047,
+   "top1_T0.436": 0.1387,
+   "top1_T0.436_sd": 0.0016,
+   "top1_T0.7": 0.0934,
+   "top1_T0.7_sd": 0.0074,
+   "tstar": null,
+   "tstar_state": "none"
+  },
+  "gpt2": {
+   "bos_drop": 0.0272,
+   "bos_drop_sd": 0.0038,
+   "cond_entropy_mean": 5.1652,
+   "cond_top1_mean": 0.1972,
+   "dominant_token": 198,
+   "fixed_point_fraction": 0.0,
+   "modal_endpoint_share": 0.4583,
+   "radius_drop": 0.0547,
+   "radius_drop_sd": 0.0057,
+   "sg_top1_T0.02": 0.2041,
+   "sg_top1_T0.02_sd": 0.0092,
+   "sg_top1_T0.2": 0.1644,
+   "sg_top1_T0.2_sd": 0.0056,
+   "sg_top1_T0.436": 0.1468,
+   "sg_top1_T0.436_sd": 0.0195,
+   "sg_top1_T0.7": 0.1195,
+   "sg_top1_T0.7_sd": 0.0156,
+   "top1_T0.02": 0.2001,
+   "top1_T0.02_sd": 0.0063,
+   "top1_T0.2": 0.1683,
+   "top1_T0.2_sd": 0.0051,
+   "top1_T0.436": 0.1406,
+   "top1_T0.436_sd": 0.0141,
+   "top1_T0.7": 0.1082,
+   "top1_T0.7_sd": 0.0058,
+   "tstar": null,
+   "tstar_state": "none"
+  }
+ },
+ "gate2_verdict": "CORPUS (gpt-neo-125M vs gpt2, tokenizer identical): best CA separation 3.7x the worst within-family range on the screen. REPLICATES -- the registered expectation holds and F64's split survives a 4-seed-per-side measurement. DISTILLATION (gpt2 vs distilgpt2): on the FROZEN statistic, best 0.42x -> no separation. BUT on the radius/BOS arms, which have no screen-wide denominator and are therefore absent from that number, the gap is 5.74x the same-family (dedup) gap -- see supplementary_new_arms. Reporting this pair as a null on the frozen statistic alone would bury the largest effect in the gate. POST-TRAINING (Qwen2.5-0.5B vs Qwen2.5-0.5B-Instruct): on the FROZEN statistic, best 2.3x -> SEPARATES. The radius/BOS arms agree, at 4.94x the same-family gap. DEDUP (pythia-160m vs pythia-160m-deduped): on the FROZEN statistic, best 0.8x -> no separation. Registered as a discovery probe on the same family, so a null here costs the program nothing -- and its gaps are what supply the within-family reference the new arms otherwise lack. K2 DOES NOT FIRE: corpus, post_training separate(s) beyond within-family spread, so the capability survives its controlled-pair test and Gate 3 (the API port) is the next decision. Per plan_paper2's caution the third-paper decision point is HERE, after Gate 2 -- not before. K1 re-checked on Gate 2's own runs (battery and baseline computed together, as frozen): the static baseline beats the CA on NO pair here, consistent with Gate 1. Note the two use different denominators and this is a direction check, not a K1 verdict. GEOMETRY, MATCHED: every ratio above uses a numerator measured at the SCREEN's geometry (B=8, 12 sweeps), because that is where the within-family-range denominator was measured. Using the frozen battery geometry instead would have changed them by corpus +1.25, distillation -0.16, post_training +0.34, dedup -0.12 -- upward wherever a model has an attractor, since more sweeps settle a ring further into one. Mixing the two is F56 (a tolerance from one geometry applied at another), so both are reported and the matched pair is the one the verdict uses. NOT OBTAINED: cerebras/Cerebras-GPT-111M failed to load again, so the third Pile family is still missing and the corpus direction rests on the SAME 2 independent families it did at Gate 0 (pythia, gpt-neo). F68's pseudoreplication hazard is undischarged here and the ~21-family power note still applies -- the corpus pair replicating does not change that. Family is the independent unit (F68). The dedup pair is WITHIN one family by construction, so its gap is a within-family gap and is reported as a probe, never as separation.",
+ "independent_unit": "family",
+ "pairs": {
+  "corpus": {
+   "a": "EleutherAI/gpt-neo-125M",
+   "b": "gpt2",
+   "baseline_best_over_seed_sd": 0,
+   "best_gap_over_worst_within": 3.7,
+   "best_matched_geometry": 3.7,
+   "best_mismatched_geometry": 4.95,
+   "ca_best": 4.95,
+   "features": {
+    "bos_drop": {
+     "a": 0.0841,
+     "b": 0.0272,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0569,
+     "gap_over_seed_sd": 1.87,
+     "worst_seed_sd": 0.0304
+    },
+    "cond_entropy_mean": {
+     "a": 5.3666,
+     "b": 5.1652,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.2014,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "cond_top1_mean": {
+     "a": 0.1657,
+     "b": 0.1972,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0315,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "fixed_point_fraction": {
+     "a": 0.2083,
+     "b": 0.0,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.2083,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "modal_endpoint_share": {
+     "a": 0.5,
+     "b": 0.4583,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0417,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "radius_drop": {
+     "a": -0.0477,
+     "b": 0.0547,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.1024,
+     "gap_over_seed_sd": 4.2,
+     "worst_seed_sd": 0.0244
+    },
+    "sg_top1_T0.02": {
+     "a": 0.7578,
+     "b": 0.2041,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.5537,
+     "gap_over_seed_sd": 60.18,
+     "gap_over_worst_within": 2.34,
+     "worst_seed_sd": 0.0092,
+     "worst_within_family_range": 0.237
+    },
+    "sg_top1_T0.2": {
+     "a": 0.7019,
+     "b": 0.1644,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.5375,
+     "gap_over_seed_sd": 19.4,
+     "gap_over_worst_within": 3.15,
+     "worst_seed_sd": 0.0277,
+     "worst_within_family_range": 0.1706
+    },
+    "sg_top1_T0.436": {
+     "a": 0.5963,
+     "b": 0.1468,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.4495,
+     "gap_over_seed_sd": 11.8,
+     "gap_over_worst_within": 1.96,
+     "worst_seed_sd": 0.0381,
+     "worst_within_family_range": 0.2291
+    },
+    "sg_top1_T0.7": {
+     "a": 0.346,
+     "b": 0.1195,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.2265,
+     "gap_over_seed_sd": 6.36,
+     "gap_over_worst_within": 3.7,
+     "worst_seed_sd": 0.0356,
+     "worst_within_family_range": 0.0612
+    },
+    "top1_T0.02": {
+     "a": 0.8755,
+     "b": 0.2001,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.6754,
+     "gap_over_seed_sd": 29.88,
+     "gap_over_worst_within": 2.85,
+     "worst_seed_sd": 0.0226,
+     "worst_within_family_range": 0.237
+    },
+    "top1_T0.2": {
+     "a": 0.8187,
+     "b": 0.1683,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.6504,
+     "gap_over_seed_sd": 67.75,
+     "gap_over_worst_within": 3.81,
+     "worst_seed_sd": 0.0096,
+     "worst_within_family_range": 0.1706
+    },
+    "top1_T0.436": {
+     "a": 0.7113,
+     "b": 0.1406,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.5707,
+     "gap_over_seed_sd": 40.48,
+     "gap_over_worst_within": 2.49,
+     "worst_seed_sd": 0.0141,
+     "worst_within_family_range": 0.2291
+    },
+    "top1_T0.7": {
+     "a": 0.4113,
+     "b": 0.1082,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.3031,
+     "gap_over_seed_sd": 30.01,
+     "gap_over_worst_within": 4.95,
+     "worst_seed_sd": 0.0101,
+     "worst_within_family_range": 0.0612
+    }
+   },
+   "geometry_inflation": 1.25,
+   "note": "corpus differs, tokenizer identical; registered: replicates F64 beyond within-family spread",
+   "separates_beyond_within_family": true
+  },
+  "dedup": {
+   "a": "EleutherAI/pythia-160m",
+   "b": "EleutherAI/pythia-160m-deduped",
+   "baseline_best_over_seed_sd": 0,
+   "best_gap_over_worst_within": 0.8,
+   "best_matched_geometry": 0.8,
+   "best_mismatched_geometry": 0.68,
+   "ca_best": 0.68,
+   "features": {
+    "bos_drop": {
+     "a": 0.6917,
+     "b": 0.5511,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.1406,
+     "gap_over_seed_sd": 22.68,
+     "worst_seed_sd": 0.0062
+    },
+    "cond_entropy_mean": {
+     "a": 5.6293,
+     "b": 5.5761,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0532,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "cond_top1_mean": {
+     "a": 0.1638,
+     "b": 0.1753,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0115,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "fixed_point_fraction": {
+     "a": 0.9167,
+     "b": 0.375,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.5417,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "modal_endpoint_share": {
+     "a": 0.9167,
+     "b": 0.5833,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.3334,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "radius_drop": {
+     "a": 0.6919,
+     "b": 0.5555,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.1364,
+     "gap_over_seed_sd": 7.14,
+     "worst_seed_sd": 0.0191
+    },
+    "sg_top1_T0.02": {
+     "a": 0.9098,
+     "b": 0.7191,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.1907,
+     "gap_over_seed_sd": 8.51,
+     "gap_over_worst_within": 0.8,
+     "worst_seed_sd": 0.0224,
+     "worst_within_family_range": 0.237
+    },
+    "sg_top1_T0.2": {
+     "a": 0.877,
+     "b": 0.7962,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0808,
+     "gap_over_seed_sd": 1.76,
+     "gap_over_worst_within": 0.47,
+     "worst_seed_sd": 0.046,
+     "worst_within_family_range": 0.1706
+    },
+    "sg_top1_T0.436": {
+     "a": 0.6286,
+     "b": 0.6543,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0257,
+     "gap_over_seed_sd": 1.32,
+     "gap_over_worst_within": 0.11,
+     "worst_seed_sd": 0.0194,
+     "worst_within_family_range": 0.2291
+    },
+    "sg_top1_T0.7": {
+     "a": 0.2034,
+     "b": 0.1895,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0139,
+     "gap_over_seed_sd": 0.54,
+     "gap_over_worst_within": 0.23,
+     "worst_seed_sd": 0.0257,
+     "worst_within_family_range": 0.0612
+    },
+    "top1_T0.02": {
+     "a": 0.9124,
+     "b": 0.7507,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.1617,
+     "gap_over_seed_sd": 8.17,
+     "gap_over_worst_within": 0.68,
+     "worst_seed_sd": 0.0198,
+     "worst_within_family_range": 0.237
+    },
+    "top1_T0.2": {
+     "a": 0.9292,
+     "b": 0.8478,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0814,
+     "gap_over_seed_sd": 4.82,
+     "gap_over_worst_within": 0.48,
+     "worst_seed_sd": 0.0169,
+     "worst_within_family_range": 0.1706
+    },
+    "top1_T0.436": {
+     "a": 0.6489,
+     "b": 0.6916,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0427,
+     "gap_over_seed_sd": 1.29,
+     "gap_over_worst_within": 0.19,
+     "worst_seed_sd": 0.0331,
+     "worst_within_family_range": 0.2291
+    },
+    "top1_T0.7": {
+     "a": 0.1849,
+     "b": 0.2007,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0158,
+     "gap_over_seed_sd": 1.1,
+     "gap_over_worst_within": 0.26,
+     "worst_seed_sd": 0.0144,
+     "worst_within_family_range": 0.0612
+    }
+   },
+   "geometry_inflation": -0.12,
+   "note": "dedup only, same family; DISCOVERY PROBE, not a requirement",
+   "separates_beyond_within_family": false
+  },
+  "distillation": {
+   "a": "gpt2",
+   "b": "distilgpt2",
+   "baseline_best_over_seed_sd": 0,
+   "best_gap_over_worst_within": 0.42,
+   "best_matched_geometry": 0.42,
+   "best_mismatched_geometry": 0.26,
+   "ca_best": 0.26,
+   "features": {
+    "bos_drop": {
+     "a": 0.0272,
+     "b": -0.6304,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.6576,
+     "gap_over_seed_sd": 22.6,
+     "worst_seed_sd": 0.0291
+    },
+    "cond_entropy_mean": {
+     "a": 5.1652,
+     "b": 5.3454,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.1802,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "cond_top1_mean": {
+     "a": 0.1972,
+     "b": 0.2064,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0092,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "fixed_point_fraction": {
+     "a": 0.0,
+     "b": 0.0,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "modal_endpoint_share": {
+     "a": 0.4583,
+     "b": 0.6667,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.2084,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "radius_drop": {
+     "a": 0.0547,
+     "b": -0.7278,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.7825,
+     "gap_over_seed_sd": 102.96,
+     "worst_seed_sd": 0.0076
+    },
+    "sg_top1_T0.02": {
+     "a": 0.2041,
+     "b": 0.2295,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0254,
+     "gap_over_seed_sd": 2.42,
+     "gap_over_worst_within": 0.11,
+     "worst_seed_sd": 0.0105,
+     "worst_within_family_range": 0.237
+    },
+    "sg_top1_T0.2": {
+     "a": 0.1644,
+     "b": 0.2073,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0429,
+     "gap_over_seed_sd": 5.5,
+     "gap_over_worst_within": 0.25,
+     "worst_seed_sd": 0.0078,
+     "worst_within_family_range": 0.1706
+    },
+    "sg_top1_T0.436": {
+     "a": 0.1468,
+     "b": 0.155,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0082,
+     "gap_over_seed_sd": 0.42,
+     "gap_over_worst_within": 0.04,
+     "worst_seed_sd": 0.0195,
+     "worst_within_family_range": 0.2291
+    },
+    "sg_top1_T0.7": {
+     "a": 0.1195,
+     "b": 0.0941,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0254,
+     "gap_over_seed_sd": 1.63,
+     "gap_over_worst_within": 0.42,
+     "worst_seed_sd": 0.0156,
+     "worst_within_family_range": 0.0612
+    },
+    "top1_T0.02": {
+     "a": 0.2001,
+     "b": 0.2238,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0237,
+     "gap_over_seed_sd": 3.76,
+     "gap_over_worst_within": 0.1,
+     "worst_seed_sd": 0.0063,
+     "worst_within_family_range": 0.237
+    },
+    "top1_T0.2": {
+     "a": 0.1683,
+     "b": 0.2132,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0449,
+     "gap_over_seed_sd": 8.8,
+     "gap_over_worst_within": 0.26,
+     "worst_seed_sd": 0.0051,
+     "worst_within_family_range": 0.1706
+    },
+    "top1_T0.436": {
+     "a": 0.1406,
+     "b": 0.1387,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0019,
+     "gap_over_seed_sd": 0.13,
+     "gap_over_worst_within": 0.01,
+     "worst_seed_sd": 0.0141,
+     "worst_within_family_range": 0.2291
+    },
+    "top1_T0.7": {
+     "a": 0.1082,
+     "b": 0.0934,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0148,
+     "gap_over_seed_sd": 2.0,
+     "gap_over_worst_within": 0.24,
+     "worst_seed_sd": 0.0074,
+     "worst_within_family_range": 0.0612
+    }
+   },
+   "geometry_inflation": -0.16,
+   "note": "distillation; registered as UNCERTAIN -- a discovery either way",
+   "separates_beyond_within_family": false
+  },
+  "post_training": {
+   "a": "Qwen/Qwen2.5-0.5B",
+   "b": "Qwen/Qwen2.5-0.5B-Instruct",
+   "baseline_best_over_seed_sd": 0,
+   "best_gap_over_worst_within": 2.3,
+   "best_matched_geometry": 2.3,
+   "best_mismatched_geometry": 2.64,
+   "ca_best": 2.64,
+   "features": {
+    "bos_drop": {
+     "a": 0.2927,
+     "b": -0.4025,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.6952,
+     "gap_over_seed_sd": 22.64,
+     "worst_seed_sd": 0.0307
+    },
+    "cond_entropy_mean": {
+     "a": 6.2257,
+     "b": 5.9642,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.2615,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "cond_top1_mean": {
+     "a": 0.1278,
+     "b": 0.1602,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.0324,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "fixed_point_fraction": {
+     "a": 0.875,
+     "b": 0.0,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.875,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "modal_endpoint_share": {
+     "a": 0.875,
+     "b": 0.3333,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.5417,
+     "gap_over_seed_sd": null,
+     "worst_seed_sd": 0.0
+    },
+    "radius_drop": {
+     "a": 0.2227,
+     "b": -0.3306,
+     "denominator": "pooled 4-seed within-model spread -- this feature was never run screen-wide, so the prereg denominator does not exist for it and is NOT substituted",
+     "gap": 0.5533,
+     "gap_over_seed_sd": 19.01,
+     "worst_seed_sd": 0.0291
+    },
+    "sg_top1_T0.02": {
+     "a": 0.7493,
+     "b": 0.2038,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.5455,
+     "gap_over_seed_sd": 19.34,
+     "gap_over_worst_within": 2.3,
+     "worst_seed_sd": 0.0282,
+     "worst_within_family_range": 0.237
+    },
+    "sg_top1_T0.2": {
+     "a": 0.5156,
+     "b": 0.2878,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.2278,
+     "gap_over_seed_sd": 6.47,
+     "gap_over_worst_within": 1.34,
+     "worst_seed_sd": 0.0352,
+     "worst_within_family_range": 0.1706
+    },
+    "sg_top1_T0.436": {
+     "a": 0.2364,
+     "b": 0.1881,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0483,
+     "gap_over_seed_sd": 3.66,
+     "gap_over_worst_within": 0.21,
+     "worst_seed_sd": 0.0132,
+     "worst_within_family_range": 0.2291
+    },
+    "sg_top1_T0.7": {
+     "a": 0.0697,
+     "b": 0.0654,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MATCHED: numerator measured at that same geometry.",
+     "gap": 0.0043,
+     "gap_over_seed_sd": 0.6,
+     "gap_over_worst_within": 0.07,
+     "worst_seed_sd": 0.0072,
+     "worst_within_family_range": 0.0612
+    },
+    "top1_T0.02": {
+     "a": 0.8529,
+     "b": 0.2282,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.6247,
+     "gap_over_seed_sd": 24.89,
+     "gap_over_worst_within": 2.64,
+     "worst_seed_sd": 0.0251,
+     "worst_within_family_range": 0.237
+    },
+    "top1_T0.2": {
+     "a": 0.5856,
+     "b": 0.306,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.2796,
+     "gap_over_seed_sd": 8.68,
+     "gap_over_worst_within": 1.64,
+     "worst_seed_sd": 0.0322,
+     "worst_within_family_range": 0.1706
+    },
+    "top1_T0.436": {
+     "a": 0.2052,
+     "b": 0.1839,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0213,
+     "gap_over_seed_sd": 0.76,
+     "gap_over_worst_within": 0.09,
+     "worst_seed_sd": 0.0282,
+     "worst_within_family_range": 0.2291
+    },
+    "top1_T0.7": {
+     "a": 0.0688,
+     "b": 0.063,
+     "denominator": "worst within-family range on the 26-model screen (B=8, 12 sweeps). MISMATCHED: numerator measured at the frozen battery geometry (B=16, 16 sweeps), which settles attractor-bearing models further in and inflates the ratio -- compare the sg_ row for the matched value.",
+     "gap": 0.0058,
+     "gap_over_seed_sd": 0.73,
+     "gap_over_worst_within": 0.09,
+     "worst_seed_sd": 0.0079,
+     "worst_within_family_range": 0.0612
+    }
+   },
+   "geometry_inflation": 0.34,
+   "note": "post-training; separation expected, DIRECTION UNREGISTERED",
+   "separates_beyond_within_family": true
+  }
+ },
+ "runs": {
+  "EleutherAI/gpt-neo-125M|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.8952
+  },
+  "EleutherAI/gpt-neo-125M|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.8822
+  },
+  "EleutherAI/gpt-neo-125M|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.8372
+  },
+  "EleutherAI/gpt-neo-125M|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.8874
+  },
+  "EleutherAI/gpt-neo-125M|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.8314
+  },
+  "EleutherAI/gpt-neo-125M|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.8216
+  },
+  "EleutherAI/gpt-neo-125M|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.8047
+  },
+  "EleutherAI/gpt-neo-125M|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.8171
+  },
+  "EleutherAI/gpt-neo-125M|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.7279
+  },
+  "EleutherAI/gpt-neo-125M|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.7109
+  },
+  "EleutherAI/gpt-neo-125M|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.7064
+  },
+  "EleutherAI/gpt-neo-125M|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.6999
+  },
+  "EleutherAI/gpt-neo-125M|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.4277
+  },
+  "EleutherAI/gpt-neo-125M|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.4056
+  },
+  "EleutherAI/gpt-neo-125M|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.401
+  },
+  "EleutherAI/gpt-neo-125M|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.4108
+  },
+  "EleutherAI/gpt-neo-125M|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.1302,
+    "2": 0.1927,
+    "3": 0.2813,
+    "4": 0.2274,
+    "8": 0.334
+   },
+   "cond_entropy_mean": 5.3666,
+   "cond_top1_mean": 0.1657,
+   "cond_top1_sd": 0.1369,
+   "cyclic_fraction": 0.7917,
+   "fixed_point_fraction": 0.2083,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": " side",
+   "model": "EleutherAI/gpt-neo-125M",
+   "n_distinct_endpoints": 7,
+   "n_starts": 24
+  },
+  "EleutherAI/gpt-neo-125M|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.793
+  },
+  "EleutherAI/gpt-neo-125M|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.8014
+  },
+  "EleutherAI/gpt-neo-125M|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.7435
+  },
+  "EleutherAI/gpt-neo-125M|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.8275
+  },
+  "EleutherAI/gpt-neo-125M|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.9629
+  },
+  "EleutherAI/gpt-neo-125M|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.8965
+  },
+  "EleutherAI/gpt-neo-125M|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.9147
+  },
+  "EleutherAI/gpt-neo-125M|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.9186
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.7643
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.75
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.7526
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.7643
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.7279
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.681
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.668
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.7305
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.5716
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.5898
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.6602
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.5638
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 101,
+   "top1": 0.3971
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 102,
+   "top1": 0.332
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 103,
+   "top1": 0.2995
+  },
+  "EleutherAI/gpt-neo-125M|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "EleutherAI/gpt-neo-125M",
+   "seed": 104,
+   "top1": 0.3555
+  },
+  "EleutherAI/pythia-160m-deduped|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.7448
+  },
+  "EleutherAI/pythia-160m-deduped|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.7552
+  },
+  "EleutherAI/pythia-160m-deduped|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.7422
+  },
+  "EleutherAI/pythia-160m-deduped|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.7604
+  },
+  "EleutherAI/pythia-160m-deduped|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.8333
+  },
+  "EleutherAI/pythia-160m-deduped|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.8763
+  },
+  "EleutherAI/pythia-160m-deduped|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.8438
+  },
+  "EleutherAI/pythia-160m-deduped|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.8379
+  },
+  "EleutherAI/pythia-160m-deduped|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.6641
+  },
+  "EleutherAI/pythia-160m-deduped|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.6901
+  },
+  "EleutherAI/pythia-160m-deduped|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.666
+  },
+  "EleutherAI/pythia-160m-deduped|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.7461
+  },
+  "EleutherAI/pythia-160m-deduped|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.2038
+  },
+  "EleutherAI/pythia-160m-deduped|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.2214
+  },
+  "EleutherAI/pythia-160m-deduped|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.196
+  },
+  "EleutherAI/pythia-160m-deduped|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.1816
+  },
+  "EleutherAI/pythia-160m-deduped|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.1132,
+    "2": 0.2222,
+    "3": 0.2442,
+    "4": 0.274,
+    "8": 0.2778
+   },
+   "cond_entropy_mean": 5.5761,
+   "cond_top1_mean": 0.1753,
+   "cond_top1_sd": 0.1621,
+   "cyclic_fraction": 0.625,
+   "fixed_point_fraction": 0.375,
+   "modal_endpoint_share": 0.5833,
+   "modal_endpoint_token": " the",
+   "model": "EleutherAI/pythia-160m-deduped",
+   "n_distinct_endpoints": 3,
+   "n_starts": 24
+  },
+  "EleutherAI/pythia-160m-deduped|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.196
+  },
+  "EleutherAI/pythia-160m-deduped|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.2103
+  },
+  "EleutherAI/pythia-160m-deduped|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.196
+  },
+  "EleutherAI/pythia-160m-deduped|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.196
+  },
+  "EleutherAI/pythia-160m-deduped|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.1999
+  },
+  "EleutherAI/pythia-160m-deduped|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.194
+  },
+  "EleutherAI/pythia-160m-deduped|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.1914
+  },
+  "EleutherAI/pythia-160m-deduped|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.1953
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.7318
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.7448
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.7148
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.6849
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.7201
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.8424
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.8047
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.8177
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.6576
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.6432
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.6615
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.6549
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 101,
+   "top1": 0.1875
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 102,
+   "top1": 0.2148
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 103,
+   "top1": 0.168
+  },
+  "EleutherAI/pythia-160m-deduped|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m-deduped",
+   "seed": 104,
+   "top1": 0.1875
+  },
+  "EleutherAI/pythia-160m|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.9284
+  },
+  "EleutherAI/pythia-160m|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.8874
+  },
+  "EleutherAI/pythia-160m|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.8991
+  },
+  "EleutherAI/pythia-160m|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.9349
+  },
+  "EleutherAI/pythia-160m|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.9219
+  },
+  "EleutherAI/pythia-160m|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.9082
+  },
+  "EleutherAI/pythia-160m|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.9466
+  },
+  "EleutherAI/pythia-160m|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.9401
+  },
+  "EleutherAI/pythia-160m|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.6159
+  },
+  "EleutherAI/pythia-160m|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.6549
+  },
+  "EleutherAI/pythia-160m|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.6608
+  },
+  "EleutherAI/pythia-160m|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.6641
+  },
+  "EleutherAI/pythia-160m|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.1751
+  },
+  "EleutherAI/pythia-160m|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.1862
+  },
+  "EleutherAI/pythia-160m|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.1966
+  },
+  "EleutherAI/pythia-160m|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.1816
+  },
+  "EleutherAI/pythia-160m|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.1032,
+    "2": 0.227,
+    "3": 0.2433,
+    "4": 0.2627,
+    "8": 0.2961
+   },
+   "cond_entropy_mean": 5.6293,
+   "cond_top1_mean": 0.1638,
+   "cond_top1_sd": 0.158,
+   "cyclic_fraction": 0.0833,
+   "fixed_point_fraction": 0.9167,
+   "modal_endpoint_share": 0.9167,
+   "modal_endpoint_token": "\n",
+   "model": "EleutherAI/pythia-160m",
+   "n_distinct_endpoints": 3,
+   "n_starts": 24
+  },
+  "EleutherAI/pythia-160m|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.2148
+  },
+  "EleutherAI/pythia-160m|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.2292
+  },
+  "EleutherAI/pythia-160m|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.2214
+  },
+  "EleutherAI/pythia-160m|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.2174
+  },
+  "EleutherAI/pythia-160m|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.248
+  },
+  "EleutherAI/pythia-160m|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.2051
+  },
+  "EleutherAI/pythia-160m|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.2005
+  },
+  "EleutherAI/pythia-160m|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.2285
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.9323
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.8906
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.9193
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.8971
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.8828
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.8529
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.8841
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.888
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.6576
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.6029
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.6263
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.6276
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 101,
+   "top1": 0.2005
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 102,
+   "top1": 0.1719
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 103,
+   "top1": 0.2435
+  },
+  "EleutherAI/pythia-160m|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 187,
+   "model": "EleutherAI/pythia-160m",
+   "seed": 104,
+   "top1": 0.1979
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.263
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.2194
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.194
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.2363
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.319
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.3145
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.2936
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.2969
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.1842
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.151
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.1927
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.2077
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.0579
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.069
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.0618
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.0632
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.145,
+    "2": 0.2468,
+    "3": 0.3036,
+    "4": 0.29,
+    "8": 0.2878
+   },
+   "cond_entropy_mean": 5.9642,
+   "cond_top1_mean": 0.1602,
+   "cond_top1_sd": 0.1641,
+   "cyclic_fraction": 0.6667,
+   "fixed_point_fraction": 0.0,
+   "modal_endpoint_share": 0.3333,
+   "modal_endpoint_token": "0",
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "n_distinct_endpoints": 12,
+   "n_starts": 24
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.5911
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.6296
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.6302
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.6719
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.5521
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.5384
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.6081
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.5365
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.2188
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.2292
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.1562
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.2109
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.3177
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.2721
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.2969
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.2643
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.1758
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.1823
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.207
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.1875
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 101,
+   "top1": 0.0703
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 220,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 102,
+   "top1": 0.056
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 103,
+   "top1": 0.0742
+  },
+  "Qwen/Qwen2.5-0.5B-Instruct|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B-Instruct",
+   "seed": 104,
+   "top1": 0.0612
+  },
+  "Qwen/Qwen2.5-0.5B|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.8184
+  },
+  "Qwen/Qwen2.5-0.5B|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.8548
+  },
+  "Qwen/Qwen2.5-0.5B|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.8672
+  },
+  "Qwen/Qwen2.5-0.5B|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.8711
+  },
+  "Qwen/Qwen2.5-0.5B|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.6406
+  },
+  "Qwen/Qwen2.5-0.5B|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.5664
+  },
+  "Qwen/Qwen2.5-0.5B|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.5599
+  },
+  "Qwen/Qwen2.5-0.5B|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.5755
+  },
+  "Qwen/Qwen2.5-0.5B|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.209
+  },
+  "Qwen/Qwen2.5-0.5B|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.1628
+  },
+  "Qwen/Qwen2.5-0.5B|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.2422
+  },
+  "Qwen/Qwen2.5-0.5B|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.207
+  },
+  "Qwen/Qwen2.5-0.5B|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.0697
+  },
+  "Qwen/Qwen2.5-0.5B|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.0814
+  },
+  "Qwen/Qwen2.5-0.5B|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.0625
+  },
+  "Qwen/Qwen2.5-0.5B|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.0618
+  },
+  "Qwen/Qwen2.5-0.5B|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.1756,
+    "2": 0.2298,
+    "3": 0.2189,
+    "4": 0.2604,
+    "8": 0.3243
+   },
+   "cond_entropy_mean": 6.2257,
+   "cond_top1_mean": 0.1278,
+   "cond_top1_sd": 0.137,
+   "cyclic_fraction": 0.125,
+   "fixed_point_fraction": 0.875,
+   "modal_endpoint_share": 0.875,
+   "modal_endpoint_token": "0",
+   "model": "Qwen/Qwen2.5-0.5B",
+   "n_distinct_endpoints": 4,
+   "n_starts": 24
+  },
+  "Qwen/Qwen2.5-0.5B|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.5918
+  },
+  "Qwen/Qwen2.5-0.5B|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.5833
+  },
+  "Qwen/Qwen2.5-0.5B|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.5521
+  },
+  "Qwen/Qwen2.5-0.5B|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.5137
+  },
+  "Qwen/Qwen2.5-0.5B|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.6191
+  },
+  "Qwen/Qwen2.5-0.5B|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.597
+  },
+  "Qwen/Qwen2.5-0.5B|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.6549
+  },
+  "Qwen/Qwen2.5-0.5B|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.6497
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.7513
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.7552
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.7357
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.7552
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.569
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.5143
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.4701
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.5091
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.2422
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.224
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.2552
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.224
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 101,
+   "top1": 0.0742
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 102,
+   "top1": 0.0729
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 103,
+   "top1": 0.0716
+  },
+  "Qwen/Qwen2.5-0.5B|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 15,
+   "model": "Qwen/Qwen2.5-0.5B",
+   "seed": 104,
+   "top1": 0.0599
+  },
+  "cerebras/Cerebras-GPT-111M|failed": {
+   "error": "OSError",
+   "model": "cerebras/Cerebras-GPT-111M"
+  },
+  "distilgpt2|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.2298
+  },
+  "distilgpt2|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.2142
+  },
+  "distilgpt2|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.2233
+  },
+  "distilgpt2|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.2279
+  },
+  "distilgpt2|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.2148
+  },
+  "distilgpt2|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.2122
+  },
+  "distilgpt2|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.2194
+  },
+  "distilgpt2|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.2064
+  },
+  "distilgpt2|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.1361
+  },
+  "distilgpt2|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.1387
+  },
+  "distilgpt2|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.1393
+  },
+  "distilgpt2|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.1406
+  },
+  "distilgpt2|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.084
+  },
+  "distilgpt2|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.1003
+  },
+  "distilgpt2|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.1009
+  },
+  "distilgpt2|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.0885
+  },
+  "distilgpt2|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.0533,
+    "2": 0.1787,
+    "3": 0.2798,
+    "4": 0.2115,
+    "8": 0.3134
+   },
+   "cond_entropy_mean": 5.3454,
+   "cond_top1_mean": 0.2064,
+   "cond_top1_sd": 0.1911,
+   "cyclic_fraction": 1.0,
+   "fixed_point_fraction": 0.0,
+   "modal_endpoint_share": 0.6667,
+   "modal_endpoint_token": "\n",
+   "model": "distilgpt2",
+   "n_distinct_endpoints": 3,
+   "n_starts": 24
+  },
+  "distilgpt2|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.8867
+  },
+  "distilgpt2|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.834
+  },
+  "distilgpt2|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.8177
+  },
+  "distilgpt2|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.8783
+  },
+  "distilgpt2|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.9531
+  },
+  "distilgpt2|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.9505
+  },
+  "distilgpt2|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.9622
+  },
+  "distilgpt2|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.9408
+  },
+  "distilgpt2|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.2461
+  },
+  "distilgpt2|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.2292
+  },
+  "distilgpt2|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.2174
+  },
+  "distilgpt2|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.2253
+  },
+  "distilgpt2|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.2174
+  },
+  "distilgpt2|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.2018
+  },
+  "distilgpt2|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.1979
+  },
+  "distilgpt2|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.2122
+  },
+  "distilgpt2|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.1667
+  },
+  "distilgpt2|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.1628
+  },
+  "distilgpt2|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.1341
+  },
+  "distilgpt2|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.1562
+  },
+  "distilgpt2|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 262,
+   "model": "distilgpt2",
+   "seed": 101,
+   "top1": 0.0872
+  },
+  "distilgpt2|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 262,
+   "model": "distilgpt2",
+   "seed": 102,
+   "top1": 0.0951
+  },
+  "distilgpt2|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 103,
+   "top1": 0.0898
+  },
+  "distilgpt2|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "distilgpt2",
+   "seed": 104,
+   "top1": 0.1042
+  },
+  "gpt2|T0.02|s101": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.2038
+  },
+  "gpt2|T0.02|s102": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.2012
+  },
+  "gpt2|T0.02|s103": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1895
+  },
+  "gpt2|T0.02|s104": {
+   "T": 0.02,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.2057
+  },
+  "gpt2|T0.2|s101": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.1751
+  },
+  "gpt2|T0.2|s102": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1686
+  },
+  "gpt2|T0.2|s103": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1608
+  },
+  "gpt2|T0.2|s104": {
+   "T": 0.2,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1686
+  },
+  "gpt2|T0.436|s101": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.123
+  },
+  "gpt2|T0.436|s102": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1517
+  },
+  "gpt2|T0.436|s103": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1569
+  },
+  "gpt2|T0.436|s104": {
+   "T": 0.436,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1309
+  },
+  "gpt2|T0.7|s101": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.1029
+  },
+  "gpt2|T0.7|s102": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1022
+  },
+  "gpt2|T0.7|s103": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1152
+  },
+  "gpt2|T0.7|s104": {
+   "T": 0.7,
+   "arm": "temp",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1126
+  },
+  "gpt2|baseline": {
+   "arm": "baseline",
+   "by_length": {
+    "1": 0.0607,
+    "2": 0.205,
+    "3": 0.2918,
+    "4": 0.2233,
+    "8": 0.3177
+   },
+   "cond_entropy_mean": 5.1652,
+   "cond_top1_mean": 0.1972,
+   "cond_top1_sd": 0.1798,
+   "cyclic_fraction": 1.0,
+   "fixed_point_fraction": 0.0,
+   "modal_endpoint_share": 0.4583,
+   "modal_endpoint_token": ".",
+   "model": "gpt2",
+   "n_distinct_endpoints": 5,
+   "n_starts": 24
+  },
+  "gpt2|bos|s101": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.1693
+  },
+  "gpt2|bos|s102": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1784
+  },
+  "gpt2|bos|s103": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1745
+  },
+  "gpt2|bos|s104": {
+   "T": 0.02,
+   "arm": "bos",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1693
+  },
+  "gpt2|r3|s101": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "gpt2",
+   "r": 3,
+   "seed": 101,
+   "top1": 0.1426
+  },
+  "gpt2|r3|s102": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "gpt2",
+   "r": 3,
+   "seed": 102,
+   "top1": 0.1387
+  },
+  "gpt2|r3|s103": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "gpt2",
+   "r": 3,
+   "seed": 103,
+   "top1": 0.1458
+  },
+  "gpt2|r3|s104": {
+   "T": 0.02,
+   "arm": "radius",
+   "dominant": 198,
+   "model": "gpt2",
+   "r": 3,
+   "seed": 104,
+   "top1": 0.1543
+  },
+  "gpt2|screengeom|T0.02|s101": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.2018
+  },
+  "gpt2|screengeom|T0.02|s102": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.2109
+  },
+  "gpt2|screengeom|T0.02|s103": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.2135
+  },
+  "gpt2|screengeom|T0.02|s104": {
+   "T": 0.02,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1901
+  },
+  "gpt2|screengeom|T0.2|s101": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.1654
+  },
+  "gpt2|screengeom|T0.2|s102": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1589
+  },
+  "gpt2|screengeom|T0.2|s103": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1602
+  },
+  "gpt2|screengeom|T0.2|s104": {
+   "T": 0.2,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1732
+  },
+  "gpt2|screengeom|T0.436|s101": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.1263
+  },
+  "gpt2|screengeom|T0.436|s102": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1706
+  },
+  "gpt2|screengeom|T0.436|s103": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1289
+  },
+  "gpt2|screengeom|T0.436|s104": {
+   "T": 0.436,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1615
+  },
+  "gpt2|screengeom|T0.7|s101": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 101,
+   "top1": 0.1393
+  },
+  "gpt2|screengeom|T0.7|s102": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 102,
+   "top1": 0.1302
+  },
+  "gpt2|screengeom|T0.7|s103": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 103,
+   "top1": 0.1029
+  },
+  "gpt2|screengeom|T0.7|s104": {
+   "T": 0.7,
+   "arm": "screengeom",
+   "dominant": 198,
+   "model": "gpt2",
+   "seed": 104,
+   "top1": 0.1055
+  }
+ },
+ "supplementary_new_arms": {
+  "caveat": "POST-HOC and n=1 pair. The dedup pair was registered as a discovery probe, not as a reference. This does not enter K2, which is decided on the frozen statistic alone, and it must not be quoted as the pre-registered number.",
+  "denominator": "the dedup pair's own gap on the same feature -- a WITHIN-FAMILY gap (pythia-160m vs pythia-160m-deduped) at this geometry",
+  "pairs": {
+   "corpus": {
+    "best": 0.75,
+    "features": {
+     "bos_drop": {
+      "gap": 0.0569,
+      "ratio": 0.4,
+      "within_family_ref": 0.1406
+     },
+     "radius_drop": {
+      "gap": 0.1024,
+      "ratio": 0.75,
+      "within_family_ref": 0.1364
+     }
+    }
+   },
+   "distillation": {
+    "best": 5.74,
+    "features": {
+     "bos_drop": {
+      "gap": 0.6576,
+      "ratio": 4.68,
+      "within_family_ref": 0.1406
+     },
+     "radius_drop": {
+      "gap": 0.7825,
+      "ratio": 5.74,
+      "within_family_ref": 0.1364
+     }
+    }
+   },
+   "post_training": {
+    "best": 4.94,
+    "features": {
+     "bos_drop": {
+      "gap": 0.6952,
+      "ratio": 4.94,
+      "within_family_ref": 0.1406
+     },
+     "radius_drop": {
+      "gap": 0.5533,
+      "ratio": 4.06,
+      "within_family_ref": 0.1364
+     }
+    }
+   }
+  }
+ }
+}

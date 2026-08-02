@@ -1,0 +1,80 @@
+  prereg block verifies: True
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 7355.61it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  EleutherAI/gpt-neo-125M: loaded in 4s
+     T=0.02   top1=0.875+-0.023
+     T=0.2    top1=0.819+-0.010
+     T=0.436  top1=0.711+-0.010
+     T=0.7    top1=0.411+-0.010
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 6668.94it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/gpt-neo-125M: done in 764s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7507.31it/s]
+  gpt2: loaded in 3s
+     T=0.02   top1=0.200+-0.006
+     T=0.2    top1=0.168+-0.005
+     T=0.436  top1=0.141+-0.014
+     T=0.7    top1=0.108+-0.006
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6629.04it/s]
+  gpt2: done in 354s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10274.86it/s]
+  distilgpt2: loaded in 34s
+     T=0.02   top1=0.224+-0.006
+     T=0.2    top1=0.213+-0.005
+     T=0.436  top1=0.139+-0.002
+     T=0.7    top1=0.093+-0.007
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7016.82it/s]
+  distilgpt2: done in 281s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6133.91it/s]
+  Qwen/Qwen2.5-0.5B: loaded in 3s
+     T=0.02   top1=0.853+-0.021
+     T=0.2    top1=0.586+-0.032
+     T=0.436  top1=0.205+-0.028
+     T=0.7    top1=0.069+-0.008
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 6351.85it/s]
+  Qwen/Qwen2.5-0.5B: done in 1410s
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 18397.74it/s]
+  Qwen/Qwen2.5-0.5B-Instruct: loaded in 63s
+     T=0.02   top1=0.228+-0.025
+     T=0.2    top1=0.306+-0.011
+     T=0.436  top1=0.184+-0.021
+     T=0.7    top1=0.063+-0.004
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5959.74it/s]
+  Qwen/Qwen2.5-0.5B-Instruct: done in 1517s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 5862.50it/s]
+  EleutherAI/pythia-160m: loaded in 2s
+     T=0.02   top1=0.912+-0.020
+     T=0.2    top1=0.929+-0.015
+     T=0.436  top1=0.649+-0.019
+     T=0.7    top1=0.185+-0.008
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7931.37it/s]
+  EleutherAI/pythia-160m: done in 533s
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 11102.79it/s]
+  EleutherAI/pythia-160m-deduped: loaded in 24s
+     T=0.02   top1=0.751+-0.007
+     T=0.2    top1=0.848+-0.017
+     T=0.436  top1=0.692+-0.033
+     T=0.7    top1=0.201+-0.014
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 5847.04it/s]
+  EleutherAI/pythia-160m-deduped: done in 649s
+  cerebras/Cerebras-GPT-111M: LOAD FAILED (OSError: cerebras/Cerebras-GPT-111M is not a local folder and is not a valid mo)
+
+  -> CORPUS (gpt-neo-125M vs gpt2, tokenizer identical): best CA separation 4.95x the worst within-family range on the screen. REPLICATES -- the registered expectation holds and F64's split survives a 4-seed-per-side measurement. DISTILLATION (gpt2 vs distilgpt2): best 0.26x -> no separation. POST-TRAINING (Qwen2.5-0.5B vs Qwen2.5-0.5B-Instruct): best 2.64x -> SEPARATES. DEDUP (pythia-160m vs pythia-160m-deduped): best 0.68x -> no separation. Registered as a discovery probe on the same family, so a null here costs the program nothing. K2 DOES NOT FIRE: corpus, post_training separate(s) beyond within-family spread, so the capability survives its controlled-pair test and Gate 3 (the API port) is the next decision. Per plan_paper2's caution the third-paper decision point is HERE, after Gate 2 -- not before. K1 re-checked on Gate 2's own runs (battery and baseline computed together, as frozen): the static baseline beats the CA on NO pair here, consistent with Gate 1. Note the two use different denominators and this is a direction check, not a K1 verdict. Family is the independent unit (F68). The dedup pair is WITHIN one family by construction, so its gap is a within-family gap and is reported as a probe, never as separation.
+
+wrote fingerprint/gate2.json
