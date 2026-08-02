@@ -40,7 +40,7 @@ Usage:  .venv/bin/python -u experiments/band_family_census.py
 import sys as _sys, pathlib as _pathlib
 _ROOT = _pathlib.Path(__file__).resolve().parents[1]
 _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments")]
-import json, re, time, collections
+import json, os, re, time, collections
 
 import httpx
 
@@ -102,10 +102,34 @@ def plausible(mid):
     return any(1.0 <= float(x) <= 4.0 for x in m)
 
 
+def _auth():
+    t = os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")
+    return {"Authorization": f"Bearer {t}"} if t else {}
+
+
+def gate_is_open(client, mid):
+    """With a token, ASK whether this account can actually fetch the repo -- do not assume.
+
+    `gated` stays "manual"/"auto" on the metadata even after a licence is accepted; what changes is
+    whether the files resolve. So the check is a HEAD on config.json: 200 means the licence has been
+    accepted on this account, 401/403 means it has not. Without a token this returns None and the
+    repo stays classified as gated, which is the correct reading for an unattended run.
+    """
+    if not _auth():
+        return None
+    try:
+        r = client.head(f"https://huggingface.co/{mid}/resolve/main/config.json",
+                        follow_redirects=True, headers=_auth())
+        return r.status_code == 200
+    except Exception:
+        return None
+
+
 def hub_detail(ids):
     """Exact parameter count, gating and architecture, from the Hub's own metadata."""
     out = {}
-    with httpx.Client(timeout=60.0, headers={"User-Agent": "textca-band-census"}) as c:
+    with httpx.Client(timeout=60.0,
+                      headers={"User-Agent": "textca-band-census", **_auth()}) as c:
         for i, mid in enumerate(ids):
             try:
                 r = c.get(f"https://huggingface.co/api/models/{mid}")
@@ -116,9 +140,11 @@ def hub_detail(ids):
             d = r.json()
             st = d.get("safetensors") or {}
             cfg = d.get("config") or {}
-            out[mid] = {"params": st.get("total"), "gated": d.get("gated"),
+            g = d.get("gated")
+            out[mid] = {"params": st.get("total"), "gated": g,
                         "arch": (cfg.get("architectures") or [None])[0],
-                        "downloads": d.get("downloads"), "tags": d.get("tags", [])}
+                        "downloads": d.get("downloads"), "tags": d.get("tags", []),
+                        "licence_accepted": gate_is_open(c, mid) if g not in (False, None) else None}
             if (i + 1) % 25 == 0:
                 print(f"  detailed {i+1}/{len(ids)}", flush=True)
             time.sleep(0.05)          # unauthenticated: be a good citizen
@@ -188,6 +214,8 @@ def curate(fams):
 
 
 def main():
+    print(f"  HF_TOKEN: {'set -- gated repos will be re-checked for accepted licences' if _auth() else 'NOT set -- gated repos stay excluded'}",
+          flush=True)
     print("stage 1: listing text-generation repos by downloads", flush=True)
     listed = hub_list()
     cand = [m["id"] for m in listed if plausible(m["id"])]
@@ -210,11 +238,15 @@ def main():
             rejected["declared_derivative"] += 1; continue
         if d.get("arch") and not CAUSAL.search(d["arch"]):
             rejected["not_causal_lm"] += 1; continue
-        if d.get("gated") not in (False, None):
+        if d.get("gated") not in (False, None) and not d.get("licence_accepted"):
             rejected["gated"] += 1
             inband.append(dict(model=mid, family=family_of(mid), usable=False,
-                               reason="gated", **d))
+                               reason="gated" + ("" if _auth() else " (no HF_TOKEN set, so gating "
+                                                 "could not be re-checked against an account)"),
+                               **d))
             continue
+        if d.get("licence_accepted"):
+            rejected["gated_but_accepted"] += 1
         inband.append(dict(model=mid, family=family_of(mid), usable=True, reason=None, **d))
 
     # MIRRORS. unsloth/gemma-2-2b carries no base_model tag but is a repackaging of google's
