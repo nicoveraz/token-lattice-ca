@@ -2762,6 +2762,74 @@ cross-replica convergence, and a third of its magnitude is ring-rotation inflati
    If MLM shows the same interior peak, the rung is reading something generic and the AR result
    above means much less.
 
+### F77 — the developmental transition is NOT confined to the two-token window (#99)
+An outside critical read (`critical_analysis.md` §3) named the cheapest attack available against the
+only model-facing claim still standing after F26–F29, F35 and F62–F70: **the developmental
+transition is measured at r=2, the same window F69 showed carries the degeneracy**, where r=2 → r=3
+drops top-1 by 52 points. The paper's two defences — T=0.7 is far from the artifact, and the
+construction is held fixed across checkpoints — concern whether the artifact *contaminates* the
+measurement. Neither shows the effect still *exists* one token further out. It had never been run.
+
+**It survives, and it gets bigger.** Identical protocol (`measure` and `bh_fdr` imported from
+`dev_transition_phase3`, F42 filters from `lyapunov`, same STEPS/PRE/SEEDS), N=48, B=16, T=0.7,
+8 seeds, 48 cells per radius. The r=2 arm is the flagship's own data, read rather than re-run.
+
+```
+  median lambda_ca per checkpoint          PRE -> PLATEAU (Mann-Whitney U, run-level)
+     step      r=2       r=3       r=4       arm   pre      plateau   p_BH      ignited
+      256   +0.0083   -0.0433   -0.0622     r=2  +0.0402   +0.1808   1.3e-05   (reference)
+      512   +0.0666   +0.2255   +0.3838     r=3  +0.0824   +0.3535   9.1e-07   48/48
+     1000   +0.1961   +0.3689   +0.5169     r=4  +0.3076   +0.5421   6.9e-07   48/48
+     2000   +0.1640   +0.3508   +0.5072
+     8000   +0.1753   +0.3469   +0.5432     D_norm at r=3: +0.3311 -> +0.9829, p_BH 4.6e-08
+   143000   +0.1824   +0.3566   +0.5432
+```
+
+Both wider radii clear BH-FDR more tightly than the r=2 arm they defend, and **every run ignited
+(48/48 at each radius)**, so the F42 kill never came near firing and no ignition filtering was
+needed. Be precise about the shape: the **level** of λ_ca rises monotonically with r at every
+checkpoint, but the pre→plateau **gap** is 0.141 / 0.271 / 0.235 at r = 2 / 3 / 4 — it grows from
+r=2 to r=3 and then narrows slightly. "Monotonically stronger" is wrong; "present at every radius
+and largest at r=3" is right.
+
+**The crossing does not move.** `paper.tex` places it "between steps 256 and 512"; r=3 and r=4 put
+the median sign change in the *same* bracket. One extra token of context changes the magnitude, not
+the location.
+
+**The oddity is at r=2, not at r=3.** On this N=48 arm λ_ca is **never negative** — step256 reads
++0.0083 — so the r=2 sign change exists only within seed scatter, while r=3 and r=4 show a genuine
+median sign change at the same bracket. **The wider windows make the transition more visible, not
+less**, which is the opposite of what an artifact story predicts and is a point in the flagship's
+favour that nothing anticipated. It is also consistent with F39's own careful ordinal phrasing
+("seeds disagree on λ's sign before"), which never claimed a negative median.
+
+**Two readings formed off the partial grid and withdrawn before recording.** Both were mine and both
+came from reading new data against a half-remembered paper rather than against the paper.
+
+1. *"The transition has moved earlier at r=3."* Asserted twice from the first complete checkpoints.
+   False: the paper's bracket **is** 256→512, the same one. The error was conflating the crossing
+   bracket with the pre-registered PRE set `{step256, step512}`, which straddles it.
+2. *"`pre_all_negative=False` means the paper's 'sub- to super-critical' overclaims."* Also false.
+   PRE pools two checkpoints on **opposite sides** of the crossing, so it cannot be uniformly
+   negative by construction; the paper's phrase describes the bracket, not the set. The paper is
+   accurate as written.
+
+The lesson is small and old: check the claim you are about to contradict, in the file that makes it,
+before contradicting it. Both were caught by doing that, which is why they are here rather than in a
+verdict string.
+
+**Scope, and what this does not settle.** One model (pythia-410m), one lattice size (N=48), one
+temperature (T=0.7). The PRE set straddles the crossing, so the declared test is **conservative** —
+it passes despite pooling a post-crossing checkpoint into "before". The r=2 reference records
+predate `mean_damage`, so `run_ignited` takes its D_norm fallback there and the mean_damage path at
+r≥3; that is the adapter's documented purpose but the two arms filter on different fields. And this
+closes only the **radius** exposure. The other two named in the same critique are untouched: the
+single-family confound (#61, #83) and the two-point temperature window (F49). The flagship is a
+Pythia fact measured in a narrow temperature band until those land.
+
+**The plateau is flat to three decimals from step1000 to step143000 at every radius** — a 143× span
+of training in which nothing moves. Whatever λ_ca tracks, it saturates early and then stops.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
