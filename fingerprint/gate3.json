@@ -1,0 +1,601 @@
+{
+ "K3": {
+  "chat_template_discriminates": true,
+  "fired": false,
+  "raw_endpoint_discriminates": true,
+  "rule": "K3 fires if chat wrapping destroys the signature AND no raw arm reproduces it"
+ },
+ "_prereg_sha256": "5a15d2e26abef8d28047f4ec23bf6fcca8d1fd792fc7a60e0a881cf0a17dd65b",
+ "_preregistration": {
+  "created_utc": "2026-08-01T21:34:59+00:00",
+  "frozen": {
+   "attribution_protocol": "nearest family centroid, all-families candidate set, leave-one-out; report counts vs chance",
+   "battery": [
+    "top1_share at T in {0.02,0.2,0.436,0.7}",
+    "dominant_token id",
+    "tstar with 3-state censoring (none<finite<censored_above)",
+    "top1 drop r=2 to r=3",
+    "top1 drop under 1-token BOS prefix",
+    "direct p(.|x1,x2) stats: argmax fixed-point count, mean top-1, entropy (the baseline)"
+   ],
+   "geometry": {
+    "B": 16,
+    "N": 96,
+    "r": 2,
+    "seeds_per_model": 4,
+    "settle_sweeps": 16
+   },
+   "pair_protocol": "gap over worst within-family range, per feature, 4 seeds per side",
+   "unit": "model family (F68)"
+  },
+  "hypotheses": {
+   "H1_family": "the frozen signature battery attributes held-out models to their family above chance, leave-one-family-member-out, family as unit",
+   "H2_corpus": "controlled pairs differing only in corpus/post-training separate beyond the worst within-family range on >=1 battery feature: gpt-neo-125M vs gpt2 (replication, seeds); gpt2 vs distilgpt2; one base-vs-instruct sibling pair",
+   "H3_dynamics": "CA-derived features add attribution/separation power over the direct two-token-conditional baseline computed on the same models",
+   "H4_api": "the battery computed through a raw completion API (temperature-controlled, single-token calls) reproduces the local signature within seed spread"
+  },
+  "independent_unit": "family",
+  "kill_conditions": {
+   "K1_deflation": "direct-conditional baseline matches or exceeds CA features on H1 AND H2 -> the CA machinery exits; capability reframes as conditional-statistics fingerprinting",
+   "K2_pairs": "neither the neo/gpt2 replication nor any of {distilgpt2, instruct-sibling} pair separates beyond worst within-family range -> corpus/post-training inference dies; F64 stays a control",
+   "K3_api": "chat-template wrapping destroys the signature AND no raw completion endpoint reproduces it -> capability scoped to open-weight serving only"
+  },
+  "name": "fingerprint-program-v1",
+  "note": "Gate 0 (reanalysis of existing screen data) precedes this block and is exploratory; Gates 1-3 are governed by it. Deduped-Pythia pair is registered as a discovery probe, not a requirement.",
+  "sha256": "5a15d2e26abef8d28047f4ec23bf6fcca8d1fd792fc7a60e0a881cf0a17dd65b"
+ },
+ "_provenance": {
+  "environment": {
+   "implementation": "CPython",
+   "packages": {
+    "jax": "0.10.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "transformers": "5.14.1"
+   },
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "python": "3.11.5"
+  },
+  "imports": {
+   "fingerprint/gate3.py": "bae953c93b928dcba0c36db12f0c0d1e0d487e0030cb6f2e6a02d81ba70f6a9d",
+   "gatecheck/src/gatecheck/__init__.py": "23d0a6357f3a355032eecede8f5f682510c77a7409e5985d9c7c9993b273dc1e",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "note": "sha256 of the analysis source at write time, plus the project-local import closure and environment fingerprint. If any hash disagrees with the file on disk, this analysis was produced by a different version of the code: re-run it before believing the numbers.",
+  "script": "fingerprint/gate3.py",
+  "script_external": false,
+  "sha256": "bae953c93b928dcba0c36db12f0c0d1e0d487e0030cb6f2e6a02d81ba70f6a9d"
+ },
+ "fidelity_ok": true,
+ "gate3_verdict": "FIDELITY OK: the ids arm reproduces the local numbers within seed spread, so the harness is faithful and the remaining arms isolate real API effects. NOSPECIAL: reproduces the local signature, and still separates pythia-410m from gpt2 by 0.5889 (local 0.5955). TEXT: does NOT reproduce the local numbers, and does NOT separate the two models (api gap -0.653 against a local gap of 0.5955), so identification fails here even if a number survived. CHAT: does NOT reproduce the local numbers, and still separates pythia-410m from gpt2 by 0.4671 (local 0.5955). THE TEXT ARM'S MECHANISM IS MEASURED, NOT INFERRED: a two-token window decoded to text and re-tokenized MERGES into a single token -- pythia-410m r=1 in 13% of calls, gpt2 r=1 in 63% of calls. The endpoint is therefore running the CA at a SMALLER RADIUS than requested, and F69 established r=1 is the degenerate regime. The merge rate is a property of the tokenizer and the ring's own content, so it is model-dependent and does not cancel: it inverts which model looks attractor-bearing. Any text-in/text-out endpoint has this, and it is invisible unless the realized width is measured, which is why it is recorded per cell here. K3 DOES NOT FIRE, AND THE REGISTERED HAZARD WAS THE WRONG ONE. PROGRAM.md 5 expected chat templating to be what breaks the port, reasoning from F66 (one BOS token moved the share 74% -> 24%). It is not: the chat arm keeps a full-width context ({'EleutherAI/pythia-410m': {'2': 1.0}, 'gpt2': {'2': 1.0}}) and still separates the models. What breaks the port is the PLAIN TEXT round-trip, which was not registered as a hazard at all -- and the chat template helps precisely because its wrapper text keeps the window tokens from merging. The capability is therefore scoped by INTERFACE TYPE, not by templating: token-id endpoints carry it, text endpoints destroy it, and a text endpoint could be made to work by separating the window so it cannot merge. That is a testable claim this gate did not test. SCOPE: local harness only. No third-party endpoint was contacted -- this machine has no API credentials and obtaining them was not authorised. This establishes what PROGRAM.md 6 requires BEFORE an unknown endpoint may be characterized, and does not establish that any commercial endpoint behaves this way.",
+ "independent_unit": "family",
+ "local_reference": {
+  "EleutherAI/pythia-410m|0.02": {
+   "mean": 0.7956,
+   "n_seeds": 2,
+   "sd": 0.0143,
+   "source": "measured here at the frozen geometry (gate2 lacks this model)"
+  },
+  "EleutherAI/pythia-410m|0.436": {
+   "mean": 0.4876,
+   "n_seeds": 2,
+   "sd": 0.0046,
+   "source": "measured here at the frozen geometry (gate2 lacks this model)"
+  },
+  "gpt2|0.02": {
+   "mean": 0.2001,
+   "n_seeds": 4,
+   "sd": 0.0063,
+   "source": "gate2"
+  },
+  "gpt2|0.436": {
+   "mean": 0.1406,
+   "n_seeds": 4,
+   "sd": 0.0141,
+   "source": "gate2"
+  }
+ },
+ "modes": {
+  "chat": {
+   "all_reproduce": false,
+   "cells": {
+    "EleutherAI/pythia-410m|0.02": {
+     "api": 0.6728,
+     "delta": -0.1228,
+     "local": 0.7956,
+     "reproduces": false,
+     "tolerance_2sd": 0.0553
+    },
+    "EleutherAI/pythia-410m|0.436": {
+     "api": 0.3346,
+     "delta": -0.153,
+     "local": 0.4876,
+     "reproduces": false,
+     "tolerance_2sd": 0.0612
+    },
+    "gpt2|0.02": {
+     "api": 0.2057,
+     "delta": 0.0056,
+     "local": 0.2001,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    },
+    "gpt2|0.436": {
+     "api": 0.1487,
+     "delta": 0.0081,
+     "local": 0.1406,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    }
+   },
+   "realized_context_widths": {
+    "EleutherAI/pythia-410m": {
+     "2": 1.0
+    },
+    "gpt2": {
+     "2": 1.0
+    }
+   },
+   "separation": {
+    "T": 0.02,
+    "api_gap": 0.4671,
+    "discriminates": true,
+    "local_gap": 0.5955
+   }
+  },
+  "ids": {
+   "all_reproduce": true,
+   "cells": {
+    "EleutherAI/pythia-410m|0.02": {
+     "api": 0.7858,
+     "delta": -0.0098,
+     "local": 0.7956,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    },
+    "EleutherAI/pythia-410m|0.436": {
+     "api": 0.5045,
+     "delta": 0.0169,
+     "local": 0.4876,
+     "reproduces": true,
+     "tolerance_2sd": 0.0481
+    },
+    "gpt2|0.02": {
+     "api": 0.1966,
+     "delta": -0.0035,
+     "local": 0.2001,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    },
+    "gpt2|0.436": {
+     "api": 0.1569,
+     "delta": 0.0163,
+     "local": 0.1406,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    }
+   },
+   "realized_context_widths": {},
+   "separation": {
+    "T": 0.02,
+    "api_gap": 0.5892,
+    "discriminates": true,
+    "local_gap": 0.5955
+   }
+  },
+  "nospecial": {
+   "all_reproduce": true,
+   "cells": {
+    "EleutherAI/pythia-410m|0.02": {
+     "api": 0.805,
+     "delta": 0.0094,
+     "local": 0.7956,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    },
+    "EleutherAI/pythia-410m|0.436": {
+     "api": 0.4886,
+     "delta": 0.001,
+     "local": 0.4876,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    },
+    "gpt2|0.02": {
+     "api": 0.2161,
+     "delta": 0.016,
+     "local": 0.2001,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    },
+    "gpt2|0.436": {
+     "api": 0.1455,
+     "delta": 0.0049,
+     "local": 0.1406,
+     "reproduces": true,
+     "tolerance_2sd": 0.04
+    }
+   },
+   "realized_context_widths": {},
+   "separation": {
+    "T": 0.02,
+    "api_gap": 0.5889,
+    "discriminates": true,
+    "local_gap": 0.5955
+   }
+  },
+  "text": {
+   "all_reproduce": false,
+   "cells": {
+    "EleutherAI/pythia-410m|0.02": {
+     "api": 0.3213,
+     "delta": -0.4743,
+     "local": 0.7956,
+     "reproduces": false,
+     "tolerance_2sd": 0.04
+    },
+    "EleutherAI/pythia-410m|0.436": {
+     "api": 0.1706,
+     "delta": -0.317,
+     "local": 0.4876,
+     "reproduces": false,
+     "tolerance_2sd": 0.04
+    },
+    "gpt2|0.02": {
+     "api": 0.9743,
+     "delta": 0.7742,
+     "local": 0.2001,
+     "reproduces": false,
+     "tolerance_2sd": 0.04
+    },
+    "gpt2|0.436": {
+     "api": 0.9294,
+     "delta": 0.7888,
+     "local": 0.1406,
+     "reproduces": false,
+     "tolerance_2sd": 0.04
+    }
+   },
+   "realized_context_widths": {
+    "EleutherAI/pythia-410m": {
+     "1": 0.13,
+     "2": 0.87
+    },
+    "gpt2": {
+     "1": 0.629,
+     "2": 0.371
+    }
+   },
+   "separation": {
+    "T": 0.02,
+    "api_gap": -0.653,
+    "discriminates": false,
+    "local_gap": 0.5955
+   }
+  }
+ },
+ "runs": {
+  "EleutherAI/pythia-410m|chat|T0.02|s101": {
+   "T": 0.02,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 51.2,
+   "seed": 101,
+   "top1": 0.7005
+  },
+  "EleutherAI/pythia-410m|chat|T0.02|s102": {
+   "T": 0.02,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 51.2,
+   "seed": 102,
+   "top1": 0.6452
+  },
+  "EleutherAI/pythia-410m|chat|T0.436|s101": {
+   "T": 0.436,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 51.1,
+   "seed": 101,
+   "top1": 0.3652
+  },
+  "EleutherAI/pythia-410m|chat|T0.436|s102": {
+   "T": 0.436,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 50.9,
+   "seed": 102,
+   "top1": 0.304
+  },
+  "EleutherAI/pythia-410m|ids|T0.02|s101": {
+   "T": 0.02,
+   "mode": "ids",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 47.0,
+   "seed": 101,
+   "top1": 0.8034
+  },
+  "EleutherAI/pythia-410m|ids|T0.02|s102": {
+   "T": 0.02,
+   "mode": "ids",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 46.8,
+   "seed": 102,
+   "top1": 0.7682
+  },
+  "EleutherAI/pythia-410m|ids|T0.436|s101": {
+   "T": 0.436,
+   "mode": "ids",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 46.8,
+   "seed": 101,
+   "top1": 0.5286
+  },
+  "EleutherAI/pythia-410m|ids|T0.436|s102": {
+   "T": 0.436,
+   "mode": "ids",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 46.7,
+   "seed": 102,
+   "top1": 0.4805
+  },
+  "EleutherAI/pythia-410m|nospecial|T0.02|s101": {
+   "T": 0.02,
+   "mode": "nospecial",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 45.9,
+   "seed": 101,
+   "top1": 0.8092
+  },
+  "EleutherAI/pythia-410m|nospecial|T0.02|s102": {
+   "T": 0.02,
+   "mode": "nospecial",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 45.9,
+   "seed": 102,
+   "top1": 0.8008
+  },
+  "EleutherAI/pythia-410m|nospecial|T0.436|s101": {
+   "T": 0.436,
+   "mode": "nospecial",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 46.0,
+   "seed": 101,
+   "top1": 0.5078
+  },
+  "EleutherAI/pythia-410m|nospecial|T0.436|s102": {
+   "T": 0.436,
+   "mode": "nospecial",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 46.2,
+   "seed": 102,
+   "top1": 0.4694
+  },
+  "EleutherAI/pythia-410m|text|T0.02|s101": {
+   "T": 0.02,
+   "context_widths": {
+    "1": 0.1529,
+    "2": 0.8471
+   },
+   "mode": "text",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 83.0,
+   "seed": 101,
+   "top1": 0.3229
+  },
+  "EleutherAI/pythia-410m|text|T0.02|s102": {
+   "T": 0.02,
+   "context_widths": {
+    "1": 0.1432,
+    "2": 0.8568
+   },
+   "mode": "text",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 81.6,
+   "seed": 102,
+   "top1": 0.3197
+  },
+  "EleutherAI/pythia-410m|text|T0.436|s101": {
+   "T": 0.436,
+   "context_widths": {
+    "1": 0.1099,
+    "2": 0.8901
+   },
+   "mode": "text",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 77.9,
+   "seed": 101,
+   "top1": 0.1706
+  },
+  "EleutherAI/pythia-410m|text|T0.436|s102": {
+   "T": 0.436,
+   "context_widths": {
+    "1": 0.1151,
+    "2": 0.8849
+   },
+   "mode": "text",
+   "model": "EleutherAI/pythia-410m",
+   "secs": 79.2,
+   "seed": 102,
+   "top1": 0.1706
+  },
+  "gpt2|chat|T0.02|s101": {
+   "T": 0.02,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "gpt2",
+   "secs": 21.1,
+   "seed": 101,
+   "top1": 0.2148
+  },
+  "gpt2|chat|T0.02|s102": {
+   "T": 0.02,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "gpt2",
+   "secs": 21.4,
+   "seed": 102,
+   "top1": 0.1966
+  },
+  "gpt2|chat|T0.436|s101": {
+   "T": 0.436,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "gpt2",
+   "secs": 21.6,
+   "seed": 101,
+   "top1": 0.1569
+  },
+  "gpt2|chat|T0.436|s102": {
+   "T": 0.436,
+   "context_widths": {
+    "2": 1.0
+   },
+   "mode": "chat",
+   "model": "gpt2",
+   "secs": 21.8,
+   "seed": 102,
+   "top1": 0.1406
+  },
+  "gpt2|ids|T0.02|s101": {
+   "T": 0.02,
+   "mode": "ids",
+   "model": "gpt2",
+   "secs": 17.7,
+   "seed": 101,
+   "top1": 0.2005
+  },
+  "gpt2|ids|T0.02|s102": {
+   "T": 0.02,
+   "mode": "ids",
+   "model": "gpt2",
+   "secs": 17.5,
+   "seed": 102,
+   "top1": 0.1927
+  },
+  "gpt2|ids|T0.436|s101": {
+   "T": 0.436,
+   "mode": "ids",
+   "model": "gpt2",
+   "secs": 17.6,
+   "seed": 101,
+   "top1": 0.153
+  },
+  "gpt2|ids|T0.436|s102": {
+   "T": 0.436,
+   "mode": "ids",
+   "model": "gpt2",
+   "secs": 17.7,
+   "seed": 102,
+   "top1": 0.1608
+  },
+  "gpt2|nospecial|T0.02|s101": {
+   "T": 0.02,
+   "mode": "nospecial",
+   "model": "gpt2",
+   "secs": 16.3,
+   "seed": 101,
+   "top1": 0.2174
+  },
+  "gpt2|nospecial|T0.02|s102": {
+   "T": 0.02,
+   "mode": "nospecial",
+   "model": "gpt2",
+   "secs": 16.8,
+   "seed": 102,
+   "top1": 0.2148
+  },
+  "gpt2|nospecial|T0.436|s101": {
+   "T": 0.436,
+   "mode": "nospecial",
+   "model": "gpt2",
+   "secs": 16.4,
+   "seed": 101,
+   "top1": 0.1341
+  },
+  "gpt2|nospecial|T0.436|s102": {
+   "T": 0.436,
+   "mode": "nospecial",
+   "model": "gpt2",
+   "secs": 16.6,
+   "seed": 102,
+   "top1": 0.1569
+  },
+  "gpt2|text|T0.02|s101": {
+   "T": 0.02,
+   "context_widths": {
+    "1": 0.6646,
+    "2": 0.3354
+   },
+   "mode": "text",
+   "model": "gpt2",
+   "secs": 36.5,
+   "seed": 101,
+   "top1": 0.972
+  },
+  "gpt2|text|T0.02|s102": {
+   "T": 0.02,
+   "context_widths": {
+    "1": 0.6886,
+    "2": 0.3114
+   },
+   "mode": "text",
+   "model": "gpt2",
+   "secs": 33.7,
+   "seed": 102,
+   "top1": 0.9766
+  },
+  "gpt2|text|T0.436|s101": {
+   "T": 0.436,
+   "context_widths": {
+    "1": 0.5686,
+    "2": 0.4314
+   },
+   "mode": "text",
+   "model": "gpt2",
+   "secs": 34.5,
+   "seed": 101,
+   "top1": 0.9284
+  },
+  "gpt2|text|T0.436|s102": {
+   "T": 0.436,
+   "context_widths": {
+    "1": 0.5938,
+    "2": 0.4062
+   },
+   "mode": "text",
+   "model": "gpt2",
+   "secs": 35.2,
+   "seed": 102,
+   "top1": 0.9303
+  }
+ },
+ "scope": "LOCAL HARNESS ONLY. No third-party endpoint was contacted: this machine has no API credentials and acquiring them was not authorised. What is tested is the part PROGRAM.md 6 requires first -- that the battery survives the API abstraction and still separates models whose answer is already known."
+}
