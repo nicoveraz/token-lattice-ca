@@ -230,6 +230,7 @@ _STALENESS_PAIRS = [
     ("assembly_baselines.json", "assembly_baselines.py"),
     ("assembly_temperature.json", "assembly_temperature.py"),
     ("fixed_point_onset.json", "fixed_point_onset.py"),
+    ("band_family_census.json", "band_family_census.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),
