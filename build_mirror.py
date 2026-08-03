@@ -38,6 +38,33 @@ import tarfile
 
 ROOT = pathlib.Path(__file__).resolve().parent
 
+# Three documents in the tagged tree are development notes rather than submission material: a
+# constructions walkthrough, an outside critical read, and a plain-English explainer. They stay
+# in the repository and in the tagged tree -- the tag is published and is not moved to drop
+# them -- and the mirror, which is a derived artifact, omits them.
+#
+# WHY assembly_theory.md IS NOT ON THIS LIST, THOUGH IT IS THE SAME KIND OF DOCUMENT. It is the
+# only entry in `audit_manual.SOURCES`: the manual-citation apparatus exists to police its
+# bibliography, and it carries the sole citation of two records in paper/refs_manual.json.
+# Dropping it leaves those records describing citations that no longer exist anywhere in the
+# tree, which is precisely what `test_no_record_is_orphaned` fails on -- verified, not assumed.
+# A mirror that ships a red suite costs more than the document does. Removing it would mean
+# also removing the record file, its test, and its audit script, and deleting tests to make
+# tests pass is not a trade this artifact should make.
+#
+# EXCLUDING A FILE IS ONLY HALF THE JOB. The README links to two of these, and a mirror whose
+# front door points at a file that is not there is worse than one that never mentioned it. The
+# audit cannot catch that: it looks for identifiers, not for reachability. `prune_references`
+# removes the README blocks carrying those links. Prose elsewhere that merely NAMES a document
+# (findings.md citing the analysis that specified a gate, an experiment docstring crediting the
+# critical read for its hypothesis) is deliberately left alone -- those sentences still read
+# correctly without the file, and rewriting them would edit the evidence record to tidy a link.
+EXPORT_EXCLUDE = (
+    "ca_constructions.md",
+    "critical_analysis.md",
+    "explainer.md",
+)
+
 
 def identifiers():
     """Strings the mirror must not contain, derived from the environment."""
@@ -78,6 +105,39 @@ def build(tag, out_dir):
         tf.extractall(out_dir)
     tar_path.unlink()
     return out_dir / prefix.rstrip("/")
+
+
+def drop_excluded(mirror):
+    """Delete EXPORT_EXCLUDE from the mirror. Returns the names actually dropped.
+
+    Returns what it dropped rather than a count, and main() prints it, because a mirror that is
+    quietly smaller than its tag is a mirror nobody can audit against the tag.
+    """
+    dropped = []
+    for name in EXPORT_EXCLUDE:
+        p = mirror / name
+        if p.exists():
+            p.unlink()
+            dropped.append(name)
+    return dropped
+
+
+def prune_references(mirror, dropped):
+    """Remove README blocks that carry an inline link to a dropped document.
+
+    Blocks are blank-line separated. Only a block containing an actual markdown target `](name)`
+    is removed: in this README each such block is a paragraph whose entire subject is the linked
+    document, so pruning the link means pruning the paragraph. Matching on the link target rather
+    than on the bare filename is what keeps this from deleting prose that merely mentions a name.
+    """
+    r = mirror / "README.md"
+    if not r.exists() or not dropped:
+        return 0
+    blocks = r.read_text().split("\n\n")
+    keep = [b for b in blocks if not any(f"]({n})" in b for n in dropped)]
+    if len(keep) != len(blocks):
+        r.write_text("\n\n".join(keep))
+    return len(blocks) - len(keep)
 
 
 def scrub(mirror):
@@ -169,8 +229,13 @@ def main():
     ids = identifiers()
     print(f"identifiers derived (not listed in this file): {len(ids)} string(s)")
     mirror = build(a.tag, out_dir)
+    print(f"archive of {a.tag}: {sum(1 for p in mirror.rglob('*') if p.is_file())} files")
+
+    dropped = drop_excluded(mirror)
+    print(f"excluded from mirror: {', '.join(dropped) if dropped else 'nothing'}")
+    print(f"README blocks pruned to avoid dangling links: {prune_references(mirror, dropped)}")
     n_files = sum(1 for p in mirror.rglob("*") if p.is_file())
-    print(f"archive of {a.tag}: {n_files} files")
+    print(f"mirror after exclusions: {n_files} files")
 
     touched, edits = scrub(mirror)
     print(f"scrubbed {edits} absolute path(s) across {len(touched)} file(s):")
