@@ -138,7 +138,14 @@ def argmax_census(model, tok, dev, pool, rng):
                 modal_endpoint_share=round(top_n / N_STARTS, 4),
                 modal_endpoint_token=tok.decode([int(top_tok)]),
                 fixed_point_fraction=round(fixed / N_STARTS, 4),
-                cyclic_fraction=round(cyclic / N_STARTS, 4))
+                cyclic_fraction=round(cyclic / N_STARTS, 4),
+                # FULL histogram, added for #98's re-run. F84 could state that the modal endpoint
+                # WANDERS ('\n', '.', ',', ' the') but not whether that is one funnel with a
+                # near-tie at the top or genuinely different attractors, because only the modal
+                # token and its count were stored. Additive: every existing key is unchanged, so
+                # F84's numbers reproduce exactly.
+                endpoint_histogram=[[int(t), tok.decode([int(t)]), int(n)]
+                                    for t, n in cnt.most_common()])
 
 
 def conditional_stats(model, tok, dev, pool, rng):

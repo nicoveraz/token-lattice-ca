@@ -3177,6 +3177,62 @@ needs basin *depths* per token. **Scope:** $r\le2$ is F69's out-of-distribution 
 deliberately — the artifact is the object of study, and nothing here is a claim about a model in
 ordinary use.
 
+### F85 — the funnel's identity genuinely swaps; it is a contested basin, not one attractor with a noisy label (#98 re-run)
+F84 fired its own kill condition: the modal endpoint token wanders, so "the basin" is not one
+quantity, and only a per-token-*aware* claim was possible. It named the refinement itself — the runs
+stored the modal endpoint and its count alone, so basin **depths** per token could not be
+recomputed. `gate1.argmax_census` now also returns the full endpoint histogram (additive: every
+prior key unchanged), and #98 was re-run.
+
+**Reproduction first, because the probe was touched.** Across 18 checkpoints × 7 reported fields,
+**0 differences** against F84. The histogram is additive and the seed is fixed, so this confirms the
+probe was extended rather than perturbed — the pre-registered condition for reading anything below.
+
+**The pre-registered question was NEAR-TIE or SWAP.** Near-tie would mean newline stays a large
+share where another token is modal and the label flips on one or two starts out of 24 — one funnel,
+noisy label. Swap would mean newline genuinely collapses. **It is SWAP.**
+
+```
+      step     '\n'      '.'      ','   ' the'   other
+     step8       24        0        0        0       0
+    step16       17        3        0        4       0
+    step32       17        0        3        4       0
+    step64       13        0        2        4       5
+   step128        5       12        4        2       1
+   step256        5        0       14        0       5
+   step512       11        0        5        0       8
+  step1000       22        0        0        0       2
+  step2000        6        0        0       12       6
+  step4000       15        0        0        6       3
+  step8000        9        0        1       12       2
+ step143000      15        0        1        5       3
+```
+
+At **step256** the modal endpoint `','` takes **14 of 24 while newline takes 5** — below half, which
+is the SWAP branch as declared. Newline is not a close second there: it collapses from 24/24 at
+step8 to 5/24 at steps 128 and 256, recovers to 22/24 at step1000, drops again to 6/24 at step2000,
+and settles around 15–20/24.
+
+**So the object is a contested basin, not an attractor with a noisy label.** The funnel is *total*
+at step8 — 24/24 starts, a single endpoint — then fragments across steps 16–512 into genuine
+competition between newline, `'.'`, `','` and `' the'`, then partially re-consolidates. F63 found
+the dominant token varies across *models* (`'\n'`, `' '`, `'0'`); F84 suspected the same variety
+inside one training trajectory, and this measures it.
+
+**What this does not touch, restated because the re-run could be over-read.** F84's onset date
+(step 8), its ordering against the extinction window (step 32) and the λ_ca crossing (steps
+256–512), and its learned-not-architectural conclusion are unchanged — the reproduction check is
+what licenses saying so. This refines *how the funnel is described*, nothing else.
+
+**A limitation that survives and one that dies.** F84 could not compute per-token basins from its
+stored file; that is now fixed and the histogram is on disk. But the probe still uses 24 starts, so
+a share of 5/24 carries a wide interval, and the step-to-step swings above should be read as a
+contested basin rather than as precise per-token trajectories. Raising the start count is the
+refinement if anyone needs the depths themselves.
+
+**Scope, unchanged:** r ≤ 2 is F69's out-of-distribution artifact regime, deliberately — the
+artifact is the object of study, and nothing here is a claim about a model in ordinary use.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

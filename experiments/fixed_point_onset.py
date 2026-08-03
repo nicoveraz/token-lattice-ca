@@ -22,6 +22,31 @@ training run. Deriving a baseline from random-mapping statistics would import as
 state space that do not hold for a lattice; measuring step1 imports none. This is the F65 rule --
 run the control that should show nothing -- with the control already in the checkpoint series.
 
+RE-RUN WITH FULL ENDPOINT HISTOGRAMS -- F84's own stated refinement. F84's kill condition fired:
+the modal endpoint token WANDERS (newline at most checkpoints, '.' at step128, ',' at step256,
+' the' at 2000 and 8000), so "the basin" is not one quantity and only a per-token-AWARE claim was
+possible. The stored runs kept the modal endpoint and its count alone, so basin DEPTHS per token
+could not be recomputed. `gate1.argmax_census` now also returns the full histogram -- additive, every
+prior key unchanged, so F84's numbers must reproduce exactly.
+
+THE QUESTION THE HISTOGRAM ANSWERS AND F84 COULD NOT. Is the wandering ONE funnel with a near-tie at
+the top, or genuinely different attractors swapping?
+
+  NEAR-TIE  newline stays a large share where '.' or ',' is modal, and the label flips on a margin
+            of one or two starts out of 24 -- one funnel, noisy label.
+  SWAP      newline genuinely collapses there -- the attractor IDENTITY changes during training, and
+            F63's cross-MODEL variety recurs inside a single trajectory.
+
+ADDED FOR THE RE-RUN:
+  Primary(hist). At checkpoints where the modal token is NOT newline, what share does newline hold?
+                 NEAR-TIE if within 2 starts of the modal token at every such checkpoint; SWAP if it
+                 falls below half the modal share at any of them.
+  Reproduction.  Every field F84 reported must come back identical -- the histogram is additive and
+                 the seed fixed, so a change means the probe was perturbed, not extended.
+  Boundary.      This refines HOW the funnel is described. It does not revisit the onset date, the
+                 ordering against the extinction window and the crossing, or the
+                 learned-not-architectural conclusion. Those are F84's and they stand.
+
 PRE-REGISTERED (from #98, not invented here):
   Primary   At which checkpoint does the basin fraction first rise above its step1 value by more
             than the binomial CI, and is the rise monotone thereafter?
@@ -249,7 +274,40 @@ def analyse(res):
 
     verdict = " ".join(parts)
     print(f"\n  -> {verdict}")
+    # ---- per-token basins: the point of the re-run -------------------------------------------
+    hist = {s: {ts: n for _, ts, n in runs[s].get("endpoint_histogram", [])} for s in order}
+    NL = chr(10)
+    off = [s for s in order if runs[s]["modal_endpoint_token"] != NL]
+    tie_rows, verdict_hist = [], None
+    if all(runs[s].get("endpoint_histogram") for s in order):
+        for s in off:
+            modal_n = max(hist[s].values()); nl_n = hist[s].get(NL, 0)
+            tie_rows.append(dict(step=_step(s), modal=runs[s]["modal_endpoint_token"],
+                                 modal_n=modal_n, newline_n=nl_n, margin=modal_n - nl_n))
+        if not off:
+            verdict_hist = "the modal token is newline at every checkpoint; nothing to adjudicate."
+        elif all(r["margin"] <= 2 for r in tie_rows):
+            verdict_hist = (f"NEAR-TIE: wherever the modal endpoint is not newline, newline sits "
+                            f"within 2 starts of it (margins {[r['margin'] for r in tie_rows]} of "
+                            f"24). F84's wandering is the argmax flipping on a flat top, not a "
+                            f"change of attractor: ONE funnel, noisy label.")
+        elif any(r["newline_n"] * 2 < r["modal_n"] for r in tie_rows):
+            w = max(tie_rows, key=lambda r: r["modal_n"] - r["newline_n"])
+            verdict_hist = (f"SWAP: at step{w['step']} the modal endpoint {w['modal']!r} takes "
+                            f"{w['modal_n']}/24 while newline takes {w['newline_n']}/24, below "
+                            f"half. The attractor IDENTITY genuinely changes during training -- "
+                            f"F63's cross-model variety recurring inside one trajectory, and 'the "
+                            f"basin' is correctly not one quantity.")
+        else:
+            verdict_hist = (f"INTERMEDIATE: newline neither stays within 2 starts nor falls below "
+                            f"half (margins {[r['margin'] for r in tie_rows]}). Neither "
+                            f"pre-registered branch fits; margins reported, no label forced.")
+        verdict = verdict + " " + verdict_hist
+        print(f"\n  per-token: {verdict_hist}")
+
     res["analysis"] = dict(
+        per_token_basins=hist, off_newline_checkpoints=tie_rows,
+        histogram_verdict=verdict_hist,
         null_step=NULL_STEP, null_basin=null["modal_endpoint_share"], null_ci_upper=n_hi,
         onset=onset, onset_step=_step(onset) if onset else None,
         monotone_after_onset=bool(monotone) if onset else None,

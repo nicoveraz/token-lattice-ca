@@ -9,12 +9,129 @@
    "modal_endpoint_token": "guyen",
    "fixed_point_fraction": 0.0,
    "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     39170,
+     "guyen",
+     2
+    ],
+    [
+     15182,
+     "erd",
+     1
+    ],
+    [
+     23786,
+     "lessness",
+     1
+    ],
+    [
+     1868,
+     "ples",
+     1
+    ],
+    [
+     42693,
+     "compress",
+     1
+    ],
+    [
+     12536,
+     " destruction",
+     1
+    ],
+    [
+     33617,
+     " lua",
+     1
+    ],
+    [
+     37888,
+     " WWE",
+     1
+    ],
+    [
+     45476,
+     "\u0441\u0442\u0432\u0435\u043d",
+     1
+    ],
+    [
+     18448,
+     "James",
+     1
+    ],
+    [
+     44883,
+     "adors",
+     1
+    ],
+    [
+     16711,
+     " organisms",
+     1
+    ],
+    [
+     34910,
+     "oides",
+     1
+    ],
+    [
+     48418,
+     " dow",
+     1
+    ],
+    [
+     25402,
+     "jam",
+     1
+    ],
+    [
+     21052,
+     "derer",
+     1
+    ],
+    [
+     22972,
+     " fortun",
+     1
+    ],
+    [
+     19497,
+     " keen",
+     1
+    ],
+    [
+     31842,
+     " tenants",
+     1
+    ],
+    [
+     47181,
+     " nvidia",
+     1
+    ],
+    [
+     7146,
+     "Click",
+     1
+    ],
+    [
+     6237,
+     " suff",
+     1
+    ],
+    [
+     12968,
+     " Map",
+     1
+    ]
+   ],
    "basin_k": 2,
    "basin_ci": [
     0.0232,
     0.2585
    ],
-   "secs": 22.2
+   "secs": 21.8
   },
   "step2": {
    "step": "step2",
@@ -25,12 +142,124 @@
    "modal_endpoint_token": " craw",
    "fixed_point_fraction": 0.0,
    "cyclic_fraction": 0.0417,
+   "endpoint_histogram": [
+    [
+     18684,
+     " craw",
+     2
+    ],
+    [
+     39170,
+     "guyen",
+     2
+    ],
+    [
+     15182,
+     "erd",
+     1
+    ],
+    [
+     29775,
+     " exhaustion",
+     1
+    ],
+    [
+     1868,
+     "ples",
+     1
+    ],
+    [
+     42693,
+     "compress",
+     1
+    ],
+    [
+     32564,
+     "enos",
+     1
+    ],
+    [
+     33617,
+     " lua",
+     1
+    ],
+    [
+     45476,
+     "\u0441\u0442\u0432\u0435\u043d",
+     1
+    ],
+    [
+     18448,
+     "James",
+     1
+    ],
+    [
+     6925,
+     " pert",
+     1
+    ],
+    [
+     5894,
+     "zon",
+     1
+    ],
+    [
+     34910,
+     "oides",
+     1
+    ],
+    [
+     48418,
+     " dow",
+     1
+    ],
+    [
+     25402,
+     "jam",
+     1
+    ],
+    [
+     3922,
+     "urg",
+     1
+    ],
+    [
+     48158,
+     " floats",
+     1
+    ],
+    [
+     19497,
+     " keen",
+     1
+    ],
+    [
+     31842,
+     " tenants",
+     1
+    ],
+    [
+     47181,
+     " nvidia",
+     1
+    ],
+    [
+     7146,
+     "Click",
+     1
+    ],
+    [
+     34700,
+     "merged",
+     1
+    ]
+   ],
    "basin_k": 2,
    "basin_ci": [
     0.0232,
     0.2585
    ],
-   "secs": 21.8
+   "secs": 21.3
   },
   "step4": {
    "step": "step4",
@@ -41,12 +270,134 @@
    "modal_endpoint_token": " folder",
    "fixed_point_fraction": 0.0,
    "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     11534,
+     " folder",
+     1
+    ],
+    [
+     42616,
+     " gallons",
+     1
+    ],
+    [
+     35826,
+     " Hubbard",
+     1
+    ],
+    [
+     30459,
+     " pam",
+     1
+    ],
+    [
+     9700,
+     " Order",
+     1
+    ],
+    [
+     2262,
+     "):",
+     1
+    ],
+    [
+     23786,
+     "lessness",
+     1
+    ],
+    [
+     46354,
+     " typh",
+     1
+    ],
+    [
+     11610,
+     "ariate",
+     1
+    ],
+    [
+     34074,
+     " dome",
+     1
+    ],
+    [
+     5061,
+     " uns",
+     1
+    ],
+    [
+     27362,
+     "`)",
+     1
+    ],
+    [
+     16484,
+     "cover",
+     1
+    ],
+    [
+     28034,
+     "jd",
+     1
+    ],
+    [
+     48618,
+     "GridView",
+     1
+    ],
+    [
+     8876,
+     " median",
+     1
+    ],
+    [
+     10680,
+     " inhibitor",
+     1
+    ],
+    [
+     29993,
+     "blance",
+     1
+    ],
+    [
+     37283,
+     " royalty",
+     1
+    ],
+    [
+     39728,
+     " troubling",
+     1
+    ],
+    [
+     36022,
+     "colors",
+     1
+    ],
+    [
+     22043,
+     " retinal",
+     1
+    ],
+    [
+     7146,
+     "Click",
+     1
+    ],
+    [
+     43980,
+     " pronoun",
+     1
+    ]
+   ],
    "basin_k": 1,
    "basin_ci": [
     0.0074,
     0.2024
    ],
-   "secs": 19.7
+   "secs": 21.4
   },
   "step8": {
    "step": "step8",
@@ -57,12 +408,19 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 1.0,
    "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     24
+    ]
+   ],
    "basin_k": 24,
    "basin_ci": [
     0.862,
     1.0
    ],
-   "secs": 4.2
+   "secs": 4.9
   },
   "step16": {
    "step": "step16",
@@ -73,12 +431,29 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 1.0,
    "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     17
+    ],
+    [
+     253,
+     " the",
+     4
+    ],
+    [
+     15,
+     ".",
+     3
+    ]
+   ],
    "basin_k": 17,
    "basin_ci": [
     0.5083,
     0.8509
    ],
-   "secs": 3.9
+   "secs": 4.5
   },
   "step32": {
    "step": "step32",
@@ -89,12 +464,29 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.875,
    "cyclic_fraction": 0.125,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     17
+    ],
+    [
+     253,
+     " the",
+     4
+    ],
+    [
+     13,
+     ",",
+     3
+    ]
+   ],
    "basin_k": 17,
    "basin_ci": [
     0.5083,
     0.8509
    ],
-   "secs": 5.2
+   "secs": 5.0
   },
   "step64": {
    "step": "step64",
@@ -105,12 +497,39 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.875,
    "cyclic_fraction": 0.125,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     13
+    ],
+    [
+     14,
+     "-",
+     4
+    ],
+    [
+     253,
+     " the",
+     4
+    ],
+    [
+     13,
+     ",",
+     2
+    ],
+    [
+     449,
+     ".\"",
+     1
+    ]
+   ],
    "basin_k": 13,
    "basin_ci": [
     0.3507,
     0.7211
    ],
-   "secs": 6.8
+   "secs": 4.5
   },
   "step128": {
    "step": "step128",
@@ -121,12 +540,39 @@
    "modal_endpoint_token": ".",
    "fixed_point_fraction": 1.0,
    "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     15,
+     ".",
+     12
+    ],
+    [
+     187,
+     "\n",
+     5
+    ],
+    [
+     13,
+     ",",
+     4
+    ],
+    [
+     253,
+     " the",
+     2
+    ],
+    [
+     313,
+     " (",
+     1
+    ]
+   ],
    "basin_k": 12,
    "basin_ci": [
     0.3143,
     0.6857
    ],
-   "secs": 7.5
+   "secs": 4.1
   },
   "step256": {
    "step": "step256",
@@ -137,12 +583,39 @@
    "modal_endpoint_token": ",",
    "fixed_point_fraction": 0.6667,
    "cyclic_fraction": 0.3333,
+   "endpoint_histogram": [
+    [
+     13,
+     ",",
+     14
+    ],
+    [
+     187,
+     "\n",
+     5
+    ],
+    [
+     372,
+     " de",
+     3
+    ],
+    [
+     575,
+     "\u00a0",
+     1
+    ],
+    [
+     285,
+     " and",
+     1
+    ]
+   ],
    "basin_k": 14,
    "basin_ci": [
     0.3883,
     0.7553
    ],
-   "secs": 6.8
+   "secs": 4.6
   },
   "step512": {
    "step": "step512",
@@ -153,12 +626,39 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.5,
    "cyclic_fraction": 0.5,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     11
+    ],
+    [
+     13,
+     ",",
+     5
+    ],
+    [
+     273,
+     " of",
+     4
+    ],
+    [
+     806,
+     " first",
+     3
+    ],
+    [
+     247,
+     " a",
+     1
+    ]
+   ],
    "basin_k": 11,
    "basin_ci": [
     0.2789,
     0.6493
    ],
-   "secs": 7.5
+   "secs": 5.2
   },
   "step1000": {
    "step": "step1000",
@@ -169,12 +669,29 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.9167,
    "cyclic_fraction": 0.0833,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     22
+    ],
+    [
+     50274,
+     "    ",
+     1
+    ],
+    [
+     14,
+     "-",
+     1
+    ]
+   ],
    "basin_k": 22,
    "basin_ci": [
     0.7415,
     0.9768
    ],
-   "secs": 12.5
+   "secs": 8.4
   },
   "step2000": {
    "step": "step2000",
@@ -185,12 +702,39 @@
    "modal_endpoint_token": " the",
    "fixed_point_fraction": 0.25,
    "cyclic_fraction": 0.75,
+   "endpoint_histogram": [
+    [
+     253,
+     " the",
+     12
+    ],
+    [
+     187,
+     "\n",
+     6
+    ],
+    [
+     1133,
+     " hand",
+     3
+    ],
+    [
+     14,
+     "-",
+     2
+    ],
+    [
+     64,
+     "_",
+     1
+    ]
+   ],
    "basin_k": 12,
    "basin_ci": [
     0.3143,
     0.6857
    ],
-   "secs": 9.1
+   "secs": 6.3
   },
   "step4000": {
    "step": "step4000",
@@ -201,12 +745,34 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.625,
    "cyclic_fraction": 0.375,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     15
+    ],
+    [
+     253,
+     " the",
+     6
+    ],
+    [
+     806,
+     " first",
+     2
+    ],
+    [
+     14,
+     "-",
+     1
+    ]
+   ],
    "basin_k": 15,
    "basin_ci": [
     0.4271,
     0.7884
    ],
-   "secs": 8.8
+   "secs": 6.3
   },
   "step8000": {
    "step": "step8000",
@@ -217,12 +783,34 @@
    "modal_endpoint_token": " the",
    "fixed_point_fraction": 0.375,
    "cyclic_fraction": 0.625,
+   "endpoint_histogram": [
+    [
+     253,
+     " the",
+     12
+    ],
+    [
+     187,
+     "\n",
+     9
+    ],
+    [
+     673,
+     " time",
+     2
+    ],
+    [
+     13,
+     ",",
+     1
+    ]
+   ],
    "basin_k": 12,
    "basin_ci": [
     0.3143,
     0.6857
    ],
-   "secs": 8.8
+   "secs": 6.4
   },
   "step16000": {
    "step": "step16000",
@@ -233,12 +821,29 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.8333,
    "cyclic_fraction": 0.1667,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     20
+    ],
+    [
+     253,
+     " the",
+     3
+    ],
+    [
+     14,
+     "-",
+     1
+    ]
+   ],
    "basin_k": 20,
    "basin_ci": [
     0.6415,
     0.9332
    ],
-   "secs": 8.4
+   "secs": 6.2
   },
   "step32000": {
    "step": "step32000",
@@ -249,12 +854,29 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.7083,
    "cyclic_fraction": 0.2917,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     17
+    ],
+    [
+     253,
+     " the",
+     4
+    ],
+    [
+     17,
+     "0",
+     3
+    ]
+   ],
    "basin_k": 17,
    "basin_ci": [
     0.5083,
     0.8509
    ],
-   "secs": 8.2
+   "secs": 6.2
   },
   "step64000": {
    "step": "step64000",
@@ -265,12 +887,34 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.8333,
    "cyclic_fraction": 0.1667,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     20
+    ],
+    [
+     13,
+     ",",
+     2
+    ],
+    [
+     14,
+     "-",
+     1
+    ],
+    [
+     89,
+     "x",
+     1
+    ]
+   ],
    "basin_k": 20,
    "basin_ci": [
     0.6415,
     0.9332
    ],
-   "secs": 8.6
+   "secs": 6.0
   },
   "step143000": {
    "step": "step143000",
@@ -281,12 +925,44 @@
    "modal_endpoint_token": "\n",
    "fixed_point_fraction": 0.625,
    "cyclic_fraction": 0.375,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     15
+    ],
+    [
+     253,
+     " the",
+     5
+    ],
+    [
+     13,
+     ",",
+     1
+    ],
+    [
+     643,
+     " other",
+     1
+    ],
+    [
+     2418,
+     " State",
+     1
+    ],
+    [
+     673,
+     " time",
+     1
+    ]
+   ],
    "basin_k": 15,
    "basin_ci": [
     0.4271,
     0.7884
    ],
-   "secs": 9.1
+   "secs": 6.6
   }
  },
  "_preregistration": {
@@ -329,6 +1005,224 @@
   "resumable": "keyed by checkpoint"
  },
  "analysis": {
+  "per_token_basins": {
+   "step1": {
+    "guyen": 2,
+    "erd": 1,
+    "lessness": 1,
+    "ples": 1,
+    "compress": 1,
+    " destruction": 1,
+    " lua": 1,
+    " WWE": 1,
+    "\u0441\u0442\u0432\u0435\u043d": 1,
+    "James": 1,
+    "adors": 1,
+    " organisms": 1,
+    "oides": 1,
+    " dow": 1,
+    "jam": 1,
+    "derer": 1,
+    " fortun": 1,
+    " keen": 1,
+    " tenants": 1,
+    " nvidia": 1,
+    "Click": 1,
+    " suff": 1,
+    " Map": 1
+   },
+   "step2": {
+    " craw": 2,
+    "guyen": 2,
+    "erd": 1,
+    " exhaustion": 1,
+    "ples": 1,
+    "compress": 1,
+    "enos": 1,
+    " lua": 1,
+    "\u0441\u0442\u0432\u0435\u043d": 1,
+    "James": 1,
+    " pert": 1,
+    "zon": 1,
+    "oides": 1,
+    " dow": 1,
+    "jam": 1,
+    "urg": 1,
+    " floats": 1,
+    " keen": 1,
+    " tenants": 1,
+    " nvidia": 1,
+    "Click": 1,
+    "merged": 1
+   },
+   "step4": {
+    " folder": 1,
+    " gallons": 1,
+    " Hubbard": 1,
+    " pam": 1,
+    " Order": 1,
+    "):": 1,
+    "lessness": 1,
+    " typh": 1,
+    "ariate": 1,
+    " dome": 1,
+    " uns": 1,
+    "`)": 1,
+    "cover": 1,
+    "jd": 1,
+    "GridView": 1,
+    " median": 1,
+    " inhibitor": 1,
+    "blance": 1,
+    " royalty": 1,
+    " troubling": 1,
+    "colors": 1,
+    " retinal": 1,
+    "Click": 1,
+    " pronoun": 1
+   },
+   "step8": {
+    "\n": 24
+   },
+   "step16": {
+    "\n": 17,
+    " the": 4,
+    ".": 3
+   },
+   "step32": {
+    "\n": 17,
+    " the": 4,
+    ",": 3
+   },
+   "step64": {
+    "\n": 13,
+    "-": 4,
+    " the": 4,
+    ",": 2,
+    ".\"": 1
+   },
+   "step128": {
+    ".": 12,
+    "\n": 5,
+    ",": 4,
+    " the": 2,
+    " (": 1
+   },
+   "step256": {
+    ",": 14,
+    "\n": 5,
+    " de": 3,
+    "\u00a0": 1,
+    " and": 1
+   },
+   "step512": {
+    "\n": 11,
+    ",": 5,
+    " of": 4,
+    " first": 3,
+    " a": 1
+   },
+   "step1000": {
+    "\n": 22,
+    "    ": 1,
+    "-": 1
+   },
+   "step2000": {
+    " the": 12,
+    "\n": 6,
+    " hand": 3,
+    "-": 2,
+    "_": 1
+   },
+   "step4000": {
+    "\n": 15,
+    " the": 6,
+    " first": 2,
+    "-": 1
+   },
+   "step8000": {
+    " the": 12,
+    "\n": 9,
+    " time": 2,
+    ",": 1
+   },
+   "step16000": {
+    "\n": 20,
+    " the": 3,
+    "-": 1
+   },
+   "step32000": {
+    "\n": 17,
+    " the": 4,
+    "0": 3
+   },
+   "step64000": {
+    "\n": 20,
+    ",": 2,
+    "-": 1,
+    "x": 1
+   },
+   "step143000": {
+    "\n": 15,
+    " the": 5,
+    ",": 1,
+    " other": 1,
+    " State": 1,
+    " time": 1
+   }
+  },
+  "off_newline_checkpoints": [
+   {
+    "step": 1,
+    "modal": "guyen",
+    "modal_n": 2,
+    "newline_n": 0,
+    "margin": 2
+   },
+   {
+    "step": 2,
+    "modal": " craw",
+    "modal_n": 2,
+    "newline_n": 0,
+    "margin": 2
+   },
+   {
+    "step": 4,
+    "modal": " folder",
+    "modal_n": 1,
+    "newline_n": 0,
+    "margin": 1
+   },
+   {
+    "step": 128,
+    "modal": ".",
+    "modal_n": 12,
+    "newline_n": 5,
+    "margin": 7
+   },
+   {
+    "step": 256,
+    "modal": ",",
+    "modal_n": 14,
+    "newline_n": 5,
+    "margin": 9
+   },
+   {
+    "step": 2000,
+    "modal": " the",
+    "modal_n": 12,
+    "newline_n": 6,
+    "margin": 6
+   },
+   {
+    "step": 8000,
+    "modal": " the",
+    "modal_n": 12,
+    "newline_n": 9,
+    "margin": 3
+   }
+  ],
+  "histogram_verdict": "SWAP: at step256 the modal endpoint ',' takes 14/24 while newline takes 5/24, below half. The attractor IDENTITY genuinely changes during training -- F63's cross-model variety recurring inside one trajectory, and 'the basin' is correctly not one quantity.",
   "null_step": "step1",
   "null_basin": 0.0833,
   "null_ci_upper": 0.2585,
@@ -504,17 +1398,17 @@
    "rule": "pythia-410m fixed fraction > 0.25 AND gpt2-medium < 0.10"
   }
  },
- "verdict": "ONSET AT STEP8: the basin first clears step1's upper CI (0.26) at step 8, reaching 1.00 [0.86,1.00]. The rise is NOT monotone thereafter, so the basin is not a simple accumulation and the trajectory matters as much as the date. ON THE SHARED AXIS: the fixed point forms BEFORE the extinction window -- onset step 8, extinction window 32 (#95/#97), lambda_ca crossing 256->512 (F39/F46/F77). Forming before or during the crossing means the two are NOT separable by timing alone, and co-timing is not attribution -- #100's ablation is the test that can separate them, not this one. KILL CONDITION HIT: the endpoint token is not stable across checkpoints ({'.', ' the', ',', '\\n'}), so 'the basin' is not one quantity. The single fraction above pools different attractors and per-token basins must be reported instead. F63 saw the same across models. INSTRUMENT: the probe is F70's, imported from gate1 and gated against F70's own answer. At step143000 it reads fixed=0.625 with endpoint '\\n', against F70's 18/24 to a whitespace token on the full model. SCOPE: r<=2 is the out-of-distribution artifact regime (F69) and that is deliberate here -- the artifact is the object of study. Nothing in this result is a claim about a model in ordinary use.",
+ "verdict": "ONSET AT STEP8: the basin first clears step1's upper CI (0.26) at step 8, reaching 1.00 [0.86,1.00]. The rise is NOT monotone thereafter, so the basin is not a simple accumulation and the trajectory matters as much as the date. ON THE SHARED AXIS: the fixed point forms BEFORE the extinction window -- onset step 8, extinction window 32 (#95/#97), lambda_ca crossing 256->512 (F39/F46/F77). Forming before or during the crossing means the two are NOT separable by timing alone, and co-timing is not attribution -- #100's ablation is the test that can separate them, not this one. KILL CONDITION HIT: the endpoint token is not stable across checkpoints ({'\\n', ' the', ',', '.'}), so 'the basin' is not one quantity. The single fraction above pools different attractors and per-token basins must be reported instead. F63 saw the same across models. INSTRUMENT: the probe is F70's, imported from gate1 and gated against F70's own answer. At step143000 it reads fixed=0.625 with endpoint '\\n', against F70's 18/24 to a whitespace token on the full model. SCOPE: r<=2 is the out-of-distribution artifact regime (F69) and that is deliberate here -- the artifact is the object of study. Nothing in this result is a claim about a model in ordinary use. SWAP: at step256 the modal endpoint ',' takes 14/24 while newline takes 5/24, below half. The attractor IDENTITY genuinely changes during training -- F63's cross-model variety recurring inside one trajectory, and 'the basin' is correctly not one quantity.",
  "_analysis_provenance": {
   "script": "fixed_point_onset.py",
-  "sha256": "54133387eaf77c574e7a9f323e6ec156c22d32a40b944eddc2cc996a24ca8a80",
+  "sha256": "0c6403c24207d1064a8bd777fa00a93ee36865e2c128a7351d53ff3c81c8a6e7",
   "imports": {
    "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
-   "experiments/fixed_point_onset.py": "54133387eaf77c574e7a9f323e6ec156c22d32a40b944eddc2cc996a24ca8a80",
+   "experiments/fixed_point_onset.py": "0c6403c24207d1064a8bd777fa00a93ee36865e2c128a7351d53ff3c81c8a6e7",
    "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
-   "fingerprint/gate1.py": "07d6dd1541272b2be990d4637593b27f29bb725c438310be6387481ec5f5ee12",
+   "fingerprint/gate1.py": "89a366a01e1efa9e5276d914ad1d80df9a0c68b0ccfc9033d61c4de7ba069ce5",
    "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
    "gatecheck/src/gatecheck/__init__.py": "23d0a6357f3a355032eecede8f5f682510c77a7409e5985d9c7c9993b273dc1e",
    "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
