@@ -121,7 +121,7 @@ def panel_spacetime(ax):
 
 def main():
     use_classic_r()
-    fig, axes = plt.subplots(1, 3, figsize=(5.5, 2.05),
+    fig, axes = plt.subplots(1, 3, figsize=(5.5, 1.88),
                              gridspec_kw=dict(width_ratios=[0.92, 1.08, 1.05]))
     panel_ring(axes[0])
     panel_crn(axes[1])

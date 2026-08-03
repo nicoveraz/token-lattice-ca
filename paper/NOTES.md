@@ -8,10 +8,10 @@ holds the first. The `.tex` gets assembled from it in one pass when the content 
 
 Status: `paper.pdf` builds (`tectonic -X compile paper.tex`). Submitted state (tag
 `submission/neurips26-i4d`): 10 pages, body 1–5 against the 5-page submission limit.
-Camera-ready branch: **13 pages, body 1–6 against the 6-page camera-ready limit** — the
-restructure added the apparatus figure (Fig. 1), the temperature-window figure, and the
-results table (Table 1), and moved
-robustness detail to a new appendix; presentation-only, no value changed. 0 undefined refs,
+Camera-ready branch: **body 1–5, holding the submission's 5-page fit** — the restructure added
+the apparatus figure (Fig. 1) and the results table (Table 1), moved robustness detail and the
+validation-ladder figure to a new appendix, and keeps the CFP's camera-ready sixth page in
+reserve for reviewer feedback; presentation-only, no value changed. 0 undefined refs,
 0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
 double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 

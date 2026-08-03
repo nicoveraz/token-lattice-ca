@@ -263,13 +263,13 @@ def test_responsible_use_section_exists():
 
 
 # ------------------------------------------------------------------ issue #41: the page limit
-# Camera-ready limit. The SUBMISSION limit was 5 and the submitted body was 5 pages -- that
-# state is pinned by the tag submission/neurips26-i4d and this constant does not govern it.
-# Interp4Discovery's camera-ready allows 6 body pages (appendices excluded); the restructure
-# adds an apparatus figure and a results table and lands on exactly 6. This is the venue's
-# number, not a loosened tolerance: if the camera-ready body ever exceeds what the venue
-# allows, this test must fail.
-BODY_PAGE_LIMIT = 6
+# Camera-ready limit, held at the SUBMISSION number by choice. Interp4Discovery's camera-ready
+# allows 6 body pages ("one additional main-text page ... to integrate reviewer feedback",
+# verified against the live CFP 3 Aug 2026); the restructure was brought back to 5 so that the
+# venue's extra page stays in reserve for integrating actual reviewer feedback rather than being
+# spent before reviews exist. If feedback needs the space, raising this to 6 is sanctioned by
+# the CFP -- raising it beyond 6 never is.
+BODY_PAGE_LIMIT = 5
 
 
 def _pdf_pages_text():
