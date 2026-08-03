@@ -130,15 +130,25 @@ Across Pythia-410m checkpoints (\texttt{step256}--\texttt{step143000}, 8 seeds, 
 $96$; Fig.~\ref{fig:dev}) the crossing lies between steps $256$ and $512$ at both lattice sizes,
 $\lca$ staying positive thereafter.
 
-\textbf{The effect occupies a temperature window, and the window has a mechanism.} Repeating the
+\textbf{The effect occupies a temperature window, and the window has a mechanism}
+(Fig.~\ref{fig:tempwindow}). Repeating the
 two ends of the curve at $T\in\{0.3,0.5,0.9,1.1\}$ (8 seeds each, BH-FDR over the four) recovers
 the transition at $T{=}0.5$ ($p_{\mathrm{BH}}{=}6{\times}10^{-4}$) alongside the $T{=}0.7$ of the
 main grid, and at none of $0.3$, $0.9$, $1.1$ ($p_{\mathrm{BH}}{=}0.59$, $0.72$, $0.59$). The
-ignition fraction makes that a floor and a ceiling rather than a failure: at $T{=}0.3$ damage
-barely propagates at either end ($0.20\to0.21$) and $\lca$ hugs zero, whereas at $T{=}0.9$ and
-$1.1$ the lattice is \emph{already} super-critical before the training being measured ($\lca$
-${+}0.19$ and ${+}0.30$ pre, ignition $0.65$ and $0.98$), leaving nothing to move; inside the
-window it swings $0.23\to0.81$ at $T{=}0.5$. Independent work puts Pythia \emph{generation}'s critical
+ignition fraction makes that a floor and a ceiling rather than a failure: below the window damage
+barely propagates at either end and $\lca$ hugs zero, whereas above it the lattice is
+\emph{already} super-critical before the training being measured, leaving nothing to move; inside
+the window it swings $0.23\to0.81$ at $T{=}0.5$.
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{tempwindow.png}
+\caption{The temperature window ($N{=}48$; pre $=$ step $256$, post $=$ step $143000$). (a) \lca{}
+over ignited runs: at $T{=}0.3$ it hugs zero at both ends, while at $T{=}0.9$ and $1.1$ it is
+already ${+}0.19$ and ${+}0.30$ before the training being measured. (b) Ignition fraction for the
+swept family: the floor at $T{=}0.3$ ($0.20\to0.21$) and the ceiling at $T{=}0.9$ and $1.1$ (pre
+ignition $0.65$ and $0.98$). $T{=}0.7$ is the main grid's operating
+point.}\label{fig:tempwindow}
+\end{figure} Independent work puts Pythia \emph{generation}'s critical
 temperature at $T_c{\approx}1$ \citep{ar_tempcrit}; a different sampler, so a consistent reference
 point rather than the same measurement --- but a ceiling between $0.7$ and $0.9$ is where it
 predicts one.
