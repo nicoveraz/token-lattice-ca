@@ -26,8 +26,9 @@ cells resampled in place by the model's own windowed conditional $p_r(x_i\mid x_
 by common-random-number damage spreading --- and develop it into a \emph{validated} measurement
 instrument, on the principle of \textbf{validation by reproduction}. On the Domany--Kinzel
 automaton, where the damage field is provably the automaton itself, an independent prediction
-matches ours \textbf{bit-exactly}: zero mismatching cells over $4096\times1500$ updates, with a
-nonzero off-line control, calibrating the apparatus with no error bar attached. It also separates
+matches ours \textbf{bit-exactly} --- zero mismatching cells, with a nonzero off-line control ---
+a calibration with no error bar attached, which a plausible-looking but wrong implementation
+cannot pass. The instrument also separates
 elementary CA rules by whether damage survives ($d{=}3.0$) and recovers known Markov matrices.
 Across Pythia-410m checkpoints it detects a \textbf{developmental transition}: the token-space
 Lyapunov exponent goes from seeds disagreeing about its \emph{sign} to \textbf{every one of 48
@@ -58,26 +59,30 @@ a plausible-looking estimator. Only then do we report what the instrument measur
 (\S\ref{sec:realgen}, \S\ref{sec:crosslevel}).
 
 \section{The instrument}\label{sec:instrument}
-\textbf{Rule.} A window of $w{=}2r{+}1$ tokens with the centre masked is fed to a masked LM; the
-tempered centre distribution is the kernel $p_r(x_i\mid x_{i\pm r})$. For an autoregressive model
-the window is the $r$ cells to the left. \textbf{Automaton.} $N$ ring cells, async random-order
-single-site Glauber; special tokens forbidden as emissions. \textbf{CRN coupling.} Twin lattices
-sharing initial state, update order and uniform stream differ only in the factor under test, so
-the \emph{null} arm must diverge by exactly zero --- asserted on every backend, because every
-damage number depends on it. \textbf{Confounds.} A degenerate low-entropy lattice
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{instrument.png}
+\caption{The instrument. (a) $N$ token cells on a ring, async random-order single-site Glauber;
+the windowed conditional resamples one cell, special tokens forbidden. (b) CRN probe: twins share
+initial state, visit order and uniform stream, so the \emph{null} arm must differ in exactly zero
+cells --- asserted on every backend --- and the probe arm's site-wise disagreement after one
+flipped token is the damage field. (c) A measured damage cone ($T{=}0.7$, $r{=}1$):
+site-wise disagreement probability spreading from the single flipped site.}\label{fig:instrument}
+\end{figure}
+\textbf{Rule} (Fig.~\ref{fig:instrument}). A window of $w{=}2r{+}1$ tokens
+with the centre masked is fed to a masked LM; the tempered centre distribution is the kernel
+$p_r(x_i\mid x_{i\pm r})$. For an autoregressive model the window is the $r$ cells to the left.
+\textbf{Confounds.} A degenerate low-entropy lattice
 snaps a perturbation back trivially, so damage $D$ is normalised by the model's own diversity
-floor \dz{} (twins under \emph{independent} noise, no flip), giving $\dn{=}D/\dz$. The two necessarily use different couplings --- a floor sharing the numerator's is
-identically zero, since identical twins stay identical --- but the cost is bounded: sweeping the
-shared-draw fraction from $0$ to $0.9$ moves \dn{} by $4\%$. A free control disciplines our language: the
+floor \dz{} (twins under \emph{independent} noise, no flip), giving $\dn{=}D/\dz$. The floor's coupling cost is bounded (App.~\ref{app:robust}). A free control disciplines our language: the
 temperature ``phase transition'' is a finite-size \emph{crossover}
-($\chi_{\mathrm{peak}}\propto1/N$). 
+($\chi_{\mathrm{peak}}\propto1/N$).
 \section{Validation: reproducing known metrics}\label{sec:validation}
 We check the apparatus against systems where the answer is known, ordered by how much of the
-instrument's regime each rung shares (Fig.~\ref{fig:ladder}). \textbf{(1--2)} are smooth-limit
-unit tests and are labelled as such: a renormalized tangent estimator recovers the logistic map's
-analytic exponent to machine precision and a coupled-map lattice matches an exact Benettin
-reference to $1.1\times10^{-3}$, but neither is evidence about damage spreading, since the twin is
-re-anchored each step and \textbf{a token flip is $O(1)$}.
+instrument's regime each rung shares (Fig.~\ref{fig:ladder}, App.~\ref{app:robust}). \textbf{(1--2)} are smooth-limit
+unit tests, labelled as such: the logistic map's analytic exponent is recovered to machine
+precision and a coupled-map lattice matches an exact Benettin reference to $1.1\times10^{-3}$;
+neither is evidence about damage spreading --- the twin is re-anchored each step, and
+\textbf{a token flip is $O(1)$}.
 
 \textbf{(3) Elementary CA: a coarse split.} The identical protocol on 19 rules of \emph{known}
 class (12 seeds, rule as the unit) separates damage that \emph{survives} from damage that
@@ -85,10 +90,8 @@ class (12 seeds, rule as the unit) separates damage that \emph{survives} from da
 directed-percolation order parameter \citep{grassberger1995} --- not $\lambda$, which averages a
 bimodal mixture. Ordered rules sit at $0.046$ (CI $[0.000,0.102]$) against $0.668$ (edge) and
 $0.682$ (chaotic): \textbf{ordered vs.\ rest $p{=}0.0$, $d{=}3.03$}. The three-class ordering does
-\emph{not} survive ($p{=}0.470$), so we claim only the coarse split, and report it rather than the
-group-mean $\lambda$ ordering we first computed: five of seven ordered rules return exactly
-$-0.4\ln10$, the constant a log-linear fit yields when damage dies immediately, so that end was
-never a measurement.
+\emph{not} survive ($p{=}0.470$), so we claim only the coarse split; the demoted group-mean
+$\lambda$ ordering, and why it was never a measurement, are in App.~\ref{app:robust}.
 
 \textbf{(4) Domany--Kinzel: an \emph{exact} check.} DK \citep{domany1984} is the only rung that
 is stochastic \emph{and} discrete --- the instrument's own regime --- and on its $p_2{=}0$ line
@@ -108,101 +111,98 @@ $0.8087(5)$ \citep{hinrichsen1997}), so we report both and claim neither.
 transition matrix (row total-variation $0.22$) and not the others (cross $0.95$; baseline
 $0.91$).
 
-\begin{figure}[t]\centering
-\includegraphics[width=\linewidth]{validation_ladder.png}
-\caption{The two rungs that carry the calibration, numbered as in the text. (4) is the load
-bearing one: the DK damage field is predicted by an independent simulator and matches
-cell-for-cell, the off-line control beside it showing the test is not vacuous. Rungs (1--2) and
-(5) are reported in the text.}\label{fig:ladder}
-\end{figure}
 
 \section{A developmental transition in token-space criticality}\label{sec:dev}
+Pointed at a training run, the calibrated instrument finds a developmental transition:
+token-space dynamics cross from sub- to super-critical early in training and do not return.
 Across Pythia-410m checkpoints (\texttt{step256}--\texttt{step143000}, 8 seeds, $N{=}48$ and
-$96$; Fig.~\ref{fig:dev}) the calibrated instrument finds token-space dynamics crossing from sub-
-to super-critical between steps $256$ and $512$ at both lattice sizes, and staying positive
-thereafter.
+$96$; Fig.~\ref{fig:dev}) the crossing lies between steps $256$ and $512$ at both lattice sizes,
+$\lca$ staying positive thereafter.
 
 \textbf{The effect occupies a temperature window, and the window has a mechanism.} Repeating the
 two ends of the curve at $T\in\{0.3,0.5,0.9,1.1\}$ (8 seeds each, BH-FDR over the four) recovers
 the transition at $T{=}0.5$ ($p_{\mathrm{BH}}{=}6{\times}10^{-4}$) alongside the $T{=}0.7$ of the
 main grid, and at none of $0.3$, $0.9$, $1.1$ ($p_{\mathrm{BH}}{=}0.59$, $0.72$, $0.59$). The
-ignition fraction makes that a floor and a ceiling rather than a failure: at $T{=}0.3$ damage
-barely propagates at either end ($0.20\to0.21$) and $\lca$ hugs zero, whereas at $T{=}0.9$ and
-$1.1$ the lattice is \emph{already} super-critical before the training being measured ($\lca$
-${+}0.19$ and ${+}0.30$ pre, ignition $0.65$ and $0.98$), leaving nothing to move; inside the
-window it swings $0.23\to0.81$ at $T{=}0.5$. Independent work puts Pythia \emph{generation}'s critical
+ignition fraction makes that a floor and a ceiling rather than a failure: below the window damage
+barely propagates at either end and $\lca$ hugs zero, whereas above it the lattice is
+\emph{already} super-critical before the training being measured, leaving nothing to move; inside
+the window it swings $0.23\to0.80$ at $T{=}0.5$ (floor and ceiling values in
+App.~\ref{app:robust}). Independent work puts Pythia \emph{generation}'s critical
 temperature at $T_c{\approx}1$ \citep{ar_tempcrit}; a different sampler, so a consistent reference
 point rather than the same measurement --- but a ceiling between $0.7$ and $0.9$ is where it
 predicts one.
 
 The test was pre-registered (post- vs pre-transition, run-level Mann--Whitney, family
 $=\{\lca,\dn\}\times\{N{=}48,96\}$, BH-FDR) with a demotion rule: failure at either size demotes
-the headline. \textbf{All four survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$). From the pre set
-($256/512$) to the plateau ($2000/8000/143000$), $\lca$ moves
-$+0.0247\to+0.1683$ at $N{=}48$ ($d{=}1.59$) and $+0.0320\to+0.1686$ at $N{=}96$ ($d{=}1.71$,
-$n_{\mathrm{pre}}{=}15$: one run is excluded because its damage never ignited, so $\lca$ is
-undefined for it).
+the headline. \textbf{All four survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$; Table~\ref{tab:dev}).
+The pre set is $256/512$ and the plateau $2000/8000/143000$; one $N{=}96$ run is excluded because
+its damage never ignited, so $\lca$ is undefined for it.
+
+\begin{table}[t]\centering
+\caption{The pre-registered developmental family: means over the pre-registered sets; $d$ is
+Cohen's $d$; \lca{} rows exclude unignited runs ($n_{\mathrm{pre}}{=}15$ at $N{=}96$);
+$<\!10^{-6}$ means the stored $p$ rounds to zero at six decimals.}\label{tab:dev}
+\begin{tabular}{llrrrr}\toprule
+quantity & $N$ & pre mean & post mean & $d$ & $p_{\mathrm{BH}}$\\\midrule
+\lca{} & 48 & $+0.0247$ & $+0.1683$ & $1.59$ & $1.7{\times}10^{-5}$\\
+\lca{} & 96 & $+0.0320$ & $+0.1686$ & $1.71$ & $2.3{\times}10^{-5}$\\
+\dn{}  & 48 & $0.1865$  & $0.5689$  & $2.88$ & $<\!10^{-6}$\\
+\dn{}  & 96 & $0.1030$  & $0.3062$  & $3.07$ & $<\!10^{-6}$\\
+\bottomrule\end{tabular}
+\end{table}
 
 \textbf{The claim is better stated without any pre/post split}, since every effect size depends
 on where that line is drawn. Before the transition the seeds do not agree on the \emph{sign} of
 $\lca$ (6/16 negative at $N{=}48$, 7/15 at $N{=}96$, spanning $-0.216$ to $+0.320$); after it,
-\textbf{not one of 48 plateau runs is negative}, the minimum being $+0.107$. That is ordinal,
-uses every run, and survived a later change to unignited-run handling that moved every mean.
+\textbf{not one of 48 plateau runs is negative}, the minimum being $+0.107$. That is ordinal and uses
+every run (robustness history in App.~\ref{app:robust}).
 
-\textbf{The curve is not a step, and both ends can be inflated.} It overshoots at step $1000$ by
-$1.4$--$22.4\%$; taking the peak as the post value, or the lowest checkpoint alone as the pre
-value, inflates the effect ($1.7\times$ on $\lca$ for the latter), so both ends use the
-pre-registered sets. The overshoot survives correction in one of four cells, and that cell is
-\dn{} --- on $\lca$, $+1.4\%$ at $N{=}96$ ($p_{\mathrm{BH}}{=}0.78$) --- so step $1000$ is no
-distinct phase.
+\textbf{The curve is not a step, and both ends can be inflated.} It overshoots at step $1000$;
+taking the peak as the post value, or the lowest checkpoint alone as the pre value, inflates the
+effect, so both ends use the pre-registered sets. The overshoot survives correction in one cell
+of four (accounting in App.~\ref{app:robust}), so step $1000$ is no distinct phase.
 
 \textbf{It is not specific to the model we picked.} Repeating the grid on four Pythia sizes
 (70m/160m/410m/1b $\times$ 6 checkpoints $\times$ 8 seeds, 192 runs) reproduces the transition in
-\textbf{all four} ($p_{\mathrm{BH}} = 0.015$, $0.003$, $2\times10^{-6}$, $1.5\times10^{-5}$). Its
+\textbf{all four} (per-size $p_{\mathrm{BH}}$ in App.~\ref{app:robust}). Its
 \emph{timing} moves later with size and then saturates: 70m is already super-critical at the
 earliest checkpoint probed, 160m crosses between steps $128$ and $256$, and 410m and 1b both
-cross between $256$ and $512$. Learning rate is confounded with size across the suite
-($1.0{\times}10^{-3}$, $6.0{\times}10^{-4}$, $3.0{\times}10^{-4}$, $3.0{\times}10^{-4}$
-\citep{pythia}) and the two sizes sharing a rate are the two sharing a bracket, so we report the
-shift as an ordering, not a size effect. An orthogonal instrument agrees on the onset:
+cross between $256$ and $512$. Learning rate is confounded with size across the suite (rates in App.~\ref{app:robust}) and the
+two sizes sharing a rate are the two sharing a bracket, so we report the shift as an ordering,
+not a size effect. An orthogonal instrument agrees on the onset:
 \citet{ar_tempcrit} place the emergence of critical structure in Pythia-160m at $k_c{\approx}10^2$
 steps by power spectra and part-of-speech correlation --- no damage spreading --- adjacent to our
 $128$--$256$ bracket. Both grids are coarse there, so this is agreement to within about a factor
 of two, not a reproduction. The plateau \emph{level} does not order with size
-($0.162/0.164/0.174/0.166$); at four sizes the smallest attainable permutation $p$ is
+(levels in App.~\ref{app:robust}); at four sizes the smallest attainable permutation $p$ is
 $1/4!\,{=}\,0.042$, so no capacity axis could have been established, and none is visible. We
 report that null as the closest thing here to a previously retracted capacity claim.
 
 \textbf{It is not a restatement of the loss curve.} The transition sits where everything else in
-training changes, so \lca{} might be an expensive perplexity proxy. It is not. Held-out
-loss at $26$ (model, checkpoint) pairs --- the scale grid's $24$ plus 410m at steps $8000$ and
-$143000$ --- falls \emph{monotonically} at all four sizes while
-\lca{} overshoots at three, and a non-monotone function of a monotone variable is not a monotone
-transform of it. They also disagree about \emph{where}: the steepest loss descent is the
-$512$--$1000$ bracket for \emph{every} size, whereas the \lca{} crossing moves with size and
-precedes it. Rank correlation is mostly not significant at six checkpoints ($\rho$ from $-0.77$ to $-0.71$),
-so shape and location carry this and not the correlation. We use the curve's \emph{shape} and not its
-level, the evaluation text not being Pythia's training data.
+training changes, so \lca{} might be an expensive perplexity proxy. It is not: held-out loss falls
+\emph{monotonically} at all four sizes while \lca{} overshoots at three, and a non-monotone
+function of a monotone variable is not a monotone transform of it. They also disagree about
+\emph{where} (details in App.~\ref{app:robust}). We use the curve's \emph{shape} and not
+its level, the evaluation text not being Pythia's training data.
 
 \textbf{Which quantity carries the claim.} A third lattice size settles it. Over $N{=}48/96/192$
-the $\lca$ plateau is $0.168/0.169/0.160$ --- slope $N^{-0.04}$, \textbf{intensive across a
-$4\times$ range}, varying by $5\%$ of its mean --- while \dn{} is $0.569/0.306/0.139$, slope
-$N^{-1.02}$, i.e.\ \textbf{$1/N$}.
+the $\lca$ plateau is \textbf{intensive across a $4\times$ range} --- slope $N^{-0.04}$,
+varying by $5\%$ of its mean --- while \dn{} falls as $N^{-1.02}$, i.e.\ \textbf{$1/N$}
+(levels in App.~\ref{app:robust}).
 That is what the construction predicts: $\lca$ is a cone-growth \emph{rate} fitted before
 saturation; \dn{} is a density ratio whose numerator stays in a cone while its denominator is
 delocalised. So $\lca$ carries the claim and \dn{}
 corroborates at a stated lattice size, never as a lattice-free property. Seed-to-seed variance
-also collapses ${\sim}3\times$ across the transition (Levene $p\le1.7\times10^{-4}$ at both sizes),
-reported as an observation, not pre-registered; it is the checkpoint means that agree to a few
-percent, the plateau per-seed CV being $22$--$25\%$. \lca{} is continuous and unthresholded, so
+also collapses ${\sim}3\times$ across the transition (Levene $p\le1.7\times10^{-4}$ at both
+sizes), an observation rather than a pre-registered test. \lca{} is continuous and unthresholded, so
 this sharpening is not an artefact of a discontinuous metric \citep{mirage}.
 
 \begin{figure}[t]\centering
 \includegraphics[width=\linewidth]{developmental.png}
-\caption{The developmental transition; shading marks the pre-registered pre set. (A) $\lca$ rises
-and settles positive, the two lattice sizes on top of each other (levels agree within
-$\pm14\%$). (B) Per-seed values: sign disagreement before, consensus after. \dn{} has the same
-shape at a size-dependent level.}\label{fig:dev}
+\caption{The developmental transition; shading marks the pre-registered pre set. (A) $\lca$
+rises and settles positive, the two sizes on top of each other (levels agree within $\pm14\%$).
+(B) Per-seed: sign disagreement before, consensus after; \dn{} matches at a size-dependent
+level.}\label{fig:dev}
 \end{figure}
 
 \section{What the damping length measures: free generation absorbs nothing}\label{sec:realgen}
@@ -229,18 +229,10 @@ measured across checkpoints cannot come from the apparatus. The licence is there
 \emph{is} critical, since that would need the ring, the radius and \dz{} to be principled rather
 than merely fixed, and they are choices.
 
-\textbf{Coupling, stated precisely.} Damage spreading is a property of \emph{(model, coupling)},
-not of the model alone \citep{kohring1992,grassberger1995}. Our inverse-CDF sampling is the
-\emph{monotone} coupling: on DK's binary alphabet it coincides with the maximal-correlation member
-of the admissible family \citep{hinrichsen1997}, which is why the identity above is exact; on a
-vocabulary it does not, so our LM damage numbers sit inside the family rather than at an extremum
-(excess disagreement $1.3$--$5.4\%$). The choice is justified by replica-independence --- each
-replica's next state depends on its own state and the shared noise alone --- which a pairwise
-maximal coupling lacks. Relative comparisons are unaffected: the coupling is a common mode. \textbf{One fact explains both.} Damage-spreading theory
-was developed on \emph{binary} alphabets --- which is why the DK rung is exact, and why its
-coupling result does not survive $|V|\approx5\times10^{4}$. The strongest calibration and the
-sharpest limitation share one cause, so an imported guarantee must be checked against the
-alphabet.
+Damage spreading is a property of \emph{(model, coupling)}, not of the model alone
+\citep{kohring1992,grassberger1995}; our coupling choice, its justification and its measured
+cost are stated precisely in App.~\ref{app:robust}, and relative comparisons are unaffected
+because the coupling is a common mode.
 
 \section{The instrument's boundary: token- vs.\ activation-space}\label{sec:crosslevel}
 A black-box instrument earns its keep if its readings track what internals would otherwise be
@@ -315,6 +307,74 @@ is traceable to a result file. \textbf{Mirror.} An anonymised snapshot of the ta
 \url{https://osf.io/9gpu2/?view_only=9973f67d79e7403e96cf4586d6efbdc0}, built from the submission
 tag by \texttt{build\_mirror.py}, which rewrites absolute checkout paths and then machine-checks
 the result for identifying strings.
+
+\section{Robustness details}\label{app:robust}
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{validation_ladder.png}
+\caption{The two rungs that carry the calibration, numbered as in the text. (4) is the load
+bearing one: the DK damage field is predicted by an independent simulator and matches
+cell-for-cell, the off-line control beside it showing the test is not vacuous. Rungs (1--2) and
+(5) are reported in the text.}\label{fig:ladder}
+\end{figure}
+
+Numbers relocated from the body for density; every value below is unchanged from the submitted
+version and traced to its results file by the number manifest.
+
+\textbf{Four-size scale grid} (\S\ref{sec:dev}): the transition reproduces at every size, and the
+plateau level does not order with size. Learning rates across the suite: $1.0{\times}10^{-3}$,
+$6.0{\times}10^{-4}$, $3.0{\times}10^{-4}$, $3.0{\times}10^{-4}$ \citep{pythia}.
+\begin{center}\begin{tabular}{lrr}\toprule
+size & $p_{\mathrm{BH}}$ & plateau \lca\\\midrule
+70m  & $0.015$            & $0.162$\\
+160m & $0.003$            & $0.164$\\
+410m & $2\times10^{-6}$   & $0.174$\\
+1b   & $1.5\times10^{-5}$ & $0.166$\\
+\bottomrule\end{tabular}\end{center}
+
+\textbf{Three lattice sizes} (\S\ref{sec:dev}): over $N{=}48/96/192$ the \lca{} plateau is
+$0.168/0.169/0.160$ while \dn{} is $0.569/0.306/0.139$ --- the levels behind the body's
+$N^{-0.04}$ and $N^{-1.02}$ slopes. Seed-to-seed spread at the plateau: per-seed CV
+$22$--$25\%$; it is the checkpoint \emph{means} that agree to a few percent across sizes.
+
+\textbf{Overshoot accounting} (\S\ref{sec:dev}): the curve overshoots at step $1000$ by
+$1.4$--$22.4\%$ across the four cells; taking the lowest checkpoint alone as the pre value would
+inflate the \lca{} effect $1.7\times$, which is why both ends use the pre-registered sets. The
+overshoot survives BH correction only in the $N{=}48$ \dn{} cell; on \lca{} it is $+1.4\%$ at
+$N{=}96$ ($p_{\mathrm{BH}}{=}0.78$).
+
+\textbf{Loss baseline} (\S\ref{sec:dev}): held-out loss at $26$ (model, checkpoint) pairs --- the
+scale grid's $24$ plus 410m at steps $8000$ and $143000$. The steepest loss descent is the
+$512$--$1000$ bracket for \emph{every} size, whereas the \lca{} crossing moves with size and
+precedes it. Rank correlation is mostly not significant at six checkpoints ($\rho$ from $-0.77$
+to $-0.71$), so shape and location carry this and not the correlation.
+
+\textbf{Temperature window} (\S\ref{sec:dev}): the floor at $T{=}0.3$ --- ignition
+$0.20\to0.21$ across training, \lca{} hugging zero --- and the ceiling at $T{=}0.9$ and $1.1$,
+where pre-training \lca{} is already ${+}0.19$ and ${+}0.30$ with ignition $0.65$ and $0.98$.
+
+\textbf{Coupling, stated precisely} (\S\ref{sec:instrument}, \S\ref{sec:realgen}): the
+diversity floor \dz{} necessarily uses a different coupling from the damage numerator --- a floor
+sharing the numerator's draws is identically zero, since identical twins stay identical --- and
+the cost is bounded: sweeping the shared-draw fraction from $0$ to $0.9$ moves \dn{} by $4\%$.
+Our inverse-CDF sampling is the
+\emph{monotone} coupling. On DK's binary alphabet it coincides with the maximal-correlation
+member of the admissible family \citep{hinrichsen1997}, which is why the DK identity is exact;
+on a vocabulary it does not, so the LM damage numbers sit inside the family rather than at an
+extremum --- excess disagreement $1.3$--$5.4\%$ across the temperature sweep. The choice is
+justified by replica-independence --- each replica's next state depends on its own state and the
+shared noise alone --- which a pairwise maximal coupling lacks. One fact explains both ends of
+this paper: damage-spreading theory was developed on \emph{binary} alphabets, which is why the
+DK rung is exact and why its coupling guarantee does not survive $|V|\approx5\times10^{4}$. The
+strongest calibration and the sharpest limitation share one cause, so an imported guarantee must
+be checked against the alphabet.
+
+\textbf{Demoted ECA ordering} (\S\ref{sec:validation}): the group-mean $\lambda$ ordering we
+first computed was never a measurement --- five of seven ordered rules return exactly
+$-0.4\ln10$, the constant a log-linear fit yields when damage dies immediately.
+
+\textbf{Estimator history} (\S\ref{sec:dev}): the ordinal headline survived a later change to
+unignited-run handling that moved every mean, which is why it, and not any effect size, is the
+claim.
 
 \input{neurips_checklist}
 

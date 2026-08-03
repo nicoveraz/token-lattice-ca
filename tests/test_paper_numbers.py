@@ -263,6 +263,12 @@ def test_responsible_use_section_exists():
 
 
 # ------------------------------------------------------------------ issue #41: the page limit
+# Camera-ready limit, held at the SUBMISSION number by choice. Interp4Discovery's camera-ready
+# allows 6 body pages ("one additional main-text page ... to integrate reviewer feedback",
+# verified against the live CFP 3 Aug 2026); the restructure was brought back to 5 so that the
+# venue's extra page stays in reserve for integrating actual reviewer feedback rather than being
+# spent before reviews exist. If feedback needs the space, raising this to 6 is sanctioned by
+# the CFP -- raising it beyond 6 never is.
 BODY_PAGE_LIMIT = 5
 
 
@@ -375,9 +381,35 @@ def _manifest():
 
 
 def _body():
-    """paper.tex body, comments stripped, bibliography onward removed."""
-    tex = _tex().split("\\bibliographystyle")[0]
-    return "\n".join(l for l in tex.splitlines() if not l.lstrip().startswith("%"))
+    """paper.tex text a manifest literal may legitimately live in: body AND appendix.
+
+    EXTENDED for the camera-ready restructure, not weakened. The old version cut at
+    \\bibliographystyle, which precedes \\appendix, so it silently required every manifest
+    literal to sit in the body proper. The Reproducibility promise is "every number in the
+    paper is traceable to a result file" -- the appendix is part of the paper, and the
+    camera-ready moves robustness detail there. Comments are still stripped, and the
+    bibliography commands themselves are excluded so citation keys cannot satisfy a literal.
+    """
+    tex = _tex()
+    return "\n".join(l for l in tex.splitlines()
+                     if not l.lstrip().startswith("%")
+                     and not l.strip().startswith(("\\bibliographystyle", "\\bibliography{")))
+
+
+def _literal_appears(literal, body):
+    """Boundary-aware match: a numeric literal must not be satisfied by a SUBSTRING of a longer
+    number. Plain `in` let the manifest's 0.80 (the T=0.5 post-training ignition mean, stored
+    0.8047) pass against the DK critical point 0.801(2) while the prose actually said 0.81 --
+    a wrong number in the submitted paper that the traceability test existed to catch and
+    missed. A literal that starts or ends with a digit now refuses digit (or digit-continuing)
+    context on that side; non-numeric edges (braces, backslashes) keep exact matching.
+    """
+    pat = re.escape(literal)
+    if literal[0].isdigit():
+        pat = r"(?<![\d.])" + pat
+    if literal[-1].isdigit():
+        pat = pat + r"(?!\.?\d)"
+    return re.search(pat, body) is not None
 
 
 def test_every_manifest_number_appears_in_the_paper():
@@ -386,11 +418,12 @@ def test_every_manifest_number_appears_in_the_paper():
     Each entry records a literal, the results file it came from, and the expression that
     derives it. If a literal is missing, either the paper changed a number without the results
     changing, or the manifest derivation is wrong. Both times this failed during development it
-    was the manifest -- the newer artifact -- so check that first.
+    was the manifest -- the newer artifact -- so check that first. Matching is boundary-aware:
+    see _literal_appears for the erratum that plain substring matching hid.
     """
     body = _body()
     missing = [(m["literal"], m["source"], m["derivation"])
-               for m in _manifest() if m["literal"] not in body]
+               for m in _manifest() if not _literal_appears(m["literal"], body)]
     assert not missing, (
         f"{len(missing)} manifest number(s) are not in paper.tex:\n" +
         "\n".join(f"  {lit} <- {src} :: {der}" for lit, src, der in missing))

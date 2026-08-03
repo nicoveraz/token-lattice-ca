@@ -76,6 +76,36 @@ add(f(h["N96_lambda_ca"]["pre_mean"], 4),     "dev_transition_shape.json", "head
 add(f(h["N96_lambda_ca"]["plateau_mean"], 4), "dev_transition_shape.json", "headline.N96_lambda_ca.plateau_mean")
 add(f(h["N96_lambda_ca"]["cohens_d"], 2),     "dev_transition_shape.json", "headline.N96_lambda_ca.cohens_d")
 add(str(h["N96_lambda_ca"]["n_pre"]),         "dev_transition_shape.json", "headline.N96_lambda_ca.n_pre")
+# --- Table 1 (camera-ready): the full pre-registered family, every cell sourced ------------
+# The lambda rows re-use the headline entries above. The D_norm rows and the per-cell BH
+# p-values are new to the table; each entry carries a path= spec naming the exact JSON field.
+for N in (48, 96):
+    hd = sh["headline"][f"N{N}_D_norm"]
+    add(f(hd["pre_mean"], 4), "dev_transition_shape.json",
+        f"headline.N{N}_D_norm.pre_mean")
+    M[-1]["path"] = f"headline.N{N}_D_norm.pre_mean"
+    add(f(hd["plateau_mean"], 4), "dev_transition_shape.json",
+        f"headline.N{N}_D_norm.plateau_mean")
+    M[-1]["path"] = f"headline.N{N}_D_norm.plateau_mean"
+    add(f(hd["cohens_d"], 2), "dev_transition_shape.json",
+        f"headline.N{N}_D_norm.cohens_d")
+    M[-1]["path"] = f"headline.N{N}_D_norm.cohens_d"
+# per-cell p_BH from the pre-registered Mann-Whitney family (phase3.tests). The two D_norm
+# p-values are stored as 0.0 because the writer rounds to six decimals, so the table prints
+# the DERIVABLE bound <10^{-6} rather than a misleading literal zero.
+_t3 = {t["name"]: t for t in p3["tests"]}
+add("1.7{\\times}10^{-5}", "dev_transition_phase3.json",
+    f"tests[N48_lambda_ca_post_vs_pre].p_bh = {_t3['N48_lambda_ca_post_vs_pre']['p_bh']}")
+M[-1]["path"] = "tests[name=N48_lambda_ca_post_vs_pre].p_bh"
+add("2.3{\\times}10^{-5}", "dev_transition_phase3.json",
+    f"tests[N96_lambda_ca_post_vs_pre].p_bh = {_t3['N96_lambda_ca_post_vs_pre']['p_bh']}")
+M[-1]["path"] = "tests[name=N96_lambda_ca_post_vs_pre].p_bh"
+assert _t3["N48_D_norm_post_vs_pre"]["p_bh"] == 0.0 and _t3["N96_D_norm_post_vs_pre"]["p_bh"] == 0.0, \
+    "the D_norm p_bh values no longer round to zero; the table's <1e-6 bound is void"
+add("<\\!10^{-6}", "dev_transition_phase3.json",
+    "tests[N{48,96}_D_norm_post_vs_pre].p_bh = 0.0 at 6dp storage => p < 1e-6")
+M[-1]["path"] = "tests[name=N48_D_norm_post_vs_pre].p_bh"
+
 sa = sh["sign_agreement"]
 add(str(sa["pooled"]["n"]),  "dev_transition_shape.json", "sign_agreement.pooled.n")
 # the paper's span is over BOTH lattice sizes, not one -- derive it that way

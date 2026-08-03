@@ -132,6 +132,69 @@
   "kind": "measured"
  },
  {
+  "literal": "0.1865",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N48_D_norm.pre_mean",
+  "kind": "measured",
+  "path": "headline.N48_D_norm.pre_mean"
+ },
+ {
+  "literal": "0.5689",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N48_D_norm.plateau_mean",
+  "kind": "measured",
+  "path": "headline.N48_D_norm.plateau_mean"
+ },
+ {
+  "literal": "2.88",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N48_D_norm.cohens_d",
+  "kind": "measured",
+  "path": "headline.N48_D_norm.cohens_d"
+ },
+ {
+  "literal": "0.1030",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_D_norm.pre_mean",
+  "kind": "measured",
+  "path": "headline.N96_D_norm.pre_mean"
+ },
+ {
+  "literal": "0.3062",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_D_norm.plateau_mean",
+  "kind": "measured",
+  "path": "headline.N96_D_norm.plateau_mean"
+ },
+ {
+  "literal": "3.07",
+  "source": "dev_transition_shape.json",
+  "derivation": "headline.N96_D_norm.cohens_d",
+  "kind": "measured",
+  "path": "headline.N96_D_norm.cohens_d"
+ },
+ {
+  "literal": "1.7{\\times}10^{-5}",
+  "source": "dev_transition_phase3.json",
+  "derivation": "tests[N48_lambda_ca_post_vs_pre].p_bh = 1.7e-05",
+  "kind": "measured",
+  "path": "tests[name=N48_lambda_ca_post_vs_pre].p_bh"
+ },
+ {
+  "literal": "2.3{\\times}10^{-5}",
+  "source": "dev_transition_phase3.json",
+  "derivation": "tests[N96_lambda_ca_post_vs_pre].p_bh = 2.3e-05",
+  "kind": "measured",
+  "path": "tests[name=N96_lambda_ca_post_vs_pre].p_bh"
+ },
+ {
+  "literal": "<\\!10^{-6}",
+  "source": "dev_transition_phase3.json",
+  "derivation": "tests[N{48,96}_D_norm_post_vs_pre].p_bh = 0.0 at 6dp storage => p < 1e-6",
+  "kind": "measured",
+  "path": "tests[name=N48_D_norm_post_vs_pre].p_bh"
+ },
+ {
   "literal": "48",
   "source": "dev_transition_shape.json",
   "derivation": "sign_agreement.pooled.n",

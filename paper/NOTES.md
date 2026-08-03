@@ -6,8 +6,18 @@ Rationale: iteratively micro-editing `paper.tex` to hit a page count mixes two d
 jobs — deciding *what is true and what gets claimed*, and *fitting it on 5 pages*. This file
 holds the first. The `.tex` gets assembled from it in one pass when the content is settled.
 
-Status: `paper.pdf` builds (`tectonic -X compile paper.tex`), **10 pages: body 1–5, references 6,
-Reproducibility appendix 7, checklist 8–10**. **The body fits the 5-page limit.** 0 undefined refs,
+Status: `paper.pdf` builds (`tectonic -X compile paper.tex`). Submitted state (tag
+`submission/neurips26-i4d`): 10 pages, body 1–5 against the 5-page submission limit.
+Camera-ready branch: **body 1–5, holding the submission's 5-page fit** — the restructure added
+the apparatus figure (Fig. 1) and the results table (Table 1), moved robustness detail and the
+validation-ladder figure to a new appendix, and keeps the CFP's camera-ready sixth page in
+reserve for reviewer feedback; presentation-only, no value changed — with one explicit,
+author-authorized exception. **Erratum (camera-ready only):** the submitted body said the
+ignition fraction "swings 0.23→0.81 at T=0.5"; the stored mean at T=0.5/step143000 is 0.8047,
+which is **0.80** at 2dp. The traceability test missed it because plain substring matching let
+the manifest's `0.80` be satisfied by the DK critical point `0.801(2)`; matching is now
+boundary-aware, it flagged exactly this one literal out of 88, and the value is corrected. The
+tag `submission/neurips26-i4d` keeps the submitted 0.81. 0 undefined refs,
 0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
 double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 
