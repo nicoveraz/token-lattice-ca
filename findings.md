@@ -1545,7 +1545,7 @@ edge-vs-chaotic p-values exist across the result files — 0.1665 (λ_all), 0.06
 **0.46985 (P_ignite, the correct one)** — and the paper had been quoting the middle,
 most-favourable value for a sentence whose subject was ignition probability. Now quotes 0.470.
 
-## Phase 4 findings — submission, and the defects the submission surfaced (F43–F74)
+## Phase 4 findings — submission, and the defects the submission surfaced (F43–F84)
 
 Recorded here because `findings.md` is the evidence ledger; several of these lived only in
 commit messages and `paper/NOTES.md` until this pass.
@@ -3124,6 +3124,58 @@ legitimate extreme value.
 **Boundary, unchanged by any of it.** Coincidence here is correlation, and both quantities come off
 the same forward pass, so adjacency is not causation. F79/F80 closed attribution for λ_ca and
 nothing in F82 or F83 reopens it.
+
+### F84 — the argmax funnel forms by step 8, wanders in identity, and predates everything else dated (#98)
+F70's fixed point is a property of the trained map, and #98 asked when training creates it. The
+observable is the **basin** — the share of 24 random two-token starts whose argmax orbit reaches a
+common endpoint — because a random map over $|V|\sim5\times10^4$ has about one fixed point by
+chance, so existence alone would be noise. The null is **measured, not derived**: step1 *is* the
+random-map control. Probe: `gate1.argmax_census`, already gated against F70's own answer; the same
+24 starts at every checkpoint; Wilson CIs.
+
+```
+    step      1     2     4  |    8    16    32    64   128   256   512  1000  ...  143000
+   basin   0.08  0.08  0.04  | 1.00  0.71  0.71  0.54  0.50  0.58  0.46  0.92  ...   0.62
+   token   (24 scattered)    |  \n    \n    \n    \n    .     ,     \n    \n   ...    \n
+```
+
+**The null is clean, and then the funnel appears essentially at once.** At steps 1–4 the map
+behaves exactly as the pre-registration predicted for a random map: basin 0.04–0.08, 22–24
+distinct endpoints, zero fixed points. At **step 8 all 24 starts reach `'\n'`**, a genuine fixed
+point (basin 1.00, CI [0.86, 1.00]). Between step 4 and step 8 is **8.4M → 16.8M tokens** — the
+out-of-distribution fallback funnel exists after roughly **0.006% of the 300B-token run**, and the
+basin never again returns to the null level (minimum 0.46 at step512, against a null upper CI of
+0.26). The pre-registered "architectural" branch is thereby refuted: the funnel is **learned** —
+it is absent at initialisation — just learned absurdly early.
+
+**THE KILL CONDITION FIRED, and it is part of the finding.** The pre-registration said: if the
+endpoint token changes between checkpoints, "the basin" is not one quantity. It changes — the
+modal endpoint is `'\n'` at most checkpoints but `'.'` at step128, `','` at step256, and
+`' the'` at steps 2000 and 8000. So the one valid cross-checkpoint claim is per-token-aware: **a
+dominant filler-token funnel exists from step 8 onward; its identity wanders among filler tokens
+during training and settles on `'\n'`.** F63 found the attractor token varies across models
+(`'\n'`, `' '`, `'0'`); the same variety recurs *within one model's training trajectory*. The
+script's own pooled "onset at step8, rise not monotone" line pools those different attractors and
+is superseded by this statement.
+
+**On the shared axis, the ordering is decisive and none of the three events co-times.** Funnel
+onset step 8 $\ll$ extinction window step 32 (#95/#97, F81–F83) $\ll$ $\lambda_{ca}$ crossing
+steps 256–512 (F39/F46/F77). The developmental transition therefore **cannot be the formation of
+the degeneracy — the degeneracy is over an order of magnitude older than the crossing**. Whether
+the crossing involves a change in the attractor's *properties* remains #100's question; what dies
+here is only the tempting reading that the F62–F70 artifact and the developmental transition are
+one event. Two textures reported as observations, not claims: the basin drops from its perfect
+1.00 to 0.71 exactly across the extinction window (CIs [0.86,1.00] vs [0.51,0.85]); and late
+checkpoints increasingly funnel into short **cycles** rather than fixed points (step2000: 0.25
+fixed / 0.75 cyclic), so "the attractor" is sometimes a 2-cycle.
+
+**Instrument and limitation.** At step143000 the probe reads basin 0.625 to `'\n'`, consistent
+with F70's 18/24 on the full model from different starts. The runs store only the modal endpoint
+and its count, not the full endpoint histogram, so per-token basins beyond the modal token cannot
+be recomputed from the stored file — a re-run storing histograms is the refinement if anyone
+needs basin *depths* per token. **Scope:** $r\le2$ is F69's out-of-distribution artifact regime,
+deliberately — the artifact is the object of study, and nothing here is a claim about a model in
+ordinary use.
 
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 

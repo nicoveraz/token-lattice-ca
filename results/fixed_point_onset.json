@@ -1,0 +1,532 @@
+{
+ "runs": {
+  "step1": {
+   "step": "step1",
+   "step_n": 1,
+   "n_starts": 24,
+   "n_distinct_endpoints": 23,
+   "modal_endpoint_share": 0.0833,
+   "modal_endpoint_token": "guyen",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.0,
+   "basin_k": 2,
+   "basin_ci": [
+    0.0232,
+    0.2585
+   ],
+   "secs": 22.2
+  },
+  "step2": {
+   "step": "step2",
+   "step_n": 2,
+   "n_starts": 24,
+   "n_distinct_endpoints": 22,
+   "modal_endpoint_share": 0.0833,
+   "modal_endpoint_token": " craw",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.0417,
+   "basin_k": 2,
+   "basin_ci": [
+    0.0232,
+    0.2585
+   ],
+   "secs": 21.8
+  },
+  "step4": {
+   "step": "step4",
+   "step_n": 4,
+   "n_starts": 24,
+   "n_distinct_endpoints": 24,
+   "modal_endpoint_share": 0.0417,
+   "modal_endpoint_token": " folder",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.0,
+   "basin_k": 1,
+   "basin_ci": [
+    0.0074,
+    0.2024
+   ],
+   "secs": 19.7
+  },
+  "step8": {
+   "step": "step8",
+   "step_n": 8,
+   "n_starts": 24,
+   "n_distinct_endpoints": 1,
+   "modal_endpoint_share": 1.0,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "basin_k": 24,
+   "basin_ci": [
+    0.862,
+    1.0
+   ],
+   "secs": 4.2
+  },
+  "step16": {
+   "step": "step16",
+   "step_n": 16,
+   "n_starts": 24,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.7083,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "basin_k": 17,
+   "basin_ci": [
+    0.5083,
+    0.8509
+   ],
+   "secs": 3.9
+  },
+  "step32": {
+   "step": "step32",
+   "step_n": 32,
+   "n_starts": 24,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.7083,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.875,
+   "cyclic_fraction": 0.125,
+   "basin_k": 17,
+   "basin_ci": [
+    0.5083,
+    0.8509
+   ],
+   "secs": 5.2
+  },
+  "step64": {
+   "step": "step64",
+   "step_n": 64,
+   "n_starts": 24,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.5417,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.875,
+   "cyclic_fraction": 0.125,
+   "basin_k": 13,
+   "basin_ci": [
+    0.3507,
+    0.7211
+   ],
+   "secs": 6.8
+  },
+  "step128": {
+   "step": "step128",
+   "step_n": 128,
+   "n_starts": 24,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": ".",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "basin_k": 12,
+   "basin_ci": [
+    0.3143,
+    0.6857
+   ],
+   "secs": 7.5
+  },
+  "step256": {
+   "step": "step256",
+   "step_n": 256,
+   "n_starts": 24,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.5833,
+   "modal_endpoint_token": ",",
+   "fixed_point_fraction": 0.6667,
+   "cyclic_fraction": 0.3333,
+   "basin_k": 14,
+   "basin_ci": [
+    0.3883,
+    0.7553
+   ],
+   "secs": 6.8
+  },
+  "step512": {
+   "step": "step512",
+   "step_n": 512,
+   "n_starts": 24,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.4583,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.5,
+   "cyclic_fraction": 0.5,
+   "basin_k": 11,
+   "basin_ci": [
+    0.2789,
+    0.6493
+   ],
+   "secs": 7.5
+  },
+  "step1000": {
+   "step": "step1000",
+   "step_n": 1000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9167,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.9167,
+   "cyclic_fraction": 0.0833,
+   "basin_k": 22,
+   "basin_ci": [
+    0.7415,
+    0.9768
+   ],
+   "secs": 12.5
+  },
+  "step2000": {
+   "step": "step2000",
+   "step_n": 2000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.25,
+   "cyclic_fraction": 0.75,
+   "basin_k": 12,
+   "basin_ci": [
+    0.3143,
+    0.6857
+   ],
+   "secs": 9.1
+  },
+  "step4000": {
+   "step": "step4000",
+   "step_n": 4000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.625,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.625,
+   "cyclic_fraction": 0.375,
+   "basin_k": 15,
+   "basin_ci": [
+    0.4271,
+    0.7884
+   ],
+   "secs": 8.8
+  },
+  "step8000": {
+   "step": "step8000",
+   "step_n": 8000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.375,
+   "cyclic_fraction": 0.625,
+   "basin_k": 12,
+   "basin_ci": [
+    0.3143,
+    0.6857
+   ],
+   "secs": 8.8
+  },
+  "step16000": {
+   "step": "step16000",
+   "step_n": 16000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.8333,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.8333,
+   "cyclic_fraction": 0.1667,
+   "basin_k": 20,
+   "basin_ci": [
+    0.6415,
+    0.9332
+   ],
+   "secs": 8.4
+  },
+  "step32000": {
+   "step": "step32000",
+   "step_n": 32000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.7083,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.7083,
+   "cyclic_fraction": 0.2917,
+   "basin_k": 17,
+   "basin_ci": [
+    0.5083,
+    0.8509
+   ],
+   "secs": 8.2
+  },
+  "step64000": {
+   "step": "step64000",
+   "step_n": 64000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.8333,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.8333,
+   "cyclic_fraction": 0.1667,
+   "basin_k": 20,
+   "basin_ci": [
+    0.6415,
+    0.9332
+   ],
+   "secs": 8.6
+  },
+  "step143000": {
+   "step": "step143000",
+   "step_n": 143000,
+   "n_starts": 24,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.625,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.625,
+   "cyclic_fraction": 0.375,
+   "basin_k": 15,
+   "basin_ci": [
+    0.4271,
+    0.7884
+   ],
+   "secs": 9.1
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   "step1",
+   "step2",
+   "step4",
+   "step8",
+   "step16",
+   "step32",
+   "step64",
+   "step128",
+   "step256",
+   "step512",
+   "step1000",
+   "step2000",
+   "step4000",
+   "step8000",
+   "step16000",
+   "step32000",
+   "step64000",
+   "step143000"
+  ],
+  "null_step": "step1",
+  "extinction_window": "step32",
+  "developmental_crossing": [
+   "step256",
+   "step512"
+  ],
+  "n_starts": 24,
+  "seed": 20260802,
+  "observable": "basin fraction (share of random starts reaching a common endpoint), NOT the existence of a fixed point -- a random map over |V|~5e4 has about one by chance, so existence would be noise",
+  "null": "step1 IS the random-map control, measured rather than derived from random-mapping statistics, which would import state-space assumptions that do not hold here",
+  "primary": "the first checkpoint whose basin exceeds step1's by more than the binomial CI, and whether the rise is monotone thereafter",
+  "null_meaning": "a flat basin, or one already high at step1, means the fixed point is ARCHITECTURAL rather than learned -- which rhymes with F29 and is a strong result in its own right",
+  "kill": "if the endpoint TOKEN changes across checkpoints, the basin is not one quantity and per-token basins must be reported instead",
+  "scope": "r<=2 is the out-of-distribution artifact regime (F69). That is deliberate: the artifact is the object of study. Nothing here is a claim about ordinary use.",
+  "probe": "gate1.argmax_census, imported and already gated against F70's known answer",
+  "resumable": "keyed by checkpoint"
+ },
+ "analysis": {
+  "null_step": "step1",
+  "null_basin": 0.0833,
+  "null_ci_upper": 0.2585,
+  "onset": "step8",
+  "onset_step": 8,
+  "monotone_after_onset": false,
+  "endpoint_tokens_where_above_null": [
+   "\n",
+   " the",
+   ",",
+   "."
+  ],
+  "curve": [
+   [
+    1,
+    0.0833,
+    [
+     0.0232,
+     0.2585
+    ]
+   ],
+   [
+    2,
+    0.0833,
+    [
+     0.0232,
+     0.2585
+    ]
+   ],
+   [
+    4,
+    0.0417,
+    [
+     0.0074,
+     0.2024
+    ]
+   ],
+   [
+    8,
+    1.0,
+    [
+     0.862,
+     1.0
+    ]
+   ],
+   [
+    16,
+    0.7083,
+    [
+     0.5083,
+     0.8509
+    ]
+   ],
+   [
+    32,
+    0.7083,
+    [
+     0.5083,
+     0.8509
+    ]
+   ],
+   [
+    64,
+    0.5417,
+    [
+     0.3507,
+     0.7211
+    ]
+   ],
+   [
+    128,
+    0.5,
+    [
+     0.3143,
+     0.6857
+    ]
+   ],
+   [
+    256,
+    0.5833,
+    [
+     0.3883,
+     0.7553
+    ]
+   ],
+   [
+    512,
+    0.4583,
+    [
+     0.2789,
+     0.6493
+    ]
+   ],
+   [
+    1000,
+    0.9167,
+    [
+     0.7415,
+     0.9768
+    ]
+   ],
+   [
+    2000,
+    0.5,
+    [
+     0.3143,
+     0.6857
+    ]
+   ],
+   [
+    4000,
+    0.625,
+    [
+     0.4271,
+     0.7884
+    ]
+   ],
+   [
+    8000,
+    0.5,
+    [
+     0.3143,
+     0.6857
+    ]
+   ],
+   [
+    16000,
+    0.8333,
+    [
+     0.6415,
+     0.9332
+    ]
+   ],
+   [
+    32000,
+    0.7083,
+    [
+     0.5083,
+     0.8509
+    ]
+   ],
+   [
+    64000,
+    0.8333,
+    [
+     0.6415,
+     0.9332
+    ]
+   ],
+   [
+    143000,
+    0.625,
+    [
+     0.4271,
+     0.7884
+    ]
+   ]
+  ],
+  "landmarks": {
+   "extinction_window": 32,
+   "crossing": [
+    256,
+    512
+   ]
+  },
+  "f70_instrument_check": {
+   "ran": true,
+   "passes": true,
+   "pythia410m_fixed_fraction": 0.625,
+   "pythia410m_modal_token": "\n",
+   "gpt2medium_fixed_fraction": 0.0,
+   "reference": "F70: pythia-410m has an attracting fixed point at a whitespace token; gpt2-medium has none and wanders",
+   "rule": "pythia-410m fixed fraction > 0.25 AND gpt2-medium < 0.10"
+  }
+ },
+ "verdict": "ONSET AT STEP8: the basin first clears step1's upper CI (0.26) at step 8, reaching 1.00 [0.86,1.00]. The rise is NOT monotone thereafter, so the basin is not a simple accumulation and the trajectory matters as much as the date. ON THE SHARED AXIS: the fixed point forms BEFORE the extinction window -- onset step 8, extinction window 32 (#95/#97), lambda_ca crossing 256->512 (F39/F46/F77). Forming before or during the crossing means the two are NOT separable by timing alone, and co-timing is not attribution -- #100's ablation is the test that can separate them, not this one. KILL CONDITION HIT: the endpoint token is not stable across checkpoints ({'.', ' the', ',', '\\n'}), so 'the basin' is not one quantity. The single fraction above pools different attractors and per-token basins must be reported instead. F63 saw the same across models. INSTRUMENT: the probe is F70's, imported from gate1 and gated against F70's own answer. At step143000 it reads fixed=0.625 with endpoint '\\n', against F70's 18/24 to a whitespace token on the full model. SCOPE: r<=2 is the out-of-distribution artifact regime (F69) and that is deliberate here -- the artifact is the object of study. Nothing in this result is a claim about a model in ordinary use.",
+ "_analysis_provenance": {
+  "script": "fixed_point_onset.py",
+  "sha256": "54133387eaf77c574e7a9f323e6ec156c22d32a40b944eddc2cc996a24ca8a80",
+  "imports": {
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/fixed_point_onset.py": "54133387eaf77c574e7a9f323e6ec156c22d32a40b944eddc2cc996a24ca8a80",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
+   "fingerprint/gate1.py": "07d6dd1541272b2be990d4637593b27f29bb725c438310be6387481ec5f5ee12",
+   "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
+   "gatecheck/src/gatecheck/__init__.py": "23d0a6357f3a355032eecede8f5f682510c77a7409e5985d9c7c9993b273dc1e",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Dates F70's argmax fixed point in training time (#98). The observable is the BASIN -- the share of 24 random starts reaching a common endpoint -- and NOT the existence of a fixed point, because a random map over |V|~5e4 has about one by chance and existence would be noise. The null is step1, MEASURED rather than derived from random-mapping statistics, which would import state-space assumptions that do not hold for a lattice; this is F65's run-the-control rule with the control supplied free by the checkpoint series. The map is deterministic, so the only randomness is the 24 starts, and the same starts are used at every checkpoint. The probe is gate1.argmax_census, imported and already gated against F70's known answer -- a gate that caught a real defect, an earlier version testing (a,b)->b and scoring gpt2-medium at 0.96 fixed where the truth is 0.00. r<=2 is the out-of-distribution artifact regime (F69) and is the object of study here, not a defect."
+}

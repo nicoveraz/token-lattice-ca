@@ -1,0 +1,65 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   4%|▍         | 12/292 [00:00<00:03, 83.69it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1951.73it/s]
+  step1      basin 0.083 [0.02,0.26]  endpoints=23 fixed=0.00 cyclic=0.00  token='guyen' (22s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4608.97it/s]
+  step2      basin 0.083 [0.02,0.26]  endpoints=22 fixed=0.00 cyclic=0.04  token=' craw' (22s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3029.18it/s]
+  step4      basin 0.042 [0.01,0.20]  endpoints=24 fixed=0.00 cyclic=0.00  token=' folder' (20s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3268.93it/s]
+  step8      basin 1.000 [0.86,1.00]  endpoints=1  fixed=1.00 cyclic=0.00  token='\n' (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3126.57it/s]
+  step16     basin 0.708 [0.51,0.85]  endpoints=3  fixed=1.00 cyclic=0.00  token='\n' (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4377.30it/s]
+  step32     basin 0.708 [0.51,0.85]  endpoints=3  fixed=0.88 cyclic=0.12  token='\n' (5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.84it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 628.15it/s]Loading weights:  84%|████████▍ | 246/292 [00:00<00:00, 680.98it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 602.65it/s]
+  step64     basin 0.542 [0.35,0.72]  endpoints=5  fixed=0.88 cyclic=0.12  token='\n' (7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:31,  1.92it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 255.43it/s]Loading weights:  64%|██████▍   | 187/292 [00:00<00:00, 291.79it/s]Loading weights:  82%|████████▏ | 240/292 [00:01<00:00, 227.48it/s]Loading weights:  96%|█████████▌| 279/292 [00:01<00:00, 190.79it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 197.65it/s]
+  step128    basin 0.500 [0.31,0.69]  endpoints=5  fixed=1.00 cyclic=0.00  token='.' (7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3284.22it/s]
+  step256    basin 0.583 [0.39,0.76]  endpoints=5  fixed=0.67 cyclic=0.33  token=',' (7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:39,  1.82it/s]Loading weights:  38%|███▊      | 110/292 [00:00<00:00, 225.59it/s]Loading weights:  60%|█████▉    | 174/292 [00:00<00:00, 292.37it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 304.52it/s]Loading weights:  95%|█████████▍| 277/292 [00:01<00:00, 227.64it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 217.42it/s]
+  step512    basin 0.458 [0.28,0.65]  endpoints=5  fixed=0.50 cyclic=0.50  token='\n' (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:38,  1.84it/s]Loading weights:  40%|███▉      | 116/292 [00:00<00:00, 233.07it/s]Loading weights:  60%|█████▉    | 175/292 [00:00<00:00, 275.81it/s]Loading weights:  77%|███████▋  | 224/292 [00:00<00:00, 293.58it/s]Loading weights:  91%|█████████▏| 267/292 [00:01<00:00, 241.95it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 218.96it/s]
+  step1000   basin 0.917 [0.74,0.98]  endpoints=3  fixed=0.92 cyclic=0.08  token='\n' (12s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:05,  4.42it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 602.66it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 642.60it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 561.53it/s]
+  step2000   basin 0.500 [0.31,0.69]  endpoints=5  fixed=0.25 cyclic=0.75  token=' the' (9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.66it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 646.45it/s]Loading weights:  88%|████████▊ | 258/292 [00:00<00:00, 704.51it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 562.90it/s]
+  step4000   basin 0.625 [0.43,0.79]  endpoints=4  fixed=0.62 cyclic=0.38  token='\n' (9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3183.85it/s]
+  step8000   basin 0.500 [0.31,0.69]  endpoints=4  fixed=0.38 cyclic=0.62  token=' the' (9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.54it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 646.40it/s]Loading weights:  90%|████████▉ | 262/292 [00:00<00:00, 620.55it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 516.05it/s]
+  step16000  basin 0.833 [0.64,0.93]  endpoints=3  fixed=0.83 cyclic=0.17  token='\n' (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.35it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 595.71it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 669.35it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 584.83it/s]
+  step32000  basin 0.708 [0.51,0.85]  endpoints=3  fixed=0.71 cyclic=0.29  token='\n' (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:08,  4.22it/s]Loading weights:  58%|█████▊    | 170/292 [00:00<00:00, 630.16it/s]Loading weights:  91%|█████████▏| 267/292 [00:00<00:00, 697.79it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 587.67it/s]
+  step64000  basin 0.833 [0.64,0.93]  endpoints=4  fixed=0.83 cyclic=0.17  token='\n' (9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.62it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 623.17it/s]Loading weights:  85%|████████▌ | 249/292 [00:00<00:00, 668.65it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 537.09it/s]
+  step143000 basin 0.625 [0.43,0.79]  endpoints=6  fixed=0.62 cyclic=0.38  token='\n' (9s)
+
+=== basin fraction vs training step (null = step1, basin 0.083 CI [0.02,0.26]) ===
+        step   basin              CI  endpoints  fixed      token
+       step1   0.083 [0.02,0.26]         23   0.00    'guyen'
+       step2   0.083 [0.02,0.26]         22   0.00    ' craw'
+       step4   0.042 [0.01,0.20]         24   0.00  ' folder'
+       step8   1.000 [0.86,1.00]          1   1.00       '\n'  <- above null CI
+      step16   0.708 [0.51,0.85]          3   1.00       '\n'  <- above null CI
+      step32   0.708 [0.51,0.85]          3   0.88       '\n'  <- above null CI
+      step64   0.542 [0.35,0.72]          5   0.88       '\n'  <- above null CI
+     step128   0.500 [0.31,0.69]          5   1.00        '.'  <- above null CI
+     step256   0.583 [0.39,0.76]          5   0.67        ','  <- above null CI
+     step512   0.458 [0.28,0.65]          5   0.50       '\n'  <- above null CI
+    step1000   0.917 [0.74,0.98]          3   0.92       '\n'  <- above null CI
+    step2000   0.500 [0.31,0.69]          5   0.25     ' the'  <- above null CI
+    step4000   0.625 [0.43,0.79]          4   0.62       '\n'  <- above null CI
+    step8000   0.500 [0.31,0.69]          4   0.38     ' the'  <- above null CI
+   step16000   0.833 [0.64,0.93]          3   0.83       '\n'  <- above null CI
+   step32000   0.708 [0.51,0.85]          3   0.71       '\n'  <- above null CI
+   step64000   0.833 [0.64,0.93]          4   0.83       '\n'  <- above null CI
+  step143000   0.625 [0.43,0.79]          6   0.62       '\n'  <- above null CI
+
+  -> ONSET AT STEP8: the basin first clears step1's upper CI (0.26) at step 8, reaching 1.00 [0.86,1.00]. The rise is NOT monotone thereafter, so the basin is not a simple accumulation and the trajectory matters as much as the date. ON THE SHARED AXIS: the fixed point forms BEFORE the extinction window -- onset step 8, extinction window 32 (#95/#97), lambda_ca crossing 256->512 (F39/F46/F77). Forming before or during the crossing means the two are NOT separable by timing alone, and co-timing is not attribution -- #100's ablation is the test that can separate them, not this one. KILL CONDITION HIT: the endpoint token is not stable across checkpoints ({'.', ' the', ',', '\n'}), so 'the basin' is not one quantity. The single fraction above pools different attractors and per-token basins must be reported instead. F63 saw the same across models. INSTRUMENT: the probe is F70's, imported from gate1 and gated against F70's own answer. At step143000 it reads fixed=0.625 with endpoint '\n', against F70's 18/24 to a whitespace token on the full model. SCOPE: r<=2 is the out-of-distribution artifact regime (F69) and that is deliberate here -- the artifact is the object of study. Nothing in this result is a claim about a model in ordinary use.
+
+wrote results/fixed_point_onset.json
+oss checkpoints ({'.', ' the', ',', '\n'}), so 'the basin' is not one quantity. The single fraction above pools different attractors and per-token basins must be reported instead. F63 saw the same across models. INSTRUMENT: the probe is F70's, imported from gate1 and gated against F70's own answer. At step143000 it reads fixed=0.625 with endpoint '\n', against F70's 18/24 to a whitespace token on the full model. SCOPE: r<=2 is the out-of-distribution artifact regime (F69) and that is deliberate here -- the artifact is the object of study. Nothing in this result is a claim about a model in ordinary use.
+
+wrote results/fixed_point_onset.json
