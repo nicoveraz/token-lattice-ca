@@ -1,0 +1,1635 @@
+{
+ "runs": {
+  "EleutherAI/pythia-14m|step1": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step1",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3148,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3108,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3088,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3043,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3004,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3017,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " CAP",
+   "secs": 8.2
+  },
+  "EleutherAI/pythia-14m|step2": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step2",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3148,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3108,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3088,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3043,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3004,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3017,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " CAP",
+   "secs": 6.7
+  },
+  "EleutherAI/pythia-14m|step4": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step4",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3147,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3107,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3088,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3043,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3004,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3016,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " CAP",
+   "secs": 6.2
+  },
+  "EleutherAI/pythia-14m|step8": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step8",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.314,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.31,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3079,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3033,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2993,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3004,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " CAP",
+   "secs": 6.3
+  },
+  "EleutherAI/pythia-14m|step16": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step16",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3103,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3058,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.303,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2981,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2937,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2944,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " CAP",
+   "secs": 6.2
+  },
+  "EleutherAI/pythia-14m|step32": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step32",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.282,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2741,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.268,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2615,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2562,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2554,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " dign",
+   "secs": 6.2
+  },
+  "EleutherAI/pythia-14m|step64": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step64",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.1916,
+     "top1": 0.0004,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.182,
+     "top1": 0.0006,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.1733,
+     "top1": 0.0006,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.1678,
+     "top1": 0.0006,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.1643,
+     "top1": 0.0007,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.1618,
+     "top1": 0.0006,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.3
+  },
+  "EleutherAI/pythia-14m|step128": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step128",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2067,
+     "top1": 0.0033,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.1975,
+     "top1": 0.0043,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.1909,
+     "top1": 0.0044,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.1854,
+     "top1": 0.0043,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.1814,
+     "top1": 0.0049,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.1798,
+     "top1": 0.0042,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.6
+  },
+  "EleutherAI/pythia-14m|step256": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step256",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.253,
+     "top1": 0.0351,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2517,
+     "top1": 0.0393,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2565,
+     "top1": 0.0441,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2625,
+     "top1": 0.05,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2663,
+     "top1": 0.0534,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2697,
+     "top1": 0.0505,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.1
+  },
+  "EleutherAI/pythia-14m|step512": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step512",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.7064,
+     "top1": 0.095,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.7216,
+     "top1": 0.1342,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.7525,
+     "top1": 0.1564,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.7646,
+     "top1": 0.1559,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.777,
+     "top1": 0.1537,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.7925,
+     "top1": 0.1557,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.2
+  },
+  "EleutherAI/pythia-14m|step1000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step1000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.865,
+     "top1": 0.1101,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.8779,
+     "top1": 0.1566,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.8992,
+     "top1": 0.1767,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9039,
+     "top1": 0.1905,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9031,
+     "top1": 0.1938,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9176,
+     "top1": 0.2035,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.3
+  },
+  "EleutherAI/pythia-14m|step2000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step2000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9422,
+     "top1": 0.1246,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9506,
+     "top1": 0.1828,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9578,
+     "top1": 0.2071,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9596,
+     "top1": 0.2235,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9578,
+     "top1": 0.2119,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9647,
+     "top1": 0.2189,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.4
+  },
+  "EleutherAI/pythia-14m|step4000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step4000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9537,
+     "top1": 0.1452,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.962,
+     "top1": 0.1856,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9755,
+     "top1": 0.2067,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9807,
+     "top1": 0.2273,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9804,
+     "top1": 0.2335,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9846,
+     "top1": 0.2449,
+     "n": 160
+    }
+   },
+   "marginal_token": "The",
+   "secs": 6.7
+  },
+  "EleutherAI/pythia-31m|step1": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step1",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.309,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3086,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3033,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2998,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.298,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2958,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " lawyer",
+   "secs": 6.9
+  },
+  "EleutherAI/pythia-31m|step2": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step2",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.309,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3086,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3033,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2998,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.298,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2958,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " lawyer",
+   "secs": 6.4
+  },
+  "EleutherAI/pythia-31m|step4": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step4",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.309,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3086,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3033,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2997,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2979,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2957,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " lawyer",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-31m|step8": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step8",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3085,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3079,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3025,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2987,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2968,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2945,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " lawyer",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-31m|step16": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step16",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3039,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3021,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2959,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2914,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2891,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2866,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": "Frame",
+   "secs": 6.7
+  },
+  "EleutherAI/pythia-31m|step32": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step32",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2565,
+     "top1": 0.0006,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.249,
+     "top1": 0.0009,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2401,
+     "top1": 0.001,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2341,
+     "top1": 0.0012,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2311,
+     "top1": 0.0014,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2286,
+     "top1": 0.0014,
+     "n": 160
+    }
+   },
+   "marginal_token": " the",
+   "secs": 6.4
+  },
+  "EleutherAI/pythia-31m|step64": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step64",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.1718,
+     "top1": 0.0081,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.1705,
+     "top1": 0.0148,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.1603,
+     "top1": 0.0136,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.1567,
+     "top1": 0.0155,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.1576,
+     "top1": 0.0183,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.1505,
+     "top1": 0.0137,
+     "n": 160
+    }
+   },
+   "marginal_token": " the",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-31m|step128": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step128",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2149,
+     "top1": 0.0436,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2079,
+     "top1": 0.0485,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.1977,
+     "top1": 0.0408,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.1974,
+     "top1": 0.0448,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.1966,
+     "top1": 0.048,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.19,
+     "top1": 0.0422,
+     "n": 160
+    }
+   },
+   "marginal_token": " the",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-31m|step256": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step256",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.4246,
+     "top1": 0.0976,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.4456,
+     "top1": 0.1189,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.4652,
+     "top1": 0.1202,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.4884,
+     "top1": 0.1392,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.4982,
+     "top1": 0.1397,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.5078,
+     "top1": 0.1366,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.4
+  },
+  "EleutherAI/pythia-31m|step512": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step512",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.6929,
+     "top1": 0.1137,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.7197,
+     "top1": 0.1448,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.7542,
+     "top1": 0.1457,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.7762,
+     "top1": 0.1563,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.7875,
+     "top1": 0.1678,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.7959,
+     "top1": 0.1774,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.6
+  },
+  "EleutherAI/pythia-31m|step1000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step1000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.8982,
+     "top1": 0.1376,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9139,
+     "top1": 0.1755,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9328,
+     "top1": 0.207,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9311,
+     "top1": 0.2141,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.927,
+     "top1": 0.2307,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.941,
+     "top1": 0.2358,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.6
+  },
+  "EleutherAI/pythia-31m|step2000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step2000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9339,
+     "top1": 0.1763,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9491,
+     "top1": 0.1819,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9604,
+     "top1": 0.2079,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9652,
+     "top1": 0.2442,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9622,
+     "top1": 0.2486,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9693,
+     "top1": 0.2457,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.6
+  },
+  "EleutherAI/pythia-31m|step4000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step4000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9359,
+     "top1": 0.1275,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9502,
+     "top1": 0.1667,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9662,
+     "top1": 0.199,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9714,
+     "top1": 0.224,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9705,
+     "top1": 0.2222,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9794,
+     "top1": 0.2481,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-70m|step1": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step1",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3257,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3224,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3208,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3189,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3179,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3159,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": "Import",
+   "secs": 7.1
+  },
+  "EleutherAI/pythia-70m|step2": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step2",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3257,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3223,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3207,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3189,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3178,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3159,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": "Import",
+   "secs": 7.1
+  },
+  "EleutherAI/pythia-70m|step4": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step4",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3256,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3223,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3206,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3188,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3177,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3158,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": "Import",
+   "secs": 7.5
+  },
+  "EleutherAI/pythia-70m|step8": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step8",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3239,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.3202,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.3182,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.3161,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.3149,
+     "top1": 0.0002,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.3129,
+     "top1": 0.0002,
+     "n": 160
+    }
+   },
+   "marginal_token": " irrit",
+   "secs": 7.0
+  },
+  "EleutherAI/pythia-70m|step16": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step16",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.3056,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2989,
+     "top1": 0.0003,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2947,
+     "top1": 0.0004,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2909,
+     "top1": 0.0005,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2885,
+     "top1": 0.0005,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2862,
+     "top1": 0.0005,
+     "n": 160
+    }
+   },
+   "marginal_token": " irrit",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-70m|step32": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step32",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2179,
+     "top1": 0.0112,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2101,
+     "top1": 0.0179,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2038,
+     "top1": 0.0192,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.2015,
+     "top1": 0.0237,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2007,
+     "top1": 0.0263,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.1958,
+     "top1": 0.0213,
+     "n": 160
+    }
+   },
+   "marginal_token": ".",
+   "secs": 6.5
+  },
+  "EleutherAI/pythia-70m|step64": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step64",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.2213,
+     "top1": 0.0385,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.2446,
+     "top1": 0.0797,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.2248,
+     "top1": 0.0615,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.21,
+     "top1": 0.0464,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.2068,
+     "top1": 0.0491,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.2028,
+     "top1": 0.0447,
+     "n": 160
+    }
+   },
+   "marginal_token": "\n",
+   "secs": 6.7
+  },
+  "EleutherAI/pythia-70m|step128": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step128",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.4324,
+     "top1": 0.1267,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.43,
+     "top1": 0.103,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.4466,
+     "top1": 0.1183,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.4561,
+     "top1": 0.1241,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.4616,
+     "top1": 0.1258,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.4678,
+     "top1": 0.1198,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.7
+  },
+  "EleutherAI/pythia-70m|step256": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step256",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.6993,
+     "top1": 0.1208,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.7263,
+     "top1": 0.139,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.7629,
+     "top1": 0.1564,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.7863,
+     "top1": 0.1753,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.7943,
+     "top1": 0.1707,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.8073,
+     "top1": 0.1785,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.8
+  },
+  "EleutherAI/pythia-70m|step512": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step512",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.803,
+     "top1": 0.1156,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.8332,
+     "top1": 0.1533,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.8623,
+     "top1": 0.1805,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.8751,
+     "top1": 0.1916,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.8786,
+     "top1": 0.1966,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.8925,
+     "top1": 0.2122,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.8
+  },
+  "EleutherAI/pythia-70m|step1000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step1000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9311,
+     "top1": 0.157,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9448,
+     "top1": 0.1714,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9592,
+     "top1": 0.2154,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9637,
+     "top1": 0.2437,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9599,
+     "top1": 0.2447,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9689,
+     "top1": 0.2711,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 7.0
+  },
+  "EleutherAI/pythia-70m|step2000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step2000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9531,
+     "top1": 0.1701,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9646,
+     "top1": 0.2005,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9781,
+     "top1": 0.2366,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.9818,
+     "top1": 0.263,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9825,
+     "top1": 0.2675,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9883,
+     "top1": 0.2743,
+     "n": 160
+    }
+   },
+   "marginal_token": "The",
+   "secs": 6.6
+  },
+  "EleutherAI/pythia-70m|step4000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step4000",
+   "by_length": {
+    "1": {
+     "tv_to_marginal": 0.9509,
+     "top1": 0.15,
+     "n": 160
+    },
+    "2": {
+     "tv_to_marginal": 0.9636,
+     "top1": 0.1933,
+     "n": 160
+    },
+    "4": {
+     "tv_to_marginal": 0.9781,
+     "top1": 0.2407,
+     "n": 160
+    },
+    "8": {
+     "tv_to_marginal": 0.979,
+     "top1": 0.2668,
+     "n": 160
+    },
+    "16": {
+     "tv_to_marginal": 0.9736,
+     "top1": 0.2794,
+     "n": 160
+    },
+    "32": {
+     "tv_to_marginal": 0.9825,
+     "top1": 0.2963,
+     "n": 160
+    }
+   },
+   "marginal_token": "Q",
+   "secs": 6.9
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "EleutherAI/pythia-14m",
+   "EleutherAI/pythia-31m",
+   "EleutherAI/pythia-70m"
+  ],
+  "steps": [
+   "step1",
+   "step2",
+   "step4",
+   "step8",
+   "step16",
+   "step32",
+   "step64",
+   "step128",
+   "step256",
+   "step512",
+   "step1000",
+   "step2000",
+   "step4000"
+  ],
+  "lengths": [
+   1,
+   2,
+   4,
+   8,
+   16,
+   32
+  ],
+  "n_contexts": 160,
+  "k_report": 8,
+  "dip_reference": {
+   "EleutherAI/pythia-70m": 64,
+   "EleutherAI/pythia-14m": 512,
+   "EleutherAI/pythia-31m": 128
+  },
+  "dip_source": [
+   "dev_transition_width_early.json",
+   "dev_transition_width.json"
+  ],
+  "measurement": "TV(p(x | k real tokens), p(x | BOS)) -- imported from evidence_falloff",
+  "primary": "does the TV minimum coincide with the D_norm minimum WITHIN ONE SAMPLED checkpoint, per model? (powers of two is the finest resolution that exists)",
+  "secondary": "does the TV minimum MOVE with width in the same direction the dip does (F81: 512 -> 128 -> 64, a factor of 8)?",
+  "null": "TV minimum elsewhere or not moving with width -> conditional collapse does NOT explain the extinction window. A NULL IS A GOOD RESULT; it eliminates the leading candidate after induction heads were eliminated by arithmetic",
+  "kill": "no interior TV minimum for a model -> NOT DECIDABLE for that model rather than reading an argmin off a monotone curve",
+  "boundary": "coincidence is CORRELATION; F79/F80 closed attribution for lambda_ca and nothing here reopens it",
+  "prior_point": "F78: pythia-410m TV minimum step16 against extinction step32 (adjacent)",
+  "resumable": "keyed by (model, checkpoint)"
+ },
+ "analysis": {
+  "per_model": {
+   "EleutherAI/pythia-14m": {
+    "complete": true,
+    "tv_series": {
+     "step1": 0.3043,
+     "step2": 0.3043,
+     "step4": 0.3043,
+     "step8": 0.3033,
+     "step16": 0.2981,
+     "step32": 0.2615,
+     "step64": 0.1678,
+     "step128": 0.1854,
+     "step256": 0.2625,
+     "step512": 0.7646,
+     "step1000": 0.9039,
+     "step2000": 0.9596,
+     "step4000": 0.9807
+    },
+    "tv_min": "step64",
+    "tv_min_interior": true,
+    "dip_min": "step512",
+    "gap_in_steps": 3,
+    "dip_D_norm": 0.00665,
+    "dip_ignited": "4/8"
+   },
+   "EleutherAI/pythia-31m": {
+    "complete": true,
+    "tv_series": {
+     "step1": 0.2998,
+     "step2": 0.2998,
+     "step4": 0.2997,
+     "step8": 0.2987,
+     "step16": 0.2914,
+     "step32": 0.2341,
+     "step64": 0.1567,
+     "step128": 0.1974,
+     "step256": 0.4884,
+     "step512": 0.7762,
+     "step1000": 0.9311,
+     "step2000": 0.9652,
+     "step4000": 0.9714
+    },
+    "tv_min": "step64",
+    "tv_min_interior": true,
+    "dip_min": "step128",
+    "gap_in_steps": 1,
+    "dip_D_norm": 0.0,
+    "dip_ignited": "0/8"
+   },
+   "EleutherAI/pythia-70m": {
+    "complete": true,
+    "tv_series": {
+     "step1": 0.3189,
+     "step2": 0.3189,
+     "step4": 0.3188,
+     "step8": 0.3161,
+     "step16": 0.2909,
+     "step32": 0.2015,
+     "step64": 0.21,
+     "step128": 0.4561,
+     "step256": 0.7863,
+     "step512": 0.8751,
+     "step1000": 0.9637,
+     "step2000": 0.9818,
+     "step4000": 0.979
+    },
+    "tv_min": "step32",
+    "tv_min_interior": true,
+    "dip_min": "step64",
+    "gap_in_steps": 1,
+    "dip_D_norm": 0.0,
+    "dip_ignited": "0/8"
+   }
+  },
+  "coincide": [
+   "EleutherAI/pythia-31m",
+   "EleutherAI/pythia-70m"
+  ],
+  "gaps": [
+   3,
+   1,
+   1
+  ],
+  "tracks_width": true
+ },
+ "verdict": "NULL, AND IT IS A CLEAN ONE: the TV minimum coincides with the D_norm minimum on only 2 of 3 width models (gaps in sampled steps: [3, 1, 1]). Conditional collapse onto the marginal does NOT explain the extinction window. Two candidates are now eliminated -- induction heads by arithmetic (#70: ~step1000 against a dip at step32-512) and this by measurement -- and the window stays open.",
+ "_analysis_provenance": {
+  "script": "context_onset_width.py",
+  "sha256": "380926c0323e7a768331a233ce1cd05d11f84a06b3542a75d3fb4ec212dda4eb",
+  "imports": {
+   "experiments/context_onset_width.py": "380926c0323e7a768331a233ce1cd05d11f84a06b3542a75d3fb4ec212dda4eb",
+   "experiments/evidence_falloff.py": "95cf16c653aa9a9820e87141213d3ab6ccf313574e49b1273f76954573191f7f",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "#97. Does the conditional collapsing onto the marginal explain the extinction window F81 measured? TV(p(x|k), marginal) across the iso-LR width ladder, with the dip minima read from F81's own source files rather than hardcoded. The measurement is imported from evidence_falloff and uses the same grid context_onset.py used for 410m, so the width series and F78's 410m series are comparable. Forward passes only. Coincidence is correlation: F79/F80 closed attribution for lambda_ca and nothing here reopens it."
+}

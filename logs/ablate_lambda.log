@@ -179,3 +179,16 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
   -> NULL, AND IT IS A CLEAN ONE: no ablation damages lambda_ca out of proportion to its loss cost (max z=+1.49 for attn_all, threshold 2.0). lambda_ca falls with general model degradation and carries no component-specific information under intervention -- it is a loss proxy in this regime, and the explanandum programme closes here rather than at a fourth route.
 
 wrote results/ablate_lambda.json
+
+  ablation       lambda     sd    ign     loss   d_lam  d_loss  per_nat      z
+  none           0.3566  0.051 8/8      3.0069
+  attn_all       0.0144  0.132 6/8      8.1941   0.342   5.187   0.0660   1.49
+  attn_early     0.0115  0.053 7/8      8.5472   0.345   5.540   0.0623   1.38
+  mlp_late       0.2205  0.028 8/8      7.0573   0.136   4.050   0.0336   0.53
+  mlp_early      0.2679  0.060 8/8     11.2574   0.089   8.251   0.0108  -0.14
+  attn_mid       0.3480  0.045 8/8      4.8209   0.009   1.814   0.0047  -0.32
+  mlp_all        0.3354  0.122 8/8     13.9155   0.021  10.909   0.0019  -0.41
+  mlp_mid        0.4183  0.110 8/8      6.3255  -0.062   3.319  -0.0186  -1.01
+  attn_late      0.3960  0.080 8/8      4.1203  -0.039   1.113  -0.0354  -1.51
+
+  -> NULL, AND IT IS A CLEAN ONE: no ablation damages lambda_ca out of proportion to its loss cost (max z=+1.49 for attn_all, threshold 2.0). lambda_ca falls with general model degradation and carries no component-specific information under intervention -- it is a loss proxy in this regime, and the explanandum programme closes here rather than at a fourth route.

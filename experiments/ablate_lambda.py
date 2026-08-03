@@ -262,7 +262,10 @@ def analyse(res):
           f"{'d_lam':>7s} {'d_loss':>7s} {'per_nat':>8s} {'z':>6s}")
     print(f"  {'none':12s} {base_lam:>8.4f} {per['none']['lambda_sd']:>6.3f} "
           f"{per['none']['n_ignited']}/{per['none']['n']:<4} {base_loss:>8.4f}")
-    for r in sorted(rows, key=lambda x: -(x["z_selectivity"] or -9)):
+    # `or -9`: z_selectivity of exactly 0.0 is falsy and would sort as -9. Harmless for display
+    # ordering but the same latent bug as conditional_sensitivity's gap==0 -- made explicit.
+    for r in sorted(rows, key=lambda x: -(x["z_selectivity"]
+                                          if x["z_selectivity"] is not None else -9)):
         p = per[r["ablation"]]
         print(f"  {r['ablation']:12s} {p['lambda_median']:>8.4f} {p['lambda_sd']:>6.3f} "
               f"{p['n_ignited']}/{p['n']:<4} {p['loss']:>8.4f} {r['d_lambda']:>7.3f} "
@@ -279,7 +282,8 @@ def analyse(res):
                    f"lambda is undefined in most cells (F42) and the estimator floor (F40) would "
                    f"be read as a measurement.")
     else:
-        top = max(rows, key=lambda r: r["z_selectivity"] or -9)
+        top = max(rows, key=lambda r: (r["z_selectivity"]
+                                       if r["z_selectivity"] is not None else -9))
         if (top["z_selectivity"] or 0) >= 2.0:
             verdict = (f"SELECTIVE: {top['ablation']} costs {top['per_nat']:.3f} of lambda_ca per "
                        f"nat of held-out loss, z={top['z_selectivity']:+.2f} against the other "

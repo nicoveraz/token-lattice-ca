@@ -512,3 +512,32 @@ wrote results/ablate_layers.json
      23   0.3708  0.064 8/8     3.0183  -0.014   0.011  -1.2456  -5.00
 
   -> NULL, AND IT IS A CLEAN ONE: NO single attention layer moves lambda_ca outside its own seed scatter. The largest single-layer effect is L16 at |d_lambda|=0.0577 against a seed sd of 0.0611; 0 of 24 clear 2 sigma. Yet removing EIGHT layers together gives d_lambda=+0.345 and all 24 gives +0.342, while the 24 singles SUM to -0.224 -- the wrong sign. The effect is STRONGLY NON-ADDITIVE: it is not localised in any layer and not diffusely spread either, or the singles would sum toward the group value. Ignition says the same: 8/8 on every single layer against 7/8 and 6/8 for the groups. lambda_ca is not attributable to a localisable component, which is the pre-registered null for the explanandum programme. Denominator diagnostic: Spearman(d_loss, |per_nat|) = -0.472 (p=0.02), so any ratio-based ranking here would have been driven by its denominator.
+
+  layer   lambda     sd   ign     loss   d_lam  d_loss  per_nat  z_loo
+   none   0.3566  0.051 8/8     3.0069
+      0   0.3322  0.073 8/8     3.8867   0.024   0.880   0.0277   0.61
+      1   0.3916  0.100 8/8     3.4813  -0.035   0.474  -0.0738   0.28
+      2   0.3654  0.041 8/8     3.0566  -0.009   0.050  -0.1771  -0.05
+      3   0.3582  0.047 8/8     3.2390  -0.002   0.232  -0.0069   0.50
+      4   0.3597  0.084 8/8     3.0900  -0.003   0.083  -0.0373   0.40
+      5   0.3584  0.075 8/8     4.2347  -0.002   1.228  -0.0015   0.51
+      6   0.3571  0.060 8/8     3.0883  -0.001   0.081  -0.0061   0.50
+      7   0.4044  0.081 8/8     3.1432  -0.048   0.136  -0.3507  -0.62
+      8   0.3485  0.065 8/8     3.1427   0.008   0.136   0.0596   0.72
+      9   0.3832  0.059 8/8     3.1045  -0.027   0.098  -0.2725  -0.36
+     10   0.3514  0.060 8/8     3.1067   0.005   0.100   0.0521   0.69
+     11   0.3519  0.061 8/8     3.0780   0.005   0.071   0.0661   0.74
+     12   0.3739  0.073 8/8     3.1085  -0.017   0.102  -0.1703  -0.03
+     13   0.3608  0.061 8/8     3.1283  -0.004   0.121  -0.0346   0.41
+     14   0.3574  0.067 8/8     3.0589  -0.001   0.052  -0.0154   0.47
+     15   0.3495  0.040 8/8     3.0782   0.007   0.071   0.0996   0.85
+     16   0.4143  0.061 8/8     3.1508  -0.058   0.144  -0.4010  -0.79
+     17   0.3754  0.048 8/8     3.1331  -0.019   0.126  -0.1490   0.04
+     18   0.3470  0.069 8/8     3.0822   0.010   0.075   0.1275   0.94
+     19   0.3496  0.033 8/8     3.0549   0.007   0.048   0.1458   1.01
+     20   0.3874  0.063 8/8     3.0420  -0.031   0.035  -0.8775  -2.62
+     21   0.3646  0.059 8/8     3.0436  -0.008   0.037  -0.2180  -0.19
+     22   0.3693  0.058 8/8     3.0401  -0.013   0.033  -0.3825  -0.73
+     23   0.3708  0.064 8/8     3.0183  -0.014   0.011  -1.2456  -5.00
+
+  -> NULL, AND IT IS A CLEAN ONE: NO single attention layer moves lambda_ca outside its own seed scatter. The largest single-layer effect is L16 at |d_lambda|=0.0577 against a seed sd of 0.0611; 0 of 24 clear 2 sigma. Yet removing EIGHT layers together gives d_lambda=+0.345 and all 24 gives +0.342, while the 24 singles SUM to -0.224 -- the wrong sign. The effect is STRONGLY NON-ADDITIVE: it is not localised in any layer and not diffusely spread either, or the singles would sum toward the group value. Ignition says the same: 8/8 on every single layer against 7/8 and 6/8 for the groups. lambda_ca is not attributable to a localisable component, which is the pre-registered null for the explanandum programme. Denominator diagnostic: Spearman(d_loss, |per_nat|) = -0.472 (p=0.02), so any ratio-based ranking here would have been driven by its denominator.

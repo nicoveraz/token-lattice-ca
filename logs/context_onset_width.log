@@ -1,0 +1,100 @@
+0 cached, 39 cells
+
+  dip minima read from F81's sources: {'70m': 64, '14m': 512, '31m': 128} 
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11172.66it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+    14m     step1  TV@k=8=0.3043  8s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8314.00it/s]
+    14m     step2  TV@k=8=0.3043  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6909.14it/s]
+    14m     step4  TV@k=8=0.3043  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4820.82it/s]
+    14m     step8  TV@k=8=0.3033  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6736.41it/s]
+    14m    step16  TV@k=8=0.2981  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6003.60it/s]
+    14m    step32  TV@k=8=0.2615  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7328.82it/s]
+    14m    step64  TV@k=8=0.1678  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5399.99it/s]
+    14m   step128  TV@k=8=0.1854  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6173.47it/s]
+    14m   step256  TV@k=8=0.2625  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4449.63it/s]
+    14m   step512  TV@k=8=0.7646  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4651.97it/s]
+    14m  step1000  TV@k=8=0.9039  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7201.82it/s]
+    14m  step2000  TV@k=8=0.9596  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7750.42it/s]
+    14m  step4000  TV@k=8=0.9807  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5319.52it/s]
+    31m     step1  TV@k=8=0.2998  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5246.50it/s]
+    31m     step2  TV@k=8=0.2998  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5715.95it/s]
+    31m     step4  TV@k=8=0.2997  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4694.52it/s]
+    31m     step8  TV@k=8=0.2987  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5753.61it/s]
+    31m    step16  TV@k=8=0.2914  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5134.12it/s]
+    31m    step32  TV@k=8=0.2341  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6032.80it/s]
+    31m    step64  TV@k=8=0.1567  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5731.88it/s]
+    31m   step128  TV@k=8=0.1974  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5906.05it/s]
+    31m   step256  TV@k=8=0.4884  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6867.91it/s]
+    31m   step512  TV@k=8=0.7762  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6911.99it/s]
+    31m  step1000  TV@k=8=0.9311  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4768.75it/s]
+    31m  step2000  TV@k=8=0.9652  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5999.76it/s]
+    31m  step4000  TV@k=8=0.9714  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:08,  9.19it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 690.65it/s]
+    70m     step1  TV@k=8=0.3189  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.76it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 732.78it/s]
+    70m     step2  TV@k=8=0.3189  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.71it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 729.62it/s]
+    70m     step4  TV@k=8=0.3188  8s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:08,  9.10it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 680.16it/s]
+    70m     step8  TV@k=8=0.3161  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:08,  8.68it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 651.34it/s]
+    70m    step16  TV@k=8=0.2909  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.81it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 732.93it/s]
+    70m    step32  TV@k=8=0.2015  6s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:09,  7.75it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 583.88it/s]
+    70m    step64  TV@k=8=0.2100  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.50it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 707.35it/s]
+    70m   step128  TV@k=8=0.4561  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 824.60it/s]
+    70m   step256  TV@k=8=0.7863  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.77it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 734.02it/s]
+    70m   step512  TV@k=8=0.8751  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.39it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 704.19it/s]
+    70m  step1000  TV@k=8=0.9637  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 831.16it/s]
+    70m  step2000  TV@k=8=0.9818  7s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 790.17it/s]
+    70m  step4000  TV@k=8=0.9790  7s
+
+  model    TV min   dip min   gap  TV series (k=8)
+    14m    step64   step512     3  0.30 0.30 0.30 0.30 0.30 0.26 0.17 0.19 0.26 0.76 0.90 0.96 0.98
+    31m    step64   step128     1  0.30 0.30 0.30 0.30 0.29 0.23 0.16 0.20 0.49 0.78 0.93 0.97 0.97
+    70m    step32    step64     1  0.32 0.32 0.32 0.32 0.29 0.20 0.21 0.46 0.79 0.88 0.96 0.98 0.98
+
+  -> NULL, AND IT IS A CLEAN ONE: the TV minimum coincides with the D_norm minimum on only 2 of 3 width models (gaps in sampled steps: [3, 1, 1]). Conditional collapse onto the marginal does NOT explain the extinction window. Two candidates are now eliminated -- induction heads by arithmetic (#70: ~step1000 against a dip at step32-512) and this by measurement -- and the window stays open.
+
+wrote results/context_onset_width.json
+
+  model    TV min   dip min   gap  TV series (k=8)
+    14m    step64   step512     3  0.30 0.30 0.30 0.30 0.30 0.26 0.17 0.19 0.26 0.76 0.90 0.96 0.98
+    31m    step64   step128     1  0.30 0.30 0.30 0.30 0.29 0.23 0.16 0.20 0.49 0.78 0.93 0.97 0.97
+    70m    step32    step64     1  0.32 0.32 0.32 0.32 0.29 0.20 0.21 0.46 0.79 0.88 0.96 0.98 0.98
+
+  -> NULL, AND IT IS A CLEAN ONE: the TV minimum coincides with the D_norm minimum on only 2 of 3 width models (gaps in sampled steps: [3, 1, 1]). Conditional collapse onto the marginal does NOT explain the extinction window. Two candidates are now eliminated -- induction heads by arithmetic (#70: ~step1000 against a dip at step32-512) and this by measurement -- and the window stays open.

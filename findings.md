@@ -2997,6 +2997,134 @@ its null. The non-additivity is itself a fact worth having — it says the trans
 the attention stack collectively rather than of any part of it — but it is not an explanandum, and
 the honest position is that λ_ca still dates an event nobody has named.
 
+### F81 — the dip, measured directly: timing halves with width, and two of three reach true extinction (#95)
+Issue #95 asked for the dip to be measured on the observable that is actually defined there — depth, timing
+and whether it reaches total extinction — rather than through a crossing bracket, because
+`crossing_interval` assumes a monotone rise and the curve starts positive, dips and recovers
+(`def98fd`, #88).
+
+**It needed no new compute, and that is the first finding.** The issue asked to "fill the gaps
+between the current log points", but the Pythia checkpoint set **is** powers of two to step512 and
+then thousands — there are no gaps to fill. `dev_transition_width_early.json` (steps 1–64) and
+`dev_transition_width.json` (steps 128–4000) already cover the full grid for all three models at 8
+seeds, and both record `mean_damage` and `ignition_prob`, which is exactly what the design requires.
+The measurement was an analysis, not an experiment.
+
+```
+  model    bottom step   D_norm at bottom   ignited   extinction step
+   14m         512            0.0066          4/8         never
+   31m         128            0.0000          0/8         128
+   70m          64            0.0000          0/8          64
+  (410m         32            0.0000          0/8          32     -- #88, NOT pooled)
+```
+
+**The timing ordering is clean: 512 → 128 → 64 across a 4× width range**, with depth (6), learning
+rate (1.0e-3), batch and data order all fixed. Each doubling of width moves the bottom a factor of
+2–4 earlier. This is the width claim that survived #87 — where the *printed* verdict was disowned by
+its own commit — now measured on the observable #95 specified rather than inferred from a bracket.
+
+**Two of the three reach TRUE extinction.** 31m at step128 and 70m at step64 both read `D_norm =
+0.0000` with **0 of 8 runs ignited**, the same total extinction #88 found for 410m at step32. So
+extinction is not a 410m peculiarity — it is a regime every model in the ladder passes through
+except the smallest.
+
+**14m never extincts**, bottoming at 0.0066 with 4/8 ignited. That is the very cell whose ignition
+count made #87's bracket unusable and whose `MIN_IGNITED = 4` guard was, in its author's words, "set
+at the value it needed to exclude". On this observable it is not an obstacle but a result: **14m is
+the one model that does not fully freeze.**
+
+**λ_ca is undefined at the bottom for exactly the models that extinct**, which is why #95 required
+`D_norm` plus ignition fraction and forbade reading λ there. Had the dip been read on λ, two of four
+models would have shown an estimator floor (F40) where the truth is a true zero — the F42
+asymmetry doing precisely the job it was built for.
+
+**410m is deliberately not pooled into the width ordering**, per #95's own constraint: depth 24 at
+LR 3.0e-4 against depth 6 at 1.0e-3 carries the #66 learning-rate confound *and* a depth confound at
+once. It sits exactly in the predicted direction, which is what makes pooling it tempting and wrong.
+
+**A disclosure about the merge.** Neither results file records `N`, `B`, `T` or `r` per run, so the
+two were merged on seeds (21–28, identical in both) and model name alone. Both scripts import
+`dev_transition_phase3.measure` and its constants rather than copying them, so the geometry should
+be identical — but "should be" is doing work, and merging across results files whose geometry is not
+recorded is the F56 hazard in miniature. Those fields belong in both files the next time either is
+touched.
+
+### F82 — conditional collapse does not explain the dip: the two events move by different factors (#97)
+F81 dated the dip and found it moves 512 → 128 → 64 across a 4× width range. Issue #97's leading
+candidate for what the model is doing there: the conditional has collapsed onto the **marginal**, so
+flipping a neighbour changes nothing, damage dies, and `D_norm → 0`. That predicts the total
+variation between `p(x | k real tokens)` and `p(x | BOS)` bottoms in the same window.
+
+F78 already supplied one point — pythia-410m, TV minimum step16 against extinction step32, adjacent
+checkpoints. The test is whether it tracks the dip across the ladder, where the dip itself moves by
+a factor of 8.
+
+```
+  model    TV min   dip min   gap
+   14m     step64   step512     3
+   31m     step64   step128     1
+   70m     step32   step64      1
+  (410m    step16   step32      1   -- F78, not in the width scan)
+```
+
+**The declared primary returns a null:** 2 of the 3 width models coincide within one sampled
+checkpoint, and the criterion required all three. Reported as declared; the sets were not re-cut.
+
+**The secondary is the stronger evidence against, and it is unambiguous.** TV minima span
+step16→64, a factor of **4**. Dip minima span step32→512, a factor of **16**. They do not move
+together. 14m makes it plain: its TV bottoms at step64 (0.17) and is already at 0.76 by step512
+where its dip actually sits. A single mechanism producing both would have to move both by the same
+amount.
+
+**But a sharper pattern survived the test, and it is not what #97 pre-registered.** Every model that
+reaches *true* extinction (410m, 70m, 31m — all 0/8 ignited) has its TV minimum exactly one sampled
+checkpoint before it. The only failure is **14m, the one model F81 found never extincts**. So the
+coincidence may track **extinction** rather than **the dip** — a narrower claim, tested in F83.
+
+### F83 — nor does conditional insensitivity explain extinction, and that is the third candidate gone (#97)
+F82's surviving pattern, tested on the right observable. TV-to-marginal is a *proxy* for "does the
+model use context at all". The mechanism of extinction is narrower and directly measurable: **damage
+propagates only if resampling a site with a perturbed neighbourhood yields a different token.** So
+measure that — `argmax_flip_rate`, the probability that `argmax p(x | ctx)` changes when **one**
+context token is replaced. That is one step of damage propagation, and at low temperature it is
+exactly what the CA's dynamics depend on (F70).
+
+```
+   model  flip min   value    target  gap  spread  extincts
+     14m   step128  0.1900   step512    2  0.3650     False
+     31m    step32  0.1150   step128    2  0.4850      True
+     70m    step64  0.1200    step64    0  0.5200      True
+    410m    step16  0.1500    step32    1  0.4650      True
+```
+
+**Null by the declared criterion:** the flip rate bottoms within one sampled step of extinction for
+**2 of 3** extincting models — 70m exactly (gap 0) and 410m adjacent — while 31m misses by two. The
+primary required all three.
+
+**The secondary holds, and it is the part worth keeping.** 14m, which never extincts, has a
+**shallower** minimum: 0.1900 against a mean of 0.1283 for the three that do. So the observable does
+separate the two classes rather than merely having a minimum everywhere — the conditional of a model
+that never fully freezes never becomes as insensitive as one that does. Every model has ≥ 0.36 of
+dynamic range, so the kill did not fire.
+
+**Three candidates are now eliminated** for what the model is doing in the extinction window:
+induction heads by arithmetic (#70 — ~step1000 against a dip at step32–512, one to two orders of
+magnitude off), conditional collapse against the dip (F82), and conditional insensitivity against
+extinction (here). The window is **genuinely open rather than merely unexamined**, which is a
+different and more useful state than where #97 started.
+
+**A defect of my own, and it changed a reported count.** The verdict first read *"1 of 3"*. The hit
+test was `(d["gap_in_steps"] or 99) <= 1`, and **a gap of 0 is falsy in Python** — so pythia-70m,
+whose flip minimum lands *exactly* on its extinction checkpoint, was replaced by 99 and excluded.
+The perfect match was the one the guard threw away. Corrected to `is not None`, and the same idiom
+was found and fixed in three other places (`context_onset_width`, twice in `ablate_lambda`) where it
+had not yet bitten. Same family as F74's denominator degeneracy: a guard clause firing on a
+legitimate extreme value.
+
+**Boundary, unchanged by any of it.** Coincidence here is correlation, and both quantities come off
+the same forward pass, so adjacency is not causation. F79/F80 closed attribution for λ_ca and
+nothing in F82 or F83 reopens it.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

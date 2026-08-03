@@ -20,7 +20,7 @@ work.
 ## 0. Summary
 
 **The project's achievement is not a result, it is an instrument plus a discipline.**
-Eighty findings, sixty-three of them written up in `findings.md`, with every retraction,
+Eighty-three findings, sixty-six of them written up in `findings.md`, with every retraction,
 correction and demotion still visible there. The headline dynamical claims were dissolved by the project's own
 checks; what survives is a
 black-box measurement apparatus for language models, a validation ladder with one **bit-exact** rung,

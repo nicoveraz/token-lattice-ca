@@ -235,6 +235,8 @@ _STALENESS_PAIRS = [
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),
     ("ablate_layers.json", "ablate_layers.py"),
+    ("context_onset_width.json", "context_onset_width.py"),
+    ("conditional_sensitivity.json", "conditional_sensitivity.py"),
     ("attractor_interventions.json", "attractor_interventions.py"),
     ("attractor_construction.json", "attractor_construction.py"),
     ("mlm_transition.json", "mlm_transition.py"),

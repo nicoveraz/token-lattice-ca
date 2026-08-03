@@ -1,0 +1,129 @@
+  dip/extinction reference, read from source:
+      14m  bottom  step512 D_norm=0.0066 ign 4/8  extinct=None
+      31m  bottom  step128 D_norm=0.0000 ign 0/8  extinct=step128
+      70m  bottom   step64 D_norm=0.0000 ign 0/8  extinct=step64
+     410m  bottom   step32 D_norm=0.0000 ign 0/8  extinct=step32
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10505.80it/s]
+    14m     step1  flip=0.5300  tv=0.0949  4s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9872.62it/s]
+    14m     step2  flip=0.5250  tv=0.0949  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8579.62it/s]
+    14m     step4  flip=0.5300  tv=0.0949  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7588.61it/s]
+    14m     step8  flip=0.5300  tv=0.0946  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9477.53it/s]
+    14m    step16  flip=0.5550  tv=0.0929  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8469.74it/s]
+    14m    step32  flip=0.5050  tv=0.0792  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7698.57it/s]
+    14m    step64  flip=0.2800  tv=0.0472  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8270.64it/s]
+    14m   step128  flip=0.1900  tv=0.0450  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10038.33it/s]
+    14m   step256  flip=0.2300  tv=0.0630  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9424.57it/s]
+    14m   step512  flip=0.2850  tv=0.1987  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9567.13it/s]
+    14m  step1000  flip=0.3650  tv=0.2940  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 10000.22it/s]
+    14m  step2000  flip=0.4250  tv=0.3392  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9777.53it/s]
+    14m  step4000  flip=0.3950  tv=0.3500  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6766.44it/s]
+    31m     step1  flip=0.5950  tv=0.0978  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8183.59it/s]
+    31m     step2  flip=0.5950  tv=0.0978  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7778.03it/s]
+    31m     step4  flip=0.5900  tv=0.0978  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8607.19it/s]
+    31m     step8  flip=0.5800  tv=0.0978  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7884.81it/s]
+    31m    step16  flip=0.6000  tv=0.0950  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7114.07it/s]
+    31m    step32  flip=0.1150  tv=0.0674  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7873.32it/s]
+    31m    step64  flip=0.1350  tv=0.0401  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6948.15it/s]
+    31m   step128  flip=0.1950  tv=0.0499  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8077.41it/s]
+    31m   step256  flip=0.2400  tv=0.1343  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7128.70it/s]
+    31m   step512  flip=0.3150  tv=0.2361  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8044.60it/s]
+    31m  step1000  flip=0.3950  tv=0.3249  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 8465.02it/s]
+    31m  step2000  flip=0.3650  tv=0.3498  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7977.35it/s]
+    31m  step4000  flip=0.4200  tv=0.3549  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:07,  9.78it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 734.07it/s]
+    70m     step1  flip=0.6250  tv=0.0991  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 844.41it/s]
+    70m     step2  flip=0.6250  tv=0.0991  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 893.96it/s]
+    70m     step4  flip=0.6400  tv=0.0990  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 833.93it/s]
+    70m     step8  flip=0.6250  tv=0.0982  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 820.11it/s]
+    70m    step16  flip=0.2600  tv=0.0865  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 846.88it/s]
+    70m    step32  flip=0.1650  tv=0.0516  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 828.77it/s]
+    70m    step64  flip=0.1200  tv=0.0562  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 855.28it/s]
+    70m   step128  flip=0.2950  tv=0.0936  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 861.80it/s]
+    70m   step256  flip=0.2750  tv=0.1918  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 893.81it/s]
+    70m   step512  flip=0.3450  tv=0.2755  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 886.72it/s]
+    70m  step1000  flip=0.3600  tv=0.3438  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 807.00it/s]
+    70m  step2000  flip=0.4050  tv=0.3626  3s
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 797.10it/s]
+    70m  step4000  flip=0.4350  tv=0.3849  3s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.82it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 512.61it/s]Loading weights:  69%|██████▉   | 201/292 [00:00<00:00, 368.43it/s]Loading weights:  87%|████████▋ | 253/292 [00:00<00:00, 305.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 322.05it/s]
+   410m     step1  flip=0.6050  tv=0.1014  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:03,  4.60it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 538.93it/s]Loading weights:  75%|███████▌  | 219/292 [00:00<00:00, 463.86it/s]Loading weights:  95%|█████████▍| 277/292 [00:00<00:00, 440.42it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 415.96it/s]
+   410m     step2  flip=0.6050  tv=0.1014  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.40it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 598.57it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 560.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 484.56it/s]
+   410m     step4  flip=0.6150  tv=0.1004  10s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:10,  4.13it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 583.89it/s]Loading weights:  86%|████████▌ | 250/292 [00:00<00:00, 513.87it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 461.99it/s]
+   410m     step8  flip=0.1750  tv=0.0863  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.17it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 577.69it/s]Loading weights:  84%|████████▍ | 246/292 [00:00<00:00, 540.57it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 477.60it/s]
+   410m    step16  flip=0.1500  tv=0.0501  10s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.40it/s]Loading weights:  50%|█████     | 147/292 [00:00<00:00, 566.56it/s]Loading weights:  80%|████████  | 234/292 [00:00<00:00, 538.80it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 463.95it/s]
+   410m    step32  flip=0.2200  tv=0.0628  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.30it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 554.43it/s]Loading weights:  79%|███████▉  | 232/292 [00:00<00:00, 548.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 468.13it/s]
+   410m    step64  flip=0.2550  tv=0.0753  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.51it/s]Loading weights:  46%|████▌     | 135/292 [00:00<00:00, 527.89it/s]Loading weights:  74%|███████▎  | 215/292 [00:00<00:00, 483.78it/s]Loading weights:  96%|█████████▌| 279/292 [00:00<00:00, 457.24it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 431.52it/s]
+   410m   step128  flip=0.2750  tv=0.0933  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.50it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 474.35it/s]Loading weights:  66%|██████▌   | 193/292 [00:00<00:00, 444.92it/s]Loading weights:  86%|████████▌ | 251/292 [00:00<00:00, 420.90it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 375.86it/s]
+   410m   step256  flip=0.2750  tv=0.1708  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.53it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 533.66it/s]Loading weights:  74%|███████▍  | 217/292 [00:00<00:00, 449.50it/s]Loading weights:  95%|█████████▍| 276/292 [00:00<00:00, 402.07it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 388.64it/s]
+   410m   step512  flip=0.3200  tv=0.2431  11s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:03,  4.58it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 512.79it/s]Loading weights:  71%|███████   | 207/292 [00:00<00:00, 448.39it/s]Loading weights:  91%|█████████ | 265/292 [00:00<00:00, 425.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 399.50it/s]
+   410m  step1000  flip=0.3850  tv=0.3417  12s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.29it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 521.01it/s]Loading weights:  75%|███████▌  | 220/292 [00:00<00:00, 432.72it/s]Loading weights:  95%|█████████▍| 276/292 [00:00<00:00, 387.39it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 377.90it/s]
+   410m  step2000  flip=0.4050  tv=0.3822  12s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:08,  4.22it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 471.88it/s]Loading weights:  69%|██████▉   | 201/292 [00:00<00:00, 394.16it/s]Loading weights:  87%|████████▋ | 253/292 [00:00<00:00, 365.46it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 337.72it/s]
+   410m  step4000  flip=0.4750  tv=0.4099  12s
+
+   model  flip min   value    target  gap  spread  extincts
+     14m   step128  0.1900   step512    2  0.3650     False
+     31m    step32  0.1150   step128    2  0.4850      True
+     70m    step64  0.1200    step64    0  0.5200      True
+    410m    step16  0.1500    step32    1  0.4650      True
+
+  -> NULL, AND IT IS A CLEAN ONE: argmax_flip_rate bottoms at the extinction checkpoint for only 1 of 3 extincting models. Conditional insensitivity does not explain extinction either. Three candidates are now eliminated -- induction heads by arithmetic (#70), conditional collapse against the dip (F82), and this against extinction -- and the window is genuinely open rather than merely unexamined.
+
+wrote results/conditional_sensitivity.json
+
+   model  flip min   value    target  gap  spread  extincts
+     14m   step128  0.1900   step512    2  0.3650     False
+     31m    step32  0.1150   step128    2  0.4850      True
+     70m    step64  0.1200    step64    0  0.5200      True
+    410m    step16  0.1500    step32    1  0.4650      True
+
+  -> NULL, AND IT IS A CLEAN ONE: argmax_flip_rate bottoms at the extinction checkpoint for only 2 of 3 extincting models. Conditional insensitivity does not explain extinction either. Three candidates are now eliminated -- induction heads by arithmetic (#70), conditional collapse against the dip (F82), and this against extinction -- and the window is genuinely open rather than merely unexamined.

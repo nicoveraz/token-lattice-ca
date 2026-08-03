@@ -1,0 +1,659 @@
+{
+ "runs": {
+  "EleutherAI/pythia-14m|step1": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step1",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.53,
+   "tv_sensitivity": 0.0949,
+   "secs": 3.5
+  },
+  "EleutherAI/pythia-14m|step2": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step2",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.525,
+   "tv_sensitivity": 0.0949,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-14m|step4": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step4",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.53,
+   "tv_sensitivity": 0.0949,
+   "secs": 2.8
+  },
+  "EleutherAI/pythia-14m|step8": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step8",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.53,
+   "tv_sensitivity": 0.0946,
+   "secs": 3.0
+  },
+  "EleutherAI/pythia-14m|step16": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step16",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.555,
+   "tv_sensitivity": 0.0929,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-14m|step32": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step32",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.505,
+   "tv_sensitivity": 0.0792,
+   "secs": 2.8
+  },
+  "EleutherAI/pythia-14m|step64": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step64",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.28,
+   "tv_sensitivity": 0.0472,
+   "secs": 2.7
+  },
+  "EleutherAI/pythia-14m|step128": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step128",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.19,
+   "tv_sensitivity": 0.045,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-14m|step256": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step256",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.23,
+   "tv_sensitivity": 0.063,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-14m|step512": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step512",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.285,
+   "tv_sensitivity": 0.1987,
+   "secs": 3.0
+  },
+  "EleutherAI/pythia-14m|step1000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step1000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.365,
+   "tv_sensitivity": 0.294,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-14m|step2000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step2000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.425,
+   "tv_sensitivity": 0.3392,
+   "secs": 2.8
+  },
+  "EleutherAI/pythia-14m|step4000": {
+   "model": "EleutherAI/pythia-14m",
+   "step": "step4000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.395,
+   "tv_sensitivity": 0.35,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-31m|step1": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step1",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.595,
+   "tv_sensitivity": 0.0978,
+   "secs": 3.0
+  },
+  "EleutherAI/pythia-31m|step2": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step2",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.595,
+   "tv_sensitivity": 0.0978,
+   "secs": 2.9
+  },
+  "EleutherAI/pythia-31m|step4": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step4",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.59,
+   "tv_sensitivity": 0.0978,
+   "secs": 3.0
+  },
+  "EleutherAI/pythia-31m|step8": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step8",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.58,
+   "tv_sensitivity": 0.0978,
+   "secs": 3.3
+  },
+  "EleutherAI/pythia-31m|step16": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step16",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.6,
+   "tv_sensitivity": 0.095,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-31m|step32": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step32",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.115,
+   "tv_sensitivity": 0.0674,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-31m|step64": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step64",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.135,
+   "tv_sensitivity": 0.0401,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-31m|step128": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step128",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.195,
+   "tv_sensitivity": 0.0499,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-31m|step256": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step256",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.24,
+   "tv_sensitivity": 0.1343,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-31m|step512": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step512",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.315,
+   "tv_sensitivity": 0.2361,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-31m|step1000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step1000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.395,
+   "tv_sensitivity": 0.3249,
+   "secs": 3.2
+  },
+  "EleutherAI/pythia-31m|step2000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step2000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.365,
+   "tv_sensitivity": 0.3498,
+   "secs": 3.2
+  },
+  "EleutherAI/pythia-31m|step4000": {
+   "model": "EleutherAI/pythia-31m",
+   "step": "step4000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.42,
+   "tv_sensitivity": 0.3549,
+   "secs": 3.2
+  },
+  "EleutherAI/pythia-70m|step1": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step1",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.625,
+   "tv_sensitivity": 0.0991,
+   "secs": 3.2
+  },
+  "EleutherAI/pythia-70m|step2": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step2",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.625,
+   "tv_sensitivity": 0.0991,
+   "secs": 3.5
+  },
+  "EleutherAI/pythia-70m|step4": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step4",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.64,
+   "tv_sensitivity": 0.099,
+   "secs": 3.2
+  },
+  "EleutherAI/pythia-70m|step8": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step8",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.625,
+   "tv_sensitivity": 0.0982,
+   "secs": 3.3
+  },
+  "EleutherAI/pythia-70m|step16": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step16",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.26,
+   "tv_sensitivity": 0.0865,
+   "secs": 3.3
+  },
+  "EleutherAI/pythia-70m|step32": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step32",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.165,
+   "tv_sensitivity": 0.0516,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-70m|step64": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step64",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.12,
+   "tv_sensitivity": 0.0562,
+   "secs": 3.3
+  },
+  "EleutherAI/pythia-70m|step128": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step128",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.295,
+   "tv_sensitivity": 0.0936,
+   "secs": 3.2
+  },
+  "EleutherAI/pythia-70m|step256": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step256",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.275,
+   "tv_sensitivity": 0.1918,
+   "secs": 3.0
+  },
+  "EleutherAI/pythia-70m|step512": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step512",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.345,
+   "tv_sensitivity": 0.2755,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-70m|step1000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step1000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.36,
+   "tv_sensitivity": 0.3438,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-70m|step2000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step2000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.405,
+   "tv_sensitivity": 0.3626,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-70m|step4000": {
+   "model": "EleutherAI/pythia-70m",
+   "step": "step4000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.435,
+   "tv_sensitivity": 0.3849,
+   "secs": 3.1
+  },
+  "EleutherAI/pythia-410m|step1": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step1",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.605,
+   "tv_sensitivity": 0.1014,
+   "secs": 11.2
+  },
+  "EleutherAI/pythia-410m|step2": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step2",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.605,
+   "tv_sensitivity": 0.1014,
+   "secs": 10.6
+  },
+  "EleutherAI/pythia-410m|step4": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step4",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.615,
+   "tv_sensitivity": 0.1004,
+   "secs": 10.4
+  },
+  "EleutherAI/pythia-410m|step8": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step8",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.175,
+   "tv_sensitivity": 0.0863,
+   "secs": 10.5
+  },
+  "EleutherAI/pythia-410m|step16": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step16",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.15,
+   "tv_sensitivity": 0.0501,
+   "secs": 10.4
+  },
+  "EleutherAI/pythia-410m|step32": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step32",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.22,
+   "tv_sensitivity": 0.0628,
+   "secs": 11.0
+  },
+  "EleutherAI/pythia-410m|step64": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step64",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.255,
+   "tv_sensitivity": 0.0753,
+   "secs": 10.7
+  },
+  "EleutherAI/pythia-410m|step128": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step128",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.275,
+   "tv_sensitivity": 0.0933,
+   "secs": 11.3
+  },
+  "EleutherAI/pythia-410m|step256": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step256",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.275,
+   "tv_sensitivity": 0.1708,
+   "secs": 11.1
+  },
+  "EleutherAI/pythia-410m|step512": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step512",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.32,
+   "tv_sensitivity": 0.2431,
+   "secs": 11.0
+  },
+  "EleutherAI/pythia-410m|step1000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step1000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.385,
+   "tv_sensitivity": 0.3417,
+   "secs": 11.5
+  },
+  "EleutherAI/pythia-410m|step2000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step2000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.405,
+   "tv_sensitivity": 0.3822,
+   "secs": 11.5
+  },
+  "EleutherAI/pythia-410m|step4000": {
+   "model": "EleutherAI/pythia-410m",
+   "step": "step4000",
+   "ctx_len": 8,
+   "n_pairs": 200,
+   "argmax_flip_rate": 0.475,
+   "tv_sensitivity": 0.4099,
+   "secs": 11.8
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "EleutherAI/pythia-14m",
+   "EleutherAI/pythia-31m",
+   "EleutherAI/pythia-70m",
+   "EleutherAI/pythia-410m"
+  ],
+  "steps": [
+   "step1",
+   "step2",
+   "step4",
+   "step8",
+   "step16",
+   "step32",
+   "step64",
+   "step128",
+   "step256",
+   "step512",
+   "step1000",
+   "step2000",
+   "step4000"
+  ],
+  "ctx_len": 8,
+  "n_pairs": 200,
+  "dip_reference": {
+   "EleutherAI/pythia-14m": {
+    "bottom_step": "step512",
+    "D_norm": 0.0066,
+    "ignited": "4/8",
+    "extinct_step": null
+   },
+   "EleutherAI/pythia-31m": {
+    "bottom_step": "step128",
+    "D_norm": 0.0,
+    "ignited": "0/8",
+    "extinct_step": "step128"
+   },
+   "EleutherAI/pythia-70m": {
+    "bottom_step": "step64",
+    "D_norm": 0.0,
+    "ignited": "0/8",
+    "extinct_step": "step64"
+   },
+   "EleutherAI/pythia-410m": {
+    "bottom_step": "step32",
+    "D_norm": 0.0,
+    "ignited": "0/8",
+    "extinct_step": "step32"
+   }
+  },
+  "dip_source": [
+   "dev_transition_width_early.json",
+   "dev_transition_width.json",
+   "dev_transition_410m_early.json"
+  ],
+  "measurement": "argmax_flip_rate = P(argmax changes | ONE context token replaced); the direct single-step analogue of damage propagation. tv_sensitivity is the distributional version",
+  "why_not_tv_to_marginal": "F82 showed TV-to-marginal cannot explain the DIP (minima span 4x against the dip's 16x). It is a proxy for 'uses context at all'; this measures the quantity damage propagation actually depends on",
+  "primary": "for the models reaching TRUE extinction, does argmax_flip_rate bottom AT the extinction checkpoint within one sampled step?",
+  "secondary": "for 14m (never extincts), is the minimum SHALLOWER? report the VALUE not just the location",
+  "null": "minimum elsewhere, or 14m indistinguishable -> conditional insensitivity does not explain extinction either; three candidates eliminated. A NULL IS A GOOD RESULT",
+  "kill": "argmax_flip_rate pinned near 0 or 1 across the whole grid for a model -> no dynamic range -> NOT DECIDABLE for that model",
+  "boundary": "coincidence is CORRELATION; adjacency on the same forward pass is not causation, and F79/F80 closed attribution for lambda_ca",
+  "resumable": "keyed by (model, checkpoint)"
+ },
+ "analysis": {
+  "per_model": {
+   "EleutherAI/pythia-14m": {
+    "complete": true,
+    "series": {
+     "step1": 0.53,
+     "step2": 0.525,
+     "step4": 0.53,
+     "step8": 0.53,
+     "step16": 0.555,
+     "step32": 0.505,
+     "step64": 0.28,
+     "step128": 0.19,
+     "step256": 0.23,
+     "step512": 0.285,
+     "step1000": 0.365,
+     "step2000": 0.425,
+     "step4000": 0.395
+    },
+    "flip_min_step": "step128",
+    "flip_min_value": 0.19,
+    "spread": 0.365,
+    "interior": true,
+    "target_step": "step512",
+    "extincts": false,
+    "gap_in_steps": 2
+   },
+   "EleutherAI/pythia-31m": {
+    "complete": true,
+    "series": {
+     "step1": 0.595,
+     "step2": 0.595,
+     "step4": 0.59,
+     "step8": 0.58,
+     "step16": 0.6,
+     "step32": 0.115,
+     "step64": 0.135,
+     "step128": 0.195,
+     "step256": 0.24,
+     "step512": 0.315,
+     "step1000": 0.395,
+     "step2000": 0.365,
+     "step4000": 0.42
+    },
+    "flip_min_step": "step32",
+    "flip_min_value": 0.115,
+    "spread": 0.485,
+    "interior": true,
+    "target_step": "step128",
+    "extincts": true,
+    "gap_in_steps": 2
+   },
+   "EleutherAI/pythia-70m": {
+    "complete": true,
+    "series": {
+     "step1": 0.625,
+     "step2": 0.625,
+     "step4": 0.64,
+     "step8": 0.625,
+     "step16": 0.26,
+     "step32": 0.165,
+     "step64": 0.12,
+     "step128": 0.295,
+     "step256": 0.275,
+     "step512": 0.345,
+     "step1000": 0.36,
+     "step2000": 0.405,
+     "step4000": 0.435
+    },
+    "flip_min_step": "step64",
+    "flip_min_value": 0.12,
+    "spread": 0.52,
+    "interior": true,
+    "target_step": "step64",
+    "extincts": true,
+    "gap_in_steps": 0
+   },
+   "EleutherAI/pythia-410m": {
+    "complete": true,
+    "series": {
+     "step1": 0.605,
+     "step2": 0.605,
+     "step4": 0.615,
+     "step8": 0.175,
+     "step16": 0.15,
+     "step32": 0.22,
+     "step64": 0.255,
+     "step128": 0.275,
+     "step256": 0.275,
+     "step512": 0.32,
+     "step1000": 0.385,
+     "step2000": 0.405,
+     "step4000": 0.475
+    },
+    "flip_min_step": "step16",
+    "flip_min_value": 0.15,
+    "spread": 0.465,
+    "interior": true,
+    "target_step": "step32",
+    "extincts": true,
+    "gap_in_steps": 1
+   }
+  },
+  "extincting_hits": [
+   "EleutherAI/pythia-70m",
+   "EleutherAI/pythia-410m"
+  ],
+  "non_extincting_shallower": true
+ },
+ "verdict": "NULL, AND IT IS A CLEAN ONE: argmax_flip_rate bottoms at the extinction checkpoint for only 2 of 3 extincting models. Conditional insensitivity does not explain extinction either. Three candidates are now eliminated -- induction heads by arithmetic (#70), conditional collapse against the dip (F82), and this against extinction -- and the window is genuinely open rather than merely unexamined.",
+ "_analysis_provenance": {
+  "script": "conditional_sensitivity.py",
+  "sha256": "a5550ca4a395ce5fe460711fb4383470adaa1fb77955e9558e75a76e6055d370",
+  "imports": {
+   "experiments/conditional_sensitivity.py": "a5550ca4a395ce5fe460711fb4383470adaa1fb77955e9558e75a76e6055d370",
+   "experiments/evidence_falloff.py": "95cf16c653aa9a9820e87141213d3ab6ccf313574e49b1273f76954573191f7f",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "#97's narrower hypothesis, after F82. Measures the DIRECT single-step analogue of damage propagation -- P(argmax changes when one context token is flipped) -- rather than TV-to-marginal, which F82 showed cannot explain the dip. Reference extinction steps are read from F81's and #88's source files, never hardcoded. Forward passes only. Coincidence here is still correlation: both quantities come off the same forward pass."
+}
