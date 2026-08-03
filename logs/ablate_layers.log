@@ -1,0 +1,514 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:52,  1.69it/s]Loading weights:  36%|███▌      | 104/292 [00:00<00:00, 201.03it/s]Loading weights:  57%|█████▋    | 165/292 [00:00<00:00, 214.45it/s]Loading weights:  72%|███████▏  | 209/292 [00:01<00:00, 204.78it/s]Loading weights:  83%|████████▎ | 243/292 [00:01<00:00, 208.43it/s]Loading weights:  95%|█████████▌| 278/292 [00:01<00:00, 222.47it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 196.19it/s]
+  loss[none      ] =   3.0069
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:23,  3.50it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 481.45it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 552.72it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 447.72it/s]
+  loss[attn_L00  ] =   3.8867
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:16,  3.81it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 508.10it/s]Loading weights:  78%|███████▊  | 229/292 [00:00<00:00, 587.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 557.90it/s]
+  loss[attn_L01  ] =   3.4813
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:23,  3.49it/s]Loading weights:  52%|█████▏    | 152/292 [00:00<00:00, 495.75it/s]Loading weights:  81%|████████  | 237/292 [00:00<00:00, 543.21it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 397.17it/s]
+  loss[attn_L02  ] =   3.0566
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:19,  3.66it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 537.00it/s]Loading weights:  85%|████████▌ | 249/292 [00:00<00:00, 464.66it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 313.01it/s]
+  loss[attn_L03  ] =   3.2390
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.08it/s]Loading weights:  52%|█████▏    | 152/292 [00:00<00:00, 545.52it/s]Loading weights:  81%|████████  | 236/292 [00:00<00:00, 621.24it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 485.85it/s]
+  loss[attn_L04  ] =   3.0900
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.16it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 712.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 809.09it/s]
+  loss[attn_L05  ] =   4.2347
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:42,  2.84it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 654.06it/s]
+  loss[attn_L06  ] =   3.0883
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:22,  3.54it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 487.81it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 607.58it/s]
+  loss[attn_L07  ] =   3.1432
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:25,  3.41it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 508.53it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 595.30it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 536.07it/s]
+  loss[attn_L08  ] =   3.1427
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.41it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 917.88it/s]
+  loss[attn_L09  ] =   3.1045
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:43,  6.63it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1328.73it/s]
+  loss[attn_L10  ] =   3.1067
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 1767.37it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 2209.01it/s]
+  loss[attn_L11  ] =   3.0780
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:13,  3.96it/s]Loading weights:  89%|████████▉ | 260/292 [00:00<00:00, 937.67it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 819.39it/s]
+  loss[attn_L12  ] =   3.1085
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 895.73it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1127.25it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1189.08it/s]
+  loss[attn_L13  ] =   3.1283
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 1251.03it/s]Loading weights:  90%|█████████ | 264/292 [00:00<00:00, 1296.51it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1308.06it/s]
+  loss[attn_L14  ] =   3.0589
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:42,  6.91it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1200.23it/s]
+  loss[attn_L15  ] =   3.0782
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 1174.10it/s]Loading weights:  89%|████████▉ | 260/292 [00:00<00:00, 1296.68it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1262.19it/s]
+  loss[attn_L16  ] =   3.1508
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.16it/s]Loading weights:  74%|███████▍  | 216/292 [00:00<00:00, 1070.04it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1044.34it/s]
+  loss[attn_L17  ] =   3.1331
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:48,  6.02it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1328.06it/s]
+  loss[attn_L18  ] =   3.0822
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.38it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 1075.46it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1019.21it/s]
+  loss[attn_L19  ] =   3.0549
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:33,  8.62it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1895.92it/s]
+  loss[attn_L20  ] =   3.0420
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:52,  5.55it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1579.10it/s]
+  loss[attn_L21  ] =   3.0436
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:19, 15.20it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1402.88it/s]
+  loss[attn_L22  ] =   3.0401
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:17,  3.75it/s]Loading weights:  58%|█████▊    | 170/292 [00:00<00:00, 581.92it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 685.32it/s]
+  loss[attn_L23  ] =   3.0183
+
+0 cached, 200 cells (~7.2 h)
+
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.19it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 607.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 713.24it/s]
+  none       s=21  lambda=+0.3461  ign=1.000  132s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:03,  4.56it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 742.74it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 531.77it/s]
+  none       s=22  lambda=+0.3445  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.87it/s]Loading weights:  67%|██████▋   | 197/292 [00:00<00:00, 807.01it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 743.15it/s]
+  none       s=23  lambda=+0.3597  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:46,  6.30it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 992.47it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 626.81it/s]
+  none       s=24  lambda=+0.3378  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.85it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 652.04it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 764.73it/s]
+  none       s=25  lambda=+0.3621  ign=0.812  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.65it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 973.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 715.69it/s]
+  none       s=26  lambda=+0.4974  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:49,  5.88it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 655.29it/s]Loading weights:  89%|████████▉ | 260/292 [00:00<00:00, 824.31it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 720.39it/s]
+  none       s=27  lambda=+0.4161  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.78it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 574.19it/s]Loading weights:  77%|███████▋  | 226/292 [00:00<00:00, 543.30it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 427.15it/s]
+  none       s=28  lambda=+0.3535  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.40it/s]Loading weights:  98%|█████████▊| 286/292 [00:00<00:00, 1103.22it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 891.44it/s] 
+  attn_L00   s=21  lambda=+0.3248  ign=0.938  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 1782.39it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1244.53it/s]
+  attn_L00   s=22  lambda=+0.2899  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:54,  5.37it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1261.86it/s]
+  attn_L00   s=23  lambda=+0.4205  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 1303.77it/s]Loading weights:  90%|█████████ | 263/292 [00:00<00:00, 989.80it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1078.55it/s]
+  attn_L00   s=24  lambda=+0.2796  ign=1.000  130s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.76it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 592.18it/s]Loading weights:  80%|████████  | 235/292 [00:00<00:00, 391.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 415.15it/s]
+  attn_L00   s=25  lambda=+0.3437  ign=0.750  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.54it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 928.89it/s]
+  attn_L00   s=26  lambda=+0.5029  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 1008.28it/s]Loading weights:  72%|███████▏  | 209/292 [00:00<00:00, 883.32it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 963.64it/s]
+  attn_L00   s=27  lambda=+0.3397  ign=0.938  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.64it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 865.96it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 653.52it/s]
+  attn_L00   s=28  lambda=+0.2793  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.79it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 847.73it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 763.52it/s]
+  attn_L01   s=21  lambda=+0.3672  ign=0.688  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:47,  6.17it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 1131.14it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 972.33it/s] 
+  attn_L01   s=22  lambda=+0.3019  ign=0.312  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:55,  5.26it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 906.30it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 813.75it/s]
+  attn_L01   s=23  lambda=+0.4199  ign=0.500  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:35,  8.11it/s]Loading weights:  86%|████████▋ | 252/292 [00:00<00:00, 1327.41it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1156.23it/s]
+  attn_L01   s=24  lambda=+0.4159  ign=0.688  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:47,  6.11it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 981.80it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 874.52it/s]
+  attn_L01   s=25  lambda=+0.1700  ign=0.312  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.50it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 914.83it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 659.45it/s]
+  attn_L01   s=26  lambda=+0.5055  ign=0.625  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:48,  6.03it/s]Loading weights:  70%|██████▉   | 204/292 [00:00<00:00, 934.75it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 832.70it/s]
+  attn_L01   s=27  lambda=+0.4717  ign=0.750  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.67it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 1251.47it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1083.40it/s]
+  attn_L01   s=28  lambda=+0.3178  ign=0.500  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.76it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 1086.68it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 962.32it/s] 
+  attn_L02   s=21  lambda=+0.3184  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:54,  5.39it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 1070.18it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 797.74it/s] 
+  attn_L02   s=22  lambda=+0.3032  ign=1.000  135s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:28,  3.30it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 450.68it/s]Loading weights:  77%|███████▋  | 224/292 [00:00<00:00, 392.12it/s]Loading weights:  97%|█████████▋| 282/292 [00:00<00:00, 353.47it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 340.06it/s]
+  attn_L02   s=23  lambda=+0.3595  ign=1.000  137s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.05it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 559.01it/s]Loading weights:  83%|████████▎ | 243/292 [00:00<00:00, 424.09it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 394.96it/s]
+  attn_L02   s=24  lambda=+0.4079  ign=1.000  145s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:10,  4.12it/s]Loading weights:  51%|█████▏    | 150/292 [00:00<00:00, 554.44it/s]Loading weights:  82%|████████▏ | 238/292 [00:00<00:00, 511.28it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 395.07it/s]
+  attn_L02   s=25  lambda=+0.3712  ign=0.938  135s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.34it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 592.68it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 405.05it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 390.85it/s]
+  attn_L02   s=26  lambda=+0.3996  ign=1.000  139s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.20it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 523.89it/s]Loading weights:  76%|███████▌  | 222/292 [00:00<00:00, 417.18it/s]Loading weights:  97%|█████████▋| 282/292 [00:00<00:00, 451.66it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 414.24it/s]
+  attn_L02   s=27  lambda=+0.4262  ign=1.000  141s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.06it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 433.67it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 358.27it/s]Loading weights:  82%|████████▏ | 239/292 [00:00<00:00, 353.22it/s]Loading weights:  97%|█████████▋| 284/292 [00:00<00:00, 373.90it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 346.29it/s]
+  attn_L02   s=28  lambda=+0.3356  ign=1.000  133s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:19,  3.64it/s]Loading weights:  38%|███▊      | 110/292 [00:00<00:00, 361.38it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 328.16it/s]Loading weights:  73%|███████▎  | 213/292 [00:00<00:00, 309.34it/s]Loading weights:  89%|████████▉ | 260/292 [00:00<00:00, 347.33it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 316.15it/s]
+  attn_L03   s=21  lambda=+0.3423  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:08,  4.22it/s]Loading weights:  49%|████▉     | 144/292 [00:00<00:00, 538.43it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 556.41it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 603.14it/s]
+  attn_L03   s=22  lambda=+0.3465  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:29,  9.85it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 1369.39it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1058.44it/s]
+  attn_L03   s=23  lambda=+0.3425  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:57,  5.05it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 642.21it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 844.47it/s]
+  attn_L03   s=24  lambda=+0.4294  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.14it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 1195.15it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 774.87it/s] 
+  attn_L03   s=25  lambda=+0.3699  ign=0.875  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:46,  6.29it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 769.18it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 966.74it/s]
+  attn_L03   s=26  lambda=+0.4012  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   5%|▌         | 16/292 [00:00<00:01, 159.96it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 1359.13it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1134.41it/s]
+  attn_L03   s=27  lambda=+0.4175  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.49it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 784.29it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1057.54it/s]
+  attn_L03   s=28  lambda=+0.2751  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.33it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 674.41it/s]Loading weights:  96%|█████████▌| 281/292 [00:00<00:00, 455.02it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 438.95it/s]
+  attn_L04   s=21  lambda=+0.3468  ign=0.938  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.86it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1127.02it/s]
+  attn_L04   s=22  lambda=+0.3726  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 1249.91it/s]Loading weights:  89%|████████▊ | 259/292 [00:00<00:00, 1057.17it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1152.93it/s]
+  attn_L04   s=23  lambda=+0.5358  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:08,  4.25it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 610.58it/s]Loading weights:  88%|████████▊ | 257/292 [00:00<00:00, 437.96it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 396.15it/s]
+  attn_L04   s=24  lambda=+0.3334  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.65it/s]Loading weights:  96%|█████████▌| 281/292 [00:00<00:00, 1120.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 925.96it/s] 
+  attn_L04   s=25  lambda=+0.3380  ign=0.750  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.73it/s]Loading weights:  62%|██████▏   | 180/292 [00:00<00:00, 722.79it/s]Loading weights:  98%|█████████▊| 285/292 [00:00<00:00, 685.63it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 602.76it/s]
+  attn_L04   s=26  lambda=+0.5172  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.51it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 972.01it/s]
+  attn_L04   s=27  lambda=+0.4193  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.16it/s]Loading weights:  38%|███▊      | 110/292 [00:00<00:00, 403.64it/s]Loading weights:  59%|█████▉    | 173/292 [00:00<00:00, 360.71it/s]Loading weights:  76%|███████▌  | 222/292 [00:00<00:00, 337.20it/s]Loading weights:  90%|█████████ | 263/292 [00:00<00:00, 333.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 318.60it/s]
+  attn_L04   s=28  lambda=+0.2915  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.70it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 617.21it/s]Loading weights:  84%|████████▍ | 245/292 [00:00<00:00, 380.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 378.52it/s]
+  attn_L05   s=21  lambda=+0.2888  ign=0.875  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.40it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 608.37it/s]Loading weights:  86%|████████▋ | 252/292 [00:00<00:00, 340.92it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 354.93it/s]
+  attn_L05   s=22  lambda=+0.3589  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:05,  4.46it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 468.00it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 357.21it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 454.42it/s]
+  attn_L05   s=23  lambda=+0.3666  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  8.08it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 1291.89it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1054.51it/s]
+  attn_L05   s=24  lambda=+0.3578  ign=1.000  133s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.91it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 633.04it/s]Loading weights:  84%|████████▍ | 245/292 [00:00<00:00, 425.90it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 410.22it/s]
+  attn_L05   s=25  lambda=+0.2550  ign=0.750  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.76it/s]Loading weights:  56%|█████▌    | 163/292 [00:00<00:00, 658.31it/s]Loading weights:  89%|████████▊ | 259/292 [00:00<00:00, 388.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 379.65it/s]
+  attn_L05   s=26  lambda=+0.5102  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.79it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 640.08it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 806.33it/s]
+  attn_L05   s=27  lambda=+0.3619  ign=1.000  131s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 1793.07it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1256.72it/s]
+  attn_L05   s=28  lambda=+0.2721  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:45,  6.45it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1090.79it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1090.50it/s]
+  attn_L06   s=21  lambda=+0.3488  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:45,  6.47it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 1012.08it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 641.10it/s] 
+  attn_L06   s=22  lambda=+0.3073  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  34%|███▎      | 98/292 [00:00<00:00, 873.67it/s]Loading weights:  95%|█████████▌| 278/292 [00:00<00:00, 1392.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1370.84it/s]
+  attn_L06   s=23  lambda=+0.3762  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:51,  5.66it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1006.86it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 746.02it/s] 
+  attn_L06   s=24  lambda=+0.3590  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:53,  5.46it/s]Loading weights:  96%|█████████▌| 279/292 [00:00<00:00, 1220.63it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1027.16it/s]
+  attn_L06   s=25  lambda=+0.3551  ign=0.938  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:50,  5.75it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 965.20it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 805.29it/s]
+  attn_L06   s=26  lambda=+0.5131  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:56,  5.13it/s]Loading weights:  86%|████████▋ | 252/292 [00:00<00:00, 1064.43it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 968.33it/s] 
+  attn_L06   s=27  lambda=+0.4202  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.89it/s]Loading weights:  81%|████████  | 236/292 [00:00<00:00, 940.88it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 656.91it/s]
+  attn_L06   s=28  lambda=+0.3357  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.92it/s]Loading weights:  90%|████████▉ | 262/292 [00:00<00:00, 1076.95it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 877.11it/s] 
+  attn_L07   s=21  lambda=+0.3389  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:46,  6.20it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 1012.21it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 565.90it/s] 
+  attn_L07   s=22  lambda=+0.3732  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:03,  4.60it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 910.75it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 890.56it/s]
+  attn_L07   s=23  lambda=+0.5281  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 135/292 [00:00<00:00, 1349.82it/s]Loading weights:  92%|█████████▏| 270/292 [00:00<00:00, 1003.20it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1012.29it/s]
+  attn_L07   s=24  lambda=+0.4128  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.82it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 654.06it/s]Loading weights:  88%|████████▊ | 256/292 [00:00<00:00, 732.00it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 686.55it/s]
+  attn_L07   s=25  lambda=+0.4018  ign=0.750  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:43,  6.75it/s]Loading weights:  91%|█████████ | 266/292 [00:00<00:00, 1299.40it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1064.04it/s]
+  attn_L07   s=26  lambda=+0.5303  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:30,  9.40it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 834.27it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 980.37it/s]
+  attn_L07   s=27  lambda=+0.4069  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.14it/s]Loading weights:  91%|█████████ | 266/292 [00:00<00:00, 1324.99it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1080.03it/s]
+  attn_L07   s=28  lambda=+0.2789  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 84/292 [00:00<00:00, 825.05it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 1335.12it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1410.63it/s]
+  attn_L08   s=21  lambda=+0.3497  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.48it/s]Loading weights:  74%|███████▍  | 216/292 [00:00<00:00, 1035.95it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1170.10it/s]
+  attn_L08   s=22  lambda=+0.3473  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 917.74it/s]Loading weights:  95%|█████████▍| 276/292 [00:00<00:00, 1406.11it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1330.75it/s]
+  attn_L08   s=23  lambda=+0.5319  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:33,  8.71it/s]Loading weights:  85%|████████▌ | 249/292 [00:00<00:00, 1378.13it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1318.81it/s]
+  attn_L08   s=24  lambda=+0.3427  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.37it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1260.72it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1164.91it/s]
+  attn_L08   s=25  lambda=+0.3175  ign=0.875  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:35,  8.21it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 976.07it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 942.75it/s]
+  attn_L08   s=26  lambda=+0.4047  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:55,  5.24it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 982.31it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 912.25it/s]
+  attn_L08   s=27  lambda=+0.4157  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 1149.00it/s]Loading weights:  93%|█████████▎| 272/292 [00:00<00:00, 1347.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1263.53it/s]
+  attn_L08   s=28  lambda=+0.3440  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:47,  6.11it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1303.17it/s]
+  attn_L09   s=21  lambda=+0.4029  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 1555.57it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1499.73it/s]
+  attn_L09   s=22  lambda=+0.3636  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:47,  6.10it/s]Loading weights:  86%|████████▋ | 252/292 [00:00<00:00, 1148.58it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 924.71it/s] 
+  attn_L09   s=23  lambda=+0.4408  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 905.06it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 1182.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1255.27it/s]
+  attn_L09   s=24  lambda=+0.3388  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.20it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1268.73it/s]
+  attn_L09   s=25  lambda=+0.3496  ign=0.812  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 907.47it/s]Loading weights:  95%|█████████▌| 278/292 [00:00<00:00, 1461.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1369.92it/s]
+  attn_L09   s=26  lambda=+0.5136  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 1329.34it/s]Loading weights:  91%|█████████▏| 267/292 [00:00<00:00, 1262.89it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1364.25it/s]
+  attn_L09   s=27  lambda=+0.4192  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.57it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1259.43it/s]
+  attn_L09   s=28  lambda=+0.3271  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 940.46it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1467.71it/s]
+  attn_L10   s=21  lambda=+0.3417  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:43,  6.74it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 1046.60it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 980.82it/s] 
+  attn_L10   s=22  lambda=+0.3528  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.67it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1188.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1028.01it/s]
+  attn_L10   s=23  lambda=+0.3744  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.68it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 878.23it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 821.80it/s]
+  attn_L10   s=24  lambda=+0.3338  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 918.82it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 955.38it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1122.74it/s]
+  attn_L10   s=25  lambda=+0.3504  ign=0.750  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.53it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1480.16it/s]
+  attn_L10   s=26  lambda=+0.5153  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 943.71it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1617.67it/s]
+  attn_L10   s=27  lambda=+0.3523  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:32,  8.90it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 1217.77it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 968.69it/s] 
+  attn_L10   s=28  lambda=+0.3044  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:32,  8.89it/s]Loading weights:  70%|██████▉   | 204/292 [00:00<00:00, 1116.16it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1254.89it/s]
+  attn_L11   s=21  lambda=+0.3185  ign=0.938  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.79it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 581.73it/s]Loading weights:  78%|███████▊  | 229/292 [00:00<00:00, 397.67it/s]Loading weights:  98%|█████████▊| 287/292 [00:00<00:00, 413.19it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 392.69it/s]
+  attn_L11   s=22  lambda=+0.3494  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1022.41it/s]
+  attn_L11   s=23  lambda=+0.3544  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 1149.01it/s]Loading weights:  81%|████████  | 237/292 [00:00<00:00, 948.00it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 934.78it/s]
+  attn_L11   s=24  lambda=+0.3283  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:01,  4.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 980.76it/s]
+  attn_L11   s=25  lambda=+0.3698  ign=0.938  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 1254.38it/s]Loading weights:  88%|████████▊ | 258/292 [00:00<00:00, 960.19it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 964.32it/s]
+  attn_L11   s=26  lambda=+0.4976  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 947.49it/s]
+  attn_L11   s=27  lambda=+0.4050  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 1653.59it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1119.96it/s]
+  attn_L11   s=28  lambda=+0.2820  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.54it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1151.21it/s]
+  attn_L12   s=21  lambda=+0.3315  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 1189.00it/s]Loading weights:  83%|████████▎ | 241/292 [00:00<00:00, 912.27it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 929.26it/s]
+  attn_L12   s=22  lambda=+0.3017  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.39it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1044.68it/s]
+  attn_L12   s=23  lambda=+0.4194  ign=1.000  132s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:08,  4.28it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 505.97it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 346.34it/s]Loading weights:  91%|█████████ | 266/292 [00:00<00:00, 335.90it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 345.28it/s]
+  attn_L12   s=24  lambda=+0.4187  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.29it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 453.71it/s]Loading weights:  65%|██████▌   | 190/292 [00:00<00:00, 383.02it/s]Loading weights:  83%|████████▎ | 243/292 [00:00<00:00, 336.81it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 350.44it/s]
+  attn_L12   s=25  lambda=+0.3136  ign=0.750  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:09,  4.16it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 515.51it/s]Loading weights:  75%|███████▌  | 220/292 [00:00<00:00, 402.06it/s]Loading weights:  95%|█████████▌| 278/292 [00:00<00:00, 435.81it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 414.03it/s]
+  attn_L12   s=26  lambda=+0.5017  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:01,  2.39it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 297.79it/s]Loading weights:  63%|██████▎   | 184/292 [00:00<00:00, 283.00it/s]Loading weights:  79%|███████▉  | 231/292 [00:00<00:00, 307.23it/s]Loading weights:  95%|█████████▍| 276/292 [00:01<00:00, 326.70it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 278.11it/s]
+  attn_L12   s=27  lambda=+0.4162  ign=1.000  130s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:11,  4.07it/s]Loading weights:  38%|███▊      | 110/292 [00:00<00:00, 388.17it/s]Loading weights:  58%|█████▊    | 169/292 [00:00<00:00, 334.57it/s]Loading weights:  73%|███████▎  | 214/292 [00:00<00:00, 325.24it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 328.94it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 330.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 309.73it/s]
+  attn_L12   s=28  lambda=+0.2742  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.79it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 659.41it/s]Loading weights:  89%|████████▊ | 259/292 [00:00<00:00, 442.78it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 457.53it/s]
+  attn_L13   s=21  lambda=+0.3595  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:58,  4.98it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1090.58it/s]
+  attn_L13   s=22  lambda=+0.3536  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 1212.10it/s]Loading weights:  88%|████████▊ | 256/292 [00:00<00:00, 1060.59it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1142.65it/s]
+  attn_L13   s=23  lambda=+0.3621  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:15,  3.83it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 428.35it/s]Loading weights:  66%|██████▋   | 194/292 [00:00<00:00, 360.72it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 333.34it/s]Loading weights:  97%|█████████▋| 282/292 [00:00<00:00, 314.09it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 313.69it/s]
+  attn_L13   s=24  lambda=+0.4248  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:15,  3.85it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 490.82it/s]Loading weights:  76%|███████▌  | 221/292 [00:00<00:00, 375.72it/s]Loading weights:  94%|█████████▍| 275/292 [00:00<00:00, 368.27it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 351.99it/s]
+  attn_L13   s=25  lambda=+0.3136  ign=0.875  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.39it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 597.66it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 530.15it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 556.38it/s]
+  attn_L13   s=26  lambda=+0.4977  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:43,  6.69it/s]Loading weights:  96%|█████████▌| 280/292 [00:00<00:00, 1366.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1168.65it/s]
+  attn_L13   s=27  lambda=+0.4095  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:57,  5.07it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 641.04it/s]Loading weights:  84%|████████▎ | 244/292 [00:00<00:00, 530.22it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 473.17it/s]
+  attn_L13   s=28  lambda=+0.2921  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:51,  5.62it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1111.03it/s]
+  attn_L14   s=21  lambda=+0.3359  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 897.53it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 861.09it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 929.61it/s]
+  attn_L14   s=22  lambda=+0.4276  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:42,  6.81it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1409.80it/s]
+  attn_L14   s=23  lambda=+0.3739  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:30,  9.41it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 760.73it/s]Loading weights:  73%|███████▎  | 212/292 [00:00<00:00, 574.00it/s]Loading weights:  94%|█████████▍| 275/292 [00:00<00:00, 547.50it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 569.49it/s]
+  attn_L14   s=24  lambda=+0.3408  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:07,  4.30it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1080.20it/s]
+  attn_L14   s=25  lambda=+0.3174  ign=0.688  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.36it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 871.46it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 885.96it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 776.67it/s]
+  attn_L14   s=26  lambda=+0.5142  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:05,  4.44it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1106.38it/s]
+  attn_L14   s=27  lambda=+0.4073  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 1249.80it/s]Loading weights:  88%|████████▊ | 257/292 [00:00<00:00, 1098.67it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1267.42it/s]
+  attn_L14   s=28  lambda=+0.2962  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:48,  6.00it/s]Loading weights:  97%|█████████▋| 284/292 [00:00<00:00, 1301.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1053.65it/s]
+  attn_L15   s=21  lambda=+0.3305  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 1069.39it/s]Loading weights:  74%|███████▎  | 215/292 [00:00<00:00, 1041.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1257.78it/s]
+  attn_L15   s=22  lambda=+0.3604  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:30,  9.55it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1454.12it/s]
+  attn_L15   s=23  lambda=+0.3794  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:35,  8.10it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 1342.71it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1105.75it/s]
+  attn_L15   s=24  lambda=+0.3483  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:29,  9.70it/s]Loading weights:  62%|██████▏   | 180/292 [00:00<00:00, 1015.74it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1121.33it/s]
+  attn_L15   s=25  lambda=+0.2854  ign=0.812  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.79it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 1273.15it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1197.57it/s]
+  attn_L15   s=26  lambda=+0.4117  ign=1.000  129s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.64it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 973.75it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 914.15it/s]
+  attn_L15   s=27  lambda=+0.3508  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:02,  4.62it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 608.42it/s]Loading weights:  84%|████████▎ | 244/292 [00:00<00:00, 421.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 413.26it/s]
+  attn_L15   s=28  lambda=+0.2918  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:03,  4.56it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1107.67it/s]
+  attn_L16   s=21  lambda=+0.3692  ign=0.938  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:47,  6.08it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 728.36it/s]Loading weights:  86%|████████▌ | 250/292 [00:00<00:00, 511.22it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 442.47it/s]
+  attn_L16   s=22  lambda=+0.4427  ign=1.000  128s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:12,  4.03it/s]Loading weights:  52%|█████▏    | 152/292 [00:00<00:00, 552.69it/s]Loading weights:  83%|████████▎ | 241/292 [00:00<00:00, 454.79it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 391.39it/s]
+  attn_L16   s=23  lambda=+0.4378  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:06,  4.36it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1094.10it/s]
+  attn_L16   s=24  lambda=+0.4154  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:03,  4.60it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 631.23it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 577.56it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 463.16it/s]
+  attn_L16   s=25  lambda=+0.3161  ign=0.875  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:04,  4.51it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 461.81it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 434.62it/s]Loading weights:  84%|████████▎ | 244/292 [00:00<00:00, 361.35it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 417.59it/s]
+  attn_L16   s=26  lambda=+0.5132  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  8.04it/s]Loading weights:  99%|█████████▊| 288/292 [00:00<00:00, 1504.33it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1255.03it/s]
+  attn_L16   s=27  lambda=+0.4133  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:53,  5.46it/s]Loading weights:  56%|█████▌    | 164/292 [00:00<00:00, 699.83it/s]Loading weights:  87%|████████▋ | 255/292 [00:00<00:00, 551.67it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 585.46it/s]
+  attn_L16   s=28  lambda=+0.3259  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.78it/s]Loading weights:  91%|█████████ | 266/292 [00:00<00:00, 1070.07it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 764.52it/s] 
+  attn_L17   s=21  lambda=+0.3642  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:34,  8.38it/s]Loading weights:  63%|██████▎   | 185/292 [00:00<00:00, 1006.17it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1008.99it/s]
+  attn_L17   s=22  lambda=+0.3040  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:51,  5.60it/s]Loading weights:  91%|█████████ | 266/292 [00:00<00:00, 1169.18it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 922.50it/s] 
+  attn_L17   s=23  lambda=+0.3865  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:00,  4.78it/s]Loading weights:  66%|██████▋   | 194/292 [00:00<00:00, 783.49it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 671.79it/s]
+  attn_L17   s=24  lambda=+0.4139  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.58it/s]Loading weights:  91%|█████████ | 266/292 [00:00<00:00, 1374.34it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1130.87it/s]
+  attn_L17   s=25  lambda=+0.2902  ign=0.750  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:30,  9.48it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1479.60it/s]
+  attn_L17   s=26  lambda=+0.4000  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.51it/s]Loading weights:  75%|███████▍  | 218/292 [00:00<00:00, 1121.19it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1114.08it/s]
+  attn_L17   s=27  lambda=+0.4035  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   9%|▊         | 25/292 [00:00<00:01, 249.99it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1586.45it/s]
+  attn_L17   s=28  lambda=+0.3011  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  7.98it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 1260.87it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1016.62it/s]
+  attn_L18   s=21  lambda=+0.3559  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:33,  8.80it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 1310.32it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1292.56it/s]
+  attn_L18   s=22  lambda=+0.2960  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:45,  6.45it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 796.07it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 865.13it/s]
+  attn_L18   s=23  lambda=+0.4311  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 1331.48it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1537.66it/s]
+  attn_L18   s=24  lambda=+0.3433  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:42,  6.92it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1237.20it/s]
+  attn_L18   s=25  lambda=+0.2880  ign=0.812  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 1772.25it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1707.94it/s]
+  attn_L18   s=26  lambda=+0.4991  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.35it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1298.03it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1308.94it/s]
+  attn_L18   s=27  lambda=+0.3508  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:41,  7.09it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 933.97it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1004.48it/s]
+  attn_L18   s=28  lambda=+0.2976  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  7.87it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1164.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1001.40it/s]
+  attn_L19   s=21  lambda=+0.3445  ign=0.938  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:15, 18.98it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1614.86it/s]
+  attn_L19   s=22  lambda=+0.3026  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.63it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 920.56it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 915.99it/s]
+  attn_L19   s=23  lambda=+0.3548  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:29,  9.76it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1478.88it/s]
+  attn_L19   s=24  lambda=+0.3622  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.17it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 1208.38it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1179.27it/s]
+  attn_L19   s=25  lambda=+0.3424  ign=0.812  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:15, 18.83it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1302.83it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1092.87it/s]
+  attn_L19   s=26  lambda=+0.4069  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:40,  7.20it/s]Loading weights:  99%|█████████▊| 288/292 [00:00<00:00, 1417.82it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1185.82it/s]
+  attn_L19   s=27  lambda=+0.4036  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.82it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 1084.88it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 912.49it/s] 
+  attn_L19   s=28  lambda=+0.3286  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:32,  8.96it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1707.72it/s]
+  attn_L20   s=21  lambda=+0.3525  ign=0.938  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:33,  8.74it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 929.70it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 982.85it/s]
+  attn_L20   s=22  lambda=+0.4315  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:44,  6.53it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 1198.31it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 956.78it/s] 
+  attn_L20   s=23  lambda=+0.4302  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.79it/s]Loading weights:  60%|██████    | 176/292 [00:00<00:00, 920.56it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 965.37it/s]
+  attn_L20   s=24  lambda=+0.3508  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:37,  7.79it/s]Loading weights:  87%|████████▋ | 254/292 [00:00<00:00, 1296.42it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1242.90it/s]
+  attn_L20   s=25  lambda=+0.3478  ign=0.750  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  7.88it/s]Loading weights:  60%|██████    | 176/292 [00:00<00:00, 926.93it/s]Loading weights:  96%|█████████▌| 279/292 [00:00<00:00, 751.95it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 735.81it/s]
+  attn_L20   s=26  lambda=+0.5037  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:46,  6.29it/s]Loading weights:  86%|████████▋ | 252/292 [00:00<00:00, 1160.59it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 835.85it/s] 
+  attn_L20   s=27  lambda=+0.4222  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:36,  7.88it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 872.27it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 945.48it/s]
+  attn_L20   s=28  lambda=+0.2934  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:59,  4.92it/s]Loading weights:  79%|███████▉  | 230/292 [00:00<00:00, 947.20it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 717.80it/s]
+  attn_L21   s=21  lambda=+0.3945  ign=0.938  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.18it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 1056.70it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1135.22it/s]
+  attn_L21   s=22  lambda=+0.3666  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.35it/s]Loading weights:  77%|███████▋  | 224/292 [00:00<00:00, 1267.61it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1212.87it/s]
+  attn_L21   s=23  lambda=+0.4200  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:34,  8.55it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 1315.88it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1160.73it/s]
+  attn_L21   s=24  lambda=+0.3486  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:31,  9.31it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 1134.20it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1195.84it/s]
+  attn_L21   s=25  lambda=+0.3186  ign=0.812  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:52,  5.56it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 1034.74it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 701.85it/s] 
+  attn_L21   s=26  lambda=+0.4937  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:58,  4.94it/s]Loading weights:  62%|██████▏   | 180/292 [00:00<00:00, 734.46it/s]Loading weights:  97%|█████████▋| 283/292 [00:00<00:00, 746.36it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 661.25it/s]
+  attn_L21   s=27  lambda=+0.3626  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:34,  8.38it/s]Loading weights:  82%|████████▏ | 240/292 [00:00<00:00, 1284.97it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1115.87it/s]
+  attn_L21   s=28  lambda=+0.2872  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  27%|██▋       | 80/292 [00:00<00:00, 798.04it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 902.05it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1213.02it/s]
+  attn_L22   s=21  lambda=+0.3698  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:38,  7.63it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1281.20it/s]
+  attn_L22   s=22  lambda=+0.3688  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:14, 19.84it/s]Loading weights:  74%|███████▍  | 216/292 [00:00<00:00, 1256.93it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1059.73it/s]
+  attn_L22   s=23  lambda=+0.3685  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 134/292 [00:00<00:00, 1339.93it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1792.07it/s]
+  attn_L22   s=24  lambda=+0.4165  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:42,  6.81it/s]Loading weights:  95%|█████████▍| 276/292 [00:00<00:00, 1343.72it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1165.85it/s]
+  attn_L22   s=25  lambda=+0.3631  ign=0.812  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:49,  5.90it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 868.99it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 501.37it/s]
+  attn_L22   s=26  lambda=+0.5166  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:58,  5.00it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 793.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 693.52it/s]
+  attn_L22   s=27  lambda=+0.4272  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:18, 15.76it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 1177.64it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 842.85it/s] 
+  attn_L22   s=28  lambda=+0.3075  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:58,  4.99it/s]Loading weights:  90%|█████████ | 264/292 [00:00<00:00, 1075.55it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 910.55it/s] 
+  attn_L23   s=21  lambda=+0.3529  ign=0.938  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 1104.93it/s]Loading weights:  79%|███████▉  | 231/292 [00:00<00:00, 1104.89it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1130.57it/s]
+  attn_L23   s=22  lambda=+0.3625  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:47,  6.14it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1304.67it/s]
+  attn_L23   s=23  lambda=+0.4472  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   1%|          | 2/292 [00:00<00:16, 17.12it/s]Loading weights:  66%|██████▋   | 194/292 [00:00<00:00, 1051.47it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 875.75it/s] 
+  attn_L23   s=24  lambda=+0.3359  ign=1.000  127s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:58,  4.94it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1147.40it/s]
+  attn_L23   s=25  lambda=+0.3791  ign=0.938  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 1138.81it/s]Loading weights:  80%|████████  | 234/292 [00:00<00:00, 928.74it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 931.27it/s]
+  attn_L23   s=26  lambda=+0.5050  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:34,  8.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1730.86it/s]
+  attn_L23   s=27  lambda=+0.4162  ign=1.000  126s
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 1140.77it/s]Loading weights:  80%|████████  | 235/292 [00:00<00:00, 1001.85it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1179.73it/s]
+  attn_L23   s=28  lambda=+0.2891  ign=1.000  129s
+
+  layer   lambda     sd   ign     loss   d_lam  d_loss  per_nat  z_loo
+   none   0.3566  0.051 8/8     3.0069
+      0   0.3322  0.073 8/8     3.8867   0.024   0.880   0.0277   0.61
+      1   0.3916  0.100 8/8     3.4813  -0.035   0.474  -0.0738   0.28
+      2   0.3654  0.041 8/8     3.0566  -0.009   0.050  -0.1771  -0.05
+      3   0.3582  0.047 8/8     3.2390  -0.002   0.232  -0.0069   0.50
+      4   0.3597  0.084 8/8     3.0900  -0.003   0.083  -0.0373   0.40
+      5   0.3584  0.075 8/8     4.2347  -0.002   1.228  -0.0015   0.51
+      6   0.3571  0.060 8/8     3.0883  -0.001   0.081  -0.0061   0.50
+      7   0.4044  0.081 8/8     3.1432  -0.048   0.136  -0.3507  -0.62
+      8   0.3485  0.065 8/8     3.1427   0.008   0.136   0.0596   0.72
+      9   0.3832  0.059 8/8     3.1045  -0.027   0.098  -0.2725  -0.36
+     10   0.3514  0.060 8/8     3.1067   0.005   0.100   0.0521   0.69
+     11   0.3519  0.061 8/8     3.0780   0.005   0.071   0.0661   0.74
+     12   0.3739  0.073 8/8     3.1085  -0.017   0.102  -0.1703  -0.03
+     13   0.3608  0.061 8/8     3.1283  -0.004   0.121  -0.0346   0.41
+     14   0.3574  0.067 8/8     3.0589  -0.001   0.052  -0.0154   0.47
+     15   0.3495  0.040 8/8     3.0782   0.007   0.071   0.0996   0.85
+     16   0.4143  0.061 8/8     3.1508  -0.058   0.144  -0.4010  -0.79
+     17   0.3754  0.048 8/8     3.1331  -0.019   0.126  -0.1490   0.04
+     18   0.3470  0.069 8/8     3.0822   0.010   0.075   0.1275   0.94
+     19   0.3496  0.033 8/8     3.0549   0.007   0.048   0.1458   1.01
+     20   0.3874  0.063 8/8     3.0420  -0.031   0.035  -0.8775  -2.62
+     21   0.3646  0.059 8/8     3.0436  -0.008   0.037  -0.2180  -0.19
+     22   0.3693  0.058 8/8     3.0401  -0.013   0.033  -0.3825  -0.73
+     23   0.3708  0.064 8/8     3.0183  -0.014   0.011  -1.2456  -5.00
+
+  -> LOCALISED: 2 of 24 attention layers are selectivity outliers at |z|>=2 leave-one-out -- L20 (z=-2.62, recovers -8%), L23 (z=-5.00, recovers -4%). lambda_ca IS carried by a localisable part of the attention stack, which #100 could not establish with eight contaminated points. Depth trend rho=-0.252. BOUNDARY: a layer is a COMPONENT, not a mechanism; naming the circuit needs #69/#70.
+
+wrote results/ablate_layers.json
+
+  layer   lambda     sd   ign     loss   d_lam  d_loss  per_nat  z_loo
+   none   0.3566  0.051 8/8     3.0069
+      0   0.3322  0.073 8/8     3.8867   0.024   0.880   0.0277   0.61
+      1   0.3916  0.100 8/8     3.4813  -0.035   0.474  -0.0738   0.28
+      2   0.3654  0.041 8/8     3.0566  -0.009   0.050  -0.1771  -0.05
+      3   0.3582  0.047 8/8     3.2390  -0.002   0.232  -0.0069   0.50
+      4   0.3597  0.084 8/8     3.0900  -0.003   0.083  -0.0373   0.40
+      5   0.3584  0.075 8/8     4.2347  -0.002   1.228  -0.0015   0.51
+      6   0.3571  0.060 8/8     3.0883  -0.001   0.081  -0.0061   0.50
+      7   0.4044  0.081 8/8     3.1432  -0.048   0.136  -0.3507  -0.62
+      8   0.3485  0.065 8/8     3.1427   0.008   0.136   0.0596   0.72
+      9   0.3832  0.059 8/8     3.1045  -0.027   0.098  -0.2725  -0.36
+     10   0.3514  0.060 8/8     3.1067   0.005   0.100   0.0521   0.69
+     11   0.3519  0.061 8/8     3.0780   0.005   0.071   0.0661   0.74
+     12   0.3739  0.073 8/8     3.1085  -0.017   0.102  -0.1703  -0.03
+     13   0.3608  0.061 8/8     3.1283  -0.004   0.121  -0.0346   0.41
+     14   0.3574  0.067 8/8     3.0589  -0.001   0.052  -0.0154   0.47
+     15   0.3495  0.040 8/8     3.0782   0.007   0.071   0.0996   0.85
+     16   0.4143  0.061 8/8     3.1508  -0.058   0.144  -0.4010  -0.79
+     17   0.3754  0.048 8/8     3.1331  -0.019   0.126  -0.1490   0.04
+     18   0.3470  0.069 8/8     3.0822   0.010   0.075   0.1275   0.94
+     19   0.3496  0.033 8/8     3.0549   0.007   0.048   0.1458   1.01
+     20   0.3874  0.063 8/8     3.0420  -0.031   0.035  -0.8775  -2.62
+     21   0.3646  0.059 8/8     3.0436  -0.008   0.037  -0.2180  -0.19
+     22   0.3693  0.058 8/8     3.0401  -0.013   0.033  -0.3825  -0.73
+     23   0.3708  0.064 8/8     3.0183  -0.014   0.011  -1.2456  -5.00
+
+  -> NULL, AND IT IS A CLEAN ONE: NO single attention layer moves lambda_ca outside its own seed scatter. The largest single-layer effect is L16 at |d_lambda|=0.0577 against a seed sd of 0.0611; 0 of 24 clear 2 sigma. Yet removing EIGHT layers together gives d_lambda=+0.345 and all 24 gives +0.342, while the 24 singles SUM to -0.224 -- the wrong sign. The effect is STRONGLY NON-ADDITIVE: it is not localised in any layer and not diffusely spread either, or the singles would sum toward the group value. Ignition says the same: 8/8 on every single layer against 7/8 and 6/8 for the groups. lambda_ca is not attributable to a localisable component, which is the pre-registered null for the explanandum programme. Denominator diagnostic: Spearman(d_loss, |per_nat|) = -0.472 (p=0.02), so any ratio-based ranking here would have been driven by its denominator.

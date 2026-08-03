@@ -234,6 +234,7 @@ _STALENESS_PAIRS = [
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),
+    ("ablate_layers.json", "ablate_layers.py"),
     ("attractor_interventions.json", "attractor_interventions.py"),
     ("attractor_construction.json", "attractor_construction.py"),
     ("mlm_transition.json", "mlm_transition.py"),

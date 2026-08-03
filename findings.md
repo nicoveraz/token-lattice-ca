@@ -2900,6 +2900,103 @@ now has to match, and a demonstration that the transition sits inside a broad co
 rather than at an isolated event. Route 2 (#69/#70, sharpened to test the *ordering across sizes*)
 and Route 3 (#100) remain.
 
+### F79 — ablation route 3: no component-specific selectivity, but the statistic was contaminated (#100)
+Routes 1 and 2 of the explanandum programme both **correlate** an internal event with the λ_ca
+crossing. F78 showed how thin that is. Route 3 is the only one that attributes: hold the black-box
+measurement fixed and **manipulate the internals**. Ablate a component in a post-crossing
+pythia-410m, re-measure λ_ca with `dev_transition_phase3.measure` driven **unchanged**, and ask
+whether it falls back toward the pre-crossing level. F64 is the same move one level up (RWKV: no
+attention, no attractor); this is the within-model version.
+
+**The confound was measured before the grid was chosen.** Zeroing all attention costs +5.19 nats of
+held-out loss; zeroing all MLPs costs +10.91. Since any ablation degrades the model, a raw λ drop
+proves nothing — the measurement is **selectivity**, λ damage per nat of loss damage.
+
+```
+  ablation      lambda     sd   ign     loss   d_lam  d_loss  per_nat      z   recovers
+  none          0.3566  0.051  8/8   3.0069                                    <- = F77 exactly
+  attn_all      0.0144  0.132  6/8   8.1941   0.342   5.187   0.0660   1.49      86%
+  attn_early    0.0115  0.053  7/8   8.5472   0.345   5.540   0.0623   1.38      86%
+  mlp_late      0.2205  0.028  8/8   7.0573   0.136   4.050   0.0336   0.53      34%
+  mlp_early     0.2679  0.060  8/8  11.2574   0.089   8.251   0.0108  -0.14
+  attn_mid      0.3480  0.045  8/8   4.8209   0.009   1.814   0.0047  -0.32
+  mlp_all       0.3354  0.122  8/8  13.9155   0.021  10.909   0.0019  -0.41       5%
+  mlp_mid       0.4183  0.110  8/8   6.3255  -0.062   3.319  -0.0186  -1.01
+  attn_late     0.3960  0.080  8/8   4.1203  -0.039   1.113  -0.0354  -1.51
+```
+
+**The declared verdict is a null** — max z = +1.49 against a pre-registered 2.0. The harness control
+passed exactly (`none` = +0.3566, F77's plateau to four decimals) and 95.8% of runs ignited, so
+neither the control-failure nor the F42 kill branch fired.
+
+**But the declared statistic was contaminated, and that is why it read null.** Selectivity was
+z-scored against a distribution *containing its own candidates*, and there were two of them, so
+`attn_all` and `attn_early` inflated both the mean and the spread they were tested against.
+Leave-one-out moves `attn_all` to z = 1.93; a regression of Δλ on Δloss puts both at +1.60 sd
+residuals with everything else inside ±1.02. Three statistics agree on the ordering and none clears
+2σ at n = 8 arms. Same failure family as F74's z-score defect: a normaliser contaminated by the
+thing being normalised.
+
+**The dissociation is real even where the test does not certify it.** `mlp_all` costs **twice** the
+loss of `attn_all` and moves λ_ca by 0.021 — the most damaging ablation in the grid leaves the
+measurement essentially intact. `attn_early` recovers **86%** of the distance back to the
+pre-crossing level. And `attn_late` and `mlp_mid` have **negative** Δλ: removing them *raises*
+λ_ca, as expected if they contribute order rather than propagation.
+
+So the honest verdict is **underpowered, not null**, and the design anticipated the remedy in
+writing — *"singles are the follow-up if a group separates"* — which is F80.
+
+### F80 — no single attention layer carries λ_ca; the effect is strongly non-additive (#100 follow-up)
+F79's remedy: 24 single-layer attention ablations, so a candidate is one point among 24 rather than
+one of two among eight. Everything imported — the ablation harness, the loss measurement, and
+`measure` — so there remains one implementation of each.
+
+**No single layer does anything.**
+
+```
+  largest single-layer effect   L16, |d_lambda| = 0.0577   against its own seed sd of 0.0611
+  layers clearing 2 sigma       0 of 24
+  none sd 0.0508                median per-layer sd 0.0613
+  ignition                      8/8 on EVERY layer   (against 7/8 attn_early, 6/8 attn_all)
+```
+
+**Yet the groups do.** Removing eight layers together gives Δλ = **+0.345**; all 24 gives **+0.342**;
+the best single layer gives **+0.024**; and the 24 singles **sum to −0.224 — the wrong sign**.
+
+That is **strongly non-additive**. The effect is not localised in any layer, and it is not diffusely
+spread either, or the singles would sum toward the group value. It requires removing many at once.
+The ignition column says the same from a second direction: group ablations push the system toward
+the F42 floor (7/8, 6/8) while no single layer moves it off 8/8 at all.
+
+**λ_ca is not attributable to a localisable component** — the pre-registered null for the
+explanandum programme, and it closes route 3. "You must remove most of the attention stack" is
+closer to F64's architecture-level statement than to a mechanism.
+
+**The verdict logic manufactured a positive out of this null, and the defect was mine.** As first
+written it reported *"LOCALISED: L20 (z=−2.62), L23 (z=−5.00)"*. Two errors compounding:
+
+1. **The test used `|z|` on a directional hypothesis.** A layer that *carries* λ_ca must have
+   **positive** selectivity — ablating it should drop λ. L20 and L23 recover **−8%** and **−4%**:
+   ablating them *raises* λ_ca, the opposite of the claim.
+2. **The ratio was computed before any noise gate.** `per_nat = Δλ/Δloss` is meaningless when the
+   numerator is inside seed scatter, and Δloss spans 100× across layers (+0.011 to +1.228). L23 has
+   the **smallest denominator in the sweep** and the most extreme ratio; L20 is third-smallest and
+   second-most-extreme. Measured on the sweep itself: **Spearman(Δloss, |per_nat|) = −0.472,
+   p = 0.02** — the ranking is significantly driven by its own denominator.
+
+**The hazard was written down before the run and shipped anyway.** The denominator problem was
+flagged in prose when the loss phase finished, and the declared statistic was deliberately left
+untouched mid-run — correctly. But only the *statistic* was protected; the *verdict that consumes
+it* was not. Corrected: a layer must clear 2× its own seed sd **before** any ratio is computed, and
+z must be positive. The declared pre-registration text is preserved with an amendment beneath it
+rather than rewritten.
+
+**What survives for the programme.** Routes 1 (F78), 2 (#69/#70, unrun) and 3 (F79/F80) were the
+three bridges `critical_analysis.md` named from the flagship's *when* to a *what*. Route 3 returns
+its null. The non-additivity is itself a fact worth having — it says the transition is a property of
+the attention stack collectively rather than of any part of it — but it is not an explanandum, and
+the honest position is that λ_ca still dates an event nobody has named.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
