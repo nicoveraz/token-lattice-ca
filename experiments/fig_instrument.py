@@ -60,11 +60,12 @@ def panel_ring(ax):
     t0, t1 = th[ci] - 2.45 * (2 * np.pi / N), th[ci] + 2.45 * (2 * np.pi / N)
     arc = np.linspace(t0, t1, 60)
     ax.plot(1.34 * np.cos(arc), 1.34 * np.sin(arc), color=RULE, lw=0.8)
-    ax.annotate(r"window $x_{i\pm r}$", xy=(0, R0 + 0.52), ha="center", va="bottom", fontsize=6.5)
-    # the rule: window -> resampled centre
-    ax.annotate("", xy=(0, R0 + 0.03), xytext=(0, R0 + 0.50),
+    ax.annotate(r"window $x_{i\pm r}$", xy=(0, R0 + 0.62), ha="center", va="bottom", fontsize=6.5)
+    # the rule: window -> resampled centre. The formula sits at a height the arc never reaches
+    # (arc radius 1.34, label at y=1.44), so neither arc nor arrow can strike through it.
+    ax.annotate("", xy=(0, R0 + 0.03), xytext=(0, R0 + 0.58),
                 arrowprops=dict(arrowstyle="->", lw=0.9, color="black"))
-    ax.text(0.16, R0 + 0.30, r"$x_i \sim p_r$", ha="left", va="center", fontsize=6.5)
+    ax.text(0.10, R0 + 0.44, r"$x_i \sim p_r$", ha="left", va="center", fontsize=6.5)
     ax.text(0, -1.50, "one site resampled at a time,\nin random order", ha="center", va="top",
             fontsize=6.5)
     ax.set_xlim(-1.62, 1.62)
@@ -97,7 +98,8 @@ def panel_crn(ax):
         ax.text(cx, (y_ref + y_twin + h) / 2, "=" if j != FLIP else r"$\neq$",
                 ha="center", va="center", fontsize=5.5,
                 color=RULE if j != FLIP else "black")
-    ax.text(0.99, y_ref + h + 0.035, "shared init, visit order, uniform stream",
+    lat_right = 0.10 + n * w - w * 0.08          # the lattice's true right edge
+    ax.text(lat_right, y_ref + h + 0.035, "shared init, visit order, uniform stream",
             ha="right", fontsize=6)
     # the damage field at t=0: disagreement, which is the flipped site by definition
     dmg_cells = ["white"] * n
@@ -108,8 +110,8 @@ def panel_crn(ax):
                 arrowprops=dict(arrowstyle="->", lw=0.8, color="black"))
     ax.text(0.10 + (FLIP + 1.1) * w, (y_twin + y_dmg) / 2 + 0.02, "site-wise\ndisagreement",
             ha="left", va="center", fontsize=6)
-    ax.text(0.02, y_dmg - 0.10, r"no flip: damage $\equiv 0$, exactly (asserted)",
-            fontsize=6.2, va="top")
+    ax.text(0.10, y_dmg - 0.10, r"no flip: damage $\equiv 0$, exactly (asserted)",
+            fontsize=6.0, va="top")
     ax.set_xlim(0, 1.02)
     ax.set_ylim(0.05, 1.06)
     ax.set_title("(b) CRN twin probe", loc="left")
