@@ -65,8 +65,8 @@ a plausible-looking estimator. Only then do we report what the instrument measur
 the windowed conditional resamples one cell, special tokens forbidden. (b) CRN probe: twins share
 initial state, visit order and uniform stream, so the \emph{null} arm must differ in exactly zero
 cells --- asserted on every backend --- and the probe arm's site-wise disagreement after one
-flipped token is the damage field. (c) A measured damage field ($T{=}0.7$, $r{=}4$): a cone from
-the flipped site, then saturation.}\label{fig:instrument}
+flipped token is the damage field. (c) A measured damage cone ($T{=}0.7$, $r{=}1$):
+site-wise disagreement probability spreading from the single flipped site.}\label{fig:instrument}
 \end{figure}
 \textbf{Rule} (Fig.~\ref{fig:instrument}). A window of $w{=}2r{+}1$ tokens
 with the centre masked is fed to a masked LM; the tempered centre distribution is the kernel
