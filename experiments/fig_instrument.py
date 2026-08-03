@@ -42,6 +42,7 @@ DAMAGE_KEY = "T0.7_r1"      # operating temperature, slowest cone: visible all 6
 def panel_ring(ax):
     """(a) The automaton: a ring of token cells; the window feeds the rule; the centre is resampled."""
     ax.set_aspect("equal")
+    ax.set_anchor("N")          # align this panel's top -- and so its title -- with (b) and (c)
     ax.axis("off")
     N, R0 = 16, 1.0
     th = np.linspace(0, 2 * np.pi, N, endpoint=False) + np.pi / 2
@@ -110,8 +111,8 @@ def panel_crn(ax):
                 arrowprops=dict(arrowstyle="->", lw=0.8, color="black"))
     ax.text(0.10 + (FLIP + 1.1) * w, (y_twin + y_dmg) / 2 + 0.02, "site-wise\ndisagreement",
             ha="left", va="center", fontsize=6)
-    ax.text(0.10, y_dmg - 0.10, r"no flip: damage $\equiv 0$, exactly (asserted)",
-            fontsize=6.0, va="top")
+    ax.text(0.10 + n * w / 2, y_dmg - 0.10, r"no flip: damage $\equiv 0$, exactly (asserted)",
+            fontsize=5.7, va="top", ha="center")
     ax.set_xlim(0, 1.02)
     ax.set_ylim(0.05, 1.06)
     ax.set_title("(b) CRN twin probe", loc="left")
@@ -135,7 +136,7 @@ def panel_spacetime(ax):
 def main():
     use_classic_r()
     fig, axes = plt.subplots(1, 3, figsize=(5.5, 1.88),
-                             gridspec_kw=dict(width_ratios=[0.92, 1.08, 1.05]))
+                             gridspec_kw=dict(width_ratios=[0.88, 1.14, 1.03]))
     panel_ring(axes[0])
     panel_crn(axes[1])
     fld = panel_spacetime(axes[2])
