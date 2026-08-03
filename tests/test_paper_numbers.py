@@ -711,3 +711,35 @@ def test_boundary_literals_are_derived_from_raw_runs_not_stored_rounded_values()
         f"The values have moved off the rounding boundary, so this guard has gone vacuous: "
         f"either find a literal that is still boundary-sensitive, or retire #63 Rule 2 as no "
         f"longer reachable. Do NOT weaken the assertion to keep it green.")
+
+
+def test_inline_family_bound_is_consistent_with_the_values_it_summarises():
+    """A stated bound must not be falsified by the table it cites. Presence checks cannot see this.
+
+    Found by outside review of the camera-ready: the body said "All four survive
+    (p_BH <= 2x10^-5; Table 1)" while Table 1's N=96 lambda cell, four lines below, read
+    2.3x10^-5. Both literals were present in the paper and both were manifest-covered, so
+    every existing check passed while the inequality BETWEEN them was false. (The submitted
+    paper carried the same bound with no table beside it, so nothing exposed it.)
+
+    This parses the inline bound and asserts it against the results file directly:
+      * the bound must be >= the largest p_BH in the pre-registered family (or the sentence
+        is falsified by its own data), and
+      * within one order of magnitude of it (or the bound is uninformative padding).
+    """
+    import re as _re
+    tex = " ".join(_tex().split())
+    m = _re.search(
+        r"All four survive.*?p_\{\\mathrm\{BH\}\}\\le\s*([0-9.]+)\{?\\times\}?10\^\{(-?\d+)\}",
+        tex)
+    assert m, "the 'All four survive' sentence no longer states a parseable p_BH bound"
+    bound = float(m.group(1)) * 10 ** int(m.group(2))
+
+    tests = _load("dev_transition_phase3.json")["tests"]
+    mx = max(t["p_bh"] for t in tests)
+    assert bound >= mx, (
+        f"the inline bound {bound:g} is smaller than the family's largest p_BH ({mx:g}) -- "
+        f"the sentence is falsified by its own table. Restate the bound at or above {mx:g}.")
+    assert bound <= 10 * mx, (
+        f"the inline bound {bound:g} is more than an order of magnitude above the largest "
+        f"p_BH ({mx:g}); a bound that loose is decoration, not a summary. Tighten it.")

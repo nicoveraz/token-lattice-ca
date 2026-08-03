@@ -105,6 +105,18 @@ assert _t3["N48_D_norm_post_vs_pre"]["p_bh"] == 0.0 and _t3["N96_D_norm_post_vs_
 add("<\\!10^{-6}", "dev_transition_phase3.json",
     "tests[N{48,96}_D_norm_post_vs_pre].p_bh = 0.0 at 6dp storage => p < 1e-6")
 M[-1]["path"] = "tests[name=N48_D_norm_post_vs_pre].p_bh"
+# The body's one-line summary bound, derived as the 1-s.f. CEILING of the family's largest
+# p_BH (2.3e-5 -> 3e-5). The submitted paper said <=2x10^-5, which the max VIOLATES -- the
+# bound predated the table that now exposes the sixth decimal, and outside review caught the
+# sentence being falsified by its own table. test_inline_family_bound_is_consistent_with_the_
+# values_it_summarises asserts the inequality itself, which no presence check can.
+import math as _mm
+_mx = max(t["p_bh"] for t in p3["tests"])
+_exp = _mm.floor(_mm.log10(_mx))
+_coef = _mm.ceil(_mx / 10 ** _exp)
+add(f"{_coef}{{\\times}}10^{{{_exp}}}", "dev_transition_phase3.json",
+    f"1-s.f. ceiling of max(tests[].p_bh) = {_mx:g} -> {_coef}e{_exp}")
+M[-1]["path"] = "max(tests[].p_bh), ceiling to 1 s.f."
 
 sa = sh["sign_agreement"]
 add(str(sa["pooled"]["n"]),  "dev_transition_shape.json", "sign_agreement.pooled.n")

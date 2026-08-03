@@ -65,8 +65,10 @@ a plausible-looking estimator. Only then do we report what the instrument measur
 the windowed conditional resamples one cell, special tokens forbidden. (b) CRN probe: twins share
 initial state, visit order and uniform stream, so the \emph{null} arm must differ in exactly zero
 cells --- asserted on every backend --- and the probe arm's site-wise disagreement after one
-flipped token is the damage field. (c) A measured damage cone ($T{=}0.7$, $r{=}1$):
-site-wise disagreement probability spreading from the single flipped site.}\label{fig:instrument}
+flipped token is the damage field. (c) A measured damage cone: site-wise
+disagreement probability spreading from the single flipped site ($T{=}0.7$; $r{=}1$ shown because
+the front velocity grows with $r$, so the smallest radius gives the clearest cone --- the
+developmental grid of \S\ref{sec:dev} runs at $r{=}2$).}\label{fig:instrument}
 \end{figure}
 \textbf{Rule} (Fig.~\ref{fig:instrument}). A window of $w{=}2r{+}1$ tokens
 with the centre masked is fed to a masked LM; the tempered centre distribution is the kernel
@@ -134,7 +136,7 @@ predicts one.
 
 The test was pre-registered (post- vs pre-transition, run-level Mann--Whitney, family
 $=\{\lca,\dn\}\times\{N{=}48,96\}$, BH-FDR) with a demotion rule: failure at either size demotes
-the headline. \textbf{All four survive} ($p_{\mathrm{BH}}\le2\times10^{-5}$; Table~\ref{tab:dev}).
+the headline. \textbf{All four survive} ($p_{\mathrm{BH}}\le3{\times}10^{-5}$; Table~\ref{tab:dev}).
 The pre set is $256/512$ and the plateau $2000/8000/143000$; one $N{=}96$ run is excluded because
 its damage never ignited, so $\lca$ is undefined for it.
 
