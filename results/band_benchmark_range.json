@@ -1,0 +1,222 @@
+{
+ "n_families": 22,
+ "n_covered": 11,
+ "required": 16,
+ "near_floor_threshold": 2.0,
+ "benchmarks": {
+  "IFEval": {
+   "median": 22.03,
+   "max": 38.74,
+   "near_floor": 0,
+   "n": 11,
+   "usable": true
+  },
+  "BBH": {
+   "median": 9.76,
+   "max": 17.56,
+   "near_floor": 0,
+   "n": 11,
+   "usable": true
+  },
+  "MATH Lvl 5": {
+   "median": 1.66,
+   "max": 5.44,
+   "near_floor": 7,
+   "n": 11,
+   "usable": false
+  },
+  "GPQA": {
+   "median": 2.13,
+   "max": 7.38,
+   "near_floor": 5,
+   "n": 11,
+   "usable": true
+  },
+  "MUSR": {
+   "median": 3.96,
+   "max": 11.43,
+   "near_floor": 1,
+   "n": 11,
+   "usable": true
+  },
+  "MMLU-PRO": {
+   "median": 7.43,
+   "max": 16.53,
+   "near_floor": 3,
+   "n": 11,
+   "usable": true
+  }
+ },
+ "usable_benchmarks": [
+  "IFEval",
+  "BBH",
+  "GPQA",
+  "MUSR",
+  "MMLU-PRO"
+ ],
+ "covered": {
+  "bigcode/starcoder2": {
+   "model": "bigcode/starcoder2-3b",
+   "params_b": 3.03,
+   "scores": {
+    "IFEval": 20.37,
+    "BBH": 8.91,
+    "MATH Lvl 5": 1.51,
+    "GPQA": 0.0,
+    "MUSR": 1.43,
+    "MMLU-PRO": 7.07
+   }
+  },
+  "bigscience/bloom": {
+   "model": "bigscience/bloom-3b",
+   "params_b": 3.003,
+   "scores": {
+    "IFEval": 12.71,
+    "BBH": 3.42,
+    "MATH Lvl 5": 0.83,
+    "GPQA": 0.0,
+    "MUSR": 7.89,
+    "MMLU-PRO": 1.48
+   }
+  },
+  "eleutherai-pile": {
+   "model": "EleutherAI/gpt-neo-2.7B",
+   "params_b": 2.718,
+   "scores": {
+    "IFEval": 25.9,
+    "BBH": 4.18,
+    "MATH Lvl 5": 1.06,
+    "GPQA": 2.13,
+    "MUSR": 3.52,
+    "MMLU-PRO": 1.81
+   }
+  },
+  "google-gemma": {
+   "model": "google/gemma-2-2b",
+   "params_b": 2.614,
+   "scores": {
+    "IFEval": 19.93,
+    "BBH": 11.76,
+    "MATH Lvl 5": 2.87,
+    "GPQA": 1.68,
+    "MUSR": 11.43,
+    "MMLU-PRO": 13.11
+   }
+  },
+  "hftb": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "params_b": 1.71,
+   "scores": {
+    "IFEval": 23.62,
+    "BBH": 4.41,
+    "MATH Lvl 5": 1.66,
+    "GPQA": 0.0,
+    "MUSR": 2.13,
+    "MMLU-PRO": 1.64
+   }
+  },
+  "ibm": {
+   "model": "ibm-granite/granite-3.0-2b-base",
+   "params_b": 2.634,
+   "scores": {
+    "IFEval": 38.74,
+    "BBH": 17.56,
+    "MATH Lvl 5": 5.44,
+    "GPQA": 4.03,
+    "MUSR": 3.46,
+    "MMLU-PRO": 15.35
+   }
+  },
+  "kyutai/helium": {
+   "model": "kyutai/helium-1-preview-2b",
+   "params_b": 2.173,
+   "scores": {
+    "IFEval": 26.14,
+    "BBH": 10.95,
+    "MATH Lvl 5": 1.36,
+    "GPQA": 3.8,
+    "MUSR": 4.04,
+    "MMLU-PRO": 9.69
+   }
+  },
+  "meta-llama": {
+   "model": "meta-llama/Llama-3.2-3B",
+   "params_b": 3.213,
+   "scores": {
+    "IFEval": 13.37,
+    "BBH": 14.23,
+    "MATH Lvl 5": 1.89,
+    "GPQA": 2.35,
+    "MUSR": 3.81,
+    "MMLU-PRO": 16.53
+   }
+  },
+  "qwen": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "params_b": 1.837,
+   "scores": {
+    "IFEval": 21.54,
+    "BBH": 9.76,
+    "MATH Lvl 5": 3.17,
+    "GPQA": 7.38,
+    "MUSR": 3.96,
+    "MMLU-PRO": 9.8
+   }
+  },
+  "stability": {
+   "model": "stabilityai/stablelm-3b-4e1t",
+   "params_b": 2.795,
+   "scores": {
+    "IFEval": 22.03,
+    "BBH": 9.01,
+    "MATH Lvl 5": 1.06,
+    "GPQA": 0.0,
+    "MUSR": 4.42,
+    "MMLU-PRO": 7.43
+   }
+  },
+  "tii": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "params_b": 1.669,
+   "scores": {
+    "IFEval": 24.28,
+    "BBH": 11.34,
+    "MATH Lvl 5": 3.32,
+    "GPQA": 3.91,
+    "MUSR": 9.71,
+    "MMLU-PRO": 6.76
+   }
+  }
+ },
+ "uncovered": [
+  "ai21",
+  "allenai/olmo",
+  "bytedance",
+  "eleutherai/polyglot-ko",
+  "liquidai/lfm2",
+  "llm-jp/llm-jp",
+  "microsoft/bitnet-b1-4t-bf16",
+  "pfnet/plamo-nict",
+  "sapienzanlp/minerva",
+  "state-spaces/mamba",
+  "zyphra/zamba2"
+ ],
+ "extra_members": {
+  "ibm": [
+   "ibm-granite/granite-3.0-2b-base"
+  ]
+ },
+ "passes": false,
+ "verdict": "GATE B FAILS: 11 of 22 families have a leaderboard-covered in-band base model, against the 16 that F68's effect size requires. Dynamic range is NOT the problem -- 5 of 6 benchmarks are usable on the covered set (IFEval, BBH, GPQA, MUSR, MMLU-PRO); MATH Lvl 5 sit at floor. COVERAGE is: base models at 1.5-3B are rarely submitted to the leaderboard, and 11 families (ai21, allenai/olmo, bytedance, eleutherai/polyglot-ko, liquidai/lfm2, llm-jp/llm-jp, microsoft/bitnet-b1-4t-bf16, pfnet/plamo-nict, sapienzanlp/minerva, state-spaces/mamba, zyphra/zamba2) have no entry at all. The benchmark-correlation PRIMARY as designed is therefore not powered even with 22 measured families, and the options are: run our own evals over the band (lm-eval-harness, days of compute), or demote the benchmark correlation to an exploratory secondary on the covered subset and let the band run stand on its riders -- T* (#90, which needs only OUR measurements and reaches n>=16 for the first time), the corpus direction, and the F64 scale gate. The riders never needed the leaderboard, so Gate B failing does NOT block the band measurement; it rescopes what the measurement claims.",
+ "parquet_sha_note": "rows used are embedded above; the source parquet moves",
+ "_analysis_provenance": {
+  "script": "band_benchmark_range.py",
+  "sha256": "8ae3db6ec3e4b878056b52857c18d45cbc2e9a0f28de0d529d78dba143a4b1f0",
+  "imports": {
+   "experiments/band_benchmark_range.py": "8ae3db6ec3e4b878056b52857c18d45cbc2e9a0f28de0d529d78dba143a4b1f0",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Gate B of #101, run before the band measurement because it can only shrink n. The v2 leaderboard normalizes scores so chance sits at 0, making near-floor a defined predicate. The verdict separates COVERAGE (does a family's in-band base model appear at all -- the axis Gate 0 could not see) from RANGE (spread beyond the near-floor band among covered families). Coverage is the binding failure: base checkpoints at this scale are rarely submitted. The used rows are embedded because the leaderboard moves under any analysis that only points at it."
+}
