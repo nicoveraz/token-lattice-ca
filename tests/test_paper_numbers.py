@@ -396,17 +396,34 @@ def _body():
                      and not l.strip().startswith(("\\bibliographystyle", "\\bibliography{")))
 
 
+def _literal_appears(literal, body):
+    """Boundary-aware match: a numeric literal must not be satisfied by a SUBSTRING of a longer
+    number. Plain `in` let the manifest's 0.80 (the T=0.5 post-training ignition mean, stored
+    0.8047) pass against the DK critical point 0.801(2) while the prose actually said 0.81 --
+    a wrong number in the submitted paper that the traceability test existed to catch and
+    missed. A literal that starts or ends with a digit now refuses digit (or digit-continuing)
+    context on that side; non-numeric edges (braces, backslashes) keep exact matching.
+    """
+    pat = re.escape(literal)
+    if literal[0].isdigit():
+        pat = r"(?<![\d.])" + pat
+    if literal[-1].isdigit():
+        pat = pat + r"(?!\.?\d)"
+    return re.search(pat, body) is not None
+
+
 def test_every_manifest_number_appears_in_the_paper():
     """The Reproducibility appendix promises traceability; this is the test behind the promise.
 
     Each entry records a literal, the results file it came from, and the expression that
     derives it. If a literal is missing, either the paper changed a number without the results
     changing, or the manifest derivation is wrong. Both times this failed during development it
-    was the manifest -- the newer artifact -- so check that first.
+    was the manifest -- the newer artifact -- so check that first. Matching is boundary-aware:
+    see _literal_appears for the erratum that plain substring matching hid.
     """
     body = _body()
     missing = [(m["literal"], m["source"], m["derivation"])
-               for m in _manifest() if m["literal"] not in body]
+               for m in _manifest() if not _literal_appears(m["literal"], body)]
     assert not missing, (
         f"{len(missing)} manifest number(s) are not in paper.tex:\n" +
         "\n".join(f"  {lit} <- {src} :: {der}" for lit, src, der in missing))

@@ -80,12 +80,11 @@ def main():
     for ax in (ax1, ax2):
         ax.set_xticks([0.3, 0.5, 0.7, 0.9, 1.1])
 
-    # sanity against the caption's literals -- fail loudly rather than draw a wrong figure.
-    # Deliberately NOT asserted: the prose's "swings 0.23->0.81"; the stored mean at T=0.5,
-    # step143000 is 0.8047, which is 0.80 at 2dp. That literal is the SUBMITTED paper's and is
-    # left untouched in prose (presentation-only); the caption states only values this script
-    # verifies against the file.
+    # sanity against the paper's literals -- fail loudly rather than draw a wrong figure.
+    # The camera-ready fixed the submitted "0.81" to the derivable 0.80 (stored mean 0.8047);
+    # asserted here like the others now that paper and file agree.
     assert round(ign[(0.3, "pre")], 2) == 0.20 and round(ign[(0.3, "post")], 2) == 0.21
+    assert round(ign[(0.5, "pre")], 2) == 0.23 and round(ign[(0.5, "post")], 2) == 0.80
     assert round(ign[(0.9, "pre")], 2) == 0.65 and round(ign[(1.1, "pre")], 2) == 0.98
     assert round(lam[(0.9, "pre")], 2) == 0.19 and round(lam[(1.1, "pre")], 2) == 0.30
     print("ignition T=0.7 plotted:", have_ign7)
