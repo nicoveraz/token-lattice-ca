@@ -647,3 +647,99 @@ def test_notes_do_not_name_a_style_file_the_paper_no_longer_uses():
         f"paper/NOTES.md still names neurips_{sorted(stale)} while paper.tex uses {in_use}. "
         f"The style file sets the page budget, so a stale row here is a stale claim about the "
         f"submission's hardest constraint.")
+
+
+def test_boundary_literals_are_derived_from_raw_runs_not_stored_rounded_values(): 
+    """#63 Rule 2, made executable: double-rounding must be shown to give a DIFFERENT answer.
+
+    The rule -- derive from raw runs, never from stored rounded values -- lived only in
+    `build_paper_manifest.py`'s docstring, and was walked into twice:
+
+      * the 410m plateau level is stored as 0.1735; re-rounding that to 3dp gives 0.173, while
+        the raw mean 0.173533 gives 0.174, which is what the paper says;
+      * the D_norm size-scaling slope is -1.01506 -> "1.02", but computing it from the stored
+        4dp levels gives -1.0150 -> "1.01".
+
+    Both produced a false paper/manifest mismatch against a CORRECT paper. A prose rule cannot
+    fail; this asserts the rule is load-bearing by checking that the naive route really does
+    disagree. If a future re-run moves these values off their rounding boundaries the assertions
+    below stop being meaningful -- so the test says so rather than passing silently.
+    """
+    import numpy as _np
+    sh = _load("dev_transition_shape.json")
+    scal = _load("dev_transition_scale.json")
+    n192 = _load("dev_transition_n192.json")
+    p3 = _load("dev_transition_phase3.json")
+    tex = _tex()
+
+    import sys as _sys
+    _sys.path.insert(0, str(ROOT / "experiments"))
+    from lyapunov import run_ignited
+
+    # -- instance 1: the 410m plateau level ------------------------------------------------
+    PRE = {128, 256, 512}
+    raw = [r["lambda_ca"] for r in scal["runs"].values()
+           if "lambda_ca" in r and r["size_m"] == 410 and r["step"] not in PRE and run_ignited(r)]
+    from_raw = f"{float(_np.mean(raw)):.3f}"
+    stored = sh["size_scaling_W9"]["lambda_ca"].get("plateau_level_N96")
+    assert from_raw in tex, f"the paper no longer states the raw-derived 410m plateau {from_raw}"
+
+    # -- instance 2: the D_norm size-scaling slope ------------------------------------------
+    PLAT = {2000, 8000, 143000}
+    r3 = [v for v in p3["runs"].values() if isinstance(v, dict) and "D_norm" in v]
+    r192 = [v for v in n192["runs"].values() if "D_norm" in v]
+    lvl = {N: float(_np.mean([r["D_norm"] for r in r3 if r["N"] == N and r["step"] in PLAT]))
+           for N in (48, 96)}
+    lvl[192] = float(_np.mean([r["D_norm"] for r in r192 if r["step"] == 143000]))
+    Ns = _np.array(sorted(lvl))
+    slope_raw = float(_np.polyfit(_np.log(Ns), _np.log([lvl[k] for k in sorted(lvl)]), 1)[0])
+    # The naive route: fit the levels as STORED. dev_transition_shape.json keeps them at 4dp
+    # (plateau_level_N48 = 0.5689, N96 = 0.3062), and that is the precision the historical
+    # failure went through -- at 3dp the slope happens to survive, so the guard must use the
+    # precision the file actually stores rather than a plausible-looking one.
+    rounded = [round(lvl[k], 4) for k in sorted(lvl)]
+    slope_rounded = float(_np.polyfit(_np.log(Ns), _np.log(rounded), 1)[0])
+
+    assert f"{abs(slope_raw):.2f}" in tex, (
+        f"the paper no longer states the raw-derived D_norm slope {abs(slope_raw):.2f}")
+
+    # THE POINT: the naive route must actually disagree, or this guard is decorative.
+    differs = f"{abs(slope_raw):.2f}" != f"{abs(slope_rounded):.2f}"
+    assert differs, (
+        f"double-rounding no longer changes the D_norm slope (raw {abs(slope_raw):.4f} -> "
+        f"{abs(slope_raw):.2f}, from-stored {abs(slope_rounded):.4f} -> {abs(slope_rounded):.2f}). "
+        f"The values have moved off the rounding boundary, so this guard has gone vacuous: "
+        f"either find a literal that is still boundary-sensitive, or retire #63 Rule 2 as no "
+        f"longer reachable. Do NOT weaken the assertion to keep it green.")
+
+
+def test_inline_family_bound_is_consistent_with_the_values_it_summarises():
+    """A stated bound must not be falsified by the table it cites. Presence checks cannot see this.
+
+    Found by outside review of the camera-ready: the body said "All four survive
+    (p_BH <= 2x10^-5; Table 1)" while Table 1's N=96 lambda cell, four lines below, read
+    2.3x10^-5. Both literals were present in the paper and both were manifest-covered, so
+    every existing check passed while the inequality BETWEEN them was false. (The submitted
+    paper carried the same bound with no table beside it, so nothing exposed it.)
+
+    This parses the inline bound and asserts it against the results file directly:
+      * the bound must be >= the largest p_BH in the pre-registered family (or the sentence
+        is falsified by its own data), and
+      * within one order of magnitude of it (or the bound is uninformative padding).
+    """
+    import re as _re
+    tex = " ".join(_tex().split())
+    m = _re.search(
+        r"All four survive.*?p_\{\\mathrm\{BH\}\}\\le\s*([0-9.]+)\{?\\times\}?10\^\{(-?\d+)\}",
+        tex)
+    assert m, "the 'All four survive' sentence no longer states a parseable p_BH bound"
+    bound = float(m.group(1)) * 10 ** int(m.group(2))
+
+    tests = _load("dev_transition_phase3.json")["tests"]
+    mx = max(t["p_bh"] for t in tests)
+    assert bound >= mx, (
+        f"the inline bound {bound:g} is smaller than the family's largest p_BH ({mx:g}) -- "
+        f"the sentence is falsified by its own table. Restate the bound at or above {mx:g}.")
+    assert bound <= 10 * mx, (
+        f"the inline bound {bound:g} is more than an order of magnitude above the largest "
+        f"p_BH ({mx:g}); a bound that loose is decoration, not a summary. Tighten it.")

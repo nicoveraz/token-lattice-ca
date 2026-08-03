@@ -195,6 +195,13 @@
   "path": "tests[name=N48_D_norm_post_vs_pre].p_bh"
  },
  {
+  "literal": "3{\\times}10^{-5}",
+  "source": "dev_transition_phase3.json",
+  "derivation": "1-s.f. ceiling of max(tests[].p_bh) = 2.3e-05 -> 3e-5",
+  "kind": "measured",
+  "path": "max(tests[].p_bh), ceiling to 1 s.f."
+ },
+ {
   "literal": "48",
   "source": "dev_transition_shape.json",
   "derivation": "sign_agreement.pooled.n",
