@@ -17,7 +17,25 @@ ignition fraction "swings 0.23→0.81 at T=0.5"; the stored mean at T=0.5/step14
 which is **0.80** at 2dp. The traceability test missed it because plain substring matching let
 the manifest's `0.80` be satisfied by the DK critical point `0.801(2)`; matching is now
 boundary-aware, it flagged exactly this one literal out of 88, and the value is corrected. The
-tag `submission/neurips26-i4d` keeps the submitted 0.81. 0 undefined refs,
+tag `submission/neurips26-i4d` keeps the submitted 0.81.
+
+**Second correction, caught by outside review:** the body's "All four survive (p_BH ≤ 2×10⁻⁵)"
+was falsified by its own Table 1, whose N=96 λ_ca cell reads 2.3×10⁻⁵ — the old bound came from
+5-decimal-rounded p's, and the table exposes the sixth decimal. Restated as **≤ 3×10⁻⁵** (the
+1-s.f. ceiling of the family's max, manifest-derived), with a new guard
+(`test_inline_family_bound_is_consistent_with_the_values_it_summarises`) asserting the
+inequality itself — the class where both literals are present and manifest-covered but the
+relation between them is false, invisible to presence checks.
+
+**Review recommendation deliberately NOT taken: restoring the validation-ladder figure to §3.**
+The reviewer is right that §3 — the credibility spine — now has no visual, and the CFP does not
+oblige reviewers to read appendices. But that figure is exactly what the 5-page decision traded
+away to hold the camera-ready's sixth page in reserve, and §3's prose states every rung result
+in full. If accepted, restoring it is the first call on the reserved page: the figure
+environment sits intact in the appendix, so the restore is one block moved back and a
+recompile. Decision recorded here so it is made once, on acceptance.
+
+0 undefined refs,
 0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
 double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 
