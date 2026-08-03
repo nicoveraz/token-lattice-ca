@@ -6,8 +6,11 @@ Rationale: iteratively micro-editing `paper.tex` to hit a page count mixes two d
 jobs — deciding *what is true and what gets claimed*, and *fitting it on 5 pages*. This file
 holds the first. The `.tex` gets assembled from it in one pass when the content is settled.
 
-Status: `paper.pdf` builds (`tectonic -X compile paper.tex`), **10 pages: body 1–5, references 6,
-Reproducibility appendix 7, checklist 8–10**. **The body fits the 5-page limit.** 0 undefined refs,
+Status: `paper.pdf` builds (`tectonic -X compile paper.tex`). Submitted state (tag
+`submission/neurips26-i4d`): 10 pages, body 1–5 against the 5-page submission limit.
+Camera-ready branch: **12 pages, body 1–6 against the 6-page camera-ready limit** — the
+restructure added the apparatus figure (Fig. 1) and the results table (Table 1) and moved
+robustness detail to a new appendix; presentation-only, no value changed. 0 undefined refs,
 0 undefined citations, 0 overfull boxes. Compliance done: responsible-use section written,
 double-blind clean, all 4 checklist TODOs resolved, all 5 unverified citations verified (F43).
 

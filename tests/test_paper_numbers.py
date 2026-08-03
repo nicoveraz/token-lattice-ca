@@ -263,7 +263,13 @@ def test_responsible_use_section_exists():
 
 
 # ------------------------------------------------------------------ issue #41: the page limit
-BODY_PAGE_LIMIT = 5
+# Camera-ready limit. The SUBMISSION limit was 5 and the submitted body was 5 pages -- that
+# state is pinned by the tag submission/neurips26-i4d and this constant does not govern it.
+# Interp4Discovery's camera-ready allows 6 body pages (appendices excluded); the restructure
+# adds an apparatus figure and a results table and lands on exactly 6. This is the venue's
+# number, not a loosened tolerance: if the camera-ready body ever exceeds what the venue
+# allows, this test must fail.
+BODY_PAGE_LIMIT = 6
 
 
 def _pdf_pages_text():
@@ -375,9 +381,19 @@ def _manifest():
 
 
 def _body():
-    """paper.tex body, comments stripped, bibliography onward removed."""
-    tex = _tex().split("\\bibliographystyle")[0]
-    return "\n".join(l for l in tex.splitlines() if not l.lstrip().startswith("%"))
+    """paper.tex text a manifest literal may legitimately live in: body AND appendix.
+
+    EXTENDED for the camera-ready restructure, not weakened. The old version cut at
+    \\bibliographystyle, which precedes \\appendix, so it silently required every manifest
+    literal to sit in the body proper. The Reproducibility promise is "every number in the
+    paper is traceable to a result file" -- the appendix is part of the paper, and the
+    camera-ready moves robustness detail there. Comments are still stripped, and the
+    bibliography commands themselves are excluded so citation keys cannot satisfy a literal.
+    """
+    tex = _tex()
+    return "\n".join(l for l in tex.splitlines()
+                     if not l.lstrip().startswith("%")
+                     and not l.strip().startswith(("\\bibliographystyle", "\\bibliography{")))
 
 
 def test_every_manifest_number_appears_in_the_paper():
