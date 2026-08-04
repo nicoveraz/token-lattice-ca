@@ -233,6 +233,7 @@ _STALENESS_PAIRS = [
     ("band_family_census.json", "band_family_census.py"),
     ("band_benchmark_range.json", "band_benchmark_range.py"),
     ("memorization_gate_a.json", "memorization_gate_a.py"),
+    ("band_screen.json", "band_screen.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),

@@ -3233,6 +3233,42 @@ refinement if anyone needs the depths themselves.
 **Scope, unchanged:** r ≤ 2 is F69's out-of-distribution artifact regime, deliberately — the
 artifact is the object of study, and nothing here is a claim about a model in ordinary use.
 
+### F86 — T\* predicts degeneration at family level, and the band screen delivers the external anchor (#90, #101)
+The 1.5–3B band screen ran after its two gates: Gate 0 found 22 conservative families with a base,
+ungated checkpoint in band; Gate B **failed the benchmark primary on coverage** (11 < 16 families
+with any leaderboard entry — base checkpoints at this scale are rarely submitted), so the run was
+re-scoped **before its data existed**: riders as primary, benchmark correlation as labeled
+exploratory. 15 of 22 families measured (two seeds per cell, everything imported — `t_star`,
+`rep_stats`, `PROMPTS` from `degeneration_vs_tstar`; `argmax_census` from gate1; settles through
+`ar_ca.run` per-replica); 5 loads failed on bleeding-edge architectures and 3 were budgeted out as
+too slow for this stack, all listed rather than hidden.
+
+**The primary: ρ(T\*, rep_4) = +0.833 over n = 8 families with finite T\*, permutation
+p = 0.0137.** F68's version was ρ = +0.552 at n = 10 *models* (p = 0.107), with six of those
+Pythia sizes — the pseudoreplication that motivated the ~16-family power note. Measured on
+genuinely independent families, the effect is **larger and significant**: the temperature at which
+the CA's degeneracy melts predicts greedy-decoding repetition, a behavioural quantity sharing no
+machinery with the ring. This is the external anchor `paper/plan_paper2.md` §6 gates the
+third-paper decision on. **Stated with its fragility**: n = 8 pairs, because 7 of 15 families have
+no attractor and therefore no T\*; one family moving could soften it, and the split
+(8 finite / 0 censored / 7 none) is itself part of the result.
+
+**F64's scale gate: the binary extends, the level does not.** Five in-family small-vs-band pairs,
+**zero attractor-binary flips** — but max top-1 drift 0.475 (SmolLM 0.35 → 0.83 across ~5×
+scale). What is scale-blind into the band is *whether* a family has the attractor, not *how much*;
+#101's kill condition does not fire, and any citation of F64 should carry that refinement.
+
+**Exploratory, declared before data (Gate B failed, n = 10):** top1@0.02 vs IFEval ρ = +0.71;
+BBH −0.28, GPQA −0.03, MUSR −0.60, MMLU-PRO −0.16. Hypothesis-generating only.
+
+**Three operational lessons paid for in wall-clock.** A self-healing supervisor plus a
+*deterministic* crash is a spin lock: helium-1 has no BOS token, `scheme="bos"` crashed on
+`np.full(..., None)`, and that one cell burned all 40 restart passes — arm failures are now
+recorded as data, never raised. A `too_slow` flag can be contention rather than architecture:
+Qwen1.5-1.8B flagged at 545 s/cell during a concurrent download, and on retry ran the full battery
+in 20 min with a finite T\* that joined the primary. And a recorded load *failure* should not
+block a retry: LFM2's OSError was transient, and its silent second-pass recovery added a family.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

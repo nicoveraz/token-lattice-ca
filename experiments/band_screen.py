@@ -157,9 +157,17 @@ def measure_model(fam, name, res, probe=False):
         for s in SEEDS:
             k = f"{name}|{arm}|s{s}"
             if k in runs: continue
-            a, tk = settle_top1(rule, TEMPS[0], r_, scheme, s)
-            runs[k] = dict(model=name, family=fam, arm=arm, T=TEMPS[0], seed=s,
-                           top1=round(a, 4), dominant=tk)
+            # AN ARM MAY FAIL WITHOUT TAKING THE SCREEN WITH IT. helium-1 has no BOS token, so
+            # scheme="bos" crashed on np.full(..., None) -- and because the supervisor restarts
+            # on death, that ONE cell burned all 40 restart passes in a crash loop. A recorded
+            # arm failure is data (the model HAS no BOS arm); an unhandled one is a spin lock.
+            try:
+                a, tk = settle_top1(rule, TEMPS[0], r_, scheme, s)
+                runs[k] = dict(model=name, family=fam, arm=arm, T=TEMPS[0], seed=s,
+                               top1=round(a, 4), dominant=tk)
+            except Exception as e:
+                runs[k] = dict(model=name, family=fam, arm=arm, seed=s,
+                               failed=type(e).__name__, detail=str(e)[:120])
             json.dump(res, open(OUT, "w"), indent=1)
 
     if f"{name}|rep" not in runs:            # the #90 partner: greedy degeneration, imported
