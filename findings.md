@@ -3580,6 +3580,130 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F96 — the registered primary dies at its own gate; what survives is that F94 measured `s` in the wrong regime
+Follow-on to F94, which eliminated the *mean* of single-token sensitivity as λ_ca's explanandum.
+Annealed mean field uses only that mean, so this measured the two things it discards — the
+across-context **spread** of sensitivity (masking / canalization) and the departure of the two-flip
+response from independence (**sub-additivity**, cancellation) — on the same three-rung ladder.
+
+**Why both quantities, and why the ladder gates them.** They are different mechanisms and are
+easily conflated: XOR is maximally sub-additive (flip both inputs, the output returns) with
+**zero** spread, while majority is sub-additive **with** spread. The ladder supplies anchors where
+the answer is known, and all three landed exactly as derived before the run:
+
+```
+  RUNG 1  DK, p2=0 line   analytic: s = p1 in every context  -> spread EXACTLY 0.000000,
+                          subadd +0.960 — pure cancellation, no masking
+  RUNG 2  19 ECA, exact   rule 150 (XOR)      spread 0.0000  subadd +1.0000  cancellation
+                          rule 232 (majority) spread 0.2887  subadd +0.2500  masking
+                          -> registered gate PASSES; the pair separates the mechanisms
+```
+
+**The registered primary is KILLED, by a gate declared before the run.** The primary asked whether
+spread moves across checkpoints in the settled regime beyond its own bootstrap uncertainty. It
+does not qualify: **3 of the 6 settled cells hold fewer than 32 distinct contexts** — the ring at
+step128 settles onto **7 distinct tokens**, giving 10 distinct windows out of 128 — so those cells
+are not measuring across-context variation at all, they are measuring one context repeated. CIs are
+cluster-bootstrapped over distinct context identities rather than rows; the row bootstrap of the
+first pass understated widths by ≈√(n/n_distinct). Under the honest widths and the distinct-context
+floor, the spread claim is not made. **The post-hoc ρ = +0.83 that generated this hypothesis does
+not survive being tested properly, which is what pre-registering it was for.**
+
+**What does survive is a defect in F94, and it is the useful part.** F94 measured `s` on
+**uniformly random token windows**. The ring's dynamics depend on `s` evaluated on the states the
+ring actually occupies. F56/F70's rule — an estimator must be evaluated in the regime the system
+actually runs in — applies to a *theory's input* as much as to a measurement, and it changes the
+picture:
+
+```
+ regime     s span   λ_MF span   λ_ca span   span ratio   ρ      perm p
+ random     0.071    0.084       0.285       0.29         −0.657  0.175
+ text       0.095    0.117       0.285       0.41         +0.829  0.058
+ settled    0.331    0.489       0.285       1.72         +0.771  0.103
+```
+
+On uniform noise `s` is saturated and flat (0.81–0.88) and the predictor has no range — ratio 0.29,
+which is why F94's correlational leg was uninterpretable. On the settled ring `s` spans **0.331**,
+falls to **0.5252** against the mean-field critical value **1/r = 0.50**, and the predictor finally
+clears the range gate at ratio 1.72. **F94's conclusion that `s` is saturated and flat is a
+property of the ensemble it was measured on, not of the model.** The elimination of *mean
+sensitivity* stands — `s` still never crosses 1/r, so the crossing leg fails again — but it now
+fails by 0.025 rather than by 0.33, and the reason F94 could not read its own Spearman is fixed.
+
+**Two reasons this is not a positive result, stated because they are the finding's real content.**
+(1) **Degeneracy** — the movement is concentrated in exactly the checkpoints where the settled ring
+is degenerate (7, 44, 38 distinct tokens) and jumps once it diversifies (185, 217, 199). (2)
+**Circularity** — the settled state is *produced by* the dynamics whose exponent it is being used
+to predict, so ρ = +0.77 (p = 0.10, n=6) is not evidence that `s` drives λ_ca; ring diversity rises
+across these same checkpoints and is downstream of the transition, not upstream. A non-circular
+version must evaluate `s` on an ensemble **matched to the settled state's statistics without being
+that state**. That is the next experiment.
+
+**Incidental.** Sub-additivity in the settled regime is *negative* at the three early checkpoints
+(−0.14, −0.23, −0.22) — super-additive, the opposite of both anchors — then ≈0 later. On degenerate
+cells, so it is recorded and not interpreted.
+
+### F95 — the fingerprint prior-art check, finally run: (b) is the clear ground, (a) and half of (d) are taken, (e) is worse than we thought
+The `fingerprint/PROGRAM.md` pre-registration mandated a prior-art check and it had never been run.
+It has now been (100 agents, 93 completed, 7 lost to a session limit; synthesis stage failed, so
+the 85 verified claims were read unmerged — that is a real limitation of this pass, not a summary).
+
+**(a) Black-box model identification — TAKEN.** Gao, Liang & Guestrin formalise *Model Equality
+Testing* (ICLR 2025) as a two-sample test of API samples against a trusted reference. The text-only
+state of the art is **IRIS** (arXiv 2607.20860): random-string probes, 179 visible-string features
+into a random forest, verification AUROC **0.99** on a 6-model same-family Qwen3 ladder, all 17
+OpenRouter endpoints separated by m=8 calls, ε=0.3 routing dilution caught at 0.85 power. Any
+generic "identify a black-box model from sampled outputs" claim is pre-empted outright.
+
+**(b) ITERATED / DYNAMICAL probes — NOT anticipated, and this is the programme's actual ground.**
+Stated explicitly of the state of the art: *"No component of the method feeds the model its own
+output back in as input, so there is no iterated or dynamical probe anywhere in the pipeline —
+question (b) is NOT anticipated by this work, and the CA-driven, settled-attractor probe is a
+genuinely different feature class."* The same holds for DE-COP and for the 52-variant MIA battery:
+every published feature set is single-shot scoring of externally supplied text. **The novelty is
+the dynamics, not the fingerprint.** That is where the claim must be pitched.
+
+**(c) Corpus inference — PARTIALLY, and the gap favours us.** Hayase et al. name the goal ("data
+mixture inference") and get quantitative estimates on closed models (GPT-4o 39% non-English,
+GPT-3.5/Claude ~60% code). But the input is the **tokenizer's BPE merge list plus reference
+corpora, solved by a linear program — no model outputs, no API access at all**. It therefore
+returns *identical* answers for any two models sharing a tokenizer, so it cannot make the
+gpt2 vs gpt-neo-125M discrimination the battery reports. Separately: across all 8 published MIA
+benchmarks, "blind" attacks that never query the target beat the reported SOTA — the black-box
+training-data literature has no validated model-derived signal.
+
+**(d) Post-training and compression — SPLIT.** Quantization is **taken**: IRIS catches a q4-for-fp16
+cheat (AUROC 1.00 at 4B; nf4/int8 vs fp16 at 1.00/0.99 on Llama-3-70B) and flags 14 of 15 same-model
+cross-provider pairs. But **IRIS never audits a distilled model, and pruning is untouched** — the
+5.7× distillation arm is not pre-empted.
+
+**(e) Tokenizer round-trip merging — PARTIALLY ANTICIPATED, and worse than we believed.** The
+mechanism is already named and formalised: "invalid encodings", `encode(decode(t)) != t` under
+BPE/MPE (ICLR 2025, Meta AI), with a proposition proving such encodings carry zero ground-truth
+probability. `token healing` is a shipped default mitigation in `guidance`. The "prompt boundary
+problem" / "tokenization bias" cluster has 5+ citations. Worst for us: **a model-dependent rate
+table already exists** — SQuAD 96.1% inconsistent under BART/BPE vs 5.0% under T5/SentencePiece —
+which pre-empts the "the rate varies by model" framing of our 63%/13% measurement specifically.
+What survives: nobody frames it as an **API-probing hazard that silently shrinks the probe's
+context radius**, and nobody reports a **ranking inversion** from it. Supporting negative evidence:
+the SoK on API-side confounds for black-box probing contains zero occurrences of `tokeniz`,
+`retoken`, `round-trip`, or `boundary`.
+
+**The sharpest threat is to T\*, and it arrives with a formula.** IRIS derives that decoding
+temperature is a rank-one, on-family move in the exponential family, so two temperatures separate
+only at *second* order: `I* ≈ (1/8)(Δβ)²·V` with `V = Var(z) = T³ dH/dT`, the heat capacity of the
+next-token distribution. Measured adjacent-T AUROC ≈ 0.58, matching the theory. The one strong
+temperature signal is **T→0 support collapse** (AUROC ≈ 0.99) — which is the same physics as "the
+attractor melts", framed as entropy collapse rather than as a CA fixed point. This cuts both ways
+and should be treated as a gift: it is a closed-form external prediction for how much signal a
+temperature sweep can carry, and T\* is defined at a melting point rather than by adjacent-T
+comparison, so it is a testable anchor rather than a refutation. **It is the natural next check on
+T\*, and it replaces the literature question F93's second leg was blocked on.**
+
+**Boundary.** The synthesis stage failed, so this is a read over unmerged claims; the per-source
+verdicts are individually vote-verified but no cross-source dedup or ranking was applied. Claim
+counts are not evidence of weight.
+
 ### F94 — λ_ca is not derivable from single-token sensitivity: the mean-field route, run on the ladder
 The three failed explanandum routes (F78, F79, F80) all tried to *correlate* λ_ca with something
 internal. This tries to **derive** it from something simpler and still black-box, using the classical

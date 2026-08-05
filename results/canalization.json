@@ -1,0 +1,1001 @@
+{
+ "cells": {
+  "step128|random": {
+   "n": 128,
+   "s": 0.82103,
+   "entropy_sd": 1.2208,
+   "spread": 0.09507,
+   "spread_ci": [
+    0.08285,
+    0.10557
+   ],
+   "spread_resid": 0.06164,
+   "rho_s_entropy": 0.7614,
+   "subadd": 0.08486,
+   "subadd_ci": [
+    0.07191,
+    0.09848
+   ],
+   "s_ab": 0.87772,
+   "indep": 0.96258,
+   "entropy": 6.9019,
+   "pool_distinct": 50275,
+   "ctx_distinct": 128,
+   "pool_n": 50275,
+   "degenerate": false,
+   "step": 128,
+   "regime": "random",
+   "secs": 0.9
+  },
+  "step128|text": {
+   "n": 128,
+   "s": 0.77041,
+   "entropy_sd": 2.6253,
+   "spread": 0.17412,
+   "spread_ci": [
+    0.1704,
+    0.21479
+   ],
+   "spread_resid": 0.09657,
+   "rho_s_entropy": 0.8321,
+   "subadd": 0.02222,
+   "subadd_ci": [
+    -0.0138,
+    0.02187
+   ],
+   "s_ab": 0.93615,
+   "indep": 0.95837,
+   "entropy": 4.8294,
+   "pool_distinct": 10160,
+   "ctx_distinct": 124,
+   "pool_n": 47455,
+   "degenerate": false,
+   "step": 128,
+   "regime": "text",
+   "secs": 0.9
+  },
+  "step128|settled": {
+   "n": 128,
+   "s": 0.62459,
+   "entropy_sd": 0.481,
+   "spread": 0.20986,
+   "spread_ci": [
+    0.16706,
+    0.22211
+   ],
+   "spread_resid": 0.20858,
+   "rho_s_entropy": 0.1101,
+   "subadd": -0.1415,
+   "subadd_ci": [
+    -0.17226,
+    -0.08739
+   ],
+   "s_ab": 0.99277,
+   "indep": 0.85127,
+   "entropy": 0.157,
+   "pool_distinct": 7,
+   "ctx_distinct": 10,
+   "pool_n": 384,
+   "degenerate": true,
+   "step": 128,
+   "regime": "settled",
+   "secs": 0.9
+  },
+  "step256|random": {
+   "n": 128,
+   "s": 0.88036,
+   "entropy_sd": 1.3031,
+   "spread": 0.08873,
+   "spread_ci": [
+    0.07418,
+    0.10199
+   ],
+   "spread_resid": 0.0561,
+   "rho_s_entropy": 0.7748,
+   "subadd": 0.0607,
+   "subadd_ci": [
+    0.05058,
+    0.07084
+   ],
+   "s_ab": 0.92293,
+   "indep": 0.98364,
+   "entropy": 5.9587,
+   "pool_distinct": 50275,
+   "ctx_distinct": 128,
+   "pool_n": 50275,
+   "degenerate": false,
+   "step": 256,
+   "regime": "random",
+   "secs": 1.0
+  },
+  "step256|text": {
+   "n": 128,
+   "s": 0.82676,
+   "entropy_sd": 1.6326,
+   "spread": 0.13174,
+   "spread_ci": [
+    0.1213,
+    0.18171
+   ],
+   "spread_resid": 0.09414,
+   "rho_s_entropy": 0.6995,
+   "subadd": 0.03934,
+   "subadd_ci": [
+    0.01596,
+    0.03934
+   ],
+   "s_ab": 0.93683,
+   "indep": 0.97617,
+   "entropy": 4.4403,
+   "pool_distinct": 10160,
+   "ctx_distinct": 127,
+   "pool_n": 47455,
+   "degenerate": false,
+   "step": 256,
+   "regime": "text",
+   "secs": 0.9
+  },
+  "step256|settled": {
+   "n": 128,
+   "s": 0.52522,
+   "entropy_sd": 1.2845,
+   "spread": 0.2826,
+   "spread_ci": [
+    0.25937,
+    0.29396
+   ],
+   "spread_resid": 0.22936,
+   "rho_s_entropy": 0.5842,
+   "subadd": -0.23342,
+   "subadd_ci": [
+    -0.31667,
+    -0.15608
+   ],
+   "s_ab": 0.98868,
+   "indep": 0.75526,
+   "entropy": 0.6448,
+   "pool_distinct": 44,
+   "ctx_distinct": 44,
+   "pool_n": 384,
+   "degenerate": false,
+   "step": 256,
+   "regime": "settled",
+   "secs": 0.9
+  },
+  "step512|random": {
+   "n": 128,
+   "s": 0.83805,
+   "entropy_sd": 1.1849,
+   "spread": 0.10905,
+   "spread_ci": [
+    0.09567,
+    0.12112
+   ],
+   "spread_resid": 0.07529,
+   "rho_s_entropy": 0.7234,
+   "subadd": 0.07135,
+   "subadd_ci": [
+    0.05863,
+    0.08488
+   ],
+   "s_ab": 0.89982,
+   "indep": 0.97116,
+   "entropy": 4.9217,
+   "pool_distinct": 50275,
+   "ctx_distinct": 128,
+   "pool_n": 50275,
+   "degenerate": false,
+   "step": 512,
+   "regime": "random",
+   "secs": 0.9
+  },
+  "step512|text": {
+   "n": 128,
+   "s": 0.83517,
+   "entropy_sd": 1.2984,
+   "spread": 0.11081,
+   "spread_ci": [
+    0.09997,
+    0.12565
+   ],
+   "spread_resid": 0.08627,
+   "rho_s_entropy": 0.6276,
+   "subadd": 0.03931,
+   "subadd_ci": [
+    0.029,
+    0.04417
+   ],
+   "s_ab": 0.94105,
+   "indep": 0.98035,
+   "entropy": 3.9299,
+   "pool_distinct": 10160,
+   "ctx_distinct": 126,
+   "pool_n": 47455,
+   "degenerate": false,
+   "step": 512,
+   "regime": "text",
+   "secs": 0.9
+  },
+  "step512|settled": {
+   "n": 128,
+   "s": 0.56727,
+   "entropy_sd": 0.8311,
+   "spread": 0.30595,
+   "spread_ci": [
+    0.27131,
+    0.32596
+   ],
+   "spread_resid": 0.27925,
+   "rho_s_entropy": 0.4086,
+   "subadd": -0.22352,
+   "subadd_ci": [
+    -0.34731,
+    -0.14876
+   ],
+   "s_ab": 0.99251,
+   "indep": 0.76899,
+   "entropy": 0.4326,
+   "pool_distinct": 38,
+   "ctx_distinct": 35,
+   "pool_n": 384,
+   "degenerate": false,
+   "step": 512,
+   "regime": "settled",
+   "secs": 0.9
+  },
+  "step1000|random": {
+   "n": 128,
+   "s": 0.80964,
+   "entropy_sd": 1.3083,
+   "spread": 0.13793,
+   "spread_ci": [
+    0.1207,
+    0.15474
+   ],
+   "spread_resid": 0.10478,
+   "rho_s_entropy": 0.6504,
+   "subadd": 0.05864,
+   "subadd_ci": [
+    0.04412,
+    0.07461
+   ],
+   "s_ab": 0.90401,
+   "indep": 0.96265,
+   "entropy": 3.7324,
+   "pool_distinct": 50275,
+   "ctx_distinct": 128,
+   "pool_n": 50275,
+   "degenerate": false,
+   "step": 1000,
+   "regime": "random",
+   "secs": 0.9
+  },
+  "step1000|text": {
+   "n": 128,
+   "s": 0.84406,
+   "entropy_sd": 1.361,
+   "spread": 0.12992,
+   "spread_ci": [
+    0.10119,
+    0.14088
+   ],
+   "spread_resid": 0.10699,
+   "rho_s_entropy": 0.5673,
+   "subadd": 0.03163,
+   "subadd_ci": [
+    0.02179,
+    0.0387
+   ],
+   "s_ab": 0.94884,
+   "indep": 0.98047,
+   "entropy": 3.4637,
+   "pool_distinct": 10160,
+   "ctx_distinct": 127,
+   "pool_n": 47455,
+   "degenerate": false,
+   "step": 1000,
+   "regime": "text",
+   "secs": 0.9
+  },
+  "step1000|settled": {
+   "n": 128,
+   "s": 0.85665,
+   "entropy_sd": 1.7959,
+   "spread": 0.16291,
+   "spread_ci": [
+    0.16902,
+    0.20443
+   ],
+   "spread_resid": 0.13342,
+   "rho_s_entropy": 0.5738,
+   "subadd": -0.005,
+   "subadd_ci": [
+    -0.03098,
+    -0.00477
+   ],
+   "s_ab": 0.97891,
+   "indep": 0.97391,
+   "entropy": 3.0644,
+   "pool_distinct": 185,
+   "ctx_distinct": 104,
+   "pool_n": 384,
+   "degenerate": false,
+   "step": 1000,
+   "regime": "settled",
+   "secs": 0.9
+  },
+  "step2000|random": {
+   "n": 128,
+   "s": 0.83423,
+   "entropy_sd": 1.1328,
+   "spread": 0.12766,
+   "spread_ci": [
+    0.11004,
+    0.14286
+   ],
+   "spread_resid": 0.10335,
+   "rho_s_entropy": 0.5871,
+   "subadd": 0.03557,
+   "subadd_ci": [
+    0.02337,
+    0.04919
+   ],
+   "s_ab": 0.94219,
+   "indep": 0.97776,
+   "entropy": 3.0879,
+   "pool_distinct": 50275,
+   "ctx_distinct": 128,
+   "pool_n": 50275,
+   "degenerate": false,
+   "step": 2000,
+   "regime": "random",
+   "secs": 1.0
+  },
+  "step2000|text": {
+   "n": 128,
+   "s": 0.85959,
+   "entropy_sd": 1.3373,
+   "spread": 0.14031,
+   "spread_ci": [
+    0.14034,
+    0.18526
+   ],
+   "spread_resid": 0.118,
+   "rho_s_entropy": 0.541,
+   "subadd": 0.00558,
+   "subadd_ci": [
+    -0.00515,
+    0.00907
+   ],
+   "s_ab": 0.98143,
+   "indep": 0.98701,
+   "entropy": 3.0394,
+   "pool_distinct": 10160,
+   "ctx_distinct": 125,
+   "pool_n": 47455,
+   "degenerate": false,
+   "step": 2000,
+   "regime": "text",
+   "secs": 0.9
+  },
+  "step2000|settled": {
+   "n": 128,
+   "s": 0.83882,
+   "entropy_sd": 1.6768,
+   "spread": 0.15863,
+   "spread_ci": [
+    0.14896,
+    0.17083
+   ],
+   "spread_resid": 0.12103,
+   "rho_s_entropy": 0.6464,
+   "subadd": 0.03042,
+   "subadd_ci": [
+    0.02337,
+    0.04094
+   ],
+   "s_ab": 0.95322,
+   "indep": 0.98363,
+   "entropy": 3.0813,
+   "pool_distinct": 217,
+   "ctx_distinct": 102,
+   "pool_n": 384,
+   "degenerate": false,
+   "step": 2000,
+   "regime": "settled",
+   "secs": 0.9
+  },
+  "step4000|random": {
+   "n": 128,
+   "s": 0.82048,
+   "entropy_sd": 1.2054,
+   "spread": 0.13235,
+   "spread_ci": [
+    0.1176,
+    0.14495
+   ],
+   "spread_resid": 0.12359,
+   "rho_s_entropy": 0.3578,
+   "subadd": 0.03897,
+   "subadd_ci": [
+    0.02599,
+    0.05352
+   ],
+   "s_ab": 0.93665,
+   "indep": 0.97561,
+   "entropy": 2.9717,
+   "pool_distinct": 50275,
+   "ctx_distinct": 128,
+   "pool_n": 50275,
+   "degenerate": false,
+   "step": 4000,
+   "regime": "random",
+   "secs": 0.9
+  },
+  "step4000|text": {
+   "n": 128,
+   "s": 0.86572,
+   "entropy_sd": 1.5297,
+   "spread": 0.14338,
+   "spread_ci": [
+    0.128,
+    0.16653
+   ],
+   "spread_resid": 0.12554,
+   "rho_s_entropy": 0.4831,
+   "subadd": 0.01561,
+   "subadd_ci": [
+    0.0067,
+    0.01913
+   ],
+   "s_ab": 0.96962,
+   "indep": 0.98524,
+   "entropy": 2.8602,
+   "pool_distinct": 10160,
+   "ctx_distinct": 124,
+   "pool_n": 47455,
+   "degenerate": false,
+   "step": 4000,
+   "regime": "text",
+   "secs": 0.9
+  },
+  "step4000|settled": {
+   "n": 128,
+   "s": 0.83641,
+   "entropy_sd": 1.5831,
+   "spread": 0.15448,
+   "spread_ci": [
+    0.1639,
+    0.17143
+   ],
+   "spread_resid": 0.12488,
+   "rho_s_entropy": 0.5886,
+   "subadd": 0.01523,
+   "subadd_ci": [
+    0.00848,
+    0.01492
+   ],
+   "s_ab": 0.96638,
+   "indep": 0.98161,
+   "entropy": 2.6462,
+   "pool_distinct": 199,
+   "ctx_distinct": 98,
+   "pool_n": 384,
+   "degenerate": false,
+   "step": 4000,
+   "regime": "settled",
+   "secs": 0.9
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   128,
+   256,
+   512,
+   1000,
+   2000,
+   4000
+  ],
+  "r": 2,
+  "T": 0.7,
+  "n_ctx": 128,
+  "regimes": [
+   "random",
+   "text",
+   "settled"
+  ],
+  "seed": 20260805,
+  "settle": {
+   "B": 8,
+   "N": 48,
+   "sweeps": 30
+  },
+  "range_k": 2.0,
+  "bootstrap": 2000,
+  "provenance": "POST-HOC hypothesis. Generated from F94's stored s_sd diagnostic, which rose 0.107->0.206 monotonically with rho=+0.83 against lambda_ca in the RANDOM regime with no confound control. That number is not evidence; this run is the test.",
+  "primary": "does the across-context SPREAD of s move across checkpoints in the SETTLED regime, by more than its own bootstrap uncertainty (disjoint endpoint CIs AND span >= 2.0x mean CI width)?",
+  "secondary": "does sub-additivity move, and does (spread, subadd) drift toward the majority corner or the XOR corner?",
+  "confound": "per-context s is regressed on per-context entropy and the residual spread is reported; if the movement vanishes there, the finding is 'the model got peakier'",
+  "gate": "rung 2 must separate rule 232 (majority, masking) from rule 150 (XOR, cancellation) on the (spread, subadd) pair, or rung 3 is not read",
+  "kill": "both flat in the settled regime -> the moving variable is not in the two-token response function; next object is the full Derrida curve at finite damage"
+ },
+ "rung1_dk": {
+  "anchors": {
+   "w18_zp": {
+    "p1": 0.801,
+    "p2": 0.0,
+    "s": 0.801,
+    "spread": 0.0,
+    "subadd": 0.9604
+   },
+   "w18_hwd": {
+    "p1": 0.8087,
+    "p2": 0.0,
+    "s": 0.8087,
+    "spread": 0.0,
+    "subadd": 0.9634
+   }
+  },
+  "expect_spread": 0.0,
+  "reading": "on the p2=0 line sensitivity is p1 in every context, so spread is exactly zero, while flipping both parents restores the emission probability, so sub-additivity is maximal. A cancellation anchor with no masking -- the signature the pair must not confuse with canalization."
+ },
+ "rung2_eca": {
+  "rules": {
+   "0": {
+    "group": "ordered",
+    "s": 0.0,
+    "spread": 0.0,
+    "subadd": 0.0
+   },
+   "4": {
+    "group": "ordered",
+    "s": 0.25,
+    "spread": 0.3227,
+    "subadd": 0.125
+   },
+   "8": {
+    "group": "ordered",
+    "s": 0.25,
+    "spread": 0.3227,
+    "subadd": 0.125
+   },
+   "22": {
+    "group": "chaotic",
+    "s": 0.75,
+    "spread": 0.3227,
+    "subadd": 0.625
+   },
+   "30": {
+    "group": "chaotic",
+    "s": 0.6667,
+    "spread": 0.2357,
+    "subadd": 0.4167
+   },
+   "32": {
+    "group": "ordered",
+    "s": 0.25,
+    "spread": 0.3227,
+    "subadd": 0.125
+   },
+   "45": {
+    "group": "chaotic",
+    "s": 0.6667,
+    "spread": 0.2357,
+    "subadd": 0.4167
+   },
+   "54": {
+    "group": "edge",
+    "s": 0.6667,
+    "spread": 0.2357,
+    "subadd": 0.4167
+   },
+   "62": {
+    "group": "edge",
+    "s": 0.5833,
+    "spread": 0.2205,
+    "subadd": 0.2917
+   },
+   "105": {
+    "group": "chaotic",
+    "s": 1.0,
+    "spread": 0.0,
+    "subadd": 1.0
+   },
+   "106": {
+    "group": "edge",
+    "s": 0.6667,
+    "spread": 0.2357,
+    "subadd": 0.4167
+   },
+   "110": {
+    "group": "edge",
+    "s": 0.5833,
+    "spread": 0.2205,
+    "subadd": 0.2917
+   },
+   "126": {
+    "group": "chaotic",
+    "s": 0.5,
+    "spread": 0.2887,
+    "subadd": 0.25
+   },
+   "128": {
+    "group": "ordered",
+    "s": 0.25,
+    "spread": 0.3227,
+    "subadd": 0.125
+   },
+   "146": {
+    "group": "chaotic",
+    "s": 0.75,
+    "spread": 0.3227,
+    "subadd": 0.625
+   },
+   "150": {
+    "group": "chaotic",
+    "s": 1.0,
+    "spread": 0.0,
+    "subadd": 1.0
+   },
+   "160": {
+    "group": "ordered",
+    "s": 0.3333,
+    "spread": 0.2357,
+    "subadd": 0.0833
+   },
+   "232": {
+    "group": "ordered",
+    "s": 0.5,
+    "spread": 0.2887,
+    "subadd": 0.25
+   }
+  },
+  "n": 18,
+  "gate": {
+   "masking_rule": 232,
+   "cancel_rule": 150,
+   "masking_spread": 0.2887,
+   "cancel_spread": 0.0,
+   "masking_subadd": 0.25,
+   "cancel_subadd": 1.0,
+   "passes": true,
+   "reading": "both rules must be sub-additive while only majority carries spread; if XOR shows spread or majority does not, the pair does not separate masking from cancellation and rung 3 is NOT read."
+  }
+ },
+ "analysis": {
+  "per_regime": {
+   "random": {
+    "mean_field": {
+     "rho": -0.657,
+     "perm_p": 0.175,
+     "lambda_mf": [
+      0.496,
+      0.5657,
+      0.5165,
+      0.482,
+      0.5119,
+      0.4953
+     ],
+     "lambda_ca": [
+      -0.0926,
+      -0.0185,
+      0.0679,
+      0.1923,
+      0.1558,
+      0.1724
+     ],
+     "mf_span": 0.0837,
+     "ca_span": 0.285,
+     "span_ratio": 0.294,
+     "rho_usable": false,
+     "s_min": 0.8096,
+     "critical_s": 0.5,
+     "s_crossing": null,
+     "lambda_crossing": "256-512",
+     "residual": 0.4316
+    },
+    "pool_distinct": [
+     50275,
+     50275,
+     50275,
+     50275,
+     50275,
+     50275
+    ],
+    "ctx_distinct": [
+     128,
+     128,
+     128,
+     128,
+     128,
+     128
+    ],
+    "entropy_sd": [
+     1.2208,
+     1.3031,
+     1.1849,
+     1.3083,
+     1.1328,
+     1.2054
+    ],
+    "any_degenerate": false,
+    "steps": [
+     128,
+     256,
+     512,
+     1000,
+     2000,
+     4000
+    ],
+    "s": [
+     0.821,
+     0.8804,
+     0.838,
+     0.8096,
+     0.8342,
+     0.8205
+    ],
+    "spread": [
+     0.0951,
+     0.0887,
+     0.109,
+     0.1379,
+     0.1277,
+     0.1323
+    ],
+    "spread_resid": [
+     0.0616,
+     0.0561,
+     0.0753,
+     0.1048,
+     0.1033,
+     0.1236
+    ],
+    "subadd": [
+     0.0849,
+     0.0607,
+     0.0713,
+     0.0586,
+     0.0356,
+     0.039
+    ],
+    "span": 0.0492,
+    "mean_ci_width": 0.02836,
+    "endpoint_cis_disjoint": true,
+    "monotone": false,
+    "moves": false,
+    "resid_span": 0.06749,
+    "s_span": 0.07072,
+    "subadd_span": 0.04929
+   },
+   "text": {
+    "mean_field": {
+     "rho": 0.829,
+     "perm_p": 0.0583,
+     "lambda_mf": [
+      0.4323,
+      0.5029,
+      0.513,
+      0.5236,
+      0.5418,
+      0.549
+     ],
+     "lambda_ca": [
+      -0.0926,
+      -0.0185,
+      0.0679,
+      0.1923,
+      0.1558,
+      0.1724
+     ],
+     "mf_span": 0.1166,
+     "ca_span": 0.285,
+     "span_ratio": 0.409,
+     "rho_usable": false,
+     "s_min": 0.7704,
+     "critical_s": 0.5,
+     "s_crossing": null,
+     "lambda_crossing": "256-512",
+     "residual": 0.4309
+    },
+    "pool_distinct": [
+     10160,
+     10160,
+     10160,
+     10160,
+     10160,
+     10160
+    ],
+    "ctx_distinct": [
+     124,
+     127,
+     126,
+     127,
+     125,
+     124
+    ],
+    "entropy_sd": [
+     2.6253,
+     1.6326,
+     1.2984,
+     1.361,
+     1.3373,
+     1.5297
+    ],
+    "any_degenerate": false,
+    "steps": [
+     128,
+     256,
+     512,
+     1000,
+     2000,
+     4000
+    ],
+    "s": [
+     0.7704,
+     0.8268,
+     0.8352,
+     0.8441,
+     0.8596,
+     0.8657
+    ],
+    "spread": [
+     0.1741,
+     0.1317,
+     0.1108,
+     0.1299,
+     0.1403,
+     0.1434
+    ],
+    "spread_resid": [
+     0.0966,
+     0.0941,
+     0.0863,
+     0.107,
+     0.118,
+     0.1255
+    ],
+    "subadd": [
+     0.0222,
+     0.0393,
+     0.0393,
+     0.0316,
+     0.0056,
+     0.0156
+    ],
+    "span": 0.06331,
+    "mean_ci_width": 0.04227,
+    "endpoint_cis_disjoint": true,
+    "monotone": false,
+    "moves": false,
+    "resid_span": 0.03927,
+    "s_span": 0.09531,
+    "subadd_span": 0.03376
+   },
+   "settled": {
+    "mean_field": {
+     "rho": 0.771,
+     "perm_p": 0.1028,
+     "lambda_mf": [
+      0.2225,
+      0.0492,
+      0.1262,
+      0.5384,
+      0.5174,
+      0.5145
+     ],
+     "lambda_ca": [
+      -0.0926,
+      -0.0185,
+      0.0679,
+      0.1923,
+      0.1558,
+      0.1724
+     ],
+     "mf_span": 0.4892,
+     "ca_span": 0.285,
+     "span_ratio": 1.717,
+     "rho_usable": true,
+     "s_min": 0.5252,
+     "critical_s": 0.5,
+     "s_crossing": null,
+     "lambda_crossing": "256-512",
+     "residual": 0.2485
+    },
+    "pool_distinct": [
+     7,
+     44,
+     38,
+     185,
+     217,
+     199
+    ],
+    "ctx_distinct": [
+     10,
+     44,
+     35,
+     104,
+     102,
+     98
+    ],
+    "entropy_sd": [
+     0.481,
+     1.2845,
+     0.8311,
+     1.7959,
+     1.6768,
+     1.5831
+    ],
+    "any_degenerate": true,
+    "steps": [
+     128,
+     256,
+     512,
+     1000,
+     2000,
+     4000
+    ],
+    "s": [
+     0.6246,
+     0.5252,
+     0.5673,
+     0.8567,
+     0.8388,
+     0.8364
+    ],
+    "spread": [
+     0.2099,
+     0.2826,
+     0.3059,
+     0.1629,
+     0.1586,
+     0.1545
+    ],
+    "spread_resid": [
+     0.2086,
+     0.2294,
+     0.2792,
+     0.1334,
+     0.121,
+     0.1249
+    ],
+    "subadd": [
+     -0.1415,
+     -0.2334,
+     -0.2235,
+     -0.005,
+     0.0304,
+     0.0152
+    ],
+    "span": 0.15147,
+    "mean_ci_width": 0.03485,
+    "endpoint_cis_disjoint": false,
+    "monotone": false,
+    "moves": false,
+    "resid_span": 0.15822,
+    "s_span": 0.33143,
+    "subadd_span": 0.26384
+   }
+  },
+  "gate_passes": true,
+  "distinct_min": 32
+ },
+ "verdict": "CALIBRATION FIRST. Rung 1 (DK, analytic): on the p2=0 line sensitivity is p1 in every context, so spread is EXACTLY zero while sub-additivity is maximal -- a pure cancellation anchor. Rung 2 (ECA, exact): rule 232 (majority) spread=0.2887 subadd=0.25, rule 150 (XOR) spread=0.0 subadd=1.0 -- the registered gate PASSES, so the (spread, subadd) pair does separate masking from cancellation. KILL, in the regime that matters: spread spans only 0.1515 against a mean CI width of 0.0348 in the settled regime, so it does not clear the range gate declared before the run. The moving variable is not in the two-token response function, and the next object is the full Derrida curve at finite damage rather than the local response. Note that the random regime does not move either. F94'S OWN PRIMARY, RE-EVALUATED IN THIS REGIME. lambda_MF spans 0.4892 against lambda_ca's 0.285, a ratio of 1.717 -- so unlike F94's random-window measurement (ratio 0.29) the predictor here HAS range, and the correlational leg is interpretable for the first time: rho = 0.771, exact permutation p = 0.1028. s falls to 0.5252 against the mean-field critical value 0.5 but still does not cross it, so the crossing leg fails again, by far less. THE REGIME MATTERED: F94 measured s on uniform noise and concluded it was saturated and flat; on the states the ring actually occupies it is neither. TWO REASONS THIS IS NOT YET A POSITIVE RESULT, and they are the finding's real content. (1) DEGENERACY: the settled ring holds [10, 44, 35, 104, 102, 98] distinct contexts out of 128 across the six checkpoints, so the early cells -- exactly the ones carrying the dip toward 1/r -- rest on a handful of distinct windows. CIs here are cluster-bootstrapped over distinct context identities rather than rows, which is the honest width; the row bootstrap used in the first pass understated them by roughly sqrt(n/n_distinct). (2) CIRCULARITY: the settled state is PRODUCED by the dynamics whose exponent it is being used to predict, so a correlation between them is not evidence that s drives lambda_ca -- ring diversity rises across exactly these checkpoints and is downstream of the transition, not upstream. A non-circular version has to evaluate s on a context ensemble matched to the settled state's STATISTICS without being that state, and that is the next experiment, not this one.",
+ "_analysis_provenance": {
+  "script": "canalization.py",
+  "sha256": "2e1e5b54c1af6caf25401ebfb11f1eac0d91c1cacac7e7730b510e43684a03a8",
+  "imports": {
+   "experiments/canalization.py": "2e1e5b54c1af6caf25401ebfb11f1eac0d91c1cacac7e7730b510e43684a03a8",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "af0d793741cf5860af7f13d8190aebe70c524b4720d3128c2eaf0223252f0763",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/dk.py": "a744560772d94abf34aa711a29036603b6e66d3e9021a520ef37b7c8ea706e12",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "F94 eliminated the MEAN of single-token sensitivity as the explanandum for lambda_ca. Annealed mean field uses only that mean; this measures the two things it discards -- the across-context spread (masking / canalization) and the departure of the two-flip response from independence (cancellation) -- on the same three-rung ladder, in three context regimes including the settled ring the dynamics actually run in. The (spread, subadd) pair is needed because XOR and majority are both sub-additive for opposite structural reasons; DK's p2=0 line and ECA rule 150 are the cancellation anchors, rule 232 the masking anchor, and separating them is a registered gate on reading rung 3 at all."
+}

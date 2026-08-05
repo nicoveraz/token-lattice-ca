@@ -90,6 +90,14 @@ R, T = 2, 0.7                  # the developmental grid's own geometry
 N_CTX = 128                    # random windows per checkpoint
 SEED = 20260805
 
+# A CORRELATION NEEDS THE PREDICTOR TO MOVE. F93's gate, pointed at the predictor instead of the
+# target: rho between two series is uninterpretable when one of them has no range to speak from.
+# The predictor must span at least this fraction of what the target spans, in the target's units,
+# before rho is quoted in either direction. This gate was NOT in the pre-registration -- see
+# _posthoc_gate in the results -- and it is applied here because the registered primary asked for
+# a Spearman without asking whether lambda_MF varies enough for one to mean anything.
+RANGE_RATIO = 0.5
+
 
 # ------------------------------------------------------------------ the estimator
 
@@ -318,6 +326,14 @@ def analyse(res):
         ca = np.array([r["lambda_ca"] for r in rows])
         rk = lambda x: np.argsort(np.argsort(x))
         rho = float(np.corrcoef(rk(mf), rk(ca))[0, 1])
+        # n is 6, so the null is enumerable exactly -- 720 permutations, no sampling error.
+        from itertools import permutations
+        rmf, rca = rk(mf), rk(ca)
+        null = [np.corrcoef(np.array(pm), rca)[0, 1] for pm in permutations(rmf)]
+        p_perm = float(np.mean(np.abs(np.array(null)) >= abs(rho) - 1e-12))
+        mf_span, ca_span = float(mf.max() - mf.min()), float(ca.max() - ca.min())
+        span_ratio = mf_span / ca_span if ca_span else 0.0
+        rho_usable = bool(span_ratio >= RANGE_RATIO)
         # where does s cross 1/r, and where does lambda_ca cross zero?
         s_cross = next((f"{rows[i]['step']}-{rows[i+1]['step']}" for i in range(len(rows) - 1)
                         if s_arr[i] < 1.0 / R <= s_arr[i + 1]), None)
@@ -327,7 +343,8 @@ def analyse(res):
         resid = float(np.mean(np.abs(mf - ca)))
         deflates = resid <= 2 * floor
         parts.append(
-            f"RUNG 3: rho(lambda_MF, lambda_ca) = {rho:+.3f} over {len(rows)} checkpoints. "
+            f"RUNG 3, and the two legs of the registered primary must be read differently. "
+            f"THE CROSSING LEG IS DECIDED: "
             f"s crosses 1/r = {1/R:.2f} in bracket {s_cross or 'NEVER on this grid'}; lambda_ca "
             f"crosses zero in {ca_cross or 'no bracket'}. "
             + ("THE BRACKETS AGREE -- the conditional's single-token sensitivity crosses 1/r in "
@@ -336,7 +353,22 @@ def analyse(res):
                if s_cross and s_cross == ca_cross else
                "THE BRACKETS DO NOT AGREE, so the mean-field crossing is not the lambda_ca "
                "crossing on this grid; the theory does not locate the transition even if it "
-               "tracks its shape."))
+               "tracks its shape. Saturation is a real answer to 'does it cross', so this leg is "
+               "genuinely falsified, not merely unsupported."))
+        parts.append(
+            f"THE CORRELATIONAL LEG IS NOT DECIDABLE, and saying so is the point: lambda_MF spans "
+            f"{mf_span:.3f} against lambda_ca's {ca_span:.3f}, a ratio of {span_ratio:.2f} below "
+            f"the {RANGE_RATIO} a correlation needs to have leverage (s itself spans {s_arr.max()-s_arr.min():.3f} "
+            f"on [0,1] and sits {min(abs(s_arr.min()-1/R), abs(s_arr.max()-1/R)):.2f} from 1/r "
+            f"throughout). rho = {rho:+.3f}, exact permutation p = {p_perm:.2f} over all "
+            f"{len(rows)}! orderings. It is quoted here ONLY to record that it must not be quoted "
+            f"in either direction -- neither as weak evidence against the theory nor, had it come "
+            f"out positive, for it. This is F93's defect recurring inside the very finding that "
+            f"eliminated a hypothesis: a statistically-shaped criterion registered against a "
+            f"quantity with no room to vary. The gate is POST-HOC here and marked as such."
+            if not rho_usable else
+            f"rho = {rho:+.3f} (exact permutation p = {p_perm:.2f}), and lambda_MF spans "
+            f"{span_ratio:.2f} of lambda_ca's range, so the correlational leg has leverage.")
         parts.append(
             f"DEFLATION CHECK (registered): mean |lambda_MF - lambda_ca| = {resid:.4f} against a "
             f"lambda seed floor of {floor:.4f}. "
@@ -348,9 +380,25 @@ def analyse(res):
                "s does NOT reproduce lambda_ca within the floor, so the ring is not redundant: "
                "mean field captures shape without capturing value, which is what the DK rung "
                "predicted it would do."))
-        res["analysis"] = dict(rows=rows, rho=round(rho, 3), s_crossing=s_cross,
+        res["analysis"] = dict(rows=rows, rho=round(rho, 3), rho_perm_p=round(p_perm, 4),
+                               rho_usable=rho_usable, s_crossing=s_cross,
                                lambda_crossing=ca_cross, residual=round(resid, 4),
-                               lambda_seed_floor=round(floor, 4), deflates=bool(deflates))
+                               lambda_seed_floor=round(floor, 4), deflates=bool(deflates),
+                               s_span=round(float(s_arr.max() - s_arr.min()), 4),
+                               lambda_mf_span=round(mf_span, 4), lambda_ca_span=round(ca_span, 4),
+                               span_ratio=round(span_ratio, 3), range_ratio_gate=RANGE_RATIO)
+        res["_posthoc_gate"] = dict(
+            gate="rho is quoted only if lambda_MF spans >= RANGE_RATIO of lambda_ca's range",
+            registered=False,
+            why="The pre-registered primary had two legs, a crossing and a Spearman, and only the "
+                "crossing leg carried a range check. The Spearman leg was registered against a "
+                "predictor that turned out to be saturated, which is exactly the defect F93 "
+                "found and F89 before it. Applying the gate after the fact cannot rescue the "
+                "leg -- it can only stop the number being read as evidence, which is what it "
+                "does here. The crossing leg is unaffected: it was decided by saturation, and "
+                "saturation is an answer.",
+            affects="the correlational sub-claim only; the elimination rests on the crossing leg "
+                    "and on the measured flatness of s, neither of which needs rho.")
     verdict = " ".join(parts)
     print(f"\n  -> {verdict}")
     res["verdict"] = verdict
@@ -363,7 +411,18 @@ def analyse(res):
         "the same coupling ar_ca samples with -- so it is deterministic and needs two forward "
         "passes. The deflationary outcome (if s alone reproduces lambda_ca within the seed floor, "
         "the ring is redundant and the tool is s) was registered before the run as a real "
-        "possibility, which is K1 one level deeper.")
+        "possibility, which is K1 one level deeper. WHERE THE RESIDUAL LIVES, sharpened: healing "
+        "is not a free rate in this system. A damaged site whose window is clean redraws the same "
+        "token deterministically -- same context, same uniform -- so healing is forced to exactly "
+        "1 by the same CRN property that makes twins diverge by zero. It is therefore not a "
+        "per-site probability at all but a property of whether clean windows RE-FORM around "
+        "damaged sites. Creation is now measured flat. So the two terms collapse into one object: "
+        "THE SPATIAL STRUCTURE OF THE DAMAGE CLOUD, which is precisely what annealed theory "
+        "discards by construction, since its premise is that sites are independently "
+        "re-randomised each step. Rung 2 already contains a validated instance: the single rule "
+        "mean field misses out of 19 is 232, majority -- the canonical CANALIZING function, whose "
+        "response to perturbation is nonlinear in how many inputs are perturbed and which "
+        "per-site sensitivity averages away by construction.")
 
 
 if __name__ == "__main__":

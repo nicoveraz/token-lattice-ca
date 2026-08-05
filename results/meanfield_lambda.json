@@ -245,23 +245,36 @@
    }
   ],
   "rho": -0.257,
+  "rho_perm_p": 0.6583,
+  "rho_usable": false,
   "s_crossing": null,
   "lambda_crossing": "256-512",
   "residual": 0.445,
   "lambda_seed_floor": 0.0228,
-  "deflates": false
+  "deflates": false,
+  "s_span": 0.0424,
+  "lambda_mf_span": 0.0496,
+  "lambda_ca_span": 0.2849,
+  "span_ratio": 0.174,
+  "range_ratio_gate": 0.5
  },
- "verdict": "CALIBRATION FIRST (the rungs, read before the model). Rung 1: mean field puts DK's damage criticality at p1 = 0.5 where the literature puts it near 0.80 -- an error of -38.2%, low, which is the direction annealed theory always errs because it ignores descendant overlap.  Rung 2: on 18 elementary rules of known class it recovers the ordered-vs-rest split 94% of the time.  So lambda_MF is a SHAPE prediction, not a value prediction, and nothing below is quoted as a measurement. RUNG 3: rho(lambda_MF, lambda_ca) = -0.257 over 6 checkpoints. s crosses 1/r = 0.50 in bracket NEVER on this grid; lambda_ca crosses zero in 256-512. THE BRACKETS DO NOT AGREE, so the mean-field crossing is not the lambda_ca crossing on this grid; the theory does not locate the transition even if it tracks its shape. DEFLATION CHECK (registered): mean |lambda_MF - lambda_ca| = 0.4450 against a lambda seed floor of 0.0228. s does NOT reproduce lambda_ca within the floor, so the ring is not redundant: mean field captures shape without capturing value, which is what the DK rung predicted it would do.",
+ "verdict": "CALIBRATION FIRST (the rungs, read before the model). Rung 1: mean field puts DK's damage criticality at p1 = 0.5 where the literature puts it near 0.80 -- an error of -38.2%, low, which is the direction annealed theory always errs because it ignores descendant overlap.  Rung 2: on 18 elementary rules of known class it recovers the ordered-vs-rest split 94% of the time.  So lambda_MF is a SHAPE prediction, not a value prediction, and nothing below is quoted as a measurement. RUNG 3, and the two legs of the registered primary must be read differently. THE CROSSING LEG IS DECIDED: s crosses 1/r = 0.50 in bracket NEVER on this grid; lambda_ca crosses zero in 256-512. THE BRACKETS DO NOT AGREE, so the mean-field crossing is not the lambda_ca crossing on this grid; the theory does not locate the transition even if it tracks its shape. Saturation is a real answer to 'does it cross', so this leg is genuinely falsified, not merely unsupported. THE CORRELATIONAL LEG IS NOT DECIDABLE, and saying so is the point: lambda_MF spans 0.050 against lambda_ca's 0.285, a ratio of 0.17 below the 0.5 a correlation needs to have leverage (s itself spans 0.042 on [0,1] and sits 0.33 from 1/r throughout). rho = -0.257, exact permutation p = 0.66 over all 6! orderings. It is quoted here ONLY to record that it must not be quoted in either direction -- neither as weak evidence against the theory nor, had it come out positive, for it. This is F93's defect recurring inside the very finding that eliminated a hypothesis: a statistically-shaped criterion registered against a quantity with no room to vary. The gate is POST-HOC here and marked as such. DEFLATION CHECK (registered): mean |lambda_MF - lambda_ca| = 0.4450 against a lambda seed floor of 0.0228. s does NOT reproduce lambda_ca within the floor, so the ring is not redundant: mean field captures shape without capturing value, which is what the DK rung predicted it would do.",
  "_analysis_provenance": {
   "script": "meanfield_lambda.py",
-  "sha256": "425695906f97c021951f6a13295c4cf185909f8a7b68ad613033a476420e2485",
+  "sha256": "af0d793741cf5860af7f13d8190aebe70c524b4720d3128c2eaf0223252f0763",
   "imports": {
    "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
-   "experiments/meanfield_lambda.py": "425695906f97c021951f6a13295c4cf185909f8a7b68ad613033a476420e2485",
+   "experiments/meanfield_lambda.py": "af0d793741cf5860af7f13d8190aebe70c524b4720d3128c2eaf0223252f0763",
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
   },
   "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
  },
- "_note": "Derives lambda_ca from the conditional's single-token sensitivity via annealed mean field (Derrida-Pomeau), tested on the project's own ladder: DK first (known p_c, so the theory's error is calibrated before use), then ECA (known classes), then the model. s is computed EXACTLY as the inverse-CDF disagreement probability between two conditionals -- the same coupling ar_ca samples with -- so it is deterministic and needs two forward passes. The deflationary outcome (if s alone reproduces lambda_ca within the seed floor, the ring is redundant and the tool is s) was registered before the run as a real possibility, which is K1 one level deeper."
+ "_note": "Derives lambda_ca from the conditional's single-token sensitivity via annealed mean field (Derrida-Pomeau), tested on the project's own ladder: DK first (known p_c, so the theory's error is calibrated before use), then ECA (known classes), then the model. s is computed EXACTLY as the inverse-CDF disagreement probability between two conditionals -- the same coupling ar_ca samples with -- so it is deterministic and needs two forward passes. The deflationary outcome (if s alone reproduces lambda_ca within the seed floor, the ring is redundant and the tool is s) was registered before the run as a real possibility, which is K1 one level deeper. WHERE THE RESIDUAL LIVES, sharpened: healing is not a free rate in this system. A damaged site whose window is clean redraws the same token deterministically -- same context, same uniform -- so healing is forced to exactly 1 by the same CRN property that makes twins diverge by zero. It is therefore not a per-site probability at all but a property of whether clean windows RE-FORM around damaged sites. Creation is now measured flat. So the two terms collapse into one object: THE SPATIAL STRUCTURE OF THE DAMAGE CLOUD, which is precisely what annealed theory discards by construction, since its premise is that sites are independently re-randomised each step. Rung 2 already contains a validated instance: the single rule mean field misses out of 19 is 232, majority -- the canonical CANALIZING function, whose response to perturbation is nonlinear in how many inputs are perturbed and which per-site sensitivity averages away by construction.",
+ "_posthoc_gate": {
+  "gate": "rho is quoted only if lambda_MF spans >= RANGE_RATIO of lambda_ca's range",
+  "registered": false,
+  "why": "The pre-registered primary had two legs, a crossing and a Spearman, and only the crossing leg carried a range check. The Spearman leg was registered against a predictor that turned out to be saturated, which is exactly the defect F93 found and F89 before it. Applying the gate after the fact cannot rescue the leg -- it can only stop the number being read as evidence, which is what it does here. The crossing leg is unaffected: it was decided by saturation, and saturation is an answer.",
+  "affects": "the correlational sub-claim only; the elimination rests on the crossing leg and on the measured flatness of s, neither of which needs rho."
+ }
 }

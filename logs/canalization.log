@@ -1,0 +1,49 @@
+=== RUNG 1: Domany-Kinzel, analytic ===
+  w18_zp     p1=0.801  s=0.8010  spread=0.000000  subadd=+0.9604
+  w18_hwd    p1=0.8087  s=0.8087  spread=0.000000  subadd=+0.9634
+
+=== RUNG 2: elementary CA, exact -- and the registered gate ===
+  rule 232 (majority): spread=0.2887 subadd=+0.2500
+  rule 150 (XOR):      spread=0.0000 subadd=+1.0000
+  -> gate PASSES
+
+=== RUNG 3: EleutherAI/pythia-410m, r=2, T=0.7 ===
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:57,  2.48it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 239.37it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 204.13it/s]Loading weights:  63%|██████▎   | 183/292 [00:01<00:00, 194.91it/s]Loading weights:  73%|███████▎  | 213/292 [00:01<00:00, 195.27it/s]Loading weights:  82%|████████▏ | 239/292 [00:01<00:00, 191.44it/s]Loading weights:  90%|█████████ | 263/292 [00:01<00:00, 172.19it/s]Loading weights:  97%|█████████▋| 283/292 [00:01<00:00, 166.10it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 174.34it/s]
+  step128: pools random=50275 text=47455 settled=384 (45s)
+    random   s=0.8210  spread=0.0951 [0.08285, 0.10557]  resid=0.0616  subadd=+0.0849  H=6.90 (1s)
+    text     s=0.7704  spread=0.1741 [0.1704, 0.21479]  resid=0.0966  subadd=+0.0222  H=4.83 (1s)
+    settled  s=0.6246  spread=0.2099 [0.16706, 0.22211]  resid=0.2086  subadd=-0.1415  H=0.16 (1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:50,  2.63it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 325.82it/s]Loading weights:  65%|██████▌   | 190/292 [00:00<00:00, 319.79it/s]Loading weights:  83%|████████▎ | 243/292 [00:01<00:00, 228.06it/s]Loading weights:  96%|█████████▌| 281/292 [00:01<00:00, 213.03it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 224.48it/s]
+  step256: pools random=50275 text=47455 settled=384 (42s)
+    random   s=0.8804  spread=0.0887 [0.07418, 0.10199]  resid=0.0561  subadd=+0.0607  H=5.96 (1s)
+    text     s=0.8268  spread=0.1317 [0.1213, 0.18171]  resid=0.0941  subadd=+0.0393  H=4.44 (1s)
+    settled  s=0.5252  spread=0.2826 [0.25937, 0.29396]  resid=0.2294  subadd=-0.2334  H=0.64 (1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.43it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 304.19it/s]Loading weights:  64%|██████▍   | 187/292 [00:00<00:00, 221.80it/s]Loading weights:  79%|███████▉  | 231/292 [00:01<00:00, 203.97it/s]Loading weights:  91%|█████████ | 265/292 [00:01<00:00, 190.28it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 193.18it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 191.25it/s]
+  step512: pools random=50275 text=47455 settled=384 (43s)
+    random   s=0.8380  spread=0.1090 [0.09567, 0.12112]  resid=0.0753  subadd=+0.0713  H=4.92 (1s)
+    text     s=0.8352  spread=0.1108 [0.09997, 0.12565]  resid=0.0863  subadd=+0.0393  H=3.93 (1s)
+    settled  s=0.5673  spread=0.3059 [0.27131, 0.32596]  resid=0.2792  subadd=-0.2235  H=0.43 (1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:58,  2.45it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 301.45it/s]Loading weights:  63%|██████▎   | 184/292 [00:00<00:00, 225.27it/s]Loading weights:  78%|███████▊  | 227/292 [00:01<00:00, 223.44it/s]Loading weights:  90%|████████▉ | 262/292 [00:01<00:00, 218.96it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 209.18it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 204.57it/s]
+  step1000: pools random=50275 text=47455 settled=384 (43s)
+    random   s=0.8096  spread=0.1379 [0.1207, 0.15474]  resid=0.1048  subadd=+0.0586  H=3.73 (1s)
+    text     s=0.8441  spread=0.1299 [0.10119, 0.14088]  resid=0.1070  subadd=+0.0316  H=3.46 (1s)
+    settled  s=0.8567  spread=0.1629 [0.16902, 0.20443]  resid=0.1334  subadd=-0.0050  H=3.06 (1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.44it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 304.86it/s]Loading weights:  64%|██████▍   | 187/292 [00:00<00:00, 340.92it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 262.41it/s]Loading weights:  97%|█████████▋| 283/292 [00:01<00:00, 239.99it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 239.54it/s]
+  step2000: pools random=50275 text=47455 settled=384 (43s)
+    random   s=0.8342  spread=0.1277 [0.11004, 0.14286]  resid=0.1033  subadd=+0.0356  H=3.09 (1s)
+    text     s=0.8596  spread=0.1403 [0.14034, 0.18526]  resid=0.1180  subadd=+0.0056  H=3.04 (1s)
+    settled  s=0.8388  spread=0.1586 [0.14896, 0.17083]  resid=0.1210  subadd=+0.0304  H=3.08 (1s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:01,  2.40it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 302.34it/s]Loading weights:  64%|██████▍   | 187/292 [00:00<00:00, 311.10it/s]Loading weights:  82%|████████▏ | 239/292 [00:00<00:00, 266.55it/s]Loading weights:  96%|█████████▌| 279/292 [00:01<00:00, 246.56it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 244.28it/s]
+  step4000: pools random=50275 text=47455 settled=384 (43s)
+    random   s=0.8205  spread=0.1323 [0.1176, 0.14495]  resid=0.1236  subadd=+0.0390  H=2.97 (1s)
+    text     s=0.8657  spread=0.1434 [0.128, 0.16653]  resid=0.1255  subadd=+0.0156  H=2.86 (1s)
+    settled  s=0.8364  spread=0.1545 [0.1639, 0.17143]  resid=0.1249  subadd=+0.0152  H=2.65 (1s)
+
+  regime      s span  spread span     CI w  resid span  subadd span moves
+  random      0.0707       0.0492   0.0284      0.0675       0.0493 False
+  text        0.0953       0.0633   0.0423      0.0393       0.0338 False
+  settled     0.3314       0.1515   0.0348      0.1582       0.2638 False
+
+  -> CALIBRATION FIRST. Rung 1 (DK, analytic): on the p2=0 line sensitivity is p1 in every context, so spread is EXACTLY zero while sub-additivity is maximal -- a pure cancellation anchor. Rung 2 (ECA, exact): rule 232 (majority) spread=0.2887 subadd=0.25, rule 150 (XOR) spread=0.0 subadd=1.0 -- the registered gate PASSES, so the (spread, subadd) pair does separate masking from cancellation. KILL, in the regime that matters: spread spans only 0.1515 against a mean CI width of 0.0348 in the settled regime, so it does not clear the range gate declared before the run. The moving variable is not in the two-token response function, and the next object is the full Derrida curve at finite damage rather than the local response. Note that the random regime does not move either. F94'S OWN PRIMARY, RE-EVALUATED IN THIS REGIME. lambda_MF spans 0.4892 against lambda_ca's 0.285, a ratio of 1.717 -- so unlike F94's random-window measurement (ratio 0.29) the predictor here HAS range, and the correlational leg is interpretable for the first time: rho = 0.771, exact permutation p = 0.1028. s falls to 0.5252 against the mean-field critical value 0.5 but still does not cross it, so the crossing leg fails again, by far less. THE REGIME MATTERED: F94 measured s on uniform noise and concluded it was saturated and flat; on the states the ring actually occupies it is neither. TWO REASONS THIS IS NOT YET A POSITIVE RESULT, and they are the finding's real content. (1) DEGENERACY: the settled ring holds [10, 44, 35, 104, 102, 98] distinct contexts out of 128 across the six checkpoints, so the early cells -- exactly the ones carrying the dip toward 1/r -- rest on a handful of distinct windows. CIs here are cluster-bootstrapped over distinct context identities rather than rows, which is the honest width; the row bootstrap used in the first pass understated them by roughly sqrt(n/n_distinct). (2) CIRCULARITY: the settled state is PRODUCED by the dynamics whose exponent it is being used to predict, so a correlation between them is not evidence that s drives lambda_ca -- ring diversity rises across exactly these checkpoints and is downstream of the transition, not upstream. A non-circular version has to evaluate s on a context ensemble matched to the settled state's STATISTICS without being that state, and that is the next experiment, not this one.
+
+wrote results/canalization.json
