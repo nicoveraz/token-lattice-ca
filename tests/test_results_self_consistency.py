@@ -236,6 +236,7 @@ _STALENESS_PAIRS = [
     ("band_screen.json", "band_screen.py"),
     ("loss_collapse.json", "loss_collapse.py"),
     ("memorization_gate_b.json", "memorization_gate_b.py"),
+    ("argmax_census_hardened.json", "argmax_census_hardened.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),

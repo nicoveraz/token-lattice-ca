@@ -104,15 +104,16 @@ def _batch_last_logits(model, batch, dev, chunk=32):
     return torch.cat(outs)
 
 
-def argmax_census(model, tok, dev, pool, rng):
+def argmax_census(model, tok, dev, pool, rng, n_starts=None):
     """F70's probe: where does the deterministic map send random two-token starts?
 
     The CA at T=0.02 is essentially argmax, so the question that matters is not how much mass the
     top token holds but whether the MAP has an attracting fixed point. Iterating (x1,x2) ->
     (x2, argmax p(.|x1,x2)) either reaches a token that maps to itself, or cycles, or wanders.
     """
+    n_starts = N_STARTS if n_starts is None else n_starts   # additive: default unchanged
     endpoints, fixed, cyclic = [], 0, 0
-    for _ in range(N_STARTS):
+    for _ in range(n_starts):
         ctx = [int(x) for x in rng.choice(pool, size=2)]
         seen, end = set(), ctx[-1]
         for _ in range(MAX_STEPS):
@@ -134,11 +135,11 @@ def argmax_census(model, tok, dev, pool, rng):
         endpoints.append(end)
     cnt = collections.Counter(endpoints)
     top_tok, top_n = cnt.most_common(1)[0]
-    return dict(n_starts=N_STARTS, n_distinct_endpoints=len(cnt),
-                modal_endpoint_share=round(top_n / N_STARTS, 4),
+    return dict(n_starts=n_starts, n_distinct_endpoints=len(cnt),
+                modal_endpoint_share=round(top_n / n_starts, 4),
                 modal_endpoint_token=tok.decode([int(top_tok)]),
-                fixed_point_fraction=round(fixed / N_STARTS, 4),
-                cyclic_fraction=round(cyclic / N_STARTS, 4),
+                fixed_point_fraction=round(fixed / n_starts, 4),
+                cyclic_fraction=round(cyclic / n_starts, 4),
                 # FULL histogram, added for #98's re-run. F84 could state that the modal endpoint
                 # WANDERS ('\n', '.', ',', ' the') but not whether that is one funnel with a
                 # near-tie at the top or genuinely different attractors, because only the modal
