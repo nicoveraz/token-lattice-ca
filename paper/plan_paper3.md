@@ -44,6 +44,20 @@ paragraph paper 2 will ever get.
   same way (e.g. repetition under nucleus sampling, or MAUVE-style degeneration) — cheap
   (generation only, models cached) and it either corroborates or kills.
 
+## 2b. The taxonomy line, after its novelty check (F90 → F91)
+
+The argmax-map taxonomy was briefly the most interesting thing on the board. Its scoped novelty
+check (104/104 agents) returned **PARTIALLY ANTICIPATED** and, worse for us, a directional prior
+(Kim & Rush 2016) that exposed F90's recipe association as **pooling two opposite mechanisms** —
+distillation *raises* fixed-point abundance while fragmenting basins; pruning and annealing
+*eliminate* fixed points. What survives is narrower: the census separates **abundance** from
+**concentration**, which "peakedness" conflates. At n = 2 distilled models that is a hypothesis.
+
+**Consequence for this decision:** the taxonomy cannot carry branch A. It needs Wang et al.
+(COLM 2026), ShortOPD, the Benchmark Illusion and Kim & Rush cited as prior art, and its own
+contribution reduces to an instrument plus an unpowered association. **F86 remains the anchor**,
+and the recommendation below is unchanged.
+
 ## 3. Branch A — the third paper
 
 **Thesis:** *a cheap black-box battery, validated by known-answer gates, characterises language

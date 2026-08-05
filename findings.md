@@ -3407,6 +3407,77 @@ synthesis).** What returned is enough to place two claims and not the third:
 Read together: the *object* is not new, the *census* and its taxonomy may be, and the training-recipe
 correlate is the interesting part and the one with no literature check behind it yet.
 
+### F91 — the recipe correlate is PARTIALLY ANTICIPATED, and F90 pooled two opposite mechanisms
+The scoped novelty check ran clean (104/104 agents, zero errors) on the one claim F90 left
+unverified. It returns **PARTIALLY ANTICIPATED**, and — more usefully — a directional prior that
+forced a reanalysis of our own data and found a defect in F90.
+
+**What is taken, and must be cited rather than claimed:**
+
+- **The pruning arm is TAKEN outright.** Wang et al. (arXiv:2510.22228, COLM 2026) quantify
+  pruning-induced looping with a Loop Fraction metric (0.3 → >0.8 for s1.1-7B after ONE pruned
+  layer; §5.1 is titled "Repetitive Reasoning Loops after Layer Pruning"), and Shrestha et al.
+  (arXiv:2602.01997) already cite it as settled background: *"Prior work has primarily attributed
+  pruning-induced performance degradation to looping and repetitive outputs."*
+- **The taxonomy instinct is nearly scooped, three weeks ago.** ShortOPD (arXiv:2607.13124,
+  14 Jul 2026) reports **three regimes** under structured depth pruning — coherent n-gram looping,
+  then incoherent "token salad" where loops stop forming, then trivial single-token loops. That
+  structurally rhymes with funnel/none/fragmented. Its axis is pruning *depth within one model* at
+  temperature 0.8, not recipe across a population, and a full-text grep returns **zero** hits for
+  argmax, attractor or fixed point — but "compression produces qualitatively distinct degeneration
+  regimes" is now published.
+- **The argmax-map framing has its closest pre-emption** in "The Benchmark Illusion"
+  (arXiv:2606.17609): pruning *"breaks greedy answer production before it breaks candidate-supported
+  recognition"*, with the gold token *"demoted, not erased"* (median rank 3.5). That is our
+  mechanism — the top-1 map degrading relative to the distribution it is read from — measured at
+  rank level.
+- **The general sentence is taken:** "a recipe change moves greedy degeneration" (Li et al.,
+  NeurIPS 2023: rep-2 47.05% → 9.78% at fixed model and decoder).
+
+**What no verified source does:** census fixed points of the iterated two-token argmax map, name
+absorbing tokens in TOKEN space (distinct from activation-space attention sinks), or sort **shipped
+base checkpoints by production recipe** on any degeneration or attractor metric. Sheared LLaMA
+(arXiv:2310.06694) is the one paper comparing pruned against from-scratch at matched size, and its
+entire eval is accuracy, perplexity and win-rate — grep for degenerat/repetit/greedy/decod over the
+full text and appendices returns zero.
+
+**THE DIRECTIONAL THREAT, AND WHAT IT EXPOSED IN OUR OWN DATA.** Kim & Rush (EMNLP 2016) measured
+that sequence-level distillation makes the student's distribution *more peaked* — mode mass
+p(t=ŷ) rising **0.9% → 16.9%**, explicitly so that *"the argmax is much easier to find"*. That
+predicts distilled models should be **more** funnel-like, the opposite sign to F90's reading.
+Re-sorting our census by fixed-point **abundance** rather than by class resolves it — and refutes
+F90's framing:
+
+```
+  fixed-point abundance (fix)          modal share      class        recipe
+  helium              1.000                 0.604       funnel       from-scratch
+  LFM2-2.6B           0.906                 0.031       fragmented   unclear
+  gemma-2-2b          0.833                 0.062       fragmented   DISTILLED
+  llm-jp              0.776                 0.760       funnel       from-scratch
+  ...
+  OLMo-2              0.005                 0.786       none         ANNEALED
+  Llama-3.2           0.000                 0.432       none         PRUNED+DISTILLED
+```
+
+**gemma-2 has the third-highest fixed-point abundance of any model measured.** Kim & Rush's
+prediction is *confirmed*, not contradicted — distillation does concentrate the conditional, and it
+shows up as more fixed points. What gemma-2 lacks is not fixed points but a single dominant
+**basin**.
+
+So **F90's "no modified model is a funnel" pools two opposite mechanisms**: distillation *raises*
+abundance while fragmenting basins (gemma-2, LFM2 at the top of the abundance column), while
+pruning+distillation and annealing *eliminate* fixed points entirely (Llama-3.2 at 0.000, OLMo-2 at
+0.005 — the bottom). Those are opposite ends of the same axis reported as one association. **That is
+F87's own defect — "no attractor is two mechanisms" — committed again one level up**, and only the
+literature's directional prior surfaced it.
+
+**The surviving, defensible claim is narrower and better:** the argmax census separates
+**abundance** (how many fixed points) from **concentration** (whether one basin dominates), two
+properties that "peakedness" conflates — Kim & Rush's p(t=ŷ) speaks only to the first. The recipe
+association lives on the *concentration* axis, and at n = 2 distilled models it is a hypothesis, not
+a result. Any write-up must cite Wang et al., ShortOPD, the Benchmark Illusion and Kim & Rush, and
+must not claim "recipe changes degeneration" or "pruning causes loops" as ours.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
