@@ -253,7 +253,11 @@ def analyse(res):
 
     if len(toks) > 1:
         parts.append(
-            f"KILL CONDITION HIT: the endpoint token is not stable across checkpoints ({toks}), so "
+            f"KILL CONDITION HIT: the endpoint token is not stable across checkpoints "
+            # sorted: a set's repr order is not stable across runs, so an unsorted one
+            # makes the verdict string differ between identical re-runs -- a spurious
+            # diff that would recur forever and train people to ignore restamp diffs.
+            f"({sorted(toks)}), so "
             f"'the basin' is not one quantity. The single fraction above pools different attractors "
             f"and per-token basins must be reported instead. F63 saw the same across models.")
     elif toks:
