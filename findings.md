@@ -3307,6 +3307,106 @@ F68's binary null restated: *having* the attractor carries no information about 
 — but branch A of `plan_paper3.md` must carry the word "conditional", and the sensitivity nulls
 publish with the anchor, not after a reviewer runs them first.
 
+### F88 — λ_ca vs loss is NOT DECIDABLE, and the knife-edge was mine (#84)
+#84 asked whether λ_ca **collapses** against loss rather than step: if the four sizes' curves land
+on top of each other when plotted against loss, the transition is a property of *how good* the
+model is rather than *how long* it trained, and C20's learning-rate confound dissolves. Gate 0
+established the noise floor was free — PolyPythias publishes 9 seeds × five sizes on our exact
+grid — so this ran at the supercollapse bar (residual against a measured seed floor,
+arXiv:2507.02119) rather than by eye. 24 Pile-slice losses + 135 floor cells, zero failures.
+
+```
+  across-size residual at matched loss       0.0254
+  across-size residual at matched log-step   0.0243
+  combined seed floor                        0.0247
+```
+
+**Both alignments sit AT the floor and differ by less than it.** The pre-registered rule ordered
+`residual(loss) < residual(step)` with no tolerance, so it returned "DOES NOT collapse" — on a gap
+of 0.0011, which is **4% of the noise it is being compared against**. That is the knife-edge defect
+this project has hit repeatedly (F68's `|ρ|≥0.6` boundary, #93's band), and `dp_calibration`'s rule
+is the fix: a margin swamped by its own noise decides nothing. The verdict is now **NOT DECIDABLE**,
+with a branch added for it.
+
+What the data *does* say is worth stating: the sizes' λ_ca curves agree to within seed noise under
+**either** organising variable. That is not a null about loss — it is the test being underpowered
+to discriminate at this grid resolution, and the fix is more checkpoints per size (finer loss
+spacing), not more sizes. F53's separate finding — that λ_ca is not a monotone transform of loss —
+is untouched.
+
+### F89 — memorization is vacuous by erasure, and the registered criterion tested the wrong thing (#102)
+Gate A verified the external anchor decisively (485,171 memorized sequences for duped.410m;
+memorized NLL 0.699 vs 3.044 for matched Pile controls, 3.0 control-sd). Gate B then asked the
+question F72 makes mandatory: **at what radius does the ring retain a memorized sequence at all?**
+
+```
+     r      memorized   control     diff        95% CI        separates
+     2        0.061      0.031     +0.031   [+0.012,+0.049]     yes
+     4        0.019      0.011     +0.008   [+0.000,+0.015]     yes
+     8        0.040      0.015     +0.025   [+0.002,+0.062]     yes
+    16        0.068      0.024     +0.044   [+0.014,+0.085]     yes
+    32        0.079      0.026     +0.053   [+0.015,+0.101]     yes
+```
+
+**The registered primary passes at every radius, and the gate still fails.** The criterion asked
+for the smallest r where memorized retention *exceeds control beyond the CI* — a **separation**
+test. But this gate's own known-answer check defines erasure as retention below 0.15 (the F72
+control), and memorized retention **peaks at 0.079**. So every "separation" above is a difference
+between two erasures — 92% erased against 97% erased — and reporting it as "retained" would be
+passing off a statistically significant difference as a scientifically usable one.
+
+**The mis-specification is the finding.** I registered SEPARATION where the question needed
+RETENTION, and only the gate's own control caught it. Applying the gate's declared standard to its
+own primary is the fix; weakening the standard would not have been. #102 closes as **vacuous by
+erasure** at every radius up to 32 — which covers the anchor's own 32-token prefix convention — so
+basin width is not measurable this way, and the memorization thread ends cheaply, before the
+experiment it would have licensed.
+
+### F90 — the funnel/none/fragmented taxonomy is stable, survives its confound, and is partly anticipated
+F87 classified 15 families' argmax maps from 24 starts on one census seed. Hardened: **96 starts ×
+two independent census seeds**, class rule registered before the data, stability required before
+any class is claimed.
+
+**17 of 17 models keep their class across both seeds.** The taxonomy is a stable property of each
+map at this resolution, not a draw artifact.
+
+```
+  funnel      8   SmolLM, Qwen1.5, starcoder2, helium, llm-jp, Minerva, pythia-410m, -deduped
+  none        6   gpt-neo-2.7B, polyglot-ko, OLMo-2, bloom, Llama-3.2, stablelm
+  fragmented  2   gemma-2 (fix 0.83, modal 0.05, 23 endpoints), LFM2 (fix 0.88, modal 0.04)
+  borderline  1   Falcon3-1B
+```
+
+**The dedup confound is survived**: pythia-410m and pythia-410m-deduped — same tokenizer,
+architecture and schedule, differing only in corpus deduplication — are both **funnel**. The
+recipe correlate's cheapest confound does not explain it.
+
+**The recipe association, stated descriptively as registered (no test at this n):** all 8 funnels
+are from-scratch models; **no modified model (distilled, pruned, annealed) is a funnel** — they are
+none (OLMo-2, Llama-3.2), fragmented (gemma-2), or borderline (Falcon3). With 4–5 modified models
+that is a pattern, not a result, and the labels are documentation-derived rather than measured.
+
+**Novelty check (deep-research, incomplete — session limit killed 32 of 100 agents and the
+synthesis).** What returned is enough to place two claims and not the third:
+
+- **Fixed points of LM token maps are PRIOR ART.** arXiv:2410.06287 exploits fixed points in
+  autoregressive models to craft non-halting queries and **proves a temperature-zero theorem**:
+  a repeating cyclic token sequence observed beyond the context window persists forever. It
+  demonstrates cross-model prevalence (97% GPT-4o vs 19% Gemini Pro 1.5) but performs **no census,
+  no basin measurement, and no taxonomy**, and works at full context rather than a two-token window.
+- **"LLM as dynamical system with attractors" is PRIOR ART.** arXiv:2502.15208 formalises iterated
+  paraphrasing as a discrete dynamical system and finds period-2 limit cycles across 9 models with
+  a per-model periodicity degree (0.60–0.92) — cross-model attractor quantification, but one
+  qualitative attractor type and no fixed-point census over random starts.
+- **Repetition self-reinforcement is PRIOR ART** (arXiv:2206.02369, Xu et al.).
+- **The taxonomy itself and the recipe correlate are UNPLACED.** The agents verifying the
+  distillation/pruning literature — precisely claim 3's threat — are the ones that died on the
+  session limit. **Claim 3 must be treated as unverified**, and the check re-run, before the
+  recipe association appears in any write-up.
+
+Read together: the *object* is not new, the *census* and its taxonomy may be, and the training-recipe
+correlate is the interesting part and the one with no literature check behind it yet.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

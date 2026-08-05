@@ -1,0 +1,25 @@
+[gateb] pass 1 00:43
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7266.01it/s]
+EleutherAI/pythia-410m loaded
+  r=2   mem: retention 0.062 (27s/batch)
+  r=2   ctl: retention 0.031 (27s/batch)
+  r=4   mem: retention 0.019 (33s/batch)
+  r=4   ctl: retention 0.011 (33s/batch)
+  r=8   mem: retention 0.040 (48s/batch)
+  r=8   ctl: retention 0.015 (48s/batch)
+  r=16  mem: retention 0.068 (70s/batch)
+  r=16  ctl: retention 0.024 (70s/batch)
+  r=32  mem: retention 0.079 (123s/batch)
+  r=32  ctl: retention 0.026 (122s/batch)
+
+     r  memorized   control     diff             95% CI sep
+     2      0.061     0.031   +0.031 [+0.012,+0.049] True
+     4      0.019     0.011   +0.008 [+0.000,+0.015] True
+     8      0.040     0.015   +0.025 [+0.002,+0.062] True
+    16      0.068     0.024   +0.044 [+0.014,+0.085] True
+    32      0.079     0.026   +0.053 [+0.015,+0.101] True
+
+  -> F72 control holds: r=2 erases both arms (0.06/0.03). GATE B PASSES: memorized sequences are retained above matched controls from r=2 (diff +0.031, CI excludes 0). The basin-width experiment is licensed at r>=2, and its cost model should use that radius, not the project's habitual r=2. Retention is the precondition, not basin width.
+
+wrote results/memorization_gate_b.json
+[gateb] complete

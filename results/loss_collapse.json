@@ -1,0 +1,401 @@
+{
+ "loss": {
+  "pythia-70m_step128": 7.39736,
+  "pythia-70m_step256": 6.12442,
+  "pythia-70m_step512": 5.03236,
+  "pythia-70m_step1000": 3.90371,
+  "pythia-70m_step2000": 3.43344,
+  "pythia-70m_step4000": 3.2021,
+  "pythia-160m_step128": 7.29261,
+  "pythia-160m_step256": 6.13907,
+  "pythia-160m_step512": 5.01954,
+  "pythia-160m_step1000": 3.80766,
+  "pythia-160m_step2000": 3.22616,
+  "pythia-160m_step4000": 2.93157,
+  "pythia-410m_step128": 7.56735,
+  "pythia-410m_step256": 6.40984,
+  "pythia-410m_step512": 5.34867,
+  "pythia-410m_step1000": 3.88801,
+  "pythia-410m_step2000": 3.1202,
+  "pythia-410m_step4000": 2.78244,
+  "pythia-1b_step128": 6.93997,
+  "pythia-1b_step256": 5.92788,
+  "pythia-1b_step512": 4.87872,
+  "pythia-1b_step1000": 3.65074,
+  "pythia-1b_step2000": 2.98178,
+  "pythia-1b_step4000": 2.6492
+ },
+ "floor": {
+  "70m_step128_seed1": 7.38661,
+  "70m_step128_seed2": 7.41098,
+  "70m_step128_seed3": 7.4093,
+  "70m_step128_seed4": 7.39062,
+  "70m_step128_seed5": 7.39239,
+  "70m_step128_seed6": 7.40805,
+  "70m_step128_seed7": 7.41118,
+  "70m_step128_seed8": 7.40002,
+  "70m_step128_seed9": 7.40735,
+  "70m_step256_seed1": 6.11812,
+  "70m_step256_seed2": 6.13709,
+  "70m_step256_seed3": 6.12361,
+  "70m_step256_seed4": 6.11447,
+  "70m_step256_seed5": 6.11202,
+  "70m_step256_seed6": 6.10128,
+  "70m_step256_seed7": 6.10675,
+  "70m_step256_seed8": 6.10219,
+  "70m_step256_seed9": 6.11415,
+  "70m_step512_seed1": 5.03859,
+  "70m_step512_seed2": 5.05539,
+  "70m_step512_seed3": 5.02839,
+  "70m_step512_seed4": 5.04422,
+  "70m_step512_seed5": 5.07123,
+  "70m_step512_seed6": 5.02241,
+  "70m_step512_seed7": 5.03756,
+  "70m_step512_seed8": 5.03409,
+  "70m_step512_seed9": 5.03378,
+  "70m_step1000_seed1": 3.94556,
+  "70m_step1000_seed2": 3.93539,
+  "70m_step1000_seed3": 3.95016,
+  "70m_step1000_seed4": 3.91312,
+  "70m_step1000_seed5": 3.94137,
+  "70m_step1000_seed6": 3.92811,
+  "70m_step1000_seed7": 3.88908,
+  "70m_step1000_seed8": 3.90314,
+  "70m_step1000_seed9": 3.93269,
+  "70m_step2000_seed1": 3.43726,
+  "70m_step2000_seed2": 3.43971,
+  "70m_step2000_seed3": 3.43414,
+  "70m_step2000_seed4": 3.44497,
+  "70m_step2000_seed5": 3.44015,
+  "70m_step2000_seed6": 3.4303,
+  "70m_step2000_seed7": 3.44329,
+  "70m_step2000_seed8": 3.42567,
+  "70m_step2000_seed9": 3.43971,
+  "70m_step4000_seed1": 3.22244,
+  "70m_step4000_seed2": 3.21806,
+  "70m_step4000_seed3": 3.20796,
+  "70m_step4000_seed4": 3.21982,
+  "70m_step4000_seed5": 3.19829,
+  "70m_step4000_seed6": 3.20784,
+  "70m_step4000_seed7": 3.20303,
+  "70m_step4000_seed8": 3.19958,
+  "70m_step4000_seed9": 3.22929,
+  "160m_step128_seed1": 7.27951,
+  "160m_step128_seed2": 7.27677,
+  "160m_step128_seed3": 7.29039,
+  "160m_step128_seed4": 7.28739,
+  "160m_step128_seed5": 7.30367,
+  "160m_step128_seed6": 7.29377,
+  "160m_step128_seed7": 7.27863,
+  "160m_step128_seed8": 7.29848,
+  "160m_step128_seed9": 7.29054,
+  "160m_step256_seed1": 6.1476,
+  "160m_step256_seed2": 6.1328,
+  "160m_step256_seed3": 6.11853,
+  "160m_step256_seed4": 6.13704,
+  "160m_step256_seed5": 6.13463,
+  "160m_step256_seed6": 6.14463,
+  "160m_step256_seed7": 6.15703,
+  "160m_step256_seed8": 6.13742,
+  "160m_step256_seed9": 6.13263,
+  "160m_step512_seed1": 5.02052,
+  "160m_step512_seed2": 5.02383,
+  "160m_step512_seed3": 5.04266,
+  "160m_step512_seed4": 5.02346,
+  "160m_step512_seed5": 5.03025,
+  "160m_step512_seed6": 5.05543,
+  "160m_step512_seed7": 5.04956,
+  "160m_step512_seed8": 5.0379,
+  "160m_step512_seed9": 5.03593,
+  "160m_step1000_seed1": 3.84112,
+  "160m_step1000_seed2": 3.82566,
+  "160m_step1000_seed3": 3.79186,
+  "160m_step1000_seed4": 3.77054,
+  "160m_step1000_seed5": 3.83088,
+  "160m_step1000_seed6": 3.78072,
+  "160m_step1000_seed7": 3.76965,
+  "160m_step1000_seed8": 3.84142,
+  "160m_step1000_seed9": 3.792,
+  "160m_step2000_seed1": 3.20887,
+  "160m_step2000_seed2": 3.22638,
+  "160m_step2000_seed3": 3.20282,
+  "160m_step2000_seed4": 3.19848,
+  "160m_step2000_seed5": 3.21871,
+  "160m_step2000_seed6": 3.20198,
+  "160m_step2000_seed7": 3.20368,
+  "160m_step2000_seed8": 3.2017,
+  "160m_step2000_seed9": 3.22439,
+  "160m_step4000_seed1": 2.93363,
+  "160m_step4000_seed2": 2.9348,
+  "160m_step4000_seed3": 2.92589,
+  "160m_step4000_seed4": 2.92533,
+  "160m_step4000_seed5": 2.93262,
+  "160m_step4000_seed6": 2.92997,
+  "160m_step4000_seed7": 2.92688,
+  "160m_step4000_seed8": 2.91889,
+  "160m_step4000_seed9": 2.92919,
+  "410m_step256_seed1": 6.41704,
+  "410m_step256_seed2": 6.42182,
+  "410m_step256_seed3": 6.42943,
+  "410m_step256_seed4": 6.42161,
+  "410m_step256_seed5": 6.4168,
+  "410m_step256_seed6": 6.39299,
+  "410m_step256_seed7": 6.39756,
+  "410m_step256_seed8": 6.39075,
+  "410m_step256_seed9": 6.42933,
+  "410m_step512_seed1": 5.34332,
+  "410m_step512_seed2": 5.35728,
+  "410m_step512_seed3": 5.36684,
+  "410m_step512_seed4": 5.33474,
+  "410m_step512_seed5": 5.3326,
+  "410m_step512_seed6": 5.35215,
+  "410m_step512_seed7": 5.37112,
+  "410m_step512_seed8": 5.33805,
+  "410m_step512_seed9": 5.34916,
+  "410m_step2000_seed1": 3.12872,
+  "410m_step2000_seed2": 3.12783,
+  "410m_step2000_seed3": 3.11492,
+  "410m_step2000_seed4": 3.12439,
+  "410m_step2000_seed5": 3.11343,
+  "410m_step2000_seed6": 3.1169,
+  "410m_step2000_seed7": 3.13304,
+  "410m_step2000_seed8": 3.1327,
+  "410m_step2000_seed9": 3.13106
+ },
+ "_preregistration": {
+  "corpus": "NeelNanda/pile-10k fixed slice",
+  "seq_len": 1024,
+  "n_seq": 96,
+  "grid": {
+   "EleutherAI/pythia-70m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-160m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-410m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "EleutherAI/pythia-1b": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ]
+  },
+  "floor_seeds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "floor_grid": {
+   "70m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "160m": [
+    128,
+    256,
+    512,
+    1000,
+    2000,
+    4000
+   ],
+   "410m": [
+    256,
+    512,
+    2000
+   ]
+  },
+  "floored_sizes": [
+   70,
+   160,
+   410
+  ],
+  "n_interp": 20,
+  "metric": "across-size sd of lambda_ca interpolated at matched LOSS over the common loss range (20-point grid), vs the same at matched log10(step)",
+  "verdict": "COLLAPSES if residual(loss) < residual(step) AND residual(loss) <= 2x the combined seed floor; PARTIAL if only the first; DOES NOT if neither",
+  "one_b": "descriptive only -- no PolyPythias seeds exist at 1b",
+  "null_meaning": "failure to collapse means the transition is not a function of loss alone; the perplexity-proxy reading dies harder than F53 left it"
+ },
+ "analysis": {
+  "residual_at_matched_loss": 0.02537,
+  "residual_at_matched_logstep": 0.02425,
+  "combined_seed_floor": 0.02466,
+  "common_loss_range": [
+   3.2021,
+   7.2926
+  ],
+  "curves": {
+   "70": [
+    [
+     3.2021,
+     0.1707,
+     4000
+    ],
+    [
+     3.4334,
+     0.1598,
+     2000
+    ],
+    [
+     3.9037,
+     0.1565,
+     1000
+    ],
+    [
+     5.0324,
+     0.1615,
+     512
+    ],
+    [
+     6.1244,
+     0.0462,
+     256
+    ],
+    [
+     7.3974,
+     0.0694,
+     128
+    ]
+   ],
+   "160": [
+    [
+     2.9316,
+     0.1522,
+     4000
+    ],
+    [
+     3.2262,
+     0.1674,
+     2000
+    ],
+    [
+     3.8077,
+     0.1735,
+     1000
+    ],
+    [
+     5.0195,
+     0.0982,
+     512
+    ],
+    [
+     6.1391,
+     0.0938,
+     256
+    ],
+    [
+     7.2926,
+     -0.0391,
+     128
+    ]
+   ],
+   "410": [
+    [
+     2.7824,
+     0.1724,
+     4000
+    ],
+    [
+     3.1202,
+     0.1558,
+     2000
+    ],
+    [
+     3.888,
+     0.1923,
+     1000
+    ],
+    [
+     5.3487,
+     0.0679,
+     512
+    ],
+    [
+     6.4098,
+     -0.0185,
+     256
+    ],
+    [
+     7.5674,
+     -0.0926,
+     128
+    ]
+   ],
+   "1000": [
+    [
+     2.6492,
+     0.1436,
+     4000
+    ],
+    [
+     2.9818,
+     0.1474,
+     2000
+    ],
+    [
+     3.6507,
+     0.2064,
+     1000
+    ],
+    [
+     4.8787,
+     0.1235,
+     512
+    ],
+    [
+     5.9279,
+     -0.1011,
+     256
+    ],
+    [
+     6.94,
+     -0.0089,
+     128
+    ]
+   ]
+  }
+ },
+ "verdict": "lambda_ca NOT DECIDABLE against loss: across-size residual 0.0254 at matched loss vs 0.0243 at matched log-step (floored sizes 70m/160m/410m; 1b descriptive), against a combined seed floor of 0.0247. Both alignments sit AT the seed floor and differ by less than it, so this test cannot say which organising variable is better -- the sizes' curves agree to within seed noise under EITHER. That is not a null about loss; it is the test being underpowered to discriminate at this grid resolution, and the fix is more checkpoints per size (finer loss spacing), not more sizes. Reported as not decidable rather than resolved by a 4%-of-floor ordering.",
+ "_analysis_provenance": {
+  "script": "loss_collapse.py",
+  "sha256": "b7b0ece1c353a52fce0546838f40bd8b3a4219e459196be1e039d1bfbfdab124",
+  "imports": {
+   "experiments/loss_baseline.py": "3e635977be90eac2a129494b8c1a94a452028b6eba87ec704dd286d06d825a64",
+   "experiments/loss_collapse.py": "b7b0ece1c353a52fce0546838f40bd8b3a4219e459196be1e039d1bfbfdab124",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "#84: the Pile-corpus loss-vs-lambda collapse test, at the supercollapse bar (residual vs a measured seed floor, arXiv:2507.02119) using PolyPythias seeds (arXiv:2503.09543) -- Gate 0 established the floor needs no training. The NLL implementation is imported from loss_baseline (one implementation); lambda cells use run_ignited (F42). 1b enters descriptively: no seed variants exist. The metric and verdict rule were registered before any loss number existed."
+}

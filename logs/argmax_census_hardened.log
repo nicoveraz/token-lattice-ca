@@ -1,0 +1,72 @@
+[census] pass 1 01:13
+Loading weights:   0%|          | 0/420 [00:00<?, ?it/s]Loading weights: 100%|██████████| 420/420 [00:00<00:00, 6486.56it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-2.7B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...31}.attn.attention.masked_bias | UNEXPECTED |  | 
+transformer.h.{0...30}.attn.attention.bias        | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-2.7B                            none/none       fix=0.03/0.04 (444s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7187.00it/s]
+  EleutherAI/polyglot-ko-1.3b                        none/none       fix=0.03/0.03 (111s)
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4779.33it/s]
+  HuggingFaceTB/SmolLM-1.7B                        funnel/funnel     fix=0.59/0.53 (83s)
+Loading weights:   0%|          | 0/266 [00:00<?, ?it/s]Loading weights: 100%|██████████| 266/266 [00:00<00:00, 5159.55it/s]
+  LiquidAI/LFM2-2.6B                           fragmented/fragmented fix=0.88/0.94 (39s)
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5893.69it/s]
+  Qwen/Qwen1.5-1.8B                                funnel/funnel     fix=0.52/0.50 (165s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 5585.71it/s]
+  allenai/OLMo-2-0425-1B                             none/none       fix=0.01/0.00 (103s)
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/483 [00:00<?, ?it/s]Loading weights: 100%|██████████| 483/483 [00:00<00:00, 7094.08it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  bigcode/starcoder2-3b                            funnel/funnel     fix=0.68/0.77 (154s)
+Loading weights:   0%|          | 0/365 [00:00<?, ?it/s]Loading weights: 100%|██████████| 365/365 [00:00<00:00, 7609.90it/s]
+  bigscience/bloom-3b                                none/none       fix=0.01/0.02 (181s)
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 5187.60it/s]
+  google/gemma-2-2b                            fragmented/fragmented fix=0.84/0.82 (47s)
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4600.08it/s]
+  kyutai/helium-1-preview-2b                       funnel/funnel     fix=1.00/1.00 (77s)
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4033.14it/s]
+  llm-jp/llm-jp-3-1.8b                             funnel/funnel     fix=0.84/0.71 (60s)
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 4695.11it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  meta-llama/Llama-3.2-3B                            none/none       fix=0.00/0.00 (214s)
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4779.66it/s]
+  sapienzanlp/Minerva-3B-base-v1.0                 funnel/funnel     fix=0.32/0.33 (175s)
+Loading weights:   0%|          | 0/356 [00:00<?, ?it/s]Loading weights: 100%|██████████| 356/356 [00:00<00:00, 5320.71it/s]
+  stabilityai/stablelm-3b-4e1t                       none/none       fix=0.00/0.03 (152s)
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 4338.61it/s]
+  tiiuae/Falcon3-1B-Base                       borderline/borderline fix=0.20/0.23 (73s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8028.17it/s]
+  EleutherAI/pythia-410m                           funnel/funnel     fix=0.49/0.43 (35s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 18050.65it/s]
+  EleutherAI/pythia-410m-deduped                   funnel/funnel     fix=0.42/0.44 (159s)
+
+  model                                                         class recipe
+  EleutherAI/gpt-neo-2.7B                                        none from-scratch
+  EleutherAI/polyglot-ko-1.3b                                    none from-scratch
+  HuggingFaceTB/SmolLM-1.7B                                    funnel from-scratch
+  LiquidAI/LFM2-2.6B                                       fragmented unclear
+  Qwen/Qwen1.5-1.8B                                            funnel from-scratch
+  allenai/OLMo-2-0425-1B                                         none mid-trained/annealed
+  bigcode/starcoder2-3b                                        funnel from-scratch
+  bigscience/bloom-3b                                            none from-scratch
+  google/gemma-2-2b                                        fragmented distilled
+  kyutai/helium-1-preview-2b                                   funnel from-scratch
+  llm-jp/llm-jp-3-1.8b                                         funnel from-scratch
+  meta-llama/Llama-3.2-3B                                        none pruned+distilled
+  sapienzanlp/Minerva-3B-base-v1.0                             funnel from-scratch
+  stabilityai/stablelm-3b-4e1t                                   none from-scratch
+  tiiuae/Falcon3-1B-Base                                   borderline annealed-decay
+  EleutherAI/pythia-410m                                       funnel from-scratch
+  EleutherAI/pythia-410m-deduped                               funnel from-scratch (deduped corpus)
+
+  -> STABILITY: 17/17 models keep their class across two census seeds at 96 starts. The taxonomy is a stable property of each map at this resolution. DEDUP CONFOUND: pythia-410m and -deduped are the SAME class (funnel) -- corpus deduplication alone does not change the map's class, so the recipe correlate survives its cheapest confound. RECIPE ASSOCIATION (descriptive, documentation-derived labels, no test at this n): from-scratch/funnel: 8; from-scratch/none: 4; modified/borderline: 1; modified/fragmented: 1; modified/none: 2; other/fragmented: 1.
+
+wrote results/argmax_census_hardened.json
+[chain] restamping fixed_point_onset (additive gate1 edit; must reproduce bit-identically)
+[chain] done
