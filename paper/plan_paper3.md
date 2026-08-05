@@ -27,6 +27,12 @@ paragraph paper 2 will ever get.
 
 ## 2. What the anchor's fragility actually is
 
+- **The claim is CONDITIONAL, and the sensitivity analyses proving it are already run (F87):**
+  treating no-attractor families as left-censored (all 15, Gehan tau = +0.10, p = 0.72) or using a
+  threshold-free melting scalar (ρ = +0.03, p = 0.93) both return nulls, because families like
+  polyglot-ko degenerate heavily with no attractor at all. T\* predicts degeneration *within the
+  attractor-bearing regime*, full stop. Branch A's thesis must say "conditional"; the nulls ship
+  with the anchor.
 - **n = 8 finite-T\* pairs**, and this number does not grow cheaply: 7 of 15 measured families
   have no attractor (no T\* exists); second in-band members of measured families share corpora
   and add **zero** independent pairs; the five failed architectures are kernel problems, not

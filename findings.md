@@ -3269,6 +3269,44 @@ Qwen1.5-1.8B flagged at 545 s/cell during a concurrent download, and on retry ra
 in 20 min with a finite T\* that joined the primary. And a recorded load *failure* should not
 block a retry: LFM2's OSError was transient, and its silent second-pass recovery added a family.
 
+### F87 — "no attractor" is two mechanisms, and F86 is a conditional claim (band census reanalysis)
+Asked why 7 of 15 band families have no attractor, the census rider (gate1's argmax probe, run per
+model in the band screen) decomposes the answer — and two sensitivity analyses sharpen F86's scope.
+
+**"No attractor" is not one phenomenon.** From the stored census:
+
+```
+                         fix   endpoints  modal          reading
+  Llama-3.2 / OLMo-2 /  0.00      4–14    0.2–0.75      CLASS A: no fixed points — the argmax
+  bloom / (stability)                                    map wanders or cycles (F70's gpt2 case)
+  gemma-2 / LFM2        0.83–     23       0.08          CLASS B: FRAGMENTED funnels — many small
+                        0.88                             fixed points, so the ring settles into a
+                                                         mixture and no single token reaches 40%
+  gpt-neo-2.7B          0.04      12       0.50          INVERSE: ring attractor (top1 0.66) with
+                                                         no argmax fixed point — concentration
+                                                         created by temperature smoothing alone
+```
+
+Class B is F85's contested basin taken to the extreme: gemma *has* the mechanism, pluralised.
+The no-attractor modal endpoints are **digits** (`'0'`, `'1'`, `'201'`) rather than whitespace,
+and the set skews to distilled/annealed models (gemma-2, Llama-3.2, OLMo-2) — rhyming with
+Gate 2's measurement that post-training removes the attractor.
+
+**Two sensitivity analyses, run to grow F86's n, return clean nulls instead.** Treating
+no-attractor as left-censored T\* (Gehan concordance, all 15 families, 84 determinable pairs):
+tau = +0.10, p = 0.72. Replacing T\* with a threshold-free ladder AUC (defined for all 15):
+ρ = +0.03, p = 0.93. The cause is in the table: polyglot-ko (0.589) and Minerva (0.567) sit near
+the top of the repetition range with **no attractor at all** — they degenerate by a route the
+attractor axis does not see, so any single-scale encoding across regimes is falsified.
+
+**The sharpening, stated for any write-up:** F86 is — and always was, by F68's own construction —
+a **conditional** claim: *among attractor-bearing families*, the melting temperature predicts
+greedy degeneration (ρ = +0.833, n = 8, p = 0.0137). It does not extend across regimes, which is
+F68's binary null restated: *having* the attractor carries no information about degeneration;
+*where it melts* does, only where it exists. The two-regime structure is a finding, not a defect
+— but branch A of `plan_paper3.md` must carry the word "conditional", and the sensitivity nulls
+publish with the anchor, not after a reviewer runs them first.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
