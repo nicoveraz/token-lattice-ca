@@ -101,7 +101,15 @@ fingerprint capability framing (Gates 1–3) compresses to a paragraph; the API-
 
 ## 5. The recommendation
 
-**Run the second behavioural target first (~1 GPU-day), then decide.** It is the only item that
+**UPDATE 5 Aug (F93): the second target was run and it rejected itself.** Nucleus sampling
+removes greedy degeneration on all 15 families (spread 0.052 against greedy's 0.541), so the arm
+fails a dynamic-range gate and licenses no verdict on F86. Two consequences: F86 is now explicitly
+scoped to **greedy decoding**, and F92's dissociation did not reproduce (`modal` +0.405 vs T\*
++0.429 — a tie), so **F92 is a single-target result and the deflationary question is open again**.
+A valid second target must be a degeneration measure that *survives* nucleus sampling, which rules
+out most repetition metrics. That is now a design question, not a day's work.
+
+~~**Run the second behavioural target first (~1 GPU-day), then decide.**~~ It is the only item that
 changes the decision rather than decorating it: corroboration makes branch A's anchor
 two-legged and the paper real; a null makes branch B automatic and costs a day. Every other
 branch-A item is spendable after the decision.

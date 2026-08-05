@@ -3532,6 +3532,54 @@ entirely. `modal` at ρ = +0.60 (p = 0.13) is the one static predictor not obvio
 this n it cannot be separated from T\* — which is worth stating, because if `modal` survived at
 larger n the deflationary reading would change.
 
+### F93 — the second target rejects itself, and that scopes F86 rather than testing it
+`plan_paper3` recommended one measurement before the third-paper decision: a second behavioural
+target for T\*, chosen so it was not `rep_4` wearing a hat. The choice was the same repetition
+metric under **nucleus sampling** — a different *decoder*, and specifically the mitigation Holtzman
+et al. introduced for greedy degeneration, so a T\* that still predicted it would be predicting
+something the standard fix does not remove. 15 families, zero load failures, 12 greedy + 48 nucleus
+continuations each.
+
+**The target failed its own dynamic range, and the failure is the result.**
+
+```
+  greedy  rep_4   0.009 – 0.550    spread 0.541
+  nucleus rep_4   0.009 – 0.062    spread 0.052    = 10% of the reference range
+```
+
+Nucleus sampling **removed the phenomenon on every model measured**. A correlation computed against
+a target pinned at its floor measures sampling noise, so **no verdict on F86 is licensed from this
+arm** — neither corroboration nor failure. For the record it read ρ = +0.429, p_BH = 0.70, same sign
+as greedy's +0.833; with the arm rejected, the sign is not informative either.
+
+**I registered this target without a dynamic-range check — the exact gate I had already built for
+#101.** Gate B (`band_benchmark_range.py`) exists because a correlation against a floored target is
+noise, and it excluded MATH Lvl 5 for precisely this. Two weeks later I designed a new target and
+did not apply my own gate. That is the second instance of this defect in three days (F89's Gate B
+tested separation where the question needed retention), and the pattern is the same: **a
+statistically-shaped criterion applied to a quantity with no room to vary.** The gate is now in the
+script and applied to its own run rather than reported around.
+
+**What survives is a scope statement, and it is worth having.** Greedy degeneration is
+**decoder-induced**: nucleus sampling eliminates it across all 15 families, from 0.55 down to 0.06 at
+worst. So F86's anchor is correctly read as *T\* predicts degeneration **under greedy decoding***,
+not degeneration in general — which is the regime neural text degeneration was defined in
+(Holtzman), but is a real limitation that belongs in any write-up rather than being discovered by a
+reviewer.
+
+**And F92 does not reproduce here.** The strongest static predictor, `modal`, came in at +0.405
+against T\*'s +0.429 — a gap of 0.024, inside any reasonable tie band, both at p_BH = 0.70. On this
+arm the ring and the static probe are **indistinguishable**. Since the arm fails its range gate that
+is most likely the floor talking, but it is not evidence *for* F92 either: **F92 remains a
+single-target result**, and the deflationary question it appeared to settle is open again.
+
+**Consequence for the decision.** The one measurement `plan_paper3` said would change the
+third-paper call did not change it — it neither corroborated nor killed the anchor, because the
+target was mis-chosen. F86 stands where it stood, now explicitly scoped to greedy decoding. A real
+second target still needs to be found: it must be a degeneration measure that **survives nucleus
+sampling**, which by construction rules out most repetition metrics, and finding one is the open
+problem this run converted from "a day's work" into "a design question".
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

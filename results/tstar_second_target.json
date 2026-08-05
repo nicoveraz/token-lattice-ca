@@ -1,0 +1,418 @@
+{
+ "runs": {
+  "allenai/OLMo-2-0425-1B": {
+   "model": "allenai/OLMo-2-0425-1B",
+   "greedy_rep_4": 0.3283,
+   "nucleus_rep_4": 0.0047,
+   "distinct_4": 0.994,
+   "self_bleu": 0.0,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 244.6
+  },
+  "bigcode/starcoder2-3b": {
+   "model": "bigcode/starcoder2-3b",
+   "greedy_rep_4": 0.4827,
+   "nucleus_rep_4": 0.0377,
+   "distinct_4": 0.9562,
+   "self_bleu": 0.0002,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 465.6
+  },
+  "bigscience/bloom-3b": {
+   "model": "bigscience/bloom-3b",
+   "greedy_rep_4": 0.406,
+   "nucleus_rep_4": 0.003,
+   "distinct_4": 0.9955,
+   "self_bleu": 0.0,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 451.3
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "model": "EleutherAI/gpt-neo-2.7B",
+   "greedy_rep_4": 0.55,
+   "nucleus_rep_4": 0.0118,
+   "distinct_4": 0.9826,
+   "self_bleu": 0.0003,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 611.0
+  },
+  "EleutherAI/polyglot-ko-1.3b": {
+   "model": "EleutherAI/polyglot-ko-1.3b",
+   "greedy_rep_4": 0.5893,
+   "nucleus_rep_4": 0.0202,
+   "distinct_4": 0.9381,
+   "self_bleu": 0.0013,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 236.0
+  },
+  "google/gemma-2-2b": {
+   "model": "google/gemma-2-2b",
+   "greedy_rep_4": 0.388,
+   "nucleus_rep_4": 0.0162,
+   "distinct_4": 0.9753,
+   "self_bleu": 0.0002,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 444.2
+  },
+  "HuggingFaceTB/SmolLM-1.7B": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "greedy_rep_4": 0.2633,
+   "nucleus_rep_4": 0.0095,
+   "distinct_4": 0.9874,
+   "self_bleu": 0.0001,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 310.7
+  },
+  "kyutai/helium-1-preview-2b": {
+   "model": "kyutai/helium-1-preview-2b",
+   "greedy_rep_4": 0.4167,
+   "nucleus_rep_4": 0.0618,
+   "distinct_4": 0.923,
+   "self_bleu": 0.0011,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 373.7
+  },
+  "LiquidAI/LFM2-2.6B": {
+   "model": "LiquidAI/LFM2-2.6B",
+   "greedy_rep_4": 0.0093,
+   "nucleus_rep_4": 0.0095,
+   "distinct_4": 0.9877,
+   "self_bleu": 0.0001,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 389.2
+  },
+  "llm-jp/llm-jp-3-1.8b": {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "greedy_rep_4": 0.4973,
+   "nucleus_rep_4": 0.0112,
+   "distinct_4": 0.9874,
+   "self_bleu": 0.0,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 291.7
+  },
+  "meta-llama/Llama-3.2-3B": {
+   "model": "meta-llama/Llama-3.2-3B",
+   "greedy_rep_4": 0.3833,
+   "nucleus_rep_4": 0.0071,
+   "distinct_4": 0.9919,
+   "self_bleu": 0.0,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 456.9
+  },
+  "Qwen/Qwen1.5-1.8B": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "greedy_rep_4": 0.2007,
+   "nucleus_rep_4": 0.0211,
+   "distinct_4": 0.9673,
+   "self_bleu": 0.0003,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 270.4
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "greedy_rep_4": 0.5667,
+   "nucleus_rep_4": 0.0112,
+   "distinct_4": 0.9855,
+   "self_bleu": 0.0001,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 1338.7
+  },
+  "stabilityai/stablelm-3b-4e1t": {
+   "model": "stabilityai/stablelm-3b-4e1t",
+   "greedy_rep_4": 0.3529,
+   "nucleus_rep_4": 0.011,
+   "distinct_4": 0.9865,
+   "self_bleu": 0.0001,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 542.5
+  },
+  "tiiuae/Falcon3-1B-Base": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "greedy_rep_4": 0.2833,
+   "nucleus_rep_4": 0.0058,
+   "distinct_4": 0.9875,
+   "self_bleu": 0.0002,
+   "n_greedy": 12,
+   "n_nucleus": 48,
+   "secs": 262.2
+  }
+ },
+ "_preregistration": {
+  "models": {
+   "allenai/olmo": "allenai/OLMo-2-0425-1B",
+   "bigcode/starcoder2": "bigcode/starcoder2-3b",
+   "bigscience/bloom": "bigscience/bloom-3b",
+   "eleutherai-pile": "EleutherAI/gpt-neo-2.7B",
+   "eleutherai/polyglot-ko": "EleutherAI/polyglot-ko-1.3b",
+   "google-gemma": "google/gemma-2-2b",
+   "hftb": "HuggingFaceTB/SmolLM-1.7B",
+   "kyutai/helium": "kyutai/helium-1-preview-2b",
+   "liquidai/lfm2": "LiquidAI/LFM2-2.6B",
+   "llm-jp/llm-jp": "llm-jp/llm-jp-3-1.8b",
+   "meta-llama": "meta-llama/Llama-3.2-3B",
+   "qwen": "Qwen/Qwen1.5-1.8B",
+   "sapienzanlp/minerva": "sapienzanlp/Minerva-3B-base-v1.0",
+   "stability": "stabilityai/stablelm-3b-4e1t",
+   "tii": "tiiuae/Falcon3-1B-Base"
+  },
+  "top_p": 0.95,
+  "sample_T": 1.0,
+  "n_sample": 4,
+  "new_tokens": 128,
+  "ngram": 4,
+  "primary": "rho(T*, nucleus_rep_4) over finite-T* families; CORROBORATES if same sign and p<0.05, DIRECTIONALLY CONSISTENT if same sign p>=0.05, FAILS if the sign flips",
+  "deflation": "the same correlation for modal/fix/cyc/top1 on the SAME rows; any static predictor matching or beating T* means F92's dissociation does not generalise",
+  "secondary": "distinct_4 and self-BLEU descriptive only; no test registered, none run post hoc",
+  "multiplicity": "BH-FDR over the predictor family on the primary target",
+  "failure_meaning": "a sign flip demotes F86 to one-target-only and makes branch B automatic"
+ },
+ "analysis": {
+  "rows": [
+   {
+    "fam": "allenai/olmo",
+    "tstar": null,
+    "greedy": 0.3283,
+    "nucleus": 0.0047,
+    "distinct": 0.994,
+    "selfbleu": 0.0,
+    "top1": 0.1377,
+    "fix": 0.0052,
+    "cyc": 0.9843999999999999,
+    "modal": 0.78645
+   },
+   {
+    "fam": "bigcode/starcoder2",
+    "tstar": 0.3374,
+    "greedy": 0.4827,
+    "nucleus": 0.0377,
+    "distinct": 0.9562,
+    "selfbleu": 0.0002,
+    "top1": 0.54525,
+    "fix": 0.7239500000000001,
+    "cyc": 0.27605,
+    "modal": 0.38025
+   },
+   {
+    "fam": "bigscience/bloom",
+    "tstar": null,
+    "greedy": 0.406,
+    "nucleus": 0.003,
+    "distinct": 0.9955,
+    "selfbleu": 0.0,
+    "top1": 0.07289999999999999,
+    "fix": 0.0156,
+    "cyc": 0.9843999999999999,
+    "modal": 0.1875
+   },
+   {
+    "fam": "eleutherai-pile",
+    "tstar": 0.6105,
+    "greedy": 0.55,
+    "nucleus": 0.0118,
+    "distinct": 0.9826,
+    "selfbleu": 0.0003,
+    "top1": 0.6558999999999999,
+    "fix": 0.036449999999999996,
+    "cyc": 0.6667,
+    "modal": 0.5937
+   },
+   {
+    "fam": "eleutherai/polyglot-ko",
+    "tstar": null,
+    "greedy": 0.5893,
+    "nucleus": 0.0202,
+    "distinct": 0.9381,
+    "selfbleu": 0.0013,
+    "top1": 0.1895,
+    "fix": 0.0312,
+    "cyc": 0.9688,
+    "modal": 0.29685
+   },
+   {
+    "fam": "google-gemma",
+    "tstar": null,
+    "greedy": 0.388,
+    "nucleus": 0.0162,
+    "distinct": 0.9753,
+    "selfbleu": 0.0002,
+    "top1": 0.2894,
+    "fix": 0.83335,
+    "cyc": 0.16665000000000002,
+    "modal": 0.0625
+   },
+   {
+    "fam": "hftb",
+    "tstar": 0.3115,
+    "greedy": 0.2633,
+    "nucleus": 0.0095,
+    "distinct": 0.9874,
+    "selfbleu": 0.0001,
+    "top1": 0.8278,
+    "fix": 0.5625,
+    "cyc": 0.4375,
+    "modal": 0.401
+   },
+   {
+    "fam": "kyutai/helium",
+    "tstar": 0.5289,
+    "greedy": 0.4167,
+    "nucleus": 0.0618,
+    "distinct": 0.923,
+    "selfbleu": 0.0011,
+    "top1": 0.6904,
+    "fix": 1.0,
+    "cyc": 0.0,
+    "modal": 0.60415
+   },
+   {
+    "fam": "liquidai/lfm2",
+    "tstar": 0.2397,
+    "greedy": 0.0093,
+    "nucleus": 0.0095,
+    "distinct": 0.9877,
+    "selfbleu": 0.0001,
+    "top1": 0.37765,
+    "fix": 0.90625,
+    "cyc": 0.09375,
+    "modal": 0.03125
+   },
+   {
+    "fam": "llm-jp/llm-jp",
+    "tstar": 0.5935,
+    "greedy": 0.4973,
+    "nucleus": 0.0112,
+    "distinct": 0.9874,
+    "selfbleu": 0.0,
+    "top1": 0.6575500000000001,
+    "fix": 0.77605,
+    "cyc": 0.22395,
+    "modal": 0.7604
+   },
+   {
+    "fam": "meta-llama",
+    "tstar": null,
+    "greedy": 0.3833,
+    "nucleus": 0.0071,
+    "distinct": 0.9919,
+    "selfbleu": 0.0,
+    "top1": 0.15335,
+    "fix": 0.0,
+    "cyc": 0.9427,
+    "modal": 0.43225
+   },
+   {
+    "fam": "qwen",
+    "tstar": 0.298,
+    "greedy": 0.2007,
+    "nucleus": 0.0211,
+    "distinct": 0.9673,
+    "selfbleu": 0.0003,
+    "top1": 0.52765,
+    "fix": 0.5104,
+    "cyc": 0.45835000000000004,
+    "modal": 0.5104
+   },
+   {
+    "fam": "sapienzanlp/minerva",
+    "tstar": null,
+    "greedy": 0.5667,
+    "nucleus": 0.0112,
+    "distinct": 0.9855,
+    "selfbleu": 0.0001,
+    "top1": 0.2741,
+    "fix": 0.3281,
+    "cyc": 0.6718999999999999,
+    "modal": 0.91665
+   },
+   {
+    "fam": "stability",
+    "tstar": 0.0565,
+    "greedy": 0.3529,
+    "nucleus": 0.011,
+    "distinct": 0.9865,
+    "selfbleu": 0.0001,
+    "top1": 0.41600000000000004,
+    "fix": 0.0156,
+    "cyc": 0.9479,
+    "modal": 0.42710000000000004
+   },
+   {
+    "fam": "tii",
+    "tstar": null,
+    "greedy": 0.2833,
+    "nucleus": 0.0058,
+    "distinct": 0.9875,
+    "selfbleu": 0.0002,
+    "top1": 0.27865,
+    "fix": 0.21355,
+    "cyc": 0.7864500000000001,
+    "modal": 0.6875
+   }
+  ],
+  "predictors": {
+   "tstar": {
+    "rho": 0.429,
+    "p_raw": 0.294,
+    "p_bh": 0.6964
+   },
+   "modal": {
+    "rho": 0.405,
+    "p_raw": 0.3316,
+    "p_bh": 0.6964
+   },
+   "fix": {
+    "rho": 0.238,
+    "p_raw": 0.5571,
+    "p_bh": 0.6964
+   },
+   "cyc": {
+    "rho": -0.238,
+    "p_raw": 0.5571,
+    "p_bh": 0.6964
+   },
+   "top1": {
+    "rho": 0.119,
+    "p_raw": 0.7892,
+    "p_bh": 0.7892
+   }
+  },
+  "n_primary": 8,
+  "range_ratio": 0.097,
+  "has_dynamic_range": false,
+  "tied": true,
+  "tie_band": 0.15,
+  "tstar_vs_greedy_same_rows": 0.833,
+  "verdict_word": "DIRECTIONALLY CONSISTENT",
+  "best_static": "modal",
+  "deflated": false
+ },
+ "verdict": "TARGET REJECTED ON DYNAMIC RANGE, and the rejection is the finding. nucleus_rep_4 spans 0.009-0.062 (spread 0.052) against greedy rep_4's 0.009-0.550 (spread 0.541) on the same models -- 10% of the reference range. Nucleus sampling REMOVED the phenomenon: it is the mitigation Holtzman et al. introduced for exactly this, and it works on every model here. A correlation computed against a target pinned at its floor measures sampling noise, so NO verdict on F86 is licensed from this arm -- neither corroboration nor failure. I registered this target without the range check that #101's Gate B exists to perform, which is that defect a second time. THE SUBSTANTIVE READING that survives: greedy degeneration is decoder-induced and nucleus sampling eliminates it across all 15 families, so F86's anchor is correctly SCOPED to greedy decoding rather than to degeneration in general. That is a real limitation on the claim and it should be stated in any write-up. For the record, the numbers the rejected arm produced: DIRECTIONALLY CONSISTENT: rho(T*, nucleus_rep_4) = +0.429, p = 0.2940 (p_BH = 0.6964) over n = 8 finite-T* families, against +0.833 for greedy rep_4 on the same rows. The sign agrees but significance does not survive at this n -- and with the arm rejected on range, the sign itself is not informative either. DEFLATION: the strongest static predictor is modal at rho = +0.405 (p_BH = 0.6964) against T*'s +0.429. That is a TIE, not a lead -- the gap is 0.024, inside the 0.15 band, and both sit at p_BH = 0.70. F92's dissociation is NOT reproduced here: on this arm the static probe and the ring are indistinguishable. Since the arm fails its range gate, that is most likely the floor talking rather than evidence against F92 -- but it is not evidence FOR F92 either, and F92 remains a single-target result. Secondary columns (distinct-4, self-BLEU) are descriptive; no test was registered for them and none was run. n is 8-ish by construction -- families without an attractor have no T* -- so this inherits F86's fragility and does not repair it.",
+ "_analysis_provenance": {
+  "script": "tstar_second_target.py",
+  "sha256": "a27f1fe3dc07bc4ae990327d8415e0ff58db316d5c433c6c750c5c3197dcb249",
+  "imports": {
+   "experiments/degeneration_vs_tstar.py": "b8ebd4f1e10daf3788d3af3a76dde7936c6bd641e0cdb105d7938e6b74cf5cd6",
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
+   "experiments/tstar_second_target.py": "a27f1fe3dc07bc4ae990327d8415e0ff58db316d5c433c6c750c5c3197dcb249"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "The one measurement plan_paper3 recommends before the third-paper decision, doing two jobs: testing whether F86's anchor survives a SECOND behavioural target (nucleus sampling -- a different decoder, and the one introduced to fix greedy degeneration), and re-testing F92's deflationary dissociation, where `modal` survived at rho=+0.60 p=0.13 and could still invert the reading. rep_stats/PROMPTS/NEW_TOKENS imported from degeneration_vs_tstar so the new targets sit on the old axis; bh_fdr imported. Every predictor is compared on the SAME rows. A sign flip on the primary makes branch B automatic, which was registered before the data existed."
+}

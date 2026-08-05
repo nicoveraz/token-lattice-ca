@@ -212,7 +212,15 @@ def analyse(res):
     if len(sub) < 4:
         res["verdict"] = "NOT DECIDABLE -- fewer than 4 finite-T* families measured."
         print("\n  ->", res["verdict"]); return
+    # DYNAMIC-RANGE GATE, added after the run and applied to it. #101's Gate B exists because a
+    # correlation against a target with no range measures noise; I registered this target without
+    # the same check, and nucleus sampling turns out to REMOVE the phenomenon it was meant to
+    # measure -- spread 0.059 against greedy's 0.580. The gate is the same shape as Gate B's and
+    # is applied here rather than quietly reported around.
     y = np.array([r["nucleus"] for r in sub])
+    g_all = np.array([r["greedy"] for r in sub])
+    range_ratio = float((y.max() - y.min()) / max(g_all.max() - g_all.min(), 1e-9))
+    has_range = range_ratio >= 0.20
     preds = {}
     for name in ("tstar", "modal", "fix", "cyc", "top1"):
         x = np.array([r[name] for r in sub])
@@ -231,37 +239,65 @@ def analyse(res):
 
     t = preds["tstar"]
     same_sign = (t["rho"] > 0) == (rho_g > 0)
+    # A near-tie is not a lead. The registered deflation test asked whether any static predictor
+    # MATCHES or beats T*; 0.429 against 0.405 matches. Calling it a lead would be the knife-edge
+    # defect (F68's |rho|>=0.6, F88's 4%-of-floor ordering) a third time.
+    TIE = 0.15
     word = ("CORROBORATES" if same_sign and t["p_bh"] < 0.05 else
             "DIRECTIONALLY CONSISTENT" if same_sign else "FAILS")
     best_static = max((k for k in preds if k != "tstar"), key=lambda k: abs(preds[k]["rho"]))
     bs = preds[best_static]
     deflated = abs(bs["rho"]) >= abs(t["rho"])
+    tied = abs(abs(bs["rho"]) - abs(t["rho"])) < TIE
 
-    parts = [
-        f"SECOND TARGET {word}: rho(T*, nucleus_rep_4) = {t['rho']:+.3f}, p = {t['p_raw']:.4f} "
+    parts = []
+    if not has_range:
+        parts.append(
+            f"TARGET REJECTED ON DYNAMIC RANGE, and the rejection is the finding. nucleus_rep_4 "
+            f"spans {y.min():.3f}-{y.max():.3f} (spread {y.max()-y.min():.3f}) against greedy "
+            f"rep_4's {g_all.min():.3f}-{g_all.max():.3f} (spread {g_all.max()-g_all.min():.3f}) "
+            f"on the same models -- {range_ratio:.0%} of the reference range. Nucleus sampling "
+            f"REMOVED the phenomenon: it is the mitigation Holtzman et al. introduced for exactly "
+            f"this, and it works on every model here. A correlation computed against a target "
+            f"pinned at its floor measures sampling noise, so NO verdict on F86 is licensed from "
+            f"this arm -- neither corroboration nor failure. I registered this target without the "
+            f"range check that #101's Gate B exists to perform, which is that defect a second "
+            f"time. THE SUBSTANTIVE READING that survives: greedy degeneration is decoder-induced "
+            f"and nucleus sampling eliminates it across all 15 families, so F86's anchor is "
+            f"correctly SCOPED to greedy decoding rather than to degeneration in general. That is "
+            f"a real limitation on the claim and it should be stated in any write-up.")
+    parts.append(
+        (f"For the record, the numbers the rejected arm produced: " if not has_range else "")
+        + f"{word}: rho(T*, nucleus_rep_4) = {t['rho']:+.3f}, p = {t['p_raw']:.4f} "
         f"(p_BH = {t['p_bh']:.4f}) over n = {len(sub)} finite-T* families, against "
         f"{rho_g:+.3f} for greedy rep_4 on the same rows. "
         + ("F86's anchor is two-legged: T* predicts degeneration under the decoder introduced to "
            "FIX greedy degeneration, so it is not an artifact of greedy decoding."
            if same_sign and t["p_bh"] < 0.05 else
-           "The sign agrees but significance does not survive at this n -- reported as "
-           "directionally consistent, which is weaker than F86 and must be stated that way."
+           "The sign agrees but significance does not survive at this n -- and with the arm "
+           "rejected on range, the sign itself is not informative either."
            if same_sign else
-           "THE SIGN FLIPS. F86 is a one-target result about greedy decoding specifically, not "
-           "about degeneration, and per plan_paper3 branch B becomes automatic.")]
+           "THE SIGN FLIPS. On a range-valid target that would demote F86 to greedy decoding "
+           "specifically and make branch B automatic; on a rejected arm it means nothing."))
     parts.append(
         f"DEFLATION: the strongest static predictor is {best_static} at rho = {bs['rho']:+.3f} "
-        f"(p_BH = {bs['p_bh']:.4f}). "
-        + (f"It matches or beats T*, so F92's dissociation does NOT generalise to a second "
-           f"target and the cheap static census is the better instrument on this axis -- the "
-           f"ring's necessity is not established." if deflated else
-           f"T* still leads, so F92's dissociation holds on a second, independent target: the "
-           f"ring carries behavioural information the static conditional does not."))
+        f"(p_BH = {bs['p_bh']:.4f}) against T*'s {t['rho']:+.3f}. "
+        + (f"That is a TIE, not a lead -- the gap is {abs(abs(bs['rho'])-abs(t['rho'])):.3f}, "
+           f"inside the {TIE} band, and both sit at p_BH = {t['p_bh']:.2f}. F92's dissociation "
+           f"is NOT reproduced here: on this arm the static probe and the ring are "
+           f"indistinguishable. Since the arm fails its range gate, that is most likely the "
+           f"floor talking rather than evidence against F92 -- but it is not evidence FOR F92 "
+           f"either, and F92 remains a single-target result." if tied else
+           f"It matches or beats T*, so F92's dissociation does NOT generalise." if deflated else
+           f"T* leads by {abs(t['rho'])-abs(bs['rho']):.3f}, so F92's dissociation holds on a "
+           f"second target."))
     parts.append(
         "Secondary columns (distinct-4, self-BLEU) are descriptive; no test was registered for "
         "them and none was run. n is 8-ish by construction -- families without an attractor have "
         "no T* -- so this inherits F86's fragility and does not repair it.")
     res["analysis"] = dict(rows=rows, predictors=preds, n_primary=len(sub),
+                           range_ratio=round(range_ratio, 3), has_dynamic_range=bool(has_range),
+                           tied=bool(tied), tie_band=TIE,
                            tstar_vs_greedy_same_rows=round(rho_g, 3),
                            verdict_word=word, best_static=best_static, deflated=bool(deflated))
     res["verdict"] = " ".join(parts)
