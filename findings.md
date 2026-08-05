@@ -3580,6 +3580,76 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F94 — λ_ca is not derivable from single-token sensitivity: the mean-field route, run on the ladder
+The three failed explanandum routes (F78, F79, F80) all tried to *correlate* λ_ca with something
+internal. This tries to **derive** it from something simpler and still black-box, using the classical
+annealed mean field for damage spreading (Derrida–Pomeau). The token-lattice analogue is direct: a
+flipped site can only reach the r sites whose window contains it, and infects each with probability
+
+    s = P(sample differs | window differs in one position, shared uniform),
+
+while a damaged site with a clean window **heals** — identical windows plus a shared uniform give
+identical draws. So damage multiplies by `r·s` per sweep, `λ_MF = log(r·s)`, and criticality sits at
+**s = 1/r** — 0.5 at the paper's r=2.
+
+**s is computed exactly, not estimated.** Sampling is inverse-CDF against a shared uniform, so the
+disagreement probability between two conditionals is a deterministic functional of the pair:
+`s = 1 − Σ_v |[F_p(v−1),F_p(v)) ∩ [F_q(v−1),F_q(v))|`. Two forward passes, no seed. Verified against
+three hand-computable cases (identical → 0, disjoint → 1, and a two-point case where the answer is
+0.2 by inspection).
+
+**The theory was calibrated on known answers before being read on the model** — the project's
+founding rule, applied to a theory rather than an estimator:
+
+```
+  RUNG 1  Domany–Kinzel   MF puts damage criticality at p1 = 0.5; literature 0.801/0.8087
+                          → wrong by −38%, LOW, the direction annealed theory always errs
+  RUNG 2  19 ECA rules    MF says damage survives iff 3s > 1, against F36's known classes
+                          → 17/18 correct (94%); the miss is rule 232, majority, which is
+                            stabilising in a way sensitivity alone cannot see
+```
+
+So mean field is **qualitatively reliable and quantitatively wrong** — good for shape, useless for
+values. Nothing below is quoted as a measurement.
+
+**RUNG 3, and it is a clean negative.**
+
+```
+   step      s     r·s    λ_MF      λ_ca    seed sd
+    128   0.835   1.670  +0.513   −0.093    0.053
+    256   0.876   1.751  +0.560   −0.019    0.116
+    512   0.837   1.675  +0.516   +0.068    0.133
+   1000   0.833   1.666  +0.511   +0.192    0.029
+   2000   0.846   1.692  +0.526   +0.156    0.038
+   4000   0.843   1.685  +0.522   +0.172    0.018
+```
+
+**s is saturated and flat — 0.833 to 0.876 across the entire transition — while λ_ca moves from
+−0.09 to +0.17.** It never approaches 1/r = 0.5, so mean field predicts supercritical damage at
+*every* checkpoint including those where the ring is measurably subcritical; ρ(λ_MF, λ_ca) = −0.257
+and the crossing brackets do not agree. **The developmental transition is not the conditional's
+single-token sensitivity crossing a threshold.** That candidate is eliminated, and unlike the three
+internal routes it is eliminated by a quantity that is exactly computable and cheap.
+
+**Where the failure localises the mechanism, which is the useful part.** Mean field has exactly two
+terms: growth `r·s` and healing. The growth term is *measured to be constant* across the transition.
+So whatever changes must live in the part annealed theory throws away — **healing and correlations**:
+not whether damage is created, but whether it survives once created. That is a sharper statement of
+the open question than "λ_ca dates an event nobody has named", and it points at the settled state's
+correlation structure rather than at any internal circuit.
+
+**The deflationary check, registered before the run, comes back NEGATIVE — and that favours the
+instrument.** Mean |λ_MF − λ_ca| = 0.445 against a λ seed floor of 0.023, twenty times the floor. A
+few thousand forward passes do **not** reproduce what N·sweeps·B of them measure, so the ring is not
+redundant for this quantity. That is K1 one level deeper and the ring passes it. Had it gone the
+other way the honest conclusion would have been that the tool is s — which is why it was written
+down first.
+
+**Boundary.** This tests the *annealed* approximation only. Its failure is expected in direction
+(the lattice settles into text-like correlated states, which is precisely what annealed theory
+discards) and the DK rung says the quantitative error is ~38% before any model is involved. What is
+newly known is the flatness of s, which no approximation is needed to read.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;

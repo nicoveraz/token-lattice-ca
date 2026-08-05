@@ -1,0 +1,267 @@
+{
+ "s": {
+  "step128": {
+   "step": 128,
+   "s": 0.83516,
+   "s_sd": 0.10648,
+   "lambda_mf": 0.51301,
+   "secs": 7.8
+  },
+  "step256": {
+   "step": 256,
+   "s": 0.87546,
+   "s_sd": 0.11748,
+   "lambda_mf": 0.56014,
+   "secs": 5.8
+  },
+  "step512": {
+   "step": 512,
+   "s": 0.83741,
+   "s_sd": 0.12971,
+   "lambda_mf": 0.5157,
+   "secs": 5.5
+  },
+  "step1000": {
+   "step": 1000,
+   "s": 0.8331,
+   "s_sd": 0.17825,
+   "lambda_mf": 0.51055,
+   "secs": 5.3
+  },
+  "step2000": {
+   "step": 2000,
+   "s": 0.84594,
+   "s_sd": 0.1948,
+   "lambda_mf": 0.52584,
+   "secs": 5.4
+  },
+  "step4000": {
+   "step": 4000,
+   "s": 0.84256,
+   "s_sd": 0.2063,
+   "lambda_mf": 0.52184,
+   "secs": 5.5
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   128,
+   256,
+   512,
+   1000,
+   2000,
+   4000
+  ],
+  "r": 2,
+  "T": 0.7,
+  "n_ctx": 128,
+  "seed": 20260805,
+  "theory": "annealed mean field: damage multiplies by r*s per sweep, lambda_MF = log(r*s), criticality at s = 1/r",
+  "estimator": "s computed EXACTLY as the inverse-CDF disagreement probability between two conditionals; deterministic, no sampling",
+  "primary": "does lambda_MF track lambda_ca across checkpoints, and does the s = 1/r crossing land in the lambda_ca crossing bracket (256-512)?",
+  "calibration": "rungs 1 (DK, known p_c) and 2 (ECA, known classes) run FIRST and their errors are reported before rung 3 is read",
+  "deflationary": "if s alone predicts lambda_ca within the lambda seed floor, the ring is redundant and THE TOOL IS s -- registered as a real outcome, K1 one level deeper",
+  "expected_failure": "annealed theory ignores correlations and this lattice settles into text-like states, so a quantitative miss is expected; a measured discrepancy still beats silence"
+ },
+ "rung1_dk": {
+  "mf_critical_p1": 0.5,
+  "published": {
+   "w18_zp": 0.801,
+   "w18_hwd": 0.8087
+  },
+  "pct_error": {
+   "w18_zp": -37.6,
+   "w18_hwd": -38.2
+  },
+  "worst_pct_error": -38.2,
+  "reading": "mean field predicts damage criticality at p1=0.5 where the literature puts it near 0.80 -- it is wrong by ~38%, low, exactly as annealed theory errs when it ignores descendant overlap. Any lambda_MF on a language model inherits an error of this order and must not be quoted as if it were a measurement."
+ },
+ "rung2_eca": {
+  "rules": {
+   "0": {
+    "group": "ordered",
+    "s": 0.0,
+    "mf_growth": 0.0,
+    "mf_survives": false
+   },
+   "4": {
+    "group": "ordered",
+    "s": 0.25,
+    "mf_growth": 0.75,
+    "mf_survives": false
+   },
+   "8": {
+    "group": "ordered",
+    "s": 0.25,
+    "mf_growth": 0.75,
+    "mf_survives": false
+   },
+   "22": {
+    "group": "chaotic",
+    "s": 0.75,
+    "mf_growth": 2.25,
+    "mf_survives": true
+   },
+   "30": {
+    "group": "chaotic",
+    "s": 0.6667,
+    "mf_growth": 2.0,
+    "mf_survives": true
+   },
+   "32": {
+    "group": "ordered",
+    "s": 0.25,
+    "mf_growth": 0.75,
+    "mf_survives": false
+   },
+   "45": {
+    "group": "chaotic",
+    "s": 0.6667,
+    "mf_growth": 2.0,
+    "mf_survives": true
+   },
+   "54": {
+    "group": "edge",
+    "s": 0.6667,
+    "mf_growth": 2.0,
+    "mf_survives": true
+   },
+   "62": {
+    "group": "edge",
+    "s": 0.5833,
+    "mf_growth": 1.75,
+    "mf_survives": true
+   },
+   "105": {
+    "group": "chaotic",
+    "s": 1.0,
+    "mf_growth": 3.0,
+    "mf_survives": true
+   },
+   "106": {
+    "group": "edge",
+    "s": 0.6667,
+    "mf_growth": 2.0,
+    "mf_survives": true
+   },
+   "110": {
+    "group": "edge",
+    "s": 0.5833,
+    "mf_growth": 1.75,
+    "mf_survives": true
+   },
+   "126": {
+    "group": "chaotic",
+    "s": 0.5,
+    "mf_growth": 1.5,
+    "mf_survives": true
+   },
+   "128": {
+    "group": "ordered",
+    "s": 0.25,
+    "mf_growth": 0.75,
+    "mf_survives": false
+   },
+   "146": {
+    "group": "chaotic",
+    "s": 0.75,
+    "mf_growth": 2.25,
+    "mf_survives": true
+   },
+   "150": {
+    "group": "chaotic",
+    "s": 1.0,
+    "mf_growth": 3.0,
+    "mf_survives": true
+   },
+   "160": {
+    "group": "ordered",
+    "s": 0.3333,
+    "mf_growth": 1.0,
+    "mf_survives": false
+   },
+   "232": {
+    "group": "ordered",
+    "s": 0.5,
+    "mf_growth": 1.5,
+    "mf_survives": true
+   }
+  },
+  "n": 18,
+  "correct": 17,
+  "accuracy": 0.944,
+  "reading": "mean field classifies a rule as damage-surviving iff 3s > 1; scored against F36's ordered-vs-rest split, which is the only ECA distinction the project claims"
+ },
+ "analysis": {
+  "rows": [
+   {
+    "step": 128,
+    "s": 0.83516,
+    "lambda_mf": 0.51301,
+    "lambda_ca": -0.0926,
+    "lambda_sd": 0.0526,
+    "n_seeds": 6
+   },
+   {
+    "step": 256,
+    "s": 0.87546,
+    "lambda_mf": 0.56014,
+    "lambda_ca": -0.0185,
+    "lambda_sd": 0.1163,
+    "n_seeds": 16
+   },
+   {
+    "step": 512,
+    "s": 0.83741,
+    "lambda_mf": 0.5157,
+    "lambda_ca": 0.0679,
+    "lambda_sd": 0.1325,
+    "n_seeds": 16
+   },
+   {
+    "step": 1000,
+    "s": 0.8331,
+    "lambda_mf": 0.51055,
+    "lambda_ca": 0.1923,
+    "lambda_sd": 0.0293,
+    "n_seeds": 16
+   },
+   {
+    "step": 2000,
+    "s": 0.84594,
+    "lambda_mf": 0.52584,
+    "lambda_ca": 0.1558,
+    "lambda_sd": 0.0375,
+    "n_seeds": 16
+   },
+   {
+    "step": 4000,
+    "s": 0.84256,
+    "lambda_mf": 0.52184,
+    "lambda_ca": 0.1724,
+    "lambda_sd": 0.0182,
+    "n_seeds": 8
+   }
+  ],
+  "rho": -0.257,
+  "s_crossing": null,
+  "lambda_crossing": "256-512",
+  "residual": 0.445,
+  "lambda_seed_floor": 0.0228,
+  "deflates": false
+ },
+ "verdict": "CALIBRATION FIRST (the rungs, read before the model). Rung 1: mean field puts DK's damage criticality at p1 = 0.5 where the literature puts it near 0.80 -- an error of -38.2%, low, which is the direction annealed theory always errs because it ignores descendant overlap.  Rung 2: on 18 elementary rules of known class it recovers the ordered-vs-rest split 94% of the time.  So lambda_MF is a SHAPE prediction, not a value prediction, and nothing below is quoted as a measurement. RUNG 3: rho(lambda_MF, lambda_ca) = -0.257 over 6 checkpoints. s crosses 1/r = 0.50 in bracket NEVER on this grid; lambda_ca crosses zero in 256-512. THE BRACKETS DO NOT AGREE, so the mean-field crossing is not the lambda_ca crossing on this grid; the theory does not locate the transition even if it tracks its shape. DEFLATION CHECK (registered): mean |lambda_MF - lambda_ca| = 0.4450 against a lambda seed floor of 0.0228. s does NOT reproduce lambda_ca within the floor, so the ring is not redundant: mean field captures shape without capturing value, which is what the DK rung predicted it would do.",
+ "_analysis_provenance": {
+  "script": "meanfield_lambda.py",
+  "sha256": "425695906f97c021951f6a13295c4cf185909f8a7b68ad613033a476420e2485",
+  "imports": {
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "425695906f97c021951f6a13295c4cf185909f8a7b68ad613033a476420e2485",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Derives lambda_ca from the conditional's single-token sensitivity via annealed mean field (Derrida-Pomeau), tested on the project's own ladder: DK first (known p_c, so the theory's error is calibrated before use), then ECA (known classes), then the model. s is computed EXACTLY as the inverse-CDF disagreement probability between two conditionals -- the same coupling ar_ca samples with -- so it is deterministic and needs two forward passes. The deflationary outcome (if s alone reproduces lambda_ca within the seed floor, the ring is redundant and the tool is s) was registered before the run as a real possibility, which is K1 one level deeper."
+}
