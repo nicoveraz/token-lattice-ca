@@ -231,8 +231,12 @@ value was the ~2 GPU-days it spent to avoid a much longer illusion.
 none did, which is nominally the all-gates-pass exit. It should not be read as the capability
 being demonstrated, because **the binding constraint is no longer gate-shaped**:
 
-- **Corpus inference rests on 2 independent families**, unchanged since Gate 0, because Cerebras
-  failed twice. This is the same F68 hazard, and no gate can retire it — only families can.
+- **Corpus inference rests on 2 independent families** ~~unchanged since Gate 0~~ — **retired
+  4 Aug 2026 by the band screen** (`results/band_screen.json`, F86): 15 independent families
+  measured at 1.5–3B, splitting 8 attractor-bearing / 7 attractor-free. The corpus-direction
+  *analysis* at n = 15 has not yet been re-run against corpus labels; the *data* constraint that
+  §7 said no gate could fix is gone. The same run cleared H2's sibling claim: T\* predicts
+  degeneration at family level (ρ = +0.833, n = 8, p = 0.0137).
 - **Attribution is 5/14 and 4/14.** That is coherence, not identification. Gate 0 said the battery
   must widen before any attribution claim; the widened battery separates *known* pairs but has not
   been shown to *identify* an unknown one.
