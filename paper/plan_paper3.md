@@ -53,6 +53,13 @@ distillation *raises* fixed-point abundance while fragmenting basins; pruning an
 *eliminate* fixed points. What survives is narrower: the census separates **abundance** from
 **concentration**, which "peakedness" conflates. At n = 2 distilled models that is a hypothesis.
 
+**And F92 settles what the taxonomy is worth behaviourally: nothing yet.** On the same 8 families,
+the static map's predictors of greedy degeneration are ρ = −0.12 (fix), +0.12 (cyc) and +0.60
+(modal, p = 0.13), against T\*'s +0.83 (p = 0.017). The static census carries no demonstrated
+behavioural signal; the CA quantity does. That is the deflationary K1 test run on the anchor
+itself, and it is **branch A's strongest single argument** — the ring earns its cost against the
+cheaper static probe on the one axis anyone external cares about.
+
 **Consequence for this decision:** the taxonomy cannot carry branch A. It needs Wang et al.
 (COLM 2026), ShortOPD, the Benchmark Illusion and Kim & Rush cited as prior art, and its own
 contribution reduces to an instrument plus an unpowered association. **F86 remains the anchor**,

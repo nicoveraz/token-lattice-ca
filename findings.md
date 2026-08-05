@@ -3478,6 +3478,60 @@ association lives on the *concentration* axis, and at n = 2 distilled models it 
 a result. Any write-up must cite Wang et al., ShortOPD, the Benchmark Illusion and Kim & Rush, and
 must not claim "recipe changes degeneration" or "pruning causes loops" as ours.
 
+### F92 — the static map does NOT predict degeneration and the CA does: the deflationary test, run on the anchor
+Asked what *mechanism* produced the literature's conclusions, and whether a novel method that
+recovers known metrics would support the approach. Two things followed, and the second is the
+strongest result in the fingerprint line.
+
+**The prior art's mechanism is uniformly generation-based.** Wang et al.'s Loop Fraction, ShortOPD's
+distinct-2 and n-gram loop rates, Li et al.'s rep-2, Kim & Rush's BLEU and mode mass — every one
+samples or greedily generates continuations from *real prompts* and measures repetition statistics
+in the *output text*. Ours generates nothing: it iterates a deterministic two-token map from random
+starts and censuses where trajectories land. Different regime, different observable, ~96×40 forward
+passes instead of full rollouts.
+
+**So do we reproduce them by a new route?** First, a correction to how F90/F91 described the classes:
+the "none" class is **not wandering, it is cycling** — cyclic fraction 0.94–0.98 for bloom, OLMo-2,
+polyglot-ko, stablelm and Llama-3.2, with the wandering remainder near zero. In generation terms
+*every* model in the census loops: funnels with period 1, "none" models with period k. The census
+does not measure *whether* a model loops; it measures the **geometry of the loop set**. And cycling
+is not recipe-specific here — four of the five cyclic models are from-scratch — so the census does
+**not** reproduce "pruning causes loops". It measures something adjacent, and F91's framing of
+"none" as wandering was wrong.
+
+**Then the test that matters, on matched data.** Both a static map census and an independent
+generation measurement (`rep_4`, greedy decoding from real openings) exist for the same families, so
+the deflationary question Gate 1 asked of attribution can be asked of the **anchor itself**:
+
+```
+  same 8 finite-T* families, every predictor on the same rows
+    fix    vs rep_4    rho = -0.119   p = 0.79
+    cyc    vs rep_4    rho = +0.119   p = 0.79
+    modal  vs rep_4    rho = +0.595   p = 0.13
+    T*     vs rep_4    rho = +0.833   p = 0.017     <- the CA quantity
+  (on all 15 families the static predictors are weaker still: -0.06, +0.11, +0.20, all p > 0.45)
+```
+
+**The static argmax map carries no information about degeneration; the CA-derived T\* does.** That
+is K1's deflationary logic applied where it bites hardest — not to attribution or coherence, but to
+the external behavioural anchor — and the CA wins on the same rows, not on a friendlier subset.
+Gate 1 showed the static baseline losing the corpus pair at 0.5× against 2.4×; this shows it losing
+the anchor at ρ = −0.12 against +0.83.
+
+**What this does and does not license.** It does *not* mean the census is worthless — it means the
+census and T\* measure different things, and only the dynamical one tracks behaviour. It sharpens
+F91's conclusion that the taxonomy cannot carry branch A: the taxonomy is a property of the map with
+**no demonstrated behavioural correlate**, while T\* has one. And it answers the "novel method for
+known metrics" question honestly: we do **not** recover the looping literature's metrics by a new
+route, so that particular validation-by-reproduction rung is not available here. What we have
+instead is a *dissociation* — which is weaker as validation and stronger as evidence that the ring
+is doing work the conditional alone cannot.
+
+The caveat that limits it: n = 8, the same eight families as F86, so this inherits F86's fragility
+entirely. `modal` at ρ = +0.60 (p = 0.13) is the one static predictor not obviously dead, and at
+this n it cannot be separated from T\* — which is worth stating, because if `modal` survived at
+larger n the deflationary reading would change.
+
 ## Literature check — Domany–Kinzel rung (issue #22; the report that shaped F38)
 
 Standing rule: check before you build. This is the report as written *before* any code;
