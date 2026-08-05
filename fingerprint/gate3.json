@@ -5,6 +5,23 @@
   "raw_endpoint_discriminates": true,
   "rule": "K3 fires if chat wrapping destroys the signature AND no raw arm reproduces it"
  },
+ "_prereg_deviation": {
+  "affects": "the fidelity and separation verdicts are unchanged in kind, but their error bars are wider than the frozen design would give",
+  "frozen_seeds_per_model": 4,
+  "frozen_temps": [
+   0.02,
+   0.2,
+   0.436,
+   0.7
+  ],
+  "justification": "Gate 3 tests whether the signature SURVIVES the abstraction and still separates a known pair -- a qualitative question -- not an effect size",
+  "reason": "an API settle is N*sweeps sequential HTTP calls; the full grid is ~4x this run",
+  "seeds_run": 2,
+  "temps_run": [
+   0.02,
+   0.436
+  ]
+ },
  "_prereg_sha256": "5a15d2e26abef8d28047f4ec23bf6fcca8d1fd792fc7a60e0a881cf0a17dd65b",
  "_preregistration": {
   "created_utc": "2026-08-01T21:34:59+00:00",

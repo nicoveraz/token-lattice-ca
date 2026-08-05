@@ -752,12 +752,12 @@
   "plateau_spread": 0.05070000000000008,
   "span": 0.6779999999999999
  },
- "verdict": "NULL, AND IT IS A CLEAN ONE: the largest rise in TV@k=8 is step128->step256 (+0.2674), NOT the step256->step512 bracket where lambda_ca crosses at every radius (that bracket contributes +0.2368, 35% of the span). Context-use onset does not explain the developmental transition, and the leading candidate is eliminated at the cost of forward passes.",
+ "verdict": "NEITHER CONFIRMED NOR ELIMINATED: the largest single rise in TV@k=8 is step128->step256 (+0.2674) rather than the step256->step512 bracket where lambda_ca crosses (+0.2368, 35% of the span), so the DECLARED statistic returns a null. But those two rises are ADJACENT on the log grid and together carry 74% of the total span -- context-use onset is a two-interval RAMP, not a point event, and the lambda_ca crossing sits inside it. 'Largest single rise' splits a ramp at whichever interval the log spacing happens to favour; one extra grid point or a different tiebreak flips the answer. A test whose verdict turns on grid placement is not sharp enough to eliminate a candidate, so this is reported as INDETERMINATE rather than as a clean null. CO-TIMING WOULD BE CORRELATION ANYWAY: even a perfect match would show two events coinciding in one model family, not that lambda_ca measures context use. Attribution needs an ablation -- and F80 ran one, returning a null.",
  "_analysis_provenance": {
   "script": "context_onset.py",
-  "sha256": "ce41e0ed0f9cba5c87612ef10506e8f5ff13bb4e56bb7099fb5b1d51b161a2a6",
+  "sha256": "5988b83d10aab074b10008ba9185b831824071f4c338d6b1b0fb500e760d1fd2",
   "imports": {
-   "experiments/context_onset.py": "ce41e0ed0f9cba5c87612ef10506e8f5ff13bb4e56bb7099fb5b1d51b161a2a6",
+   "experiments/context_onset.py": "5988b83d10aab074b10008ba9185b831824071f4c338d6b1b0fb500e760d1fd2",
    "experiments/evidence_falloff.py": "95cf16c653aa9a9820e87141213d3ab6ccf313574e49b1273f76954573191f7f",
    "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059"
   },

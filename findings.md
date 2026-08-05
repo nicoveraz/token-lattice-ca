@@ -3671,7 +3671,7 @@ survival-probability estimator, not the coupling.
 
 ## Audit ledger — verdicts on every reviewer objection (W1–W9)
 
-Status of each objection in `paper/REVIEW.md` as of Phase 3. "Resolved" means the paper no
+Status of each objection in `paper/REVIEW.md`, current to F93 (5 Aug 2026). "Resolved" means the paper no
 longer makes the offending claim or the claim now matches the data; "stands" means the
 objection is still live and is disclosed rather than fixed.
 
@@ -3684,8 +3684,8 @@ objection is still live and is disclosed rather than fixed.
 | W5 | Census near floor on real models (0.02–0.04 vs an out-of-training proxy) | **Stands, scoped.** Quantitative recovery is claimed **only** on the synthetic toy; the real-model numbers are reported as near-floor. The real fix (Pythia vs the Pile) is tracked as issue #6 under *Future work*. |
 | W6 | v∝r "lifts" are exactly N/4 clipping ceilings; unclipped is superlinear | **Resolved.** Verified the velocities equal N/4 exactly and the one unclipped point (N=384, 41.1) sits *below* the N=192 "ceiling" (47.5). The paper claims only that front velocity grows monotonically with r, and states the superlinearity. |
 | W7 | Crossover "strengthens at every T" is false at T=0.3; single-seed | **Resolved by retraction.** Verified (T=0.3: mini 0.463 < tiny 0.508). Downgraded to a plateau *diagnostic*; the "strengthens" claim is gone. |
-| W8 | No multiplicity correction | **In progress.** BH-FDR implemented and verified against known values; applied across an explicitly stated family in the Phase 3 run. Note the *central* validation claims are reproductions of known values, not NHT, so multiplicity does not apply to them. |
-| W9 | N=48 only; effect shrinks with N | **In progress.** N=96 arm running in Phase 3 (B halved 16→8 for the 16 GB budget; trade recorded). |
+| W8 | No multiplicity correction | **Resolved.** BH-FDR implemented once (`dev_transition_phase3.bh_fdr`), imported never copied, and applied across explicitly stated families throughout — the developmental family, the temperature family, the band screen's predictor family, and F92/F93's. Verified against known values. Note the *central* validation claims are reproductions of known values, not NHT, so multiplicity does not apply to them. |
+| W9 | N=48 only; effect shrinks with N | **Resolved and superseded.** N=96 completed, and a third size (N=192) then replaced the two-size equivalence bound with a scaling exponent: λ_ca is intensive across a 4× range (N^−0.04) while D_norm falls as N^−1.02. That is a stronger statement than an interval around zero. |
 
 **Pattern worth naming.** W2 and F34 are the same class of error: a statistic averaged over
 two populations that behave differently (CRN vs independent coupling; ignited vs
@@ -3694,27 +3694,47 @@ this project should be checked for a mixed population *before* it is reported.
 
 ## Next steps
 
-**Phase 3 is complete (96/96).** The pre-committed decision rule did NOT fire: all four
-family members survive BH-FDR at both lattice sizes. See **F39** for the verdict, the
-plateau-based effect sizes, and the split W9 answer (λ_ca size-robust, D_norm size-dependent).
+**Current to F93, 5 August 2026.** The Phase-3-era list this section used to carry is retired: it
+still named "build the PDF (never yet built)" as blocking work, and the PDF has been built, cut to
+five pages, and pinned at `submission/neurips26-i4d` with a camera-ready branch on top. That
+staleness was itself a finding (`critical_analysis.md` rev2 §7): a ledger that stops describing its
+own contents is the same defect as a correction that lives in prose while the artifact carries the
+superseded claim.
 
-**Blocking the paper (in order).**
-1. Phase 4 — rebuild the paper around whatever survives; delete the stale `paper/paper.md`;
-   build the PDF (never yet built) and cut to ≤5 pages; double-blind pass; responsible-use
-   statement (its absence is an automatic desk reject).
+**Decided and not blocking.** The submitted paper is frozen at the tag. Paper 2 (A+B+C) is complete
+with zero further compute and awaits a venue decision only. The camera-ready sits at five body pages
+with the venue's sixth held in reserve for reviewer feedback; its acceptance-day checklist (restore
+the ladder figure, decide on F77's radius replication, merge the branch) is in `paper/NOTES.md`.
 
-**Done since this list was written.** ECA rebuilt on ignition probability (F36); Phase 2.3
-Benettin reference for the CML rung (F37); Phase 2.2 Domany–Kinzel rung, literature check
-then build (F38) — which also converts W2 from a concession into a bounded statement.
+**The open debts, in the order `critical_analysis.md` rev2 §9 ranks them.**
 
-**Deferred, tracked as issues.** Phase 1.5 duplication hoisting (the `ca.DATA_DIR` mutable
-global is a genuine cross-experiment hazard); real-corpus census (#6); the compositional-
-complexity axis (#13, #20); greedy/T→0 limit (#17); activation-lattice cone (#19, object
-already taken by arXiv:2605.25225 — cite, don't claim).
+1. **Generality.** One checkpointed non-Pythia family. The oldest open critique in the project —
+   named in `REVIEW.md`, in the paper's own limitations, in revision 1 of the critical analysis, and
+   still open. F88 supplies a cheaper partial (finer loss spacing within Pythia resolves the
+   loss-vs-step alignment that returned NOT DECIDABLE) but it does not substitute.
+2. **T\*'s second leg.** F93's target rejected itself on dynamic range, so the anchor has one leg
+   and is scoped to greedy decoding. The requirement — a degeneration measure that survives nucleus
+   sampling — is a *literature* question before it is an experiment.
+3. **The prior-art gate.** `fingerprint/PROGRAM.md` §1 mandates a novelty check before any write-up
+   and it has never been run; the only check on record covers the taxonomy (F90/F91). Model-equality
+   testing and API model verification are live adjacent literatures, and the programme's most novel
+   result — the tokenizer-merge mechanism — is precisely the one nobody has checked.
+4. **The verdict layer.** Four guards now exist as one-offs in individual scripts: a dynamic-range
+   check on the target (F93), a noise gate before any ratio (F80), a directional test where the
+   hypothesis is directional (F80), and an explicit NOT-DECIDABLE branch (F88). They belong in one
+   place, and that place already exists in `gatecheck.gate` and `gatecheck.fits`.
+5. **`gatecheck` adoption.** The package extracted to hold this project's discipline is imported by
+   `fingerprint/` and by nothing in `experiments/`, `tests/` or `src/`. Adopting `provenance` alone
+   would close the environment-fingerprint hole that lets a numpy upgrade move a number silently.
+6. **Engineering debt.** No `pyproject.toml`, no pinned environment, no CI; 119 experiment scripts;
+   `ca.DATA_DIR` still a mutable module global (#25).
 
-**Do not re-run.** The cross-level λ_ca vs λ_top hypothesis is settled and explained
-(F26/F28/F29 + the tangent-vs-finite regime mismatch in F31). Further measure-swapping there
-would be p-hacking.
+**The one decision that is not an experiment:** whether this work continues to be described as
+interpretability. Revision 2 of the critical analysis argues it should not — three routes to an
+explanandum returned negative (F78/F79/F80), while every measurement-shaped result came back
+positive. That is a framing decision for the author, and it is the most consequential item on this
+list.
+
 
 ## Files
 

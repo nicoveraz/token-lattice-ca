@@ -150,6 +150,11 @@ def _tv(runs, step, k=K_REPORT):
     return None if not r else r["by_length"].get(str(k), {}).get("tv_to_marginal")
 
 
+# Grid position of each step, so "are these two rises adjacent?" is answered from the grid
+# rather than by eye -- the ramp objection depends on adjacency and must be computed.
+_STEP_INDEX = {s_: i for i, s_ in enumerate(STEPS)}
+
+
 def analyse(res):
     runs = res["runs"]
     have = [s for s in STEPS if s in runs]
@@ -200,13 +205,35 @@ def analyse(res):
                      "use, only that the two events coincide in one model. Attribution needs an "
                      "ablation.")
     else:
-        verdict = (f"NULL, AND IT IS A CLEAN ONE: the largest rise in TV@k={K_REPORT} is "
-                   f"{biggest[0]}->{biggest[1]} ({biggest[2]:+.4f}), NOT the "
-                   f"{CROSSING[0]}->{CROSSING[1]} bracket where lambda_ca crosses at every radius "
-                   f"(that bracket contributes {at_crossing:+.4f}, "
-                   f"{(frac_at_crossing or 0)*100:.0f}% of the span). Context-use onset does not "
-                   f"explain the developmental transition, and the leading candidate is "
-                   f"eliminated at the cost of forward passes.")
+        # NOT "a clean null". The declared statistic is "largest single rise" on a LOG-SPACED
+        # grid, and a log grid splits a two-interval ramp arbitrarily: the onset spans
+        # step128->512 as two comparable rises that together carry most of the span, and the
+        # lambda_ca crossing sits INSIDE that ramp. One extra grid point or a different tiebreak
+        # flips it. findings.md (F78) records the honest reading as "neither confirmed nor
+        # eliminated"; this string said "eliminated" for four days, which is the correction living
+        # in prose while the machine-readable artifact carried the superseded claim -- F55's
+        # defect one level up, and exactly what critical_analysis.md rev2 4 flagged.
+        ramp = at_crossing + biggest[2]
+        ramp_frac = ramp / span if span else 0.0
+        contiguous = abs(_STEP_INDEX.get(biggest[1], -9) - _STEP_INDEX.get(CROSSING[0], 99)) <= 1
+        verdict = (f"NEITHER CONFIRMED NOR ELIMINATED: the largest single rise in TV@k={K_REPORT} "
+                   f"is {biggest[0]}->{biggest[1]} ({biggest[2]:+.4f}) rather than the "
+                   f"{CROSSING[0]}->{CROSSING[1]} bracket where lambda_ca crosses "
+                   f"({at_crossing:+.4f}, {(frac_at_crossing or 0)*100:.0f}% of the span), so the "
+                   f"DECLARED statistic returns a null. "
+                   + (f"But those two rises are ADJACENT on the log grid and together carry "
+                      f"{ramp_frac*100:.0f}% of the total span -- context-use onset is a two-interval "
+                      f"RAMP, not a point event, and the lambda_ca crossing sits inside it. "
+                      f"'Largest single rise' splits a ramp at whichever interval the log spacing "
+                      f"happens to favour; one extra grid point or a different tiebreak flips the "
+                      f"answer. A test whose verdict turns on grid placement is not sharp enough to "
+                      f"eliminate a candidate, so this is reported as INDETERMINATE rather than as "
+                      f"a clean null. " if contiguous and ramp_frac > 0.5 else
+                      f"The two rises are not adjacent, so the ramp objection does not apply and "
+                      f"the null stands on the declared statistic. ")
+                   + "CO-TIMING WOULD BE CORRELATION ANYWAY: even a perfect match would show two "
+                     "events coinciding in one model family, not that lambda_ca measures context "
+                     "use. Attribution needs an ablation -- and F80 ran one, returning a null.")
 
     print(f"\n  -> {verdict}")
     res["analysis"] = dict(complete=True, tv_by_step=series, rises=[list(r) for r in rises],
