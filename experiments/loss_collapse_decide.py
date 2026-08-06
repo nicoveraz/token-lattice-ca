@@ -156,9 +156,15 @@ def decide(res):
     # The noise gate, before the two spreads are compared -- 2x the floor, not 1x.
     gates.append(noise_gate(abs(s_bpb - s_tok) if s_tok is not None else s_bpb, floor))
 
-    # The hypothesis is directional: bpb organises better than tokens, i.e. s_tok - s_bpb > 0.
-    if s_tok is not None:
-        gates.append(directional(s_tok - s_bpb, expect="increase", floor=floor))
+    # The hypothesis is directional -- bpb organises better than tokens, i.e. s_tok - s_bpb > 0 --
+    # but this is deliberately NOT appended to `gates`. A sign opposite to the prediction is
+    # evidence AGAINST the hypothesis, not an inability to decide, which is precisely the reading
+    # gatecheck.directional exists to forbid. Blocking on it would report a contradicted
+    # hypothesis as NOT_DECIDABLE and discard the finding, and the registration names "no collapse"
+    # as a decidable outcome with its own kill text. It selects the branch instead, once the
+    # blocking gates have established the comparison is readable at all.
+    dirn = (directional(s_tok - s_bpb, expect="increase", floor=floor)
+            if s_tok is not None else None)
 
     parts.append(
         f"PRIMARY: across-family spread of lambda_ca at matched bits-per-byte is {s_bpb:.4f} over "
@@ -174,6 +180,14 @@ def decide(res):
             f"-- the test is underpowered, and the fix is finer checkpoint spacing, which for the "
             f"non-Pythia families does not exist to be had.")
         decided = False
+    elif dirn is not None and not dirn.usable:
+        parts.append(
+            f"NO COLLAPSE, AND THE HYPOTHESIS IS CONTRADICTED RATHER THAN UNSUPPORTED: matching on "
+            f"loss aligns the families WORSE than matching on tokens ({s_bpb:.4f} against "
+            f"{s_tok:.4f}), which is the opposite of what this issue proposed. {dirn.reason} That "
+            f"is the registered kill: lambda_ca is not a function of model quality in this unit, "
+            f"and cross-family timing stays unreachable by this route. Gates: {verdict.reason}")
+        decided = True
     elif s_bpb <= floor:
         parts.append(
             f"COLLAPSE: at matched model quality the families agree to within the seed floor, so "
@@ -193,6 +207,16 @@ def decide(res):
         "not identically weighted for either. Architecture, data order and optimiser still differ "
         "across families simultaneously (F98's attribution note applies unchanged).")
 
+    # Keep what is being replaced. Overwriting the measuring run's verdict in place would leave
+    # the file asserting the corrected reading with no trace that a different one was published
+    # first -- the correction living in prose while the artifact carries only the survivor. Only
+    # the ORIGINAL is kept: re-deciding twice must not chain a stack of intermediate readings.
+    if "verdict" in res and "_superseded_verdict" not in res:
+        res["_superseded_verdict"] = dict(
+            verdict=res["verdict"], analysis=res.get("analysis"),
+            by=(res.get("_analysis_provenance") or {}).get("script"),
+            why="superseded by loss_collapse_decide.py; see _decision_amendments")
+
     res["verdict"] = " ".join(parts)
     res["_decision_amendments"] = [dict(
         supersedes="unit_gate: bpb must be finite and within (0.4, 2.5) for every cell",
@@ -211,7 +235,8 @@ def decide(res):
         lambda_seed_floor=round(floor, 5), n_families_bpb=n_bpb, n_families_tokens=n_tok,
         matched_bpb_window=None if win is None else [round(w, 5) for w in win],
         n_in_window=len(inwin), decided=decided,
-        gates=[g.block() for g in gates], cohort=coh.block())
+        gates=[g.block() for g in gates],
+        directional=None if dirn is None else dirn.block(), cohort=coh.block())
     res["_decision_provenance"] = stamp(__file__)
     return res["verdict"]
 

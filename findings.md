@@ -3580,6 +3580,69 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F100 — cross-family loss collapse is NOT DECIDABLE, and what direction there is runs against the hypothesis
+#84 extended across families, which F98 made possible and F98's own limitation made necessary:
+timing cannot be compared across families in TOKENS because no public non-Pythia family has a
+checkpoint inside Pythia's dip window, but loss is a property of the model rather than of a
+checkpoint schedule. Sixteen checkpoints over three families (pythia-410m, olmo1-0724, olmo2-1b),
+scored in bits per UTF-8 byte on a shared 257,163-byte Pile slice — bytes taken from the raw text,
+so the axis is tokenizer-independent (pythia 50277 vs olmo2 100278). No new lattice runs: every
+λ_ca here was already measured by the run cited for it.
+
+**PRIMARY, and it does not decide.** Across-family spread of λ_ca at matched bits-per-byte is
+**0.0588** over 3 families, against **0.0318** at matched token count, on a seed floor of
+**0.0197**. The two alignments differ by 0.02695 — **1.37× the floor against a 2.0× gate**, so the
+grid cannot say which organising variable is better. This is not a null about loss. It is
+underpowered, and the fix is finer checkpoint spacing, which for the non-Pythia families does not
+exist to be had.
+
+**The direction, recorded as a diagnostic and NOT as a finding.** What signal there is points the
+wrong way for #84: matching on loss aligns the families *worse* than matching on tokens
+(0.0588 > 0.0318), the opposite of "λ_ca is a function of how good the model is rather than how
+long it trained." At 1.37× the floor that is not a result, and it is written into
+`analysis.directional` rather than claimed here. It is worth stating only because a future run with
+denser spacing should expect to confirm or kill a direction, not to discover one.
+
+**THE REGISTERED UNIT GATE WAS MIS-SPECIFIED, AND IT VOIDED THE RUN'S OWN VERDICT.** The
+registration read "bpb must be finite and within (0.4, 2.5) for every cell". It was written to
+catch nats-per-token recorded where bits-per-byte belongs, but a RANGE cannot separate wrong units
+from high loss. Random-init checkpoints read 3.9155 and 3.9511 bpb — correct values for models that
+have learned nothing — and the grid includes random init *deliberately*, as its chaotic-init
+control. So the gate rejected its own controls by construction, and `pythia-410m|step128` at 2.6275
+with them, a real dip-region checkpoint carrying λ = −0.0926. Three hours of measurement returned
+NOT DECIDABLE on a specification bug rather than on the data. That the gate could not be satisfied
+followed from the design and was knowable before anything ran, which is what makes the repair a
+correction rather than a criterion tuned to an outcome. It is replaced by the identity that defines
+the quantity, `bpb = nats_per_token · n_tokens / (ln2 · n_bytes)`, exact to 1e-4 relative against a
+worst observed deviation of 4e-6 — and strictly stronger where the old gate was aimed, since nats
+and bits differ by ln2, a 44% discrepancy. Only a ceiling survives, at 8 bits/byte.
+
+**A gate calibrated on the observed values could not have done this.** An interval fitted to the
+distribution cannot detect a units error, because the error is *in* the values — it would widen to
+admit both clusters and pass. Pinned by
+`test_a_units_error_inside_the_old_interval_is_still_caught`: a wrong bpb of 1.9 sits inside the old
+band, passes any interval derivable from the data, and fails the identity. Thresholds come from
+replicates — the λ seed floor — never from the series under test.
+
+**The tightening removed a claim rather than creating one, which is why it was safe to apply after
+the fact.** Under the original hand-rolled `readable = |s_bpb − s_tok| > floor`, 1.37 > 1.0 passes,
+and with `better = False` the run would have **decided "NO COLLAPSE."** Routed through
+`gatecheck.noise_gate` at 2× it does not decide at all. A change that can only move a verdict
+toward NOT_DECIDABLE cannot manufacture a result — the property that separates this from the F80
+meta-defect, along with the threshold predating the run and already binding four other scripts.
+
+**Method note.** The decision is now separated from the measurement (`loss_collapse_decide.py`), so
+re-deciding costs no re-measurement — necessary because the measurement half is the expensive and
+non-reproducible one (weights get gated, revisions get renamed), and because two runs decided under
+different gate settings are otherwise not comparable. Provenance is split accordingly:
+`_analysis_provenance` names the script that produced the cells, `_decision_provenance` the one that
+read them, and the superseded verdict is kept in `_superseded_verdict` rather than overwritten.
+
+**Boundary.** Bits-per-byte removes the tokenizer confound, not the corpus one — all three families
+are scored on Pile text, which is training distribution for Pythia and OLMo but not identically
+weighted for either. Architecture, data order and optimiser still differ across families
+simultaneously, so F98's attribution note applies unchanged.
+
 ### F99 — the transplant: the CONDITIONAL moves, and F94's elimination was an ensemble artifact
 The experiment F96 specified. F94 measured single-token sensitivity `s` on uniformly random token
 windows, found it saturated and flat, and eliminated it as λ_ca's explanandum. F96 showed that

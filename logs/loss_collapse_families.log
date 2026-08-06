@@ -1,0 +1,67 @@
+Pile slice: 64 docs, 257163 UTF-8 bytes -- the same for every model
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<04:39,  1.04it/s]Loading weights:  33%|███▎      | 96/292 [00:01<00:01, 123.09it/s]Loading weights:  51%|█████▏    | 150/292 [00:01<00:01, 134.19it/s]Loading weights:  64%|██████▎   | 186/292 [00:01<00:00, 138.86it/s]Loading weights:  73%|███████▎  | 214/292 [00:01<00:00, 157.62it/s]Loading weights:  83%|████████▎ | 242/292 [00:01<00:00, 150.33it/s]Loading weights:  91%|█████████ | 265/292 [00:02<00:00, 162.34it/s]Loading weights:  99%|█████████▊| 288/292 [00:02<00:00, 169.95it/s]Loading weights: 100%|██████████| 292/292 [00:02<00:00, 132.34it/s]
+  pythia-410m|step128                          bpb=2.6275  nats/tok=7.5879  lam=-0.09263  (31s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:16,  2.13it/s]Loading weights:  68%|██████▊   | 200/292 [00:00<00:00, 453.43it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 394.91it/s]
+  pythia-410m|step256                          bpb=2.2258  nats/tok=6.4278  lam=-0.01845  (26s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:21,  2.06it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 428.18it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 371.71it/s]
+  pythia-410m|step512                          bpb=1.8613  nats/tok=5.3753  lam=0.06793  (28s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:14,  2.16it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 414.08it/s]Loading weights:  95%|█████████▍| 276/292 [00:00<00:00, 433.27it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 362.97it/s]
+  pythia-410m|step1000                         bpb=1.3683  nats/tok=3.9514  lam=0.19235  (22s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:11,  2.21it/s]Loading weights:  60%|██████    | 176/292 [00:00<00:00, 421.07it/s]Loading weights:  96%|█████████▌| 279/292 [00:00<00:00, 444.78it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 373.68it/s]
+  pythia-410m|step2000                         bpb=1.1016  nats/tok=3.1812  lam=0.15582  (22s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:15,  2.14it/s]Loading weights:  62%|██████▏   | 180/292 [00:00<00:00, 412.13it/s]Loading weights:  95%|█████████▍| 277/292 [00:00<00:00, 330.37it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 298.37it/s]
+  pythia-410m|step4000                         bpb=0.9841  nats/tok=2.8420  lam=0.17243  (22s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [06:02<06:02, 362.73s/it]Fetching 2 files: 100%|██████████| 2/2 [06:02<00:00, 181.38s/it]
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 3164.23it/s]
+  olmo2-1b|stage1-step0-tokens0B               bpb=3.9511  nats/tok=11.9007  lam=0.3598  (778s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [13:14<13:14, 794.49s/it]Fetching 2 files: 100%|██████████| 2/2 [13:14<00:00, 397.25s/it]
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 4075.96it/s]
+  olmo2-1b|stage1-step300-tokens1B             bpb=2.3229  nats/tok=6.9968  lam=0.18433  (1159s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [12:35<12:35, 755.57s/it]Fetching 2 files: 100%|██████████| 2/2 [12:35<00:00, 377.79s/it]
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 5127.90it/s]
+  olmo2-1b|stage1-step10000-tokens21B          bpb=0.9358  nats/tok=2.8188  lam=0.18129  (1315s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [16:27<16:27, 987.96s/it]Fetching 2 files: 100%|██████████| 2/2 [16:27<00:00, 493.98s/it]
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 4945.04it/s]
+  olmo2-1b|stage1-step20000-tokens42B          bpb=0.8895  nats/tok=2.6794  lam=0.18738  (1380s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [17:45<17:45, 1065.08s/it]Fetching 2 files: 100%|██████████| 2/2 [17:45<00:00, 532.54s/it] 
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 4767.22it/s]
+  olmo2-1b|stage1-step40000-tokens84B          bpb=0.8587  nats/tok=2.5863  lam=0.18896  (1858s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [04:42<04:42, 282.95s/it]Fetching 2 files: 100%|██████████| 2/2 [04:42<00:00, 141.48s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4526.70it/s]
+  olmo1-0724|step0-tokens0B                    bpb=3.9155  nats/tok=11.3075  lam=0.33467  (367s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [16:39<16:39, 999.48s/it]Fetching 2 files: 100%|██████████| 2/2 [16:39<00:00, 499.74s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3042.91it/s]
+  olmo1-0724|step1000-tokens2B                 bpb=1.5748  nats/tok=4.5477  lam=0.15933  (1158s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [22:15<22:15, 1335.58s/it]Fetching 2 files: 100%|██████████| 2/2 [22:15<00:00, 667.79s/it] 
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3921.55it/s]
+  olmo1-0724|step2000-tokens4B                 bpb=1.3367  nats/tok=3.8602  lam=0.20868  (1437s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [21:44<21:44, 1304.79s/it]Fetching 2 files: 100%|██████████| 2/2 [21:44<00:00, 652.40s/it] 
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4534.94it/s]
+  olmo1-0724|step4000-tokens8B                 bpb=1.1542  nats/tok=3.3333  lam=0.17673  (1375s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [26:00<26:00, 1560.07s/it]Fetching 2 files: 100%|██████████| 2/2 [26:00<00:00, 780.04s/it] 
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3877.16it/s]
+  olmo1-0724|step10000-tokens20B               bpb=0.9858  nats/tok=2.8469  lam=0.17551  (1628s)
+
+  family       checkpoint                     tokens      bpb  nats/tok    lambda
+  olmo1-0724   step0-tokens0B                   0.0B   3.9155   11.3075   +0.3347
+  olmo1-0724   step1000-tokens2B                2.0B   1.5748    4.5477   +0.1593
+  olmo1-0724   step2000-tokens4B                4.0B   1.3367    3.8602   +0.2087
+  olmo1-0724   step4000-tokens8B                8.0B   1.1542    3.3333   +0.1767
+  olmo1-0724   step10000-tokens20B             20.0B   0.9858    2.8469   +0.1755
+  olmo2-1b     stage1-step0-tokens0B            0.0B   3.9511   11.9007   +0.3598
+  olmo2-1b     stage1-step300-tokens1B          1.0B   2.3229    6.9968   +0.1843
+  olmo2-1b     stage1-step10000-tokens21B      21.0B   0.9358    2.8188   +0.1813
+  olmo2-1b     stage1-step20000-tokens42B      42.0B   0.8895    2.6794   +0.1874
+  olmo2-1b     stage1-step40000-tokens84B      84.0B   0.8587    2.5863   +0.1890
+  pythia-410m  step128                          0.3B   2.6275    7.5879   -0.0926
+  pythia-410m  step256                          0.5B   2.2258    6.4278   -0.0185
+  pythia-410m  step512                          1.1B   1.8613    5.3753   +0.0679
+  pythia-410m  step1000                         2.1B   1.3683    3.9514   +0.1923
+  pythia-410m  step2000                         4.2B   1.1016    3.1812   +0.1558
+  pythia-410m  step4000                         8.4B   0.9841    2.8420   +0.1724
+python(6714) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+python(6715) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+
+  -> COHORT: cohort intact: all 16 declared checkpoints measured UNIT GATE: bits-per-byte on the shared 257163-byte Pile slice, byte count taken from the raw text so the number is tokenizer-independent. OUTSIDE RANGE: ['pythia-410m|step128=2.62748', 'olmo2-1b|stage1-step0-tokens0B=3.95107', 'olmo1-0724|step0-tokens0B=3.9155'] -- these are not bits-per-byte numbers and nothing below is read. NOT DECIDABLE.
+
+wrote results/loss_collapse_families.json

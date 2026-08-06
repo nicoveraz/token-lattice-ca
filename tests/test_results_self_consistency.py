@@ -269,6 +269,10 @@ _STALENESS_PAIRS = [
     ("generality_olmo2.json", "generality_olmo2.py"),
     ("generality_olmo1_0724.json", "generality_olmo1_0724.py"),
     ("transplant_s.json", "transplant_s.py"),
+    # Paired with the MEASURING script: `_analysis_provenance` names what produced the cells, and
+    # loss_collapse_decide.py stamps `_decision_provenance` separately. Checking the measurer here
+    # is the right half -- the decision can be re-run at any time, the measurements cannot.
+    ("loss_collapse_families.json", "loss_collapse_families.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),
