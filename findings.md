@@ -3580,6 +3580,77 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F98 — the generality debt: the curve's endpoints replicate in two non-Pythia families, and the dip is unobservable by anyone
+The oldest open critique in the project — every developmental claim (F25, F39, F42, F46, F77, F81,
+F84, and the paper's headline) is Pythia. Named in `REVIEW.md`, in the paper's own limitations, and
+in `critical_analysis.md` §9.2 as the highest-value experiment available.
+
+**The protocol is not reimplemented, and that is the point.** Both runs import
+`dev_transition_phase3.measure` **unchanged** — same estimator, geometry (N=48, B=16), settle, sweep
+count, fit window and F42 ignition bookkeeping as the paper's own numbers. Only the family varies. A
+generality test that re-derives the measurement varies two things and can attribute a difference to
+neither.
+
+**Pythia's curve is a recovery from a dip, not a rise from zero** — which the first script got
+wrong, see below:
+
+```
+  pythia-410m  step1 +0.3363  step2 +0.3415  step4 +0.3429  step8 +0.3340   ignition 1.00
+               step16 −0.0847 (ign 0.05)     step64 −0.3388 (ign 0.01)      ← the dip
+               crossing back up at step256–512              plateau +0.1683
+```
+
+**Both families reproduce both endpoints, quantitatively.** Pythia's values were frozen in the
+second script *before* it ran, as predictions:
+
+```
+                            init λ    ignition    trained checkpoints (λ)
+  pythia-410m (reference)  +0.3363      1.00      plateau +0.1683
+  OLMo-2-0425-1B           +0.3598      1.00      +0.1843 +0.1813 +0.1874 +0.1890   (1–84B tok)
+  OLMo-1B-0724-hf          +0.3347      1.00      +0.1593 +0.2087 +0.1767 +0.1755   (2–20B tok)
+```
+
+OLMo-1B-0724's init lands **0.0016** from Pythia's. Every trained checkpoint in both families sits
+within 0.10 of Pythia's plateau, at full ignition, with `dynamic_range` clearing its gate at 4.6×
+and 4.8×. **The chaotic init and the settled plateau are not Pythia-specific.**
+
+**THE DIP IS NOT OBSERVABLE BY ANYONE, and this is the finding with the longest shelf life.**
+Pythia's dip spans steps 16–512 = **0.034–1.07B tokens**. Enumerating ~4000 branches across six
+families for a checkpoint strictly inside it:
+
+```
+  allenai/OLMo-1B-0724-hf   1446 checkpoints — earliest trained 2B          NONE inside
+  allenai/OLMo-2-0425-1B    0B, then 1B (step300)                           one boundary point
+  allenai/OLMo-2-1124-7B    1B (step150), then 3B                           one boundary point, 7B
+  LLM360/CrystalCoder       250 checkpoints, 1500-step spacing over 1.4T
+  LLM360/K2                 141 checkpoints, 65B parameters
+  stablelm-2, SmolLM2, bloom-1b1, neo, open_llama, TinyLlama    a single branch each
+```
+
+The window is **empty for every public non-Pythia family**. Pythia is an outlier in early-checkpoint
+density. So "does the transition happen at the same token count across families?" is **not
+answerable today**, by anyone — a fact about the field's checkpoint supply rather than a limitation
+of this design, and it should be stated that way in any write-up.
+
+**The scope this fixes.** The generality debt is closed *for the endpoints* and *open, permanently
+for now, for the timing*. That is weaker than "the transition replicates" and stronger than nothing:
+the quantity the paper reports as its plateau is reproduced by two independent families, and the
+event that produces it cannot currently be dated outside Pythia.
+
+**A pre-registration error, recorded because it nearly inverted a verdict.** `generality_olmo2.py`
+registered *"the untrained anchor must look untrained: λ undefined or negative."* That contradicts
+F84/#87, which was already in this repo: a randomly initialised model is **maximally chaotic** —
+damage ignites every time and fills the lattice — so λ is high and **positive** at init. The script
+therefore read its own **passing** control as a failure and fell through to a KILL verdict declaring
+the transition Pythia-specific. The measurements were never affected; only the verdict logic. It was
+corrected in place with the reasoning recorded, and the second family was specified correctly from
+the start. **A pre-registration protects against moving the goalposts, not against writing down the
+wrong baseline** — and the guard that caught it was the project's own prior data, not the gate.
+
+**Attribution.** Tokenizer, architecture, corpus, data order and optimiser all differ from Pythia
+simultaneously in both families. This is a generality test, not a controlled comparison, and cannot
+attribute any difference to any one of them.
+
 ### F97 — T\* is not the heat capacity of the conditional, and that is what protects it
 Next-steps item 2, and the first result this project has produced from a formula found in the
 literature rather than from its own ladder. F95's prior-art check turned up IRIS's derivation that
@@ -3951,7 +4022,12 @@ the ladder figure, decide on F77's radius replication, merge the branch) is in `
 
 **The open debts, in the order `critical_analysis.md` rev2 §9 ranks them.**
 
-1. **Generality.** One checkpointed non-Pythia family. The oldest open critique in the project —
+1. ~~**Generality.**~~ **PARTLY CLOSED (F98), and the remainder is closed to everyone.** Two
+   non-Pythia families (OLMo-2-0425-1B, OLMo-1B-0724-hf) reproduce both endpoints of the
+   developmental curve quantitatively with the paper's own estimator imported unchanged. The
+   TIMING is not testable: no public non-Pythia family has a checkpoint inside Pythia's dip window
+   of 0.034–1.07B tokens (~4000 branches, six families). *Superseded detail:* one checkpointed
+   non-Pythia family. The oldest open critique in the project —
    named in `REVIEW.md`, in the paper's own limitations, in revision 1 of the critical analysis, and
    still open. F88 supplies a cheaper partial (finer loss spacing within Pythia resolves the
    loss-vs-step alignment that returned NOT DECIDABLE) but it does not substitute.

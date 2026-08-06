@@ -241,6 +241,8 @@ _STALENESS_PAIRS = [
     ("meanfield_lambda.json", "meanfield_lambda.py"),
     ("canalization.json", "canalization.py"),
     ("heat_capacity_tstar.json", "heat_capacity_tstar.py"),
+    ("generality_olmo2.json", "generality_olmo2.py"),
+    ("generality_olmo1_0724.json", "generality_olmo1_0724.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),

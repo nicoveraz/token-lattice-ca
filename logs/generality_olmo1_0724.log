@@ -1,0 +1,103 @@
+allenai/OLMo-1B-0724-hf: 40 runs (5 checkpoints x 8 seeds, N=48, B=16)
+Predicts: init ~ +0.3363, every trained point ~ +0.1683.
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [03:56<03:56, 236.21s/it]Fetching 2 files: 100%|██████████| 2/2 [03:56<00:00, 118.11s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 2287.84it/s]
+[1/40] step0-tokens0B_s21: lam=+0.3424 D_norm=0.9772 ign=1.00 (444.0s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3895.29it/s]
+[2/40] step0-tokens0B_s22: lam=+0.5461 D_norm=0.9963 ign=1.00 (194.7s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4175.04it/s]
+[3/40] step0-tokens0B_s23: lam=+0.2510 D_norm=0.9619 ign=1.00 (195.1s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4443.57it/s]
+[4/40] step0-tokens0B_s24: lam=+0.2900 D_norm=0.9868 ign=1.00 (193.8s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4361.14it/s]
+[5/40] step0-tokens0B_s25: lam=+0.3112 D_norm=0.9663 ign=1.00 (193.9s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3834.90it/s]
+[6/40] step0-tokens0B_s26: lam=+0.3851 D_norm=0.9959 ign=1.00 (194.1s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3960.79it/s]
+[7/40] step0-tokens0B_s27: lam=+0.3484 D_norm=0.9950 ign=1.00 (193.7s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4356.65it/s]
+[8/40] step0-tokens0B_s28: lam=+0.2031 D_norm=0.9779 ign=1.00 (192.7s)
+    evicted step0-tokens0B (freed 5.1G)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [11:23<11:23, 683.24s/it]Fetching 2 files: 100%|██████████| 2/2 [11:23<00:00, 341.62s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 5205.72it/s]
+[9/40] step1000-tokens2B_s21: lam=+0.1671 D_norm=0.3851 ign=0.69 (882.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4543.60it/s]
+[10/40] step1000-tokens2B_s22: lam=+0.1534 D_norm=0.6299 ign=0.94 (193.3s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3779.73it/s]
+[11/40] step1000-tokens2B_s23: lam=+0.1371 D_norm=0.4764 ign=0.75 (192.4s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3854.72it/s]
+[12/40] step1000-tokens2B_s24: lam=+0.2043 D_norm=0.6194 ign=1.00 (192.9s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4236.78it/s]
+[13/40] step1000-tokens2B_s25: lam=+0.1519 D_norm=0.2395 ign=0.44 (193.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4018.75it/s]
+[14/40] step1000-tokens2B_s26: lam=+0.1738 D_norm=0.7863 ign=1.00 (193.1s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4415.67it/s]
+[15/40] step1000-tokens2B_s27: lam=+0.1682 D_norm=0.5595 ign=1.00 (194.0s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4523.10it/s]
+[16/40] step1000-tokens2B_s28: lam=+0.1189 D_norm=0.5185 ign=0.88 (193.4s)
+    evicted step1000-tokens2B (freed 5.1G)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [12:29<12:29, 749.46s/it]Fetching 2 files: 100%|██████████| 2/2 [12:29<00:00, 374.73s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 8442.37it/s]
+[17/40] step2000-tokens4B_s21: lam=+0.2280 D_norm=0.2156 ign=0.50 (946.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4887.67it/s]
+[18/40] step2000-tokens4B_s22: lam=+0.3095 D_norm=0.4971 ign=0.75 (193.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4432.49it/s]
+[19/40] step2000-tokens4B_s23: lam=+0.1410 D_norm=0.4764 ign=0.50 (193.3s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4273.48it/s]
+[20/40] step2000-tokens4B_s24: lam=+0.2450 D_norm=0.4217 ign=0.75 (193.0s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4763.69it/s]
+[21/40] step2000-tokens4B_s25: lam=+0.0907 D_norm=0.3352 ign=0.44 (193.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4555.81it/s]
+[22/40] step2000-tokens4B_s26: lam=+0.2946 D_norm=0.4860 ign=0.69 (193.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4476.90it/s]
+[23/40] step2000-tokens4B_s27: lam=+0.2154 D_norm=0.3088 ign=0.62 (193.2s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4565.12it/s]
+[24/40] step2000-tokens4B_s28: lam=+0.1452 D_norm=0.5963 ign=0.81 (193.1s)
+    evicted step2000-tokens4B (freed 5.1G)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [11:19<11:19, 679.41s/it]Fetching 2 files: 100%|██████████| 2/2 [11:19<00:00, 339.70s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 9009.81it/s]
+[25/40] step4000-tokens8B_s21: lam=+0.1386 D_norm=0.4991 ign=0.81 (878.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4996.72it/s]
+[26/40] step4000-tokens8B_s22: lam=+0.1909 D_norm=0.6718 ign=1.00 (195.1s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4521.48it/s]
+[27/40] step4000-tokens8B_s23: lam=+0.1533 D_norm=0.5189 ign=0.94 (195.2s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4459.20it/s]
+[28/40] step4000-tokens8B_s24: lam=+0.1885 D_norm=0.5186 ign=0.94 (194.8s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4519.30it/s]
+[29/40] step4000-tokens8B_s25: lam=+0.1748 D_norm=0.3911 ign=0.69 (194.9s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4745.06it/s]
+[30/40] step4000-tokens8B_s26: lam=+0.1962 D_norm=0.7781 ign=1.00 (195.0s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4415.18it/s]
+[31/40] step4000-tokens8B_s27: lam=+0.2247 D_norm=0.6378 ign=0.94 (194.4s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4496.14it/s]
+[32/40] step4000-tokens8B_s28: lam=+0.1469 D_norm=0.5612 ign=1.00 (193.3s)
+    evicted step4000-tokens8B (freed 5.1G)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [11:20<11:20, 680.14s/it]Fetching 2 files: 100%|██████████| 2/2 [11:20<00:00, 340.07s/it]
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 5161.38it/s]
+[33/40] step10000-tokens20B_s21: lam=+0.1290 D_norm=0.5836 ign=0.94 (877.0s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4892.27it/s]
+[34/40] step10000-tokens20B_s22: lam=+0.1948 D_norm=0.6738 ign=1.00 (193.6s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4362.97it/s]
+[35/40] step10000-tokens20B_s23: lam=+0.1686 D_norm=0.6465 ign=1.00 (193.1s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4236.52it/s]
+[36/40] step10000-tokens20B_s24: lam=+0.1938 D_norm=0.6912 ign=1.00 (192.5s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4882.63it/s]
+[37/40] step10000-tokens20B_s25: lam=+0.1966 D_norm=0.3489 ign=0.56 (193.8s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4425.48it/s]
+[38/40] step10000-tokens20B_s26: lam=+0.1770 D_norm=0.7941 ign=1.00 (193.8s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4248.83it/s]
+[39/40] step10000-tokens20B_s27: lam=+0.1960 D_norm=0.6502 ign=0.94 (193.3s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3574.34it/s]
+[40/40] step10000-tokens20B_s28: lam=+0.1483 D_norm=0.5695 ign=0.94 (195.4s)
+    evicted step10000-tokens20B (freed 5.1G)
+
+  checkpoint                 tokens    ign     lambda       sd   D_norm   neg
+  step0-tokens0B                 0B   1.00    +0.3347   0.0964   0.9822     0
+  step1000-tokens2B              2B   1.00    +0.1593   0.0240   0.5268     0
+  step2000-tokens4B              4B   1.00    +0.2087   0.0723   0.4172     0
+  step4000-tokens8B              8B   1.00    +0.1767   0.0272   0.5721     0
+  step10000-tokens20B           20B   1.00    +0.1755   0.0238   0.6198     0
+
+  -> CONTROL (the CHAOTIC init signature, not a negative one): random init gives lambda +0.3347 with ignition 1.00 and D_norm 0.982, against Pythia's measured +0.3363 at ignition 1.00. It reproduces the chaotic init, as a randomly initialised model must -- damage ignites every time and fills the lattice. PRIMARY: THE DEVELOPMENTAL CURVE'S ENDPOINTS REPLICATE IN A SECOND NON-PYTHIA FAMILY. Init lands at +0.3347 against Pythia's +0.3363, and all 4 trained checkpoints land within 0.1 of Pythia's plateau +0.1683 (measured [0.1593, 0.2087, 0.1767, 0.1755]). With OLMo-2-0425-1B this is two independent families, both measured by dev_transition_phase3.measure imported unchanged -- same estimator, same geometry, only the family varies. lambda_ca across the grid spans 0.1753 against its own noise floor 0.03682 (4.76x, gate 2.0x) BOUNDARY, BINDING ON HOW THIS MAY BE WRITTEN. This replicates the curve's ENDPOINTS, not its TIMING. Pythia's dip spans 0.034-1.07B tokens and NO public non-Pythia family has a checkpoint strictly inside it -- ~4000 branches enumerated across OLMo-1B-0724 (1446, earliest trained 2B), OLMo-2-0425-1B (0B then 1B), OLMo-2-1124-7B, CrystalCoder, K2, and five single-branch repositories. The dip is not observable by anyone today, and that is a fact about the field's checkpoint supply rather than a limitation of this design. ATTRIBUTION: tokenizer, architecture, corpus, data order and optimiser all differ from Pythia simultaneously; this cannot attribute any difference to any one of them.
+
+wrote results/generality_olmo1_0724.json

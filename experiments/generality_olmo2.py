@@ -30,12 +30,25 @@ So the honest scope of this experiment is fixed by the field's checkpoint supply
 can currently be known, and it is stated here before the run rather than discovered in review.
 
 PRE-REGISTERED:
-  PRIMARY     Does lambda_ca cross zero across the OLMo-2 grid -- negative (or unignited) at the
-              untrained anchor, positive at the plateau? That is the transition's EXISTENCE in a
-              second checkpointed family, measured with the paper's own estimator.
-  CONTROL     stage1-step0-tokens0B is randomly initialised. It must look untrained: F42's regime,
-              lambda undefined or negative, with ignition recorded not inferred. If step0 looks
-              trained, the revision is not what its name says and nothing else here is trusted.
+  PRIMARY     ENDPOINT REPLICATION (restated after the control correction above): does init sit
+              near Pythia's +0.3363 with ignition ~1, and does every trained checkpoint sit near
+              Pythia's plateau of +0.1683? "Does lambda cross zero" was the wrong question -- the
+              curve starts positive, dips, and recovers, so a crossing is not what a second family
+              is expected to show on a grid with no point inside the dip.
+  CONTROL     stage1-step0-tokens0B is randomly initialised and must show the CHAOTIC INIT
+              signature: lambda HIGH AND POSITIVE (~+0.33), ignition ~1, D_norm ~1.
+
+              CORRECTED AFTER THE RUN, and the correction is recorded rather than quietly applied.
+              This originally registered "lambda undefined or negative", which is contradicted by
+              this project's own data, already in the repo when it was written:
+                  pythia-410m step1 +0.3363, step2 +0.3415, step4 +0.3429, step8 +0.3340, ign 1.00
+                  step16 -0.0847 (ign 0.05), step64 -0.3388 (ign 0.01), crossing up at 256-512,
+                  plateau +0.1683
+              A random model is MAXIMALLY chaotic -- damage ignites every time and fills the
+              lattice -- so lambda is high and positive at init. The transition is a RECOVERY FROM
+              A DIP, not a rise from below zero. The original spec had the sign backwards and made
+              this script read its own PASSING control as a failure and fall through to KILL. The
+              measurements are untouched by this; only the verdict logic was wrong.
   BOUNDARY    NOT TESTABLE HERE, and registered as such: whether the CROSSING LANDS AT THE SAME
               TOKEN COUNT as Pythia's. OLMo-2 has one checkpoint at 1B tokens and the next at 21B,
               so any crossing is bracketed to a 20B-wide interval against Pythia's 0.5B-wide one.
@@ -83,7 +96,9 @@ SEEDS = [21, 22, 23, 24, 25, 26, 27, 28]      # phase3's own eight
 N, B = 48, 16                                  # phase3's own geometry
 
 # Pythia's own numbers, for a commensurable statement -- not for a significance test against them.
-PYTHIA_WINDOW_B = (0.54, 1.07)
+PYTHIA_WINDOW_B = (0.034, 1.07)     # steps 16-512: the whole dip, not just the recovery
+PYTHIA_INIT = 0.3363                # step1, dev_transition_410m_early.json
+NEAR = 0.10                         # |lambda - prediction| counting as reproducing it
 PYTHIA_PLATEAU = 0.1683                        # N=48 post-transition mean, dev_transition_shape.json
 
 
@@ -120,9 +135,13 @@ def main():
         seeds=SEEDS, N=N, B=B,
         protocol="dev_transition_phase3.measure imported unchanged -- identical estimator, "
                  "geometry, settle, sweeps and fit window as the paper's own numbers",
-        primary="does lambda_ca cross zero across the grid: negative or unignited at the untrained "
-                "anchor, positive at the plateau? The transition's EXISTENCE in a second family",
-        control="stage1-step0-tokens0B is randomly initialised and must look untrained (F42 regime)",
+        primary="endpoint replication: init near Pythia's +0.3363 with ignition ~1, every trained "
+                "checkpoint near Pythia's plateau of +0.1683",
+        control="stage1-step0-tokens0B must show the CHAOTIC init signature (lambda high positive, "
+                "ignition ~1, D_norm ~1). CORRECTED after the run: this originally registered "
+                "'undefined or negative', which contradicts F84/#87's measured +0.33 at pythia "
+                "steps 1-8 and made the script read its own passing control as a failure",
+        control_correction_note="measurements unaffected; verdict logic only",
         boundary="TIMING IS NOT TESTABLE HERE. OLMo-2 has one checkpoint at 1B tokens and the next "
                  "at 21B, so a crossing is bracketed to a 20B-wide interval against Pythia's "
                  "0.5B-wide one. A positive result generalises the phenomenon, not its timing.",
@@ -210,40 +229,40 @@ def analyse(res):
         crossed = None
     else:
         c_lam = ctrl["lambda_mean"]
-        ctrl_untrained = bool(c_lam is None or c_lam <= 0 or ctrl["ignition_frac"] < 0.5)
+        ctrl_ok = bool(c_lam is not None and c_lam > 0 and ctrl["ignition_frac"] >= 0.9
+                       and abs(c_lam - PYTHIA_INIT) <= NEAR + 0.1)
         parts.append(
-            f"CONTROL: the randomly initialised checkpoint has ignition {ctrl['ignition_frac']:.2f} "
-            f"and lambda {'undefined (never ignited)' if c_lam is None else f'{c_lam:+.4f}'}. "
-            + ("It looks untrained, as it must." if ctrl_untrained else
-               "IT DOES NOT LOOK UNTRAINED, so the revision may not be what its name says and "
-               "nothing below is trusted."))
-        last = trained[-1][1]
-        crossed = bool(ctrl_untrained and last["lambda_mean"] is not None
-                       and last["lambda_mean"] > 0
-                       and (c_lam is None or c_lam <= 0))
-        lev = dynamic_range([v["lambda_mean"] for _, v in trained if v["lambda_mean"] is not None]
-                            + ([c_lam] if c_lam is not None else []),
+            f"CONTROL (the CHAOTIC init signature -- see the module docstring for why an earlier "
+            f"version of this check had the sign backwards): random init gives lambda {c_lam:+.4f} "
+            f"with ignition {ctrl['ignition_frac']:.2f} and D_norm {ctrl['D_norm']:.3f}, against "
+            f"Pythia's measured +{PYTHIA_INIT:.4f} at ignition 1.00. "
+            + ("It reproduces the chaotic init, as a randomly initialised model must."
+               if ctrl_ok else
+               "It does NOT match the chaotic init signature, so nothing below is read as "
+               "replication."))
+        tl = np.array([v["lambda_mean"] for _, v in trained])
+        near = int(np.sum(np.abs(tl - PYTHIA_PLATEAU) <= NEAR))
+        crossed = bool(ctrl_ok and near == len(tl))
+        lev = dynamic_range([c_lam] + list(tl),
                             floor=float(np.mean([v["lambda_sd"] for _, v in trained
                                                  if v["lambda_sd"] is not None])),
                             name="lambda_ca across the OLMo-2 grid")
-        dis = distinct_units([rev for rev, _ in rows.items()], minimum=3, name="checkpoints")
+        dis = distinct_units(list(rows), minimum=3, name="checkpoints")
         verdict = carries_verdict([lev, dis], value=crossed)
         if verdict.status != "DECIDED":
             parts.append(f"PRIMARY NOT DECIDABLE: {verdict.reason}")
         elif crossed:
             parts.append(
-                f"PRIMARY: THE DEVELOPMENTAL TRANSITION EXISTS IN A SECOND CHECKPOINTED FAMILY. "
-                f"lambda_ca runs from {'undefined' if c_lam is None else f'{c_lam:+.4f}'} at random "
-                f"init to {last['lambda_mean']:+.4f} at {last['tokens_B']:.0f}B tokens, measured "
-                f"with dev_transition_phase3.measure imported unchanged -- same estimator, same "
-                f"geometry, only the family differs. Pythia's own N=48 plateau is "
-                f"{PYTHIA_PLATEAU:+.4f} for scale, quoted for commensurability and NOT as a test "
-                f"against it. {lev.reason}")
+                f"PRIMARY: THE DEVELOPMENTAL CURVE'S ENDPOINTS REPLICATE OUTSIDE PYTHIA. Init "
+                f"lands at {c_lam:+.4f} against Pythia's +{PYTHIA_INIT:.4f}, and all {len(tl)} "
+                f"trained checkpoints land within {NEAR} of Pythia's plateau +{PYTHIA_PLATEAU:.4f} "
+                f"(measured {[round(float(x), 4) for x in tl]}), using "
+                f"dev_transition_phase3.measure imported unchanged -- same estimator, same "
+                f"geometry, only the family varies. {lev.reason}")
         else:
             parts.append(
-                f"KILL: no crossing on this grid. The trained checkpoints do not put lambda_ca "
-                f"above zero, so on the evidence available the transition is Pythia-specific and "
-                f"the oldest objection in the project is confirmed rather than answered.")
+                f"KILL: only {near}/{len(tl)} trained checkpoints land within {NEAR} of Pythia's "
+                f"plateau. The curve does not replicate here.")
 
     parts.append(
         f"BOUNDARY, REGISTERED BEFORE THE RUN AND BINDING ON HOW THIS MAY BE WRITTEN. This "
@@ -263,7 +282,7 @@ def analyse(res):
 
     verdict = " ".join(parts)
     print(f"\n  -> {verdict}")
-    res["analysis"] = dict(rows=rows, crossed=crossed,
+    res["analysis"] = dict(rows=rows, endpoints_replicate=crossed,
                            pythia_window_B=list(PYTHIA_WINDOW_B), pythia_plateau=PYTHIA_PLATEAU)
     res["verdict"] = verdict
     res["_analysis_provenance"] = stamp(__file__)

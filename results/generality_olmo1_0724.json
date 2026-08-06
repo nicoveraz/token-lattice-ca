@@ -1,0 +1,575 @@
+{
+ "runs": {
+  "step0-tokens0B_s21": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 21,
+   "lambda_ca": 0.34236,
+   "D_norm": 0.97721,
+   "mean_damage": 0.9772135416666667,
+   "ignition_prob": 1.0,
+   "secs": 444.0
+  },
+  "step0-tokens0B_s22": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 22,
+   "lambda_ca": 0.54606,
+   "D_norm": 0.99626,
+   "mean_damage": 0.9962565104166667,
+   "ignition_prob": 1.0,
+   "secs": 194.7
+  },
+  "step0-tokens0B_s23": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 23,
+   "lambda_ca": 0.25102,
+   "D_norm": 0.96191,
+   "mean_damage": 0.9619140625,
+   "ignition_prob": 1.0,
+   "secs": 195.1
+  },
+  "step0-tokens0B_s24": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 24,
+   "lambda_ca": 0.29005,
+   "D_norm": 0.98682,
+   "mean_damage": 0.98681640625,
+   "ignition_prob": 1.0,
+   "secs": 193.8
+  },
+  "step0-tokens0B_s25": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 25,
+   "lambda_ca": 0.31123,
+   "D_norm": 0.96631,
+   "mean_damage": 0.96630859375,
+   "ignition_prob": 1.0,
+   "secs": 193.9
+  },
+  "step0-tokens0B_s26": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 26,
+   "lambda_ca": 0.38512,
+   "D_norm": 0.99593,
+   "mean_damage": 0.9959309895833334,
+   "ignition_prob": 1.0,
+   "secs": 194.1
+  },
+  "step0-tokens0B_s27": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 27,
+   "lambda_ca": 0.34845,
+   "D_norm": 0.99495,
+   "mean_damage": 0.9949544270833334,
+   "ignition_prob": 1.0,
+   "secs": 193.7
+  },
+  "step0-tokens0B_s28": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "seed": 28,
+   "lambda_ca": 0.20309,
+   "D_norm": 0.97786,
+   "mean_damage": 0.9778645833333334,
+   "ignition_prob": 1.0,
+   "secs": 192.7
+  },
+  "step1000-tokens2B_s21": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 21,
+   "lambda_ca": 0.1671,
+   "D_norm": 0.38508,
+   "mean_damage": 0.37548828125,
+   "ignition_prob": 0.6875,
+   "secs": 882.5
+  },
+  "step1000-tokens2B_s22": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 22,
+   "lambda_ca": 0.15337,
+   "D_norm": 0.62989,
+   "mean_damage": 0.60302734375,
+   "ignition_prob": 0.9375,
+   "secs": 193.3
+  },
+  "step1000-tokens2B_s23": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 23,
+   "lambda_ca": 0.13706,
+   "D_norm": 0.47635,
+   "mean_damage": 0.45084635416666663,
+   "ignition_prob": 0.75,
+   "secs": 192.4
+  },
+  "step1000-tokens2B_s24": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 24,
+   "lambda_ca": 0.2043,
+   "D_norm": 0.61941,
+   "mean_damage": 0.5859375,
+   "ignition_prob": 1.0,
+   "secs": 192.9
+  },
+  "step1000-tokens2B_s25": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 25,
+   "lambda_ca": 0.1519,
+   "D_norm": 0.23951,
+   "mean_damage": 0.23404947916666666,
+   "ignition_prob": 0.4375,
+   "secs": 193.5
+  },
+  "step1000-tokens2B_s26": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 26,
+   "lambda_ca": 0.17383,
+   "D_norm": 0.78627,
+   "mean_damage": 0.7682291666666667,
+   "ignition_prob": 1.0,
+   "secs": 193.1
+  },
+  "step1000-tokens2B_s27": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 27,
+   "lambda_ca": 0.16819,
+   "D_norm": 0.55953,
+   "mean_damage": 0.546875,
+   "ignition_prob": 1.0,
+   "secs": 194.0
+  },
+  "step1000-tokens2B_s28": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "seed": 28,
+   "lambda_ca": 0.11889,
+   "D_norm": 0.51853,
+   "mean_damage": 0.47151692708333337,
+   "ignition_prob": 0.875,
+   "secs": 193.4
+  },
+  "step2000-tokens4B_s21": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 21,
+   "lambda_ca": 0.22805,
+   "D_norm": 0.21561,
+   "mean_damage": 0.10026041666666666,
+   "ignition_prob": 0.5,
+   "secs": 946.5
+  },
+  "step2000-tokens4B_s22": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 22,
+   "lambda_ca": 0.30954,
+   "D_norm": 0.49709,
+   "mean_damage": 0.20817057291666666,
+   "ignition_prob": 0.75,
+   "secs": 193.5
+  },
+  "step2000-tokens4B_s23": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 23,
+   "lambda_ca": 0.14097,
+   "D_norm": 0.47644,
+   "mean_damage": 0.21061197916666669,
+   "ignition_prob": 0.5,
+   "secs": 193.3
+  },
+  "step2000-tokens4B_s24": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 24,
+   "lambda_ca": 0.245,
+   "D_norm": 0.42173,
+   "mean_damage": 0.21484375,
+   "ignition_prob": 0.75,
+   "secs": 193.0
+  },
+  "step2000-tokens4B_s25": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 25,
+   "lambda_ca": 0.09068,
+   "D_norm": 0.3352,
+   "mean_damage": 0.11702473958333334,
+   "ignition_prob": 0.4375,
+   "secs": 193.5
+  },
+  "step2000-tokens4B_s26": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 26,
+   "lambda_ca": 0.29463,
+   "D_norm": 0.48602,
+   "mean_damage": 0.22347005208333334,
+   "ignition_prob": 0.6875,
+   "secs": 193.5
+  },
+  "step2000-tokens4B_s27": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 27,
+   "lambda_ca": 0.21541,
+   "D_norm": 0.30878,
+   "mean_damage": 0.18424479166666669,
+   "ignition_prob": 0.625,
+   "secs": 193.2
+  },
+  "step2000-tokens4B_s28": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "seed": 28,
+   "lambda_ca": 0.14518,
+   "D_norm": 0.5963,
+   "mean_damage": 0.36686197916666663,
+   "ignition_prob": 0.8125,
+   "secs": 193.1
+  },
+  "step4000-tokens8B_s21": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 21,
+   "lambda_ca": 0.13859,
+   "D_norm": 0.49908,
+   "mean_damage": 0.48714192708333337,
+   "ignition_prob": 0.8125,
+   "secs": 878.5
+  },
+  "step4000-tokens8B_s22": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 22,
+   "lambda_ca": 0.19094,
+   "D_norm": 0.67176,
+   "mean_damage": 0.6585286458333333,
+   "ignition_prob": 1.0,
+   "secs": 195.1
+  },
+  "step4000-tokens8B_s23": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 23,
+   "lambda_ca": 0.15333,
+   "D_norm": 0.51888,
+   "mean_damage": 0.5076497395833334,
+   "ignition_prob": 0.9375,
+   "secs": 195.2
+  },
+  "step4000-tokens8B_s24": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 24,
+   "lambda_ca": 0.18846,
+   "D_norm": 0.51862,
+   "mean_damage": 0.5078125,
+   "ignition_prob": 0.9375,
+   "secs": 194.8
+  },
+  "step4000-tokens8B_s25": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 25,
+   "lambda_ca": 0.17478,
+   "D_norm": 0.39115,
+   "mean_damage": 0.38248697916666674,
+   "ignition_prob": 0.6875,
+   "secs": 194.9
+  },
+  "step4000-tokens8B_s26": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 26,
+   "lambda_ca": 0.19619,
+   "D_norm": 0.77805,
+   "mean_damage": 0.76171875,
+   "ignition_prob": 1.0,
+   "secs": 195.0
+  },
+  "step4000-tokens8B_s27": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 27,
+   "lambda_ca": 0.2247,
+   "D_norm": 0.63785,
+   "mean_damage": 0.6243489583333333,
+   "ignition_prob": 0.9375,
+   "secs": 194.4
+  },
+  "step4000-tokens8B_s28": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "seed": 28,
+   "lambda_ca": 0.14686,
+   "D_norm": 0.56121,
+   "mean_damage": 0.5491536458333333,
+   "ignition_prob": 1.0,
+   "secs": 193.3
+  },
+  "step10000-tokens20B_s21": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 21,
+   "lambda_ca": 0.12901,
+   "D_norm": 0.58365,
+   "mean_damage": 0.5751953125,
+   "ignition_prob": 0.9375,
+   "secs": 877.0
+  },
+  "step10000-tokens20B_s22": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 22,
+   "lambda_ca": 0.19476,
+   "D_norm": 0.67385,
+   "mean_damage": 0.6617838541666667,
+   "ignition_prob": 1.0,
+   "secs": 193.6
+  },
+  "step10000-tokens20B_s23": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 23,
+   "lambda_ca": 0.16857,
+   "D_norm": 0.64654,
+   "mean_damage": 0.63623046875,
+   "ignition_prob": 1.0,
+   "secs": 193.1
+  },
+  "step10000-tokens20B_s24": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 24,
+   "lambda_ca": 0.19379,
+   "D_norm": 0.6912,
+   "mean_damage": 0.68017578125,
+   "ignition_prob": 1.0,
+   "secs": 192.5
+  },
+  "step10000-tokens20B_s25": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 25,
+   "lambda_ca": 0.19661,
+   "D_norm": 0.34888,
+   "mean_damage": 0.34326171875,
+   "ignition_prob": 0.5625,
+   "secs": 193.8
+  },
+  "step10000-tokens20B_s26": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 26,
+   "lambda_ca": 0.17703,
+   "D_norm": 0.79411,
+   "mean_damage": 0.7815755208333334,
+   "ignition_prob": 1.0,
+   "secs": 193.8
+  },
+  "step10000-tokens20B_s27": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 27,
+   "lambda_ca": 0.19602,
+   "D_norm": 0.65021,
+   "mean_damage": 0.6407877604166666,
+   "ignition_prob": 0.9375,
+   "secs": 193.3
+  },
+  "step10000-tokens20B_s28": {
+   "model": "allenai/OLMo-1B-0724-hf",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "seed": 28,
+   "lambda_ca": 0.14832,
+   "D_norm": 0.56954,
+   "mean_damage": 0.5618489583333333,
+   "ignition_prob": 0.9375,
+   "secs": 195.4
+  }
+ },
+ "_preregistration": {
+  "model": "allenai/OLMo-1B-0724-hf",
+  "steps": [
+   "step0-tokens0B",
+   "step1000-tokens2B",
+   "step2000-tokens4B",
+   "step4000-tokens8B",
+   "step10000-tokens20B"
+  ],
+  "tokens_B": [
+   0.0,
+   2.0,
+   4.0,
+   8.0,
+   20.0
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28
+  ],
+  "N": 48,
+  "B": 16,
+  "near": 0.1,
+  "protocol": "dev_transition_phase3.measure imported unchanged",
+  "primary": "endpoint replication: init near Pythia's +0.3363 with ignition ~1, every trained checkpoint near Pythia's plateau of +0.1683, both fixed before the run",
+  "control": "step0-tokens0B must show the CHAOTIC init signature (lambda high positive, ignition ~1, D_norm ~1) -- NOT negative. generality_olmo2.py registered the opposite and had the sign backwards; F84/#87 measured +0.33 at pythia steps 1-8",
+  "risky": "the earliest trained checkpoint is 2B tokens and Pythia recovers by ~1.07B, so every trained point should ALREADY be at plateau; a negative lambda at any would mean this family's dip extends far later than Pythia's",
+  "boundary": "timing not testable: no public non-Pythia family has a checkpoint strictly inside 0.034-1.07B tokens (~4000 branches enumerated across six families)",
+  "kill": "trained lambdas far from the plateau, or a non-chaotic init -> the curve does not replicate and OLMo-2's endpoint result was family-specific",
+  "pythia_init": 0.3363,
+  "pythia_plateau": 0.1683,
+  "pythia_dip_window_B": [
+   0.034,
+   1.07
+  ]
+ },
+ "analysis": {
+  "rows": {
+   "step0-tokens0B": {
+    "tokens_B": 0.0,
+    "n": 8,
+    "n_ignited": 8,
+    "ignition_frac": 1.0,
+    "lambda_mean": 0.33467,
+    "lambda_sd": 0.09639,
+    "n_negative": 0,
+    "D_norm": 0.98216
+   },
+   "step1000-tokens2B": {
+    "tokens_B": 2.0,
+    "n": 8,
+    "n_ignited": 8,
+    "ignition_frac": 1.0,
+    "lambda_mean": 0.15933,
+    "lambda_sd": 0.02396,
+    "n_negative": 0,
+    "D_norm": 0.52682
+   },
+   "step2000-tokens4B": {
+    "tokens_B": 4.0,
+    "n": 8,
+    "n_ignited": 8,
+    "ignition_frac": 1.0,
+    "lambda_mean": 0.20868,
+    "lambda_sd": 0.07232,
+    "n_negative": 0,
+    "D_norm": 0.41715
+   },
+   "step4000-tokens8B": {
+    "tokens_B": 8.0,
+    "n": 8,
+    "n_ignited": 8,
+    "ignition_frac": 1.0,
+    "lambda_mean": 0.17673,
+    "lambda_sd": 0.0272,
+    "n_negative": 0,
+    "D_norm": 0.57208
+   },
+   "step10000-tokens20B": {
+    "tokens_B": 20.0,
+    "n": 8,
+    "n_ignited": 8,
+    "ignition_frac": 1.0,
+    "lambda_mean": 0.17551,
+    "lambda_sd": 0.02378,
+    "n_negative": 0,
+    "D_norm": 0.61975
+   }
+  },
+  "replicates": true,
+  "pythia_init": 0.3363,
+  "pythia_plateau": 0.1683,
+  "pythia_dip_window_B": [
+   0.034,
+   1.07
+  ],
+  "near": 0.1
+ },
+ "verdict": "CONTROL (the CHAOTIC init signature, not a negative one): random init gives lambda +0.3347 with ignition 1.00 and D_norm 0.982, against Pythia's measured +0.3363 at ignition 1.00. It reproduces the chaotic init, as a randomly initialised model must -- damage ignites every time and fills the lattice. PRIMARY: THE DEVELOPMENTAL CURVE'S ENDPOINTS REPLICATE IN A SECOND NON-PYTHIA FAMILY. Init lands at +0.3347 against Pythia's +0.3363, and all 4 trained checkpoints land within 0.1 of Pythia's plateau +0.1683 (measured [0.1593, 0.2087, 0.1767, 0.1755]). With OLMo-2-0425-1B this is two independent families, both measured by dev_transition_phase3.measure imported unchanged -- same estimator, same geometry, only the family varies. lambda_ca across the grid spans 0.1753 against its own noise floor 0.03682 (4.76x, gate 2.0x) BOUNDARY, BINDING ON HOW THIS MAY BE WRITTEN. This replicates the curve's ENDPOINTS, not its TIMING. Pythia's dip spans 0.034-1.07B tokens and NO public non-Pythia family has a checkpoint strictly inside it -- ~4000 branches enumerated across OLMo-1B-0724 (1446, earliest trained 2B), OLMo-2-0425-1B (0B then 1B), OLMo-2-1124-7B, CrystalCoder, K2, and five single-branch repositories. The dip is not observable by anyone today, and that is a fact about the field's checkpoint supply rather than a limitation of this design. ATTRIBUTION: tokenizer, architecture, corpus, data order and optimiser all differ from Pythia simultaneously; this cannot attribute any difference to any one of them.",
+ "_analysis_provenance": {
+  "script": "generality_olmo1_0724.py",
+  "sha256": "8adca653a866cd693d9efe47c4896b5122d5b0f3a68a88fd8251f39fac31f949",
+  "imports": {
+   "experiments/ar_probe.py": "84aecd3daa573b6f298675e2d9f0fe247c048e955f7d4e58a7aad5790e025523",
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/generality_olmo1_0724.py": "8adca653a866cd693d9efe47c4896b5122d5b0f3a68a88fd8251f39fac31f949",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
+   "gatecheck/src/gatecheck/__init__.py": "e507077927351e0b6c58dbc75a89511e5021ce2d977ede4e7c461a3b8c55a520",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "a38dd61d67c35fa95936c75275e7e4f03d2459b1c26bccc1c402cb73ea2f13e3",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Second non-Pythia family for the generality debt. Runs the paper's own protocol unchanged on allenai/OLMo-1B-0724-hf (1446 checkpoints, earliest trained at 2B tokens). Predicts, with Pythia's numbers frozen beforehand, a chaotic init near +0.3363 and every trained checkpoint near the +0.1683 plateau. The control is specified against F84/#87's MEASURED init signature -- lambda high and positive with full ignition -- correcting generality_olmo2.py, which registered the opposite sign and would have read its own passing control as a failure."
+}
