@@ -1,0 +1,73 @@
+0 cached, 33 arms to measure (exact, no seeds)
+
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:01<05:02,  1.04s/it]Loading weights:  37%|███▋      | 108/292 [00:01<00:01, 126.95it/s]Loading weights:  55%|█████▍    | 160/292 [00:01<00:00, 156.94it/s]Loading weights:  68%|██████▊   | 200/292 [00:01<00:00, 161.32it/s]Loading weights:  79%|███████▉  | 231/292 [00:01<00:00, 155.11it/s]Loading weights:  88%|████████▊ | 256/292 [00:01<00:00, 156.74it/s]Loading weights:  95%|█████████▌| 278/292 [00:02<00:00, 156.70it/s]Loading weights: 100%|██████████| 292/292 [00:02<00:00, 137.24it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:26,  1.99it/s]Loading weights:  34%|███▎      | 98/292 [00:00<00:00, 216.17it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 206.19it/s]Loading weights:  67%|██████▋   | 196/292 [00:01<00:00, 206.09it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 259.06it/s]
+  attn_L00       s=0.84376 +/- 0.20269  lambda_MF=+0.9287  lambda_meas=+0.3322  (5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 1771.84it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 549.38it/s] 
+  attn_L01       s=0.80771 +/- 0.22715  lambda_MF=+0.8851  lambda_meas=+0.3916  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3833.93it/s]
+  attn_L02       s=0.81584 +/- 0.23147  lambda_MF=+0.8951  lambda_meas=+0.3654  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:49,  2.66it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 658.35it/s]
+  attn_L03       s=0.84065 +/- 0.22984  lambda_MF=+0.9250  lambda_meas=+0.3582  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:57,  2.48it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 246.81it/s]Loading weights:  51%|█████▏    | 150/292 [00:00<00:00, 302.03it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 442.33it/s]
+  attn_L04       s=0.84373 +/- 0.24096  lambda_MF=+0.9287  lambda_meas=+0.3597  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 1672.14it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 899.61it/s] 
+  attn_L05       s=0.79240 +/- 0.25187  lambda_MF=+0.8659  lambda_meas=+0.3584  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:13,  3.97it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1140.26it/s]
+  attn_L06       s=0.84815 +/- 0.21664  lambda_MF=+0.9339  lambda_meas=+0.3571  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:19,  3.64it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:00, 303.69it/s]Loading weights:  48%|████▊     | 141/292 [00:00<00:00, 276.22it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 456.02it/s]
+  attn_L07       s=0.84341 +/- 0.21397  lambda_MF=+0.9283  lambda_meas=+0.4044  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4872.27it/s]
+  attn_L08       s=0.82480 +/- 0.23374  lambda_MF=+0.9060  lambda_meas=+0.3485  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4135.33it/s]
+  attn_L09       s=0.80893 +/- 0.23878  lambda_MF=+0.8866  lambda_meas=+0.3832  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5112.85it/s]
+  attn_L10       s=0.84718 +/- 0.22603  lambda_MF=+0.9328  lambda_meas=+0.3514  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4176.38it/s]
+  attn_L11       s=0.81916 +/- 0.23765  lambda_MF=+0.8991  lambda_meas=+0.3519  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 3405.93it/s]
+  attn_L12       s=0.85346 +/- 0.19117  lambda_MF=+0.9402  lambda_meas=+0.3739  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<04:45,  1.02it/s]Loading weights:  85%|████████▍ | 248/292 [00:01<00:00, 312.69it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 248.90it/s]
+  attn_L13       s=0.81769 +/- 0.22682  lambda_MF=+0.8973  lambda_meas=+0.3608  (5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4184.46it/s]
+  attn_L14       s=0.84484 +/- 0.22039  lambda_MF=+0.9300  lambda_meas=+0.3574  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4937.16it/s]
+  attn_L15       s=0.79105 +/- 0.27092  lambda_MF=+0.8642  lambda_meas=+0.3495  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 1805.68it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1724.07it/s]
+  attn_L16       s=0.83692 +/- 0.22067  lambda_MF=+0.9206  lambda_meas=+0.4143  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<03:32,  1.37it/s]Loading weights:  54%|█████▍    | 158/292 [00:00<00:00, 251.09it/s]Loading weights:  82%|████████▏ | 238/292 [00:01<00:00, 312.29it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 217.76it/s]
+  attn_L17       s=0.84167 +/- 0.19826  lambda_MF=+0.9262  lambda_meas=+0.3754  (5s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   9%|▉         | 26/292 [00:00<00:01, 194.94it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1357.88it/s]
+  attn_L18       s=0.82331 +/- 0.25027  lambda_MF=+0.9042  lambda_meas=+0.3470  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4533.26it/s]
+  attn_L19       s=0.82194 +/- 0.22611  lambda_MF=+0.9025  lambda_meas=+0.3496  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4288.82it/s]
+  attn_L20       s=0.81591 +/- 0.24188  lambda_MF=+0.8952  lambda_meas=+0.3874  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4258.72it/s]
+  attn_L21       s=0.80665 +/- 0.24583  lambda_MF=+0.8838  lambda_meas=+0.3646  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4593.79it/s]
+  attn_L22       s=0.86423 +/- 0.20983  lambda_MF=+0.9527  lambda_meas=+0.3693  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5122.09it/s]
+  attn_L23       s=0.85626 +/- 0.22296  lambda_MF=+0.9434  lambda_meas=+0.3708  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:39,  7.45it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 712.11it/s]Loading weights:  93%|█████████▎| 272/292 [00:00<00:00, 840.08it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 775.63it/s]
+  attn_all       s=0.39982 +/- 0.47979  lambda_MF=+0.1819  lambda_meas=+0.0144  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   8%|▊         | 24/292 [00:00<00:01, 170.78it/s]Loading weights:  76%|███████▌  | 222/292 [00:00<00:00, 1047.52it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1175.12it/s]
+  attn_early     s=0.87818 +/- 0.20237  lambda_MF=+0.9687  lambda_meas=+0.0115  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4958.65it/s]
+  attn_late      s=0.85074 +/- 0.22068  lambda_MF=+0.9370  lambda_meas=+0.3960  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:31,  3.19it/s]Loading weights:  39%|███▉      | 114/292 [00:00<00:00, 355.69it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 633.78it/s]
+  attn_mid       s=0.82069 +/- 0.23630  lambda_MF=+0.9010  lambda_meas=+0.3480  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  48%|████▊     | 140/292 [00:00<00:00, 1062.12it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 499.79it/s] Loading weights: 100%|██████████| 292/292 [00:00<00:00, 615.77it/s]
+  mlp_all        s=0.80199 +/- 0.21754  lambda_MF=+0.8780  lambda_meas=+0.3354  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:43,  1.78it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 514.52it/s]
+  mlp_early      s=0.60070 +/- 0.27769  lambda_MF=+0.5890  lambda_meas=+0.2679  (4s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5074.36it/s]
+  mlp_late       s=0.80246 +/- 0.28058  lambda_MF=+0.8785  lambda_meas=+0.2205  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 4198.19it/s]
+  mlp_mid        s=0.86037 +/- 0.22228  lambda_MF=+0.9482  lambda_meas=+0.4183  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5608.15it/s]
+  none           s=0.83942 +/- 0.20414  lambda_MF=+0.9236  lambda_meas=+0.3566  (3s)
+
+  -> GRID: 33 ablation arms, s in [0.3998, 0.8782] against the mean-field critical 1/r = 0.3333; measured lambda in [+0.0115, +0.4183]; predicted lambda_MF in [+0.1819, +0.9687]. PRIMARY: mean field's predicted lambda spans 0.7868 across these 33 interventions while the measured exponent spans 0.4068 -- a range ratio of 1.934 against the 0.5 a predictor needs to be informative in its target's units. Spearman(s, lambda) = +0.2958 (p = 0.0947), reported as description: with this little range it is not evidence in either direction. DISCRIMINATES: mean field's predictions move with the interventions (ratio 1.934), so the theory is informative here and the correlation above can be read as evidence. Gates: dynamic_range: measured lambda_ca across arms spans 0.4068 against its own noise floor 0.06565 (6.20x, gate 2.0x); distinct_units: 33 sampled ablation arms collapse to 33 distinct (gate 12) BOUNDARY: one model, one checkpoint, one radius, one fixed ensemble. lambda_ca is read from F79/F80 rather than re-measured, so this inherits their geometry exactly and nothing here re-opens their numbers. A failure of ANNEALED mean field is not a failure of single-token sensitivity as such -- F94's rung 2 got 17 of 19 ECA rules right, missing rule 232, MAJORITY, the canonical canalizing function.
+
+wrote results/meanfield_under_ablation.json

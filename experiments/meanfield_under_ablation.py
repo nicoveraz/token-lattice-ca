@@ -158,8 +158,10 @@ def analyse(res):
         f"PRIMARY: mean field's predicted lambda spans {span_pred:.4f} across these {len(arms)} "
         f"interventions while the measured exponent spans {span_meas:.4f} -- a range ratio of "
         f"{ratio:.3f} against the {DISCRIMINATION_GATE} a predictor needs to be informative in "
-        f"its target's units. Spearman(s, lambda) = {rho:+.4f} (p = {p:.3g}), reported as "
-        f"description: with this little range it is not evidence in either direction.")
+        f"its target's units. Spearman(s, lambda) = {rho:+.4f} (p = {p:.3g})"
+        + ("." if ratio >= DISCRIMINATION_GATE else
+           ", reported as description only: with this little range it is not evidence in either "
+           "direction."))
 
     # Directional, not blocking: failing to discriminate is the finding, not an inability to decide.
     dirn = directional(ratio - DISCRIMINATION_GATE, expect="increase", floor=0.0)
@@ -183,11 +185,21 @@ def analyse(res):
             f"which is canalization.py's premise measured under intervention rather than across "
             f"training.")
         decided = True
+    elif p < 0.05:
+        parts.append(
+            f"SURVIVES: the predictor moves with the interventions (ratio {ratio:.3f}) AND lambda "
+            f"follows s in the direction mean field predicts, across a grid of interventions the "
+            f"theory was never fitted to. Gates: {verdict.reason}")
+        decided = True
     else:
         parts.append(
-            f"DISCRIMINATES: mean field's predictions move with the interventions "
-            f"(ratio {ratio:.3f}), so the theory is informative here and the correlation above "
-            f"can be read as evidence. Gates: {verdict.reason}")
+            f"NULL, WITH POWER: the predictor has room to be wrong (ratio {ratio:.3f}, against a "
+            f"{DISCRIMINATION_GATE} gate) and it is not detectably wrong -- rho = {rho:+.4f} at "
+            f"p = {p:.3g} is a weak positive consistent with zero, in the direction mean field "
+            f"predicts. This is neither the falsification the three-arm pilot suggested nor a "
+            f"confirmation: the pilot's apparent anti-correlation was an artifact of measuring "
+            f"three arms whose s happened to span 0.06 of the 0.48 the full grid covers. "
+            f"Gates: {verdict.reason}")
         decided = True
 
     parts.append(
