@@ -81,6 +81,10 @@ REF_TOL = 0.0611                          # F80's between-seed spread at this ge
 # block should move lambda at least that much. A null is only interpretable if the seed floor is
 # small enough that an effect this size would have cleared the gate.
 MIN_DETECTABLE = 0.05
+# Comparability (see the gate in `analyse`). lambda is defined over ignited replicas only, so
+# two arms igniting at very different rates are not two conditions, they are two selections.
+IGN_TOL = 0.25            # max |ignition_rate(arm) - ignition_rate(reference)| to be compared
+MIN_COMPARABLE = 8        # half the downstream layers; below this the comparison is a subset
 
 
 def specs_for(arm):
@@ -142,6 +146,18 @@ def held_out_loss_many(arm):
     return tot / max(n, 1)
 
 
+def ignition_rate(res, arm):
+    """Mean ignition_prob over an arm's runs -- the FRACTION OF REPLICAS that ignited.
+
+    Distinct from `run_ignited`, which asks whether a whole run produced any damage at all. A run
+    can pass that test on a single ignited replica out of B, which is exactly the regime the early
+    block puts the lattice in, so the rate is what the comparability gate needs.
+    """
+    v = [r.get("ignition_prob") for r in res["runs"].values()
+         if r["arm"] == arm and r.get("ignition_prob") is not None]
+    return float(np.mean(v)) if v else 0.0
+
+
 def recorded_singles():
     """lambda(attn_L{L}) per downstream layer, from F80's sweep. {} if absent."""
     p = _ROOT / "results" / "ablate_layers.json"
@@ -196,6 +212,7 @@ def analyse(res, singles):
         return res["verdict"]
 
     l_none, l_early = rung["none"]["remeasured"], rung[EARLY]["remeasured"]
+    ign_ref = ignition_rate(res, EARLY)
     seed_sds = [float(np.std(lambda_of([r for r in res["runs"].values()
                                         if r["arm"] == a and run_ignited(r)])))
                 for a in {r["arm"] for r in res["runs"].values()}]
@@ -212,15 +229,44 @@ def analyse(res, singles):
             continue
         contrib_intact = l_none - singles[L]
         contrib_early = l_early - l_comp
+        ign_comp = ignition_rate(res, f"{EARLY}+attn_L{L:02d}")
         rows.append(dict(layer=L, contrib_intact=round(contrib_intact, 5),
                          contrib_early=round(contrib_early, 5),
                          delta=round(contrib_early - contrib_intact, 5),
-                         ignited=f"{nign}/{ntot}"))
+                         ignited=f"{nign}/{ntot}", ignition_rate=round(ign_comp, 4),
+                         comparable=bool(abs(ign_comp - ign_ref) <= IGN_TOL)))
 
     if not rows or floor is None:
         res["analysis"] = dict(rung=rung, rows=rows, decided=False)
         res["verdict"] = (" ".join(parts) + " NOT DECIDABLE: no downstream arm produced an "
                           "ignited estimate, so lambda is undefined for the comparison (F42).")
+        return res["verdict"]
+
+    # THE COMPARABILITY GATE. lambda is defined only over IGNITED replicas (F42), so a difference
+    # between two arms that ignite at very different rates is a difference between two differently
+    # SELECTED subsets, not between two conditions. This is not hypothetical here: `attn_early`
+    # ignites at ~0.156 against `none`'s ~1.000, and the smoke run found a compound arm igniting
+    # at 0.375 where its own reference ignited at 0.000 -- adding an ablation made the lattice MORE
+    # alive. Rows whose ignition rate is far from the reference's are dropped rather than compared,
+    # and the drop is reported, because a silently shrinking denominator is how a selection effect
+    # gets read as an identification.
+    dropped = [r for r in rows if not r["comparable"]]
+    rows = [r for r in rows if r["comparable"]]
+    parts.append(
+        f"COMPARABILITY: reference `{EARLY}` ignites at {ign_ref:.3f}; "
+        f"{len(rows)} of {len(rows) + len(dropped)} downstream arms are within {IGN_TOL} of it."
+        + ("" if not dropped else
+           " DROPPED as not comparable: "
+           + ", ".join(f"L{r['layer']}({r['ignition_rate']:.3f})" for r in dropped) + "."))
+    if len(rows) < MIN_COMPARABLE:
+        res["analysis"] = dict(rung=rung, rows=rows, dropped=dropped,
+                               reference_ignition=round(ign_ref, 4), decided=False)
+        res["verdict"] = (" ".join(parts) + f" NOT DECIDABLE: only {len(rows)} arms ignite "
+                          f"comparably to the reference, under the {MIN_COMPARABLE} required. "
+                          f"Ablating the early block leaves the lattice barely alive, so the "
+                          f"comparison is between differently-selected replica subsets rather "
+                          f"than between conditions. The fix is a reference context that keeps "
+                          f"the lattice ignited, not more seeds.")
         return res["verdict"]
 
     deltas = [r["delta"] for r in rows]
@@ -273,8 +319,12 @@ def analyse(res, singles):
         "family at one checkpoint, under greedy decoding. It does not show lambda_ca measures "
         "self-repair in general, and the generality debt is unchanged.")
 
-    res["analysis"] = dict(rung=rung, rows=rows, seed_floor=round(floor, 5),
-                           min_detectable=MIN_DETECTABLE,
+    res["analysis"] = dict(rung=rung, rows=rows, dropped=dropped,
+                           reference_ignition=round(ign_ref, 4), seed_floor=round(floor, 5),
+                           min_detectable=MIN_DETECTABLE, ignition_tolerance=IGN_TOL,
+        comparability=f"lambda is defined over ignited replicas only (F42), so arms igniting more "
+                      f"than {IGN_TOL} away from the reference's rate are DROPPED and reported; "
+                      f"fewer than {MIN_COMPARABLE} survivors is NOT DECIDABLE",
                            gates=[g.block() for g in gates], directional=dirn.block(),
                            largest_delta_vs_floor=big_enough.block(), decided=decided)
     res["verdict"] = " ".join(parts)

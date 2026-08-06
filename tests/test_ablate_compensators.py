@@ -19,7 +19,7 @@ ac = pytest.importorskip("ablate_compensators", reason="needs the torch/ar backe
 SEEDS = [21, 22, 23, 24, 25, 26, 27, 28]
 
 
-def _runs(levels, *, sd=0.004, compound_sd=None):
+def _runs(levels, *, sd=0.004, compound_sd=None, ign=None):
     """{arm: lambda} -> a synthetic runs dict with a little seed noise, all ignited.
 
     `compound_sd` gives the compound arms their own spread, so a run can be underpowered on the
@@ -31,8 +31,9 @@ def _runs(levels, *, sd=0.004, compound_sd=None):
     for arm, lam in levels.items():
         sd_a = compound_sd if (compound_sd is not None and "+" in arm) else sd
         for s in SEEDS:
+            ip = 1.0 if ign is None else ign.get(arm, ign.get("*", 1.0))
             out[f"{arm}|s{s}"] = dict(arm=arm, seed=s, lambda_ca=float(lam + rng.normal(0, sd_a)),
-                                      D_norm=0.5, mean_damage=0.5, ignition_prob=1.0)
+                                      D_norm=0.5, mean_damage=0.5, ignition_prob=ip)
     return out
 
 
@@ -124,3 +125,45 @@ def test_unignited_downstream_arms_do_not_silently_shrink_the_comparison():
     layers = [r["layer"] for r in res["analysis"]["rows"]]
     assert 8 not in layers, "an unignited arm contributed a lambda anyway"
     assert len(layers) == len(ac.DOWNSTREAM) - 1
+
+
+# ---------------------------------------------------------------- the comparability gate
+
+def _with_ignition(delta_by_layer, ign):
+    lv, singles = _levels(delta_by_layer)
+    res = {"runs": _runs(lv, ign=ign)}
+    return ac.analyse(res, singles), res
+
+
+def test_arms_igniting_unlike_the_reference_are_dropped_and_reported():
+    """lambda lives on ignited replicas, so an arm at a different rate is a different selection."""
+    d = {L: 0.0 for L in ac.DOWNSTREAM}
+    ign = {"*": 0.15, "none": 1.0}
+    for L in list(ac.DOWNSTREAM)[:3]:
+        ign[f"{ac.EARLY}+attn_L{L:02d}"] = 0.9              # far from the reference's 0.15
+    v, res = _with_ignition(d, ign)
+    dropped = [r["layer"] for r in res["analysis"]["dropped"]]
+    assert dropped == list(ac.DOWNSTREAM)[:3]
+    assert "DROPPED as not comparable" in v
+    for L in dropped:
+        assert f"L{L}(" in v, "a dropped arm was not named in the verdict"
+
+
+def test_too_few_comparable_arms_is_not_decidable_and_says_why():
+    """The failure this gate exists for: the reference is so dead that nothing matches it."""
+    d = {L: 0.0 for L in ac.DOWNSTREAM}
+    ign = {"*": 0.9, ac.EARLY: 0.15, "none": 1.0}           # every compound arm unlike the ref
+    v, res = _with_ignition(d, ign)
+    assert "NOT DECIDABLE" in v
+    assert "differently-selected replica subsets" in v
+    assert res["analysis"]["decided"] is False
+
+
+def test_a_selection_artifact_cannot_be_read_as_compensation():
+    """The whole point: a big delta on a non-comparable arm must not become the headline."""
+    d = {L: 0.0 for L in ac.DOWNSTREAM}
+    d[19] = 0.40                                             # huge, but on an arm that ignites unlike the ref
+    ign = {"*": 0.15, "none": 1.0, f"{ac.EARLY}+attn_L19": 0.95}
+    v, res = _with_ignition(d, ign)
+    assert "COMPENSATION" not in v, "a non-comparable arm supplied the positive"
+    assert 19 in [r["layer"] for r in res["analysis"]["dropped"]]
