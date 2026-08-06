@@ -11,7 +11,7 @@ return value is NOT_DECIDABLE, not a number.
 
 __version__ = "0.1.0"
 
-from .gate import Gate, GateCheck, Verdict, gated
+from .gate import Gate, GateCheck, Verdict, gated, DECIDED, NOT_DECIDABLE
 from .provenance import stamp, verify_stamp, source_sha256, rel, environment_fingerprint
 from .prereg import Preregistration, verify_block, quarantine, evaluate_kills
 from .units import independence_report, UnitReport
@@ -37,7 +37,7 @@ from .manifest import Manifest, Entry, strip_tex_comments
 from .results import save_results, load_results, check_no_absolute_paths
 
 __all__ = [
-    "Gate", "GateCheck", "Verdict", "gated",
+    "Gate", "GateCheck", "Verdict", "gated", "DECIDED", "NOT_DECIDABLE",
     "stamp", "verify_stamp", "source_sha256", "rel", "environment_fingerprint",
     "Preregistration", "verify_block", "quarantine", "evaluate_kills",
     "independence_report", "UnitReport",

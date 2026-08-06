@@ -190,12 +190,28 @@ def distinct_units(keys: Sequence[Any], *, minimum: int = 8,
 
 def carries_verdict(reports: Sequence[LeverageReport], measure: Callable[[], Any] | None = None,
                     *, value: Any = None) -> Verdict:
-    """Compose leverage reports into a Verdict; NOT_DECIDABLE if any is unusable.
+    """Compose leverage reports into a Verdict; NOT_DECIDABLE if any is unusable, or if there are none.
 
     Mirrors `gate.gated`: the reports must already exist before the value is read, and the binding
     reason is carried on the verdict so the write-up cannot quietly omit which gate bound. Pass
     either a `measure` callable (evaluated only if every gate passes) or a precomputed `value`.
+
+    AN EMPTY REPORT LIST IS NOT A PASS. The requirement this module was built for is that *every*
+    registered criterion ships with these gates, so the one case that must never return DECIDED is
+    the case where none were applied. Returning DECIDED there makes the discipline opt-in, and the
+    caller whose gate list was emptied by a filter -- or never populated -- receives a clean verdict
+    carrying the words "no leverage gates applied", which reads like the gates were considered and
+    found irrelevant. That is precisely the defect class this module exists to catch, reproduced
+    inside the catcher. `measure` is not evaluated in that branch, for the same reason it is not
+    evaluated when a gate binds.
     """
+    reports = list(reports)
+    if not reports:
+        return Verdict(
+            status=NOT_DECIDABLE,
+            reason=("no leverage gates were applied, so nothing established that this quantity has "
+                    "room to carry a verdict -- supply at least one gate, or state in the "
+                    "registration why none applies"))
     failed = [r for r in reports if not r.usable]
     if failed:
         return Verdict(
@@ -203,5 +219,4 @@ def carries_verdict(reports: Sequence[LeverageReport], measure: Callable[[], Any
             reason="; ".join(f"{r.kind}: {r.reason}" for r in failed))
     v = measure() if measure is not None else value
     return Verdict(status=DECIDED, value=v,
-                   reason="; ".join(f"{r.kind}: {r.reason}" for r in reports)
-                          or "no leverage gates applied")
+                   reason="; ".join(f"{r.kind}: {r.reason}" for r in reports))

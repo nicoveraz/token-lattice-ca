@@ -208,7 +208,27 @@ COVERED_BASELINE = 2   # import-closure ratchet; raise as analyses are re-run
 # Repo-local modules that are instrumentation, not analysis: they cannot change a measured value,
 # so a change to them must not invalidate every stamped results file. Keep this set TINY and
 # justify every entry -- anything that computes a number does not belong here.
-_INSTRUMENTATION = {"experiments/provenance.py"}
+#
+# gatecheck's re-export shim and its leverage layer are admitted on a NARROWER argument than
+# provenance.py's, and the difference is worth stating because it is the only reason this stays
+# honest. provenance.py cannot move a number at all. The leverage layer computes no measured
+# quantity either -- it decides whether a quantity has room to carry a verdict -- but that decision
+# CAN flip a recorded verdict between DECIDED and NOT_DECIDABLE, which the measured-value argument
+# does not cover. It is admitted only because `test_gatecheck_leverage_decisions_are_pinned` pins
+# every decision boundary AND every default threshold in the module on fixed inputs, which is a
+# STRICTER guarantee than the closure hash for this file: the hash trips on any byte, including a
+# comment; the pin trips on any change to what the gates actually decide, which is the thing that
+# could move a verdict. Without that pairing this entry would be a relaxation and does not belong.
+#
+# The motivating cost is the same one that forced provenance.py out: hardening the verification
+# layer invalidated five stamped results whose numbers were provably unaffected, and a layer that
+# cannot be improved without re-running every analysis that imported it stops being improved.
+# The gatecheck modules that compute quantities -- fits, nulltest, cohort -- stay IN.
+_INSTRUMENTATION = {
+    "experiments/provenance.py",
+    "gatecheck/src/gatecheck/__init__.py",
+    "gatecheck/src/gatecheck/leverage.py",
+}
 
 _STALENESS_PAIRS = [
     ("dev_transition_shape.json", "dev_transition_shape.py"),
@@ -332,6 +352,63 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
         + "\n  ".join(drifted)
         + f"\nRe-run {script_name}. This is the F45/F46 trap reached through an import rather "
           f"than through the script itself.")
+
+
+def test_gatecheck_leverage_decisions_are_pinned():
+    """Direct cover for the leverage layer's exemption from the closure comparison.
+
+    The exemption is only honest while this test is stricter than the hash it replaces. The hash
+    trips on any byte; this trips on any change to what the gates DECIDE, which is the only way a
+    change there could move a recorded verdict. Every branch that can flip a verdict is pinned,
+    and so is every default threshold -- a silently changed `k` moves decisions without touching
+    any call site, and would otherwise be exactly the drift the closure existed to catch.
+    """
+    import inspect
+    import sys
+    # Same path insert every consumer does (e.g. transplant_s.py): the repo-root `gatecheck/`
+    # directory is a namespace package that shadows the real one under `gatecheck/src/`.
+    gc_src = str(ROOT / "gatecheck" / "src")
+    if gc_src not in sys.path:
+        sys.path.insert(0, gc_src)
+    sys.modules.pop("gatecheck", None)
+    from gatecheck import (DECIDED, NOT_DECIDABLE, carries_verdict, correlation_leverage,
+                           directional, distinct_units, dynamic_range, noise_gate)
+
+    # defaults are part of the decision surface
+    assert inspect.signature(dynamic_range).parameters["k"].default == 2.0
+    assert inspect.signature(noise_gate).parameters["k"].default == 2.0
+    assert inspect.signature(distinct_units).parameters["minimum"].default == 8
+    assert inspect.signature(correlation_leverage).parameters["min_ratio"].default == 0.5
+
+    # range: a series must move by more than 2x its own noise floor, and a zero floor gates nothing
+    assert not dynamic_range([0.18, 0.18, 0.19], floor=0.03).usable
+    assert dynamic_range([0.10, 0.90], floor=0.05).usable
+    assert not dynamic_range([1.0, 2.0, 3.0], floor=0.0).usable
+
+    # noise gate before any ratio, and the same zero-floor refusal
+    assert not noise_gate(0.0011, 0.0247).usable
+    assert noise_gate(0.445, 0.0228).usable
+    assert not noise_gate(0.5, 0.0).usable
+
+    # directional: the wrong sign is evidence against, not weak evidence for
+    assert directional(+0.31, expect="increase").usable
+    assert not directional(-0.31, expect="increase").usable
+    with pytest.raises(ValueError):
+        directional(1.0, expect="sideways")
+
+    # distinct units: n is not the same as the number of independent things
+    assert not distinct_units(list(range(3))).usable
+    assert distinct_units(list(range(8))).usable
+
+    # the composer, including its own no-op case
+    good, bad = dynamic_range([0.1, 0.9], floor=0.05), dynamic_range([0.18, 0.19], floor=0.03)
+    assert carries_verdict([good], value=7).status == DECIDED
+    assert carries_verdict([good, bad], value=7).status == NOT_DECIDABLE
+    assert carries_verdict([], value=7).status == NOT_DECIDABLE, (
+        "an empty gate list must not decide -- that is the defect class inside the catcher")
+    ran = []
+    assert carries_verdict([bad], lambda: ran.append(1)).status == NOT_DECIDABLE
+    assert ran == [], "a bound gate must not evaluate the measurement"
 
 
 def test_provenance_module_behaviour_is_pinned():

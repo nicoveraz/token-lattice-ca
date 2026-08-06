@@ -7,6 +7,8 @@ weakened the historical case fails again and says which one.
 import pytest
 
 from gatecheck import (
+    DECIDED,
+    NOT_DECIDABLE,
     carries_verdict,
     correlation_leverage,
     directional,
@@ -118,3 +120,32 @@ def test_carries_verdict_passes_the_value_through_when_every_gate_clears():
 def test_reports_are_falsy_when_unusable():
     assert not distinct_units([(0, 0)] * 128, minimum=32)
     assert distinct_units(range(64), minimum=32)
+
+
+# ---------------------------------------------------------------- the composer's own no-op case
+
+def test_an_empty_gate_list_is_not_a_pass():
+    """The defect class, reproduced inside the catcher.
+
+    `carries_verdict([])` returned DECIDED with the reason "no leverage gates applied" -- a clean
+    verdict whose wording reads like the gates were considered and found irrelevant. Any caller
+    whose gate list was emptied by a filter got a decided result with nothing holding it up.
+    """
+    v = carries_verdict([], value=42)
+    assert v.status == NOT_DECIDABLE
+    assert v.value is None
+    assert "no leverage gates were applied" in v.reason
+
+
+def test_an_empty_gate_list_does_not_evaluate_the_measure():
+    """A gate that binds must not run the measurement; the no-gate case is no different."""
+    calls = []
+    v = carries_verdict([], lambda: calls.append(1))
+    assert v.status == NOT_DECIDABLE
+    assert calls == []
+
+
+def test_carries_verdict_still_decides_when_a_real_gate_passes():
+    v = carries_verdict([dynamic_range([0.1, 0.9], floor=0.05)], value=7)
+    assert v.status == DECIDED and v.value == 7
+    assert "dynamic_range" in v.reason
