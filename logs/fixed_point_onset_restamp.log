@@ -1,0 +1,27 @@
+
+=== basin fraction vs training step (null = step1, basin 0.083 CI [0.02,0.26]) ===
+        step   basin              CI  endpoints  fixed      token
+       step1   0.083 [0.02,0.26]         23   0.00    'guyen'
+       step2   0.083 [0.02,0.26]         22   0.00    ' craw'
+       step4   0.042 [0.01,0.20]         24   0.00  ' folder'
+       step8   1.000 [0.86,1.00]          1   1.00       '\n'  <- above null CI
+      step16   0.708 [0.51,0.85]          3   1.00       '\n'  <- above null CI
+      step32   0.708 [0.51,0.85]          3   0.88       '\n'  <- above null CI
+      step64   0.542 [0.35,0.72]          5   0.88       '\n'  <- above null CI
+     step128   0.500 [0.31,0.69]          5   1.00        '.'  <- above null CI
+     step256   0.583 [0.39,0.76]          5   0.67        ','  <- above null CI
+     step512   0.458 [0.28,0.65]          5   0.50       '\n'  <- above null CI
+    step1000   0.917 [0.74,0.98]          3   0.92       '\n'  <- above null CI
+    step2000   0.500 [0.31,0.69]          5   0.25     ' the'  <- above null CI
+    step4000   0.625 [0.43,0.79]          4   0.62       '\n'  <- above null CI
+    step8000   0.500 [0.31,0.69]          4   0.38     ' the'  <- above null CI
+   step16000   0.833 [0.64,0.93]          3   0.83       '\n'  <- above null CI
+   step32000   0.708 [0.51,0.85]          3   0.71       '\n'  <- above null CI
+   step64000   0.833 [0.64,0.93]          4   0.83       '\n'  <- above null CI
+  step143000   0.625 [0.43,0.79]          6   0.62       '\n'  <- above null CI
+
+  -> ONSET AT STEP8: the basin first clears step1's upper CI (0.26) at step 8, reaching 1.00 [0.86,1.00]. The rise is NOT monotone thereafter, so the basin is not a simple accumulation and the trajectory matters as much as the date. ON THE SHARED AXIS: the fixed point forms BEFORE the extinction window -- onset step 8, extinction window 32 (#95/#97), lambda_ca crossing 256->512 (F39/F46/F77). Forming before or during the crossing means the two are NOT separable by timing alone, and co-timing is not attribution -- #100's ablation is the test that can separate them, not this one. KILL CONDITION HIT: the endpoint token is not stable across checkpoints (['\n', ' the', ',', '.']), so 'the basin' is not one quantity. The single fraction above pools different attractors and per-token basins must be reported instead. F63 saw the same across models. INSTRUMENT: the probe is F70's, imported from gate1 and gated against F70's own answer. At step143000 it reads fixed=0.625 with endpoint '\n', against F70's 18/24 to a whitespace token on the full model. SCOPE: r<=2 is the out-of-distribution artifact regime (F69) and that is deliberate here -- the artifact is the object of study. Nothing in this result is a claim about a model in ordinary use.
+
+  per-token: SWAP: at step256 the modal endpoint ',' takes 14/24 while newline takes 5/24, below half. The attractor IDENTITY genuinely changes during training -- F63's cross-model variety recurring inside one trajectory, and 'the basin' is correctly not one quantity.
+
+wrote results/fixed_point_onset.json

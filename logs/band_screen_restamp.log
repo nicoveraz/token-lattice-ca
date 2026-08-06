@@ -1,0 +1,86 @@
+representatives (22):
+  ai21                       ai21labs/AI21-Jamba2-3B
+  allenai/olmo               allenai/OLMo-2-0425-1B
+  bigcode/starcoder2         bigcode/starcoder2-3b
+  bigscience/bloom           bigscience/bloom-3b
+  bytedance                  ByteDance/Ouro-1.4B
+  eleutherai-pile            EleutherAI/gpt-neo-2.7B
+  eleutherai/polyglot-ko     EleutherAI/polyglot-ko-1.3b
+  google-gemma               google/gemma-2-2b
+  hftb                       HuggingFaceTB/SmolLM-1.7B
+  ibm                        ibm-research/PowerMoE-3b
+  kyutai/helium              kyutai/helium-1-preview-2b
+  liquidai/lfm2              LiquidAI/LFM2-2.6B
+  llm-jp/llm-jp              llm-jp/llm-jp-3-1.8b
+  meta-llama                 meta-llama/Llama-3.2-3B
+  microsoft/bitnet-b1-4t-bf16 microsoft/bitnet-b1.58-2B-4T-bf16
+  pfnet/plamo-nict           pfnet/plamo-3-nict-2b-base
+  qwen                       Qwen/Qwen1.5-1.8B
+  sapienzanlp/minerva        sapienzanlp/Minerva-3B-base-v1.0
+  stability                  stabilityai/stablelm-3b-4e1t
+  state-spaces/mamba         state-spaces/mamba-2.8b-hf
+  tii                        tiiuae/Falcon3-1B-Base
+  zyphra/zamba2              Zyphra/Zamba2-2.7B
+  allenai/olmo/allenai/OLMo-2-0425-1B: already complete
+  bigcode/starcoder2/bigcode/starcoder2-3b: already complete
+  bigscience/bloom/bigscience/bloom-3b: already complete
+  eleutherai-pile/EleutherAI/gpt-neo-2.7B: already complete
+  eleutherai/polyglot-ko/EleutherAI/polyglot-ko-1.3b: already complete
+  google-gemma/google/gemma-2-2b: already complete
+  hftb/HuggingFaceTB/SmolLM-1.7B: already complete
+  ibm/ibm-research/PowerMoE-3b: previously marked too slow -- skipping
+  kyutai/helium/kyutai/helium-1-preview-2b: already complete
+  llm-jp/llm-jp/llm-jp/llm-jp-3-1.8b: already complete
+  meta-llama/meta-llama/Llama-3.2-3B: already complete
+  qwen/Qwen/Qwen1.5-1.8B: already complete
+  sapienzanlp/minerva/sapienzanlp/Minerva-3B-base-v1.0: already complete
+  stability/stabilityai/stablelm-3b-4e1t: already complete
+  tii/tiiuae/Falcon3-1B-Base: already complete
+  ai21/ai21labs/AI21-Jamba2-3B: previously marked too slow -- skipping
+The repository ByteDance/Ouro-1.4B contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/ByteDance/Ouro-1.4B .
+ You can inspect the repository content at https://hf.co/ByteDance/Ouro-1.4B.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `ouro` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+The repository ByteDance/Ouro-1.4B contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/ByteDance/Ouro-1.4B .
+ You can inspect the repository content at https://hf.co/ByteDance/Ouro-1.4B.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N]   bytedance/ByteDance/Ouro-1.4B: LOAD FAILED (ValueError: The repository ByteDance/Ouro-1.4B contains custom code which must be )
+  liquidai/lfm2/LiquidAI/LFM2-2.6B: already complete
+  microsoft/bitnet-b1-4t-bf16/microsoft/bitnet-b1.58-2B-4T-bf16: LOAD FAILED (ImportError: Loading a BitNet quantized model requires accelerate (`pip install acc)
+The repository pfnet/plamo-3-nict-2b-base contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/pfnet/plamo-3-nict-2b-base .
+ You can inspect the repository content at https://hf.co/pfnet/plamo-3-nict-2b-base.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `plamo3` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+The repository pfnet/plamo-3-nict-2b-base contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/pfnet/plamo-3-nict-2b-base .
+ You can inspect the repository content at https://hf.co/pfnet/plamo-3-nict-2b-base.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N]   pfnet/plamo-nict/pfnet/plamo-3-nict-2b-base: LOAD FAILED (ValueError: The repository pfnet/plamo-3-nict-2b-base contains custom code which m)
+  state-spaces/mamba/state-spaces/mamba-2.8b-hf: previously marked too slow -- skipping
+[transformers] The fast path is not available because one of `(selective_state_update, causal_conv1d_fn, causal_conv1d_update)` is None. Falling back to the naive implementation. To install follow https://github.com/state-spaces/mamba/#installation and https://github.com/Dao-AILab/causal-conv1d
+  zyphra/zamba2/Zyphra/Zamba2-2.7B: LOAD FAILED (ValueError: There is an issue with your definition of `tie_weights_keys` for ^laye)
+
+=== 15 families measured; 5 loads failed: ['ByteDance/Ouro-1.4B', 'LiquidAI/LFM2-2.6B', 'Zyphra/Zamba2-2.7B', 'microsoft/bitnet-b1.58-2B-4T-bf16', 'pfnet/plamo-3-nict-2b-base'] ===
+  family                   top1@0.02       T*   rep_4
+  allenai/olmo                 0.138     none   0.328
+  bigcode/starcoder2           0.545   0.3374   0.483
+  bigscience/bloom             0.073     none   0.406
+  eleutherai-pile              0.656   0.6105   0.550
+  eleutherai/polyglot-ko       0.190     none   0.589
+  google-gemma                 0.289     none   0.388
+  hftb                         0.828   0.3115   0.263
+  kyutai/helium                0.690   0.5289   0.417
+  liquidai/lfm2                0.378   0.2397   0.009
+  llm-jp/llm-jp                0.658   0.5935   0.497
+  meta-llama                   0.153     none   0.383
+  qwen                         0.528    0.298   0.201
+  sapienzanlp/minerva          0.274     none   0.567
+  stability                    0.416   0.0565   0.353
+  tii                          0.279     none   0.283
+
+  -> T*-rep_4 (#90): rho=+0.833 over n=8 FAMILIES with finite T*, permutation p=0.0137. F68's version was rho=+0.552 at n=10 (p=0.107), needing ~16; this is the first measurement at family-level power, and it now clears significance. T* states: 8 finite, 0 censored_above (-), 7 no attractor. F64 SCALE GATE over 5 in-family small-vs-band pairs: max top-1 drift 0.475, attractor-binary flips: NONE. The attractor stays scale-blind into the band; F64's ladder extends. EXPLORATORY (declared before data; Gate B failed on coverage, n<16): top1@0.02 vs IFEval rho=+0.71 (n=10); BBH rho=-0.28 (n=10); GPQA rho=-0.03 (n=10); MUSR rho=-0.60 (n=10); MMLU-PRO rho=-0.16 (n=10). Hypothesis-generating only -- not powered, not corrected, not a claim. n_measured=15 of 22 candidates; failures are listed, not hidden (F68).
+
+wrote results/band_screen.json
