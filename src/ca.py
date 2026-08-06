@@ -2,6 +2,7 @@
 Update rule = the trained windowed conditional (radius r), temperature T.
 Modes: async (random-order single-site Glauber) and sync (all sites at once).
 Common-random-number sampling supports damage-spreading twin runs."""
+import contextlib
 import json
 import numpy as np
 import jax, jax.numpy as jnp
@@ -12,13 +13,44 @@ from lattice import run as _lattice_run
 MASK, UNK = 0, 1
 
 # --- context (switchable so the same automaton drives word-level or BPE models) ---
-# Defaults reproduce the word-level pilot exactly. A BPE experiment sets e.g.
-#   ca.DATA_DIR = "data_bpe"; ca.VOCAB = 4096; ca.INIT_LO = 1
-# before calling run()/metrics() (byte-level BPE has no <unk>, so id 1 is a real
-# token and random init should span [1, V)).
+# Defaults reproduce the word-level pilot exactly. A BPE experiment needs
+#   data_dir="data_bpe", vocab=4096, init_lo=1
+# because byte-level BPE has no <unk>, so id 1 is a real token and random init should span [1, V).
+#
+# SET THESE THROUGH `using()`, NOT BY ASSIGNMENT (#25). They were plain module globals that
+# experiments assigned to directly -- `ca.DATA_DIR = "data_bpe"` -- and nothing ever put them back.
+# Two experiments in one process therefore silently corrupted each other: whichever ran second
+# inherited the first's vocabulary and init floor, and the corruption is invisible because a wrong
+# `init_lo` still produces a perfectly well-formed lattice, just drawn from the wrong support. The
+# assignment form remains readable for compatibility (`damage.py` reads `ca.INIT_LO`), but the
+# scoped form is the one that restores.
 DATA_DIR = "data"
 VOCAB = None      # None -> fall back to CFG["vocab"]
 INIT_LO = 2       # lowest token id used for random init (skips <mask>,<unk>)
+
+
+@contextlib.contextmanager
+def using(*, data_dir=None, vocab=None, init_lo=None):
+    """Scope the lattice context, restoring the previous values on exit.
+
+    Restores in a `finally`, so an experiment that raises cannot leave the module configured for a
+    corpus the next one is not reading. Nests correctly: each frame restores what it found rather
+    than resetting to the defaults, so an inner BPE block inside an outer BPE block does not drop
+    the caller back to word-level on exit.
+    """
+    global DATA_DIR, VOCAB, INIT_LO
+    prev = (DATA_DIR, VOCAB, INIT_LO)
+    if data_dir is not None:
+        DATA_DIR = data_dir
+    if vocab is not None:
+        VOCAB = vocab
+    if init_lo is not None:
+        INIT_LO = init_lo
+    try:
+        yield
+    finally:
+        DATA_DIR, VOCAB, INIT_LO = prev
+
 
 def _vocab():
     return VOCAB if VOCAB is not None else CFG["vocab"]

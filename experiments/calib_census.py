@@ -22,14 +22,19 @@ V, LO, K = 64, 2, 60
 
 
 def censused_Q(data_dir, ckpt, T=0.5, r=1, B=32, N=64, sweeps=120, tail=40, seed=7):
-    ca.DATA_DIR, ca.VOCAB, ca.INIT_LO = data_dir, V, LO
-    params = load(ckpt)
-    out = run(params, B=B, N=N, r=r, T=T, sweeps=sweeps, mode="async", init="random", seed=seed)
-    snaps = out["snaps"][-tail:].reshape(-1, N)
-    Q = np.zeros((V, V))
-    np.add.at(Q, (snaps[:, :-1].ravel(), snaps[:, 1:].ravel()), 1.0)
-    row = Q.sum(1, keepdims=True); row[row == 0] = 1
-    return Q / row
+    # Scoped, not assigned (#25). This function is called once per corpus, so leaving the module
+    # configured for `data_dir` leaked the last caller's vocabulary and init floor into whatever
+    # ran next in the same process -- invisibly, because a wrong init floor still yields a
+    # well-formed lattice drawn from the wrong support.
+    with ca.using(data_dir=data_dir, vocab=V, init_lo=LO):
+        params = load(ckpt)
+        out = run(params, B=B, N=N, r=r, T=T, sweeps=sweeps, mode="async", init="random",
+                  seed=seed)
+        snaps = out["snaps"][-tail:].reshape(-1, N)
+        Q = np.zeros((V, V))
+        np.add.at(Q, (snaps[:, :-1].ravel(), snaps[:, 1:].ravel()), 1.0)
+        row = Q.sum(1, keepdims=True); row[row == 0] = 1
+        return Q / row
 
 
 def tv(Q, P):
