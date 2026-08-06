@@ -1,0 +1,48 @@
+# The suite loads no model weights and touches no network (verified: torch appears in 2 test
+# files, transformers in 1, and neither calls from_pretrained). That is the only reason this
+# repository can have CI at all, and it is worth keeping true -- a test that downloads a
+# checkpoint would make this workflow useless and the guarantee unverifiable.
+name: tests
+
+on:
+  push:
+    branches: [main, camera-ready]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  suite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      JAX_PLATFORMS: cpu
+      HF_HUB_OFFLINE: "1"          # a test that reaches the network must FAIL here, loudly
+      TRANSFORMERS_OFFLINE: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # CPU-only torch: the GPU wheels are ~2GB and nothing here needs them.
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -e ".[test]"
+
+      - name: Record the environment that produced this result
+        run: |
+          python -c "import sys, platform; print(sys.version, platform.platform())"
+          pip freeze
+
+      - name: textca suite
+        run: pytest tests/ -q
+
+      - name: gatecheck suite
+        run: |
+          pip install -e ./gatecheck
+          pytest gatecheck/tests/ -q

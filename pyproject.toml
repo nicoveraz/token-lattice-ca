@@ -1,0 +1,50 @@
+# textca is NOT a library. It is a research repository whose scripts resolve imports through a
+# sys.path shim (see conftest.py), so this file exists for three things only: to declare the
+# dependency set, to pin the tool configuration, and to give CI something to install. The
+# `packages = []` below is deliberate -- `pip install -e .` must be a no-op that installs
+# dependencies without shadowing the shim, because changing how `src/` and `experiments/` are
+# imported would change which code the golden files were produced by.
+#
+# The installable package in this repo is gatecheck/, which has its own pyproject.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "textca"
+version = "0.0.0"
+description = "Cellular automata over token lattices: a black-box measurement instrument for language models"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0",
+    "torch>=2.2",
+    "transformers>=4.40",
+    "huggingface-hub>=0.23",
+    "datasets>=2.19",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+# The suite imports numpy and pytest everywhere, torch in two files and transformers in one.
+# It touches no network and loads no model weights -- that is what makes it CI-able at all.
+test = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[tool.setuptools]
+packages = []                      # see the header: install deps, do not shadow the sys.path shim
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Deliberately narrow. This repo's comments and docstrings carry the reasoning behind findings,
+# and a linter that reformats them destroys evidence. Errors and undefined names only.
+select = ["E9", "F63", "F7", "F82"]
