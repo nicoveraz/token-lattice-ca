@@ -323,6 +323,29 @@ def analyse(res, singles):
     # gets read as an identification.
     dropped = [r for r in rows if not r["comparable"]]
     rows = [r for r in rows if r["comparable"]]
+
+    # THE DROPPED ARMS ARE AN OBSERVABLE, NOT ONLY AN EXCLUSION. Filtering them and moving on is
+    # how a finding gets dismissed as an artifact: "ablating an ADDITIONAL layer revives a lattice
+    # the early block had frozen" is a claim about the system, not a defect in the measurement.
+    # The smoke run showed it at one seed (`attn_early` ignited 0.000, `attn_early+attn_L08`
+    # ignited 0.375). Registered here with its own direction and floor so it can become a result
+    # rather than a footnote to one -- and reported whether or not the primary decides.
+    revivals = sorted((r for r in (dropped + rows) if r["ignition_rate"] > ign_ref + IGN_TOL),
+                      key=lambda r: -r["ignition_rate"])
+    suppress = sorted((r for r in (dropped + rows) if r["ignition_rate"] < ign_ref - IGN_TOL),
+                      key=lambda r: r["ignition_rate"])
+    if revivals or suppress:
+        parts.append(
+            f"REVIVAL: against a reference igniting at {ign_ref:.3f}, "
+            f"{len(revivals)} downstream ablations RAISE ignition"
+            + (" (" + ", ".join(f"L{r['layer']}:{r['ignition_rate']:.3f}"
+                                for r in revivals[:5]) + ")" if revivals else "")
+            + f" and {len(suppress)} lower it"
+            + (" (" + ", ".join(f"L{r['layer']}:{r['ignition_rate']:.3f}"
+                                for r in suppress[:5]) + ")" if suppress else "")
+            + ". Removing MORE of the network making damage spread FURTHER is not what any "
+              "monotone account of ablation predicts, and it is measured here rather than "
+              "filtered away.")
     parts.append(
         f"COMPARABILITY: reference `{EARLY}` ignites at {ign_ref:.3f}; "
         f"{len(rows)} of {len(rows) + len(dropped)} downstream arms are within {IGN_TOL} of it."
@@ -424,7 +447,10 @@ def analyse(res, singles):
         "self-repair in general, and the generality debt is unchanged.")
 
     res["analysis"] = dict(rung=rung, rows=rows, dropped=dropped,
-                           reference_ignition=round(ign_ref, 4), seed_floor=round(floor, 5),
+                           reference_ignition=round(ign_ref, 4),
+                           revivals=[r["layer"] for r in revivals],
+                           suppressions=[r["layer"] for r in suppress],
+                           seed_floor=round(floor, 5),
                            min_detectable=MIN_DETECTABLE, ignition_tolerance=IGN_TOL,
         comparability=f"lambda is defined over ignited replicas only (F42), so arms igniting more "
                       f"than {IGN_TOL} away from the reference's rate are DROPPED and reported; "
@@ -464,6 +490,11 @@ def main():
         directional="reported, NOT blocking: a negative delta is evidence against self-repair "
                     "rather than an inability to decide",
         reuse="lambda(attn_L{L}) read from results/ablate_layers.json (F80), gated on the rung",
+        secondary=f"IGNITION REVIVAL, registered in its own right: downstream ablations whose "
+                  f"ignition rate exceeds the reference's by more than {IGN_TOL}. Removing more "
+                  f"of the network making damage spread further contradicts any monotone account "
+                  f"of ablation. Reported whether or not the primary decides, so a comparability "
+                  f"exclusion cannot quietly dispose of it",
         competing_account=f"single-token sensitivity s, measured exactly (s_crn, no seeds) on a "
                           f"FIXED ensemble from the unablated ring so the model varies and the "
                           f"ensemble does not (F96/F99). If s(none) > 1/r >= s({EARLY}), annealed "
