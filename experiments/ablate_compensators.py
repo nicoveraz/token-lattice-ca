@@ -63,7 +63,9 @@ import torch
 from provenance import stamp, rel
 from dev_transition_phase3 import measure, BASE, SEEDS, T
 from lyapunov import lambda_of, run_ignited
-from gatecheck import (NOT_DECIDABLE, carries_verdict, directional, dynamic_range, noise_gate)
+from gatecheck import (NOT_DECIDABLE, carries_verdict, directional, dynamic_range,
+                       noise_gate)
+from meanfield_lambda import s_crn, lambda_mf
 import ar_ca
 import ablate_lambda as al
 
@@ -85,6 +87,7 @@ MIN_DETECTABLE = 0.05
 # two arms igniting at very different rates are not two conditions, they are two selections.
 IGN_TOL = 0.25            # max |ignition_rate(arm) - ignition_rate(reference)| to be compared
 MIN_COMPARABLE = 8        # half the downstream layers; below this the comparison is a subset
+N_CTX_S = 128             # contexts per arm for `s` (F94/F96 geometry); no seeds, exact
 
 
 def specs_for(arm):
@@ -144,6 +147,74 @@ def held_out_loss_many(arm):
     except Exception: pass
     gc.collect()
     return tot / max(n, 1)
+
+
+def settled_pool():
+    """The UNABLATED ring's settled state at this checkpoint, used as the fixed context ensemble.
+
+    F96 showed `s` is a property of the ensemble as much as of the model -- on uniformly random
+    windows it sits flat at 0.833-0.876, on the states the ring actually occupies it spans 0.331.
+    F99 then broke the circularity by holding the ensemble fixed and varying the model, which is
+    exactly the shape needed here: every arm is measured on the SAME pool, drawn from the model
+    before any ablation. Using each arm's own settled state would reintroduce the circularity F96
+    named, and worse, an ablated ring barely settles at all.
+    """
+    from ar_ca import run
+    rule = ar_ca.ARRule(BASE, revision=STEP)
+    fin = run(rule, B=8, N=N, r=R, T=T, sweeps=30, scheme="none", seed=SEEDS[0],
+              order="per_replica")["final"]
+    del rule
+    try: torch.mps.empty_cache()
+    except Exception: pass
+    gc.collect()
+    return fin.reshape(-1).astype(np.int64)
+
+
+@torch.no_grad()
+def s_for_arm(arm, pool, rng, n_ctx=N_CTX_S, batch=32):
+    """Exact mean CRN disagreement `s` for this arm's conditional, on windows from `pool`.
+
+    RADIUS-GENERAL, unlike `transplant_s.measure`, which hardcodes a two-token window because the
+    developmental grid runs at r=2. The ablation grid runs at r=3, and mean-field criticality is
+    s = 1/r -- 0.333 here against 0.5 there -- so measuring at the wrong radius would compare two
+    different systems. `s_crn` itself is imported, not reimplemented: the exact part stays single.
+
+    No seeds and no sampling: `s_crn` is a deterministic functional of the conditional pair, so
+    this carries none of the ignited-vs-unignited selection problem that the lambda arms do.
+    """
+    rule = ar_ca.ARRule(BASE, revision=STEP)
+    for spec in specs_for(arm):
+        al.apply_ablation(rule.model, spec)
+    dev, mdl = rule.device, rule.model
+
+    starts = rng.integers(0, len(pool) - R, size=n_ctx)
+    base = np.stack([pool[s:s + R] for s in starts])
+    rows, keys = [], []
+    for w in base:
+        pos = int(rng.integers(0, R))
+        alt = [int(x) for x in w]
+        while alt[pos] == int(w[pos]):
+            alt[pos] = int(rng.choice(pool))       # replacement from the SAME ensemble (F56/F70)
+        rows += [[int(x) for x in w], alt]
+        keys.append(tuple(int(x) for x in w))
+    rows = np.array(rows, np.int64)
+
+    probs = []
+    for i in range(0, len(rows), batch):
+        x = torch.tensor(rows[i:i + batch], device=dev)
+        lg = mdl(input_ids=x).logits[:, -1].float()
+        probs.append(torch.softmax(lg / T, dim=-1).cpu().double().numpy())
+    probs = np.concatenate(probs, 0)
+    probs = probs / probs.sum(axis=1, keepdims=True)
+    vals = [s_crn(probs[2 * k], probs[2 * k + 1]) for k in range(len(base))]
+
+    del rule, mdl
+    try: torch.mps.empty_cache()
+    except Exception: pass
+    gc.collect()
+    return dict(s=round(float(np.mean(vals)), 5), s_sd=round(float(np.std(vals)), 5),
+                lambda_mf=round(lambda_mf(R, float(np.mean(vals))), 5),
+                ctx_distinct=int(len(set(keys))), n_ctx=len(vals))
 
 
 def ignition_rate(res, arm):
@@ -314,6 +385,39 @@ def analyse(res, singles):
             f"Gates: {verdict.reason}")
         decided = True
 
+    # --- the competing account, registered because it can DISSOLVE the primary ----------------
+    # The rule IS p(x_i | x_{i-r..i-1}). Damage spreads only when a flipped neighbour changes the
+    # conditional enough that two CRN twins draw different tokens -- which is `s` exactly. Early
+    # attention is where the window enters the computation, so zeroing it drives the rule toward a
+    # constant map, twins draw identically, and damage heals by the same exact-zero property the
+    # null test relies on. If s(early) sits below the mean-field critical 1/r while s(none) sits
+    # above it, the ignition collapse is predicted with NO compensation anywhere in the account,
+    # and a positive delta would need to survive that explanation rather than ignore it.
+    sblock = res.get("s") or {}
+    if sblock:
+        crit = 1.0 / R
+        s_none = (sblock.get("none") or {}).get("s")
+        s_ref = (sblock.get(EARLY) or {}).get("s")
+        revived = [r["layer"] for r in rows
+                   if (sblock.get(f"{EARLY}+attn_L{r['layer']:02d}") or {}).get("s", 0) > (s_ref or 0)]
+        crosses = (s_none is not None and s_ref is not None
+                   and s_none > crit >= s_ref)
+        parts.append(
+            f"SENSITIVITY: s(none)={s_none}, s({EARLY})={s_ref}, mean-field critical 1/r={crit:.4f}"
+            + (f". The early block carries the rule ACROSS the critical point, so the ignition "
+               f"collapse follows from annealed mean field with no compensation in the account; "
+               f"{len(revived)} downstream arms raise s back above the reference, which is the "
+               f"same mechanism running in reverse."
+               if crosses else
+               ". The early block does NOT cross the critical point, so the sensitivity account "
+               "does not by itself explain the ignition collapse and the compensation reading "
+               "keeps its standing."))
+        res.setdefault("analysis", {})
+        sens = dict(s_none=s_none, s_reference=s_ref, critical=round(crit, 5),
+                    crosses_critical=bool(crosses), arms_raising_s=revived)
+    else:
+        sens = None
+
     parts.append(
         "BOUNDARY: this attributes F80's non-additivity to a named mechanism in ONE model of ONE "
         "family at one checkpoint, under greedy decoding. It does not show lambda_ca measures "
@@ -326,7 +430,8 @@ def analyse(res, singles):
                       f"than {IGN_TOL} away from the reference's rate are DROPPED and reported; "
                       f"fewer than {MIN_COMPARABLE} survivors is NOT DECIDABLE",
                            gates=[g.block() for g in gates], directional=dirn.block(),
-                           largest_delta_vs_floor=big_enough.block(), decided=decided)
+                           largest_delta_vs_floor=big_enough.block(), sensitivity=sens,
+                           decided=decided)
     res["verdict"] = " ".join(parts)
     return res["verdict"]
 
@@ -359,6 +464,11 @@ def main():
         directional="reported, NOT blocking: a negative delta is evidence against self-repair "
                     "rather than an inability to decide",
         reuse="lambda(attn_L{L}) read from results/ablate_layers.json (F80), gated on the rung",
+        competing_account=f"single-token sensitivity s, measured exactly (s_crn, no seeds) on a "
+                          f"FIXED ensemble from the unablated ring so the model varies and the "
+                          f"ensemble does not (F96/F99). If s(none) > 1/r >= s({EARLY}), annealed "
+                          f"mean field predicts the ignition collapse with no compensation in the "
+                          f"account, and a positive delta must survive that rather than ignore it",
         boundary="attributes non-additivity to a mechanism in one model, one family, greedy",
         resumable="keyed by (arm, seed)")
 
@@ -368,6 +478,21 @@ def main():
             res["loss"][arm] = round(held_out_loss_many(arm), 4)
             print(f"  loss[{arm:22s}] = {res['loss'][arm]:8.4f}  ({time.time()-t0:.0f}s)",
                   flush=True)
+            json.dump(res, open(OUT, "w"), indent=1)
+
+    res.setdefault("s", {})
+    if any(a_ not in res["s"] for a_ in todo_arms):
+        pool = settled_pool()
+        rng = np.random.default_rng(SEEDS[0])
+        for arm in todo_arms:
+            if arm in res["s"]:
+                continue
+            t0 = time.time()
+            res["s"][arm] = s_for_arm(arm, pool, rng)
+            r_ = res["s"][arm]
+            print(f"  s[{arm:22s}] = {r_['s']:.5f} +/- {r_['s_sd']:.5f}  "
+                  f"lambda_MF={r_['lambda_mf']:+.4f}  ({r_['ctx_distinct']} distinct ctx, "
+                  f"{time.time()-t0:.0f}s)", flush=True)
             json.dump(res, open(OUT, "w"), indent=1)
 
     todo = [(a_, s) for a_ in todo_arms for s in seeds if f"{a_}|s{s}" not in res["runs"]]
