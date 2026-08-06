@@ -24,6 +24,15 @@ from .nulltest import (
     BrokenCouplingError,
     effect_beyond_control,
 )
+from .leverage import (
+    LeverageReport,
+    dynamic_range,
+    correlation_leverage,
+    noise_gate,
+    directional,
+    distinct_units,
+    carries_verdict,
+)
 from .manifest import Manifest, Entry, strip_tex_comments
 from .results import save_results, load_results, check_no_absolute_paths
 
@@ -35,6 +44,8 @@ __all__ = [
     "scan_minimum", "require_off_edge", "EdgeRejection", "slope_loglog", "ScanFit",
     "assert_exact_zero", "certify_null", "NullCertificate", "VacuousNullError",
     "BrokenCouplingError", "effect_beyond_control",
+    "LeverageReport", "dynamic_range", "correlation_leverage", "noise_gate",
+    "directional", "distinct_units", "carries_verdict",
     "Manifest", "Entry", "strip_tex_comments",
     "save_results", "load_results", "check_no_absolute_paths",
 ]
