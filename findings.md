@@ -3580,6 +3580,63 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F99 — the transplant: the CONDITIONAL moves, and F94's elimination was an ensemble artifact
+The experiment F96 specified. F94 measured single-token sensitivity `s` on uniformly random token
+windows, found it saturated and flat, and eliminated it as λ_ca's explanandum. F96 showed that
+verdict was a property of the *ensemble* — on the states the ring actually occupies `s` spans 0.331
+rather than 0.071 — but could not read it as positive, because the settled state is **produced by**
+the dynamics whose exponent it predicts, and the early settled rings are degenerate (7 distinct
+tokens at step128).
+
+**The design breaks both objections at once.** Measure `s` for checkpoint *i*'s **conditional** on
+windows from checkpoint *j*'s **settled state**, all 36 pairs. The diagonal is F96's circular
+measurement; a **column** varies the model with the ensemble held fixed and is *not* circular,
+because the contexts do not come from the model being measured; the early-model/late-state corner
+escapes the degeneracy entirely.
+
+```
+  s[model][state]      state128  state256  state512  state1000  state2000  state4000
+  model step128         0.5478*   0.5456*   0.7537    0.6560     0.7274     0.7209
+  model step256         0.5075*   0.4979*   0.7397    0.7643     0.7635     0.7592
+  model step512         0.6379*   0.5276*   0.5677    0.7724     0.8328     0.7662
+  model step1000        0.8640*   0.7788*   0.7696    0.8384     0.9038     0.8511
+  model step2000        0.7705*   0.8293*   0.8411    0.8604     0.8513     0.7964
+  model step4000        0.7769*   0.8087*   0.7932    0.8603     0.8676     0.7855
+  (* fewer than 32 distinct windows — excluded from the decomposition, not averaged in)
+```
+
+**PRIMARY: the model effect is 1.8× the ensemble effect.** Over the 24 usable cells, holding the
+model fixed and varying the ensemble moves `s` by 0.1113 on average; holding the ensemble fixed and
+varying the **model** moves it by **0.1961**. So the conditional itself changes across the
+developmental transition, and **F94's elimination of single-token sensitivity was an artifact of the
+random ensemble it was measured on** — not a property of the model. F96 suspected this; the
+transplant establishes it with the circularity removed.
+
+**The non-circular column.** With the ensemble pinned to the richest settled state (step1000, 193
+distinct tokens), `s` across models runs **0.656 → 0.764 → 0.772 → 0.838 → 0.860 → 0.860** — a span
+of 0.204, monotone across the transition. This is F94's registered primary without the circularity:
+ρ(λ_MF, λ_ca) = **+0.771**, and this time `correlation_leverage` **passes** (predictor spans 0.95×
+the target against a 0.5 gate) where F94's failed at 0.17. The correlational leg is interpretable
+for the first time in this thread.
+
+**The deflationary outcome does not fire, for the third time.** Mean |λ_MF − λ_ca| = 0.3759 against
+a 0.0228 seed floor — 16×. `s` tracks λ_ca's *shape* without reproducing its *value*, exactly what
+the DK rung predicted annealed mean field would do (−38%, low). **The ring is not redundant.**
+
+**Boundary.** n=6 checkpoints, one model family, and the ensembles are still settled rings — the
+transplant removes the circularity of *measuring a model on its own settled state*, not the deeper
+fact that all these ensembles come from this construction. Nothing here dates the transition or
+identifies a mechanism; it establishes that the conditional's sensitivity is a moving quantity, which
+three prior findings had concluded it was not.
+
+**A guard misused inside its own experiment.** The first analysis pass returned NOT DECIDABLE from
+`distinct_units`, because I passed the per-cell *distinct-window counts* where the function expects
+unit *identities* — counts are near-identical down a column by construction, so it reported "6 values
+collapse to 1". Misusing a guard is not the same as the guard binding, and a spurious NOT DECIDABLE
+is as much a wrong answer as a spurious verdict. Fixed to count usable cells, which is the question
+the column actually poses. Third time this session that the checking machinery has itself carried the
+defect it exists to catch (F97's calibration metric, F98's control spec, this).
+
 ### F98 — the generality debt: the curve's endpoints replicate in two non-Pythia families, and the dip is unobservable by anyone
 The oldest open critique in the project — every developmental claim (F25, F39, F42, F46, F77, F81,
 F84, and the paper's headline) is Pythia. Named in `REVIEW.md`, in the paper's own limitations, and

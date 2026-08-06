@@ -1,0 +1,68 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:51,  2.62it/s]Loading weights:  40%|███▉      | 116/292 [00:00<00:00, 311.25it/s]Loading weights:  62%|██████▏   | 181/292 [00:00<00:00, 340.52it/s]Loading weights:  80%|████████  | 234/292 [00:00<00:00, 271.08it/s]Loading weights:  94%|█████████▍| 274/292 [00:01<00:00, 234.07it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 232.80it/s]
+  settled step128: 8 distinct tokens (40s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:04,  2.33it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 255.85it/s]Loading weights:  55%|█████▌    | 161/292 [00:00<00:00, 250.24it/s]Loading weights:  69%|██████▉   | 201/292 [00:00<00:00, 250.00it/s]Loading weights:  80%|████████  | 235/292 [00:01<00:00, 247.99it/s]Loading weights:  91%|█████████ | 266/292 [00:01<00:00, 234.47it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 226.73it/s]
+  settled step256: 24 distinct tokens (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.43it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 329.34it/s]Loading weights:  70%|██████▉   | 203/292 [00:00<00:00, 304.06it/s]Loading weights:  88%|████████▊ | 257/292 [00:00<00:00, 291.71it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 270.79it/s]
+  settled step512: 41 distinct tokens (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:52,  2.58it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 309.63it/s]Loading weights:  62%|██████▏   | 181/292 [00:00<00:00, 301.33it/s]Loading weights:  78%|███████▊  | 227/292 [00:00<00:00, 286.06it/s]Loading weights:  91%|█████████ | 265/292 [00:01<00:00, 251.30it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 250.35it/s]
+  settled step1000: 193 distinct tokens (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:02,  2.37it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 299.43it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 290.34it/s]Loading weights:  82%|████████▏ | 238/292 [00:00<00:00, 291.54it/s]Loading weights:  96%|█████████▌| 280/292 [00:01<00:00, 272.90it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 258.43it/s]
+  settled step2000: 191 distinct tokens (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:02,  2.37it/s]Loading weights:  42%|████▏     | 124/292 [00:00<00:00, 313.07it/s]Loading weights:  67%|██████▋   | 197/292 [00:00<00:00, 282.70it/s]Loading weights:  85%|████████▍ | 248/292 [00:01<00:00, 266.20it/s]Loading weights:  99%|█████████▉| 289/292 [00:01<00:00, 262.66it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 244.85it/s]
+  settled step4000: 188 distinct tokens (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:04,  2.34it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 295.08it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 287.71it/s]Loading weights:  80%|████████  | 234/292 [00:00<00:00, 283.93it/s]Loading weights:  94%|█████████▍| 274/292 [00:01<00:00, 258.83it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 243.97it/s]
+    model step128   on state step128  : s=0.5478 (distinct 10)  DEGENERATE
+    model step128   on state step256  : s=0.5456 (distinct 22)  DEGENERATE
+    model step128   on state step512  : s=0.7537 (distinct 32)
+    model step128   on state step1000 : s=0.6560 (distinct 97)
+    model step128   on state step2000 : s=0.7274 (distinct 92)
+    model step128   on state step4000 : s=0.7209 (distinct 89)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:08,  2.27it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 318.14it/s]Loading weights:  71%|███████   | 206/292 [00:00<00:00, 226.77it/s]Loading weights:  87%|████████▋ | 254/292 [00:01<00:00, 210.98it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 216.61it/s]
+    model step256   on state step128  : s=0.5075 (distinct 10)  DEGENERATE
+    model step256   on state step256  : s=0.4979 (distinct 22)  DEGENERATE
+    model step256   on state step512  : s=0.7397 (distinct 32)
+    model step256   on state step1000 : s=0.7643 (distinct 97)
+    model step256   on state step2000 : s=0.7635 (distinct 92)
+    model step256   on state step4000 : s=0.7592 (distinct 89)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:54,  2.54it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 316.73it/s]Loading weights:  65%|██████▍   | 189/292 [00:00<00:00, 274.11it/s]Loading weights:  81%|████████  | 237/292 [00:01<00:00, 251.78it/s]Loading weights:  94%|█████████▍| 275/292 [00:01<00:00, 242.32it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 232.79it/s]
+    model step512   on state step128  : s=0.6379 (distinct 10)  DEGENERATE
+    model step512   on state step256  : s=0.5276 (distinct 22)  DEGENERATE
+    model step512   on state step512  : s=0.5677 (distinct 32)
+    model step512   on state step1000 : s=0.7724 (distinct 97)
+    model step512   on state step2000 : s=0.8328 (distinct 92)
+    model step512   on state step4000 : s=0.7662 (distinct 89)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:51,  2.61it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 329.76it/s]Loading weights:  66%|██████▌   | 193/292 [00:00<00:00, 258.55it/s]Loading weights:  83%|████████▎ | 241/292 [00:01<00:00, 229.73it/s]Loading weights:  95%|█████████▌| 278/292 [00:01<00:00, 211.07it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 218.90it/s]
+    model step1000  on state step128  : s=0.8640 (distinct 10)  DEGENERATE
+    model step1000  on state step256  : s=0.7788 (distinct 22)  DEGENERATE
+    model step1000  on state step512  : s=0.7696 (distinct 32)
+    model step1000  on state step1000 : s=0.8384 (distinct 97)
+    model step1000  on state step2000 : s=0.9038 (distinct 92)
+    model step1000  on state step4000 : s=0.8511 (distinct 89)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:54,  2.54it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 321.06it/s]Loading weights:  65%|██████▌   | 191/292 [00:00<00:00, 280.35it/s]Loading weights:  82%|████████▏ | 240/292 [00:01<00:00, 232.13it/s]Loading weights:  95%|█████████▍| 276/292 [00:01<00:00, 214.65it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 221.97it/s]
+    model step2000  on state step128  : s=0.7705 (distinct 10)  DEGENERATE
+    model step2000  on state step256  : s=0.8293 (distinct 22)  DEGENERATE
+    model step2000  on state step512  : s=0.8411 (distinct 32)
+    model step2000  on state step1000 : s=0.8604 (distinct 97)
+    model step2000  on state step2000 : s=0.8513 (distinct 92)
+    model step2000  on state step4000 : s=0.7964 (distinct 89)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:02,  2.37it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 319.69it/s]Loading weights:  68%|██████▊   | 200/292 [00:00<00:00, 285.08it/s]Loading weights:  86%|████████▌ | 251/292 [00:01<00:00, 262.95it/s]Loading weights: 100%|█████████▉| 291/292 [00:01<00:00, 250.58it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 239.13it/s]
+    model step4000  on state step128  : s=0.7769 (distinct 10)  DEGENERATE
+    model step4000  on state step256  : s=0.8087 (distinct 22)  DEGENERATE
+    model step4000  on state step512  : s=0.7932 (distinct 32)
+    model step4000  on state step1000 : s=0.8603 (distinct 97)
+    model step4000  on state step2000 : s=0.8676 (distinct 92)
+    model step4000  on state step4000 : s=0.7855 (distinct 89)
+
+  s[model][state]   columns = state ensemble, rows = model conditional
+  model / state         128      256      512     1000     2000     4000
+  step128           0.5478*  0.5456*  0.7537   0.6560   0.7274   0.7209 
+  step256           0.5075*  0.4979*  0.7397   0.7643   0.7635   0.7592 
+  step512           0.6379*  0.5276*  0.5677   0.7724   0.8328   0.7662 
+  step1000          0.8640*  0.7788*  0.7696   0.8384   0.9038   0.8511 
+  step2000          0.7705*  0.8293*  0.8411   0.8604   0.8513   0.7964 
+  step4000          0.7769*  0.8087*  0.7932   0.8603   0.8676   0.7855 
+  (* = fewer than 32 distinct windows; excluded from the decomposition)
+
+  -> COHORT: cohort intact: all 6 declared checkpoints measured DECOMPOSITION over the 24 usable cells of 36: holding the model fixed and varying the ENSEMBLE moves s by 0.1113 on average; holding the ensemble fixed and varying the MODEL moves it by 0.1961. The model effect is 1.8x the ensemble effect, so the conditional itself changes and F94's elimination was an artifact of the random ensemble it was measured on. NON-CIRCULAR PRIMARY: with the ensemble held at the richest settled state (step1000, 193 distinct tokens), s across models runs [0.656, 0.7643, 0.7724, 0.8384, 0.8604, 0.8603] -- span 0.2044. The contexts do not come from the model being measured, so this is F94's primary without the circularity F96 flagged. NOT DECIDABLE: distinct_units: 6 sampled usable cells in the reference column collapse to 1 distinct (gate 3); a row bootstrap here understates CI width by ~2.4x -- resample distinct units, and treat any across-usable cells in the reference column statistic as undefined DEFLATION CHECK (registered): mean |lambda_MF - lambda_ca| = 0.3759 against a lambda seed floor of 0.0228. s does NOT reproduce lambda_ca, so the ring is not redundant.
+
+wrote results/transplant_s.json

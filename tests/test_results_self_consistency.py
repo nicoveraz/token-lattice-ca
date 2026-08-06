@@ -248,6 +248,7 @@ _STALENESS_PAIRS = [
     ("heat_capacity_tstar.json", "heat_capacity_tstar.py"),
     ("generality_olmo2.json", "generality_olmo2.py"),
     ("generality_olmo1_0724.json", "generality_olmo1_0724.py"),
+    ("transplant_s.json", "transplant_s.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),
