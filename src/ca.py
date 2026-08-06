@@ -9,6 +9,7 @@ import jax, jax.numpy as jnp
 from functools import partial
 from model import CFG, center_logits, load
 from lattice import run as _lattice_run
+from sampling import inverse_cdf
 
 MASK, UNK = 0, 1
 
@@ -74,11 +75,11 @@ def _win_probs(params, win, w, T):
     return jax.nn.softmax(logits / T, axis=-1)
 
 def _sample(probs, u):
-    """Inverse-CDF sampling with external uniforms u (B,) -> tokens (B,)."""
-    cdf = np.cumsum(np.asarray(probs), axis=-1)
-    cdf /= cdf[:, -1:]
-    return np.array([np.searchsorted(cdf[b], u[b]) for b in range(len(u))],
-                    dtype=np.int32)
+    """Inverse-CDF sampling with external uniforms u (B,) -> tokens (B,).
+
+    int32 is this caller's choice and is preserved deliberately; see sampling.inverse_cdf.
+    """
+    return inverse_cdf(probs, u, dtype=np.int32)
 
 class ToyRule:
     """The toy JAX transformer as a `lattice.Rule` (symmetric masked-centre window)."""

@@ -23,6 +23,7 @@ import numpy as np
 import torch
 from transformers import AutoTokenizer, BertForMaskedLM
 from lattice import run as _lattice_run
+from sampling import inverse_cdf, inverse_cdf_torch
 
 TOK_NAME = "bert-base-uncased"          # shared vocab for tiny/mini/base
 _TOK = None
@@ -98,10 +99,7 @@ class MLMRule:
     def sample_device(self, probs_t, u):
         """On-device inverse-CDF (CRN): probs_t (B,V) torch, u (B,) numpy -> tokens
         (B,) numpy. Deterministic given (probs_t, u), so the null test stays exact."""
-        u_t = torch.as_tensor(u, device=self.device, dtype=probs_t.dtype).unsqueeze(1)
-        cdf = probs_t.cumsum(-1)
-        cdf = cdf / cdf[:, -1:]
-        return (cdf < u_t).sum(dim=1).to("cpu", torch.int64).numpy()
+        return inverse_cdf_torch(probs_t, u, device=self.device)
 
     def random_lattice(self, rng, B, N):
         return rng.choice(self.init_pool, size=(B, N)).astype(np.int64)
@@ -109,10 +107,7 @@ class MLMRule:
 
 def _sample(probs, u):
     """Inverse-CDF sampling with external uniforms u (B,) -> tokens (B,). CRN."""
-    cdf = np.cumsum(probs, axis=-1)
-    cdf /= cdf[:, -1:]
-    return np.array([np.searchsorted(cdf[b], u[b]) for b in range(len(u))],
-                    dtype=np.int64)
+    return inverse_cdf(probs, u)
 
 
 class _MLMAdapter:
