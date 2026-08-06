@@ -1,0 +1,87 @@
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 25248.88it/s]
+  EleutherAI/pythia-14m            random   T_peak=1.24277250471418  calib=0.001445  distinct=96
+  EleutherAI/pythia-14m            settled  T_peak=1.2118713107995882  calib=0.001331  distinct=40
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6128.88it/s]
+  EleutherAI/pythia-160m           random   T_peak=1.4095071915793906  calib=0.001996  distinct=96
+  EleutherAI/pythia-160m           settled  T_peak=1.2744616402004862  calib=0.001819  distinct=44
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 5751.17it/s]
+  EleutherAI/pythia-1b             random   T_peak=1.482304953707847  calib=0.002301  distinct=96
+  EleutherAI/pythia-1b             settled  T_peak=1.445447851831731  calib=0.001337  distinct=41
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 4903.81it/s]
+  EleutherAI/pythia-31m            random   T_peak=1.3069588087773707  calib=0.001736  distinct=96
+  EleutherAI/pythia-31m            settled  T_peak=1.374460185883829  calib=0.001387  distinct=52
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6954.35it/s]
+  EleutherAI/pythia-410m           random   T_peak=1.445447851831731  calib=0.002093  distinct=96
+  EleutherAI/pythia-410m           settled  T_peak=1.3069588087773707  calib=0.00123  distinct=46
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 5143.89it/s]
+  EleutherAI/pythia-70m            random   T_peak=1.2744616402004862  calib=0.00187  distinct=96
+  EleutherAI/pythia-70m            settled  T_peak=1.24277250471418  calib=0.001992  distinct=36
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5214.51it/s]
+  HuggingFaceTB/SmolLM2-360M       random   T_peak=1.5201018653162786  calib=0.001549  distinct=96
+  HuggingFaceTB/SmolLM2-360M       settled  T_peak=1.5986115846447193  calib=0.001837  distinct=41
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5700.22it/s]
+  Qwen/Qwen2.5-0.5B                random   T_peak=1.5588625506229372  calib=0.00159  distinct=96
+  Qwen/Qwen2.5-0.5B                settled  T_peak=1.7240440249274007  calib=0.002145  distinct=69
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 3725.19it/s]
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T random   T_peak=1.5588625506229372  calib=0.001899  distinct=96
+  TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T settled  T_peak=1.5588625506229372  calib=0.001831  distinct=45
+Loading weights:   0%|          | 0/244 [00:00<?, ?it/s]Loading weights: 100%|██████████| 244/244 [00:00<00:00, 6956.30it/s]
+  bigcode/tiny_starcoder_py        random   T_peak=1.5588625506229372  calib=0.001344  distinct=96
+  bigcode/tiny_starcoder_py        settled  T_peak=1.7240440249274007  calib=0.001867  distinct=64
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4657.69it/s]
+  ibm-granite/granite-3.0-1b-a400m-base random   T_peak=1.445447851831731  calib=0.001306  distinct=96
+  ibm-granite/granite-3.0-1b-a400m-base settled  T_peak=1.5588625506229372  calib=0.001301  distinct=36
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 4910.14it/s]
+  ibm-granite/granite-3.0-2b-base  random   T_peak=1.482304953707847  calib=0.001142  distinct=96
+  ibm-granite/granite-3.0-2b-base  settled  T_peak=1.5201018653162786  calib=0.001957  distinct=39
+Loading weights:   0%|          | 0/341 [00:00<?, ?it/s]Loading weights: 100%|██████████| 341/341 [00:00<00:00, 6975.85it/s]
+  microsoft/phi-1_5                random   T_peak=1.6393741690305368  calib=0.001525  distinct=96
+  microsoft/phi-1_5                settled  T_peak=1.8130868815906702  calib=0.001884  distinct=70
+Loading weights:   0%|          | 0/340 [00:00<?, ?it/s]Loading weights:   0%|          | 1/340 [00:00<04:20,  1.30it/s]Loading weights:  34%|███▎      | 114/340 [00:00<00:01, 173.78it/s]Loading weights:  50%|█████     | 171/340 [00:01<00:01, 121.16it/s]Loading weights:  61%|██████    | 206/340 [00:01<00:01, 111.09it/s]Loading weights:  68%|██████▊   | 231/340 [00:02<00:01, 103.16it/s]Loading weights:  74%|███████▎  | 250/340 [00:02<00:00, 108.55it/s]Loading weights:  79%|███████▉  | 268/340 [00:02<00:00, 105.61it/s]Loading weights:  83%|████████▎ | 283/340 [00:02<00:00, 108.56it/s]Loading weights:  87%|████████▋ | 297/340 [00:02<00:00, 101.78it/s]Loading weights:  91%|█████████ | 310/340 [00:02<00:00, 103.93it/s]Loading weights:  95%|█████████▍| 322/340 [00:03<00:00, 101.67it/s]Loading weights:  98%|█████████▊| 334/340 [00:03<00:00, 103.83it/s]Loading weights: 100%|██████████| 340/340 [00:03<00:00, 105.51it/s]
+  stabilityai/stablelm-2-1_6b      random   T_peak=1.482304953707847  calib=0.000986  distinct=96
+  stabilityai/stablelm-2-1_6b      settled  T_peak=1.445447851831731  calib=0.001919  distinct=46
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 65315.34it/s]
+  RWKV/rwkv-4-169m-pile            random   T_peak=1.7240440249274007  calib=0.002096  distinct=96
+  RWKV/rwkv-4-169m-pile            settled  T_peak=1.482304953707847  calib=0.001864  distinct=74
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 69679.84it/s]
+[transformers] [1mCodeGenForCausalLM LOAD REPORT[0m from: Salesforce/codegen-350M-mono
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...19}.attn.causal_mask | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  Salesforce/codegen-350M-mono     random   T_peak=1.5986115846447193  calib=0.00138  distinct=96
+  Salesforce/codegen-350M-mono     settled  T_peak=1.9553477748476005  calib=0.001334  distinct=81
+Loading weights:   0%|          | 0/113 [00:00<?, ?it/s]Loading weights: 100%|██████████| 113/113 [00:00<00:00, 3685.68it/s]
+  allenai/OLMo-1B-hf               random   T_peak=1.445447851831731  calib=0.001687  distinct=96
+  allenai/OLMo-1B-hf               settled  T_peak=1.6811761480396454  calib=0.001412  distinct=82
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7390.78it/s]
+  bigscience/bloom-560m            random   T_peak=1.3069588087773707  calib=0.00079  distinct=96
+  bigscience/bloom-560m            settled  T_peak=1.5986115846447193  calib=0.00147  distinct=83
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 67150.40it/s]
+  facebook/opt-350m                random   T_peak=1.374460185883829  calib=0.001719  distinct=96
+  facebook/opt-350m                settled  T_peak=1.445447851831731  calib=0.001355  distinct=72
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6577.14it/s]
+  gpt2                             random   T_peak=1.5201018653162786  calib=0.001838  distinct=96
+  gpt2                             settled  T_peak=2.005206683316326  calib=0.001547  distinct=78
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7433.69it/s]
+  gpt2-large                       random   T_peak=1.4095071915793906  calib=0.001813  distinct=96
+  gpt2-large                       settled  T_peak=1.6811761480396454  calib=0.001502  distinct=79
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7314.26it/s]
+  gpt2-medium                      random   T_peak=1.445447851831731  calib=0.001692  distinct=96
+  gpt2-medium                      settled  T_peak=2.0563369312294553  calib=0.001462  distinct=81
+Loading weights:   0%|          | 0/580 [00:00<?, ?it/s]Loading weights: 100%|██████████| 580/580 [00:00<00:00, 7273.46it/s]
+  gpt2-xl                          random   T_peak=1.445447851831731  calib=0.001708  distinct=96
+  gpt2-xl                          settled  T_peak=1.7240440249274007  calib=0.00123  distinct=73
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 6297.32it/s]
+  state-spaces/mamba-130m-hf       random   T_peak=1.482304953707847  calib=0.001585  distinct=96
+  state-spaces/mamba-130m-hf       settled  T_peak=1.482304953707847  calib=0.00109  distinct=79
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 5967.49it/s]
+  state-spaces/mamba-370m-hf       random   T_peak=1.482304953707847  calib=0.001561  distinct=96
+  state-spaces/mamba-370m-hf       settled  T_peak=1.5201018653162786  calib=0.001411  distinct=79
+
+  -> CALIBRATION FIRST, and it is exact rather than referential: V has two independent expressions -- Var_{p_T}(z), and T^3 dH/dT by numerical differentiation of the entropy curve -- which are equal analytically. Worst relative disagreement across every model and context measured is 2.30e-03 against a tolerance of 0.02. The implementation reproduces the identity, so V is what the derivation says it is. PRIMARY: over 14 models with a finite T*, the heat-capacity peak and the measured melting temperature correlate at rho = -0.692, mean |T_V - T*| = 1.0351. correlation_leverage: heat-capacity peak T_V spans 0.6012 against the target's 0.3284 (ratio 1.83, gate 0.5); a correlation is interpretable; distinct_units: 14 sampled T_V values collapse to 11 distinct (gate 4) The peak does NOT land on T*: T* measures something the static conditional does not contain, so F86's anchor is not a restatement of next-token entropy. This is the outcome that protects T*, and it is only worth having because the deflationary one was written down first as a live possibility.
+
+wrote results/heat_capacity_tstar.json

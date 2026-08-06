@@ -240,6 +240,7 @@ _STALENESS_PAIRS = [
     ("tstar_second_target.json", "tstar_second_target.py"),
     ("meanfield_lambda.json", "meanfield_lambda.py"),
     ("canalization.json", "canalization.py"),
+    ("heat_capacity_tstar.json", "heat_capacity_tstar.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),

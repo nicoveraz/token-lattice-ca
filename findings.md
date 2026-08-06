@@ -3580,6 +3580,55 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F97 — T\* is not the heat capacity of the conditional, and that is what protects it
+Next-steps item 2, and the first result this project has produced from a formula found in the
+literature rather than from its own ladder. F95's prior-art check turned up IRIS's derivation that
+decoding temperature is a rank-one, on-family move, so two temperatures separate only at second
+order: `I* ≈ (1/8)(Δβ)²·V` with **`V = Var_{p_T}(z) = T³ dH/dT`**, the heat capacity of the
+next-token distribution — and that the strong temperature signal is T→0 support collapse, which is
+the same physics as an attractor melting.
+
+**The obvious question, and the reason to ask it now.** T\* is the project's only externally
+predictive result (F86). The sharpest way to protect a measurement is to try to make it redundant.
+If the heat-capacity peak of the model's own two-token conditional predicts T\*, then T\* costs a
+handful of forward passes and the ring is not needed for it — F92's static-vs-CA test, run against a
+far better static baseline, because this one has a derivation behind it instead of being an ad-hoc
+summary.
+
+**Two free wins in the design.** Logits do not depend on temperature, so the entire T grid comes from
+*one forward pass per context* — 24 models, no CA except one settle each. And the calibration rung is
+**exact and needs no reference system**: `V` has two independent expressions, and requiring them to
+agree gates the implementation against a known answer. Worst disagreement across every model and
+context: **2.3×10⁻³** against a 0.02 tolerance.
+
+*Two defects were caught inside the check itself, both the project's own recurring class.* The first
+calibration metric divided pointwise by `|V|`, which decays to zero as T→0, and reported 8.6×10¹ for
+a well-formed logit vector — a relative error on a quantity with no magnitude left, committed inside
+the check meant to catch exactly that. Fixed to the global scale. Separately, three of four synthetic
+logit vectors peaked at the grid edge, so the grid was extended to T=3.0 and **F59's edge-rejection
+rule was applied to a maximum**; in the final run 0 cells were rejected.
+
+**THE DEFLATIONARY OUTCOME DOES NOT FIRE.** `T_V` occupies [1.21, 1.81] while T\* occupies
+[0.25, 0.58] — **disjoint ranges**, mean separation 1.04. T\* is not the heat-capacity peak, and
+F86's anchor is not a restatement of next-token entropy response. **The ring is not redundant for
+T\*.** That is worth having only because the deflationary outcome was written down first, against
+the strongest static baseline available.
+
+**An unregistered observation, logged and not claimed.** The two do co-vary, and the sign is
+*opposite* to the naive prediction. `V` peaks near the logit scale, so a model with more spread-out
+logits has both a higher `T_V` and a more deterministic conditional at fixed T, which should make
+its attractor survive to a *higher* temperature. Observed: ρ = **−0.692** settled (permutation
+p = 0.0079) and **−0.754** random (p = 0.0029), 0 edge-rejected cells, and — unlike F94 — the
+`correlation_leverage` gate **passes** (predictor spans 1.83× the target), so this correlation is
+interpretable where F94's was not. It is still not a claim: n=14 models, one point each, no mechanism
+proposed, and the models are not independent draws — several share families and corpora, which a
+per-model permutation null does not account for. **F86 stated its own anchor at family level for
+exactly that reason**, and this is below that bar.
+
+**Method note.** A first pass quoted p = 0.051 from a null built with `islice(permutations(...))`,
+which takes the lexicographically *first* 200k orderings rather than a random sample. Re-run with
+sampled permutations under a fixed seed: p = 0.0079.
+
 ### F96 — the registered primary dies at its own gate; what survives is that F94 measured `s` in the wrong regime
 Follow-on to F94, which eliminated the *mean* of single-token sensitivity as λ_ca's explanandum.
 Annealed mean field uses only that mean, so this measured the two things it discards — the
@@ -3906,7 +3955,12 @@ the ladder figure, decide on F77's radius replication, merge the branch) is in `
    named in `REVIEW.md`, in the paper's own limitations, in revision 1 of the critical analysis, and
    still open. F88 supplies a cheaper partial (finer loss spacing within Pythia resolves the
    loss-vs-step alignment that returned NOT DECIDABLE) but it does not substitute.
-2. **T\*'s second leg — the literature question is now ANSWERED, and it came back as a formula.**
+2. **T\*'s second leg — the formula has now been TESTED (F97); the sampling-robust target remains.**
+   F97 ran IRIS's heat-capacity prediction against T\* across 24 models: the deflationary outcome
+   did not fire (disjoint ranges, mean separation 1.04), so T\* is not a restatement of next-token
+   entropy response and the ring is not redundant for it. What is still missing is the original
+   requirement — a degeneration measure that survives nucleus sampling — which F97 does not supply.
+   *Superseded detail:*
    F93's target rejected itself on dynamic range, so the anchor has one leg and is scoped to greedy
    decoding. F95 supplies what was missing: IRIS derives that decoding temperature is a rank-one
    on-family move, so two temperatures separate only at *second* order — `I* ≈ (1/8)(Δβ)²·V` with
