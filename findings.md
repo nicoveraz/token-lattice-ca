@@ -3888,7 +3888,7 @@ this project should be checked for a mixed population *before* it is reported.
 
 ## Next steps
 
-**Current to F93, 5 August 2026.** The Phase-3-era list this section used to carry is retired: it
+**Current to F96, 5 August 2026.** The Phase-3-era list this section used to carry is retired: it
 still named "build the PDF (never yet built)" as blocking work, and the PDF has been built, cut to
 five pages, and pinned at `submission/neurips26-i4d` with a camera-ready branch on top. That
 staleness was itself a finding (`critical_analysis.md` rev2 §7): a ledger that stops describing its
@@ -3906,22 +3906,39 @@ the ladder figure, decide on F77's radius replication, merge the branch) is in `
    named in `REVIEW.md`, in the paper's own limitations, in revision 1 of the critical analysis, and
    still open. F88 supplies a cheaper partial (finer loss spacing within Pythia resolves the
    loss-vs-step alignment that returned NOT DECIDABLE) but it does not substitute.
-2. **T\*'s second leg.** F93's target rejected itself on dynamic range, so the anchor has one leg
-   and is scoped to greedy decoding. The requirement — a degeneration measure that survives nucleus
-   sampling — is a *literature* question before it is an experiment.
-3. **The prior-art gate.** `fingerprint/PROGRAM.md` §1 mandates a novelty check before any write-up
-   and it has never been run; the only check on record covers the taxonomy (F90/F91). Model-equality
-   testing and API model verification are live adjacent literatures, and the programme's most novel
-   result — the tokenizer-merge mechanism — is precisely the one nobody has checked.
-4. **The verdict layer.** Four guards now exist as one-offs in individual scripts: a dynamic-range
-   check on the target (F93), a noise gate before any ratio (F80), a directional test where the
-   hypothesis is directional (F80), and an explicit NOT-DECIDABLE branch (F88). They belong in one
-   place, and that place already exists in `gatecheck.gate` and `gatecheck.fits`.
+2. **T\*'s second leg — the literature question is now ANSWERED, and it came back as a formula.**
+   F93's target rejected itself on dynamic range, so the anchor has one leg and is scoped to greedy
+   decoding. F95 supplies what was missing: IRIS derives that decoding temperature is a rank-one
+   on-family move, so two temperatures separate only at *second* order — `I* ≈ (1/8)(Δβ)²·V` with
+   `V = T³ dH/dT` — with the strong signal at T→0 support collapse (AUROC ≈ 0.99), the same physics
+   as an attractor melting. T\* is defined at a melting point rather than by adjacent-T comparison,
+   so this is a **closed-form external prediction to test it against**, and it is now the cheapest
+   available check on the project's best result.
+3. ~~**The prior-art gate.**~~ **DONE (F95).** Generic black-box model identification is **taken**
+   (Model Equality Testing ICLR 2025; IRIS at 0.99 AUROC) and so is quantization detection; the
+   tokenizer-merge mechanism is substantially anticipated, leaving only the API-probing hazard
+   framing and the ranking inversion. **What is NOT anticipated is the dynamics**: every published
+   feature set is single-shot scoring of supplied text, and no prior method feeds a model its own
+   output back in. Distillation and pruning are untouched. **Pitch the claim as the dynamics, not
+   the fingerprint.** Caveat: the synthesis stage failed, so this reads 85 unmerged claims.
+4. **The verdict layer — promoted, because the defect recurred twice more.** Six guards now exist
+   as one-offs: a dynamic-range check on the target (F93), a noise gate before any ratio (F80), a
+   directional test where the hypothesis is directional (F80), an explicit NOT-DECIDABLE branch
+   (F88), the same range check applied to a *predictor* (F94, retro-fitted), and a distinct-context
+   floor on the estimator's own input (F96). That is one defect class — **a statistically-shaped
+   criterion applied to a quantity with no room to vary** — caught by hand six times. It belongs in
+   `gatecheck.gate`/`gatecheck.fits`, and this is now the highest-value engineering item.
 5. **`gatecheck` adoption.** The package extracted to hold this project's discipline is imported by
    `fingerprint/` and by nothing in `experiments/`, `tests/` or `src/`. Adopting `provenance` alone
    would close the environment-fingerprint hole that lets a numpy upgrade move a number silently.
 6. **Engineering debt.** No `pyproject.toml`, no pinned environment, no CI; 119 experiment scripts;
    `ca.DATA_DIR` still a mutable module global (#25).
+
+**Newly specified by F96, and the only well-posed experiment the explanandum search has produced.**
+The settled-regime result is blocked by circularity — the ring's settled state is *produced by* the
+dynamics whose exponent it is used to predict — and by degeneracy (7 distinct tokens at step128).
+A non-circular version must evaluate `s` on a context ensemble **matched to the settled state's
+statistics without being that state**. Before F96 there was no such experiment to write down.
 
 **The one decision that is not an experiment:** whether this work continues to be described as
 interpretability. Revision 2 of the critical analysis argues it should not — three routes to an

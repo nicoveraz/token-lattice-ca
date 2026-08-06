@@ -117,6 +117,9 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 
 ### Findings at a glance
 
+`findings.md` is the authoritative record — each entry there carries its
+pre-registration, its verdict, and its boundary. This table is an index.
+
 | # | Finding | Phase |
 |---|---------|-------|
 | F1–F9 | Pilot reproduced on M1: temperature phase structure, radius-blind statics but radius-set damage cones, partial corpus recovery, metastable churn, sync period-2 artifact, measure-not-sample, early crystallization, learned self-healing, CRN certification (null = 0) | 1 |
@@ -171,6 +174,36 @@ reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
 | **F45** | **Third lattice size.** Over N=48/96/192: λ_ca 0.168/0.169/0.160 = **N^−0.04, intensive across 4×**; D_norm 0.569/0.306/0.139 = **N^−1.02, i.e. 1/N**. Mechanism confirmed. My pre-registered D_norm band missed by 2% — mis-built, reported as a miss | 4 |
 | F44 | "Unignited runs rise with N" (Fisher p=0.022) is a **batch-size confound**: B halves as N doubles, and one constant per-lattice death probability fits all three sizes (χ² p=0.91). No evidence of an N effect | 4 |
 | F43 | Three citations were carrying **invented titles**; `plainnat` printed "Title/authors to verify" in the compiled bibliography. All five verified against arXiv; one prior-art claim narrowed to match what the cited works actually say | 4 |
+| **F67** | **The clean construction has no transition either** — the confirming null. Masked-centre infilling, the construction F66 showed is free of the degeneracy artifact, shows no developmental transition, so the transition was not hiding behind the artifact | 4 |
+| **F68** | T\* against text degeneration: **underpowered**, and the binary is a clean null (#90) | 5 |
+| **F69** | The degeneracy is **confined to r ≤ 2** — one extra token of context is the whole difference (#91) | 5 |
+| **F70** | It is an attracting **FIXED POINT of the argmax map**, not a data-sparsity effect (#92) | 5 |
+| **F71** | The clean construction produces **structured novelty**; the AR probe does not (#93) | 5 |
+| **F72** | The prompt is **erased** and the absorbing state has a negligible basin (#94) | 5 |
+| F73 | The assembly rung is built, and it **falsified the specification that asked for it** — RePair is not exact on `a^n` (52 overshoots in an exhaustive sweep) (#20) | 5 |
+| F74 | No compression or entropy baseline reproduces Δ's ordering; the difference is in **shape** (#20) | 5 |
+| F75 | The assembly index plays **no role** in Δ, and F74's framing is withdrawn (#20) | 5 |
+| **F76** | **Δ fails its own instrument-selection rung** — and AMENDED: so does everything else (#20) | 5 |
+| **F77** | The developmental transition is **NOT confined to the two-token window** (#99) | 5 |
+| F78 | Context-use onset does not sharply explain the transition, but **shares its saturation** | 5 |
+| F79 | Ablation route 3: no component-specific selectivity, but **the statistic was contaminated** (#100) | 5 |
+| **F80** | **No single attention layer carries λ_ca**; the effect is strongly non-additive (#100) | 5 |
+| **F81** | The dip measured directly: timing **halves with width**, and 2 of 3 reach true extinction (#95) | 5 |
+| F82 | Conditional collapse does **not** explain the dip — the two events move by different factors (#97) | 5 |
+| F83 | Nor does conditional insensitivity explain extinction — the third candidate gone (#97) | 5 |
+| **F84** | The argmax **funnel forms by step 8**, wanders in identity, and predates everything else dated (#98) | 5 |
+| F85 | The funnel's identity **genuinely swaps** — a contested basin, not one attractor with a noisy label (#98) | 5 |
+| **F86** | **T\* predicts degeneration at family level** — the band screen delivers the external anchor (#90, #101) | 5 |
+| **F87** | "No attractor" is **two mechanisms**, and F86 is a conditional claim (band census reanalysis) | 5 |
+| F88 | λ_ca vs loss is **NOT DECIDABLE** — and the knife-edge was mine (#84) | 5 |
+| F89 | Memorization is **vacuous by erasure**; the registered criterion tested the wrong thing (#102) | 5 |
+| **F90** | The **funnel / none / fragmented** taxonomy is stable, survives its confound, and is partly anticipated | 5 |
+| **F91** | The recipe correlate is **partially anticipated**, and F90 pooled two opposite mechanisms | 5 |
+| **F92** | **The static map does NOT predict degeneration and the CA does** — the deflationary test, run on the anchor | 5 |
+| F93 | The second target **rejects itself**, and that scopes F86 rather than testing it | 5 |
+| **F94** | **λ_ca is not derivable from single-token sensitivity.** Annealed mean field (`λ_MF = log r·s`) run on the full ladder: DK −38% low, ECA 17/18 correct, and on the model `s` is flat while λ_ca moves. The registered deflationary outcome does NOT fire (residual 0.445 vs a 0.023 seed floor) — **the ring is not redundant** | 5 |
+| **F95** | **Fingerprint prior-art check, finally run.** (a) black-box model ID is **taken** (IRIS, 0.99 AUROC); **(b) iterated/dynamical probes are NOT anticipated — that is the ground**; (c) corpus inference partially (tokenizer-only methods can't make the same-tokenizer call); (d) quantization taken, **distillation/pruning untouched**; (e) round-trip merging worse than believed. T\* gains an external formula: `I* ≈ (1/8)(Δβ)²·T³dH/dT` | 5 |
+| **F96** | The registered primary **dies at its own gate** (3 of 6 settled cells below the distinct-context floor). What survives: **F94 measured `s` in the wrong regime** — on the states the ring occupies `s` spans 0.331 not 0.071 and the predictor clears the range gate at 1.72 vs 0.29. Bounded by degeneracy and circularity | 5 |
 
 ## Layout
 
@@ -203,11 +236,50 @@ experiments/   runnable pipeline steps (run from repo root)
   differential.py differential CRN certification (null / apparatus / model arms)
   analyze_figs.py figures 1–6 + analysis.json
   crystal_fig.py  crystallization figure
+
+  -- later programmes; one script per pre-registered question, grouped by thread.
+     Every one is resumable (saved per cell, keyed by its design tuple).
+
+  the degeneracy artifact and what it is (F66-F72)
+    context_threshold.py       is the degeneracy confined to r<=2? (F69)
+    fixed_point_onset.py       when does the argmax funnel form? (F84/F85)
+    argmax_census_hardened.py  96-start dual-seed census + the dedup confound pair (F90/F91)
+    basin_dependence.py        does the absorbing state have a basin? (F72)
+    novelty_structure.py       does the clean construction produce novelty? (F71)
+
+  what the developmental transition IS -- four routes, all reported
+    context_onset.py           route 1: context-use onset (F78, indeterminate)
+    ablate_layers.py           route 2/3: per-layer and per-component ablation (F79/F80)
+    conditional_sensitivity.py route 3 support: does the conditional collapse? (F82/F83)
+    meanfield_lambda.py        route 4: DERIVE lambda_ca from sensitivity, on the ladder (F94)
+    canalization.py            F94 follow-on: spread + sub-additivity, three regimes (F96)
+    loss_collapse.py           lambda_ca vs loss (F88, NOT DECIDABLE)
+
+  external anchors and second targets (#90/#101/#102)
+    band_screen.py             the keystone: T* vs degeneration at family level (F86)
+    band_family_census.py      "no attractor" is two mechanisms (F87)
+    degeneration_vs_tstar.py   the static map vs the CA, on the anchor (F92)
+    tstar_second_target.py     the second target rejects itself (F93)
+    memorization_gate_a/_b.py  is retention even measurable at practical radii? (F89)
+
+  assembly / complexity rung (#20 -- built, then falsified its own spec)
+    assembly_calib.py          exhaustive RePair sweep on a^n (F73)
+    assembly_baselines.py      compression and entropy baselines (F74/F75)
+    assembly_temperature.py    the instrument-selection rung Delta fails (F76)
+
+  paper and guards
+    build_paper_manifest.py    every paper number traced to a results/ file
+    precommit_guard.py         blocks a claim whose number is not in the manifest
+    fig_instrument.py          Figure 1 (the instrument panel)
+fingerprint/   the black-box fingerprint programme (PROGRAM.md + gate1/2/3); imports gatecheck
+gatecheck/     installable verdict-layer package (DESIGN.md, 42 tests)
 tests/         pytest harness regression tests (null test, determinism, sanity)
 data/          shakespeare.txt, token ids, vocab.json
 ckpt/          0.42M-param checkpoints (step1000..6000, final) — tracked, no retrain needed
 results/       raw npz + summary.jsonl / census.json / analysis.json / differential.json
+               NEVER hand-edited — when a results file is wrong, the SCRIPT is fixed and re-run
 fig/           figures (png)
+paper/         paper.tex + plan_paper3.md (the live decision document) + REVIEW.md
 ```
 
 The library and scripts use **paths relative to the repo root** (`data/`,

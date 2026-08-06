@@ -24,7 +24,20 @@ the affordance the submitted paper only asserts. The scientific object underneat
 the fingerprint reads the structure of the learned two-token conditional and its argmax map,
 a region of the model's function that normal evaluation never visits.
 
-**Prior-art check is mandatory before any write-up.** Adjacent literatures exist: API model
+**Prior-art check is mandatory before any write-up.** — **DONE, 5 August 2026 (F95).** Verdicts:
+(a) generic black-box model identification is **taken** (Model Equality Testing, ICLR 2025; IRIS
+arXiv 2607.20860 at 0.99 verification AUROC); **(b) iterated / dynamical probes are NOT anticipated —
+every published feature set is single-shot scoring of supplied text, and this is the programme's
+defensible ground**; (c) corpus inference partially anticipated, but tokenizer-only methods return
+identical answers for models sharing a tokenizer and so cannot make this battery's gpt2 vs
+gpt-neo-125M call; (d) quantization **taken**, distillation and pruning **untouched**; (e) tokenizer
+round-trip merging substantially anticipated as a mechanism — only the API-probing hazard framing and
+the ranking inversion survive. **Pitch the novelty as the dynamics, not the fingerprint.** One
+external gift: T\* gains a closed-form prediction, `I* ≈ (1/8)(Δβ)²·T³dH/dT`, with T→0 support
+collapse as the strong signal. Caveat: the synthesis stage failed on a session limit, so this is a
+read over 85 unmerged vote-verified claims. Full record in `findings.md` F95.
+
+_Original requirement:_  Adjacent literatures exist: API model
 verification / model-equality testing ("which model is this endpoint actually serving"),
 output-based authorship attribution of generated text, and watermarking. None of these is
 known to use OOD fallback dynamics or to target *corpus* inference, but that sentence is one
