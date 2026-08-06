@@ -14,7 +14,7 @@ The checks are about the DESIGN, not the values: they compare what a file says i
 against what it must have done had its stated design been followed. A future subset can only
 pass by also changing the declared design, which is visible in review.
 """
-import json, pathlib, sys
+import json, pathlib, re, sys
 import numpy as np
 import pytest
 
@@ -205,6 +205,11 @@ def test_n192_uses_the_same_ignition_asymmetry_as_the_shape_script():
 # ------------------------------------------------------- issue #38: stale-analysis detection
 COVERED_BASELINE = 2   # import-closure ratchet; raise as analyses are re-run
 
+# Repo-local modules that are instrumentation, not analysis: they cannot change a measured value,
+# so a change to them must not invalidate every stamped results file. Keep this set TINY and
+# justify every entry -- anything that computes a number does not belong here.
+_INSTRUMENTATION = {"experiments/provenance.py"}
+
 _STALENESS_PAIRS = [
     ("dev_transition_shape.json", "dev_transition_shape.py"),
     ("dev_transition_n192.json", "dev_transition_n192.py"),
@@ -300,7 +305,18 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
     # whole test as un-run when its sha256 half had already passed, which is precisely the
     # "looks like it ran" failure mode this suite exists to avoid. Legacy files simply get the
     # weaker check; `test_import_closure_coverage_does_not_regress` keeps the gap visible.
-    imports = prov.get("imports") or {}
+    # INSTRUMENTATION IS EXCLUDED FROM THE COMPARISON, and this is a correctness fix rather than
+    # a relaxation. The closure exists to catch a results file produced by different ANALYSIS
+    # code. `provenance.py` computes no measured quantity -- it hashes files and formats a stamp --
+    # so a change to it cannot move a number, while including it means every improvement to the
+    # provenance system marks all 22 stamped files stale at once. That happened: adding the
+    # environment fingerprint forced a mass re-run, and five gated models had meanwhile become
+    # unfetchable, so the re-runs silently recomputed headline numbers over a smaller cohort. A
+    # guard whose false positives are that expensive stops being run.
+    # It is not left unguarded: `test_provenance_module_behaviour_is_pinned` below covers it
+    # directly, which is the right instrument for instrumentation.
+    imports = {k: v for k, v in (prov.get("imports") or {}).items()
+               if k not in _INSTRUMENTATION}
     drifted = []
     for relpath, want in sorted(imports.items()):
         f = ROOT / relpath
@@ -315,6 +331,49 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
         + "\n  ".join(drifted)
         + f"\nRe-run {script_name}. This is the F45/F46 trap reached through an import rather "
           f"than through the script itself.")
+
+
+def test_provenance_module_behaviour_is_pinned():
+    """Direct cover for the one module excluded from the closure comparison.
+
+    `provenance.py` is exempted above because it computes no measured value. That exemption is
+    only safe while the module keeps doing exactly what the stamp claims, so it is tested here
+    against its own contract rather than by invalidating every results file whenever it changes.
+    """
+    import provenance
+    st = provenance.stamp(str(ROOT / "experiments" / "provenance.py"))
+    assert st["script"] == "provenance.py"
+    assert re.fullmatch(r"[0-9a-f]{64}", st["sha256"]), "sha256 is not a sha256"
+    assert isinstance(st.get("imports"), dict) and st["imports"], "closure is empty"
+
+    # the environment half -- the hole stamp() advertised for months
+    env = st.get("env")
+    assert isinstance(env, dict), "stamp() records no environment block"
+    assert env.get("python") and env.get("platform"), "env names no interpreter or platform"
+    pkgs = env.get("packages") or {k: v for k, v in env.items()
+                                   if k not in ("python", "platform", "implementation")}
+    assert pkgs, "env names no package versions, so it closes nothing"
+    assert any(k.startswith("numpy") for k in pkgs), (
+        "numpy is not recorded, and numpy is the package most able to move a number here")
+
+    # rel() must not leak an absolute path into a machine-written log (#52)
+    assert not provenance.rel(str(ROOT / "results" / "x.json")).startswith("/")
+
+
+def test_environment_block_is_shape_checked_where_present_never_compared():
+    """Recorded and never asserted equal: the same file is legitimately read on another machine.
+
+    A mismatch is information for the reader, not a failure. Making it fatal would turn every
+    routine upgrade into a red suite and teach people to delete the check.
+    """
+    for results_name, _script in _STALENESS_PAIRS:
+        path = ROOT / "results" / results_name
+        if not path.exists():
+            continue
+        env = (json.loads(path.read_text()).get("_analysis_provenance") or {}).get("env")
+        if env is None:
+            continue                       # legacy file, exactly as with `imports`
+        assert isinstance(env, dict) and env.get("python"), f"{results_name}: malformed env block"
 
 
 # --------------------------- a committed log must not contradict its current results file

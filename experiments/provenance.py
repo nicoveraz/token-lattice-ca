@@ -71,6 +71,34 @@ def import_closure():
     return dict(sorted(out.items()))
 
 
+def _environment():
+    """Python, platform, and the versions of packages that can move a number.
+
+    Delegates to `gatecheck.provenance.environment_fingerprint`: this repo's discipline was
+    extracted into that package, and importing it back is what adopting it means, rather than
+    keeping a second copy that can drift from the first. Falls back to a local implementation if
+    gatecheck is not importable -- provenance must never be the reason a run cannot start.
+    """
+    try:
+        import sys as _s, pathlib as _p
+        _gc = str(_p.Path(__file__).resolve().parents[1] / "gatecheck" / "src")
+        if _gc not in _s.path:
+            _s.path.insert(0, _gc)
+        from gatecheck.provenance import environment_fingerprint
+        return environment_fingerprint()
+    except Exception:
+        import sys, platform
+        from importlib import metadata
+        out = {"python": sys.version.split()[0], "platform": platform.platform(),
+               "packages": {}, "_fallback": "gatecheck unavailable"}
+        for pkg in ("numpy", "scipy", "torch", "transformers", "huggingface-hub", "datasets"):
+            try:
+                out["packages"][pkg] = metadata.version(pkg)
+            except Exception:
+                pass
+        return out
+
+
 def stamp(path):
     """Provenance block naming the script that produced the analysis and its exact content.
 
@@ -85,14 +113,26 @@ def stamp(path):
     for why the script alone was not enough. Results files written before this field existed
     simply lack it, and the test checks it only when present; re-running any analysis adds it.
 
-    STILL NOT COVERED: third-party package versions. A numpy or torch upgrade can move a number
-    without touching a byte of this repo, and nothing here would notice.
+    `env` closes the third-party half, the last hole this function had. A numpy or torch upgrade
+    can move a number without touching a byte of this repo, and until now nothing here would have
+    noticed. RECORDED AND NEVER COMPARED, deliberately: the same results file is legitimately read
+    on a machine other than the one that produced it, so a mismatch is information for the reader
+    rather than a test failure. What it buys is that when a number looks wrong, the environment
+    that produced it is on the record instead of unknowable after the fact.
+
+    This module is excluded from the closure COMPARISON in the suite (see `_INSTRUMENTATION` in
+    test_results_self_consistency.py) precisely so that adding this field did not mark all 22
+    stamped results files stale -- a guard whose false positives force mass re-runs stops being
+    run, and the first attempt at exactly that re-run silently recomputed headlines over a
+    smaller model cohort. The module is covered directly instead, which is the right instrument
+    for instrumentation.
     """
     p = pathlib.Path(path)
     return {
         "script": p.name,
         "sha256": source_sha256(p),
         "imports": import_closure(),
+        "env": _environment(),
         "note": ("sha256 of the analysis source at write time, plus the repo-local import "
                  "closure. If any of these does not match the file on disk, the analysis was "
                  "produced by a different version of the code -- re-run it before reading the "
