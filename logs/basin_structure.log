@@ -1,0 +1,24 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:54,  5.34it/s]Loading weights:  21%|██        | 60/292 [00:00<00:00, 258.32it/s]Loading weights:  33%|███▎      | 95/292 [00:00<00:00, 268.44it/s]Loading weights:  43%|████▎     | 127/292 [00:00<00:00, 217.67it/s]Loading weights:  52%|█████▏    | 153/292 [00:00<00:00, 202.04it/s]Loading weights:  60%|██████    | 176/292 [00:00<00:00, 179.77it/s]Loading weights:  67%|██████▋   | 196/292 [00:01<00:00, 166.22it/s]Loading weights:  75%|███████▍  | 218/292 [00:01<00:00, 170.73it/s]Loading weights:  82%|████████▏ | 240/292 [00:01<00:00, 171.93it/s]Loading weights:  90%|█████████ | 264/292 [00:01<00:00, 180.58it/s]Loading weights:  97%|█████████▋| 284/292 [00:01<00:00, 185.23it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 187.56it/s]
+  PROTOCOL GATE: per-replica cones average to block_damage's cone EXACTLY, so the ungrouped measurement is the paper's measurement (146s)
+  step256|s21: 3/32 ignited, lambda +0.1312 +/- 0.0555, distinct 9.0 (73s)
+  step256|s22: 11/32 ignited, lambda +0.2538 +/- 0.1980, distinct 10.0 (73s)
+  step256|s23: 13/32 ignited, lambda +0.1534 +/- 0.0682, distinct 9.8 (73s)
+  step256|s24: 10/32 ignited, lambda +0.1273 +/- 0.1081, distinct 9.2 (72s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:06,  2.30it/s]Loading weights:  36%|███▌      | 104/292 [00:00<00:00, 254.63it/s]Loading weights:  56%|█████▌    | 163/292 [00:00<00:00, 206.59it/s]Loading weights:  70%|██████▉   | 203/292 [00:01<00:00, 201.83it/s]Loading weights:  80%|████████  | 235/292 [00:01<00:00, 188.08it/s]Loading weights:  89%|████████▉ | 261/292 [00:01<00:00, 185.04it/s]Loading weights:  99%|█████████▊| 288/292 [00:01<00:00, 200.26it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 187.66it/s]
+  step1000|s21: 29/32 ignited, lambda +0.2354 +/- 0.1229, distinct 34.6 (71s)
+  step1000|s22: 31/32 ignited, lambda +0.2253 +/- 0.1439, distinct 35.8 (71s)
+  step1000|s23: 31/32 ignited, lambda +0.2027 +/- 0.0558, distinct 35.6 (71s)
+  step1000|s24: 31/32 ignited, lambda +0.2738 +/- 0.0857, distinct 34.2 (71s)
+
+  checkpoint       n  clusters  total sd   between    within  between frac
+  step256         37         4    0.1396    0.0500    0.1361         0.128
+  step1000       122         1    0.1104    0.0000    0.1104         0.000
+      step256 dom:187            n=5    lambda=+0.1340 +/- 0.1193
+      step256 dom:575            n=2    lambda=+0.1974 +/- 0.0656
+      step256 low-diversity      n=13   lambda=+0.1225 +/- 0.0899
+      step256 mid-diversity      n=17   lambda=+0.2233 +/- 0.1628
+      step1000 high-diversity     n=122  lambda=+0.2343 +/- 0.1104
+
+  -> PROTOCOL GATE: per-replica cones average to block_damage's cone EXACTLY, so the ungrouped measurement is the paper's measurement PRIMARY NOT DECIDABLE: the settled states do not resolve into more than one structural cluster, so there is no between-basin term to estimate. That is not the same as the floor being noise -- it is the clustering having nothing to bite on at this geometry. BOUNDARY: one family, two checkpoints, T=0.7, and the clustering is deliberately coarse and lambda-blind (dominant token when it holds a majority, otherwise a diversity band). A finer clustering could find structure this one misses; a clustering allowed to see lambda would manufacture the dependence being tested, which is why it is not used.
+
+wrote results/basin_structure.json

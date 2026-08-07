@@ -3853,6 +3853,57 @@ are scored on Pile text, which is training distribution for Pythia and OLMo but 
 weighted for either. Architecture, data order and optimiser still differ across families
 simultaneously, so F98's attribution note applies unchanged.
 
+### F101 — the seed floor is licensed: λ_ca's spread is noise, not basin structure
+Every metric in this project averages over the batch. `ca.metrics` computes entropy, distinct-count
+and bigram overlap **per replica** and returns `np.mean(...)` of each; `ar_probe.block_damage` builds
+a `(sweeps, B, N)` damage array and collapses it with `.mean(axis=1)`. The across-initial-condition
+structure is calculated and discarded in one line, everywhere — which is F94's mean-versus-spread
+defect one level up, and it had never been checked.
+
+**Why it was load-bearing.** λ_ca's seed spread is the **noise floor every gate in this project is
+measured against** — F100 used 0.0197, F94's deflation check 0.0228, and **F88 returned NOT DECIDABLE
+because two alignments differed by less than a floor of 0.0247**. If replicas settled into
+structurally different basins and λ_ca depended on which, part of that "noise" would be structure,
+the floor would shrink, and several NOT DECIDABLE verdicts would deserve re-reading.
+
+**The protocol gate passed exactly.** This could not import `block_damage` (it averages before
+returning), so it reimplements the same computation retaining the replica axis — and then asserts the
+per-replica cones average to `block_damage`'s cone with `max_abs_diff == 0.0` on a shared seed. **This
+is the paper's own measurement ungrouped, not a new one.** Cluster labels come from the settled state
+alone and never from λ; a λ-aware clustering would manufacture the dependence being tested.
+
+```
+ checkpoint     n ignited  clusters  total sd  between  within  between frac
+ step256 (dip)         37         4    0.1396   0.0500  0.1361         0.128
+ step1000 (plateau)   122         1    0.1104   0.0000  0.1104         0.000
+```
+
+**At the plateau: structural homogeneity.** All 122 ignited replicas fall in **one** cluster
+(high-diversity, ~35 distinct tokens). There is no basin structure to explain λ's spread, so
+averaging over replicas is *provably harmless* at this checkpoint. That is a result, not missing data.
+
+**In the dip: basins exist, but do not explain λ.** step256 resolves into four clusters — two
+dominant-token basins plus low- and mid-diversity bands — so replicas *do* land in structurally
+different settled states. But the between-cluster component is only **12.8%** of λ's variance
+(0.1396 total = 0.0500 between + 0.1361 within), below the 25% the primary registered.
+
+**So the floor is LICENSED rather than merely un-impeached.** Averaging over replicas was harmless,
+λ_ca's seed spread is essentially genuine noise, and **every gate that used it stands unchanged** —
+including F88's NOT DECIDABLE, which cannot be rescued by conditioning on basin. A null that
+positively validates an assumption the whole project rests on is worth more than it sounds.
+
+**Caveat, and it is why this is "mostly".** Only 37 of 128 replicas ignite at step256 (F42's regime —
+ignition is low in the dip), and two of the four clusters hold 5 and 2 replicas, below the 8-replica
+power floor. A small basin effect in the dip is not excluded.
+
+**Boundary.** One family, two checkpoints, T=0.7, and the clustering is deliberately coarse. A finer
+clustering could find structure this one misses.
+
+**Analysis-logic correction.** The first pass required *every* checkpoint to resolve into ≥2 clusters
+and so returned NOT DECIDABLE while holding a measured 12.8% at step256 — a checkpoint being
+homogeneous is a finding about that checkpoint, not grounds to void another. Fifth instance this
+session of the checking layer carrying the defect it exists to catch (F97, F98, F99, F100, this).
+
 ### F100 — λ_ca is not a function of model quality: the cross-family collapse test, in a comparable unit (#84)
 F88 asked whether λ_ca collapses against loss rather than step within Pythia and returned NOT
 DECIDABLE — both alignments sat at the seed floor. F98 then showed the transition's *timing* cannot

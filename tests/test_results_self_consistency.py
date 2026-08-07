@@ -273,6 +273,7 @@ _STALENESS_PAIRS = [
     # loss_collapse_decide.py stamps `_decision_provenance` separately. Checking the measurer here
     # is the right half -- the decision can be re-run at any time, the measurements cannot.
     ("loss_collapse_families.json", "loss_collapse_families.py"),
+    ("basin_structure.json", "basin_structure.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("ablate_compensators.json", "ablate_compensators.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
