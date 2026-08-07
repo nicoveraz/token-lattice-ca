@@ -1,0 +1,17 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:32,  1.91it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 201.74it/s]Loading weights:  51%|█████     | 148/292 [00:00<00:00, 186.76it/s]Loading weights:  63%|██████▎   | 184/292 [00:01<00:00, 173.60it/s]Loading weights:  73%|███████▎  | 212/292 [00:01<00:00, 168.69it/s]Loading weights:  81%|████████  | 236/292 [00:01<00:00, 156.06it/s]Loading weights:  88%|████████▊ | 256/292 [00:01<00:00, 152.46it/s]Loading weights:  95%|█████████▍| 276/292 [00:01<00:00, 149.82it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 155.17it/s]
+  loss[none                  ] =   3.0069  (14s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:16,  2.13it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 270.19it/s]Loading weights:  90%|████████▉ | 262/292 [00:00<00:00, 541.28it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 419.95it/s]
+  loss[attn_early            ] =   8.5472  (12s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:35,  3.06it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 748.10it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 553.37it/s]
+  loss[attn_early+attn_L08   ] =   8.5372  (12s)
+
+0 cached, 3 lambda cells to run (~0.1 h)
+
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 170/292 [00:00<00:00, 1561.53it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 1710.01it/s]
+  none                   s=21  lambda=+0.3461  D_norm=0.9872  ign=1.000  (126s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:09,  2.25it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 290.01it/s]Loading weights:  64%|██████▍   | 188/292 [00:00<00:00, 301.92it/s]Loading weights:  82%|████████▏ | 239/292 [00:01<00:00, 236.73it/s]Loading weights:  95%|█████████▍| 276/292 [00:01<00:00, 201.33it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 214.13it/s]
+  attn_early             s=21  lambda=+0.0115  D_norm=0.0013  ign=0.000  (128s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:11,  2.22it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 301.41it/s]Loading weights:  68%|██████▊   | 198/292 [00:00<00:00, 259.25it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 332.26it/s]
+  attn_early+attn_L08    s=21  lambda=+0.0802  D_norm=0.3656  ign=0.375  (127s)
+
+SMOKE: plumbing only, no verdict. Re-run without --smoke for the experiment.

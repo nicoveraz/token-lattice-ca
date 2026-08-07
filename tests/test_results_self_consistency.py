@@ -274,6 +274,7 @@ _STALENESS_PAIRS = [
     # is the right half -- the decision can be re-run at any time, the measurements cannot.
     ("loss_collapse_families.json", "loss_collapse_families.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
+    ("ablate_compensators.json", "ablate_compensators.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
     ("ablate_lambda.json", "ablate_lambda.py"),

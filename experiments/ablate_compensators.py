@@ -59,6 +59,7 @@ import time
 
 import numpy as np
 import torch
+from scipy import stats
 
 from provenance import stamp, rel
 from dev_transition_phase3 import measure, BASE, SEEDS, T
@@ -378,6 +379,14 @@ def analyse(res, singles):
     # Selects the branch once power is established; not blocking, for the same reason `directional`
     # is not -- "the largest delta is inside the noise" is the null, not an inability to decide.
     big_enough = noise_gate(best["delta"], floor)
+    # MULTIPLE COMPARISONS. `best` is the MAXIMUM of len(rows) deltas, not a pre-specified layer,
+    # so its per-comparison p understates the chance of seeing that much by selection alone. The
+    # correction is family-wise over the layers actually compared, and it is added with the data
+    # in view -- admissible only because it can move the verdict in ONE direction, away from a
+    # positive, exactly like the noise-gate tightening in F100.
+    z_best = best["delta"] / floor if floor else 0.0
+    p_one = float(stats.norm.sf(z_best))
+    p_fw = float(1.0 - (1.0 - p_one) ** len(rows))
     # Directional, and NOT a blocking gate: a negative delta is evidence AGAINST self-repair, not
     # an inability to decide -- the reading gatecheck.directional exists to forbid.
     dirn = directional(best["delta"], expect="increase", floor=floor)
@@ -394,17 +403,21 @@ def analyse(res, singles):
             f"compensation of {MIN_DETECTABLE} would not have cleared this floor, so neither the "
             f"positive nor the kill can be read. More seeds, not more layers.")
         decided = False
-    elif not (dirn.usable and big_enough.usable):
+    elif not (dirn.usable and big_enough.usable and p_fw < 0.05):
         parts.append(
             f"KILL: no downstream layer increases its contribution when the early block is "
-            f"removed. {dirn.reason if not dirn.usable else big_enough.reason} Static redundancy "
+            f"removed. Largest delta L{best['layer']} = {best['delta']:+.5f} is {z_best:.2f}x the "
+            f"seed floor, one-sided p = {p_one:.4f}, but FAMILY-WISE p = {p_fw:.4f} over "
+            f"{len(rows)} layers -- it was selected as the maximum, not predicted. "
+            f"{dirn.reason if not dirn.usable else big_enough.reason} Static redundancy "
             f"accounts for F80's non-additivity without compensation, self-repair is not the "
             f"mechanism, and explanandum route 5 closes. A NULL IS A GOOD RESULT.")
         decided = True
     else:
         parts.append(
             f"COMPENSATION: L{best['layer']} does measurably more once the early block is gone, "
-            f"which is the identifying signature no static-redundancy account predicts. "
+            f"which is the identifying signature no static-redundancy account predicts "
+            f"(family-wise p = {p_fw:.4f} over {len(rows)} layers). "
             f"Gates: {verdict.reason}")
         decided = True
 
@@ -456,7 +469,11 @@ def analyse(res, singles):
                       f"than {IGN_TOL} away from the reference's rate are DROPPED and reported; "
                       f"fewer than {MIN_COMPARABLE} survivors is NOT DECIDABLE",
                            gates=[g.block() for g in gates], directional=dirn.block(),
-                           largest_delta_vs_floor=big_enough.block(), sensitivity=sens,
+                           largest_delta_vs_floor=big_enough.block(),
+                           best_z=round(z_best, 4), p_one_sided=round(p_one, 5),
+                           p_family_wise=round(p_fw, 5), n_compared=len(rows),
+                           mean_delta=round(float(np.mean(deltas)), 5),
+                           n_positive=int(sum(1 for d in deltas if d > 0)), sensitivity=sens,
                            decided=decided)
     res["verdict"] = " ".join(parts)
     return res["verdict"]
@@ -487,6 +504,8 @@ def main():
         not_decidable=f"the seed floor is too large for a compensation of {MIN_DETECTABLE} to "
                       f"clear a 2x gate (power), or arms fail to ignite (F42). NOTE: a flat "
                       f"delta series is NOT undecidable -- it is the kill",
+        multiple_comparisons="the largest delta is the MAX over the compared layers, so its "
+                             "significance is family-wise, not per-comparison",
         directional="reported, NOT blocking: a negative delta is evidence against self-repair "
                     "rather than an inability to decide",
         reuse="lambda(attn_L{L}) read from results/ablate_layers.json (F80), gated on the rung",

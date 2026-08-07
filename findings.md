@@ -3580,6 +3580,89 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F102 — annealed mean field under intervention: a null WITH power, and a three-arm artifact caught
+33 ablation arms, λ_ca read from F79/F80 and never re-measured, single-token sensitivity `s`
+measured exactly (`s_crn`, no seeds) on one pool settled from the UNABLATED ring, so the model
+varies and the ensemble does not (F99's column design).
+
+**The hypothesis that motivated the experiment was an artifact of three points.** Three arms
+measured while smoke-testing #103 showed s rising (0.8174 → 0.8597 → 0.8758) while λ collapsed
+(0.3566 → 0.0115), reading as a directional falsification of `λ = log(r·s)`. Across all 33 arms
+s spans **0.3998–0.8782** — the pilot's three covered 0.06 of that 0.48 — and Spearman(s, λ) =
+**+0.2958 at p = 0.0947**: weakly POSITIVE, the direction mean field predicts, not significant.
+
+**The leverage worry was also wrong, in the other direction.** Exercised on synthetic values before
+running, `correlation_leverage` refused the correlation at a range ratio of 0.11. On real data the
+ratio is **1.934** — λ_MF spans 0.7868 against the target's 0.4068. The synthetic estimate assumed
+s barely varies under ablation; it varies a great deal.
+
+**Verdict: NULL, WITH POWER.** The predictor had room to be wrong and is not detectably wrong. The
+blocking gate on the target passed at 6.20× its own noise floor over 33 distinct arms, so this is a
+real null rather than an underpowered one. Neither the falsification the pilot suggested nor a
+confirmation.
+
+**Two verdict-layer defects the real data exposed**, both the class §9.5 names. The PRIMARY sentence
+hard-coded "with this little range it is not evidence in either direction" regardless of the
+measured ratio, so it asserted the opposite of what the run found. And the discriminating branch
+treated any sufficient range as licence to read the correlation as evidence, collapsing "the
+predictor CAN be wrong" into "the predictor IS right". Both are now conditional, with a NULL WITH
+POWER branch that says what ρ = +0.296 at p = 0.095 actually licenses.
+
+**Boundary.** One model, one checkpoint, one radius, one fixed ensemble. A failure of ANNEALED mean
+field would not be a failure of single-token sensitivity as such — F94's rung 2 got 17 of 19 ECA
+rules right, missing rule 232, MAJORITY, the canonical canalizing function.
+
+### F101 — no compensator identified: the self-repair reading of F80 is NOT DECIDABLE, and the run says why
+#103's registered primary, run at 18 arms × 8 seeds (144 lattice cells, ~5 h). For each downstream
+layer L, `delta(L) = [λ(attn_early) − λ(attn_early+attn_L)] − [λ(none) − λ(attn_L)]`. Self-repair
+predicts delta > 0 for specific L: with the early block gone, that layer is doing more, so removing
+it costs more.
+
+**The calibration rung reproduced exactly, which is the strongest thing here.** `none` re-measured
+**+0.3566** against F79's recorded +0.3566 (8/8 ignited); `attn_early` re-measured **+0.0115**
+against its recorded +0.0115 (7/8). The harness that borrowed F80's singles is the same harness
+that produced them, to four decimals, so the comparison rests on comparable numbers rather than on
+the assumption that it does.
+
+**PRIMARY: NOT DECIDABLE, on power.** Largest delta is L23 at +0.09177 against a seed floor of
+0.03443. The registered minimum detectable effect was 0.05 — the scale of F80's own largest
+single-layer effect — and 0.05 against that floor is 1.45×, under the 2× gate. So a compensation
+of the size registered as minimally interesting would not have been visible, and neither the
+positive nor the kill can be read. The fix is more seeds, not more layers.
+
+**But the pattern is not neutral, and it does not point at compensation.** Mean delta is
+**−0.0204**; only 6 of 15 layers are positive; and the three largest effects are all NEGATIVE —
+L22 (−0.1373, z = −3.99), L20 (−0.1363, z = −3.96), L18 (−0.1232, z = −3.58) — against a largest
+positive of z = +2.67. Those layers contribute *less* once the early block is removed, which is the
+opposite of taking over for it. Nothing here establishes the reverse effect either; it is recorded
+because "underpowered" should not be read as "the data leaned the predicted way".
+
+**The largest delta does not survive its own selection.** L23's one-sided p is 0.0038, but it was
+chosen as the maximum of fifteen, and family-wise that is **p = 0.0562**. The registration did not
+include a multiple-comparisons correction — `noise_gate` on the best delta treats it as one
+pre-specified test — and the correction was added after the run, admissible only because it can
+move the verdict in one direction, away from a positive. It changes nothing: the power gate blocks
+first, and the corrected p would have blocked second.
+
+**REVIVAL, the registered secondary, fired.** Against a reference igniting at 0.148,
+`attn_early+attn_L08` ignites at **0.484** — more than triple — with λ median rising +0.0037 →
++0.1348 over 8 seeds. Removing MORE of the network makes damage spread FURTHER, which no monotone
+account of ablation predicts. It is also the one arm the comparability gate drops (0.336 from the
+reference, past the 0.25 tolerance), so had it not been promoted to an observable in its own right
+it would have been filtered out silently and never appeared in a verdict. That promotion was made
+before the run, in response to the concern that this project's gates convert surprises into
+exclusions.
+
+**The sensitivity account does not rescue the ignition collapse.** s(none) = 0.8174, s(attn_early)
+= 0.8597, against the mean-field critical 1/r = 0.3333. The early block does not carry the rule
+across the critical point — it raises s slightly — so annealed mean field does not explain why
+`attn_early` freezes the lattice. Consistent with F102, and it leaves the collapse unexplained.
+
+**Where this leaves #103.** The self-repair reading of F80 is neither established nor eliminated.
+What would settle it is seeds, not design: at this floor, roughly 4× the seed count would bring a
+0.05 effect to the 2× gate. Whether that is worth ~20 h is a different question from whether the
+experiment is sound.
+
 ### F100 — cross-family loss collapse is NOT DECIDABLE, and what direction there is runs against the hypothesis
 #84 extended across families, which F98 made possible and F98's own limitation made necessary:
 timing cannot be compared across families in TOKENS because no public non-Pythia family has a
