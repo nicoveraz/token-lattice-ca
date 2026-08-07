@@ -44,6 +44,35 @@ Table 2 is the methods contribution in scannable form: five paragraphs of prose 
 shape. The final row matters most — it is the one that arrived *after* every guard existed, and it
 survived a pre-registration, a power calculation and a fixed stopping rule.
 
+## Bibliography
+
+`refs.bib` is copied from `paper/refs.bib` (35 entries), which carries an audit trail:
+`paper/refs_verified.json` records 24 entries verified against sources and 11 explicitly marked
+unverifiable. **Do not add entries by hand without verifying them** — `experiments/audit_manual.py`
+and `tests/test_refs_manual.py` exist because a citation once sat behind an `[unverified]` marker
+with nothing recording whether the work had ever been read.
+
+Every key currently cited resolves. Three citations the paper still *wants* and does not have, all
+of which must be verified rather than invented:
+
+| Needed for | Work | Status |
+|---|---|---|
+| §1 framing | self-consistency, chain-of-thought, self-refine | **absent** — §1 describes these without citing them |
+| §8 taken | Model Equality Testing (ICLR 2025) | **absent** — named in F95's prior-art gate, not in refs.bib |
+| §8 taken | IRIS (black-box model ID, ~0.99 AUROC) | **absent** — same |
+
+The §8 entries matter more than the §1 ones: the section concedes those results are taken, and
+conceding to an uncited work reads as vagueness rather than candour.
+
+### A correction the bibliography forced
+
+§8 originally claimed *"no prior method feeds a model its own output back in."* That is false, and
+the counterexamples were already in this bibliography and cited by paper 1: `telephone` (multi-turn
+cultural attractors) and `paraphrase2cycle` (attractor cycles under successive paraphrasing). F95's
+claim was scoped to *model-identification feature sets*, and the draft over-generalised it. §8 now
+cites both, concedes the observation that iteration has attractors, and locates the contribution in
+the discriminator instead — which is a narrower and defensible claim.
+
 ## Conventions
 
 - **Every number carries a source comment** naming the finding and the results file it came from.

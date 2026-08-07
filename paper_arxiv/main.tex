@@ -474,10 +474,22 @@ literature.
 discriminative accuracy; so is quantization detection; and the tokenizer-merge mechanism we
 observed in API-mediated probing is substantially anticipated. We claim none of these.
 
-\paragraph{Open.} Every published feature set of this kind performs \emph{single-shot} scoring of
-supplied text. No prior method feeds a model its own output back in and measures the resulting
-dynamics. That is where this paper sits, and it is why the contribution is stated as the dynamics
-rather than as a fingerprint.
+\paragraph{Iterated generation is not new; this measurement of it is.} Feeding a model its own
+output has been studied as a dynamical system before. Multi-turn transmission chains exhibit
+cultural attractors \citep{telephone}, successive paraphrasing settles into attractor cycles
+\citep{paraphrase2cycle}, and the output distribution of a language model shows phase transitions
+under temperature \citep{phase_detect}. We do not claim the observation that iteration has
+attractors.
+
+What we add is a \emph{measurement} of the iterated system rather than a description of where it
+settles: damage spreading under common random numbers, with an exact-zero null, giving a Lyapunov
+exponent and a damping length --- and, in the model-identification literature specifically, every
+published feature set performs single-shot scoring of supplied text rather than measuring dynamics
+at all. The contribution that does not follow from prior work is the discriminator of
+\S\ref{sec:discriminator}: the attractor literature reports what the iterated system does, and does
+not separate which of those readings is a property of the iteration and which is a property of the
+model. That separation is what this paper supplies, and \S\ref{sec:manufactured} is what happens
+without it.
 
 \paragraph{Inherited machinery.} Damage spreading and the Domany--Kinzel automaton come from the
 statistical-physics literature on probabilistic cellular automata, and we use them as calibration
