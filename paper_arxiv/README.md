@@ -77,7 +77,7 @@ the discriminator instead — which is a narrower and defensible claim.
 
 - **Every number carries a source comment** naming the finding and the results file it came from.
   Do not edit a number without editing its comment.
-- Comments marked `VERIFY ... before submit` are numbers taken from `paper/plan_paper2.md` (the
+- Comments marked `VERIFY ... before submit` are numbers taken from `plan_paper2.md` (the
   author's own claim set) that have not been re-read from the results files in this draft.
   **§4's headline numbers are now verified**: building `fig/manufactured.png` printed them straight
   from `results/attractor_construction.json` and they match the plan exactly (0.7435 / 0.2409 /

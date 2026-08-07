@@ -41,7 +41,7 @@
 > The submission is **not** reopened for any of this — it operates at T=0.7, where the lattice is
 > 13% newline across 66 distinct tokens and reads as fragmentary text. The artifact lives at
 > T≈0.436. The next paper is rebuilt around the clean construction in
-> [`paper/plan_paper2.md`](paper/plan_paper2.md).
+> [`paper_arxiv/plan_paper2.md`](paper_arxiv/plan_paper2.md).
 
 
 A cellular automaton over **token space**, developed into a **validated black-box
@@ -103,9 +103,9 @@ elementary CA, Domany–Kinzel, and this project's two token-lattice constructio
 measurement, the per-replica visit order, and where the artifact lives. Start there if you want the
 shape of the thing before the numbers.
 
-The reframed write-up is in **[paper/paper.tex](paper/paper.tex)**; substantive
+The reframed write-up is in **[paper_arxiv/main.tex](paper_arxiv/main.tex)**; substantive
 results in **[findings.md](findings.md)** (F1–F66); the adversarial audit that
-reshaped the claims in **[paper/REVIEW.md](paper/REVIEW.md)**.
+reshaped the claims in **[paper_arxiv/REVIEW.md](paper_arxiv/REVIEW.md)**.
 
 > **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
 > demoted/retracted several earlier headlines. In particular the F23
@@ -279,7 +279,7 @@ ckpt/          0.42M-param checkpoints (step1000..6000, final) — tracked, no r
 results/       raw npz + summary.jsonl / census.json / analysis.json / differential.json
                NEVER hand-edited — when a results file is wrong, the SCRIPT is fixed and re-run
 fig/           figures (png)
-paper/         paper.tex + plan_paper3.md (the live decision document) + REVIEW.md
+paper_arxiv/   main.tex (the live paper) + plans + the withdrawn I4D submission
 ```
 
 The library and scripts use **paths relative to the repo root** (`data/`,
@@ -558,7 +558,7 @@ signal is an intermediate-radius optimum r≈4 (F22).
 
 The reframed contribution. **Validation by reproduction** (the credibility spine) +
 the **cross-level boundary** (a structural negative) + a **new white-box front**
-(prototype). Findings **F26–F29**; audit in `paper/REVIEW.md`.
+(prototype). Findings **F26–F29**; audit in `paper_arxiv/REVIEW.md`.
 
 ```bash
 # --- Validation ladder: reproduce KNOWN metrics (CPU only; the credibility spine) ---

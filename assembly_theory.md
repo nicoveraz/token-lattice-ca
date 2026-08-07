@@ -185,7 +185,7 @@ Anything proposed below has to survive these six. §5 is organised so that it do
 
 ### 1.5 Where the work stands, as of today
 
-`paper/plan_paper2.md` reports claims **A + B + C complete with zero further compute**, and claim A
+`paper_arxiv/plan_paper2.md` reports claims **A + B + C complete with zero further compute**, and claim A
 closed. The open frontier is three uncommitted or just-landed experiments:
 
 - **#93 `novelty_structure`** — does the CA create, recall, or randomise? Measured on a two-axis
@@ -1141,14 +1141,14 @@ fetched directly — check before citing.
 - Mohsin, Umer, Bilal, Memon, Qadir, Bhattacharya et al. (2026). "On the Fundamental Limits of LLMs
   at Scale." *Transactions on Machine Learning Research* 07/2026.
   `openreview.net/forum?id=BIRDGVrom8` — §2.4's creativity–factuality trade-off is the assumption
-  §4.5 and §5.3 test. Verified against a local PDF; record and hash in `paper/refs_manual.json`
+  §4.5 and §5.3 test. Verified against a local PDF; record and hash in `paper_arxiv/refs_manual.json`
 
 **Closest prior art — read before writing**
 - **Patarroyo, Sharma, Walker & Cronin (2023). "AssemblyCA: A Benchmark of Open-Endedness for Discrete
   Cellular Automata." ALOE @ NeurIPS 2023.** `openreview.net/forum?id=5cEQ4ZOsIN` ·
   `assemblyca.github.io` · `github.com/KeithPatarroyo/assemblyca` **[unverified — the PDF has never
   been obtained; everything §4.3 claims about it comes from the project page. Record and the action
-  that closes it in `paper/refs_manual.json`]**
+  that closes it in `paper_arxiv/refs_manual.json`]**
 - Champagne-Ruel, Kempes & Mathis (2025). arXiv:2509.04547
 
 **Comparison targets**

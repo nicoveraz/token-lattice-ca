@@ -1,5 +1,19 @@
 # Plan — the third-paper decision
 
+> **STATUS, 7 Aug 2026 — the decision it exists to make has been overtaken. Kept as the record of
+> why T\* was scoped out; cited by `experiments/tstar_second_target.py`, `critical_analysis.md` and
+> `findings.md`, so do not delete.**
+>
+> **`experiments/tstar_second_target.py` still cites the old `paper/` path** in its
+> docstring, and is deliberately left alone: correcting a comment would invalidate a
+> stamped result it does not affect.
+>
+> There is now ONE paper, at arXiv, and T\* is not in it. That was settled on venue and scope
+> grounds rather than by this document's own criteria: the anchor remains one-legged and
+> greedy-scoped, and F97 did not supply the nucleus-sampling target this document identified as the
+> missing requirement. Its branch analysis is still the best account of what a T\* paper would need,
+> and should be read as "what would have to become true", not as a live recommendation.
+
 **Written 4 Aug 2026, the day F86 landed.** `plan_paper2.md` §6 has gated this decision on one
 thing since July: *"if #90 resolves positively, there is a third paper. If it stays underpowered
 or comes back null, there is a paragraph in paper 2 and nothing more."* #90 resolved positively.

@@ -241,7 +241,7 @@ artifact lives somewhere the paper never went.
 - **[`findings.md`](findings.md)** — the evidence ledger. Every finding, including every retraction,
   with the numbers.
 - **[`README.md`](README.md)** — how to run any of it.
-- **[`paper/plan_paper2.md`](paper/plan_paper2.md)** — what is worth writing up, and what isn't.
+- **[`paper_arxiv/plan_paper2.md`](paper_arxiv/plan_paper2.md)** — what is worth writing up, and what isn't.
 
 One note on reading the ledger: it contains a lot of retracted claims. That is deliberate. A
 retraction that stays visible is evidence the process works; a retraction that quietly disappears

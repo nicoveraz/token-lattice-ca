@@ -2162,7 +2162,7 @@ directly. No absorbing state, therefore no absorbing-state transition.
 
 So the transition the universality programme measured was **only ever the artifact**. There is no
 competing "but the clean construction has one too" to explain away, which is exactly what a null
-here was pre-registered to settle. Claim A in `paper/plan_paper2.md` strengthens; M2 and M3 are
+here was pre-registered to settle. Claim A in `paper_arxiv/plan_paper2.md` strengthens; M2 and M3 are
 moot and were skipped **by the script's own gate**, not by a judgement made after seeing the
 numbers.
 
@@ -3248,7 +3248,7 @@ p = 0.0137.** F68's version was ρ = +0.552 at n = 10 *models* (p = 0.107), with
 Pythia sizes — the pseudoreplication that motivated the ~16-family power note. Measured on
 genuinely independent families, the effect is **larger and significant**: the temperature at which
 the CA's degeneracy melts predicts greedy-decoding repetition, a behavioural quantity sharing no
-machinery with the ring. This is the external anchor `paper/plan_paper2.md` §6 gates the
+machinery with the ring. This is the external anchor `paper_arxiv/plan_paper2.md` §6 gates the
 third-paper decision on. **Stated with its fragility**: n = 8 pairs, because 7 of 15 families have
 no attractor and therefore no T\*; one family moving could soften it, and the split
 (8 finite / 0 censored / 7 none) is itself part of the result.

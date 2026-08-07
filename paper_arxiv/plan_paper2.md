@@ -1,5 +1,24 @@
 # Plan — second paper
 
+> **STATUS, 7 Aug 2026 — partly superseded. Kept because five experiment scripts and the findings
+> ledger cite it; do not delete.**
+>
+> **Two scripts still point at the old `paper/` path in their docstrings** —
+> `experiments/mlm_transition.py` and `experiments/tstar_second_target.py`. They are
+> deliberately not corrected: editing them changes their source hash and invalidates
+> stamped results whose numbers are unaffected by a path in a comment. Fold the fix in
+> whenever either is next re-run for a real reason.
+>
+> - **The two-paper split is gone.** There is now ONE paper, targeted at arXiv, subsuming the
+>   withdrawn I4D submission. §6's "is there a third paper?" is therefore moot as a *venue*
+>   question, though its scientific caution against over-slicing still holds.
+> - **§5's open question 1 is answered** — see §7.2. A and B are one claim, not two.
+> - **What is still live and load-bearing:** the claim set in §2, the hazards in §4, and §7's
+>   discriminator table. `ignition_level.py` and `revival_replication.py` both cite "row 4" of that
+>   table by name.
+> - **Row 4 itself is under revision.** F104's revival reading is being replaced by a partial-
+>   regression one; see the amendment on F104 once `ignition_level` lands.
+
 **Rewritten 1 Aug 2026, after F62–F66 dissolved the version written on 31 Jul.** That version
 planned a universality-class paper on the AR construction. F66 showed the AR construction measures
 an out-of-distribution prompt artifact, so the plan is rebuilt here rather than patched. The

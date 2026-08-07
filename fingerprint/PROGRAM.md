@@ -8,7 +8,7 @@ binding constraint is no longer gate-shaped. The outcome contract is frozen in
 any Gate-1 data existed; verify with `gatecheck.verify_block`. **Origin:**
 `critical_analysis.md` §3 ("the paper's stated affordance is asserted, not demonstrated…
 a real black-box inference about training data from behavior — currently used only as a
-control"), findings F62–F70, and the paper-3 thread of `paper/plan_paper2.md` §6, to which
+control"), findings F62–F70, and the paper-3 thread of `paper_arxiv/plan_paper2.md` §6, to which
 this program adds a capability framing and a deflationary baseline.
 
 ## 1. The claim, if it survives

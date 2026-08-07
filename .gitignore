@@ -23,14 +23,14 @@ scratch/
 # on purpose — the pilot must be reproducible without retraining.
 
 # LaTeX build artifacts (paper.pdf IS committed; intermediates are not)
-paper/*.aux
-paper/*.bbl
-paper/*.blg
-paper/*.log
-paper/*.out
-paper/*.xdv
-paper/*.fdb_latexmk
-paper/*.fls
+paper_arxiv/*.aux
+paper_arxiv/*.bbl
+paper_arxiv/*.blg
+paper_arxiv/*.log
+paper_arxiv/*.out
+paper_arxiv/*.xdv
+paper_arxiv/*.fdb_latexmk
+paper_arxiv/*.fls
 
 # personal planning doc: contains the author's username and absolute paths (double-blind)
-paper/plan_to_submission.md
+paper_arxiv/plan_to_submission_i4d.md

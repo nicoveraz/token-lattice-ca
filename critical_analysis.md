@@ -3,8 +3,8 @@
 **Revision 2 — 5 August 2026.** Supersedes revision 1 (1 August 2026), which remains in git history.
 **Scope:** an outside critical read with one question in front: how far is this from being a *tool for
 interpretability*, and what would developing it into one require. Basis for this revision:
-`findings.md` (F1–F96), `paper/paper.tex` and the camera-ready tag, `paper/plan_paper3.md`,
-`fingerprint/PROGRAM.md` with `gate1/2/3.json`, `paper/NOTES.md`, `assembly_theory.md`, the `src/`,
+`findings.md` (F1–F96), `paper_arxiv/withdrawn_i4d.tex` and the camera-ready tag, `paper_arxiv/plan_paper3.md`,
+`fingerprint/PROGRAM.md` with `gate1/2/3.json`, `paper_arxiv/NOTES_i4d.md`, `assembly_theory.md`, the `src/`,
 `tests/` and `experiments/` trees (119 scripts, 125 results files, 13 test modules), and the
 `gatecheck/` package. Weaknesses the project already records about itself are credited as such.
 
