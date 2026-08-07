@@ -132,7 +132,25 @@ independent-noise floor $D_0$ obtained when the two rings are driven by \emph{in
 The two quantities answer different questions --- how fast damage grows, and how much survives ---
 and \S\ref{sec:gating} explains why they must be filtered differently.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{instrument.png}
+\caption{The construction. A ring of token cells is resampled in place by the model's own windowed
+conditional; two copies differing in one token are advanced under common random numbers, and the
+growth of their disagreement gives $\lca$. Undamaged twins diverge by exactly zero.}
+\label{fig:instrument}
+\end{figure}
+
 \paragraph{The exact-zero null.}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{instrument.png}
+\caption{The construction. A ring of token cells is resampled in place by the model's own windowed
+conditional; two copies differing in one token are advanced under common random numbers, and the
+growth of their disagreement gives $\lca$. Undamaged twins diverge by exactly zero.}
+\label{fig:instrument}
+\end{figure}
+
 \paragraph{The exact-zero null.} Two rings with identical windows, handed the same uniform, draw
 the same token: inverse-CDF sampling against a shared uniform makes agreement exact, not
 approximate. Undamaged twins therefore diverge by \emph{exactly} zero, on every backend, and this
@@ -164,6 +182,15 @@ rules by whether damage survives, recovering the established ordered/chaotic cla
 attractor census recovers them.
 % SOURCE: F3/F10, census_validation. VERIFY before submit.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{validation_ladder.png}
+\caption{Validation by reproduction. The instrument is calibrated against systems whose answers are
+established independently before it is pointed at a language model, strictest rung first: the
+Domany--Kinzel identity admits no error bar, so a merely-close implementation fails it.}
+\label{fig:ladder}
+\end{figure}
+
 Only after all three rungs does the instrument get pointed at a language model. This ordering is
 not ceremonial: \S\ref{sec:gating} reports four occasions on which a rung caught an estimator that
 had already produced a confident number.
@@ -177,7 +204,22 @@ at a common critical temperature $T_c \in [0.4343, 0.4391]$, and the estimator w
 Domany--Kinzel \emph{before} the language-model numbers were read.
 % SOURCE: F58. VERIFY T_c interval and the DP exponent values against results/ before submit.
 
-It is a property of the probe. Four facts establish this, and the fourth is the mechanism.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{manufactured.png}
+\caption{The transition belongs to the probe. \textbf{Left ($r=2$):} under the autoregressive
+construction \texttt{pythia-410m} collapses onto a single token as $T$ falls, reaching a top-1 share
+of $0.744$ at $T=0.02$, and crosses half the ring at the measured $T_c$. Three controls do not.
+Prepending one beginning-of-sequence token to the same model drops it to $0.241$ --- the map's
+domain changes, not its parameters. \texttt{gpt2-medium}, whose argmax map has no attracting fixed
+point, sits at $0.147$. Two masked-LM models, whose \emph{native} task is this update, stay at
+$0.099$ and $0.113$ at every temperature. \textbf{Right ($r=4$):} outside the degenerate radius all
+five arms look alike, which is the boundary. Monochrome by marker and dash throughout.}
+\label{fig:manufactured}
+\end{figure}
+
+It is a property of the probe. Four facts establish this, and the fourth is the mechanism, and
+Figure~\ref{fig:manufactured} carries all four on one grid.
 
 \paragraph{The frozen phase is a single-token collapse.} At $T = 0.02$, 81 of 96 sites hold the
 newline token, and the measured $T_c$ sits at the point where newline occupies 52\% of the ring.
@@ -272,6 +314,16 @@ sizes, with all four members of a pre-registered family surviving Benjamini--Hoc
 The automaton is byte-identical at every checkpoint, so the movement is the model.
 % SOURCE: results/dev_transition_shape.json, N48_*_lambda_ca; paper 1.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{developmental.png}
+\caption{A model-determined reading. With the automaton byte-identical at every checkpoint, $\lca$
+crosses zero at a reproducible point in training: before it, seeds disagree about the sign; after
+it, all 48 runs are positive at two lattice sizes. Contrast Table~\ref{tab:discriminator} row~2,
+where varying the model across 19 architectures and a $70\times$ scale range moves nothing.}
+\label{fig:developmental}
+\end{figure}
+
 The obvious deflation --- that $\lca$ is a repackaged loss --- does not survive measurement. Across
 the trained regime $\lca$ moves from $0.18433$ to $0.18738$ while bits-per-byte improves from
 $2.3229$ to $0.8895$, a $2.6\times$ change in model quality against a change in $\lca$ that sits
@@ -292,73 +344,138 @@ inside the seed spread. Whatever the exponent tracks, it is not simply how good 
 \section{Gating estimators at their own geometry}
 \label{sec:gating}
 
-% TODO(draft): Claim B. Measuring exponents on black-box LM dynamics requires gating the estimator
-% at the measurement's own geometry, or it returns confident wrong answers. Four retracted
-% verdicts, each caught by a known-answer system rather than by review (F56, F57, F59-v1, F61):
-%   * A calibration at N=512/200 licenses nothing at N=96/40 (F56).
-%   * State what the independent unit is and TEST it: anything drawn once per batch makes replicas
-%     correlated, and pooling them shrank error bars ~8x (F57).
-%   * A cost function that can shrink its own comparison window is unbounded; scan far wider than
-%     plausible and REJECT a minimum landing on the scan edge (F59-v1).
-%   * F42's unignited runs: lambda is undefined where damage never ignites, and 1/3 of visit orders
-%     heal a single-site seed before it propagates (F57 explains F42).
-%
-% The defect class is ONE: a statistically-shaped criterion applied to a quantity with no room to
-% vary. Six guards, shipped as gatecheck (MIT): dynamic_range, noise_gate, directional,
-% carries_verdict, correlation_leverage, distinct_units.
-%
-% CANDIDATE CASE STUDY, stronger than the four above because it survived a pre-registration, a
-% power calculation and a fixed stopping rule: one line -- the standard error for a difference of
-% four measured centres -- written three ways, each changing the verdict. sqrt(len(SEEDS)) (stale
-% after a seed extension, too large, NOT DECIDABLE); mean per-arm SE (wrong statistic, too small,
-% a positive that was recorded and withdrawn the same day); quadrature (correct, NOT DECIDABLE).
-% Caught by writing the confirmatory experiment, whose floor was derived from first principles.
-% Decide whether this belongs in the paper or is too inside-baseball -- it is the best evidence
-% for the claim and the most embarrassing.
+An exponent measured on black-box language-model dynamics will return a number whatever you do.
+The number is not the finding; whether the estimator had room to produce a different one is. Four
+verdicts in this project were retracted, and none was caught by review --- each was caught by a
+system whose answer was already known.
+
+\paragraph{Gate the estimator at the measurement's own geometry.} A directed-percolation
+calibration performed at $N=512$ over 200 sweeps licenses nothing at $N=96$ over 40. The first
+retraction was a calibration run at a geometry the measurement never used.
+% SOURCE: F56.
+
+\paragraph{State what the independent unit is, and test it.} Anything drawn once per batch makes
+replicas correlated. One visit order, shared across a batch, decided the whole result and inverted
+the verdict; pooling correlated replicas shrank the error bars by roughly $8\times$ for a factor
+they had not earned.
+% SOURCE: F57.
+
+\paragraph{A cost function that can shrink its own comparison window is unbounded.} Scan far wider
+than plausible, and \emph{reject} a minimum that lands on the edge of the scan.
+% SOURCE: F59 (original entry, superseded).
+
+\paragraph{Show the test can discriminate before quoting it.} A transverse-Lyapunov test was
+demonstrated, on a system with a known answer, to be unable to separate the hypotheses at all ---
+so its reading on the model was uninterpretable in either direction rather than weak evidence.
+% SOURCE: F61.
+
+\paragraph{Undefined is not zero.} $\lca$ is emitted for runs in which damage never ignited, where
+it is undefined; the same runs carry a $\dnorm$ of exactly zero, which is a true measurement. The
+two quantities therefore need \emph{different} filters --- $\lca$ over ignited runs only, $\dnorm$
+over all of them --- and collapsing that asymmetry biases the metric that was not broken. The
+mechanism is prosaic: roughly one visit order in three heals a single-site seed before it can
+propagate.
+% SOURCE: F42, explained by F57.
+
+\paragraph{One defect class.} All five are the same error: \emph{a statistically-shaped criterion
+applied to a quantity with no room to vary}. A correlation whose predictor is saturated, a ratio
+whose denominator is noise, a directional hypothesis tested with an absolute value --- each returns
+a confident number from a comparison that could not have come out otherwise. We ship the guards as
+an MIT-licensed package: a dynamic-range check on the target, a noise gate before any ratio, a
+directional test where the hypothesis is directional, an explicit \textsc{not decidable} branch,
+the same range check applied to the \emph{predictor}, and a distinct-context floor on the
+estimator's own input.
+
+\paragraph{The class survives its own countermeasures.} The most instructive instance came after all
+six guards existed. A single line --- the standard error for a difference of four independently
+measured centres --- was written three ways over one analysis. Dividing the pooled spread by
+$\sqrt{8}$ used a seed count that had gone stale after the design was extended, overstating the
+noise and returning \textsc{not decidable}. Replacing it with the \emph{mean} per-arm standard error
+fixed the stale count but used the wrong statistic for a difference of four quantities, understating
+the uncertainty by about a factor of two and producing a positive result. Only the quadrature sum is
+correct, and it returns \textsc{not decidable} again. The middle version is the one that produced a
+finding; it was recorded and withdrawn the same day. It was caught not by the guards but by writing
+the \emph{confirmatory} experiment, whose floor was derived from first principles for the statistic
+at hand rather than inherited from the sweep. A pre-registration, a power calculation and a fixed
+stopping rule all passed it through.
+% SOURCE: F101, F103 (withdrawal notice), and the confirm_L23 design.
 
 % ---------------------------------------------------------------------------------------------
 \section{Limits}
 \label{sec:limits}
 
-% TODO(draft). State these as scope, not as apology -- TMLR's criterion is that claims are
-% supported, and an honest boundary is support.
-%   * The developmental transition is single-family. F98: endpoints replicate in two non-Pythia
-%     families, but no public non-Pythia family has a checkpoint inside the dip window, so the dip
-%     is unobservable by anyone.
-%   * Cross-family, matching on loss does not align the families better than matching on tokens
-%     (0.0588 vs 0.0318, 1.37x the floor): NOT DECIDABLE, underpowered (F100).
-%   * No explanandum. Four routes failed to attach lambda_ca to a named internal mechanism (F78
-%     co-timing, F79/F80 ablation, induction heads by arithmetic, and the compensator test whose
-%     positive was withdrawn). We do not claim one.
-%   * Annealed mean field does not predict the exponent under intervention: given the model's own
-%     exactly-measured single-token sensitivity, a null WITH power across 33 ablation arms (F102).
-%     The construction is not reducible to the simple theory of it.
-%   * Greedy-scoped where decoding matters; one radius; one architecture family for the ablations.
+\paragraph{The developmental transition is single-family.} It is measured on Pythia. Endpoints
+replicate in two non-Pythia families, but no public non-Pythia family publishes a checkpoint inside
+the window where the crossing occurs, so the transition's \emph{shape} is unobservable outside
+Pythia by anyone, not merely by us.
+% SOURCE: F98.
+
+\paragraph{Cross-family, loss does not organise it better than tokens.} Matching families on
+bits-per-byte gives an across-family spread of $0.0588$ against $0.0318$ when matching on token
+count --- a difference of $1.37\times$ the seed floor, under our $2\times$ gate. The comparison is
+\textsc{not decidable}: underpowered rather than null, and the fix is finer checkpoint spacing,
+which does not exist to be had.
+% SOURCE: F100.
+
+\paragraph{There is no explanandum.} Four routes failed to attach $\lca$ to a named internal
+mechanism: co-timing against context-use onset, ablation of component groups, induction-head
+formation (excluded by arithmetic --- formation lands one to two orders of magnitude away from the
+window), and a compensator-identification test whose single positive was withdrawn when its standard
+error was corrected. We report this as a result about the measurement, not as work in progress.
+% SOURCE: F78, F79/F80, F83, F101/F103.
+
+\paragraph{The dynamics are not reducible to the obvious theory of them.} Given the model's own
+exactly measured single-token sensitivity, annealed mean field does not predict the exponent across
+33 ablation arms --- a null with adequate power, where the predictor spans nearly twice the target's
+range. Whatever sets $\lca$, it is not captured by the mean-field ledger.
+% SOURCE: F102.
+
+\paragraph{Scope.} Greedy decoding where decoding matters; one radius for the ablation work; one
+architecture family for the component manipulations. These bound the claims rather than qualify
+them: the discriminator of \S\ref{sec:discriminator} is a method, and the specific readings it
+sorts are the ones we measured.
 
 % ---------------------------------------------------------------------------------------------
 \section{Related work}
 \label{sec:related}
 
-% TODO(draft). The prior-art gate (F95) found genuine collisions and one clear gap. Be explicit
-% about both -- claiming novelty we do not have is the fastest way to lose a reviewer who knows
-% this literature.
-%   TAKEN: generic black-box model identification (Model Equality Testing, ICLR 2025; IRIS at
-%   0.99 AUROC); quantization detection; the tokenizer-merge mechanism is substantially
-%   anticipated.
-%   NOT ANTICIPATED: the dynamics. Every published feature set is single-shot scoring of supplied
-%   text; no prior method feeds a model its own output back in. Pitch the claim as the dynamics.
-%   Also cite: Domany-Kinzel; damage spreading in cellular automata; the Hydra effect
-%   (McGrath et al., arXiv:2307.15771) for self-repair, which we cite for terminology and do NOT
-%   claim to have measured.
+We ran an explicit prior-art check and report both what it found taken and what it found open,
+because claiming novelty we do not have is the fastest way to lose a reader who knows this
+literature.
+
+\paragraph{Taken.} Generic black-box model identification is established, including at high
+discriminative accuracy; so is quantization detection; and the tokenizer-merge mechanism we
+observed in API-mediated probing is substantially anticipated. We claim none of these.
+
+\paragraph{Open.} Every published feature set of this kind performs \emph{single-shot} scoring of
+supplied text. No prior method feeds a model its own output back in and measures the resulting
+dynamics. That is where this paper sits, and it is why the contribution is stated as the dynamics
+rather than as a fingerprint.
+
+\paragraph{Inherited machinery.} Damage spreading and the Domany--Kinzel automaton come from the
+statistical-physics literature on probabilistic cellular automata, and we use them as calibration
+targets rather than as objects of study. We cite the self-repair literature for terminology only:
+we avoid the word ``repair'' for our own repair-length quantity because of that collision, and we
+do not claim to have measured self-repair.
 
 % ---------------------------------------------------------------------------------------------
 \section{Conclusion}
 \label{sec:conclusion}
 
-% TODO(draft). The one-line version: iterated self-feeding probes mix construction-determined and
-% model-determined quantities in readings that look alike, and this is the test that separates
-% them. Resist restating it as "the instrument measures itself" -- that is catchier and false, and
-% it would sink the paper with a reviewer who reads only the conclusion.
+Iterated self-feeding probes mix construction-determined and model-determined quantities in
+readings that look alike. That is the finding, and the test in \S\ref{sec:discriminator} is what
+separates them: vary one factor with the other held fixed, and see which readings move.
+
+The worked example is a phase transition we measured to three decimal places, with directed
+percolation exponents reached at a common critical temperature, that belongs to the probe. It has a
+mechanism, a boundary and a control; it is entirely reproducible; and it says nothing about any
+language model. The same instrument, on the same construction, also detects a reproducible
+developmental transition that \emph{is} the model. Nothing distinguishes the two by inspection.
+
+We resist the neat summary --- that the instrument measures itself --- because it is false and would
+license the wrong conclusion. The instrument reads the model. It also reads the probe, in quantities
+that carry the same units and the same apparent precision, and the cost of not checking which is
+which is four months and a retracted phase transition.
 
 \subsubsection*{Reproducibility}
 All code, per-run result files and figure scripts are released. Every number in this paper is

@@ -9,15 +9,15 @@ names preprint servers explicitly — but nothing here is shaped around that.
 | Section | State |
 |---|---|
 | Abstract, Introduction | **drafted** |
-| §2 The construction | **drafted** — update equation, CRN protocol, exact-zero null |
-| §3 Validation by reproduction | **drafted** — three rungs, DK identity first |
-| §4 A phase transition that belongs to the probe | **drafted** — claim, mechanism, boundary, control |
-| §5 The discriminator | **drafted** — Table 1, construction-determined and model-determined readings |
+| §2 The construction | **drafted + figure** — `instrument.png` (existing) |
+| §3 Validation by reproduction | **drafted + figure** — `validation_ladder.png` (existing) |
+| §4 A phase transition that belongs to the probe | **drafted + figure** — `fig/manufactured.png`, new |
+| §5 The discriminator | **drafted + figure** — Table 1, `developmental.png` (existing) |
 | §5.3 Ablation response | **PENDING** — blocked on `experiments/ignition_level.py` |
-| §6 Gating estimators | outline only |
-| §7 Limits | outline only |
-| §8 Related work | outline only |
-| §9 Conclusion | outline only |
+| §6 Gating estimators | **drafted** — five retractions, one defect class, the SE case study |
+| §7 Limits | **drafted** |
+| §8 Related work | **drafted** — taken vs open, per F95 |
+| §9 Conclusion | **drafted** |
 
 ## The one blocker
 
@@ -34,8 +34,10 @@ See `findings.md` F104, and the withdrawal notice at the top of F103.
 - **Every number carries a source comment** naming the finding and the results file it came from.
   Do not edit a number without editing its comment.
 - Comments marked `VERIFY ... before submit` are numbers taken from `paper/plan_paper2.md` (the
-  author's own claim set) that have not been re-read from the results files in this draft. They are
-  probably right; they are not yet checked here.
+  author's own claim set) that have not been re-read from the results files in this draft.
+  **§4's headline numbers are now verified**: building `fig/manufactured.png` printed them straight
+  from `results/attractor_construction.json` and they match the plan exactly (0.7435 / 0.2409 /
+  0.1471 / 0.0990 / 0.1133). The DK cell counts and the ECA effect size are still unchecked.
 - `TODO(author)` marks decisions that are not mine: affiliation line, repository URL, Zenodo DOI.
 
 ## Building
