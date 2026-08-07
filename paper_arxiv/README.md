@@ -29,6 +29,21 @@ Row 4 survives either way — both are the instrument responding to a model chan
 construction held fixed — but the prose is completely different and must not be written twice.
 See `findings.md` F104, and the withdrawal notice at the top of F103.
 
+## Figures and tables
+
+| | | Source |
+|---|---|---|
+| Fig. 1 | The construction | `fig/instrument.png` (existing) |
+| Fig. 2 | Validation ladder | `fig/validation_ladder.png` (existing) |
+| Fig. 3 | The manufactured transition | `fig/manufactured.png` — **new**, `experiments/fig_manufactured.py` |
+| Fig. 4 | The developmental transition | `fig/developmental.png` (existing) |
+| Table 1 | The discriminator | four manipulations; row 4 pending |
+| Table 2 | The retractions | four retractions + one same-class defect + one post-guard |
+
+Table 2 is the methods contribution in scannable form: five paragraphs of prose is its least usable
+shape. The final row matters most — it is the one that arrived *after* every guard existed, and it
+survived a pre-registration, a power calculation and a fixed stopping rule.
+
 ## Conventions
 
 - **Every number carries a source comment** naming the finding and the results file it came from.
