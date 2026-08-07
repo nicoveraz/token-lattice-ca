@@ -148,11 +148,11 @@ and shrinks error bars by a factor they have not earned (\S\ref{sec:gating}).
 
 \paragraph{This is a probe, not a model of deployment, and we can say so quantitatively.} Injecting a
 token error into real autoregressive generation and continuing produces no absorption at all:
-$P_{\text{persist}} = 1.000$ across three models, because free generation never resamples the
-damaged token. The dynamics studied here exist only when the loop is closed by resampling in place.
+$P_{\text{persist}} = 1.000$ on \texttt{pythia-70m}, \texttt{-160m} and \texttt{-410m} (32 trials
+each), because free generation never resamples the damaged token. The dynamics studied here exist only when the loop is closed by resampling in place.
 Any reading taken from them is therefore a statement about the closed loop first, and about the
 model only if it survives \S\ref{sec:discriminator}.
-% SOURCE: paper 1's delimitation result. VERIFY the three model names before submit.
+% SOURCE: F35's table. VERIFIED 7 Aug: 70m/160m/410m, P_persist 1.000, 4 prompts x 8 seeds.
 
 \paragraph{Damage spreading under common random numbers.} We run two rings, $x$ and $\tilde{x}$,
 identical except that one site is flipped at $t=0$, and advance both with the \emph{same} stream of
@@ -189,19 +189,29 @@ climbs from the strictest test to the loosest.
 
 \paragraph{Rung 1: an identity, not a correlation.} On the Domany--Kinzel probabilistic cellular
 automaton the damage field is provably the automaton itself, run on a derived rule. This yields a
-prediction with \emph{no error bar attached}: our damage field must equal the independently
-predicted one cell for cell. It does --- zero mismatching cells --- and an off-line control, in
-which the same comparison is made against a deliberately misaligned field, must and does fail.
-A calibration of this kind cannot be passed by an implementation that is merely close.
-% SOURCE: paper 1 abstract; results/dp_calibration*.json. VERIFY exact cell counts before submit.
+prediction with \emph{no error bar attached}: on the $p_2 = 0$ line the CRN damage field is itself a
+Domany--Kinzel automaton at the same $p_1$, so ours must equal an independently predicted one cell
+for cell. It does --- \textbf{0 mismatching cells} at $p_1 \in \{0.2, 0.5, 0.75, 0.8087, 0.95,
+1.0\}$, on a ring of 4096 over 1500 steps, three seeds each --- while an off-line control at
+$(0.6, 0.5)$ yields 16 mismatches, so the test is not vacuous. The identity runs \emph{through} the
+same loop that produces every language-model number here, so it verifies the window indexing, the
+shared-uniform consumption order, the inverse-CDF sampling and the synchronous update at once. No
+other rung does that; the rest agree only to within a fitted constant.
+% SOURCE: F-series DK identity entry (0 mismatches, 16 in the control). VERIFIED 7 Aug.
 
-\paragraph{Rung 2: known orderings.} Across elementary cellular automata the instrument separates
-rules by whether damage survives, recovering the established ordered/chaotic classification.
-% SOURCE: F27. VERIFY the effect size (d = 3.0) against results/ before submit.
+\paragraph{Rung 2: a known ordering, and the part of it the instrument does not recover.} Across
+elementary cellular automata, ignition probability separates the ordered rules from the rest
+decisively (Cohen's $d = 3.03$, $p < 10^{-3}$). It does \emph{not} separate edge-of-chaos from
+chaotic ($p = 0.47$). We report the rung as what it is --- a recovered ordered/non-ordered boundary,
+not a recovered three-way classification --- because a rung that is claimed to do more than it does
+stops being a calibration.
+% SOURCE: results/eca_ordered_vs_rest.json, tests block. VERIFIED 7 Aug: d = 3.027,
+% ordered_lt_rest_p = 0.0, edge_lt_chaotic_p = 0.46985.
 
 \paragraph{Rung 3: known distributions.} Run on systems with known transition matrices, the
 attractor census recovers them.
-% SOURCE: F3/F10, census_validation. VERIFY before submit.
+% SOURCE: F3/F10, census_validation. Left as a one-line claim; the census recovery is
+% scoped to the synthetic toy in the Limits section, so it carries no weight here.
 
 \begin{figure}[t]
 \centering
@@ -223,7 +233,8 @@ Iterated at low temperature, the construction shows a sharp absorbing-state tran
 survival exponent $\delta$ and the density exponent $\theta$ reach their directed-percolation values
 at a common critical temperature $T_c \in [0.4343, 0.4391]$, and the estimator was gated on
 Domany--Kinzel \emph{before} the language-model numbers were read.
-% SOURCE: F58. VERIFY T_c interval and the DP exponent values against results/ before submit.
+% SOURCE: F58. VERIFIED 7 Aug: [0.4343, 0.4391] is the OVERLAP of the delta bracket
+% [0.4343, 0.4440] and the theta bracket [0.4325, 0.4391]; delta_DP = 0.159464.
 
 \begin{figure}[t]
 \centering
