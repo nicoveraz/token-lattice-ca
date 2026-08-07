@@ -205,9 +205,12 @@ output back in — pitch the claim as the dynamics, not the fingerprint."*
 
 ### 7.3 Two supporting controls, free
 
-- **F100.** λ_ca is flat against a 2.6× change in bits-per-byte across the trained regime (0.18433
-  → 0.18738 while bpb goes 2.3229 → 0.8895). The instrument is not a repackaged loss, which is the
-  obvious deflationary reading of rows 3–4.
+- **F100.** λ_ca is flat against a 2.6× change in bits-per-byte within a family (0.18433 → 0.18738
+  while bpb goes 2.3229 → 0.8895), and across families the matched-bpb spread stands at 3× the seed
+  floor. The instrument is not a repackaged loss, which is the obvious deflationary reading of
+  rows 3–4. *(F105 asks a different question of the same grid — whether bpb organises the families
+  better than tokens — and returns NOT DECIDABLE at 1.37×. Cite F100 for the deflation, F105 for
+  the alignment.)*
 - **F102.** Annealed mean field, given the model's own exactly-measured single-token sensitivity,
   does not predict the measured exponent across 33 ablation arms — a null WITH power (predictor
   range ratio 1.934, target gate at 6.20× its floor). The construction is not reducible to the

@@ -348,7 +348,7 @@ The obvious deflation --- that $\lca$ is a repackaged loss --- does not survive 
 the trained regime $\lca$ moves from $0.18433$ to $0.18738$ while bits-per-byte improves from
 $2.3229$ to $0.8895$, a $2.6\times$ change in model quality against a change in $\lca$ that sits
 inside the seed spread. Whatever the exponent tracks, it is not simply how good the model is.
-% SOURCE: F100, results/loss_collapse_families.json.
+% SOURCE: F100 (its per-checkpoint table carries these), results/loss_collapse_families.json.
 
 \subsection{Ablation response}
 \label{sec:ablation}
@@ -455,7 +455,7 @@ finding; it was recorded and withdrawn the same day. It was caught not by the gu
 the \emph{confirmatory} experiment, whose floor was derived from first principles for the statistic
 at hand rather than inherited from the sweep. A pre-registration, a power calculation and a fixed
 stopping rule all passed it through.
-% SOURCE: F101, F103 (withdrawal notice), and the confirm_L23 design.
+% SOURCE: F106, F103 (withdrawal notice), and the confirm_L23 design.
 
 % ---------------------------------------------------------------------------------------------
 \section{Limits}
@@ -469,17 +469,20 @@ Pythia by anyone, not merely by us.
 
 \paragraph{Cross-family, loss does not organise it better than tokens.} Matching families on
 bits-per-byte gives an across-family spread of $0.0588$ against $0.0318$ when matching on token
-count --- a difference of $1.37\times$ the seed floor, under our $2\times$ gate. The comparison is
+count --- a difference of $1.37\times$ the seed floor, under our $2\times$ gate. That comparison is
 \textsc{not decidable}: underpowered rather than null, and the fix is finer checkpoint spacing,
-which does not exist to be had.
-% SOURCE: F100.
+which does not exist to be had. A separate question on the same grid \emph{is} decisive: the
+matched-bpb spread alone stands at $3\times$ the floor, so the families do not collapse onto one
+curve, and $\lca$ is not a function of model quality.
+% SOURCE: F105 (the alignment comparison) and F100 (the collapse test). Two statistics, one grid --
+% see the cross-reference note on both entries.
 
 \paragraph{There is no explanandum.} Four routes failed to attach $\lca$ to a named internal
 mechanism: co-timing against context-use onset, ablation of component groups, induction-head
 formation (excluded by arithmetic --- formation lands one to two orders of magnitude away from the
 window), and a compensator-identification test whose single positive was withdrawn when its standard
 error was corrected. We report this as a result about the measurement, not as work in progress.
-% SOURCE: F78, F79/F80, F83, F101/F103.
+% SOURCE: F78, F79/F80, F83, F106/F103.
 
 \paragraph{The dynamics are not reducible to the obvious theory of them.} Given the model's own
 exactly measured single-token sensitivity, annealed mean field does not predict the exponent across

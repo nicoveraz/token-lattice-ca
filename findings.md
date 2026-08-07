@@ -3658,7 +3658,7 @@ size it registered as minimally interesting. The remaining content is below and 
 the correction.
 
 **HOW THE WITHDRAWN VERDICT AROSE, KEPT BECAUSE THE SEQUENCE IS THE LESSON.** At n=8 the run returned NOT
-DECIDABLE on power (F101). Seeds were extended to 20 with the stopping rule fixed in advance. The
+DECIDABLE on power (F106). Seeds were extended to 20 with the stopping rule fixed in advance. The
 n=20 run ALSO returned NOT DECIDABLE — and then I found a bug: the seed floor divided the pooled
 spread by `sqrt(len(SEEDS))`, the REGISTERED 8, which stayed 8 after the extension while 20 seeds
 were actually being averaged. That overstated the noise by sqrt(2.5) = 1.58× and refused a run that
@@ -3739,7 +3739,9 @@ POWER branch that says what ρ = +0.296 at p = 0.095 actually licenses.
 field would not be a failure of single-token sensitivity as such — F94's rung 2 got 17 of 19 ECA
 rules right, missing rule 232, MAJORITY, the canonical canalizing function.
 
-### F101 — no compensator identified: the self-repair reading of F80 is NOT DECIDABLE, and the run says why
+### F106 — no compensator identified: the self-repair reading of F80 is NOT DECIDABLE, and the run says why
+*Renumbered from F101 on 7 Aug: two entries had taken that number. The earlier F101 (the seed
+floor is licensed) keeps it; this one is the later arrival.*
 #103's registered primary, run at 18 arms × 8 seeds (144 lattice cells, ~5 h). For each downstream
 layer L, `delta(L) = [λ(attn_early) − λ(attn_early+attn_L)] − [λ(none) − λ(attn_L)]`. Self-repair
 predicts delta > 0 for specific L: with the early block gone, that layer is doing more, so removing
@@ -3790,7 +3792,16 @@ What would settle it is seeds, not design: at this floor, roughly 4× the seed c
 0.05 effect to the 2× gate. Whether that is worth ~20 h is a different question from whether the
 experiment is sound.
 
-### F100 — cross-family loss collapse is NOT DECIDABLE, and what direction there is runs against the hypothesis
+### F105 — loss does not organise the families BETTER than tokens: NOT DECIDABLE, on the same data as F100
+*Renumbered from F100 on 7 Aug. **This is not a duplicate of F100 and not a correction of it.**
+Same 16 checkpoints, same three families, same 257,163-byte slice — different statistic, different
+question. F100 asks whether the families COLLAPSE onto one curve and compares the matched-bpb
+spread (0.0588) against the seed floor (0.0197): 3x the floor, so they do not, decisively. This
+entry asks whether bits-per-byte organises them BETTER THAN TOKENS and compares the DIFFERENCE
+between the two alignments (0.0588 - 0.0318 = 0.02695) against the same floor: 1.37x, under a 2x
+gate, so that cannot be read. Both verdicts are correct about their own question, and the pair is
+cross-referenced because "NO COLLAPSE" and "NOT DECIDABLE" on one dataset looks like a
+contradiction until the statistics are compared.*
 #84 extended across families, which F98 made possible and F98's own limitation made necessary:
 timing cannot be compared across families in TOKENS because no public non-Pythia family has a
 checkpoint inside Pythia's dip window, but loss is a property of the model rather than of a
@@ -3905,6 +3916,10 @@ homogeneous is a finding about that checkpoint, not grounds to void another. Fif
 session of the checking layer carrying the defect it exists to catch (F97, F98, F99, F100, this).
 
 ### F100 — λ_ca is not a function of model quality: the cross-family collapse test, in a comparable unit (#84)
+*See also F105, which asks a DIFFERENT question of this same grid — whether bits-per-byte
+organises the families better than tokens do — and returns NOT DECIDABLE at 1.37x the floor. This
+entry's verdict is decisive because its statistic (matched-bpb spread against the floor, 3x) is
+not that one.*
 F88 asked whether λ_ca collapses against loss rather than step within Pythia and returned NOT
 DECIDABLE — both alignments sat at the seed floor. F98 then showed the transition's *timing* cannot
 be compared across families in **tokens**, because no public non-Pythia family has a checkpoint
