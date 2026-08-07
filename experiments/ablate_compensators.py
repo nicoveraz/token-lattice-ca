@@ -90,6 +90,26 @@ IGN_TOL = 0.25            # max |ignition_rate(arm) - ignition_rate(reference)| 
 MIN_COMPARABLE = 8        # half the downstream layers; below this the comparison is a subset
 N_CTX_S = 128             # contexts per arm for `s` (F94/F96 geometry); no seeds, exact
 
+# SEED EXTENSION, AND THE STOPPING RULE THAT MAKES IT LEGITIMATE (F101).
+# The registered 8 seeds returned NOT DECIDABLE on power: the measured within-arm spread is 0.0974,
+# giving a floor of 0.0974/sqrt(8) = 0.0344, against which MIN_DETECTABLE = 0.05 is only 1.45x --
+# under the 2x gate. Since floor scales as 1/sqrt(n), n = 16 reaches 2.05x and n = 20 reaches 2.30x.
+# 20 is chosen for margin: at 16 a modest upward drift in the realised spread would land back under
+# the gate after another five hours of compute.
+#
+# ADDING SEEDS AFTER SEEING DATA IS OPTIONAL STOPPING UNLESS THE TARGET IS FIXED FIRST, so it is
+# fixed here: the run goes to exactly TOTAL_SEEDS and is decided once, at that n. It is not
+# extended again if the answer is unwelcome, and no interim verdict is read as a result. Only the
+# PRECISION changes -- no threshold, no statistic and no branch moves -- which is what separates
+# this from tuning a criterion to an outcome.
+TOTAL_SEEDS = 20
+
+
+def all_seeds():
+    """The registered 8, extended to TOTAL_SEEDS by continuing the same integer sequence."""
+    base = list(SEEDS)
+    return base + list(range(max(base) + 1, max(base) + 1 + max(0, TOTAL_SEEDS - len(base))))
+
 
 def specs_for(arm):
     """`arm` -> the list of single specs whose ablations compose it."""
@@ -486,11 +506,16 @@ def main():
     a = ap.parse_args()
 
     res = json.load(open(OUT)) if os.path.exists(OUT) else {"runs": {}, "loss": {}}
-    seeds = list(SEEDS)[:1] if a.smoke else list(SEEDS)
+    seeds = list(SEEDS)[:1] if a.smoke else all_seeds()
     todo_arms = arms(a.smoke)
 
     res["_preregistration"] = dict(
         issue=103, base=BASE, step=STEP, r=R, N=N, B=B, T=T, seeds=seeds,
+        seed_extension=f"the registered 8 seeds returned NOT DECIDABLE on power (floor 0.0344, "
+                       f"MIN_DETECTABLE/floor = 1.45x under a 2x gate). Extended to "
+                       f"{TOTAL_SEEDS} for a projected 2.30x. The target is FIXED IN ADVANCE and "
+                       f"decided once at that n -- not extended again if the answer is unwelcome. "
+                       f"Only precision changes; no threshold, statistic or branch moves",
         early_block=EARLY, downstream=DOWNSTREAM, arms=todo_arms,
         primary="does any downstream layer L increase its contribution when the early block is "
                 "ablated -- delta(L) = [lambda(early) - lambda(early+L)] - [lambda(none) - "
