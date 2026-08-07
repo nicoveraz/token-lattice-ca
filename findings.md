@@ -3580,6 +3580,60 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F104 — ablating MORE of the network makes damage spread FURTHER: five layers revive a frozen lattice
+The robust result of #103's run, and not the one it was designed to find. From the same 360 cells
+as F103, but on a quantity F103's error was structurally unable to touch.
+
+**WHY THIS SURVIVES WHAT F103 DID NOT.** F103's `delta` is a difference of four λ centres, and its
+error bar was half the right size. Ignition rate is a **proportion measured per run**, so with 20
+runs per arm the unit of analysis is the run and within-run replica clustering is handled by
+construction. No borrowed arm, no quadrature, no four-centre problem. It is also not a marginal
+call: Welch t against the reference, then the project's own `bh_fdr`.
+
+**THE EFFECT.** Reference `attn_early` ignites at **0.181 ± 0.032**. Adding a single further
+attention ablation raises it:
+
+```
+   L     ign       t          p        q_BH
+   8   0.516    7.38   0.0000001   0.0000004   Bonferroni
+  21   0.438    5.25   0.0000063   0.0000377   Bonferroni
+  20   0.400    5.22   0.0000071   0.0000377   Bonferroni
+  18   0.391    4.49   0.0000653   0.0002613   Bonferroni
+  22   0.369    4.04   0.0002533   0.0008106   Bonferroni
+   9   0.306    2.86   0.0068228   0.0182       BH only
+  17   0.303    2.74   0.0092886   0.0212       BH only
+  10   0.087   -2.48   0.0183403   0.0367       BH only, SUPPRESSION
+```
+
+Five layers clear **Bonferroni** at α/16 = 0.0031, two more clear BH-FDR, and one goes the other
+way. This is not one layer scraping a threshold.
+
+**THE STRUCTURE IS THE LATE BLOCK.** L18, L20, L21, L22 are four of the six layers in
+`attn_late`; L8 is the first layer outside the ablated early block. Meanwhile L23 — F103's
+withdrawn compensation candidate — sits at 0.203, indistinguishable from the reference (p = 0.59).
+The layers that matter for reviving damage are not the layer that looked like a compensator.
+
+**AND IT AGREES WITH AN INDEPENDENT PRIOR MEASUREMENT.** F79 found that ablating `attn_late` alone
+*raises* λ_ca: λ goes 0.3566 → 0.3960, Δλ = −0.039, the only group arm with that sign. Two
+different experiments, two different statistics, same direction: **late attention SUPPRESSES damage
+spreading.** Removing it un-freezes a lattice that the early block had frozen. No monotone account
+of ablation predicts that removing more of a network makes its dynamics livelier.
+
+**IT EXISTS IN THE RECORD ONLY BECAUSE IT WAS REGISTERED BEFORE THE RUN.** Ignition disparity was
+first treated as a threat to the primary — a selection artifact to be filtered — and the
+comparability gate drops exactly the two strongest revivers, L8 and L21. Promoting revival to an
+observable with its own direction and floor, reported whether or not the primary decides, is the
+only reason the largest effect in a 15-hour run is written down instead of excluded. That change
+was made in response to the concern that this project's gates convert surprises into exclusions,
+and this is the instance where it paid.
+
+**Boundary, and one that matters.** The reference is itself a near-dead lattice (ignition 0.181),
+so this measures revival *from a frozen state*, not a general claim that ablation increases
+chaoticity. One model, one checkpoint, one radius, greedy. And the comparability gate that produced
+the reference set is keyed on effect size rather than significance — L20, L18 and L22 differ
+significantly in ignition yet were retained as "comparable" in F103's primary, which is a defect in
+that gate rather than in this finding (filed).
+
 ### F103 — #103 at n=20: NOT DECIDABLE. **The COMPENSATION verdict first recorded here is WITHDRAWN — it was an artifact of the wrong standard error.**
 The registered primary at 20 seeds, 360 lattice cells.
 
