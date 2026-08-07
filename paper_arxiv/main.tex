@@ -1,0 +1,373 @@
+% Iterated self-feeding probes of language models: what they measure, and how to tell.
+%
+% DRAFTING NOTES (delete before submission)
+%  * Target is arXiv. Portable preamble on purpose: plain `article` + standard packages, so it
+%    builds anywhere and depends on no venue style file. No second variant is maintained.
+%    A journal route stays open later if wanted -- TMLR's policy names preprint servers explicitly
+%    in its reuse exemption -- but nothing here is shaped around that.
+%  * Every number carries a source comment naming the finding and the results file it came from.
+%    Do not edit a number without editing its source comment.
+%  * Sections marked PENDING depend on a run that has not landed. Do not write around them.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\graphicspath{{../fig/}}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newcommand{\lca}{\lambda_{\mathrm{ca}}}
+\newcommand{\dnorm}{D_{\mathrm{norm}}}
+
+\title{What Iterated Self-Feeding Probes of Language Models Measure\\
+{\large and a test that separates the construction from the model}}
+
+% ARXIV: named. TMLR: replace with the anonymous block.
+\author{Nicol\'as Vera Z\'u\~niga\\
+\texttt{nicovera@quetru.cl}\\
+% TODO(author): affiliation line, or delete if unaffiliated.
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A growing class of methods probes a language model by feeding it its own output: self-consistency,
+iterated refinement, agentic loops. We study the limiting case --- a ring of token cells resampled
+in place by the model's own windowed conditional $p_r(x_i \mid x_{i\pm r})$, probed by
+common-random-number damage spreading --- and ask what such a probe actually measures. The answer
+is that it measures two different things at once, in readings that look alike. Some quantities are
+fixed by the construction: the damage light cone is kinematic, and the radius scaling of the
+token-space Lyapunov exponent $\lca(r)$ is \emph{model-invariant} across 19 models and two scale
+ladders spanning $70\times$. Others genuinely track the model: $\lca$ crosses zero at a
+reproducible point in training, and responds sharply to ablating specific components. Left
+undistinguished, the first kind is readily mistaken for the second --- we did so ourselves for four
+months, and report a phase transition we measured to three decimal places that belongs to the probe
+rather than to any language model. We give the test that separates them: hold the construction
+fixed and vary the model, or hold the model fixed and vary the construction, and see which readings
+move. We validate the instrument by reproduction first, recovering a Domany--Kinzel damage field
+\emph{bit-exactly} against an independent prediction, and we report the estimator failures that
+this discipline caught --- four retracted verdicts, each on a quantity that looked like a
+measurement. The methodology ships as a package.
+\end{abstract}
+
+% ---------------------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Feeding a language model its own output is now routine. Self-consistency samples a model repeatedly
+and aggregates; iterated refinement asks a model to revise its own answer; agentic loops return a
+model's output to its input for many turns. Each of these is a \emph{dynamical system} built from a
+static predictor, and each invites a natural question: what do the dynamics tell us about the
+model?
+
+This paper answers a prior question, because we found it has an unobvious answer. Before asking
+what an iterated probe reveals, one must ask what it \emph{measures} --- and the answer is that it
+measures the model and the probe together, in quantities that are not distinguishable by
+inspection.
+
+We work in the limiting case, where the loop is tightest and the confound is therefore starkest. We
+turn a language model into a cellular automaton over token space: a ring of $N$ cells, each holding
+a token, each resampled in place from the model's own windowed conditional
+$p_r(x_i \mid x_{i\pm r})$ at temperature $T$. Damage spreading is measured with common random
+numbers (CRN): two copies of the ring, identical but for one flipped token, advanced with the same
+uniform draws. The exponential growth rate of their disagreement is a token-space Lyapunov exponent
+$\lca$; the saturating disagreement, normalised by an independent-noise floor, is $\dnorm$.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+\item \textbf{A validated instrument} (\S\ref{sec:validation}). We calibrate by
+  \emph{reproduction}: on the Domany--Kinzel automaton, where the damage field is provably the
+  automaton itself, an independent prediction matches ours bit-exactly --- zero mismatching cells,
+  with a nonzero off-line control that must fail. The instrument also separates elementary CA rules
+  by whether damage survives, and recovers known transition matrices.
+\item \textbf{A manufactured phase transition} (\S\ref{sec:manufactured}). The construction
+  exhibits a sharp absorbing-state transition, measurable to three decimal places, that is a
+  property of the probe. We identify the mechanism (an attracting fixed point of the argmax map),
+  delimit it (it occupies radius $r \in \{1,2\}$ only), and give the control that behaves as the
+  mechanism predicts (a masked-LM construction, whose map has no such fixed point, shows no
+  transition).
+\item \textbf{The discriminator} (\S\ref{sec:discriminator}). Construction-determined and
+  model-determined readings are separated by a test, not by intuition: vary one factor with the
+  other held fixed. We tabulate four such manipulations and show the instrument responds to two and
+  not the others --- which is what makes the manufactured transition attributable to the probe and
+  the developmental transition attributable to the model.
+\item \textbf{Estimator gating} (\S\ref{sec:gating}). Exponents measured on black-box LM dynamics
+  must be gated at the measurement's own geometry, or they return confident wrong answers. We
+  report four retracted verdicts, each caught by a known-answer system rather than by review, and
+  ship the guards as a package.
+\end{enumerate}
+
+\paragraph{What this paper is not.} It is not an interpretability result. We do not claim $\lca$
+localises a mechanism, and \S\ref{sec:limits} records the attempts that failed to make it do so.
+The contribution is measurement: what an iterated self-feeding probe reads, what it does not, and
+how to tell the difference before building on the answer.
+
+% ---------------------------------------------------------------------------------------------
+\section{The construction}
+\label{sec:construction}
+
+Let $\mathcal{M}$ be a language model and $V$ its vocabulary. The state is a ring
+$x \in V^{N}$ of $N$ token cells with periodic boundaries. One \emph{sweep} visits every site once
+in a random order and resamples it in place from the model's conditional given its window:
+%
+\begin{equation}
+x_i \;\sim\; p_r\!\left(\,\cdot \mid x_{i-r},\dots,x_{i-1},x_{i+1},\dots,x_{i+r}\right)
+  \Big/ T ,
+\label{eq:update}
+\end{equation}
+%
+where $r$ is the radius, $T$ the temperature, and the centre token is masked from its own window.
+The construction is deliberately the tightest possible self-feeding loop: the model's output at
+every site becomes part of the input at the next, with no external text entering after
+initialisation.
+
+\paragraph{Damage spreading under common random numbers.} We run two rings, $x$ and $\tilde{x}$,
+identical except that one site is flipped at $t=0$, and advance both with the \emph{same} stream of
+uniform variates and the \emph{same} visit order. Writing $d_t$ for the number of differing sites
+after $t$ sweeps, the token-space Lyapunov exponent $\lca$ is the exponential growth rate of $d_t$
+over the sweeps before saturation, and $\dnorm$ is the saturating $d_t$ normalised by the
+independent-noise floor $D_0$ obtained when the two rings are driven by \emph{independent} uniforms.
+The two quantities answer different questions --- how fast damage grows, and how much survives ---
+and \S\ref{sec:gating} explains why they must be filtered differently.
+
+\paragraph{The exact-zero null.}
+\paragraph{The exact-zero null.} Two rings with identical windows, handed the same uniform, draw
+the same token: inverse-CDF sampling against a shared uniform makes agreement exact, not
+approximate. Undamaged twins therefore diverge by \emph{exactly} zero, on every backend, and this
+is asserted rather than assumed. It is the property that makes damage attributable to the injected
+flip and to nothing else, and every claim in this paper rests on it.
+
+% ---------------------------------------------------------------------------------------------
+\section{Validation by reproduction}
+\label{sec:validation}
+
+An instrument that has only ever been pointed at an object with no known answer cannot be
+distinguished from a plausible-looking implementation that is wrong. We therefore calibrate by
+\emph{reproduction}, on systems whose answers are established independently, and in an order that
+climbs from the strictest test to the loosest.
+
+\paragraph{Rung 1: an identity, not a correlation.} On the Domany--Kinzel probabilistic cellular
+automaton the damage field is provably the automaton itself, run on a derived rule. This yields a
+prediction with \emph{no error bar attached}: our damage field must equal the independently
+predicted one cell for cell. It does --- zero mismatching cells --- and an off-line control, in
+which the same comparison is made against a deliberately misaligned field, must and does fail.
+A calibration of this kind cannot be passed by an implementation that is merely close.
+% SOURCE: paper 1 abstract; results/dp_calibration*.json. VERIFY exact cell counts before submit.
+
+\paragraph{Rung 2: known orderings.} Across elementary cellular automata the instrument separates
+rules by whether damage survives, recovering the established ordered/chaotic classification.
+% SOURCE: F27. VERIFY the effect size (d = 3.0) against results/ before submit.
+
+\paragraph{Rung 3: known distributions.} Run on systems with known transition matrices, the
+attractor census recovers them.
+% SOURCE: F3/F10, census_validation. VERIFY before submit.
+
+Only after all three rungs does the instrument get pointed at a language model. This ordering is
+not ceremonial: \S\ref{sec:gating} reports four occasions on which a rung caught an estimator that
+had already produced a confident number.
+% ---------------------------------------------------------------------------------------------
+\section{A phase transition that belongs to the probe}
+\label{sec:manufactured}
+
+Iterated at low temperature, the construction shows a sharp absorbing-state transition. Both the
+survival exponent $\delta$ and the density exponent $\theta$ reach their directed-percolation values
+at a common critical temperature $T_c \in [0.4343, 0.4391]$, and the estimator was gated on
+Domany--Kinzel \emph{before} the language-model numbers were read.
+% SOURCE: F58. VERIFY T_c interval and the DP exponent values against results/ before submit.
+
+It is a property of the probe. Four facts establish this, and the fourth is the mechanism.
+
+\paragraph{The frozen phase is a single-token collapse.} At $T = 0.02$, 81 of 96 sites hold the
+newline token, and the measured $T_c$ sits at the point where newline occupies 52\% of the ring.
+The ``ordered phase'' is one token eating the lattice.
+% SOURCE: F62.
+
+\paragraph{It is not the corpus, the architecture, or the scale.} The effect is refuted from both
+directions across 19 models. Granite's dense and mixture-of-experts members agree within two points
+while differing by $2\times$ in width, $1.7\times$ in depth and $16\times$ in feed-forward size, and
+in routing versus none. Scale is eliminated across a $70\times$ Pythia ladder and a $12\times$ GPT-2
+ladder whose ranges never overlap.
+% SOURCE: F63, F64.
+
+\paragraph{The mechanism is an attracting fixed point of the argmax map.} At $T = 0.02$ the update
+is essentially deterministic, so the dynamics are governed by the map $x \mapsto \arg\max p_r$.
+For \texttt{pythia-410m} this map sends 18 of 24 random starts to the newline token --- a genuine
+fixed point. For \texttt{gpt2-medium} it has no such point and wanders to 11 distinct endpoints.
+Prepending a single beginning-of-sequence token moves the frozen fraction from 74.4\% to 24.1\%,
+because it changes the map's domain rather than its parameters. This is not a data-sparsity effect:
+rare contexts are no closer to the fallback token than common ones.
+% SOURCE: F66, F70.
+
+\paragraph{The boundary is sharp and narrow.} Family-distinguishing degeneracy occupies radius
+$r \in \{1,2\}$ only; moving from $r=2$ to $r=3$ drops top-1 agreement by 52 points. A rebound at
+large radius appears in the control as well, so it is a generic long-context effect and is excluded.
+% SOURCE: F69.
+
+\paragraph{The control behaves as the mechanism predicts.} A masked-LM construction, whose argmax
+map has no attracting fixed point, shows no transition: surviving damage never falls below 0.547
+down to $T = 0.02$ across two models. This was pre-registered as a good null --- no absorbing state,
+therefore no absorbing-state transition --- so there is no competing ``but the clean construction
+has a real one'' left to explain.
+% SOURCE: F66, F67.
+
+Taken together these make the transition a \emph{claim} rather than a curiosity: it has a mechanism,
+a boundary, and a control that behaves as the mechanism says it should. It is also, we emphasise,
+a real and reproducible measurement --- of the probe.
+
+% ---------------------------------------------------------------------------------------------
+\section{The discriminator: which readings are the model?}
+\label{sec:discriminator}
+
+The manufactured transition of \S\ref{sec:manufactured} raises the obvious worry: if a quantity
+this sharp belongs to the probe, does the instrument read the model at all? It does, and the way to
+establish it is not argument but a second manipulation. A reading that is construction-determined
+moves when the construction changes and stays put when the model changes; a model-determined
+reading does the reverse.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{llll}
+\toprule
+Manipulation & Construction & Model & Instrument responds? \\
+\midrule
+Change the automaton (\S\ref{sec:manufactured}) & varied & fixed & yes --- transition disappears \\
+Change family or scale                          & fixed  & varied & \textbf{no} --- 19 models, $70\times$ \\
+Change the training checkpoint                  & fixed  & varied & yes --- $\lca$ crosses zero \\
+Ablate internal components                      & fixed  & varied & yes --- see \S\ref{sec:ablation} \\
+\bottomrule
+\end{tabular}
+\caption{The discriminator. A reading determined by the construction moves when the construction
+changes and not when the model changes; a model-determined reading does the reverse. Row~2 is what
+makes the manufactured transition attributable to the probe. Rows~3 and~4 are what establish that
+the instrument reads the model at all.}
+\label{tab:discriminator}
+\end{table}
+
+Table~\ref{tab:discriminator} sets out the four manipulations. The pattern, not any single row, is
+the argument: an instrument that responded to everything would be measuring noise, and one that
+responded to nothing would be measuring the construction alone.
+
+\subsection{Construction-determined readings}
+Two readings that look like measurements are fixed by the geometry of the probe.
+
+The \emph{damage light cone} is kinematic. A flipped site can influence only the $r$ sites whose
+window contains it, so damage advances at most $r$ sites per sweep whatever the model does. The
+cone's slope is the update window, reported in the units of a dynamical quantity.
+% SOURCE: F16, F21.
+
+The \emph{radius scaling} $\lca(r)$ is model-invariant. If it read the model it would differ between
+models; it does not. This is the cleanest available demonstration that a quantity can be stable,
+reproducible, and precisely measurable while carrying no information about the system one believes
+oneself to be measuring.
+% SOURCE: F28. The white-box cross-level failure (F29, F31) follows from these two.
+
+\subsection{Model-determined readings}
+Hold the construction fixed and walk the model through training. At $N = 48$ on Pythia-410m,
+$\lca$ reads $-0.0185$ at step 256, $+0.0679$ at step 512, $+0.1923$ at step 1000, and settles on a
+plateau of $+0.1558$, $+0.1699$, $+0.1792$ at steps 2000, 8000 and 143000. Before the crossing,
+seeds disagree about the \emph{sign}; after it, every one of 48 runs is positive, at two lattice
+sizes, with all four members of a pre-registered family surviving Benjamini--Hochberg correction.
+The automaton is byte-identical at every checkpoint, so the movement is the model.
+% SOURCE: results/dev_transition_shape.json, N48_*_lambda_ca; paper 1.
+
+The obvious deflation --- that $\lca$ is a repackaged loss --- does not survive measurement. Across
+the trained regime $\lca$ moves from $0.18433$ to $0.18738$ while bits-per-byte improves from
+$2.3229$ to $0.8895$, a $2.6\times$ change in model quality against a change in $\lca$ that sits
+inside the seed spread. Whatever the exponent tracks, it is not simply how good the model is.
+% SOURCE: F100, results/loss_collapse_families.json.
+
+\subsection{Ablation response}
+\label{sec:ablation}
+% PENDING -- do not draft. experiments/ignition_level.py is running and decides whether F104 reads
+% as "revival" (adding an ablation raises ignition) or as "regression to a common level" (adding an
+% ablation drives ignition toward a characteristic value regardless of the reference).
+%
+% Row 4 of Table 1 survives EITHER WAY -- both readings are the instrument responding to a change
+% in the model with the construction held fixed -- but the prose differs completely and must not be
+% written twice. See findings.md F104 and the withdrawal notice in F103.
+
+% ---------------------------------------------------------------------------------------------
+\section{Gating estimators at their own geometry}
+\label{sec:gating}
+
+% TODO(draft): Claim B. Measuring exponents on black-box LM dynamics requires gating the estimator
+% at the measurement's own geometry, or it returns confident wrong answers. Four retracted
+% verdicts, each caught by a known-answer system rather than by review (F56, F57, F59-v1, F61):
+%   * A calibration at N=512/200 licenses nothing at N=96/40 (F56).
+%   * State what the independent unit is and TEST it: anything drawn once per batch makes replicas
+%     correlated, and pooling them shrank error bars ~8x (F57).
+%   * A cost function that can shrink its own comparison window is unbounded; scan far wider than
+%     plausible and REJECT a minimum landing on the scan edge (F59-v1).
+%   * F42's unignited runs: lambda is undefined where damage never ignites, and 1/3 of visit orders
+%     heal a single-site seed before it propagates (F57 explains F42).
+%
+% The defect class is ONE: a statistically-shaped criterion applied to a quantity with no room to
+% vary. Six guards, shipped as gatecheck (MIT): dynamic_range, noise_gate, directional,
+% carries_verdict, correlation_leverage, distinct_units.
+%
+% CANDIDATE CASE STUDY, stronger than the four above because it survived a pre-registration, a
+% power calculation and a fixed stopping rule: one line -- the standard error for a difference of
+% four measured centres -- written three ways, each changing the verdict. sqrt(len(SEEDS)) (stale
+% after a seed extension, too large, NOT DECIDABLE); mean per-arm SE (wrong statistic, too small,
+% a positive that was recorded and withdrawn the same day); quadrature (correct, NOT DECIDABLE).
+% Caught by writing the confirmatory experiment, whose floor was derived from first principles.
+% Decide whether this belongs in the paper or is too inside-baseball -- it is the best evidence
+% for the claim and the most embarrassing.
+
+% ---------------------------------------------------------------------------------------------
+\section{Limits}
+\label{sec:limits}
+
+% TODO(draft). State these as scope, not as apology -- TMLR's criterion is that claims are
+% supported, and an honest boundary is support.
+%   * The developmental transition is single-family. F98: endpoints replicate in two non-Pythia
+%     families, but no public non-Pythia family has a checkpoint inside the dip window, so the dip
+%     is unobservable by anyone.
+%   * Cross-family, matching on loss does not align the families better than matching on tokens
+%     (0.0588 vs 0.0318, 1.37x the floor): NOT DECIDABLE, underpowered (F100).
+%   * No explanandum. Four routes failed to attach lambda_ca to a named internal mechanism (F78
+%     co-timing, F79/F80 ablation, induction heads by arithmetic, and the compensator test whose
+%     positive was withdrawn). We do not claim one.
+%   * Annealed mean field does not predict the exponent under intervention: given the model's own
+%     exactly-measured single-token sensitivity, a null WITH power across 33 ablation arms (F102).
+%     The construction is not reducible to the simple theory of it.
+%   * Greedy-scoped where decoding matters; one radius; one architecture family for the ablations.
+
+% ---------------------------------------------------------------------------------------------
+\section{Related work}
+\label{sec:related}
+
+% TODO(draft). The prior-art gate (F95) found genuine collisions and one clear gap. Be explicit
+% about both -- claiming novelty we do not have is the fastest way to lose a reviewer who knows
+% this literature.
+%   TAKEN: generic black-box model identification (Model Equality Testing, ICLR 2025; IRIS at
+%   0.99 AUROC); quantization detection; the tokenizer-merge mechanism is substantially
+%   anticipated.
+%   NOT ANTICIPATED: the dynamics. Every published feature set is single-shot scoring of supplied
+%   text; no prior method feeds a model its own output back in. Pitch the claim as the dynamics.
+%   Also cite: Domany-Kinzel; damage spreading in cellular automata; the Hydra effect
+%   (McGrath et al., arXiv:2307.15771) for self-repair, which we cite for terminology and do NOT
+%   claim to have measured.
+
+% ---------------------------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+
+% TODO(draft). The one-line version: iterated self-feeding probes mix construction-determined and
+% model-determined quantities in readings that look alike, and this is the test that separates
+% them. Resist restating it as "the instrument measures itself" -- that is catchier and false, and
+% it would sink the paper with a reviewer who reads only the conclusion.
+
+\subsubsection*{Reproducibility}
+All code, per-run result files and figure scripts are released. Every number in this paper is
+traceable to a results file, and each analysis stamps the SHA-256 of its own source together with
+the hashes of every module it imports, so a figure cannot silently outlive the code that produced
+it. The estimator guards are packaged separately under an MIT licence.
+% TODO(author): repository URL and archived DOI once the Zenodo deposit exists.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}
