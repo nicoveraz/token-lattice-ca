@@ -1,7 +1,7 @@
 """Verify citations that CANNOT be machine-fetched -- the OpenReview-shaped hole in #71's audit.
 
 WHY THIS EXISTS. `audit_refs.py` replaced the eyeball with a fetch for every arXiv citation in
-`paper/refs.bib`, because F43 found three invented titles and a hand audit then missed a fourth.
+`paper_arxiv/refs.bib`, because F43 found three invented titles and a hand audit then missed a fourth.
 Two things fell outside it:
 
   1. OPENREVIEW CANNOT BE FETCHED. It returns HTTP 403 `ChallengeRequiredError` on the forum page,
@@ -15,7 +15,7 @@ Two things fell outside it:
 
 THE FIX IS NOT AUTOMATION, IT IS EVIDENCE. Some sources genuinely cannot be fetched. What can be
 made machine-checkable is whether a human check *happened* and *what it found*: a record in
-`paper/refs_manual.json` carrying the transcribed metadata, the date, what was read, and the
+`paper_arxiv/refs_manual.json` carrying the transcribed metadata, the date, what was read, and the
 sha256 of the artifact. The hash makes the check reproducible and tamper-evident even though the
 fetch is not automatable -- re-verification is one `shasum` rather than a re-read.
 
@@ -37,7 +37,7 @@ import re
 
 from provenance import rel
 
-RECORDS = _ROOT / "paper" / "refs_manual.json"
+RECORDS = _ROOT / "paper_arxiv" / "refs_manual.json"
 
 # Markdown bibliographies that carry citations but no .bib machinery. Add to this list rather
 # than writing a second auditor; one implementation, per F56/F73.

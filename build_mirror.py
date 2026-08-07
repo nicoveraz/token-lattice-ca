@@ -45,7 +45,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 #
 # WHY assembly_theory.md IS NOT ON THIS LIST, THOUGH IT IS THE SAME KIND OF DOCUMENT. It is the
 # only entry in `audit_manual.SOURCES`: the manual-citation apparatus exists to police its
-# bibliography, and it carries the sole citation of two records in paper/refs_manual.json.
+# bibliography, and it carries the sole citation of two records in paper_arxiv/refs_manual.json.
 # Dropping it leaves those records describing citations that no longer exist anywhere in the
 # tree, which is precisely what `test_no_record_is_orphaned` fails on -- verified, not assumed.
 # A mirror that ships a red suite costs more than the document does. Removing it would mean

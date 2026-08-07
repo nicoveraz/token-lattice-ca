@@ -29,7 +29,7 @@ import pytest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "experiments")]
-RECORDS = ROOT / "paper" / "refs_manual.json"
+RECORDS = ROOT / "paper_arxiv" / "refs_manual.json"
 
 from audit_manual import (SOURCES, cited_forum_ids, normalise, sha256,     # noqa: E402
                           _find, _marked_unverified_near)
@@ -37,7 +37,7 @@ from audit_manual import (SOURCES, cited_forum_ids, normalise, sha256,     # noq
 
 def _doc():
     if not RECORDS.exists():
-        pytest.skip("paper/refs_manual.json not present -- run experiments/audit_manual.py")
+        pytest.skip("paper_arxiv/refs_manual.json not present -- run experiments/audit_manual.py")
     return json.loads(RECORDS.read_text())
 
 
@@ -56,7 +56,7 @@ def test_every_unfetchable_citation_has_a_record():
     recorded = set(_by_forum())
     missing = {f: w for f, w in cited_forum_ids().items() if f not in recorded}
     assert not missing, (
-        f"OpenReview citations with no record in paper/refs_manual.json: {missing}. "
+        f"OpenReview citations with no record in paper_arxiv/refs_manual.json: {missing}. "
         f"Add a record, then run `.venv/bin/python experiments/audit_manual.py`.")
 
 
@@ -65,7 +65,7 @@ def test_no_record_is_orphaned():
     cited = set(cited_forum_ids())
     orphans = [k for f, (k, _) in _by_forum().items() if f not in cited]
     assert not orphans, (
-        f"paper/refs_manual.json describes works no longer cited anywhere: {orphans}")
+        f"paper_arxiv/refs_manual.json describes works no longer cited anywhere: {orphans}")
 
 
 def test_a_verified_record_carries_its_evidence():
@@ -145,7 +145,7 @@ def test_prose_and_record_agree_about_what_is_verified():
             if not verified and not marked:
                 bad.append(f"{src.name} cites openreview:{fid} with no '[unverified]' marker "
                            f"but {key} is not verified")
-    assert not bad, "prose disagrees with paper/refs_manual.json: " + "; ".join(bad)
+    assert not bad, "prose disagrees with paper_arxiv/refs_manual.json: " + "; ".join(bad)
 
 
 def test_a_verified_title_is_quoted_correctly_where_it_is_cited():

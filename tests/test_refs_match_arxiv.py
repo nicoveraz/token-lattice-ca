@@ -14,7 +14,7 @@ hand audit that misses one entry is indistinguishable from a hand audit that mis
 eyeball is replaced here by a comparison against a fetched record.
 
 Split of responsibility. `experiments/audit_refs.py` does the network work and writes
-`paper/refs_verified.json` -- the metadata AS ARXIV REPORTS IT. This test is OFFLINE: it only
+`paper_arxiv/refs_verified.json` -- the metadata AS ARXIV REPORTS IT. This test is OFFLINE: it only
 checks that refs.bib still agrees with that record, so the suite never depends on arXiv being
 reachable (it was not, from this machine, on the day the audit was written -- the export API
 timed out and then 429'd, and the abstract pages' Highwire meta tags were used instead).
@@ -32,21 +32,21 @@ import pytest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "experiments")]
-BIB = ROOT / "paper" / "refs.bib"
-VERIFIED = ROOT / "paper" / "refs_verified.json"
+BIB = ROOT / "paper_arxiv" / "refs.bib"
+VERIFIED = ROOT / "paper_arxiv" / "refs_verified.json"
 
 from audit_refs import normalise, parse_bib          # noqa: E402  (needs the path above)
 
 
 def _bib():
     if not BIB.exists():
-        pytest.skip("paper/refs.bib not present")
+        pytest.skip("paper_arxiv/refs.bib not present")
     return parse_bib(BIB.read_text())
 
 
 def _verified():
     if not VERIFIED.exists():
-        pytest.skip("paper/refs_verified.json not present -- run experiments/audit_refs.py")
+        pytest.skip("paper_arxiv/refs_verified.json not present -- run experiments/audit_refs.py")
     return json.loads(VERIFIED.read_text())
 
 
@@ -71,7 +71,7 @@ def test_every_arxiv_entry_has_been_verified():
     missing = [k for k, _, _ in _arxiv_entries() if k not in v]
     assert not missing, (
         f"refs.bib entries with no verified record: {missing}. Run "
-        f"`.venv/bin/python experiments/audit_refs.py` to refresh paper/refs_verified.json.")
+        f"`.venv/bin/python experiments/audit_refs.py` to refresh paper_arxiv/refs_verified.json.")
 
 
 def test_no_verified_record_is_orphaned():
@@ -79,7 +79,7 @@ def test_no_verified_record_is_orphaned():
     keys = {k for k, _, _ in _arxiv_entries()}
     orphans = [k for k in _verified()["verified"] if k not in keys]
     assert not orphans, (
-        f"paper/refs_verified.json describes entries no longer in refs.bib: {orphans}. "
+        f"paper_arxiv/refs_verified.json describes entries no longer in refs.bib: {orphans}. "
         f"Re-run experiments/audit_refs.py.")
 
 
@@ -153,7 +153,7 @@ def test_the_paper_cites_the_prior_pythia_phase_transition_work():
     correlation) with no overlap with damage spreading. Omitting it would read as unawareness of
     the literature, which is the cheapest available reason to be rejected.
     """
-    tex = ROOT / "paper" / "paper.tex"
+    tex = ROOT / "paper_arxiv" / "withdrawn_i4d.tex"
     if not tex.exists():
         pytest.skip("paper.tex not present")
     assert "ar_tempcrit" in tex.read_text(), (

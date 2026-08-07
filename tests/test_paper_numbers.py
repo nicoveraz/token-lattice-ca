@@ -2,7 +2,7 @@
 
 Rule 2 says never report a number not traceable to `results/`. Rule 8 says assert code against
 its declared design. This is the same idea applied to the manuscript: every load-bearing number
-in `paper/paper.tex` is checked here against the JSON it came from.
+in `paper_arxiv/withdrawn_i4d.tex` is checked here against the JSON it came from.
 
 Why this exists. Three separate defects in this project were *numbers in prose drifting from
 numbers in files* --- the retracted ECA ordering (F33/F36), the step256-only headline (F39), and
@@ -17,7 +17,7 @@ import json, pathlib, re
 import pytest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-TEX = ROOT / "paper" / "paper.tex"
+TEX = ROOT / "paper_arxiv" / "withdrawn_i4d.tex"
 RESULTS = ROOT / "results"
 
 
@@ -169,7 +169,7 @@ def test_every_cited_key_resolves():
     """
     import re as _re
     tex = _tex()
-    bib = ROOT / "paper" / "refs.bib"
+    bib = ROOT / "paper_arxiv" / "refs.bib"
     if not bib.exists():
         pytest.skip("refs.bib not present")
     cited = set()
@@ -199,7 +199,7 @@ def test_pdf_has_no_unresolved_citation_marks():
 
 def test_no_unverified_citations_reach_the_bibliography():
     """`plainnat` prints note= fields; 'to verify' must never be printable (F43)."""
-    bib = ROOT / "paper" / "refs.bib"
+    bib = ROOT / "paper_arxiv" / "refs.bib"
     if not bib.exists():
         pytest.skip("refs.bib not present")
     s = bib.read_text()
@@ -323,7 +323,7 @@ def test_body_fits_the_page_limit():
     assert body_pages <= BODY_PAGE_LIMIT, (
         f"the body occupies {body_pages} pages against a {BODY_PAGE_LIMIT}-page limit "
         f"(References starts on page {refs_page}; {len(spill)} body line(s) spill onto it). "
-        f"See paper/NOTES.md §4 for the cut order and the do-not-cut list.")
+        f"See paper_arxiv/NOTES_i4d.md §4 for the cut order and the do-not-cut list.")
 
 
 def test_the_style_file_in_use_is_recorded():
@@ -340,8 +340,8 @@ def test_the_style_file_in_use_is_recorded():
     m = _re.search(r"\\usepackage(?:\[([^\]]*)\])?\{(neurips_\d{4})\}", tex)
     assert m, "no neurips style package found; page-count guarantees are meaningless without one"
     opts = [o.strip() for o in (m.group(1) or "").split(",") if o.strip()]
-    sty = ROOT / "paper" / f"{m.group(2)}.sty"
-    assert sty.exists(), f"{m.group(2)}.sty is referenced but not present in paper/"
+    sty = TEX.parent / f"{m.group(2)}.sty"
+    assert sty.exists(), f"{m.group(2)}.sty is referenced but not present beside the .tex"
 
     # 1. anonymity. `final` and `preprint` both de-anonymise; so does sglblindworkshop, which
     #    sets \@anonymousfalse and differs from the correct option by three characters.
@@ -635,16 +635,16 @@ def test_notes_do_not_name_a_style_file_the_paper_no_longer_uses():
     to police prose currency in general, which no test can do.
     """
     import re as _re
-    notes = ROOT / "paper" / "NOTES.md"
+    notes = ROOT / "paper_arxiv" / "NOTES_i4d.md"
     if not notes.exists():
-        pytest.skip("paper/NOTES.md not present")
+        pytest.skip("paper_arxiv/NOTES_i4d.md not present")
     m = _re.search(r"\\usepackage(?:\[[^\]]*\])?\{(neurips_\d{4})\}", _tex())
     assert m, "no neurips style package in paper.tex"
     in_use = m.group(1)
     named = set(_re.findall(r"neurips_(\d{4})", notes.read_text()))
     stale = named - {in_use.split("_")[1]}
     assert not stale, (
-        f"paper/NOTES.md still names neurips_{sorted(stale)} while paper.tex uses {in_use}. "
+        f"paper_arxiv/NOTES_i4d.md still names neurips_{sorted(stale)} while paper.tex uses {in_use}. "
         f"The style file sets the page budget, so a stale row here is a stale claim about the "
         f"submission's hardest constraint.")
 

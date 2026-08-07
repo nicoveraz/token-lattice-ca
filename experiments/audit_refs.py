@@ -8,7 +8,7 @@ one entry looks exactly like a hand audit that misses none.
 
 So this replaces the eyeball with a fetch. For every entry carrying an `eprint`, ask arXiv what
 that identifier actually is, and compare title / first author / year against what refs.bib
-claims. Writes paper/refs_verified.json -- the metadata AS ARXIV REPORTS IT -- which the test
+claims. Writes paper_arxiv/refs_verified.json -- the metadata AS ARXIV REPORTS IT -- which the test
 suite then checks refs.bib against offline. Network here, no network in the test.
 
 A citation with a wrong title is not a cosmetic defect. It is an unverifiable claim about the
@@ -27,8 +27,8 @@ import urllib.request
 import html as html_mod
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-BIB = ROOT / "paper" / "refs.bib"
-OUT = ROOT / "paper" / "refs_verified.json"
+BIB = ROOT / "paper_arxiv" / "refs.bib"
+OUT = ROOT / "paper_arxiv" / "refs_verified.json"
 ABS = "https://arxiv.org/abs/{}"
 
 

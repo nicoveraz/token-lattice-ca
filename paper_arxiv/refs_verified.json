@@ -240,6 +240,16 @@
    "arxiv_year": "2023",
    "bib_year": "2023",
    "venue_year_later_than_preprint": null
+  },
+  "modelequality": {
+   "arxiv_id": "2410.20247",
+   "title": "Model Equality Testing: Which Model Is This API Serving?",
+   "first_author": "Gao, Irena",
+   "n_authors": 3,
+   "published": "2024-10-26",
+   "arxiv_year": "2024",
+   "bib_year": "2025",
+   "venue_year_later_than_preprint": "2025"
   }
  },
  "unverifiable": [
