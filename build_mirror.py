@@ -198,6 +198,28 @@ def neutralise_readme(mirror):
 _HOMEPATH = re.compile(rb"/(?:Users|home)/(?!anon\b)[A-Za-z0-9._-]+")
 
 
+def neutralise_license(mirror):
+    """Keep the MIT grant, drop the holder's name. Returns the number of files rewritten.
+
+    A LICENSE naming the author fails the audit, since identifiers are derived from git config.
+    DROPPING the file would be the easy fix and the wrong one: the anonymous copy would appear
+    unlicensed, and for a paper whose contribution includes a usable package that is
+    self-defeating. The grant does not depend on the holder being named in the review copy -- the
+    real LICENSE ships in the public repository -- so the terms stay and only the name goes.
+    """
+    n = 0
+    for p in sorted(mirror.rglob("LICENSE*")):
+        if not p.is_file():
+            continue
+        t = p.read_text(errors="replace")
+        t2 = re.sub(r"(?im)^(copyright\s*\(c\)\s*\d{4}\s+).+$",
+                    r"\1the authors (name withheld for review)", t)
+        if t2 != t:
+            p.write_text(t2)
+            n += 1
+    return n
+
+
 def audit(mirror, ids):
     """Every identifier must be absent from every file, text or binary."""
     hits = {}
@@ -242,6 +264,7 @@ def main():
     for t in touched:
         print(f"    {t}")
     print(f"README H1 neutralised: {neutralise_readme(mirror)}")
+    print(f"LICENSE holders anonymised: {neutralise_license(mirror)}")
 
     hits = audit(mirror, ids)
     if hits:
