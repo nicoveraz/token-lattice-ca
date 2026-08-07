@@ -60,8 +60,9 @@ measurement. The methodology ships as a package.
 \label{sec:intro}
 
 Feeding a language model its own output is now routine. Self-consistency samples a model repeatedly
-and aggregates; iterated refinement asks a model to revise its own answer; agentic loops return a
-model's output to its input for many turns. Each of these is a \emph{dynamical system} built from a
+and aggregates \citep{selfconsistency}, on reasoning traces the model produced itself
+\citep{cot}; iterated refinement asks a model to revise its own answer against its own critique
+\citep{selfrefine}; agentic loops return a model's output to its input for many turns. Each of these is a \emph{dynamical system} built from a
 static predictor, and each invites a natural question: what do the dynamics tell us about the
 model?
 
@@ -561,9 +562,11 @@ literature.
 two-sample problem, a test on the maximum mean discrepancy between an API's outputs and a reference
 distribution reaches a median 77.4\% power against a range of distortions from roughly ten samples
 per prompt, and finds 11 of 31 surveyed Llama endpoints deviating from the released reference
-weights \citep{modelequality}. Quantization detection is likewise established, and the
-tokenizer-merge mechanism we observed in API-mediated probing is substantially anticipated. We
-claim none of these.
+weights \citep{modelequality}. Text-only identification is stronger still: visible-string features
+over random-string probes reach a verification AUROC of $0.99$ on a same-family ladder and separate
+every endpoint of a commercial gateway within a handful of calls \citep{iris}. Quantization
+detection is likewise established, and the tokenizer-merge mechanism we observed in API-mediated
+probing is substantially anticipated. We claim none of these.
 
 \paragraph{Iterated generation is not new; this measurement of it is.} Feeding a model its own
 output has been studied as a dynamical system before. Multi-turn transmission chains exhibit

@@ -34,3 +34,8 @@ paper_arxiv/*.fls
 
 # personal planning doc: contains the author's username and absolute paths (double-blind)
 paper_arxiv/plan_to_submission_i4d.md
+
+# tectonic intermediates
+paper_arxiv/*.xdv
+paper_arxiv/*.bbl
+paper_arxiv/*.blg

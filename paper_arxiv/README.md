@@ -26,8 +26,8 @@ tracks its reference at slope +0.568 (L8) and +0.724 (L22), both intervals exclu
 **partial regression**, not revival and not a common level. Row 4 is unaffected; F104's
 anti-monotone headline is amended by F107.
 
-Remaining before submission: two citations (IRIS, and self-consistency/CoT/self-refine for §1),
-and a first compile.
+**Nothing is outstanding.** All nine citations resolve and every one is arXiv-verified through
+`experiments/audit_refs.py` (0 mismatched of 29). The paper compiles to 12 pages.
 
 ## Figures and tables
 
@@ -55,14 +55,9 @@ with nothing recording whether the work had ever been read.
 Every key currently cited resolves. Three citations the paper still *wants* and does not have, all
 of which must be verified rather than invented:
 
-| Needed for | Work | Status |
-|---|---|---|
-| §1 framing | self-consistency, chain-of-thought, self-refine | **absent** — §1 describes these without citing them |
-| §8 taken | Model Equality Testing (ICLR 2025) | **absent** — named in F95's prior-art gate, not in refs.bib |
-| §8 taken | IRIS (black-box model ID, ~0.99 AUROC) | **absent** — same |
-
-The §8 entries matter more than the §1 ones: the section concedes those results are taken, and
-conceding to an uncited work reads as vagueness rather than candour.
+All four have since been added and verified against arXiv by `audit_refs.py`: `selfconsistency`
+(2203.11171), `cot` (2201.11903), `selfrefine` (2303.17651), `modelequality` (2410.20247) and
+`iris` (2607.20860). Nothing is cited that has not been fetched and checked.
 
 ### A correction the bibliography forced
 
@@ -86,10 +81,12 @@ the discriminator instead — which is a narrower and defensible claim.
 
 ## Building
 
-No LaTeX toolchain on the machine this was drafted on, so **the draft has never been compiled**.
-Before trusting it: install a TeX distribution or let arXiv's build check it (arXiv compiles the
-source and shows errors before anything is announced, so submitting unverified source is recoverable
-rather than fatal). `refs.bib` does not exist yet — either create it or drop `\bibliography`.
+**It compiles.** `tectonic -X compile main.tex` — 12 pages, no undefined references or citations,
+bibliography resolved through natbib/plainnat. Three underfull-hbox warnings at Table 2's narrow
+columns; cosmetic.
+
+Tectonic is self-contained and fetches what it needs, so no TeX distribution is required. Build
+artifacts (`*.aux`, `*.bbl`, `*.xdv`, `*.log`, `*.pdf`) are gitignored.
 
 ## Not yet decided
 

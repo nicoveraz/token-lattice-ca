@@ -250,6 +250,46 @@
    "arxiv_year": "2024",
    "bib_year": "2025",
    "venue_year_later_than_preprint": "2025"
+  },
+  "iris": {
+   "arxiv_id": "2607.20860",
+   "title": "Which Model Is Actually Serving You? IRIS: Budgeted Black-Box Auditing of Model Substitution and Routing Dilution in LLM Gateways",
+   "first_author": "Zhang, Yuewei",
+   "n_authors": 3,
+   "published": "2026-07-23",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
+  },
+  "cot": {
+   "arxiv_id": "2201.11903",
+   "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+   "first_author": "Wei, Jason",
+   "n_authors": 9,
+   "published": "2022-01-28",
+   "arxiv_year": "2022",
+   "bib_year": "2022",
+   "venue_year_later_than_preprint": null
+  },
+  "selfconsistency": {
+   "arxiv_id": "2203.11171",
+   "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+   "first_author": "Wang, Xuezhi",
+   "n_authors": 8,
+   "published": "2022-03-21",
+   "arxiv_year": "2022",
+   "bib_year": "2022",
+   "venue_year_later_than_preprint": null
+  },
+  "selfrefine": {
+   "arxiv_id": "2303.17651",
+   "title": "Self-Refine: Iterative Refinement with Self-Feedback",
+   "first_author": "Madaan, Aman",
+   "n_authors": 16,
+   "published": "2023-03-30",
+   "arxiv_year": "2023",
+   "bib_year": "2023",
+   "venue_year_later_than_preprint": null
   }
  },
  "unverifiable": [
