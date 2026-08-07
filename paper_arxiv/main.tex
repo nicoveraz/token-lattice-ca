@@ -297,7 +297,7 @@ Manipulation & Construction & Model & Instrument responds? \\
 Change the automaton (\S\ref{sec:manufactured}) & varied & fixed & yes --- transition disappears \\
 Change family or scale                          & fixed  & varied & \textbf{no} --- 19 models, $70\times$ \\
 Change the training checkpoint                  & fixed  & varied & yes --- $\lca$ crosses zero \\
-Ablate internal components                      & fixed  & varied & yes --- see \S\ref{sec:ablation} \\
+Ablate internal components                      & fixed  & varied & yes --- ignition moves by up to $0.33$ \\
 \bottomrule
 \end{tabular}
 \caption{The discriminator. A reading determined by the construction moves when the construction
@@ -352,13 +352,36 @@ inside the seed spread. Whatever the exponent tracks, it is not simply how good 
 
 \subsection{Ablation response}
 \label{sec:ablation}
-% PENDING -- do not draft. experiments/ignition_level.py is running and decides whether F104 reads
-% as "revival" (adding an ablation raises ignition) or as "regression to a common level" (adding an
-% ablation drives ignition toward a characteristic value regardless of the reference).
-%
-% Row 4 of Table 1 survives EITHER WAY -- both readings are the instrument responding to a change
-% in the model with the construction held fixed -- but the prose differs completely and must not be
-% written twice. See findings.md F104 and the withdrawal notice in F103.
+Hold the construction fixed and remove part of the model. Ablating the early attention block leaves
+the lattice nearly frozen --- ignition falls from $0.977$ to $0.181$ at the final checkpoint --- and
+adding one \emph{further} attention ablation moves it again, by up to $0.33$. That the instrument
+responds at all to an internal manipulation, with every construction parameter unchanged, is what
+row~4 of Table~\ref{tab:discriminator} records.
+
+\emph{How} it responds is worth stating carefully, because the obvious reading of a single
+checkpoint is wrong. At the final checkpoint the further ablation \emph{raises} ignition, and five
+separate layers do so at Bonferroni-corrected significance, which invites the conclusion that
+removing more of a network makes its dynamics livelier. Measured across five post-crossing
+checkpoints, that conclusion does not survive. Regressing compound ignition on reference ignition
+gives a slope of $+0.568\,[+0.461, +0.674]$ for one layer and $+0.724\,[+0.618, +0.830]$ for
+another: both intervals exclude $0$, so the compound arm is not sitting at a fixed level, and both
+exclude $1$, so it is not tracking its reference with a constant offset either. The compound arm
+varies less than what it follows (standard deviations $0.229$ and $0.216$ against $0.304$).
+
+The behaviour is \textbf{partial regression toward an intermediate value}: an added ablation moves
+ignition part of the way toward a middle, so the \emph{sign} of the change depends on where the
+reference already sits. At the final checkpoint the reference is frozen near the bottom of its
+range and everything rises; at an earlier checkpoint, where the reference sits at $0.581$, the same
+two layers move in opposite directions --- one falls to $0.397$ while the other rises to $0.781$.
+No property of those particular layers explains that, and no account in which the effect is
+anti-monotone survives it.
+
+We report this as a description of the ablation response rather than as a mechanism. It is what row
+4 needs --- the instrument reads the model --- and it is deliberately less than the single-checkpoint
+measurement appeared to offer.
+% SOURCE: F107 (the slope test, 290 cells over five checkpoints) and F104 as amended by it.
+% The registered criterion returned NOT DECIDABLE because the design was built to separate two
+% hypotheses and the answer was a third; the slope, not the verdict, is the reportable result.
 
 % ---------------------------------------------------------------------------------------------
 \section{Gating estimators at their own geometry}

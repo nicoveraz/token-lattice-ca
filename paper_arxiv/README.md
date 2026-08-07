@@ -13,21 +13,21 @@ names preprint servers explicitly — but nothing here is shaped around that.
 | §3 Validation by reproduction | **drafted + figure** — `validation_ladder.png` (existing) |
 | §4 A phase transition that belongs to the probe | **drafted + figure** — `fig/manufactured.png`, new |
 | §5 The discriminator | **drafted + figure** — Table 1, `developmental.png` (existing) |
-| §5.3 Ablation response | **PENDING** — blocked on `experiments/ignition_level.py` |
+| §5.3 Ablation response | **drafted** — partial regression, slope +0.568 / +0.724 (F107) |
 | §6 Gating estimators | **drafted** — five retractions, one defect class, the SE case study |
 | §7 Limits | **drafted** |
 | §8 Related work | **drafted** — taken vs open, per F95 |
 | §9 Conclusion | **drafted** |
 
-## The one blocker
+## No blockers left
 
-`§5.3` is row 4 of the discriminator table. `ignition_level.py` decides whether F104 reads as
-**revival** (adding an ablation raises ignition) or as **regression to a common level** (adding an
-ablation drives ignition toward a characteristic value regardless of where the reference sits).
+`§5.3` is written. `ignition_level.py` returned neither registered hypothesis: the compound arm
+tracks its reference at slope +0.568 (L8) and +0.724 (L22), both intervals excluding 0 and 1 —
+**partial regression**, not revival and not a common level. Row 4 is unaffected; F104's
+anti-monotone headline is amended by F107.
 
-Row 4 survives either way — both are the instrument responding to a model change with the
-construction held fixed — but the prose is completely different and must not be written twice.
-See `findings.md` F104, and the withdrawal notice at the top of F103.
+Remaining before submission: two citations (IRIS, and self-consistency/CoT/self-refine for §1),
+and a first compile.
 
 ## Figures and tables
 

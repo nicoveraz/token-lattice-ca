@@ -3580,7 +3580,57 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F107 — the revival is PARTIAL REGRESSION: the compound arm tracks its reference at about two-thirds slope
+The experiment that tests F104's reading against the alternative it could not distinguish. 290 cells
+over five post-crossing checkpoints, ignition measured for `attn_early` and for
+`attn_early+attn_L{8,22}`, with the run as the unit.
+
+**The grid, and the thing F104 could not have seen from one checkpoint:**
+
+```
+  checkpoint    reference   +L8      delta      +L22     delta
+  step1000        0.917     0.938   +0.021     0.938    +0.021
+  step2000        0.896     0.870   -0.026     0.828    -0.068
+  step4000        0.771     0.703   -0.068     0.740    -0.031
+  step8000        0.581     0.397   -0.184     0.781    +0.200
+  step143000      0.181     0.516   +0.334     0.369    +0.188
+```
+
+**PRIMARY: neither hypothesis, and the slope is the result.** Regressing compound ignition on
+reference ignition: **L8 slope +0.568 [+0.461, +0.674]**, **L22 slope +0.724 [+0.618, +0.830]**.
+Both intervals exclude 0 — so this is not a fixed common level — and both exclude 1 — so it is not
+revival with a constant offset either. By the registered criterion that is NOT DECIDABLE, and the
+registration was right to say so, because the design was built to separate two hypotheses and the
+answer is a third. The spreads agree: sd(compound) is 0.229 and 0.216 against sd(reference) 0.304,
+so the compound arm varies *less* than what it is tracking.
+
+**What that means in one sentence.** Adding an ablation moves ignition part of the way toward an
+intermediate value rather than raising it — so the *sign* of the effect depends on where the
+reference already sits, not on the layer doing something special.
+
+**F104's framing is an artifact of measuring at one checkpoint.** At step143000 the reference is
+frozen at 0.181, near the bottom of its range, so partial regression looks like revival: both layers
+rise, and five layers cleared Bonferroni. At step8000 the reference sits at 0.581 and the same two
+layers go *opposite ways* — L8 falls to 0.397 while L22 rises to 0.781. No account in which "removing
+more of the network makes damage spread further" is a property of those layers survives that.
+
+**Row 4 of the discriminator table survives, and is unaffected.** The instrument still responds to
+an internal ablation with the construction held fixed, by up to 0.33 in ignition — far above the
+seed floor. What changes is the mechanism, not whether there is one.
+
+**Boundary.** One model family, one radius, greedy. The five checkpoints are a training trajectory
+rather than a random sample of models, so the slope is a description of that trajectory and not an
+estimate of a population parameter. This distinguishes two readings of an existing effect; it does
+not establish what sets the level.
+
 ### F104 — ablating MORE of the network makes damage spread FURTHER: five layers revive a frozen lattice
+> **AMENDED 7 Aug by F107. The headline overstates what one checkpoint can support.** The five
+> layers do rise at step143000 and the Bonferroni statistics below stand as measured. What does not
+> stand is the anti-monotone reading — "removing more makes damage spread further" — which F107
+> shows is what partial regression looks like when the reference happens to be frozen near the
+> bottom of its range. Across five checkpoints the compound arm tracks its reference at slope
+> +0.568 (L8) and +0.724 (L22), and at step8000 these same two layers move in *opposite*
+> directions. Read this entry for the step143000 measurement; read F107 for what it means.
 The robust result of #103's run, and not the one it was designed to find. From the same 360 cells
 as F103, but on a quantity F103's error was structurally unable to touch.
 
