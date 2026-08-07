@@ -7,8 +7,8 @@ not built on recollection. Every policy quote below was fetched, not remembered.
 
 ## 1. The decision
 
-**Target: TMLR (Transactions on Machine Learning Research), as ONE paper subsuming the I4D
-workshop submission rather than two papers side by side.**
+**Target: TMLR, as ONE paper. The I4D workshop submission is WITHDRAWN (author decision,
+7 Aug 2026).**
 
 The subsuming is not a convenience. Claim A + B (see `plan_paper2.md`) cannot stand without the
 instrument validation that currently lives in the workshop paper — the Domany–Kinzel bit-exact
@@ -49,7 +49,31 @@ submission, shortened review period.
 
 ---
 
-## 3. The I4D question, and why the exemption applies
+## 3. I4D: withdrawn, and what that changes
+
+**Decision, 7 Aug 2026: withdraw the I4D submission and put everything into one TMLR paper.**
+
+The policy work below is kept because it was done, and because it documents that the withdrawal was
+a choice rather than a necessity — the CFP permits everything the TMLR route needs. The record
+matters if the decision is ever revisited.
+
+**What withdrawal changes, in one line:** TMLR's reuse rule now has nothing to bite on. With no
+paper published, accepted, or submitted in parallel anywhere, the exemption analysis below becomes
+moot rather than load-bearing, and the paper may use every result, figure and sentence without
+qualification. Item 6 of the checklist collapses to "nothing to declare".
+
+**What it costs.** The 29 Sept notification and whatever reviewer feedback came with it, and the
+public timestamp. F95 found a near-scoop three weeks old and the dynamics angle is currently
+unoccupied, so the timestamp was the one real asset here. **An arXiv preprint restores it** — TMLR's
+own exemption names preprint servers explicitly, so posting one costs nothing and forecloses
+nothing. Worth doing when the draft is stable, not before.
+
+**The withdrawal itself is a browser action on OpenReview** (`openreview.net/group?id=NeurIPS.cc/
+2026/Workshop/Interp4Discovery`) and has to be done by the author.
+
+---
+
+## 3b. The policy analysis, retained for the record
 
 **The workshop paper is SUBMITTED, NOT ACCEPTED.** Deadline 29 Aug 2026; notification 29 Sept 2026;
 workshop 12–13 Dec, Atlanta. The tag `camera-ready/neurips26-i4d` is a revised pre-deadline
@@ -102,17 +126,14 @@ only thing forgone is the in-person feedback -- not the acceptance, and not the 
 
 | | Item | State |
 |---|---|---|
+| 0 | Withdraw I4D on OpenReview | **AUTHOR ACTION** — browser, cannot be scripted |
 | 1 | Paper written | **NOT STARTED** — `plan_paper2.md` is a plan, not a draft |
 | 2 | `ignition_level` result | **RUNNING** — may amend F104, which is row 4 of the discriminator table |
-| 3 | `gatecheck` shippable | Six §9.5 guards all exist as primitives; `pyproject.toml` and `README.md` present; **LICENSE missing** |
+| 3 | `gatecheck` shippable | **DONE** — six §9.5 guards exist as primitives, `pyproject.toml`, `README.md`, MIT `LICENSE` |
 | 4 | Anonymised version | Machinery exists (`build_mirror.py`), built for I4D's rules — re-check against TMLR's |
 | 5 | Code/data availability | Strong: repo, OSF mirror, per-run result files, provenance stamps |
-| 6 | Prior-work declaration | Declare the I4D submission and its non-archival status, with the source |
+| 6 | Prior-work declaration | **Moot once I4D is withdrawn** — nothing published, accepted, or in parallel |
 | 7 | Scope statement | Single-family developmental transition, stated as a boundary rather than implied away |
-
-**Item 3 needs an author decision, not engineering.** A LICENSE file is a rights choice and is not
-mine to pick. Without one the package is not usable by a reader, which undercuts Claim B shipping
-as a package rather than a narrative.
 
 **Item 2 is the only scientific blocker.** F104 is load-bearing for row 4 of `plan_paper2` §7.1, and
 the slope test may reframe it from "revival" to "regression to a common ignition level". Row 4
