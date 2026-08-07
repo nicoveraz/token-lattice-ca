@@ -3799,6 +3799,60 @@ are scored on Pile text, which is training distribution for Pythia and OLMo but 
 weighted for either. Architecture, data order and optimiser still differ across families
 simultaneously, so F98's attribution note applies unchanged.
 
+### F100 — λ_ca is not a function of model quality: the cross-family collapse test, in a comparable unit (#84)
+F88 asked whether λ_ca collapses against loss rather than step within Pythia and returned NOT
+DECIDABLE — both alignments sat at the seed floor. F98 then showed the transition's *timing* cannot
+be compared across families in **tokens**, because no public non-Pythia family has a checkpoint
+inside Pythia's dip window. Loss escapes that: it is a property of the model, not of anyone's
+checkpoint schedule. So if λ_ca were a function of *how good* the model is, the three families
+should land on one curve even though their token grids cannot be aligned.
+
+**The unit is the whole experiment.** Nats-per-token is **not comparable across tokenizers** — a
+coarser tokenizer packs more text per prediction and scores lower for free. Pythia has 50277 tokens,
+OLMo-1B-0724 50280, OLMo-2 **100278**. So this measures **bits per UTF-8 byte** on a fixed 257163-byte
+Pile slice, the same raw text for every model, with the byte count taken from the text rather than
+from any tokenization. `loss_collapse.py` was within-Pythia and never had to care.
+
+```
+ family        checkpoint            tokens      bpb   nats/tok    λ_ca
+ pythia-410m   step128                 0.3B   2.6275     7.5879  −0.0926
+ pythia-410m   step256                 0.5B   2.2258     6.4278  −0.0185
+ pythia-410m   step512                 1.1B   1.8613     5.3753  +0.0679
+ pythia-410m   step4000                8.4B   0.9841     2.8420  +0.1724
+ olmo2-1b      stage1-step0            0.0B   3.9511    11.9007  +0.3598
+ olmo2-1b      stage1-step300          1.0B   2.3229     6.9968  +0.1843
+ olmo2-1b      stage1-step40000       84.0B   0.8587     2.5863  +0.1890
+ olmo1-0724    step0                   0.0B   3.9155    11.3075  +0.3347
+ olmo1-0724    step1000                2.0B   1.5748     4.5477  +0.1593
+ olmo1-0724    step10000              20.0B   0.9858     2.8469  +0.1755
+```
+
+**NO COLLAPSE, and the registered kill condition fires.** Across-family spread of λ_ca at matched
+bits-per-byte is **0.0588** against a seed floor of 0.0197 — three times the floor. Matched *token
+count* gives **0.0318**, which is *better* than matched loss, the opposite of the hypothesis.
+
+**The decisive cell.** At bpb ≈ 2.3 — the same modelling quality — **Pythia sits at λ = −0.02
+(inside its dip) while OLMo-2 sits at +0.18 (already at plateau)**. So the dip is not "the thing that
+happens at a certain loss level". λ_ca is not a function of model quality, and cross-family timing
+stays unreachable by this route too.
+
+**What it does not settle.** OLMo-2's 1B-token checkpoint is the only one near Pythia's dip window,
+and it is already at plateau — so OLMo-2 either has no dip or exits it faster than Pythia. This
+cannot distinguish those, and no available checkpoint can.
+
+**The unit gate was wrong on its first pass, in the way this file exists to prevent.** It asserted
+bpb ∈ (0.4, 2.5) — a range guessed from trained-model intuition — and flagged three *legitimate*
+cells (Pythia step128 at 2.63, both random inits near 3.95) as unit errors. A barely-trained model
+genuinely scores high, and a randomly initialised one can score *worse than uniform* because its
+structure is actively wrong, so there is no defensible ceiling on the value. Replaced with a gate on
+the **denominator**, which is what the check is actually for: bytes-per-token runs 4.17–4.35 across
+all 16 cells, and a tokens-instead-of-bytes bug — the one error that would reintroduce the tokenizer
+confound — would pin it at exactly 1.0. **Fourth instance this session of a check carrying the
+defect it exists to catch** (F97, F98, F99, this).
+
+**No new lattice runs.** All 16 λ_ca values were already measured by F94's grid and F98's two family
+runs; this only adds the loss axis.
+
 ### F99 — the transplant: the CONDITIONAL moves, and F94's elimination was an ensemble artifact
 The experiment F96 specified. F94 measured single-token sensitivity `s` on uniformly random token
 windows, found it saturated and flat, and eliminated it as λ_ca's explanandum. F96 showed that

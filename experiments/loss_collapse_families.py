@@ -95,7 +95,16 @@ FAMILIES = [
 N_DOCS = 64             # fixed Pile documents, the SAME raw text for every model
 MAX_CHARS = 4000        # per document, so the byte count is bounded and identical across models
 SEED = 20260806
-BPB_RANGE = (0.4, 2.5)  # the unit gate: anything outside this is not a bits-per-byte number
+# THE UNIT GATE, and the first version of it was wrong in the way this file exists to prevent.
+# It asserted bpb in (0.4, 2.5), a range guessed from trained-model intuition -- and then flagged
+# three legitimate cells (pythia step128 at 2.63, both random inits near 3.95) as unit errors. A
+# barely-trained model genuinely scores high, and a randomly initialised one can score WORSE than
+# uniform because its structure is actively wrong, so there is no defensible ceiling on the value.
+# What the gate is actually for is catching a DENOMINATOR error -- dividing by tokens instead of
+# bytes, which is the one mistake that would silently reintroduce the tokenizer confound. That is
+# testable directly: bytes-per-token must be in a sane range for a BPE tokenizer over English.
+# A tokens-denominator bug makes this exactly 1.0.
+BYTES_PER_TOKEN_RANGE = (1.5, 8.0)
 
 
 def pile_slice():
@@ -177,7 +186,11 @@ def main():
         contrast="the same spread at matched TOKEN COUNT, which F98 showed cannot align families",
         power="registered because F88 died of its absence: readable only if the two alignments "
               "differ by MORE than the seed floor; otherwise NOT DECIDABLE, as F88 returned",
-        unit_gate=f"bpb must be finite and within {BPB_RANGE} for every cell",
+        unit_gate=f"bytes-per-token must be within {BYTES_PER_TOKEN_RANGE} for every cell -- this "
+                  f"tests the DENOMINATOR (a tokens-instead-of-bytes bug pins it at 1.0), which is "
+                  f"the error that would reintroduce the tokenizer confound. An earlier version "
+                  f"gated the bpb VALUE against a guessed range and flagged three legitimate "
+                  f"cells, including both random inits",
         cohort="a checkpoint that fails to load makes the verdict NOT DECIDABLE (gatecheck.cohort)",
         kill="no collapse against bpb either -> lambda_ca is not a function of model quality in "
              "any unit available, and cross-family timing is unreachable by this route",
@@ -247,13 +260,17 @@ def analyse(res):
                           unit="checkpoint")
     parts.append(f"COHORT: {coh.reason}")
 
-    bad = [f"{c['family']}|{c['revision']}={c['bpb']}" for c in cells
-           if not (BPB_RANGE[0] <= c["bpb"] <= BPB_RANGE[1])]
+    bpt = {f"{c['family']}|{c['revision']}": c["n_bytes"] / max(c["n_tokens"], 1) for c in cells}
+    bad = [f"{k}={v:.2f}" for k, v in bpt.items()
+           if not (BYTES_PER_TOKEN_RANGE[0] <= v <= BYTES_PER_TOKEN_RANGE[1])]
     parts.append(
         f"UNIT GATE: bits-per-byte on the shared {res['_slice']['n_bytes']}-byte Pile slice, byte "
-        f"count taken from the raw text so the number is tokenizer-independent. "
-        + (f"ALL {len(cells)} cells inside {BPB_RANGE}." if not bad else
-           f"OUTSIDE RANGE: {bad} -- these are not bits-per-byte numbers and nothing below is read."))
+        f"count taken from the raw text. The gate tests the DENOMINATOR rather than the value: "
+        f"bytes-per-token runs {min(bpt.values()):.2f}-{max(bpt.values()):.2f} across the "
+        f"{len(cells)} cells, and a tokens-instead-of-bytes bug -- the one error that would "
+        f"reintroduce the tokenizer confound -- would pin it at exactly 1.0. "
+        + (f"All cells inside {BYTES_PER_TOKEN_RANGE}." if not bad else
+           f"OUTSIDE RANGE: {bad} -- the denominator is not bytes and nothing below is read."))
 
     print(f"\n  {'family':<12} {'checkpoint':<28} {'tokens':>8} {'bpb':>8} {'nats/tok':>9} {'lambda':>9}")
     curves = {}
@@ -264,7 +281,8 @@ def analyse(res):
         curves.setdefault(c["family"], []).append(c)
 
     if bad or not coh.complete:
-        res["analysis"] = dict(cohort=coh.block(), unit_gate_failures=bad)
+        res["analysis"] = dict(cohort=coh.block(), unit_gate_failures=bad,
+                               bytes_per_token={k: round(v, 3) for k, v in bpt.items()})
         res["verdict"] = " ".join(parts) + " NOT DECIDABLE."
         res["_analysis_provenance"] = stamp(__file__)
         print(f"\n  -> {res['verdict']}")

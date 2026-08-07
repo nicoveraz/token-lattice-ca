@@ -1,390 +1,357 @@
 {
-  "cells": {
-    "pythia-410m|step128": {
-      "bpb": 2.62748,
-      "nats_per_token": 7.58787,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "pythia-410m",
-      "revision": "step128",
-      "tokens_B": 0.27,
-      "secs": 30.7,
-      "lambda_ca": -0.09263,
-      "lambda_sd": 0.05264,
-      "n_seeds": 6
-    },
-    "pythia-410m|step256": {
-      "bpb": 2.22579,
-      "nats_per_token": 6.42782,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "pythia-410m",
-      "revision": "step256",
-      "tokens_B": 0.54,
-      "secs": 26.4,
-      "lambda_ca": -0.01845,
-      "lambda_sd": 0.11631,
-      "n_seeds": 8
-    },
-    "pythia-410m|step512": {
-      "bpb": 1.86132,
-      "nats_per_token": 5.37528,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "pythia-410m",
-      "revision": "step512",
-      "tokens_B": 1.07,
-      "secs": 28.1,
-      "lambda_ca": 0.06793,
-      "lambda_sd": 0.13248,
-      "n_seeds": 8
-    },
-    "pythia-410m|step1000": {
-      "bpb": 1.36826,
-      "nats_per_token": 3.95137,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "pythia-410m",
-      "revision": "step1000",
-      "tokens_B": 2.1,
-      "secs": 22.3,
-      "lambda_ca": 0.19235,
-      "lambda_sd": 0.02928,
-      "n_seeds": 8
-    },
-    "pythia-410m|step2000": {
-      "bpb": 1.10158,
-      "nats_per_token": 3.18123,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "pythia-410m",
-      "revision": "step2000",
-      "tokens_B": 4.19,
-      "secs": 21.7,
-      "lambda_ca": 0.15582,
-      "lambda_sd": 0.03747,
-      "n_seeds": 8
-    },
-    "pythia-410m|step4000": {
-      "bpb": 0.98411,
-      "nats_per_token": 2.84199,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "pythia-410m",
-      "revision": "step4000",
-      "tokens_B": 8.39,
-      "secs": 21.8,
-      "lambda_ca": 0.17243,
-      "lambda_sd": 0.01818,
-      "n_seeds": 8
-    },
-    "olmo2-1b|stage1-step0-tokens0B": {
-      "bpb": 3.95107,
-      "nats_per_token": 11.90073,
-      "n_tokens": 59180,
-      "n_bytes": 257163,
-      "family": "olmo2-1b",
-      "revision": "stage1-step0-tokens0B",
-      "tokens_B": 0.0,
-      "secs": 777.6,
-      "lambda_ca": 0.3598,
-      "lambda_sd": 0.10507,
-      "n_seeds": 8
-    },
-    "olmo2-1b|stage1-step300-tokens1B": {
-      "bpb": 2.32294,
-      "nats_per_token": 6.99676,
-      "n_tokens": 59180,
-      "n_bytes": 257163,
-      "family": "olmo2-1b",
-      "revision": "stage1-step300-tokens1B",
-      "tokens_B": 1.0,
-      "secs": 1159.4,
-      "lambda_ca": 0.18433,
-      "lambda_sd": 0.05781,
-      "n_seeds": 8
-    },
-    "olmo2-1b|stage1-step10000-tokens21B": {
-      "bpb": 0.93583,
-      "nats_per_token": 2.81875,
-      "n_tokens": 59180,
-      "n_bytes": 257163,
-      "family": "olmo2-1b",
-      "revision": "stage1-step10000-tokens21B",
-      "tokens_B": 21.0,
-      "secs": 1314.6,
-      "lambda_ca": 0.18129,
-      "lambda_sd": 0.03609,
-      "n_seeds": 8
-    },
-    "olmo2-1b|stage1-step20000-tokens42B": {
-      "bpb": 0.88955,
-      "nats_per_token": 2.67936,
-      "n_tokens": 59180,
-      "n_bytes": 257163,
-      "family": "olmo2-1b",
-      "revision": "stage1-step20000-tokens42B",
-      "tokens_B": 42.0,
-      "secs": 1379.8,
-      "lambda_ca": 0.18738,
-      "lambda_sd": 0.03028,
-      "n_seeds": 8
-    },
-    "olmo2-1b|stage1-step40000-tokens84B": {
-      "bpb": 0.85867,
-      "nats_per_token": 2.58634,
-      "n_tokens": 59180,
-      "n_bytes": 257163,
-      "family": "olmo2-1b",
-      "revision": "stage1-step40000-tokens84B",
-      "tokens_B": 84.0,
-      "secs": 1858.1,
-      "lambda_ca": 0.18896,
-      "lambda_sd": 0.03038,
-      "n_seeds": 8
-    },
-    "olmo1-0724|step0-tokens0B": {
-      "bpb": 3.9155,
-      "nats_per_token": 11.3075,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "olmo1-0724",
-      "revision": "step0-tokens0B",
-      "tokens_B": 0.0,
-      "secs": 366.8,
-      "lambda_ca": 0.33467,
-      "lambda_sd": 0.09639,
-      "n_seeds": 8
-    },
-    "olmo1-0724|step1000-tokens2B": {
-      "bpb": 1.57477,
-      "nats_per_token": 4.54774,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "olmo1-0724",
-      "revision": "step1000-tokens2B",
-      "tokens_B": 2.0,
-      "secs": 1158.2,
-      "lambda_ca": 0.15933,
-      "lambda_sd": 0.02396,
-      "n_seeds": 8
-    },
-    "olmo1-0724|step2000-tokens4B": {
-      "bpb": 1.3367,
-      "nats_per_token": 3.86024,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "olmo1-0724",
-      "revision": "step2000-tokens4B",
-      "tokens_B": 4.0,
-      "secs": 1437.1,
-      "lambda_ca": 0.20868,
-      "lambda_sd": 0.07232,
-      "n_seeds": 8
-    },
-    "olmo1-0724|step4000-tokens8B": {
-      "bpb": 1.15423,
-      "nats_per_token": 3.33329,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "olmo1-0724",
-      "revision": "step4000-tokens8B",
-      "tokens_B": 8.0,
-      "secs": 1375.4,
-      "lambda_ca": 0.17673,
-      "lambda_sd": 0.0272,
-      "n_seeds": 8
-    },
-    "olmo1-0724|step10000-tokens20B": {
-      "bpb": 0.9858,
-      "nats_per_token": 2.84687,
-      "n_tokens": 61724,
-      "n_bytes": 257163,
-      "family": "olmo1-0724",
-      "revision": "step10000-tokens20B",
-      "tokens_B": 20.0,
-      "secs": 1628.5,
-      "lambda_ca": 0.17551,
-      "lambda_sd": 0.02378,
-      "n_seeds": 8
-    }
+ "cells": {
+  "pythia-410m|step128": {
+   "bpb": 2.62748,
+   "nats_per_token": 7.58787,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "pythia-410m",
+   "revision": "step128",
+   "tokens_B": 0.27,
+   "secs": 30.7,
+   "lambda_ca": -0.09263,
+   "lambda_sd": 0.05264,
+   "n_seeds": 6
   },
-  "_preregistration": {
-    "families": [
-      "pythia-410m",
-      "olmo2-1b",
-      "olmo1-0724"
-    ],
-    "n_docs": 64,
-    "max_chars": 4000,
-    "seed": 20260806,
-    "metric": "bits per UTF-8 byte on a FIXED Pile slice; the byte count comes from the raw text",
-    "why_bpb": "nats-per-token is not comparable across tokenizers (pythia 50277, olmo2 100278) -- a coarser tokenizer scores lower per-token loss for free. loss_collapse.py was within-Pythia so it never had to care; here that is the whole comparison",
-    "primary": "do the three families' (bpb, lambda_ca) curves collapse? across-family spread of lambda_ca at matched bpb, against the lambda seed floor",
-    "contrast": "the same spread at matched TOKEN COUNT, which F98 showed cannot align families",
-    "power": "registered because F88 died of its absence: readable only if the two alignments differ by MORE than the seed floor; otherwise NOT DECIDABLE, as F88 returned",
-    "unit_gate": "bpb must be finite and within (0.4, 2.5) for every cell",
-    "cohort": "a checkpoint that fails to load makes the verdict NOT DECIDABLE (gatecheck.cohort)",
-    "kill": "no collapse against bpb either -> lambda_ca is not a function of model quality in any unit available, and cross-family timing is unreachable by this route",
-    "follows": "#84 (F88 NOT DECIDABLE, within-Pythia) extended cross-family by F98"
+  "pythia-410m|step256": {
+   "bpb": 2.22579,
+   "nats_per_token": 6.42782,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "pythia-410m",
+   "revision": "step256",
+   "tokens_B": 0.54,
+   "secs": 26.4,
+   "lambda_ca": -0.01845,
+   "lambda_sd": 0.11631,
+   "n_seeds": 8
   },
-  "_slice": {
-    "n_docs": 64,
-    "n_bytes": 257163,
-    "note": "identical raw text scored by every model; bytes from the text"
+  "pythia-410m|step512": {
+   "bpb": 1.86132,
+   "nats_per_token": 5.37528,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "pythia-410m",
+   "revision": "step512",
+   "tokens_B": 1.07,
+   "secs": 28.1,
+   "lambda_ca": 0.06793,
+   "lambda_sd": 0.13248,
+   "n_seeds": 8
   },
-  "analysis": {
-    "spread_at_matched_bpb": 0.05876,
-    "spread_at_matched_tokens": 0.0318,
-    "lambda_seed_floor": 0.01966,
-    "n_families_bpb": 3,
-    "n_families_tokens": 3,
-    "matched_bpb_window": [
-      0.9858,
-      2.62748
-    ],
-    "n_in_window": 10,
-    "decided": false,
-    "gates": [
-      {
-        "kind": "dynamic_range",
-        "usable": true,
-        "reason": "lambda_ca across the matched-bpb window spans 0.3013 against its own noise floor 0.01966 (15.33x, gate 2.0x)",
-        "span": 0.30131,
-        "floor": 0.019658452400462503,
-        "ratio": 15.327249259606576,
-        "k": 2.0
-      },
-      {
-        "kind": "noise_gate",
-        "usable": false,
-        "reason": "numerator is 0.02695 against a noise floor of 0.01966 (1.37x, gate 2.0x)",
-        "numerator": 0.02695414249988761,
-        "floor": 0.019658452400462503,
-        "ratio": 1.3711223015324168,
-        "k": 2.0
-      }
-    ],
-    "directional": {
-      "kind": "directional",
-      "usable": false,
-      "reason": "effect = -0.02695, hypothesis predicted an increase; sign is OPPOSITE to the prediction, which is evidence against the hypothesis, not weak evidence for it",
-      "effect": -0.02695414249988761,
-      "expect": "increase",
-      "right_sign": false,
-      "floor": 0.019658452400462503
-    },
-    "cohort": {
-      "complete": true,
-      "n_declared": 16,
-      "n_realised": 16,
-      "missing": [],
-      "extra": [],
-      "tolerated": [],
-      "reason": "cohort intact: all 16 declared checkpoints measured"
-    }
+  "pythia-410m|step1000": {
+   "bpb": 1.36826,
+   "nats_per_token": 3.95137,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "pythia-410m",
+   "revision": "step1000",
+   "tokens_B": 2.1,
+   "secs": 22.3,
+   "lambda_ca": 0.19235,
+   "lambda_sd": 0.02928,
+   "n_seeds": 8
   },
-  "verdict": "COHORT: cohort intact: all 16 declared checkpoints measured UNITS: all 16 cells satisfy bpb = nats/token * tokens / (ln2 * bytes) to 0.0001 and sit under the 8.0 bits/byte ceiling. PRIMARY: across-family spread of lambda_ca at matched bits-per-byte is 0.0588 over 3 families, against 0.0318 at matched token count over 3. Seed floor 0.0197. NOT DECIDABLE, and for the reason F88 was: noise_gate: numerator is 0.02695 against a noise floor of 0.01966 (1.37x, gate 2.0x). Not a null about loss -- the test is underpowered, and the fix is finer checkpoint spacing, which for the non-Pythia families does not exist to be had. BOUNDARY: bits-per-byte removes the tokenizer confound, not the corpus one -- all three families are scored on Pile text, which is training distribution for Pythia and OLMo but not identically weighted for either. Architecture, data order and optimiser still differ across families simultaneously (F98's attribution note applies unchanged).",
-  "_analysis_provenance": {
-    "script": "loss_collapse_families.py",
-    "sha256": "3b8c77725336df063ce91729f7c5a2d1ba851b9da9edbf6665db4c389a24867a",
-    "imports": {
-      "experiments/loss_collapse_families.py": "3b8c77725336df063ce91729f7c5a2d1ba851b9da9edbf6665db4c389a24867a",
-      "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
-      "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
-      "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-      "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
-      "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
-      "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
-      "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
-      "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
-      "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
-      "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
-      "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
-      "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
-      "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
-      "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
-    },
-    "env": {
-      "python": "3.11.5",
-      "implementation": "CPython",
-      "platform": "macOS-26.5.2-arm64-arm-64bit",
-      "packages": {
-        "numpy": "2.4.6",
-        "scipy": "1.17.1",
-        "torch": "2.13.0",
-        "jax": "0.10.2",
-        "transformers": "5.14.1",
-        "pandas": "3.0.3",
-        "matplotlib": "3.11.1"
-      }
-    },
-    "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+  "pythia-410m|step2000": {
+   "bpb": 1.10158,
+   "nats_per_token": 3.18123,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "pythia-410m",
+   "revision": "step2000",
+   "tokens_B": 4.19,
+   "secs": 21.7,
+   "lambda_ca": 0.15582,
+   "lambda_sd": 0.03747,
+   "n_seeds": 8
   },
-  "_superseded_verdict": {
-    "verdict": "COHORT: cohort intact: all 16 declared checkpoints measured UNIT GATE: bits-per-byte on the shared 257163-byte Pile slice, byte count taken from the raw text so the number is tokenizer-independent. OUTSIDE RANGE: ['pythia-410m|step128=2.62748', 'olmo2-1b|stage1-step0-tokens0B=3.95107', 'olmo1-0724|step0-tokens0B=3.9155'] -- these are not bits-per-byte numbers and nothing below is read. NOT DECIDABLE.",
-    "analysis": {
-      "cohort": {
-        "complete": true,
-        "n_declared": 16,
-        "n_realised": 16,
-        "missing": [],
-        "extra": [],
-        "tolerated": [],
-        "reason": "cohort intact: all 16 declared checkpoints measured"
-      },
-      "unit_gate_failures": [
-        "pythia-410m|step128=2.62748",
-        "olmo2-1b|stage1-step0-tokens0B=3.95107",
-        "olmo1-0724|step0-tokens0B=3.9155"
-      ]
-    },
-    "by": "loss_collapse_families.py",
-    "why": "superseded by loss_collapse_decide.py; see _decision_amendments"
+  "pythia-410m|step4000": {
+   "bpb": 0.98411,
+   "nats_per_token": 2.84199,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "pythia-410m",
+   "revision": "step4000",
+   "tokens_B": 8.39,
+   "secs": 21.8,
+   "lambda_ca": 0.17243,
+   "lambda_sd": 0.01818,
+   "n_seeds": 8
   },
-  "_decision_amendments": [
-    {
-      "supersedes": "unit_gate: bpb must be finite and within (0.4, 2.5) for every cell",
-      "replaced_by": "bpb = nats_per_token * n_tokens / (ln2 * n_bytes) to 0.0001 relative, plus a 8.0 bits/byte ceiling",
-      "why": "The registered interval could not distinguish wrong units from high loss. It rejected the grid's own random-init controls (3.92-3.95 bpb, correct values for a model that has learned nothing) and pythia-410m|step128 at 2.63, a real dip-region checkpoint. That follows from the design, not from the measurements, so this is a specification repair rather than a criterion tuned to an outcome.",
-      "strictness": "stronger against the error the gate was written for: nats and bits differ by ln2, a 44% discrepancy, against a 1e-4 tolerance"
-    }
-  ],
-  "_decision_provenance": {
-    "script": "loss_collapse_decide.py",
-    "sha256": "aa20a4d37de280663fd7cf45c79434d6d81fa01096bda617af9d9fec29c4c62c",
-    "imports": {
-      "experiments/loss_collapse_decide.py": "aa20a4d37de280663fd7cf45c79434d6d81fa01096bda617af9d9fec29c4c62c",
-      "experiments/loss_collapse_families.py": "3b8c77725336df063ce91729f7c5a2d1ba851b9da9edbf6665db4c389a24867a",
-      "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
-      "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
-      "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-      "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
-      "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
-      "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
-      "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
-      "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
-      "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
-      "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
-      "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
-      "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
-      "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
-      "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
-    },
-    "env": {
-      "python": "3.11.5",
-      "implementation": "CPython",
-      "platform": "macOS-26.5.2-arm64-arm-64bit",
-      "packages": {
-        "numpy": "2.4.6",
-        "scipy": "1.17.1",
-        "torch": "2.13.0",
-        "jax": "0.10.2",
-        "transformers": "5.14.1",
-        "pandas": "3.0.3",
-        "matplotlib": "3.11.1"
-      }
-    },
-    "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+  "olmo2-1b|stage1-step0-tokens0B": {
+   "bpb": 3.95107,
+   "nats_per_token": 11.90073,
+   "n_tokens": 59180,
+   "n_bytes": 257163,
+   "family": "olmo2-1b",
+   "revision": "stage1-step0-tokens0B",
+   "tokens_B": 0.0,
+   "secs": 777.6,
+   "lambda_ca": 0.3598,
+   "lambda_sd": 0.10507,
+   "n_seeds": 8
+  },
+  "olmo2-1b|stage1-step300-tokens1B": {
+   "bpb": 2.32294,
+   "nats_per_token": 6.99676,
+   "n_tokens": 59180,
+   "n_bytes": 257163,
+   "family": "olmo2-1b",
+   "revision": "stage1-step300-tokens1B",
+   "tokens_B": 1.0,
+   "secs": 1159.4,
+   "lambda_ca": 0.18433,
+   "lambda_sd": 0.05781,
+   "n_seeds": 8
+  },
+  "olmo2-1b|stage1-step10000-tokens21B": {
+   "bpb": 0.93583,
+   "nats_per_token": 2.81875,
+   "n_tokens": 59180,
+   "n_bytes": 257163,
+   "family": "olmo2-1b",
+   "revision": "stage1-step10000-tokens21B",
+   "tokens_B": 21.0,
+   "secs": 1314.6,
+   "lambda_ca": 0.18129,
+   "lambda_sd": 0.03609,
+   "n_seeds": 8
+  },
+  "olmo2-1b|stage1-step20000-tokens42B": {
+   "bpb": 0.88955,
+   "nats_per_token": 2.67936,
+   "n_tokens": 59180,
+   "n_bytes": 257163,
+   "family": "olmo2-1b",
+   "revision": "stage1-step20000-tokens42B",
+   "tokens_B": 42.0,
+   "secs": 1379.8,
+   "lambda_ca": 0.18738,
+   "lambda_sd": 0.03028,
+   "n_seeds": 8
+  },
+  "olmo2-1b|stage1-step40000-tokens84B": {
+   "bpb": 0.85867,
+   "nats_per_token": 2.58634,
+   "n_tokens": 59180,
+   "n_bytes": 257163,
+   "family": "olmo2-1b",
+   "revision": "stage1-step40000-tokens84B",
+   "tokens_B": 84.0,
+   "secs": 1858.1,
+   "lambda_ca": 0.18896,
+   "lambda_sd": 0.03038,
+   "n_seeds": 8
+  },
+  "olmo1-0724|step0-tokens0B": {
+   "bpb": 3.9155,
+   "nats_per_token": 11.3075,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "olmo1-0724",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "secs": 366.8,
+   "lambda_ca": 0.33467,
+   "lambda_sd": 0.09639,
+   "n_seeds": 8
+  },
+  "olmo1-0724|step1000-tokens2B": {
+   "bpb": 1.57477,
+   "nats_per_token": 4.54774,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "olmo1-0724",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "secs": 1158.2,
+   "lambda_ca": 0.15933,
+   "lambda_sd": 0.02396,
+   "n_seeds": 8
+  },
+  "olmo1-0724|step2000-tokens4B": {
+   "bpb": 1.3367,
+   "nats_per_token": 3.86024,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "olmo1-0724",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "secs": 1437.1,
+   "lambda_ca": 0.20868,
+   "lambda_sd": 0.07232,
+   "n_seeds": 8
+  },
+  "olmo1-0724|step4000-tokens8B": {
+   "bpb": 1.15423,
+   "nats_per_token": 3.33329,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "olmo1-0724",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "secs": 1375.4,
+   "lambda_ca": 0.17673,
+   "lambda_sd": 0.0272,
+   "n_seeds": 8
+  },
+  "olmo1-0724|step10000-tokens20B": {
+   "bpb": 0.9858,
+   "nats_per_token": 2.84687,
+   "n_tokens": 61724,
+   "n_bytes": 257163,
+   "family": "olmo1-0724",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "secs": 1628.5,
+   "lambda_ca": 0.17551,
+   "lambda_sd": 0.02378,
+   "n_seeds": 8
   }
+ },
+ "_preregistration": {
+  "families": [
+   "pythia-410m",
+   "olmo2-1b",
+   "olmo1-0724"
+  ],
+  "n_docs": 64,
+  "max_chars": 4000,
+  "seed": 20260806,
+  "metric": "bits per UTF-8 byte on a FIXED Pile slice; the byte count comes from the raw text",
+  "why_bpb": "nats-per-token is not comparable across tokenizers (pythia 50277, olmo2 100278) -- a coarser tokenizer scores lower per-token loss for free. loss_collapse.py was within-Pythia so it never had to care; here that is the whole comparison",
+  "primary": "do the three families' (bpb, lambda_ca) curves collapse? across-family spread of lambda_ca at matched bpb, against the lambda seed floor",
+  "contrast": "the same spread at matched TOKEN COUNT, which F98 showed cannot align families",
+  "power": "registered because F88 died of its absence: readable only if the two alignments differ by MORE than the seed floor; otherwise NOT DECIDABLE, as F88 returned",
+  "unit_gate": "bpb must be finite and within (0.4, 2.5) for every cell",
+  "cohort": "a checkpoint that fails to load makes the verdict NOT DECIDABLE (gatecheck.cohort)",
+  "kill": "no collapse against bpb either -> lambda_ca is not a function of model quality in any unit available, and cross-family timing is unreachable by this route",
+  "follows": "#84 (F88 NOT DECIDABLE, within-Pythia) extended cross-family by F98"
+ },
+ "_slice": {
+  "n_docs": 64,
+  "n_bytes": 257163,
+  "note": "identical raw text scored by every model; bytes from the text"
+ },
+ "analysis": {
+  "spread_at_matched_bpb": 0.05876,
+  "spread_at_matched_tokens": 0.0318,
+  "lambda_seed_floor": 0.01966,
+  "n_families_bpb": 3,
+  "n_families_tokens": 3,
+  "decided": true,
+  "cohort": {
+   "complete": true,
+   "n_declared": 16,
+   "n_realised": 16,
+   "missing": [],
+   "extra": [],
+   "tolerated": [],
+   "reason": "cohort intact: all 16 declared checkpoints measured"
+  }
+ },
+ "verdict": "COHORT: cohort intact: all 16 declared checkpoints measured UNIT GATE: bits-per-byte on the shared 257163-byte Pile slice, byte count taken from the raw text. The gate tests the DENOMINATOR rather than the value: bytes-per-token runs 4.17-4.35 across the 16 cells, and a tokens-instead-of-bytes bug -- the one error that would reintroduce the tokenizer confound -- would pin it at exactly 1.0. All cells inside (1.5, 8.0). PRIMARY: across-family spread of lambda_ca at matched bits-per-byte is 0.0588 over 3 families, against 0.0318 at matched token count over 3. Seed floor 0.0197. NO COLLAPSE: the families do not agree at matched bits-per-byte (0.0588 against a 0.0197 floor), so lambda_ca is not a function of model quality in this unit either, and cross-family timing stays unreachable. BOUNDARY: bits-per-byte removes the tokenizer confound, not the corpus one -- all three families are scored on Pile text, which is training distribution for Pythia and OLMo but not identically weighted for either. And architecture, data order and optimiser still differ across families simultaneously (F98's attribution note applies unchanged).",
+ "_analysis_provenance": {
+  "script": "loss_collapse_families.py",
+  "sha256": "9e860fc296da01a75b037c7c16b845104708abfd8c77f8f695f84043c69d4cf3",
+  "imports": {
+   "experiments/loss_collapse_families.py": "9e860fc296da01a75b037c7c16b845104708abfd8c77f8f695f84043c69d4cf3",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_superseded_verdict": {
+  "verdict": "COHORT: cohort intact: all 16 declared checkpoints measured UNIT GATE: bits-per-byte on the shared 257163-byte Pile slice, byte count taken from the raw text so the number is tokenizer-independent. OUTSIDE RANGE: ['pythia-410m|step128=2.62748', 'olmo2-1b|stage1-step0-tokens0B=3.95107', 'olmo1-0724|step0-tokens0B=3.9155'] -- these are not bits-per-byte numbers and nothing below is read. NOT DECIDABLE.",
+  "analysis": {
+   "cohort": {
+    "complete": true,
+    "n_declared": 16,
+    "n_realised": 16,
+    "missing": [],
+    "extra": [],
+    "tolerated": [],
+    "reason": "cohort intact: all 16 declared checkpoints measured"
+   },
+   "unit_gate_failures": [
+    "pythia-410m|step128=2.62748",
+    "olmo2-1b|stage1-step0-tokens0B=3.95107",
+    "olmo1-0724|step0-tokens0B=3.9155"
+   ]
+  },
+  "by": "loss_collapse_families.py",
+  "why": "superseded by loss_collapse_decide.py; see _decision_amendments"
+ },
+ "_decision_amendments": [
+  {
+   "supersedes": "unit_gate: bpb must be finite and within (0.4, 2.5) for every cell",
+   "replaced_by": "bpb = nats_per_token * n_tokens / (ln2 * n_bytes) to 0.0001 relative, plus a 8.0 bits/byte ceiling",
+   "why": "The registered interval could not distinguish wrong units from high loss. It rejected the grid's own random-init controls (3.92-3.95 bpb, correct values for a model that has learned nothing) and pythia-410m|step128 at 2.63, a real dip-region checkpoint. That follows from the design, not from the measurements, so this is a specification repair rather than a criterion tuned to an outcome.",
+   "strictness": "stronger against the error the gate was written for: nats and bits differ by ln2, a 44% discrepancy, against a 1e-4 tolerance"
+  }
+ ],
+ "_decision_provenance": {
+  "script": "loss_collapse_decide.py",
+  "sha256": "aa20a4d37de280663fd7cf45c79434d6d81fa01096bda617af9d9fec29c4c62c",
+  "imports": {
+   "experiments/loss_collapse_decide.py": "aa20a4d37de280663fd7cf45c79434d6d81fa01096bda617af9d9fec29c4c62c",
+   "experiments/loss_collapse_families.py": "3b8c77725336df063ce91729f7c5a2d1ba851b9da9edbf6665db4c389a24867a",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "#84 extended across families, which F98 made possible and F98's own limitation made necessary: timing cannot be compared across families in TOKENS because no public non-Pythia family has a checkpoint inside Pythia's dip window, but loss is a property of the model rather than of a checkpoint schedule. Measured in bits per UTF-8 byte because nats-per-token is not comparable across tokenizers (pythia 50277 vs olmo2 100278) -- the byte count comes from the raw text, identical for every model. No new lattice runs: every lambda_ca here was already measured by the run that is cited for it."
 }
