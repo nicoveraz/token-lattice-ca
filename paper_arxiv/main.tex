@@ -67,13 +67,23 @@ what an iterated probe reveals, one must ask what it \emph{measures} --- and the
 measures the model and the probe together, in quantities that are not distinguishable by
 inspection.
 
-We work in the limiting case, where the loop is tightest and the confound is therefore starkest. We
-turn a language model into a cellular automaton over token space: a ring of $N$ cells, each holding
-a token, each resampled in place from the model's own windowed conditional
-$p_r(x_i \mid x_{i\pm r})$ at temperature $T$. Damage spreading is measured with common random
-numbers (CRN): two copies of the ring, identical but for one flipped token, advanced with the same
-uniform draws. The exponential growth rate of their disagreement is a token-space Lyapunov exponent
-$\lca$; the saturating disagreement, normalised by an independent-noise floor, is $\dnorm$.
+We work in a construction chosen to make the confound as stark as possible: a ring of $N$ token
+cells, each resampled in place from the model's own windowed conditional $p_r(x_i \mid x_{i\pm r})$
+at temperature $T$, so that the model's output at every site is part of its own input at the next
+step and no external text enters after initialisation.
+
+\textbf{The substrate is not new, and we do not claim it.} In-place resampling of masked tokens is
+Glauber dynamics on token sequences, and it has been studied as such \citep{glauber_mlm}. What we
+change is the \emph{coupling} and therefore the observable. That work couples two chains maximally
+and measures mixing time and metastability --- how long the chain takes to forget where it started.
+We couple with \emph{common random numbers}: two rings, identical but for one flipped token,
+advanced with the same stream of uniform variates and the same visit order. Maximal coupling and
+CRN coupling are provably distinct constructions, and they answer different questions. Under CRN,
+two rings whose windows agree draw the \emph{same} token, so undamaged copies diverge by exactly
+zero and every difference is attributable to the injected flip. That is what makes damage
+\emph{spreading} measurable at all: its exponential growth rate is a token-space Lyapunov exponent
+$\lca$, its saturating level normalised by an independent-noise floor is a damping length $\dnorm$,
+and its spatial extent is a light cone. None of these is a mixing time.
 
 \paragraph{Contributions.}
 \begin{enumerate}
@@ -119,9 +129,26 @@ x_i \;\sim\; p_r\!\left(\,\cdot \mid x_{i-r},\dots,x_{i-1},x_{i+1},\dots,x_{i+r}
 \end{equation}
 %
 where $r$ is the radius, $T$ the temperature, and the centre token is masked from its own window.
-The construction is deliberately the tightest possible self-feeding loop: the model's output at
-every site becomes part of the input at the next, with no external text entering after
-initialisation.
+
+\paragraph{Why these choices, and what they cost.} Each is a deliberate departure from how the model
+is normally run, and stating them plainly is what allows \S\ref{sec:discriminator} to ask which
+readings survive them. The ring is \emph{periodic}, so no site is privileged by being at a boundary
+and the light cone is not confounded with an edge effect. Resampling is \emph{in place} rather than
+appended, which is what closes the loop --- and it is also the single largest departure from
+deployment, because free autoregressive generation never revisits a token it has emitted. The window
+is \emph{symmetric with the centre masked}, which is native to a masked language model and is imposed
+on an autoregressive one; that asymmetry is why we run both, and the masked-LM construction serves
+throughout as the control. Sites are visited in a random order per sweep, and the order is drawn
+\emph{per replica} rather than per batch, because sharing it across a batch correlates the replicas
+and shrinks error bars by a factor they have not earned (\S\ref{sec:gating}).
+
+\paragraph{This is a probe, not a model of deployment, and we can say so quantitatively.} Injecting a
+token error into real autoregressive generation and continuing produces no absorption at all:
+$P_{\text{persist}} = 1.000$ across three models, because free generation never resamples the
+damaged token. The dynamics studied here exist only when the loop is closed by resampling in place.
+Any reading taken from them is therefore a statement about the closed loop first, and about the
+model only if it survives \S\ref{sec:discriminator}.
+% SOURCE: paper 1's delimitation result. VERIFY the three model names before submit.
 
 \paragraph{Damage spreading under common random numbers.} We run two rings, $x$ and $\tilde{x}$,
 identical except that one site is flipped at $t=0$, and advance both with the \emph{same} stream of
@@ -470,9 +497,13 @@ We ran an explicit prior-art check and report both what it found taken and what 
 because claiming novelty we do not have is the fastest way to lose a reader who knows this
 literature.
 
-\paragraph{Taken.} Generic black-box model identification is established, including at high
-discriminative accuracy; so is quantization detection; and the tokenizer-merge mechanism we
-observed in API-mediated probing is substantially anticipated. We claim none of these.
+\paragraph{Taken.} Detecting that an API is serving a distorted model is established: framed as a
+two-sample problem, a test on the maximum mean discrepancy between an API's outputs and a reference
+distribution reaches a median 77.4\% power against a range of distortions from roughly ten samples
+per prompt, and finds 11 of 31 surveyed Llama endpoints deviating from the released reference
+weights \citep{modelequality}. Quantization detection is likewise established, and the
+tokenizer-merge mechanism we observed in API-mediated probing is substantially anticipated. We
+claim none of these.
 
 \paragraph{Iterated generation is not new; this measurement of it is.} Feeding a model its own
 output has been studied as a dynamical system before. Multi-turn transmission chains exhibit
