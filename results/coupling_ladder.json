@@ -1,0 +1,64 @@
+{
+ "_preregistration": {
+  "question": "is the coupling a COMMON MODE across the developmental grid?",
+  "settled_elsewhere": "F41 already measured that the couplings DIFFER (1.013x at T=0.7, 1.054x at T=0.9 on real conditionals). This does not re-ask that",
+  "primary": "does lambda_ca(checkpoint) under MAXIMAL coupling preserve the ORDERING and the SIGN CROSSING it has under monotone coupling?",
+  "rung1": "the paired runner must reproduce the production CRN damage field EXACTLY under the monotone coupler -- same seeds, same order, zero mismatching cells",
+  "rung2": "at |V|=2 the couplers coincide provably (F41: 200,000 pairs, max diff 0.0), so their disagreement rates must match",
+  "rung3": "a coupling fixes the marginals, so single-replica token frequencies must match at large |V| where rung 2 no longer applies. A difference here is a bug, not a finding",
+  "gate": "a failure at ANY rung makes the primary NOT DECIDABLE -- the maximal arm would not be measuring what it claims",
+  "cost": "maximal coupling is NOT replica-independent: the draw depends on both twins' distributions jointly, so runs are reproducible only as a pair. Monotone stays the default whatever this returns",
+  "f41_reference": {
+   "T0.7": 1.013,
+   "T0.9": 1.054
+  }
+ },
+ "rung2": {
+  "n": 200000,
+  "disagreement_monotone": 0.33253,
+  "disagreement_maximal": 0.332575,
+  "gap": 4.5e-05,
+  "passes": true
+ },
+ "rung3": {
+  "n": 40000,
+  "V": 64,
+  "total_variation": 0.0223,
+  "tolerance": 0.12,
+  "passes": true
+ },
+ "verdict": "RUNGS PASS: at |V|=2 the couplers coincide to 4.50e-05 and the marginals agree to a total variation of 0.02230 against a 0.12000 tolerance. The maximal coupler is validated on the two cases whose answers are known in advance. RUNG 1 AND THE PRIMARY ARE NOT RUN HERE: rung 1 needs the paired runner wired to a real backend, and the primary needs the developmental grid measured twice. Both are registered above and neither is started, so nothing about the common-mode question is claimed yet.",
+ "_analysis_provenance": {
+  "script": "coupling_ladder.py",
+  "sha256": "011ca2981ef977f309a3ce3c91e072d6924ca60154c13ae57dd392b67781243c",
+  "imports": {
+   "experiments/coupling_ladder.py": "011ca2981ef977f309a3ce3c91e072d6924ca60154c13ae57dd392b67781243c",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

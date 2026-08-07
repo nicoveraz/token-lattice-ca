@@ -275,6 +275,7 @@ _STALENESS_PAIRS = [
     ("loss_collapse_families.json", "loss_collapse_families.py"),
     ("basin_structure.json", "basin_structure.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
+    ("coupling_ladder.json", "coupling_ladder.py"),
     ("ablate_compensators.json", "ablate_compensators.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),
