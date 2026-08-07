@@ -3580,10 +3580,30 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
-### F103 — #103 at n=20: one layer compensates, but the dominant pattern is the opposite sign, and the verdict turned on a bug I found after seeing the null
-The registered primary at 20 seeds, 360 lattice cells. **Read the caution before the result.**
+### F103 — #103 at n=20: NOT DECIDABLE. **The COMPENSATION verdict first recorded here is WITHDRAWN — it was an artifact of the wrong standard error.**
+The registered primary at 20 seeds, 360 lattice cells.
 
-**HOW THIS VERDICT ARRIVED, WHICH IS THE FIRST THING A READER NEEDS.** At n=8 the run returned NOT
+> **CORRECTION, made before this entry was cited anywhere.** This finding was first written as
+> COMPENSATION at L23 (delta +0.07722, z = +3.25, family-wise p = 0.0080). That verdict was wrong.
+> `delta(L) = [λ(early) − λ(early+L)] − [λ(none) − λ(L)]` combines **four independently measured
+> centres**, so its standard error is their QUADRATURE sum, not their mean. The correct floor is
+> **0.04227**, not 0.02376: z falls from +3.25 to **+1.83**, one-sided p from 0.0006 to 0.0339, and
+> family-wise p over 14 layers from 0.0080 to **0.3826**. Nothing survives. The verdict is now
+> NOT DECIDABLE on power — 0.05 against a 0.04227 floor is 1.18×, under the 2× gate.
+>
+> The error was found while writing the *confirmatory* experiment for L23, because that script
+> derived the floor from first principles for the delta statistic instead of reusing the sweep's
+> generic per-arm noise scale. Three versions of one line, each changing the verdict: `/sqrt(8)`
+> (stale after the seed extension, too large, NOT DECIDABLE), mean per-arm SE (too small,
+> COMPENSATION), quadrature (correct, NOT DECIDABLE). The middle one is the one that produced a
+> result, which is exactly the direction a wrong error bar tends to fail in.
+
+**What the run actually establishes.** Nothing about compensation, in either direction. At the
+correct floor only 3 of 14 layers exceed it at all, and the design is underpowered for the effect
+size it registered as minimally interesting. The remaining content is below and is unaffected by
+the correction.
+
+**HOW THE WITHDRAWN VERDICT AROSE, KEPT BECAUSE THE SEQUENCE IS THE LESSON.** At n=8 the run returned NOT
 DECIDABLE on power (F101). Seeds were extended to 20 with the stopping rule fixed in advance. The
 n=20 run ALSO returned NOT DECIDABLE — and then I found a bug: the seed floor divided the pooled
 spread by `sqrt(len(SEEDS))`, the REGISTERED 8, which stayed 8 after the extension while 20 seeds
@@ -3599,9 +3619,10 @@ slightly MORE conservative than pooling then dividing by sqrt(20): 0.02376 again
 threshold, statistic or branch moved. What does not go away: I cannot claim the floor would have
 received the same scrutiny had it produced a positive.
 
-**PRIMARY, as registered: COMPENSATION.** L23's delta is +0.07722 against a floor of 0.02376 —
-z = +3.25, one-sided p = 0.00058, **family-wise p = 0.0080** over the 14 compared layers. Its
-contribution goes from −0.01717 with the network intact to +0.06006 with the early block ablated.
+**PRIMARY: NOT DECIDABLE.** L23's delta is +0.07722 — the largest of the fourteen — against the
+correct floor of 0.04227, giving z = +1.83 and family-wise p = 0.3826. Its contribution moves from
+−0.01717 with the network intact to +0.06006 with the early block ablated, which is suggestive and
+is not evidence. The power gate blocks independently: 0.05 against 0.04227 is 1.18×, under 2×.
 
 **BUT THE REGISTERED CRITERION IS ONE-SIDED AND THE DATA MOSTLY RUNS THE OTHER WAY.** Mean delta is
 **−0.00915**; 6 of 14 layers are positive; and the largest effects are NEGATIVE by a wide margin —
@@ -3622,11 +3643,15 @@ inside the 0.0611 tolerance but 2.3× further off than at n=8, where it reproduc
 dropped by the comparability gate, so both would have been invisible without the promotion to a
 registered observable made before the run.
 
-**WHAT WOULD SETTLE IT.** L23 is now NAMED, so a confirmatory test of L23 alone carries no
-multiple-comparisons penalty and needs no 14-layer sweep: fresh seeds, single pre-specified
-comparison, ideally at a second checkpoint so the claim is not one model-state. Until that runs,
-this is a provisional positive resting on a post-hoc correction, and it should not be cited as the
-explanandum programme's first success.
+**WHAT WOULD SETTLE IT, AND WHAT IT NOW COSTS.** L23 is NAMED, so a confirmatory test of it alone
+carries no multiple-comparisons penalty and needs no 14-layer sweep: fresh seeds, all four arms
+measured in the same run so nothing is borrowed, single pre-specified one-sided comparison.
+`experiments/confirm_L23.py` implements exactly that. But the quadrature floor also reprices it:
+with a per-arm spread near 0.10, the floor is about 2 x 0.10/sqrt(n), so reaching 2x on
+MIN_DETECTABLE = 0.05 needs roughly **64 seeds per arm** -- about 10 h for one checkpoint, not the
+20 seeds and 6 h the design assumed. That is the real cost of confirming a single layer here, and
+it is a cost the sweep never faced honestly because the sweep was using an error bar half the right
+size.
 
 ### F102 — annealed mean field under intervention: a null WITH power, and a three-arm artifact caught
 33 ablation arms, λ_ca read from F79/F80 and never re-measured, single-token sensitivity `s`

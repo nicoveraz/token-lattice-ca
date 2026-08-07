@@ -269,6 +269,30 @@ def recorded_singles():
     return out
 
 
+def recorded_single_ses():
+    """Standard error of lambda(attn_L{L}) per downstream layer, from F80's sweep.
+
+    The borrowed centre carries uncertainty too, and it enters delta's variance exactly like the
+    three arms measured here. Omitting it would understate the floor a fourth time.
+    """
+    p = _ROOT / "results" / "ablate_layers.json"
+    if not p.exists():
+        return {}
+    runs = (json.load(open(p)) or {}).get("runs") or {}
+    by = {}
+    for rec in runs.values():
+        by.setdefault(rec.get("ablation"), []).append(rec)
+    out = {}
+    for L in DOWNSTREAM:
+        rs = by.get(f"attn_L{L:02d}") or by.get(f"attn_L{L}")
+        ign = [r for r in (rs or []) if run_ignited(r)]
+        if len(ign) > 1:
+            sd = float(np.std(lambda_of(ign)))
+            if np.isfinite(sd) and sd > 0:
+                out[L] = sd / np.sqrt(len(ign))
+    return out
+
+
 def arms(smoke=False):
     compound = [f"{EARLY}+attn_L{L:02d}" for L in DOWNSTREAM]
     if smoke:
@@ -313,14 +337,27 @@ def analyse(res, singles):
     # ignited seeds, and a single sqrt(n) would overstate precision for the sparse ones. Computing
     # the standard error per arm and averaging those handles both, and is slightly MORE
     # conservative than pooling then dividing by sqrt(20) (0.02376 against 0.02316).
-    ses = []
-    for a in {r["arm"] for r in res["runs"].values()}:
-        rs = [r for r in res["runs"].values() if r["arm"] == a and run_ignited(r)]
-        if len(rs) > 1:
-            sd = float(np.std(lambda_of(rs)))
-            if np.isfinite(sd) and sd > 0:
-                ses.append(sd / np.sqrt(len(rs)))
-    floor = float(np.mean(ses)) if ses else None
+    def arm_se(arm):
+        rs = [r for r in res["runs"].values() if r["arm"] == arm and run_ignited(r)]
+        if len(rs) < 2:
+            return None
+        sd = float(np.std(lambda_of(rs)))
+        return sd / np.sqrt(len(rs)) if np.isfinite(sd) and sd > 0 else None
+
+    # THE FLOOR IS THE STANDARD ERROR OF delta, AND delta COMBINES FOUR CENTRES.
+    #     delta(L) = [lambda(early) - lambda(early+L)] - [lambda(none) - lambda(L)]
+    # Four independently measured quantities, so the variances ADD: se(delta) is their quadrature
+    # sum, not their mean. Two earlier versions of this line were wrong in opposite directions and
+    # both changed the verdict, which is why the derivation is written out here rather than left
+    # to a helper. The first divided the pooled spread by sqrt(len(SEEDS)) -- the registered 8,
+    # stale after the seed extension -- overstating the noise and returning NOT DECIDABLE. The
+    # second used the MEAN per-arm standard error, which understates the uncertainty of a
+    # difference of four centres by about a factor of two and produced a positive that the correct
+    # floor does not support (z fell from +3.25 to +1.83, family-wise p from 0.008 to 0.383).
+    # Computed PER ROW, because lambda(L) and lambda(early+L) differ by layer while lambda(none)
+    # and lambda(early) are shared.
+    se_none, se_early = arm_se("none"), arm_se(EARLY)
+    singles_se = recorded_single_ses()
 
     # --- the primary: does any downstream layer do MORE once the early block is gone? ----------
     rows = []
@@ -333,13 +370,17 @@ def analyse(res, singles):
         contrib_intact = l_none - singles[L]
         contrib_early = l_early - l_comp
         ign_comp = ignition_rate(res, f"{EARLY}+attn_L{L:02d}")
+        parts_se = [se_none, se_early, singles_se.get(L), arm_se(f"{EARLY}+attn_L{L:02d}")]
+        row_floor = (float(np.sqrt(sum(x ** 2 for x in parts_se)))
+                     if all(x for x in parts_se) else None)
         rows.append(dict(layer=L, contrib_intact=round(contrib_intact, 5),
                          contrib_early=round(contrib_early, 5),
                          delta=round(contrib_early - contrib_intact, 5),
+                         floor=None if row_floor is None else round(row_floor, 5),
                          ignited=f"{nign}/{ntot}", ignition_rate=round(ign_comp, 4),
                          comparable=bool(abs(ign_comp - ign_ref) <= IGN_TOL)))
 
-    if not rows or floor is None:
+    if not rows:
         res["analysis"] = dict(rung=rung, rows=rows, decided=False)
         res["verdict"] = (" ".join(parts) + " NOT DECIDABLE: no downstream arm produced an "
                           "ignited estimate, so lambda is undefined for the comparison (F42).")
@@ -395,8 +436,15 @@ def analyse(res, singles):
                           f"the lattice ignited, not more seeds.")
         return res["verdict"]
 
+    rows = [r for r in rows if r["floor"] is not None]
+    if not rows:
+        res["analysis"] = dict(rung=rung, decided=False)
+        res["verdict"] = (" ".join(parts) + " NOT DECIDABLE: no layer has a standard error on "
+                          "every one of the four centres delta combines.")
+        return res["verdict"]
     deltas = [r["delta"] for r in rows]
     best = max(rows, key=lambda r: r["delta"])
+    floor = best["floor"]                 # the gate is on the arm actually carrying the claim
 
     # THE BLOCKING GATE IS POWER, NOT RANGE, and getting this wrong would have inverted the null.
     # A range gate over delta(L) asks whether the series varies -- but a FLAT series at zero is
@@ -415,7 +463,7 @@ def analyse(res, singles):
     # correction is family-wise over the layers actually compared, and it is added with the data
     # in view -- admissible only because it can move the verdict in ONE direction, away from a
     # positive, exactly like the noise-gate tightening in F100.
-    z_best = best["delta"] / floor if floor else 0.0
+    z_best = best["delta"] / best["floor"] if best["floor"] else 0.0
     p_one = float(stats.norm.sf(z_best))
     p_fw = float(1.0 - (1.0 - p_one) ** len(rows))
     # Directional, and NOT a blocking gate: a negative delta is evidence AGAINST self-repair, not

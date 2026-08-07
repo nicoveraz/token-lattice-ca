@@ -5293,6 +5293,7 @@
     "contrib_intact": -0.02959,
     "contrib_early": -0.03137,
     "delta": -0.00178,
+    "floor": 0.04777,
     "ignited": "20/20",
     "ignition_rate": 0.3063,
     "comparable": true
@@ -5302,6 +5303,7 @@
     "contrib_intact": 0.00226,
     "contrib_early": 0.07193,
     "delta": 0.06967,
+    "floor": 0.0436,
     "ignited": "13/20",
     "ignition_rate": 0.0875,
     "comparable": true
@@ -5311,6 +5313,7 @@
     "contrib_intact": 0.00174,
     "contrib_early": 0.04013,
     "delta": 0.03839,
+    "floor": 0.04304,
     "ignited": "19/20",
     "ignition_rate": 0.1688,
     "comparable": true
@@ -5320,6 +5323,7 @@
     "contrib_intact": -0.02024,
     "contrib_early": -0.03829,
     "delta": -0.01805,
+    "floor": 0.0454,
     "ignited": "19/20",
     "ignition_rate": 0.25,
     "comparable": true
@@ -5329,6 +5333,7 @@
     "contrib_intact": -0.00718,
     "contrib_early": -0.04319,
     "delta": -0.03601,
+    "floor": 0.04004,
     "ignited": "20/20",
     "ignition_rate": 0.2437,
     "comparable": true
@@ -5338,6 +5343,7 @@
     "contrib_intact": -0.00375,
     "contrib_early": 0.00928,
     "delta": 0.01304,
+    "floor": 0.04636,
     "ignited": "19/20",
     "ignition_rate": 0.2562,
     "comparable": true
@@ -5347,6 +5353,7 @@
     "contrib_intact": 0.00408,
     "contrib_early": -0.00254,
     "delta": -0.00662,
+    "floor": 0.03934,
     "ignited": "18/20",
     "ignition_rate": 0.2125,
     "comparable": true
@@ -5356,6 +5363,7 @@
     "contrib_intact": -0.06071,
     "contrib_early": -0.00234,
     "delta": 0.05837,
+    "floor": 0.04311,
     "ignited": "20/20",
     "ignition_rate": 0.2562,
     "comparable": true
@@ -5365,6 +5373,7 @@
     "contrib_intact": -0.02176,
     "contrib_early": -0.02864,
     "delta": -0.00688,
+    "floor": 0.0419,
     "ignited": "20/20",
     "ignition_rate": 0.3031,
     "comparable": true
@@ -5374,6 +5383,7 @@
     "contrib_intact": 0.0066,
     "contrib_early": -0.11518,
     "delta": -0.12178,
+    "floor": 0.04244,
     "ignited": "20/20",
     "ignition_rate": 0.3906,
     "comparable": true
@@ -5383,6 +5393,7 @@
     "contrib_intact": 0.00399,
     "contrib_early": 0.03441,
     "delta": 0.03042,
+    "floor": 0.03698,
     "ignited": "19/20",
     "ignition_rate": 0.2219,
     "comparable": true
@@ -5392,6 +5403,7 @@
     "contrib_intact": -0.03373,
     "contrib_early": -0.13193,
     "delta": -0.0982,
+    "floor": 0.03946,
     "ignited": "20/20",
     "ignition_rate": 0.4,
     "comparable": true
@@ -5401,6 +5413,7 @@
     "contrib_intact": -0.01567,
     "contrib_early": -0.14153,
     "delta": -0.12586,
+    "floor": 0.04824,
     "ignited": "20/20",
     "ignition_rate": 0.3688,
     "comparable": true
@@ -5410,6 +5423,7 @@
     "contrib_intact": -0.01717,
     "contrib_early": 0.06006,
     "delta": 0.07722,
+    "floor": 0.04227,
     "ignited": "19/20",
     "ignition_rate": 0.2031,
     "comparable": true
@@ -5421,6 +5435,7 @@
     "contrib_intact": 0.00513,
     "contrib_early": -0.12598,
     "delta": -0.13112,
+    "floor": 0.03949,
     "ignited": "20/20",
     "ignition_rate": 0.5156,
     "comparable": false
@@ -5430,6 +5445,7 @@
     "contrib_intact": -0.01094,
     "contrib_early": -0.09121,
     "delta": -0.08026,
+    "floor": 0.04562,
     "ignited": "20/20",
     "ignition_rate": 0.4375,
     "comparable": false
@@ -5441,42 +5457,42 @@
    21
   ],
   "suppressions": [],
-  "seed_floor": 0.02376,
+  "seed_floor": 0.04227,
   "min_detectable": 0.05,
   "ignition_tolerance": 0.25,
   "comparability": "lambda is defined over ignited replicas only (F42), so arms igniting more than 0.25 away from the reference's rate are DROPPED and reported; fewer than 8 survivors is NOT DECIDABLE",
   "gates": [
    {
     "kind": "noise_gate",
-    "usable": true,
-    "reason": "numerator is 0.05 against a noise floor of 0.02376 (2.10x, gate 2.0x)",
+    "usable": false,
+    "reason": "numerator is 0.05 against a noise floor of 0.04227 (1.18x, gate 2.0x)",
     "numerator": 0.05,
-    "floor": 0.023756196902621686,
-    "ratio": 2.104713991256829,
+    "floor": 0.04227,
+    "ratio": 1.1828720132481665,
     "k": 2.0
    }
   ],
   "directional": {
    "kind": "directional",
    "usable": true,
-   "reason": "effect = +0.07722, hypothesis predicted an increase; sign is as predicted and clears the 0.02376 floor",
+   "reason": "effect = +0.07722, hypothesis predicted an increase; sign is as predicted and clears the 0.04227 floor",
    "effect": 0.07722,
    "expect": "increase",
    "right_sign": true,
-   "floor": 0.023756196902621686
+   "floor": 0.04227
   },
   "largest_delta_vs_floor": {
    "kind": "noise_gate",
-   "usable": true,
-   "reason": "numerator is 0.07722 against a noise floor of 0.02376 (3.25x, gate 2.0x)",
+   "usable": false,
+   "reason": "numerator is 0.07722 against a noise floor of 0.04227 (1.83x, gate 2.0x)",
    "numerator": 0.07722,
-   "floor": 0.023756196902621686,
-   "ratio": 3.250520288097046,
+   "floor": 0.04227,
+   "ratio": 1.8268275372604683,
    "k": 2.0
   },
-  "best_z": 3.2505,
-  "p_one_sided": 0.00058,
-  "p_family_wise": 0.00803,
+  "best_z": 1.8268,
+  "p_one_sided": 0.03386,
+  "p_family_wise": 0.38263,
   "n_compared": 14,
   "mean_delta": -0.00915,
   "n_positive": 6,
@@ -5497,14 +5513,14 @@
     23
    ]
   },
-  "decided": true
+  "decided": false
  },
- "verdict": "RUNG: none: recorded +0.3566, re-measured +0.3536 (20/20 ignited) -> reproduces; attn_early: recorded +0.0115, re-measured +0.0260 (18/20 ignited) -> reproduces REVIVAL: against a reference igniting at 0.181, 2 downstream ablations RAISE ignition (L8:0.516, L21:0.438) and 0 lower it. Removing MORE of the network making damage spread FURTHER is not what any monotone account of ablation predicts, and it is measured here rather than filtered away. COMPARABILITY: reference `attn_early` ignites at 0.181; 14 of 16 downstream arms are within 0.25 of it. DROPPED as not comparable: L8(0.516), L21(0.438). PRIMARY: largest delta is L23 at +0.07722 (contribution -0.01717 intact -> +0.06006 with the early block ablated), against a seed floor of 0.02376. 5 of 14 layers exceed the floor. COMPENSATION: L23 does measurably more once the early block is gone, which is the identifying signature no static-redundancy account predicts (family-wise p = 0.0080 over 14 layers). Gates: noise_gate: numerator is 0.05 against a noise floor of 0.02376 (2.10x, gate 2.0x) SENSITIVITY: s(none)=0.81741, s(attn_early)=0.85969, mean-field critical 1/r=0.3333. The early block does NOT cross the critical point, so the sensitivity account does not by itself explain the ignition collapse and the compensation reading keeps its standing. BOUNDARY: this attributes F80's non-additivity to a named mechanism in ONE model of ONE family at one checkpoint, under greedy decoding. It does not show lambda_ca measures self-repair in general, and the generality debt is unchanged.",
+ "verdict": "RUNG: none: recorded +0.3566, re-measured +0.3536 (20/20 ignited) -> reproduces; attn_early: recorded +0.0115, re-measured +0.0260 (18/20 ignited) -> reproduces REVIVAL: against a reference igniting at 0.181, 2 downstream ablations RAISE ignition (L8:0.516, L21:0.438) and 0 lower it. Removing MORE of the network making damage spread FURTHER is not what any monotone account of ablation predicts, and it is measured here rather than filtered away. COMPARABILITY: reference `attn_early` ignites at 0.181; 14 of 16 downstream arms are within 0.25 of it. DROPPED as not comparable: L8(0.516), L21(0.438). PRIMARY: largest delta is L23 at +0.07722 (contribution -0.01717 intact -> +0.06006 with the early block ablated), against a seed floor of 0.04227. 3 of 14 layers exceed the floor. NOT DECIDABLE: the run is underpowered for its own question -- noise_gate: numerator is 0.05 against a noise floor of 0.04227 (1.18x, gate 2.0x). A compensation of 0.05 would not have cleared this floor, so neither the positive nor the kill can be read. More seeds, not more layers. SENSITIVITY: s(none)=0.81741, s(attn_early)=0.85969, mean-field critical 1/r=0.3333. The early block does NOT cross the critical point, so the sensitivity account does not by itself explain the ignition collapse and the compensation reading keeps its standing. BOUNDARY: this attributes F80's non-additivity to a named mechanism in ONE model of ONE family at one checkpoint, under greedy decoding. It does not show lambda_ca measures self-repair in general, and the generality debt is unchanged.",
  "_analysis_provenance": {
   "script": "ablate_compensators.py",
-  "sha256": "d8307fa784ae778c0251ee0d9ca7f416e7fcec5206df6332758c93ae82a07bf5",
+  "sha256": "25e3e6cdf1f757331a646fd7433eb73d7a87bdf2e9835736dc5736ae73835f72",
   "imports": {
-   "experiments/ablate_compensators.py": "d8307fa784ae778c0251ee0d9ca7f416e7fcec5206df6332758c93ae82a07bf5",
+   "experiments/ablate_compensators.py": "25e3e6cdf1f757331a646fd7433eb73d7a87bdf2e9835736dc5736ae73835f72",
    "experiments/ablate_lambda.py": "3a34fac6451bae5111a8c6ad9f054f9e40595a86f1aecf463f5a50105654da3b",
    "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
    "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
