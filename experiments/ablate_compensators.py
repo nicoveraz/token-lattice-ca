@@ -305,11 +305,22 @@ def analyse(res, singles):
 
     l_none, l_early = rung["none"]["remeasured"], rung[EARLY]["remeasured"]
     ign_ref = ignition_rate(res, EARLY)
-    seed_sds = [float(np.std(lambda_of([r for r in res["runs"].values()
-                                        if r["arm"] == a and run_ignited(r)])))
-                for a in {r["arm"] for r in res["runs"].values()}]
-    seed_sds = [s for s in seed_sds if np.isfinite(s) and s > 0]
-    floor = float(np.mean(seed_sds)) / np.sqrt(len(SEEDS)) if seed_sds else None
+    # THE FLOOR IS THE STANDARD ERROR OF A PER-ARM CENTRE, AND IT MUST USE THE ARM'S OWN n.
+    # The first version divided the pooled spread by sqrt(len(SEEDS)) -- the REGISTERED 8 -- which
+    # stayed 8 after the seed extension while 20 seeds were actually being averaged, overstating
+    # the noise by sqrt(2.5) = 1.58x and refusing a run that was in fact powered. Per-arm n also
+    # matters in its own right: F42 drops unignited runs, so arms here carry between 13 and 20
+    # ignited seeds, and a single sqrt(n) would overstate precision for the sparse ones. Computing
+    # the standard error per arm and averaging those handles both, and is slightly MORE
+    # conservative than pooling then dividing by sqrt(20) (0.02376 against 0.02316).
+    ses = []
+    for a in {r["arm"] for r in res["runs"].values()}:
+        rs = [r for r in res["runs"].values() if r["arm"] == a and run_ignited(r)]
+        if len(rs) > 1:
+            sd = float(np.std(lambda_of(rs)))
+            if np.isfinite(sd) and sd > 0:
+                ses.append(sd / np.sqrt(len(rs)))
+    floor = float(np.mean(ses)) if ses else None
 
     # --- the primary: does any downstream layer do MORE once the early block is gone? ----------
     rows = []

@@ -3580,6 +3580,54 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F103 — #103 at n=20: one layer compensates, but the dominant pattern is the opposite sign, and the verdict turned on a bug I found after seeing the null
+The registered primary at 20 seeds, 360 lattice cells. **Read the caution before the result.**
+
+**HOW THIS VERDICT ARRIVED, WHICH IS THE FIRST THING A READER NEEDS.** At n=8 the run returned NOT
+DECIDABLE on power (F101). Seeds were extended to 20 with the stopping rule fixed in advance. The
+n=20 run ALSO returned NOT DECIDABLE — and then I found a bug: the seed floor divided the pooled
+spread by `sqrt(len(SEEDS))`, the REGISTERED 8, which stayed 8 after the extension while 20 seeds
+were actually being averaged. That overstated the noise by sqrt(2.5) = 1.58× and refused a run that
+was in fact powered. Fixing it flipped NOT DECIDABLE to a positive. **A bug fix, found after seeing
+a null, that converts it to a result, is the highest-risk pattern in empirical work**, and it is
+recorded that way rather than presented as a clean finding.
+
+What makes the fix defensible: the defect is unambiguous — the standard error of a centre over n
+values is sd/sqrt(n), and n was 13–20 per arm (F42 drops unignited runs), never 8. The replacement
+computes the standard error PER ARM and averages, which handles the varying ignited counts and is
+slightly MORE conservative than pooling then dividing by sqrt(20): 0.02376 against 0.02316. No
+threshold, statistic or branch moved. What does not go away: I cannot claim the floor would have
+received the same scrutiny had it produced a positive.
+
+**PRIMARY, as registered: COMPENSATION.** L23's delta is +0.07722 against a floor of 0.02376 —
+z = +3.25, one-sided p = 0.00058, **family-wise p = 0.0080** over the 14 compared layers. Its
+contribution goes from −0.01717 with the network intact to +0.06006 with the early block ablated.
+
+**BUT THE REGISTERED CRITERION IS ONE-SIDED AND THE DATA MOSTLY RUNS THE OTHER WAY.** Mean delta is
+**−0.00915**; 6 of 14 layers are positive; and the largest effects are NEGATIVE by a wide margin —
+L22 (z = −5.30), L18 (−5.13), L20 (−4.13) against a best positive of +3.25. Applied symmetrically
+the negative side is far more significant. Self-repair predicts recruitment when a peer is removed;
+what dominates here is DE-recruitment, with one layer against the trend. The registration asked
+"does any layer increase?" and never asked whether increase is the prevailing pattern, so the
+criterion fires on L23 while the bulk of the evidence describes something else. That is a
+limitation of the registration, not a reinterpretation after the fact.
+
+**Two further reasons to hold it loosely.** L23's estimate SHRANK with data — +0.09177 at n=8 to
++0.07722 at n=20, 16% regression toward the mean, surviving only because the floor fell faster. And
+the calibration rung drifted: `attn_early` re-measured +0.0260 against its recorded +0.0115, still
+inside the 0.0611 tolerance but 2.3× further off than at n=8, where it reproduced exactly.
+
+**REVIVAL strengthened, and it is now two arms.** Against a reference igniting at 0.181,
+`attn_early+attn_L08` ignites at 0.516 and `attn_early+attn_L21` at 0.438; none lower it. Both are
+dropped by the comparability gate, so both would have been invisible without the promotion to a
+registered observable made before the run.
+
+**WHAT WOULD SETTLE IT.** L23 is now NAMED, so a confirmatory test of L23 alone carries no
+multiple-comparisons penalty and needs no 14-layer sweep: fresh seeds, single pre-specified
+comparison, ideally at a second checkpoint so the claim is not one model-state. Until that runs,
+this is a provisional positive resting on a post-hoc correction, and it should not be cited as the
+explanandum programme's first success.
+
 ### F102 — annealed mean field under intervention: a null WITH power, and a three-arm artifact caught
 33 ablation arms, λ_ca read from F79/F80 and never re-measured, single-token sensitivity `s`
 measured exactly (`s_crn`, no seeds) on one pool settled from the UNABLATED ring, so the model
