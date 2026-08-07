@@ -66,11 +66,35 @@ TMLR's reuse rule covers work "submitted in parallel", not only published work.
 **Consequence:** the TMLR exemption applies, text/figures/results may be reused, and the merged
 paper is not an "expanded version of a conference paper" in the prohibited sense.
 
-**Before submitting, capture the declaration.** TMLR's exemption turns on the prior venue being
-declared non-archival *in writing*. Screenshot or archive the I4D CFP page stating it, and cite it
-in the TMLR submission's prior-work declaration. If I4D's CFP does not say "non-archival" in those
-words, fall back on the NeurIPS-wide guidance and say so explicitly. Do not rely on "workshops are
-usually non-archival."
+### 3.1 The written declaration, captured
+
+Fetched from `interpretability4discovery.github.io/cfp.html` on 7 Aug 2026. These are the sentences
+TMLR's exemption turns on, quoted so the submission does not depend on the page still existing after
+notification:
+
+> **"Non-archival"** (stated as the submission format)
+>
+> **"Prior non-archival work and work under review elsewhere are welcome. Workshop acceptance does
+> not prevent later archival publication."**
+>
+> **"Submissions undergoing peer review at another venue, including ICLR or NeurIPS, at the paper
+> submission deadline are welcome."**
+
+That is an explicit, written, public non-archival declaration plus explicit permission for later
+archival publication and for concurrent review. TMLR's exemption applies without needing to fall
+back on the NeurIPS-wide guidance, though that guidance agrees.
+
+**Archive the page anyway** (screenshot or Wayback), because it will likely change after the
+29 Sept notification and the TMLR prior-work declaration should point at something durable.
+
+### 3.2 Attendance is not required, so the workshop costs nothing to keep
+
+> **"Authors are encouraged, but not required, to attend the workshop in person."**
+
+The workshop is in Atlanta on 12-13 Dec and travel is not possible. That does NOT force a
+withdrawal: presentation is by poster with a subset selected for spotlights, and attendance is
+explicitly optional. So the submission stays, the 29 Sept notification is free information, and the
+only thing forgone is the in-person feedback -- not the acceptance, and not the timestamp.
 
 ---
 
