@@ -34,9 +34,12 @@
 
 \begin{abstract}
 A growing class of methods probes a language model by feeding it its own output: self-consistency,
-iterated refinement, agentic loops. We study the limiting case --- a ring of token cells resampled
-in place by the model's own windowed conditional $p_r(x_i \mid x_{i\pm r})$, probed by
-common-random-number damage spreading --- and ask what such a probe actually measures. The answer
+iterated refinement, agentic loops. We ask what such a probe measures, in a construction chosen to
+make the question sharp: a ring of token cells resampled in place by the model's own windowed
+conditional $p_r(x_i \mid x_{i\pm r})$. The substrate is Glauber dynamics on token sequences and is
+not new; what we change is the coupling. Advancing two rings that differ in one token under
+\emph{common random numbers} makes undamaged copies diverge by exactly zero, so damage spreading
+becomes measurable where a maximal coupling gives mixing times instead. The answer
 is that it measures two different things at once, in readings that look alike. Some quantities are
 fixed by the construction: the damage light cone is kinematic, and the radius scaling of the
 token-space Lyapunov exponent $\lca(r)$ is \emph{model-invariant} across 19 models and two scale
@@ -488,6 +491,37 @@ range. Whatever sets $\lca$, it is not captured by the mean-field ledger.
 architecture family for the component manipulations. These bound the claims rather than qualify
 them: the discriminator of \S\ref{sec:discriminator} is a method, and the specific readings it
 sorts are the ones we measured.
+
+% ---------------------------------------------------------------------------------------------
+\section{What this opens}
+\label{sec:future}
+
+Three things follow directly, and the first is the one we would do next.
+
+\paragraph{Measure the two couplings against each other.} This paper asserts that maximal coupling
+and common-random-number coupling answer different questions, and cites the distinction rather than
+demonstrating it. They are two functionals of the \emph{same} chain, so the comparison is available
+on the substrate already built: run both on identical rings and identical models, and report mixing
+time beside damage velocity across the same temperature and radius grid. If they track each other,
+the CRN observable is a re-parameterisation and this paper's contribution shrinks to the
+discriminator; if they come apart, the coupling choice is a substantive design decision that anyone
+studying iterated resampling has to make deliberately. Either outcome is worth having, and neither
+is currently known.
+
+\paragraph{Apply the discriminator to the practices that motivated it.} Self-consistency, iterated
+refinement and agentic loops are all self-feeding systems whose readings nobody separates into
+construction and model. The test of \S\ref{sec:discriminator} does not depend on our construction:
+it needs only two manipulations, one that varies the loop with the model fixed and one that varies
+the model with the loop fixed. Whether the quantities practitioners already read off those systems
+--- agreement rates, convergence speed, self-correction success --- survive that test is an open and
+answerable question, and the manufactured transition of \S\ref{sec:manufactured} is the reason to
+ask it before building on them.
+
+\paragraph{A construction axis rather than a construction.} Radius, temperature, visit scheme and
+masking are a parameter family, not a fixed choice, and they dial how much of the system is loop.
+Sweeping them turns the discriminator from a two-point test into a gradient: readings can be sorted
+by \emph{how fast} they decay as the construction is loosened, which would separate the sharply
+kinematic from the merely construction-sensitive rather than treating both as one category.
 
 % ---------------------------------------------------------------------------------------------
 \section{Related work}
