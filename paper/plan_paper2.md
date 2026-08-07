@@ -156,3 +156,91 @@ anchor. It is worth resisting the pull to make the material stretch: the project
 on scoping claims down, not up.
 
 **Decision point:** when #90's seven new families land. Not before.
+
+---
+
+## 7. Revision, 7 Aug 2026 — what F98–F104 change
+
+The claim set is unchanged. A + B + C still needs no further compute. Three things are added, one
+open question is resolved, and one hazard is upgraded.
+
+### 7.1 F104 supplies the converse of hazard 6, and it is the missing half of the paper
+
+Hazard 6 says *vary the construction, not just the model* — nineteen models could not separate
+"property of LMs" from "property of the probe", and one change of CA did it immediately. That
+detects probe artifacts. It does not answer the question a reviewer will ask next: **does this
+instrument read the model at all?**
+
+F104 answers it with the construction held fixed and the model's internals varied. Ablating one
+further attention layer inside an early-block-ablated model moves ignition from 0.181 ± 0.032 to
+0.516 (L8), 0.438 (L21), 0.400 (L20), 0.391 (L18), 0.369 (L22) — five layers clearing Bonferroni at
+α/16, with the run as the unit of analysis. Four of the five are in `attn_late`, and the direction
+agrees with F79's independent group measurement, where `attn_late` ablation alone raises λ_ca
+(0.3566 → 0.3960, the only group arm with that sign).
+
+So the pair is now symmetric and testable in both directions:
+
+| manipulation | construction | model | instrument responds? |
+|---|---|---|---|
+| change the CA (F66) | varied | fixed | yes — the transition disappears |
+| change the model family (F63, F64) | fixed | varied | no — 19 models, 70× scale, refuted both ways |
+| change the checkpoint (F39/F77) | fixed | varied | yes — λ_ca crosses zero, step256→512 |
+| **ablate internals (F104)** | **fixed** | **varied** | **yes — ignition 0.181 → 0.516, five layers** |
+
+Row 2 is what makes the manufactured transition a probe property. Rows 3 and 4 are what stop the
+paper reading as "the instrument measures nothing". **Without F104 the paper is a confession; with
+it, it is a discriminator.**
+
+### 7.2 This resolves §5's open question 1 — A and B are one claim, not two
+
+The question was whether A (manufactured transition) or B (gate the estimator) is the headline. With
+F104 they merge: the claim is that **iterated self-feeding probes mix construction-determined and
+model-determined quantities in readings that look alike, and here is the test that separates them.**
+A is the worked example where the naive reading was wrong. B is the method that caught it. The
+narrative "here is how the discipline caught it" is no longer a compromise framing — it is the
+result, because the discipline is what distinguishes rows 1–2 from rows 3–4 in the table above.
+
+This also lands where F95's prior-art gate says the gap is: *"no prior method feeds a model its own
+output back in — pitch the claim as the dynamics, not the fingerprint."*
+
+### 7.3 Two supporting controls, free
+
+- **F100.** λ_ca is flat against a 2.6× change in bits-per-byte across the trained regime (0.18433
+  → 0.18738 while bpb goes 2.3229 → 0.8895). The instrument is not a repackaged loss, which is the
+  obvious deflationary reading of rows 3–4.
+- **F102.** Annealed mean field, given the model's own exactly-measured single-token sensitivity,
+  does not predict the measured exponent across 33 ablation arms — a null WITH power (predictor
+  range ratio 1.934, target gate at 6.20× its floor). The construction is not reducible to the
+  simple theory of it, which forecloses "then just compute s instead".
+
+### 7.4 Hazard 7 is upgraded, and gains a live case study
+
+Claim B is *"measuring exponents on black-box LM dynamics requires gating the estimator at the
+measurement's own geometry, or it returns confident wrong answers."* Add the standard error itself
+to what must be gated. In #103, one line — the floor for a difference of four measured centres —
+was written three ways and each changed the verdict:
+
+    sqrt(len(SEEDS))     stale at 8 after a seed extension   too large    NOT DECIDABLE
+    mean per-arm SE      wrong statistic for a difference    too small    COMPENSATION (published, withdrawn)
+    quadrature           correct                             correct      NOT DECIDABLE
+
+The middle version produced a positive that was recorded as F103 and withdrawn the same day. It was
+caught by writing the *confirmatory* experiment, whose floor was derived from first principles for
+the delta statistic rather than inherited. That is Claim B demonstrated on itself, and it is better
+material than any of the four original retractions because the error survived a pre-registration, a
+power calculation and a fixed stopping rule.
+
+### 7.5 What is NOT added
+
+- **#103's compensator result.** NOT DECIDABLE across two runs; F103's positive withdrawn. It has
+  no place in this paper and should not be salvaged into it.
+- **The explanandum.** Four routes now (F78, F79/F80, induction heads, #103). The paper does not
+  need one and must not imply it has one.
+- **T\*.** One-legged and greedy-scoped; its own paper if the nucleus-sampling target is ever found.
+
+### 7.6 The one thing worth buying before writing
+
+F104 is one model at one checkpoint. Replicating it at a second post-crossing checkpoint would move
+row 4 of the table from "measured once" to "replicated", and row 4 is now load-bearing. That is four
+arms × 20 seeds at one extra checkpoint — the cheapest thing on this list, and the only compute the
+paper would benefit from.
