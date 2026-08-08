@@ -18,6 +18,7 @@
 
 \newcommand{\lca}{\lambda_{\mathrm{ca}}}
 \newcommand{\dnorm}{D_{\mathrm{norm}}}
+\newcommand{\Tstar}{T^{*}}
 
 \title{What Iterated Self-Feeding Probes of Language Models Measure\\
 {\large and a test that separates the construction from the model}}
@@ -540,12 +541,38 @@ curve, and $\lca$ is not a function of model quality.
 % SOURCE: F105 (the alignment comparison) and F100 (the collapse test). Two statistics, one grid --
 % see the cross-reference note on both entries.
 
-\paragraph{There is no explanandum.} Four routes failed to attach $\lca$ to a named internal
-mechanism: co-timing against context-use onset, ablation of component groups, induction-head
-formation (excluded by arithmetic --- formation lands one to two orders of magnitude away from the
-window), and a compensator-identification test whose single positive was withdrawn when its standard
-error was corrected. We report this as a result about the measurement, not as work in progress.
-% SOURCE: F78, F79/F80, F83, F106/F103.
+\paragraph{The explanandum is not internal: $\lca$ is largely fixed by the state the model drives
+the lattice into.} Four routes failed to attach $\lca$ to a named internal mechanism --- co-timing
+against context-use onset, ablation of component groups, induction-head formation (excluded by
+arithmetic, since formation lands one to two orders of magnitude away from the window), and a
+compensator-identification test whose single positive was withdrawn when its standard error was
+corrected. A fifth succeeded by changing level. The number of distinct tokens in the settled ring
+rank-correlates with $\lca$ at $\rho = 0.771$ (bootstrap 95\% CI $[0.714, 0.829]$ over eight seeds
+per checkpoint), and the relation is not a shared trend with training time: holding the weights
+fixed and varying temperature instead, cells three orders of magnitude apart in training land
+together when their diversity matches --- $T{=}0.9$ at step~256 and $T{=}0.5$ at step~143000 give
+diversity $21.6$ versus $26.8$ and $\lca$ $+0.187$ versus $+0.183$. Pooling both checkpoints onto one
+diversity--$\lca$ curve costs $0.009$ in residual against a $0.046$ seed floor.
+% SOURCE: F111 (the reduction and its temperature dissociation), F78/F79/F80/F83/F106 (the four routes).
+
+\paragraph{This retrodicts the four failures.} They searched for an internal cause of a quantity
+fixed by the state, and the sharpest of them reads differently in that light: no single attention
+layer moves $\lca$ beyond seed scatter, eight together move it by $+0.345$, and the twenty-four
+singles sum to $-0.224$ --- the wrong sign. That is not a mystery about localisation; it is what a
+collective property of the settled state looks like under ablation. The reduction is statistical
+rather than an identity --- roughly forty per cent of $\lca$'s variance is not diversity --- and it
+names no circuit and no training event. What it removes is the expectation that one exists at the
+level the four routes searched.
+% SOURCE: F80 (non-additivity), F111 (the reduction).
+
+\paragraph{And the reduction does not extend to the predictive result.} $\Tstar$ is derived from the
+same settled ring, which raises the possibility that it is the reduction in different clothing. It is
+not: diversity at a \emph{fixed} temperature predicts greedy degeneration at $|\rho| \le 0.11$ across
+four temperatures on twenty-six models, every $p > 0.59$, while $\Tstar$ on the same target and the
+same models reaches $\rho = 0.547$. The predictive content lies in where the diversity curve crosses
+a threshold as temperature varies, not in diversity at any point on it --- so $\lca$ inherits the
+state's lack of external predictive power, and $\Tstar$ does not.
+% SOURCE: F112.
 
 \paragraph{The dynamics are not reducible to the obvious theory of them.} Given the model's own
 exactly measured single-token sensitivity, annealed mean field does not predict the exponent across

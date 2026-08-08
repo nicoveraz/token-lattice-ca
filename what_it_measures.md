@@ -7,9 +7,29 @@ same kind as its successes, rather than caveats attached to them.
 
 ---
 
-## 1. There is only one quantity
+## 1. There are two objects, not one
 
-Everything this project has measured is a slice of a single map:
+An earlier draft of this document opened by claiming there is only one quantity — that everything
+measured here is a slice of the one-token response map. **F112 refutes that from inside.** If
+diversity and T\* were two readings of one thing they could not come apart, and they do: diversity
+at a fixed temperature predicts greedy degeneration at |ρ| ≤ 0.11 across four temperatures on 26
+models, every p > 0.59, while T\* on the same models and the same target reaches +0.547. That is a
+dissociation, and it means there are **two families** here:
+
+- **the one-token response family** — `s`, λ_ca, damage growth rate. Everything in §2's training-time
+  column and §3's regime results. It did not transfer.
+- **the argmax map's fixed-point and basin structure** — attractor share, T\*, the funnel / none /
+  fragmented taxonomy. The one externally-predictive result lives here.
+
+Both are properties of the same conditional `p_r`, which is what makes unifying them tempting. They
+behave differently exactly where it counts, so the unification is not available and filing T\* as a
+slice of the response family would centre the half that failed to transfer. §6's structural lesson —
+**the useful quantity is a response, not a state** — is the sharper statement and does not need the
+one-quantity claim to stand.
+
+### The response family
+
+Everything in this family is a slice of a single map:
 
 > **Change one token of a model's context. How much does its output distribution change?**
 
@@ -113,15 +133,22 @@ activation space the door is closed structurally (§3).
 **Whether the model is good.** Dissociated from loss, explicitly (§3).
 
 **Why the response has the shape it does, in mechanistic terms.** Four routes failed to name a
-mechanism, and a fifth *reduced* it instead: **λ_ca is a function of the settled ring's diversity**
-(ρ = +0.771 seed-averaged, bootstrap CI [+0.714, +0.829]), dissociated from the training-time trend
+mechanism, and a fifth *reduced* it instead: **λ_ca is largely fixed by the settled ring's
+diversity** (ρ = +0.771 seed-averaged, bootstrap CI [+0.714, +0.829]), dissociated from the training-time trend
 using temperature at fixed weights — `T0.9/step256` and `T0.5/step143000` differ by three orders of
 magnitude in training yet sit at diversity 21.6 vs 26.8 and λ +0.187 vs +0.183. The developmental
 transition is **the era when the ring is too homogeneous for damage to spread**: at step128 the
 settled ring holds ~7.5 distinct tokens, so CRN twins share windows and heal deterministically.
 
-That is a reduction, in the way temperature reduces to mean kinetic energy — not a circuit and not a
-named training event. It does explain why the four routes failed: they searched for an *internal*
+**"Largely fixed by" is deliberate and "is a function of" would be wrong.** At ρ = 0.771 roughly
+**40% of λ_ca's variance is not diversity**, so this is a statistical reduction, not an identity —
+temperature reduces to mean kinetic energy in exactly this partial way. The residual is therefore an
+object in its own right, and an unsearched one: if it carries model identity, that is where the
+model's own contribution lives. Note also that the *within-dip* ordering does not survive seed
+averaging (§7); the dip-versus-plateau separation, which carries the reduction, clears its seed floor
+by 60×.
+
+That is a reduction — not a circuit and not a named training event. It does explain why the four routes failed: they searched for an *internal*
 cause of a quantity fixed by the *state* the model drives the lattice into, and F80's non-additivity
 is what a collective state property looks like under ablation.
 
@@ -244,8 +271,8 @@ claims about language models that survive the construction being discarded — t
 error-correction mechanism, that the OOD cliff is one token wide, that the activation-space exponent
 is architectural, that quality and perturbation response come apart.
 
-This is interpretability of an unfashionable kind: **negative-space**. It establishes what is *not*
-explicable at a given level and measures where the boundary sits, rather than reporting a mechanism.
-Most work of this sort reports what it found; very little reports what provably is not there. That
-is worth saying plainly, and it is worth not overselling — none of it is a circuit, and the project
-has measured that door shut twice.
+The pattern is unfashionable and worth naming without a label for it: these results establish what is
+*not* explicable at a given level, and measure where the boundary sits, rather than reporting a
+mechanism. Most work of this kind reports what it found; very little reports what provably is not
+there. That is worth saying plainly and worth not overselling — none of it is a circuit, and the
+project has measured that door shut twice.
