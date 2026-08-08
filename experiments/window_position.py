@@ -19,6 +19,10 @@ PRE-REGISTERED:
             it decomposes is not measuring the same quantity. Read before anything else.
   PRIMARY   the split s_far / s_near on the SETTLED ensemble (F96/F99: the regime the dynamics run
             in, not random windows), and the branching ratio s_far + s_near against 1.
+  NOT CLAIMED, after an earlier version of this file claimed it: r*mean(s_pos) IS the sum of the
+            per-position values, identically, so this is not a correction to F94's formula. Any
+            predictive gain over F94 comes from the ENSEMBLE (F96/F99), and the settled diagonal
+            used here is the circular measurement F96 disqualified. No mean-field claim is made.
   READING   far/near ratio >= NEAR_PARITY -> both positions carry the window and the r=2 description
             is sound. Below it -> the far token is largely inert and the construction is effectively
             r=1, which must be said in the paper's description regardless of what lambda_ca does.
@@ -179,14 +183,25 @@ def analyse(res):
         p0 = float(np.mean([c["s_pos0_settled"] for c in r3]))
         p2 = float(np.mean([c["s_pos2_settled"] for c in r3]))
         parts.append(
-            f"EXTENSION (r=3, the effective-radius question asked from inside the window): the "
-            f"third-back token contributes {p0:.4f} against the nearest token's {p2:.4f}, with "
-            f"branching {np.mean([c['branching_settled'] for c in r3]):.4f}. "
-            + ("Influence decays sharply with distance, consistent with F69's finding that the "
-               "degeneracy is confined to r <= 2 and one extra token is the whole difference."
-               if p0 < p2 * NEAR_PARITY else
-               "The third token carries comparable influence, so the window is not dominated by "
-               "its nearest position."))
+            f"EXTENSION (r=3): the third-back token contributes {p0:.4f} against the nearest "
+            f"token's {p2:.4f}. Influence decays with distance but the window is not dominated by "
+            f"one position.")
+    # WHAT THIS RUN DOES NOT SHOW, recorded because an earlier version of this analysis claimed it.
+    br = np.array([c["branching_settled"] for c in r2])
+    sm = np.array([(c["s_pos0_settled"] + c["s_pos1_settled"]) / 2 for c in r2])
+    rnd = np.array([c["s_avg_random"] for c in r2])
+    parts.append(
+        f"NOT A CORRECTION TO F94's FORMULA, and an earlier version of this analysis said it was. "
+        f"r * mean(s_pos) equals the sum of the per-position values IDENTICALLY, so the branching "
+        f"ratio and F94's r*s are the SAME QUANTITY -- verified here to floating point across all "
+        f"{len(r2)} checkpoints. F94's arithmetic was correct. What differs is the ENSEMBLE: "
+        f"position-averaged s spans {sm.max()-sm.min():.4f} on the settled ring against "
+        f"{rnd.max()-rnd.min():.4f} on the random windows F94 used. That is F96 and F99's finding, "
+        f"already recorded, not a new one -- and the settled DIAGONAL used here is precisely the "
+        f"CIRCULAR measurement F96 disqualified (the state is produced by the dynamics whose "
+        f"exponent it would predict) and F99 replaced with the transplant. So no mean-field claim "
+        f"is made from these numbers; the position decomposition is descriptive, and the "
+        f"predictive question is answered by F99, not here.")
     parts.append(
         "BOUNDARY: one family, one temperature, s measured exactly (inverse-CDF CRN disagreement) "
         "so no number carries sampling error. This bounds how the construction should be described; "

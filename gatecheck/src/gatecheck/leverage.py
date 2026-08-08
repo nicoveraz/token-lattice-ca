@@ -38,6 +38,7 @@ from .gate import Verdict, DECIDED, NOT_DECIDABLE
 
 __all__ = [
     "LeverageReport",
+    "reduction_faithful",
     "dynamic_range",
     "correlation_leverage",
     "noise_gate",
@@ -186,6 +187,59 @@ def distinct_units(keys: Sequence[Any], *, minimum: int = 8,
                          f"statistic as undefined"),
         dict(n=n, n_distinct=d, minimum=minimum,
              understatement=(math.sqrt(n / d) if d else None)))
+
+
+def reduction_faithful(values, *, axis_name: str = "component",
+                      condition_name: str = "condition", k: float = 1.0,
+                      name: str = "reduction") -> LeverageReport:
+    """Is a mean over an axis faithful, or is that axis where the structure lives?
+
+    THE DEFECT, WITH FIVE INSTANCES. A statistic is reported as a scalar -- a mean over positions,
+    over contexts, over replicas, over an ensemble -- and the reduction is quoted while the axis it
+    reduced is not. When the reduced axis varies MORE than the quantity varies across the conditions
+    under study, the mean is not a summary of the thing, it is a summary of something else:
+
+      F94   s averaged over window position AND context: "flat at 0.85", predicted growth everywhere
+      F96   s measured on random windows, not the ensemble the ring occupies
+      F99   the same, resolved by transplanting model onto ensemble
+      F109  s averaged over position on a restricted support: hid an 8x far/near asymmetry
+      F110  s averaged over position on the FULL vocabulary: the branching ratio is the SUM of the
+            per-position values, not r times their mean, and computing it correctly moved the
+            predictor from flat-and-uninterpretable (span ratio 0.17) to tracking (2.09)
+
+    THE TEST. `values` is (n_conditions, n_components). Compare the spread WITHIN the reduced axis
+    against the movement of the reduction ACROSS conditions:
+
+        within  = mean over conditions of (max - min across components)
+        across  = (max - min) over conditions of the per-condition mean
+
+    If `within > k * across`, the axis you averaged over varies more than the thing you are
+    studying, and the mean must not be quoted alone. This does not say the mean is wrong -- it says
+    it is not the whole quantity, and the decomposition has to be reported with it.
+
+    It cannot tell you WHICH decomposition matters, only that one does. That judgement stays with
+    the author; what this removes is the option of not noticing.
+    """
+    import numpy as np
+    a = np.asarray(values, dtype=float)
+    if a.ndim != 2 or a.shape[1] < 2:
+        raise ValueError("values must be 2-D: (n_conditions, n_components) with >= 2 components")
+    m = a.mean(axis=1)
+    within = float((a.max(axis=1) - a.min(axis=1)).mean())
+    across = float(m.max() - m.min())
+    ratio = within / across if across > 0 else float("inf")
+    ok = bool(across > 0 and within <= k * across)
+    return LeverageReport(
+        "reduction_faithful", ok,
+        f"{name}: spread WITHIN the {axis_name} axis is {within:.4g}; movement of the mean ACROSS "
+        f"{condition_name}s is {across:.4g} (ratio {ratio:.2f}, gate {k}). "
+        + ("The reduction is faithful -- the axis it averages over varies less than the quantity "
+           "being studied." if ok else
+           f"THE AXIS DOMINATES: averaging over {axis_name} discards more variation than the "
+           f"{condition_name} effect it is being used to describe, so the mean must not be quoted "
+           f"alone and the per-{axis_name} decomposition has to be reported with it."),
+        dict(within=within, across=across, ratio=ratio, k=k,
+             n_conditions=int(a.shape[0]), n_components=int(a.shape[1])))
 
 
 def carries_verdict(reports: Sequence[LeverageReport], measure: Callable[[], Any] | None = None,

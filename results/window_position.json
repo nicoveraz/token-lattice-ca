@@ -234,29 +234,27 @@
   "far_token_inert": false,
   "near_parity": 0.5
  },
- "verdict": "CALIBRATION, read first: position-averaged s on random windows reproduces F94's values to within 0.0288 (tolerance 0.08) across 6 checkpoints. The decomposition measures the same quantity F94 measured. COHORT: cohort intact: all 6 declared checkpoints measured PRIMARY: on the settled ensemble the far token (i-2) contributes 0.5786 on average against the near token's 0.8200 -- a far/near ratio of 0.698 (range 0.351-0.894), and a branching ratio of 1.3986. AT OR ABOVE the 0.5 parity threshold: both window positions carry real influence, the r=2 description is sound, and F109's collapse is a property of RESTRICTION alone rather than of the window geometry. The paper's framing is licensed. EXTENSION (r=3, the effective-radius question asked from inside the window): the third-back token contributes 0.5345 against the nearest token's 0.7042, with branching 1.8576. The third token carries comparable influence, so the window is not dominated by its nearest position. BOUNDARY: one family, one temperature, s measured exactly (inverse-CDF CRN disagreement) so no number carries sampling error. This bounds how the construction should be described; it does not bear on whether lambda_ca replicates (F98) or predicts (F86).",
+ "verdict": "CALIBRATION, read first: position-averaged s on random windows reproduces F94's values to within 0.0288 (tolerance 0.08) across 6 checkpoints. The decomposition measures the same quantity F94 measured. COHORT: cohort intact: all 6 declared checkpoints measured PRIMARY: on the settled ensemble the far token (i-2) contributes 0.5786 on average against the near token's 0.8200 -- a far/near ratio of 0.698 (range 0.351-0.894), and a branching ratio of 1.3986. AT OR ABOVE the 0.5 parity threshold: both window positions carry real influence, the r=2 description is sound, and F109's collapse is a property of RESTRICTION alone rather than of the window geometry. The paper's framing is licensed. EXTENSION (r=3): the third-back token contributes 0.5345 against the nearest token's 0.7042. Influence decays with distance but the window is not dominated by one position. NOT A CORRECTION TO F94's FORMULA, and an earlier version of this analysis said it was. r * mean(s_pos) equals the sum of the per-position values IDENTICALLY, so the branching ratio and F94's r*s are the SAME QUANTITY -- verified here to floating point across all 6 checkpoints. F94's arithmetic was correct. What differs is the ENSEMBLE: position-averaged s spans 0.3811 on the settled ring against 0.0616 on the random windows F94 used. That is F96 and F99's finding, already recorded, not a new one -- and the settled DIAGONAL used here is precisely the CIRCULAR measurement F96 disqualified (the state is produced by the dynamics whose exponent it would predict) and F99 replaced with the transplant. So no mean-field claim is made from these numbers; the position decomposition is descriptive, and the predictive question is answered by F99, not here. BOUNDARY: one family, one temperature, s measured exactly (inverse-CDF CRN disagreement) so no number carries sampling error. This bounds how the construction should be described; it does not bear on whether lambda_ca replicates (F98) or predicts (F86).",
  "_analysis_provenance": {
   "script": "window_position.py",
-  "sha256": "d74d6e5279ef2a7f95db5c0b91cc2eabf321f1518148e0e5f5bdff9a88cf91c1",
+  "sha256": "8367e05c9c2594e3dbda41565240bc6a6fdb5cd4bf1f3addd9ff4fe17b4510db",
   "imports": {
    "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
    "experiments/meanfield_lambda.py": "af0d793741cf5860af7f13d8190aebe70c524b4720d3128c2eaf0223252f0763",
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-   "experiments/window_position.py": "d74d6e5279ef2a7f95db5c0b91cc2eabf321f1518148e0e5f5bdff9a88cf91c1",
-   "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
+   "experiments/window_position.py": "8367e05c9c2594e3dbda41565240bc6a6fdb5cd4bf1f3addd9ff4fe17b4510db",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
    "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
    "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
    "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
-   "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
    "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
    "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
    "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
    "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
    "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
-   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175",
-   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
-   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
   },
   "env": {
    "python": "3.11.5",

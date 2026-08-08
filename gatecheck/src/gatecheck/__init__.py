@@ -26,6 +26,7 @@ from .nulltest import (
 )
 from .leverage import (
     LeverageReport,
+    reduction_faithful,
     dynamic_range,
     correlation_leverage,
     noise_gate,
@@ -44,7 +45,7 @@ __all__ = [
     "scan_minimum", "require_off_edge", "EdgeRejection", "slope_loglog", "ScanFit",
     "assert_exact_zero", "certify_null", "NullCertificate", "VacuousNullError",
     "BrokenCouplingError", "effect_beyond_control",
-    "LeverageReport", "dynamic_range", "correlation_leverage", "noise_gate",
+    "LeverageReport", "reduction_faithful", "dynamic_range", "correlation_leverage", "noise_gate",
     "directional", "distinct_units", "carries_verdict",
     "Manifest", "Entry", "strip_tex_comments",
     "save_results", "load_results", "check_no_absolute_paths",

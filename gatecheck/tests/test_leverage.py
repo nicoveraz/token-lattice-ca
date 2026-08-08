@@ -149,3 +149,53 @@ def test_carries_verdict_still_decides_when_a_real_gate_passes():
     v = carries_verdict([dynamic_range([0.1, 0.9], floor=0.05)], value=7)
     assert v.status == DECIDED and v.value == 7
     assert "dynamic_range" in v.reason
+
+
+# ------------------------------------------------- the reduction guard (F94/F96/F99/F109/F110)
+
+def test_f96_ensemble_axis_dominates_where_position_does_not():
+    """The guard's own calibration, on two real cases that differ in the right direction.
+
+    canalization measured s in three context ensembles across six checkpoints: the spread BETWEEN
+    ensembles (0.157) exceeds the movement of their mean across checkpoints (0.106), so averaging
+    over ensemble discards more than the developmental effect it describes. That is F96's finding,
+    and the guard flags it.
+
+    window_position measured s at two window positions across six checkpoints on the settled ring:
+    the far/near gap (0.242) is SMALLER than the mean's movement (0.381), so position-averaging is
+    faithful there. An earlier version of this test asserted the opposite and failed -- correctly,
+    because r*mean(s_pos) IS the sum of per-position values identically, and F110's predictive gain
+    came from the ensemble, not the position split. The guard caught an error in the finding that
+    motivated it.
+    """
+    from gatecheck import reduction_faithful
+    by_ensemble = [[0.8210, 0.7704, 0.6246], [0.8804, 0.8268, 0.5252], [0.8380, 0.8352, 0.5673],
+                   [0.8096, 0.8441, 0.8567], [0.8342, 0.8596, 0.8388], [0.8205, 0.8657, 0.8364]]
+    r = reduction_faithful(by_ensemble, axis_name="context ensemble",
+                           condition_name="checkpoint", name="s")
+    assert not r.usable and r.stats["ratio"] > 1.0
+    assert "THE AXIS DOMINATES" in r.reason
+
+    by_position = [[0.2441, 0.6945], [0.5019, 0.8357], [0.4944, 0.5837],
+                   [0.7974, 0.8918], [0.7321, 0.9688], [0.7015, 0.9458]]
+    assert reduction_faithful(by_position, axis_name="window position").usable
+
+
+def test_a_faithful_reduction_passes():
+    """Components tightly clustered, the mean moving a lot across conditions."""
+    from gatecheck import reduction_faithful
+    vals = [[0.10, 0.11], [0.30, 0.31], [0.60, 0.59], [0.90, 0.91]]
+    assert reduction_faithful(vals).usable
+
+
+def test_a_constant_mean_makes_the_ratio_infinite_not_a_pass():
+    from gatecheck import reduction_faithful
+    r = reduction_faithful([[0.1, 0.9], [0.9, 0.1]])
+    assert not r.usable and r.stats["across"] == 0.0
+
+
+def test_reduction_faithful_needs_a_real_axis():
+    import pytest as _p
+    from gatecheck import reduction_faithful
+    with _p.raises(ValueError):
+        reduction_faithful([[0.1], [0.2]])
