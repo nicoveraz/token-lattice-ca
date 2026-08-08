@@ -3629,6 +3629,46 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F112 — the settled state predicts nothing external; its TEMPERATURE RESPONSE does
+F111 raised a larger worry than it settled: if λ_ca reduces to settled-ring diversity, and T\* is
+derived from the same ring's top-1 share, the project's model-facing results might be **one
+measurement wearing several hats**. The test was free — `attractor_corpus_screen.json` already
+stores `distinct_frac` for 26 models at four temperatures, `degeneration_vs_tstar.json` stores
+greedy `rep_4` for the same models, and both were re-used unchanged so the pairing could not be
+tuned.
+
+```
+ T = 0.02    diversity vs rep_4   ρ = −0.066   p = 0.744   n = 26
+ T = 0.20                         ρ = −0.034   p = 0.865   n = 26
+ T = 0.436                        ρ = +0.022   p = 0.918   n = 26
+ T = 0.70                         ρ = +0.110   p = 0.596   n = 26
+
+ T*  vs rep_4                     ρ = +0.547   p = 0.047   n = 14
+ diversity@0.436, same 14 models  ρ = −0.253   p = 0.379   n = 14
+```
+
+**Diversity at a fixed temperature predicts greedy degeneration at |ρ| ≤ 0.11 — that is, not at
+all — at every temperature, on 26 models.** On the same fourteen models where T\* reaches +0.547,
+diversity gives −0.253. **T\* is not diversity by another name.** The predictive content lies in
+*where the diversity curve crosses a threshold as temperature varies*, not in diversity at any point
+on it.
+
+**Two consequences, opposite in sign.** F111's reduction of λ_ca to the settled state **does not
+touch F86** — the consolidation worry is refuted, and the project's one externally-predictive result
+survives intact. But it also implies the reverse: **λ_ca inherits diversity's lack of external
+predictive power.** That is consistent with the record — T\* is the only result that predicts
+something outside the instrument, and λ_ca has never been it.
+
+**So the useful quantity is a response, not a state.** A settled ring tells you nothing about how the
+model will degenerate; how that ring *dissolves under temperature* tells you a great deal. Whatever
+λ_ca measures, it is a property of where the lattice lands rather than of how it responds — which is
+why four routes found no explanandum and why the one anchor the project has runs through a different
+quantity entirely.
+
+**Boundary.** Model-level correlation. F86 states its anchor at **family** level (ρ = 0.833, n = 8)
+because models within a family are not independent draws; the weaker figure here is the expected
+consequence of not aggregating, not a contradiction of it.
+
 ### F111 — λ_ca is a function of the settled ring's DIVERSITY: the explanandum, reduced not named
 Four routes had failed to attach λ_ca to anything. This attaches it — deflationarily, and to another
 property of the same system rather than to a mechanism.

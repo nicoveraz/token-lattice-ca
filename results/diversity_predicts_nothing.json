@@ -1,0 +1,78 @@
+{
+ "_preregistration": {
+  "temps": [
+   0.02,
+   0.2,
+   0.436,
+   0.7
+  ],
+  "ref_t": 0.436,
+  "sources": [
+   "attractor_corpus_screen.json",
+   "degeneration_vs_tstar.json"
+  ],
+  "primary": "does diversity at a FIXED temperature rank-correlate with rep_4, as T* does?",
+  "consolidation": "if yes, T* is diversity by another name and F86 collapses into F111",
+  "separation": "if no, T* is a property of the diversity CURVE, not of diversity at a point",
+  "note": "both source files re-used unchanged; the pairing cannot be tuned"
+ },
+ "tstar": {
+  "rho": 0.5473,
+  "perm_p": 0.0471,
+  "n": 14
+ },
+ "diversity_same_subset": {
+  "rho": -0.2527,
+  "perm_p": 0.3791,
+  "n": 14,
+  "T": 0.436
+ },
+ "per_temperature": {
+  "0.02": {
+   "rho": -0.066,
+   "perm_p": 0.7442,
+   "n": 26
+  },
+  "0.2": {
+   "rho": -0.0338,
+   "perm_p": 0.8651,
+   "n": 26
+  },
+  "0.436": {
+   "rho": 0.0222,
+   "perm_p": 0.9184,
+   "n": 26
+  },
+  "0.7": {
+   "rho": 0.1097,
+   "perm_p": 0.596,
+   "n": 26
+  }
+ },
+ "verdict": "SEPARATION. Diversity at a fixed temperature predicts greedy degeneration at |rho| <= 0.110 across [0.02, 0.2, 0.436, 0.7] (n=26, every p > 0.59), i.e. not at all, while T* on the same target reaches rho=+0.547 (p=0.0471, n=14) and diversity on that same subset gives -0.253 (p=0.3791). So T* is NOT diversity by another name: the predictive content lies in WHERE THE DIVERSITY CURVE CROSSES A THRESHOLD as temperature varies, not in diversity at any point on it. F111's reduction of lambda_ca to the settled state therefore does NOT touch F86 -- and it implies the reverse, that lambda_ca inherits diversity's lack of external predictive power, which is consistent with T* being the project's only externally-predictive result and lambda_ca not being it. BOUNDARY: model-level correlation; F86 states its anchor at FAMILY level (rho=0.833, n=8) because models within a family are not independent draws, and the weaker figure here is the expected consequence of not aggregating.",
+ "separates": true,
+ "_analysis_provenance": {
+  "script": "diversity_predicts_nothing.py",
+  "sha256": "548d3b96b0407e2b9cd41def829bd051686607b7f195f7fe197137ec34918157",
+  "imports": {
+   "experiments/diversity_predicts_nothing.py": "548d3b96b0407e2b9cd41def829bd051686607b7f195f7fe197137ec34918157",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Tests whether T* is diversity by another name, which F111 made a live worry. Both source files re-used unchanged; no new runs."
+}
