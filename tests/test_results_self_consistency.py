@@ -282,6 +282,8 @@ _STALENESS_PAIRS = [
     ("window_position.json", "window_position.py"),
     ("diversity_explanandum.json", "diversity_explanandum.py"),
     ("diversity_predicts_nothing.json", "diversity_predicts_nothing.py"),
+    ("diversity_multiseed.json", "diversity_multiseed.py"),
+    ("diversity_vs_loss.json", "diversity_vs_loss.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("coupling_ladder.json", "coupling_ladder.py"),
     ("ignition_level.json", "ignition_level.py"),

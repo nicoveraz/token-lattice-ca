@@ -1,0 +1,595 @@
+{
+ "cells": {
+  "step128|s21": {
+   "step": 128,
+   "seed": 21,
+   "pooled_distinct": 5,
+   "per_replica_mean": 1.25,
+   "top_share": 0.6641,
+   "secs": 35.5
+  },
+  "step128|s22": {
+   "step": 128,
+   "seed": 22,
+   "pooled_distinct": 17,
+   "per_replica_mean": 2.875,
+   "top_share": 0.6901,
+   "secs": 35.1
+  },
+  "step128|s23": {
+   "step": 128,
+   "seed": 23,
+   "pooled_distinct": 7,
+   "per_replica_mean": 1.875,
+   "top_share": 0.5599,
+   "secs": 35.3
+  },
+  "step128|s24": {
+   "step": 128,
+   "seed": 24,
+   "pooled_distinct": 9,
+   "per_replica_mean": 1.875,
+   "top_share": 0.776,
+   "secs": 35.3
+  },
+  "step128|s25": {
+   "step": 128,
+   "seed": 25,
+   "pooled_distinct": 6,
+   "per_replica_mean": 1.875,
+   "top_share": 0.6146,
+   "secs": 35.3
+  },
+  "step128|s26": {
+   "step": 128,
+   "seed": 26,
+   "pooled_distinct": 2,
+   "per_replica_mean": 1.0,
+   "top_share": 0.75,
+   "secs": 35.2
+  },
+  "step128|s27": {
+   "step": 128,
+   "seed": 27,
+   "pooled_distinct": 6,
+   "per_replica_mean": 1.75,
+   "top_share": 0.7031,
+   "secs": 35.2
+  },
+  "step128|s28": {
+   "step": 128,
+   "seed": 28,
+   "pooled_distinct": 8,
+   "per_replica_mean": 2.0,
+   "top_share": 0.612,
+   "secs": 35.4
+  },
+  "step256|s21": {
+   "step": 256,
+   "seed": 21,
+   "pooled_distinct": 40,
+   "per_replica_mean": 7.0,
+   "top_share": 0.2943,
+   "secs": 35.3
+  },
+  "step256|s22": {
+   "step": 256,
+   "seed": 22,
+   "pooled_distinct": 25,
+   "per_replica_mean": 5.0,
+   "top_share": 0.2786,
+   "secs": 35.4
+  },
+  "step256|s23": {
+   "step": 256,
+   "seed": 23,
+   "pooled_distinct": 14,
+   "per_replica_mean": 2.875,
+   "top_share": 0.4453,
+   "secs": 35.4
+  },
+  "step256|s24": {
+   "step": 256,
+   "seed": 24,
+   "pooled_distinct": 28,
+   "per_replica_mean": 5.125,
+   "top_share": 0.2708,
+   "secs": 35.3
+  },
+  "step256|s25": {
+   "step": 256,
+   "seed": 25,
+   "pooled_distinct": 48,
+   "per_replica_mean": 7.625,
+   "top_share": 0.401,
+   "secs": 35.2
+  },
+  "step256|s26": {
+   "step": 256,
+   "seed": 26,
+   "pooled_distinct": 21,
+   "per_replica_mean": 3.875,
+   "top_share": 0.2526,
+   "secs": 35.1
+  },
+  "step256|s27": {
+   "step": 256,
+   "seed": 27,
+   "pooled_distinct": 21,
+   "per_replica_mean": 4.25,
+   "top_share": 0.237,
+   "secs": 35.1
+  },
+  "step256|s28": {
+   "step": 256,
+   "seed": 28,
+   "pooled_distinct": 13,
+   "per_replica_mean": 2.5,
+   "top_share": 0.5677,
+   "secs": 35.4
+  },
+  "step512|s21": {
+   "step": 512,
+   "seed": 21,
+   "pooled_distinct": 51,
+   "per_replica_mean": 8.75,
+   "top_share": 0.1536,
+   "secs": 35.3
+  },
+  "step512|s22": {
+   "step": 512,
+   "seed": 22,
+   "pooled_distinct": 40,
+   "per_replica_mean": 6.5,
+   "top_share": 0.3099,
+   "secs": 35.3
+  },
+  "step512|s23": {
+   "step": 512,
+   "seed": 23,
+   "pooled_distinct": 23,
+   "per_replica_mean": 4.25,
+   "top_share": 0.2708,
+   "secs": 35.2
+  },
+  "step512|s24": {
+   "step": 512,
+   "seed": 24,
+   "pooled_distinct": 38,
+   "per_replica_mean": 5.625,
+   "top_share": 0.25,
+   "secs": 35.2
+  },
+  "step512|s25": {
+   "step": 512,
+   "seed": 25,
+   "pooled_distinct": 33,
+   "per_replica_mean": 5.375,
+   "top_share": 0.2552,
+   "secs": 35.2
+  },
+  "step512|s26": {
+   "step": 512,
+   "seed": 26,
+   "pooled_distinct": 28,
+   "per_replica_mean": 5.125,
+   "top_share": 0.276,
+   "secs": 35.2
+  },
+  "step512|s27": {
+   "step": 512,
+   "seed": 27,
+   "pooled_distinct": 31,
+   "per_replica_mean": 5.5,
+   "top_share": 0.1875,
+   "secs": 35.3
+  },
+  "step512|s28": {
+   "step": 512,
+   "seed": 28,
+   "pooled_distinct": 8,
+   "per_replica_mean": 2.375,
+   "top_share": 0.3385,
+   "secs": 35.3
+  },
+  "step1000|s21": {
+   "step": 1000,
+   "seed": 21,
+   "pooled_distinct": 183,
+   "per_replica_mean": 34.125,
+   "top_share": 0.0755,
+   "secs": 35.3
+  },
+  "step1000|s22": {
+   "step": 1000,
+   "seed": 22,
+   "pooled_distinct": 190,
+   "per_replica_mean": 33.125,
+   "top_share": 0.1328,
+   "secs": 35.3
+  },
+  "step1000|s23": {
+   "step": 1000,
+   "seed": 23,
+   "pooled_distinct": 177,
+   "per_replica_mean": 32.625,
+   "top_share": 0.1094,
+   "secs": 35.1
+  },
+  "step1000|s24": {
+   "step": 1000,
+   "seed": 24,
+   "pooled_distinct": 179,
+   "per_replica_mean": 33.375,
+   "top_share": 0.1224,
+   "secs": 35.3
+  },
+  "step1000|s25": {
+   "step": 1000,
+   "seed": 25,
+   "pooled_distinct": 175,
+   "per_replica_mean": 33.5,
+   "top_share": 0.0911,
+   "secs": 35.4
+  },
+  "step1000|s26": {
+   "step": 1000,
+   "seed": 26,
+   "pooled_distinct": 199,
+   "per_replica_mean": 35.125,
+   "top_share": 0.0938,
+   "secs": 35.2
+  },
+  "step1000|s27": {
+   "step": 1000,
+   "seed": 27,
+   "pooled_distinct": 190,
+   "per_replica_mean": 34.0,
+   "top_share": 0.099,
+   "secs": 35.3
+  },
+  "step1000|s28": {
+   "step": 1000,
+   "seed": 28,
+   "pooled_distinct": 188,
+   "per_replica_mean": 34.875,
+   "top_share": 0.1198,
+   "secs": 35.2
+  },
+  "step2000|s21": {
+   "step": 2000,
+   "seed": 21,
+   "pooled_distinct": 205,
+   "per_replica_mean": 36.375,
+   "top_share": 0.1172,
+   "secs": 35.3
+  },
+  "step2000|s22": {
+   "step": 2000,
+   "seed": 22,
+   "pooled_distinct": 189,
+   "per_replica_mean": 32.75,
+   "top_share": 0.1927,
+   "secs": 35.3
+  },
+  "step2000|s23": {
+   "step": 2000,
+   "seed": 23,
+   "pooled_distinct": 201,
+   "per_replica_mean": 35.875,
+   "top_share": 0.1094,
+   "secs": 35.2
+  },
+  "step2000|s24": {
+   "step": 2000,
+   "seed": 24,
+   "pooled_distinct": 225,
+   "per_replica_mean": 37.625,
+   "top_share": 0.0911,
+   "secs": 35.3
+  },
+  "step2000|s25": {
+   "step": 2000,
+   "seed": 25,
+   "pooled_distinct": 213,
+   "per_replica_mean": 35.5,
+   "top_share": 0.138,
+   "secs": 35.1
+  },
+  "step2000|s26": {
+   "step": 2000,
+   "seed": 26,
+   "pooled_distinct": 210,
+   "per_replica_mean": 36.125,
+   "top_share": 0.1016,
+   "secs": 35.3
+  },
+  "step2000|s27": {
+   "step": 2000,
+   "seed": 27,
+   "pooled_distinct": 197,
+   "per_replica_mean": 36.25,
+   "top_share": 0.0885,
+   "secs": 35.2
+  },
+  "step2000|s28": {
+   "step": 2000,
+   "seed": 28,
+   "pooled_distinct": 201,
+   "per_replica_mean": 35.125,
+   "top_share": 0.1536,
+   "secs": 35.2
+  },
+  "step4000|s21": {
+   "step": 4000,
+   "seed": 21,
+   "pooled_distinct": 186,
+   "per_replica_mean": 33.5,
+   "top_share": 0.2031,
+   "secs": 35.3
+  },
+  "step4000|s22": {
+   "step": 4000,
+   "seed": 22,
+   "pooled_distinct": 181,
+   "per_replica_mean": 34.0,
+   "top_share": 0.1667,
+   "secs": 35.3
+  },
+  "step4000|s23": {
+   "step": 4000,
+   "seed": 23,
+   "pooled_distinct": 212,
+   "per_replica_mean": 35.375,
+   "top_share": 0.1875,
+   "secs": 35.3
+  },
+  "step4000|s24": {
+   "step": 4000,
+   "seed": 24,
+   "pooled_distinct": 196,
+   "per_replica_mean": 35.0,
+   "top_share": 0.1849,
+   "secs": 35.2
+  },
+  "step4000|s25": {
+   "step": 4000,
+   "seed": 25,
+   "pooled_distinct": 201,
+   "per_replica_mean": 35.25,
+   "top_share": 0.1927,
+   "secs": 35.0
+  },
+  "step4000|s26": {
+   "step": 4000,
+   "seed": 26,
+   "pooled_distinct": 208,
+   "per_replica_mean": 36.0,
+   "top_share": 0.1484,
+   "secs": 34.1
+  },
+  "step4000|s27": {
+   "step": 4000,
+   "seed": 27,
+   "pooled_distinct": 191,
+   "per_replica_mean": 35.125,
+   "top_share": 0.2161,
+   "secs": 34.1
+  },
+  "step4000|s28": {
+   "step": 4000,
+   "seed": 28,
+   "pooled_distinct": 194,
+   "per_replica_mean": 34.75,
+   "top_share": 0.1927,
+   "secs": 34.1
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   128,
+   256,
+   512,
+   1000,
+   2000,
+   4000
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28
+  ],
+  "r": 2,
+  "N": 48,
+  "B": 8,
+  "sweeps": 30,
+  "T": 0.7,
+  "range_k": 2.0,
+  "bootstrap": 4000,
+  "f111_single_seed": {
+   "128": 8,
+   "256": 24,
+   "512": 41,
+   "1000": 193,
+   "2000": 191,
+   "4000": 188
+  },
+  "primary": "across-seed sd of pooled diversity per checkpoint, and whether diversity's span clears RANGE_K x its own seed floor",
+  "recompute": "rho(diversity, lambda_ca) against SEED-AVERAGED diversity, with a bootstrap CI",
+  "kill": "seed floor comparable to the across-checkpoint span in the dip -> F111's motivating observation is withdrawn and only its temperature dissociation survives",
+  "boundary": "re-grounds F111's premise; does not re-test its conclusion"
+ },
+ "analysis": {
+  "rows": {
+   "128": {
+    "n": 8,
+    "values": [
+     5,
+     17,
+     7,
+     9,
+     6,
+     2,
+     6,
+     8
+    ],
+    "mean": 7.5,
+    "sd": 4.093,
+    "single_seed": 8
+   },
+   "256": {
+    "n": 8,
+    "values": [
+     40,
+     25,
+     14,
+     28,
+     48,
+     21,
+     21,
+     13
+    ],
+    "mean": 26.25,
+    "sd": 11.443,
+    "single_seed": 24
+   },
+   "512": {
+    "n": 8,
+    "values": [
+     51,
+     40,
+     23,
+     38,
+     33,
+     28,
+     31,
+     8
+    ],
+    "mean": 31.5,
+    "sd": 11.906,
+    "single_seed": 41
+   },
+   "1000": {
+    "n": 8,
+    "values": [
+     183,
+     190,
+     177,
+     179,
+     175,
+     199,
+     190,
+     188
+    ],
+    "mean": 185.125,
+    "sd": 7.574,
+    "single_seed": 193
+   },
+   "2000": {
+    "n": 8,
+    "values": [
+     205,
+     189,
+     201,
+     225,
+     213,
+     210,
+     197,
+     201
+    ],
+    "mean": 205.125,
+    "sd": 10.252,
+    "single_seed": 191
+   },
+   "4000": {
+    "n": 8,
+    "values": [
+     186,
+     181,
+     212,
+     196,
+     201,
+     208,
+     191,
+     194
+    ],
+    "mean": 196.125,
+    "sd": 9.867,
+    "single_seed": 188
+   }
+  },
+  "cohort": {
+   "complete": true,
+   "n_declared": 6,
+   "n_realised": 6,
+   "missing": [],
+   "extra": [],
+   "tolerated": [],
+   "reason": "cohort intact: all 6 declared checkpoints measured"
+  },
+  "rho": 0.7714,
+  "rho_ci": [
+   0.7143,
+   0.8286
+  ],
+  "seed_floor": 3.2489,
+  "leverage": {
+   "kind": "dynamic_range",
+   "usable": true,
+   "reason": "pooled diversity across checkpoints spans 197.6 against its own noise floor 3.249 (60.83x, gate 2.0x)",
+   "span": 197.625,
+   "floor": 3.2488610317266913,
+   "ratio": 60.8290099422834,
+   "k": 2.0
+  },
+  "survives": true,
+  "f111_rho": 0.943
+ },
+ "verdict": "COHORT: cohort intact: all 6 declared checkpoints measured SEED STABILITY: across-seed sd of pooled diversity is [4.093, 11.443, 11.906, 7.574, 10.252, 9.867] against means [7.5, 26.25, 31.5, 185.125, 205.125, 196.125]. In the low-diversity cells (mean < 60) the sd averages 9.1 against a within-dip span of 24.0, a ratio of 0.38. The single-seed values F111 used deviate from these means by up to 30%. RECOMPUTED PRIMARY: with seed-averaged diversity, rho(diversity, lambda_ca) = +0.771 with a bootstrap 95% CI of [+0.714, +0.829] over 4000 resamples. F111 reported +0.943 from single draws. pooled diversity across checkpoints spans 197.6 against its own noise floor 3.249 (60.83x, gate 2.0x) F111's motivating observation SURVIVES re-grounding: the correlation holds with seed averaging and its CI excludes zero, so the single-seed values were noisy but not misleading. BOUNDARY: one family, one temperature, one radius. This re-grounds F111's premise and does not re-test its conclusion; the dissociation grid averaged 3 seeds x 16 replicas per cell and is untouched by this.",
+ "_analysis_provenance": {
+  "script": "diversity_multiseed.py",
+  "sha256": "3f8e8fcf8d80ce07991997328a7ffc2853e1b1c6a9dfb2337cf97c0866e2b287",
+  "imports": {
+   "experiments/diversity_multiseed.py": "3f8e8fcf8d80ce07991997328a7ffc2853e1b1c6a9dfb2337cf97c0866e2b287",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "af0d793741cf5860af7f13d8190aebe70c524b4720d3128c2eaf0223252f0763",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Re-measures settled diversity with 8 seeds after a control found single-seed values deviating 49-62% in the low-diversity regime, which is where F111's motivating correlation lives."
+}

@@ -3669,12 +3669,43 @@ quantity entirely.
 because models within a family are not independent draws; the weaker figure here is the expected
 consequence of not aggregating, not a contradiction of it.
 
-### F111 — λ_ca is a function of the settled ring's DIVERSITY: the explanandum, reduced not named
+### F111 — λ_ca is a function of the settled ring's DIVERSITY: the explanandum, reduced not named. **AMENDED: ρ re-grounded from +0.943 to +0.771.**
+
+> **AMENDMENT, after a control caught the premise on single draws.** The motivating correlation used
+> single-seed diversity from `transplant_s` — 8, 24, 41, 193, 191, 188. A later run at the identical
+> geometry with only the seed changed returned 13, 20, 21, 193, 214, 196, deviating 49–62% in the
+> three low-diversity cells. Re-measured with **8 seeds per checkpoint**:
+>
+> ```
+>   step128   [5, 17, 7, 9, 6, 2, 6, 8]                mean   7.5   sd  4.1
+>   step256   [40, 25, 14, 28, 48, 21, 21, 13]         mean  26.2   sd 11.4
+>   step512   [51, 40, 23, 38, 33, 28, 31, 8]          mean  31.5   sd 11.9
+>   step1000  [183, 190, 177, 179, 175, 199, 190, 188] mean 185.1   sd  7.6
+>   step2000  [205, 189, 201, 225, 213, 210, 197, 201] mean 205.1   sd 10.3
+>   step4000  [186, 181, 212, 196, 201, 208, 191, 194] mean 196.1   sd  9.9
+> ```
+>
+> **ρ falls from +0.943 to +0.771**, bootstrap 95% CI **[+0.714, +0.829]** over 4000 resamples. The
+> correlation holds and its interval excludes zero; diversity's span of 197.6 clears its own 3.25
+> seed floor by 60.8×. So the single-seed values were **noisy but not misleading**, and the finding
+> stands at the lower figure.
+>
+> **What does not stand is the within-dip structure.** In the low-diversity cells the across-seed sd
+> averages 9.1 against a within-dip span of 24.0 — a ratio of 0.38 — and the ranges overlap heavily
+> (step256 spans 13–48, step512 spans 8–51). **Those two checkpoints are not separable by diversity
+> on any single draw.** The smooth 8 → 24 → 41 rise that made the curve look clean is not real; what
+> is real is the enormous dip-versus-plateau separation (7.5 vs 185+), which no seed noise touches.
+>
+> The **temperature dissociation is unaffected** — that grid averaged 3 seeds × 16 replicas per cell
+> — and remains the load-bearing evidence for the reduction. Quote ρ = +0.771 [+0.714, +0.829], not
+> +0.943.
+
+
 Four routes had failed to attach λ_ca to anything. This attaches it — deflationarily, and to another
 property of the same system rather than to a mechanism.
 
 **The observation.** Across the developmental grid the number of distinct tokens in the settled ring
-tracks λ_ca at **ρ = +0.943** (exact permutation p = 0.0167): 8, 24, 41, 193, 191, 188 distinct
+tracks λ_ca at **ρ = +0.943** on single draws — **re-grounded to +0.771, see the amendment above**: 8, 24, 41, 193, 191, 188 distinct
 against λ −0.093, −0.019, +0.068, +0.192, +0.156, +0.172. Tighter than any correlate λ_ca has had
 (F86's external anchor 0.833, F99's non-circular column 0.771). **On its own this is worthless**:
 both quantities rise monotonically with training step, so at n=6 any two monotone functions of time

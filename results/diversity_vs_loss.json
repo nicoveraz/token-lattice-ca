@@ -1,0 +1,263 @@
+{
+ "cells": {
+  "olmo1-0724|step0-tokens0B": {
+   "family": "olmo1-0724",
+   "revision": "step0-tokens0B",
+   "tokens_B": 0.0,
+   "bpb": 3.9155,
+   "lambda_ca": 0.33467,
+   "lambda_sd": 0.09639,
+   "distinct": 48.0,
+   "distinct_sd": 0.0,
+   "distinct_pool": 383,
+   "secs": 65.0
+  },
+  "olmo1-0724|step1000-tokens2B": {
+   "family": "olmo1-0724",
+   "revision": "step1000-tokens2B",
+   "tokens_B": 2.0,
+   "bpb": 1.57477,
+   "lambda_ca": 0.15933,
+   "lambda_sd": 0.02396,
+   "distinct": 31.375,
+   "distinct_sd": 7.696,
+   "distinct_pool": 178,
+   "secs": 63.1
+  },
+  "olmo1-0724|step2000-tokens4B": {
+   "family": "olmo1-0724",
+   "revision": "step2000-tokens4B",
+   "tokens_B": 4.0,
+   "bpb": 1.3367,
+   "lambda_ca": 0.20868,
+   "lambda_sd": 0.07232,
+   "distinct": 18.875,
+   "distinct_sd": 4.649,
+   "distinct_pool": 107,
+   "secs": 60.9
+  },
+  "olmo1-0724|step4000-tokens8B": {
+   "family": "olmo1-0724",
+   "revision": "step4000-tokens8B",
+   "tokens_B": 8.0,
+   "bpb": 1.15423,
+   "lambda_ca": 0.17673,
+   "lambda_sd": 0.0272,
+   "distinct": 35.5,
+   "distinct_sd": 3.202,
+   "distinct_pool": 203,
+   "secs": 59.0
+  },
+  "olmo1-0724|step10000-tokens20B": {
+   "family": "olmo1-0724",
+   "revision": "step10000-tokens20B",
+   "tokens_B": 20.0,
+   "bpb": 0.9858,
+   "lambda_ca": 0.17551,
+   "lambda_sd": 0.02378,
+   "distinct": 38.625,
+   "distinct_sd": 2.058,
+   "distinct_pool": 224,
+   "secs": 58.7
+  },
+  "olmo2-1b|stage1-step0-tokens0B": {
+   "family": "olmo2-1b",
+   "revision": "stage1-step0-tokens0B",
+   "tokens_B": 0.0,
+   "bpb": 3.95107,
+   "lambda_ca": 0.3598,
+   "lambda_sd": 0.10507,
+   "distinct": 48.0,
+   "distinct_sd": 0.0,
+   "distinct_pool": 383,
+   "secs": 68.8
+  },
+  "olmo2-1b|stage1-step300-tokens1B": {
+   "family": "olmo2-1b",
+   "revision": "stage1-step300-tokens1B",
+   "tokens_B": 1.0,
+   "bpb": 2.32294,
+   "lambda_ca": 0.18433,
+   "lambda_sd": 0.05781,
+   "distinct": 22.125,
+   "distinct_sd": 3.723,
+   "distinct_pool": 117,
+   "secs": 68.6
+  },
+  "olmo2-1b|stage1-step10000-tokens21B": {
+   "family": "olmo2-1b",
+   "revision": "stage1-step10000-tokens21B",
+   "tokens_B": 21.0,
+   "bpb": 0.93583,
+   "lambda_ca": 0.18129,
+   "lambda_sd": 0.03609,
+   "distinct": 37.75,
+   "distinct_sd": 1.785,
+   "distinct_pool": 210,
+   "secs": 68.5
+  },
+  "olmo2-1b|stage1-step20000-tokens42B": {
+   "family": "olmo2-1b",
+   "revision": "stage1-step20000-tokens42B",
+   "tokens_B": 42.0,
+   "bpb": 0.88955,
+   "lambda_ca": 0.18738,
+   "lambda_sd": 0.03028,
+   "distinct": 39.375,
+   "distinct_sd": 2.233,
+   "distinct_pool": 215,
+   "secs": 68.6
+  },
+  "olmo2-1b|stage1-step40000-tokens84B": {
+   "family": "olmo2-1b",
+   "revision": "stage1-step40000-tokens84B",
+   "tokens_B": 84.0,
+   "bpb": 0.85867,
+   "lambda_ca": 0.18896,
+   "lambda_sd": 0.03038,
+   "distinct": 39.0,
+   "distinct_sd": 4.093,
+   "distinct_pool": 213,
+   "secs": 68.0
+  },
+  "pythia-410m|step128": {
+   "family": "pythia-410m",
+   "revision": "step128",
+   "tokens_B": 0.27,
+   "bpb": 2.62748,
+   "lambda_ca": -0.09263,
+   "lambda_sd": 0.05264,
+   "distinct": 2.625,
+   "distinct_sd": 1.111,
+   "distinct_pool": 13,
+   "secs": 38.3
+  },
+  "pythia-410m|step256": {
+   "family": "pythia-410m",
+   "revision": "step256",
+   "tokens_B": 0.54,
+   "bpb": 2.22579,
+   "lambda_ca": -0.01845,
+   "lambda_sd": 0.11631,
+   "distinct": 4.0,
+   "distinct_sd": 2.0,
+   "distinct_pool": 20,
+   "secs": 38.8
+  },
+  "pythia-410m|step512": {
+   "family": "pythia-410m",
+   "revision": "step512",
+   "tokens_B": 1.07,
+   "bpb": 1.86132,
+   "lambda_ca": 0.06793,
+   "lambda_sd": 0.13248,
+   "distinct": 3.75,
+   "distinct_sd": 3.031,
+   "distinct_pool": 21,
+   "secs": 38.2
+  },
+  "pythia-410m|step1000": {
+   "family": "pythia-410m",
+   "revision": "step1000",
+   "tokens_B": 2.1,
+   "bpb": 1.36826,
+   "lambda_ca": 0.19235,
+   "lambda_sd": 0.02928,
+   "distinct": 33.125,
+   "distinct_sd": 5.231,
+   "distinct_pool": 193,
+   "secs": 38.4
+  },
+  "pythia-410m|step2000": {
+   "family": "pythia-410m",
+   "revision": "step2000",
+   "tokens_B": 4.19,
+   "bpb": 1.10158,
+   "lambda_ca": 0.15582,
+   "lambda_sd": 0.03747,
+   "distinct": 36.5,
+   "distinct_sd": 3.0,
+   "distinct_pool": 214,
+   "secs": 38.5
+  },
+  "pythia-410m|step4000": {
+   "family": "pythia-410m",
+   "revision": "step4000",
+   "tokens_B": 8.39,
+   "bpb": 0.98411,
+   "lambda_ca": 0.17243,
+   "lambda_sd": 0.01818,
+   "distinct": 34.5,
+   "distinct_sd": 3.391,
+   "distinct_pool": 196,
+   "secs": 38.5
+  }
+ },
+ "_preregistration": {
+  "r": 2,
+  "N": 48,
+  "B": 8,
+  "sweeps": 30,
+  "T": 0.7,
+  "seed": 20260808,
+  "repos": {
+   "pythia-410m": "EleutherAI/pythia-410m",
+   "olmo2-1b": "allenai/OLMo-2-0425-1B",
+   "olmo1-0724": "allenai/OLMo-1B-0724-hf"
+  },
+  "source": "loss_collapse_families.json -- bpb and lambda re-used UNCHANGED",
+  "primary": "across-family spread of DIVERSITY at matched bits-per-byte vs at matched tokens, the same comparison F100 ran on lambda_ca",
+  "reading": "F111 predicts diversity FAILS to collapse, mirroring lambda_ca; a collapse falsifies the reduction",
+  "control": "within Pythia, diversity must reproduce transplant_s's {128: 8, 256: 24, 512: 41, 1000: 193, 2000: 191, 4000: 188}",
+  "boundary": "bits-per-byte removes the tokenizer confound, not the corpus one"
+ },
+ "analysis": {
+  "control_ok": false,
+  "cohort": {
+   "complete": true,
+   "n_declared": 3,
+   "n_realised": 3,
+   "missing": [],
+   "extra": [],
+   "tolerated": [],
+   "reason": "cohort intact: all 3 declared familys measured"
+  }
+ },
+ "verdict": "CONTROL: Pythia's settled diversity reproduces transplant_s's values {128: (13, 8), 256: (20, 24), 512: (21, 41), 1000: (193, 193), 2000: (214, 191), 4000: (196, 188)} (measured, expected), worst relative deviation 62%. IT DOES NOT -- the settle differs and nothing below is read. COHORT: cohort intact: all 3 declared familys measured NOT DECIDABLE.",
+ "_analysis_provenance": {
+  "script": "diversity_vs_loss.py",
+  "sha256": "7b3aa7b97583b81b123b198e94be775c64b9413d4357b8d602452de5cc83b782",
+  "imports": {
+   "experiments/diversity_vs_loss.py": "7b3aa7b97583b81b123b198e94be775c64b9413d4357b8d602452de5cc83b782",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

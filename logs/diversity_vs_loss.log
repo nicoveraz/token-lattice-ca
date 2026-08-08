@@ -1,0 +1,54 @@
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4613.17it/s]
+  olmo1-0724|step0-tokens0B                    bpb=3.9155 distinct= 48.00 pool= 383 lam=0.33467 (65s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 2931.95it/s]
+  olmo1-0724|step1000-tokens2B                 bpb=1.5748 distinct= 31.38 pool= 178 lam=0.15933 (63s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4279.75it/s]
+  olmo1-0724|step2000-tokens4B                 bpb=1.3367 distinct= 18.88 pool= 107 lam=0.20868 (61s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 3982.10it/s]
+  olmo1-0724|step4000-tokens8B                 bpb=1.1542 distinct= 35.50 pool= 203 lam=0.17673 (59s)
+Loading weights:   0%|          | 0/114 [00:00<?, ?it/s]Loading weights: 100%|██████████| 114/114 [00:00<00:00, 4166.96it/s]
+  olmo1-0724|step10000-tokens20B               bpb=0.9858 distinct= 38.62 pool= 224 lam=0.17551 (59s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 5210.13it/s]
+  olmo2-1b|stage1-step0-tokens0B               bpb=3.9511 distinct= 48.00 pool= 383 lam=0.3598 (69s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 4713.97it/s]
+  olmo2-1b|stage1-step300-tokens1B             bpb=2.3229 distinct= 22.12 pool= 117 lam=0.18433 (69s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 5348.05it/s]
+  olmo2-1b|stage1-step10000-tokens21B          bpb=0.9358 distinct= 37.75 pool= 210 lam=0.18129 (68s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 5491.65it/s]
+  olmo2-1b|stage1-step20000-tokens42B          bpb=0.8895 distinct= 39.38 pool= 215 lam=0.18738 (69s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 4794.29it/s]
+  olmo2-1b|stage1-step40000-tokens84B          bpb=0.8587 distinct= 39.00 pool= 213 lam=0.18896 (68s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:00,  2.42it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 326.01it/s]Loading weights:  69%|██████▉   | 202/292 [00:00<00:00, 368.55it/s]Loading weights:  90%|████████▉ | 262/292 [00:00<00:00, 395.18it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 339.27it/s]
+  pythia-410m|step128                          bpb=2.6275 distinct=  2.62 pool=  13 lam=-0.09263 (38s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:55,  2.53it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 310.99it/s]Loading weights:  63%|██████▎   | 185/292 [00:00<00:00, 365.73it/s]Loading weights:  83%|████████▎ | 242/292 [00:00<00:00, 260.65it/s]Loading weights:  97%|█████████▋| 284/292 [00:01<00:00, 236.64it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 241.97it/s]
+  pythia-410m|step256                          bpb=2.2258 distinct=  4.00 pool=  20 lam=-0.01845 (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:53,  2.57it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 338.51it/s]Loading weights:  68%|██████▊   | 200/292 [00:00<00:00, 292.66it/s]Loading weights:  86%|████████▌ | 251/292 [00:00<00:00, 278.27it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 267.39it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 252.80it/s]
+  pythia-410m|step512                          bpb=1.8613 distinct=  3.75 pool=  21 lam=0.06793 (38s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.44it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 313.70it/s]Loading weights:  66%|██████▌   | 193/292 [00:00<00:00, 323.33it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 287.55it/s]Loading weights:  99%|█████████▉| 289/292 [00:01<00:00, 282.20it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 262.41it/s]
+  pythia-410m|step1000                         bpb=1.3683 distinct= 33.12 pool= 193 lam=0.19235 (38s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.44it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 294.05it/s]Loading weights:  61%|██████▏   | 179/292 [00:00<00:00, 338.14it/s]Loading weights:  79%|███████▉  | 231/292 [00:00<00:00, 246.95it/s]Loading weights:  92%|█████████▏| 269/292 [00:01<00:00, 236.21it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 235.49it/s]
+  pythia-410m|step2000                         bpb=1.1016 distinct= 36.50 pool= 214 lam=0.15582 (38s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:54,  2.55it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 313.35it/s]Loading weights:  63%|██████▎   | 185/292 [00:00<00:00, 284.99it/s]Loading weights:  79%|███████▉  | 231/292 [00:00<00:00, 257.36it/s]Loading weights:  91%|█████████▏| 267/292 [00:01<00:00, 235.70it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 231.95it/s]
+  pythia-410m|step4000                         bpb=0.9841 distinct= 34.50 pool= 196 lam=0.17243 (38s)
+
+  family         tokens      bpb  distinct    lambda
+  olmo1-0724       0.0B   3.9155     48.00   +0.3347
+  olmo1-0724       2.0B   1.5748     31.38   +0.1593
+  olmo1-0724       4.0B   1.3367     18.88   +0.2087
+  olmo1-0724       8.0B   1.1542     35.50   +0.1767
+  olmo1-0724      20.0B   0.9858     38.62   +0.1755
+  olmo2-1b         0.0B   3.9511     48.00   +0.3598
+  olmo2-1b         1.0B   2.3229     22.12   +0.1843
+  olmo2-1b        21.0B   0.9358     37.75   +0.1813
+  olmo2-1b        42.0B   0.8895     39.38   +0.1874
+  olmo2-1b        84.0B   0.8587     39.00   +0.1890
+  pythia-410m      0.3B   2.6275      2.62   -0.0926
+  pythia-410m      0.5B   2.2258      4.00   -0.0185
+  pythia-410m      1.1B   1.8613      3.75   +0.0679
+  pythia-410m      2.1B   1.3683     33.12   +0.1923
+  pythia-410m      4.2B   1.1016     36.50   +0.1558
+  pythia-410m      8.4B   0.9841     34.50   +0.1724
+
+  -> CONTROL: Pythia's settled diversity reproduces transplant_s's values {128: (13, 8), 256: (20, 24), 512: (21, 41), 1000: (193, 193), 2000: (214, 191), 4000: (196, 188)} (measured, expected), worst relative deviation 62%. IT DOES NOT -- the settle differs and nothing below is read. COHORT: cohort intact: all 3 declared familys measured NOT DECIDABLE.
+
+wrote results/diversity_vs_loss.json
