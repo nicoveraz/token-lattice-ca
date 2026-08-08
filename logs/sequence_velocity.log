@@ -1,0 +1,8 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:59,  2.43it/s]Loading weights:  40%|███▉      | 116/292 [00:00<00:00, 297.60it/s]Loading weights:  63%|██████▎   | 184/292 [00:00<00:00, 267.38it/s]Loading weights:  79%|███████▉  | 232/292 [00:01<00:00, 213.77it/s]Loading weights:  91%|█████████▏| 267/292 [00:01<00:00, 196.25it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 204.00it/s]
+  digits: 10 single tokens
+  DETERMINISM GATE: P(successor)=0.1087, argmax-successor=0.0900 over 100 windows (threshold 0.5)
+  -> below threshold: the successor rung does not exist. Recording and stopping.
+
+  -> DETERMINISM GATE, read before any velocity: P(successor) = 0.1087 and argmax-successor = 0.09 over 100 windows, against a threshold of 0.5. IT DOES NOT. The model's digit conditional is not a successor map at this temperature, so there is no analytic reference and THE RUNG DOES NOT EXIST. That is the registered kill, and it is reported rather than worked around -- lowering the threshold after seeing this number would be the defect this project has caught six times. BOUNDARY: this is a RUNG, not a result about language models. A near-deterministic conditional is low-entropy, so T*, melting and the attractor census are not expected to exist on this alphabet, and no number here should be quoted as a finding about LMs.
+
+wrote results/sequence_velocity.json

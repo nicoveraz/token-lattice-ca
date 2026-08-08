@@ -118,39 +118,61 @@ def analyse(res):
         f"{len(nulls)} checkpoints. "
         + ("Identical twins never diverge on the binary lattice, so the coupling certification "
            "carries over to this construction." if ok else "IT FAILS -- nothing below is read."))
+    # THE FIXED-POINT CHECK IS ABOUT THE SETTLED STATE, NOT ABOUT DAMAGE, so it must not be gated
+    # on ignition. The first version filtered on `ignited` before building `rows`; with zero
+    # ignited cells `rows` came out empty, the cohort guard fired correctly, and the registered
+    # kill -- top_share 0.949, the lattice freezes -- was measured, stored, and never printed.
+    # lambda statistics still use ignited runs only (F42); the state statistics use every cell.
     rows = {}
     for rev in STEPS:
-        cs = [c for c in res["cells"].values() if c.get("revision") == rev and c.get("ignited")]
-        if cs:
-            rows[rev] = dict(n=len(cs),
-                             lam=round(float(np.mean([c["lambda_ca"] for c in cs])), 5),
-                             sd=round(float(np.std([c["lambda_ca"] for c in cs])), 5),
-                             ign=round(float(np.mean([c["ignition"] for c in cs])), 3),
-                             top=round(float(np.mean([c["top_share"] for c in cs])), 3))
+        allc = [c for c in res["cells"].values() if c.get("revision") == rev]
+        cs = [c for c in allc if c.get("ignited")]
+        if allc:
+            rows[rev] = dict(n=len(allc), n_ignited=len(cs),
+                             lam=(round(float(np.mean([c["lambda_ca"] for c in cs])), 5) if cs else None),
+                             sd=(round(float(np.std([c["lambda_ca"] for c in cs])), 5) if cs else None),
+                             ign=round(float(np.mean([c["ignition"] for c in allc])), 3),
+                             top=round(float(np.mean([c["top_share"] for c in allc])), 3))
     print(f"\n  {'checkpoint':<12} {'n':>3} {'lambda':>9} {'sd':>8} {'ign':>6} {'top share':>10}")
     for r, v in rows.items():
-        print(f"  {r:<12} {v['n']:>3} {v['lam']:>+9.4f} {v['sd']:>8.4f} {v['ign']:>6.2f} "
-              f"{v['top']:>10.3f}")
+        lm = f"{v['lam']:+9.4f}" if v["lam"] is not None else "   (none)"
+        sd = f"{v['sd']:8.4f}" if v["sd"] is not None else "       -"
+        print(f"  {r:<12} {v['n']:>3} {lm:>9} {sd:>8} {v['ign']:>6.2f} {v['top']:>10.3f}")
     coh = cohort_complete(STEPS, list(rows), unit="checkpoint")
     parts.append(f"COHORT: {coh.reason}")
     if ok and len(rows) >= 3:
-        lam = [v["lam"] for v in rows.values()]
-        floor = float(np.mean([v["sd"] for v in rows.values()])) / np.sqrt(len(SEEDS))
-        lev = dynamic_range(lam, floor=floor, name="lambda_ca across checkpoints (binary lattice)")
-        v = carries_verdict([lev, coh], value=None) if coh.complete else None
-        frozen = float(np.mean([r["top"] for r in rows.values()]))
+        frozen_all = float(np.mean([r["top"] for r in rows.values()]))
         parts.append(
-            f"PRIMARY: lambda_ca spans {max(lam)-min(lam):.4f} across {len(rows)} checkpoints "
-            f"against a seed floor of {floor:.4f}. {lev.reason}")
-        parts.append(
-            f"FIXED-POINT CHECK (the registered live kill): mean dominant-token share on the "
-            f"settled binary ring is {frozen:.3f}. "
-            + (f"The lattice is FROZEN, so this construction reproduces F62/F66 one level down -- "
-               f"a two-token alphabet manufactures its own degeneracy and the rung does not deliver "
-               f"a usable regime." if frozen >= 0.9 else
-               f"The lattice is NOT frozen, so restricting to an in-distribution two-token support "
-               f"does not manufacture a fixed point -- which is what F66's diagnosis predicts, and "
-               f"it makes |V|=2 a usable regime where F41's coupling caveat does not apply."))
+            f"FIXED-POINT CHECK (the registered live kill, and it is read from the SETTLED STATE so "
+            f"it does not require damage to ignite): mean dominant-token share on the binary ring is "
+            f"{frozen_all:.3f}. "
+            + (f"The lattice is FROZEN. Restricting to a two-token in-distribution support does NOT "
+               f"escape the degeneracy -- it manufactures its own, reproducing F62/F66 one level "
+               f"down. So F41's coupling caveat cannot be removed by this construction: there is no "
+               f"live damage regime at this temperature to measure in."
+               if frozen_all >= 0.9 else
+               f"The lattice is NOT frozen, so the two-token support does not manufacture a fixed "
+               f"point."))
+        ign_all = float(np.mean([r["ign"] for r in rows.values()]))
+        if ign_all < 0.05:
+            parts.append(
+                f"AND DAMAGE NEVER IGNITES (mean ignition {ign_all:.3f}): the injected block "
+                f"coalesces to exactly zero within a few sweeps, so lambda_ca is UNDEFINED here by "
+                f"F42 and no exponent is reported. The measured trajectory decays monotonically "
+                f"from injection -- it does not rise and then die -- which is healing winning "
+                f"outright, not a subcritical spread.")
+        lam = [v["lam"] for v in rows.values() if v["lam"] is not None]
+        sds = [v["sd"] for v in rows.values() if v["sd"] is not None]
+        floor = (float(np.mean(sds)) / np.sqrt(len(SEEDS))) if sds else 0.0
+        if len(lam) < 3:
+            parts.append("No ignited runs, so no lambda statistics are computed (F42).")
+            lam = None
+        lev = (dynamic_range(lam, floor=floor, name="lambda_ca across checkpoints (binary lattice)")
+               if lam else None)
+        if lev is not None:
+            parts.append(
+                f"PRIMARY: lambda_ca spans {max(lam)-min(lam):.4f} across {len(lam)} checkpoints "
+                f"against a seed floor of {floor:.4f}. {lev.reason}")
     parts.append(
         "BOUNDARY: this is a RUNG. It shows the coupling caveat can be removed by construction; it "
         "says nothing about the full-vocabulary numbers, and must not be quoted as one.")

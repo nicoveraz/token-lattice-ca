@@ -1,0 +1,36 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:10,  2.23it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 234.65it/s]Loading weights:  52%|█████▏    | 152/292 [00:00<00:00, 193.74it/s]Loading weights:  63%|██████▎   | 183/292 [00:01<00:00, 190.65it/s]Loading weights:  72%|███████▏  | 209/292 [00:01<00:00, 169.32it/s]Loading weights:  79%|███████▉  | 230/292 [00:01<00:00, 170.48it/s]Loading weights:  86%|████████▋ | 252/292 [00:01<00:00, 176.44it/s]Loading weights:  93%|█████████▎| 272/292 [00:01<00:00, 176.17it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 172.33it/s]
+  step128|s21          lam=-1.5462 ign=0.00 top=1.00 (50s)
+  step128|s22          lam=-1.5320 ign=0.00 top=1.00 (50s)
+  step128|s23          lam=-1.4944 ign=0.00 top=1.00 (50s)
+  step128|s24          lam=-1.9797 ign=0.00 top=1.00 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:05,  2.32it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 256.49it/s]Loading weights:  55%|█████▌    | 162/292 [00:00<00:00, 230.46it/s]Loading weights:  69%|██████▉   | 201/292 [00:01<00:00, 211.11it/s]Loading weights:  79%|███████▉  | 232/292 [00:01<00:00, 188.46it/s]Loading weights:  88%|████████▊ | 257/292 [00:01<00:00, 187.83it/s]Loading weights:  96%|█████████▌| 280/292 [00:01<00:00, 188.08it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 190.42it/s]
+  step256|s21          lam=-1.5809 ign=0.00 top=1.00 (51s)
+  step256|s22          lam=-1.5320 ign=0.00 top=1.00 (51s)
+  step256|s23          lam=-1.5493 ign=0.00 top=1.00 (50s)
+  step256|s24          lam=-2.0678 ign=0.00 top=1.00 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:04,  2.33it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 294.09it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 261.97it/s]Loading weights:  80%|███████▉  | 233/292 [00:01<00:00, 217.63it/s]Loading weights:  92%|█████████▏| 268/292 [00:01<00:00, 205.62it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 206.19it/s]
+  step512|s21          lam=-2.1000 ign=0.00 top=0.95 (50s)
+  step512|s22          lam=-2.0493 ign=0.00 top=0.97 (50s)
+  step512|s23          lam=-0.1780 ign=0.00 top=0.96 (50s)
+  step512|s24          lam=-2.2351 ign=0.00 top=0.97 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:55,  2.51it/s]Loading weights:  44%|████▍     | 128/292 [00:00<00:00, 335.07it/s]Loading weights:  69%|██████▉   | 202/292 [00:00<00:00, 309.10it/s]Loading weights:  87%|████████▋ | 255/292 [00:01<00:00, 253.72it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 236.57it/s]
+  step1000|s21         lam=-1.9856 ign=0.00 top=0.99 (50s)
+  step1000|s22         lam=-1.5722 ign=0.00 top=0.99 (50s)
+  step1000|s23         lam=-2.1804 ign=0.00 top=0.98 (50s)
+  step1000|s24         lam=-2.2969 ign=0.00 top=0.98 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:08,  2.27it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 259.67it/s]Loading weights:  58%|█████▊    | 168/292 [00:00<00:00, 219.84it/s]Loading weights:  72%|███████▏  | 209/292 [00:01<00:00, 204.61it/s]Loading weights:  83%|████████▎ | 241/292 [00:01<00:00, 195.17it/s]Loading weights:  92%|█████████▏| 268/292 [00:01<00:00, 190.62it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 193.06it/s]
+  step2000|s21         lam=-1.9765 ign=0.00 top=0.99 (50s)
+  step2000|s22         lam=-1.9909 ign=0.00 top=0.98 (50s)
+  step2000|s23         lam=-2.2190 ign=0.00 top=0.98 (50s)
+  step2000|s24         lam=-2.2408 ign=0.00 top=0.98 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:05,  2.31it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 246.76it/s]Loading weights:  53%|█████▎    | 156/292 [00:00<00:00, 220.63it/s]Loading weights:  65%|██████▌   | 191/292 [00:01<00:00, 205.40it/s]Loading weights:  75%|███████▌  | 219/292 [00:01<00:00, 181.54it/s]Loading weights:  83%|████████▎ | 242/292 [00:01<00:00, 182.88it/s]Loading weights:  90%|█████████ | 264/292 [00:01<00:00, 180.85it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 187.22it/s]
+  step4000|s21         lam=-2.1972 ign=0.00 top=0.95 (51s)
+  step4000|s22         lam=-2.3487 ign=0.00 top=0.93 (51s)
+  step4000|s23         lam=-2.2951 ign=0.00 top=0.94 (50s)
+  step4000|s24         lam=-1.6788 ign=0.00 top=0.91 (50s)
+
+  checkpoint     n    lambda       sd    ign  top share
+
+  -> CONTROL: the exact-zero CRN null holds at 6/6 checkpoints. Identical twins never diverge on the binary lattice, so the coupling certification carries over to this construction. COHORT: 6 declared checkpoint(s) MISSING from the results (step1000, step128, step2000, step256, step4000, step512). The verdict would be computed over 0 checkpoints where 6 were registered, which answers a different question over a denominator nobody chose. BOUNDARY: this is a RUNG. It shows the coupling caveat can be removed by construction; it says nothing about the full-vocabulary numbers, and must not be quoted as one.
+
+wrote results/binary_dk_regime.json

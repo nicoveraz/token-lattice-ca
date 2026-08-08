@@ -1,0 +1,91 @@
+{
+ "cells": {},
+ "determinism": {
+  "p_successor": 0.1087,
+  "argmax_successor": 0.09,
+  "n_windows": 100
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "revision": "step4000",
+  "T": 0.7,
+  "radii": [
+   2,
+   3,
+   4
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24
+  ],
+  "B": 16,
+  "N": 64,
+  "alphabet": [
+   " 0",
+   " 1",
+   " 2",
+   " 3",
+   " 4",
+   " 5",
+   " 6",
+   " 7",
+   " 8",
+   " 9"
+  ],
+  "determinism_min": 0.5,
+  "gate": "P(successor) on the projected conditional must clear the threshold BEFORE any velocity is read; below it there is no known answer and the rung does not exist",
+  "primary": "does the measured damage front velocity equal r, for r in {2,3,4}?",
+  "second": "does F16/F21's velocity-proportional-to-r scaling reproduce here?",
+  "boundary": "a RUNG, not a result about language models; low entropy means T*/melting probably do not exist on this alphabet"
+ },
+ "analysis": {
+  "rows": {},
+  "determinism": {
+   "p_successor": 0.1087,
+   "argmax_successor": 0.09,
+   "n_windows": 100
+  },
+  "gate_passed": false
+ },
+ "verdict": "DETERMINISM GATE, read before any velocity: P(successor) = 0.1087 and argmax-successor = 0.09 over 100 windows, against a threshold of 0.5. IT DOES NOT. The model's digit conditional is not a successor map at this temperature, so there is no analytic reference and THE RUNG DOES NOT EXIST. That is the registered kill, and it is reported rather than worked around -- lowering the threshold after seeing this number would be the defect this project has caught six times. BOUNDARY: this is a RUNG, not a result about language models. A near-deterministic conditional is low-entropy, so T*, melting and the attractor census are not expected to exist on this alphabet, and no number here should be quoted as a finding about LMs.",
+ "_analysis_provenance": {
+  "script": "sequence_velocity.py",
+  "sha256": "22c929f129dcffb3d0b8924ea944c1d107742e2f11f9443e4bcc0a067e9a3102",
+  "imports": {
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/sequence_velocity.py": "22c929f129dcffb3d0b8924ea944c1d107742e2f11f9443e4bcc0a067e9a3102",
+   "experiments/subalphabet.py": "06906f8524eccba5fafc9ff0c17c514c59a729bb8dc3bfa9366e10ec4f3771fc",
+   "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "#107. F16/F21's velocity result has no analytic reference in the ladder. A digit alphabet whose successor rule an ordinary LM implements makes the lattice a shift map on a ring, whose front velocity is exactly r with no fitted constants. A rung, not a result."
+}

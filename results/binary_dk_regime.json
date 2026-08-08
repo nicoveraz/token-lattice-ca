@@ -1,0 +1,413 @@
+{
+ "cells": {
+  "step128|s21": {
+   "lambda_ca": -1.54624,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step128",
+   "seed": 21,
+   "secs": 50.4,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step128|s22": {
+   "lambda_ca": -1.53203,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step128",
+   "seed": 22,
+   "secs": 50.4,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step128|s23": {
+   "lambda_ca": -1.49441,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step128",
+   "seed": 23,
+   "secs": 50.4,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step128|s24": {
+   "lambda_ca": -1.97974,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step128",
+   "seed": 24,
+   "secs": 50.4,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step256|s21": {
+   "lambda_ca": -1.5809,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step256",
+   "seed": 21,
+   "secs": 50.9,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step256|s22": {
+   "lambda_ca": -1.53203,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step256",
+   "seed": 22,
+   "secs": 50.9,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step256|s23": {
+   "lambda_ca": -1.54934,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step256",
+   "seed": 23,
+   "secs": 49.8,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step256|s24": {
+   "lambda_ca": -2.06784,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step256",
+   "seed": 24,
+   "secs": 49.7,
+   "top_share": 1.0,
+   "dominant": 470
+  },
+  "step512|s21": {
+   "lambda_ca": -2.10003,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step512",
+   "seed": 21,
+   "secs": 50.2,
+   "top_share": 0.9518,
+   "dominant": 337
+  },
+  "step512|s22": {
+   "lambda_ca": -2.04931,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step512",
+   "seed": 22,
+   "secs": 50.4,
+   "top_share": 0.974,
+   "dominant": 337
+  },
+  "step512|s23": {
+   "lambda_ca": -0.17799,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step512",
+   "seed": 23,
+   "secs": 50.3,
+   "top_share": 0.9583,
+   "dominant": 337
+  },
+  "step512|s24": {
+   "lambda_ca": -2.23512,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step512",
+   "seed": 24,
+   "secs": 50.3,
+   "top_share": 0.9727,
+   "dominant": 337
+  },
+  "step1000|s21": {
+   "lambda_ca": -1.98561,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step1000",
+   "seed": 21,
+   "secs": 50.0,
+   "top_share": 0.9896,
+   "dominant": 470
+  },
+  "step1000|s22": {
+   "lambda_ca": -1.57225,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step1000",
+   "seed": 22,
+   "secs": 50.0,
+   "top_share": 0.9857,
+   "dominant": 470
+  },
+  "step1000|s23": {
+   "lambda_ca": -2.18039,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step1000",
+   "seed": 23,
+   "secs": 49.9,
+   "top_share": 0.9818,
+   "dominant": 470
+  },
+  "step1000|s24": {
+   "lambda_ca": -2.2969,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step1000",
+   "seed": 24,
+   "secs": 49.9,
+   "top_share": 0.9818,
+   "dominant": 470
+  },
+  "step2000|s21": {
+   "lambda_ca": -1.9765,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step2000",
+   "seed": 21,
+   "secs": 50.3,
+   "top_share": 0.9857,
+   "dominant": 470
+  },
+  "step2000|s22": {
+   "lambda_ca": -1.99092,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step2000",
+   "seed": 22,
+   "secs": 50.3,
+   "top_share": 0.9831,
+   "dominant": 470
+  },
+  "step2000|s23": {
+   "lambda_ca": -2.21897,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step2000",
+   "seed": 23,
+   "secs": 50.4,
+   "top_share": 0.9805,
+   "dominant": 470
+  },
+  "step2000|s24": {
+   "lambda_ca": -2.2408,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step2000",
+   "seed": 24,
+   "secs": 49.9,
+   "top_share": 0.9779,
+   "dominant": 470
+  },
+  "step4000|s21": {
+   "lambda_ca": -2.19722,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step4000",
+   "seed": 21,
+   "secs": 50.7,
+   "top_share": 0.9492,
+   "dominant": 470
+  },
+  "step4000|s22": {
+   "lambda_ca": -2.34868,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step4000",
+   "seed": 22,
+   "secs": 50.6,
+   "top_share": 0.9297,
+   "dominant": 470
+  },
+  "step4000|s23": {
+   "lambda_ca": -2.29513,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step4000",
+   "seed": 23,
+   "secs": 50.3,
+   "top_share": 0.944,
+   "dominant": 470
+  },
+  "step4000|s24": {
+   "lambda_ca": -1.67885,
+   "mean_damage": 0.0,
+   "ignition": 0.0,
+   "ignited": false,
+   "revision": "step4000",
+   "seed": 24,
+   "secs": 50.3,
+   "top_share": 0.9128,
+   "dominant": 470
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   "step128",
+   "step256",
+   "step512",
+   "step1000",
+   "step2000",
+   "step4000"
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24
+  ],
+  "T": 0.7,
+  "r": 2,
+  "B": 16,
+  "N": 48,
+  "alphabet": [
+   " 0",
+   " 1"
+  ],
+  "basis": "F41: monotone and maximal coupling COINCIDE at |V|=2, so this construction removes the coupling caveat rather than disclosing it",
+  "control": "exact-zero CRN null must hold at every checkpoint; a failure stops the script",
+  "primary": "does lambda_ca move across checkpoints on the binary lattice?",
+  "kill": "a new fixed point here reproduces F62/F66 one level down -- a clean negative",
+  "boundary": "a RUNG, not a result about language models"
+ },
+ "null": {
+  "step128": 0,
+  "step256": 0,
+  "step512": 0,
+  "step1000": 0,
+  "step2000": 0,
+  "step4000": 0
+ },
+ "analysis": {
+  "rows": {
+   "step128": {
+    "n": 4,
+    "n_ignited": 0,
+    "lam": null,
+    "sd": null,
+    "ign": 0.0,
+    "top": 1.0
+   },
+   "step256": {
+    "n": 4,
+    "n_ignited": 0,
+    "lam": null,
+    "sd": null,
+    "ign": 0.0,
+    "top": 1.0
+   },
+   "step512": {
+    "n": 4,
+    "n_ignited": 0,
+    "lam": null,
+    "sd": null,
+    "ign": 0.0,
+    "top": 0.964
+   },
+   "step1000": {
+    "n": 4,
+    "n_ignited": 0,
+    "lam": null,
+    "sd": null,
+    "ign": 0.0,
+    "top": 0.985
+   },
+   "step2000": {
+    "n": 4,
+    "n_ignited": 0,
+    "lam": null,
+    "sd": null,
+    "ign": 0.0,
+    "top": 0.982
+   },
+   "step4000": {
+    "n": 4,
+    "n_ignited": 0,
+    "lam": null,
+    "sd": null,
+    "ign": 0.0,
+    "top": 0.934
+   }
+  },
+  "null": {
+   "step128": 0,
+   "step256": 0,
+   "step512": 0,
+   "step1000": 0,
+   "step2000": 0,
+   "step4000": 0
+  },
+  "null_ok": true,
+  "cohort": {
+   "complete": true,
+   "n_declared": 6,
+   "n_realised": 6,
+   "missing": [],
+   "extra": [],
+   "tolerated": [],
+   "reason": "cohort intact: all 6 declared checkpoints measured"
+  }
+ },
+ "verdict": "CONTROL: the exact-zero CRN null holds at 6/6 checkpoints. Identical twins never diverge on the binary lattice, so the coupling certification carries over to this construction. COHORT: cohort intact: all 6 declared checkpoints measured FIXED-POINT CHECK (the registered live kill, and it is read from the SETTLED STATE so it does not require damage to ignite): mean dominant-token share on the binary ring is 0.978. The lattice is FROZEN. Restricting to a two-token in-distribution support does NOT escape the degeneracy -- it manufactures its own, reproducing F62/F66 one level down. So F41's coupling caveat cannot be removed by this construction: there is no live damage regime at this temperature to measure in. AND DAMAGE NEVER IGNITES (mean ignition 0.000): the injected block coalesces to exactly zero within a few sweeps, so lambda_ca is UNDEFINED here by F42 and no exponent is reported. The measured trajectory decays monotonically from injection -- it does not rise and then die -- which is healing winning outright, not a subcritical spread. No ignited runs, so no lambda statistics are computed (F42). BOUNDARY: this is a RUNG. It shows the coupling caveat can be removed by construction; it says nothing about the full-vocabulary numbers, and must not be quoted as one.",
+ "_analysis_provenance": {
+  "script": "binary_dk_regime.py",
+  "sha256": "c4ac90a82d9de900550e0a8cc7d2a6cd0a309345c0642e501c0820cccd1c4c5a",
+  "imports": {
+   "experiments/binary_dk_regime.py": "c4ac90a82d9de900550e0a8cc7d2a6cd0a309345c0642e501c0820cccd1c4c5a",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/subalphabet.py": "06906f8524eccba5fafc9ff0c17c514c59a729bb8dc3bfa9366e10ec4f3771fc",
+   "gatecheck/src/gatecheck/__init__.py": "9aec9e384fccc47adb185399fa32f849c6852e366c357a7205a9443bd2ec1346",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "be5c3b931cecc69af388f6246c109009a7c4f0571ffdaa8295238901fc8b6584",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "#106. F41 proved monotone = maximal coupling at |V|=2, which is why the DK rung is bit-exact. This runs a real LM lattice in that regime, so the coupling caveat lapses by construction rather than being disclosed."
+}
