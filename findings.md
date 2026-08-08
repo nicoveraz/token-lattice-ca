@@ -3629,6 +3629,56 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F110 — the r=2 framing is licensed, and F94's mean field failed on its INPUT, not its form
+Asked because F109 found that on a restricted support the far window token is nearly inert. The same
+decomposition had never been run on the full vocabulary — F94 measured `s` with the position
+**averaged over**, the fourth summary in a row to hide a decomposition (F94 → F96 → F99 → F109).
+
+**Calibration first.** Position-averaged `s` on random windows reproduces F94's 0.8331–0.8755 to
+within **0.0288** (tolerance 0.08) across all six checkpoints, so this decomposition measures the
+same quantity F94 measured through a different code path.
+
+**PRIMARY: the r=2 description is sound.** On the settled ensemble the far token (i−2) contributes
+**0.579** on average against the near token's **0.820** — a far/near ratio of **0.698**, well above
+the 0.5 parity threshold registered before the run. Both window positions carry real influence.
+**F109's collapse is a property of RESTRICTION alone, not of the window geometry**, and the paper's
+"ring CA driven by `p(x_i | x_{i-2}, x_{i-1})`" framing is licensed rather than merely unchallenged.
+At r=3 the third-back token still contributes 0.535 against the nearest 0.704, so influence is not
+concentrated on one position.
+
+**And the numbers amend F94.** F94 derived `λ_MF = log(r·s)` and found `s` saturated and flat
+(0.833–0.876), predicting supercritical damage at every checkpoint including those where λ_ca is
+negative — ρ = −0.257 at p = 0.66, span ratio 0.17, uninterpretable. But `r·s` with a
+position-averaged `s` **is not the branching ratio**. The branching ratio is `Σ_pos s_pos`, measured
+per position on the ensemble the ring occupies:
+
+```
+   step   branching   log(branching)   λ_ca      sign
+    128      0.9386        −0.0633    −0.0926     OK
+    256      1.3375        +0.2908    −0.0185     MISS
+    512      1.0781        +0.0752    +0.0679     OK
+   1000      1.6893        +0.5243    +0.1923     OK
+   2000      1.7008        +0.5311    +0.1558     OK
+   4000      1.6473        +0.4991    +0.1724     OK
+```
+
+Branching moves **0.94 → 1.70** where F94's `r·s` was flat at ~1.68 throughout. It is **subcritical
+exactly at step128**, the checkpoint where λ_ca is most negative, and crosses 1 between step128 and
+step256 against λ_ca's zero-crossing at 256–512 — adjacent brackets, not identical. Sign agreement is
+**5 of 6**. ρ = **+0.771** (exact permutation p = 0.1028) with a span ratio of **2.09**, so the
+correlational leg clears its leverage gate by 4× where F94's failed at 0.17.
+
+**What this does and does not establish.** It does not confirm the mean-field derivation: p = 0.103
+at n=6 is not significance, step256 has the wrong sign, and the crossing brackets are adjacent rather
+than the same. What it establishes is that **F94's negative was about its input**. "λ_ca is not
+derivable from single-token sensitivity" stands for the *mean* of `s` and is now shown to be the
+wrong summary — the same error, at the same place, that F96 found in F94's ensemble and F109 found in
+its own diagnoses. Route 4 is reopened, not closed.
+
+**Boundary.** One family, one temperature, `s` exact (inverse-CDF CRN disagreement) so no number
+carries sampling error. This bounds how the construction is described and how its mean-field input
+should be computed; it does not bear on whether λ_ca replicates (F98) or predicts (F86).
+
 ### F109 — the sub-alphabet lattice is dead, and the reason is that a two-token window is effectively one token
 Three pre-registered experiments (#105 ordering, #106 |V|=2 coupling rung, #107 successor velocity)
 plus a temperature screen and a mechanism run. Two registered kills fired, one question turned out

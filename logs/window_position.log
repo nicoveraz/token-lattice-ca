@@ -1,0 +1,31 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:01<05:16,  1.09s/it]Loading weights:  33%|███▎      | 96/292 [00:01<00:01, 110.71it/s]Loading weights:  52%|█████▏    | 151/292 [00:01<00:01, 131.95it/s]Loading weights:  65%|██████▍   | 189/292 [00:01<00:00, 141.25it/s]Loading weights:  75%|███████▌  | 219/292 [00:01<00:00, 148.36it/s]Loading weights:  84%|████████▎ | 244/292 [00:02<00:00, 151.06it/s]Loading weights:  91%|█████████ | 266/292 [00:02<00:00, 154.07it/s]Loading weights:  98%|█████████▊| 287/292 [00:02<00:00, 162.69it/s]Loading weights: 100%|██████████| 292/292 [00:02<00:00, 125.37it/s]
+  step128   r=2  pos0=0.2441  pos1=0.6945  branch=0.9386  far/near=0.351  (2s)
+  step128   r=3  pos0=0.1623  pos1=0.2993  pos2=0.2772  branch=0.7387  far/near=0.585  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:01,  2.39it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 287.15it/s]Loading weights:  61%|██████    | 177/292 [00:00<00:00, 247.87it/s]Loading weights:  75%|███████▍  | 218/292 [00:01<00:00, 203.87it/s]Loading weights:  85%|████████▌ | 249/292 [00:01<00:00, 215.58it/s]Loading weights:  95%|█████████▌| 278/292 [00:01<00:00, 220.24it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 213.61it/s]
+  step256   r=2  pos0=0.5019  pos1=0.8357  branch=1.3375  far/near=0.601  (2s)
+  step256   r=3  pos0=0.4722  pos1=0.5913  pos2=0.7016  branch=1.7651  far/near=0.673  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:55,  2.51it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 311.30it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 277.24it/s]Loading weights:  79%|███████▉  | 232/292 [00:01<00:00, 243.37it/s]Loading weights:  92%|█████████▏| 268/292 [00:01<00:00, 233.57it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 229.52it/s]
+  step512   r=2  pos0=0.4944  pos1=0.5837  branch=1.0781  far/near=0.847  (2s)
+  step512   r=3  pos0=0.4566  pos1=0.4762  pos2=0.4160  branch=1.3488  far/near=1.098  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:47,  2.72it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 335.43it/s]Loading weights:  65%|██████▌   | 190/292 [00:00<00:00, 289.99it/s]Loading weights:  82%|████████▏ | 239/292 [00:00<00:00, 263.51it/s]Loading weights:  95%|█████████▍| 277/292 [00:01<00:00, 248.71it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 242.27it/s]
+  step1000  r=2  pos0=0.7974  pos1=0.8918  branch=1.6893  far/near=0.894  (2s)
+  step1000  r=3  pos0=0.7304  pos1=0.8321  pos2=0.9061  branch=2.4686  far/near=0.806  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:54,  2.54it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 300.35it/s]Loading weights:  61%|██████    | 177/292 [00:00<00:00, 248.17it/s]Loading weights:  74%|███████▍  | 217/292 [00:01<00:00, 232.20it/s]Loading weights:  86%|████████▌ | 250/292 [00:01<00:00, 226.19it/s]Loading weights:  96%|█████████▌| 279/292 [00:01<00:00, 205.58it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 213.90it/s]
+  step2000  r=2  pos0=0.7321  pos1=0.9688  branch=1.7008  far/near=0.756  (2s)
+  step2000  r=3  pos0=0.6988  pos1=0.7428  pos2=0.9811  branch=2.4228  far/near=0.712  (3s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:52,  2.59it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 326.27it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 285.02it/s]Loading weights:  83%|████████▎ | 241/292 [00:01<00:00, 246.66it/s]Loading weights:  96%|█████████▌| 279/292 [00:01<00:00, 233.74it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 237.24it/s]
+  step4000  r=2  pos0=0.7015  pos1=0.9458  branch=1.6473  far/near=0.742  (2s)
+  step4000  r=3  pos0=0.6866  pos1=0.7718  pos2=0.9431  branch=2.4015  far/near=0.728  (3s)
+
+  r=2, SETTLED ensemble
+    step  far (i-2)  near (i-1)  branching  far/near
+     128     0.2441      0.6945     0.9386     0.351
+     256     0.5019      0.8357     1.3375     0.601
+     512     0.4944      0.5837     1.0781     0.847
+    1000     0.7974      0.8918     1.6893     0.894
+    2000     0.7321      0.9688     1.7008     0.756
+    4000     0.7015      0.9458     1.6473     0.742
+
+  -> CALIBRATION, read first: position-averaged s on random windows reproduces F94's values to within 0.0288 (tolerance 0.08) across 6 checkpoints. The decomposition measures the same quantity F94 measured. COHORT: cohort intact: all 6 declared checkpoints measured PRIMARY: on the settled ensemble the far token (i-2) contributes 0.5786 on average against the near token's 0.8200 -- a far/near ratio of 0.698 (range 0.351-0.894), and a branching ratio of 1.3986. AT OR ABOVE the 0.5 parity threshold: both window positions carry real influence, the r=2 description is sound, and F109's collapse is a property of RESTRICTION alone rather than of the window geometry. The paper's framing is licensed. EXTENSION (r=3, the effective-radius question asked from inside the window): the third-back token contributes 0.5345 against the nearest token's 0.7042, with branching 1.8576. The third token carries comparable influence, so the window is not dominated by its nearest position. BOUNDARY: one family, one temperature, s measured exactly (inverse-CDF CRN disagreement) so no number carries sampling error. This bounds how the construction should be described; it does not bear on whether lambda_ca replicates (F98) or predicts (F86).
+
+wrote results/window_position.json
