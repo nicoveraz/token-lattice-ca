@@ -146,6 +146,21 @@ throughout as the control. Sites are visited in a random order per sweep, and th
 \emph{per replica} rather than per batch, because sharing it across a batch correlates the replicas
 and shrinks error bars by a factor they have not earned (\S\ref{sec:gating}).
 
+\paragraph{The two-token window is genuinely two tokens.} A radius is a claim about geometry, and
+it is cheap to check rather than assert: if the nearest token carried the window by itself, the
+construction would be an $r=1$ chain wearing an $r=2$ label. On the autoregressive (causal,
+left-window) construction we measure the exact coupled-draw disagreement produced by flipping each
+window position separately --- the probability that twins sharing a uniform stream draw differently
+when position $i-2$ changes, against the same for $i-1$. Averaged over six developmental checkpoints,
+on the states the ring actually occupies, the far position contributes $0.579$ against the near
+position's $0.820$, a ratio of $0.698$; at $r=3$ the third-back token still contributes $0.535$
+against the nearest token's $0.704$. Influence decays with distance without the window collapsing
+onto one position. The check earns its place because it can fail: restricting the same construction
+to a small token sub-alphabet drops the far position to $0.061$ against $0.801$, the branching ratio
+falls below one, and damage walks without growing --- that lattice has no live regime at any
+alphabet or temperature we tried.
+% SOURCE: F110 (far/near, full vocabulary, settled ensemble); F109 (the restricted-support failure).
+
 \paragraph{This is a probe, not a model of deployment, and we can say so quantitatively.} Injecting a
 token error into real autoregressive generation and continuing produces no absorption at all:
 $P_{\text{persist}} = 1.000$ on \texttt{pythia-70m}, \texttt{-160m} and \texttt{-410m} (32 trials
@@ -423,6 +438,19 @@ than plausible, and \emph{reject} a minimum that lands on the edge of the scan.
 demonstrated, on a system with a known answer, to be unable to separate the hypotheses at all ---
 so its reading on the model was uninterpretable in either direction rather than weak evidence.
 % SOURCE: F61.
+
+\paragraph{A mean is a claim about the axis it averages over.} A scalar summary is quotable only if
+the axis it reduces varies less than the effect the summary is being used to describe; otherwise the
+number characterises the reduction rather than the quantity. That is directly checkable --- compare
+the spread \emph{within} the reduced axis against the movement of the mean \emph{across} conditions
+--- and applied to every per-component dataset in this project it flags the \emph{ensemble} axis
+twice while clearing the window-position axis, recovering by construction a distinction we had
+previously found by hand. We report it here rather than as advice because it retracted the finding
+that motivated it. A claim that one of our own mean-field inputs had been computed on the wrong
+summary failed the regression test we built for it from that finding's own data; the two summaries
+turned out to be algebraically identical, the claim was withdrawn the same day, and the measurement
+it had been attached to stood unchanged.
+% SOURCE: F110 amendment (the retraction); F96/F99 (the ensemble axis); gatecheck.leverage.
 
 \paragraph{Undefined is not zero.} $\lca$ is emitted for runs in which damage never ignited, where
 it is undefined; the same runs carry a $\dnorm$ of exactly zero, which is a true measurement. The
