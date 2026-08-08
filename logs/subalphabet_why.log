@@ -1,0 +1,43 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:01<05:38,  1.16s/it]Loading weights:  36%|███▌      | 104/292 [00:01<00:01, 111.97it/s]Loading weights:  54%|█████▍    | 159/292 [00:01<00:01, 128.80it/s]Loading weights:  67%|██████▋   | 196/292 [00:01<00:00, 135.74it/s]Loading weights:  77%|███████▋  | 225/292 [00:02<00:00, 143.44it/s]Loading weights:  86%|████████▌ | 250/292 [00:02<00:00, 148.99it/s]Loading weights:  93%|█████████▎| 272/292 [00:02<00:00, 147.56it/s]Loading weights: 100%|██████████| 292/292 [00:02<00:00, 121.23it/s]
+  binary   T=0.7  far=0.0605 near=0.8007 branch=0.8611 grows=False  top=0.945 (17s)
+  binary   T=1.0  far=0.1219 near=0.6560 branch=0.7779 grows=False  top=0.839 (16s)
+  binary   T=1.3  far=0.1320 near=0.5272 branch=0.6593 grows=False  top=0.753 (16s)
+  binary   T=1.6  far=0.1234 near=0.4469 branch=0.5703 grows=False  top=0.698 (16s)
+  binary   T=2.0  far=0.1113 near=0.3750 branch=0.4863 grows=False  top=0.659 (16s)
+  binary   T=2.5  far=0.0946 near=0.3102 branch=0.4048 grows=False  top=0.616 (16s)
+  colours  T=0.7  far=0.3931 near=0.5466 branch=0.9397 grows=False  top=0.635 (16s)
+  colours  T=1.0  far=0.3715 near=0.5824 branch=0.9539 grows=False  top=0.409 (16s)
+  colours  T=1.3  far=0.3188 near=0.5104 branch=0.8292 grows=False  top=0.309 (16s)
+  colours  T=1.6  far=0.3101 near=0.4544 branch=0.7645 grows=False  top=0.264 (17s)
+  colours  T=2.0  far=0.2689 near=0.3828 branch=0.6517 grows=False  top=0.247 (17s)
+  colours  T=2.5  far=0.2326 near=0.3123 branch=0.5449 grows=False  top=0.216 (16s)
+  digits   T=0.7  far=0.1095 near=0.8527 branch=0.9623 grows=False  top=0.910 (16s)
+  digits   T=1.0  far=0.3105 near=0.7813 branch=1.0918 grows=True  top=0.655 (17s)
+  digits   T=1.3  far=0.4018 near=0.7129 branch=1.1147 grows=True  top=0.432 (17s)
+  digits   T=1.6  far=0.3973 near=0.6797 branch=1.0770 grows=True  top=0.283 (16s)
+  digits   T=2.0  far=0.3513 near=0.6036 branch=0.9549 grows=False  top=0.203 (17s)
+  digits   T=2.5  far=0.3130 near=0.5357 branch=0.8487 grows=False  top=0.165 (17s)
+
+  alphabet      T    s_far   s_near  branching     top grows
+  binary      0.7   0.0605   0.8007     0.8611   0.945 
+  binary      1.0   0.1219   0.6561     0.7779   0.839 
+  binary      1.3   0.1320   0.5272     0.6593   0.753 
+  binary      1.6   0.1234   0.4469     0.5703   0.698 
+  binary      2.0   0.1113   0.3750     0.4863   0.659 
+  binary      2.5   0.0945   0.3102     0.4048   0.616 
+  colours     0.7   0.3931   0.5466     0.9397   0.635 
+  colours     1.0   0.3715   0.5824     0.9539   0.409 
+  colours     1.3   0.3188   0.5104     0.8292   0.309 
+  colours     1.6   0.3101   0.4544     0.7645   0.264 
+  colours     2.0   0.2689   0.3828     0.6517   0.247 
+  colours     2.5   0.2326   0.3123     0.5449   0.216 
+  digits      0.7   0.1095   0.8527     0.9623   0.910 
+  digits      1.0   0.3105   0.7813     1.0918   0.655 YES
+  digits      1.3   0.4018   0.7129     1.1147   0.432 YES
+  digits      1.6   0.3973   0.6797     1.0770   0.283 YES
+  digits      2.0   0.3513   0.6036     0.9549   0.203 
+  digits      2.5   0.3130   0.5357     0.8487   0.165 
+
+  -> MECHANISM, measured on the fourth attempt. Damage can only grow if a damaged site infects more than one of its r=2 children in expectation, i.e. if the BRANCHING RATIO s_far + s_near exceeds 1. Decomposed by which window position is flipped, the far token (i-2) contributes 0.0605-0.4018 while the near one (i-1) contributes 0.3102-0.8527 -- up to 14x more. Branching spans 0.4048-1.1147 and clears 1 in only 3 of 18 cells. A two-token window is effectively a ONE-token window on a restricted support, so damage WALKS but cannot GROW: an injected block drifts and coalesces. That is why ignition was 0.00 in 18/18 cells of the regime sweep. WHY EVERY EARLIER MEASUREMENT MISLED. Position-averaged s on the settled state ranges 0.1965-0.5791 (mean 0.3993) against a mean-field criticality of 0.5 -- supercritical in most cells, predicting growth that does not happen. On random windows it ranges 0.1760-0.5917. Both are averages over WHICH position is flipped, and the whole structure lives in that decomposition. Same shape as F94 -> F96 -> F99: the mean was flat and the spread was the finding, one level down. AN UNEXPLAINED RESIDUE, recorded rather than smoothed over: 3 cell(s) clear branching > 1 on a non-frozen ring (digits@T1.0 branch=1.092, digits@T1.3 branch=1.115, digits@T1.6 branch=1.077) yet still showed ignition 0.00 in the regime sweep. Branching above 1 is NECESSARY but evidently not SUFFICIENT here, and this analysis does not say why. Candidates not tested: the annealed branching ratio ignores that a damaged site's two children overlap on a ring, and async visit order lets a damaged site heal before its children are visited (F57's mechanism). BOUNDARY: one model, one checkpoint, one radius. This explains the dead regime for THIS construction; it is not a statement about token-lattice CAs in general. s is exact here (inverse-CDF CRN disagreement), so no number above carries sampling error.
+
+wrote results/subalphabet_why.json

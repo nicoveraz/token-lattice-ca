@@ -277,6 +277,8 @@ _STALENESS_PAIRS = [
     ("alphabet_order.json", "alphabet_order.py"),
     ("binary_dk_regime.json", "binary_dk_regime.py"),
     ("sequence_velocity.json", "sequence_velocity.py"),
+    ("subalphabet_regime.json", "subalphabet_regime.py"),
+    ("subalphabet_why.json", "subalphabet_why.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("coupling_ladder.json", "coupling_ladder.py"),
     ("ignition_level.json", "ignition_level.py"),

@@ -3629,6 +3629,59 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F109 — the sub-alphabet lattice is dead, and the reason is that a two-token window is effectively one token
+Three pre-registered experiments (#105 ordering, #106 |V|=2 coupling rung, #107 successor velocity)
+plus a temperature screen and a mechanism run. Two registered kills fired, one question turned out
+not to be askable, and the cause took **four** attempts to find.
+
+**What was run.** `p(x_i | x_{i-2}, x_{i-1})` renormalised over a small token support — colours (6),
+digits (10), binary (2) — on pythia-410m. No new model, no training; only the support changes.
+
+```
+ #107 successor   P(successor) 0.109, argmax 0.09 on 10 digits = exactly chance   KILL
+ #106 binary      mean dominant-token share 0.978 (1.000 at two checkpoints)      KILL
+ #105 ordering    zero ignited cells: never had a λ to compute a spread over      NOT ASKABLE
+ regime screen    18 cells, 3 alphabets × 6 temperatures, ignition 0.00 in ALL    KILL
+```
+
+**The mechanism, measured rather than argued.** Damage grows only if a damaged site infects more
+than one of its r=2 children in expectation — the **branching ratio** `s_far + s_near`. Decomposed
+by *which* window position is flipped:
+
+```
+ binary  T0.7   far 0.061   near 0.801   branching 0.861
+ digits  T0.7   far 0.110   near 0.853   branching 0.962
+ colours T0.7   far 0.393   near 0.547   branching 0.940
+```
+
+The far token (i−2) contributes as little as 0.061 where the near one contributes 0.853 — **up to
+14×** less. Branching clears 1 in only **3 of 18** cells. **On a restricted support a two-token
+window is effectively a one-token window**, so damage *walks* but cannot *grow*: an injected block
+drifts and coalesces. That is F69's `r ≤ 2` boundary reappearing from inside the window.
+
+**Four failed diagnoses, recorded because the pattern is the point.** (1) "Projection destroys
+window-dependence" — refuted, projected `s` was 0.61–0.69. (2) "Small state space coalesces" — not
+the mechanism as stated. (3) "`s` is subcritical on the settled state" — refuted, `s_settled` reached
+0.82 against a 0.5 threshold. (4) The branching decomposition. Every failed guess read a **scalar
+summary** of `s` where the structure lived in a **decomposition**. That is F94 → F96 → F99 exactly,
+one level down: the mean was flat and the split was the finding.
+
+**An unexplained residue, not smoothed over.** Three cells (digits at T=1.0/1.3/1.6) clear branching
+> 1 on a non-frozen ring yet still showed ignition 0.00. Branching above 1 is **necessary but not
+sufficient** here. Untested candidates: the annealed ratio ignores that a damaged site's two children
+overlap on a ring, and async visit order lets a site heal before its children are visited (F57).
+
+**What this closes and what it opens.** #105/#106/#107 close as designed — the sub-alphabet family
+has no live regime at any alphabet or temperature tested, so F41's coupling caveat cannot be removed
+by restriction. What it opens is sharper: **the same far/near decomposition has never been run on the
+full vocabulary.** If λ_ca's damage spreading is also carried almost entirely by the near token, then
+the project's central measurement is closer to a one-token-window phenomenon than the "r=2 ring CA"
+framing implies. That is one cheap measurement and it bears directly on how the construction is
+described.
+
+**Boundary.** One model, one checkpoint, one radius. `s` is exact (inverse-CDF CRN disagreement), so
+no number here carries sampling error. A negative bounds this construction, not token-lattice CAs.
+
 ### F107 — the revival is PARTIAL REGRESSION: the compound arm tracks its reference at about two-thirds slope
 The experiment that tests F104's reading against the alternative it could not distinguish. 290 cells
 over five post-crossing checkpoints, ignition measured for `attn_early` and for
