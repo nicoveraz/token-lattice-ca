@@ -1,0 +1,195 @@
+{
+ "cells": {
+  "T0.3_step256": {
+   "T": 0.3,
+   "step": 256,
+   "lambda_ca": -0.23717,
+   "lambda_sd": 0.53367,
+   "n_lambda": 8,
+   "distinct": 2.583,
+   "distinct_sd": 1.152,
+   "top_share": 0.7153,
+   "secs": 127.0
+  },
+  "T0.3_step143000": {
+   "T": 0.3,
+   "step": 143000,
+   "lambda_ca": -0.00057,
+   "lambda_sd": 0.10771,
+   "n_lambda": 8,
+   "distinct": 5.271,
+   "distinct_sd": 3.768,
+   "top_share": 0.8008,
+   "secs": 126.2
+  },
+  "T0.5_step256": {
+   "T": 0.5,
+   "step": 256,
+   "lambda_ca": -0.05006,
+   "lambda_sd": 0.06277,
+   "n_lambda": 8,
+   "distinct": 3.646,
+   "distinct_sd": 2.704,
+   "top_share": 0.6415,
+   "secs": 124.0
+  },
+  "T0.5_step143000": {
+   "T": 0.5,
+   "step": 143000,
+   "lambda_ca": 0.18295,
+   "lambda_sd": 0.06726,
+   "n_lambda": 8,
+   "distinct": 26.812,
+   "distinct_sd": 4.986,
+   "top_share": 0.3438,
+   "secs": 125.5
+  },
+  "T0.9_step256": {
+   "T": 0.9,
+   "step": 256,
+   "lambda_ca": 0.18681,
+   "lambda_sd": 0.08607,
+   "n_lambda": 8,
+   "distinct": 21.625,
+   "distinct_sd": 9.05,
+   "top_share": 0.398,
+   "secs": 124.3
+  },
+  "T0.9_step143000": {
+   "T": 0.9,
+   "step": 143000,
+   "lambda_ca": 0.2206,
+   "lambda_sd": 0.04005,
+   "n_lambda": 8,
+   "distinct": 41.062,
+   "distinct_sd": 2.41,
+   "top_share": 0.0833,
+   "secs": 123.8
+  },
+  "T1.1_step256": {
+   "T": 1.1,
+   "step": 256,
+   "lambda_ca": 0.30024,
+   "lambda_sd": 0.07092,
+   "n_lambda": 8,
+   "distinct": 46.333,
+   "distinct_sd": 2.183,
+   "top_share": 0.0469,
+   "secs": 124.4
+  },
+  "T1.1_step143000": {
+   "T": 1.1,
+   "step": 143000,
+   "lambda_ca": 0.26525,
+   "lambda_sd": 0.06109,
+   "n_lambda": 8,
+   "distinct": 45.229,
+   "distinct_sd": 1.896,
+   "top_share": 0.0495,
+   "secs": 121.5
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "r": 2,
+  "N": 48,
+  "B": 16,
+  "sweeps": 30,
+  "seeds": [
+   21,
+   22,
+   23
+  ],
+  "source": "dev_transition_temp.json -- lambda values re-used UNCHANGED, never re-measured",
+  "cells": [
+   "T0.3_step256",
+   "T0.3_step143000",
+   "T0.5_step256",
+   "T0.5_step143000",
+   "T0.9_step256",
+   "T0.9_step143000",
+   "T1.1_step256",
+   "T1.1_step143000"
+  ],
+  "primary": "do all (diversity, lambda) points fall on ONE curve regardless of checkpoint?",
+  "kill": "separate curves per checkpoint -> training matters beyond diversity and the rho=0.943 across the developmental grid is a shared time trend",
+  "boundary": "even a pass is DEFLATIONARY: a reduction of lambda_ca to a property of the settled state, not a named mechanism"
+ },
+ "analysis": {
+  "cohort": {
+   "complete": true,
+   "n_declared": 8,
+   "n_realised": 8,
+   "missing": [],
+   "extra": [],
+   "tolerated": [],
+   "reason": "cohort intact: all 8 declared cells measured"
+  },
+  "pooled_residual": 0.04281,
+  "per_checkpoint_residual": 0.03363,
+  "lambda_seed_floor": 0.0455,
+  "collapses": true,
+  "rho_within": [
+   1.0,
+   1.0
+  ],
+  "distinct": [
+   2.583,
+   3.646,
+   21.625,
+   46.333,
+   5.271,
+   26.812,
+   41.062,
+   45.229
+  ],
+  "lam": [
+   -0.23717,
+   -0.05006,
+   0.18681,
+   0.30024,
+   -0.00057,
+   0.18295,
+   0.2206,
+   0.26525
+  ]
+ },
+ "verdict": "COHORT: cohort intact: all 8 declared cells measured WITHIN-MODEL, which is the part free of the training-time trend: at fixed weights, diversity and lambda_ca rank-correlate at [1.0, 1.0] across the four temperatures (one value per checkpoint). Temperature moves lambda from -0.2372 to +0.3002 with the model held fixed. PRIMARY: pooling both checkpoints onto ONE diversity->lambda curve leaves a residual of 0.0428; fitting them separately leaves 0.0336, against a lambda seed floor of 0.0455. Pooling costs less than the floor, so the two checkpoints lie on the SAME curve: lambda_ca is a function of the settled state's diversity, and the training step enters only through the diversity it produces. That reduces the developmental transition to a property of the state rather than leaving it an unexplained event. BOUNDARY: even the positive reading is DEFLATIONARY, not mechanistic -- it reduces lambda_ca to another measured property of the same settled system, in the way temperature reduces to mean kinetic energy. It names no circuit and no training event. lambda values are re-used unchanged from dev_transition_temp.json, so the pairing could not be tuned.",
+ "_analysis_provenance": {
+  "script": "diversity_explanandum.py",
+  "sha256": "4dbb2c2841663166b74b25eb436ff1561b91973cad6a0d41a9cf8ddd5d0781f4",
+  "imports": {
+   "experiments/diversity_explanandum.py": "4dbb2c2841663166b74b25eb436ff1561b91973cad6a0d41a9cf8ddd5d0781f4",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Tests whether lambda_ca is a function of the settled ring's diversity, using temperature at fixed weights to dissociate diversity from the training-time trend that makes the rho=0.943 across checkpoints uninterpretable on its own."
+}

@@ -280,6 +280,7 @@ _STALENESS_PAIRS = [
     ("subalphabet_regime.json", "subalphabet_regime.py"),
     ("subalphabet_why.json", "subalphabet_why.py"),
     ("window_position.json", "window_position.py"),
+    ("diversity_explanandum.json", "diversity_explanandum.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("coupling_ladder.json", "coupling_ladder.py"),
     ("ignition_level.json", "ignition_level.py"),

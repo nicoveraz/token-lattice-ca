@@ -3629,6 +3629,65 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F111 — λ_ca is a function of the settled ring's DIVERSITY: the explanandum, reduced not named
+Four routes had failed to attach λ_ca to anything. This attaches it — deflationarily, and to another
+property of the same system rather than to a mechanism.
+
+**The observation.** Across the developmental grid the number of distinct tokens in the settled ring
+tracks λ_ca at **ρ = +0.943** (exact permutation p = 0.0167): 8, 24, 41, 193, 191, 188 distinct
+against λ −0.093, −0.019, +0.068, +0.192, +0.156, +0.172. Tighter than any correlate λ_ca has had
+(F86's external anchor 0.833, F99's non-circular column 0.771). **On its own this is worthless**:
+both quantities rise monotonically with training step, so at n=6 any two monotone functions of time
+correlate near 1, and the relation is circular in F96's sense — the settled ring is produced by the
+dynamics whose exponent it would explain.
+
+**The dissociation, using temperature at fixed weights.** `dev_transition_temp.json` already held
+λ_ca at 2 checkpoints × 4 temperatures × 8 seeds; only the diversity axis was missing, which is one
+settle per cell and no damage run. **The λ values are re-used unchanged, so the pairing could not be
+tuned.**
+
+```
+ cell                  T   distinct  top share   λ_ca
+ T0.3 step256        0.3       2.58      0.715  −0.2372
+ T0.5 step256        0.5       3.65      0.641  −0.0501
+ T0.9 step256        0.9      21.62      0.398  +0.1868
+ T1.1 step256        1.1      46.33      0.047  +0.3002
+ T0.3 step143000     0.3       5.27      0.801  −0.0006
+ T0.5 step143000     0.5      26.81      0.344  +0.1830
+ T0.9 step143000     0.9      41.06      0.083  +0.2206
+ T1.1 step143000     1.1      45.23      0.050  +0.2652
+```
+
+**The cell pair that carries the result.** `T0.9/step256` and `T0.5/step143000` differ in temperature
+and by **three orders of magnitude in training**, yet sit at diversity 21.6 vs 26.8 and λ **+0.187 vs
++0.183**. Matched diversity, matched λ, opposite corners of the grid. The same holds at the bottom:
+`T0.5/step256` (3.65, −0.050) against `T0.3/step143000` (5.27, −0.001). **Diversity predicts λ across
+cells that share neither temperature nor checkpoint.**
+
+**The registered primary.** Pooling both checkpoints onto one diversity→λ curve leaves a residual of
+**0.0428**; fitting them separately leaves **0.0336**, against a λ seed floor of **0.0455**. Pooling
+costs 0.0092, well under the floor, so the two checkpoints lie on the **same curve** — training step
+enters only through the diversity it produces.
+
+**Power caveat, and it is the F88 shape.** Both residuals sit *below* the floor, so strictly the test
+shows the two curves cannot be *distinguished*, not that one is correct. Four points per checkpoint
+against a 0.0455 floor is thin. The cell-pair comparison above is the stronger evidence because it
+does not depend on a fit. Within each model, diversity and λ rank-correlate at **1.0** across the
+four temperatures — but both are monotone in T, so that leg inherits the same objection one level
+down and is not independent evidence.
+
+**What this is and is not.** It is a **reduction**, in the way temperature reduces to mean kinetic
+energy: λ_ca is a property of the settled state, and the developmental transition is the era when
+the ring is too homogeneous for damage to spread — at step128 the settled ring holds **8 distinct
+tokens**, so CRN twins share windows and heal. It names **no circuit and no training event**. It does
+explain why four routes failed: they searched for an internal cause of a quantity that is fixed by
+the state the model drives the lattice into, and F80's non-additivity is what a collective state
+property looks like under ablation.
+
+**Boundary.** One family, two checkpoints in the dissociation, n=4 temperatures each. The
+developmental-grid correlation remains circular; only the temperature grid dissociates, and only
+partially.
+
 ### F110 — the r=2 framing is licensed. **AMENDED: the mean-field half of this finding is RETRACTED.**
 
 > **RETRACTION, same day, caught by the guard this finding motivated.** The first version claimed
