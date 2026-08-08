@@ -112,10 +112,18 @@ activation space the door is closed structurally (§3).
 
 **Whether the model is good.** Dissociated from loss, explicitly (§3).
 
-**What the developmental transition *is*.** Four routes have failed to name it. The closest positive
-is that the conditional itself moves across training — measured non-circularly by transplanting each
-checkpoint's conditional onto every other's settled state, where the model effect is 1.8× the
-ensemble effect — but with no mechanism attached.
+**Why the response has the shape it does, in mechanistic terms.** Four routes failed to name a
+mechanism, and a fifth *reduced* it instead: **λ_ca is a function of the settled ring's diversity**
+(ρ = +0.771 seed-averaged, bootstrap CI [+0.714, +0.829]), dissociated from the training-time trend
+using temperature at fixed weights — `T0.9/step256` and `T0.5/step143000` differ by three orders of
+magnitude in training yet sit at diversity 21.6 vs 26.8 and λ +0.187 vs +0.183. The developmental
+transition is **the era when the ring is too homogeneous for damage to spread**: at step128 the
+settled ring holds ~7.5 distinct tokens, so CRN twins share windows and heal deterministically.
+
+That is a reduction, in the way temperature reduces to mean kinetic energy — not a circuit and not a
+named training event. It does explain why the four routes failed: they searched for an *internal*
+cause of a quantity fixed by the *state* the model drives the lattice into, and F80's non-additivity
+is what a collective state property looks like under ablation.
 
 **Whether the transition's *timing* generalises.** Not answerable by anyone: no public non-Pythia
 family publishes a checkpoint inside Pythia's dip window of 0.034–1.07B tokens, across ~4,000
@@ -172,10 +180,14 @@ releasing checkpoints could close that gap cheaply.
 
 ### Where the usefulness is thin
 
-**λ_ca itself.** It dates an event nobody has named. Four routes failed to attach it to anything; the
-closest positive is that the conditional moves, with no mechanism. Without an explanandum, "λ_ca
-crosses zero between steps 256 and 512" is a fact nobody can act on. It replicates, it is
-well-measured, its error bars are licensed — and it currently buys no decision.
+**λ_ca itself — now explained, and still not useful, which are different things.** It no longer
+dates an unnamed event: it is a function of the settled ring's diversity (§4). But the same week
+established the sharper point — **the settled state predicts nothing outside the instrument.**
+Diversity at a fixed temperature correlates with greedy degeneration at |ρ| ≤ 0.11 across four
+temperatures on 26 models, every p > 0.59, while T\* on the same target and the same models reaches
++0.547. So λ_ca inherits diversity's lack of external predictive power. It replicates, it is
+well-measured, its error bars are licensed, it now has an explanation — and it still buys no
+decision.
 
 **T\* is promising but conditional.** ρ = 0.833 at n = 8 families is the only externally-predictive
 result and it has survived two deflation attempts, but it is greedy-scoped and the attempt at a
@@ -183,6 +195,16 @@ second target rejected itself on dynamic range. One leg is not an anchor.
 
 **The attractor taxonomy** correlates with training recipe, but that correlate is partially
 anticipated in the literature and no downstream use has been demonstrated.
+
+### The one structural lesson
+
+**The useful quantity is a response, not a state.** A settled ring tells you nothing about how a
+model will degenerate; how that ring *dissolves under temperature* tells you a great deal. T\* is
+where the diversity curve crosses a threshold as temperature varies, and that predicts — diversity
+at any point on the curve does not. The same shape recurs throughout: `s` is uninformative as a mean
+and informative as a function of regime (§3); the damage *cone* is kinematic while its *growth rate*
+is not. Wherever this instrument has found something that transfers, the quantity has been a
+derivative, not a level.
 
 ### The overall read
 
@@ -196,7 +218,26 @@ knowing, and it is not what anyone hoped for.
 
 ---
 
-## 7. Why the failures are the more portable half
+---
+
+## 7. A standing caveat on the low-diversity regime
+
+Settled diversity is **seed-unstable where it is smallest**. Across eight seeds at the same
+geometry: step128 gives [5, 17, 7, 9, 6, 2, 6, 8] (mean 7.5, sd 4.1), step256 gives
+[40, 25, 14, 28, 48, 21, 21, 13] (mean 26.2, sd 11.4), step512 gives [51, 40, 23, 38, 33, 28, 31, 8]
+(mean 31.5, sd 11.9). Those last two **overlap almost completely** and are not separable on a single
+draw. The plateau cells are stable by comparison (sd/mean ≈ 0.05).
+
+The dip-versus-plateau separation — 7.5 against 185+ — is far beyond any seed noise and carries the
+reduction in §4. The *within-dip* ordering does not, and an earlier version of that finding quoted
+ρ = +0.943 from single draws before this was measured. **Treat any single-seed quantity in the
+low-diversity regime as provisional.** F101's independent finding that the dip resolves into four
+structural clusters while the plateau is homogeneous is the same regime failing to be one state,
+seen from a second direction.
+
+---
+
+## 8. Why the failures are the more portable half
 
 The results in §2 are about a construction most people will never build. The results in §3 are
 claims about language models that survive the construction being discarded — that generation has no
