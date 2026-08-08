@@ -134,7 +134,69 @@ model does when you actually run it**.
 
 ---
 
-## 6. Why the failures are the more portable half
+## 6. What any of it is useful for
+
+An honest ranking, including where the usefulness is thin. Ordered by how much someone outside this
+project could act on it.
+
+### Genuinely useful
+
+**The cautionary result, and it is the timeliest thing here.** F56–F66 is a worked end-to-end
+demonstration that an iterated self-consumption probe can manufacture a **precise, reproducible,
+exponent-bearing phase transition that belongs entirely to the probe** — critical point located,
+exponents fitted, and then shown to be the melting of an out-of-distribution prompt degeneracy. This
+matters now because self-feeding pipelines are everywhere: agent loops, model-collapse studies,
+synthetic-data training. Anyone measuring a dynamical property of a model that consumes its own
+output has this failure mode available. Note what did and did not catch it: **nineteen models could
+not distinguish "property of LMs" from "property of the probe"; one change of construction settled it
+immediately.** Varying the subject is not a substitute for varying the apparatus.
+
+**F35, because it changes design decisions.** An injected token error in real generation is never
+corrected — `P_persist = 1.000`, `TV_norm ≈ 0.97`, CRN null exactly zero — and the reason is
+structural: generation never revisits a token. Anyone building agentic loops or multi-step reasoning
+is implicitly assuming *some* error absorption; there is none. Stated honestly, the phenomenon is
+close to folk knowledge and has adjacent literature on error snowballing. What is new is the **exact
+null**: not "errors tend to persist" but 1.000, with a certified-zero control.
+
+**The methodology, which may outlast the science.** Six confident wrong verdicts, each caught by its
+own check before reaching a paper — a calibration run at the wrong geometry, error bars from
+correlated replicas, a cost function that could shrink its own comparison window, an estimator that
+returns ≈0 on a system whose answer is known, a control that acquired the effect, and nineteen models
+that could not separate probe from model. Now packaged as `gatecheck`. Realistically few people will
+install it; the transferable part is the pattern, not the package.
+
+**F98's infrastructure finding, actionable by someone else.** No public non-Pythia family checkpoints
+the first ~1B tokens densely — ~4,000 branches across six families, and the window is empty. So
+**every claim about early-training dynamics outside Pythia is currently unfalsifiable**, and a lab
+releasing checkpoints could close that gap cheaply.
+
+### Where the usefulness is thin
+
+**λ_ca itself.** It dates an event nobody has named. Four routes failed to attach it to anything; the
+closest positive is that the conditional moves, with no mechanism. Without an explanandum, "λ_ca
+crosses zero between steps 256 and 512" is a fact nobody can act on. It replicates, it is
+well-measured, its error bars are licensed — and it currently buys no decision.
+
+**T\* is promising but conditional.** ρ = 0.833 at n = 8 families is the only externally-predictive
+result and it has survived two deflation attempts, but it is greedy-scoped and the attempt at a
+second target rejected itself on dynamic range. One leg is not an anchor.
+
+**The attractor taxonomy** correlates with training recipe, but that correlate is partially
+anticipated in the literature and no downstream use has been demonstrated.
+
+### The overall read
+
+The project's most valuable outputs are **negative**: doors closed cheaply and precisely, with the
+measurement showing where the boundary sits. That is genuinely under-supplied. Its central positive
+measurement is not useful yet — which is not a failure of rigour but the state of the evidence, and
+`critical_analysis.md` reached the same conclusion independently. The strongest thing that could
+change it is an explanandum; after four routes, the realistic assessment is that this instrument
+measures something **collective and architecture-level that does not decompose**. That is worth
+knowing, and it is not what anyone hoped for.
+
+---
+
+## 7. Why the failures are the more portable half
 
 The results in §2 are about a construction most people will never build. The results in §3 are
 claims about language models that survive the construction being discarded — that generation has no
