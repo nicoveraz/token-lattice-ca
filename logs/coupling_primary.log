@@ -1,0 +1,57 @@
+0 cached, 48 cells
+
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:48,  2.67it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 255.62it/s]Loading weights:  50%|█████     | 146/292 [00:00<00:00, 204.31it/s]Loading weights:  62%|██████▏   | 181/292 [00:00<00:00, 205.23it/s]Loading weights:  72%|███████▏  | 211/292 [00:01<00:00, 192.73it/s]Loading weights:  81%|████████  | 236/292 [00:01<00:00, 173.87it/s]Loading weights:  88%|████████▊ | 257/292 [00:01<00:00, 175.94it/s]Loading weights:  95%|█████████▍| 277/292 [00:01<00:00, 165.68it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 175.75it/s]
+  step256      monotone  s=21  lambda=-0.2003  ign=0.125  (53s)
+  step256      monotone  s=22  lambda=+0.0416  ign=0.312  (55s)
+  step256      monotone  s=23  lambda=-0.0026  ign=0.375  (52s)
+  step256      monotone  s=24  lambda=+0.0402  ign=0.250  (52s)
+  step256      monotone  s=25  lambda=-0.1842  ign=0.062  (52s)
+  step256      monotone  s=26  lambda=+0.1779  ign=0.500  (53s)
+  step256      monotone  s=27  lambda=-0.0394  ign=0.125  (51s)
+  step256      monotone  s=28  lambda=+0.0192  ign=0.250  (56s)
+  step256      maximal   s=21  lambda=-1.8359  ign=0.000  (53s)
+  step256      maximal   s=22  lambda=+0.0547  ign=0.312  (53s)
+  step256      maximal   s=23  lambda=-0.0921  ign=0.188  (56s)
+  step256      maximal   s=24  lambda=-0.1544  ign=0.125  (54s)
+  step256      maximal   s=25  lambda=-1.6437  ign=0.000  (59s)
+  step256      maximal   s=26  lambda=+0.0619  ign=0.562  (53s)
+  step256      maximal   s=27  lambda=+0.0080  ign=0.250  (58s)
+  step256      maximal   s=28  lambda=-0.0685  ign=0.188  (57s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:02,  2.38it/s]Loading weights:  33%|███▎      | 96/292 [00:00<00:00, 237.73it/s]Loading weights:  51%|█████     | 148/292 [00:00<00:00, 194.77it/s]Loading weights:  63%|██████▎   | 184/292 [00:01<00:00, 190.28it/s]Loading weights:  73%|███████▎  | 213/292 [00:01<00:00, 203.72it/s]Loading weights:  83%|████████▎ | 241/292 [00:01<00:00, 186.75it/s]Loading weights:  91%|█████████ | 265/292 [00:01<00:00, 176.16it/s]Loading weights:  99%|█████████▊| 288/292 [00:01<00:00, 181.73it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 178.78it/s]
+  step512      monotone  s=21  lambda=-0.1632  ign=0.125  (52s)
+  step512      monotone  s=22  lambda=+0.0746  ign=0.250  (55s)
+  step512      monotone  s=23  lambda=+0.0586  ign=0.375  (54s)
+  step512      monotone  s=24  lambda=+0.1628  ign=0.562  (51s)
+  step512      monotone  s=25  lambda=+0.0156  ign=0.250  (52s)
+  step512      monotone  s=26  lambda=+0.3202  ign=0.562  (51s)
+  step512      monotone  s=27  lambda=-0.0318  ign=0.062  (51s)
+  step512      monotone  s=28  lambda=+0.1068  ign=0.312  (51s)
+  step512      maximal   s=21  lambda=-0.0221  ign=0.188  (53s)
+  step512      maximal   s=22  lambda=+0.1514  ign=0.438  (55s)
+  step512      maximal   s=23  lambda=+0.0294  ign=0.375  (57s)
+  step512      maximal   s=24  lambda=-0.1011  ign=0.250  (56s)
+  step512      maximal   s=25  lambda=-0.2317  ign=0.062  (57s)
+  step512      maximal   s=26  lambda=+0.1457  ign=0.312  (56s)
+  step512      maximal   s=27  lambda=-0.0413  ign=0.312  (57s)
+  step512      maximal   s=28  lambda=-0.0185  ign=0.188  (55s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:13,  2.18it/s]Loading weights:  36%|███▌      | 104/292 [00:00<00:00, 240.89it/s]Loading weights:  55%|█████▍    | 160/292 [00:00<00:00, 190.10it/s]Loading weights:  67%|██████▋   | 197/292 [00:01<00:00, 181.77it/s]Loading weights:  77%|███████▋  | 226/292 [00:01<00:00, 189.09it/s]Loading weights:  87%|████████▋ | 253/292 [00:01<00:00, 190.11it/s]Loading weights:  95%|█████████▍| 277/292 [00:01<00:00, 178.24it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 176.45it/s]
+  step143000   monotone  s=21  lambda=+0.1466  ign=0.875  (52s)
+  step143000   monotone  s=22  lambda=+0.1808  ign=1.000  (52s)
+  step143000   monotone  s=23  lambda=+0.1575  ign=0.875  (53s)
+  step143000   monotone  s=24  lambda=+0.1839  ign=0.938  (54s)
+  step143000   monotone  s=25  lambda=+0.2127  ign=0.812  (53s)
+  step143000   monotone  s=26  lambda=+0.2270  ign=1.000  (53s)
+  step143000   monotone  s=27  lambda=+0.1923  ign=0.875  (55s)
+  step143000   monotone  s=28  lambda=+0.1331  ign=1.000  (54s)
+  step143000   maximal   s=21  lambda=+0.0193  ign=0.375  (57s)
+  step143000   maximal   s=22  lambda=+0.1701  ign=0.875  (53s)
+  step143000   maximal   s=23  lambda=+0.1133  ign=0.500  (53s)
+  step143000   maximal   s=24  lambda=+0.2301  ign=0.938  (64s)
+  step143000   maximal   s=25  lambda=+0.0725  ign=0.375  (56s)
+  step143000   maximal   s=26  lambda=+0.1237  ign=0.875  (56s)
+  step143000   maximal   s=27  lambda=+0.2423  ign=0.688  (54s)
+  step143000   maximal   s=28  lambda=+0.2392  ign=0.875  (53s)
+
+  -> RUNG (AR backend): the paired path under monotone reproduces ar_probe.block_damage to 0.0 in the cone, against a production mean damage of 0.5177408854166667 -> PASS. CURVES: step256 monotone +0.0083 vs maximal -0.0303; step512 monotone +0.0666 vs maximal -0.0203; step143000 monotone +0.1824 vs maximal +0.1469. COMMON MODE, where the paper uses it: the sign crossing between step256 and step512 is present under BOTH couplings (False), and the ordering of the three checkpoints is identical. F41's escape clause holds for the relative comparisons rows 3 and 4 of the discriminator table rest on. Gates: dynamic_range: lambda across the three checkpoints (monotone) spans 0.1741 against its own noise floor 0.03579 (4.86x, gate 2.0x); distinct_units: 3 sampled checkpoint collapse to 3 distinct (gate 3) BOUNDARY: one geometry (r=2, T=0.7, N=48, B=16), one family, three checkpoints. A pass licenses THESE comparisons, not coupling-invariance in general. F41's absolute gap ({'T0.7': 1.013, 'T0.9': 1.054}) is untouched -- this is about the relative reading only.
+
+wrote results/coupling_primary.json

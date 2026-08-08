@@ -3580,6 +3580,55 @@ second target still needs to be found: it must be a degeneration measure that **
 sampling**, which by construction rules out most repetition metrics, and finding one is the open
 problem this run converted from "a day's work" into "a design question".
 
+### F108 — the coupling IS a common mode where the paper uses it, measured rather than asserted
+F41 established that this project's CRN is the **monotone** coupling, measured the gap in
+*absolute* damage (1.013× at T=0.7, 1.054× at T=0.9), and then argued that every **relative**
+comparison survives "because the coupling is a common mode". W2 conceded the same gap from the
+other side: "the alternative floors themselves are unrun on the LM backends". That argument was
+never measured. It is now, on the comparison the paper actually makes.
+
+**48 cells: three checkpoints × two couplings × 8 seeds, r=2, T=0.7, N=48, B=16.**
+
+```
+  checkpoint     monotone            maximal             offset
+  step256        +0.0083 ± 0.0440    -0.0303 ± 0.0355    -0.0385
+  step512        +0.0666 ± 0.0501    -0.0203 ± 0.0444    -0.0869
+  step143000     +0.1824 ± 0.0114    +0.1469 ± 0.0294    -0.0355
+```
+
+**PRIMARY: COMMON MODE.** The ordering of the three checkpoints is identical under both couplings,
+and the offsets span 0.0514 against a seed floor of 0.0358 — uniform within noise. Maximal reads
+lower at every checkpoint, which is the direction F41 predicts: maximal coupling maximises
+agreement and therefore minimises damage. Rows 3 and 4 of the paper's discriminator table read the
+model, not the coupling.
+
+**THE REGISTERED FIRST LEG WAS A BADLY CHOSEN TEST, and is reported rather than dropped.** The
+primary also asked whether the *sign crossing* between step256 and step512 survives. It cannot
+answer: λ(step256) is +0.0083 ± 0.0440 under monotone and −0.0303 ± 0.0355 under maximal — neither
+distinguishable from zero. Testing whether a sign changes where the value is not different from
+zero is testing a coin flip, and the paper itself records that pre-crossing "seeds disagree about
+the sign". The ordering was the sound comparison all along.
+
+**An unregistered rung passed on the way.** The monotone arm reproduces the published developmental
+values: +0.0666 against dev_transition_shape's +0.0679 at step512, +0.1824 against +0.1792 at
+step143000. Not registered, and it should have been — a coupling comparison whose baseline arm did
+not reproduce the published measurement would have been uninterpretable.
+
+**THREE FAILED RUNGS BEFORE THIS WAS MEASURABLE**, each caught before it could contaminate a number:
+1. The toy-backend lockstep loop coerced probabilities to float64 where production cumsums float32,
+   moving 163 of 1296 cells (12%).
+2. The AR rung was **vacuous**: the monotone branch routed to the production call, so it compared
+   production against production and matched at 0.0 without exercising the loop the maximal arm
+   uses.
+3. Once made honest, that rung failed at 0.3125 — the AR backend runs in **float16 on MPS** and
+   samples on-device, and no numpy re-implementation reproduces a float16 cumsum over a 50k
+   vocabulary. The couplers had to move onto the device.
+Each would have produced a difference of roughly the size F41 predicts for a real coupling effect.
+
+**Boundary.** One geometry, one family, three checkpoints. A pass licenses *these* comparisons, not
+coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
+reading only.
+
 ### F107 — the revival is PARTIAL REGRESSION: the compound arm tracks its reference at about two-thirds slope
 The experiment that tests F104's reading against the alternative it could not distinguish. 290 cells
 over five post-crossing checkpoints, ignition measured for `attn_early` and for

@@ -277,6 +277,7 @@ _STALENESS_PAIRS = [
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("coupling_ladder.json", "coupling_ladder.py"),
     ("ignition_level.json", "ignition_level.py"),
+    ("coupling_primary.json", "coupling_primary.py"),
     ("ablate_compensators.json", "ablate_compensators.py"),
     ("dev_transition_radius.json", "dev_transition_radius.py"),
     ("context_onset.json", "context_onset.py"),

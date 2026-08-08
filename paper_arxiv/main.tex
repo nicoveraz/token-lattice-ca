@@ -536,15 +536,24 @@ sorts are the ones we measured.
 
 Three things follow directly, and the first is the one we would do next.
 
-\paragraph{Measure the two couplings against each other.} This paper asserts that maximal coupling
-and common-random-number coupling answer different questions, and cites the distinction rather than
-demonstrating it. They are two functionals of the \emph{same} chain, so the comparison is available
-on the substrate already built: run both on identical rings and identical models, and report mixing
-time beside damage velocity across the same temperature and radius grid. If they track each other,
-the CRN observable is a re-parameterisation and this paper's contribution shrinks to the
-discriminator; if they come apart, the coupling choice is a substantive design decision that anyone
-studying iterated resampling has to make deliberately. Either outcome is worth having, and neither
-is currently known.
+\paragraph{The coupling is a common mode, and that is now measured rather than assumed.} Every
+relative reading in this paper is taken under one coupling, so it is fair to ask whether the choice
+is doing the work. Running the developmental checkpoints under \emph{both} the monotone coupling
+used throughout and a maximal coupling, on the same rings and the same models, the ordering of the
+checkpoints is identical and the offset between the two is uniform within the seed floor (offsets
+of $-0.039$, $-0.087$, $-0.036$ against a floor of $0.036$). Maximal reads lower everywhere, which
+is the expected direction: it maximises agreement between the twins and therefore minimises damage.
+So the readings in \S\ref{sec:discriminator} are properties of the model rather than of the
+coupling, on this geometry.
+
+Two things this does \emph{not} settle, and they are the natural next measurements. The result
+covers one radius, one temperature and one family, so coupling-invariance in general is untested.
+And it is a statement about \emph{relative} readings only: absolute damage does differ between
+couplings, so any absolute figure must name the coupling it was taken under. What remains genuinely
+open is the comparison in the other direction --- mixing time is a functional of the marginal chain
+and is therefore coupling-invariant by construction, while damage velocity is a functional of the
+coupled chain, so measuring both on one substrate would say how much of the dynamics a coupling
+choice can reach at all.
 
 \paragraph{Apply the discriminator to the practices that motivated it.} Self-consistency, iterated
 refinement and agentic loops are all self-feeding systems whose readings nobody separates into
