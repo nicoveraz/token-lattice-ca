@@ -274,6 +274,9 @@ _STALENESS_PAIRS = [
     # is the right half -- the decision can be re-run at any time, the measurements cannot.
     ("loss_collapse_families.json", "loss_collapse_families.py"),
     ("basin_structure.json", "basin_structure.py"),
+    ("alphabet_order.json", "alphabet_order.py"),
+    ("binary_dk_regime.json", "binary_dk_regime.py"),
+    ("sequence_velocity.json", "sequence_velocity.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("coupling_ladder.json", "coupling_ladder.py"),
     ("ignition_level.json", "ignition_level.py"),
