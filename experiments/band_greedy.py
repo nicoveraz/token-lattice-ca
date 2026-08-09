@@ -108,17 +108,34 @@ def main():
             tok = AutoTokenizer.from_pretrained(m)
             mdl = AutoModelForCausalLM.from_pretrained(m).eval().to(
                 dev, torch.float16 if dev != "cpu" else torch.float32)
-            outs = []
+            # rep_stats takes ONE continuation's flat token ids and is averaged ACROSS prompts by
+            # the caller -- see degeneration_vs_tstar's loop, which this must match exactly or the
+            # comparison to F86 is not commensurable. A first version passed the whole list of
+            # continuations, so the 4-grams became tuples-of-lists and every model died with
+            # `unhashable type: 'list'`. A per-prompt try/except mirrors F86's too: one bad prompt
+            # must not discard a model, and a model with NO usable generation is recorded as failed
+            # rather than averaged from an empty list.
+            stats = []
             for p in PROMPTS:
-                ids = tok(p, return_tensors="pt").input_ids.to(dev)
-                with torch.no_grad():
-                    g = mdl.generate(ids, max_new_tokens=NEW_TOKENS, do_sample=False,
-                                     pad_token_id=tok.eos_token_id or 0)
-                outs.append(g[0, ids.shape[1]:].tolist())
-            st = rep_stats(outs)
+                try:
+                    ids = tok(p, return_tensors="pt").input_ids.to(dev)
+                    with torch.no_grad():
+                        g = mdl.generate(ids, max_new_tokens=NEW_TOKENS, do_sample=False,
+                                         pad_token_id=tok.eos_token_id or 0)
+                    s = rep_stats(g[0, ids.shape[1]:].tolist())
+                    if s:
+                        stats.append(s)
+                except Exception as e:
+                    print(f"    prompt failed: {type(e).__name__}: {str(e)[:60]}", flush=True)
             del mdl
+            if not stats:
+                raise RuntimeError("no usable generations")
+            st = dict(n_prompts=len(stats),
+                      rep_4=round(float(np.mean([s["rep_4"] for s in stats])), 4),
+                      distinct_1=round(float(np.mean([s["distinct_1"] for s in stats])), 4),
+                      longest_loop=round(float(np.mean([s["longest_loop"] for s in stats])), 2))
         except Exception as e:
-            print(f"  {m}: FAILED {type(e).__name__}"[:110], flush=True)
+            print(f"  {m}: FAILED {type(e).__name__}: {str(e)[:70]}"[:130], flush=True)
             res["cells"][m] = dict(model=m, failed=repr(e)[:200])
             json.dump(res, open(OUT, "w"), indent=1); continue
         res["cells"][m] = dict(model=m, params=b["params"], scores=b["scores"], top1=b["top1"],

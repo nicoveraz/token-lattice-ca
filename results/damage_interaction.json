@@ -1,0 +1,484 @@
+{
+ "cells": {
+  "step1000|d6|s21": {
+   "step": 1000,
+   "sep": 6,
+   "seed": 21,
+   "n_A": 33.8125,
+   "n_B": 41.375,
+   "n_AB": 40.1875,
+   "n_union": 43.75,
+   "interaction": -3.5625,
+   "overlap": 31.4375,
+   "secs": 246.3
+  },
+  "step1000|d6|s22": {
+   "step": 1000,
+   "sep": 6,
+   "seed": 22,
+   "n_A": 41.6875,
+   "n_B": 40.875,
+   "n_AB": 54.375,
+   "n_union": 55.5625,
+   "interaction": -1.1875,
+   "overlap": 27.0,
+   "secs": 240.7
+  },
+  "step1000|d6|s23": {
+   "step": 1000,
+   "sep": 6,
+   "seed": 23,
+   "n_A": 39.0625,
+   "n_B": 26.0625,
+   "n_AB": 40.625,
+   "n_union": 41.6875,
+   "interaction": -1.0625,
+   "overlap": 23.4375,
+   "secs": 248.4
+  },
+  "step1000|d6|s24": {
+   "step": 1000,
+   "sep": 6,
+   "seed": 24,
+   "n_A": 39.875,
+   "n_B": 29.875,
+   "n_AB": 41.9375,
+   "n_union": 47.5,
+   "interaction": -5.5625,
+   "overlap": 22.25,
+   "secs": 238.8
+  },
+  "step1000|d12|s21": {
+   "step": 1000,
+   "sep": 12,
+   "seed": 21,
+   "n_A": 33.8125,
+   "n_B": 45.1875,
+   "n_AB": 52.5625,
+   "n_union": 54.25,
+   "interaction": -1.6875,
+   "overlap": 24.75,
+   "secs": 242.0
+  },
+  "step1000|d12|s22": {
+   "step": 1000,
+   "sep": 12,
+   "seed": 22,
+   "n_A": 41.6875,
+   "n_B": 35.6875,
+   "n_AB": 58.625,
+   "n_union": 59.0,
+   "interaction": -0.375,
+   "overlap": 18.375,
+   "secs": 277.1
+  },
+  "step1000|d12|s23": {
+   "step": 1000,
+   "sep": 12,
+   "seed": 23,
+   "n_A": 39.0625,
+   "n_B": 37.75,
+   "n_AB": 52.4375,
+   "n_union": 52.25,
+   "interaction": 0.1875,
+   "overlap": 24.5625,
+   "secs": 312.7
+  },
+  "step1000|d12|s24": {
+   "step": 1000,
+   "sep": 12,
+   "seed": 24,
+   "n_A": 39.875,
+   "n_B": 42.25,
+   "n_AB": 56.875,
+   "n_union": 58.375,
+   "interaction": -1.5,
+   "overlap": 23.75,
+   "secs": 237.8
+  },
+  "step1000|d24|s21": {
+   "step": 1000,
+   "sep": 24,
+   "seed": 21,
+   "n_A": 33.8125,
+   "n_B": 48.6875,
+   "n_AB": 67.375,
+   "n_union": 67.6875,
+   "interaction": -0.3125,
+   "overlap": 14.8125,
+   "secs": 239.6
+  },
+  "step1000|d24|s22": {
+   "step": 1000,
+   "sep": 24,
+   "seed": 22,
+   "n_A": 41.6875,
+   "n_B": 37.4375,
+   "n_AB": 65.8125,
+   "n_union": 66.25,
+   "interaction": -0.4375,
+   "overlap": 12.875,
+   "secs": 239.2
+  },
+  "step1000|d24|s23": {
+   "step": 1000,
+   "sep": 24,
+   "seed": 23,
+   "n_A": 39.0625,
+   "n_B": 36.8125,
+   "n_AB": 62.375,
+   "n_union": 63.0,
+   "interaction": -0.625,
+   "overlap": 12.875,
+   "secs": 237.3
+  },
+  "step1000|d24|s24": {
+   "step": 1000,
+   "sep": 24,
+   "seed": 24,
+   "n_A": 39.875,
+   "n_B": 41.0,
+   "n_AB": 66.25,
+   "n_union": 66.625,
+   "interaction": -0.375,
+   "overlap": 14.25,
+   "secs": 244.5
+  },
+  "step1000|d48|s21": {
+   "step": 1000,
+   "sep": 48,
+   "seed": 21,
+   "n_A": 33.8125,
+   "n_B": 28.625,
+   "n_AB": 59.5625,
+   "n_union": 59.625,
+   "interaction": -0.0625,
+   "overlap": 2.8125,
+   "secs": 241.9
+  },
+  "step1000|d48|s22": {
+   "step": 1000,
+   "sep": 48,
+   "seed": 22,
+   "n_A": 41.6875,
+   "n_B": 40.4375,
+   "n_AB": 77.25,
+   "n_union": 77.3125,
+   "interaction": -0.0625,
+   "overlap": 4.8125,
+   "secs": 242.0
+  },
+  "step1000|d48|s23": {
+   "step": 1000,
+   "sep": 48,
+   "seed": 23,
+   "n_A": 39.0625,
+   "n_B": 38.875,
+   "n_AB": 77.1875,
+   "n_union": 77.1875,
+   "interaction": 0.0,
+   "overlap": 0.75,
+   "secs": 242.1
+  },
+  "step1000|d48|s24": {
+   "step": 1000,
+   "sep": 48,
+   "seed": 24,
+   "n_A": 39.875,
+   "n_B": 28.0625,
+   "n_AB": 67.625,
+   "n_union": 67.625,
+   "interaction": 0.0,
+   "overlap": 0.3125,
+   "secs": 243.7
+  },
+  "step4000|d6|s21": {
+   "step": 4000,
+   "sep": 6,
+   "seed": 21,
+   "n_A": 27.75,
+   "n_B": 33.6875,
+   "n_AB": 33.5625,
+   "n_union": 37.75,
+   "interaction": -4.1875,
+   "overlap": 23.6875,
+   "secs": 238.1
+  },
+  "step4000|d6|s22": {
+   "step": 4000,
+   "sep": 6,
+   "seed": 22,
+   "n_A": 29.875,
+   "n_B": 24.25,
+   "n_AB": 37.8125,
+   "n_union": 39.0,
+   "interaction": -1.1875,
+   "overlap": 15.125,
+   "secs": 238.4
+  },
+  "step4000|d6|s23": {
+   "step": 4000,
+   "sep": 6,
+   "seed": 23,
+   "n_A": 33.0625,
+   "n_B": 22.5,
+   "n_AB": 36.75,
+   "n_union": 38.1875,
+   "interaction": -1.4375,
+   "overlap": 17.375,
+   "secs": 241.8
+  },
+  "step4000|d6|s24": {
+   "step": 4000,
+   "sep": 6,
+   "seed": 24,
+   "n_A": 32.875,
+   "n_B": 20.25,
+   "n_AB": 35.875,
+   "n_union": 37.8125,
+   "interaction": -1.9375,
+   "overlap": 15.3125,
+   "secs": 250.0
+  },
+  "step4000|d12|s21": {
+   "step": 4000,
+   "sep": 12,
+   "seed": 21,
+   "n_A": 27.75,
+   "n_B": 40.1875,
+   "n_AB": 45.25,
+   "n_union": 47.125,
+   "interaction": -1.875,
+   "overlap": 20.8125,
+   "secs": 247.0
+  },
+  "step4000|d12|s22": {
+   "step": 4000,
+   "sep": 12,
+   "seed": 22,
+   "n_A": 29.875,
+   "n_B": 32.1875,
+   "n_AB": 44.375,
+   "n_union": 45.125,
+   "interaction": -0.75,
+   "overlap": 16.9375,
+   "secs": 237.9
+  },
+  "step4000|d12|s23": {
+   "step": 4000,
+   "sep": 12,
+   "seed": 23,
+   "n_A": 33.0625,
+   "n_B": 30.0,
+   "n_AB": 44.375,
+   "n_union": 45.3125,
+   "interaction": -0.9375,
+   "overlap": 17.75,
+   "secs": 237.3
+  },
+  "step4000|d12|s24": {
+   "step": 4000,
+   "sep": 12,
+   "seed": 24,
+   "n_A": 32.875,
+   "n_B": 29.8125,
+   "n_AB": 44.25,
+   "n_union": 46.6875,
+   "interaction": -2.4375,
+   "overlap": 16.0,
+   "secs": 237.4
+  },
+  "step4000|d24|s21": {
+   "step": 4000,
+   "sep": 24,
+   "seed": 21,
+   "n_A": 27.75,
+   "n_B": 37.8125,
+   "n_AB": 54.625,
+   "n_union": 55.875,
+   "interaction": -1.25,
+   "overlap": 9.6875,
+   "secs": 237.4
+  },
+  "step4000|d24|s22": {
+   "step": 4000,
+   "sep": 24,
+   "seed": 22,
+   "n_A": 29.875,
+   "n_B": 30.5,
+   "n_AB": 54.3125,
+   "n_union": 55.125,
+   "interaction": -0.8125,
+   "overlap": 5.25,
+   "secs": 243.0
+  },
+  "step4000|d24|s23": {
+   "step": 4000,
+   "sep": 24,
+   "seed": 23,
+   "n_A": 33.0625,
+   "n_B": 33.25,
+   "n_AB": 58.9375,
+   "n_union": 59.125,
+   "interaction": -0.1875,
+   "overlap": 7.1875,
+   "secs": 244.8
+  },
+  "step4000|d24|s24": {
+   "step": 4000,
+   "sep": 24,
+   "seed": 24,
+   "n_A": 32.875,
+   "n_B": 32.0625,
+   "n_AB": 54.8125,
+   "n_union": 54.875,
+   "interaction": -0.0625,
+   "overlap": 10.0625,
+   "secs": 244.0
+  },
+  "step4000|d48|s21": {
+   "step": 4000,
+   "sep": 48,
+   "seed": 21,
+   "n_A": 27.75,
+   "n_B": 21.625,
+   "n_AB": 49.375,
+   "n_union": 49.375,
+   "interaction": 0.0,
+   "overlap": 0.0,
+   "secs": 241.0
+  },
+  "step4000|d48|s22": {
+   "step": 4000,
+   "sep": 48,
+   "seed": 22,
+   "n_A": 29.875,
+   "n_B": 33.5625,
+   "n_AB": 62.9375,
+   "n_union": 62.9375,
+   "interaction": 0.0,
+   "overlap": 0.5,
+   "secs": 244.5
+  },
+  "step4000|d48|s23": {
+   "step": 4000,
+   "sep": 48,
+   "seed": 23,
+   "n_A": 33.0625,
+   "n_B": 31.0,
+   "n_AB": 63.9375,
+   "n_union": 63.9375,
+   "interaction": 0.0,
+   "overlap": 0.125,
+   "secs": 237.2
+  },
+  "step4000|d48|s24": {
+   "step": 4000,
+   "sep": 48,
+   "seed": 24,
+   "n_A": 32.875,
+   "n_B": 28.75,
+   "n_AB": 61.625,
+   "n_union": 61.625,
+   "interaction": 0.0,
+   "overlap": 0.0,
+   "secs": 237.1
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "steps": [
+   1000,
+   4000
+  ],
+  "seps": [
+   6,
+   12,
+   24,
+   48
+  ],
+  "seeds": [
+   21,
+   22,
+   23,
+   24
+  ],
+  "r": 2,
+  "T": 0.7,
+  "N": 96,
+  "B": 16,
+  "sweeps": 22,
+  "block": 3,
+  "comparison": "interaction = |D_AB| - |D_A union D_B| per replica; set union removes the trivial overlap that binary damage forces, so what is left is dynamics",
+  "rung": "the light cone reaches r*sweeps = 44 sites, so at separation 48 on N=96 the injections are as causally disconnected as the ring allows; interaction there must be EXACTLY zero. Failure stops the script",
+  "primary": "is interaction non-zero where the cones DO meet, beyond seed spread?",
+  "sign": "negative = interference (shared healing / competition for sites); positive = synergy. F114's additivity of the local response predicts approximately zero",
+  "kill": "zero at every separation -> damage superposes, the lattice inherits the conditional's additivity, and F109's overlap candidate is closed",
+  "boundary": "one family, one checkpoint set, one radius, one temperature"
+ },
+ "analysis": {
+  "rows": {
+   "6": {
+    "n": 8,
+    "mean": -2.51562,
+    "sd": 1.59337,
+    "se": 0.56334,
+    "overlap": 21.9531
+   },
+   "12": {
+    "n": 8,
+    "mean": -1.17188,
+    "sd": 0.8051,
+    "se": 0.28465,
+    "overlap": 20.3672
+   },
+   "24": {
+    "n": 8,
+    "mean": -0.50781,
+    "sd": 0.3569,
+    "se": 0.12618,
+    "overlap": 10.875
+   },
+   "48": {
+    "n": 8,
+    "mean": -0.01562,
+    "sd": 0.02706,
+    "se": 0.00957,
+    "overlap": 1.1641
+   }
+  },
+  "rung_passes": true,
+  "nonzero_at": [
+   6,
+   12,
+   24
+  ]
+ },
+ "verdict": "RUNG (causality, checked not assumed): at separation 48 the light cone (r*sweeps = 44 sites) cannot connect the injections within the run, so the interaction must be zero. Measured -0.0156 +/- 0.0096. Consistent with zero, so the comparison is measuring dynamics rather than harness error. PRIMARY: at separations where the cones meet, interaction is d=6: -2.5156\u00b10.5633, d=12: -1.1719\u00b10.2847, d=24: -0.5078\u00b10.1262. Non-zero beyond 2 SE at separations [6, 12, 24], so two damage sites do NOT superpose: the lattice adds an interaction the local response does not have (F114 measured sub-additivity of +0.003 to +0.028, essentially additive). The sign is negative \u2014 INTERFERENCE: the pair damages LESS than the union of the singles, consistent with competition for the same sites or shared healing. BOUNDARY: one family, one radius, one temperature, plateau checkpoints only -- chosen because damage must reliably ignite for a superposition test to be defined at all, which excludes the dip where ignition is 0.05-0.3 (F42).",
+ "_analysis_provenance": {
+  "script": "damage_interaction.py",
+  "sha256": "9d18d5400b24c7c8469d158a946b677994a20411f1506091ee03e7317b3d8c87",
+  "imports": {
+   "experiments/damage_interaction.py": "9d18d5400b24c7c8469d158a946b677994a20411f1506091ee03e7317b3d8c87",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "First test of whether two damage injections superpose. Compared as SETS (|D_AB| - |D_A union D_B|) because binary damage makes a sum-comparison measure overlap rather than interaction. Causality supplies an exact rung: at separation beyond the light cone the interaction must be zero."
+}
