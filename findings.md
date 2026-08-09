@@ -3512,6 +3512,19 @@ the deflationary question Gate 1 asked of attribution can be asked of the **anch
   (on all 15 families the static predictors are weaker still: -0.06, +0.11, +0.20, all p > 0.45)
 ```
 
+> **PROVENANCE GAP, found by the F119 reconciliation and not yet closed.** Only the bottom row of
+> this table traces to a stored file: `T* vs rep_4 = 0.833` is
+> `results/tstar_second_target.json -> analysis.tstar_vs_greedy_same_rows`. The three static-predictor
+> rows (`fix -0.119`, `cyc +0.119`, `modal +0.595`) and the 15-family parenthetical appear in **no
+> results file in the repository**, and they match neither the pre- nor the post-F119 values in
+> `tstar_second_target.json` (which holds fix +0.204, cyc -0.204, modal +0.431 on its own row set).
+> They were computed in a run whose output was never persisted. Two consequences: the numbers cannot
+> be re-derived, and they could not be screened for the F119 tie bug. **The deflation's conclusion is
+> unaffected** -- it rests on T*'s +0.833 against static predictors that are weak by any of the
+> available numbers -- but this table should be regenerated from a script that writes a results file
+> before it is quoted anywhere outside `findings.md`.
+
+
 **The static argmax map carries no information about degeneration; the CA-derived T\* does.** That
 is K1's deflationary logic applied where it bites hardest — not to attribution or coherence, but to
 the external behavioural anchor — and the CA wins on the same rows, not on a friendlier subset.
@@ -3694,11 +3707,14 @@ readouts selective at p < 0.05 with a non-selective size control, though every c
 are 2-decimal, so ties were in fact present. `diversity_predicts_nothing` still separates
 (|ρ| ≤ 0.113 against T\*'s +0.547). `ablate_compensators` needed a second argument, which
 `recorded_singles()` reconstructs from `results/ablate_layers.json`, so it was re-analysed too.
-Fifteen results files were re-analysed and re-stamped against the new import closure. Separately,
-the 8-family
-deflation table quoted at F86 (`fix −0.119 / cyc +0.119`) matches neither the old nor the corrected
-values in `results/tstar_second_target.json`, so it comes from a run not reconciled here.
-**Reconciling every number quoted in `findings.md` against the refreshed results files is not done.**
+Fifteen results files were re-analysed and re-stamped against the new import closure. **The reconciliation is now done** — every number in all 96
+finding sections was checked against the pooled contents of `results/*.json`. No ranking-touched
+finding (F86, F111, F112, F114, F115, F117, F118) quotes a value absent from the results files. One
+genuine gap surfaced and is recorded at F86: its 8-family deflation table has no stored file behind
+its three static-predictor rows (`fix −0.119`, `cyc +0.119`, `modal +0.595`), which match neither the
+pre- nor the post-F119 values in `results/tstar_second_target.json`. Those numbers cannot be
+re-derived and could not be screened for this bug. The remaining flags are derived percentages, prose
+figures and arXiv identifiers rather than measurements.
 
 `experiments/ranking.py`, `tests/test_ranking.py` → refreshed `results/{residual_identity,
 heat_capacity_tstar,tstar_second_target,band_screen,damage_geometry}.json`
