@@ -3629,6 +3629,62 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F115 — F111 is a DEVELOPMENTAL statement, and its residual carries no model identity
+Two questions F111 raised and never tested, answered from committed data with no new runs.
+`canalization_predicts.json` holds settled diversity for 14 models and
+`lambda_temperature_crossing.json` holds λ_ca at T=0.7 for the same 14; both re-used unchanged, so
+the pairing could not be tuned.
+
+**Range read first, as registered.** Across these 14 models diversity spans **144–298** distinct
+tokens and **14 of 14** sit above 100. F111's relation was driven by the dip (7.5 → 31) rising into
+the plateau, and *within* the plateau its own curve is flat — 185/205/196 diversity giving λ
+0.19/0.16/0.17. So this population lies almost entirely in the flat part, and that had to be
+established before the correlation was read.
+
+```
+ model                        diversity     λ_ca    rep_4
+ gpt-neo-125M                       144   +0.2539    0.680
+ codegen-350M-mono                  168   +0.1738    0.447
+ pythia-70m                         182   +0.1700    0.825
+ pythia-14m                         184   +0.1546    0.839
+ pythia-31m                         191   +0.1563    0.739
+ gpt2                               191   +0.1776    0.637
+ pythia-160m                        193   +0.1483    0.719
+ gpt2-large                         193   +0.1739    0.513
+ pythia-410m                        196   +0.1616    0.435
+ mamba-130m                         203   +0.1808    0.649
+ opt-350m                           205   +0.1727    0.646
+ rwkv-4-169m                        207   +0.1697    0.674
+ gpt2-medium                        219   +0.1535    0.459
+ bloom-560m                         298   +0.2005    0.594
+```
+
+**PRIMARY: ρ(diversity, λ_ca) across models = −0.073, p = 0.812, n = 14** — against F111's **+0.771**
+within Pythia. The relation does **not** hold across models. Given the range above, that is what
+F111 *predicts* rather than a contradiction of it, and the correct conclusion is a scope statement:
+**F111 is developmental. Diversity organises λ_ca's trajectory during training, not its value across
+a population of models.** The reduction is real and narrower than it read.
+
+**RESIDUAL: searched twice, empty both times.** Against the best monotone fit the residual has
+sd 0.0245.
+
+- It does **not** predict degeneration: ρ(residual, rep_4) = **−0.218**, p = 0.456.
+- **Model identity does not survive in it**: between-family sd of the mean residual is **0.0029**
+  against a within-family sd of **0.0234** — a ratio of **0.12**. Families differ from one another
+  *far less* than models within a family differ among themselves, which is the opposite of what
+  "the model's own contribution lives in the residual" would look like.
+
+That closes the one place a model-specific signal could still have hidden without having been
+searched. Combined with F112 (the settled state predicts nothing external) and F114 (the two-token
+response is essentially additive), the picture is consistent: **λ_ca and its residual are collective
+state properties that carry no model-level information beyond the state itself.**
+
+**Boundary, and it is not fixable from stored data.** λ and diversity come from **different settle
+geometries** — B=8 with 30 sweeps for diversity, B=16 with 12 sweeps plus damage for λ. Both use
+N=48 and the same 384-token pool, so the pairing is approximate rather than exact; a clean version
+measures both from one settle. The effects here are nowhere near marginal (ρ = −0.073 at p = 0.81,
+identity ratio 0.12), so the caveat is stated rather than absorbed into the conclusion.
+
 ### F114 — the two-token response is essentially ADDITIVE: canalization is absent, and the route closes
 The deepest of the response-derived metric candidates, and the one with theory behind it. F102's
 mean-field null across 33 ablation arms said the missing physics should live in the canalization

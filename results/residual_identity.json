@@ -1,0 +1,180 @@
+{
+ "cells": [
+  {
+   "model": "EleutherAI/gpt-neo-125M",
+   "diversity": 144,
+   "lambda_ca": 0.25389,
+   "rep_4": 0.68
+  },
+  {
+   "model": "Salesforce/codegen-350M-mono",
+   "diversity": 168,
+   "lambda_ca": 0.17378,
+   "rep_4": 0.4473
+  },
+  {
+   "model": "EleutherAI/pythia-70m",
+   "diversity": 182,
+   "lambda_ca": 0.17002,
+   "rep_4": 0.8247
+  },
+  {
+   "model": "EleutherAI/pythia-14m",
+   "diversity": 184,
+   "lambda_ca": 0.15462,
+   "rep_4": 0.8387
+  },
+  {
+   "model": "EleutherAI/pythia-31m",
+   "diversity": 191,
+   "lambda_ca": 0.15631,
+   "rep_4": 0.7393
+  },
+  {
+   "model": "gpt2",
+   "diversity": 191,
+   "lambda_ca": 0.17761,
+   "rep_4": 0.6373
+  },
+  {
+   "model": "EleutherAI/pythia-160m",
+   "diversity": 193,
+   "lambda_ca": 0.14831,
+   "rep_4": 0.7193
+  },
+  {
+   "model": "gpt2-large",
+   "diversity": 193,
+   "lambda_ca": 0.17388,
+   "rep_4": 0.5133
+  },
+  {
+   "model": "EleutherAI/pythia-410m",
+   "diversity": 196,
+   "lambda_ca": 0.16164,
+   "rep_4": 0.4347
+  },
+  {
+   "model": "state-spaces/mamba-130m-hf",
+   "diversity": 203,
+   "lambda_ca": 0.18076,
+   "rep_4": 0.6493
+  },
+  {
+   "model": "facebook/opt-350m",
+   "diversity": 205,
+   "lambda_ca": 0.17267,
+   "rep_4": 0.646
+  },
+  {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "diversity": 207,
+   "lambda_ca": 0.16975,
+   "rep_4": 0.674
+  },
+  {
+   "model": "gpt2-medium",
+   "diversity": 219,
+   "lambda_ca": 0.15348,
+   "rep_4": 0.459
+  },
+  {
+   "model": "bigscience/bloom-560m",
+   "diversity": 298,
+   "lambda_ca": 0.20047,
+   "rep_4": 0.594
+  }
+ ],
+ "_preregistration": {
+  "sources": [
+   "canalization_predicts.json",
+   "lambda_temperature_crossing.json",
+   "degeneration_vs_tstar.json"
+  ],
+  "t_fixed": 0.7,
+  "seeds": [
+   21,
+   22,
+   23
+  ],
+  "f111_rho": 0.771,
+  "plateau_min": 100,
+  "primary": "rho(diversity, lambda_ca) across models at fixed T, against F111's +0.771",
+  "residual": "against the best MONOTONE fit; then does it predict rep_4, and does it separate by family (between-family sd of mean residual over within-family sd)",
+  "reading": "a cross-model null is not automatically a refutation: if all models sit in the plateau regime where F111's curve is flat, a null is what F111 PREDICTS and the result is a scope statement. Diversity range is read first",
+  "boundary": "lambda and diversity come from different settle geometries; the pairing is approximate and not fixable from stored data"
+ },
+ "analysis": {
+  "rho_cross_model": -0.0725,
+  "perm_p": 0.8121,
+  "n": 14,
+  "f111_rho": 0.771,
+  "diversity_range": [
+   144,
+   298
+  ],
+  "n_in_plateau": 14,
+  "plateau_min": 100,
+  "residual_sd": 0.02447,
+  "rho_residual_rep4": -0.2176,
+  "perm_p_residual": 0.4556,
+  "between_family_sd": 0.0029,
+  "within_family_sd": 0.02345,
+  "identity_ratio": 0.1239,
+  "by_family": {
+   "EleutherAI": [
+    0.08107,
+    -0.0028,
+    -0.0182,
+    -0.01651,
+    -0.02451,
+    -0.01118
+   ],
+   "Salesforce": [
+    0.00096
+   ],
+   "gpt2": [
+    0.00479,
+    0.00106,
+    -0.01934
+   ],
+   "state-spaces": [
+    0.00794
+   ],
+   "facebook": [
+    -0.00015
+   ],
+   "RWKV": [
+    -0.00307
+   ],
+   "bigscience": [
+    0.0
+   ]
+  }
+ },
+ "verdict": "RANGE FIRST, as registered: across these 14 models settled diversity spans 144-298 distinct tokens, and 14 of 14 sit above 100. F111's relation was driven by the dip (7.5 to 31) rising into the plateau; within the plateau its own curve is flat (185/205/196 diversity giving lambda 0.19/0.16/0.17). So this population lies almost entirely in the flat part. PRIMARY: rho(diversity, lambda_ca) across models = -0.073 (p = 0.8121, n = 14), against F111's +0.771 within Pythia. The relation does NOT hold across models -- and given the range above, that is what F111 PREDICTS rather than a contradiction of it. **F111 is a developmental statement: diversity organises lambda_ca's trajectory during training, not its value across a population of models.** RESIDUAL, SEARCHED TWICE AND EMPTY BOTH TIMES. Against the best monotone fit the residual has sd 0.0245. It does not predict degeneration: rho(residual, rep_4) = -0.218 (p = 0.4556, n = 14). And model identity does not survive in it: between-family sd of the mean residual is 0.0029 against a within-family sd of 0.0234, a ratio of 0.12 -- the opposite of what 'the model's contribution lives here' would look like, since families differ from each other far less than models within a family differ among themselves. BOUNDARY: lambda and diversity come from DIFFERENT settle geometries (B=8/30 sweeps for diversity, B=16/12 sweeps plus damage for lambda). Both use N=48 and the same 384-token pool so the pairing is approximate rather than exact, and a clean version measures both from one settle. The effects here are nowhere near marginal, but that caveat is not fixable from stored data and is stated rather than absorbed.",
+ "_analysis_provenance": {
+  "script": "residual_identity.py",
+  "sha256": "3f0d3243d58b05f7b8349f027bc487fbbc9e7a28bcc1ceb38f9bba9085f38892",
+  "imports": {
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/residual_identity.py": "3f0d3243d58b05f7b8349f027bc487fbbc9e7a28bcc1ceb38f9bba9085f38892"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Asks whether F111's diversity reduction holds ACROSS MODELS and whether its residual carries model identity. Both files re-used unchanged; no new runs."
+}
