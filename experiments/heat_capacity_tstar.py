@@ -68,6 +68,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
+from ranking import rank as _rank
 import torch
 
 from provenance import stamp, rel
@@ -296,7 +297,7 @@ def analyse(res):
             continue
         tp = np.array([c["T_peak"] for c in with_t])
         ts = np.array([c["t_star"] for c in with_t])
-        rk = lambda x: np.argsort(np.argsort(x))
+        rk = lambda x: _rank(x)
         rho = float(np.corrcoef(rk(tp), rk(ts))[0, 1]) if tp.std() > 0 else 0.0
         # n=14 is too large to enumerate 14!; sample the null instead, with a fixed seed so the
         # p-value is reproducible. 200k draws puts the MC error on p at ~0.001.

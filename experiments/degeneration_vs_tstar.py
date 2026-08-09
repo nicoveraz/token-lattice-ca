@@ -55,6 +55,7 @@ import os, json, gc, time, collections
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
+from ranking import rank as _rank
 import torch
 
 from provenance import stamp, rel
@@ -252,7 +253,7 @@ def _n_needed(rho, alpha=0.05, nmax=200):
 def _spearman(x, y):
     """Rank correlation, and a permutation p-value -- scipy is not a dependency here."""
     x, y = np.asarray(x, float), np.asarray(y, float)
-    rx, ry = np.argsort(np.argsort(x)), np.argsort(np.argsort(y))
+    rx, ry = _rank(x), _rank(y)
     rho = float(np.corrcoef(rx, ry)[0, 1])
     rng = np.random.default_rng(0)
     null = [abs(np.corrcoef(rx, rng.permutation(ry))[0, 1]) for _ in range(20000)]

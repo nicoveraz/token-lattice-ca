@@ -10959,8 +10959,8 @@
   "per_ensemble": {
    "random": {
     "n": 14,
-    "rho": -0.754,
-    "perm_p": 0.0029,
+    "rho": -0.741,
+    "perm_p": 0.0035,
     "T_peak": [
      1.2428,
      1.4095,
@@ -11055,8 +11055,8 @@
    },
    "settled": {
     "n": 14,
-    "rho": -0.692,
-    "perm_p": 0.0079,
+    "rho": -0.701,
+    "perm_p": 0.0068,
     "T_peak": [
      1.2119,
      1.2745,
@@ -11153,23 +11153,38 @@
   "calibration_worst_rel_err": 0.002301,
   "calibration_ok": true
  },
- "verdict": "CALIBRATION FIRST, and it is exact rather than referential: V has two independent expressions -- Var_{p_T}(z), and T^3 dH/dT by numerical differentiation of the entropy curve -- which are equal analytically. Worst relative disagreement across every model and context measured is 2.30e-03 against a tolerance of 0.02. The implementation reproduces the identity, so V is what the derivation says it is. PRIMARY: over 14 models with a finite T*, the heat-capacity peak and the measured melting temperature correlate at rho = -0.692 (sampled permutation p = 0.0079), mean |T_V - T*| = 1.0351. Unlike F94's, this correlation is interpretable -- correlation_leverage: heat-capacity peak T_V spans 0.6012 against the target's 0.3284 (ratio 1.83, gate 0.5); a correlation is interpretable; distinct_units: 14 sampled T_V values collapse to 11 distinct (gate 4) THE SIGN IS OPPOSITE TO THE NAIVE PREDICTION, and that is recorded rather than explained. V peaks near the logit scale, so a model with more spread-out logits has both a higher T_V and a MORE deterministic conditional at fixed T, which should make its ring attractor survive to a HIGHER temperature. The observed relation runs the other way in both ensembles (settled -0.692, p=0.0079; random -0.754, p=0.0029) with no edge-rejected cells. The registered arm is the settled one. It is logged as a reproducible observation across two independent context ensembles, NOT as a claim: n=14 models, one point per model, no mechanism proposed, and the models are not independent draws -- several share families and corpora, which a per-model permutation null does not account for. F86's own anchor was stated at FAMILY level for exactly that reason. THE DEFLATIONARY OUTCOME DOES NOT FIRE, and that is what protects T*. The peak does not land on T* and is not close to it: T_V occupies [1.21, 1.81] while T* occupies [0.25, 0.58] -- disjoint ranges, mean separation 1.04. So T* is NOT the heat-capacity peak of the model's own conditional, and F86's anchor is not a restatement of next-token entropy response. The ring is not redundant for T*. This is only worth having because the deflationary outcome was written down first as a live possibility, against the strongest static baseline available -- one with a derivation behind it rather than an ad-hoc summary, which is what makes it a stronger version of F92's test.",
+ "verdict": "CALIBRATION FIRST, and it is exact rather than referential: V has two independent expressions -- Var_{p_T}(z), and T^3 dH/dT by numerical differentiation of the entropy curve -- which are equal analytically. Worst relative disagreement across every model and context measured is 2.30e-03 against a tolerance of 0.02. The implementation reproduces the identity, so V is what the derivation says it is. PRIMARY: over 14 models with a finite T*, the heat-capacity peak and the measured melting temperature correlate at rho = -0.701 (sampled permutation p = 0.0068), mean |T_V - T*| = 1.0351. Unlike F94's, this correlation is interpretable -- correlation_leverage: heat-capacity peak T_V spans 0.6012 against the target's 0.3284 (ratio 1.83, gate 0.5); a correlation is interpretable; distinct_units: 14 sampled T_V values collapse to 11 distinct (gate 4) THE SIGN IS OPPOSITE TO THE NAIVE PREDICTION, and that is recorded rather than explained. V peaks near the logit scale, so a model with more spread-out logits has both a higher T_V and a MORE deterministic conditional at fixed T, which should make its ring attractor survive to a HIGHER temperature. The observed relation runs the other way in both ensembles (settled -0.701, p=0.0068; random -0.741, p=0.0035) with no edge-rejected cells. The registered arm is the settled one. It is logged as a reproducible observation across two independent context ensembles, NOT as a claim: n=14 models, one point per model, no mechanism proposed, and the models are not independent draws -- several share families and corpora, which a per-model permutation null does not account for. F86's own anchor was stated at FAMILY level for exactly that reason. THE DEFLATIONARY OUTCOME DOES NOT FIRE, and that is what protects T*. The peak does not land on T* and is not close to it: T_V occupies [1.21, 1.81] while T* occupies [0.25, 0.58] -- disjoint ranges, mean separation 1.04. So T* is NOT the heat-capacity peak of the model's own conditional, and F86's anchor is not a restatement of next-token entropy response. The ring is not redundant for T*. This is only worth having because the deflationary outcome was written down first as a live possibility, against the strongest static baseline available -- one with a derivation behind it rather than an ad-hoc summary, which is what makes it a stronger version of F92's test.",
  "_analysis_provenance": {
   "script": "heat_capacity_tstar.py",
-  "sha256": "3a5a26469abf4cde9bf13c7665d31f7b3bf977693b36e693954c3665eeb4aa8a",
+  "sha256": "566ba0849f53adb4619ba6571b5fbd71169fa46c9fe3f5c4093763cfdfb34cd4",
   "imports": {
-   "experiments/heat_capacity_tstar.py": "3a5a26469abf4cde9bf13c7665d31f7b3bf977693b36e693954c3665eeb4aa8a",
-   "experiments/provenance.py": "916111ed3fee444828de46670e2394c31b6b830d867fcd30d6de36ff377a7059",
-   "gatecheck/src/gatecheck/__init__.py": "e507077927351e0b6c58dbc75a89511e5021ce2d977ede4e7c461a3b8c55a520",
+   "experiments/heat_capacity_tstar.py": "566ba0849f53adb4619ba6571b5fbd71169fa46c9fe3f5c4093763cfdfb34cd4",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
    "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
    "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
-   "gatecheck/src/gatecheck/leverage.py": "a38dd61d67c35fa95936c75275e7e4f03d2459b1c26bccc1c402cb73ea2f13e3",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
    "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
    "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
    "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
    "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
    "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
    "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
   },
   "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
  },

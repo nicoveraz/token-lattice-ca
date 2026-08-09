@@ -47,6 +47,7 @@ import gc, itertools, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np, torch
+from ranking import rank as _rank
 from provenance import stamp, rel
 from lyapunov import lyap_from_cone, is_unignited
 from dev_transition_phase3 import FIT_KW
@@ -172,7 +173,7 @@ def main():
 
 def _rho_p(a, b, seed=0):
     a, b = np.array(a, float), np.array(b, float)
-    rk = lambda x: np.argsort(np.argsort(x))
+    rk = lambda x: _rank(x)
     r = float(np.corrcoef(rk(a), rk(b))[0, 1]); n = len(a)
     if n <= 8:
         null = [np.corrcoef(np.array(p), rk(b))[0, 1] for p in itertools.permutations(rk(a))]

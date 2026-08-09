@@ -105,8 +105,8 @@
   "boundary": "lambda and diversity come from different settle geometries; the pairing is approximate and not fixable from stored data"
  },
  "analysis": {
-  "rho_cross_model": -0.0725,
-  "perm_p": 0.8121,
+  "rho_cross_model": -0.1079,
+  "perm_p": 0.7165,
   "n": 14,
   "f111_rho": 0.771,
   "diversity_range": [
@@ -152,13 +152,14 @@
    ]
   }
  },
- "verdict": "RANGE FIRST, as registered: across these 14 models settled diversity spans 144-298 distinct tokens, and 14 of 14 sit above 100. F111's relation was driven by the dip (7.5 to 31) rising into the plateau; within the plateau its own curve is flat (185/205/196 diversity giving lambda 0.19/0.16/0.17). So this population lies almost entirely in the flat part. PRIMARY: rho(diversity, lambda_ca) across models = -0.073 (p = 0.8121, n = 14), against F111's +0.771 within Pythia. The relation does NOT hold across models -- and given the range above, that is what F111 PREDICTS rather than a contradiction of it. **F111 is a developmental statement: diversity organises lambda_ca's trajectory during training, not its value across a population of models.** RESIDUAL, SEARCHED TWICE AND EMPTY BOTH TIMES. Against the best monotone fit the residual has sd 0.0245. It does not predict degeneration: rho(residual, rep_4) = -0.218 (p = 0.4556, n = 14). And model identity does not survive in it: between-family sd of the mean residual is 0.0029 against a within-family sd of 0.0234, a ratio of 0.12 -- the opposite of what 'the model's contribution lives here' would look like, since families differ from each other far less than models within a family differ among themselves. BOUNDARY: lambda and diversity come from DIFFERENT settle geometries (B=8/30 sweeps for diversity, B=16/12 sweeps plus damage for lambda). Both use N=48 and the same 384-token pool so the pairing is approximate rather than exact, and a clean version measures both from one settle. The effects here are nowhere near marginal, but that caveat is not fixable from stored data and is stated rather than absorbed.",
+ "verdict": "RANGE FIRST, as registered: across these 14 models settled diversity spans 144-298 distinct tokens, and 14 of 14 sit above 100. F111's relation was driven by the dip (7.5 to 31) rising into the plateau; within the plateau its own curve is flat (185/205/196 diversity giving lambda 0.19/0.16/0.17). So this population lies almost entirely in the flat part. PRIMARY: rho(diversity, lambda_ca) across models = -0.108 (p = 0.7165, n = 14), against F111's +0.771 within Pythia. The relation does NOT hold across models -- and given the range above, that is what F111 PREDICTS rather than a contradiction of it. **F111 is a developmental statement: diversity organises lambda_ca's trajectory during training, not its value across a population of models.** RESIDUAL, SEARCHED TWICE AND EMPTY BOTH TIMES. Against the best monotone fit the residual has sd 0.0245. It does not predict degeneration: rho(residual, rep_4) = -0.218 (p = 0.4556, n = 14). And model identity does not survive in it: between-family sd of the mean residual is 0.0029 against a within-family sd of 0.0234, a ratio of 0.12 -- the opposite of what 'the model's contribution lives here' would look like, since families differ from each other far less than models within a family differ among themselves. BOUNDARY: lambda and diversity come from DIFFERENT settle geometries (B=8/30 sweeps for diversity, B=16/12 sweeps plus damage for lambda). Both use N=48 and the same 384-token pool so the pairing is approximate rather than exact, and a clean version measures both from one settle. The effects here are nowhere near marginal, but that caveat is not fixable from stored data and is stated rather than absorbed.",
  "_analysis_provenance": {
   "script": "residual_identity.py",
-  "sha256": "3f0d3243d58b05f7b8349f027bc487fbbc9e7a28bcc1ceb38f9bba9085f38892",
+  "sha256": "52a8eb9d218e3cd3c24409bd9ec308b82124828bf07a8f344c5d0c8614b2af83",
   "imports": {
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-   "experiments/residual_identity.py": "3f0d3243d58b05f7b8349f027bc487fbbc9e7a28bcc1ceb38f9bba9085f38892"
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "experiments/residual_identity.py": "52a8eb9d218e3cd3c24409bd9ec308b82124828bf07a8f344c5d0c8614b2af83"
   },
   "env": {
    "python": "3.11.5",

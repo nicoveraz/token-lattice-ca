@@ -84,6 +84,7 @@ from itertools import combinations
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
+from ranking import rank as _rank
 import torch
 
 from provenance import stamp, rel
@@ -444,7 +445,7 @@ def analyse(res):
         meas = lambda_measured()
         ca = np.array([meas[r["step"]][0] for r in rows])
         mf = np.array([lambda_mf(R, r["s"]) for r in rows])
-        rk = lambda x: np.argsort(np.argsort(x))
+        rk = lambda x: _rank(x)
         rho = float(np.corrcoef(rk(mf), rk(ca))[0, 1])
         from itertools import permutations as _pm
         _null = [np.corrcoef(np.array(q), rk(ca))[0, 1] for q in _pm(rk(mf))]

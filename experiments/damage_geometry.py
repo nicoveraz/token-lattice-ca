@@ -46,6 +46,7 @@ import gc, itertools, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np, torch
+from scipy.stats import rankdata
 from provenance import stamp, rel
 from lyapunov import lyap_from_cone, is_unignited
 from dev_transition_phase3 import FIT_KW
@@ -83,25 +84,48 @@ def geometry(field, idx):
     c = int(np.mean(idx))
     off = (np.arange(n) - c + n // 2) % n - n // 2        # signed offset from injection, on the ring
     half = BLOCK // 2 + 1
-    # WRAPAROUND. A left window means site i influences only i+1 and i+2, so the front advances
-    # rightward at r sites per sweep and reaches r*sweeps = 44 sites on a ring of N = 48. Past
-    # t = N/(2r) the cone wraps and RIGHTWARD mass reappears at negative offsets, making a
-    # one-sided process look symmetric. That is F21's finite-size wraparound -- the same artifact
-    # that retracted a velocity plateau in this project -- and the first version of this rung
-    # walked into it, reporting asymmetry 0.39-0.70 and calling the harness broken.
-    # The asymmetry is therefore measured only over sweeps the cone cannot have wrapped in.
-    t_wrap = int(n // (2 * R))
-    win = field[:t_wrap]
-    right = float(win[:, off > half].sum())
-    left = float(win[:, off < -half].sum())
+    # WRAPAROUND, AND WHY THE WINDOW IS MEASURED RATHER THAN ASSUMED.
+    # A left window means site i influences only i+1 and i+2, so damage propagates RIGHTWARD only.
+    # It does NOT propagate at r sites per sweep. Updating is asynchronous in random order, so
+    # within one sweep a site damaged early passes damage to its right neighbour, which is then
+    # itself visited, and so on -- the reach inside a sweep is bounded by the VISIT ORDER, not by r.
+    # Once the rightward front meets itself around the ring, its mass reappears at negative offsets
+    # and a strictly one-sided process reads as symmetric (F21's finite-size wraparound, which
+    # retracted a velocity plateau in this project).
+    #
+    # Two earlier versions of this rung got the window wrong in opposite ways: the first ignored
+    # wraparound entirely and read asymmetry 0.39-0.70 as a harness bug; the second assumed the
+    # SYNCHRONOUS bound N/(2r) = 12 sweeps and was wrong by ~6x. The window is therefore derived
+    # from the cone's own rightward SUPPORT.
+    #
+    # The support is deliberately NOT the asymmetry. Locating the window by asymmetry and then
+    # testing asymmetry on it would be a check with no capacity to fail -- this project's recurring
+    # defect class (F117, F118). Support and asymmetry are independent: leftward leakage would put
+    # damage at negative offsets while the front is still short of the antipode, so the rung below
+    # can still fail.
+    dmg = field > 0
+    t_wrap = sw
+    for tt in range(sw):
+        pos = off[dmg[tt] & (off > 0)]
+        if pos.size and pos.max() >= n // 2 - half:      # front is at the antipode: it can now wrap
+            t_wrap = tt
+            break
+    win = field[1:t_wrap]                                 # sweep 0 is the injected block itself
+    right = float(win[:, off > half].sum()) if win.size else 0.0
+    left = float(win[:, off < -half].sum()) if win.size else 0.0
     area = float(field.sum())
     tmarg = field.sum(axis=1)
-    # the light cone the front velocity implies: |offset| <= r * t
-    t = np.arange(sw)[:, None]
-    inside = (np.abs(off)[None, :] <= R * t)
-    fill = area / max(float(inside.sum()), 1.0)
-    # front width: sites between the 10% and 90% damage level along the final sweep's right flank
-    fin = field[-1]
+    # FILL, on the measured envelope. The old denominator was `|offset| <= r * t`, the same
+    # synchronous bound the window fix just removed -- and it is wrong in the same direction: the
+    # front reaches offset 24 by sweep 8 where r*t is 16. Using the observed reach per sweep asks a
+    # question that is not tautological: BEHIND the front, is the cone solid or sparse?
+    reach = np.array([off[dmg[tt] & (off > 0)].max() if (dmg[tt] & (off > 0)).any() else 0
+                      for tt in range(t_wrap)])
+    inside = ((off[None, :] >= 0) & (off[None, :] <= reach[:, None])).sum()
+    fill = float(field[:t_wrap][:, off >= 0].sum()) / max(float(inside), 1.0)
+    # front width: sites between the 10% and 90% damage level along the right flank of the LAST
+    # SWEEP INSIDE THE WINDOW -- field[-1] is fully wrapped and mixed, so its flank is not a front.
+    fin = field[max(t_wrap - 1, 0)]
     rf = fin[(off > 0)][np.argsort(off[off > 0])]
     if rf.max() > 0:
         lo = np.argmax(rf <= 0.9 * rf.max()); hi = np.argmax(rf <= 0.1 * rf.max())
@@ -109,7 +133,8 @@ def geometry(field, idx):
     else:
         width = float("nan")
     return dict(area=round(area, 4), right_mass=round(right, 4), left_mass=round(left, 4),
-                t_wrap=int(t_wrap),
+                t_wrap=int(t_wrap), window_sweeps=int(max(t_wrap - 1, 0)),
+                front_reach=[int(v) for v in reach],
                 asymmetry=round(right / max(right + left, 1e-12), 5),
                 fill=round(fill, 5), front_width=round(width, 3),
                 t_marginal=[round(float(v), 4) for v in tmarg],
@@ -121,9 +146,13 @@ def main():
     res["_preregistration"] = dict(
         model=MODEL, steps=STEPS, seeds=SEEDS, r=R, T=T, N=N, B=B, sweeps=SWEEPS, block=BLOCK,
         rung="the AR window is strictly left, so damage can only spread RIGHTWARD: asymmetry must "
-             "be 1.000 up to the injected block's width, measured ONLY over the first N/(2r) "
-             "sweeps -- past that the cone wraps the ring and rightward mass reappears at negative "
-             "offsets (F21's finite-size wraparound). A failure stops the script",
+             "be 1.000 up to the injected block's width. Measured over a window DERIVED from the "
+             "cone's own rightward support -- sweeps 1..t_wrap-1, where t_wrap is the first sweep "
+             "the front reaches the antipode and can therefore wrap. Async random-order updating "
+             "means within-sweep reach is set by the visit order, NOT by r, so no assumed velocity "
+             "bound is used. Support is independent of asymmetry, so the rung can still fail: "
+             "leftward leakage puts damage at negative offsets before the front reaches the "
+             "antipode. A failure stops the script",
         primary="do area, fill and front_width vary across checkpoints where lambda does not?",
         deflation="if every shape scalar is a monotone function of lambda, the cone carries nothing "
                   "beyond it and this closes; rho against lambda is reported for each",
@@ -163,8 +192,23 @@ def main():
 
 
 def _rho_p(a, b):
+    """Spearman rho with an exact permutation p. Returns (nan, nan) on a degenerate input.
+
+    THE TIE BUG, WHICH THIS FUNCTION USED TO HAVE. Ranking with `np.argsort(np.argsort(x))`
+    does NOT handle ties: on a constant vector argsort returns [0,1,...,n-1] in input order, so a
+    quantity with no variance is ranked as strictly INCREASING and correlates with whatever it is
+    paired against. This returned rho = +0.829, p = 0.058 for `front_width` when all 24 measured
+    values were exactly 0.000 -- scipy returns nan for the same input. It is the project's
+    recurring defect class (a criterion applied to a quantity with no room to vary) reached
+    through the correlation function itself rather than through the data.
+
+    Two changes: `rankdata` averages tied ranks, and a zero-variance input returns nan instead of
+    a number. The caller must gate on nan -- `analyse` does, via the span check.
+    """
     a, b = np.array(a, float), np.array(b, float)
-    rk = lambda x: np.argsort(np.argsort(x))
+    if a.std() == 0 or b.std() == 0:
+        return float("nan"), float("nan")
+    rk = rankdata                                        # TIE-AWARE: averaged ranks
     r = float(np.corrcoef(rk(a), rk(b))[0, 1])
     null = [np.corrcoef(np.array(p), rk(b))[0, 1] for p in itertools.permutations(rk(a))]
     return r, float(np.mean(np.abs(np.array(null)) >= abs(r) - 1e-12))
@@ -200,22 +244,38 @@ def analyse(res):
     if len(rows) >= 5:
         lam = [rows[s]["lambda_ca"] for s in rows]
         det = {}
+        # SPAN GATE, BEFORE ANY RHO IS READ. A scalar that does not move across checkpoints has no
+        # room to correlate, and a rho computed on it is an artifact of the ranking, not a
+        # measurement. front_width is exactly this at N = 48: the derived causal window is 2-6
+        # sweeps, far too short to resolve a 10-90% flank, so all 24 runs return 0.000.
+        dead = []
         for k in ("area", "fill", "front_width"):
             vals = [rows[s][k] for s in rows]
+            span = float(max(vals) - min(vals))
             r, p = _rho_p(vals, lam)
-            det[k] = dict(rho=round(r, 3), perm_p=round(p, 4),
-                          span=round(float(max(vals) - min(vals)), 4))
-            print(f"  rho({k:<12}, lambda) = {r:+.3f}  p={p:.4f}")
-        free = [k for k, v in det.items() if abs(v["rho"]) < 0.6]
+            live = bool(span > 0 and np.isfinite(r))
+            det[k] = dict(rho=(round(r, 3) if live else None), perm_p=(round(p, 4) if live else None),
+                          span=round(span, 4), readable=live)
+            if not live:
+                dead.append(k)
+                print(f"  rho({k:<12}, lambda) = NOT READABLE (span {span:.4f})")
+            else:
+                print(f"  rho({k:<12}, lambda) = {r:+.3f}  p={p:.4f}")
+        liveks = [k for k in det if det[k]["readable"]]
+        free = [k for k in liveks if abs(det[k]["rho"]) < 0.6]
         parts.append(
-            f"PRIMARY: across checkpoints, area/fill/front_width correlate with lambda at "
-            + ", ".join(f"{k} {v['rho']:+.3f}" for k, v in det.items()) + ". "
-            + (f"{len(free)} of 3 move largely independently of lambda ({free}), so the cone's "
-               f"SHAPE carries information its growth rate does not -- the first quantity in this "
-               f"project extracted from the field rather than from a fit to it."
+            f"PRIMARY: across checkpoints, {len(liveks)} of 3 shape scalars have any span to "
+            f"correlate with. " + ", ".join(f"{k} {det[k]['rho']:+.3f}" for k in liveks) + ". "
+            + (f"{len(free)} of {len(liveks)} move largely independently of lambda ({free}), so the "
+               f"cone's SHAPE carries information its growth rate does not."
                if free else
-               "Every shape scalar tracks lambda, so the cone carries nothing beyond its growth "
-               "rate and this closes -- the registered deflation."))
+               f"Every READABLE shape scalar tracks lambda, so the cone carries nothing beyond its "
+               f"growth rate and this closes -- the registered deflation.")
+            + (f" NOT READ: {dead} -- span 0 across all runs. The causal window derived from the "
+               f"front's own support is only 2-6 sweeps at N = {N}, which cannot resolve a front "
+               f"width, so this scalar is unmeasurable at this geometry rather than uninformative. "
+               f"An earlier version reported rho = +0.829 for it, from a ranking bug that ordered a "
+               f"constant vector by input position." if dead else ""))
         res["analysis"] = dict(rung_passes=True, rows=rows, vs_lambda=det,
                                independent=free, asymmetry_range=[min(asym), max(asym)])
     parts.append(

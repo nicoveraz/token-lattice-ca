@@ -12,7 +12,7 @@ same kind as its successes, rather than caveats attached to them.
 An earlier draft of this document opened by claiming there is only one quantity — that everything
 measured here is a slice of the one-token response map. **F112 refutes that from inside.** If
 diversity and T\* were two readings of one thing they could not come apart, and they do: diversity
-at a fixed temperature predicts greedy degeneration at |ρ| ≤ 0.11 across four temperatures on 26
+at a fixed temperature predicts greedy degeneration at |ρ| ≤ 0.113 across four temperatures on 26
 models, every p > 0.59, while T\* on the same models and the same target reaches +0.547. That is a
 dissociation, and it means there are **two families** here:
 
@@ -219,7 +219,7 @@ releasing checkpoints could close that gap cheaply.
 **λ_ca itself — now explained, and still not useful, which are different things.** It no longer
 dates an unnamed event: it is a function of the settled ring's diversity (§4). But the same week
 established the sharper point — **the settled state predicts nothing outside the instrument.**
-Diversity at a fixed temperature correlates with greedy degeneration at |ρ| ≤ 0.11 across four
+Diversity at a fixed temperature correlates with greedy degeneration at |ρ| ≤ 0.113 across four
 temperatures on 26 models, every p > 0.59, while T\* on the same target and the same models reaches
 +0.547. So λ_ca inherits diversity's lack of external predictive power. It replicates, it is
 well-measured, its error bars are licensed, it now has an explanation — and it still buys no

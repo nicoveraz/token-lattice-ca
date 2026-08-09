@@ -71,6 +71,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
+from ranking import rank as _rank
 import torch
 
 from provenance import stamp, rel
@@ -263,7 +264,7 @@ def analyse(res):
     ca = np.array([meas[st][0] for st in STEPS])
     mf = np.array([lambda_mf(R, x) for x in col])
     lev = correlation_leverage(mf, ca, name="lambda_MF from the fixed-ensemble column")
-    rk = lambda x: np.argsort(np.argsort(x))
+    rk = lambda x: _rank(x)
     rho = float(np.corrcoef(rk(mf), rk(ca))[0, 1]) if np.nanstd(mf) > 0 else 0.0
     floor = float(np.mean([meas[st][1] for st in STEPS])) / np.sqrt(8)
     resid = float(np.mean(np.abs(mf - ca)))

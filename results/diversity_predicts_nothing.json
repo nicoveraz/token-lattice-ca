@@ -29,34 +29,35 @@
  },
  "per_temperature": {
   "0.02": {
-   "rho": -0.066,
-   "perm_p": 0.7442,
+   "rho": -0.0725,
+   "perm_p": 0.7193,
    "n": 26
   },
   "0.2": {
-   "rho": -0.0338,
-   "perm_p": 0.8651,
+   "rho": -0.0387,
+   "perm_p": 0.8434,
    "n": 26
   },
   "0.436": {
-   "rho": 0.0222,
-   "perm_p": 0.9184,
+   "rho": 0.0233,
+   "perm_p": 0.914,
    "n": 26
   },
   "0.7": {
-   "rho": 0.1097,
-   "perm_p": 0.596,
+   "rho": 0.1126,
+   "perm_p": 0.5865,
    "n": 26
   }
  },
- "verdict": "SEPARATION. Diversity at a fixed temperature predicts greedy degeneration at |rho| <= 0.110 across [0.02, 0.2, 0.436, 0.7] (n=26, every p > 0.59), i.e. not at all, while T* on the same target reaches rho=+0.547 (p=0.0471, n=14) and diversity on that same subset gives -0.253 (p=0.3791). So T* is NOT diversity by another name: the predictive content lies in WHERE THE DIVERSITY CURVE CROSSES A THRESHOLD as temperature varies, not in diversity at any point on it. F111's reduction of lambda_ca to the settled state therefore does NOT touch F86 -- and it implies the reverse, that lambda_ca inherits diversity's lack of external predictive power, which is consistent with T* being the project's only externally-predictive result and lambda_ca not being it. BOUNDARY: model-level correlation; F86 states its anchor at FAMILY level (rho=0.833, n=8) because models within a family are not independent draws, and the weaker figure here is the expected consequence of not aggregating.",
+ "verdict": "SEPARATION. Diversity at a fixed temperature predicts greedy degeneration at |rho| <= 0.113 across [0.02, 0.2, 0.436, 0.7] (n=26, every p > 0.59), i.e. not at all, while T* on the same target reaches rho=+0.547 (p=0.0471, n=14) and diversity on that same subset gives -0.253 (p=0.3791). So T* is NOT diversity by another name: the predictive content lies in WHERE THE DIVERSITY CURVE CROSSES A THRESHOLD as temperature varies, not in diversity at any point on it. F111's reduction of lambda_ca to the settled state therefore does NOT touch F86 -- and it implies the reverse, that lambda_ca inherits diversity's lack of external predictive power, which is consistent with T* being the project's only externally-predictive result and lambda_ca not being it. BOUNDARY: model-level correlation; F86 states its anchor at FAMILY level (rho=0.833, n=8) because models within a family are not independent draws, and the weaker figure here is the expected consequence of not aggregating.",
  "separates": true,
  "_analysis_provenance": {
   "script": "diversity_predicts_nothing.py",
-  "sha256": "548d3b96b0407e2b9cd41def829bd051686607b7f195f7fe197137ec34918157",
+  "sha256": "a17952559083d831311a354dcbaea79a9e88c6facd730deb0bb52e111a281376",
   "imports": {
-   "experiments/diversity_predicts_nothing.py": "548d3b96b0407e2b9cd41def829bd051686607b7f195f7fe197137ec34918157",
-   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+   "experiments/diversity_predicts_nothing.py": "a17952559083d831311a354dcbaea79a9e88c6facd730deb0bb52e111a281376",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0"
   },
   "env": {
    "python": "3.11.5",

@@ -48,42 +48,42 @@
   "top1@0.02": {
    "IFEval": 0.7091,
    "BBH": -0.2848,
-   "GPQA": -0.0303,
+   "GPQA": -0.05,
    "MUSR": -0.6,
    "MMLU-PRO": -0.1636,
-   "MATH Lvl 5": -0.1152
+   "MATH Lvl 5": -0.0973
   },
   "top1@0.2": {
    "IFEval": 0.8545,
    "BBH": -0.2606,
-   "GPQA": 0.2606,
+   "GPQA": 0.2626,
    "MUSR": -0.5152,
    "MMLU-PRO": -0.1879,
-   "MATH Lvl 5": -0.0545
+   "MATH Lvl 5": -0.0182
   },
   "top1@0.436": {
    "IFEval": 0.6848,
    "BBH": -0.0182,
-   "GPQA": 0.1152,
+   "GPQA": 0.1876,
    "MUSR": -0.2364,
    "MMLU-PRO": -0.0182,
-   "MATH Lvl 5": -0.0061
+   "MATH Lvl 5": 0.0365
   },
   "top1@0.7": {
    "IFEval": 0.7333,
    "BBH": 0.0788,
-   "GPQA": 0.1879,
+   "GPQA": 0.2064,
    "MUSR": -0.0061,
    "MMLU-PRO": -0.0061,
-   "MATH Lvl 5": 0.0182
+   "MATH Lvl 5": 0.0547
   },
   "params": {
    "IFEval": -0.6121,
    "BBH": -0.0788,
-   "GPQA": -0.503,
+   "GPQA": -0.444,
    "MUSR": -0.2485,
    "MMLU-PRO": 0.1879,
-   "MATH Lvl 5": -0.503
+   "MATH Lvl 5": -0.5106
   }
  },
  "analysis": {
@@ -92,31 +92,31 @@
     "compliance_max": 0.7091,
     "correctness_max": 0.6,
     "selectivity": 0.1091,
-    "perm_p": 0.1156
+    "perm_p": 0.1206
    },
    "top1@0.2": {
     "compliance_max": 0.8545,
     "correctness_max": 0.5152,
     "selectivity": 0.3393,
-    "perm_p": 0.0246
+    "perm_p": 0.027
    },
    "top1@0.436": {
     "compliance_max": 0.6848,
     "correctness_max": 0.2364,
     "selectivity": 0.4484,
-    "perm_p": 0.0088
+    "perm_p": 0.0108
    },
    "top1@0.7": {
     "compliance_max": 0.7333,
-    "correctness_max": 0.1879,
-    "selectivity": 0.5454,
-    "perm_p": 0.0021
+    "correctness_max": 0.2064,
+    "selectivity": 0.5269,
+    "perm_p": 0.004
    },
    "params": {
     "compliance_max": 0.6121,
-    "correctness_max": 0.503,
-    "selectivity": 0.1091,
-    "perm_p": 0.1154
+    "correctness_max": 0.5106,
+    "selectivity": 0.1015,
+    "perm_p": 0.1285
    }
   },
   "control_ok": true,
@@ -126,13 +126,14 @@
    "top1@0.7"
   ]
  },
- "verdict": "CONTROL: model size scores selectivity 0.1091 at p = 0.1154. It is NOT selective -- it correlates with several benchmarks at once, which is what a general capability correlate looks like, so the statistic is measuring selectivity rather than magnitude. PRIMARY: 3 of 4 attractor readouts are selective for compliance at p < 0.05 (['top1@0.2', 'top1@0.436', 'top1@0.7']). The probe loads on IFEval at every temperature and on no capability benchmark anywhere -- four readouts x five capability benchmarks is 20 cells with nothing in them. Chance produces scattered marks, not a filled column beside an empty block. So the probe is selective for a failure mode that degrades COMPLIANCE without touching CORRECTNESS, and model size -- which correlates with IFEval, GPQA and MATH alike -- is not. BOUNDARY: n = 10, base models only, benchmark scores downloaded from the Open LLM Leaderboard v2 rather than measured here, and the four temperature readouts are one quantity measured four ways rather than four independent confirmations. T*, rep_4 and distinct_1 could not be tested at all -- the band-screen and degeneration model sets are disjoint -- so the readouts that predict externally are precisely the ones this cannot ask about, and closing that overlap is the follow-up with real stakes.",
+ "verdict": "CONTROL: model size scores selectivity 0.1015 at p = 0.1285. It is NOT selective -- it correlates with several benchmarks at once, which is what a general capability correlate looks like, so the statistic is measuring selectivity rather than magnitude. PRIMARY: 3 of 4 attractor readouts are selective for compliance at p < 0.05 (['top1@0.2', 'top1@0.436', 'top1@0.7']). The probe loads on IFEval at every temperature and on no capability benchmark anywhere -- four readouts x five capability benchmarks is 20 cells with nothing in them. Chance produces scattered marks, not a filled column beside an empty block. So the probe is selective for a failure mode that degrades COMPLIANCE without touching CORRECTNESS, and model size -- which correlates with IFEval, GPQA and MATH alike -- is not. BOUNDARY: n = 10, base models only, benchmark scores downloaded from the Open LLM Leaderboard v2 rather than measured here, and the four temperature readouts are one quantity measured four ways rather than four independent confirmations. T*, rep_4 and distinct_1 could not be tested at all -- the band-screen and degeneration model sets are disjoint -- so the readouts that predict externally are precisely the ones this cannot ask about, and closing that overlap is the follow-up with real stakes.",
  "_analysis_provenance": {
   "script": "compliance_selectivity.py",
-  "sha256": "3a6f02e7efa245eb377ec12f00bf5b810a4217707bacd7716119a2132bcbe302",
+  "sha256": "a3bfb42d5e51afb0e2b6eaf07f122aaa9f92a9713e98e00a1e9d25ec0a1b0077",
   "imports": {
-   "experiments/compliance_selectivity.py": "3a6f02e7efa245eb377ec12f00bf5b810a4217707bacd7716119a2132bcbe302",
+   "experiments/compliance_selectivity.py": "a3bfb42d5e51afb0e2b6eaf07f122aaa9f92a9713e98e00a1e9d25ec0a1b0077",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
    "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
    "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
    "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",

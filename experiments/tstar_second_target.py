@@ -58,6 +58,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
+from ranking import rank as _rank
 import torch
 
 from provenance import stamp, rel
@@ -150,7 +151,7 @@ def measure(name, res):
 
 
 def spearman(a, b):
-    ra, rb = np.argsort(np.argsort(a)), np.argsort(np.argsort(b))
+    ra, rb = _rank(a), _rank(b)
     if np.std(ra) < 1e-12 or np.std(rb) < 1e-12:
         return 0.0
     return float(np.corrcoef(ra, rb)[0, 1])

@@ -38,6 +38,7 @@ _ROOT = _pathlib.Path(__file__).resolve().parents[1]
 _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments"), str(_ROOT / "gatecheck" / "src")]
 import json
 import numpy as np
+from ranking import rank as _rank
 from provenance import stamp, rel
 
 OUT = str(_ROOT / "results" / "residual_identity.json")
@@ -48,7 +49,7 @@ PLATEAU_MIN = 100          # F111's own curve is flat above this; declared befor
 
 def _rho_p(a, b, seed=0, n_perm=20000):
     a, b = np.array(a, float), np.array(b, float)
-    rk = lambda x: np.argsort(np.argsort(x))
+    rk = lambda x: _rank(x)
     r = float(np.corrcoef(rk(a), rk(b))[0, 1])
     g = np.random.default_rng(seed)
     null = [np.corrcoef(g.permutation(rk(a)), rk(b))[0, 1] for _ in range(n_perm)]

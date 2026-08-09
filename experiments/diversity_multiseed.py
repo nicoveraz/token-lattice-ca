@@ -39,6 +39,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np, torch
+from ranking import rank as _rank
 from provenance import stamp, rel
 from meanfield_lambda import lambda_measured
 from gatecheck import dynamic_range, carries_verdict
@@ -123,7 +124,7 @@ def analyse(res):
     lev = dynamic_range(means, floor=floor, k=RANGE_K, name="pooled diversity across checkpoints")
     meas = lambda_measured()
     ca = np.array([meas[s][0] for s in STEPS])
-    rk = lambda x: np.argsort(np.argsort(x))
+    rk = lambda x: _rank(x)
     rho = float(np.corrcoef(rk(means), rk(ca))[0, 1])
     g = np.random.default_rng(3)
     boots = []

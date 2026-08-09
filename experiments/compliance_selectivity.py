@@ -52,6 +52,7 @@ _ROOT = _pathlib.Path(__file__).resolve().parents[1]
 _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments"), str(_ROOT / "gatecheck" / "src")]
 import json
 import numpy as np
+from ranking import rank as _rank
 from provenance import stamp, rel
 from gatecheck import dynamic_range
 
@@ -63,7 +64,7 @@ N_PERM = 20000
 
 
 def _rk(x):
-    return np.argsort(np.argsort(np.asarray(x, float))).astype(float)
+    return _rank(np.asarray(x, float)).astype(float)
 
 
 def _rho(a, b):

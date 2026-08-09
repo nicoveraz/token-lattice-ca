@@ -43,6 +43,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np, torch
+from ranking import rank as _rank
 from provenance import stamp, rel
 from degeneration_vs_tstar import rep_stats, PROMPTS, NEW_TOKENS, NGRAM, THRESH
 from gatecheck.cohort import cohort_complete
@@ -134,7 +135,7 @@ def main():
     print("\nwrote", rel(OUT))
 
 
-def _rk(x): return np.argsort(np.argsort(np.asarray(x, float))).astype(float)
+def _rk(x): return _rank(np.asarray(x, float)).astype(float)
 def _rho(a, b): return float(np.corrcoef(_rk(a), _rk(b))[0, 1])
 
 

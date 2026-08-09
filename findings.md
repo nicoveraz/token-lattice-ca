@@ -3629,6 +3629,80 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F119 — the ranking function itself was the defect: fifteen scripts computed Spearman without handling ties
+Found while fixing `damage_geometry`'s causal window, not by looking for it. Every correlation in
+this project ranked with
+
+```
+rk = lambda x: np.argsort(np.argsort(x))
+```
+
+which is correct **only when every value is distinct**. `argsort` breaks ties by INPUT POSITION, so
+a repeated value is assigned a rank encoding the order it happened to be listed in. The degenerate
+case is the loud one: on a **constant** vector the idiom returns `[0, 1, ..., n-1]` — a perfectly
+monotone rank sequence for a quantity that never moves.
+
+**It fired in production.** `damage_geometry` reported **ρ = +0.829, p = 0.058** between
+`front_width` and λ when **all 24 measured values were exactly 0.000**. scipy returns `nan` for that
+input. The reported number was `corrcoef([0,1,2,3,4,5], rank(λ))` — a correlation between λ and the
+order the checkpoints were listed in.
+
+**Why this instance is worse than the previous ten.** This is the same recurring defect class — *a
+criterion applied to a quantity with no room to vary* — but reached through the **correlation
+function** rather than through the data. `gatecheck`'s leverage primitives inspect the data, and
+the data here was honest: `front_width` was a genuine, correctly-measured constant. Nothing outside
+the ranking could have seen it. A span gate on the *input* catches it; a gate on the *output* does
+not, because the output looked like a normal correlation.
+
+**Exposure, screened rather than assumed.** The idiom was in **15 scripts**. Each was re-run with
+tie-aware ranking on identical stored inputs and the statistics diffed:
+
+```
+  unaffected (no ties in any ranked vector) -- 8 scripts, bit-identical
+    degeneration_vs_tstar (F86/T*)   canalization        canalization_predicts
+    transplant_s   lambda_temperature_crossing   meanfield_lambda
+    diversity_explanandum            diversity_multiseed (F111)
+  moved, no conclusion changed -- 4 scripts
+    residual_identity (F115)   rho(diversity, lambda) -0.073 -> -0.108, p 0.812 -> 0.717
+                               rho(diversity, rep_4)  -0.398 -> -0.370
+    heat_capacity_tstar        rho -0.692 -> -0.701 (p 0.0079 -> 0.0068)
+                               rho -0.754 -> -0.741 (p 0.0029 -> 0.0035)
+    tstar_second_target        rho shifts <= 0.085; every p stays >= 0.26
+    band_screen                GPQA -0.030 -> -0.050 (exploratory column)
+  unreadable, now refused rather than reported -- 1
+    damage_geometry            front_width +0.829 -> NOT READABLE (span 0)
+```
+
+**No finding changes its conclusion, and F86 was never exposed.** T\*'s ρ = 0.833 has no ties in any
+ranked vector and is bit-identical. F111 is bit-identical. F115's ρ moves by 0.035 and stays a null;
+`heat_capacity_tstar`'s two correlations stay significant, and its actual claim is the *disjointness*
+of T_V's [1.21, 1.81] from T\*'s [0.25, 0.58], a range comparison ranking never touched.
+`tstar_second_target` had already rejected itself on dynamic range and remains rejected.
+
+**The fix is a primitive, not fifteen patches.** `experiments/ranking.py` provides `rank` (averaged
+ranks via `rankdata`) and `spearman`. A zero-variance input returns **all-nan**, so a correlation
+built on it is `nan` rather than a plausible float — callers must gate. `tests/test_ranking.py`
+asserts the exact old behaviour as a regression (`[0,1,2,3,4,5]` on a constant, ρ = +0.829 against
+λ), checks agreement with scipy on tied data, and greps `experiments/` so the idiom cannot return by
+copy-paste.
+
+**Boundary, and what is still open.** Three scripts compute their statistics inside `main()` and were
+re-run in full rather than re-analysed. **`compliance_selectivity` (F117) and
+`diversity_predicts_nothing` were both re-run and both conclusions hold**: F117 is still 3 of 4
+readouts selective at p < 0.05 with a non-selective size control, though every cell moved slightly
+(top1@0.7 selectivity +0.55 → +0.53, p 0.002 → 0.004; control p 0.115 → 0.129) — leaderboard scores
+are 2-decimal, so ties were in fact present. `diversity_predicts_nothing` still separates
+(|ρ| ≤ 0.113 against T\*'s +0.547). `ablate_compensators` needed a second argument, which
+`recorded_singles()` reconstructs from `results/ablate_layers.json`, so it was re-analysed too.
+Fifteen results files were re-analysed and re-stamped against the new import closure. Separately,
+the 8-family
+deflation table quoted at F86 (`fix −0.119 / cyc +0.119`) matches neither the old nor the corrected
+values in `results/tstar_second_target.json`, so it comes from a run not reconciled here.
+**Reconciling every number quoted in `findings.md` against the refreshed results files is not done.**
+
+`experiments/ranking.py`, `tests/test_ranking.py` → refreshed `results/{residual_identity,
+heat_capacity_tstar,tstar_second_target,band_screen,damage_geometry}.json`
+
 ### F118 — F111's reduction survives the falsification it was built to face: diversity does not collapse against loss either
 A reduction is a commitment, not a correlation. If λ_ca is largely fixed by the settled ring's
 diversity (F111), then the two quantities are obliged to **agree about everything external** — and
@@ -3678,11 +3752,11 @@ comparisons produce. A whole row-block loading on one column and nothing else is
 
 ```
  readout       IFEval    BBH   GPQA   MUSR  MMLU-PRO  MATH   select      p
- top1@0.02     +0.71   −0.28  −0.03  −0.60    −0.16  −0.12    +0.11  0.116
- top1@0.2      +0.85   −0.26  +0.26  −0.52    −0.19  −0.05    +0.34  0.025
- top1@0.436    +0.68   −0.02  +0.12  −0.24    −0.02  −0.01    +0.45  0.009
- top1@0.7      +0.73   +0.08  +0.19  −0.01    −0.01  +0.02    +0.55  0.002
- params        −0.61   −0.08  −0.50  −0.25    +0.19  −0.50    +0.11  0.115
+ top1@0.02      +0.71  -0.28  -0.05  -0.60  -0.16  -0.10   +0.11  0.121
+ top1@0.2       +0.85  -0.26  +0.26  -0.52  -0.19  -0.02   +0.34  0.027
+ top1@0.436     +0.68  -0.02  +0.19  -0.24  -0.02  +0.04   +0.45  0.011
+ top1@0.7       +0.73  +0.08  +0.21  -0.01  -0.01  +0.05   +0.53  0.004
+ params         -0.61  -0.08  -0.44  -0.25  +0.19  -0.51   +0.10  0.129
 ```
 
 **3 of 4 attractor readouts are selective at p < 0.05**, and selectivity rises monotonically with
@@ -3690,8 +3764,8 @@ temperature — strongest at **T = 0.7**, the paper's own operating point. Four 
 capability benchmarks is twenty cells with nothing in them.
 
 **Model size is the control, and it passes by failing.** Parameters correlate with IFEval at −0.61 —
-comparable to the probe — but *also* with GPQA and MATH at −0.50, so its selectivity is 0.109 at
-p = 0.115. That is what a general capability correlate looks like. The attractor share loads on one
+comparable to the probe — but *also* with GPQA at −0.44 and MATH at −0.51, so its selectivity is
+0.109 at p = 0.129. That is what a general capability correlate looks like. The attractor share loads on one
 column only. **Selectivity, not magnitude, is the finding**, and size does not have it.
 
 **A BROKEN NULL, CAUGHT, AND IT WOULD HAVE PRODUCED A FALSE NEGATIVE.** The first version permuted
@@ -3795,7 +3869,7 @@ established before the correlation was read.
  bloom-560m                         298   +0.2005    0.594
 ```
 
-**PRIMARY: ρ(diversity, λ_ca) across models = −0.073, p = 0.812, n = 14** — against F111's **+0.771**
+**PRIMARY: ρ(diversity, λ_ca) across models = −0.108, p = 0.717, n = 14** — against F111's **+0.771**
 within Pythia. The relation does **not** hold across models. Given the range above, that is what
 F111 *predicts* rather than a contradiction of it, and the correct conclusion is a scope statement:
 **F111 is developmental. Diversity organises λ_ca's trajectory during training, not its value across
@@ -3818,7 +3892,7 @@ state properties that carry no model-level information beyond the state itself.*
 **Boundary, and it is not fixable from stored data.** λ and diversity come from **different settle
 geometries** — B=8 with 30 sweeps for diversity, B=16 with 12 sweeps plus damage for λ. Both use
 N=48 and the same 384-token pool, so the pairing is approximate rather than exact; a clean version
-measures both from one settle. The effects here are nowhere near marginal (ρ = −0.073 at p = 0.81,
+measures both from one settle. The effects here are nowhere near marginal (ρ = −0.108 at p = 0.72,
 identity ratio 0.12), so the caveat is stated rather than absorbed into the conclusion.
 
 ### F114 — the two-token response is essentially ADDITIVE: canalization is absent, and the route closes
@@ -4764,8 +4838,8 @@ the strongest static baseline available.
 **An unregistered observation, logged and not claimed.** The two do co-vary, and the sign is
 *opposite* to the naive prediction. `V` peaks near the logit scale, so a model with more spread-out
 logits has both a higher `T_V` and a more deterministic conditional at fixed T, which should make
-its attractor survive to a *higher* temperature. Observed: ρ = **−0.692** settled (permutation
-p = 0.0079) and **−0.754** random (p = 0.0029), 0 edge-rejected cells, and — unlike F94 — the
+its attractor survive to a *higher* temperature. Observed: ρ = **−0.701** settled (permutation
+p = 0.0068) and **−0.741** random (p = 0.0035), 0 edge-rejected cells, and — unlike F94 — the
 `correlation_leverage` gate **passes** (predictor spans 1.83× the target), so this correlation is
 interpretable where F94's was not. It is still not a claim: n=14 models, one point each, no mechanism
 proposed, and the models are not independent draws — several share families and corpora, which a

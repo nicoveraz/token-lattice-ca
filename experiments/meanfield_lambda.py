@@ -75,6 +75,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
+from ranking import rank as _rank
 import torch
 
 from provenance import stamp, rel
@@ -324,7 +325,7 @@ def analyse(res):
         s_arr = np.array([r["s"] for r in rows])
         mf = np.array([r["lambda_mf"] for r in rows])
         ca = np.array([r["lambda_ca"] for r in rows])
-        rk = lambda x: np.argsort(np.argsort(x))
+        rk = lambda x: _rank(x)
         rho = float(np.corrcoef(rk(mf), rk(ca))[0, 1])
         # n is 6, so the null is enumerable exactly -- 720 permutations, no sampling error.
         from itertools import permutations

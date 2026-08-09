@@ -25,6 +25,7 @@ _ROOT = _pathlib.Path(__file__).resolve().parents[1]
 _sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments"), str(_ROOT / "gatecheck" / "src")]
 import itertools, json
 import numpy as np
+from ranking import rank as _rank
 from provenance import stamp, rel
 
 OUT = str(_ROOT / "results" / "diversity_predicts_nothing.json")
@@ -34,7 +35,7 @@ REF_T = 0.436
 
 def _rho_p(a, b, seed=0):
     a, b = np.array(a, float), np.array(b, float)
-    rk = lambda x: np.argsort(np.argsort(x))
+    rk = lambda x: _rank(x)
     r = float(np.corrcoef(rk(a), rk(b))[0, 1])
     if len(a) <= 8:
         null = [np.corrcoef(np.array(p), rk(b))[0, 1] for p in itertools.permutations(rk(a))]

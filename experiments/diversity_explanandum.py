@@ -39,6 +39,7 @@ import gc, json, os, time
 os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np, torch
+from ranking import rank as _rank
 from provenance import stamp, rel
 from gatecheck import dynamic_range, carries_verdict
 from gatecheck.cohort import cohort_complete
@@ -130,7 +131,7 @@ def analyse(res):
         per[m] = np.polyval(np.polyfit(lx[m], y[m], 1), lx[m]) if m.sum() > 1 else y[m]
     r_per = float(np.sqrt(np.mean((y - per) ** 2)))
     collapses = bool(r_pool <= r_per + floor)
-    rk = lambda v: np.argsort(np.argsort(v))
+    rk = lambda v: _rank(v)
     rho_within = [float(np.corrcoef(rk(x[steps == s]), rk(y[steps == s]))[0, 1])
                   for s in np.unique(steps) if (steps == s).sum() > 2]
     parts.append(
