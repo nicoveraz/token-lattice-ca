@@ -3629,6 +3629,57 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F114 — the two-token response is essentially ADDITIVE: canalization is absent, and the route closes
+The deepest of the response-derived metric candidates, and the one with theory behind it. F102's
+mean-field null across 33 ablation arms said the missing physics should live in the canalization
+term; rule 232 (majority) was the single ECA miss for the same reason; and in Boolean-network theory
+canalizing functions are the known stabilizer. F96 built the machinery and validated it on a ladder
+where the answers are known, but had only ever run it *developmentally* on one model. This points it
+at an external target for the first time: 14 models, both indices, both ensembles, greedy `rep_4`,
+commensurable with T\*'s ρ = +0.547 (F112) by construction.
+
+**THE SUBSTANTIVE RESULT NEEDS NO CORRELATION.** Sub-additivity across all fourteen models spans
+**+0.0033 to +0.0279**, against F96's validated anchors:
+
+```
+  Domany–Kinzel, p2=0 line     subadd +0.960   (pure cancellation, spread exactly 0.000000)
+  ECA rule 150 (XOR)           subadd +1.000   (cancellation, spread 0.0000)
+  ECA rule 232 (majority)      subadd +0.250   (masking, spread 0.2887)
+  every real language model    subadd +0.003 … +0.028
+```
+
+**Every model sits two orders of magnitude below the weakest anchor.** The two-token response is
+essentially **additive** — nowhere near canalizing, and nowhere near the cancellation regime either.
+F102 suggested the mean-field ledger's missing physics was in this term. **It is not: the term is
+empty.** That is a fact about what these local functions are, independent of whether the index
+predicts anything.
+
+**The predictive route closes on its registered terms.** Primary (subadd, settled ensemble): ρ =
+**+0.270, p = 0.348, n = 14** — against T\*'s +0.547. Secondary (spread, settled): −0.310, p = 0.282.
+Neither beats a metric the project already has.
+
+**And the frozen deflation fired.** ρ(subadd, T\*) = **+0.900** (p = 0.083, n = 5). Even had the
+correlation held, the index would have been largely a restatement of T\* rather than a new measurement
+— which is exactly what the deflation was registered before the run to detect.
+
+**An arm-shopping defect in my own summariser, caught and fixed.** The first analysis took the
+maximum |ρ| over all four (index × regime) combinations, found `subadd|random` at +0.552 against
+T\*'s +0.547, and printed *"the canalization indices beat T\*"* — while the **registered** primary sat
+at +0.270. That is the `gatecheck.leverage` defect class implemented one level up, in the code that
+writes the verdict rather than the code that computes the statistic, where the guards cannot see it.
+The primary is now the registered arm and the exploratory arms are reported as such, with the note
+that the best exceeds T\* by 0.005 — which is what picking the largest of four correlations looks
+like.
+
+**What this closes.** The response-derived metric recipe (F112) now has one confirmed instance (T\*),
+one equivocal test (F113's T_cross at p = 0.356, with its slope leg at p = 0.103), and one clean
+negative here. On current evidence it is a hypothesis-generator, not a validated generator.
+
+**Boundary.** Greedy-scoped target, one radius, one temperature, one settle per model — and F111's
+amendment established settled state is seed-unstable where diversity is low, so a marginal index
+would need the eight-seed treatment before belief. None was marginal. `s` is exact, so the estimator
+carries no sampling error.
+
 ### F113 — λ_ca's zero-crossing is NOT a second T\*, and most architectures have no crossing at all
 The structural lesson of F112 — *levels do not transfer, responses do* — applied to λ_ca, which has
 only ever been used as a level. Not λ at a temperature, but **the temperature at which λ(T) crosses
