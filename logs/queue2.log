@@ -1,0 +1,5 @@
+=== diversity_vs_loss 18:38
+   exit 1 18:44 | free 355Gi
+=== lambda_temperature_crossing 18:44
+   exit 0 21:20 | free 355Gi
+=== both done 21:20

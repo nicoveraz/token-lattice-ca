@@ -283,6 +283,7 @@ _STALENESS_PAIRS = [
     ("diversity_explanandum.json", "diversity_explanandum.py"),
     ("diversity_predicts_nothing.json", "diversity_predicts_nothing.py"),
     ("diversity_multiseed.json", "diversity_multiseed.py"),
+    ("lambda_temperature_crossing.json", "lambda_temperature_crossing.py"),
     ("diversity_vs_loss.json", "diversity_vs_loss.py"),
     ("meanfield_under_ablation.json", "meanfield_under_ablation.py"),
     ("coupling_ladder.json", "coupling_ladder.py"),

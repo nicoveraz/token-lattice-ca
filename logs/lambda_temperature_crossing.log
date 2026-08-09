@@ -1,0 +1,56 @@
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 13382.89it/s]
+  EleutherAI/pythia-14m            lam(T) = [None, -0.1507, -0.0666, 0.1724, 0.1546, 0.2454, 0.3178]
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 17048.19it/s]
+  EleutherAI/pythia-31m            lam(T) = [None, -0.1616, 0.0486, 0.1259, 0.1563, 0.2223, 0.2796]
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 14061.19it/s]
+  EleutherAI/pythia-70m            lam(T) = [-0.1288, -0.0167, 0.1171, 0.1462, 0.17, 0.2471, 0.2953]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 14806.02it/s]
+  EleutherAI/pythia-160m           lam(T) = [-0.0358, -0.0644, -0.0104, 0.1877, 0.1483, 0.1937, 0.2645]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7782.09it/s]
+  EleutherAI/pythia-410m           lam(T) = [-0.06, 0.007, -0.0451, 0.1847, 0.1616, 0.213, 0.2629]
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 8475.48it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125M          lam(T) = [-0.1299, -0.0745, 0.0138, 0.1316, 0.2539, 0.1686, 0.2785]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 17768.91it/s]
+  gpt2                             lam(T) = [0.1373, 0.1692, 0.1455, 0.1285, 0.1776, 0.1604, 0.2501]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8143.47it/s]
+  gpt2-medium                      lam(T) = [0.1351, 0.1144, 0.1218, 0.1311, 0.1535, 0.1686, 0.234]
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7710.93it/s]
+  gpt2-large                       lam(T) = [0.1232, 0.139, 0.1342, 0.1437, 0.1739, 0.1572, 0.1995]
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 45896.27it/s]
+  facebook/opt-350m                lam(T) = [0.1048, 0.1573, 0.1326, 0.1929, 0.1727, 0.1862, 0.2504]
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7903.35it/s]
+  bigscience/bloom-560m            lam(T) = [0.1868, 0.2085, 0.1626, 0.1919, 0.2005, 0.2407, 0.3291]
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 19525.65it/s]
+  state-spaces/mamba-130m-hf       lam(T) = [0.1879, 0.1744, 0.1549, 0.175, 0.1808, 0.1957, 0.2511]
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 70004.92it/s]
+  RWKV/rwkv-4-169m-pile            lam(T) = [0.1166, 0.1661, 0.1156, 0.1429, 0.1697, 0.2296, 0.2832]
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 56315.42it/s]
+[transformers] [1mCodeGenForCausalLM LOAD REPORT[0m from: Salesforce/codegen-350M-mono
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...19}.attn.causal_mask | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  Salesforce/codegen-350M-mono     lam(T) = [0.1392, 0.1522, 0.1533, 0.1708, 0.1738, 0.1833, 0.1945]
+
+  model                             T_cross    slope   rep_4       T*
+  EleutherAI/pythia-14m              0.3558    1.195   0.839   0.5578
+  EleutherAI/pythia-31m              0.2769    2.103   0.739   0.4533
+  EleutherAI/pythia-70m              0.2125    1.338   0.825   0.5751
+  EleutherAI/pythia-160m             0.3105    0.990   0.719   0.5761
+  EleutherAI/pythia-410m             0.1896    0.669   0.435   0.5186
+  EleutherAI/gpt-neo-125M            0.2843    0.883   0.680 censored_above
+
+  -> CENSORING: 8 of 14 models never change sign on [0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 1.1] and have no T_cross -- [('gpt2', 0.1285, 0.2501), ('gpt2-medium', 0.1144, 0.234), ('gpt2-large', 0.1232, 0.1995), ('facebook/opt-350m', 0.1048, 0.2504), ('bigscience/bloom-560m', 0.1626, 0.3291), ('state-spaces/mamba-130m-hf', 0.1549, 0.2511), ('RWKV/rwkv-4-169m-pile', 0.1156, 0.2832), ('Salesforce/codegen-350M-mono', 0.1392, 0.1945)]. Reported and EXCLUDED, not imputed. PRIMARY: rho(T_cross, rep_4) = +0.486 (permutation p = 0.3556, n = 6), against T*'s +0.547 on the same target. T_cross across models spans 0.1662 against its own noise floor 0.07041 (2.36x, gate 2.0x) SECOND (exploratory): rho(slope at crossing, rep_4) = +0.771 (p = 0.1028). COINCIDENCE CHECK: rho(T_cross, T*) = +0.300 (p = 0.6833, n = 5). They do not track closely, so T_cross is a differently-derived scalar rather than T* in other clothes. READING: if T_cross predicts rep_4 comparably to T*, lambda_ca acquires an external use by the same move that made T* work -- a response rather than a level. If it does not, the structural lesson is confirmed on a second quantity and the one-token response family does not transfer at all. BOUNDARY: greedy-scoped target, one radius, one lattice size.
+
+wrote results/lambda_temperature_crossing.json

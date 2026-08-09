@@ -47,12 +47,21 @@ from gatecheck.cohort import cohort_complete
 OUT = str(_ROOT / "results" / "diversity_vs_loss.json")
 SRC = _ROOT / "results" / "loss_collapse_families.json"
 R, N, B, SWEEPS, T = 2, 48, 8, 30, 0.7
-SEED = 20260808
+# MULTI-SEED, and the first version was not. Its control failed at 62% because it compared a
+# single-seed settle against transplant_s's single-seed values, and settled diversity in the
+# low-diversity regime has an across-seed sd of 4-12 on means of 7-32 (F111 amendment). A single
+# draw of that is not a measurement, which is precisely what the control existed to detect.
+SEEDS = [21, 22, 23, 24, 25, 26, 27, 28]
 REPOS = {"pythia-410m": "EleutherAI/pythia-410m",
          "olmo2-1b": "allenai/OLMo-2-0425-1B",
          "olmo1-0724": "allenai/OLMo-1B-0724-hf"}
-# transplant_s measured these at the same geometry; the control must reproduce them.
-PYTHIA_DIAGONAL = {128: 8, 256: 24, 512: 41, 1000: 193, 2000: 191, 4000: 188}
+# The SEED-AVERAGED pythia values from diversity_multiseed.json (8 seeds each), with their
+# measured across-seed sd. The control checks agreement in units of that sd rather than as a
+# percentage, because a percentage tolerance on a quantity whose sd is 55% of its mean is
+# meaningless -- that is the error the first version of this control made.
+PYTHIA_DIAGONAL = {128: (7.5, 4.093), 256: (26.25, 11.443), 512: (31.5, 11.906),
+                   1000: (185.125, 7.574), 2000: (205.125, 10.252), 4000: (196.125, 9.867)}
+CONTROL_SIGMA = 2.5          # agreement required, in units of the measured across-seed sd
 
 
 def evict(repo, revision):
@@ -72,13 +81,15 @@ def main():
     res = json.load(open(OUT)) if os.path.exists(OUT) else {"cells": {}}
     src = json.load(open(SRC))["cells"]
     res["_preregistration"] = dict(
-        r=R, N=N, B=B, sweeps=SWEEPS, T=T, seed=SEED, repos=REPOS,
+        r=R, N=N, B=B, sweeps=SWEEPS, T=T, repos=REPOS,
         source="loss_collapse_families.json -- bpb and lambda re-used UNCHANGED",
         primary="across-family spread of DIVERSITY at matched bits-per-byte vs at matched tokens, "
                 "the same comparison F100 ran on lambda_ca",
         reading="F111 predicts diversity FAILS to collapse, mirroring lambda_ca; a collapse "
                 "falsifies the reduction",
-        control=f"within Pythia, diversity must reproduce transplant_s's {PYTHIA_DIAGONAL}",
+        control=f"within Pythia, seed-averaged diversity must agree with diversity_multiseed's "
+                f"8-seed means to within {CONTROL_SIGMA} sigma of their measured across-seed sd",
+        seeds=SEEDS,
         boundary="bits-per-byte removes the tokenizer confound, not the corpus one")
     from ar_ca import ARRule, run
     for k, c in sorted(src.items(), key=lambda kv: (kv[1]["family"], kv[1]["tokens_B"])):
@@ -88,23 +99,27 @@ def main():
         t0 = time.time()
         try:
             rule = ARRule(repo, revision=c["revision"])
-            fin = run(rule, B=B, N=N, r=R, T=T, sweeps=SWEEPS, scheme="none",
-                      seed=SEED, order="per_replica")["final"]
+            pooled, per = [], []
+            for sd in SEEDS:
+                fin = run(rule, B=B, N=N, r=R, T=T, sweeps=SWEEPS, scheme="none",
+                          seed=sd, order="per_replica")["final"]
+                pooled.append(int(len(np.unique(fin.reshape(-1)))))
+                per.append(float(np.mean([len(np.unique(fin[b])) for b in range(B)])))
         except Exception as e:
             print(f"  {k}: FAILED {type(e).__name__}"[:120], flush=True)
             res["cells"][k] = dict(**{a: c[a] for a in ("family", "revision", "tokens_B", "bpb")},
                                    failed=f"{type(e).__name__}: {e}"[:180])
             json.dump(res, open(OUT, "w"), indent=1); continue
-        per = [len(np.unique(fin[b])) for b in range(B)]
         row = dict(family=c["family"], revision=c["revision"], tokens_B=c["tokens_B"],
                    bpb=c["bpb"], lambda_ca=c.get("lambda_ca"), lambda_sd=c.get("lambda_sd"),
-                   distinct=round(float(np.mean(per)), 3),
-                   distinct_sd=round(float(np.std(per)), 3),
-                   distinct_pool=int(len(np.unique(fin.reshape(-1)))),
+                   n_seeds=len(SEEDS), pooled_per_seed=pooled,
+                   distinct=round(float(np.mean(pooled)), 3),          # POOLED, seed-averaged
+                   distinct_sd=round(float(np.std(pooled)), 3),
+                   per_replica=round(float(np.mean(per)), 3),
                    secs=round(time.time() - t0, 1))
         res["cells"][k] = row
         print(f"  {k:<44} bpb={row['bpb']:.4f} distinct={row['distinct']:>6.2f} "
-              f"pool={row['distinct_pool']:>4} lam={row['lambda_ca']} ({row['secs']:.0f}s)",
+              f"sd={row['distinct_sd']:>5.1f} lam={row['lambda_ca']} ({row['secs']:.0f}s)",
               flush=True)
         json.dump(res, open(OUT, "w"), indent=1)
         del rule
@@ -139,19 +154,20 @@ def _spread(curves, key, val):
 def analyse(res):
     cells = [c for c in res["cells"].values() if "distinct" in c]
     parts = []
-    py = {int(c["revision"].replace("step", "")): c["distinct_pool"]
+    py = {int(c["revision"].replace("step", "")): c["distinct"]
           for c in cells if c["family"] == "pythia-410m" and c["revision"].startswith("step")}
     ok = True
     if py:
-        devs = {s: (py[s], PYTHIA_DIAGONAL[s]) for s in py if s in PYTHIA_DIAGONAL}
-        rel_err = [abs(a - b) / max(b, 1) for a, b in devs.values()]
-        ok = bool(rel_err and max(rel_err) <= 0.35)
+        z = {st: abs(py[st] - PYTHIA_DIAGONAL[st][0]) / max(PYTHIA_DIAGONAL[st][1], 1e-9)
+             for st in py if st in PYTHIA_DIAGONAL}
+        ok = bool(z and max(z.values()) <= CONTROL_SIGMA)
         parts.append(
-            f"CONTROL: Pythia's settled diversity reproduces transplant_s's values "
-            f"{ {s: devs[s] for s in sorted(devs)} } (measured, expected), worst relative "
-            f"deviation {max(rel_err):.0%}. "
-            + ("The settle matches the geometry F111 was measured at."
-               if ok else "IT DOES NOT -- the settle differs and nothing below is read."))
+            f"CONTROL: Pythia's seed-averaged diversity against diversity_multiseed's 8-seed means, "
+            f"in units of their measured across-seed sd: "
+            f"{ {s: round(v, 2) for s, v in sorted(z.items())} } sigma, worst "
+            f"{max(z.values()):.2f} against a {CONTROL_SIGMA} gate. "
+            + ("Agreement within seed noise, so the settle matches the geometry F111 was measured "
+               "at." if ok else "IT DOES NOT -- the settle differs and nothing below is read."))
     curves = {}
     for c in cells:
         curves.setdefault(c["family"], []).append(c)

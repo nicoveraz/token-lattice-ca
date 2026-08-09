@@ -3629,6 +3629,55 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F113 — λ_ca's zero-crossing is NOT a second T\*, and most architectures have no crossing at all
+The structural lesson of F112 — *levels do not transfer, responses do* — applied to λ_ca, which has
+only ever been used as a level. Not λ at a temperature, but **the temperature at which λ(T) crosses
+zero**, and the slope there. 14 models × 7 temperatures × 3 seeds, greedy `rep_4` as the target, so
+the comparison against T\*'s ρ = +0.547 (F112) is commensurable by construction.
+
+**The grid had to be extended, and the reason is F59's defect on a new axis.** A first pass on
+[0.3 … 1.1] censored **11 of 14** models and put every crossing it did find in the 0.3–0.5 interval —
+against the scan's lower edge. Extending to T = 0.1, 0.2 rescued three and **moved the crossings that
+already existed**: `pythia-14m` shifted from 0.3–0.5 to 0.2–0.3. So the first pass's successes were
+edge-pinned too. A second fix was required for the extension to help at all: at T = 0.1 damage often
+never ignites, and the original analysis deleted any model with one such cell — F42 says λ is
+*undefined* there, which is missing data at that temperature, not evidence about the model.
+
+```
+ model             T_cross   slope    rep_4    T*
+ pythia-410m        0.190   +0.669    0.435   0.519
+ pythia-70m         0.213   +1.338    0.825   0.575
+ pythia-31m         0.277   +2.103    0.739   0.453
+ gpt-neo-125M       0.284   +0.883    0.680   censored
+ pythia-160m        0.311   +0.990    0.719   0.576
+ pythia-14m         0.356   +1.195    0.839   0.558
+```
+
+**PRIMARY: ρ(T_cross, rep_4) = +0.486, p = 0.356, n = 6**, against T\*'s +0.547. The range gate passes
+(2.36× its floor, just over the 2.0 threshold) so the number is readable, but at n = 6 — five Pythias
+and one GPT-Neo, not independent draws — it neither confirms nor refutes. **λ_ca does not acquire an
+external use by this route on this evidence.**
+
+**The coincidence check is clean, and that was one of the three registered exits.** ρ(T_cross, T\*) =
++0.300, p = 0.683. T_cross is **not T\* in different clothing** — the two are differently-derived
+scalars, so the project does not have a hidden duplicate. F112's worry, checked and dismissed.
+
+**The exploratory leg beat both.** ρ(slope at crossing, rep_4) = **+0.771** (p = 0.103), higher than
+T_cross's location *and* than T\*'s 0.547 on the same six models. Registered as exploratory with no
+analogue in T\*, and it is now the most interesting number here: if responses are what transfer, *how
+sharply* λ crosses may matter more than *where*. n = 6 and one family — a lead, not a result.
+
+**THE CENSORING IS PROBABLY THE REAL FINDING.** Eight of fourteen models never change sign at any
+temperature down to 0.1: `gpt2` (all four sizes), `opt-350m`, `bloom-560m`, `mamba-130m`,
+`rwkv-4-169m`, `codegen-350M`. Every model that crosses is Pythia or GPT-Neo. That is not a scan
+artifact this time — 0.1 is cold enough that damage stops igniting entirely for some. **λ_ca's sign
+change may be specific to the Pythia/GPT-Neo lineage rather than a general property**, which would
+scope the developmental transition considerably. F98 established the transition's *endpoints*
+replicate in two OLMo families; this says its *zero-crossing* may not exist elsewhere at all.
+
+**Boundary.** Greedy-scoped target, one radius, one lattice size, n = 6 for every correlation quoted
+and five of those six from one family.
+
 ### F112 — the settled state predicts nothing external; its TEMPERATURE RESPONSE does
 F111 raised a larger worry than it settled: if λ_ca reduces to settled-ring diversity, and T\* is
 derived from the same ring's top-1 share, the project's model-facing results might be **one
