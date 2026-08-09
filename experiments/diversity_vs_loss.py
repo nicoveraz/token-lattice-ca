@@ -51,7 +51,12 @@ R, N, B, SWEEPS, T = 2, 48, 8, 30, 0.7
 # single-seed settle against transplant_s's single-seed values, and settled diversity in the
 # low-diversity regime has an across-seed sd of 4-12 on means of 7-32 (F111 amendment). A single
 # draw of that is not a measurement, which is precisely what the control existed to detect.
-SEEDS = [21, 22, 23, 24, 25, 26, 27, 28]
+# DELIBERATELY DISJOINT FROM diversity_multiseed's [21..28]. The control compares this run's
+# Pythia diversity against that run's 8-seed means -- and with the SAME seeds the settle is
+# bit-identical, so the control returned exactly 0.00 sigma on all six checkpoints and could not
+# have failed. A control that cannot fail is not a control. These seeds make the comparison an
+# independent draw from the same distribution, which is what the check was supposed to be.
+SEEDS = [31, 32, 33, 34, 35, 36, 37, 38]
 REPOS = {"pythia-410m": "EleutherAI/pythia-410m",
          "olmo2-1b": "allenai/OLMo-2-0425-1B",
          "olmo1-0724": "allenai/OLMo-1B-0724-hf"}

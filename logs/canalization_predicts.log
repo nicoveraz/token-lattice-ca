@@ -1,0 +1,74 @@
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11410.21it/s]
+  EleutherAI/pythia-14m            spread=0.1300 subadd=+0.0210 distinct=184 (10s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 16611.97it/s]
+  EleutherAI/pythia-31m            spread=0.1166 subadd=+0.0140 distinct=191 (22s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 14694.47it/s]
+  EleutherAI/pythia-70m            spread=0.1298 subadd=+0.0225 distinct=182 (32s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 17192.15it/s]
+  EleutherAI/pythia-160m           spread=0.1567 subadd=+0.0279 distinct=193 (61s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8000.21it/s]
+  EleutherAI/pythia-410m           spread=0.1648 subadd=+0.0216 distinct=196 (38s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 22560.63it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125M
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125M          spread=0.1897 subadd=+0.0135 distinct=144 (64s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 16865.65it/s]
+  gpt2                             spread=0.1873 subadd=+0.0033 distinct=191 (70s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 12640.62it/s]
+  gpt2-medium                      spread=0.1478 subadd=+0.0043 distinct=219 (176s)
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 9511.98it/s]
+  gpt2-large                       spread=0.1685 subadd=+0.0197 distinct=193 (361s)
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 39843.06it/s]
+  facebook/opt-350m                spread=0.1223 subadd=+0.0166 distinct=205 (114s)
+Could not set the permissions on the file '/Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--facebook--opt-350m/blobs/9da6494f3af047e5e96ad93912f347aafed1bf6be00e03751b2db0d6e927eca1.948553f5.incomplete'. Error: [Errno 2] No such file or directory: '/Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--facebook--opt-350m/blobs/tmp_afdcd518-10bc-42b8-a0b3-28145fda32c4'.
+Continuing without setting permissions.
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 19625.84it/s]
+  bigscience/bloom-560m            spread=0.0793 subadd=+0.0051 distinct=298 (196s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 18647.17it/s]
+  state-spaces/mamba-130m-hf       spread=0.1151 subadd=+0.0202 distinct=203 (105s)
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 48641.04it/s]
+  RWKV/rwkv-4-169m-pile            spread=0.1319 subadd=+0.0155 distinct=207 (66s)
+Could not set the permissions on the file '/Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--RWKV--rwkv-4-169m-pile/blobs/73ff888a36ef9a950099b1516c96a971ff33316afc561c97b9ae6925e956a561.f721467e.incomplete'. Error: [Errno 2] No such file or directory: '/Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--RWKV--rwkv-4-169m-pile/blobs/tmp_36417d59-89e2-4e73-8dfe-b0c19a25646b'.
+Continuing without setting permissions.
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 65735.20it/s]
+[transformers] [1mCodeGenForCausalLM LOAD REPORT[0m from: Salesforce/codegen-350M-mono
+Key                                     | Status     |  | 
+----------------------------------------+------------+--+-
+transformer.h.{0...19}.attn.causal_mask | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  Salesforce/codegen-350M-mono     spread=0.1584 subadd=+0.0199 distinct=168 (117s)
+
+  model                              spread    subadd   rep_4        T*
+  EleutherAI/pythia-14m              0.1300   +0.0210   0.839    0.5578
+  EleutherAI/pythia-31m              0.1166   +0.0140   0.739    0.4533
+  EleutherAI/pythia-70m              0.1298   +0.0225   0.825    0.5751
+  EleutherAI/pythia-160m             0.1567   +0.0279   0.719    0.5761
+  EleutherAI/pythia-410m             0.1648   +0.0216   0.435    0.5186
+  EleutherAI/gpt-neo-125M            0.1897   +0.0135   0.680 censored_above
+  gpt2                               0.1873   +0.0033   0.637      None
+  gpt2-medium                        0.1478   +0.0043   0.459      None
+  gpt2-large                         0.1685   +0.0197   0.513      None
+  facebook/opt-350m                  0.1223   +0.0166   0.646      None
+  bigscience/bloom-560m              0.0793   +0.0051   0.594      None
+  state-spaces/mamba-130m-hf         0.1151   +0.0202   0.649      None
+  RWKV/rwkv-4-169m-pile              0.1319   +0.0155   0.674      None
+  Salesforce/codegen-350M-mono       0.1584   +0.0199   0.447      None
+  rho(subadd settled, rep_4) = +0.270  p=0.3484  [gate ok]
+  rho(subadd random , rep_4) = +0.552  p=0.0445  [gate ok]
+  rho(spread settled, rep_4) = -0.310  p=0.2822  [gate ok]
+  rho(spread random , rep_4) = -0.015  p=0.9622  [gate ok]
+
+  -> PRIMARY: on the settled ensemble, rho(subadd, rep_4) = +0.270 (p = 0.3484) and rho(spread, rep_4) = -0.310 (p = 0.2822), against T*'s +0.547 on the same target and models. Best gated index is subadd|random at +0.552. DEFLATION CHECK (frozen before the run): rho(subadd, T*) = +0.900 (p = 0.0833, n = 5). The index tracks T* closely, so it is largely a restatement of a metric the project already has rather than a new one. The canalization indices beat T* on this target, so the route adds an external predictor. BOUNDARY: greedy-scoped target, one radius, one temperature, and the models are not independent draws -- F86 states its own anchor at family level for exactly this reason, so a per-model rho here is the weaker form. s is exact (inverse-CDF CRN disagreement), so none of these numbers carries sampling error in the estimator itself.
+
+wrote results/canalization_predicts.json
+Could not set the permissions on the file '/Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--Salesforce--codegen-350M-mono/blobs/ab7ed359af3f9dbeaa2765cf8820f56f989a51b75850b87c504003b7ed920c15.32a94598.incomplete'. Error: [Errno 2] No such file or directory: '/Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--Salesforce--codegen-350M-mono/blobs/tmp_53185ce3-f99d-4150-8be5-07c95f93ff9f'.
+Continuing without setting permissions.

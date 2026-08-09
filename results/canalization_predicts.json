@@ -1,0 +1,406 @@
+{
+ "cells": {
+  "EleutherAI/pythia-14m": {
+   "model": "EleutherAI/pythia-14m",
+   "settled": {
+    "s": 0.85756,
+    "spread": 0.13001,
+    "subadd": 0.02096,
+    "subadd_se": 0.00557,
+    "spread_se": 0.00816
+   },
+   "random": {
+    "s": 0.803,
+    "spread": 0.12372,
+    "subadd": 0.08526,
+    "subadd_se": 0.00899,
+    "spread_se": 0.00776
+   },
+   "settled_distinct": 184,
+   "secs": 10.3
+  },
+  "EleutherAI/pythia-31m": {
+   "model": "EleutherAI/pythia-31m",
+   "settled": {
+    "s": 0.86899,
+    "spread": 0.11661,
+    "subadd": 0.01403,
+    "subadd_se": 0.0045,
+    "spread_se": 0.00732
+   },
+   "random": {
+    "s": 0.80722,
+    "spread": 0.13816,
+    "subadd": 0.06753,
+    "subadd_se": 0.00945,
+    "spread_se": 0.00867
+   },
+   "settled_distinct": 191,
+   "secs": 22.2
+  },
+  "EleutherAI/pythia-70m": {
+   "model": "EleutherAI/pythia-70m",
+   "settled": {
+    "s": 0.86964,
+    "spread": 0.12984,
+    "subadd": 0.02252,
+    "subadd_se": 0.00554,
+    "spread_se": 0.00815
+   },
+   "random": {
+    "s": 0.81806,
+    "spread": 0.14079,
+    "subadd": 0.05846,
+    "subadd_se": 0.00999,
+    "spread_se": 0.00883
+   },
+   "settled_distinct": 182,
+   "secs": 32.2
+  },
+  "EleutherAI/pythia-160m": {
+   "model": "EleutherAI/pythia-160m",
+   "settled": {
+    "s": 0.85177,
+    "spread": 0.1567,
+    "subadd": 0.02792,
+    "subadd_se": 0.00827,
+    "spread_se": 0.00983
+   },
+   "random": {
+    "s": 0.83087,
+    "spread": 0.12889,
+    "subadd": 0.05677,
+    "subadd_se": 0.00819,
+    "spread_se": 0.00809
+   },
+   "settled_distinct": 193,
+   "secs": 61.0
+  },
+  "EleutherAI/pythia-410m": {
+   "model": "EleutherAI/pythia-410m",
+   "settled": {
+    "s": 0.85517,
+    "spread": 0.16481,
+    "subadd": 0.02159,
+    "subadd_se": 0.00878,
+    "spread_se": 0.01034
+   },
+   "random": {
+    "s": 0.81075,
+    "spread": 0.14933,
+    "subadd": 0.04224,
+    "subadd_se": 0.00719,
+    "spread_se": 0.00937
+   },
+   "settled_distinct": 196,
+   "secs": 38.3
+  },
+  "EleutherAI/gpt-neo-125M": {
+   "model": "EleutherAI/gpt-neo-125M",
+   "settled": {
+    "s": 0.82283,
+    "spread": 0.18966,
+    "subadd": 0.01347,
+    "subadd_se": 0.00788,
+    "spread_se": 0.0119
+   },
+   "random": {
+    "s": 0.80744,
+    "spread": 0.13624,
+    "subadd": 0.05026,
+    "subadd_se": 0.00715,
+    "spread_se": 0.00855
+   },
+   "settled_distinct": 144,
+   "secs": 63.5
+  },
+  "gpt2": {
+   "model": "gpt2",
+   "settled": {
+    "s": 0.85192,
+    "spread": 0.18735,
+    "subadd": 0.00332,
+    "subadd_se": 0.00516,
+    "spread_se": 0.01176
+   },
+   "random": {
+    "s": 0.81108,
+    "spread": 0.15386,
+    "subadd": 0.0409,
+    "subadd_se": 0.00768,
+    "spread_se": 0.00965
+   },
+   "settled_distinct": 191,
+   "secs": 70.0
+  },
+  "gpt2-medium": {
+   "model": "gpt2-medium",
+   "settled": {
+    "s": 0.88067,
+    "spread": 0.14779,
+    "subadd": 0.00432,
+    "subadd_se": 0.00216,
+    "spread_se": 0.00927
+   },
+   "random": {
+    "s": 0.85372,
+    "spread": 0.12633,
+    "subadd": 0.04572,
+    "subadd_se": 0.00985,
+    "spread_se": 0.00793
+   },
+   "settled_distinct": 219,
+   "secs": 176.4
+  },
+  "gpt2-large": {
+   "model": "gpt2-large",
+   "settled": {
+    "s": 0.87392,
+    "spread": 0.16853,
+    "subadd": 0.01968,
+    "subadd_se": 0.00651,
+    "spread_se": 0.01057
+   },
+   "random": {
+    "s": 0.82883,
+    "spread": 0.1417,
+    "subadd": 0.04519,
+    "subadd_se": 0.00804,
+    "spread_se": 0.00889
+   },
+   "settled_distinct": 193,
+   "secs": 360.8
+  },
+  "facebook/opt-350m": {
+   "model": "facebook/opt-350m",
+   "settled": {
+    "s": 0.86581,
+    "spread": 0.12229,
+    "subadd": 0.0166,
+    "subadd_se": 0.00345,
+    "spread_se": 0.00767
+   },
+   "random": {
+    "s": 0.80039,
+    "spread": 0.13622,
+    "subadd": 0.0534,
+    "subadd_se": 0.00891,
+    "spread_se": 0.00855
+   },
+   "settled_distinct": 205,
+   "secs": 113.6
+  },
+  "bigscience/bloom-560m": {
+   "model": "bigscience/bloom-560m",
+   "settled": {
+    "s": 0.94259,
+    "spread": 0.07933,
+    "subadd": 0.00508,
+    "subadd_se": 0.00342,
+    "spread_se": 0.00498
+   },
+   "random": {
+    "s": 0.91068,
+    "spread": 0.11864,
+    "subadd": 0.01218,
+    "subadd_se": 0.00269,
+    "spread_se": 0.00744
+   },
+   "settled_distinct": 298,
+   "secs": 196.1
+  },
+  "state-spaces/mamba-130m-hf": {
+   "model": "state-spaces/mamba-130m-hf",
+   "settled": {
+    "s": 0.89083,
+    "spread": 0.11512,
+    "subadd": 0.02015,
+    "subadd_se": 0.00665,
+    "spread_se": 0.00722
+   },
+   "random": {
+    "s": 0.83901,
+    "spread": 0.12399,
+    "subadd": 0.03416,
+    "subadd_se": 0.00688,
+    "spread_se": 0.00778
+   },
+   "settled_distinct": 203,
+   "secs": 105.4
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "model": "RWKV/rwkv-4-169m-pile",
+   "settled": {
+    "s": 0.88408,
+    "spread": 0.13193,
+    "subadd": 0.01552,
+    "subadd_se": 0.00546,
+    "spread_se": 0.00828
+   },
+   "random": {
+    "s": 0.83889,
+    "spread": 0.13143,
+    "subadd": 0.02923,
+    "subadd_se": 0.00577,
+    "spread_se": 0.00825
+   },
+   "settled_distinct": 207,
+   "secs": 65.8
+  },
+  "Salesforce/codegen-350M-mono": {
+   "model": "Salesforce/codegen-350M-mono",
+   "settled": {
+    "s": 0.86223,
+    "spread": 0.15844,
+    "subadd": 0.01988,
+    "subadd_se": 0.0082,
+    "spread_se": 0.00994
+   },
+   "random": {
+    "s": 0.86009,
+    "spread": 0.10016,
+    "subadd": 0.05616,
+    "subadd_se": 0.00753,
+    "spread_se": 0.00628
+   },
+   "settled_distinct": 168,
+   "secs": 117.1
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "EleutherAI/pythia-14m",
+   "EleutherAI/pythia-31m",
+   "EleutherAI/pythia-70m",
+   "EleutherAI/pythia-160m",
+   "EleutherAI/pythia-410m",
+   "EleutherAI/gpt-neo-125M",
+   "gpt2",
+   "gpt2-medium",
+   "gpt2-large",
+   "facebook/opt-350m",
+   "bigscience/bloom-560m",
+   "state-spaces/mamba-130m-hf",
+   "RWKV/rwkv-4-169m-pile",
+   "Salesforce/codegen-350M-mono"
+  ],
+  "r": 2,
+  "T": 0.7,
+  "n_ctx": 128,
+  "seed": 20260809,
+  "range_k": 2.0,
+  "settle": {
+   "B": 8,
+   "N": 48,
+   "sweeps": 30
+  },
+  "tstar_reference": 0.547,
+  "primary": "rho(subadd, rep_4) on the SETTLED ensemble, against T*'s +0.547",
+  "second": "rho(spread, rep_4), the masking index",
+  "deflation": "T* already predicts this target; a new metric must be neither a restatement of it (checked by rho(index, T*)) nor beaten by it. Both reported either way",
+  "range_gate": "each index must span > RANGE_K x its own across-context standard error",
+  "regime": "settled AND random; F94 measured a related quantity on random windows and reached a conclusion F96 showed was a property of the ensemble",
+  "kill": "neither index clears the gate, or both predict below T* -- the route closes",
+  "anchors": "F96's validated ladder: DK p2=0 spread 0.000000 subadd +0.960; ECA rule 150 (XOR) spread 0.0000 subadd +1.0000; rule 232 (majority) spread 0.2887 subadd +0.2500"
+ },
+ "analysis": {
+  "correlations": {
+   "subadd|settled": {
+    "rho": 0.2703,
+    "perm_p": 0.3484,
+    "n": 14,
+    "span": 0.0246,
+    "se": 0.00582,
+    "usable": true,
+    "reason": "subadd (settled) spans 0.0246 against its own noise floor 0.005825 (4.22x, gate 2.0x)"
+   },
+   "subadd|random": {
+    "rho": 0.5516,
+    "perm_p": 0.0445,
+    "n": 14,
+    "span": 0.07308,
+    "se": 0.00774,
+    "usable": true,
+    "reason": "subadd (random) spans 0.07308 against its own noise floor 0.007736 (9.45x, gate 2.0x)"
+   },
+   "spread|settled": {
+    "rho": -0.3099,
+    "perm_p": 0.2822,
+    "n": 14,
+    "span": 0.11033,
+    "se": 0.00896,
+    "usable": true,
+    "reason": "spread (settled) spans 0.1103 against its own noise floor 0.008956 (12.32x, gate 2.0x)"
+   },
+   "spread|random": {
+    "rho": -0.0154,
+    "perm_p": 0.9622,
+    "n": 14,
+    "span": 0.0537,
+    "se": 0.00829,
+    "usable": true,
+    "reason": "spread (random) spans 0.0537 against its own noise floor 0.008289 (6.48x, gate 2.0x)"
+   }
+  },
+  "n": 14,
+  "tstar_reference": 0.547,
+  "primary_arm": "subadd|settled",
+  "primary": {
+   "rho": 0.2703,
+   "perm_p": 0.3484,
+   "n": 14,
+   "span": 0.0246,
+   "se": 0.00582,
+   "usable": true,
+   "reason": "subadd (settled) spans 0.0246 against its own noise floor 0.005825 (4.22x, gate 2.0x)"
+  },
+  "beats_tstar": false,
+  "subadd_range": [
+   0.00332,
+   0.02792
+  ],
+  "anchors": {
+   "dk_p2_0": 0.96,
+   "eca_rule150_xor": 1.0,
+   "eca_rule232_maj": 0.25
+  }
+ },
+ "verdict": "PRIMARY, the registered arm (subadd on the SETTLED ensemble): rho = +0.270 (p = 0.3484, n = 14), against T*'s +0.547 on the same target and models. Secondary (spread, settled): -0.310 (p = 0.2822). EXPLORATORY, and reported only so the arm-shopping is visible rather than hidden: the random-ensemble arms give subadd +0.552 (p=0.0445), spread -0.015 (p=0.9622). The best of these exceeds T* by 0.005, which is not a result -- it is what picking the largest of four correlations looks like, and F96's regime work says the settled ensemble is the one that governs the dynamics anyway. DEFLATION CHECK (frozen before the run): rho(subadd, T*) = +0.900 (p = 0.0833, n = 5). The index tracks T* closely, so it is largely a restatement of a metric the project already has rather than a new one. The registered index does NOT beat T* (+0.270 against +0.547, p = 0.3484). Since T* is cheaper and already validated, the canalization route does not add an external predictor and closes as designed -- the registered kill, not a disappointment. AND THE INDEX ITSELF IS NEAR ZERO ON EVERY REAL MODEL: sub-additivity spans +0.0033 to +0.0279, against F96's validated ladder where Domany-Kinzel's p2=0 line sits at +0.960, ECA rule 150 (XOR) at +1.000 and rule 232 (majority) at +0.250. Every model is two orders of magnitude below the weakest anchor, i.e. the two-token response is essentially ADDITIVE and nowhere near canalizing. That is a substantive negative about what these local functions are, and it is independent of whether the index predicts anything. BOUNDARY: greedy-scoped target, one radius, one temperature, and the models are not independent draws -- F86 states its own anchor at family level for exactly this reason, so a per-model rho here is the weaker form. s is exact (inverse-CDF CRN disagreement), so none of these numbers carries sampling error in the estimator itself.",
+ "_analysis_provenance": {
+  "script": "canalization_predicts.py",
+  "sha256": "9e30e8f0c7980653fcf2f7fa87e0704b911b45a53e9c929e5bd0546375349836",
+  "imports": {
+   "experiments/canalization_predicts.py": "9e30e8f0c7980653fcf2f7fa87e0704b911b45a53e9c929e5bd0546375349836",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "af0d793741cf5860af7f13d8190aebe70c524b4720d3128c2eaf0223252f0763",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Points F96's validated canalization machinery -- ladder-anchored on DK, XOR and majority -- at an external target for the first time. The indices had only ever been measured developmentally on one model."
+}
