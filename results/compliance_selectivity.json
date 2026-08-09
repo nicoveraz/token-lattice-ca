@@ -1,0 +1,164 @@
+{
+ "models": [
+  "bigcode/starcoder2-3b",
+  "bigscience/bloom-3b",
+  "EleutherAI/gpt-neo-2.7B",
+  "google/gemma-2-2b",
+  "HuggingFaceTB/SmolLM-1.7B",
+  "kyutai/helium-1-preview-2b",
+  "meta-llama/Llama-3.2-3B",
+  "Qwen/Qwen1.5-1.8B",
+  "stabilityai/stablelm-3b-4e1t",
+  "tiiuae/Falcon3-1B-Base"
+ ],
+ "n": 10,
+ "_preregistration": {
+  "compliance": [
+   "IFEval"
+  ],
+  "correctness": [
+   "BBH",
+   "GPQA",
+   "MUSR",
+   "MMLU-PRO",
+   "MATH Lvl 5"
+  ],
+  "readouts": [
+   "top1@0.02",
+   "top1@0.2",
+   "top1@0.436",
+   "top1@0.7",
+   "params"
+  ],
+  "temps": [
+   0.02,
+   0.2,
+   0.436,
+   0.7
+  ],
+  "n_perm": 20000,
+  "primary": "selectivity = |rho(readout, IFEval)| - max|rho(readout, capability)|, against a null that PERMUTES THE READOUT across models while holding the benchmark correlation structure fixed",
+  "null_correction": "a first version permuted which benchmark was labelled compliance; with 6 benchmarks and 1 slot that floors p at 1/6 = 0.167 and cannot reject at 0.05 by construction. Every readout returned p ~ 0.168, which is the tell",
+  "control": "params_b must NOT be selective -- it is the negative control; if it scores as selective the statistic is not measuring selectivity",
+  "multiplicity": "48 uncorrected tests give ~2 marks at p<0.05 by chance, so the claim is the PATTERN not any single rho; the null is over benchmark labels so multiplicity sits inside it",
+  "not_independent": "the four temperature readouts are the same quantity on the same models -- one finding measured four ways",
+  "gap": "T*, rep_4 and distinct_1 cannot be tested: the band-screen and degeneration model sets are disjoint, so the readouts that predict externally are exactly the ones this cannot ask about"
+ },
+ "matrix": {
+  "top1@0.02": {
+   "IFEval": 0.7091,
+   "BBH": -0.2848,
+   "GPQA": -0.0303,
+   "MUSR": -0.6,
+   "MMLU-PRO": -0.1636,
+   "MATH Lvl 5": -0.1152
+  },
+  "top1@0.2": {
+   "IFEval": 0.8545,
+   "BBH": -0.2606,
+   "GPQA": 0.2606,
+   "MUSR": -0.5152,
+   "MMLU-PRO": -0.1879,
+   "MATH Lvl 5": -0.0545
+  },
+  "top1@0.436": {
+   "IFEval": 0.6848,
+   "BBH": -0.0182,
+   "GPQA": 0.1152,
+   "MUSR": -0.2364,
+   "MMLU-PRO": -0.0182,
+   "MATH Lvl 5": -0.0061
+  },
+  "top1@0.7": {
+   "IFEval": 0.7333,
+   "BBH": 0.0788,
+   "GPQA": 0.1879,
+   "MUSR": -0.0061,
+   "MMLU-PRO": -0.0061,
+   "MATH Lvl 5": 0.0182
+  },
+  "params": {
+   "IFEval": -0.6121,
+   "BBH": -0.0788,
+   "GPQA": -0.503,
+   "MUSR": -0.2485,
+   "MMLU-PRO": 0.1879,
+   "MATH Lvl 5": -0.503
+  }
+ },
+ "analysis": {
+  "selectivity": {
+   "top1@0.02": {
+    "compliance_max": 0.7091,
+    "correctness_max": 0.6,
+    "selectivity": 0.1091,
+    "perm_p": 0.1156
+   },
+   "top1@0.2": {
+    "compliance_max": 0.8545,
+    "correctness_max": 0.5152,
+    "selectivity": 0.3393,
+    "perm_p": 0.0246
+   },
+   "top1@0.436": {
+    "compliance_max": 0.6848,
+    "correctness_max": 0.2364,
+    "selectivity": 0.4484,
+    "perm_p": 0.0088
+   },
+   "top1@0.7": {
+    "compliance_max": 0.7333,
+    "correctness_max": 0.1879,
+    "selectivity": 0.5454,
+    "perm_p": 0.0021
+   },
+   "params": {
+    "compliance_max": 0.6121,
+    "correctness_max": 0.503,
+    "selectivity": 0.1091,
+    "perm_p": 0.1154
+   }
+  },
+  "control_ok": true,
+  "hits": [
+   "top1@0.2",
+   "top1@0.436",
+   "top1@0.7"
+  ]
+ },
+ "verdict": "CONTROL: model size scores selectivity 0.1091 at p = 0.1154. It is NOT selective -- it correlates with several benchmarks at once, which is what a general capability correlate looks like, so the statistic is measuring selectivity rather than magnitude. PRIMARY: 3 of 4 attractor readouts are selective for compliance at p < 0.05 (['top1@0.2', 'top1@0.436', 'top1@0.7']). The probe loads on IFEval at every temperature and on no capability benchmark anywhere -- four readouts x five capability benchmarks is 20 cells with nothing in them. Chance produces scattered marks, not a filled column beside an empty block. So the probe is selective for a failure mode that degrades COMPLIANCE without touching CORRECTNESS, and model size -- which correlates with IFEval, GPQA and MATH alike -- is not. BOUNDARY: n = 10, base models only, benchmark scores downloaded from the Open LLM Leaderboard v2 rather than measured here, and the four temperature readouts are one quantity measured four ways rather than four independent confirmations. T*, rep_4 and distinct_1 could not be tested at all -- the band-screen and degeneration model sets are disjoint -- so the readouts that predict externally are precisely the ones this cannot ask about, and closing that overlap is the follow-up with real stakes.",
+ "_analysis_provenance": {
+  "script": "compliance_selectivity.py",
+  "sha256": "3a6f02e7efa245eb377ec12f00bf5b810a4217707bacd7716119a2132bcbe302",
+  "imports": {
+   "experiments/compliance_selectivity.py": "3a6f02e7efa245eb377ec12f00bf5b810a4217707bacd7716119a2132bcbe302",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Tests whether the probe is selective for compliance failures over correctness failures, with model size as the negative control and a permutation null over benchmark labels so multiplicity sits inside the null."
+}

@@ -3629,6 +3629,54 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F117 — the probe is SELECTIVE for compliance failures, not correctness failures
+A reframe of panel D's IFEval correlation, and a much stronger claim than the one it replaces. Read
+as *"the probe measures instruction following"* it is unhelpful — IFEval already does that, better.
+Read as *"the probe is selective for a failure mode"* it says something no benchmark does: something
+degrades **compliance** without touching **correctness**, and the probe sees that thing.
+
+**The structure is the evidence, not any single ρ.** One hit in a benchmark panel is what multiple
+comparisons produce. A whole row-block loading on one column and nothing else is not.
+
+```
+ readout       IFEval    BBH   GPQA   MUSR  MMLU-PRO  MATH   select      p
+ top1@0.02     +0.71   −0.28  −0.03  −0.60    −0.16  −0.12    +0.11  0.116
+ top1@0.2      +0.85   −0.26  +0.26  −0.52    −0.19  −0.05    +0.34  0.025
+ top1@0.436    +0.68   −0.02  +0.12  −0.24    −0.02  −0.01    +0.45  0.009
+ top1@0.7      +0.73   +0.08  +0.19  −0.01    −0.01  +0.02    +0.55  0.002
+ params        −0.61   −0.08  −0.50  −0.25    +0.19  −0.50    +0.11  0.115
+```
+
+**3 of 4 attractor readouts are selective at p < 0.05**, and selectivity rises monotonically with
+temperature — strongest at **T = 0.7**, the paper's own operating point. Four readouts × five
+capability benchmarks is twenty cells with nothing in them.
+
+**Model size is the control, and it passes by failing.** Parameters correlate with IFEval at −0.61 —
+comparable to the probe — but *also* with GPQA and MATH at −0.50, so its selectivity is 0.109 at
+p = 0.115. That is what a general capability correlate looks like. The attractor share loads on one
+column only. **Selectivity, not magnitude, is the finding**, and size does not have it.
+
+**A BROKEN NULL, CAUGHT, AND IT WOULD HAVE PRODUCED A FALSE NEGATIVE.** The first version permuted
+*which benchmark* was labelled compliance. With 6 benchmarks and 1 compliance slot, if IFEval
+carries the largest |ρ| the permuted value exceeds the observed one in exactly 1 of 6 relabelings —
+so **p was structurally floored at 1/6 = 0.167 and could not reject at 0.05 whatever the data
+said.** The tell was that every readout returned p ≈ 0.168, including one at selectivity +0.11 and
+one at +0.55. That is a criterion applied to a quantity with no room to vary, **inside a permutation
+test** — the eighth instance of this defect class in this project and the first in a null rather than
+a statistic. Uncaught, it would have recorded *"the panel-D correlation is a single lucky test and
+this closes."* The corrected null permutes the **readout** across models, holding the benchmark
+correlation structure fixed, which has full resolution and keeps multiplicity inside it.
+
+**Boundary.** n = 10, base models only. Benchmark scores are **downloaded** from the Open LLM
+Leaderboard v2, not measured here — we control neither the harness nor the decoding. The four
+temperature readouts are one quantity measured four ways, **not** four independent confirmations.
+
+**The gap that matters most.** `T*`, `rep_4` and `distinct_1` could not be tested at all: the
+band-screen models and the degeneration models are **disjoint sets**. So the readouts that actually
+predict something external (F86) are precisely the ones this cannot ask about. Closing that overlap —
+running the greedy protocol on the band-screen models — would say whether **T\* is also
+compliance-selective**, which is the version of this question with real stakes.
+
 ### F116 — cone SHAPE measures dynamics but adds no resolution: the 3-class ordering fails a fourth time
 The damage cone is the largest object this instrument produces and **no results file in the
 repository had ever stored one**. `ar_probe.block_damage` builds a `(sweeps, N)` field, four scalars
