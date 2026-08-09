@@ -1,0 +1,53 @@
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/483 [00:00<?, ?it/s]Loading weights: 100%|██████████| 483/483 [00:00<00:00, 6776.48it/s]
+  bigcode/starcoder2-3b            rep_4=0.483 distinct_1=0.294 T*=0.3374 (112s)
+Loading weights:   0%|          | 0/365 [00:00<?, ?it/s]Loading weights: 100%|██████████| 365/365 [00:00<00:00, 7998.25it/s]
+  bigscience/bloom-3b              rep_4=0.406 distinct_1=0.369 T*=None (104s)
+Loading weights:   0%|          | 0/420 [00:00<?, ?it/s]Loading weights: 100%|██████████| 420/420 [00:00<00:00, 6467.99it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-2.7B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...31}.attn.attention.masked_bias | UNEXPECTED |  | 
+transformer.h.{0...30}.attn.attention.bias        | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-2.7B          rep_4=0.550 distinct_1=0.266 T*=0.6105 (138s)
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [19:52<39:44, 1192.00s/it]Fetching 3 files: 100%|██████████| 3/3 [19:52<00:00, 397.33s/it] 
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 7530.83it/s]
+  google/gemma-2-2b                rep_4=0.388 distinct_1=0.347 T*=None (1305s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [07:08<07:08, 428.58s/it]Fetching 2 files: 100%|██████████| 2/2 [07:08<00:00, 214.29s/it]
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 7486.27it/s]
+  HuggingFaceTB/SmolLM-1.7B        rep_4=0.263 distinct_1=0.432 T*=0.3115 (514s)
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 16622.38it/s]
+  kyutai/helium-1-preview-2b       rep_4=0.417 distinct_1=0.338 T*=0.5289 (630s)
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [13:07<13:07, 787.38s/it]Fetching 2 files: 100%|██████████| 2/2 [13:07<00:00, 393.69s/it]
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 11838.18it/s]
+  meta-llama/Llama-3.2-3B          rep_4=0.383 distinct_1=0.357 T*=None (900s)
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 14484.23it/s]
+  Qwen/Qwen1.5-1.8B                rep_4=0.201 distinct_1=0.492 T*=0.298 (500s)
+Loading weights:   0%|          | 0/356 [00:00<?, ?it/s]Loading weights: 100%|██████████| 356/356 [00:00<00:00, 7342.62it/s]
+  stabilityai/stablelm-3b-4e1t     rep_4=0.353 distinct_1=0.356 T*=0.0565 (833s)
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 13021.87it/s]
+  tiiuae/Falcon3-1B-Base           rep_4=0.283 distinct_1=0.408 T*=None (437s)
+
+  model                                  T*   rep_4  IFEval
+  EleutherAI/gpt-neo-2.7B            0.6105   0.550   25.90
+  bigcode/starcoder2-3b              0.3374   0.483   20.37
+  kyutai/helium-1-preview-2b         0.5289   0.417   26.14
+  bigscience/bloom-3b                  None   0.406   12.71
+  google/gemma-2-2b                    None   0.388   19.93
+  meta-llama/Llama-3.2-3B              None   0.383   13.37
+  stabilityai/stablelm-3b-4e1t       0.0565   0.353   22.03
+  tiiuae/Falcon3-1B-Base               None   0.283   24.28
+  HuggingFaceTB/SmolLM-1.7B          0.3115   0.263   23.62
+  Qwen/Qwen1.5-1.8B                   0.298   0.201   21.54
+  T*           IFEval rho=+0.543  selectivity=+0.171  p=0.1136 (n=6)
+  rep_4        IFEval rho=+0.067  selectivity=-0.535  p=0.8841 (n=10)
+  distinct_1   IFEval rho=-0.212  selectivity=-0.268  p=0.5458 (n=10)
+  top1@0.7     IFEval rho=+0.733  selectivity=+0.527  p=0.0040 (n=10)
+
+  -> COHORT: cohort intact: all 10 declared models measured ANCHOR: rho(T*, rep_4) = +0.771 over 6 models with a finite T*, against F86's +0.833 at family level. Same sign, so the imported protocol reproduces the anchor and the comparison is commensurable. PRIMARY: T* selectivity = 0.1714 at p = 0.1136 (n = 6), against the attractor share's +0.55 at p = 0.002 (F117, T=0.7). T* is NOT compliance-selective on this evidence. The selectivity F117 found does not extend to the project's externally-predictive reading, which bounds it considerably: the attractor SHARE is selective, the melting TEMPERATURE is not. SECOND: rep_4 vs IFEval = +0.067, selectivity -0.535 at p = 0.8841. Degeneration is not compliance-selective, so F117's attractor result is not mediated by it and the two are separate. BOUNDARY: n <= 10, base models, greedy decoding, and benchmark scores remain downloaded from the Open LLM Leaderboard rather than measured here. Selective readouts: ['top1@0.7'].
+
+wrote results/band_greedy.json

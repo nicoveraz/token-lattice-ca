@@ -3642,6 +3642,58 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F120 — the attractor SHARE is compliance-selective; T\*, the melting temperature, is NOT
+F117 could only test `top1@T` because the band-screen and degeneration model sets were disjoint —
+so the readouts that actually predict something external (F86) were precisely the ones it could not
+ask about. Running the greedy protocol on the band-screen models closes that gap, and the answer is
+negative in a way that **bounds F117 rather than extending it**.
+
+**THE ANCHOR RUNG, WHICH LICENSES READING ANYTHING ELSE.** `ρ(T*, rep_4) = +0.771` over the 6 models
+with a finite T\*, against F86's **+0.833** at family level. Same sign, comparable magnitude: the
+imported protocol reproduces the anchor on *these* models, so the comparison is commensurable and
+the null below is not broken data. `rep_stats`, `PROMPTS`, `NEW_TOKENS`, `NGRAM` and `THRESH` were
+imported from `degeneration_vs_tstar` unchanged for exactly this reason.
+
+```
+  readout            IFEval    BBH    GPQA    MUSR  MMLU-PRO   MATH   select      p     n
+  top1@0.7 (F117)     +0.73  +0.08   +0.21   -0.01    -0.01   +0.05   +0.53   0.004    10
+  T*                  +0.54  -0.31   +0.21   -0.37    -0.31   -0.29   +0.17   0.114     6
+  rep_4               +0.07  -0.28   -0.27   -0.19    -0.15   -0.60   -0.54   0.884    10
+```
+
+**PRIMARY: T\* selectivity = 0.1714 at p = 0.1136, n = 6. Not selective.** The attractor SHARE loads
+on compliance; the melting TEMPERATURE does not.
+
+**THE NULL IS REAL, NOT UNDERPOWERED — CHECKED RATHER THAN ASSERTED.** A null at n = 6 is worthless
+unless the test could have found the effect. From the exact permutation null on these rows: the
+smallest selectivity reaching p < 0.05 is **+0.3429**, and the maximum attainable on this scale is
+**+0.6286**. F117's **+0.55 therefore sits well inside the detectable range** — an effect that size
+would have been caught. The observed +0.1714 is **half the detection floor**. This rules out a
+selectivity as large as the attractor share's; it cannot rule out one below ≈0.34, and that limit is
+part of the finding rather than a caveat on it.
+
+**SECOND: degeneration is not the mediator.** `rep_4` vs IFEval is +0.067 with selectivity −0.535 at
+p = 0.8841 (n = 10) — it loads on MATH (−0.60) more than on anything else, the signature of a general
+capability correlate rather than a compliance one. So F117's attractor result is **not** produced by
+degeneration sitting underneath it; the two are separate effects.
+
+**WHY THIS CUTS AGAINST THE PROJECT'S OWN PREFERRED STORY, stated plainly.** F112's structural lesson
+is *levels do not transfer, responses do*, and F86 is built on that asymmetry: T\* predicts
+degeneration where the static level does not. Here the ordering **reverses**. The attractor share is
+a level, T\* is a response, and it is the level that carries the selective signal. The recipe is
+therefore not general — it held for predicting degeneration and fails for predicting compliance
+selectivity. Filing this as a footnote to F86 would hide the one place the recipe has been tested
+against a second target and lost.
+
+**BOUNDARY.** n = 10 measured, n = 6 for the T\* leg. Only 10 of the 22 band-screen models have Open
+LLM Leaderboard v2 entries, and only 6 of those crossed the screen's 0.40 attractor threshold to
+yield a finite T\* — `T*=None` is a model whose ladder never crossed, not a failed measurement. The
+cohort gate confirms all 10 declared models were measured, so nothing dropped silently. Base models,
+greedy decoding, benchmark scores downloaded rather than measured here, and the four `top1@T`
+readouts remain one quantity measured four ways.
+
+`experiments/band_greedy.py` → `results/band_greedy.json`
+
 ### F119 — the ranking function itself was the defect: fifteen scripts computed Spearman without handling ties
 Found while fixing `damage_geometry`'s causal window, not by looking for it. Every correlation in
 this project ranked with
@@ -3799,11 +3851,14 @@ correlation structure fixed, which has full resolution and keeps multiplicity in
 Leaderboard v2, not measured here — we control neither the harness nor the decoding. The four
 temperature readouts are one quantity measured four ways, **not** four independent confirmations.
 
-**The gap that matters most.** `T*`, `rep_4` and `distinct_1` could not be tested at all: the
-band-screen models and the degeneration models are **disjoint sets**. So the readouts that actually
-predict something external (F86) are precisely the ones this cannot ask about. Closing that overlap —
-running the greedy protocol on the band-screen models — would say whether **T\* is also
-compliance-selective**, which is the version of this question with real stakes.
+**The gap that matters most — NOW CLOSED, and the answer is no (F120).** `T*`, `rep_4` and
+`distinct_1` could not be tested here: the band-screen models and the degeneration models were
+**disjoint sets**, so the readouts that actually predict something external (F86) were precisely the
+ones this could not ask about. Running the greedy protocol on the band-screen models closed the
+overlap. **T\* is NOT compliance-selective** (+0.17 against a +0.34 detection floor, n = 6), and
+neither is `rep_4` (−0.54, p = 0.88), so this result is not mediated by degeneration. The selectivity
+below therefore belongs to the attractor SHARE specifically and does not extend to the melting
+temperature.
 
 ### F116 — cone SHAPE measures dynamics but adds no resolution: the 3-class ordering fails a fourth time
 The damage cone is the largest object this instrument produces and **no results file in the

@@ -1,0 +1,382 @@
+{
+ "cells": {
+  "bigcode/starcoder2-3b": {
+   "model": "bigcode/starcoder2-3b",
+   "params": 3.03,
+   "scores": {
+    "IFEval": 20.37,
+    "BBH": 8.91,
+    "MATH Lvl 5": 1.51,
+    "GPQA": 0.0,
+    "MUSR": 1.43,
+    "MMLU-PRO": 7.07
+   },
+   "top1": {
+    "0.02": 0.54525,
+    "0.2": 0.42445,
+    "0.436": 0.38245,
+    "0.7": 0.1139
+   },
+   "t_star": 0.3374,
+   "secs": 112.1,
+   "n_prompts": 12,
+   "rep_4": 0.4827,
+   "distinct_1": 0.2936,
+   "longest_loop": 5.75
+  },
+  "bigscience/bloom-3b": {
+   "model": "bigscience/bloom-3b",
+   "params": 3.003,
+   "scores": {
+    "IFEval": 12.71,
+    "BBH": 3.42,
+    "MATH Lvl 5": 0.83,
+    "GPQA": 0.0,
+    "MUSR": 7.89,
+    "MMLU-PRO": 1.48
+   },
+   "top1": {
+    "0.02": 0.07289999999999999,
+    "0.2": 0.07,
+    "0.436": 0.05925,
+    "0.7": 0.05725
+   },
+   "t_star": null,
+   "secs": 103.6,
+   "n_prompts": 12,
+   "rep_4": 0.406,
+   "distinct_1": 0.3695,
+   "longest_loop": 2.75
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "model": "EleutherAI/gpt-neo-2.7B",
+   "params": 2.718,
+   "scores": {
+    "IFEval": 25.9,
+    "BBH": 4.18,
+    "MATH Lvl 5": 1.06,
+    "GPQA": 2.13,
+    "MUSR": 3.52,
+    "MMLU-PRO": 1.81
+   },
+   "top1": {
+    "0.02": 0.6558999999999999,
+    "0.2": 0.6852,
+    "0.436": 0.6113500000000001,
+    "0.7": 0.29165
+   },
+   "t_star": 0.6105,
+   "secs": 138.2,
+   "n_prompts": 12,
+   "rep_4": 0.55,
+   "distinct_1": 0.2656,
+   "longest_loop": 3.58
+  },
+  "google/gemma-2-2b": {
+   "model": "google/gemma-2-2b",
+   "params": 2.614,
+   "scores": {
+    "IFEval": 19.93,
+    "BBH": 11.76,
+    "MATH Lvl 5": 2.87,
+    "GPQA": 1.68,
+    "MUSR": 11.43,
+    "MMLU-PRO": 13.11
+   },
+   "top1": {
+    "0.02": 0.2894,
+    "0.2": 0.27599999999999997,
+    "0.436": 0.25615,
+    "0.7": 0.22915
+   },
+   "t_star": null,
+   "secs": 1304.9,
+   "n_prompts": 12,
+   "rep_4": 0.388,
+   "distinct_1": 0.347,
+   "longest_loop": 3.33
+  },
+  "HuggingFaceTB/SmolLM-1.7B": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "params": 1.71,
+   "scores": {
+    "IFEval": 23.62,
+    "BBH": 4.41,
+    "MATH Lvl 5": 1.66,
+    "GPQA": 0.0,
+    "MUSR": 2.13,
+    "MMLU-PRO": 1.64
+   },
+   "top1": {
+    "0.02": 0.8278,
+    "0.2": 0.5677,
+    "0.436": 0.2126,
+    "0.7": 0.0869
+   },
+   "t_star": 0.3115,
+   "secs": 513.8,
+   "n_prompts": 12,
+   "rep_4": 0.2633,
+   "distinct_1": 0.4316,
+   "longest_loop": 2.17
+  },
+  "kyutai/helium-1-preview-2b": {
+   "model": "kyutai/helium-1-preview-2b",
+   "params": 2.173,
+   "scores": {
+    "IFEval": 26.14,
+    "BBH": 10.95,
+    "MATH Lvl 5": 1.36,
+    "GPQA": 3.8,
+    "MUSR": 4.04,
+    "MMLU-PRO": 9.69
+   },
+   "top1": {
+    "0.02": 0.6904,
+    "0.2": 0.5804,
+    "0.436": 0.49250000000000005,
+    "0.7": 0.22949999999999998
+   },
+   "t_star": 0.5289,
+   "secs": 630.5,
+   "n_prompts": 12,
+   "rep_4": 0.4167,
+   "distinct_1": 0.3379,
+   "longest_loop": 2.67
+  },
+  "meta-llama/Llama-3.2-3B": {
+   "model": "meta-llama/Llama-3.2-3B",
+   "params": 3.213,
+   "scores": {
+    "IFEval": 13.37,
+    "BBH": 14.23,
+    "MATH Lvl 5": 1.89,
+    "GPQA": 2.35,
+    "MUSR": 3.81,
+    "MMLU-PRO": 16.53
+   },
+   "top1": {
+    "0.02": 0.15335,
+    "0.2": 0.1296,
+    "0.436": 0.10355,
+    "0.7": 0.07455
+   },
+   "t_star": null,
+   "secs": 900.3,
+   "n_prompts": 12,
+   "rep_4": 0.3833,
+   "distinct_1": 0.3574,
+   "longest_loop": 2.5
+  },
+  "Qwen/Qwen1.5-1.8B": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "params": 1.837,
+   "scores": {
+    "IFEval": 21.54,
+    "BBH": 9.76,
+    "MATH Lvl 5": 3.17,
+    "GPQA": 7.38,
+    "MUSR": 3.96,
+    "MMLU-PRO": 9.8
+   },
+   "top1": {
+    "0.02": 0.52765,
+    "0.2": 0.5358,
+    "0.436": 0.20865,
+    "0.7": 0.0801
+   },
+   "t_star": 0.298,
+   "secs": 500.1,
+   "n_prompts": 12,
+   "rep_4": 0.2007,
+   "distinct_1": 0.4924,
+   "longest_loop": 1.42
+  },
+  "stabilityai/stablelm-3b-4e1t": {
+   "model": "stabilityai/stablelm-3b-4e1t",
+   "params": 2.795,
+   "scores": {
+    "IFEval": 22.03,
+    "BBH": 9.01,
+    "MATH Lvl 5": 1.06,
+    "GPQA": 0.0,
+    "MUSR": 4.42,
+    "MMLU-PRO": 7.43
+   },
+   "top1": {
+    "0.02": 0.41600000000000004,
+    "0.2": 0.3372,
+    "0.436": 0.17125,
+    "0.7": 0.08595
+   },
+   "t_star": 0.0565,
+   "secs": 833.1,
+   "n_prompts": 12,
+   "rep_4": 0.3529,
+   "distinct_1": 0.356,
+   "longest_loop": 1.92
+  },
+  "tiiuae/Falcon3-1B-Base": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "params": 1.669,
+   "scores": {
+    "IFEval": 24.28,
+    "BBH": 11.34,
+    "MATH Lvl 5": 3.32,
+    "GPQA": 3.91,
+    "MUSR": 9.71,
+    "MMLU-PRO": 6.76
+   },
+   "top1": {
+    "0.02": 0.27865,
+    "0.2": 0.33855,
+    "0.436": 0.2295,
+    "0.7": 0.1478
+   },
+   "t_star": null,
+   "secs": 437.3,
+   "n_prompts": 12,
+   "rep_4": 0.2833,
+   "distinct_1": 0.4082,
+   "longest_loop": 2.25
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "bigcode/starcoder2-3b",
+   "bigscience/bloom-3b",
+   "EleutherAI/gpt-neo-2.7B",
+   "google/gemma-2-2b",
+   "HuggingFaceTB/SmolLM-1.7B",
+   "kyutai/helium-1-preview-2b",
+   "meta-llama/Llama-3.2-3B",
+   "Qwen/Qwen1.5-1.8B",
+   "stabilityai/stablelm-3b-4e1t",
+   "tiiuae/Falcon3-1B-Base"
+  ],
+  "temps": [
+   0.02,
+   0.2,
+   0.436,
+   0.7
+  ],
+  "prompts": 12,
+  "new_tokens": 128,
+  "ngram": 4,
+  "thresh": 0.4,
+  "n_perm": 20000,
+  "protocol": "rep_stats/PROMPTS/NEW_TOKENS/NGRAM imported UNCHANGED from degeneration_vs_tstar, so rep_4 here is commensurable with its 26 models and with F86's anchor",
+  "primary": "is T* ALSO compliance-selective, by F117's exact statistic?",
+  "second": "does rep_4 correlate with IFEval and is it selective? If so F117's attractor result is mediated by degeneration and consolidates rather than extends",
+  "anchor": "rep_4 vs T* must reproduce F86's positive relation; a contradiction means the protocols drifted despite the import and nothing else is read",
+  "cohort": "gemma-2-2b and Llama-3.2-3B are gated and were evicted; a shrunken denominator is disclosed via gatecheck.cohort, never silently used",
+  "boundary": "n <= 10, base models, greedy decoding, benchmark scores downloaded not measured"
+ },
+ "analysis": {
+  "cohort": {
+   "complete": true,
+   "n_declared": 10,
+   "n_realised": 10,
+   "missing": [],
+   "extra": [],
+   "tolerated": [],
+   "reason": "cohort intact: all 10 declared models measured"
+  },
+  "selectivity": {
+   "T*": {
+    "rhos": {
+     "IFEval": 0.5429,
+     "BBH": -0.3143,
+     "GPQA": 0.2125,
+     "MUSR": -0.3714,
+     "MMLU-PRO": -0.3143,
+     "MATH Lvl 5": -0.2899
+    },
+    "selectivity": 0.1714,
+    "perm_p": 0.1136,
+    "n": 6
+   },
+   "rep_4": {
+    "rhos": {
+     "IFEval": 0.0667,
+     "BBH": -0.2848,
+     "GPQA": -0.2689,
+     "MUSR": -0.1879,
+     "MMLU-PRO": -0.1515,
+     "MATH Lvl 5": -0.6018
+    },
+    "selectivity": -0.5352,
+    "perm_p": 0.8841,
+    "n": 10
+   },
+   "distinct_1": {
+    "rhos": {
+     "IFEval": -0.2121,
+     "BBH": 0.0909,
+     "GPQA": 0.2376,
+     "MUSR": 0.1879,
+     "MMLU-PRO": -0.0667,
+     "MATH Lvl 5": 0.4802
+    },
+    "selectivity": -0.2681,
+    "perm_p": 0.5458,
+    "n": 10
+   },
+   "top1@0.7": {
+    "rhos": {
+     "IFEval": 0.7333,
+     "BBH": 0.0788,
+     "GPQA": 0.2064,
+     "MUSR": -0.0061,
+     "MMLU-PRO": -0.0061,
+     "MATH Lvl 5": 0.0547
+    },
+    "selectivity": 0.527,
+    "perm_p": 0.004,
+    "n": 10
+   }
+  },
+  "hits": [
+   "top1@0.7"
+  ],
+  "n": 10
+ },
+ "verdict": "COHORT: cohort intact: all 10 declared models measured ANCHOR: rho(T*, rep_4) = +0.771 over 6 models with a finite T*, against F86's +0.833 at family level. Same sign, so the imported protocol reproduces the anchor and the comparison is commensurable. PRIMARY: T* selectivity = 0.1714 at p = 0.1136 (n = 6), against the attractor share's +0.55 at p = 0.002 (F117, T=0.7). T* is NOT compliance-selective on this evidence. The selectivity F117 found does not extend to the project's externally-predictive reading, which bounds it considerably: the attractor SHARE is selective, the melting TEMPERATURE is not. SECOND: rep_4 vs IFEval = +0.067, selectivity -0.535 at p = 0.8841. Degeneration is not compliance-selective, so F117's attractor result is not mediated by it and the two are separate. BOUNDARY: n <= 10, base models, greedy decoding, and benchmark scores remain downloaded from the Open LLM Leaderboard rather than measured here. Selective readouts: ['top1@0.7'].",
+ "_analysis_provenance": {
+  "script": "band_greedy.py",
+  "sha256": "8094a4be9dd1df9aa8091cb5d8472c1831fa65c9854c055bec18e06a78cf23d6",
+  "imports": {
+   "experiments/band_greedy.py": "8094a4be9dd1df9aa8091cb5d8472c1831fa65c9854c055bec18e06a78cf23d6",
+   "experiments/degeneration_vs_tstar.py": "3449f27b1dbae0b67851152baf415c0d536e1c9de521e032138f72afa6067391",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
+   "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_note": "Closes the disjoint-model-set gap that blocked F117 from testing T*, rep_4 and distinct_1. Greedy protocol imported unchanged from degeneration_vs_tstar; T* interpolated from the band screen's existing four-temperature ladder."
+}
