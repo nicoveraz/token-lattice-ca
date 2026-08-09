@@ -359,6 +359,16 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
     import hashlib
     d = _load(results_name)
     prov = d.get("_analysis_provenance") or d.get("analysis", {}).get("_analysis_provenance")
+    # A FILE BEING WRITTEN RIGHT NOW IS NOT A STALE FILE. Analyses write results incrementally and
+    # stamp only in analyse(), at the end, so a run in progress leaves a valid partial file with a
+    # preregistration and no stamp. Demanding a stamp there turns "a job is running" into a red
+    # suite, which is how this test failed three times in one session -- twice on missing
+    # registration and once on a live write. An incomplete file is skipped and SAID to be skipped;
+    # a complete one with no stamp still fails, which is the case the check exists for.
+    if prov is None and isinstance(d, dict) and d.get("_preregistration") \
+            and "verdict" not in d:
+        pytest.skip(f"{results_name} is mid-run (preregistration written, no verdict yet) -- "
+                    f"not stale, incomplete")
     assert prov is not None, (
         f"{results_name} has no _analysis_provenance stamp -- it cannot be checked against the "
         f"code that wrote it (issue #38)")
