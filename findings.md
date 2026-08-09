@@ -3629,6 +3629,56 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F116 — cone SHAPE measures dynamics but adds no resolution: the 3-class ordering fails a fourth time
+The damage cone is the largest object this instrument produces and **no results file in the
+repository had ever stored one**. `ar_probe.block_damage` builds a `(sweeps, N)` field, four scalars
+are taken from it — growth rate, edge slope, final level, ignition — and the field is discarded.
+Given this session found six times that a scalar summary hid the structure that mattered (F94, F96,
+F99, F109, F110, F115), the field was worth looking at directly.
+
+**A new observable is worth nothing until it discriminates where the answer is known**, and the ECA
+rung supplies that with real stakes. F33/F34/F36 established that ignition probability separates
+ordered-from-rest decisively (p = 0.0000, d = 3.03) but **cannot** separate edge from chaotic
+(p = 0.47) — which is why the 3-class ordering was demoted. So there is a distinction the project's
+best statistic provably cannot make, on 19 rules whose classes are known independently.
+
+Four shape scalars, computed from the field rather than from a fit to it: **area** (∫∫ damage),
+**fill** (area ÷ the light cone the front velocity implies — a *solid* and a *hollow* cone have the
+same velocity and the same λ), **front_width** (10%→90% edge), **curvature** (of the total-damage
+growth curve).
+
+```
+ metric          ordered vs rest         edge vs chaotic
+ area            p = 0.0007  d = −2.64    p = 0.179  d = −1.05
+ fill            p = 0.0007  d = −2.64    p = 0.179  d = −1.05
+ front_width     p = 0.0142  d = −1.54    p = 0.679  d = −0.23
+ curvature       p = 0.0037  d = +1.82    p = 0.190  d = +1.09
+```
+
+**CONTROL PASSES: shape is measuring dynamics.** Ordered-vs-rest separates on 3 of 4 scalars. That
+had to be established first — a shape measure that missed the easy separation would be worthless
+whatever it did on the hard one.
+
+**PRIMARY FAILS: 0 of 4.** Cone shape does not separate edge from chaotic either. **The 3-class
+ordering fails a fourth time, now from a genuinely independent direction** — F33 tried λ, F34 and
+F36 tried ignition probability, and this tries the field's geometry. Shape inherits ignition's
+ceiling: it carries the ordered/disordered distinction and nothing finer.
+
+**What that bounds.** The cone's shape is a real dynamical observable but not a *finer* one, so it
+cannot be quoted on a language model as resolving anything ignition probability does not. That is
+worth knowing before it is used rather than after.
+
+**Two honest qualifications.** `area` and `fill` return identical p and d — on a fixed geometry they
+differ only by a constant denominator, so the four metrics are really three. And the edge-vs-chaotic
+effect sizes are **not small** (d ≈ −1.05, +1.09); with 5 edge rules against 7 chaotic this is
+**underpowered rather than null**. The correct statement is "not demonstrated at this n," matching
+F36's own diagnosis, not "demonstrated absent."
+
+**Boundary.** ECA is deterministic and binary; a language-model lattice is stochastic over a large
+vocabulary. A shape statistic validated here is licensed as a *dynamical* discriminator, not
+automatically as a model-facing one. The sub-alphabet route that would have varied vocabulary
+directly is closed by F109 — that lattice has no live damage regime to measure a cone in.
+
 ### F115 — F111 is a DEVELOPMENTAL statement, and its residual carries no model identity
 Two questions F111 raised and never tested, answered from committed data with no new runs.
 `canalization_predicts.json` holds settled diversity for 14 models and
