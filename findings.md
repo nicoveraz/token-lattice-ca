@@ -3710,7 +3710,7 @@ are 2-decimal, so ties were in fact present. `diversity_predicts_nothing` still 
 Fifteen results files were re-analysed and re-stamped against the new import closure. **The reconciliation is now done** — every number in all 96
 finding sections was checked against the pooled contents of `results/*.json`. No ranking-touched
 finding (F86, F111, F112, F114, F115, F117, F118) quotes a value absent from the results files. One
-genuine gap surfaced and is recorded at F86: its 8-family deflation table has no stored file behind
+genuine gap surfaced and is recorded at F92: its 8-family deflation table has no stored file behind
 its three static-predictor rows (`fix −0.119`, `cyc +0.119`, `modal +0.595`), which match neither the
 pre- nor the post-F119 values in `results/tstar_second_target.json`. Those numbers cannot be
 re-derived and could not be screened for this bug. The remaining flags are derived percentages, prose
@@ -3880,7 +3880,7 @@ established before the correlation was read.
  pythia-410m                        196   +0.1616    0.435
  mamba-130m                         203   +0.1808    0.649
  opt-350m                           205   +0.1727    0.646
- rwkv-4-169m                        207   +0.1697    0.674
+ rwkv-4-169m                        207   +0.1698    0.674
  gpt2-medium                        219   +0.1535    0.459
  bloom-560m                         298   +0.2005    0.594
 ```
