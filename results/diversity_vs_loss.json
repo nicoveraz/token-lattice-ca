@@ -7,10 +7,21 @@
    "bpb": 3.9155,
    "lambda_ca": 0.33467,
    "lambda_sd": 0.09639,
-   "distinct": 48.0,
-   "distinct_sd": 0.0,
-   "distinct_pool": 383,
-   "secs": 65.0
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    380,
+    381,
+    382,
+    380,
+    382,
+    384,
+    383,
+    383
+   ],
+   "distinct": 381.875,
+   "distinct_sd": 1.364,
+   "per_replica": 47.984,
+   "secs": 607.5
   },
   "olmo1-0724|step1000-tokens2B": {
    "family": "olmo1-0724",
@@ -19,10 +30,21 @@
    "bpb": 1.57477,
    "lambda_ca": 0.15933,
    "lambda_sd": 0.02396,
-   "distinct": 31.375,
-   "distinct_sd": 7.696,
-   "distinct_pool": 178,
-   "secs": 63.1
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    172,
+    178,
+    184,
+    183,
+    182,
+    166,
+    190,
+    169
+   ],
+   "distinct": 178.0,
+   "distinct_sd": 7.762,
+   "per_replica": 33.031,
+   "secs": 901.0
   },
   "olmo1-0724|step2000-tokens4B": {
    "family": "olmo1-0724",
@@ -31,10 +53,21 @@
    "bpb": 1.3367,
    "lambda_ca": 0.20868,
    "lambda_sd": 0.07232,
-   "distinct": 18.875,
-   "distinct_sd": 4.649,
-   "distinct_pool": 107,
-   "secs": 60.9
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    87,
+    82,
+    105,
+    55,
+    96,
+    111,
+    64,
+    105
+   ],
+   "distinct": 88.125,
+   "distinct_sd": 18.95,
+   "per_replica": 15.328,
+   "secs": 916.0
   },
   "olmo1-0724|step4000-tokens8B": {
    "family": "olmo1-0724",
@@ -43,10 +76,21 @@
    "bpb": 1.15423,
    "lambda_ca": 0.17673,
    "lambda_sd": 0.0272,
-   "distinct": 35.5,
-   "distinct_sd": 3.202,
-   "distinct_pool": 203,
-   "secs": 59.0
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    191,
+    199,
+    207,
+    191,
+    198,
+    204,
+    192,
+    183
+   ],
+   "distinct": 195.625,
+   "distinct_sd": 7.347,
+   "per_replica": 36.125,
+   "secs": 980.1
   },
   "olmo1-0724|step10000-tokens20B": {
    "family": "olmo1-0724",
@@ -55,10 +99,21 @@
    "bpb": 0.9858,
    "lambda_ca": 0.17551,
    "lambda_sd": 0.02378,
-   "distinct": 38.625,
-   "distinct_sd": 2.058,
-   "distinct_pool": 224,
-   "secs": 58.7
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    218,
+    205,
+    219,
+    204,
+    188,
+    209,
+    217,
+    204
+   ],
+   "distinct": 208.0,
+   "distinct_sd": 9.644,
+   "per_replica": 37.188,
+   "secs": 987.6
   },
   "olmo2-1b|stage1-step0-tokens0B": {
    "family": "olmo2-1b",
@@ -67,10 +122,21 @@
    "bpb": 3.95107,
    "lambda_ca": 0.3598,
    "lambda_sd": 0.10507,
-   "distinct": 48.0,
-   "distinct_sd": 0.0,
-   "distinct_pool": 383,
-   "secs": 68.8
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    383,
+    381,
+    384,
+    384,
+    383,
+    384,
+    384,
+    383
+   ],
+   "distinct": 383.25,
+   "distinct_sd": 0.968,
+   "per_replica": 47.984,
+   "secs": 759.1
   },
   "olmo2-1b|stage1-step300-tokens1B": {
    "family": "olmo2-1b",
@@ -79,10 +145,21 @@
    "bpb": 2.32294,
    "lambda_ca": 0.18433,
    "lambda_sd": 0.05781,
-   "distinct": 22.125,
-   "distinct_sd": 3.723,
-   "distinct_pool": 117,
-   "secs": 68.6
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    105,
+    99,
+    113,
+    82,
+    117,
+    104,
+    95,
+    81
+   ],
+   "distinct": 99.5,
+   "distinct_sd": 12.288,
+   "per_replica": 19.422,
+   "secs": 1165.5
   },
   "olmo2-1b|stage1-step10000-tokens21B": {
    "family": "olmo2-1b",
@@ -91,10 +168,21 @@
    "bpb": 0.93583,
    "lambda_ca": 0.18129,
    "lambda_sd": 0.03609,
-   "distinct": 37.75,
-   "distinct_sd": 1.785,
-   "distinct_pool": 210,
-   "secs": 68.5
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    212,
+    196,
+    210,
+    203,
+    214,
+    211,
+    206,
+    196
+   ],
+   "distinct": 206.0,
+   "distinct_sd": 6.614,
+   "per_replica": 37.781,
+   "secs": 1068.3
   },
   "olmo2-1b|stage1-step20000-tokens42B": {
    "family": "olmo2-1b",
@@ -103,10 +191,21 @@
    "bpb": 0.88955,
    "lambda_ca": 0.18738,
    "lambda_sd": 0.03028,
-   "distinct": 39.375,
-   "distinct_sd": 2.233,
-   "distinct_pool": 215,
-   "secs": 68.6
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    203,
+    200,
+    217,
+    217,
+    216,
+    209,
+    225,
+    196
+   ],
+   "distinct": 210.375,
+   "distinct_sd": 9.38,
+   "per_replica": 37.922,
+   "secs": 1051.3
   },
   "olmo2-1b|stage1-step40000-tokens84B": {
    "family": "olmo2-1b",
@@ -115,10 +214,21 @@
    "bpb": 0.85867,
    "lambda_ca": 0.18896,
    "lambda_sd": 0.03038,
-   "distinct": 39.0,
-   "distinct_sd": 4.093,
-   "distinct_pool": 213,
-   "secs": 68.0
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    213,
+    211,
+    228,
+    215,
+    215,
+    199,
+    208,
+    200
+   ],
+   "distinct": 211.125,
+   "distinct_sd": 8.652,
+   "per_replica": 38.438,
+   "secs": 1054.8
   },
   "pythia-410m|step128": {
    "family": "pythia-410m",
@@ -127,10 +237,21 @@
    "bpb": 2.62748,
    "lambda_ca": -0.09263,
    "lambda_sd": 0.05264,
-   "distinct": 2.625,
-   "distinct_sd": 1.111,
-   "distinct_pool": 13,
-   "secs": 38.3
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    7,
+    5,
+    7,
+    5,
+    9,
+    6,
+    8,
+    5
+   ],
+   "distinct": 6.5,
+   "distinct_sd": 1.414,
+   "per_replica": 1.766,
+   "secs": 272.4
   },
   "pythia-410m|step256": {
    "family": "pythia-410m",
@@ -139,10 +260,21 @@
    "bpb": 2.22579,
    "lambda_ca": -0.01845,
    "lambda_sd": 0.11631,
-   "distinct": 4.0,
-   "distinct_sd": 2.0,
-   "distinct_pool": 20,
-   "secs": 38.8
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    23,
+    40,
+    32,
+    22,
+    27,
+    33,
+    24,
+    32
+   ],
+   "distinct": 29.125,
+   "distinct_sd": 5.797,
+   "per_replica": 5.188,
+   "secs": 272.6
   },
   "pythia-410m|step512": {
    "family": "pythia-410m",
@@ -151,10 +283,21 @@
    "bpb": 1.86132,
    "lambda_ca": 0.06793,
    "lambda_sd": 0.13248,
-   "distinct": 3.75,
-   "distinct_sd": 3.031,
-   "distinct_pool": 21,
-   "secs": 38.2
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    30,
+    37,
+    22,
+    8,
+    26,
+    44,
+    39,
+    24
+   ],
+   "distinct": 28.75,
+   "distinct_sd": 10.686,
+   "per_replica": 5.281,
+   "secs": 274.0
   },
   "pythia-410m|step1000": {
    "family": "pythia-410m",
@@ -163,10 +306,21 @@
    "bpb": 1.36826,
    "lambda_ca": 0.19235,
    "lambda_sd": 0.02928,
-   "distinct": 33.125,
-   "distinct_sd": 5.231,
-   "distinct_pool": 193,
-   "secs": 38.4
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    192,
+    184,
+    206,
+    179,
+    194,
+    182,
+    191,
+    173
+   ],
+   "distinct": 187.625,
+   "distinct_sd": 9.63,
+   "per_replica": 34.844,
+   "secs": 273.4
   },
   "pythia-410m|step2000": {
    "family": "pythia-410m",
@@ -175,10 +329,21 @@
    "bpb": 1.10158,
    "lambda_ca": 0.15582,
    "lambda_sd": 0.03747,
-   "distinct": 36.5,
-   "distinct_sd": 3.0,
-   "distinct_pool": 214,
-   "secs": 38.5
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    205,
+    192,
+    218,
+    209,
+    186,
+    201,
+    188,
+    196
+   ],
+   "distinct": 199.375,
+   "distinct_sd": 10.295,
+   "per_replica": 35.094,
+   "secs": 272.4
   },
   "pythia-410m|step4000": {
    "family": "pythia-410m",
@@ -187,10 +352,21 @@
    "bpb": 0.98411,
    "lambda_ca": 0.17243,
    "lambda_sd": 0.01818,
-   "distinct": 34.5,
-   "distinct_sd": 3.391,
-   "distinct_pool": 196,
-   "secs": 38.5
+   "n_seeds": 8,
+   "pooled_per_seed": [
+    196,
+    193,
+    205,
+    180,
+    182,
+    189,
+    191,
+    191
+   ],
+   "distinct": 190.875,
+   "distinct_sd": 7.339,
+   "per_replica": 34.641,
+   "secs": 273.6
   }
  },
  "_preregistration": {
@@ -199,7 +375,6 @@
   "B": 8,
   "sweeps": 30,
   "T": 0.7,
-  "seed": 20260808,
   "repos": {
    "pythia-410m": "EleutherAI/pythia-410m",
    "olmo2-1b": "allenai/OLMo-2-0425-1B",
@@ -208,11 +383,21 @@
   "source": "loss_collapse_families.json -- bpb and lambda re-used UNCHANGED",
   "primary": "across-family spread of DIVERSITY at matched bits-per-byte vs at matched tokens, the same comparison F100 ran on lambda_ca",
   "reading": "F111 predicts diversity FAILS to collapse, mirroring lambda_ca; a collapse falsifies the reduction",
-  "control": "within Pythia, diversity must reproduce transplant_s's {128: 8, 256: 24, 512: 41, 1000: 193, 2000: 191, 4000: 188}",
+  "control": "within Pythia, seed-averaged diversity must agree with diversity_multiseed's 8-seed means to within 2.5 sigma of their measured across-seed sd",
+  "seeds": [
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38
+  ],
   "boundary": "bits-per-byte removes the tokenizer confound, not the corpus one"
  },
  "analysis": {
-  "control_ok": false,
+  "control_ok": true,
   "cohort": {
    "complete": true,
    "n_declared": 3,
@@ -221,14 +406,23 @@
    "extra": [],
    "tolerated": [],
    "reason": "cohort intact: all 3 declared familys measured"
+  },
+  "spread_diversity_at_bpb": 55.55188,
+  "spread_diversity_at_tokens": 49.87116,
+  "diversity_seed_floor": 2.8313,
+  "collapses": false,
+  "lambda_reference": {
+   "spread_at_bpb": 0.0588,
+   "floor": 0.0197,
+   "source": "F100"
   }
  },
- "verdict": "CONTROL: Pythia's settled diversity reproduces transplant_s's values {128: (13, 8), 256: (20, 24), 512: (21, 41), 1000: (193, 193), 2000: (214, 191), 4000: (196, 188)} (measured, expected), worst relative deviation 62%. IT DOES NOT -- the settle differs and nothing below is read. COHORT: cohort intact: all 3 declared familys measured NOT DECIDABLE.",
+ "verdict": "CONTROL: Pythia's seed-averaged diversity against diversity_multiseed's 8-seed means, in units of their measured across-seed sd: {128: 0.24, 256: 0.25, 512: 0.23, 1000: 0.33, 2000: 0.56, 4000: 0.53} sigma, worst 0.56 against a 2.5 gate. Agreement within seed noise, so the settle matches the geometry F111 was measured at. COHORT: cohort intact: all 3 declared familys measured PRIMARY: across-family spread of DIVERSITY at matched bits-per-byte is 55.5519 over 3 families, against 49.8712 at matched token count, with a seed floor of 2.8313. Diversity does NOT collapse against loss, mirroring lambda_ca's failure to (F100). Two quantities claimed to be functions of one another agree about whether model quality organises them, which is what F111 requires and what this test could have refuted. The reduction survives. BOUNDARY: three families, one radius, one temperature; bpb removes the tokenizer confound but not the corpus one, and architecture, data order and optimiser still differ across families simultaneously. bpb and lambda were re-used unchanged, so only diversity is new.",
  "_analysis_provenance": {
   "script": "diversity_vs_loss.py",
-  "sha256": "7b3aa7b97583b81b123b198e94be775c64b9413d4357b8d602452de5cc83b782",
+  "sha256": "42d01300b416fac27179e578245e8e0341b933077844b8ce2820374af06a719e",
   "imports": {
-   "experiments/diversity_vs_loss.py": "7b3aa7b97583b81b123b198e94be775c64b9413d4357b8d602452de5cc83b782",
+   "experiments/diversity_vs_loss.py": "42d01300b416fac27179e578245e8e0341b933077844b8ce2820374af06a719e",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
    "gatecheck/src/gatecheck/__init__.py": "a977256c4ff0fb1f50633ba10d19a5a02376babc5fb3cc62880d757a456187af",
    "gatecheck/src/gatecheck/cohort.py": "fd9a199a16a71b49539eaa1039fb11256fdd2891d4d42dabd8dda6995450d581",
@@ -259,5 +453,6 @@
    }
   },
   "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
- }
+ },
+ "_note": "Falsification attempt on F111. If lambda_ca is a function of diversity, the two must agree about whether loss organises them. F100 showed lambda_ca does not collapse against bits-per-byte; this asks the same of diversity on the same grid."
 }

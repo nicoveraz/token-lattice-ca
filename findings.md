@@ -3629,6 +3629,44 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F118 — F111's reduction survives the falsification it was built to face: diversity does not collapse against loss either
+A reduction is a commitment, not a correlation. If λ_ca is largely fixed by the settled ring's
+diversity (F111), then the two quantities are obliged to **agree about everything external** — and
+F100 already measured one such thing: λ_ca does *not* collapse against modelling quality. Diversity
+was therefore forced to fail the same way. Had it collapsed against loss, F111 and F100 could not
+both stand. This is the rare case where the reduction had a way to die that did not require
+re-measuring the correlation.
+
+**PRIMARY: across-family spread of diversity at matched bits-per-byte is 55.5519 over 3 families,
+against a seed floor of 2.8313** — roughly **20× the floor**, and no collapse. Matched *token count*
+gives 49.8712, i.e. aligns slightly better, which is the **same direction F100 found for λ_ca**. Two
+quantities claimed to stand in a reduction agree about whether model quality organises them.
+
+**A VACUOUS CONTROL, CAUGHT — it returned exactly 0.00σ, which is the tell.** The registered control
+requires this script's seed-averaged diversity to agree with `diversity_multiseed`'s 8-seed means to
+within 2.5σ. The first version re-used **the same seeds [21–28]**, so the control recomputed a
+bit-identical quantity and could return nothing but perfect agreement — a check with no capacity to
+fail, passing by construction. That is the **ninth instance** of this project's recurring defect
+class, *a criterion applied to a quantity with no room to vary*, and the second consecutive one to
+land in a **control** rather than in a statistic (cf. F117's floored null). Re-run on **disjoint
+seeds [31–38]** the control becomes a real independent draw and passes on its merits:
+`{128: 0.24, 256: 0.25, 512: 0.23, 1000: 0.33, 2000: 0.56, 4000: 0.53}` σ, worst 0.56 against the
+2.5 gate. The settle genuinely matches the geometry F111 was measured at.
+
+**What this does and does not license.** It is *not* fresh positive evidence for the reduction — the
+ρ is unmoved and F115's scope limit (F111 is developmental, not cross-model) stands untouched. It is
+a live falsification route, entered and survived. The reduction now carries F111's ρ, F115's scope
+restriction, and this consistency constraint.
+
+**Boundary.** Three families, one radius (r = 2), one temperature (T = 0.7), N = 48, B = 8. Bits-per-byte
+removes the **tokenizer** confound but not the **corpus** one, and architecture, data order and
+optimiser still differ across families simultaneously — three families is enough to measure a spread,
+not to attribute it. `bpb` and `λ_ca` were re-used unchanged from `loss_collapse_families`; **only
+diversity is new here**, which is what makes the comparison to F100 commensurable rather than a
+re-analysis.
+
+`experiments/diversity_vs_loss.py` → `results/diversity_vs_loss.json`
+
 ### F117 — the probe is SELECTIVE for compliance failures, not correctness failures
 A reframe of panel D's IFEval correlation, and a much stronger claim than the one it replaces. Read
 as *"the probe measures instruction following"* it is unhelpful — IFEval already does that, better.

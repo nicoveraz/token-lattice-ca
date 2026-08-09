@@ -114,7 +114,9 @@ structurally unbuildable rather than merely noisy.
 **Modelling quality and perturbation dynamics are dissociable.** At equal bits-per-byte on a shared
 Pile slice, Pythia sits in its dip (bpb 2.226, λ_ca −0.019) while OLMo-2 is already at plateau
 (bpb 2.323, λ_ca +0.184). Across-family spread at matched quality is 0.0588 against a 0.0197 floor,
-and matched *token count* aligns better. Loss does not determine this.
+and matched *token count* aligns better. Loss does not determine this. **The same holds for the
+quantity λ_ca reduces to:** settled diversity at matched bits-per-byte spreads 55.55 across three
+families against a seed floor of 2.83 — it does not collapse against loss either (F118).
 
 **Sensitivity is a function of input regime, not a scalar.** On uniform-random windows the response
 is saturated and flat (0.833–0.876) across all of training; on the states the ring actually settles
@@ -139,6 +141,13 @@ using temperature at fixed weights — `T0.9/step256` and `T0.5/step143000` diff
 magnitude in training yet sit at diversity 21.6 vs 26.8 and λ +0.187 vs +0.183. The developmental
 transition is **the era when the ring is too homogeneous for damage to spread**: at step128 the
 settled ring holds ~7.5 distinct tokens, so CRN twins share windows and heal deterministically.
+
+**The reduction has now passed a coherence test it could have failed (F118).** A reduction of λ_ca to
+diversity commits both quantities to behaving the same way against anything external. λ_ca is
+dissociated from loss (§3); if diversity had instead tracked loss, the reduction would be
+inconsistent with that. It does not — diversity's across-family spread at matched bits-per-byte is
+55.55 against a 2.83 seed floor, mirroring λ_ca's own failure to collapse. This is not new evidence
+*for* the reduction so much as a way it could have died and didn't.
 
 **"Largely fixed by" is deliberate and "is a function of" would be wrong.** At ρ = 0.771 roughly
 **40% of λ_ca's variance is not diversity**, so this is a statistical reduction, not an identity —
@@ -230,7 +239,7 @@ model will degenerate; how that ring *dissolves under temperature* tells you a g
 where the diversity curve crosses a threshold as temperature varies, and that predicts — diversity
 at any point on the curve does not. The same shape recurs throughout: `s` is uninformative as a mean
 and informative as a function of regime (§3); the damage *cone* is kinematic while its *growth rate*
-is not. Wherever this instrument has found something that transfers, the quantity has been a
+is not — and the cone's shape turns out to be barely measurable at this ring size anyway (§7a). Wherever this instrument has found something that transfers, the quantity has been a
 derivative, not a level.
 
 ### The overall read
@@ -247,7 +256,30 @@ knowing, and it is not what anyone hoped for.
 
 ---
 
-## 7. A standing caveat on the low-diversity regime
+## 7. Two standing caveats
+
+### 7a. The ring's geometry is only readable for about two sweeps
+
+The lattice is a ring of N = 48 and the AR window is strictly left, so damage propagates rightward
+only. It does not propagate at r sites per sweep. Updating is **asynchronous in random order**, so
+within a single sweep a site damaged early can pass damage to its right neighbour, which is then
+itself visited, and so on — the reach inside one sweep is bounded by the visit order, not by r.
+Measured directly from stored cones, damage is exactly one-sided for sweeps 1–2 (asymmetry 1.0000),
+0.9953 at sweep 3, and 0.6847 by sweep 8, where the front has met itself around the ring. It then
+**overshoots**: 0.1473 by sweep 14 — left-*dominant* — before mixing back to 0.4955. That
+non-monotone signature is what distinguishes the two explanations. Genuine leftward propagation
+would decay monotonically to 0.5 and stay there; only a wrapping front transiently dominates the far
+half-plane and then relaxes. The causal window is applied correctly.
+
+**This does not touch λ_ca.** The estimator fits `cone.sum(axis=1)` — a *count* of damaged sites —
+and wraparound relocates damage rather than creating or destroying it; the `frac_of_max` guard ends
+the fit before the count saturates. What it does constrain is every **spatial** readout: cone area,
+fill, front width, asymmetry. Those are trustworthy only in the pre-collision window, which at this
+geometry is roughly two sweeps, and must be derived from the observed collision time rather than
+assumed from r. F21 retracted a velocity plateau to this same artifact; the first version of the
+geometry rung above assumed the synchronous bound `N/(2r) = 12` sweeps and was wrong by 6×.
+
+### 7b. A standing caveat on the low-diversity regime
 
 Settled diversity is **seed-unstable where it is smallest**. Across eight seeds at the same
 geometry: step128 gives [5, 17, 7, 9, 6, 2, 6, 8] (mean 7.5, sd 4.1), step256 gives

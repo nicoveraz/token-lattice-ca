@@ -83,8 +83,17 @@ def geometry(field, idx):
     c = int(np.mean(idx))
     off = (np.arange(n) - c + n // 2) % n - n // 2        # signed offset from injection, on the ring
     half = BLOCK // 2 + 1
-    right = float(field[:, off > half].sum())
-    left = float(field[:, off < -half].sum())
+    # WRAPAROUND. A left window means site i influences only i+1 and i+2, so the front advances
+    # rightward at r sites per sweep and reaches r*sweeps = 44 sites on a ring of N = 48. Past
+    # t = N/(2r) the cone wraps and RIGHTWARD mass reappears at negative offsets, making a
+    # one-sided process look symmetric. That is F21's finite-size wraparound -- the same artifact
+    # that retracted a velocity plateau in this project -- and the first version of this rung
+    # walked into it, reporting asymmetry 0.39-0.70 and calling the harness broken.
+    # The asymmetry is therefore measured only over sweeps the cone cannot have wrapped in.
+    t_wrap = int(n // (2 * R))
+    win = field[:t_wrap]
+    right = float(win[:, off > half].sum())
+    left = float(win[:, off < -half].sum())
     area = float(field.sum())
     tmarg = field.sum(axis=1)
     # the light cone the front velocity implies: |offset| <= r * t
@@ -100,6 +109,7 @@ def geometry(field, idx):
     else:
         width = float("nan")
     return dict(area=round(area, 4), right_mass=round(right, 4), left_mass=round(left, 4),
+                t_wrap=int(t_wrap),
                 asymmetry=round(right / max(right + left, 1e-12), 5),
                 fill=round(fill, 5), front_width=round(width, 3),
                 t_marginal=[round(float(v), 4) for v in tmarg],
@@ -111,8 +121,9 @@ def main():
     res["_preregistration"] = dict(
         model=MODEL, steps=STEPS, seeds=SEEDS, r=R, T=T, N=N, B=B, sweeps=SWEEPS, block=BLOCK,
         rung="the AR window is strictly left, so damage can only spread RIGHTWARD: asymmetry must "
-             "be 1.000 up to the injected block's width. A failure stops the script -- it would "
-             "mean the causal window is not being applied, which is a harness bug not a finding",
+             "be 1.000 up to the injected block's width, measured ONLY over the first N/(2r) "
+             "sweeps -- past that the cone wraps the ring and rightward mass reappears at negative "
+             "offsets (F21's finite-size wraparound). A failure stops the script",
         primary="do area, fill and front_width vary across checkpoints where lambda does not?",
         deflation="if every shape scalar is a monotone function of lambda, the cone carries nothing "
                   "beyond it and this closes; rho against lambda is reported for each",

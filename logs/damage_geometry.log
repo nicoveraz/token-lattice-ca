@@ -1,0 +1,34 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<00:49,  5.84it/s]Loading weights:  29%|██▉       | 84/292 [00:00<00:00, 361.45it/s]Loading weights:  45%|████▌     | 132/292 [00:00<00:00, 378.90it/s]Loading weights:  62%|██████▏   | 180/292 [00:00<00:00, 396.55it/s]Loading weights:  78%|███████▊  | 228/292 [00:00<00:00, 408.72it/s]Loading weights:  93%|█████████▎| 271/292 [00:00<00:00, 287.90it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 304.15it/s]
+  step128|s21      area=   14.4 asym=0.6982 fill=0.018 width=  nan lam=-0.1260 (50s)
+  step128|s22      area=   39.6 asym=0.5056 fill=0.049 width=  nan lam=-0.0564 (50s)
+  step128|s23      area=   27.6 asym=0.3899 fill=0.034 width=  0.0 lam=-0.1705 (50s)
+  step128|s24      area=   48.2 asym=0.5345 fill=0.060 width= 16.0 lam=-0.0208 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:03,  2.36it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 305.31it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 302.71it/s]Loading weights:  84%|████████▎ | 244/292 [00:01<00:00, 262.71it/s]Loading weights:  97%|█████████▋| 284/292 [00:01<00:00, 238.20it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 235.47it/s]
+  step256|s21      area=   29.2 asym=0.5488 fill=0.036 width=  0.0 lam=-0.2003 (50s)
+  step256|s22      area=   91.4 asym=0.4969 fill=0.114 width= 11.0 lam=+0.0416 (50s)
+  step256|s23      area=   68.7 asym=0.4491 fill=0.085 width=  0.0 lam=-0.0026 (50s)
+  step256|s24      area=  103.4 asym=0.5508 fill=0.129 width=  0.0 lam=+0.0402 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:58,  2.45it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 315.74it/s]Loading weights:  66%|██████▋   | 194/292 [00:00<00:00, 308.94it/s]Loading weights:  85%|████████▍ | 247/292 [00:00<00:00, 292.10it/s]Loading weights:  99%|█████████▉| 290/292 [00:01<00:00, 300.75it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 270.20it/s]
+  step512|s21      area=   33.9 asym=0.4828 fill=0.042 width= 13.0 lam=-0.1632 (50s)
+  step512|s22      area=  119.6 asym=0.5808 fill=0.149 width=  0.0 lam=+0.0746 (50s)
+  step512|s23      area=  134.0 asym=0.4679 fill=0.167 width=  0.0 lam=+0.0586 (50s)
+  step512|s24      area=  159.2 asym=0.5180 fill=0.198 width=  0.0 lam=+0.1628 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:01,  2.39it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 307.75it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 346.89it/s]Loading weights:  85%|████████▌ | 249/292 [00:00<00:00, 312.72it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 269.08it/s]
+  step1000|s21     area=  477.4 asym=0.4863 fill=0.594 width=  0.0 lam=+0.1824 (50s)
+  step1000|s22     area=  545.3 asym=0.4775 fill=0.678 width=  0.0 lam=+0.2050 (50s)
+  step1000|s23     area=  531.9 asym=0.4792 fill=0.662 width=  0.0 lam=+0.1873 (50s)
+  step1000|s24     area=  501.5 asym=0.4967 fill=0.624 width=  0.0 lam=+0.2184 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:03,  2.37it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 307.08it/s]Loading weights:  66%|██████▌   | 193/292 [00:00<00:00, 327.41it/s]Loading weights:  85%|████████▍ | 248/292 [00:00<00:00, 301.68it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 275.10it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 258.30it/s]
+  step2000|s21     area=  309.5 asym=0.4866 fill=0.385 width=  0.0 lam=+0.1074 (50s)
+  step2000|s22     area=  449.1 asym=0.4588 fill=0.559 width=  0.0 lam=+0.1740 (50s)
+  step2000|s23     area=  285.2 asym=0.4796 fill=0.355 width=  0.0 lam=+0.1109 (50s)
+  step2000|s24     area=  414.1 asym=0.5011 fill=0.515 width=  0.0 lam=+0.1837 (50s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<01:56,  2.49it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 313.47it/s]Loading weights:  65%|██████▌   | 190/292 [00:00<00:00, 368.38it/s]Loading weights:  85%|████████▌ | 249/292 [00:00<00:00, 280.34it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 254.98it/s]
+  step4000|s21     area=  430.4 asym=0.4900 fill=0.535 width=  0.0 lam=+0.1844 (50s)
+  step4000|s22     area=  467.5 asym=0.4747 fill=0.581 width=  0.0 lam=+0.1817 (50s)
+  step4000|s23     area=  371.5 asym=0.4639 fill=0.462 width=  0.0 lam=+0.1476 (50s)
+  step4000|s24     area=  403.6 asym=0.4880 fill=0.502 width=  0.0 lam=+0.1994 (50s)
+
+  -> RUNG (the causal window, checked rather than assumed): damage asymmetry about the injection is 0.3899-0.6982 across 24 runs. NOT one-sided. A left-window update cannot propagate damage leftward, so this is a harness bug and nothing below is read.
+
+wrote results/damage_geometry.json
