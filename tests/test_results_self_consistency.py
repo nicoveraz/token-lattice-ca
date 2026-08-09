@@ -230,7 +230,7 @@ _INSTRUMENTATION = {
     "gatecheck/src/gatecheck/leverage.py",
 }
 
-_STALENESS_PAIRS = [
+_EXPLICIT_PAIRS = [
     ("dev_transition_shape.json", "dev_transition_shape.py"),
     ("dev_transition_n192.json", "dev_transition_n192.py"),
     ("dev_transition_scale.json", "dev_transition_scale.py"),
@@ -306,6 +306,40 @@ _STALENESS_PAIRS = [
     ("novelty_structure.json", "novelty_structure.py"),
     ("basin_dependence.json", "basin_dependence.py"),
 ]
+
+
+def _discover_staleness_pairs():
+    """Every stamped results file, paired with the script ITS OWN STAMP names.
+
+    Registration used to be a manual step: add a results file, remember to add a line here, or
+    `test_every_stamped_results_file_is_covered_by_the_staleness_check` goes red. It went red twice
+    in one session for exactly that, both times after the commit rather than before it. The guard
+    was working; the process around it was not.
+
+    The fix is that the list should not be hand-maintained at all. `provenance.stamp` already
+    records `script`, so the pairing is derivable from the artifact itself and a new analysis is
+    covered the moment it writes a stamp. `_EXPLICIT_PAIRS` is kept as a floor for legacy files
+    whose stamp predates the `script` field, so nothing already covered can silently drop out.
+    """
+    import glob
+    found = []
+    for f in sorted(glob.glob(str(RESULTS / "*.json"))):
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        pr = d.get("_analysis_provenance")
+        if pr is None and isinstance(d.get("analysis"), dict):
+            pr = d["analysis"].get("_analysis_provenance")
+        if isinstance(pr, dict) and pr.get("script"):
+            found.append((pathlib.Path(f).name, pr["script"]))
+    return found
+
+
+# The union, so discovery ADDS coverage and can never remove it.
+_STALENESS_PAIRS = sorted(set(_EXPLICIT_PAIRS) | set(_discover_staleness_pairs()))
 
 
 @pytest.mark.parametrize("results_name,script_name", _STALENESS_PAIRS,
@@ -549,13 +583,15 @@ def test_import_closure_coverage_does_not_regress():
 
 
 def test_every_stamped_results_file_is_covered_by_the_staleness_check():
-    """A file that records provenance but is not checked against it gains nothing.
+    """Coverage is now automatic; this guards the mechanism that makes it so.
 
-    The stamp is only useful if something recomputes it. This asserts the parametrize list above
-    keeps pace with the scripts that stamp, so adding provenance to a new analysis without adding
-    it to the guard fails here rather than passing silently.
+    The pair list unions a hand-written floor with pairs discovered from each results file's own
+    stamp, so a new analysis is covered as soon as it writes one. What can still go wrong is that
+    discovery silently finds nothing -- a renamed key, a changed stamp shape -- and the whole
+    parametrized drift check quietly reduces to the legacy floor. So this asserts discovery is
+    live, that it covers every stamped file, and that every script a stamp names actually exists.
     """
-    import glob, os
+    import glob
     stamped = set()
     for f in glob.glob(str(RESULTS / "*.json")):
         try:
@@ -568,10 +604,19 @@ def test_every_stamped_results_file_is_covered_by_the_staleness_check():
         if pr is None and isinstance(d.get("analysis"), dict):
             pr = d["analysis"].get("_analysis_provenance")
         if pr:
-            stamped.add(os.path.basename(f))
-    covered = {results_name for results_name, _script in _STALENESS_PAIRS}
+            stamped.add(pathlib.Path(f).name)
+    discovered = _discover_staleness_pairs()
+    assert discovered, (
+        "discovery found no stamped results files -- the stamp shape changed and the drift check "
+        "has silently collapsed to the legacy floor")
+    covered = {r for r, _ in _STALENESS_PAIRS}
     assert stamped <= covered, (
-        f"stamped but unchecked: {sorted(stamped - covered)}. Add them to _STALENESS_PAIRS.")
+        f"stamped but uncovered: {sorted(stamped - covered)}. Discovery should make this "
+        f"impossible; if it fires, the file records provenance without naming its script.")
+    missing = sorted({sc for _, sc in discovered if not (ROOT / "experiments" / sc).exists()})
+    assert not missing, (
+        f"a results file's stamp names a script that does not exist: {missing}. Either the script "
+        f"was renamed without re-running its analysis, or the stamp is wrong.")
 
 
 # ------------------------------------------- issue #52: our own prints must not leak abs paths
