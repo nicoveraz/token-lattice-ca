@@ -4,14 +4,13 @@ WHY THIS EXISTS. `test_arxiv_paper_numbers.py` enforces this for `paper_arxiv/ma
 `findings.md` had no such guard, and that is where the numbers live longest: the paper quotes a
 selected few, the findings log holds all of them and is the source everything else is written from.
 
-WHAT IT CAUGHT ON THE FIRST RUN. F92's 8-family deflation table has no stored file behind three of
-its four rows -- `fix -0.119`, `cyc +0.119`, `modal +0.595` appear in NO results file and match
-neither the pre- nor post-F119 values in `tstar_second_target.json`. They came from a run whose
-output was never persisted, so they cannot be re-derived and could not be screened for F119's tie
-bug. Those three literals nevertheless PASS the scan, because `0.119` and `0.595` occur incidentally
-in unrelated results files -- a pooled matcher cannot tell a real trace from a collision. The written
-note at F92 is therefore the only record of the gap, and the last test here asserts it stays. It also
-caught one genuinely stale number (F115's rwkv lambda, 0.1697 against a re-run value of 0.1698).
+WHAT IT CAUGHT ON THE FIRST RUN. F92's 8-family deflation table had no stored file behind three of
+its four rows. Note that those literals PASS the pooled scan, because `0.119` and `0.595` occur
+incidentally in unrelated results files -- a union of every file cannot tell a real trace from a
+collision, which is this scan's main blind spot. The gap was found by reading, not by the scan; it is
+now closed by `experiments/static_vs_greedy.py`, and the last test here checks F92's values against
+THAT file specifically rather than against the pool. The scan did catch one genuinely stale number on
+its own (F115's rwkv lambda, 0.1697 against a re-run value of 0.1698).
 
 DIRECTION. Like the paper test, this runs the converse of a manifest: it asserts that every decimal
 literal in the prose is present in some results file, which is the property that makes an INVENTED
@@ -133,16 +132,23 @@ def test_every_quoted_number_traces_to_a_results_file(name):
     )
 
 
-def test_f92_provenance_gap_is_still_documented():
-    """F92's deflation table passes only incidentally -- its literals collide with other files'.
+def test_f92_deflation_table_is_backed_by_its_own_file():
+    """F92's table now has a file, and this asserts the numbers still come from it.
 
-    The three static-predictor rows are backed by NO results file (see F119). They slip through the
-    scan because `0.119` and `0.595` happen to occur in unrelated results, which is precisely the
-    kind of accident a pooled matcher cannot distinguish from a real trace. The written note is
-    therefore the only thing recording the gap, so this asserts it stays put.
+    The pooled matcher could not have caught the original gap: `0.119` and `0.595` occur incidentally
+    in unrelated results, and a union of every file cannot distinguish a real trace from a collision.
+    So this checks the specific file, not the pool -- the values must be present in
+    `static_vs_greedy.json` itself, which is regenerated from stored rows under a rung that pins its
+    row selection to F92's.
     """
-    f92 = next(v for k, v in SECTIONS.items() if k.startswith("F92"))
-    assert "PROVENANCE GAP" in f92, (
-        "F92's unbacked deflation table is recorded only by that note. If it is removed, the table "
-        "must be regenerated from a script that writes a results file instead."
-    )
+    path = ROOT / "results" / "static_vs_greedy.json"
+    assert path.exists(), "F92's deflation table lost its results file; re-run static_vs_greedy.py"
+    own = json.load(open(path))
+    prim = own["analysis"]["primary"]
+    assert own["analysis"]["rung_passes"], "static_vs_greedy's rung failed; its rows are not F92's"
+    for key, expected in (("fix", -0.119), ("cyc", 0.119), ("modal", 0.595), ("tstar", 0.833)):
+        got = prim[key]["rho"]
+        assert abs(got - expected) < 0.001, (
+            f"F92 quotes {key} = {expected:+.3f} but static_vs_greedy.json now holds {got:+.4f}. "
+            f"Either the finding or the regeneration is wrong -- they must not drift apart."
+        )

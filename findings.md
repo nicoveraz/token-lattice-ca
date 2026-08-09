@@ -3512,17 +3512,20 @@ the deflationary question Gate 1 asked of attribution can be asked of the **anch
   (on all 15 families the static predictors are weaker still: -0.06, +0.11, +0.20, all p > 0.45)
 ```
 
-> **PROVENANCE GAP, found by the F119 reconciliation and not yet closed.** Only the bottom row of
-> this table traces to a stored file: `T* vs rep_4 = 0.833` is
-> `results/tstar_second_target.json -> analysis.tstar_vs_greedy_same_rows`. The three static-predictor
-> rows (`fix -0.119`, `cyc +0.119`, `modal +0.595`) and the 15-family parenthetical appear in **no
-> results file in the repository**, and they match neither the pre- nor the post-F119 values in
-> `tstar_second_target.json` (which holds fix +0.204, cyc -0.204, modal +0.431 on its own row set).
-> They were computed in a run whose output was never persisted. Two consequences: the numbers cannot
-> be re-derived, and they could not be screened for the F119 tie bug. **The deflation's conclusion is
-> unaffected** -- it rests on T*'s +0.833 against static predictors that are weak by any of the
-> available numbers -- but this table should be regenerated from a script that writes a results file
-> before it is quoted anywhere outside `findings.md`.
+> **PROVENANCE GAP, FOUND BY F119 AND NOW CLOSED.** This table had no results file behind it: only
+> `T* vs rep_4 = 0.833` traced (`tstar_second_target.json -> analysis.tstar_vs_greedy_same_rows`),
+> while the three static rows and the 15-family parenthetical came from a run whose output was never
+> persisted. `experiments/static_vs_greedy.py` regenerates all of it from the stored per-family rows
+> and writes `results/static_vs_greedy.json`, gated on a rung that pins its row selection to F92's:
+> `rho(tstar, greedy)` must reproduce the stored 0.833, and it returns 0.8333.
+>
+> **Every quoted value reproduces**: fix −0.1190, cyc +0.1190, modal +0.5952, T\* +0.8333, and the
+> 15-family row −0.059 / +0.100 / +0.204 against the quoted −0.06 / +0.11 / +0.20. The permutation p
+> for T\* is now **exact at 0.0154** rather than the quoted 0.017. They also reproduce under F119's
+> corrected tie-aware ranking, so the tie bug never touched them. `top1 +0.4286` is added — it
+> belongs in the comparison and was omitted from the original table.
+>
+> The numbers were right all along; what was missing was the ability to defend them.
 
 
 **The static argmax map carries no information about degeneration; the CA-derived T\* does.** That
@@ -3762,10 +3765,10 @@ are 2-decimal, so ties were in fact present. `diversity_predicts_nothing` still 
 Fifteen results files were re-analysed and re-stamped against the new import closure. **The reconciliation is now done** — every number in all 96
 finding sections was checked against the pooled contents of `results/*.json`. No ranking-touched
 finding (F86, F111, F112, F114, F115, F117, F118) quotes a value absent from the results files. One
-genuine gap surfaced and is recorded at F92: its 8-family deflation table has no stored file behind
-its three static-predictor rows (`fix −0.119`, `cyc +0.119`, `modal +0.595`), which match neither the
-pre- nor the post-F119 values in `results/tstar_second_target.json`. Those numbers cannot be
-re-derived and could not be screened for this bug. The remaining flags are derived percentages, prose
+genuine gap surfaced, at F92 — its 8-family deflation table had no stored file behind three of its
+four rows — and it is **now closed**: `experiments/static_vs_greedy.py` regenerates the table from
+the stored per-family rows, gated on a rung reproducing the one value that did trace. Every quoted
+number reproduces, under corrected ranking, so this bug never touched them. The remaining flags are derived percentages, prose
 figures and arXiv identifiers rather than measurements.
 
 `experiments/ranking.py`, `tests/test_ranking.py` → refreshed `results/{residual_identity,

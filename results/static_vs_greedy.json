@@ -1,0 +1,206 @@
+{
+ "_preregistration": {
+  "source": "results/tstar_second_target.json",
+  "target": "greedy",
+  "predictors": [
+   "fix",
+   "cyc",
+   "modal",
+   "top1",
+   "tstar"
+  ],
+  "rung": "rho(tstar,greedy) on the finite-T* rows must reproduce the stored tstar_vs_greedy_same_rows = 0.833 +/- 0.002; a mismatch means these are not F92's rows and stops the read",
+  "primary": "the four static argmax-map predictors vs greedy degeneration on those same rows",
+  "note": "no new measurement -- every input is already in the source file. This exists because F92's table had no results file behind it (F119)."
+ },
+ "n_primary": 8,
+ "n_secondary": 15,
+ "families": [
+  "bigcode/starcoder2",
+  "eleutherai-pile",
+  "hftb",
+  "kyutai/helium",
+  "liquidai/lfm2",
+  "llm-jp/llm-jp",
+  "qwen",
+  "stability"
+ ],
+ "primary": {
+  "fix": {
+   "rho": -0.119,
+   "perm_p": 0.793,
+   "null": "exact",
+   "n": 8,
+   "span": 0.9844
+  },
+  "cyc": {
+   "rho": 0.119,
+   "perm_p": 0.793,
+   "null": "exact",
+   "n": 8,
+   "span": 0.9479
+  },
+  "modal": {
+   "rho": 0.5952,
+   "perm_p": 0.1323,
+   "null": "exact",
+   "n": 8,
+   "span": 0.7291
+  },
+  "top1": {
+   "rho": 0.4286,
+   "perm_p": 0.2992,
+   "null": "exact",
+   "n": 8,
+   "span": 0.4501
+  },
+  "tstar": {
+   "rho": 0.8333,
+   "perm_p": 0.0154,
+   "null": "exact",
+   "n": 8,
+   "span": 0.554
+  }
+ },
+ "secondary": {
+  "fix": {
+   "rho": -0.059,
+   "perm_p": 0.8338,
+   "null": "sampled(100000)",
+   "n": 15,
+   "span": 1.0
+  },
+  "cyc": {
+   "rho": 0.1001,
+   "perm_p": 0.7204,
+   "null": "sampled(100000)",
+   "n": 15,
+   "span": 0.9844
+  },
+  "modal": {
+   "rho": 0.2036,
+   "perm_p": 0.4655,
+   "null": "sampled(100000)",
+   "n": 15,
+   "span": 0.8854
+  },
+  "top1": {
+   "rho": -0.0357,
+   "perm_p": 0.9014,
+   "null": "sampled(100000)",
+   "n": 15,
+   "span": 0.7549
+  },
+  "tstar": {
+   "rho": 0.8333,
+   "perm_p": 0.0154,
+   "null": "exact",
+   "n": 8,
+   "span": 0.554
+  }
+ },
+ "analysis": {
+  "rung_passes": true,
+  "tstar_rho": 0.8333,
+  "primary": {
+   "fix": {
+    "rho": -0.119,
+    "perm_p": 0.793,
+    "null": "exact",
+    "n": 8,
+    "span": 0.9844
+   },
+   "cyc": {
+    "rho": 0.119,
+    "perm_p": 0.793,
+    "null": "exact",
+    "n": 8,
+    "span": 0.9479
+   },
+   "modal": {
+    "rho": 0.5952,
+    "perm_p": 0.1323,
+    "null": "exact",
+    "n": 8,
+    "span": 0.7291
+   },
+   "top1": {
+    "rho": 0.4286,
+    "perm_p": 0.2992,
+    "null": "exact",
+    "n": 8,
+    "span": 0.4501
+   },
+   "tstar": {
+    "rho": 0.8333,
+    "perm_p": 0.0154,
+    "null": "exact",
+    "n": 8,
+    "span": 0.554
+   }
+  },
+  "secondary": {
+   "fix": {
+    "rho": -0.059,
+    "perm_p": 0.8338,
+    "null": "sampled(100000)",
+    "n": 15,
+    "span": 1.0
+   },
+   "cyc": {
+    "rho": 0.1001,
+    "perm_p": 0.7204,
+    "null": "sampled(100000)",
+    "n": 15,
+    "span": 0.9844
+   },
+   "modal": {
+    "rho": 0.2036,
+    "perm_p": 0.4655,
+    "null": "sampled(100000)",
+    "n": 15,
+    "span": 0.8854
+   },
+   "top1": {
+    "rho": -0.0357,
+    "perm_p": 0.9014,
+    "null": "sampled(100000)",
+    "n": 15,
+    "span": 0.7549
+   },
+   "tstar": {
+    "rho": 0.8333,
+    "perm_p": 0.0154,
+    "null": "exact",
+    "n": 8,
+    "span": 0.554
+   }
+  },
+  "strongest_static": 0.5952
+ },
+ "verdict": "RUNG (pins these rows to F92's): rho(tstar, greedy) on the 8 finite-T* families is 0.8333, against the stored tstar_vs_greedy_same_rows = 0.833. Reproduced, so the row selection and ranking match the run F92 reported and the static rows below are the same comparison. PRIMARY: on the same 8 rows, fix -0.119 (p=0.793), cyc +0.119 (p=0.793), modal +0.595 (p=0.132), top1 +0.429 (p=0.299), against T* +0.833 (p=0.015). Every static predictor is weaker than T*, the strongest reaching |rho| = 0.595. F92's deflation is re-derived and now has a results file. SECONDARY (all 15 families, T* censored for 7): fix -0.059, cyc +0.100, modal +0.204, top1 -0.036. BOUNDARY: n = 8 families, and this is a RE-DERIVATION of a recorded result from stored rows -- no new measurement. Where these numbers differ from F92's quoted table, F92's are the ones that were never backed by a file.",
+ "_analysis_provenance": {
+  "script": "static_vs_greedy.py",
+  "sha256": "561176d3684938d58bbc40bcd80c431b16023ecfc8e749637b8d610882c4c93b",
+  "imports": {
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "experiments/static_vs_greedy.py": "561176d3684938d58bbc40bcd80c431b16023ecfc8e749637b8d610882c4c93b"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
