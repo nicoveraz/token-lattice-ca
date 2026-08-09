@@ -46,17 +46,14 @@ def main():
            if isinstance(v.get("t_star"), (int, float))]
     a = ax[0, 0]
     a.scatter([x[1] for x in fin], [x[2] for x in fin], s=70, color=ACC, zorder=3, edgecolor="w")
-    z = np.polyfit([x[1] for x in fin], [x[2] for x in fin], 1)
-    xs = np.linspace(min(x[1] for x in fin), max(x[1] for x in fin), 20)
-    a.plot(xs, np.polyval(z, xs), color=ACC, lw=1.5, alpha=.4, zorder=2)
     a.set_xlabel("T*  (temperature at which the attractor melts)")
     a.set_ylabel("rep_4  (greedy-decoding repetition)")
     a.set_title("A · T* predicts degeneration — mechanism unknown", fontsize=11, fontweight="bold",
                 loc="left", color=INK)
     caps = []
-    caps.append((a, f"$\\rho$ = +0.547 (n={len(fin)}); +0.833 at family level.\n"
-                    "RULED OUT: not heat capacity (F97, disjoint ranges); not diversity (F112, "
-                    "|$\\rho$|≤0.11)."))
+    caps.append((a, f"$\\rho$ = +0.547 (n={len(fin)}); +0.833 at family level.  No fit line — $\\rho$ is a RANK "
+                    f"statistic.\nRULED OUT: not heat capacity (F97, disjoint ranges); not diversity "
+                    f"(F112, |$\\rho$|≤0.11)."))
 
     # ---- B: slope at lambda's zero crossing vs rep_4
     lt = L("lambda_temperature_crossing.json")["analysis"]["rows"]
@@ -66,15 +63,13 @@ def main():
     for m, v in lt.items():
         b.annotate(m.split("/")[-1], (v["slope"], v["rep_4"]), fontsize=7, color=MUTED,
                    xytext=(4, 4), textcoords="offset points")
-    zb = np.polyfit(sl, r4, 1)
-    b.plot(np.linspace(min(sl), max(sl), 20), np.polyval(zb, np.linspace(min(sl), max(sl), 20)),
-           color=WARN, lw=1.5, alpha=.4, zorder=2)
     b.set_xlabel("slope of $\\lambda_{ca}(T)$ at its zero crossing")
     b.set_ylabel("rep_4")
     b.set_title("B · the crossing's STEEPNESS beats T* — and has no theory",
                 fontsize=11, fontweight="bold", loc="left", color=INK)
-    caps.append((b, "$\\rho$ = +0.771 (p = 0.103, n = 6) vs T*'s +0.547 on these models. Exploratory.\n"
-                    "8 of 14 never cross at all — every crosser is Pythia/GPT-Neo."))
+    caps.append((b, "$\\rho$ = +0.771 (p = 0.103, n = 6) vs T*'s +0.547. Exploratory; no fit — n=6 supports "
+                    "no functional form,\nand pythia-31m alone sets the right-hand end.  "
+                    "8 of 14 never cross — every crosser is Pythia/GPT-Neo."))
 
     # ---- C: lambda vs settled diversity, residual highlighted
     dv = L("diversity_multiseed.json")["analysis"]["rows"]
@@ -85,22 +80,44 @@ def main():
     xe = np.array([dv[str(s)]["sd"] for s in steps])
     y = np.array([meas[s][0] for s in steps])
     c = ax[1, 0]
-    lx = np.log(x)
-    fit = np.polyval(np.polyfit(lx, y, 1), lx)
+    # NO STRAIGHT-LINE FIT. Every statistic quoted in this figure is a SPEARMAN rank correlation,
+    # which assumes monotonicity and nothing more. An OLS line asserts a linear model that was
+    # never fitted and never tested -- and here it would be visibly wrong, because lambda saturates
+    # at both ends (a dip floor near -0.09, a plateau near +0.17) so the relation is sigmoid, not
+    # log-linear. The residual is therefore shown against the best MONOTONE fit (pool-adjacent-
+    # violators), which is the shape Spearman actually presumes.
+    o = np.argsort(x)
+    xs_, ys_, ws_ = x[o], y[o].astype(float).copy(), np.ones(len(y))
+    lvl = list(ys_); wts = list(ws_)                      # PAVA, isotonic increasing
+    i = 0
+    while i < len(lvl) - 1:
+        if lvl[i] > lvl[i + 1]:
+            tot = wts[i] + wts[i + 1]
+            m = (lvl[i] * wts[i] + lvl[i + 1] * wts[i + 1]) / tot
+            lvl[i:i + 2] = [m]; wts[i:i + 2] = [tot]
+            i = max(i - 1, 0)
+        else:
+            i += 1
+    iso, k = [], 0
+    for v, w in zip(lvl, wts):
+        iso += [v] * int(round(w)); k += int(round(w))
+    iso = np.array(iso[:len(xs_)])
     c.errorbar(x, y, xerr=xe, fmt="o", ms=8, color=ACC, ecolor=MUTED, elinewidth=1,
                capsize=3, zorder=3, mec="w")
-    o = np.argsort(x)
-    c.plot(x[o], fit[o], color=ACC, lw=1.5, alpha=.4, zorder=2)
-    for xi, yi, fi in zip(x, y, fit):
-        c.plot([xi, xi], [yi, fi], color=WARN, lw=2, alpha=.8, zorder=4)
+    c.step(xs_, iso, where="mid", color=ACC, lw=1.5, alpha=.45, zorder=2)
+    for xi, yi, fi in zip(xs_, ys_, iso):
+        if abs(yi - fi) > 1e-9:
+            c.plot([xi, xi], [yi, fi], color=WARN, lw=2, alpha=.8, zorder=4)
     c.axhline(0, color=MUTED, lw=.8, ls=":")
     c.set_xscale("log")
     c.set_xlabel("settled-ring diversity (distinct tokens, 8 seeds)")
     c.set_ylabel("$\\lambda_{ca}$")
-    c.set_title("C · ~40% of $\\lambda_{ca}$ is NOT diversity — the residual is unsearched",
+    c.set_title("C · $\\lambda_{ca}$ tracks diversity, but not perfectly — and n=6 hides how much",
                 fontsize=11, fontweight="bold", loc="left", color=INK)
-    caps.append((c, "$\\rho$ = +0.771, CI [+0.714, +0.829].  Orange bars = residual.\n"
-                    "Dip/plateau split clears its seed floor 60×; within-dip ordering does not."))
+    caps.append((c, "$\\rho$ = +0.771, CI [+0.714, +0.829], so $1-\\rho^2\\approx$ 40% of rank variance is unshared.\n"
+                    "Step = best MONOTONE fit (what $\\rho$ presumes); orange = its residual — but at n=6 it "
+                    "nearly interpolates,\nso the bars are a LOWER BOUND on the unexplained part, not a "
+                    "picture of it. No line: $\\lambda$ saturates at both ends."))
 
     # ---- D: attractor share vs the benchmark panel
     be = L("band_screen.json")["analysis"]["benchmark_exploratory"]
