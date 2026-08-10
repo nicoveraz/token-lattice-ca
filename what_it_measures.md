@@ -65,6 +65,17 @@ step 16** and **−0.3388 by step 64**, crossing back up between steps 256 and 5
 in two non-Pythia families** measured with the identical estimator — OLMo-2-0425-1B (init +0.3598,
 trained +0.1813…+0.1890) and OLMo-1B-0724 (init +0.3347, trained +0.1593…+0.2087).
 
+**That landmark is DEVELOPMENTAL, and does not transfer across models.** λ_ca's cross-model spread
+over ten models spanning six families and four architecture classes is **0.051**, against a range of
+0.122 → 0.804 produced by varying the construction alone (F128/F129) — model identity is about 7% of
+what the apparatus moves. The spread does exceed seed noise at r = 2, but the ORDERING it implies has
+seed stability 0.030 and reshuffles entirely between temperatures, so there is no usable ranking
+inside it. Most tellingly, **λ_ca is blind to the architectural difference this instrument
+established most strongly**: RWKV, which F64 shows has no attractor at all, sits mid-pack at +0.135.
+None of this touches the curve above — that compares checkpoints of ONE model at ONE construction,
+over a range ~7× larger — but λ_ca is a within-model developmental quantity and not a
+model-comparison one.
+
 **A temperature that predicts a failure mode outside the instrument.** T\*, where the ring's attractor
 melts, tracks greedy-decoding degeneration at family level: ρ = 0.833, n = 8, permutation p = 0.0137.
 It has survived two deflation attempts — the static argmax map does *not* predict degeneration where
@@ -104,8 +115,19 @@ to 15% without relocating it**.
 token support and the far window position's contribution collapses to 0.061 against the near
 position's 0.801 — branching falls below 1 and damage walks without growing. On the full vocabulary
 both positions carry real influence (0.579 vs 0.820; at r=3 the third-back token still contributes
-0.535 against 0.704). Restriction does not dim the signal uniformly; it removes the long-range part
-specifically.
+0.535 against 0.704).
+
+**That was originally read as "restriction removes the long-range part specifically", and F123
+refutes it.** All three alphabets it was measured on — binary, colours, digits — are hand-picked
+*semantically coherent* sets, and the SELECTION RULE turns out to control the effect: at fixed size
+and fixed r, `s_far` moves by up to 0.588 across selection modes, and every semantic alphabet sits
+below branching 1 while every random one sits at or above it. Conditional mass (ρ = +0.120 over three
+orders of magnitude) and settled diversity (+0.205) are both eliminated as the cause. What does
+explain it is the state the ring settles INTO: at matched mass, `s_far` rises 1.6–3.5× when the same
+alphabet is measured on a uniform draw instead of on its own settled ring. The lattice is subcritical
+because of its attractor, not because its alphabet is small — and a wider window buys the loss back,
+with 9 of 9 arms reaching criticality by r ≤ 6 (F125), which makes F94's `s = 1/r` a usable design
+rule for any reduced-vocabulary construction.
 
 **In activation space the analogous exponent is architectural.** White-box λ_top is flat across
 training at ≈1/L — set by depth, not by learning. That is why the cross-level bridge was
@@ -232,7 +254,9 @@ Diversity at a fixed temperature correlates with greedy degeneration at |ρ| ≤
 temperatures on 26 models, every p > 0.59, while T\* on the same target and the same models reaches
 +0.547. So λ_ca inherits diversity's lack of external predictive power. It replicates, it is
 well-measured, its error bars are licensed, it now has an explanation — and it still buys no
-decision.
+decision. F129 narrows it further: λ_ca cannot rank models at all, and misses the one architectural
+contrast (RWKV) the instrument is best at. Its remaining domain is a single model's trajectory
+through training.
 
 **T\* is promising but conditional.** ρ = 0.833 at n = 8 families is the only externally-predictive
 result and it has survived two deflation attempts, but it is greedy-scoped and the attempt at a
@@ -279,7 +303,7 @@ knowing, and it is not what anyone hoped for.
 
 ---
 
-## 7. Two standing caveats
+## 7. Three standing caveats
 
 ### 7a. The ring's geometry is only readable for about two sweeps
 
@@ -302,7 +326,30 @@ geometry is roughly two sweeps, and must be derived from the observed collision 
 assumed from r. F21 retracted a velocity plateau to this same artifact; the first version of the
 geometry rung above assumed the synchronous bound `N/(2r) = 12` sweeps and was wrong by 6×.
 
-### 7b. A standing caveat on the low-diversity regime
+### 7b. The construction is a variable, and it moves things more than the model does
+
+Every number this instrument produces is measured at a chosen radius, temperature, lattice size and
+vocabulary, and those choices are not neutral. Varying only them moves λ_ca from **0.122 to 0.804**
+and moves the sub-alphabet branching ratio from 0.887 to 1.593 — while the *model* moves λ_ca by
+about 0.051 across ten models spanning six families (F128/F129). On the sub-alphabet family, no
+readout tested ranks models the same way across constructions: branching −0.050, s_near +0.000,
+s_far −0.037, distinct −0.028, top1 +0.111, with a PASSING seed-stability rung and live lattices
+(F126).
+
+**This is F56–F66's lesson arriving from a second direction.** There, a precise exponent-bearing
+phase transition turned out to belong to the probe rather than the model. Here, the quantities
+themselves turn out to be set mostly by the apparatus. The two failures are independent, and they
+point the same way: *varying the subject is not a substitute for varying the apparatus*, and this
+project has now had to learn that twice.
+
+**What it does NOT license.** Every result that has transferred out of this instrument —
+F35's error persistence, F63/F64's corpus and architecture discrimination, F86's T\*,
+F117/F120/F121's compliance selectivity — is built on the ATTRACTOR SHARE or on generation
+behaviour, not on λ_ca. Whether the share survives construction variation where λ_ca did not is
+measured separately; until that is in, the honest statement is that the failure is established for
+λ_ca and for the sub-alphabet family, and is untested elsewhere.
+
+### 7c. A standing caveat on the low-diversity regime
 
 Settled diversity is **seed-unstable where it is smallest**. Across eight seeds at the same
 geometry: step128 gives [5, 17, 7, 9, 6, 2, 6, 8] (mean 7.5, sd 4.1), step256 gives
