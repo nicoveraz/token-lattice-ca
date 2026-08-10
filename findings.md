@@ -3645,6 +3645,125 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F127 — nothing predicts which sub-alphabet lattices freeze: three more candidates eliminated
+Several constructions in F126 collapse to a single token — `binary|freq_matched` settles at
+top1 = 1.000, distinct = 1, branching 0.002. A frozen ring is not a weak measurement but **no**
+measurement: there is no perturbation to apply inside a one-token support, which is why the
+estimator returns nan there rather than a number. Predicting that in advance would decide which
+constructions are worth running at all.
+
+**Why this was a cleaner test than F124.** The predictors are **static** properties of the
+conditional, measured on uniform windows with no CA run; the outcome is **dynamical**, what the ring
+settles into after 12 sweeps. Nothing links them by construction, unlike F124's `H_gap`, so a high
+correlation would have been a real prediction and a low one cannot be explained away.
+
+```
+  rho(p_dom,  top1) = +0.091     dominant-token mass of the conditional
+  rho(h_cond, top1) = -0.107     entropy -- the quantity entropy is actually shaped for
+  rho(k,      top1) = -0.312     alphabet size, the obvious competitor
+```
+
+**PRIMARY: all three fail.** `p_dom` sits far below the registered 0.6 and does not even beat
+alphabet size. The cause of freezing is open, and the running tally of eliminated candidates across
+F123/F124/F127 is now six: conditional mass, settled diversity, flatness, dominant-token mass,
+entropy, and alphabet size — with only far-token information gain (F124) surviving, and that one
+partly structural.
+
+**BOUNDARY, and it is a real limit on the registered question.** Only **2 of 54** constructions froze
+completely, so "freezing" as a binary outcome had almost no room to vary. The correlations above are
+computed against continuous `top1` (median 0.624), which does vary — so the test is really "does
+anything predict how concentrated the settled ring becomes", and the stronger binary question is
+unanswerable at this sample. That is the project's recurring defect class showing up as a limit on
+what a passing test could have meant, rather than as a false positive.
+
+`experiments/degeneracy_predictor.py` → `results/degeneracy_predictor.json`
+
+### F126 — NO readout ranks models construction-independently: on sub-alphabets the instrument measures lattices
+F123 showed the construction has enormous dynamic range — branching moves 0.887 → 1.593 with the
+model, weights and temperature held fixed. That forces a question the project had never asked: every
+comparison in it fixes one construction and varies the model, so is any readout measuring the
+**model**? A readout whose model-ranking survives changing the lattice is; one whose ranking
+scrambles is not.
+
+**RUNG, and it is what makes the null readable.** At a *fixed* construction the three models must
+rank reproducibly across two seeds, or the question is undefined. All five readouts clear it:
+branching 0.750, s_near 0.906, s_far 0.813, distinct 0.707, top1 0.972 against a 0.6 threshold. The
+orderings are stable — they are simply **different for every construction**.
+
+```
+  mean pairwise agreement between the model-rankings 18 constructions produce
+    branching  -0.050        s_near  +0.000        s_far  -0.037
+    distinct   -0.028        top1    +0.111
+```
+
+**PRIMARY: every readout is at zero, and all five land in the registered CONSTRUCTION-DOMINATED
+band.** Change the alphabet, the selection rule, or the radius and the models re-rank essentially at
+random with respect to how they ranked before.
+
+**THE SCOPE CHECK IS WHAT MAKES THIS SERIOUS RATHER THAN DISMISSIBLE.** These are not dead lattices:
+median branching **1.046**, **66 of 106** cells supercritical, only **2 of 108** frozen, top1 median
+0.624. So the scrambled rankings cannot be blamed on noise between near-frozen systems. Live
+lattices, seed-stable orderings, complete disagreement across constructions.
+
+**WHAT IT DOES NOT SHOW, stated plainly.** This is the **sub-alphabet** family at r ∈ {2,3}, and the
+project's headline results — the λ_ca training curve, F63/F64's corpus discrimination, T\*/F86 — all
+run on the **full vocabulary**. The sub-alphabet construction is independently known to be a bad one
+(F109: no live regime anywhere on its grid; F123: its far-position behaviour is set by the selection
+rule). So this establishes that the instrument **has** this failure mode where it has been checked,
+not that the main line suffers it. The full-vocabulary version of this exact design is the test that
+speaks to the paper.
+
+**BOUNDARY.** Three models, so each ranking has 3 points and one swap moves ρ a long way — this
+identifies a scrambled readout far more confidently than it could certify an invariant one. One
+temperature, one lattice size, 18 constructions (16 for the branching-family readouts after frozen
+cells are dropped rather than summed).
+
+`experiments/construction_invariance.py` → `results/construction_invariance.json`
+
+### F125 — a WIDER window does buy back what a smaller vocabulary costs: 9 of 9 arms reach criticality
+F94 puts damage criticality at s = 1/r and F110 showed the branching ratio is literally
+`Σ_pos s_pos`, so "can more tokens pay for a smaller alphabet" has an exact target rather than being
+a metaphor. Run on all three of F123's selection modes, because laddering only the semantic
+alphabets would have aimed at the wrong target.
+
+**RUNG: at r = 2 the per-position values reproduce `selection_mode`'s stored s_far/s_near to within
+0.0988** against a tolerance of 0.18 — and that tolerance was **measured, not guessed**, after a
+first version failed at 0.1275 against a reasoned-out 0.10. Estimator seed noise is sd 0.0195 per
+position (3 arms × 8 seeds); the *settle* seed adds sd 0.013–0.077 on branching, which is F123's own
+finding showing up as run-to-run variation.
+
+```
+  branching by radius (settled pool, 3 settle seeds, crossing needs mean - 2sd >= 1)
+    binary|semantic      0.878  1.353  1.321  1.421      crosses at r=3
+    binary|freq_matched  1.124  1.264  1.193  1.636                 r=2
+    colours|semantic     0.900  1.040  1.115  1.017                 r=4
+    colours|freq_matched 1.057  1.663  1.670  1.757                 r=3
+    digits|semantic      0.979  1.561  1.752  2.434                 r=3
+    digits|uniform       1.030  1.383  1.795  2.724                 r=3
+```
+
+**PRIMARY: 9 of 9 arms reach the criticality threshold within r ≤ 6**, most at r = 3. Widening the
+window does buy back what restriction costs, so the mean-field trade is usable as a design rule —
+which is what the closed-model route needs, since a top-k API *is* a reduced vocabulary.
+
+**SECONDARY: influence decays only ~10% per position** (ratios 0.86–0.96 on eight of nine arms), so
+the sum keeps accumulating rather than converging below 1. That is the slow-decay case F110 measured
+on the full vocabulary surviving restriction, and it is the reason the crossing exists at all.
+`binary|uniform` is the exception at 4.45, with a nan at r = 4 and 0.120 at r = 6 — that arm freezes
+and is erratic, which the estimator's frozen-ring guard surfaces rather than averages away.
+
+**THE MULTI-SEED RULE EARNED ITS COST IMMEDIATELY.** `colours|semantic` reads 1.040 at r = 3 — above
+1 — but does not clear the 2σ band, so it is recorded as crossing at r = 4. A single settle per cell
+would have called r = 3, and an earlier single-seed version of this run did exactly that. Seed
+variation manufacturing a crossing is the failure this design exists to prevent.
+
+**BOUNDARY.** One model (`pythia-410m` step4000), one temperature, N = 48, 64 windows per position.
+This measures the CONSTRUCTION, not a model property. At large r the lattice drifts toward ordinary
+conditional generation and stops deserving the name CA; where that line sits is a judgement this run
+cannot make.
+
+`experiments/window_ladder.py` → `results/window_ladder.json`
+
 ### F124 — what controls the far token's influence is its INFORMATION GAIN, not mass, diversity or flatness
 F123 left the mechanism open after striking off two candidates. This tests two more and leaves one
 standing.

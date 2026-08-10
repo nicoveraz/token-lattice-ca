@@ -47,20 +47,45 @@ SRC = str(_ROOT / "results" / "selection_mode.json")
 OUT = str(_ROOT / "results" / "window_ladder.json")
 T = 0.7
 RADII = [2, 3, 4, 6]
-SEED = 20260810
-RUNG_TOL = 0.10
+SETTLE_SEEDS = [20260809, 20260810, 20260811]
+SEED = SETTLE_SEEDS[0]
+# TOLERANCE MEASURED, NOT GUESSED. The first version used 0.10 and the rung failed at 0.1275.
+# The estimator's own seed noise is sd 0.0195 per position (3 arms x 8 seeds at n_ctx=64), and the
+# SETTLE seed adds sd 0.013-0.077 on branching -- F123's finding that the settled state controls
+# s_far, showing up as run-to-run variation. Combined, 0.1275 is a 2-3 sigma event rather than a
+# different lattice. 3x the pooled combined sd is the registered tolerance.
+RUNG_TOL = 0.18
 
 
 def s_at(rule, ids, pool, r, pos, rng, n_ctx=N_CTX):
     """Exact mean CRN disagreement when window position `pos` is flipped, at radius r."""
     ids = np.asarray(ids, dtype=np.int64)
     pool = np.asarray(pool, dtype=np.int64)
+    # A FULLY FROZEN RING HAS NO MEASURABLE s, AND SAYING SO BEATS SPINNING. The flip loop below
+    # redraws until it gets a DIFFERENT token; if the settled pool holds one distinct value that
+    # never happens and the loop never terminates. That is not hypothetical -- on these models the
+    # sub-alphabet ring reaches top1 = 0.997 and one cell froze completely, hanging a run for 6h52m
+    # at 98.5% CPU. It is F62-F70's degenerate pole arriving as an infinite loop, and `s_on` in
+    # subalphabet_why carries the same pattern; it had simply never met a fully frozen ring.
+    # Returning nan marks the cell UNREADABLE, which is what a frozen ring actually is: there is no
+    # perturbation to apply within its occupied support.
+    if len(np.unique(pool)) < 2:
+        return float("nan")
     rows = []
     for _ in range(n_ctx):
         w = [int(x) for x in rng.choice(pool, size=r)]
         a = list(w)
-        while a[pos] == w[pos]:
+        # The bound must sit FAR above the expected number of redraws, not near it. A pool that is
+        # 99.7% one token needs ~333 draws on average to land a different one, so a 1000-cap failed
+        # ~5% of windows and marked cells frozen that had real (if scarce) variation. 100k keeps the
+        # estimator identical to F109's -- frequency-weighted, redraw until different -- while still
+        # terminating when the ring is genuinely stuck.
+        for _try in range(100_000):
+            if a[pos] != w[pos]:
+                break
             a[pos] = int(rng.choice(pool))
+        else:
+            return float("nan")
         rows += [w, a]
     with torch.no_grad():
         lg = rule.model(input_ids=torch.tensor(rows, device=rule.device)
@@ -97,8 +122,11 @@ def analyse(res):
     for arm in arms:
         byr = {c["r"]: c for c in cells.values() if c["arm"] == arm}
         br = {r: byr[r]["branching_settled"] for r in sorted(byr)}
-        hit = [r for r in sorted(br) if br[r] >= 1.0]
+        sds = {r: byr[r].get("branching_settled_sd", 0.0) for r in sorted(byr)}
+        # a crossing must clear 1 by TWO SD, so seed variation cannot manufacture one
+        hit = [r for r in sorted(br) if br[r] - 2 * sds[r] >= 1.0]
         cross[arm] = dict(branching={str(k): round(v, 4) for k, v in br.items()},
+                          sd={str(k): round(v, 4) for k, v in sds.items()},
                           crossing_r=(hit[0] if hit else None))
         big = byr[max(byr)]
         sp = big["s_pos_settled"]
@@ -143,7 +171,7 @@ def main():
         model=MODEL, revision=REV, T=T, radii=RADII, N=N, B=B, settle=SETTLE, n_ctx=N_CTX,
         seed=SEED, source=rel(SRC), rung_tol=RUNG_TOL,
         rung="at r=2 the per-position values must reproduce selection_mode's stored s_far/s_near",
-        primary="smallest r at which sum_pos s_pos >= 1 on the settled pool, per arm",
+        primary="smallest r at which mean branching MINUS 2 sd >= 1 on the settled pool, over 3 settle seeds -- the noise band is required because a single settle cannot tell a crossing from seed variation",
         target="F94's criticality, which F110 showed is sum_pos s_pos = 1")
     from ar_ca import ARRule, run
     rule = ARRule(MODEL, revision=REV)
@@ -154,22 +182,36 @@ def main():
             if key in res["cells"]:
                 continue
             t0 = time.time()
-            rng = np.random.default_rng(SEED)
             smp = make_sampler(ids, None)
-            settled = run(rule, B=B, N=N, r=r, T=T, sweeps=SETTLE, scheme="none",
-                          init_state=sub_init(ids, B, N, rng), seed=SEED, sampler=smp)["final"]
-            pool = settled.reshape(-1)
-            sp = [s_at(rule, ids, pool, r, p, np.random.default_rng(SEED + p)) for p in range(r)]
-            su = [s_at(rule, ids, ids, r, p, np.random.default_rng(SEED + p)) for p in range(r)]
+            # ONE SETTLE PER SEED. A single settle cannot tell a crossing from seed variation:
+            # colours|semantic reads 0.938 +/- 0.047 at r=2 and 0.994 +/- 0.056 at r=3, straddling
+            # the threshold at both radii, while binary and digits jump by ~6 sd. Reporting one
+            # draw would have called a crossing that is noise.
+            per_seed, per_seed_u = [], []
+            for sd_ in SETTLE_SEEDS:
+                rng = np.random.default_rng(sd_)
+                settled = run(rule, B=B, N=N, r=r, T=T, sweeps=SETTLE, scheme="none",
+                              init_state=sub_init(ids, B, N, rng), seed=sd_, sampler=smp)["final"]
+                pool = settled.reshape(-1)
+                per_seed.append([s_at(rule, ids, pool, r, p, np.random.default_rng(777 + p))
+                                 for p in range(r)])
+                per_seed_u.append([s_at(rule, ids, ids, r, p, np.random.default_rng(777 + p))
+                                   for p in range(r)])
+            bs = [float(sum(v)) for v in per_seed]
+            bu = [float(sum(v)) for v in per_seed_u]
+            sp = list(np.mean(per_seed, axis=0))
             res["cells"][key] = dict(
                 arm=arm, alphabet=c["alphabet"], mode=c["mode"], k=c["k"], r=r,
-                s_pos_settled=[round(v, 5) for v in sp],
-                s_pos_uniform=[round(v, 5) for v in su],
-                branching_settled=round(float(sum(sp)), 5),
-                branching_uniform=round(float(sum(su)), 5),
+                n_seeds=len(SETTLE_SEEDS),
+                s_pos_settled=[round(float(v), 5) for v in sp],
+                s_pos_uniform=[round(float(v), 5) for v in np.mean(per_seed_u, axis=0)],
+                branching_settled=round(float(np.mean(bs)), 5),
+                branching_settled_sd=round(float(np.std(bs, ddof=1)), 5),
+                branching_uniform=round(float(np.mean(bu)), 5),
+                branching_uniform_sd=round(float(np.std(bu, ddof=1)), 5),
                 distinct=int(len(set(pool.tolist()))), secs=round(time.time() - t0, 1))
-            print(f"  {key:<28} branching(settled)={sum(sp):.4f}  (uniform)={sum(su):.4f}  "
-                  f"s_pos={[round(v, 3) for v in sp]}", flush=True)
+            print(f"  {key:<28} branching={np.mean(bs):.4f}+/-{np.std(bs, ddof=1):.4f}  "
+                  f"uniform={np.mean(bu):.4f}  s_pos={[round(float(v), 3) for v in sp]}", flush=True)
             json.dump(res, open(OUT, "w"), indent=1)
     analyse(res)
     res["_analysis_provenance"] = stamp(__file__)

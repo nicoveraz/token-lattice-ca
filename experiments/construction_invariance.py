@@ -68,6 +68,11 @@ def cell(rule, ids, r, seed):
     pool = settled.reshape(-1)
     sp = [s_at(rule, ids, pool, r, p, np.random.default_rng(seed + p)) for p in range(r)]
     vals, cnt = np.unique(pool, return_counts=True)
+    # a frozen ring returns nan from s_at; carry it rather than summing it to a number
+    if not all(np.isfinite(v) for v in sp):
+        return dict(branching=float("nan"), s_far=float("nan"), s_near=float("nan"),
+                    distinct=float(len(vals)), top1=float(cnt.max() / cnt.sum()),
+                    s_pos=None, frozen=True)
     return dict(branching=float(sum(sp)), s_far=float(sp[0]), s_near=float(sp[-1]),
                 distinct=float(len(vals)), top1=float(cnt.max() / cnt.sum()),
                 s_pos=[round(v, 5) for v in sp])
@@ -94,7 +99,8 @@ def analyse(res):
     for ro in READOUTS:
         a, b = rankings(cells, SEEDS[0], ro), rankings(cells, SEEDS[1], ro)
         shared = sorted(set(a) & set(b))
-        agree = [spearman(a[c], b[c]) for c in shared]
+        agree = [spearman(a[c], b[c]) for c in shared
+                 if all(np.isfinite(x) for x in a[c] + b[c])]
         agree = [v for v in agree if np.isfinite(v)]
         rung[ro] = round(float(np.mean(agree)), 4) if agree else None
     ok = [ro for ro, v in rung.items() if v is not None and v >= RUNG_MIN]
@@ -112,10 +118,12 @@ def analyse(res):
     for ro in ok:
         r0 = rankings(cells, SEEDS[0], ro)
         cons = sorted(r0)
-        ps = [spearman(r0[x], r0[y]) for x, y in itertools.combinations(cons, 2)]
+        live = [c for c in cons if all(np.isfinite(x) for x in r0[c])]
+        ps = [spearman(r0[x], r0[y]) for x, y in itertools.combinations(live, 2)]
         ps = [v for v in ps if np.isfinite(v)]
-        primary[ro] = dict(mean_rho=round(float(np.mean(ps)), 4), n_pairs=len(ps),
-                           n_constructions=len(cons))
+        primary[ro] = dict(mean_rho=round(float(np.mean(ps)), 4) if ps else None,
+                           n_pairs=len(ps), n_constructions=len(live),
+                           n_frozen=len(cons) - len(live))
     best = max(primary, key=lambda k: primary[k]["mean_rho"])
     inv = [ro for ro, v in primary.items() if v["mean_rho"] >= CONCORDANT]
     scr = [ro for ro, v in primary.items() if v["mean_rho"] <= SCRAMBLED]
@@ -181,7 +189,8 @@ def main():
                         t0 = time.time()
                         c = cell(rule, ids, r, sd)
                         c.update(model=m, construction=f"{name}.{mode}.r{r}", seed=sd,
-                                 k=int(len(ids)), secs=round(time.time() - t0, 1))
+                                 k=int(len(ids)), ids=[int(i) for i in ids],
+                                 secs=round(time.time() - t0, 1))
                         res["cells"][key] = c
                         print(f"  {key:<52} branching={c['branching']:.4f} "
                               f"distinct={c['distinct']:.0f} top1={c['top1']:.3f}", flush=True)

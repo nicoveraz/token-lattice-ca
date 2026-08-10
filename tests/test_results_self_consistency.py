@@ -369,6 +369,14 @@ def test_analysis_matches_the_source_that_claims_to_have_written_it(results_name
             and "verdict" not in d:
         pytest.skip(f"{results_name} is mid-run (preregistration written, no verdict yet) -- "
                     f"not stale, incomplete")
+    # A SUPERSEDED FILE IS KEPT AS A RECORD, NOT READ AS A RESULT. When a run is redone because its
+    # DESIGN was wrong -- not its code -- the old output is worth retaining: window_ladder's
+    # single-seed version is the direct evidence that one settle per cell manufactures a false
+    # crossing (F125). But it can never match the corrected script's hash, so the drift check would
+    # be permanently red. Files named *_superseded.json are exempt AND must not be quoted; the
+    # finding that supersedes them carries the numbers.
+    if results_name.endswith("_superseded.json"):
+        pytest.skip(f"{results_name} is a retained superseded record, not a live result")
     assert prov is not None, (
         f"{results_name} has no _analysis_provenance stamp -- it cannot be checked against the "
         f"code that wrote it (issue #38)")

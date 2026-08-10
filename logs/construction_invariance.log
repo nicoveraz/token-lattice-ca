@@ -1,0 +1,115 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7913.93it/s]
+  EleutherAI/pythia-410m|binary.semantic.r2|s20260810  branching=0.4962 distinct=2 top1=0.997
+  EleutherAI/pythia-410m|binary.semantic.r2|s20260811  branching=0.4962 distinct=2 top1=0.999
+  EleutherAI/pythia-410m|binary.semantic.r3|s20260810  branching=0.5842 distinct=2 top1=0.997
+  EleutherAI/pythia-410m|binary.semantic.r3|s20260811  branching=0.5812 distinct=2 top1=0.997
+  EleutherAI/pythia-410m|binary.freq_matched.r2|s20260810 branching=nan distinct=1 top1=1.000
+  EleutherAI/pythia-410m|binary.freq_matched.r2|s20260811 branching=0.0018 distinct=2 top1=0.999
+  EleutherAI/pythia-410m|binary.freq_matched.r3|s20260810 branching=nan distinct=1 top1=1.000
+  EleutherAI/pythia-410m|binary.freq_matched.r3|s20260811 branching=0.0054 distinct=2 top1=0.999
+  EleutherAI/pythia-410m|binary.uniform.r2|s20260810   branching=0.9953 distinct=2 top1=0.632
+  EleutherAI/pythia-410m|binary.uniform.r2|s20260811   branching=0.9985 distinct=2 top1=0.574
+  EleutherAI/pythia-410m|binary.uniform.r3|s20260810   branching=1.6587 distinct=2 top1=0.635
+  EleutherAI/pythia-410m|binary.uniform.r3|s20260811   branching=1.4549 distinct=2 top1=0.549
+  EleutherAI/pythia-410m|colours.semantic.r2|s20260810 branching=1.1291 distinct=6 top1=0.371
+  EleutherAI/pythia-410m|colours.semantic.r2|s20260811 branching=1.0508 distinct=6 top1=0.374
+  EleutherAI/pythia-410m|colours.semantic.r3|s20260810 branching=1.3382 distinct=6 top1=0.365
+  EleutherAI/pythia-410m|colours.semantic.r3|s20260811 branching=1.2773 distinct=6 top1=0.378
+  EleutherAI/pythia-410m|colours.freq_matched.r2|s20260810 branching=0.9562 distinct=6 top1=0.453
+  EleutherAI/pythia-410m|colours.freq_matched.r2|s20260811 branching=0.9593 distinct=6 top1=0.452
+  EleutherAI/pythia-410m|colours.freq_matched.r3|s20260810 branching=1.3360 distinct=6 top1=0.417
+  EleutherAI/pythia-410m|colours.freq_matched.r3|s20260811 branching=1.3353 distinct=6 top1=0.424
+  EleutherAI/pythia-410m|colours.uniform.r2|s20260810  branching=0.1197 distinct=2 top1=0.999
+  EleutherAI/pythia-410m|colours.uniform.r2|s20260811  branching=0.0610 distinct=3 top1=0.997
+  EleutherAI/pythia-410m|colours.uniform.r3|s20260810  branching=1.0769 distinct=6 top1=0.900
+  EleutherAI/pythia-410m|colours.uniform.r3|s20260811  branching=1.3425 distinct=5 top1=0.897
+  EleutherAI/pythia-410m|digits.semantic.r2|s20260810  branching=0.5946 distinct=8 top1=0.984
+  EleutherAI/pythia-410m|digits.semantic.r2|s20260811  branching=0.5866 distinct=3 top1=0.991
+  EleutherAI/pythia-410m|digits.semantic.r3|s20260810  branching=0.6717 distinct=4 top1=0.983
+  EleutherAI/pythia-410m|digits.semantic.r3|s20260811  branching=0.6600 distinct=3 top1=0.987
+  EleutherAI/pythia-410m|digits.freq_matched.r2|s20260810 branching=1.2300 distinct=9 top1=0.263
+  EleutherAI/pythia-410m|digits.freq_matched.r2|s20260811 branching=1.2154 distinct=9 top1=0.267
+  EleutherAI/pythia-410m|digits.freq_matched.r3|s20260810 branching=1.8100 distinct=10 top1=0.303
+  EleutherAI/pythia-410m|digits.freq_matched.r3|s20260811 branching=1.7301 distinct=8 top1=0.292
+  EleutherAI/pythia-410m|digits.uniform.r2|s20260810   branching=0.9812 distinct=9 top1=0.469
+  EleutherAI/pythia-410m|digits.uniform.r2|s20260811   branching=1.0775 distinct=8 top1=0.495
+  EleutherAI/pythia-410m|digits.uniform.r3|s20260810   branching=1.6069 distinct=10 top1=0.514
+  EleutherAI/pythia-410m|digits.uniform.r3|s20260811   branching=1.4654 distinct=9 top1=0.574
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6129.60it/s]
+  gpt2|binary.semantic.r2|s20260810                    branching=0.6136 distinct=2 top1=0.878
+  gpt2|binary.semantic.r2|s20260811                    branching=0.5936 distinct=2 top1=0.900
+  gpt2|binary.semantic.r3|s20260810                    branching=0.5074 distinct=2 top1=0.934
+  gpt2|binary.semantic.r3|s20260811                    branching=0.4869 distinct=2 top1=0.960
+  gpt2|binary.freq_matched.r2|s20260810                branching=1.0050 distinct=2 top1=0.910
+  gpt2|binary.freq_matched.r2|s20260811                branching=1.0144 distinct=2 top1=0.862
+  gpt2|binary.freq_matched.r3|s20260810                branching=1.1951 distinct=2 top1=0.594
+  gpt2|binary.freq_matched.r3|s20260811                branching=1.3614 distinct=2 top1=0.569
+  gpt2|binary.uniform.r2|s20260810                     branching=0.8712 distinct=2 top1=0.872
+  gpt2|binary.uniform.r2|s20260811                     branching=0.9202 distinct=2 top1=0.776
+  gpt2|binary.uniform.r3|s20260810                     branching=1.3810 distinct=2 top1=0.521
+  gpt2|binary.uniform.r3|s20260811                     branching=1.2124 distinct=2 top1=0.530
+  gpt2|colours.semantic.r2|s20260810                   branching=1.0332 distinct=6 top1=0.270
+  gpt2|colours.semantic.r2|s20260811                   branching=1.0549 distinct=6 top1=0.320
+  gpt2|colours.semantic.r3|s20260810                   branching=1.1598 distinct=6 top1=0.250
+  gpt2|colours.semantic.r3|s20260811                   branching=1.1657 distinct=6 top1=0.307
+  gpt2|colours.freq_matched.r2|s20260810               branching=1.0313 distinct=5 top1=0.362
+  gpt2|colours.freq_matched.r2|s20260811               branching=1.0040 distinct=5 top1=0.458
+  gpt2|colours.freq_matched.r3|s20260810               branching=1.4146 distinct=5 top1=0.464
+  gpt2|colours.freq_matched.r3|s20260811               branching=1.3741 distinct=6 top1=0.556
+  gpt2|colours.uniform.r2|s20260810                    branching=1.0094 distinct=6 top1=0.517
+  gpt2|colours.uniform.r2|s20260811                    branching=1.0214 distinct=6 top1=0.538
+  gpt2|colours.uniform.r3|s20260810                    branching=1.2975 distinct=5 top1=0.419
+  gpt2|colours.uniform.r3|s20260811                    branching=1.4348 distinct=5 top1=0.419
+  gpt2|digits.semantic.r2|s20260810                    branching=1.2046 distinct=10 top1=0.395
+  gpt2|digits.semantic.r2|s20260811                    branching=1.2030 distinct=10 top1=0.510
+  gpt2|digits.semantic.r3|s20260810                    branching=1.2074 distinct=10 top1=0.714
+  gpt2|digits.semantic.r3|s20260811                    branching=1.1166 distinct=10 top1=0.781
+  gpt2|digits.freq_matched.r2|s20260810                branching=1.3125 distinct=10 top1=0.361
+  gpt2|digits.freq_matched.r2|s20260811                branching=1.2432 distinct=10 top1=0.445
+  gpt2|digits.freq_matched.r3|s20260810                branching=1.6149 distinct=8 top1=0.414
+  gpt2|digits.freq_matched.r3|s20260811                branching=1.3962 distinct=10 top1=0.406
+  gpt2|digits.uniform.r2|s20260810                     branching=1.0327 distinct=9 top1=0.204
+  gpt2|digits.uniform.r2|s20260811                     branching=1.0385 distinct=9 top1=0.199
+  gpt2|digits.uniform.r3|s20260810                     branching=0.1421 distinct=6 top1=0.924
+  gpt2|digits.uniform.r3|s20260811                     branching=0.1728 distinct=5 top1=0.917
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 9518.17it/s]
+  gpt2-large|binary.semantic.r2|s20260810              branching=0.5016 distinct=2 top1=0.898
+  gpt2-large|binary.semantic.r2|s20260811              branching=0.5016 distinct=2 top1=0.915
+  gpt2-large|binary.semantic.r3|s20260810              branching=0.3970 distinct=2 top1=0.970
+  gpt2-large|binary.semantic.r3|s20260811              branching=0.3922 distinct=2 top1=0.964
+  gpt2-large|binary.freq_matched.r2|s20260810          branching=0.9935 distinct=2 top1=0.560
+  gpt2-large|binary.freq_matched.r2|s20260811          branching=0.9907 distinct=2 top1=0.578
+  gpt2-large|binary.freq_matched.r3|s20260810          branching=1.1026 distinct=2 top1=0.617
+  gpt2-large|binary.freq_matched.r3|s20260811          branching=1.1654 distinct=2 top1=0.725
+  gpt2-large|binary.uniform.r2|s20260810               branching=0.9977 distinct=2 top1=0.556
+  gpt2-large|binary.uniform.r2|s20260811               branching=0.9992 distinct=2 top1=0.500
+  gpt2-large|binary.uniform.r3|s20260810               branching=1.1516 distinct=2 top1=0.828
+  gpt2-large|binary.uniform.r3|s20260811               branching=1.3527 distinct=2 top1=0.796
+  gpt2-large|colours.semantic.r2|s20260810             branching=1.0550 distinct=6 top1=0.260
+  gpt2-large|colours.semantic.r2|s20260811             branching=1.0077 distinct=6 top1=0.272
+  gpt2-large|colours.semantic.r3|s20260810             branching=1.4429 distinct=6 top1=0.599
+  gpt2-large|colours.semantic.r3|s20260811             branching=1.4837 distinct=6 top1=0.643
+  gpt2-large|colours.freq_matched.r2|s20260810         branching=0.8654 distinct=5 top1=0.885
+  gpt2-large|colours.freq_matched.r2|s20260811         branching=0.9338 distinct=4 top1=0.956
+  gpt2-large|colours.freq_matched.r3|s20260810         branching=1.4333 distinct=5 top1=0.858
+  gpt2-large|colours.freq_matched.r3|s20260811         branching=1.3912 distinct=5 top1=0.785
+  gpt2-large|colours.uniform.r2|s20260810              branching=1.0436 distinct=6 top1=0.398
+  gpt2-large|colours.uniform.r2|s20260811              branching=1.0218 distinct=6 top1=0.349
+  gpt2-large|colours.uniform.r3|s20260810              branching=1.1564 distinct=4 top1=0.749
+  gpt2-large|colours.uniform.r3|s20260811              branching=1.1814 distinct=5 top1=0.742
+  gpt2-large|digits.semantic.r2|s20260810              branching=1.0132 distinct=10 top1=0.750
+  gpt2-large|digits.semantic.r2|s20260811              branching=0.9537 distinct=10 top1=0.807
+  gpt2-large|digits.semantic.r3|s20260810              branching=0.6891 distinct=9 top1=0.915
+  gpt2-large|digits.semantic.r3|s20260811              branching=0.6395 distinct=7 top1=0.936
+  gpt2-large|digits.freq_matched.r2|s20260810          branching=1.1892 distinct=6 top1=0.753
+  gpt2-large|digits.freq_matched.r2|s20260811          branching=1.2190 distinct=6 top1=0.703
+  gpt2-large|digits.freq_matched.r3|s20260810          branching=1.1252 distinct=7 top1=0.841
+  gpt2-large|digits.freq_matched.r3|s20260811          branching=1.1872 distinct=7 top1=0.833
+  gpt2-large|digits.uniform.r2|s20260810               branching=1.0486 distinct=8 top1=0.314
+  gpt2-large|digits.uniform.r2|s20260811               branching=1.1004 distinct=9 top1=0.275
+  gpt2-large|digits.uniform.r3|s20260810               branching=0.7254 distinct=8 top1=0.911
+  gpt2-large|digits.uniform.r3|s20260811               branching=0.7476 distinct=8 top1=0.829
+
+  -> RUNG (seed stability at FIXED construction, checked before the construction question): branching=0.75, s_near=0.9062, s_far=0.8125, distinct=0.7073, top1=0.9722. 5 of 5 readouts rank the models consistently across two seeds at threshold 0.6 -- ['branching', 's_near', 's_far', 'distinct', 'top1']. Only these are asked the primary question; a readout that cannot rank models reproducibly at fixed construction cannot be asked about invariance across them. PRIMARY, mean pairwise agreement between the model-rankings different constructions produce: branching=-0.050, s_near=+0.000, s_far=-0.037, distinct=-0.028, top1=+0.111 over 18 constructions. NONE reaches the registered 0.6 threshold. No readout ranks models consistently across constructions, so on this evidence the instrument characterises LATTICES rather than language models, and any single-construction comparison is a fact about the apparatus. CONSTRUCTION-DOMINATED at or below 0.3: ['branching', 's_near', 's_far', 'distinct', 'top1']. BOUNDARY: 3 models, so each ranking has 3 points and one swap moves rho a long way -- this identifies a SCRAMBLED readout far more confidently than it certifies an invariant one. One temperature (T=0.7), one lattice size (N=48), radii [2, 3]. Constructions are RULES applied to each model's own tokenizer and marginal, not shared token ids, since identical ids across different vocabularies would not be comparable.
+
+wrote results/construction_invariance.json

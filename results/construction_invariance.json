@@ -1,0 +1,2778 @@
+{
+ "cells": {
+  "EleutherAI/pythia-410m|binary.semantic.r2|s20260810": {
+   "branching": 0.49622496703079655,
+   "s_far": 0.15325460705908567,
+   "s_near": 0.3429703599717109,
+   "distinct": 2.0,
+   "top1": 0.9973958333333334,
+   "s_pos": [
+    0.15325,
+    0.34297
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.semantic.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    470,
+    337
+   ],
+   "secs": 15.9
+  },
+  "EleutherAI/pythia-410m|binary.semantic.r2|s20260811": {
+   "branching": 0.49622496703079655,
+   "s_far": 0.15325460705908567,
+   "s_near": 0.3429703599717109,
+   "distinct": 2.0,
+   "top1": 0.9986979166666666,
+   "s_pos": [
+    0.15325,
+    0.34297
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.semantic.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    470,
+    337
+   ],
+   "secs": 16.1
+  },
+  "EleutherAI/pythia-410m|binary.semantic.r3|s20260810": {
+   "branching": 0.5841702371957285,
+   "s_far": 0.084419269437922,
+   "s_near": 0.3206019432143576,
+   "distinct": 2.0,
+   "top1": 0.9973958333333334,
+   "s_pos": [
+    0.08442,
+    0.17915,
+    0.3206
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.semantic.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    470,
+    337
+   ],
+   "secs": 18.9
+  },
+  "EleutherAI/pythia-410m|binary.semantic.r3|s20260811": {
+   "branching": 0.5811706001806913,
+   "s_far": 0.08393594427189074,
+   "s_near": 0.3206019432143576,
+   "distinct": 2.0,
+   "top1": 0.9973958333333334,
+   "s_pos": [
+    0.08394,
+    0.17663,
+    0.3206
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.semantic.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    470,
+    337
+   ],
+   "secs": 18.8
+  },
+  "EleutherAI/pythia-410m|binary.freq_matched.r2|s20260810": {
+   "branching": NaN,
+   "s_far": NaN,
+   "s_near": NaN,
+   "distinct": 1.0,
+   "top1": 1.0,
+   "s_pos": null,
+   "frozen": true,
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.freq_matched.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1078,
+    981
+   ],
+   "secs": 15.6
+  },
+  "EleutherAI/pythia-410m|binary.freq_matched.r2|s20260811": {
+   "branching": 0.0017984356308478056,
+   "s_far": 0.0009191164223474324,
+   "s_near": 0.0008793192085003732,
+   "distinct": 2.0,
+   "top1": 0.9986979166666666,
+   "s_pos": [
+    0.00092,
+    0.00088
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.freq_matched.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1078,
+    981
+   ],
+   "secs": 15.8
+  },
+  "EleutherAI/pythia-410m|binary.freq_matched.r3|s20260810": {
+   "branching": NaN,
+   "s_far": NaN,
+   "s_near": NaN,
+   "distinct": 1.0,
+   "top1": 1.0,
+   "s_pos": null,
+   "frozen": true,
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.freq_matched.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1078,
+    981
+   ],
+   "secs": 17.7
+  },
+  "EleutherAI/pythia-410m|binary.freq_matched.r3|s20260811": {
+   "branching": 0.005395379549360757,
+   "s_far": 0.0008046079565632303,
+   "s_near": 0.0008719202402956983,
+   "distinct": 2.0,
+   "top1": 0.9986979166666666,
+   "s_pos": [
+    0.0008,
+    0.00372,
+    0.00087
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.freq_matched.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1078,
+    981
+   ],
+   "secs": 18.5
+  },
+  "EleutherAI/pythia-410m|binary.uniform.r2|s20260810": {
+   "branching": 0.995253329148136,
+   "s_far": 0.0056958321667061745,
+   "s_near": 0.9895574969814298,
+   "distinct": 2.0,
+   "top1": 0.6315104166666666,
+   "s_pos": [
+    0.0057,
+    0.98956
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.uniform.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1368,
+    24084
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|binary.uniform.r2|s20260811": {
+   "branching": 0.9985136150406279,
+   "s_far": 0.006445398053357563,
+   "s_near": 0.9920682169872703,
+   "distinct": 2.0,
+   "top1": 0.57421875,
+   "s_pos": [
+    0.00645,
+    0.99207
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.uniform.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1368,
+    24084
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|binary.uniform.r3|s20260810": {
+   "branching": 1.6586594691021879,
+   "s_far": 0.4802649519628548,
+   "s_near": 0.6805926563487381,
+   "distinct": 2.0,
+   "top1": 0.6354166666666666,
+   "s_pos": [
+    0.48026,
+    0.4978,
+    0.68059
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.uniform.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1368,
+    24084
+   ],
+   "secs": 18.1
+  },
+  "EleutherAI/pythia-410m|binary.uniform.r3|s20260811": {
+   "branching": 1.4549142600489318,
+   "s_far": 0.503555736411203,
+   "s_near": 0.5004098039312983,
+   "distinct": 2.0,
+   "top1": 0.5494791666666666,
+   "s_pos": [
+    0.50356,
+    0.45095,
+    0.50041
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "binary.uniform.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1368,
+    24084
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|colours.semantic.r2|s20260810": {
+   "branching": 1.1290826089811068,
+   "s_far": 0.5549593169033518,
+   "s_near": 0.574123292077755,
+   "distinct": 6.0,
+   "top1": 0.37109375,
+   "s_pos": [
+    0.55496,
+    0.57412
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.semantic.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    2502,
+    4759,
+    4797,
+    8862,
+    2806,
+    3168
+   ],
+   "secs": 15.2
+  },
+  "EleutherAI/pythia-410m|colours.semantic.r2|s20260811": {
+   "branching": 1.0508368521118132,
+   "s_far": 0.5068384480270631,
+   "s_near": 0.5439984040847501,
+   "distinct": 6.0,
+   "top1": 0.3736979166666667,
+   "s_pos": [
+    0.50684,
+    0.544
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.semantic.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    2502,
+    4759,
+    4797,
+    8862,
+    2806,
+    3168
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|colours.semantic.r3|s20260810": {
+   "branching": 1.3382005792641618,
+   "s_far": 0.44042048756521923,
+   "s_near": 0.48742035958709296,
+   "distinct": 6.0,
+   "top1": 0.3645833333333333,
+   "s_pos": [
+    0.44042,
+    0.41036,
+    0.48742
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.semantic.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    2502,
+    4759,
+    4797,
+    8862,
+    2806,
+    3168
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|colours.semantic.r3|s20260811": {
+   "branching": 1.277279965511798,
+   "s_far": 0.3904871439925666,
+   "s_near": 0.43734385670681236,
+   "distinct": 6.0,
+   "top1": 0.3776041666666667,
+   "s_pos": [
+    0.39049,
+    0.44945,
+    0.43734
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.semantic.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    2502,
+    4759,
+    4797,
+    8862,
+    2806,
+    3168
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|colours.freq_matched.r2|s20260810": {
+   "branching": 0.9561676397844208,
+   "s_far": 0.14209246485970642,
+   "s_near": 0.8140751749247144,
+   "distinct": 6.0,
+   "top1": 0.453125,
+   "s_pos": [
+    0.14209,
+    0.81408
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.freq_matched.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    6795,
+    4408,
+    14574,
+    19245,
+    319,
+    3977
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|colours.freq_matched.r2|s20260811": {
+   "branching": 0.9592721476549304,
+   "s_far": 0.07509769826612181,
+   "s_near": 0.8841744493888086,
+   "distinct": 6.0,
+   "top1": 0.4518229166666667,
+   "s_pos": [
+    0.0751,
+    0.88417
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.freq_matched.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    6795,
+    4408,
+    14574,
+    19245,
+    319,
+    3977
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|colours.freq_matched.r3|s20260810": {
+   "branching": 1.3360120494075591,
+   "s_far": 0.17854817890416355,
+   "s_near": 0.7655461511074391,
+   "distinct": 6.0,
+   "top1": 0.4166666666666667,
+   "s_pos": [
+    0.17855,
+    0.39192,
+    0.76555
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.freq_matched.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    6795,
+    4408,
+    14574,
+    19245,
+    319,
+    3977
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|colours.freq_matched.r3|s20260811": {
+   "branching": 1.335308305612719,
+   "s_far": 0.1835475690715162,
+   "s_near": 0.7263745958929557,
+   "distinct": 6.0,
+   "top1": 0.4244791666666667,
+   "s_pos": [
+    0.18355,
+    0.42539,
+    0.72637
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.freq_matched.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    6795,
+    4408,
+    14574,
+    19245,
+    319,
+    3977
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|colours.uniform.r2|s20260810": {
+   "branching": 0.11967852331794926,
+   "s_far": 0.008205917851978661,
+   "s_near": 0.1114726054659706,
+   "distinct": 2.0,
+   "top1": 0.9986979166666666,
+   "s_pos": [
+    0.00821,
+    0.11147
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.uniform.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    3084,
+    3925,
+    28645,
+    40227,
+    44034,
+    48709
+   ],
+   "secs": 15.6
+  },
+  "EleutherAI/pythia-410m|colours.uniform.r2|s20260811": {
+   "branching": 0.060980056241073624,
+   "s_far": 0.006629039501500428,
+   "s_near": 0.054351016739573196,
+   "distinct": 3.0,
+   "top1": 0.9973958333333334,
+   "s_pos": [
+    0.00663,
+    0.05435
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.uniform.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    3084,
+    3925,
+    28645,
+    40227,
+    44034,
+    48709
+   ],
+   "secs": 15.5
+  },
+  "EleutherAI/pythia-410m|colours.uniform.r3|s20260810": {
+   "branching": 1.0768601612083506,
+   "s_far": 0.07465418515818681,
+   "s_near": 0.1608113057887145,
+   "distinct": 6.0,
+   "top1": 0.8997395833333334,
+   "s_pos": [
+    0.07465,
+    0.84139,
+    0.16081
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.uniform.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    3084,
+    3925,
+    28645,
+    40227,
+    44034,
+    48709
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|colours.uniform.r3|s20260811": {
+   "branching": 1.342523738173123,
+   "s_far": 0.15462661015597756,
+   "s_near": 0.33488136009127134,
+   "distinct": 5.0,
+   "top1": 0.8971354166666666,
+   "s_pos": [
+    0.15463,
+    0.85302,
+    0.33488
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "colours.uniform.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    3084,
+    3925,
+    28645,
+    40227,
+    44034,
+    48709
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|digits.semantic.r2|s20260810": {
+   "branching": 0.5945788041680707,
+   "s_far": 0.19265963846715684,
+   "s_near": 0.4019191657009139,
+   "distinct": 8.0,
+   "top1": 0.984375,
+   "s_pos": [
+    0.19266,
+    0.40192
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.semantic.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    470,
+    337,
+    374,
+    495,
+    577,
+    608,
+    721,
+    818,
+    854,
+    898
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|digits.semantic.r2|s20260811": {
+   "branching": 0.5865783237452911,
+   "s_far": 0.1818204044596487,
+   "s_near": 0.4047579192856424,
+   "distinct": 3.0,
+   "top1": 0.9908854166666666,
+   "s_pos": [
+    0.18182,
+    0.40476
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.semantic.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    470,
+    337,
+    374,
+    495,
+    577,
+    608,
+    721,
+    818,
+    854,
+    898
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|digits.semantic.r3|s20260810": {
+   "branching": 0.671676792643593,
+   "s_far": 0.09327816401720007,
+   "s_near": 0.3465029987871508,
+   "distinct": 4.0,
+   "top1": 0.9830729166666666,
+   "s_pos": [
+    0.09328,
+    0.2319,
+    0.3465
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.semantic.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    470,
+    337,
+    374,
+    495,
+    577,
+    608,
+    721,
+    818,
+    854,
+    898
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|digits.semantic.r3|s20260811": {
+   "branching": 0.659963119671821,
+   "s_far": 0.09326105447676081,
+   "s_near": 0.3809263894927347,
+   "distinct": 3.0,
+   "top1": 0.9869791666666666,
+   "s_pos": [
+    0.09326,
+    0.18578,
+    0.38093
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.semantic.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    470,
+    337,
+    374,
+    495,
+    577,
+    608,
+    721,
+    818,
+    854,
+    898
+   ],
+   "secs": 18.1
+  },
+  "EleutherAI/pythia-410m|digits.freq_matched.r2|s20260810": {
+   "branching": 1.2299728421326106,
+   "s_far": 0.36297033036542947,
+   "s_near": 0.8670025117671811,
+   "distinct": 9.0,
+   "top1": 0.2630208333333333,
+   "s_pos": [
+    0.36297,
+    0.867
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.freq_matched.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    1078,
+    981,
+    73,
+    414,
+    4508,
+    40404,
+    1640,
+    3875,
+    1268,
+    1503
+   ],
+   "secs": 15.4
+  },
+  "EleutherAI/pythia-410m|digits.freq_matched.r2|s20260811": {
+   "branching": 1.2154039469271223,
+   "s_far": 0.32744541377073333,
+   "s_near": 0.8879585331563888,
+   "distinct": 9.0,
+   "top1": 0.2669270833333333,
+   "s_pos": [
+    0.32745,
+    0.88796
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.freq_matched.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    1078,
+    981,
+    73,
+    414,
+    4508,
+    40404,
+    1640,
+    3875,
+    1268,
+    1503
+   ],
+   "secs": 15.3
+  },
+  "EleutherAI/pythia-410m|digits.freq_matched.r3|s20260810": {
+   "branching": 1.8100096852736072,
+   "s_far": 0.360456968349654,
+   "s_near": 0.8479167352975132,
+   "distinct": 10.0,
+   "top1": 0.3033854166666667,
+   "s_pos": [
+    0.36046,
+    0.60164,
+    0.84792
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.freq_matched.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    1078,
+    981,
+    73,
+    414,
+    4508,
+    40404,
+    1640,
+    3875,
+    1268,
+    1503
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|digits.freq_matched.r3|s20260811": {
+   "branching": 1.7300699034582874,
+   "s_far": 0.45413168322478925,
+   "s_near": 0.7619924054546399,
+   "distinct": 8.0,
+   "top1": 0.2916666666666667,
+   "s_pos": [
+    0.45413,
+    0.51395,
+    0.76199
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.freq_matched.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    1078,
+    981,
+    73,
+    414,
+    4508,
+    40404,
+    1640,
+    3875,
+    1268,
+    1503
+   ],
+   "secs": 18.0
+  },
+  "EleutherAI/pythia-410m|digits.uniform.r2|s20260810": {
+   "branching": 0.9811729339637063,
+   "s_far": 0.5035231637258091,
+   "s_near": 0.47764977023789723,
+   "distinct": 9.0,
+   "top1": 0.46875,
+   "s_pos": [
+    0.50352,
+    0.47765
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.uniform.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    172,
+    5344,
+    17807,
+    20867,
+    21425,
+    22665,
+    35074,
+    35231,
+    36831,
+    39336
+   ],
+   "secs": 15.8
+  },
+  "EleutherAI/pythia-410m|digits.uniform.r2|s20260811": {
+   "branching": 1.0775027475150019,
+   "s_far": 0.5113133566022641,
+   "s_near": 0.5661893909127378,
+   "distinct": 8.0,
+   "top1": 0.4947916666666667,
+   "s_pos": [
+    0.51131,
+    0.56619
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.uniform.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    172,
+    5344,
+    17807,
+    20867,
+    21425,
+    22665,
+    35074,
+    35231,
+    36831,
+    39336
+   ],
+   "secs": 15.5
+  },
+  "EleutherAI/pythia-410m|digits.uniform.r3|s20260810": {
+   "branching": 1.6068964866848827,
+   "s_far": 0.3525614448388972,
+   "s_near": 0.615389338898078,
+   "distinct": 10.0,
+   "top1": 0.5143229166666666,
+   "s_pos": [
+    0.35256,
+    0.63895,
+    0.61539
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.uniform.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    172,
+    5344,
+    17807,
+    20867,
+    21425,
+    22665,
+    35074,
+    35231,
+    36831,
+    39336
+   ],
+   "secs": 18.5
+  },
+  "EleutherAI/pythia-410m|digits.uniform.r3|s20260811": {
+   "branching": 1.4653961999224985,
+   "s_far": 0.38960590564709324,
+   "s_near": 0.47834898733924286,
+   "distinct": 9.0,
+   "top1": 0.57421875,
+   "s_pos": [
+    0.38961,
+    0.59744,
+    0.47835
+   ],
+   "model": "EleutherAI/pythia-410m",
+   "construction": "digits.uniform.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    172,
+    5344,
+    17807,
+    20867,
+    21425,
+    22665,
+    35074,
+    35231,
+    36831,
+    39336
+   ],
+   "secs": 18.3
+  },
+  "gpt2|binary.semantic.r2|s20260810": {
+   "branching": 0.6135715212016573,
+   "s_far": 0.14139037348933287,
+   "s_near": 0.47218114771232444,
+   "distinct": 2.0,
+   "top1": 0.8776041666666666,
+   "s_pos": [
+    0.14139,
+    0.47218
+   ],
+   "model": "gpt2",
+   "construction": "binary.semantic.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 5.7
+  },
+  "gpt2|binary.semantic.r2|s20260811": {
+   "branching": 0.5935595034412355,
+   "s_far": 0.1302725858446541,
+   "s_near": 0.46328691759658147,
+   "distinct": 2.0,
+   "top1": 0.8997395833333334,
+   "s_pos": [
+    0.13027,
+    0.46329
+   ],
+   "model": "gpt2",
+   "construction": "binary.semantic.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 5.8
+  },
+  "gpt2|binary.semantic.r3|s20260810": {
+   "branching": 0.5073730586720803,
+   "s_far": 0.05953913349219287,
+   "s_near": 0.2488551147423596,
+   "distinct": 2.0,
+   "top1": 0.93359375,
+   "s_pos": [
+    0.05954,
+    0.19898,
+    0.24886
+   ],
+   "model": "gpt2",
+   "construction": "binary.semantic.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 6.7
+  },
+  "gpt2|binary.semantic.r3|s20260811": {
+   "branching": 0.4868651912563968,
+   "s_far": 0.058561047387653546,
+   "s_near": 0.25005751781695595,
+   "distinct": 2.0,
+   "top1": 0.9596354166666666,
+   "s_pos": [
+    0.05856,
+    0.17825,
+    0.25006
+   ],
+   "model": "gpt2",
+   "construction": "binary.semantic.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 6.6
+  },
+  "gpt2|binary.freq_matched.r2|s20260810": {
+   "branching": 1.0049755546826578,
+   "s_far": 0.018968672727117622,
+   "s_near": 0.9860068819555402,
+   "distinct": 2.0,
+   "top1": 0.91015625,
+   "s_pos": [
+    0.01897,
+    0.98601
+   ],
+   "model": "gpt2",
+   "construction": "binary.freq_matched.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    327,
+    866
+   ],
+   "secs": 5.7
+  },
+  "gpt2|binary.freq_matched.r2|s20260811": {
+   "branching": 1.0144143199136988,
+   "s_far": 0.0284074379581585,
+   "s_near": 0.9860068819555403,
+   "distinct": 2.0,
+   "top1": 0.8619791666666666,
+   "s_pos": [
+    0.02841,
+    0.98601
+   ],
+   "model": "gpt2",
+   "construction": "binary.freq_matched.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    327,
+    866
+   ],
+   "secs": 5.8
+  },
+  "gpt2|binary.freq_matched.r3|s20260810": {
+   "branching": 1.1950943674075434,
+   "s_far": 0.404309456383794,
+   "s_near": 0.3374586369229466,
+   "distinct": 2.0,
+   "top1": 0.59375,
+   "s_pos": [
+    0.40431,
+    0.45333,
+    0.33746
+   ],
+   "model": "gpt2",
+   "construction": "binary.freq_matched.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    327,
+    866
+   ],
+   "secs": 6.8
+  },
+  "gpt2|binary.freq_matched.r3|s20260811": {
+   "branching": 1.3614453328095857,
+   "s_far": 0.42268954882090504,
+   "s_near": 0.4149303086335428,
+   "distinct": 2.0,
+   "top1": 0.5690104166666666,
+   "s_pos": [
+    0.42269,
+    0.52383,
+    0.41493
+   ],
+   "model": "gpt2",
+   "construction": "binary.freq_matched.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    327,
+    866
+   ],
+   "secs": 6.7
+  },
+  "gpt2|binary.uniform.r2|s20260810": {
+   "branching": 0.8711735321218419,
+   "s_far": 0.045091478488052755,
+   "s_near": 0.8260820536337892,
+   "distinct": 2.0,
+   "top1": 0.8723958333333334,
+   "s_pos": [
+    0.04509,
+    0.82608
+   ],
+   "model": "gpt2",
+   "construction": "binary.uniform.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 5.7
+  },
+  "gpt2|binary.uniform.r2|s20260811": {
+   "branching": 0.92024102448467,
+   "s_far": 0.07269194294214355,
+   "s_near": 0.8475490815425265,
+   "distinct": 2.0,
+   "top1": 0.7760416666666666,
+   "s_pos": [
+    0.07269,
+    0.84755
+   ],
+   "model": "gpt2",
+   "construction": "binary.uniform.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 5.7
+  },
+  "gpt2|binary.uniform.r3|s20260810": {
+   "branching": 1.3810230116201399,
+   "s_far": 0.38332998728124507,
+   "s_near": 0.33268346839222535,
+   "distinct": 2.0,
+   "top1": 0.5208333333333334,
+   "s_pos": [
+    0.38333,
+    0.66501,
+    0.33268
+   ],
+   "model": "gpt2",
+   "construction": "binary.uniform.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 6.7
+  },
+  "gpt2|binary.uniform.r3|s20260811": {
+   "branching": 1.2123642396076004,
+   "s_far": 0.296803299439076,
+   "s_near": 0.26485959343431736,
+   "distinct": 2.0,
+   "top1": 0.5299479166666666,
+   "s_pos": [
+    0.2968,
+    0.6507,
+    0.26486
+   ],
+   "model": "gpt2",
+   "construction": "binary.uniform.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 6.7
+  },
+  "gpt2|colours.semantic.r2|s20260810": {
+   "branching": 1.033247183643454,
+   "s_far": 0.3218899840492475,
+   "s_near": 0.7113571995942064,
+   "distinct": 6.0,
+   "top1": 0.26953125,
+   "s_pos": [
+    0.32189,
+    0.71136
+   ],
+   "model": "gpt2",
+   "construction": "colours.semantic.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 5.7
+  },
+  "gpt2|colours.semantic.r2|s20260811": {
+   "branching": 1.0548639337253456,
+   "s_far": 0.33227423471239703,
+   "s_near": 0.7225896990129484,
+   "distinct": 6.0,
+   "top1": 0.3203125,
+   "s_pos": [
+    0.33227,
+    0.72259
+   ],
+   "model": "gpt2",
+   "construction": "colours.semantic.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 5.7
+  },
+  "gpt2|colours.semantic.r3|s20260810": {
+   "branching": 1.1597954997835567,
+   "s_far": 0.3400566032508714,
+   "s_near": 0.516982757161517,
+   "distinct": 6.0,
+   "top1": 0.25,
+   "s_pos": [
+    0.34006,
+    0.30276,
+    0.51698
+   ],
+   "model": "gpt2",
+   "construction": "colours.semantic.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 6.6
+  },
+  "gpt2|colours.semantic.r3|s20260811": {
+   "branching": 1.1656964334768476,
+   "s_far": 0.35602428237143996,
+   "s_near": 0.49960812518823405,
+   "distinct": 6.0,
+   "top1": 0.3072916666666667,
+   "s_pos": [
+    0.35602,
+    0.31006,
+    0.49961
+   ],
+   "model": "gpt2",
+   "construction": "colours.semantic.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 6.7
+  },
+  "gpt2|colours.freq_matched.r2|s20260810": {
+   "branching": 1.0312781606836592,
+   "s_far": 0.07790065553848877,
+   "s_near": 0.9533775051451705,
+   "distinct": 5.0,
+   "top1": 0.3619791666666667,
+   "s_pos": [
+    0.0779,
+    0.95338
+   ],
+   "model": "gpt2",
+   "construction": "colours.freq_matched.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    1337,
+    12558,
+    22671,
+    5944,
+    5303,
+    2081
+   ],
+   "secs": 5.6
+  },
+  "gpt2|colours.freq_matched.r2|s20260811": {
+   "branching": 1.0040010620426025,
+   "s_far": 0.04309426211196586,
+   "s_near": 0.9609067999306367,
+   "distinct": 5.0,
+   "top1": 0.4583333333333333,
+   "s_pos": [
+    0.04309,
+    0.96091
+   ],
+   "model": "gpt2",
+   "construction": "colours.freq_matched.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    1337,
+    12558,
+    22671,
+    5944,
+    5303,
+    2081
+   ],
+   "secs": 5.8
+  },
+  "gpt2|colours.freq_matched.r3|s20260810": {
+   "branching": 1.4145985411992812,
+   "s_far": 0.27368398136679234,
+   "s_near": 0.6935014183994449,
+   "distinct": 5.0,
+   "top1": 0.4635416666666667,
+   "s_pos": [
+    0.27368,
+    0.44741,
+    0.6935
+   ],
+   "model": "gpt2",
+   "construction": "colours.freq_matched.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    1337,
+    12558,
+    22671,
+    5944,
+    5303,
+    2081
+   ],
+   "secs": 6.6
+  },
+  "gpt2|colours.freq_matched.r3|s20260811": {
+   "branching": 1.3740545460498614,
+   "s_far": 0.16324108263754888,
+   "s_near": 0.6849882075266096,
+   "distinct": 6.0,
+   "top1": 0.5559895833333334,
+   "s_pos": [
+    0.16324,
+    0.52583,
+    0.68499
+   ],
+   "model": "gpt2",
+   "construction": "colours.freq_matched.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    1337,
+    12558,
+    22671,
+    5944,
+    5303,
+    2081
+   ],
+   "secs": 6.8
+  },
+  "gpt2|colours.uniform.r2|s20260810": {
+   "branching": 1.0094400018431295,
+   "s_far": 0.05408529083783723,
+   "s_near": 0.9553547110052922,
+   "distinct": 6.0,
+   "top1": 0.5169270833333334,
+   "s_pos": [
+    0.05409,
+    0.95535
+   ],
+   "model": "gpt2",
+   "construction": "colours.uniform.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 5.7
+  },
+  "gpt2|colours.uniform.r2|s20260811": {
+   "branching": 1.0213865690126342,
+   "s_far": 0.03830953188666789,
+   "s_near": 0.9830770371259663,
+   "distinct": 6.0,
+   "top1": 0.5377604166666666,
+   "s_pos": [
+    0.03831,
+    0.98308
+   ],
+   "model": "gpt2",
+   "construction": "colours.uniform.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 5.9
+  },
+  "gpt2|colours.uniform.r3|s20260810": {
+   "branching": 1.2975465913104582,
+   "s_far": 0.29679450575484234,
+   "s_near": 0.7314490598663377,
+   "distinct": 5.0,
+   "top1": 0.4192708333333333,
+   "s_pos": [
+    0.29679,
+    0.2693,
+    0.73145
+   ],
+   "model": "gpt2",
+   "construction": "colours.uniform.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 6.8
+  },
+  "gpt2|colours.uniform.r3|s20260811": {
+   "branching": 1.4347814103824077,
+   "s_far": 0.3375963079958473,
+   "s_near": 0.7593362949414846,
+   "distinct": 5.0,
+   "top1": 0.4192708333333333,
+   "s_pos": [
+    0.3376,
+    0.33785,
+    0.75934
+   ],
+   "model": "gpt2",
+   "construction": "colours.uniform.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 6.6
+  },
+  "gpt2|digits.semantic.r2|s20260810": {
+   "branching": 1.2045586991188264,
+   "s_far": 0.3929233083134934,
+   "s_near": 0.8116353908053331,
+   "distinct": 10.0,
+   "top1": 0.39453125,
+   "s_pos": [
+    0.39292,
+    0.81164
+   ],
+   "model": "gpt2",
+   "construction": "digits.semantic.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 5.8
+  },
+  "gpt2|digits.semantic.r2|s20260811": {
+   "branching": 1.203008845825046,
+   "s_far": 0.39857322855118993,
+   "s_near": 0.8044356172738563,
+   "distinct": 10.0,
+   "top1": 0.5104166666666666,
+   "s_pos": [
+    0.39857,
+    0.80444
+   ],
+   "model": "gpt2",
+   "construction": "digits.semantic.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 5.7
+  },
+  "gpt2|digits.semantic.r3|s20260810": {
+   "branching": 1.2074358443552342,
+   "s_far": 0.18197617499335245,
+   "s_near": 0.5644069078345542,
+   "distinct": 10.0,
+   "top1": 0.7135416666666666,
+   "s_pos": [
+    0.18198,
+    0.46105,
+    0.56441
+   ],
+   "model": "gpt2",
+   "construction": "digits.semantic.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 6.8
+  },
+  "gpt2|digits.semantic.r3|s20260811": {
+   "branching": 1.116622329360277,
+   "s_far": 0.18082200995803271,
+   "s_near": 0.5256265333183108,
+   "distinct": 10.0,
+   "top1": 0.78125,
+   "s_pos": [
+    0.18082,
+    0.41017,
+    0.52563
+   ],
+   "model": "gpt2",
+   "construction": "digits.semantic.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 6.8
+  },
+  "gpt2|digits.freq_matched.r2|s20260810": {
+   "branching": 1.3125283388098605,
+   "s_far": 0.6899638678317084,
+   "s_near": 0.622564470978152,
+   "distinct": 10.0,
+   "top1": 0.3606770833333333,
+   "s_pos": [
+    0.68996,
+    0.62256
+   ],
+   "model": "gpt2",
+   "construction": "digits.freq_matched.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    327,
+    866,
+    547,
+    503,
+    88,
+    16,
+    376,
+    59,
+    1531,
+    812
+   ],
+   "secs": 5.5
+  },
+  "gpt2|digits.freq_matched.r2|s20260811": {
+   "branching": 1.2431741372731984,
+   "s_far": 0.6526364567345333,
+   "s_near": 0.5905376805386651,
+   "distinct": 10.0,
+   "top1": 0.4453125,
+   "s_pos": [
+    0.65264,
+    0.59054
+   ],
+   "model": "gpt2",
+   "construction": "digits.freq_matched.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    327,
+    866,
+    547,
+    503,
+    88,
+    16,
+    376,
+    59,
+    1531,
+    812
+   ],
+   "secs": 5.5
+  },
+  "gpt2|digits.freq_matched.r3|s20260810": {
+   "branching": 1.6148805985348895,
+   "s_far": 0.4319879885357204,
+   "s_near": 0.62893331834122,
+   "distinct": 8.0,
+   "top1": 0.4140625,
+   "s_pos": [
+    0.43199,
+    0.55396,
+    0.62893
+   ],
+   "model": "gpt2",
+   "construction": "digits.freq_matched.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    327,
+    866,
+    547,
+    503,
+    88,
+    16,
+    376,
+    59,
+    1531,
+    812
+   ],
+   "secs": 6.8
+  },
+  "gpt2|digits.freq_matched.r3|s20260811": {
+   "branching": 1.3961975466838914,
+   "s_far": 0.4151746964750699,
+   "s_near": 0.5756278799421006,
+   "distinct": 10.0,
+   "top1": 0.40625,
+   "s_pos": [
+    0.41517,
+    0.40539,
+    0.57563
+   ],
+   "model": "gpt2",
+   "construction": "digits.freq_matched.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    327,
+    866,
+    547,
+    503,
+    88,
+    16,
+    376,
+    59,
+    1531,
+    812
+   ],
+   "secs": 6.7
+  },
+  "gpt2|digits.uniform.r2|s20260810": {
+   "branching": 1.0326761810836276,
+   "s_far": 0.035087136328718335,
+   "s_near": 0.9975890447549093,
+   "distinct": 9.0,
+   "top1": 0.20442708333333334,
+   "s_pos": [
+    0.03509,
+    0.99759
+   ],
+   "model": "gpt2",
+   "construction": "digits.uniform.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 5.5
+  },
+  "gpt2|digits.uniform.r2|s20260811": {
+   "branching": 1.0385435741861861,
+   "s_far": 0.0462311303407972,
+   "s_near": 0.9923124438453889,
+   "distinct": 9.0,
+   "top1": 0.19921875,
+   "s_pos": [
+    0.04623,
+    0.99231
+   ],
+   "model": "gpt2",
+   "construction": "digits.uniform.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 5.5
+  },
+  "gpt2|digits.uniform.r3|s20260810": {
+   "branching": 0.1420949401581363,
+   "s_far": 0.0002851694693363025,
+   "s_near": 0.04712543182808674,
+   "distinct": 6.0,
+   "top1": 0.9244791666666666,
+   "s_pos": [
+    0.00029,
+    0.09468,
+    0.04713
+   ],
+   "model": "gpt2",
+   "construction": "digits.uniform.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 6.8
+  },
+  "gpt2|digits.uniform.r3|s20260811": {
+   "branching": 0.17283130110335038,
+   "s_far": 0.00011792894295652168,
+   "s_near": 0.04733163917042367,
+   "distinct": 5.0,
+   "top1": 0.9166666666666666,
+   "s_pos": [
+    0.00012,
+    0.12538,
+    0.04733
+   ],
+   "model": "gpt2",
+   "construction": "digits.uniform.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 6.7
+  },
+  "gpt2-large|binary.semantic.r2|s20260810": {
+   "branching": 0.5016408602455846,
+   "s_far": 0.17607024888281655,
+   "s_near": 0.32557061136276805,
+   "distinct": 2.0,
+   "top1": 0.8984375,
+   "s_pos": [
+    0.17607,
+    0.32557
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.semantic.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|binary.semantic.r2|s20260811": {
+   "branching": 0.5016408602455846,
+   "s_far": 0.17607024888281658,
+   "s_near": 0.32557061136276805,
+   "distinct": 2.0,
+   "top1": 0.9153645833333334,
+   "s_pos": [
+    0.17607,
+    0.32557
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.semantic.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|binary.semantic.r3|s20260810": {
+   "branching": 0.3970364812814967,
+   "s_far": 0.056625092066787536,
+   "s_near": 0.16726510612283346,
+   "distinct": 2.0,
+   "top1": 0.9700520833333334,
+   "s_pos": [
+    0.05663,
+    0.17315,
+    0.16727
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.semantic.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|binary.semantic.r3|s20260811": {
+   "branching": 0.3921900669210393,
+   "s_far": 0.05652229313325355,
+   "s_near": 0.17544359535083978,
+   "distinct": 2.0,
+   "top1": 0.9635416666666666,
+   "s_pos": [
+    0.05652,
+    0.16022,
+    0.17544
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.semantic.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    657,
+    352
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|binary.freq_matched.r2|s20260810": {
+   "branching": 0.9935006954980216,
+   "s_far": 0.06373924053521493,
+   "s_near": 0.9297614549628066,
+   "distinct": 2.0,
+   "top1": 0.5598958333333334,
+   "s_pos": [
+    0.06374,
+    0.92976
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.freq_matched.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    43300,
+    20106
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|binary.freq_matched.r2|s20260811": {
+   "branching": 0.9906565880311821,
+   "s_far": 0.06302821366850508,
+   "s_near": 0.927628374362677,
+   "distinct": 2.0,
+   "top1": 0.578125,
+   "s_pos": [
+    0.06303,
+    0.92763
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.freq_matched.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    43300,
+    20106
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|binary.freq_matched.r3|s20260810": {
+   "branching": 1.1025666745001041,
+   "s_far": 0.1270943567733398,
+   "s_near": 0.2650760104562673,
+   "distinct": 2.0,
+   "top1": 0.6171875,
+   "s_pos": [
+    0.12709,
+    0.7104,
+    0.26508
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.freq_matched.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    43300,
+    20106
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|binary.freq_matched.r3|s20260811": {
+   "branching": 1.1653866421634622,
+   "s_far": 0.1275461471261125,
+   "s_near": 0.339100569285475,
+   "distinct": 2.0,
+   "top1": 0.7252604166666666,
+   "s_pos": [
+    0.12755,
+    0.69874,
+    0.3391
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.freq_matched.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    43300,
+    20106
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|binary.uniform.r2|s20260810": {
+   "branching": 0.9976921841802657,
+   "s_far": 0.10720161031136295,
+   "s_near": 0.8904905738689027,
+   "distinct": 2.0,
+   "top1": 0.5559895833333334,
+   "s_pos": [
+    0.1072,
+    0.89049
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.uniform.r2",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|binary.uniform.r2|s20260811": {
+   "branching": 0.9992276050165984,
+   "s_far": 0.10777739312498771,
+   "s_near": 0.8914502118916107,
+   "distinct": 2.0,
+   "top1": 0.5,
+   "s_pos": [
+    0.10778,
+    0.89145
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.uniform.r2",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|binary.uniform.r3|s20260810": {
+   "branching": 1.151637699091836,
+   "s_far": 0.11035709543355758,
+   "s_near": 0.18426159154044824,
+   "distinct": 2.0,
+   "top1": 0.828125,
+   "s_pos": [
+    0.11036,
+    0.85702,
+    0.18426
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.uniform.r3",
+   "seed": 20260810,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|binary.uniform.r3|s20260811": {
+   "branching": 1.3526863127419997,
+   "s_far": 0.22822046965278964,
+   "s_near": 0.2391196833992456,
+   "distinct": 2.0,
+   "top1": 0.7955729166666666,
+   "s_pos": [
+    0.22822,
+    0.88535,
+    0.23912
+   ],
+   "model": "gpt2-large",
+   "construction": "binary.uniform.r3",
+   "seed": 20260811,
+   "k": 2,
+   "ids": [
+    1367,
+    24061
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|colours.semantic.r2|s20260810": {
+   "branching": 1.0550225102174613,
+   "s_far": 0.2927975704849643,
+   "s_near": 0.762224939732497,
+   "distinct": 6.0,
+   "top1": 0.2604166666666667,
+   "s_pos": [
+    0.2928,
+    0.76222
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.semantic.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 20.0
+  },
+  "gpt2-large|colours.semantic.r2|s20260811": {
+   "branching": 1.0076670771017504,
+   "s_far": 0.311820380763457,
+   "s_near": 0.6958466963382933,
+   "distinct": 6.0,
+   "top1": 0.2721354166666667,
+   "s_pos": [
+    0.31182,
+    0.69585
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.semantic.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|colours.semantic.r3|s20260810": {
+   "branching": 1.442940798808055,
+   "s_far": 0.27541640421495417,
+   "s_near": 0.6413389046894384,
+   "distinct": 6.0,
+   "top1": 0.5989583333333334,
+   "s_pos": [
+    0.27542,
+    0.52619,
+    0.64134
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.semantic.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|colours.semantic.r3|s20260811": {
+   "branching": 1.483734844837858,
+   "s_far": 0.28081515980159855,
+   "s_near": 0.6586584002668223,
+   "distinct": 6.0,
+   "top1": 0.6432291666666666,
+   "s_pos": [
+    0.28082,
+    0.54426,
+    0.65866
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.semantic.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    2266,
+    4077,
+    4171,
+    7872,
+    2042,
+    2330
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|colours.freq_matched.r2|s20260810": {
+   "branching": 0.8653782214712323,
+   "s_far": 0.034921480327888416,
+   "s_near": 0.8304567411433439,
+   "distinct": 5.0,
+   "top1": 0.8854166666666666,
+   "s_pos": [
+    0.03492,
+    0.83046
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.freq_matched.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    8621,
+    591,
+    4376,
+    3117,
+    3747,
+    2915
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|colours.freq_matched.r2|s20260811": {
+   "branching": 0.9338295067373578,
+   "s_far": 0.02343460183059279,
+   "s_near": 0.910394904906765,
+   "distinct": 4.0,
+   "top1": 0.9557291666666666,
+   "s_pos": [
+    0.02343,
+    0.91039
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.freq_matched.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    8621,
+    591,
+    4376,
+    3117,
+    3747,
+    2915
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|colours.freq_matched.r3|s20260810": {
+   "branching": 1.4333426185063742,
+   "s_far": 0.11658958118348568,
+   "s_near": 0.5597511336302412,
+   "distinct": 5.0,
+   "top1": 0.8580729166666666,
+   "s_pos": [
+    0.11659,
+    0.757,
+    0.55975
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.freq_matched.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    8621,
+    591,
+    4376,
+    3117,
+    3747,
+    2915
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|colours.freq_matched.r3|s20260811": {
+   "branching": 1.391176600874228,
+   "s_far": 0.21552393819290921,
+   "s_near": 0.5902366359726877,
+   "distinct": 5.0,
+   "top1": 0.78515625,
+   "s_pos": [
+    0.21552,
+    0.58542,
+    0.59024
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.freq_matched.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    8621,
+    591,
+    4376,
+    3117,
+    3747,
+    2915
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|colours.uniform.r2|s20260810": {
+   "branching": 1.0435720626649279,
+   "s_far": 0.06947675856951535,
+   "s_near": 0.9740953040954125,
+   "distinct": 6.0,
+   "top1": 0.3984375,
+   "s_pos": [
+    0.06948,
+    0.9741
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.uniform.r2",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|colours.uniform.r2|s20260811": {
+   "branching": 1.0217893041003157,
+   "s_far": 0.05674110456020061,
+   "s_near": 0.9650481995401151,
+   "distinct": 6.0,
+   "top1": 0.3489583333333333,
+   "s_pos": [
+    0.05674,
+    0.96505
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.uniform.r2",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|colours.uniform.r3|s20260810": {
+   "branching": 1.1563555751634464,
+   "s_far": 0.1275714984547409,
+   "s_near": 0.5547709952039577,
+   "distinct": 4.0,
+   "top1": 0.7486979166666666,
+   "s_pos": [
+    0.12757,
+    0.47401,
+    0.55477
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.uniform.r3",
+   "seed": 20260810,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|colours.uniform.r3|s20260811": {
+   "branching": 1.181413936688887,
+   "s_far": 0.1646667186626657,
+   "s_near": 0.5286640704459649,
+   "distinct": 5.0,
+   "top1": 0.7421875,
+   "s_pos": [
+    0.16467,
+    0.48808,
+    0.52866
+   ],
+   "model": "gpt2-large",
+   "construction": "colours.uniform.r3",
+   "seed": 20260811,
+   "k": 6,
+   "ids": [
+    3081,
+    3921,
+    28618,
+    40189,
+    43993,
+    48663
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|digits.semantic.r2|s20260810": {
+   "branching": 1.0132313849499728,
+   "s_far": 0.3950246110630074,
+   "s_near": 0.6182067738869654,
+   "distinct": 10.0,
+   "top1": 0.75,
+   "s_pos": [
+    0.39502,
+    0.61821
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.semantic.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|digits.semantic.r2|s20260811": {
+   "branching": 0.9537380533010655,
+   "s_far": 0.3542972247483295,
+   "s_near": 0.5994408285527361,
+   "distinct": 10.0,
+   "top1": 0.8072916666666666,
+   "s_pos": [
+    0.3543,
+    0.59944
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.semantic.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|digits.semantic.r3|s20260810": {
+   "branching": 0.6891320934570467,
+   "s_far": 0.14036075419383734,
+   "s_near": 0.30711602629596935,
+   "distinct": 9.0,
+   "top1": 0.9153645833333334,
+   "s_pos": [
+    0.14036,
+    0.24166,
+    0.30712
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.semantic.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|digits.semantic.r3|s20260811": {
+   "branching": 0.6395103230524442,
+   "s_far": 0.11220724735114555,
+   "s_near": 0.29795684222903296,
+   "distinct": 7.0,
+   "top1": 0.9361979166666666,
+   "s_pos": [
+    0.11221,
+    0.22935,
+    0.29796
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.semantic.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    657,
+    352,
+    362,
+    513,
+    604,
+    642,
+    718,
+    767,
+    807,
+    860
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|digits.freq_matched.r2|s20260810": {
+   "branching": 1.1892203317234045,
+   "s_far": 0.5964591309518914,
+   "s_near": 0.5927612007715131,
+   "distinct": 6.0,
+   "top1": 0.7526041666666666,
+   "s_pos": [
+    0.59646,
+    0.59276
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.freq_matched.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    43300,
+    20106,
+    324,
+    546,
+    34743,
+    271,
+    1793,
+    347,
+    780,
+    45017
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|digits.freq_matched.r2|s20260811": {
+   "branching": 1.218998377932643,
+   "s_far": 0.5699704417447305,
+   "s_near": 0.6490279361879123,
+   "distinct": 6.0,
+   "top1": 0.703125,
+   "s_pos": [
+    0.56997,
+    0.64903
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.freq_matched.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    43300,
+    20106,
+    324,
+    546,
+    34743,
+    271,
+    1793,
+    347,
+    780,
+    45017
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|digits.freq_matched.r3|s20260810": {
+   "branching": 1.1251885077690196,
+   "s_far": 0.104327041773629,
+   "s_near": 0.24454938854748234,
+   "distinct": 7.0,
+   "top1": 0.8411458333333334,
+   "s_pos": [
+    0.10433,
+    0.77631,
+    0.24455
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.freq_matched.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    43300,
+    20106,
+    324,
+    546,
+    34743,
+    271,
+    1793,
+    347,
+    780,
+    45017
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|digits.freq_matched.r3|s20260811": {
+   "branching": 1.1872322166863172,
+   "s_far": 0.13173591995943887,
+   "s_near": 0.29678270192758494,
+   "distinct": 7.0,
+   "top1": 0.8333333333333334,
+   "s_pos": [
+    0.13174,
+    0.75871,
+    0.29678
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.freq_matched.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    43300,
+    20106,
+    324,
+    546,
+    34743,
+    271,
+    1793,
+    347,
+    780,
+    45017
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|digits.uniform.r2|s20260810": {
+   "branching": 1.0485729956926926,
+   "s_far": 0.06328710756393752,
+   "s_near": 0.9852858881287551,
+   "distinct": 8.0,
+   "top1": 0.3138020833333333,
+   "s_pos": [
+    0.06329,
+    0.98529
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.uniform.r2",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|digits.uniform.r2|s20260811": {
+   "branching": 1.10042599740191,
+   "s_far": 0.12470715311997849,
+   "s_near": 0.9757188442819313,
+   "distinct": 9.0,
+   "top1": 0.2747395833333333,
+   "s_pos": [
+    0.12471,
+    0.97572
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.uniform.r2",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 19.8
+  },
+  "gpt2-large|digits.uniform.r3|s20260810": {
+   "branching": 0.7253764067745552,
+   "s_far": 0.09193149086368221,
+   "s_near": 0.1163254515165823,
+   "distinct": 8.0,
+   "top1": 0.9114583333333334,
+   "s_pos": [
+    0.09193,
+    0.51712,
+    0.11633
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.uniform.r3",
+   "seed": 20260810,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 25.3
+  },
+  "gpt2-large|digits.uniform.r3|s20260811": {
+   "branching": 0.7476249149590368,
+   "s_far": 0.09895080855405242,
+   "s_near": 0.172898847740327,
+   "distinct": 8.0,
+   "top1": 0.8294270833333334,
+   "s_pos": [
+    0.09895,
+    0.47578,
+    0.1729
+   ],
+   "model": "gpt2-large",
+   "construction": "digits.uniform.r3",
+   "seed": 20260811,
+   "k": 10,
+   "ids": [
+    172,
+    5339,
+    17791,
+    20848,
+    21405,
+    22644,
+    35041,
+    35198,
+    36797,
+    39299
+   ],
+   "secs": 25.4
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "EleutherAI/pythia-410m",
+   "gpt2",
+   "gpt2-large"
+  ],
+  "alphabets": [
+   "binary",
+   "colours",
+   "digits"
+  ],
+  "modes": [
+   "semantic",
+   "freq_matched",
+   "uniform"
+  ],
+  "radii": [
+   2,
+   3
+  ],
+  "T": 0.7,
+  "N": 48,
+  "B": 16,
+  "settle": 12,
+  "seeds": [
+   20260810,
+   20260811
+  ],
+  "readouts": [
+   "branching",
+   "s_near",
+   "s_far",
+   "distinct",
+   "top1"
+  ],
+  "rung_min": 0.6,
+  "concordant": 0.6,
+  "scrambled": 0.3,
+  "rung": "model ordering must agree across two seeds at fixed construction, else the construction question is undefined",
+  "primary": "mean pairwise Spearman between the model-rankings different constructions give",
+  "reading": ">= 0.6 model-attributable; <= 0.3 construction-dominated"
+ },
+ "analysis": {
+  "rung_passes": true,
+  "seed_agreement": {
+   "branching": 0.75,
+   "s_near": 0.9062,
+   "s_far": 0.8125,
+   "distinct": 0.7073,
+   "top1": 0.9722
+  },
+  "readouts_asked": [
+   "branching",
+   "s_near",
+   "s_far",
+   "distinct",
+   "top1"
+  ],
+  "primary": {
+   "branching": {
+    "mean_rho": -0.05,
+    "n_pairs": 120,
+    "n_constructions": 16,
+    "n_frozen": 2
+   },
+   "s_near": {
+    "mean_rho": 0.0,
+    "n_pairs": 120,
+    "n_constructions": 16,
+    "n_frozen": 2
+   },
+   "s_far": {
+    "mean_rho": -0.0375,
+    "n_pairs": 120,
+    "n_constructions": 16,
+    "n_frozen": 2
+   },
+   "distinct": {
+    "mean_rho": -0.0283,
+    "n_pairs": 66,
+    "n_constructions": 18,
+    "n_frozen": 0
+   },
+   "top1": {
+    "mean_rho": 0.1111,
+    "n_pairs": 153,
+    "n_constructions": 18,
+    "n_frozen": 0
+   }
+  },
+  "invariant": [],
+  "scrambled": [
+   "branching",
+   "s_near",
+   "s_far",
+   "distinct",
+   "top1"
+  ]
+ },
+ "verdict": "RUNG (seed stability at FIXED construction, checked before the construction question): branching=0.75, s_near=0.9062, s_far=0.8125, distinct=0.7073, top1=0.9722. 5 of 5 readouts rank the models consistently across two seeds at threshold 0.6 -- ['branching', 's_near', 's_far', 'distinct', 'top1']. Only these are asked the primary question; a readout that cannot rank models reproducibly at fixed construction cannot be asked about invariance across them. PRIMARY, mean pairwise agreement between the model-rankings different constructions produce: branching=-0.050, s_near=+0.000, s_far=-0.037, distinct=-0.028, top1=+0.111 over 18 constructions. NONE reaches the registered 0.6 threshold. No readout ranks models consistently across constructions, so on this evidence the instrument characterises LATTICES rather than language models, and any single-construction comparison is a fact about the apparatus. CONSTRUCTION-DOMINATED at or below 0.3: ['branching', 's_near', 's_far', 'distinct', 'top1']. BOUNDARY: 3 models, so each ranking has 3 points and one swap moves rho a long way -- this identifies a SCRAMBLED readout far more confidently than it certifies an invariant one. One temperature (T=0.7), one lattice size (N=48), radii [2, 3]. Constructions are RULES applied to each model's own tokenizer and marginal, not shared token ids, since identical ids across different vocabularies would not be comparable.",
+ "_analysis_provenance": {
+  "script": "construction_invariance.py",
+  "sha256": "5d83c14594630739d1b2704715457c0dbd088769f1c1ced61dcd60b6ece6b265",
+  "imports": {
+   "experiments/construction_invariance.py": "5d83c14594630739d1b2704715457c0dbd088769f1c1ced61dcd60b6ece6b265",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "523ee1e6dc456e3d07c4280eec07a42a110bcb7b4d2b01425577f27fe507ab97",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "experiments/selection_mode.py": "1e7177cda2faae6ee61add8aaee72d1b2c1d7de5d6e5040ed11d2936b1a2026a",
+   "experiments/subalphabet.py": "06906f8524eccba5fafc9ff0c17c514c59a729bb8dc3bfa9366e10ec4f3771fc",
+   "experiments/subalphabet_why.py": "85d8d461ff02e6c7256fbc3b1a59e007d92fea392b6c6aac2bcf5573ba508f9d",
+   "experiments/window_ladder.py": "312f293c069c28124b34afb09766b92da571efcf101bf3dc89d42af3e698f3cc",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

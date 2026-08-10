@@ -1,0 +1,871 @@
+{
+ "cells": {
+  "binary|semantic|r2": {
+   "arm": "binary|semantic",
+   "alphabet": "binary",
+   "mode": "semantic",
+   "k": 2,
+   "r": 2,
+   "s_pos_settled": [
+    0.07355,
+    0.81317
+   ],
+   "s_pos_uniform": [
+    0.1869,
+    0.64444
+   ],
+   "branching_settled": 0.88672,
+   "branching_uniform": 0.83134,
+   "distinct": 2,
+   "secs": 16.5
+  },
+  "binary|semantic|r3": {
+   "arm": "binary|semantic",
+   "alphabet": "binary",
+   "mode": "semantic",
+   "k": 2,
+   "r": 3,
+   "s_pos_settled": [
+    0.07874,
+    0.54389,
+    0.66454
+   ],
+   "s_pos_uniform": [
+    0.22541,
+    0.2439,
+    0.39073
+   ],
+   "branching_settled": 1.28717,
+   "branching_uniform": 0.86004,
+   "distinct": 2,
+   "secs": 19.6
+  },
+  "binary|semantic|r4": {
+   "arm": "binary|semantic",
+   "alphabet": "binary",
+   "mode": "semantic",
+   "k": 2,
+   "r": 4,
+   "s_pos_settled": [
+    0.15391,
+    0.27068,
+    0.53445,
+    0.46055
+   ],
+   "s_pos_uniform": [
+    0.25333,
+    0.23901,
+    0.28999,
+    0.22827
+   ],
+   "branching_settled": 1.41959,
+   "branching_uniform": 1.01059,
+   "distinct": 2,
+   "secs": 21.2
+  },
+  "binary|semantic|r6": {
+   "arm": "binary|semantic",
+   "alphabet": "binary",
+   "mode": "semantic",
+   "k": 2,
+   "r": 6,
+   "s_pos_settled": [
+    0.19531,
+    0.21924,
+    0.19085,
+    0.32405,
+    0.41435,
+    0.24884
+   ],
+   "s_pos_uniform": [
+    0.25064,
+    0.20248,
+    0.16388,
+    0.24654,
+    0.2519,
+    0.20944
+   ],
+   "branching_settled": 1.59264,
+   "branching_uniform": 1.32488,
+   "distinct": 2,
+   "secs": 27.9
+  },
+  "binary|freq_matched|r2": {
+   "arm": "binary|freq_matched",
+   "alphabet": "binary",
+   "mode": "freq_matched",
+   "k": 2,
+   "r": 2,
+   "s_pos_settled": [
+    0.50639,
+    0.59267
+   ],
+   "s_pos_uniform": [
+    0.56433,
+    0.57981
+   ],
+   "branching_settled": 1.09906,
+   "branching_uniform": 1.14414,
+   "distinct": 2,
+   "secs": 16.4
+  },
+  "binary|freq_matched|r3": {
+   "arm": "binary|freq_matched",
+   "alphabet": "binary",
+   "mode": "freq_matched",
+   "k": 2,
+   "r": 3,
+   "s_pos_settled": [
+    0.31869,
+    0.58194,
+    0.30792
+   ],
+   "s_pos_uniform": [
+    0.25861,
+    0.67466,
+    0.39342
+   ],
+   "branching_settled": 1.20855,
+   "branching_uniform": 1.3267,
+   "distinct": 2,
+   "secs": 19.5
+  },
+  "binary|freq_matched|r4": {
+   "arm": "binary|freq_matched",
+   "alphabet": "binary",
+   "mode": "freq_matched",
+   "k": 2,
+   "r": 4,
+   "s_pos_settled": [
+    0.27943,
+    0.13635,
+    0.63758,
+    0.17052
+   ],
+   "s_pos_uniform": [
+    0.25458,
+    0.1114,
+    0.65519,
+    0.27878
+   ],
+   "branching_settled": 1.22388,
+   "branching_uniform": 1.29995,
+   "distinct": 2,
+   "secs": 20.3
+  },
+  "binary|freq_matched|r6": {
+   "arm": "binary|freq_matched",
+   "alphabet": "binary",
+   "mode": "freq_matched",
+   "k": 2,
+   "r": 6,
+   "s_pos_settled": [
+    0.22407,
+    0.242,
+    0.22984,
+    0.19651,
+    0.42229,
+    0.24364
+   ],
+   "s_pos_uniform": [
+    0.22983,
+    0.38473,
+    0.31523,
+    0.32498,
+    0.42854,
+    0.37548
+   ],
+   "branching_settled": 1.55836,
+   "branching_uniform": 2.0588,
+   "distinct": 2,
+   "secs": 27.0
+  },
+  "binary|uniform|r2": {
+   "arm": "binary|uniform",
+   "alphabet": "binary",
+   "mode": "uniform",
+   "k": 2,
+   "r": 2,
+   "s_pos_settled": [
+    0.04678,
+    0.9528
+   ],
+   "s_pos_uniform": [
+    0.04611,
+    0.95235
+   ],
+   "branching_settled": 0.99958,
+   "branching_uniform": 0.99846,
+   "distinct": 2,
+   "secs": 15.7
+  },
+  "binary|uniform|r3": {
+   "arm": "binary|uniform",
+   "alphabet": "binary",
+   "mode": "uniform",
+   "k": 2,
+   "r": 3,
+   "s_pos_settled": [
+    0.21077,
+    0.80994,
+    0.26381
+   ],
+   "s_pos_uniform": [
+    0.27999,
+    0.49061,
+    0.43908
+   ],
+   "branching_settled": 1.28452,
+   "branching_uniform": 1.20968,
+   "distinct": 2,
+   "secs": 18.7
+  },
+  "binary|uniform|r4": {
+   "arm": "binary|uniform",
+   "alphabet": "binary",
+   "mode": "uniform",
+   "k": 2,
+   "r": 4,
+   "s_pos_settled": [
+    0.03006,
+    0.02067,
+    0.15394,
+    0.03123
+   ],
+   "s_pos_uniform": [
+    0.36374,
+    0.44336,
+    0.6843,
+    0.36746
+   ],
+   "branching_settled": 0.2359,
+   "branching_uniform": 1.85887,
+   "distinct": 2,
+   "secs": 22.0
+  },
+  "binary|uniform|r6": {
+   "arm": "binary|uniform",
+   "alphabet": "binary",
+   "mode": "uniform",
+   "k": 2,
+   "r": 6,
+   "s_pos_settled": [
+    0.00114,
+    0.01351,
+    0.00806,
+    0.00963,
+    0.05714,
+    0.0501
+   ],
+   "s_pos_uniform": [
+    0.13793,
+    0.38978,
+    0.382,
+    0.41354,
+    0.50867,
+    0.43199
+   ],
+   "branching_settled": 0.13957,
+   "branching_uniform": 2.26391,
+   "distinct": 2,
+   "secs": 26.6
+  },
+  "colours|semantic|r2": {
+   "arm": "colours|semantic",
+   "alphabet": "colours",
+   "mode": "semantic",
+   "k": 6,
+   "r": 2,
+   "s_pos_settled": [
+    0.39838,
+    0.51027
+   ],
+   "s_pos_uniform": [
+    0.45346,
+    0.59254
+   ],
+   "branching_settled": 0.90865,
+   "branching_uniform": 1.046,
+   "distinct": 6,
+   "secs": 15.9
+  },
+  "colours|semantic|r3": {
+   "arm": "colours|semantic",
+   "alphabet": "colours",
+   "mode": "semantic",
+   "k": 6,
+   "r": 3,
+   "s_pos_settled": [
+    0.27972,
+    0.3491,
+    0.43649
+   ],
+   "s_pos_uniform": [
+    0.33987,
+    0.47924,
+    0.53905
+   ],
+   "branching_settled": 1.0653,
+   "branching_uniform": 1.35816,
+   "distinct": 6,
+   "secs": 18.8
+  },
+  "colours|semantic|r4": {
+   "arm": "colours|semantic",
+   "alphabet": "colours",
+   "mode": "semantic",
+   "k": 6,
+   "r": 4,
+   "s_pos_settled": [
+    0.18193,
+    0.29468,
+    0.30101,
+    0.34772
+   ],
+   "s_pos_uniform": [
+    0.30096,
+    0.32824,
+    0.38067,
+    0.51334
+   ],
+   "branching_settled": 1.12534,
+   "branching_uniform": 1.52321,
+   "distinct": 6,
+   "secs": 20.3
+  },
+  "colours|semantic|r6": {
+   "arm": "colours|semantic",
+   "alphabet": "colours",
+   "mode": "semantic",
+   "k": 6,
+   "r": 6,
+   "s_pos_settled": [
+    0.10037,
+    0.11521,
+    0.14575,
+    0.19076,
+    0.16866,
+    0.2514
+   ],
+   "s_pos_uniform": [
+    0.26094,
+    0.28755,
+    0.29732,
+    0.35813,
+    0.32159,
+    0.46291
+   ],
+   "branching_settled": 0.97215,
+   "branching_uniform": 1.98845,
+   "distinct": 6,
+   "secs": 26.9
+  },
+  "colours|freq_matched|r2": {
+   "arm": "colours|freq_matched",
+   "alphabet": "colours",
+   "mode": "freq_matched",
+   "k": 6,
+   "r": 2,
+   "s_pos_settled": [
+    0.14832,
+    0.9035
+   ],
+   "s_pos_uniform": [
+    0.53943,
+    0.80104
+   ],
+   "branching_settled": 1.05182,
+   "branching_uniform": 1.34048,
+   "distinct": 6,
+   "secs": 16.1
+  },
+  "colours|freq_matched|r3": {
+   "arm": "colours|freq_matched",
+   "alphabet": "colours",
+   "mode": "freq_matched",
+   "k": 6,
+   "r": 3,
+   "s_pos_settled": [
+    0.44634,
+    0.59423,
+    0.74885
+   ],
+   "s_pos_uniform": [
+    0.35252,
+    0.47838,
+    0.66835
+   ],
+   "branching_settled": 1.78943,
+   "branching_uniform": 1.49925,
+   "distinct": 6,
+   "secs": 19.6
+  },
+  "colours|freq_matched|r4": {
+   "arm": "colours|freq_matched",
+   "alphabet": "colours",
+   "mode": "freq_matched",
+   "k": 6,
+   "r": 4,
+   "s_pos_settled": [
+    0.32353,
+    0.38592,
+    0.42746,
+    0.4771
+   ],
+   "s_pos_uniform": [
+    0.33186,
+    0.38605,
+    0.55307,
+    0.746
+   ],
+   "branching_settled": 1.614,
+   "branching_uniform": 2.01698,
+   "distinct": 6,
+   "secs": 20.4
+  },
+  "colours|freq_matched|r6": {
+   "arm": "colours|freq_matched",
+   "alphabet": "colours",
+   "mode": "freq_matched",
+   "k": 6,
+   "r": 6,
+   "s_pos_settled": [
+    0.19371,
+    0.29765,
+    0.32908,
+    0.29124,
+    0.1771,
+    0.43227
+   ],
+   "s_pos_uniform": [
+    0.28969,
+    0.39844,
+    0.45581,
+    0.46672,
+    0.45056,
+    0.6569
+   ],
+   "branching_settled": 1.72105,
+   "branching_uniform": 2.71811,
+   "distinct": 6,
+   "secs": 29.9
+  },
+  "colours|uniform|r2": {
+   "arm": "colours|uniform",
+   "alphabet": "colours",
+   "mode": "uniform",
+   "k": 6,
+   "r": 2,
+   "s_pos_settled": [
+    0.03013,
+    0.98918
+   ],
+   "s_pos_uniform": [
+    0.32035,
+    0.81408
+   ],
+   "branching_settled": 1.01931,
+   "branching_uniform": 1.13444,
+   "distinct": 4,
+   "secs": 16.0
+  },
+  "colours|uniform|r3": {
+   "arm": "colours|uniform",
+   "alphabet": "colours",
+   "mode": "uniform",
+   "k": 6,
+   "r": 3,
+   "s_pos_settled": [
+    0.02171,
+    0.05054,
+    0.96175
+   ],
+   "s_pos_uniform": [
+    0.23133,
+    0.36962,
+    0.6732
+   ],
+   "branching_settled": 1.034,
+   "branching_uniform": 1.27416,
+   "distinct": 4,
+   "secs": 19.2
+  },
+  "colours|uniform|r4": {
+   "arm": "colours|uniform",
+   "alphabet": "colours",
+   "mode": "uniform",
+   "k": 6,
+   "r": 4,
+   "s_pos_settled": [
+    0.04078,
+    0.09828,
+    0.13451,
+    0.92349
+   ],
+   "s_pos_uniform": [
+    0.21605,
+    0.3425,
+    0.5078,
+    0.68906
+   ],
+   "branching_settled": 1.19706,
+   "branching_uniform": 1.75542,
+   "distinct": 4,
+   "secs": 20.1
+  },
+  "colours|uniform|r6": {
+   "arm": "colours|uniform",
+   "alphabet": "colours",
+   "mode": "uniform",
+   "k": 6,
+   "r": 6,
+   "s_pos_settled": [
+    0.1302,
+    0.19618,
+    0.17133,
+    0.22211,
+    0.17425,
+    0.75222
+   ],
+   "s_pos_uniform": [
+    0.20544,
+    0.27955,
+    0.3424,
+    0.31742,
+    0.44897,
+    0.70731
+   ],
+   "branching_settled": 1.64629,
+   "branching_uniform": 2.3011,
+   "distinct": 4,
+   "secs": 26.4
+  },
+  "digits|semantic|r2": {
+   "arm": "digits|semantic",
+   "alphabet": "digits",
+   "mode": "semantic",
+   "k": 10,
+   "r": 2,
+   "s_pos_settled": [
+    0.117,
+    0.86088
+   ],
+   "s_pos_uniform": [
+    0.509,
+    0.59384
+   ],
+   "branching_settled": 0.97788,
+   "branching_uniform": 1.10284,
+   "distinct": 6,
+   "secs": 15.8
+  },
+  "digits|semantic|r3": {
+   "arm": "digits|semantic",
+   "alphabet": "digits",
+   "mode": "semantic",
+   "k": 10,
+   "r": 3,
+   "s_pos_settled": [
+    0.26966,
+    0.55887,
+    0.72438
+   ],
+   "s_pos_uniform": [
+    0.51313,
+    0.59154,
+    0.60475
+   ],
+   "branching_settled": 1.55291,
+   "branching_uniform": 1.70942,
+   "distinct": 9,
+   "secs": 18.6
+  },
+  "digits|semantic|r4": {
+   "arm": "digits|semantic",
+   "alphabet": "digits",
+   "mode": "semantic",
+   "k": 10,
+   "r": 4,
+   "s_pos_settled": [
+    0.28067,
+    0.35607,
+    0.5278,
+    0.50264
+   ],
+   "s_pos_uniform": [
+    0.55329,
+    0.5208,
+    0.59837,
+    0.61058
+   ],
+   "branching_settled": 1.66719,
+   "branching_uniform": 2.28304,
+   "distinct": 10,
+   "secs": 20.1
+  },
+  "digits|semantic|r6": {
+   "arm": "digits|semantic",
+   "alphabet": "digits",
+   "mode": "semantic",
+   "k": 10,
+   "r": 6,
+   "s_pos_settled": [
+    0.43072,
+    0.32185,
+    0.38471,
+    0.43391,
+    0.40021,
+    0.49999
+   ],
+   "s_pos_uniform": [
+    0.54734,
+    0.48942,
+    0.48831,
+    0.4197,
+    0.48326,
+    0.6428
+   ],
+   "branching_settled": 2.47139,
+   "branching_uniform": 3.07083,
+   "distinct": 10,
+   "secs": 26.5
+  },
+  "digits|freq_matched|r2": {
+   "arm": "digits|freq_matched",
+   "alphabet": "digits",
+   "mode": "freq_matched",
+   "k": 10,
+   "r": 2,
+   "s_pos_settled": [
+    0.60055,
+    0.55061
+   ],
+   "s_pos_uniform": [
+    0.62876,
+    0.74223
+   ],
+   "branching_settled": 1.15116,
+   "branching_uniform": 1.37099,
+   "distinct": 8,
+   "secs": 16.0
+  },
+  "digits|freq_matched|r3": {
+   "arm": "digits|freq_matched",
+   "alphabet": "digits",
+   "mode": "freq_matched",
+   "k": 10,
+   "r": 3,
+   "s_pos_settled": [
+    0.33436,
+    0.63338,
+    0.59346
+   ],
+   "s_pos_uniform": [
+    0.4619,
+    0.61968,
+    0.75273
+   ],
+   "branching_settled": 1.56121,
+   "branching_uniform": 1.8343,
+   "distinct": 8,
+   "secs": 19.0
+  },
+  "digits|freq_matched|r4": {
+   "arm": "digits|freq_matched",
+   "alphabet": "digits",
+   "mode": "freq_matched",
+   "k": 10,
+   "r": 4,
+   "s_pos_settled": [
+    0.34062,
+    0.4146,
+    0.49271,
+    0.49266
+   ],
+   "s_pos_uniform": [
+    0.41387,
+    0.48785,
+    0.59684,
+    0.69081
+   ],
+   "branching_settled": 1.7406,
+   "branching_uniform": 2.18938,
+   "distinct": 8,
+   "secs": 20.4
+  },
+  "digits|freq_matched|r6": {
+   "arm": "digits|freq_matched",
+   "alphabet": "digits",
+   "mode": "freq_matched",
+   "k": 10,
+   "r": 6,
+   "s_pos_settled": [
+    0.31351,
+    0.38549,
+    0.43923,
+    0.38155,
+    0.34882,
+    0.62764
+   ],
+   "s_pos_uniform": [
+    0.39568,
+    0.36129,
+    0.3943,
+    0.43313,
+    0.50235,
+    0.6644
+   ],
+   "branching_settled": 2.49625,
+   "branching_uniform": 2.75116,
+   "distinct": 6,
+   "secs": 26.7
+  },
+  "digits|uniform|r2": {
+   "arm": "digits|uniform",
+   "alphabet": "digits",
+   "mode": "uniform",
+   "k": 10,
+   "r": 2,
+   "s_pos_settled": [
+    0.08659,
+    0.87557
+   ],
+   "s_pos_uniform": [
+    0.26526,
+    0.90799
+   ],
+   "branching_settled": 0.96217,
+   "branching_uniform": 1.17325,
+   "distinct": 9,
+   "secs": 15.7
+  },
+  "digits|uniform|r3": {
+   "arm": "digits|uniform",
+   "alphabet": "digits",
+   "mode": "uniform",
+   "k": 10,
+   "r": 3,
+   "s_pos_settled": [
+    0.17921,
+    0.47687,
+    0.682
+   ],
+   "s_pos_uniform": [
+    0.33995,
+    0.45921,
+    0.74827
+   ],
+   "branching_settled": 1.33808,
+   "branching_uniform": 1.54744,
+   "distinct": 8,
+   "secs": 18.7
+  },
+  "digits|uniform|r4": {
+   "arm": "digits|uniform",
+   "alphabet": "digits",
+   "mode": "uniform",
+   "k": 10,
+   "r": 4,
+   "s_pos_settled": [
+    0.29347,
+    0.45495,
+    0.41032,
+    0.60451
+   ],
+   "s_pos_uniform": [
+    0.3856,
+    0.49059,
+    0.53283,
+    0.72647
+   ],
+   "branching_settled": 1.76324,
+   "branching_uniform": 2.13549,
+   "distinct": 9,
+   "secs": 20.4
+  },
+  "digits|uniform|r6": {
+   "arm": "digits|uniform",
+   "alphabet": "digits",
+   "mode": "uniform",
+   "k": 10,
+   "r": 6,
+   "s_pos_settled": [
+    0.26606,
+    0.45718,
+    0.44357,
+    0.44993,
+    0.40943,
+    0.64764
+   ],
+   "s_pos_uniform": [
+    0.24769,
+    0.35964,
+    0.44263,
+    0.45504,
+    0.514,
+    0.79717
+   ],
+   "branching_settled": 2.6738,
+   "branching_uniform": 2.81617,
+   "distinct": 10,
+   "secs": 26.5
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "revision": "step4000",
+  "T": 0.7,
+  "radii": [
+   2,
+   3,
+   4,
+   6
+  ],
+  "N": 48,
+  "B": 16,
+  "settle": 12,
+  "n_ctx": 64,
+  "seed": 20260810,
+  "source": "results/selection_mode.json",
+  "rung_tol": 0.1,
+  "rung": "at r=2 the per-position values must reproduce selection_mode's stored s_far/s_near",
+  "primary": "smallest r at which sum_pos s_pos >= 1 on the settled pool, per arm",
+  "target": "F94's criticality, which F110 showed is sum_pos s_pos = 1"
+ },
+ "analysis": {
+  "rung_passes": false,
+  "worst_err": 0.12746999999999997
+ },
+ "verdict": "RUNG: at r=2 the per-position values reproduce selection_mode's stored s_far/s_near to within 0.1275 across 9 arms (tolerance 0.1). NOT reproduced -- a different lattice, so nothing below is read.",
+ "_analysis_provenance": {
+  "script": "window_ladder.py",
+  "sha256": "f9a489d90d9ceda9a20fda08a8829572f50d30e940d2ea137ce8ad0efdf9d72c",
+  "imports": {
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "523ee1e6dc456e3d07c4280eec07a42a110bcb7b4d2b01425577f27fe507ab97",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "experiments/subalphabet.py": "06906f8524eccba5fafc9ff0c17c514c59a729bb8dc3bfa9366e10ec4f3771fc",
+   "experiments/subalphabet_why.py": "85d8d461ff02e6c7256fbc3b1a59e007d92fea392b6c6aac2bcf5573ba508f9d",
+   "experiments/window_ladder.py": "f9a489d90d9ceda9a20fda08a8829572f50d30e940d2ea137ce8ad0efdf9d72c",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

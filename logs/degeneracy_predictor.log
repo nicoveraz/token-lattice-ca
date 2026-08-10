@@ -1,0 +1,62 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 19677.96it/s]
+  EleutherAI/pythia-410m|binary.freq_matched.r2     p_dom=0.9969 h_cond=0.0273 top1=0.9993
+  EleutherAI/pythia-410m|binary.freq_matched.r3     p_dom=0.9978 h_cond=0.0195 top1=0.9993
+  EleutherAI/pythia-410m|binary.semantic.r2         p_dom=0.7571 h_cond=0.6374 top1=0.9980
+  EleutherAI/pythia-410m|binary.semantic.r3         p_dom=0.7717 h_cond=0.6792 top1=0.9974
+  EleutherAI/pythia-410m|binary.uniform.r2          p_dom=0.9948 h_cond=0.0424 top1=0.6029
+  EleutherAI/pythia-410m|binary.uniform.r3          p_dom=0.9901 h_cond=0.0675 top1=0.5924
+  EleutherAI/pythia-410m|colours.freq_matched.r2    p_dom=0.8178 h_cond=0.6850 top1=0.4525
+  EleutherAI/pythia-410m|colours.freq_matched.r3    p_dom=0.8525 h_cond=0.5452 top1=0.4206
+  EleutherAI/pythia-410m|colours.semantic.r2        p_dom=0.5591 h_cond=1.8345 top1=0.3724
+  EleutherAI/pythia-410m|colours.semantic.r3        p_dom=0.5073 h_cond=1.9541 top1=0.3711
+  EleutherAI/pythia-410m|colours.uniform.r2         p_dom=0.7670 h_cond=0.8353 top1=0.9980
+  EleutherAI/pythia-410m|colours.uniform.r3         p_dom=0.8074 h_cond=0.7251 top1=0.8984
+  EleutherAI/pythia-410m|digits.freq_matched.r2     p_dom=0.7501 h_cond=0.9743 top1=0.2650
+  EleutherAI/pythia-410m|digits.freq_matched.r3     p_dom=0.7612 h_cond=0.9050 top1=0.2975
+  EleutherAI/pythia-410m|digits.semantic.r2         p_dom=0.4028 h_cond=2.4873 top1=0.9876
+  EleutherAI/pythia-410m|digits.semantic.r3         p_dom=0.4324 h_cond=2.3838 top1=0.9850
+  EleutherAI/pythia-410m|digits.uniform.r2          p_dom=0.7548 h_cond=0.9567 top1=0.4818
+  EleutherAI/pythia-410m|digits.uniform.r3          p_dom=0.8005 h_cond=0.7927 top1=0.5443
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7066.18it/s]
+  gpt2|binary.freq_matched.r2     p_dom=0.9684 h_cond=0.1613 top1=0.8861
+  gpt2|binary.freq_matched.r3     p_dom=0.9681 h_cond=0.1507 top1=0.5814
+  gpt2|binary.semantic.r2         p_dom=0.7677 h_cond=0.6714 top1=0.8887
+  gpt2|binary.semantic.r3         p_dom=0.8086 h_cond=0.6253 top1=0.9466
+  gpt2|binary.uniform.r2          p_dom=0.9462 h_cond=0.2025 top1=0.8242
+  gpt2|binary.uniform.r3          p_dom=0.8894 h_cond=0.2894 top1=0.5254
+  gpt2|colours.freq_matched.r2    p_dom=0.9206 h_cond=0.3122 top1=0.4102
+  gpt2|colours.freq_matched.r3    p_dom=0.9017 h_cond=0.3566 top1=0.5098
+  gpt2|colours.semantic.r2        p_dom=0.5153 h_cond=1.9197 top1=0.2949
+  gpt2|colours.semantic.r3        p_dom=0.3900 h_cond=2.1950 top1=0.2786
+  gpt2|colours.uniform.r2         p_dom=0.9460 h_cond=0.2129 top1=0.5273
+  gpt2|colours.uniform.r3         p_dom=0.9295 h_cond=0.2743 top1=0.4193
+  gpt2|digits.freq_matched.r2     p_dom=0.6688 h_cond=1.3065 top1=0.4030
+  gpt2|digits.freq_matched.r3     p_dom=0.7113 h_cond=1.1675 top1=0.4102
+  gpt2|digits.semantic.r2         p_dom=0.4117 h_cond=2.4350 top1=0.4525
+  gpt2|digits.semantic.r3         p_dom=0.4185 h_cond=2.4084 top1=0.7474
+  gpt2|digits.uniform.r2          p_dom=0.9348 h_cond=0.2850 top1=0.2018
+  gpt2|digits.uniform.r3          p_dom=0.9045 h_cond=0.3624 top1=0.9206
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 11513.02it/s]
+  gpt2-large|binary.freq_matched.r2     p_dom=0.9675 h_cond=0.1704 top1=0.5690
+  gpt2-large|binary.freq_matched.r3     p_dom=0.8745 h_cond=0.3455 top1=0.6712
+  gpt2-large|binary.semantic.r2         p_dom=0.8148 h_cond=0.6293 top1=0.9069
+  gpt2-large|binary.semantic.r3         p_dom=0.8290 h_cond=0.5991 top1=0.9668
+  gpt2-large|binary.uniform.r2          p_dom=0.9481 h_cond=0.2376 top1=0.5280
+  gpt2-large|binary.uniform.r3          p_dom=0.9319 h_cond=0.2277 top1=0.8118
+  gpt2-large|colours.freq_matched.r2    p_dom=0.8289 h_cond=0.6375 top1=0.9206
+  gpt2-large|colours.freq_matched.r3    p_dom=0.8269 h_cond=0.6123 top1=0.8216
+  gpt2-large|colours.semantic.r2        p_dom=0.5533 h_cond=1.8149 top1=0.2663
+  gpt2-large|colours.semantic.r3        p_dom=0.4865 h_cond=1.9086 top1=0.6211
+  gpt2-large|colours.uniform.r2         p_dom=0.9302 h_cond=0.2538 top1=0.3737
+  gpt2-large|colours.uniform.r3         p_dom=0.9059 h_cond=0.3479 top1=0.7454
+  gpt2-large|digits.freq_matched.r2     p_dom=0.6999 h_cond=1.1593 top1=0.7279
+  gpt2-large|digits.freq_matched.r3     p_dom=0.7027 h_cond=1.1360 top1=0.8372
+  gpt2-large|digits.semantic.r2         p_dom=0.4069 h_cond=2.4539 top1=0.7786
+  gpt2-large|digits.semantic.r3         p_dom=0.3949 h_cond=2.5103 top1=0.9258
+  gpt2-large|digits.uniform.r2          p_dom=0.9316 h_cond=0.3440 top1=0.2943
+  gpt2-large|digits.uniform.r3          p_dom=0.8809 h_cond=0.5387 top1=0.8704
+
+  -> RUNG: 54 of 54 constructions measured, with top1 READ from construction_invariance.json rather than recomputed so the outcome cannot drift toward the predictor.  PRIMARY: rho(p_dom, top1) = +0.091 over 54 constructions, of which 2 froze completely (top1 >= 0.999). Below the registered 0.6, so p_dom does NOT predict freezing and the cause is elsewhere.  SECONDARY: rho(h_cond, top1) = -0.107 -- entropy, which F124 found does not predict s_far, asked here about the degeneracy it is actually shaped for. rho(k, top1) = -0.312 -- alphabet size, the obvious competitor. BOUNDARY: freezing measured at T = 0.7 and one settle length, so a construction that freezes here need not freeze at another operating point. Unlike F124's H_gap the predictor is STATIC and the outcome DYNAMICAL, so nothing forces them to agree and this correlation is not structural.
+
+wrote results/degeneracy_predictor.json
