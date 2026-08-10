@@ -1,0 +1,96 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 16773.68it/s]
+  EleutherAI/pythia-31m|r2.T0.7|s20260810      lambda=+0.1439 dmg=0.525 distinct=331 (19s)
+  EleutherAI/pythia-31m|r2.T0.7|s20260811      lambda=+0.1507 dmg=0.681 distinct=332 (19s)
+  EleutherAI/pythia-31m|r2.T1.0|s20260810      lambda=+0.1874 dmg=0.927 distinct=507 (19s)
+  EleutherAI/pythia-31m|r2.T1.0|s20260811      lambda=+0.1438 dmg=0.936 distinct=513 (18s)
+  EleutherAI/pythia-31m|r3.T0.7|s20260810      lambda=+0.2957 dmg=0.975 distinct=378 (19s)
+  EleutherAI/pythia-31m|r3.T0.7|s20260811      lambda=+0.3990 dmg=0.973 distinct=334 (18s)
+  EleutherAI/pythia-31m|r3.T1.0|s20260810      lambda=+0.3250 dmg=0.986 distinct=495 (20s)
+  EleutherAI/pythia-31m|r3.T1.0|s20260811      lambda=+0.5093 dmg=0.975 distinct=518 (22s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 15917.66it/s]
+  EleutherAI/pythia-160m|r2.T0.7|s20260810     lambda=+0.1636 dmg=0.490 distinct=316 (36s)
+  EleutherAI/pythia-160m|r2.T0.7|s20260811     lambda=+0.1351 dmg=0.645 distinct=308 (35s)
+  EleutherAI/pythia-160m|r2.T1.0|s20260810     lambda=+0.2032 dmg=0.931 distinct=488 (34s)
+  EleutherAI/pythia-160m|r2.T1.0|s20260811     lambda=+0.1520 dmg=0.915 distinct=506 (33s)
+  EleutherAI/pythia-160m|r3.T0.7|s20260810     lambda=+0.2764 dmg=0.964 distinct=349 (37s)
+  EleutherAI/pythia-160m|r3.T0.7|s20260811     lambda=+0.4095 dmg=0.973 distinct=349 (39s)
+  EleutherAI/pythia-160m|r3.T1.0|s20260810     lambda=+0.3943 dmg=0.980 distinct=536 (39s)
+  EleutherAI/pythia-160m|r3.T1.0|s20260811     lambda=+0.5071 dmg=0.979 distinct=510 (39s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7395.04it/s]
+  EleutherAI/pythia-410m|r2.T0.7|s20260810     lambda=+0.1567 dmg=0.734 distinct=342 (66s)
+  EleutherAI/pythia-410m|r2.T0.7|s20260811     lambda=+0.1304 dmg=0.750 distinct=334 (67s)
+  EleutherAI/pythia-410m|r2.T1.0|s20260810     lambda=+0.2023 dmg=0.891 distinct=519 (70s)
+  EleutherAI/pythia-410m|r2.T1.0|s20260811     lambda=+0.1430 dmg=0.926 distinct=499 (67s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260810     lambda=+0.3138 dmg=0.974 distinct=382 (81s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260811     lambda=+0.4023 dmg=0.965 distinct=364 (80s)
+  EleutherAI/pythia-410m|r3.T1.0|s20260810     lambda=+0.3709 dmg=0.986 distinct=528 (80s)
+  EleutherAI/pythia-410m|r3.T1.0|s20260811     lambda=+0.5055 dmg=0.988 distinct=517 (80s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7262.27it/s]
+  gpt2|r2.T0.7|s20260810                       lambda=+0.1091 dmg=0.488 distinct=352 (22s)
+  gpt2|r2.T0.7|s20260811                       lambda=+0.1354 dmg=0.690 distinct=336 (22s)
+  gpt2|r2.T1.0|s20260810                       lambda=+0.1677 dmg=0.701 distinct=485 (22s)
+  gpt2|r2.T1.0|s20260811                       lambda=+0.1299 dmg=0.850 distinct=480 (22s)
+  gpt2|r3.T0.7|s20260810                       lambda=+0.2734 dmg=0.960 distinct=364 (28s)
+  gpt2|r3.T0.7|s20260811                       lambda=+0.3271 dmg=0.966 distinct=379 (28s)
+  gpt2|r3.T1.0|s20260810                       lambda=+0.3666 dmg=0.853 distinct=497 (28s)
+  gpt2|r3.T1.0|s20260811                       lambda=+0.5174 dmg=0.969 distinct=515 (28s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7294.53it/s]
+  gpt2-medium|r2.T0.7|s20260810                lambda=+0.1593 dmg=0.551 distinct=375 (49s)
+  gpt2-medium|r2.T0.7|s20260811                lambda=+0.1246 dmg=0.710 distinct=359 (48s)
+  gpt2-medium|r2.T1.0|s20260810                lambda=+0.1746 dmg=0.740 distinct=498 (49s)
+  gpt2-medium|r2.T1.0|s20260811                lambda=+0.1466 dmg=0.854 distinct=499 (49s)
+  gpt2-medium|r3.T0.7|s20260810                lambda=+0.2648 dmg=0.848 distinct=388 (65s)
+  gpt2-medium|r3.T0.7|s20260811                lambda=+0.4027 dmg=0.967 distinct=375 (65s)
+  gpt2-medium|r3.T1.0|s20260810                lambda=+0.3615 dmg=0.978 distinct=519 (65s)
+  gpt2-medium|r3.T1.0|s20260811                lambda=+0.5188 dmg=0.979 distinct=502 (65s)
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7495.02it/s]
+  gpt2-large|r2.T0.7|s20260810                 lambda=+0.1418 dmg=0.612 distinct=369 (101s)
+  gpt2-large|r2.T0.7|s20260811                 lambda=+0.1404 dmg=0.699 distinct=330 (94s)
+  gpt2-large|r2.T1.0|s20260810                 lambda=+0.1330 dmg=0.630 distinct=498 (92s)
+  gpt2-large|r2.T1.0|s20260811                 lambda=+0.1514 dmg=0.822 distinct=472 (99s)
+  gpt2-large|r3.T0.7|s20260810                 lambda=+0.3094 dmg=0.965 distinct=377 (119s)
+  gpt2-large|r3.T0.7|s20260811                 lambda=+0.3260 dmg=0.966 distinct=352 (119s)
+  gpt2-large|r3.T1.0|s20260810                 lambda=+0.3540 dmg=0.977 distinct=487 (119s)
+  gpt2-large|r3.T1.0|s20260811                 lambda=+0.5410 dmg=0.969 distinct=477 (119s)
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 37053.51it/s]
+  facebook/opt-350m|r2.T0.7|s20260810          lambda=+0.1137 dmg=0.520 distinct=366 (68s)
+  facebook/opt-350m|r2.T0.7|s20260811          lambda=+0.1326 dmg=0.630 distinct=354 (70s)
+  facebook/opt-350m|r2.T1.0|s20260810          lambda=+0.1442 dmg=0.747 distinct=501 (70s)
+  facebook/opt-350m|r2.T1.0|s20260811          lambda=+0.1443 dmg=0.797 distinct=492 (68s)
+  facebook/opt-350m|r3.T0.7|s20260810          lambda=+0.2631 dmg=0.898 distinct=380 (80s)
+  facebook/opt-350m|r3.T0.7|s20260811          lambda=+0.4126 dmg=0.973 distinct=383 (80s)
+  facebook/opt-350m|r3.T1.0|s20260810          lambda=+0.3757 dmg=0.966 distinct=505 (81s)
+  facebook/opt-350m|r3.T1.0|s20260811          lambda=+0.5279 dmg=0.964 distinct=493 (88s)
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 5027.04it/s]
+  bigscience/bloom-560m|r2.T0.7|s20260810      lambda=+0.1959 dmg=0.888 distinct=565 (79s)
+  bigscience/bloom-560m|r2.T0.7|s20260811      lambda=+0.1499 dmg=0.935 distinct=596 (73s)
+  bigscience/bloom-560m|r2.T1.0|s20260810      lambda=+0.2218 dmg=0.987 distinct=680 (74s)
+  bigscience/bloom-560m|r2.T1.0|s20260811      lambda=+0.1458 dmg=0.954 distinct=673 (78s)
+  bigscience/bloom-560m|r3.T0.7|s20260810      lambda=+0.3185 dmg=0.993 distinct=608 (100s)
+  bigscience/bloom-560m|r3.T0.7|s20260811      lambda=+0.3425 dmg=0.987 distinct=569 (94s)
+  bigscience/bloom-560m|r3.T1.0|s20260810      lambda=+0.3977 dmg=0.996 distinct=673 (94s)
+  bigscience/bloom-560m|r3.T1.0|s20260811      lambda=+0.5183 dmg=0.993 distinct=667 (94s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 13715.77it/s]
+  state-spaces/mamba-130m-hf|r2.T0.7|s20260810 lambda=+0.1948 dmg=0.710 distinct=365 (139s)
+  state-spaces/mamba-130m-hf|r2.T0.7|s20260811 lambda=+0.1370 dmg=0.828 distinct=372 (137s)
+  state-spaces/mamba-130m-hf|r2.T1.0|s20260810 lambda=+0.1864 dmg=0.835 distinct=516 (137s)
+  state-spaces/mamba-130m-hf|r2.T1.0|s20260811 lambda=+0.1441 dmg=0.888 distinct=511 (137s)
+  state-spaces/mamba-130m-hf|r3.T0.7|s20260810 lambda=+0.3232 dmg=0.969 distinct=362 (186s)
+  state-spaces/mamba-130m-hf|r3.T0.7|s20260811 lambda=+0.4195 dmg=0.965 distinct=362 (186s)
+  state-spaces/mamba-130m-hf|r3.T1.0|s20260810 lambda=+0.3830 dmg=0.979 distinct=514 (186s)
+  state-spaces/mamba-130m-hf|r3.T1.0|s20260811 lambda=+0.5228 dmg=0.982 distinct=514 (186s)
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 76579.94it/s]
+  RWKV/rwkv-4-169m-pile|r2.T0.7|s20260810      lambda=+0.1373 dmg=0.667 distinct=377 (38s)
+  RWKV/rwkv-4-169m-pile|r2.T0.7|s20260811      lambda=+0.1334 dmg=0.833 distinct=378 (38s)
+  RWKV/rwkv-4-169m-pile|r2.T1.0|s20260810      lambda=+0.1965 dmg=0.892 distinct=522 (38s)
+  RWKV/rwkv-4-169m-pile|r2.T1.0|s20260811      lambda=+0.1456 dmg=0.913 distinct=523 (38s)
+  RWKV/rwkv-4-169m-pile|r3.T0.7|s20260810      lambda=+0.3131 dmg=0.954 distinct=378 (47s)
+  RWKV/rwkv-4-169m-pile|r3.T0.7|s20260811      lambda=+0.3414 dmg=0.982 distinct=380 (47s)
+  RWKV/rwkv-4-169m-pile|r3.T1.0|s20260810      lambda=+0.3979 dmg=0.977 distinct=522 (47s)
+  RWKV/rwkv-4-169m-pile|r3.T1.0|s20260811      lambda=+0.5182 dmg=0.982 distinct=513 (47s)
+
+  -> PRIMARY (SIGNAL, asked before invariance because F128 discovered too late that there was no ranking to be invariant about): per construction, the across-model spread must exceed the across-seed spread by 2.0x. lambda_ca 2/4, mean_damage 4/4, distinct 4/4, top1 4/4. lambda_ca spread/noise ratios by construction: r2.T0.7=3.46, r2.T1.0=2.18, r3.T0.7=0.72, r3.T1.0=0.5. lambda_ca carries signal on only 2 of 4 constructions even across six families and two non-attention architectures, so F128's null is a fact about LAMBDA_CA rather than about its model set: model identity moves it less than seed noise does. RUNG (seed stability at fixed construction, the gate F128 failed at 0.167): lambda_ca=0.0303, mean_damage=0.6072, distinct=0.6038, top1=0.5833, threshold 0.6. SECONDARY (invariance, asked only of readouts with both a stable ranking and real signal): mean_damage=+0.580, distinct=+0.414. None reaches 0.6, so even where a ranking exists it is construction-relative. BOUNDARY: 10 models over six families and four architecture classes, including two non-attention (Mamba, RWKV) -- F64 found architecture is where this instrument's largest effects live. They differ in SIZE as well as family, so a cross-model signal here would not by itself be architecture rather than scale. N=48, radii [2, 3], temperatures [0.7, 1.0].
+
+wrote results/fullvocab_invariance_wide.json

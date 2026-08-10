@@ -89,23 +89,36 @@ def analyse(res):
         agree = [spearman(a[c], b[c]) for c in shared]
         rung[ro] = round(float(np.mean([v for v in agree if np.isfinite(v)])), 4) if agree else None
     lam = signal.get("lambda_ca", {})
+    lam_rung = rung.get("lambda_ca")
+    # THREE OUTCOMES, NOT TWO. A first version branched on "signal on a majority of constructions"
+    # and printed "only 2 of 4" -- true but misleading, because the two that pass are BOTH r=2 and
+    # pass strongly (3.46, 2.18) while the two that fail are r=3, where seed noise explodes. Worse,
+    # it collapsed the case that actually occurred: a spread that EXCEEDS noise while producing NO
+    # reproducible ordering. A spread you cannot rank is not a model measurement, and calling it
+    # either "signal" or "no signal" loses the distinction that matters.
+    has_spread = lam.get("n_with_signal", 0) > 0
+    has_rank = lam_rung is not None and lam_rung >= RUNG_MIN
     parts.append(
-        "PRIMARY (SIGNAL, asked before invariance because F128 discovered too late that there was no "
-        "ranking to be invariant about): per construction, the across-model spread must exceed the "
-        f"across-seed spread by {NOISE_FACTOR}x. "
+        "PRIMARY (SIGNAL, asked before invariance because F128 discovered too late that there was "
+        "no ranking to be invariant about): per construction, the across-model spread must exceed "
+        f"the across-seed spread by {NOISE_FACTOR}x. "
         + ", ".join(f"{ro} {signal[ro]['n_with_signal']}/{signal[ro]['n_constructions']}"
                     for ro in READOUTS)
-        + ". lambda_ca spread/noise ratios by construction: "
+        + ". lambda_ca spread/noise by construction: "
         + ", ".join(f"{c}={v}" for c, v in lam.get("ratios", {}).items()) + ". "
-        + (f"lambda_ca carries real cross-model signal on {lam.get('n_with_signal')} of "
-           f"{lam.get('n_constructions')} constructions, so on a set spanning six families and two "
-           f"non-attention architectures the null F128 found does NOT hold -- it was a fact about "
-           f"that trio of similar models."
-           if lam.get("n_with_signal", 0) > lam.get("n_constructions", 1) / 2 else
-           f"lambda_ca carries signal on only {lam.get('n_with_signal')} of "
-           f"{lam.get('n_constructions')} constructions even across six families and two "
-           f"non-attention architectures, so F128's null is a fact about LAMBDA_CA rather than "
-           f"about its model set: model identity moves it less than seed noise does."))
+        + ("lambda_ca has NO spread above its own noise at any construction, so model identity moves "
+           "it less than the seed does and there is nothing to rank."
+           if not has_spread else
+           f"lambda_ca's spread exceeds noise on {lam['n_with_signal']} of "
+           f"{lam['n_constructions']} constructions -- both at r=2, where seed noise is smallest; "
+           f"the r=3 constructions fail because noise grows faster than spread. "
+           + ("The ordering is also seed-stable, so this is a usable cross-model ranking."
+              if has_rank else
+              f"BUT THE ORDERING IS NOT REPRODUCIBLE: seed stability is {lam_rung}, far below "
+              f"{RUNG_MIN}. So there is a real spread and NO usable ranking inside it -- the "
+              f"separation comes from a few models sitting slightly high rather than from an order "
+              f"the readout can reproduce. A spread that cannot be ranked is not a model "
+              f"measurement.")))
     parts.append(
         "RUNG (seed stability at fixed construction, the gate F128 failed at 0.167): "
         + ", ".join(f"{ro}={rung[ro]}" for ro in READOUTS) + f", threshold {RUNG_MIN}.")

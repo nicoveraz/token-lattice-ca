@@ -3645,6 +3645,68 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F129 — λ_ca's cross-model spread is real but UNRANKABLE, and it is blind to architecture
+F128 found no cross-model signal in λ_ca on three similar English LMs and could not tell whether
+that was a fact about λ_ca or about the trio. This runs the same design on **ten models across six
+families and four architecture classes**, including two **non-attention** models — Mamba
+(state-space) and RWKV (linear recurrence). F64 established architecture is where this instrument's
+largest effects live, so that is where λ_ca would show cross-model information if it has any.
+
+**The question order is reversed from F126/F128 on purpose.** Both asked "is the ranking
+construction-invariant?" and discovered too late that there was no reliable ranking to be invariant
+about. Here SIGNAL is asked first and gates everything after it.
+
+```
+  lambda_ca spread/noise      r2.T0.7 = 3.46   r2.T1.0 = 2.18    (gate 2.0, both PASS)
+                              r3.T0.7 = 0.72   r3.T1.0 = 0.50    (fail: noise grows with r)
+  seed-stable ranking         lambda_ca 0.030   mean_damage 0.607   distinct 0.604   top1 0.583
+```
+
+**PRIMARY, and it is a third outcome neither F126 nor F128 anticipated: there is a real spread with
+no usable ranking inside it.** λ_ca's across-model spread beats seed noise by 3.46× at the paper's
+operating point — so F128's flat null was indeed a fact about that trio. But the **ordering** has
+seed stability **0.030**, and it reshuffles completely between T=0.7 and T=1.0 (gpt2-large moves 4th
+→ 1st, RWKV 3rd → 7th). The separation comes from two models sitting slightly high, not from an
+order the readout can reproduce. **A spread that cannot be ranked is not a model measurement.**
+
+**THE DECISIVE CHECK IS RWKV, and λ_ca fails it.**
+
+```
+  r2.T0.7        gpt2 +0.1222   opt-350m +0.1231   RWKV +0.1354   gpt2-large +0.1411
+                 gpt2-medium +0.1420   pythia-410m +0.1436   pythia-31m +0.1473
+                 pythia-160m +0.1493   mamba-130m +0.1659   bloom-560m +0.1729
+```
+
+F64's largest result in this project is that **RWKV — Pile-trained without attention — has no
+attractor at all**. On λ_ca it sits at +0.135, mid-pack between gpt2-large and gpt2-medium. **λ_ca is
+blind to the one architectural difference this instrument has most strongly established.** Nor is the
+high end architectural: Mamba (state-space) and BLOOM (a full transformer with a different corpus and
+tokenizer) sit together at the top, so that grouping is not a mechanism either.
+
+**MAGNITUDE, which settles how much this could ever have mattered.** The entire cross-model spread is
+**0.051**, against a construction-induced range of 0.122 → 0.804 (F128). Model identity accounts for
+roughly **7%** of what the apparatus itself moves.
+
+**SECONDARY: the two readouts that do have both signal and a stable ranking are still
+construction-relative.** `mean_damage` +0.580 and `distinct` +0.414, neither reaching the 0.6
+concordance threshold — so even where a reproducible ordering exists, it does not survive changing
+the lattice.
+
+**A SUMMARISER DEFECT, CAUGHT AND FIXED BEFORE RECORDING.** The first version branched on "signal on
+a *majority* of constructions", so 2 of 4 fell to the negative branch and it printed "only 2 of 4" —
+true, but misleading, since both passing constructions are r=2 and pass strongly while the failures
+are r=3 where noise explodes. Worse, that binary collapsed the outcome that actually occurred:
+spread-without-ranking. Calling it either "signal" or "no signal" loses the only distinction that
+matters here.
+
+**BOUNDARY.** Ten models is a far better ranking than F128's three, but they differ in **size** as
+well as family, so even a clean cross-model signal would not have been architecture rather than
+scale. Two radii, two temperatures, N = 48. λ_ca's *developmental* range within one model
+(+0.336 → −0.339 → +0.168) remains ~7× this cross-model spread, so F39/F46/F84 are untouched — this
+constrains what λ_ca can say ACROSS models, not what it says across training.
+
+`experiments/fullvocab_invariance_wide.py` → `results/fullvocab_invariance_wide.json`
+
 ### F128 — λ_ca has essentially NO cross-model signal: the construction moves it ~30× more than the model does
 The full-vocabulary version of F126's invariance test, run on the construction the paper's claims
 actually use — r ∈ {2,3,4} × T ∈ {0.7,1.0,1.3}, the model's own vocabulary, no sub-alphabet. It could
