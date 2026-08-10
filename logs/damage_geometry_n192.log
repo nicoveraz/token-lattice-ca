@@ -1,0 +1,45 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<04:02,  1.20it/s]Loading weights:  32%|███▏      | 92/292 [00:00<00:01, 130.70it/s]Loading weights:  47%|████▋     | 138/292 [00:01<00:01, 140.70it/s]Loading weights:  58%|█████▊    | 170/292 [00:01<00:00, 141.52it/s]Loading weights:  67%|██████▋   | 195/292 [00:01<00:00, 146.21it/s]Loading weights:  74%|███████▍  | 217/292 [00:01<00:00, 151.55it/s]Loading weights:  82%|████████▏ | 240/292 [00:01<00:00, 151.07it/s]Loading weights:  89%|████████▊ | 259/292 [00:02<00:00, 153.33it/s]Loading weights:  95%|█████████▍| 277/292 [00:02<00:00, 147.06it/s]Loading weights: 100%|██████████| 292/292 [00:02<00:00, 131.94it/s]
+  step128|s21      area=    4.9 asym=1.0000 fill=0.065 width=  nan lam=-2.1419 (217s)
+  step128|s22      area=    6.3 asym=1.0000 fill=0.083 width=  nan lam=-2.1794 (213s)
+  step128|s23      area=   27.4 asym=1.0000 fill=0.037 width=  0.0 lam=-0.7961 (206s)
+  step128|s24      area=    4.7 asym=1.0000 fill=0.112 width=  nan lam=-2.0986 (203s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:15,  2.14it/s]Loading weights:  36%|███▌      | 105/292 [00:00<00:00, 245.35it/s]Loading weights:  57%|█████▋    | 167/292 [00:00<00:00, 216.68it/s]Loading weights:  72%|███████▏  | 209/292 [00:01<00:00, 191.30it/s]Loading weights:  83%|████████▎ | 241/292 [00:01<00:00, 197.07it/s]Loading weights:  92%|█████████▏| 269/292 [00:01<00:00, 204.69it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 190.13it/s]
+  step256|s21      area=    9.7 asym=1.0000 fill=0.017 width=  0.0 lam=-0.3245 (211s)
+  step256|s22      area=   32.1 asym=1.0000 fill=0.045 width=  0.0 lam=-0.0362 (209s)
+  step256|s23      area=   94.5 asym=1.0000 fill=0.110 width=  0.0 lam=+0.0539 (204s)
+  step256|s24      area=   86.6 asym=1.0000 fill=0.089 width=  0.0 lam=+0.0493 (202s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:04,  2.34it/s]Loading weights:  37%|███▋      | 108/292 [00:00<00:00, 246.24it/s]Loading weights:  53%|█████▎    | 154/292 [00:00<00:00, 229.96it/s]Loading weights:  65%|██████▍   | 189/292 [00:00<00:00, 208.88it/s]Loading weights:  74%|███████▍  | 217/292 [00:01<00:00, 195.39it/s]Loading weights:  83%|████████▎ | 241/292 [00:01<00:00, 198.12it/s]Loading weights:  93%|█████████▎| 272/292 [00:01<00:00, 219.91it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 201.20it/s]
+  step512|s21      area=   54.6 asym=1.0000 fill=0.064 width=  0.0 lam=-0.0767 (202s)
+  step512|s22      area=  124.8 asym=1.0000 fill=0.113 width=  0.0 lam=+0.1950 (210s)
+  step512|s23      area=  170.6 asym=1.0000 fill=0.165 width=  0.0 lam=+0.1724 (206s)
+  step512|s24      area=  181.3 asym=1.0000 fill=0.163 width=  0.0 lam=+0.1114 (203s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:02,  2.38it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 298.21it/s]Loading weights:  64%|██████▎   | 186/292 [00:00<00:00, 235.43it/s]Loading weights:  79%|███████▉  | 231/292 [00:01<00:00, 232.59it/s]Loading weights:  91%|█████████▏| 267/292 [00:01<00:00, 223.78it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 221.13it/s]
+  step1000|s21     area=  377.5 asym=1.0000 fill=0.381 width=  0.0 lam=+0.1303 (201s)
+  step1000|s22     area=  504.1 asym=1.0000 fill=0.437 width=  0.0 lam=+0.1578 (201s)
+  step1000|s23     area=  605.4 asym=1.0000 fill=0.547 width=  0.0 lam=+0.1716 (202s)
+  step1000|s24     area=  605.5 asym=1.0000 fill=0.531 width=  0.0 lam=+0.1721 (202s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:04,  2.34it/s]Loading weights:  40%|███▉      | 116/292 [00:00<00:00, 281.66it/s]Loading weights:  61%|██████    | 178/292 [00:00<00:00, 238.39it/s]Loading weights:  76%|███████▌  | 221/292 [00:01<00:00, 211.03it/s]Loading weights:  87%|████████▋ | 254/292 [00:01<00:00, 216.51it/s]Loading weights:  97%|█████████▋| 284/292 [00:01<00:00, 215.63it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 207.10it/s]
+  step2000|s21     area=  332.6 asym=1.0000 fill=0.327 width=  0.0 lam=+0.1372 (202s)
+  step2000|s22     area=  399.0 asym=1.0000 fill=0.351 width=  0.0 lam=+0.1638 (201s)
+  step2000|s23     area=  466.2 asym=1.0000 fill=0.439 width=  0.0 lam=+0.1446 (201s)
+  step2000|s24     area=  497.5 asym=1.0000 fill=0.437 width=  0.0 lam=+0.1679 (201s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:03,  2.36it/s]Loading weights:  42%|████▏     | 122/292 [00:00<00:00, 305.38it/s]Loading weights:  66%|██████▌   | 192/292 [00:00<00:00, 252.66it/s]Loading weights:  82%|████████▏ | 240/292 [00:01<00:00, 229.32it/s]Loading weights:  95%|█████████▍| 277/292 [00:01<00:00, 227.51it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 222.14it/s]
+  step4000|s21     area=  305.7 asym=1.0000 fill=0.276 width=  0.0 lam=+0.1239 (202s)
+  step4000|s22     area=  444.4 asym=1.0000 fill=0.390 width=  0.0 lam=+0.1880 (202s)
+  step4000|s23     area=  505.1 asym=1.0000 fill=0.466 width=  0.0 lam=+0.1810 (201s)
+  step4000|s24     area=  458.4 asym=1.0000 fill=0.411 width=  0.0 lam=+0.1748 (201s)
+
+    step      area     fill  front_width    lambda
+     128      27.4    0.037          0.0   -0.7961
+     256      55.7    0.065          0.0   -0.0644
+     512     132.8    0.127          0.0   +0.1005
+    1000     523.1    0.474          0.0   +0.1580
+    2000     423.8    0.389          0.0   +0.1534
+    4000     428.4    0.386          0.0   +0.1669
+  rho(area        , lambda) = +0.943  p=0.0167
+  rho(fill        , lambda) = +0.829  p=0.0583
+  rho(front_width , lambda) = NOT READABLE (span 0.0000)
+
+  -> RUNG (the causal window, checked rather than assumed): damage asymmetry about the injection is 1.0000-1.0000 across 24 runs. Exactly one-sided, as a strictly-left window requires -- the cone spreads rightward and carries no leftward mass at all. PRIMARY: across checkpoints, 2 of 3 shape scalars have any span to correlate with. area +0.943, fill +0.829. Every READABLE shape scalar tracks lambda, so the cone carries nothing beyond its growth rate and this closes -- the registered deflation. NOT READ: ['front_width'] -- span 0 across all runs. The causal window derived from the front's own support is only 2-6 sweeps at N = 192, which cannot resolve a front width, so this scalar is unmeasurable at this geometry rather than uninformative. An earlier version reported rho = +0.829 for it, from a ranking bug that ordered a constant vector by input position. BOUNDARY: one family, one radius, one temperature. A geometry measurement of the construction, not a model-facing claim. The cones are stored, so the next shape question needs no re-run.
+
+wrote results/damage_geometry_n192.json

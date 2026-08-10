@@ -354,9 +354,14 @@ its right neighbour, which is then itself visited: the reach inside one sweep is
 order, not by $r$. Measured directly, the front reaches offset 24 by sweep 8 where $r\cdot t = 16$.
 The cone is therefore kinematic in the sense that matters --- it carries no model information --- but
 ``at most $r$ sites per sweep'' is a synchronous bound and does not hold for this construction.
-% SOURCE: F119 (measured reach vs r*t); the r>=8 velocity plateau of F16 was retracted by F21 as
-% finite-size wraparound and is not cited here. The kinematic claim rests on F116/F119: the cone's
-% SHAPE adds no resolution, evidenced by front_width having no readable span.
+The cone's \emph{shape} likewise adds no resolution: the width of its front has span exactly zero
+across every checkpoint and seed at two ring sizes --- a null that survives a fourfold change in
+ring size, a tenfold change in the resolvable window and a thirtyfold change in how densely the cone
+is filled.
+% SOURCE: F119 (measured reach vs r*t), F132 (the front_width null at N=192, with asymmetry 1.0000
+% over the full 22 sweeps). The r>=8 velocity plateau of F16 was retracted by F21 as finite-size
+% wraparound and is NOT cited. Note area/fill tracking lambda at +0.943/+0.829 is near-definitional
+% (area is close to a functional of the growth rate) and is deliberately not the citation here.
 
 The \emph{radius scaling} $\lca(r)$ is model-invariant. If it read the model it would differ between
 models; it does not. This is the cleanest available demonstration that a quantity can be stable,

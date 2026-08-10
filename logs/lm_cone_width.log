@@ -1,0 +1,10 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights:   0%|          | 1/292 [00:00<02:00,  2.41it/s]Loading weights:  41%|████      | 120/292 [00:00<00:00, 295.00it/s]Loading weights:  62%|██████▏   | 182/292 [00:00<00:00, 275.87it/s]Loading weights:  78%|███████▊  | 227/292 [00:01<00:00, 240.64it/s]Loading weights:  90%|████████▉ | 262/292 [00:01<00:00, 216.52it/s]Loading weights: 100%|█████████▉| 291/292 [00:01<00:00, 222.09it/s]Loading weights: 100%|██████████| 292/292 [00:01<00:00, 217.10it/s]
+  seed 21: width=95.0 sites over 13/16 live replicas (99s)
+  seed 22: width=95.0 sites over 14/16 live replicas (99s)
+  seed 23: width=83.2 sites over 12/16 live replicas (99s)
+  seed 24: width=89.5 sites over 16/16 live replicas (99s)
+
+  -> RUNG: measured cone width 90.7 sites against the synchronous bound r*sweeps = 44. The measured reach EXCEEDS the bound, confirming F119's asynchronous-reach argument at this geometry, so the correction below is applied. PRIMARY: F131 expressed the LM's separations against the bound (44 sites); measured, they are sep 6 = 0.07w (was 0.14w), sep 12 = 0.13w (was 0.27w), sep 24 = 0.26w (was 0.55w), sep 48 = 0.53w (was 1.09w). Every separation moves to a SMALLER width fraction, i.e. toward the regime where DK's interaction is strongest, so the LM's interaction is weaker relative to DK than F131 reported -- its direction is unchanged and its 8-50x figure is a floor. BOUNDARY: width is max-minus-min damaged offset at the final sweep over live replicas, the definition dk_interaction used. A different definition (10-90% flank, second moment) gives a different number; the point is that both sides now use ONE definition, not that this one is canonical. 4 of 4 seeds contributed.
+
+wrote results/lm_cone_width.json

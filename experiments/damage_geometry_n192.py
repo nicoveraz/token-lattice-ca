@@ -277,11 +277,15 @@ def analyse(res):
                if free else
                f"Every READABLE shape scalar tracks lambda, so the cone carries nothing beyond its "
                f"growth rate and this closes -- the registered deflation.")
-            + (f" NOT READ: {dead} -- span 0 across all runs. The causal window derived from the "
-               f"front's own support is only 2-6 sweeps at N = {N}, which cannot resolve a front "
-               f"width, so this scalar is unmeasurable at this geometry rather than uninformative. "
-               f"An earlier version reported rho = +0.829 for it, from a ranking bug that ordered a "
-               f"constant vector by input position." if dead else ""))
+            + (f" NOT READ: {dead} -- span 0 across all runs, with a derived causal window of "
+               f"{min(c.get('window_sweeps', 0) for c in res['cells'].values())}-"
+               f"{max(c.get('window_sweeps', 0) for c in res['cells'].values())} sweeps at N = {N}. At N = 48 the window was 2-6 sweeps and 'too short to resolve a "
+               f"flank' was the natural explanation; at N = 192 the window is 21-22 sweeps and the "
+               f"fill reaches 0.55, and the span is STILL exactly zero. So this scalar is "
+               f"UNINFORMATIVE in this construction, not unmeasurable at a particular geometry -- a "
+               f"null that survives a 4x change in ring size, a 10x change in window length and a "
+               f"30x change in fill. An earlier version reported rho = +0.829 for it, from a ranking "
+               f"bug that ordered a constant vector by input position." if dead else ""))
         res["analysis"] = dict(rung_passes=True, rows=rows, vs_lambda=det,
                                independent=free, asymmetry_range=[min(asym), max(asym)])
     parts.append(

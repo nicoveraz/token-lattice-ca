@@ -3645,6 +3645,79 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F133 — the LM cone is TWICE the synchronous bound: F131's ratio is a floor
+F131 compared the LM's damage interaction to DK's at separations expressed in cone widths, and the
+two sides were not measured alike: DK's width was measured (71.9 sites), the LM's was the
+theoretical bound `r·sweeps` = 44. F119 had already shown that bound is wrong for this construction
+— asynchronous random-order updating lets a site damaged early pass damage down a chain of
+later-visited neighbours, so within-sweep reach is set by the visit order, not by r.
+
+**RUNG, which turns F119's argument into a falsifiable check: the measured width must EXCEED the
+synchronous bound.** It does — **90.7 sites against 44**, better than 2×, over 4 seeds with 12–16 of
+16 replicas live.
+
+```
+  LM separation      as F131 had it      measured
+      6                  0.14w             0.07w
+     12                  0.27w             0.13w
+     24                  0.55w             0.26w
+     48                  1.09w             0.53w
+```
+
+**Every separation moves to a SMALLER width fraction — toward the regime where DK's interaction is
+strongest — so the LM's interaction is weaker relative to DK than F131 reported.** F131's direction
+is unchanged and its 8–50× figure becomes a **floor**. The correction could only ever go this way,
+which is why F131's conclusion was safe to state before this ran.
+
+**BOUNDARY.** Width is max-minus-min damaged offset at the final sweep over live replicas — the
+definition `dk_interaction` used. A different definition (10–90% flank, second moment) gives a
+different number; the point is that both sides now use ONE definition, not that this one is
+canonical.
+
+`experiments/lm_cone_width.py` → `results/lm_cone_width.json`
+
+### F132 — front_width has zero span at 4× the ring, 10× the window and 30× the fill: it is uninformative, not unmeasurable
+F119 retired `front_width` because all 24 runs returned exactly 0.000 and the derived causal window
+at N = 48 was only 2–6 sweeps — "too short to resolve a 10–90% flank" was the natural explanation,
+and the paper's kinematic-cone claim was then rested on that null. This tests whether the null was a
+resolution artifact.
+
+```
+  N = 192, r = 2, 22 sweeps, 24 runs
+    asymmetry     1.0000 - 1.0000        (the full 22 sweeps; nothing wraps)
+    window        21-22 sweeps           (vs 2-6 at N = 48)
+    fill          0.017 -> 0.547         (vs 0.15-0.66 at N = 48)
+    front_width   0.0 in every cell      (span exactly zero, again)
+    area vs lambda  +0.943 (p = 0.017)
+    fill vs lambda  +0.829 (p = 0.058)
+```
+
+**PRIMARY: the null survives a 4× change in ring size, a 10× change in window length and a 30×
+change in fill.** `front_width` is **uninformative in this construction**, not unmeasurable at a
+particular geometry. Two explanations I offered along the way — first "the window is too short",
+then "the cone is too sparse" — were both killed by the data: the window is 21 sweeps and the fill
+reaches 0.55, and the span is still exactly zero.
+
+**The rung is also clean here in a way it never was at N = 48.** Asymmetry is 1.0000 across all 24
+runs over the *full* 22 sweeps, because the front cannot reach the antipode of a 192-ring in that
+time. At N = 48 the readable window was 2 sweeps, asymmetry decayed to 0.68 by sweep 8 and
+overshot to 0.147 by sweep 14. This is the geometry the geometry experiment should have used from
+the start.
+
+**A FALSE STATEMENT IN THE FIRST VERDICT, CAUGHT AND CORRECTED.** The N = 192 run initially reported
+"the causal window ... is only 2–6 sweeps at N = 192" — hardcoded text carried over from N = 48 that
+interpolated only `N`. The actual window is 21–22. A verdict that reports the geometry it ran at is
+worth having; one that reports the geometry it was copied from is worse than silence, because it
+reads as evidence.
+
+**BOUNDARY.** One family, one radius, one temperature. `area` and `fill` tracking λ at +0.943 and
++0.829 should not be read as an empirical discovery: at fixed geometry the pre-saturation area is
+close to a deterministic functional of the growth rate, so that correlation is near-definitional.
+**The load-bearing result here is `front_width`'s null**, which is what the cone-shape claim should
+be cited by.
+
+`experiments/damage_geometry_n192.py` → `results/damage_geometry_n192.json`
+
 ### F131 — F122's sub-additivity is GENERIC, and smaller than the classical reference
 F122 measured two damage clouds superposing sub-additively while the two-token response is additive
 (F114), and stated that as "the lattice is not reducible to its local response". True, but the
