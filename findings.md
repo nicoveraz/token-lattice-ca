@@ -3645,6 +3645,53 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F128 — λ_ca has essentially NO cross-model signal: the construction moves it ~30× more than the model does
+The full-vocabulary version of F126's invariance test, run on the construction the paper's claims
+actually use — r ∈ {2,3,4} × T ∈ {0.7,1.0,1.3}, the model's own vocabulary, no sub-alphabet. It could
+not answer the invariance question, and **why** it could not is the finding.
+
+**THE RUNG FAILED, AND THE SCRIPT REFUSED TO READ ON.** Model ordering must be reproducible across
+two seeds at a *fixed* construction before it is meaningful to ask whether it survives changing
+constructions. Not one readout cleared 0.6: λ_ca 0.167, mean_damage 0.596, distinct 0.000,
+top1 −0.293. Note the contrast with F126, where the *sub-alphabet* family passed the identical rung
+at 0.707–0.972.
+
+```
+  lambda_ca            pythia-410m      gpt2    gpt2-large
+    r2.T0.7                 +0.144    +0.122      +0.141
+    r3.T0.7                 +0.358    +0.300      +0.318
+    r4.T1.0                 +0.745    +0.729      +0.725
+    r4.T1.3                 +0.804    +0.792      +0.777
+
+  across-MODEL spread within a construction    0.010 - 0.031
+  across-CONSTRUCTION range                    0.122 -> 0.804
+```
+
+**PRIMARY, and it is stronger than the scrambling F126 found: there is no cross-model signal to be
+invariant about.** Changing r and T moves λ_ca by **0.68**; changing the model moves it by **~0.02**
+— a ratio near **30×**. The rung failed because the three models are indistinguishable on this
+readout, so the ordering is decided by seed noise. At `r2.T1.3` the across-model spread is 0.013
+against a mean across-seed gap of 0.051: the ranking there is noise by a factor of four.
+
+**WHAT THIS DOES NOT TOUCH, and the distinction is sharp rather than a hedge.**
+- **The λ_ca training curve is untouched.** F39/F46/F84 compare *checkpoints of one model at one
+  construction*, and that range (+0.336 → −0.339 → +0.168) is roughly 25× the cross-model spread
+  measured here. A within-model developmental signal is not threatened by a cross-model null.
+- **F63/F64's corpus discrimination is untouched** — it uses attractor share on a tokenizer-matched
+  pair, not λ_ca.
+- **It confirms and sharpens F115** from a second direction. F115 found F111's diversity→λ relation
+  is developmental rather than cross-model (ρ = −0.108 over 14 models); this says the same of λ_ca
+  itself, with the construction varied as well. **λ_ca is a developmental quantity, not a
+  model-comparison quantity.**
+
+**BOUNDARY, and it is the reason this is not yet general.** Three models, all mid-size English LMs of
+broadly similar training. A set spanning families, architectures and recipes could show cross-model
+λ variation these three do not, and that version is the one that decides whether this is a fact about
+λ_ca or a fact about this trio. Also: the registered dynamic-range gate never ran, because the rung
+stopped the read before it.
+
+`experiments/fullvocab_invariance.py` → `results/fullvocab_invariance.json`
+
 ### F127 — nothing predicts which sub-alphabet lattices freeze: three more candidates eliminated
 Several constructions in F126 collapse to a single token — `binary|freq_matched` settles at
 top1 = 1.000, distinct = 1, branching 0.002. A frozen ring is not a weak measurement but **no**

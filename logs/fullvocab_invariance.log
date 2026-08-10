@@ -1,0 +1,62 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8030.85it/s]
+  EleutherAI/pythia-410m|r2.T0.7|s20260810 lambda=+0.1567 dmg=0.734 distinct=342 top1=0.134 (66s)
+  EleutherAI/pythia-410m|r2.T0.7|s20260811 lambda=+0.1304 dmg=0.750 distinct=334 top1=0.135 (65s)
+  EleutherAI/pythia-410m|r2.T1.0|s20260810 lambda=+0.2023 dmg=0.891 distinct=519 top1=0.031 (65s)
+  EleutherAI/pythia-410m|r2.T1.0|s20260811 lambda=+0.1430 dmg=0.926 distinct=499 top1=0.059 (65s)
+  EleutherAI/pythia-410m|r2.T1.3|s20260810 lambda=+0.2094 dmg=0.921 distinct=643 top1=0.026 (66s)
+  EleutherAI/pythia-410m|r2.T1.3|s20260811 lambda=+0.1449 dmg=0.967 distinct=634 top1=0.020 (66s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260810 lambda=+0.3138 dmg=0.974 distinct=382 top1=0.116 (82s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260811 lambda=+0.4023 dmg=0.965 distinct=364 top1=0.111 (82s)
+  EleutherAI/pythia-410m|r3.T1.0|s20260810 lambda=+0.3709 dmg=0.986 distinct=528 top1=0.057 (82s)
+  EleutherAI/pythia-410m|r3.T1.0|s20260811 lambda=+0.5055 dmg=0.988 distinct=517 top1=0.044 (90s)
+  EleutherAI/pythia-410m|r3.T1.3|s20260810 lambda=+0.4496 dmg=0.987 distinct=657 top1=0.026 (89s)
+  EleutherAI/pythia-410m|r3.T1.3|s20260811 lambda=+0.5400 dmg=0.991 distinct=624 top1=0.025 (92s)
+  EleutherAI/pythia-410m|r4.T0.7|s20260810 lambda=+0.5443 dmg=0.970 distinct=378 top1=0.137 (105s)
+  EleutherAI/pythia-410m|r4.T0.7|s20260811 lambda=+0.5662 dmg=0.971 distinct=379 top1=0.120 (92s)
+  EleutherAI/pythia-410m|r4.T1.0|s20260810 lambda=+0.7467 dmg=0.988 distinct=519 top1=0.052 (89s)
+  EleutherAI/pythia-410m|r4.T1.0|s20260811 lambda=+0.7437 dmg=0.975 distinct=513 top1=0.057 (3708s)
+  EleutherAI/pythia-410m|r4.T1.3|s20260810 lambda=+0.8512 dmg=0.993 distinct=649 top1=0.023 (90s)
+  EleutherAI/pythia-410m|r4.T1.3|s20260811 lambda=+0.7570 dmg=0.990 distinct=629 top1=0.022 (88s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6187.58it/s]
+  gpt2|r2.T0.7|s20260810                   lambda=+0.1091 dmg=0.488 distinct=352 top1=0.143 (24s)
+  gpt2|r2.T0.7|s20260811                   lambda=+0.1354 dmg=0.690 distinct=336 top1=0.089 (22s)
+  gpt2|r2.T1.0|s20260810                   lambda=+0.1677 dmg=0.701 distinct=485 top1=0.052 (22s)
+  gpt2|r2.T1.0|s20260811                   lambda=+0.1299 dmg=0.850 distinct=480 top1=0.062 (23s)
+  gpt2|r2.T1.3|s20260810                   lambda=+0.1838 dmg=0.841 distinct=632 top1=0.023 (22s)
+  gpt2|r2.T1.3|s20260811                   lambda=+0.1442 dmg=0.885 distinct=617 top1=0.031 (22s)
+  gpt2|r3.T0.7|s20260810                   lambda=+0.2734 dmg=0.960 distinct=364 top1=0.089 (28s)
+  gpt2|r3.T0.7|s20260811                   lambda=+0.3271 dmg=0.966 distinct=379 top1=0.135 (28s)
+  gpt2|r3.T1.0|s20260810                   lambda=+0.3666 dmg=0.853 distinct=497 top1=0.057 (28s)
+  gpt2|r3.T1.0|s20260811                   lambda=+0.5174 dmg=0.969 distinct=515 top1=0.042 (29s)
+  gpt2|r3.T1.3|s20260810                   lambda=+0.4448 dmg=0.986 distinct=644 top1=0.017 (28s)
+  gpt2|r3.T1.3|s20260811                   lambda=+0.5350 dmg=0.988 distinct=611 top1=0.026 (29s)
+  gpt2|r4.T0.7|s20260810                   lambda=+0.4922 dmg=0.966 distinct=392 top1=0.105 (32s)
+  gpt2|r4.T0.7|s20260811                   lambda=+0.5605 dmg=0.956 distinct=358 top1=0.125 (32s)
+  gpt2|r4.T1.0|s20260810                   lambda=+0.7161 dmg=0.992 distinct=520 top1=0.053 (32s)
+  gpt2|r4.T1.0|s20260811                   lambda=+0.7419 dmg=0.977 distinct=514 top1=0.049 (32s)
+  gpt2|r4.T1.3|s20260810                   lambda=+0.8183 dmg=0.992 distinct=637 top1=0.025 (32s)
+  gpt2|r4.T1.3|s20260811                   lambda=+0.7654 dmg=0.986 distinct=620 top1=0.025 (32s)
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7924.38it/s]
+  gpt2-large|r2.T0.7|s20260810             lambda=+0.1418 dmg=0.612 distinct=369 top1=0.103 (92s)
+  gpt2-large|r2.T0.7|s20260811             lambda=+0.1404 dmg=0.699 distinct=330 top1=0.109 (95s)
+  gpt2-large|r2.T1.0|s20260810             lambda=+0.1330 dmg=0.630 distinct=498 top1=0.046 (93s)
+  gpt2-large|r2.T1.0|s20260811             lambda=+0.1514 dmg=0.822 distinct=472 top1=0.076 (96s)
+  gpt2-large|r2.T1.3|s20260810             lambda=+0.1975 dmg=0.900 distinct=617 top1=0.022 (92s)
+  gpt2-large|r2.T1.3|s20260811             lambda=+0.1490 dmg=0.940 distinct=611 top1=0.023 (94s)
+  gpt2-large|r3.T0.7|s20260810             lambda=+0.3094 dmg=0.965 distinct=377 top1=0.125 (122s)
+  gpt2-large|r3.T0.7|s20260811             lambda=+0.3260 dmg=0.966 distinct=352 top1=0.113 (124s)
+  gpt2-large|r3.T1.0|s20260810             lambda=+0.3540 dmg=0.977 distinct=487 top1=0.065 (120s)
+  gpt2-large|r3.T1.0|s20260811             lambda=+0.5410 dmg=0.969 distinct=477 top1=0.057 (119s)
+  gpt2-large|r3.T1.3|s20260810             lambda=+0.3921 dmg=0.990 distinct=632 top1=0.018 (119s)
+  gpt2-large|r3.T1.3|s20260811             lambda=+0.5231 dmg=0.986 distinct=628 top1=0.021 (122s)
+  gpt2-large|r4.T0.7|s20260810             lambda=+0.5283 dmg=0.974 distinct=383 top1=0.113 (141s)
+  gpt2-large|r4.T0.7|s20260811             lambda=+0.6833 dmg=0.977 distinct=369 top1=0.112 (142s)
+  gpt2-large|r4.T1.0|s20260810             lambda=+0.7199 dmg=0.970 distinct=521 top1=0.039 (140s)
+  gpt2-large|r4.T1.0|s20260811             lambda=+0.7299 dmg=0.971 distinct=512 top1=0.070 (142s)
+  gpt2-large|r4.T1.3|s20260810             lambda=+0.8033 dmg=0.993 distinct=663 top1=0.020 (141s)
+  gpt2-large|r4.T1.3|s20260811             lambda=+0.7503 dmg=0.991 distinct=621 top1=0.030 (142s)
+
+  -> RUNG (seed stability at FIXED construction): lambda_ca=0.1667, mean_damage=0.5962, distinct=0.0, top1=-0.2927. 0 of 4 readouts clear 0.6. NONE clears it, so the construction question is undefined here and nothing below is read.
+
+wrote results/fullvocab_invariance.json

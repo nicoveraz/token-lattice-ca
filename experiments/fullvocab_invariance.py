@@ -61,6 +61,18 @@ SEEDS = [20260810, 20260811]
 # An all-nan column would fail the rung and read as a finding about the readout.
 READOUTS = ["lambda_ca", "mean_damage", "distinct", "top1"]
 RUNG_MIN, CONCORDANT, SCRAMBLED = 0.6, 0.6, 0.3
+# DYNAMIC-RANGE GATE, REGISTERED BEFORE THE ANSWER WAS VISIBLE (at 15 of 54 cells, with only one
+# model measured). mean_damage saturates at 0.97-0.99 at the higher radii and temperatures, and
+# three models that all read 0.98-0.99 cannot be ranked -- the ordering there is noise. Including
+# such constructions pushes the invariance estimate toward zero and a "scrambled" verdict built on
+# them would be an artifact indistinguishable from the real thing. That is this project's recurring
+# defect class (a criterion applied to a quantity with no room to vary) arriving inside the test
+# built to check whether readouts mean anything.
+#
+# The gate is scale-free: the ACROSS-MODEL spread must exceed the ACROSS-SEED spread by this factor.
+# Comparing signal to the readout's own measured noise avoids picking a threshold per readout, and
+# the seed data is already collected for the rung.
+NOISE_FACTOR = 2.0
 
 
 def cell(rule, r, T, seed):
@@ -115,13 +127,26 @@ def analyse(res):
     if not ok:
         res["analysis"] = dict(rung_passes=False, seed_agreement=rung)
         res["verdict"] = " ".join(parts); return
+    gated_out = {}
     for ro in ok:
-        r0 = rankings(cells, SEEDS[0], ro)
+        r0, r1 = rankings(cells, SEEDS[0], ro), rankings(cells, SEEDS[1], ro)
         live = [c for c in sorted(r0) if all(np.isfinite(x) for x in r0[c])]
-        ps = [spearman(r0[x], r0[y]) for x, y in itertools.combinations(live, 2)]
+        # per construction: can three models be told apart at all, against this readout's own noise?
+        keep, dropped = [], []
+        for c in live:
+            spread = float(max(r0[c]) - min(r0[c]))
+            noise = (float(np.mean([abs(a - b) for a, b in zip(r0[c], r1[c])]))
+                     if c in r1 and all(np.isfinite(x) for x in r1[c]) else float("inf"))
+            (keep if spread >= NOISE_FACTOR * noise else dropped).append(c)
+        gated_out[ro] = dropped
+        ps_all = [spearman(r0[x], r0[y]) for x, y in itertools.combinations(live, 2)]
+        ps_all = [v for v in ps_all if np.isfinite(v)]
+        ps = [spearman(r0[x], r0[y]) for x, y in itertools.combinations(keep, 2)]
         ps = [v for v in ps if np.isfinite(v)]
         primary[ro] = dict(mean_rho=round(float(np.mean(ps)), 4) if ps else None,
-                           n_pairs=len(ps), n_constructions=len(live))
+                           mean_rho_ungated=round(float(np.mean(ps_all)), 4) if ps_all else None,
+                           n_pairs=len(ps), n_constructions=len(keep),
+                           n_dropped_no_range=len(dropped), n_constructions_ungated=len(live))
     inv = [ro for ro, v in primary.items() if v["mean_rho"] is not None
            and v["mean_rho"] >= CONCORDANT]
     scr = [ro for ro, v in primary.items() if v["mean_rho"] is not None
@@ -155,12 +180,22 @@ def analyse(res):
     except Exception:
         pass
     parts.append(
+        "DYNAMIC-RANGE GATE (registered before the answer was visible): a construction is read only "
+        "if the across-model spread exceeds the across-seed spread by "
+        f"{NOISE_FACTOR}x -- three models reading 0.98/0.99/0.99 cannot be ranked, and including "
+        "such cells would push the estimate toward zero as an artifact. Dropped per readout: "
+        + ", ".join(f"{ro} {len(gated_out[ro])}" for ro in primary) + ". Ungated figures: "
+        + ", ".join(f"{ro}={primary[ro]['mean_rho_ungated']}" for ro in primary)
+        + ". Agreement between gated and ungated means the result does not depend on the gate; "
+          "disagreement is itself the finding and the GATED number is the one that means something.")
+    parts.append(
         f"BOUNDARY: {len(MODELS)} models, so each ranking has 3 points and one swap moves rho a long "
         f"way -- this identifies a SCRAMBLED readout far more confidently than it certifies an "
         f"invariant one. N={N}, one settle length, radii {RADII}, temperatures {TEMPS}. lambda on an "
         f"unignited run is a sentinel rather than a measurement and is carried as nan.")
     res["analysis"] = dict(rung_passes=True, seed_agreement=rung, readouts_asked=ok,
-                           primary=primary, invariant=inv, scrambled=scr, lambda_rho=lam)
+                           primary=primary, invariant=inv, scrambled=scr, lambda_rho=lam,
+                           noise_factor=NOISE_FACTOR, dropped_no_range=gated_out)
     res["verdict"] = " ".join(parts)
 
 
@@ -170,6 +205,9 @@ def main():
         models=MODELS, radii=RADII, temps=TEMPS, N=N, B=B, settle=SETTLE, sweeps=SWEEPS,
         block=BLOCK, seeds=SEEDS, readouts=READOUTS, rung_min=RUNG_MIN,
         concordant=CONCORDANT, scrambled=SCRAMBLED, sub_alphabet_reference=rel(SUB),
+        noise_factor=NOISE_FACTOR,
+        gate="across-model spread must exceed across-seed spread by NOISE_FACTOR; registered at 15 "
+             "of 54 cells with one model measured, before any invariance number existed",
         rung="model ordering must agree across two seeds at fixed construction",
         primary="mean pairwise Spearman between the model-rankings different constructions give",
         stakes="scrambled -> full-vocabulary model comparisons are construction-relative; "
