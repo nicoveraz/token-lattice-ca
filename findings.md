@@ -3645,6 +3645,71 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F123 — F109's far-position collapse is NOT caused by restriction: the SELECTION RULE controls it
+F109 found the sub-alphabet lattice fails to ignite because the far token contributes as little as
+0.0605 against the near token's 0.8007, putting the branching ratio below 1, and
+`subalphabet_regime` concluded "the failure is not the choice of alphabet ... it is the
+RESTRICTION." **But all three alphabets it tested — binary, colours, digits — are hand-picked
+semantically coherent sets.** A closed list is exactly the context a model has strong learned
+structure over, so "small alphabets kill long-range influence" and "closed lists kill long-range
+influence" were both consistent with every measurement made. They differ in what they imply: the
+first makes any top-k lattice subcritical by construction, the second does not.
+
+**RUNG.** The semantic arm reproduces `subalphabet_why.json`'s stored `s_far`/`s_near` to within
+**0.0349** (tolerance 0.08) across all three alphabets — same model, revision, geometry, estimator
+and settle, so the arms below differ only in how the tokens were chosen.
+
+```
+  s_far           semantic   freq_matched   uniform    spread
+  binary            0.095       0.634        0.046      0.588
+  colours           0.387       0.161        0.016      0.371
+  digits            0.132       0.583        0.107      0.476
+```
+
+**PRIMARY: the selection rule moves `s_far` by up to 0.588 at fixed size and fixed r = 2.** So
+`s_far` is not determined by restriction, and F109's stated cause does not survive. Every *semantic*
+arm sits below branching 1 (0.900–0.958) while every *random* arm sits at or above it (1.000–1.188).
+
+**The registered reading anticipated neither outcome, and this is recorded rather than smoothed
+over.** The two branches were "all arms collapse together" (confirming F109) and "semantic is the
+outlier" (scoping it). What happened is that `freq_matched` is the HIGH arm on binary and digits
+while semantic *and* uniform are both low. A first summariser tested the semantic arm against the
+**mean** of the other two, and since those two land on opposite sides the average cancelled a 0.588
+spread to nothing and the script printed "the arms move together" on data saying the opposite — a
+scalar summary hiding a decomposition, the same defect class as F94→F110.
+
+**MASS, THE OBVIOUS CONFOUND, TESTED AND ELIMINATED.** The arms differ in the conditional mass they
+carry by **59–703×**, and a sub-alphabet holding 1e-4 of the conditional is renormalised out of the
+tail — a live alternative cause. Across all 18 cells **ρ(log₁₀ mass, s_far) = +0.120** (+0.050 within
+each pool). Mass spans three orders of magnitude and `s_far` does not track it. **F111's diversity
+mechanism does not explain it either**: ρ(settled distinct, s_far) = **+0.205**. Both candidates are
+struck off and the cause is OPEN.
+
+**Mass cannot be matched by selection, which is itself the point.** Mass is measured on each arm's
+own settled ring, and a semantic set settles into itself because the model expects a colour after
+colours. High conditional mass and semantic coherence are therefore the same property — a
+"mass-matched random set" would be a coherent set. The confound is removed instead by measuring
+every arm on a **uniform draw over its own alphabet**.
+
+**SECONDARY, and the cleanest number here: the SETTLED STATE suppresses far-token influence.**
+Within each semantic alphabet, at conditional mass matched to **1.1–2×**, `s_far` rises on the
+uniform pool: binary 0.095 → 0.213, colours 0.387 → 0.451, digits 0.132 → 0.461 — a **1.6–3.5×**
+increase from changing only where the windows are drawn from. Branching crosses 1 for colours
+(1.086) and digits (1.065). Binary is nearly flat because with two tokens the settled and uniform
+pools are almost the same distribution, which is an internal consistency check rather than a null.
+
+**So the sub-alphabet lattice is subcritical because of the state it settles INTO, not because its
+alphabet is small.** F109's conclusion is right about the lattice and wrong about the cause. The
+uniform pool is counterfactual — the ring never occupies it — so this explains *why* the settled
+lattice fails rather than showing that it does not.
+
+**BOUNDARY.** One model (`pythia-410m` step4000), one revision, one temperature (T = 0.7), r = 2,
+64 windows per cell, 9 cells. Small n: what is ruled out is mass being a *dominant* driver, not a
+small contribution. The secondary comparison was added as a control and was **not** pre-registered
+as a primary, which makes it a strong hypothesis rather than a confirmed result.
+
+`experiments/selection_mode.py` → `results/selection_mode.json`
+
 ### F122 — two damage sites INTERFERE: the lattice adds a non-additivity the local response does not have
 F114 asked whether the two-token response is canalizing and found it essentially **additive** —
 sub-additivity of +0.003 to +0.028, which closed that route. This asks the same question one level

@@ -1,0 +1,370 @@
+{
+ "cells": {
+  "binary|semantic": {
+   "alphabet": "binary",
+   "mode": "semantic",
+   "k": 2,
+   "ids": [
+    470,
+    337
+   ],
+   "mass": 0.10492031588364625,
+   "s_far": 0.09534,
+   "s_near": 0.81942,
+   "branching": 0.91476,
+   "distinct": 2,
+   "mass_uniform": 0.20034173184103565,
+   "s_far_uniform": 0.21306,
+   "s_near_uniform": 0.61319,
+   "branching_uniform": 0.82625,
+   "secs": 16.7
+  },
+  "binary|freq_matched": {
+   "alphabet": "binary",
+   "mode": "freq_matched",
+   "k": 2,
+   "ids": [
+    58,
+    262
+   ],
+   "mass": 0.0007583176004573033,
+   "s_far": 0.63386,
+   "s_near": 0.5541,
+   "branching": 1.18796,
+   "distinct": 2,
+   "mass_uniform": 0.0007305893035436384,
+   "s_far_uniform": 0.63386,
+   "s_near_uniform": 0.61195,
+   "branching_uniform": 1.24581,
+   "secs": 17.2
+  },
+  "binary|uniform": {
+   "alphabet": "binary",
+   "mode": "uniform",
+   "k": 2,
+   "ids": [
+    27082,
+    45380
+   ],
+   "mass": 0.0001491532810875551,
+   "s_far": 0.04611,
+   "s_near": 0.95391,
+   "branching": 1.00003,
+   "distinct": 2,
+   "mass_uniform": 0.00013466193665490067,
+   "s_far_uniform": 0.04745,
+   "s_near_uniform": 0.95347,
+   "branching_uniform": 1.00092,
+   "secs": 16.8
+  },
+  "colours|semantic": {
+   "alphabet": "colours",
+   "mode": "semantic",
+   "k": 6,
+   "ids": [
+    2502,
+    4759,
+    4797,
+    8862,
+    2806,
+    3168
+   ],
+   "mass": 0.05487051186719327,
+   "s_far": 0.3871,
+   "s_near": 0.51282,
+   "branching": 0.89992,
+   "distinct": 6,
+   "mass_uniform": 0.02982155164681899,
+   "s_far_uniform": 0.45116,
+   "s_near_uniform": 0.63444,
+   "branching_uniform": 1.0856,
+   "secs": 17.1
+  },
+  "colours|freq_matched": {
+   "alphabet": "colours",
+   "mode": "freq_matched",
+   "k": 6,
+   "ids": [
+    6399,
+    1275,
+    5139,
+    7513,
+    5219,
+    6574
+   ],
+   "mass": 0.0009287044929889854,
+   "s_far": 0.16085,
+   "s_near": 0.9088,
+   "branching": 1.06966,
+   "distinct": 6,
+   "mass_uniform": 0.002895964297060072,
+   "s_far_uniform": 0.47548,
+   "s_near_uniform": 0.83776,
+   "branching_uniform": 1.31324,
+   "secs": 16.7
+  },
+  "colours|uniform": {
+   "alphabet": "colours",
+   "mode": "uniform",
+   "k": 6,
+   "ids": [
+    4400,
+    7566,
+    37819,
+    38752,
+    48614,
+    49043
+   ],
+   "mass": 0.0015938364990867506,
+   "s_far": 0.01625,
+   "s_near": 0.98802,
+   "branching": 1.00426,
+   "distinct": 3,
+   "mass_uniform": 0.0025902482818394366,
+   "s_far_uniform": 0.35139,
+   "s_near_uniform": 0.8096,
+   "branching_uniform": 1.16099,
+   "secs": 16.9
+  },
+  "digits|semantic": {
+   "alphabet": "digits",
+   "mode": "semantic",
+   "k": 10,
+   "ids": [
+    470,
+    337,
+    374,
+    495,
+    577,
+    608,
+    721,
+    818,
+    854,
+    898
+   ],
+   "mass": 0.12324786902763663,
+   "s_far": 0.13229,
+   "s_near": 0.82576,
+   "branching": 0.95805,
+   "distinct": 8,
+   "mass_uniform": 0.13413577667961363,
+   "s_far_uniform": 0.46138,
+   "s_near_uniform": 0.60356,
+   "branching_uniform": 1.06494,
+   "secs": 16.7
+  },
+  "digits|freq_matched": {
+   "alphabet": "digits",
+   "mode": "freq_matched",
+   "k": 10,
+   "ids": [
+    58,
+    262,
+    30,
+    57,
+    297,
+    671,
+    16406,
+    12,
+    339,
+    13761
+   ],
+   "mass": 0.020107308242663324,
+   "s_far": 0.58339,
+   "s_near": 0.4552,
+   "branching": 1.03859,
+   "distinct": 8,
+   "mass_uniform": 0.010040275125520859,
+   "s_far_uniform": 0.59681,
+   "s_near_uniform": 0.75891,
+   "branching_uniform": 1.35572,
+   "secs": 16.8
+  },
+  "digits|uniform": {
+   "alphabet": "digits",
+   "mode": "uniform",
+   "k": 10,
+   "ids": [
+    10954,
+    17481,
+    18591,
+    21619,
+    25197,
+    27272,
+    40459,
+    41015,
+    43885,
+    48623
+   ],
+   "mass": 0.0019749185261017732,
+   "s_far": 0.10692,
+   "s_near": 0.92345,
+   "branching": 1.03037,
+   "distinct": 9,
+   "mass_uniform": 0.0011830256217696758,
+   "s_far_uniform": 0.30015,
+   "s_near_uniform": 0.87443,
+   "branching_uniform": 1.17458,
+   "secs": 16.6
+  }
+ },
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "revision": "step4000",
+  "T": 0.7,
+  "r": 2,
+  "N": 48,
+  "B": 16,
+  "settle": 12,
+  "n_ctx": 64,
+  "seed": 20260809,
+  "modes": [
+   "semantic",
+   "freq_matched",
+   "uniform"
+  ],
+  "alphabets": [
+   "binary",
+   "colours",
+   "digits"
+  ],
+  "rung_tol": 0.08,
+  "mass_min": 1e-09,
+  "rung": "the semantic arm must reproduce subalphabet_why's stored s_far/s_near within 0.08; a mismatch means a different lattice and stops the read",
+  "gate": "sub-alphabet probability mass must exceed 1e-09 or the cell is UNREADABLE -- a uniform fallback maximises s and would fake criticality",
+  "primary": "does s_far differ across selection modes at fixed size and fixed r=2?",
+  "reading": "all arms collapsing together confirms F109 (restriction is the cause); the semantic arm alone collapsing scopes F109 to closed coherent lists"
+ },
+ "analysis": {
+  "rung_passes": true,
+  "rung_worst_err": 0.03486999999999999,
+  "unreadable": [],
+  "rows": {
+   "binary": {
+    "semantic": {
+     "s_far": 0.09534,
+     "s_near": 0.81942,
+     "branching": 0.91476
+    },
+    "freq_matched": {
+     "s_far": 0.63386,
+     "s_near": 0.5541,
+     "branching": 1.18796
+    },
+    "uniform": {
+     "s_far": 0.04611,
+     "s_near": 0.95391,
+     "branching": 1.00003
+    }
+   },
+   "colours": {
+    "semantic": {
+     "s_far": 0.3871,
+     "s_near": 0.51282,
+     "branching": 0.89992
+    },
+    "freq_matched": {
+     "s_far": 0.16085,
+     "s_near": 0.9088,
+     "branching": 1.06966
+    },
+    "uniform": {
+     "s_far": 0.01625,
+     "s_near": 0.98802,
+     "branching": 1.00426
+    }
+   },
+   "digits": {
+    "semantic": {
+     "s_far": 0.13229,
+     "s_near": 0.82576,
+     "branching": 0.95805
+    },
+    "freq_matched": {
+     "s_far": 0.58339,
+     "s_near": 0.4552,
+     "branching": 1.03859
+    },
+    "uniform": {
+     "s_far": 0.10692,
+     "s_near": 0.92345,
+     "branching": 1.03037
+    }
+   }
+  },
+  "spreads": {
+   "binary": 0.58775,
+   "colours": 0.37085,
+   "digits": 0.47646999999999995
+  },
+  "moved": {
+   "binary": true,
+   "colours": true,
+   "digits": true
+  },
+  "mass_ratio": {
+   "binary": 703.4395429897149,
+   "colours": 59.082853891010565,
+   "digits": 62.406558751014174
+  },
+  "rho_mass_sfar": 0.11977286056639443,
+  "rho_distinct_sfar": 0.20519567041703082,
+  "s_far_uniform": {
+   "binary": {
+    "semantic": 0.21306,
+    "freq_matched": 0.63386,
+    "uniform": 0.04745
+   },
+   "colours": {
+    "semantic": 0.45116,
+    "freq_matched": 0.47548,
+    "uniform": 0.35139
+   },
+   "digits": {
+    "semantic": 0.46138,
+    "freq_matched": 0.59681,
+    "uniform": 0.30015
+   }
+  },
+  "spread_uniform": {
+   "binary": 0.58641,
+   "colours": 0.12409000000000003,
+   "digits": 0.29666
+  },
+  "mass_ratio_uniform": {
+   "binary": 1487.738382631858,
+   "colours": 11.513008948177562,
+   "digits": 113.38366152963053
+  }
+ },
+ "verdict": "RUNG (pins this to F109's lattice): the semantic arm reproduces subalphabet_why's stored s_far/s_near to within 0.0349 across 3 alphabets (tolerance 0.08). Same model, geometry, estimator and settle, so the arms below differ only in selection. GATE (registered before the run): 0 of 9 cells fall below mass 1e-09 on the sub-alphabet and are UNREADABLE, so every cell carries real conditional mass. PRIMARY, s_far by selection mode: binary semantic=0.095/freq_matched=0.634/uniform=0.046; colours semantic=0.387/freq_matched=0.161/uniform=0.016; digits semantic=0.132/freq_matched=0.583/uniform=0.107. Spread across modes: binary 0.588, colours 0.371, digits 0.476. The selection rule CHANGES the far-position contribution on 3 of 3 alphabets, by up to 0.588 at fixed size and fixed r. So s_far is NOT determined by restriction alone, and F109's reading -- that RESTRICTION is the cause -- does not survive as stated. Note the pattern is not the one either registered branch anticipated: freq_matched is the HIGH arm on binary and digits while semantic and uniform are both low, so this is neither 'all arms collapse' nor 'semantic is the outlier'. MASS, THE OBVIOUS CONFOUND, TESTED AND ELIMINATED: the arms differ in conditional mass by 59-703x, but across all 18 cells rho(log10 mass, s_far) = +0.120. Mass spans three orders of magnitude and s_far does not track it, so tail renormalisation is not what separates the arms. The settled ring's DIVERSITY does not explain it either: rho(distinct, s_far) = +0.205 over 9 cells, so F111's mechanism does not carry across alphabet sizes. Both candidates are struck off and the cause of the s_far spread is OPEN. With n = 9 a small effect would be invisible; what is ruled out is mass being a dominant driver, which is what the confound required. UNIFORM-POOL CONTROL, which removes the settled-state difference: s_far = binary semantic=0.213/freq_matched=0.634/uniform=0.047; colours semantic=0.451/freq_matched=0.475/uniform=0.351; digits semantic=0.461/freq_matched=0.597/uniform=0.300. Spread binary 0.586, colours 0.124, digits 0.297; residual mass ratio 12-1488x. The selection effect SURVIVES on a common context distribution, so it is not an artifact of what each ring settled into. BRANCHING by mode: binary semantic=0.915/freq_matched=1.188/uniform=1.000; colours semantic=0.900/freq_matched=1.070/uniform=1.004; digits semantic=0.958/freq_matched=1.039/uniform=1.030, against the criticality threshold of 1. BOUNDARY: one model (EleutherAI/pythia-410m step4000), one temperature (T=0.7), r=2, 64 windows per cell. This asks only whether the SELECTION RULE matters. It does not measure criticality, which needs the window ladder, and it does not revisit F109's temperature sweep.",
+ "_analysis_provenance": {
+  "script": "selection_mode.py",
+  "sha256": "1e7177cda2faae6ee61add8aaee72d1b2c1d7de5d6e5040ed11d2936b1a2026a",
+  "imports": {
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "523ee1e6dc456e3d07c4280eec07a42a110bcb7b4d2b01425577f27fe507ab97",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "experiments/selection_mode.py": "1e7177cda2faae6ee61add8aaee72d1b2c1d7de5d6e5040ed11d2936b1a2026a",
+   "experiments/subalphabet.py": "06906f8524eccba5fafc9ff0c17c514c59a729bb8dc3bfa9366e10ec4f3771fc",
+   "experiments/subalphabet_why.py": "85d8d461ff02e6c7256fbc3b1a59e007d92fea392b6c6aac2bcf5573ba508f9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
