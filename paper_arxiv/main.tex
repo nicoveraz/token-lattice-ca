@@ -324,6 +324,7 @@ Manipulation & Construction & Model & Instrument responds? \\
 \midrule
 Change the automaton (\S\ref{sec:manufactured}) & varied & fixed & yes --- transition disappears \\
 Change family or scale                          & fixed  & varied & \textbf{no} --- 19 models, $70\times$ \\
+Change family, \emph{construction varied}       & varied & varied & \textbf{no} for $\lca$; \textbf{yes} for the share \\
 Change the training checkpoint                  & fixed  & varied & yes --- $\lca$ crosses zero \\
 Ablate internal components                      & fixed  & varied & yes --- ignition moves by up to $0.33$ \\
 \bottomrule
@@ -343,9 +344,18 @@ responded to nothing would be measuring the construction alone.
 Two readings that look like measurements are fixed by the geometry of the probe.
 
 The \emph{damage light cone} is kinematic. A flipped site can influence only the $r$ sites whose
-window contains it, so damage advances at most $r$ sites per sweep whatever the model does. The
-cone's slope is the update window, reported in the units of a dynamical quantity.
-% SOURCE: F16, F21.
+window contains it, so the cone's extent is set by the update window rather than by the model, and
+its slope is a geometric fact reported in the units of a dynamical quantity.
+
+We state the bound carefully, because the natural sharper version is false here. Updating is
+\emph{asynchronous in random order}, so within a single sweep a site damaged early can pass damage to
+its right neighbour, which is then itself visited: the reach inside one sweep is bounded by the visit
+order, not by $r$. Measured directly, the front reaches offset 24 by sweep 8 where $r\cdot t = 16$.
+The cone is therefore kinematic in the sense that matters --- it carries no model information --- but
+``at most $r$ sites per sweep'' is a synchronous bound and does not hold for this construction.
+% SOURCE: F119 (measured reach vs r*t); the r>=8 velocity plateau of F16 was retracted by F21 as
+% finite-size wraparound and is not cited here. The kinematic claim rests on F116/F119: the cone's
+% SHAPE adds no resolution, evidenced by front_width having no readable span.
 
 The \emph{radius scaling} $\lca(r)$ is model-invariant. If it read the model it would differ between
 models; it does not. This is the cleanest available demonstration that a quantity can be stable,
@@ -371,6 +381,30 @@ it, all 48 runs are positive at two lattice sizes. Contrast Table~\ref{tab:discr
 where varying the model across 19 architectures and a $70\times$ scale range moves nothing.}
 \label{fig:developmental}
 \end{figure}
+
+\paragraph{The scope of this reading is within-model, and we state it here rather than in the
+limits.} Holding the construction fixed and walking one model through training is what the paragraph
+above does, and the movement is large. Varying the \emph{model} instead does not move $\lca$ usefully:
+across ten models spanning six families and four architecture classes, its cross-model spread is
+$0.051$, against a range of $0.122$ to $0.804$ produced by varying radius and temperature alone. The
+ordering that spread implies is not reproducible --- seed stability $0.030$ --- and reshuffles between
+temperatures. Most directly, $\lca$ does not see the architectural contrast of
+\S\ref{sec:discriminator}: RWKV, which has no attractor at all, sits mid-pack. $\lca$ is a
+developmental quantity, not a model-comparison one, and none of this touches the curve above, whose
+range is roughly seven times the cross-model spread.
+% SOURCE: F115, F128, F129.
+
+\paragraph{The attractor share is the model-determined reading that survives the construction.}
+Where $\lca$ fails, the attractor share --- the dominant token's occupancy of the settled ring ---
+passes every corresponding check. Across the same ten models and six constructions (two radii, three
+temperatures) its across-model spread exceeds its across-seed spread on $6$ of $6$ constructions
+against $\lca$'s $2$ of $4$; its model ordering is seed-stable at $0.848$ against $0.030$; and that
+ordering agrees across constructions at $\rho = +0.752$, with two further readouts --- distinct-token
+count and adjacent-pair repetition --- clearing the same threshold independently at $+0.737$ and
+$+0.654$. Its cross-model spread is $0.923$. Controlling for corpus, it recovers the architectural
+effect $\lca$ misses: RWKV sits $0.769$ below the Pile-trained attention models. The instrument's
+transferring results are built on this quantity, and it is the one that is model-attributable.
+% SOURCE: F130 (results/share_invariance.json); contrast F129.
 
 The obvious deflation --- that $\lca$ is a repackaged loss --- does not survive measurement. Across
 the trained regime $\lca$ moves from $0.18433$ to $0.18738$ while bits-per-byte improves from
@@ -573,6 +607,19 @@ same models reaches $\rho = 0.547$. The predictive content lies in where the div
 a threshold as temperature varies, not in diversity at any point on it --- so $\lca$ inherits the
 state's lack of external predictive power, and $\Tstar$ does not.
 % SOURCE: F112.
+
+\paragraph{That asymmetry is target-specific, and reverses on the one other target we tested.} The
+reading above --- that what transfers is a \emph{response} (how the settled state dissolves under
+temperature) rather than a \emph{level} (the state itself) --- holds for greedy degeneration, where it
+was derived. Asked instead which readout predicts \emph{instruction-following} failures, the ordering
+flips: the attractor share, a level, is selective for compliance at $+0.53$ ($p = 0.004$, $n = 10$),
+surviving controls for both model size and general capability, while $\Tstar$ is not
+($+0.17$ against a verified $+0.34$ detection floor at $n = 6$, so an effect of the share's size
+would have been found). Repetition rate is not selective either, so the share's result is not
+mediated by degeneration. We therefore do not claim a general recipe. Which of the two transfers
+depends on what is being predicted, and one confirmed instance in each direction does not establish
+why.
+% SOURCE: F117, F120, F121.
 
 \paragraph{The dynamics are not reducible to the obvious theory of them.} Given the model's own
 exactly measured single-token sensitivity, annealed mean field does not predict the exponent across
