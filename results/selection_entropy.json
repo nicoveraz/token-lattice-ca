@@ -1,0 +1,181 @@
+{
+ "cells": {
+  "binary|semantic": {
+   "alphabet": "binary",
+   "mode": "semantic",
+   "k": 2,
+   "h_cond_uniform": 0.59115,
+   "h_gap_uniform": 0.06451,
+   "h_cond_settled": 0.59115,
+   "h_gap_settled": 0.06451,
+   "s_far_settled": 0.09534,
+   "s_far_uniform": 0.21306,
+   "secs": 0.3
+  },
+  "binary|freq_matched": {
+   "alphabet": "binary",
+   "mode": "freq_matched",
+   "k": 2,
+   "h_cond_uniform": 0.40532,
+   "h_gap_uniform": 0.54618,
+   "h_cond_settled": 0.40532,
+   "h_gap_settled": 0.54618,
+   "s_far_settled": 0.63386,
+   "s_far_uniform": 0.63386,
+   "secs": 0.1
+  },
+  "binary|uniform": {
+   "alphabet": "binary",
+   "mode": "uniform",
+   "k": 2,
+   "h_cond_uniform": 0.1398,
+   "h_gap_uniform": 0.02405,
+   "h_cond_settled": 0.1398,
+   "h_gap_settled": 0.02405,
+   "s_far_settled": 0.04611,
+   "s_far_uniform": 0.04745,
+   "secs": 0.1
+  },
+  "colours|semantic": {
+   "alphabet": "colours",
+   "mode": "semantic",
+   "k": 6,
+   "h_cond_uniform": 2.05538,
+   "h_gap_uniform": 0.18032,
+   "h_cond_settled": 2.05538,
+   "h_gap_settled": 0.18032,
+   "s_far_settled": 0.3871,
+   "s_far_uniform": 0.45116,
+   "secs": 0.4
+  },
+  "colours|freq_matched": {
+   "alphabet": "colours",
+   "mode": "freq_matched",
+   "k": 6,
+   "h_cond_uniform": 0.60305,
+   "h_gap_uniform": 0.89326,
+   "h_cond_settled": 0.60305,
+   "h_gap_settled": 0.89326,
+   "s_far_settled": 0.16085,
+   "s_far_uniform": 0.47548,
+   "secs": 0.2
+  },
+  "colours|uniform": {
+   "alphabet": "colours",
+   "mode": "uniform",
+   "k": 6,
+   "h_cond_uniform": 0.46554,
+   "h_gap_uniform": 0.42696,
+   "h_cond_settled": 0.46554,
+   "h_gap_settled": 0.42696,
+   "s_far_settled": 0.01625,
+   "s_far_uniform": 0.35139,
+   "secs": 0.2
+  },
+  "digits|semantic": {
+   "alphabet": "digits",
+   "mode": "semantic",
+   "k": 10,
+   "h_cond_uniform": 2.43746,
+   "h_gap_uniform": 0.18418,
+   "h_cond_settled": 2.43746,
+   "h_gap_settled": 0.18418,
+   "s_far_settled": 0.13229,
+   "s_far_uniform": 0.46138,
+   "secs": 0.4
+  },
+  "digits|freq_matched": {
+   "alphabet": "digits",
+   "mode": "freq_matched",
+   "k": 10,
+   "h_cond_uniform": 1.25982,
+   "h_gap_uniform": 0.82814,
+   "h_cond_settled": 1.25982,
+   "h_gap_settled": 0.82814,
+   "s_far_settled": 0.58339,
+   "s_far_uniform": 0.59681,
+   "secs": 0.4
+  },
+  "digits|uniform": {
+   "alphabet": "digits",
+   "mode": "uniform",
+   "k": 10,
+   "h_cond_uniform": 0.52507,
+   "h_gap_uniform": 0.45478,
+   "h_cond_settled": 0.52507,
+   "h_gap_settled": 0.45478,
+   "s_far_settled": 0.10692,
+   "s_far_uniform": 0.30015,
+   "secs": 0.3
+  }
+ },
+ "n_expected": 9,
+ "_preregistration": {
+  "model": "EleutherAI/pythia-410m",
+  "revision": "step4000",
+  "T": 0.7,
+  "r": 2,
+  "n_ctx": 64,
+  "seed": 20260810,
+  "source": "results/selection_mode.json",
+  "rho_names": 0.6,
+  "primary": "rho(H_gap, s_far); |rho| >= 0.6 names the mechanism, below eliminates it",
+  "hypothesis": "a set the model continues confidently needs only the near token, so a small far-token information gain should go with a small s_far"
+ },
+ "rho": {
+  "settled": {
+   "h_gap": 0.5667,
+   "h_cond": 0.3667
+  },
+  "uniform": {
+   "h_gap": 0.7833,
+   "h_cond": 0.3333
+  }
+ },
+ "analysis": {
+  "rung_passes": true,
+  "rho": {
+   "settled": {
+    "h_gap": 0.5667,
+    "h_cond": 0.3667
+   },
+   "uniform": {
+    "h_gap": 0.7833,
+    "h_cond": 0.3333
+   }
+  },
+  "names_mechanism": true
+ },
+ "verdict": "RUNG: 9 of 9 cells from selection_mode.json measured; ids and s_far are READ from it rather than recomputed, so this cannot disagree with F123 by construction.  PRIMARY: rho(H_gap, s_far) = +0.567 on the settled pool and +0.783 on the uniform pool, n = 9 each. At or above the registered 0.6 threshold, so how much the FAR token reduces uncertainty is a strong correlate of how much it propagates damage -- the mechanism F123 left open now has a named candidate. SECONDARY: rho(H_cond, s_far) = +0.367 settled, +0.333 uniform -- whether the alphabet is merely FLAT rather than informative about the far token. BOUNDARY: same model (EleutherAI/pythia-410m step4000), T = 0.7, r = 2 and geometry as F123. n = 9 cells, so only a large effect is visible, and naming a correlate is not naming a cause.",
+ "_analysis_provenance": {
+  "script": "selection_entropy.py",
+  "sha256": "7ca5402d9b034945f39a6ce9e2fdbeaf1e12d0a1034567a0febfce0908f1f1b3",
+  "imports": {
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/meanfield_lambda.py": "523ee1e6dc456e3d07c4280eec07a42a110bcb7b4d2b01425577f27fe507ab97",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
+   "experiments/selection_entropy.py": "7ca5402d9b034945f39a6ce9e2fdbeaf1e12d0a1034567a0febfce0908f1f1b3",
+   "experiments/subalphabet.py": "06906f8524eccba5fafc9ff0c17c514c59a729bb8dc3bfa9366e10ec4f3771fc",
+   "experiments/subalphabet_why.py": "85d8d461ff02e6c7256fbc3b1a59e007d92fea392b6c6aac2bcf5573ba508f9d",
+   "src/ar_ca.py": "4c32ae243ba968ab7c1b26fdf55a3d94c31d219eb4f0301c33c73565d76b3f2e",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

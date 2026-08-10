@@ -39,3 +39,7 @@ paper_arxiv/plan_to_submission_i4d.md
 paper_arxiv/*.xdv
 paper_arxiv/*.bbl
 paper_arxiv/*.blg
+paper_arxiv/*.pdf
+paper_arxiv/*.aux
+paper_arxiv/*.log
+paper_arxiv/*.out

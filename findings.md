@@ -3645,6 +3645,42 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F124 — what controls the far token's influence is its INFORMATION GAIN, not mass, diversity or flatness
+F123 left the mechanism open after striking off two candidates. This tests two more and leaves one
+standing.
+
+```
+  rho(H_gap,  s_far) = +0.567 settled   +0.783 uniform     far-token information gain
+  rho(H_cond, s_far) = +0.367 settled   +0.333 uniform     alphabet flatness
+  rho(log mass, s_far) = +0.120                            F123, eliminated
+  rho(distinct, s_far) = +0.205                            F123, eliminated
+```
+
+`H_gap` is `H(p | near only, far marginalised) − H(p | far, near)`: how many bits the far token
+removes. `H_cond` spans 0.14–2.44 bits across these alphabets and explains little, so the effect is
+**far-dependence specifically, not entropy**. Four candidates tested, one survives.
+
+**THE STRUCTURAL DEPENDENCE, STATED BEFORE ANYONE QUOTES THE NUMBER.** `H_gap` and `s_far` are not
+independent quantities. If the conditional does not depend on the far token then `H_gap = 0` and
+`s_far = 0` **identically** — the correlation is partly guaranteed by construction rather than
+discovered. This is therefore NOT evidence that information gain *causes* damage propagation. What
+it establishes is narrower and still useful: among four candidate properties, the one that tracks
+`s_far` is far-dependence, and the three that do not — conditional mass, settled diversity, and
+flatness — are ruled out as *dominant* drivers.
+
+**WHY IT IS WORTH HAVING ANYWAY.** `H_gap` is computed from **one batch of forward passes on a
+candidate alphabet, with no CA run at all**. So it predicts whether a sub-alphabet lattice will sit
+above or below criticality before the lattice is built — which is exactly the design question a
+top-k / closed-model construction has to answer, and F123 showed the answer is not "small alphabets
+are always subcritical".
+
+**BOUNDARY.** Same model, revision, temperature and geometry as F123; n = 9 cells, so only a large
+effect is visible. The settled-pool correlation (+0.567) falls BELOW the registered 0.6 threshold
+and only the uniform-pool one (+0.783) clears it — the registered reading is therefore satisfied on
+one pool of two, which is weaker than a clean pass and is recorded as such.
+
+`experiments/selection_entropy.py` → `results/selection_entropy.json`
+
 ### F123 — F109's far-position collapse is NOT caused by restriction: the SELECTION RULE controls it
 F109 found the sub-alphabet lattice fails to ignite because the far token contributes as little as
 0.0605 against the near token's 0.8007, putting the branching ratio below 1, and
