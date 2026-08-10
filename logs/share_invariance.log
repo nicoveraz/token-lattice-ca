@@ -1,0 +1,136 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 9227.86it/s]
+  EleutherAI/pythia-31m|r2.T0.02|s20260810     top1=0.9883 distinct=7 rep2=0.983 (10s)
+  EleutherAI/pythia-31m|r2.T0.02|s20260811     top1=0.9557 distinct=11 rep2=0.945 (11s)
+  EleutherAI/pythia-31m|r2.T0.2|s20260810      top1=0.9948 distinct=5 rep2=0.992 (10s)
+  EleutherAI/pythia-31m|r2.T0.2|s20260811      top1=1.0000 distinct=1 rep2=1.000 (10s)
+  EleutherAI/pythia-31m|r2.T0.7|s20260810      top1=0.1589 distinct=308 rep2=0.070 (9s)
+  EleutherAI/pythia-31m|r2.T0.7|s20260811      top1=0.1094 distinct=356 rep2=0.051 (10s)
+  EleutherAI/pythia-31m|r3.T0.02|s20260810     top1=0.2839 distinct=123 rep2=0.160 (10s)
+  EleutherAI/pythia-31m|r3.T0.02|s20260811     top1=0.2734 distinct=122 rep2=0.161 (11s)
+  EleutherAI/pythia-31m|r3.T0.2|s20260810      top1=0.2240 distinct=141 rep2=0.114 (10s)
+  EleutherAI/pythia-31m|r3.T0.2|s20260811      top1=0.2891 distinct=134 rep2=0.174 (12s)
+  EleutherAI/pythia-31m|r3.T0.7|s20260810      top1=0.0964 distinct=337 rep2=0.055 (11s)
+  EleutherAI/pythia-31m|r3.T0.7|s20260811      top1=0.0794 distinct=348 rep2=0.033 (11s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 8340.93it/s]
+  EleutherAI/pythia-160m|r2.T0.02|s20260810    top1=0.9049 distinct=3 rep2=0.864 (20s)
+  EleutherAI/pythia-160m|r2.T0.02|s20260811    top1=0.9622 distinct=3 rep2=0.984 (19s)
+  EleutherAI/pythia-160m|r2.T0.2|s20260810     top1=0.9701 distinct=7 rep2=0.987 (19s)
+  EleutherAI/pythia-160m|r2.T0.2|s20260811     top1=0.9453 distinct=3 rep2=0.989 (19s)
+  EleutherAI/pythia-160m|r2.T0.7|s20260810     top1=0.1953 distinct=311 rep2=0.096 (19s)
+  EleutherAI/pythia-160m|r2.T0.7|s20260811     top1=0.2396 distinct=301 rep2=0.136 (19s)
+  EleutherAI/pythia-160m|r3.T0.02|s20260810    top1=0.1901 distinct=216 rep2=0.108 (21s)
+  EleutherAI/pythia-160m|r3.T0.02|s20260811    top1=0.1784 distinct=190 rep2=0.096 (21s)
+  EleutherAI/pythia-160m|r3.T0.2|s20260810     top1=0.1966 distinct=194 rep2=0.076 (21s)
+  EleutherAI/pythia-160m|r3.T0.2|s20260811     top1=0.2148 distinct=188 rep2=0.116 (21s)
+  EleutherAI/pythia-160m|r3.T0.7|s20260810     top1=0.1120 distinct=357 rep2=0.036 (21s)
+  EleutherAI/pythia-160m|r3.T0.7|s20260811     top1=0.1094 distinct=357 rep2=0.033 (21s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8062.78it/s]
+  EleutherAI/pythia-410m|r2.T0.02|s20260810    top1=0.8034 distinct=13 rep2=0.943 (38s)
+  EleutherAI/pythia-410m|r2.T0.02|s20260811    top1=0.8633 distinct=5 rep2=0.967 (38s)
+  EleutherAI/pythia-410m|r2.T0.2|s20260810     top1=0.8529 distinct=7 rep2=0.952 (38s)
+  EleutherAI/pythia-410m|r2.T0.2|s20260811     top1=0.9115 distinct=10 rep2=0.964 (38s)
+  EleutherAI/pythia-410m|r2.T0.7|s20260810     top1=0.1432 distinct=324 rep2=0.078 (38s)
+  EleutherAI/pythia-410m|r2.T0.7|s20260811     top1=0.1562 distinct=352 rep2=0.076 (38s)
+  EleutherAI/pythia-410m|r3.T0.02|s20260810    top1=0.2031 distinct=201 rep2=0.145 (45s)
+  EleutherAI/pythia-410m|r3.T0.02|s20260811    top1=0.1914 distinct=203 rep2=0.148 (45s)
+  EleutherAI/pythia-410m|r3.T0.2|s20260810     top1=0.1758 distinct=205 rep2=0.169 (45s)
+  EleutherAI/pythia-410m|r3.T0.2|s20260811     top1=0.1953 distinct=217 rep2=0.190 (46s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260810     top1=0.1237 distinct=364 rep2=0.037 (46s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260811     top1=0.1224 distinct=364 rep2=0.035 (46s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7492.45it/s]
+  gpt2|r2.T0.02|s20260810                      top1=0.1823 distinct=94 rep2=0.090 (12s)
+  gpt2|r2.T0.02|s20260811                      top1=0.2018 distinct=92 rep2=0.098 (12s)
+  gpt2|r2.T0.2|s20260810                       top1=0.1276 distinct=163 rep2=0.056 (12s)
+  gpt2|r2.T0.2|s20260811                       top1=0.1667 distinct=189 rep2=0.084 (12s)
+  gpt2|r2.T0.7|s20260810                       top1=0.1081 distinct=327 rep2=0.043 (12s)
+  gpt2|r2.T0.7|s20260811                       top1=0.0898 distinct=370 rep2=0.036 (14s)
+  gpt2|r3.T0.02|s20260810                      top1=0.1523 distinct=180 rep2=0.074 (17s)
+  gpt2|r3.T0.02|s20260811                      top1=0.1719 distinct=187 rep2=0.104 (16s)
+  gpt2|r3.T0.2|s20260810                       top1=0.1419 distinct=208 rep2=0.060 (16s)
+  gpt2|r3.T0.2|s20260811                       top1=0.1354 distinct=216 rep2=0.085 (16s)
+  gpt2|r3.T0.7|s20260810                       top1=0.1133 distinct=362 rep2=0.060 (16s)
+  gpt2|r3.T0.7|s20260811                       top1=0.1120 distinct=374 rep2=0.044 (16s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5906.02it/s]
+  gpt2-medium|r2.T0.02|s20260810               top1=0.1393 distinct=134 rep2=0.065 (28s)
+  gpt2-medium|r2.T0.02|s20260811               top1=0.1315 distinct=140 rep2=0.074 (28s)
+  gpt2-medium|r2.T0.2|s20260810                top1=0.1263 distinct=183 rep2=0.045 (26s)
+  gpt2-medium|r2.T0.2|s20260811                top1=0.1445 distinct=174 rep2=0.101 (25s)
+  gpt2-medium|r2.T0.7|s20260810                top1=0.1055 distinct=367 rep2=0.036 (26s)
+  gpt2-medium|r2.T0.7|s20260811                top1=0.0977 distinct=392 rep2=0.037 (25s)
+  gpt2-medium|r3.T0.02|s20260810               top1=0.1094 distinct=219 rep2=0.108 (33s)
+  gpt2-medium|r3.T0.02|s20260811               top1=0.1471 distinct=196 rep2=0.093 (33s)
+  gpt2-medium|r3.T0.2|s20260810                top1=0.1224 distinct=216 rep2=0.064 (33s)
+  gpt2-medium|r3.T0.2|s20260811                top1=0.1641 distinct=204 rep2=0.106 (33s)
+  gpt2-medium|r3.T0.7|s20260810                top1=0.0807 distinct=389 rep2=0.025 (33s)
+  gpt2-medium|r3.T0.7|s20260811                top1=0.1081 distinct=371 rep2=0.047 (33s)
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7644.69it/s]
+  gpt2-large|r2.T0.02|s20260810                top1=0.1549 distinct=138 rep2=0.094 (48s)
+  gpt2-large|r2.T0.02|s20260811                top1=0.1641 distinct=123 rep2=0.072 (48s)
+  gpt2-large|r2.T0.2|s20260810                 top1=0.1393 distinct=169 rep2=0.060 (49s)
+  gpt2-large|r2.T0.2|s20260811                 top1=0.1289 distinct=163 rep2=0.084 (49s)
+  gpt2-large|r2.T0.7|s20260810                 top1=0.1068 distinct=359 rep2=0.045 (49s)
+  gpt2-large|r2.T0.7|s20260811                 top1=0.1003 distinct=337 rep2=0.064 (51s)
+  gpt2-large|r3.T0.02|s20260810                top1=0.1237 distinct=213 rep2=0.080 (61s)
+  gpt2-large|r3.T0.02|s20260811                top1=0.1432 distinct=190 rep2=0.088 (61s)
+  gpt2-large|r3.T0.2|s20260810                 top1=0.1198 distinct=221 rep2=0.080 (61s)
+  gpt2-large|r3.T0.2|s20260811                 top1=0.1367 distinct=224 rep2=0.114 (61s)
+  gpt2-large|r3.T0.7|s20260810                 top1=0.0938 distinct=363 rep2=0.036 (61s)
+  gpt2-large|r3.T0.7|s20260811                 top1=0.1029 distinct=371 rep2=0.035 (61s)
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 42774.27it/s]
+  facebook/opt-350m|r2.T0.02|s20260810         top1=0.1523 distinct=100 rep2=0.068 (38s)
+  facebook/opt-350m|r2.T0.02|s20260811         top1=0.1445 distinct=106 rep2=0.068 (38s)
+  facebook/opt-350m|r2.T0.2|s20260810          top1=0.1354 distinct=171 rep2=0.066 (38s)
+  facebook/opt-350m|r2.T0.2|s20260811          top1=0.1172 distinct=159 rep2=0.057 (38s)
+  facebook/opt-350m|r2.T0.7|s20260810          top1=0.0885 distinct=335 rep2=0.031 (38s)
+  facebook/opt-350m|r2.T0.7|s20260811          top1=0.0833 distinct=361 rep2=0.021 (38s)
+  facebook/opt-350m|r3.T0.02|s20260810         top1=0.1211 distinct=166 rep2=0.060 (44s)
+  facebook/opt-350m|r3.T0.02|s20260811         top1=0.1419 distinct=176 rep2=0.081 (44s)
+  facebook/opt-350m|r3.T0.2|s20260810          top1=0.1172 distinct=214 rep2=0.055 (44s)
+  facebook/opt-350m|r3.T0.2|s20260811          top1=0.1263 distinct=196 rep2=0.061 (45s)
+  facebook/opt-350m|r3.T0.7|s20260810          top1=0.0833 distinct=342 rep2=0.019 (44s)
+  facebook/opt-350m|r3.T0.7|s20260811          top1=0.0964 distinct=355 rep2=0.031 (44s)
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7540.06it/s]
+  bigscience/bloom-560m|r2.T0.02|s20260810     top1=0.0573 distinct=287 rep2=0.043 (38s)
+  bigscience/bloom-560m|r2.T0.02|s20260811     top1=0.0404 distinct=285 rep2=0.021 (38s)
+  bigscience/bloom-560m|r2.T0.2|s20260810      top1=0.0651 distinct=300 rep2=0.025 (38s)
+  bigscience/bloom-560m|r2.T0.2|s20260811      top1=0.0417 distinct=315 rep2=0.039 (39s)
+  bigscience/bloom-560m|r2.T0.7|s20260810      top1=0.0208 distinct=558 rep2=0.005 (40s)
+  bigscience/bloom-560m|r2.T0.7|s20260811      top1=0.0234 distinct=561 rep2=0.003 (38s)
+  bigscience/bloom-560m|r3.T0.02|s20260810     top1=0.0417 distinct=327 rep2=0.037 (48s)
+  bigscience/bloom-560m|r3.T0.02|s20260811     top1=0.0391 distinct=313 rep2=0.061 (49s)
+  bigscience/bloom-560m|r3.T0.2|s20260810      top1=0.0247 distinct=378 rep2=0.041 (48s)
+  bigscience/bloom-560m|r3.T0.2|s20260811      top1=0.0404 distinct=308 rep2=0.064 (48s)
+  bigscience/bloom-560m|r3.T0.7|s20260810      top1=0.0156 distinct=535 rep2=0.011 (49s)
+  bigscience/bloom-560m|r3.T0.7|s20260811      top1=0.0208 distinct=549 rep2=0.007 (49s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 5747.09it/s]
+  state-spaces/mamba-130m-hf|r2.T0.02|s20260810 top1=0.1497 distinct=122 rep2=0.077 (66s)
+  state-spaces/mamba-130m-hf|r2.T0.02|s20260811 top1=0.1510 distinct=109 rep2=0.080 (66s)
+  state-spaces/mamba-130m-hf|r2.T0.2|s20260810 top1=0.1536 distinct=157 rep2=0.070 (66s)
+  state-spaces/mamba-130m-hf|r2.T0.2|s20260811 top1=0.1628 distinct=145 rep2=0.098 (66s)
+  state-spaces/mamba-130m-hf|r2.T0.7|s20260810 top1=0.0951 distinct=353 rep2=0.047 (66s)
+  state-spaces/mamba-130m-hf|r2.T0.7|s20260811 top1=0.1042 distinct=398 rep2=0.041 (68s)
+  state-spaces/mamba-130m-hf|r3.T0.02|s20260810 top1=0.1784 distinct=194 rep2=0.170 (90s)
+  state-spaces/mamba-130m-hf|r3.T0.02|s20260811 top1=0.1536 distinct=203 rep2=0.178 (89s)
+  state-spaces/mamba-130m-hf|r3.T0.2|s20260810 top1=0.1758 distinct=202 rep2=0.138 (94s)
+  state-spaces/mamba-130m-hf|r3.T0.2|s20260811 top1=0.2122 distinct=178 rep2=0.164 (93s)
+  state-spaces/mamba-130m-hf|r3.T0.7|s20260810 top1=0.1107 distinct=386 rep2=0.060 (92s)
+  state-spaces/mamba-130m-hf|r3.T0.7|s20260811 top1=0.1107 distinct=397 rep2=0.028 (92s)
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 64460.75it/s]
+  RWKV/rwkv-4-169m-pile|r2.T0.02|s20260810     top1=0.1510 distinct=110 rep2=0.065 (23s)
+  RWKV/rwkv-4-169m-pile|r2.T0.02|s20260811     top1=0.1784 distinct=122 rep2=0.094 (22s)
+  RWKV/rwkv-4-169m-pile|r2.T0.2|s20260810      top1=0.1576 distinct=185 rep2=0.062 (22s)
+  RWKV/rwkv-4-169m-pile|r2.T0.2|s20260811      top1=0.1510 distinct=155 rep2=0.076 (22s)
+  RWKV/rwkv-4-169m-pile|r2.T0.7|s20260810      top1=0.0742 distinct=363 rep2=0.039 (22s)
+  RWKV/rwkv-4-169m-pile|r2.T0.7|s20260811      top1=0.1003 distinct=370 rep2=0.035 (22s)
+  RWKV/rwkv-4-169m-pile|r3.T0.02|s20260810     top1=0.1576 distinct=208 rep2=0.138 (26s)
+  RWKV/rwkv-4-169m-pile|r3.T0.02|s20260811     top1=0.1771 distinct=203 rep2=0.118 (27s)
+  RWKV/rwkv-4-169m-pile|r3.T0.2|s20260810      top1=0.1380 distinct=220 rep2=0.141 (26s)
+  RWKV/rwkv-4-169m-pile|r3.T0.2|s20260811      top1=0.1536 distinct=225 rep2=0.124 (26s)
+  RWKV/rwkv-4-169m-pile|r3.T0.7|s20260810      top1=0.0977 distinct=376 rep2=0.028 (27s)
+  RWKV/rwkv-4-169m-pile|r3.T0.7|s20260811      top1=0.0951 distinct=370 rep2=0.032 (26s)
+
+  -> RUNG (F64 reproduced, not assumed): at r2.T0.02 RWKV's attractor share is 0.1647 against a median of 0.1758 across the attention models, a gap of +0.0111 (required >= 0.1). F64's largest known effect is NOT recovered here, so this is not measuring the attractor and nothing below is read.
+
+wrote results/share_invariance.json

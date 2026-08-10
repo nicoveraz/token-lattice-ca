@@ -1,0 +1,21 @@
+  measured cone width at p1=0.9, 64 sweeps: 71.9 sites
+  w0.25|s11    sep=18    interaction=-177.623 area=614.8 normalised=-0.2714 live=61/64 (0s)
+  w0.25|s12    sep=18    interaction=-192.476 area=616.4 normalised=-0.2978 live=63/64 (0s)
+  w0.25|s13    sep=18    interaction=-185.703 area=620.6 normalised=-0.2832 live=64/64 (0s)
+  w0.25|s14    sep=18    interaction=-200.984 area=641.8 normalised=-0.3039 live=62/64 (0s)
+  w0.5|s11     sep=36    interaction=-93.453 area=584.3 normalised=-0.1428 live=64/64 (0s)
+  w0.5|s12     sep=36    interaction=-119.413 area=649.3 normalised=-0.1760 live=63/64 (0s)
+  w0.5|s13     sep=36    interaction=-88.859 area=594.6 normalised=-0.1397 live=64/64 (0s)
+  w0.5|s14     sep=36    interaction=-112.281 area=640.1 normalised=-0.1717 live=64/64 (0s)
+  w1.0|s11     sep=72    interaction=-17.661 area=626.9 normalised=-0.0247 live=62/64 (0s)
+  w1.0|s12     sep=72    interaction=-15.344 area=620.6 normalised=-0.0218 live=64/64 (0s)
+  w1.0|s13     sep=72    interaction=-11.381 area=588.7 normalised=-0.0161 live=63/64 (0s)
+  w1.0|s14     sep=72    interaction=-16.016 area=595.1 normalised=-0.0238 live=62/64 (0s)
+  w2.0|s11     sep=144   interaction=+0.000 area=624.1 normalised=+0.0000 live=64/64 (0s)
+  w2.0|s12     sep=144   interaction=+0.000 area=613.1 normalised=+0.0000 live=63/64 (0s)
+  w2.0|s13     sep=144   interaction=+0.000 area=597.7 normalised=+0.0000 live=63/64 (0s)
+  w2.0|s14     sep=144   interaction=+0.000 area=615.8 normalised=+0.0000 live=64/64 (0s)
+
+  -> RUNG (ignition, F42-style): 16 of 16 cells have both seeds igniting in a majority of replicas; damage is live at this DK point so the two-seed comparison is defined. REGISTERED PRIOR, on record before the number: sub-additive (negative): colliding absorbing-state fronts compete for the same sites. A sub-additive DK result is therefore the EXPECTED outcome and deflates F122's novelty rather than confirming a discovery. PRIMARY, normalised interaction (interaction / single-cone area) by separation in cone widths: 0.25w=-0.2891, 0.5w=-0.1575, 1.0w=-0.0216, 2.0w=+0.0000. DK range [-0.3039, +0.0000]. CONTRAST with the LM ring (F122): its raw interactions were -2.52, -1.17, -0.51 damaged sites at separations 6, 12, 24 on N=96. Normalising those against its own single-cone areas is required before the comparison is meaningful, and that normalisation is NOT computed here -- damage_interaction stored per-replica interaction but the single-arm areas needed for the denominator are not in its results file. So this run establishes the DK reference and the LM side needs a re-analysis to land on the same axis. Stated rather than approximated. BOUNDARY: DK is binary-alphabet, synchronous and two-parameter (p1=0.9, p2=0.0); the LM ring is multi-state and asynchronous. Matching normalised interaction would mean the MAGNITUDE needs no special explanation, not that the mechanism is the same. N=4096, 64 sweeps, B=64, 4 seeds.
+
+wrote results/dk_interaction.json

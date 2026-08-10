@@ -1,0 +1,296 @@
+{
+ "cells": {
+  "w0.25|s11": {
+   "n_live": 61,
+   "n_total": 64,
+   "interaction": -177.62295081967213,
+   "interaction_sd": 91.32545536603804,
+   "single_area": 614.7540983606557,
+   "normalised": -0.27136649641024946,
+   "normalised_sd": 0.1334910756824394,
+   "sep_sites": 18,
+   "sep_widths": 0.25,
+   "seed": 11,
+   "secs": 0.4
+  },
+  "w0.25|s12": {
+   "n_live": 63,
+   "n_total": 64,
+   "interaction": -192.47619047619048,
+   "interaction_sd": 84.11951120815323,
+   "single_area": 616.4285714285714,
+   "normalised": -0.29781237837410074,
+   "normalised_sd": 0.11185966709294824,
+   "sep_sites": 18,
+   "sep_widths": 0.25,
+   "seed": 12,
+   "secs": 0.4
+  },
+  "w0.25|s13": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": -185.703125,
+   "interaction_sd": 84.94866417804886,
+   "single_area": 620.6484375,
+   "normalised": -0.2831503917605189,
+   "normalised_sd": 0.11445641870873985,
+   "sep_sites": 18,
+   "sep_widths": 0.25,
+   "seed": 13,
+   "secs": 0.4
+  },
+  "w0.25|s14": {
+   "n_live": 62,
+   "n_total": 64,
+   "interaction": -200.98387096774192,
+   "interaction_sd": 73.36468349805621,
+   "single_area": 641.75,
+   "normalised": -0.30388697311037716,
+   "normalised_sd": 0.10394593012679168,
+   "sep_sites": 18,
+   "sep_widths": 0.25,
+   "seed": 14,
+   "secs": 0.4
+  },
+  "w0.5|s11": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": -93.453125,
+   "interaction_sd": 62.145229212618474,
+   "single_area": 584.3046875,
+   "normalised": -0.14280695170188296,
+   "normalised_sd": 0.08844161912726309,
+   "sep_sites": 36,
+   "sep_widths": 0.5,
+   "seed": 11,
+   "secs": 0.4
+  },
+  "w0.5|s12": {
+   "n_live": 63,
+   "n_total": 64,
+   "interaction": -119.41269841269842,
+   "interaction_sd": 62.59976165074559,
+   "single_area": 649.2539682539683,
+   "normalised": -0.17597409661574936,
+   "normalised_sd": 0.08438579290289859,
+   "sep_sites": 36,
+   "sep_widths": 0.5,
+   "seed": 12,
+   "secs": 0.4
+  },
+  "w0.5|s13": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": -88.859375,
+   "interaction_sd": 59.252450806589444,
+   "single_area": 594.609375,
+   "normalised": -0.13973523626447817,
+   "normalised_sd": 0.08554256830759593,
+   "sep_sites": 36,
+   "sep_widths": 0.5,
+   "seed": 13,
+   "secs": 0.4
+  },
+  "w0.5|s14": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": -112.28125,
+   "interaction_sd": 55.67064962939386,
+   "single_area": 640.109375,
+   "normalised": -0.17167473889165125,
+   "normalised_sd": 0.07945295344234958,
+   "sep_sites": 36,
+   "sep_widths": 0.5,
+   "seed": 14,
+   "secs": 0.4
+  },
+  "w1.0|s11": {
+   "n_live": 62,
+   "n_total": 64,
+   "interaction": -17.661290322580644,
+   "interaction_sd": 21.54137730073664,
+   "single_area": 626.9032258064516,
+   "normalised": -0.02473038249476605,
+   "normalised_sd": 0.029081660762973072,
+   "sep_sites": 72,
+   "sep_widths": 1.0,
+   "seed": 11,
+   "secs": 0.4
+  },
+  "w1.0|s12": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": -15.34375,
+   "interaction_sd": 21.323821354130153,
+   "single_area": 620.6484375,
+   "normalised": -0.021838144795494584,
+   "normalised_sd": 0.028660972921730914,
+   "sep_sites": 72,
+   "sep_widths": 1.0,
+   "seed": 12,
+   "secs": 0.4
+  },
+  "w1.0|s13": {
+   "n_live": 63,
+   "n_total": 64,
+   "interaction": -11.380952380952381,
+   "interaction_sd": 18.485764855805872,
+   "single_area": 588.7222222222222,
+   "normalised": -0.016100629591695562,
+   "normalised_sd": 0.024544720179658027,
+   "sep_sites": 72,
+   "sep_widths": 1.0,
+   "seed": 13,
+   "secs": 0.4
+  },
+  "w1.0|s14": {
+   "n_live": 62,
+   "n_total": 64,
+   "interaction": -16.016129032258064,
+   "interaction_sd": 21.094239704345576,
+   "single_area": 595.0887096774194,
+   "normalised": -0.023818113390919368,
+   "normalised_sd": 0.030569235317352478,
+   "sep_sites": 72,
+   "sep_widths": 1.0,
+   "seed": 14,
+   "secs": 0.4
+  },
+  "w2.0|s11": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": 0.0,
+   "interaction_sd": 0.0,
+   "single_area": 624.1484375,
+   "normalised": 0.0,
+   "normalised_sd": 0.0,
+   "sep_sites": 144,
+   "sep_widths": 2.0,
+   "seed": 11,
+   "secs": 0.4
+  },
+  "w2.0|s12": {
+   "n_live": 63,
+   "n_total": 64,
+   "interaction": 0.0,
+   "interaction_sd": 0.0,
+   "single_area": 613.0873015873016,
+   "normalised": 0.0,
+   "normalised_sd": 0.0,
+   "sep_sites": 144,
+   "sep_widths": 2.0,
+   "seed": 12,
+   "secs": 0.4
+  },
+  "w2.0|s13": {
+   "n_live": 63,
+   "n_total": 64,
+   "interaction": 0.0,
+   "interaction_sd": 0.0,
+   "single_area": 597.6904761904761,
+   "normalised": 0.0,
+   "normalised_sd": 0.0,
+   "sep_sites": 144,
+   "sep_widths": 2.0,
+   "seed": 13,
+   "secs": 0.4
+  },
+  "w2.0|s14": {
+   "n_live": 64,
+   "n_total": 64,
+   "interaction": 0.0,
+   "interaction_sd": 0.0,
+   "single_area": 615.8125,
+   "normalised": 0.0,
+   "normalised_sd": 0.0,
+   "sep_sites": 144,
+   "sep_widths": 2.0,
+   "seed": 14,
+   "secs": 0.4
+  }
+ },
+ "_preregistration": {
+  "N": 4096,
+  "sweeps": 64,
+  "B": 64,
+  "p1": 0.9,
+  "p2": 0.0,
+  "seps_widths": [
+   0.25,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "seeds": [
+   11,
+   12,
+   13,
+   14
+  ],
+  "expected": "sub-additive (negative): colliding absorbing-state fronts compete for the same sites",
+  "statistic": "interaction / single-cone area, separations in units of cone width -- frozen before the run so 'comparable to DK' vs 'exceeds DK' predates the data",
+  "geometry": "N=4096, chosen so every separation sits inside the pre-collision window and the wraparound that broke damage_geometry twice cannot enter",
+  "gate": "both seeds must ignite in a replica or that replica is UNDEFINED, not zero",
+  "lm_reference": "results/damage_interaction.json"
+ },
+ "cone_width": 71.89830508474576,
+ "analysis": {
+  "rung_passes": true,
+  "by_width": {
+   "0.25": [
+    -0.27136649641024946,
+    -0.29781237837410074,
+    -0.2831503917605189,
+    -0.30388697311037716
+   ],
+   "0.5": [
+    -0.14280695170188296,
+    -0.17597409661574936,
+    -0.13973523626447817,
+    -0.17167473889165125
+   ],
+   "1.0": [
+    -0.02473038249476605,
+    -0.021838144795494584,
+    -0.016100629591695562,
+    -0.023818113390919368
+   ],
+   "2.0": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "dk_range": [
+   -0.30388697311037716,
+   0.0
+  ]
+ },
+ "verdict": "RUNG (ignition, F42-style): 16 of 16 cells have both seeds igniting in a majority of replicas; damage is live at this DK point so the two-seed comparison is defined. REGISTERED PRIOR, on record before the number: sub-additive (negative): colliding absorbing-state fronts compete for the same sites. A sub-additive DK result is therefore the EXPECTED outcome and deflates F122's novelty rather than confirming a discovery. PRIMARY, normalised interaction (interaction / single-cone area) by separation in cone widths: 0.25w=-0.2891, 0.5w=-0.1575, 1.0w=-0.0216, 2.0w=+0.0000. DK range [-0.3039, +0.0000]. CONTRAST with the LM ring (F122): its raw interactions were -2.52, -1.17, -0.51 damaged sites at separations 6, 12, 24 on N=96. Normalising those against its own single-cone areas is required before the comparison is meaningful, and that normalisation is NOT computed here -- damage_interaction stored per-replica interaction but the single-arm areas needed for the denominator are not in its results file. So this run establishes the DK reference and the LM side needs a re-analysis to land on the same axis. Stated rather than approximated. BOUNDARY: DK is binary-alphabet, synchronous and two-parameter (p1=0.9, p2=0.0); the LM ring is multi-state and asynchronous. Matching normalised interaction would mean the MAGNITUDE needs no special explanation, not that the mechanism is the same. N=4096, 64 sweeps, B=64, 4 seeds.",
+ "_analysis_provenance": {
+  "script": "dk_interaction.py",
+  "sha256": "86572b0e5baa57a7e265018c6ce76300ba2d1b5df5aadb00d5598d24a525ab7d",
+  "imports": {
+   "experiments/dk_interaction.py": "86572b0e5baa57a7e265018c6ce76300ba2d1b5df5aadb00d5598d24a525ab7d",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "src/dk.py": "a744560772d94abf34aa711a29036603b6e66d3e9021a520ef37b7c8ea706e12",
+   "src/lattice.py": "7cafb75e723aa87325f56548ed754a03ba433d46f65ed350faded81bc4862b90"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

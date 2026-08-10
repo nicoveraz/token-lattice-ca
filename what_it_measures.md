@@ -342,12 +342,21 @@ themselves turn out to be set mostly by the apparatus. The two failures are inde
 point the same way: *varying the subject is not a substitute for varying the apparatus*, and this
 project has now had to learn that twice.
 
-**What it does NOT license.** Every result that has transferred out of this instrument —
-F35's error persistence, F63/F64's corpus and architecture discrimination, F86's T\*,
-F117/F120/F121's compliance selectivity — is built on the ATTRACTOR SHARE or on generation
-behaviour, not on λ_ca. Whether the share survives construction variation where λ_ca did not is
-measured separately; until that is in, the honest statement is that the failure is established for
-λ_ca and for the sub-alphabet family, and is untested elsewhere.
+**What it does NOT license, now measured rather than hoped (F130).** Every result that has
+transferred out of this instrument — F35's error persistence, F63/F64's corpus and architecture
+discrimination, F86's T\*, F117/F120/F121's compliance selectivity — is built on the ATTRACTOR SHARE
+or on generation behaviour, not on λ_ca. **The share passes every gate λ_ca failed:** signal on 6 of
+6 constructions against λ_ca's 2 of 4, a seed-stable ranking of 0.848 against 0.030, and
+construction-invariance at +0.752 (with `distinct` +0.737 and `rep2` +0.654 clearing independently)
+against a 0.6 threshold. It also sees what λ_ca cannot — RWKV sits 0.769 below the Pile-trained
+attention models, recovering F64, where λ_ca puts it mid-pack. Cross-model spread is **0.923** against
+λ_ca's 0.051.
+
+So the failure is **specific to λ_ca**, not general to the instrument. The quantities the project's
+transferring results are built on are model-attributable across these constructions; the quantity
+that is not model-attributable is the one now confined to within-model developmental work. That is
+the honest shape of the result, and it arrived before publication rather than after — which is what
+the discipline is for.
 
 ### 7c. A standing caveat on the low-diversity regime
 

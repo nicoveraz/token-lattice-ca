@@ -3645,6 +3645,103 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F131 — F122's sub-additivity is GENERIC, and smaller than the classical reference
+F122 measured two damage clouds superposing sub-additively while the two-token response is additive
+(F114), and stated that as "the lattice is not reducible to its local response". True, but the
+implicit novelty was unearned: colliding fronts in absorbing-state systems *should* be sub-additive —
+two fires burn less than twice one fire, because the overlap can only be damaged once. This
+calibrates against Domany–Kinzel, the project's known-answer system.
+
+**THE PRIOR WAS REGISTERED BEFORE THE NUMBER**, because it is the likely answer: sub-additive on DK
+is the *expected* outcome and deflates F122 rather than confirming it. Recording that first is what
+would have made the alternative — an LM interaction clearly exceeding DK's — worth anything.
+
+```
+  normalised interaction (interaction / single-cone area), separations in cone widths
+     DK    0.25w -0.2891   0.5w -0.1575   1.0w -0.0216   2.0w +0.0000
+     LM    0.14w -0.0776   0.27w -0.0339  0.55w -0.0146  1.09w -0.0004
+```
+
+**PRIMARY: the LM sits inside DK's range [−0.304, 0.000], so by the frozen criterion F122 is generic
+collision and its novelty is gone.** F122's statement survives; any reading of it as a large or
+anomalous interaction does not.
+
+**AND THE DIRECTION IS THE OPPOSITE OF "SPECIAL".** At matched separation the LM's interaction is
+**8–50× weaker** than DK's. The LM lattice's damage clouds are closer to *independent* than a
+classical DP-class system's. F122 is sub-generic, not super-generic.
+
+**THE p1 ERROR, WHICH WAS MINE AND IS THE INTERESTING PART.** The first run placed DK at p1 = 0.72
+and measured a cone width of **0.7 sites**, collapsing every separation to the floor. DK's
+**damage-spreading** line is not its density transition: at p1 = 0.72 only 15.6% of replicas still
+carry damage at sweep 48. Scanned — 0.65→6%, 0.72→16%, 0.80→59%, 0.85→84%, 0.90→97% — and p1 = 0.90
+is the first point satisfying the ignition gate. The width was also averaged over *dead* replicas as
+zero, the same error as counting an extinguished replica's interaction as zero.
+
+**BOUNDARY, and one asymmetry not papered over.** DK's cone width is **measured** (71.9 sites); the
+LM's is a **theoretical bound** (`r·sweeps` = 44), and F119 established that asynchronous updating
+makes the real front reach *larger* than that bound. A larger true width moves the LM's separations
+toward where DK's interaction is strongest, making the LM look weaker still — so the **direction is
+robust and the ratio is not**. A like-for-like comparison needs the LM cone width measured at N = 96
+the way DK's was. DK is also binary, synchronous and two-parameter; matching magnitude would not mean
+matching mechanism.
+
+`experiments/dk_interaction.py` → `results/dk_interaction.json`
+
+### F130 — the ATTRACTOR SHARE passes every gate λ_ca failed: it is model-attributable
+F129 left the deflationary reading one test from complete. λ_ca has an unrankable cross-model spread
+and is blind to RWKV; but every result that has ever transferred out of this instrument — F63/F64's
+corpus and architecture discrimination, F86's T\*, F117/F120/F121's compliance selectivity — is built
+on the **attractor share**, not λ_ca. If the share failed too, the instrument measures lattices. It
+does not fail.
+
+**RUNG: F64 recovered, not assumed.** At r = 2, T = 0.02, RWKV's share is **0.1647** against a median
+of **0.9336** across the Pile-trained attention models — a gap of **+0.7689** against a required
+0.10.
+
+```
+                     lambda_ca (F129)        attractor share (here)
+  signal              2 of 4 constructions    6 of 6, ratios 8.1 - 43.5
+  seed-stable rank    0.030                   top1 0.848  distinct 0.791  rep2 0.750
+  invariance          not askable             top1 +0.752  distinct +0.737  rep2 +0.654
+  sees RWKV?          no (mid-pack)           yes (+0.769 gap, corpus-controlled)
+  cross-model spread  0.051                   0.923
+```
+
+**PRIMARY: all three readouts are MODEL-ATTRIBUTABLE at the registered 0.6 threshold.** The share
+ranks models the same way however the lattice is built, across two radii and three temperatures.
+`rep2` clearing independently matters: it is adjacent-pair repetition, not a restatement of `top1`,
+so a ring alternating between two tokens is distinguished from one collapsed onto a single token.
+
+**So F129's failure is specific to λ_ca and does not generalise to the instrument.** The results
+built on the share rest on the quantity that survives construction variation; λ_ca, which does not,
+is confined to within-model developmental work (F115, F128, F129).
+
+**THE RUNG CORRECTION, AND WHY IT IS NOT TOLERANCE-SHOPPING.** A first version compared RWKV against
+the median of *all* attention models and failed at a gap of **0.011**. That pooled six non-Pile
+models with three Pile-trained Pythias — destroying the control F63 established, since corpus
+dominates this readout (78.1% vs 20.4% **at an identical tokenizer**). GPT-2, OPT and BLOOM read low
+because they are not Pile-trained, not because of architecture. F64's claim is attention **within a
+corpus**, so the reference set is Pile-trained models. **The margin was unchanged at 0.10; only the
+reference set moved, and it moved to the one F64 names.** The justification is F63's prior result,
+not the wish for a passing rung — and a correct rung failing for a specifiable error of mine is the
+only version of this that is legitimate.
+
+```
+  r2.T0.02   pythia-31m 0.972  pythia-160m 0.934  pythia-410m 0.833
+             gpt2 0.192  RWKV 0.165  gpt2-large 0.160  mamba 0.150
+             opt-350m 0.148  gpt2-medium 0.135  bloom 0.049
+```
+
+The structure is **Pythia versus everything else** — a corpus split, with RWKV low *despite* being
+Pile-trained, which is precisely F64's architecture claim surviving inside the corpus-matched subset.
+
+**BOUNDARY.** Ten models differing in **size** as well as family, so model-attributable here does not
+separate architecture from scale. Six constructions, N = 48, settle = 30. Model-attributable **across
+these constructions**, not in general — and the low-T shares (0.83–0.97) sit near the ceiling of 1.0,
+so models saturating there are separated by less room than their similarity would suggest.
+
+`experiments/share_invariance.py` → `results/share_invariance.json`
+
 ### F129 — λ_ca's cross-model spread is real but UNRANKABLE, and it is blind to architecture
 F128 found no cross-model signal in λ_ca on three similar English LMs and could not tell whether
 that was a fact about λ_ca or about the trio. This runs the same design on **ten models across six
