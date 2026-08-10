@@ -556,6 +556,22 @@ at hand rather than inherited from the sweep. A pre-registration, a power calcul
 stopping rule all passed it through.
 % SOURCE: F106, F103 (withdrawal notice), and the confirm_L23 design.
 
+\paragraph{And one instance the guards were structurally unable to see.} The guards above inspect
+the \emph{data}: whether a target has range, whether a denominator is noise, whether a predictor is
+saturated. The sharpest instance of the class was in none of those places. Every correlation in the
+project ranked with \verb|argsort(argsort(x))|, which is correct only when all values are distinct
+--- \verb|argsort| breaks ties by input position, so a constant vector receives strictly increasing
+ranks. It fired in production: a shape scalar whose twenty-four measured values were all exactly
+$0.000$ was reported as correlating with the growth rate at $\rho = +0.829$, $p = 0.058$. The
+reported number was the correlation between the growth rate and \emph{the order the checkpoints
+happened to be listed in}. The data was honest --- the scalar was a correctly measured constant ---
+so no data-level gate could have flagged it; the defect was in the correlation function. Fifteen
+scripts carried the idiom. Re-running all of them with tie-aware ranking on identical stored inputs
+moved five results and changed no conclusion, and the externally predictive one was never exposed.
+The guard that closes it is not another data check but a primitive returning \textsc{nan} on a
+zero-variance input, plus a test that greps the repository so the idiom cannot return by copy-paste.
+% SOURCE: F119 (experiments/ranking.py, tests/test_ranking.py).
+
 % ---------------------------------------------------------------------------------------------
 \section{Limits}
 \label{sec:limits}

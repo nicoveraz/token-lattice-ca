@@ -4329,6 +4329,24 @@ re-analysis.
 `experiments/diversity_vs_loss.py` → `results/diversity_vs_loss.json`
 
 ### F117 — the probe is SELECTIVE for compliance failures, not correctness failures
+
+> **SCOPING DECISION, 10 August 2026 (author's call): this line stays OUT of the current paper and
+> is held for a second one.** Not because it is weak for what it is, but because the compliance side
+> of the selectivity statistic is a **single benchmark** — `COMPLIANCE = ["IFEval"]` against five
+> correctness benchmarks — so every strength it has (3 of 4 readouts significant, size control
+> passing at F117, capability control passing at F121, non-extension to T\* and rep_4 at F120) is a
+> strength of one column's correlation. With n = 10 base models, benchmark scores **downloaded**
+> rather than measured, four temperature readouts that are one quantity measured four ways, and no
+> mechanism or intervention, it is correlational evidence a reviewer would attack — and in the
+> current paper that attack would land on the main contribution (what the instrument measures)
+> rather than on a side result. The paper's external-validity claim is already carried by T\*/F86.
+>
+> **What the second paper needs, in order of importance:** more compliance benchmarks so the column
+> is not a single point; an **intervention** (change the attractor share, see whether compliance
+> moves) which is what separates a workshop paper from a real one; measured rather than downloaded
+> scores; more models. F120's negative results are an asset here — the effect is bounded to the
+> share, not T\*, and not mediated by degeneration.
+
 A reframe of panel D's IFEval correlation, and a much stronger claim than the one it replaces. Read
 as *"the probe measures instruction following"* it is unhelpful — IFEval already does that, better.
 Read as *"the probe is selective for a failure mode"* it says something no benchmark does: something
