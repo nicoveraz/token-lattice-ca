@@ -3645,6 +3645,49 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F121 — F117's compliance signal is NOT general quality: it survives partialling capability out
+F117 controlled with model SIZE, which answers "big models score well" but not the sharper objection:
+**IFEval is a benchmark like the others, so anything correlating with capability will correlate with
+it.** That is the reading which would deflate F117 to "a weak capability correlate", and after F119's
+audit it is worth ruling out explicitly rather than assuming.
+
+**RUNG.** `ρ(top1@0.7, IFEval) = +0.7333` against F117's stored **+0.7333** — exact. The model set,
+readout and ranking are F117's, so this is the same comparison rather than a neighbouring one.
+
+```
+  rho(top1@0.7, IFEval)                 +0.7333    the F117 signal
+  rho(top1@0.7, quality index)          +0.2067    is the probe reading quality?
+  rho(IFEval,   quality index)          +0.0000    is IFEval itself quality?
+  PARTIAL rho(top1, IFEval | quality)   +0.7495    exact p = 0.0221, 10! permutations
+```
+
+**PRIMARY: the partial is +0.7495 against a raw +0.7333 — it does not shrink, it grows.** The
+registered reading was that a partial below half the raw would deflate F117; it came in *above* the
+raw. Conditioning on general capability does not touch the association.
+
+**The quality index is the mean RANK across the five correctness benchmarks** (BBH, GPQA, MUSR,
+MMLU-PRO, MATH Lvl 5) — ranks rather than raw scores, because the benchmarks differ in scale and
+saturation and a mean of percentages would be dominated by whichever has the widest spread. It is
+F117's own COMPLIANCE / CORRECTNESS split, used as a covariate instead of as a comparison column.
+
+**This is a SUPPRESSION, not a confound, and the two secondaries say why.** Both quality couplings
+are weak (+0.207 and +0.000), so capability is not a common cause; removing the small shared
+component slightly strengthens what remains. A confound would have required at least one of them to
+be substantial.
+
+**BOUNDARY, and two cautions that matter more than the p-value.** n = 10, base models, benchmark
+scores downloaded from the Open LLM Leaderboard rather than measured here. A partial with one
+covariate on 10 points has **7 effective degrees of freedom** — this is a deflation check on F117,
+not independent confirmation of it. And `ρ(IFEval, quality) = +0.0000` is a property of *this* model
+set, not a general claim: an exactly-zero rank correlation on 10 models is a coincidence of the
+sample, and it should not be quoted as "IFEval is orthogonal to capability."
+
+**Where it leaves F117.** The attractor share loads on compliance, survives a size control (F117),
+survives a capability control (here), and does **not** extend to T\* or to `rep_4` (F120). The claim
+is now narrow and well-fenced: one readout, one failure mode, ten models.
+
+`experiments/compliance_vs_quality.py` → `results/compliance_vs_quality.json`
+
 ### F120 — the attractor SHARE is compliance-selective; T\*, the melting temperature, is NOT
 F117 could only test `top1@T` because the band-screen and degeneration model sets were disjoint —
 so the readouts that actually predict something external (F86) were precisely the ones it could not

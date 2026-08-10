@@ -1,0 +1,79 @@
+{
+ "_preregistration": {
+  "source": "results/band_greedy.json",
+  "rung_source": "results/compliance_selectivity.json",
+  "readout": "top1@0.7",
+  "compliance": "IFEval",
+  "correctness": [
+   "BBH",
+   "GPQA",
+   "MUSR",
+   "MMLU-PRO",
+   "MATH Lvl 5"
+  ],
+  "quality_index": "mean RANK across the five correctness benchmarks",
+  "rung": "rho(top1@0.7,IFEval) must reproduce F117's stored value +/- 0.005",
+  "primary": "partial rho(top1, IFEval | quality), exact permutation p over the readout",
+  "reading": "a partial below 0.5x the raw rho deflates F117 to a capability correlate"
+ },
+ "n": 10,
+ "models": [
+  "bigcode/starcoder2-3b",
+  "bigscience/bloom-3b",
+  "EleutherAI/gpt-neo-2.7B",
+  "google/gemma-2-2b",
+  "HuggingFaceTB/SmolLM-1.7B",
+  "kyutai/helium-1-preview-2b",
+  "meta-llama/Llama-3.2-3B",
+  "Qwen/Qwen1.5-1.8B",
+  "stabilityai/stablelm-3b-4e1t",
+  "tiiuae/Falcon3-1B-Base"
+ ],
+ "stats": {
+  "f117_stored": 0.7333,
+  "rho_top1_ifeval": 0.7333,
+  "rho_top1_quality": 0.2067,
+  "rho_ifeval_quality": 0.0,
+  "partial": 0.7495,
+  "perm_p": 0.0221,
+  "n_perm": 3628800,
+  "null": "exact"
+ },
+ "analysis": {
+  "rung_passes": true,
+  "collapsed": false,
+  "f117_stored": 0.7333,
+  "rho_top1_ifeval": 0.7333,
+  "rho_top1_quality": 0.2067,
+  "rho_ifeval_quality": 0.0,
+  "partial": 0.7495,
+  "perm_p": 0.0221,
+  "n_perm": 3628800,
+  "null": "exact"
+ },
+ "verdict": "RUNG (pins this to F117's comparison): rho(top1@0.7, IFEval) = +0.7333 against F117's stored +0.7333. Reproduced, so the model set, readout and ranking match. PRIMARY: partial rho(top1, IFEval | quality) = +0.7495 (exact permutation p = 0.0221, n = 10), against the raw +0.7333. The signal SURVIVES conditioning on general capability -- it does not shrink, so F117's selectivity is not general quality wearing an IFEval label. SECONDARY, which decides why: rho(IFEval, quality) = +0.0000 and rho(top1, quality) = +0.2067. Both are weak, so quality is not a common cause and the partial is a SUPPRESSION -- removing a small shared component slightly strengthens the association. BOUNDARY: n = 10, base models, benchmark scores downloaded from the Open LLM Leaderboard rather than measured here. A partial with one covariate on 10 points has 7 effective degrees of freedom. rho(IFEval, quality) near zero is a property of THIS model set, not a general claim about the benchmark. This is a deflation check on F117, not an independent confirmation of it.",
+ "_analysis_provenance": {
+  "script": "compliance_vs_quality.py",
+  "sha256": "f176b7e676852352640b5061cbb1576945f54f6d788516ed957dbfe7c0442430",
+  "imports": {
+   "experiments/compliance_vs_quality.py": "f176b7e676852352640b5061cbb1576945f54f6d788516ed957dbfe7c0442430",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
