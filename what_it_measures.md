@@ -157,6 +157,15 @@ model's own contribution lives. Note also that the *within-dip* ordering does no
 averaging (§7); the dip-versus-plateau separation, which carries the reduction, clears its seed floor
 by 60×.
 
+**One place the lattice is NOT reducible to its local response (F122).** The two-token response is
+essentially additive (F114), yet damage from two separate injections does not superpose: where the
+cones meet the interaction is negative and well beyond noise (−2.52, −1.17, −0.51 damaged sites at
+separations 6, 12, 24), against a causally-disconnected control at −0.016 ± 0.010. The pair damages
+*less* than the union of the singles — interference, from competition for the same sites or shared
+healing. Whatever the CA adds over its own conditional is visible here and, so far, nowhere else.
+Measured on plateau checkpoints only, because a superposition test is undefined where damage does
+not reliably ignite.
+
 That is a reduction — not a circuit and not a named training event. It does explain why the four routes failed: they searched for an *internal*
 cause of a quantity fixed by the *state* the model drives the lattice into, and F80's non-additivity
 is what a collective state property looks like under ablation.
@@ -232,15 +241,29 @@ second target rejected itself on dynamic range. One leg is not an anchor.
 **The attractor taxonomy** correlates with training recipe, but that correlate is partially
 anticipated in the literature and no downstream use has been demonstrated.
 
-### The one structural lesson
+### The one structural lesson, and the place it fails
 
-**The useful quantity is a response, not a state.** A settled ring tells you nothing about how a
-model will degenerate; how that ring *dissolves under temperature* tells you a great deal. T\* is
-where the diversity curve crosses a threshold as temperature varies, and that predicts — diversity
-at any point on the curve does not. The same shape recurs throughout: `s` is uninformative as a mean
-and informative as a function of regime (§3); the damage *cone* is kinematic while its *growth rate*
-is not — and the cone's shape turns out to be barely measurable at this ring size anyway (§7a). Wherever this instrument has found something that transfers, the quantity has been a
-derivative, not a level.
+**The useful quantity is a response, not a state — for predicting degeneration.** A settled ring
+tells you nothing about how a model will degenerate; how that ring *dissolves under temperature*
+tells you a great deal. T\* is where the diversity curve crosses a threshold as temperature varies,
+and that predicts — diversity at any point on the curve does not. The same shape recurs: `s` is
+uninformative as a mean and informative as a function of regime (§3); the damage *cone* is kinematic
+while its *growth rate* is not — and the cone's shape turns out to be barely measurable at this ring
+size anyway (§7a).
+
+**It is not a general recipe, and the one test against a second target reversed it (F120).** Asked
+which readout predicts *compliance* failures rather than degeneration, the ordering flips: the
+attractor **share** — a level — is compliance-selective at +0.53 (p = 0.004, n = 10), surviving both
+a size control and a capability control (F121: partial ρ = +0.75 at p = 0.022, against a raw +0.73).
+**T\*, the response, is not** — +0.17 against a verified +0.34 detection floor at n = 6, so an effect
+the size of the share's would have been caught. `rep_4` is not selective either, so the share's
+result is not mediated by degeneration.
+
+So the recipe held where it was derived and failed the first time it was carried to a new target.
+The honest statement is narrower than "responses transfer and levels do not": **for greedy
+degeneration the response wins; for compliance the level does.** Which quantity transfers appears to
+depend on what is being predicted, and one confirmed instance in each direction is not enough to say
+why.
 
 ### The overall read
 

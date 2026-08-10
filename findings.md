@@ -3645,6 +3645,53 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F122 — two damage sites INTERFERE: the lattice adds a non-additivity the local response does not have
+F114 asked whether the two-token response is canalizing and found it essentially **additive** —
+sub-additivity of +0.003 to +0.028, which closed that route. This asks the same question one level
+up: does damage from two *separate* injections superpose on the ring? It does not, and the
+discrepancy is the point.
+
+**The comparison is set-based, which is what makes it a dynamics measurement.** `interaction =
+|D_AB| − |D_A ∪ D_B|` per replica. Binary damage forces trivial overlap wherever two cones cover the
+same site; the set union removes exactly that, so what remains is dynamics rather than bookkeeping.
+
+**RUNG (causality, checked rather than assumed).** The light cone reaches `r·sweeps = 44` sites, so
+at separation **48 on N = 96** the injections are as causally disconnected as the ring allows and
+interaction must be zero. Measured **−0.0156 ± 0.0096** — consistent with zero. The comparison is
+therefore measuring the lattice, not harness error, and this is the same geometry reasoning F21 and
+the `damage_geometry` window (F119) had to get right.
+
+```
+  separation   interaction (damaged sites)      beyond 2 SE?
+      6          -2.5156  +/- 0.5633                 yes
+     12          -1.1719  +/- 0.2847                 yes
+     24          -0.5078  +/- 0.1262                 yes
+     48          -0.0156  +/- 0.0096            no -- the rung
+```
+
+**PRIMARY: non-zero at every separation where the cones meet, and the sign is NEGATIVE.** The pair
+damages **less** than the union of the singles — **interference**, not reinforcement. Consistent with
+competition for the same sites, or with shared healing: once a site is damaged by one injection, the
+second cannot damage it again, and the CRN coupling lets both twins heal it together.
+
+**Magnitude falls roughly by half per doubling of separation** (−2.52, −1.17, −0.51), which is what a
+cone-overlap-driven effect should do and is a weak consistency check on the mechanism rather than
+evidence for it.
+
+**WHY THIS MATTERS MORE THAN ITS SIZE.** This project's recent direction has been reductive: λ_ca is
+largely fixed by the settled ring's diversity (F111), the two-token response is additive (F114), the
+cone's shape carries nothing beyond its growth rate (F116, F119). F122 is a place where the lattice
+is **not** reducible to the local response. The one-token response superposes; damage on the ring
+does not. Whatever the CA adds over its own conditional, it is visible here and nowhere else so far.
+
+**BOUNDARY.** One family, one radius, one temperature, **plateau checkpoints only** — the dip is
+excluded by construction, because a superposition test is undefined unless damage reliably ignites
+and dip ignition runs 0.05–0.3 (F42). So this says nothing about the developmental transition, which
+is where most of the project's other structure lives. n = 4 seeds per cell, and the error bars are
+across-replica SE.
+
+`experiments/damage_interaction.py` → `results/damage_interaction.json`
+
 ### F121 — F117's compliance signal is NOT general quality: it survives partialling capability out
 F117 controlled with model SIZE, which answers "big models score well" but not the sharper objection:
 **IFEval is a benchmark like the others, so anything correlating with capability will correlate with
