@@ -50,3 +50,6 @@ paper_arxiv/*.out
 
 # arXiv submission tarball (rebuild with paper_arxiv/make_arxiv_package.sh)
 paper_arxiv/arxiv-submission.tar.gz
+
+# analogy audit -- restored locally, deliberately untracked for now
+quantum_reading.md
