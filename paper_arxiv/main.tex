@@ -554,12 +554,15 @@ was already known, or by writing the follow-up experiment. Every row is the same
 \paragraph{One defect class.} All of these are the same error: \emph{a statistically-shaped criterion
 applied to a quantity with no room to vary}. A correlation whose predictor is saturated, a ratio
 whose denominator is noise, a directional hypothesis tested with an absolute value --- each returns
-a confident number from a comparison that could not have come out otherwise. The class is not
-particular to this instrument: an independent audit of question-order effects in an
-instruction-tuned model found 17 of 18 item pairs saturated under a forced-binary next-token
-readout, and recommends a pre-specified saturation diagnostic --- the same gate, arrived at from
-the survey-methodology side --- as a standard health check for any study that reads next-token
-probabilities as response distributions \citep{kang2026qq}. We ship the guards as
+a confident number from a comparison that could not have come out otherwise. The class itself is
+old: psychometrics has known its data side for a century as restriction of range and ceiling
+effects \citep{pearson1903,sackett2000range}, and its classical response is to \emph{correct} the
+attenuated estimate. The guards here take the other branch --- refuse the verdict --- and the same
+remedy was arrived at independently and concurrently from the survey-methodology side: an audit of
+question-order effects in an instruction-tuned model found 17 of 18 item pairs saturated under a
+forced-binary next-token readout and recommends a pre-specified saturation diagnostic as a
+standard health check for any study that reads next-token probabilities as response distributions
+\citep{kang2026qq}. We ship the guards as
 an MIT-licensed package: a dynamic-range check on the target, a noise gate before any ratio, a
 directional test where the hypothesis is directional, an explicit \textsc{not decidable} branch,
 the same range check applied to the \emph{predictor}, and a distinct-context floor on the
