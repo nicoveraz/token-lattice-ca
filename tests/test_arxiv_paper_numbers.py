@@ -35,6 +35,11 @@ ALLOWED = {
     "77.4": "Model Equality Testing's own reported median power (Gao et al.), quoted in Related "
             "work. An external result cited from the literature is not derivable from this "
             "project's runs and must not be, which is what this allowlist is for.",
+    "10.5281": "The Zenodo DOI prefix in the Reproducibility paragraph "
+               "(doi.org/10.5281/zenodo.21880472). An identifier, not a measurement. The extractor "
+               "cannot tell a DOI from a ratio, and widening the regex to exclude URLs would risk "
+               "excusing a real number that happens to sit near one -- so it is allowlisted here "
+               "instead, which is the branch that requires a stated reason.",
 }
 
 
