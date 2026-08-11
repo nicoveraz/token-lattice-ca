@@ -1,0 +1,50 @@
+{
+ "cells": {},
+ "_preregistration": {
+  "provider": "groq (free tier)",
+  "models": [
+   "llama-3.3-70b-versatile",
+   "llama-3.1-8b-instant",
+   "gemma2-9b-it"
+  ],
+  "alphabet": [
+   " red",
+   " green",
+   " blue",
+   " yellow",
+   " black",
+   " white"
+  ],
+  "constructions": [
+   "r2.T0.2",
+   "r2.T0.7",
+   "r3.T0.2"
+  ],
+  "N": 24,
+  "settle": 12,
+  "seeds": [
+   1,
+   2
+  ],
+  "scaffold_max": 0.15,
+  "concordant": 0.6,
+  "local_calibration": "gpt2",
+  "rung": "the chat template's effect on the share is measured on a LOCAL model before any remote call; if it exceeds scaffold_max the run stops",
+  "primary": "do the remote models rank consistently across constructions, as F130's ten did",
+  "note": "the provider samples; no logprobs are requested and none are needed"
+ },
+ "scaffold_rung": {
+  "raw": 0.5,
+  "scaffolded": 0.3333333333333333,
+  "shift": 0.16666666666666669
+ },
+ "analysis": {
+  "rung_passes": false,
+  "scaffold": {
+   "raw": 0.5,
+   "scaffolded": 0.3333333333333333,
+   "shift": 0.16666666666666669
+  }
+ },
+ "verdict": "RUNG (the chat scaffold, measured locally BEFORE any remote call): on gpt2 the same lattice reads top1 = 0.5000 raw and 0.3333 wrapped in the provider-style template, a shift of 0.1667 against a limit of 0.15. The template moves the share more than the limit allows, so a remote measurement would be reading the scaffold rather than the model. Nothing below is read."
+}
