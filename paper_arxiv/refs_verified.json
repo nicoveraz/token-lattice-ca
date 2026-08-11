@@ -290,6 +290,16 @@
    "arxiv_year": "2023",
    "bib_year": "2023",
    "venue_year_later_than_preprint": null
+  },
+  "kang2026qq": {
+   "arxiv_id": "2607.17219",
+   "title": "Auditing Question-Order Effects in Large Language Models with the QQ Equality: Mechanism Characterization and a Saturation Caveat",
+   "first_author": "Kang, Pilsung",
+   "n_authors": 1,
+   "published": "2026-07-19",
+   "arxiv_year": "2026",
+   "bib_year": "2026",
+   "venue_year_later_than_preprint": null
   }
  },
  "unverifiable": [
