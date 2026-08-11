@@ -43,3 +43,7 @@ paper_arxiv/*.pdf
 paper_arxiv/*.aux
 paper_arxiv/*.log
 paper_arxiv/*.out
+
+# Claude Code local settings (workflows are tracked deliberately)
+.claude/settings.local.json
+.claude/scheduled_tasks*
