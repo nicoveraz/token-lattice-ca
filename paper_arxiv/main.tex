@@ -359,7 +359,9 @@ Two readings that look like measurements are fixed by the geometry of the probe.
 
 The \emph{damage light cone} is kinematic. A flipped site can influence only the $r$ sites whose
 window contains it, so the cone's extent is set by the update window rather than by the model, and
-its slope is a geometric fact reported in the units of a dynamical quantity.
+its slope is a geometric fact reported in the units of a dynamical quantity --- the lattice analogue
+of a Lieb--Robinson bound \citep{lieb1972finite}, where the propagation limit is a property of the
+interaction structure and not of the state.
 
 We state the bound carefully, because the natural sharper version is false here. Updating is
 \emph{asynchronous in random order}, so within a single sweep a site damaged early can pass damage to
@@ -751,10 +753,11 @@ model. That separation is what this paper supplies, and \S\ref{sec:manufactured}
 without it.
 
 \paragraph{Inherited machinery.} Damage spreading and the Domany--Kinzel automaton come from the
-statistical-physics literature on probabilistic cellular automata, and we use them as calibration
-targets rather than as objects of study. We cite the self-repair literature for terminology only:
-we avoid the word ``repair'' for our own repair-length quantity because of that collision, and we
-do not claim to have measured self-repair.
+statistical-physics literature on probabilistic cellular automata \citep{domany1984,
+bagnoli1992damage}, and we use them as calibration targets rather than as objects of study. We cite
+the self-repair literature \citep{hydra,selfrepair} for terminology only: we avoid the word
+``repair'' for our own repair-length quantity because of that collision, and we do not claim to
+have measured self-repair.
 
 % ---------------------------------------------------------------------------------------------
 \section{Conclusion}
