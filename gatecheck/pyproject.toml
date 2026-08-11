@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "A measure-and-falsification toolbox: calibration gates, provenance stamps, preregistration, pseudoreplication checks, exact-null certification, and manuscript number manifests for empirical research code."
 readme = "README.md"
 requires-python = ">=3.10"
-# License intentionally unset pending the author's choice; see DESIGN.md §7.
+license = { file = "LICENSE" }
+classifiers = ["License :: OSI Approved :: MIT License"]
 dependencies = ["numpy>=1.24"]
 
 [project.optional-dependencies]

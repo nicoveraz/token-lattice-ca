@@ -1,47 +1,47 @@
 # token-lattice-ca
 
-> **Status — 31 Jul 2026.** Submitted to the **NeurIPS 2026 Workshop on Interpretability for
-> Discovery** (Interp4Discovery, non-archival, double-blind; submission #4). The submitted state
-> is pinned by the tag **`submission/neurips26-i4d`** — `main` keeps moving, so use the tag, not
-> `HEAD`, to reproduce the paper. Body is 5 pages; every number in it is traced to a file in
-> `results/` by `tests/paper_number_manifest.json` and asserted by `tests/test_paper_numbers.py`.
-> An anonymised mirror of the tag is published for review; `build_mirror.py` builds and audits it.
+> **Status — 10 Aug 2026.** The NeurIPS I4D submission is **withdrawn** (author decision,
+> 7 Aug 2026). There is one live manuscript, `paper_arxiv/main.tex`, targeting TMLR. It builds at
+> 15 pages with no undefined references, and every decimal literal in it is asserted to trace to a
+> file in `results/` by `tests/test_arxiv_paper_numbers.py`. The earlier submission remains pinned
+> at the tag `submission/neurips26-i4d` for reproduction; `main` has moved a long way past it.
 >
-> Work since the tag is the **universality-class program** (#80–#86): is the transition a genuine
-> non-equilibrium critical phenomenon, and in which class? Directed percolation is the null
-> because its 1+1D exponents are parameter-free, so the test has no fitted knobs. Three hazards
-> are pre-registered in #80 *before* any exponent is measured, because discovering them afterwards
-> reads as motivated reasoning.
+> **What the instrument measures, in one line: it splits in two, and only one half reads the
+> model.** The construction has more dynamic range than the model does — varying radius and
+> temperature moves `λ_ca` from 0.122 to 0.804, while varying the model across ten models spanning
+> six families and four architecture classes moves it by 0.051 (**F128/F129**). That ordering is
+> not reproducible (seed stability 0.030) and it is blind to the architectural contrast this
+> project established most strongly: RWKV, which has no attractor at all, sits mid-pack. **`λ_ca`
+> is a within-model developmental quantity, not a model-comparison one.** Its training curve
+> (+0.336 → −0.339 → +0.168) is untouched by this — that is one model at one construction, over a
+> range roughly seven times the cross-model spread.
 >
-> **Where that program ended (F56–F66): the transition is an artifact of the probe.** The
-> programme measured a damage-spreading transition in a ring CA driven by
-> `p(x_i | x_{i-2}, x_{i-1})`, found a critical point (**F58**), fitted exponents (**F59**), and
-> then discovered the object was not what it appeared to be. A second model family showed **no
-> transition at all** (**F62**). Screening nineteen models refuted a corpus explanation (**F63**)
-> and established that *attention is necessary and corpus determines* (**F64**) — with scale
-> eliminated across a 70× Pythia ladder and a 12× GPT-2 ladder that never overlap. Two
-> interventions then showed the frozen phase exists **only at r=2** and is carried by **one token**
-> (**F65**), and changing the CA showed that a single BOS prefix removes 50 of its 74 points while
-> the **masked-LM construction shows none of it** (**F66**).
+> **The attractor share passes every gate `λ_ca` fails** (**F130**): signal on 6 of 6 constructions
+> against 2 of 4, a seed-stable ranking of 0.848 against 0.030, construction-invariance at
+> ρ = +0.752, and a cross-model spread of 0.923. Corpus-controlled, it recovers the architecture
+> effect at +0.769. Every result that has transferred out of this instrument — **F35**'s error
+> persistence, **F63/F64**'s corpus and architecture discrimination, **F86**'s `T*` — is built on
+> the share. So the deflationary reading is *bounded*: it applies to `λ_ca` and to the sub-alphabet
+> family, not to the instrument.
 >
-> So the "critical point" is the melting of an **out-of-distribution prompt degeneracy**: a
-> two-token context is far outside anything a model trained on long contexts has seen, and emitting
-> the highest-frequency filler is what a model does when asked to continue from nothing. The
-> exponents are not wrong; what they are exponents *of* is the probe, not the model. This is the
-> boundary **F35** already draws for the damping length, reached from a third direction.
+> **The earlier deflation still stands and is the project's most portable result.** The
+> universality-class programme (#80–#86) measured a damage-spreading transition, found a critical
+> point (**F58**), fitted exponents (**F59**), and then established the object was the melting of
+> an **out-of-distribution prompt degeneracy** rather than a property of language models: a second
+> family showed no transition (**F62**), screening nineteen models refuted a corpus explanation
+> (**F63**) and established that attention is necessary and corpus determines (**F64**), the frozen
+> phase exists only at r=2 carried by one token (**F65**), and the masked-LM construction shows
+> none of it (**F66**). The exponents are not wrong; what they are exponents *of* is the probe.
+> **Varying the subject is not a substitute for varying the apparatus** — and F126/F128 are that
+> same lesson arriving from a second, independent direction.
 >
-> Getting there cost **six** confident verdicts, every one caught by its own check before reaching
-> a paper: a tolerance measured at the wrong geometry (**F56**), error bars computed as if 512
-> batch-correlated replicas were independent (**F57**), a collapse cost that could shrink its own
-> comparison window (F59-v1), a Λ estimator that returns ≈0 on a system that *is* directed
-> percolation (**F61**), a radius sweep that read as clean until the **control** acquired the effect
-> too (**F65**), and nineteen models that could not distinguish "property of LMs" from "property of
-> the probe" until the **construction** was varied (**F66**).
->
-> The submission is **not** reopened for any of this — it operates at T=0.7, where the lattice is
-> 13% newline across 66 distinct tokens and reads as fragmentary text. The artifact lives at
-> T≈0.436. The next paper is rebuilt around the clean construction in
-> [`paper_arxiv/plan_paper2.md`](paper_arxiv/plan_paper2.md).
+> Getting here has cost **eleven** confident verdicts, every one caught by its own check before
+> reaching a paper. The sharpest is **F119**: for months, fifteen scripts ranked with
+> `argsort(argsort(x))`, which breaks ties by input position, so a scalar whose twenty-four measured
+> values were all exactly 0.000 was reported as correlating with the growth rate at ρ = +0.829. The
+> data was honest; the defect was in the correlation function, where no data-level gate could see
+> it. Re-running all fifteen on identical stored inputs moved five results, changed no conclusion,
+> and never touched the externally predictive one.
 
 
 A cellular automaton over **token space**, developed into a **validated black-box
@@ -626,3 +626,19 @@ the latter is architectural. The **activation-cone** is a prototype for a white-
 (novelty check: object partially anticipated — `results/deep_research_novelty_actcone.md`).
 Compute: the ladder is CPU-seconds; each cross-level run is ~15–45 min on M1/MPS (cap batch
 for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
+
+## Licence
+
+Two licences, split by kind rather than by directory:
+
+- **Code — MIT** (`LICENSE`). `src/`, `experiments/`, `tests/`, and `gatecheck/`, which
+  carries its own copy since it is published as a package.
+- **Prose and the research record — CC BY 4.0** (`LICENSE-docs`). `findings.md`,
+  `what_it_measures.md`, `critical_analysis.md`, the other Markdown at root, and
+  `paper_arxiv/`. Measurement output under `results/` is released as accompanying data
+  on the same terms.
+
+`findings.md` is a dated ledger that keeps retracted and amended findings in place
+rather than deleting them, with the correction stated where the claim was made. Quoting
+a finding without its amendment misrepresents the record; where an entry has been
+superseded it names what supersedes it.

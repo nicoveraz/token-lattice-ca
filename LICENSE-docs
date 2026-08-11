@@ -1,0 +1,42 @@
+# Documentation and research record — CC BY 4.0
+
+Copyright (c) 2026 Nicolás Vera Zúñiga
+
+The prose in this repository is licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0).
+
+  Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+  Full legal code:        https://creativecommons.org/licenses/by/4.0/legalcode
+
+You are free to share and adapt this material for any purpose, including
+commercially, provided you give appropriate credit, link to the license, and
+indicate if changes were made.
+
+## What this covers
+
+The research record and its accompanying prose:
+
+  findings.md              the numbered findings ledger, including retractions
+  what_it_measures.md      the synthesis
+  critical_analysis.md     the adversarial audit
+  explainer.md, assembly_theory.md, ca_constructions.md, tracker_dump.md
+  README.md and other Markdown at the repository root
+  paper_arxiv/             the manuscript, its .tex sources and its notes
+
+## What this does NOT cover
+
+Everything executable is MIT-licensed instead — see `LICENSE`:
+
+  src/, experiments/, tests/   the instrument and its checks
+  gatecheck/                   the guard package, which carries its own copy
+
+## A note on the ledger
+
+`findings.md` is a dated record that includes findings later retracted or
+amended, with the retraction stated in place rather than by deletion. Attribution
+under CC BY should preserve that: quoting a finding without its amendment
+misrepresents the record. Where a finding has been superseded, the entry says so
+and names the finding that supersedes it.
+
+Results files under `results/` are measurement output rather than prose or
+software. They are released under CC BY 4.0 as data accompanying the record.
