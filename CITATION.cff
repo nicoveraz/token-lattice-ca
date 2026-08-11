@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "token-lattice-ca: a cellular automaton over token space as a black-box measurement instrument for language-model dynamics"
+message: "If you use this software or its research record, please cite it as below."
+type: software
+authors:
+  - family-names: "Vera Zúñiga"
+    given-names: "Nicolás"
+    email: nicovera@quetru.cl
+repository-code: "https://github.com/nicoveraz/token-lattice-ca"
+license: MIT
+license-url: "https://github.com/nicoveraz/token-lattice-ca/blob/main/LICENSE"
+abstract: >-
+  A ring of token cells resampled in place by a language model's own windowed
+  conditional, with common-random-number coupling so that undamaged copies diverge by
+  exactly zero and damage spreading becomes measurable. The repository is both the
+  instrument and its research record: findings.md is a dated ledger that keeps retracted
+  and amended findings in place rather than deleting them. Code is MIT; the prose and the
+  record are CC BY 4.0 (see LICENSE-docs). Note that the ledger includes withdrawn
+  results by design — quoting a finding without its amendment misrepresents the record.
+keywords:
+  - language models
+  - cellular automata
+  - damage spreading
+  - measurement validity
+  - reproducibility

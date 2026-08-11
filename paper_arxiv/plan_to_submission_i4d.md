@@ -1,3 +1,5 @@
+> **WITHDRAWN — historical record.** The NeurIPS 2026 I4D submission this document plans for was withdrawn by author decision on 7 August 2026. It is kept because the reasoning and the constraints it records are real; nothing in it describes a live plan. The live manuscript is `paper_arxiv/main.tex`, targeting TMLR.
+
 # Plan to submission — NeurIPS 2026 Interp4Discovery
 
 **Deadline: Aug 29 2026, 11:59 PM AOE** (= Aug 30, 11:59 UTC). Today is Jul 31. **29 days.**

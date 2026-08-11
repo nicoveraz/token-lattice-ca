@@ -1,3 +1,5 @@
+> **WITHDRAWN — historical record.** The NeurIPS 2026 I4D submission this document plans for was withdrawn by author decision on 7 August 2026. It is kept because the reasoning and the constraints it records are real; nothing in it describes a live plan. The live manuscript is `paper_arxiv/main.tex`, targeting TMLR.
+
 # Paper working notes
 
 The place to think about the paper. **Add and modify findings here; write prose later.**
