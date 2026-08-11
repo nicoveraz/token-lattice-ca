@@ -159,9 +159,19 @@ position's $0.820$, a ratio of $0.698$; at $r=3$ the third-back token still cont
 against the nearest token's $0.704$. Influence decays with distance without the window collapsing
 onto one position. The check earns its place because it can fail: restricting the same construction
 to a small token sub-alphabet drops the far position to $0.061$ against $0.801$, the branching ratio
-falls below one, and damage walks without growing --- that lattice has no live regime at any
-alphabet or temperature we tried.
-% SOURCE: F110 (far/near, full vocabulary, settled ensemble); F109 (the restricted-support failure).
+falls below one, and damage walks without growing.
+
+The cause is not the restriction itself, and we say so because our own first reading was wrong. The
+three sub-alphabets we tried are all semantically coherent sets, and the collapse tracks that
+coherence rather than the alphabet's size: holding size and radius fixed and varying only how the
+tokens are \emph{selected} moves the far position's contribution by up to $0.588$, with every
+semantically chosen alphabet falling below a branching ratio of one and every randomly chosen one
+sitting at or above it. Nor is the loss permanent --- widening the window recovers it, with all nine
+arms reaching criticality by $r \le 6$. What the sub-alphabet lattice demonstrates is that this
+construction \emph{can} be driven subcritical, which is what makes the full-vocabulary measurement a
+check rather than a formality; it does not show that small alphabets are subcritical as such.
+% SOURCE: F110 (far/near, full vocabulary, settled ensemble); F109 (the restricted-support failure);
+% F123 (selection rule, not restriction --- refutes our first reading), F125 (the window ladder).
 
 \paragraph{This is a probe, not a model of deployment, and we can say so quantitatively.} Injecting a
 token error into real autoregressive generation and continuing produces no absorption at all:
