@@ -106,9 +106,12 @@ and its spatial extent is a light cone. None of these is a mixing time.
   transition).
 \item \textbf{The discriminator} (\S\ref{sec:discriminator}). Construction-determined and
   model-determined readings are separated by a test, not by intuition: vary one factor with the
-  other held fixed. We tabulate four such manipulations and show the instrument responds to two and
-  not the others --- which is what makes the manufactured transition attributable to the probe and
-  the developmental transition attributable to the model.
+  other held fixed. We tabulate five such manipulations. Varying the construction moves the
+  instrument and varying the model across families does not, which is what makes the manufactured
+  transition attributable to the probe; varying the training checkpoint does move it, which is what
+  makes the developmental transition attributable to the model. The fifth manipulation --- varying
+  family \emph{and} construction together --- separates the readouts from each other: $\lca$ does
+  not survive it and the attractor share does.
 \item \textbf{Estimator gating} (\S\ref{sec:gating}). Exponents measured on black-box LM dynamics
   must be gated at the measurement's own geometry, or they return confident wrong answers. We
   report four retracted verdicts, each caught by a known-answer system rather than by review, and
@@ -764,12 +767,23 @@ license the wrong conclusion. The instrument reads the model. It also reads the 
 that carry the same units and the same apparent precision, and the cost of not checking which is
 which is four months and a retracted phase transition.
 
+The sharper statement is that \emph{which} of its quantities reads the model is itself something to
+be measured rather than assumed, and the answer is not uniform across them. Under construction
+variation the attractor share ranks models consistently and $\lca$ does not; $\lca$'s domain is one
+model's trajectory through training, where its range is an order of magnitude larger than anything
+model identity produces. Both are quantities of the same instrument, read off the same rings, in
+the same units. An instrument can be valid for one comparison and empty for another, and no amount
+of care in the measurement reveals which without varying the apparatus.
+
 \subsubsection*{Reproducibility}
 All code, per-run result files and figure scripts are released. Every number in this paper is
 traceable to a results file, and each analysis stamps the SHA-256 of its own source together with
 the hashes of every module it imports, so a figure cannot silently outlive the code that produced
 it. The estimator guards are packaged separately under an MIT licence.
-% TODO(author): repository URL and archived DOI once the Zenodo deposit exists.
+The repository is \url{https://github.com/nicoveraz/token-lattice-ca}: code under MIT, the prose
+and the findings ledger under CC BY 4.0. The ledger retains retracted and amended findings in place
+rather than deleting them, so a citation should carry the amendment with the finding.
+% TODO(author): archived DOI once the Zenodo deposit exists.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
