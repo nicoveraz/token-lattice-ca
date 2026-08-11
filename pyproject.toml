@@ -24,6 +24,7 @@ dependencies = [
     "datasets>=2.19",
     "scipy>=1.11",
     "matplotlib>=3.8",
+    "jax[cpu]>=0.4",
 ]
 
 [project.optional-dependencies]
