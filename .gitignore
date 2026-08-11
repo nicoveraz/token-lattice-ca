@@ -47,3 +47,6 @@ paper_arxiv/*.out
 # Claude Code local settings (workflows are tracked deliberately)
 .claude/settings.local.json
 .claude/scheduled_tasks*
+
+# arXiv submission tarball (rebuild with paper_arxiv/make_arxiv_package.sh)
+paper_arxiv/arxiv-submission.tar.gz
