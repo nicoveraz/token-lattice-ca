@@ -1,5 +1,7 @@
 # token-lattice-ca
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21880472.svg)](https://doi.org/10.5281/zenodo.21880472)
+
 > **Status — 10 Aug 2026.** The NeurIPS I4D submission is **withdrawn** (author decision,
 > 7 Aug 2026). There is one live manuscript, `paper_arxiv/main.tex`, targeting TMLR. It builds at
 > 15 pages with no undefined references, and every decimal literal in it is asserted to trace to a
