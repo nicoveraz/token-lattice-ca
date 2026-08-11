@@ -24,11 +24,20 @@ dependencies = [
     "datasets>=2.19",
     "scipy>=1.11",
     "matplotlib>=3.8",
+    # src/ca.py (the Phase-1 word-level CA) imports jax at module level, and tests/test_harness.py
+    # imports ca -- so the suite cannot even COLLECT without it. Missing here until the repository
+    # went public and CI ran on a clean machine for the first time; every local .venv already had
+    # it, which is exactly the kind of gap a lockfile hides and a fresh install exposes.
+    # [cpu] rather than bare jax: it pins jaxlib to the CPU wheel instead of leaving the variant to
+    # pip's resolver, matching the workflow's JAX_PLATFORMS=cpu and the same reasoning that makes
+    # it install CPU-only torch. The lockfile carries jax and jaxlib as separate pins for this.
+    "jax[cpu]>=0.4",
 ]
 
 [project.optional-dependencies]
-# The suite imports numpy and pytest everywhere, torch in two files and transformers in one.
-# It touches no network and loads no model weights -- that is what makes it CI-able at all.
+# The suite imports numpy and pytest everywhere, torch in two files, transformers in one, and
+# jax transitively via src/ca.py. It touches no network and loads no model weights -- that is what
+# makes it CI-able at all.
 test = ["pytest>=8.0"]
 dev = ["pytest>=8.0", "ruff>=0.6"]
 
