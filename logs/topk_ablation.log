@@ -1,0 +1,336 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 11413.07it/s]
+  EleutherAI/pythia-31m|k0|r2.T0.02|s20260810      top1=0.9883 distinct=7
+  EleutherAI/pythia-31m|k0|r2.T0.02|s20260811      top1=0.9557 distinct=11
+  EleutherAI/pythia-31m|k0|r2.T0.2|s20260810       top1=0.9948 distinct=5
+  EleutherAI/pythia-31m|k0|r2.T0.2|s20260811       top1=1.0000 distinct=1
+  EleutherAI/pythia-31m|k0|r2.T0.7|s20260810       top1=0.1589 distinct=308
+  EleutherAI/pythia-31m|k0|r2.T0.7|s20260811       top1=0.1094 distinct=356
+  EleutherAI/pythia-31m|k0|r3.T0.02|s20260810      top1=0.2839 distinct=123
+  EleutherAI/pythia-31m|k0|r3.T0.02|s20260811      top1=0.2734 distinct=122
+  EleutherAI/pythia-31m|k5|r2.T0.02|s20260810      top1=0.9427 distinct=17
+  EleutherAI/pythia-31m|k5|r2.T0.02|s20260811      top1=0.9596 distinct=19
+  EleutherAI/pythia-31m|k5|r2.T0.2|s20260810       top1=1.0000 distinct=1
+  EleutherAI/pythia-31m|k5|r2.T0.2|s20260811       top1=0.9870 distinct=7
+  EleutherAI/pythia-31m|k5|r2.T0.7|s20260810       top1=0.2930 distinct=161
+  EleutherAI/pythia-31m|k5|r2.T0.7|s20260811       top1=0.2812 distinct=168
+  EleutherAI/pythia-31m|k5|r3.T0.02|s20260810      top1=0.2943 distinct=118
+  EleutherAI/pythia-31m|k5|r3.T0.02|s20260811      top1=0.3164 distinct=112
+  EleutherAI/pythia-31m|k20|r2.T0.02|s20260810     top1=0.9427 distinct=17
+  EleutherAI/pythia-31m|k20|r2.T0.02|s20260811     top1=0.9596 distinct=19
+  EleutherAI/pythia-31m|k20|r2.T0.2|s20260810      top1=0.9974 distinct=3
+  EleutherAI/pythia-31m|k20|r2.T0.2|s20260811      top1=0.9883 distinct=9
+  EleutherAI/pythia-31m|k20|r2.T0.7|s20260810      top1=0.1576 distinct=239
+  EleutherAI/pythia-31m|k20|r2.T0.7|s20260811      top1=0.1745 distinct=224
+  EleutherAI/pythia-31m|k20|r3.T0.02|s20260810     top1=0.2591 distinct=125
+  EleutherAI/pythia-31m|k20|r3.T0.02|s20260811     top1=0.3008 distinct=130
+  EleutherAI/pythia-31m|k100|r2.T0.02|s20260810    top1=0.9427 distinct=17
+  EleutherAI/pythia-31m|k100|r2.T0.02|s20260811    top1=0.9661 distinct=18
+  EleutherAI/pythia-31m|k100|r2.T0.2|s20260810     top1=0.9974 distinct=3
+  EleutherAI/pythia-31m|k100|r2.T0.2|s20260811     top1=0.9883 distinct=9
+  EleutherAI/pythia-31m|k100|r2.T0.7|s20260810     top1=0.1641 distinct=294
+  EleutherAI/pythia-31m|k100|r2.T0.7|s20260811     top1=0.1315 distinct=282
+  EleutherAI/pythia-31m|k100|r3.T0.02|s20260810    top1=0.3216 distinct=121
+  EleutherAI/pythia-31m|k100|r3.T0.02|s20260811    top1=0.2773 distinct=120
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6960.02it/s]
+  EleutherAI/pythia-160m|k0|r2.T0.02|s20260810     top1=0.9049 distinct=3
+  EleutherAI/pythia-160m|k0|r2.T0.02|s20260811     top1=0.9622 distinct=3
+  EleutherAI/pythia-160m|k0|r2.T0.2|s20260810      top1=0.9701 distinct=7
+  EleutherAI/pythia-160m|k0|r2.T0.2|s20260811      top1=0.9453 distinct=3
+  EleutherAI/pythia-160m|k0|r2.T0.7|s20260810      top1=0.1953 distinct=311
+  EleutherAI/pythia-160m|k0|r2.T0.7|s20260811      top1=0.2396 distinct=301
+  EleutherAI/pythia-160m|k0|r3.T0.02|s20260810     top1=0.1901 distinct=216
+  EleutherAI/pythia-160m|k0|r3.T0.02|s20260811     top1=0.1784 distinct=190
+  EleutherAI/pythia-160m|k5|r2.T0.02|s20260810     top1=0.9583 distinct=5
+  EleutherAI/pythia-160m|k5|r2.T0.02|s20260811     top1=0.9544 distinct=8
+  EleutherAI/pythia-160m|k5|r2.T0.2|s20260810      top1=0.9831 distinct=4
+  EleutherAI/pythia-160m|k5|r2.T0.2|s20260811      top1=0.9753 distinct=2
+  EleutherAI/pythia-160m|k5|r2.T0.7|s20260810      top1=0.3568 distinct=180
+  EleutherAI/pythia-160m|k5|r2.T0.7|s20260811      top1=0.3177 distinct=170
+  EleutherAI/pythia-160m|k5|r3.T0.02|s20260810     top1=0.2070 distinct=195
+  EleutherAI/pythia-160m|k5|r3.T0.02|s20260811     top1=0.2214 distinct=180
+  EleutherAI/pythia-160m|k20|r2.T0.02|s20260810    top1=0.9766 distinct=5
+  EleutherAI/pythia-160m|k20|r2.T0.02|s20260811    top1=0.9766 distinct=2
+  EleutherAI/pythia-160m|k20|r2.T0.2|s20260810     top1=0.9961 distinct=2
+  EleutherAI/pythia-160m|k20|r2.T0.2|s20260811     top1=1.0000 distinct=1
+  EleutherAI/pythia-160m|k20|r2.T0.7|s20260810     top1=0.2852 distinct=225
+  EleutherAI/pythia-160m|k20|r2.T0.7|s20260811     top1=0.2969 distinct=236
+  EleutherAI/pythia-160m|k20|r3.T0.02|s20260810    top1=0.1667 distinct=192
+  EleutherAI/pythia-160m|k20|r3.T0.02|s20260811    top1=0.1875 distinct=206
+  EleutherAI/pythia-160m|k100|r2.T0.02|s20260810   top1=0.9336 distinct=5
+  EleutherAI/pythia-160m|k100|r2.T0.02|s20260811   top1=0.9648 distinct=3
+  EleutherAI/pythia-160m|k100|r2.T0.2|s20260810    top1=0.9818 distinct=3
+  EleutherAI/pythia-160m|k100|r2.T0.2|s20260811    top1=0.9740 distinct=2
+  EleutherAI/pythia-160m|k100|r2.T0.7|s20260810    top1=0.2148 distinct=272
+  EleutherAI/pythia-160m|k100|r2.T0.7|s20260811    top1=0.2370 distinct=290
+  EleutherAI/pythia-160m|k100|r3.T0.02|s20260810   top1=0.2083 distinct=184
+  EleutherAI/pythia-160m|k100|r3.T0.02|s20260811   top1=0.2083 distinct=176
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8554.78it/s]
+  EleutherAI/pythia-410m|k0|r2.T0.02|s20260810     top1=0.8034 distinct=13
+  EleutherAI/pythia-410m|k0|r2.T0.02|s20260811     top1=0.8633 distinct=5
+  EleutherAI/pythia-410m|k0|r2.T0.2|s20260810      top1=0.8529 distinct=7
+  EleutherAI/pythia-410m|k0|r2.T0.2|s20260811      top1=0.9115 distinct=10
+  EleutherAI/pythia-410m|k0|r2.T0.7|s20260810      top1=0.1432 distinct=324
+  EleutherAI/pythia-410m|k0|r2.T0.7|s20260811      top1=0.1562 distinct=352
+  EleutherAI/pythia-410m|k0|r3.T0.02|s20260810     top1=0.2031 distinct=201
+  EleutherAI/pythia-410m|k0|r3.T0.02|s20260811     top1=0.1914 distinct=203
+  EleutherAI/pythia-410m|k5|r2.T0.02|s20260810     top1=0.7799 distinct=11
+  EleutherAI/pythia-410m|k5|r2.T0.02|s20260811     top1=0.8333 distinct=8
+  EleutherAI/pythia-410m|k5|r2.T0.2|s20260810      top1=0.9128 distinct=12
+  EleutherAI/pythia-410m|k5|r2.T0.2|s20260811      top1=0.9544 distinct=8
+  EleutherAI/pythia-410m|k5|r2.T0.7|s20260810      top1=0.3112 distinct=190
+  EleutherAI/pythia-410m|k5|r2.T0.7|s20260811      top1=0.3099 distinct=189
+  EleutherAI/pythia-410m|k5|r3.T0.02|s20260810     top1=0.1836 distinct=210
+  EleutherAI/pythia-410m|k5|r3.T0.02|s20260811     top1=0.2057 distinct=199
+  EleutherAI/pythia-410m|k20|r2.T0.02|s20260810    top1=0.7995 distinct=11
+  EleutherAI/pythia-410m|k20|r2.T0.02|s20260811    top1=0.8333 distinct=8
+  EleutherAI/pythia-410m|k20|r2.T0.2|s20260810     top1=0.9102 distinct=12
+  EleutherAI/pythia-410m|k20|r2.T0.2|s20260811     top1=0.8932 distinct=18
+  EleutherAI/pythia-410m|k20|r2.T0.7|s20260810     top1=0.1966 distinct=268
+  EleutherAI/pythia-410m|k20|r2.T0.7|s20260811     top1=0.2188 distinct=252
+  EleutherAI/pythia-410m|k20|r3.T0.02|s20260810    top1=0.2018 distinct=206
+  EleutherAI/pythia-410m|k20|r3.T0.02|s20260811    top1=0.2266 distinct=190
+  EleutherAI/pythia-410m|k100|r2.T0.02|s20260810   top1=0.7799 distinct=11
+  EleutherAI/pythia-410m|k100|r2.T0.02|s20260811   top1=0.8333 distinct=8
+  EleutherAI/pythia-410m|k100|r2.T0.2|s20260810    top1=0.9154 distinct=4
+  EleutherAI/pythia-410m|k100|r2.T0.2|s20260811    top1=0.9023 distinct=12
+  EleutherAI/pythia-410m|k100|r2.T0.7|s20260810    top1=0.1758 distinct=295
+  EleutherAI/pythia-410m|k100|r2.T0.7|s20260811    top1=0.1641 distinct=306
+  EleutherAI/pythia-410m|k100|r3.T0.02|s20260810   top1=0.2070 distinct=206
+  EleutherAI/pythia-410m|k100|r3.T0.02|s20260811   top1=0.2044 distinct=183
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7067.79it/s]
+  gpt2|k0|r2.T0.02|s20260810                       top1=0.1823 distinct=94
+  gpt2|k0|r2.T0.02|s20260811                       top1=0.2018 distinct=92
+  gpt2|k0|r2.T0.2|s20260810                        top1=0.1276 distinct=163
+  gpt2|k0|r2.T0.2|s20260811                        top1=0.1667 distinct=189
+  gpt2|k0|r2.T0.7|s20260810                        top1=0.1081 distinct=327
+  gpt2|k0|r2.T0.7|s20260811                        top1=0.0898 distinct=370
+  gpt2|k0|r3.T0.02|s20260810                       top1=0.1523 distinct=180
+  gpt2|k0|r3.T0.02|s20260811                       top1=0.1719 distinct=187
+  gpt2|k5|r2.T0.02|s20260810                       top1=0.1823 distinct=89
+  gpt2|k5|r2.T0.02|s20260811                       top1=0.2253 distinct=92
+  gpt2|k5|r2.T0.2|s20260810                        top1=0.1536 distinct=149
+  gpt2|k5|r2.T0.2|s20260811                        top1=0.1615 distinct=150
+  gpt2|k5|r2.T0.7|s20260810                        top1=0.1068 distinct=225
+  gpt2|k5|r2.T0.7|s20260811                        top1=0.1380 distinct=203
+  gpt2|k5|r3.T0.02|s20260810                       top1=0.1354 distinct=215
+  gpt2|k5|r3.T0.02|s20260811                       top1=0.1862 distinct=187
+  gpt2|k20|r2.T0.02|s20260810                      top1=0.1680 distinct=98
+  gpt2|k20|r2.T0.02|s20260811                      top1=0.2096 distinct=103
+  gpt2|k20|r2.T0.2|s20260810                       top1=0.1654 distinct=154
+  gpt2|k20|r2.T0.2|s20260811                       top1=0.1589 distinct=158
+  gpt2|k20|r2.T0.7|s20260810                       top1=0.1133 distinct=268
+  gpt2|k20|r2.T0.7|s20260811                       top1=0.1133 distinct=258
+  gpt2|k20|r3.T0.02|s20260810                      top1=0.1302 distinct=190
+  gpt2|k20|r3.T0.02|s20260811                      top1=0.1628 distinct=178
+  gpt2|k100|r2.T0.02|s20260810                     top1=0.1901 distinct=91
+  gpt2|k100|r2.T0.02|s20260811                     top1=0.1810 distinct=100
+  gpt2|k100|r2.T0.2|s20260810                      top1=0.1432 distinct=155
+  gpt2|k100|r2.T0.2|s20260811                      top1=0.1849 distinct=143
+  gpt2|k100|r2.T0.7|s20260810                      top1=0.0951 distinct=325
+  gpt2|k100|r2.T0.7|s20260811                      top1=0.1029 distinct=316
+  gpt2|k100|r3.T0.02|s20260810                     top1=0.1393 distinct=187
+  gpt2|k100|r3.T0.02|s20260811                     top1=0.1745 distinct=184
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8421.54it/s]
+  gpt2-medium|k0|r2.T0.02|s20260810                top1=0.1393 distinct=134
+  gpt2-medium|k0|r2.T0.02|s20260811                top1=0.1315 distinct=140
+  gpt2-medium|k0|r2.T0.2|s20260810                 top1=0.1263 distinct=183
+  gpt2-medium|k0|r2.T0.2|s20260811                 top1=0.1445 distinct=174
+  gpt2-medium|k0|r2.T0.7|s20260810                 top1=0.1055 distinct=367
+  gpt2-medium|k0|r2.T0.7|s20260811                 top1=0.0977 distinct=392
+  gpt2-medium|k0|r3.T0.02|s20260810                top1=0.1094 distinct=219
+  gpt2-medium|k0|r3.T0.02|s20260811                top1=0.1471 distinct=196
+  gpt2-medium|k5|r2.T0.02|s20260810                top1=0.1471 distinct=132
+  gpt2-medium|k5|r2.T0.02|s20260811                top1=0.1302 distinct=131
+  gpt2-medium|k5|r2.T0.2|s20260810                 top1=0.1198 distinct=163
+  gpt2-medium|k5|r2.T0.2|s20260811                 top1=0.1341 distinct=162
+  gpt2-medium|k5|r2.T0.7|s20260810                 top1=0.1003 distinct=236
+  gpt2-medium|k5|r2.T0.7|s20260811                 top1=0.1341 distinct=215
+  gpt2-medium|k5|r3.T0.02|s20260810                top1=0.1250 distinct=212
+  gpt2-medium|k5|r3.T0.02|s20260811                top1=0.1107 distinct=199
+  gpt2-medium|k20|r2.T0.02|s20260810               top1=0.1536 distinct=130
+  gpt2-medium|k20|r2.T0.02|s20260811               top1=0.1315 distinct=145
+  gpt2-medium|k20|r2.T0.2|s20260810                top1=0.1562 distinct=193
+  gpt2-medium|k20|r2.T0.2|s20260811                top1=0.1250 distinct=179
+  gpt2-medium|k20|r2.T0.7|s20260810                top1=0.0794 distinct=306
+  gpt2-medium|k20|r2.T0.7|s20260811                top1=0.0911 distinct=272
+  gpt2-medium|k20|r3.T0.02|s20260810               top1=0.0990 distinct=220
+  gpt2-medium|k20|r3.T0.02|s20260811               top1=0.1367 distinct=204
+  gpt2-medium|k100|r2.T0.02|s20260810              top1=0.1302 distinct=124
+  gpt2-medium|k100|r2.T0.02|s20260811              top1=0.1445 distinct=141
+  gpt2-medium|k100|r2.T0.2|s20260810               top1=0.1185 distinct=173
+  gpt2-medium|k100|r2.T0.2|s20260811               top1=0.1458 distinct=177
+  gpt2-medium|k100|r2.T0.7|s20260810               top1=0.0859 distinct=318
+  gpt2-medium|k100|r2.T0.7|s20260811               top1=0.1029 distinct=327
+  gpt2-medium|k100|r3.T0.02|s20260810              top1=0.1198 distinct=207
+  gpt2-medium|k100|r3.T0.02|s20260811              top1=0.1276 distinct=202
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7908.75it/s]
+  gpt2-large|k0|r2.T0.02|s20260810                 top1=0.1549 distinct=138
+  gpt2-large|k0|r2.T0.02|s20260811                 top1=0.1641 distinct=123
+  gpt2-large|k0|r2.T0.2|s20260810                  top1=0.1393 distinct=169
+  gpt2-large|k0|r2.T0.2|s20260811                  top1=0.1289 distinct=163
+  gpt2-large|k0|r2.T0.7|s20260810                  top1=0.1068 distinct=359
+  gpt2-large|k0|r2.T0.7|s20260811                  top1=0.1003 distinct=337
+  gpt2-large|k0|r3.T0.02|s20260810                 top1=0.1237 distinct=213
+  gpt2-large|k0|r3.T0.02|s20260811                 top1=0.1432 distinct=190
+  gpt2-large|k5|r2.T0.02|s20260810                 top1=0.1237 distinct=152
+  gpt2-large|k5|r2.T0.02|s20260811                 top1=0.1497 distinct=131
+  gpt2-large|k5|r2.T0.2|s20260810                  top1=0.1302 distinct=163
+  gpt2-large|k5|r2.T0.2|s20260811                  top1=0.1458 distinct=179
+  gpt2-large|k5|r2.T0.7|s20260810                  top1=0.1068 distinct=207
+  gpt2-large|k5|r2.T0.7|s20260811                  top1=0.1354 distinct=229
+  gpt2-large|k5|r3.T0.02|s20260810                 top1=0.1289 distinct=214
+  gpt2-large|k5|r3.T0.02|s20260811                 top1=0.1966 distinct=191
+  gpt2-large|k20|r2.T0.02|s20260810                top1=0.1185 distinct=157
+  gpt2-large|k20|r2.T0.02|s20260811                top1=0.1484 distinct=131
+  gpt2-large|k20|r2.T0.2|s20260810                 top1=0.1380 distinct=170
+  gpt2-large|k20|r2.T0.2|s20260811                 top1=0.1576 distinct=164
+  gpt2-large|k20|r2.T0.7|s20260810                 top1=0.0885 distinct=294
+  gpt2-large|k20|r2.T0.7|s20260811                 top1=0.0885 distinct=274
+  gpt2-large|k20|r3.T0.02|s20260810                top1=0.1419 distinct=210
+  gpt2-large|k20|r3.T0.02|s20260811                top1=0.1693 distinct=189
+  gpt2-large|k100|r2.T0.02|s20260810               top1=0.1146 distinct=149
+  gpt2-large|k100|r2.T0.02|s20260811               top1=0.1393 distinct=133
+  gpt2-large|k100|r2.T0.2|s20260810                top1=0.1315 distinct=173
+  gpt2-large|k100|r2.T0.2|s20260811                top1=0.1719 distinct=178
+  gpt2-large|k100|r2.T0.7|s20260810                top1=0.1042 distinct=311
+  gpt2-large|k100|r2.T0.7|s20260811                top1=0.1003 distinct=312
+  gpt2-large|k100|r3.T0.02|s20260810               top1=0.1354 distinct=229
+  gpt2-large|k100|r3.T0.02|s20260811               top1=0.1641 distinct=197
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 64484.29it/s]
+  facebook/opt-350m|k0|r2.T0.02|s20260810          top1=0.1523 distinct=100
+  facebook/opt-350m|k0|r2.T0.02|s20260811          top1=0.1445 distinct=106
+  facebook/opt-350m|k0|r2.T0.2|s20260810           top1=0.1354 distinct=171
+  facebook/opt-350m|k0|r2.T0.2|s20260811           top1=0.1172 distinct=159
+  facebook/opt-350m|k0|r2.T0.7|s20260810           top1=0.0885 distinct=335
+  facebook/opt-350m|k0|r2.T0.7|s20260811           top1=0.0833 distinct=361
+  facebook/opt-350m|k0|r3.T0.02|s20260810          top1=0.1211 distinct=166
+  facebook/opt-350m|k0|r3.T0.02|s20260811          top1=0.1419 distinct=176
+  facebook/opt-350m|k5|r2.T0.02|s20260810          top1=0.1354 distinct=94
+  facebook/opt-350m|k5|r2.T0.02|s20260811          top1=0.1602 distinct=89
+  facebook/opt-350m|k5|r2.T0.2|s20260810           top1=0.1289 distinct=151
+  facebook/opt-350m|k5|r2.T0.2|s20260811           top1=0.1406 distinct=142
+  facebook/opt-350m|k5|r2.T0.7|s20260810           top1=0.1081 distinct=202
+  facebook/opt-350m|k5|r2.T0.7|s20260811           top1=0.1094 distinct=202
+  facebook/opt-350m|k5|r3.T0.02|s20260810          top1=0.1615 distinct=174
+  facebook/opt-350m|k5|r3.T0.02|s20260811          top1=0.1367 distinct=165
+  facebook/opt-350m|k20|r2.T0.02|s20260810         top1=0.1458 distinct=85
+  facebook/opt-350m|k20|r2.T0.02|s20260811         top1=0.1628 distinct=91
+  facebook/opt-350m|k20|r2.T0.2|s20260810          top1=0.1497 distinct=149
+  facebook/opt-350m|k20|r2.T0.2|s20260811          top1=0.1589 distinct=130
+  facebook/opt-350m|k20|r2.T0.7|s20260810          top1=0.1016 distinct=269
+  facebook/opt-350m|k20|r2.T0.7|s20260811          top1=0.0951 distinct=257
+  facebook/opt-350m|k20|r3.T0.02|s20260810         top1=0.1497 distinct=174
+  facebook/opt-350m|k20|r3.T0.02|s20260811         top1=0.1471 distinct=155
+  facebook/opt-350m|k100|r2.T0.02|s20260810        top1=0.1341 distinct=100
+  facebook/opt-350m|k100|r2.T0.02|s20260811        top1=0.1497 distinct=101
+  facebook/opt-350m|k100|r2.T0.2|s20260810         top1=0.1562 distinct=162
+  facebook/opt-350m|k100|r2.T0.2|s20260811         top1=0.1302 distinct=160
+  facebook/opt-350m|k100|r2.T0.7|s20260810         top1=0.0807 distinct=316
+  facebook/opt-350m|k100|r2.T0.7|s20260811         top1=0.0872 distinct=304
+  facebook/opt-350m|k100|r3.T0.02|s20260810        top1=0.1315 distinct=162
+  facebook/opt-350m|k100|r3.T0.02|s20260811        top1=0.1393 distinct=156
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7932.43it/s]
+  bigscience/bloom-560m|k0|r2.T0.02|s20260810      top1=0.0573 distinct=287
+  bigscience/bloom-560m|k0|r2.T0.02|s20260811      top1=0.0404 distinct=285
+  bigscience/bloom-560m|k0|r2.T0.2|s20260810       top1=0.0651 distinct=300
+  bigscience/bloom-560m|k0|r2.T0.2|s20260811       top1=0.0417 distinct=315
+  bigscience/bloom-560m|k0|r2.T0.7|s20260810       top1=0.0208 distinct=558
+  bigscience/bloom-560m|k0|r2.T0.7|s20260811       top1=0.0234 distinct=561
+  bigscience/bloom-560m|k0|r3.T0.02|s20260810      top1=0.0417 distinct=327
+  bigscience/bloom-560m|k0|r3.T0.02|s20260811      top1=0.0391 distinct=313
+  bigscience/bloom-560m|k5|r2.T0.02|s20260810      top1=0.0586 distinct=282
+  bigscience/bloom-560m|k5|r2.T0.02|s20260811      top1=0.0716 distinct=258
+  bigscience/bloom-560m|k5|r2.T0.2|s20260810       top1=0.0508 distinct=327
+  bigscience/bloom-560m|k5|r2.T0.2|s20260811       top1=0.0495 distinct=331
+  bigscience/bloom-560m|k5|r2.T0.7|s20260810       top1=0.0339 distinct=371
+  bigscience/bloom-560m|k5|r2.T0.7|s20260811       top1=0.0339 distinct=372
+  bigscience/bloom-560m|k5|r3.T0.02|s20260810      top1=0.0677 distinct=325
+  bigscience/bloom-560m|k5|r3.T0.02|s20260811      top1=0.0391 distinct=352
+  bigscience/bloom-560m|k20|r2.T0.02|s20260810     top1=0.0586 distinct=266
+  bigscience/bloom-560m|k20|r2.T0.02|s20260811     top1=0.0599 distinct=255
+  bigscience/bloom-560m|k20|r2.T0.2|s20260810      top1=0.0586 distinct=295
+  bigscience/bloom-560m|k20|r2.T0.2|s20260811      top1=0.0443 distinct=311
+  bigscience/bloom-560m|k20|r2.T0.7|s20260810      top1=0.0234 distinct=440
+  bigscience/bloom-560m|k20|r2.T0.7|s20260811      top1=0.0339 distinct=469
+  bigscience/bloom-560m|k20|r3.T0.02|s20260810     top1=0.0599 distinct=331
+  bigscience/bloom-560m|k20|r3.T0.02|s20260811     top1=0.0365 distinct=390
+  bigscience/bloom-560m|k100|r2.T0.02|s20260810    top1=0.0651 distinct=234
+  bigscience/bloom-560m|k100|r2.T0.02|s20260811    top1=0.0612 distinct=275
+  bigscience/bloom-560m|k100|r2.T0.2|s20260810     top1=0.0417 distinct=312
+  bigscience/bloom-560m|k100|r2.T0.2|s20260811     top1=0.0404 distinct=347
+  bigscience/bloom-560m|k100|r2.T0.7|s20260810     top1=0.0208 distinct=492
+  bigscience/bloom-560m|k100|r2.T0.7|s20260811     top1=0.0182 distinct=521
+  bigscience/bloom-560m|k100|r3.T0.02|s20260810    top1=0.0312 distinct=352
+  bigscience/bloom-560m|k100|r3.T0.02|s20260811    top1=0.0482 distinct=318
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 6340.24it/s]
+  state-spaces/mamba-130m-hf|k0|r2.T0.02|s20260810 top1=0.1497 distinct=122
+  state-spaces/mamba-130m-hf|k0|r2.T0.02|s20260811 top1=0.1510 distinct=109
+  state-spaces/mamba-130m-hf|k0|r2.T0.2|s20260810  top1=0.1536 distinct=157
+  state-spaces/mamba-130m-hf|k0|r2.T0.2|s20260811  top1=0.1628 distinct=145
+  state-spaces/mamba-130m-hf|k0|r2.T0.7|s20260810  top1=0.0951 distinct=353
+  state-spaces/mamba-130m-hf|k0|r2.T0.7|s20260811  top1=0.1042 distinct=398
+  state-spaces/mamba-130m-hf|k0|r3.T0.02|s20260810 top1=0.1784 distinct=194
+  state-spaces/mamba-130m-hf|k0|r3.T0.02|s20260811 top1=0.1536 distinct=203
+  state-spaces/mamba-130m-hf|k5|r2.T0.02|s20260810 top1=0.1576 distinct=108
+  state-spaces/mamba-130m-hf|k5|r2.T0.02|s20260811 top1=0.1602 distinct=118
+  state-spaces/mamba-130m-hf|k5|r2.T0.2|s20260810  top1=0.1536 distinct=147
+  state-spaces/mamba-130m-hf|k5|r2.T0.2|s20260811  top1=0.1510 distinct=153
+  state-spaces/mamba-130m-hf|k5|r2.T0.7|s20260810  top1=0.1641 distinct=216
+  state-spaces/mamba-130m-hf|k5|r2.T0.7|s20260811  top1=0.1471 distinct=221
+  state-spaces/mamba-130m-hf|k5|r3.T0.02|s20260810 top1=0.1849 distinct=180
+  state-spaces/mamba-130m-hf|k5|r3.T0.02|s20260811 top1=0.1771 distinct=186
+  state-spaces/mamba-130m-hf|k20|r2.T0.02|s20260810 top1=0.1771 distinct=100
+  state-spaces/mamba-130m-hf|k20|r2.T0.02|s20260811 top1=0.1628 distinct=126
+  state-spaces/mamba-130m-hf|k20|r2.T0.2|s20260810 top1=0.1419 distinct=141
+  state-spaces/mamba-130m-hf|k20|r2.T0.2|s20260811 top1=0.1484 distinct=158
+  state-spaces/mamba-130m-hf|k20|r2.T0.7|s20260810 top1=0.1198 distinct=280
+  state-spaces/mamba-130m-hf|k20|r2.T0.7|s20260811 top1=0.1406 distinct=279
+  state-spaces/mamba-130m-hf|k20|r3.T0.02|s20260810 top1=0.1745 distinct=177
+  state-spaces/mamba-130m-hf|k20|r3.T0.02|s20260811 top1=0.2031 distinct=175
+  state-spaces/mamba-130m-hf|k100|r2.T0.02|s20260810 top1=0.1536 distinct=105
+  state-spaces/mamba-130m-hf|k100|r2.T0.02|s20260811 top1=0.1536 distinct=120
+  state-spaces/mamba-130m-hf|k100|r2.T0.2|s20260810 top1=0.1784 distinct=145
+  state-spaces/mamba-130m-hf|k100|r2.T0.2|s20260811 top1=0.1719 distinct=142
+  state-spaces/mamba-130m-hf|k100|r2.T0.7|s20260810 top1=0.0833 distinct=352
+  state-spaces/mamba-130m-hf|k100|r2.T0.7|s20260811 top1=0.0859 distinct=340
+  state-spaces/mamba-130m-hf|k100|r3.T0.02|s20260810 top1=0.1589 distinct=187
+  state-spaces/mamba-130m-hf|k100|r3.T0.02|s20260811 top1=0.2135 distinct=182
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 45390.25it/s]
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.02|s20260810      top1=0.1510 distinct=110
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.02|s20260811      top1=0.1784 distinct=122
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.2|s20260810       top1=0.1576 distinct=185
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.2|s20260811       top1=0.1510 distinct=155
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.7|s20260810       top1=0.0742 distinct=363
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.7|s20260811       top1=0.1003 distinct=370
+  RWKV/rwkv-4-169m-pile|k0|r3.T0.02|s20260810      top1=0.1576 distinct=208
+  RWKV/rwkv-4-169m-pile|k0|r3.T0.02|s20260811      top1=0.1771 distinct=203
+  RWKV/rwkv-4-169m-pile|k5|r2.T0.02|s20260810      top1=0.1849 distinct=120
+  RWKV/rwkv-4-169m-pile|k5|r2.T0.02|s20260811      top1=0.1693 distinct=126
+  RWKV/rwkv-4-169m-pile|k5|r2.T0.2|s20260810       top1=0.1302 distinct=156
+  RWKV/rwkv-4-169m-pile|k5|r2.T0.2|s20260811       top1=0.1419 distinct=161
+  RWKV/rwkv-4-169m-pile|k5|r2.T0.7|s20260810       top1=0.1432 distinct=227
+  RWKV/rwkv-4-169m-pile|k5|r2.T0.7|s20260811       top1=0.1445 distinct=227
+  RWKV/rwkv-4-169m-pile|k5|r3.T0.02|s20260810      top1=0.1536 distinct=195
+  RWKV/rwkv-4-169m-pile|k5|r3.T0.02|s20260811      top1=0.1706 distinct=193
+  RWKV/rwkv-4-169m-pile|k20|r2.T0.02|s20260810     top1=0.1849 distinct=120
+  RWKV/rwkv-4-169m-pile|k20|r2.T0.02|s20260811     top1=0.1758 distinct=128
+  RWKV/rwkv-4-169m-pile|k20|r2.T0.2|s20260810      top1=0.1445 distinct=161
+  RWKV/rwkv-4-169m-pile|k20|r2.T0.2|s20260811      top1=0.1380 distinct=173
+  RWKV/rwkv-4-169m-pile|k20|r2.T0.7|s20260810      top1=0.1081 distinct=291
+  RWKV/rwkv-4-169m-pile|k20|r2.T0.7|s20260811      top1=0.1237 distinct=293
+  RWKV/rwkv-4-169m-pile|k20|r3.T0.02|s20260810     top1=0.1549 distinct=190
+  RWKV/rwkv-4-169m-pile|k20|r3.T0.02|s20260811     top1=0.1797 distinct=198
+  RWKV/rwkv-4-169m-pile|k100|r2.T0.02|s20260810    top1=0.1875 distinct=114
+  RWKV/rwkv-4-169m-pile|k100|r2.T0.02|s20260811    top1=0.1758 distinct=133
+  RWKV/rwkv-4-169m-pile|k100|r2.T0.2|s20260810     top1=0.1680 distinct=176
+  RWKV/rwkv-4-169m-pile|k100|r2.T0.2|s20260811     top1=0.1536 distinct=160
+  RWKV/rwkv-4-169m-pile|k100|r2.T0.7|s20260810     top1=0.1341 distinct=314
+  RWKV/rwkv-4-169m-pile|k100|r2.T0.7|s20260811     top1=0.1107 distinct=347
+  RWKV/rwkv-4-169m-pile|k100|r3.T0.02|s20260810    top1=0.1497 distinct=191
+  RWKV/rwkv-4-169m-pile|k100|r3.T0.02|s20260811    top1=0.1628 distinct=197
+
+  -> RUNG: the full-vocabulary arm reproduces share_invariance's stored top1 to within 0.0000 across 40 cells (tolerance 0.05). Same quantity as F130, so the top-k arms below are a restriction of it. PRIMARY, agreement between the full-vocabulary and top-k model rankings: k=5: rho=+0.793, k=20: rho=+0.761, k=100: rho=+0.894. At or above the registered 0.6 even at k=20, so the interface preserves the ordering and the API route is viable on this readout. SECONDARY, mean absolute shift in top1: k=5: +0.0298, k=20: +0.0219, k=100: +0.0181. A preserved RANKING on shifted VALUES still means top-k numbers are not comparable to full-vocabulary ones across studies, and any published figure must name its k. BOUNDARY: 10 local models, none frontier-scale, 4 constructions, N=48. A preserved ranking says the INTERFACE is survivable; it says nothing about whether the share means the same thing on a model an order of magnitude larger. Tokenizer access, rate limits and the provider's own sampler are not simulated.
+
+wrote results/topk_ablation.json

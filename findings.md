@@ -3645,6 +3645,56 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F134 — the attractor share survives a TOP-K interface: the closed-model route is viable, with a caveat on absolute values
+F130 established the attractor share as the instrument's model-attributable readout, and it needs
+only a settle — no CRN twins, no full distribution — which makes it the one quantity computable
+through a commercial API, where the most a provider exposes is top-k logprobs (OpenAI caps
+`top_logprobs` at 20). Going straight to a frontier API would confound the INTERFACE restriction
+with the model being different; restricting a local model's own conditional isolates the interface,
+costs nothing, and has a known answer to check against.
+
+**RUNG, and it is exact.** The full-vocabulary arm reproduces `share_invariance`'s stored `top1` to
+within **0.0000** across 40 cells. Same quantity as F130, so the top-k arms are a restriction of it
+rather than a different measurement.
+
+```
+  rho(full-vocabulary ranking, top-k ranking)     k=5  +0.793   k=20  +0.761   k=100  +0.894
+  mean |shift| in top1                                 0.0298         0.0219          0.0181
+```
+
+**PRIMARY: the model ranking survives at every k tested**, including k=5, against a registered 0.6
+threshold. A top-k interface preserves what the readout is for, so the API route is viable.
+
+**IT IS PRESERVED, NOT TRANSPARENT, and the distinction matters.** ρ never reaches 0.9 except at
+k=100, so truncation does reorder adjacent pairs. And it is **non-monotone in k** — 0.793, 0.761,
+0.894 — which a graded distortion should not be. With n = 10 a single adjacent swap moves ρ by
+roughly 0.05, so the dip at k=20 is near-tie churn rather than signal; it is recorded because
+reading it as a mechanism would be the error, and because the *shift* IS monotone (0.030 → 0.022 →
+0.018), which is what a graded distortion looks like when measured on values instead of ranks.
+
+**THE ARCHITECTURE-DIVERSE MODELS DEGRADED IT, as anticipated.** On the first six models — three
+Pythias and three GPT-2s — ρ ran 0.83–0.94. Adding OPT, BLOOM, Mamba and RWKV brought it to
+0.76–0.89. The same four that turned F129's null into F130's result are the ones the interface
+handles least cleanly.
+
+**WHICH MODELS TRUNCATION MOVES, which is not the intuitive answer.** Largest shifts at k=20 are
+`pythia-160m` (0.0410) and `pythia-410m` (0.0278) — the *high-attractor-share* models. A ring that
+settles to 93–97% one token might be expected to be insensitive to tail truncation, and it is the
+opposite: the shift is measured on the settled state, so removing the tail changes the dynamics that
+decide which token wins. `bloom-560m`, the lowest-share model, is the least disturbed (0.0067).
+
+**SECONDARY, and it constrains any future publication: top-k values are not comparable to
+full-vocabulary ones.** The shift is 0.018–0.030, comparable to the entire across-model spread at
+some constructions. A figure reporting an attractor share must name its k, and a top-k number must
+not be compared against F130's.
+
+**BOUNDARY.** Ten local models, none frontier-scale, four constructions, N = 48. A preserved ranking
+says the **interface** is survivable; it says nothing about whether the share means the same thing on
+a model an order of magnitude larger — which is the actual question and needs an API. Tokenizer
+access, rate limits and the provider's own sampler are not simulated.
+
+`experiments/topk_ablation.py` → `results/topk_ablation.json`
+
 ### F133 — the LM cone is TWICE the synchronous bound: F131's ratio is a floor
 F131 compared the LM's damage interaction to DK's at separations expressed in cone widths, and the
 two sides were not measured alike: DK's width was measured (71.9 sites), the LM's was the
