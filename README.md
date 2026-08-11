@@ -627,6 +627,14 @@ the latter is architectural. The **activation-cone** is a prototype for a white-
 Compute: the ladder is CPU-seconds; each cross-level run is ~15–45 min on M1/MPS (cap batch
 for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
 
+## Citation
+
+Archived at [https://doi.org/10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472) (concept DOI — resolves to the latest
+version). `CITATION.cff` carries the machine-readable metadata.
+
+When citing a finding, carry its amendment with it: `findings.md` keeps retracted and corrected
+findings in place rather than deleting them, and several entries are corrections of other entries.
+
 ## Licence
 
 Two licences, split by kind rather than by directory:

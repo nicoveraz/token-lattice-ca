@@ -7,6 +7,11 @@ authors:
     given-names: "Nicolás"
     email: nicovera@quetru.cl
 repository-code: "https://github.com/nicoveraz/token-lattice-ca"
+doi: 10.5281/zenodo.21880472
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21880472
+    description: "Concept DOI — resolves to the latest archived version"
 license: MIT
 license-url: "https://github.com/nicoveraz/token-lattice-ca/blob/main/LICENSE"
 abstract: >-
