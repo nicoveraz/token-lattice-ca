@@ -47,6 +47,40 @@ def test_nonfinite_input_is_nan():
     assert np.isnan(spearman([1.0, 2.0, np.inf], [1.0, 2.0, 3.0]))
 
 
+def test_agrees_with_the_packaged_copy_in_gatecheck():
+    """`gatecheck.ranking` is a SECOND implementation, and the duplication is deliberate.
+
+    gatecheck is laid out as a separable package and is not installed into this venv; its own
+    conftest puts `gatecheck/src` on sys.path for its tests only, so that `import gatecheck` from
+    the main suite keeps resolving to the namespace directory rather than quietly undoing the
+    separation (see gatecheck/conftest.py). Making this module import the package would break that.
+
+    So there are two copies, and the copies must not drift. This test is what makes that safe: it
+    adds the path the way an experiment script does, and asserts the two agree on every case the
+    rest of this file cares about -- including the degenerate ones, which is where an accidental
+    "improvement" to either copy would show up first.
+    """
+    gc_src = pathlib.Path(__file__).resolve().parents[1] / "gatecheck" / "src"
+    sys.path.insert(0, str(gc_src))
+    try:
+        for mod in ("gatecheck", "gatecheck.ranking"):
+            sys.modules.pop(mod, None)
+        from gatecheck.ranking import rank as grank, spearman as gspearman
+    finally:
+        sys.path.remove(str(gc_src))
+        for mod in ("gatecheck", "gatecheck.ranking"):
+            sys.modules.pop(mod, None)
+
+    cases = [[0.0] * 6, LAM, [5.0, 1.0, 5.0, 3.0], [2.0, 2, 2, 1, 1, 3], [1.0, 2.0, np.nan], []]
+    for x in cases:
+        a, b = rank(x), grank(x)
+        assert a.shape == b.shape
+        assert np.array_equal(a, b, equal_nan=True), f"ranking copies disagree on {x}"
+    for x in ([1.0, 2, 3, 4, 5, 6], [3.0, 1, 4, 1, 5, 9], [0.0] * 6):
+        p, q = spearman(x, LAM), gspearman(x, LAM)
+        assert (np.isnan(p) and np.isnan(q)) or abs(p - q) < 1e-12
+
+
 def test_no_experiment_script_still_uses_the_untied_idiom():
     """Guard against the idiom coming back by copy-paste."""
     root = pathlib.Path(__file__).resolve().parents[1] / "experiments"

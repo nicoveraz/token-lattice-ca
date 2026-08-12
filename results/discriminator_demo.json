@@ -1,0 +1,260 @@
+{
+ "_preregistration": {
+  "expect": {
+   "lambda_ca": "NOT_DECIDABLE",
+   "top1": "MODEL_DETERMINED"
+  },
+  "share": "results/share_invariance.json",
+  "lam": "results/fullvocab_invariance_wide.json",
+  "period": "results/share_periodicity.json",
+  "rung": "gatecheck.discriminate must reproduce F129's NOT_DECIDABLE and F130's MODEL_DETERMINED on the stored grids, with identical thresholds for both readouts",
+  "why": "a protocol module that has not reproduced a known answer is what this project refuses to accept from an estimator"
+ },
+ "loopness": [
+  {
+   "name": "r2.T0.02",
+   "radius": 2,
+   "temperature": 0.02,
+   "scheme": "async",
+   "commitment": "in_place",
+   "commitment_rank": 0,
+   "masking": "none"
+  },
+  {
+   "name": "r2.T0.2",
+   "radius": 2,
+   "temperature": 0.2,
+   "scheme": "async",
+   "commitment": "in_place",
+   "commitment_rank": 0,
+   "masking": "none"
+  },
+  {
+   "name": "r2.T0.7",
+   "radius": 2,
+   "temperature": 0.7,
+   "scheme": "async",
+   "commitment": "in_place",
+   "commitment_rank": 0,
+   "masking": "none"
+  },
+  {
+   "name": "r3.T0.02",
+   "radius": 3,
+   "temperature": 0.02,
+   "scheme": "async",
+   "commitment": "in_place",
+   "commitment_rank": 0,
+   "masking": "none"
+  },
+  {
+   "name": "r3.T0.2",
+   "radius": 3,
+   "temperature": 0.2,
+   "scheme": "async",
+   "commitment": "in_place",
+   "commitment_rank": 0,
+   "masking": "none"
+  },
+  {
+   "name": "r3.T0.7",
+   "radius": 3,
+   "temperature": 0.7,
+   "scheme": "async",
+   "commitment": "in_place",
+   "commitment_rank": 0,
+   "masking": "none"
+  }
+ ],
+ "reports": {
+  "lambda_ca": {
+   "readout": "lambda_ca",
+   "n_models": 10,
+   "constructions": [
+    "r2.T0.7",
+    "r2.T1.0",
+    "r3.T0.7",
+    "r3.T1.0"
+   ],
+   "seeds": [
+    20260810,
+    20260811
+   ],
+   "model_spread": {
+    "r2.T0.7": 0.086817,
+    "r2.T1.0": 0.088819,
+    "r3.T0.7": 0.060062,
+    "r3.T1.0": 0.072914
+   },
+   "seed_noise": {
+    "r2.T0.7": 0.025065,
+    "r2.T1.0": 0.04076,
+    "r3.T0.7": 0.083107,
+    "r3.T1.0": 0.145968
+   },
+   "construction_spread": {
+    "EleutherAI/pythia-31m": 0.181018,
+    "EleutherAI/pythia-160m": 0.230658,
+    "EleutherAI/pythia-410m": 0.214202,
+    "gpt2": 0.257532,
+    "gpt2-medium": 0.202177,
+    "gpt2-large": 0.221087,
+    "facebook/opt-350m": 0.262005,
+    "bigscience/bloom-560m": 0.201774,
+    "state-spaces/mamba-130m-hf": 0.196607,
+    "RWKV/rwkv-4-169m-pile": 0.260549
+   },
+   "signal": [
+    "r2.T0.7",
+    "r2.T1.0"
+   ],
+   "n_signal": 2,
+   "seed_stability": null,
+   "invariance": null,
+   "range_ratio": 2.887267047715249,
+   "thresholds": {
+    "noise_factor": 2.0,
+    "seed_stability_min": 0.6,
+    "concordant": 0.6,
+    "min_models": 4
+   },
+   "gates": [
+    {
+     "kind": "dynamic_range",
+     "usable": true,
+     "reason": "lambda_ca across constructions (largest within-model span) spans 0.262 against its own noise floor 0.07373 (3.55x, gate 2.0x)",
+     "span": 0.2620053779814712,
+     "floor": 0.07372524942929147,
+     "ratio": 3.553807956021305,
+     "k": 2.0
+    }
+   ],
+   "status": "NOT_DECIDABLE",
+   "attribution": null,
+   "reason": "signal on only 2 of 4 constructions: model identity does not move lambda_ca beyond seed noise on a majority of the grid, so there is nothing for the construction axis to be tested against"
+  },
+  "top1": {
+   "readout": "top1",
+   "n_models": 10,
+   "constructions": [
+    "r2.T0.02",
+    "r2.T0.2",
+    "r2.T0.7",
+    "r3.T0.02",
+    "r3.T0.2",
+    "r3.T0.7"
+   ],
+   "seeds": [
+    20260810,
+    20260811
+   ],
+   "model_spread": {
+    "r2.T0.02": 0.93099,
+    "r2.T0.2": 0.929688,
+    "r2.T0.7": 0.174479,
+    "r3.T0.02": 0.242188,
+    "r3.T0.2": 0.199219,
+    "r3.T0.7": 0.108073
+   },
+   "seed_noise": {
+    "r2.T0.02": 0.023958,
+    "r2.T0.2": 0.021354,
+    "r2.T0.7": 0.018229,
+    "r3.T0.02": 0.017839,
+    "r3.T0.2": 0.024479,
+    "r3.T0.7": 0.007943
+   },
+   "construction_spread": {
+    "EleutherAI/pythia-31m": 0.898438,
+    "EleutherAI/pythia-160m": 0.858073,
+    "EleutherAI/pythia-410m": 0.729167,
+    "gpt2": 0.074219,
+    "gpt2-medium": 0.058594,
+    "gpt2-large": 0.061198,
+    "facebook/opt-350m": 0.06901,
+    "bigscience/bloom-560m": 0.049479,
+    "state-spaces/mamba-130m-hf": 0.083333,
+    "RWKV/rwkv-4-169m-pile": 0.083333
+   },
+   "signal": [
+    "r2.T0.02",
+    "r2.T0.2",
+    "r2.T0.7",
+    "r3.T0.02",
+    "r3.T0.2",
+    "r3.T0.7"
+   ],
+   "n_signal": 6,
+   "seed_stability": 0.8483,
+   "invariance": 0.7519,
+   "range_ratio": 0.6882619647355165,
+   "thresholds": {
+    "noise_factor": 2.0,
+    "seed_stability_min": 0.6,
+    "concordant": 0.6,
+    "min_models": 4
+   },
+   "gates": [
+    {
+     "kind": "dynamic_range",
+     "usable": true,
+     "reason": "top1 across constructions (largest within-model span) spans 0.8984 against its own noise floor 0.01897 (47.37x, gate 2.0x)",
+     "span": 0.8984375,
+     "floor": 0.018967013888888894,
+     "ratio": 47.36842105263157,
+     "k": 2.0
+    }
+   ],
+   "status": "DECIDED",
+   "attribution": "MODEL_DETERMINED",
+   "reason": "signal on 6/6 constructions, seed-stable ranking +0.848, and cross-construction agreement +0.752 >= 0.6: different constructions rank the models the same way, so top1 is model-attributable ACROSS THESE CONSTRUCTIONS"
+  },
+  "nuisance_gate": {
+   "kind": "nuisance_identity",
+   "usable": true,
+   "reason": "top1 equals its value under the mean 1/period of its settled replicas (F136) on 0 of 24 cells (0.0%, gate 25%)",
+   "n_matching": 0,
+   "n": 24,
+   "frac": 0.0,
+   "max_frac": 0.25,
+   "tol": 1e-06
+  }
+ },
+ "rung_passes": true,
+ "verdict": "RUNG PASSES: one call, identical thresholds, no per-readout tuning, reproduces both of the project's own verdicts -- lambda_ca NOT_DECIDABLE, top1 MODEL_DETERMINED at F130's published 0.848 and +0.752 to the digit. The packaged discriminator is faithful to the analysis it replaces. The binding branch for each readout is printed below rather than asserted here: lambda_ca was expected to bind on the unrankable-spread step and in fact binds one step earlier, on signal (2 of 4 constructions), which is what F129 reported first. Same label, different reason, and the reason is the part a reader needs.\n  lambda_ca  -> NOT_DECIDABLE            expected NOT_DECIDABLE            ok\n             lambda_ca: 2/4 constructions carry signal above seed noise; the construction moves it 2.9x more than the model does. NOT_DECIDABLE\n             signal on only 2 of 4 constructions: model identity does not move lambda_ca beyond seed noise on a majority of the grid, so there is nothing for the construction axis to be tested against\n  top1       -> MODEL_DETERMINED         expected MODEL_DETERMINED         ok\n             top1: 6/6 constructions carry signal above seed noise; seed-stable ranking +0.848; cross-construction agreement +0.752; the construction moves it 0.7x more than the model does. DECIDED\n             signal on 6/6 constructions, seed-stable ranking +0.848, and cross-construction agreement +0.752 >= 0.6: different constructions rank the models the same way, so top1 is model-attributable ACROSS THESE CONSTRUCTIONS\n  nuisance gate, 24 cells with a stored period census: PASSES -- top1 equals its value under the mean 1/period of its settled replicas (F136) on 0 of 24 cells (0.0%, gate 25%)\n             F136 measured 2 crystal replicas of 384, so the known answer is BENIGN and a gate that fired here would be too tight.",
+ "_analysis_provenance": {
+  "script": "discriminator_demo.py",
+  "sha256": "146fa0110fc27ce3554dac326e2182fb1e9d4a474a4fa56f938d939524fb9e5b",
+  "imports": {
+   "experiments/discriminator_demo.py": "146fa0110fc27ce3554dac326e2182fb1e9d4a474a4fa56f938d939524fb9e5b",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "e4ddcf3885064ebb05cc3bc2ff591ea75dbd0e58cbdff277f71d9fa977c4a3a0",
+   "gatecheck/src/gatecheck/discriminator.py": "a78b1af1481b8078c35eddbb6e764bb1c046857fc9dffa2db97eb20ff9da6190",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

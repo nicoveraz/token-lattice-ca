@@ -36,6 +36,16 @@ from .leverage import (
 )
 from .manifest import Manifest, Entry, strip_tex_comments
 from .results import save_results, load_results, check_no_absolute_paths
+from .ranking import rank, spearman
+from .discriminator import (
+    Loopness,
+    COMMITMENT_ORDER,
+    DiscriminatorReport,
+    discriminate,
+    nuisance_identity,
+    CONSTRUCTION_DETERMINED,
+    MODEL_DETERMINED,
+)
 
 __all__ = [
     "Gate", "GateCheck", "Verdict", "gated", "DECIDED", "NOT_DECIDABLE",
@@ -49,4 +59,7 @@ __all__ = [
     "directional", "distinct_units", "carries_verdict",
     "Manifest", "Entry", "strip_tex_comments",
     "save_results", "load_results", "check_no_absolute_paths",
+    "rank", "spearman",
+    "Loopness", "COMMITMENT_ORDER", "DiscriminatorReport", "discriminate", "nuisance_identity",
+    "CONSTRUCTION_DETERMINED", "MODEL_DETERMINED",
 ]
