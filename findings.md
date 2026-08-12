@@ -3720,6 +3720,41 @@ remote arm is 11 cells on two models, read here only as a contrast; its own scaf
 already failed, so no model claim was available from it in any case. The crystal criterion
 (`rep ≥ 0.9` at `p* > 1`) is a threshold, and a ring at 0.85 would be called disordered.
 
+> **AMENDMENT — the boundary above is lifted, and the detector had a false positive.** Once
+> `share_invariance` stored its settled lattice (the state convention, `gatecheck.state`), the same
+> census ran over **F130's whole grid — 120 cells, 1920 replicas — for the cost of a file read**,
+> and F134's 320-cell top-k grid was screened without a full re-run. That is the convention paying
+> for itself in the first week, so it is recorded as a number rather than as a principle.
+>
+> ```
+>   full grid   2 balanced cycles of 1920 replicas (0.10%), in ONE cell, both period-2
+>               at exactly top1 = 0.5000. Largest share any cycle reads: 0.5000.
+>   top-k grid  305 of 320 cells excluded by arithmetic; the 15 that could not be
+>               excluded were re-run with state -> 0 cycles, 0 aliases.
+> ```
+>
+> **The containment claim strengthens and its direction is unchanged**: a balanced period-p cycle
+> reads `1/p ≤ 0.5`, and F130's ranking is carried by shares far above that. The full-grid crystal
+> rate (0.10%) is *lower* than the subset's (0.52%), so the subset was, if anything, pessimistic.
+>
+> **THE FALSE POSITIVE WAS MINE, AND ONLY THE FULL GRID EXPOSED IT.** The first full-grid pass
+> reported "the largest share any crystal reads is 0.8958" in the same sentence as "1/p is bounded
+> by 1/2" — a self-contradiction, and the thing that exposed it. A ring that is ~90% one token with
+> a few defects can have `rep_1` just below the frozen threshold and `rep_2` just above the crystal
+> threshold, so the *structural* test alone calls it a period-2 cycle. It is not one: a genuine
+> period-p cycle occupies its p tokens equally, so `top1 = 1/p`. The classifier now separates
+> **balanced cycles** from **dominated rings whose defects align at some period**, and reports both,
+> so the distinction stays visible instead of being absorbed into a definition that would make the
+> containment claim true by fiat. The 24-cell subset never produced this case; widening coverage is
+> what found it.
+>
+> **And one methodological correction, recorded because the error was in the reasoning rather than
+> the code.** The top-k screen's filter selects cells where `distinct ≤ B·p`, i.e. where a cycle *is*
+> arithmetically possible — and the first verdict text asserted the opposite, that each candidate had
+> "far more distinct tokens than could produce one". **A screen narrows; it does not decide.** Stated
+> correctly it is still worth having: it turned a four-hour blanket backfill into a ten-minute
+> targeted one, which is the useful outcome, not a clean bill of health.
+
 `experiments/share_periodicity.py` → `results/share_periodicity.json`
 
 ### F135 — a chat scaffold contaminates the attractor share's VALUES but preserves its RANKING

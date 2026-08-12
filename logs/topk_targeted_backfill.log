@@ -1,0 +1,31 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 7898.49it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7172.73it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8096.31it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7444.74it/s]
+  gpt2|k0|r2.T0.02|s20260810                       top1=0.1823 distinct=94
+  gpt2|k5|r2.T0.02|s20260810                       top1=0.1823 distinct=89
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7569.45it/s]
+  gpt2-medium|k100|r2.T0.02|s20260810              top1=0.1302 distinct=124
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7772.81it/s]
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 62121.23it/s]
+  facebook/opt-350m|k0|r2.T0.02|s20260810          top1=0.1523 distinct=100
+  facebook/opt-350m|k0|r2.T0.02|s20260811          top1=0.1445 distinct=106
+  facebook/opt-350m|k5|r2.T0.02|s20260810          top1=0.1354 distinct=94
+  facebook/opt-350m|k5|r2.T0.02|s20260811          top1=0.1602 distinct=89
+  facebook/opt-350m|k20|r2.T0.02|s20260810         top1=0.1458 distinct=85
+  facebook/opt-350m|k20|r2.T0.02|s20260811         top1=0.1628 distinct=91
+  facebook/opt-350m|k100|r2.T0.02|s20260810        top1=0.1341 distinct=100
+  facebook/opt-350m|k100|r2.T0.02|s20260811        top1=0.1497 distinct=101
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 7825.19it/s]
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 7194.65it/s]
+  state-spaces/mamba-130m-hf|k0|r2.T0.02|s20260811 top1=0.1510 distinct=109
+  state-spaces/mamba-130m-hf|k5|r2.T0.02|s20260810 top1=0.1576 distinct=108
+  state-spaces/mamba-130m-hf|k100|r2.T0.02|s20260810 top1=0.1536 distinct=105
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 61976.54it/s]
+  RWKV/rwkv-4-169m-pile|k0|r2.T0.02|s20260810      top1=0.1510 distinct=110
+
+  -> RUNG: the full-vocabulary arm reproduces share_invariance's stored top1 to within 0.0000 across 40 cells (tolerance 0.05). Same quantity as F130, so the top-k arms below are a restriction of it. PRIMARY, agreement between the full-vocabulary and top-k model rankings: k=5: rho=+0.793, k=20: rho=+0.761, k=100: rho=+0.894. At or above the registered 0.6 even at k=20, so the interface preserves the ordering and the API route is viable on this readout. SECONDARY, mean absolute shift in top1: k=5: +0.0298, k=20: +0.0219, k=100: +0.0181. A preserved RANKING on shifted VALUES still means top-k numbers are not comparable to full-vocabulary ones across studies, and any published figure must name its k. BOUNDARY: 10 local models, none frontier-scale, 4 constructions, N=48. A preserved ranking says the INTERFACE is survivable; it says nothing about whether the share means the same thing on a model an order of magnitude larger. Tokenizer access, rate limits and the provider's own sampler are not simulated.
+
+wrote results/topk_ablation.json

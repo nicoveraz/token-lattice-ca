@@ -44,6 +44,7 @@ import json, time
 import numpy as np, torch
 from ranking import spearman
 from provenance import stamp, rel
+from gatecheck import pack_state, STATE_KEY
 
 OUT = str(_ROOT / "results" / "topk_ablation.json")
 REF = str(_ROOT / "results" / "share_invariance.json")
@@ -88,9 +89,16 @@ def cell(rule, r, T, seed, k):
     kw = dict(B=B, N=N, r=r, T=T, sweeps=SETTLE, scheme="none", init="random", seed=seed)
     if k:
         kw["sampler"] = topk_sampler(k)
-    pool = run(rule, **kw)["final"].reshape(-1)
+    settled = run(rule, **kw)["final"]
+    pool = settled.reshape(-1)
     vals, cnt = np.unique(pool, return_counts=True)
-    return dict(top1=float(cnt.max() / cnt.sum()), distinct=float(len(vals)))
+    # rep2 and the lattice itself: `top1` alone cannot separate a one-token attractor from a
+    # short periodic orbit, which is 1/p by arithmetic (F136). Storing the state is what lets
+    # share_periodicity.py ask that question of these cells without a re-run.
+    rep2 = float(np.mean(settled[:, :-1] == settled[:, 1:]))
+    return dict(top1=float(cnt.max() / cnt.sum()), distinct=float(len(vals)), rep2=rep2,
+                **{STATE_KEY: pack_state(settled, stride_axis=0,
+                                         note="settled lattice, (replica, site)")})
 
 
 def ranks(cells, k, con, seed):

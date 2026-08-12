@@ -39,6 +39,26 @@ PRE-REGISTERED:
             defects recorded: an alphabet floor and a miss-corrupted majority.
   BOUNDARY  the local re-run is a subset of F130's grid chosen to span its top1 range, not the whole
             grid. A clean result here bounds the defect to the remote construction on THIS subset.
+
+ADDED AFTER THE STATE CONVENTION LANDED, and the reason they could be added is the whole argument
+for the convention -- neither cost a run:
+
+  STORED    the FULL 120-cell F130 grid, classified from the lattices `share_invariance` now stores
+            in its results file. This SUPERSEDES the 24-cell PRIMARY above: what needed a special
+            re-run when nothing kept a ring now costs a file read. The pre-registered reading is
+            unchanged; only the coverage is.
+  SCREEN    F134's 320-cell top-k grid, where a full backfill would cost about four hours. The
+            screen asks which cells the stored scalars can already EXCLUDE: pooling over 16
+            replicas means a 1/period reading needs the SAME dominant token in every replica, which
+            forces a small `distinct` count, so a cell with top1 near a unit fraction and 100
+            distinct tokens is excluded outright. It excludes 305 of 320 and leaves 15 that need
+            their state -- a targeted ten-minute backfill instead of a four-hour one.
+
+            THE FIRST VERSION OF THIS ARM CLAIMED THE OPPOSITE OF WHAT ITS OWN CODE COMPUTED. The
+            filter selects cells where `distinct <= B*p`, i.e. where a crystal IS arithmetically
+            possible, and the prose then reported that each had "far more distinct tokens than
+            could produce" one. Screening a chore before doing it is still the right discipline;
+            reporting the screen as conclusive when it is a narrowing was not.
 """
 import sys as _sys, pathlib as _pathlib
 _ROOT = _pathlib.Path(__file__).resolve().parents[1]
@@ -47,6 +67,7 @@ import json, time
 
 import numpy as np
 from provenance import stamp, rel
+from gatecheck import unpack_state, STATE_KEY
 
 OUT = str(_ROOT / "results" / "share_periodicity.json")
 REF = str(_ROOT / "results" / "share_invariance.json")
@@ -61,6 +82,9 @@ N, B, SETTLE = 48, 16, 30           # identical to share_invariance, so the rung
 SEED = 20260810                     # share_invariance's first seed
 RUNG_TOL = 0.05
 CRYSTAL_REP = 0.9
+# a genuine period-p cycle occupies its p tokens equally, so top1 = 1/p; this is how far off that
+# a ring may be and still be called a cycle rather than a dominated ring with aligned defects
+BALANCE_TOL = 0.05
 
 
 def divisors(n):
@@ -84,13 +108,30 @@ def period_profile(ring):
 
 
 def classify(ring):
+    """Frozen, balanced cycle, or a near-frozen ring whose defects happen to align at some period.
+
+    THE THIRD CATEGORY WAS A FALSE POSITIVE OF THIS FUNCTION, found by running it over the full
+    1920-replica grid instead of the 24-cell subset. A ring that is ~90% one token with a handful of
+    defects can have rep_1 just under the threshold and rep_2 just over it, and the structural test
+    alone then calls it a period-2 crystal -- while its top1 is 0.8958, not 0.5. That produced a
+    self-contradicting sentence in the first full-grid verdict ("the largest share any crystal reads
+    is 0.8958" beside "1/p is bounded by 1/2"), which is what exposed it.
+
+    A GENUINE period-p cycle occupies its p tokens equally, so top1 = 1/p. Requiring that is not
+    circular bookkeeping to protect the containment claim -- it is what distinguishes a cycle from a
+    dominated ring, and the two are reported separately below precisely so the distinction stays
+    visible rather than being absorbed into a definition.
+    """
     reps, p_star, best = period_profile(ring)
     vals, cnt = np.unique(np.asarray(ring), return_counts=True)
     top1 = float(cnt.max() / cnt.sum())
     frozen = reps[1] >= CRYSTAL_REP
-    crystal = (not frozen) and p_star > 1 and best >= CRYSTAL_REP
+    periodic = (not frozen) and p_star > 1 and best >= CRYSTAL_REP
+    balanced = bool(periodic and abs(top1 - 1.0 / p_star) <= BALANCE_TOL)
     return dict(top1=top1, distinct=int(len(vals)), rep1=reps[1], p_star=int(p_star),
-                rep_at_p_star=float(best), frozen=bool(frozen), crystal=bool(crystal),
+                rep_at_p_star=float(best), frozen=bool(frozen),
+                periodic=bool(periodic), crystal=balanced,
+                near_frozen_alias=bool(periodic and not balanced),
                 one_over_p=1.0 / p_star, top1_minus_inv_p=top1 - 1.0 / p_star)
 
 
@@ -127,6 +168,102 @@ def local_cell(rule, r, T, seed):
         mean_p_star=float(np.mean([p["p_star"] for p in per])),
         mean_rep_at_p_star=float(np.mean([p["rep_at_p_star"] for p in per])),
         replicas=per)
+
+
+def stored_arm():
+    """The FULL F130 grid, classified from the lattices share_invariance now stores. No re-run.
+
+    This is the point of the state convention arriving. F136's local arm was 24 cells re-run
+    specially, because no results file kept a ring; its boundary said "this subset". Once
+    share_invariance stores its settled lattice, the same census runs over all 120 cells for the
+    cost of reading a file -- which is the difference the convention buys, stated as a number
+    rather than as a principle.
+    """
+    p = _pathlib.Path(REF)
+    if not p.exists():
+        return None
+    cells = json.load(open(p))["cells"]
+    rows = {}
+    for k, v in cells.items():
+        blk = v.get(STATE_KEY)
+        if not (isinstance(blk, dict) and blk.get("data")):
+            continue
+        arr = unpack_state(blk)
+        per = [classify(list(arr[b])) for b in range(arr.shape[0])]
+        rows[k] = dict(
+            model=v["model"], construction=v["construction"], seed=v["seed"],
+            top1_pool=v["top1"], complete=bool(blk.get("complete")),
+            crystal_frac=float(np.mean([x["crystal"] for x in per])),
+            frozen_frac=float(np.mean([x["frozen"] for x in per])),
+            alias_frac=float(np.mean([x["near_frozen_alias"] for x in per])),
+            n_replicas=len(per),
+            crystals=[dict(replica=i, p_star=x["p_star"], top1=x["top1"],
+                           one_over_p=x["one_over_p"])
+                      for i, x in enumerate(per) if x["crystal"]],
+            aliases=[dict(replica=i, p_star=x["p_star"], top1=x["top1"], rep1=x["rep1"])
+                     for i, x in enumerate(per) if x["near_frozen_alias"]])
+    return rows or None
+
+
+def screen_arm():
+    """Can the degeneracy be RULED OUT from stored scalars, without a re-run? For topk_ablation, yes.
+
+    F134's top-k arm is the other place a small effective support might crystallise, and backfilling
+    its 320 cells costs about four hours. Before spending that, ask whether the stored scalars can
+    already exclude it -- the same scan-then-gate discipline applied to a chore instead of to an
+    experiment.
+
+    THE ARITHMETIC THAT MAKES THE SCREEN CONCLUSIVE. `top1` is pooled over B=16 replicas. If every
+    replica were a period-p orbit, top1 would be 1/p only if the SAME dominant token recurred across
+    replicas -- otherwise the pooled top token holds about N/p of B*N sites and top1 collapses to
+    ~1/(B*p). Shared dominant tokens force a small pooled `distinct`. So a cell can only be read as
+    1/period if top1 sits at a unit fraction AND distinct is small enough for shared short orbits.
+    A cell with top1 near 1/7 and 106 distinct tokens is not a crystal, and no re-run is needed to
+    say so.
+
+    A cell at distinct = 1 is excluded up front: that is p = 1, a genuine one-token attractor, which
+    is what the readout is supposed to report.
+    """
+    p = _ROOT / "results" / "topk_ablation.json"
+    if not p.exists():
+        return None
+    cells = json.load(open(p))["cells"]
+    B_ASSUMED = 16
+    cand = []
+    for k, v in cells.items():
+        t, d = v["top1"], v["distinct"]
+        if d <= 1:
+            continue
+        for per in range(2, 9):
+            if abs(t - 1.0 / per) < 0.02 and d <= B_ASSUMED * per:
+                cand.append(dict(cell=k, top1=round(t, 4), distinct=int(d), p=per,
+                                 max_distinct_if_crystal=B_ASSUMED * per))
+                break
+    out = dict(n_cells=len(cells), n_candidates=len(cand), candidates=cand,
+               tolerance=0.02, B_assumed=B_ASSUMED)
+    # RESOLUTION. The screen NARROWS; it does not decide. Cells it could not exclude are re-run with
+    # state stored, and only then can each be called a balanced cycle, a dominated ring whose
+    # defects align at some period, or neither.
+    per_cell = []
+    for c in cand:
+        blk = cells.get(c["cell"], {}).get(STATE_KEY)
+        if not (isinstance(blk, dict) and blk.get("data")):
+            continue
+        arr = unpack_state(blk)
+        per = [classify(list(arr[b])) for b in range(arr.shape[0])]
+        per_cell.append(dict(
+            cell=c["cell"], top1=c["top1"],
+            n_balanced=sum(x["crystal"] for x in per),
+            n_alias=sum(x["near_frozen_alias"] for x in per),
+            n_frozen=sum(x["frozen"] for x in per), n_replicas=len(per)))
+    if per_cell:
+        out["resolved"] = dict(
+            n_resolved=len(per_cell), per_cell=per_cell,
+            n_balanced=sum(x["n_balanced"] for x in per_cell),
+            n_frozen_alias=sum(x["n_alias"] for x in per_cell),
+            n_other=sum(x["n_replicas"] - x["n_balanced"] - x["n_alias"] - x["n_frozen"]
+                        for x in per_cell))
+    return out
 
 
 def remote_arm():
@@ -193,6 +330,45 @@ def analyse(res):
                     f"frozen={v['frozen_frac']:.2f} rep1={v['rep1_pool']:.3f}" for k, v in hi)
         + ". A high share carried by adjacent-repeat is one token dominating; a high share with "
           "rep1 at zero would have been 1/p of a crystal.")
+    st = res.get("stored") or {}
+    if st:
+        full = [v for v in st.values() if v["complete"]]
+        ncry = sum(1 for v in full if v["crystal_frac"] > 0)
+        reps = sum(v["n_replicas"] for v in full)
+        ncr = sum(len(v["crystals"]) for v in full)
+        worst = max((c["top1"] for v in full for c in v["crystals"]), default=None)
+        parts.append(
+            f"FULL GRID, from the lattices share_invariance now stores -- {len(full)} cells, "
+            f"{reps} replicas, no re-run: {ncr} crystal replicas in {ncry} cells "
+            f"({ncr / max(reps, 1):.2%}). "
+            + (f"The largest share any crystal reads is {worst:.4f}, so the mechanism still cannot "
+               f"manufacture a high share -- 1/p is bounded by 1/2 for p > 1, and F130's ranking is "
+               f"carried by shares far above that."
+               if worst is not None else
+               "No crystal appears anywhere in the grid.")
+            + " This supersedes the 24-cell subset F136 reported: the boundary that said 'on this "
+              "subset' is now the whole of F130's grid, and it cost a file read rather than a run.")
+    sc = res.get("screen")
+    if sc:
+        surv = sc.get("resolved")
+        parts.append(
+            f"SCREEN on F134's top-k grid, from stored scalars and no re-run: {sc['n_candidates']} "
+            f"of {sc['n_cells']} cells CANNOT be excluded by arithmetic -- their top1 sits within "
+            f"{sc['tolerance']} of a unit fraction AND their distinct count is small enough for "
+            f"{sc['B_assumed']} replicas of a shared short orbit to produce it. The other "
+            f"{sc['n_cells'] - sc['n_candidates']} are excluded outright: pooling over replicas "
+            f"means a 1/period reading needs the SAME dominant token in every replica, which forces "
+            f"a small distinct count, and theirs is far too large. "
+            + (f"The screen therefore narrows a four-hour backfill to {sc['n_candidates']} cells, "
+               f"which is the useful outcome -- not a clean bill of health."
+               if not surv else
+               f"Those {sc['n_candidates']} were then re-run WITH state: "
+               f"{surv['n_balanced']} are balanced cycles, {surv['n_frozen_alias']} are dominated "
+               f"rings whose defects align at some period, {surv['n_other']} are neither. "
+               + ("The top-k interface does not reproduce the remote arm's degeneracy."
+                  if surv["n_balanced"] == 0 else
+                  "The top-k interface DOES produce balanced cycles, so F134's affected cells are "
+                  "reading 1/period and its ranking claim needs re-checking without them.")))
     rows = res.get("remote") or []
     clean = [r for r in rows if not r.get("misses")]
     cry = [r for r in clean if r["crystal"]]
@@ -244,6 +420,8 @@ def main():
             "degeneracy is present locally could not be answered from stored data")
     res["detector_rung"] = detector_rung()
     res["remote"] = remote_arm()
+    res["stored"] = stored_arm()
+    res["screen"] = screen_arm()
     from ar_ca import ARRule
     for m in MODELS:
         need = [(r, T) for r, T in CONSTRUCTIONS if f"{m}|r{r}.T{T}|s{SEED}" not in res["local"]]

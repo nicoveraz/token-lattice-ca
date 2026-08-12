@@ -44,6 +44,7 @@ import itertools, json, time
 import numpy as np, torch
 from ranking import spearman
 from provenance import stamp, rel
+from gatecheck import pack_state, has_state, STATE_KEY
 
 OUT = str(_ROOT / "results" / "share_invariance.json")
 LAM = str(_ROOT / "results" / "fullvocab_invariance_wide.json")
@@ -82,8 +83,15 @@ def cell(rule, r, T, seed):
     # not reduce to the top token's share -- a ring alternating between two tokens has low top1 and
     # high structure.
     rep2 = float(np.mean(settled[:, :-1] == settled[:, 1:]))
+    # THE SETTLED LATTICE ITSELF. The first version of this script kept these four scalars and
+    # dropped the (B, N) array they came from, so when F136 asked whether top1 was 1/period on a
+    # crystallised ring, 120 stored cells could not answer and a fresh grid had to be run. The
+    # replica axis is strided if the cap binds; the ring axis never is, because a strided ring
+    # cannot be asked about periodicity, which is the question this exists to make answerable.
     return dict(top1=float(cnt.max() / cnt.sum()), distinct=float(len(vals)), rep2=rep2,
-                dominant=int(vals[cnt.argmax()]))
+                dominant=int(vals[cnt.argmax()]),
+                **{STATE_KEY: pack_state(settled, stride_axis=0,
+                                         note="settled lattice, (replica, site)")})
 
 
 def rankings(cells, seed, readout):
@@ -210,7 +218,12 @@ def main():
             for T in TEMPS:
                 for sd in SEEDS:
                     key = f"{m}|r{r}.T{T}|s{sd}"
-                    if key in res["cells"]:
+                    old = res["cells"].get(key)
+                    # A cell is complete only if it carries the lattice its numbers came from.
+                    # Cells written before the state convention are re-run, and re-running them is
+                    # ALSO a reproduction check on F130's published grid: same seed, same geometry,
+                    # so every scalar must come back identical. Drift here would be a finding.
+                    if old is not None and has_state(old):
                         continue
                     t0 = time.time()
                     try:
@@ -218,6 +231,14 @@ def main():
                     except Exception as e:
                         print(f"  {key}: FAILED {type(e).__name__}: {str(e)[:70]}", flush=True)
                         continue
+                    if old is not None:
+                        drift = {k: (old[k], c[k]) for k in ("top1", "distinct", "rep2", "dominant")
+                                 if k in old and old[k] != c[k]}
+                        res.setdefault("_backfill", {})[key] = (
+                            "identical" if not drift else
+                            {k: dict(stored=v[0], recomputed=v[1]) for k, v in drift.items()})
+                        if drift:
+                            print(f"  {key}: DRIFT {drift}", flush=True)
                     c.update(model=m, construction=f"r{r}.T{T}", r=r, T=T, seed=sd,
                              secs=round(time.time() - t0, 1))
                     res["cells"][key] = c

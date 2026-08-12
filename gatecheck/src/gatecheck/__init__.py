@@ -37,6 +37,8 @@ from .leverage import (
 from .manifest import Manifest, Entry, strip_tex_comments
 from .results import save_results, load_results, check_no_absolute_paths
 from .ranking import rank, spearman
+from . import state as state
+from .state import pack as pack_state, unpack as unpack_state, has_state, STATE_KEY
 from .discriminator import (
     Loopness,
     COMMITMENT_ORDER,
@@ -60,6 +62,7 @@ __all__ = [
     "Manifest", "Entry", "strip_tex_comments",
     "save_results", "load_results", "check_no_absolute_paths",
     "rank", "spearman",
+    "state", "pack_state", "unpack_state", "has_state", "STATE_KEY",
     "Loopness", "COMMITMENT_ORDER", "DiscriminatorReport", "discriminate", "nuisance_identity",
     "CONSTRUCTION_DETERMINED", "MODEL_DETERMINED",
 ]
