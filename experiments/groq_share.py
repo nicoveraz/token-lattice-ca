@@ -177,7 +177,17 @@ def settle(model, r, T, seed, key):
             else:
                 ring[i] = w
     vals, cnt = np.unique(ring, return_counts=True)
+    # STORE THE RING. top1 alone cannot distinguish a diffuse lattice from a PERIODIC one: three
+    # colours occupying eight sites each on N=24 reads top1 = 0.3333, and so does a genuinely
+    # spread ring. llama-3.3-70b returned exactly 0.3333 on three cells across two temperatures and
+    # two seeds with distinct = 3, which is a period-3 cycle rather than a weak attractor -- and
+    # the first version of this script could not tell, because it kept only the scalars. That is
+    # F116's lesson (no results file stored a damage cone) arriving again: the largest object the
+    # measurement produces was being thrown away, so every new question needed a full re-run.
+    rep2 = float(np.mean([ring[i] == ring[(i + 1) % N] for i in range(N)]))
+    rep3 = float(np.mean([ring[i] == ring[(i + 3) % N] for i in range(N)]))
     return dict(top1=float(cnt.max() / cnt.sum()), distinct=int(len(vals)),
+                rep2=rep2, rep3=rep3, ring=list(ring),
                 calls=calls, misses=misses)
 
 
