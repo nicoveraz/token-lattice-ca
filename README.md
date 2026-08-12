@@ -1,9 +1,10 @@
 # token-lattice-ca
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21880472.svg)](https://doi.org/10.5281/zenodo.21880472)
+[![arXiv](https://img.shields.io/badge/arXiv-2608.10986-b31b1b.svg)](https://arxiv.org/abs/2608.10986)
 
 > **Status — 10 Aug 2026.** The NeurIPS I4D submission is **withdrawn** (author decision,
-> 7 Aug 2026). There is one live manuscript, `paper_arxiv/main.tex`, targeting TMLR. It builds at
+> 7 Aug 2026). There is one live manuscript, `paper_arxiv/main.tex`, targeting TMLR. Now public as [arXiv:2608.10986](https://arxiv.org/abs/2608.10986). It builds at
 > 15 pages with no undefined references, and every decimal literal in it is asserted to trace to a
 > file in `results/` by `tests/test_arxiv_paper_numbers.py`. The earlier submission remains pinned
 > at the tag `submission/neurips26-i4d` for reproduction; `main` has moved a long way past it.

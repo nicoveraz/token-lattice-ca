@@ -28,3 +28,13 @@ keywords:
   - damage spreading
   - measurement validity
   - reproducibility
+preferred-citation:
+  type: article
+  title: "What Iterated Self-Feeding Probes of Language Models Measure, and a test that separates the construction from the model"
+  authors:
+    - family-names: "Vera Zúñiga"
+      given-names: "Nicolás"
+  year: 2026
+  doi: 10.48550/arXiv.2608.10986
+  url: "https://arxiv.org/abs/2608.10986"
+  journal: "arXiv preprint"
