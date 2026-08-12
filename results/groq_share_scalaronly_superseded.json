@@ -1,0 +1,215 @@
+{
+ "cells": {
+  "llama-3.1-8b-instant|r2.T0.2|s1": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 1,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 975.4
+  },
+  "llama-3.1-8b-instant|r2.T0.2|s2": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 2091.4
+  },
+  "llama-3.1-8b-instant|r2.T0.7|s1": {
+   "top1": 0.2916666666666667,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.7",
+   "r": 2,
+   "T": 0.7,
+   "seed": 1,
+   "secs": 1800.8
+  },
+  "llama-3.1-8b-instant|r2.T0.7|s2": {
+   "top1": 0.375,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.7",
+   "r": 2,
+   "T": 0.7,
+   "seed": 2,
+   "secs": 979.4
+  },
+  "llama-3.1-8b-instant|r3.T0.2|s1": {
+   "top1": 0.25,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r3.T0.2",
+   "r": 3,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 1056.7
+  },
+  "llama-3.1-8b-instant|r3.T0.2|s2": {
+   "top1": 0.20833333333333334,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r3.T0.2",
+   "r": 3,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 1057.8
+  },
+  "llama-3.3-70b-versatile|r2.T0.2|s1": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 957.4
+  },
+  "llama-3.3-70b-versatile|r2.T0.2|s2": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 1065.8
+  },
+  "llama-3.3-70b-versatile|r2.T0.7|s1": {
+   "top1": 0.3333333333333333,
+   "distinct": 4,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r2.T0.7",
+   "r": 2,
+   "T": 0.7,
+   "seed": 1,
+   "secs": 983.8
+  },
+  "llama-3.3-70b-versatile|r2.T0.7|s2": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 186,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r2.T0.7",
+   "r": 2,
+   "T": 0.7,
+   "seed": 2,
+   "secs": 6131.9
+  },
+  "llama-3.3-70b-versatile|r3.T0.2|s1": {
+   "top1": 0.25,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 216,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r3.T0.2",
+   "r": 3,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 6948.1
+  },
+  "llama-3.3-70b-versatile|r3.T0.2|s2": {
+   "top1": 0.2916666666666667,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 216,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r3.T0.2",
+   "r": 3,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 6953.0
+  }
+ },
+ "_preregistration": {
+  "provider": "groq (free tier)",
+  "models": [
+   "llama-3.1-8b-instant",
+   "llama-3.3-70b-versatile"
+  ],
+  "alphabet": [
+   " red",
+   " green",
+   " blue",
+   " yellow",
+   " black",
+   " white"
+  ],
+  "constructions": [
+   "r2.T0.2",
+   "r2.T0.7",
+   "r3.T0.2"
+  ],
+  "N": 24,
+  "settle": 12,
+  "seeds": [
+   1,
+   2
+  ],
+  "scaffold_max": 0.15,
+  "concordant": 0.6,
+  "local_calibration": "gpt2",
+  "rung": "the chat template's effect on the share is measured on a LOCAL model before any remote call; if it exceeds scaffold_max the run stops",
+  "primary": "do the remote models rank consistently across constructions, as F130's ten did",
+  "note": "the provider samples; no logprobs are requested and none are needed"
+ },
+ "analysis": {
+  "rung_passes": false,
+  "scaffold": {
+   "source": "scaffold_effect.py",
+   "shift": 0.13273111979166666,
+   "gate": 0.0406494140625,
+   "passed": [],
+   "raw_spread": 0.081298828125
+  }
+ },
+ "verdict": "RUNG (the chat scaffold, from scaffold_effect.py at N=64 over 3 models x 2 temperatures x 4 seeds): worst scaffold shift 0.1327 against a gate of 0.0406, which is half the across-model spread rather than a number chosen by argument. Scaffolds passing: []. The template moves the share more than the limit allows, so a remote measurement would be reading the scaffold rather than the model. Nothing below is read.",
+ "_analysis_provenance": {
+  "script": "groq_share.py",
+  "sha256": "ddc9a906f94f6c2dd977ca62d0f67e2d7e42bb3bc65346da1b7104fc2c4780ad",
+  "imports": {
+   "experiments/groq_share.py": "ddc9a906f94f6c2dd977ca62d0f67e2d7e42bb3bc65346da1b7104fc2c4780ad",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

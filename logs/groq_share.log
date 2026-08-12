@@ -6,3 +6,22 @@
   llama-3.1-8b-instant|r3.T0.2|s2              top1=0.2083 distinct=6 misses=0/288 (1058s)
   llama-3.3-70b-versatile|r2.T0.2|s1           top1=0.3333 distinct=3 misses=0/288 (957s)
   llama-3.3-70b-versatile|r2.T0.2|s2           top1=0.3333 distinct=3 misses=0/288 (1066s)
+  llama-3.3-70b-versatile|r2.T0.7|s1           top1=0.3333 distinct=4 misses=0/288 (984s)
+  llama-3.3-70b-versatile|r2.T0.7|s2           top1=0.3333 distinct=3 misses=186/288 (6132s)
+  llama-3.3-70b-versatile|r3.T0.2|s1           top1=0.2500 distinct=6 misses=216/288 (6948s)
+  llama-3.3-70b-versatile|r3.T0.2|s2           top1=0.2917 distinct=6 misses=216/288 (6953s)
+
+  -> RUNG (the chat scaffold, from scaffold_effect.py at N=64 over 3 models x 2 temperatures x 4 seeds): worst scaffold shift 0.1327 against a gate of 0.0406, which is half the across-model spread rather than a number chosen by argument. Scaffolds passing: []. The template moves the share more than the limit allows, so a remote measurement would be reading the scaffold rather than the model. Nothing below is read.
+
+wrote results/groq_share.json
+  llama-3.1-8b-instant|r2.T0.2|s1              top1=0.3333 distinct=5 misses=0/288 (982s)
+  llama-3.1-8b-instant|r2.T0.2|s2              top1=0.3333 distinct=3 misses=0/288 (1067s)
+  llama-3.1-8b-instant|r2.T0.7|s1              top1=0.2917 distinct=5 misses=0/288 (1073s)
+  llama-3.1-8b-instant|r2.T0.7|s2              top1=0.2500 distinct=6 misses=0/288 (1073s)
+  llama-3.1-8b-instant|r3.T0.2|s1              top1=0.2500 distinct=4 misses=0/288 (1074s)
+  llama-3.1-8b-instant|r3.T0.2|s2              top1=0.2500 distinct=4 misses=0/288 (1086s)
+  llama-3.3-70b-versatile|r2.T0.2|s1           top1=0.3333 distinct=3 misses=162/288 (5386s)
+  llama-3.3-70b-versatile|r2.T0.2|s2           top1=0.3333 distinct=6 misses=216/288 (6983s)
+  llama-3.3-70b-versatile|r2.T0.7|s1           top1=0.2500 distinct=6 misses=216/288 (6960s)
+  llama-3.3-70b-versatile|r2.T0.7|s2           top1=0.3333 distinct=6 misses=216/288 (6960s)
+  llama-3.3-70b-versatile|r3.T0.2|s1           top1=0.1667 distinct=6 misses=216/288 (6965s)

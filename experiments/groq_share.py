@@ -62,6 +62,11 @@ ALPHABET = [" red", " green", " blue", " yellow", " black", " white"]
 SCAFFOLD_MAX = 0.15
 CONCORDANT = 0.6
 LOCAL_CAL = "gpt2"
+# COMPLETENESS GATE. A skipped update leaves the site at its random initial value, so a cell that
+# lost a fifth of its updates is a partly-settled ring being reported as a settled one. This was
+# added after five of six llama-3.3-70b cells came back with 56-75% of updates missing and top1
+# values sitting in the same range as the clean cells.
+MISS_MAX = 0.1
 
 
 def _key():
@@ -92,7 +97,16 @@ def _key():
 
 
 def ask(model, ctx, T, key, retries=5):
-    """One lattice update: r context words in, one word out. Returns the chosen word or None."""
+    """One lattice update: r context words in, one word out.
+
+    Returns (word, reason). `reason` is "ok", "off_alphabet" (the provider answered and the answer
+    contained no alphabet word -- a MODEL behaviour) or "unreachable" (the request never succeeded
+    after `retries` -- an INFRASTRUCTURE hole). The first version returned a bare None for both,
+    which is how five of six llama-3.3-70b cells came back with 162-216 of 288 updates skipped and
+    still reported a `top1` indistinguishable from a settled cell's. A skipped update leaves the
+    site at its initial random value, so a cell with most updates skipped is not a settle at all --
+    and two such cells came out byte-identical at two different temperatures, which is the proof.
+    """
     body = json.dumps({
         "model": model,
         "messages": [{"role": "user",
@@ -113,8 +127,8 @@ def ask(model, ctx, T, key, retries=5):
                 txt = json.load(r)["choices"][0]["message"]["content"].strip().lower()
             for w in ALPHABET:
                 if w.strip() in txt:
-                    return w
-            return None
+                    return w, "ok"
+            return None, "off_alphabet"
         except urllib.error.HTTPError as e:
             if e.code == 429:                       # rate limited: back off, do not give up
                 time.sleep(2 ** attempt)
@@ -128,7 +142,7 @@ def ask(model, ctx, T, key, retries=5):
             raise SystemExit(f"HTTP {e.code} from the provider: {detail} (key not shown)")
         except Exception:
             time.sleep(2 ** attempt)
-    return None
+    return None, "unreachable"
 
 
 def scaffold_rung():
@@ -166,16 +180,20 @@ def scaffold_rung():
 
 def settle(model, r, T, seed, key):
     rng = np.random.default_rng(seed)
-    ring = list(rng.choice(ALPHABET, size=N))
-    calls = misses = 0
+    init = list(rng.choice(ALPHABET, size=N))
+    ring = list(init)
+    calls = off = unreachable = 0
+    per_sweep = []                    # WHERE the holes fall, not just how many
     for _ in range(SETTLE):
+        ok_here = 0
         for i in range(N):
             ctx = [ring[(i - j) % N] for j in range(r, 0, -1)]
-            w = ask(model, ctx, T, key); calls += 1
+            w, why = ask(model, ctx, T, key); calls += 1
             if w is None:
-                misses += 1
+                off += why == "off_alphabet"; unreachable += why == "unreachable"
             else:
-                ring[i] = w
+                ring[i] = w; ok_here += 1
+        per_sweep.append(ok_here)
     vals, cnt = np.unique(ring, return_counts=True)
     # STORE THE RING. top1 alone cannot distinguish a diffuse lattice from a PERIODIC one: three
     # colours occupying eight sites each on N=24 reads top1 = 0.3333, and so does a genuinely
@@ -186,9 +204,14 @@ def settle(model, r, T, seed, key):
     # measurement produces was being thrown away, so every new question needed a full re-run.
     rep2 = float(np.mean([ring[i] == ring[(i + 1) % N] for i in range(N)]))
     rep3 = float(np.mean([ring[i] == ring[(i + 3) % N] for i in range(N)]))
+    # unchanged_from_init is the honest completeness measure: a cell whose ring still mostly equals
+    # the random initial condition did not settle, whatever its top1 says.
+    unchanged = float(np.mean([a == b for a, b in zip(ring, init)]))
     return dict(top1=float(cnt.max() / cnt.sum()), distinct=int(len(vals)),
-                rep2=rep2, rep3=rep3, ring=list(ring),
-                calls=calls, misses=misses)
+                rep2=rep2, rep3=rep3, ring=list(ring), init=list(init),
+                calls=calls, misses=off + unreachable, off_alphabet=off,
+                unreachable=unreachable, updates_per_sweep=per_sweep,
+                unchanged_from_init=unchanged)
 
 
 def analyse(res):
@@ -235,6 +258,19 @@ def analyse(res):
     # defect class (a criterion applied to a quantity with no room to vary) arriving in the
     # analysis. At n=2 the answerable questions are whether the ORDERING is consistent, and whether
     # the GAP exceeds the seed noise that would flip it.
+    # COMPLETENESS GATE, applied before anything is compared. A cell that lost more than MISS_MAX
+    # of its updates is dropped rather than averaged in: its ring is part initial condition.
+    def complete(c):
+        return c.get("calls") and c.get("misses", 0) / c["calls"] <= MISS_MAX
+    dropped = [k for k, c in cells.items() if not complete(c)]
+    if dropped:
+        parts.append(
+            f"COMPLETENESS: {len(dropped)} of {len(cells)} cells lost more than "
+            f"{MISS_MAX:.0%} of their updates to provider errors and are EXCLUDED -- a skipped "
+            f"update leaves the site at its random initial value, so those rings are part initial "
+            f"condition and their top1 is not a settled quantity. Excluded: "
+            + ", ".join(sorted(dropped)) + ".")
+    cells = {k: c for k, c in cells.items() if complete(c)}
     cons = sorted({c["construction"] for c in cells.values()})
     a, b = MODELS
     rows, agree, gaps, noises = [], [], [], []
@@ -274,15 +310,27 @@ def analyse(res):
         f"reading at all.")
     miss = sum(c.get("misses", 0) for c in cells.values())
     tot = sum(c.get("calls", 0) for c in cells.values())
+    off = sum(c.get("off_alphabet", 0) for c in cells.values())
+    unr = sum(c.get("unreachable", 0) for c in cells.values())
     parts.append(
         f"BOUNDARY: open-weight models served remotely, not closed ones -- the axis tested is SCALE "
         f"(70B, far beyond this machine), not secrecy. This is a chat-scaffolded WORD lattice, not "
         f"the token lattice of the local work, so absolute shares are not comparable to F130's. "
-        f"N={N}, settle={SETTLE}. {miss} of {tot} calls returned no alphabet word and left the cell "
-        f"unchanged.")
-    res["analysis"] = dict(rung_passes=True, scaffold=sc, seed_agreement=float(np.mean(agree))
-                           if agree else None, mean_rho=mean_rho, n_models=len(MODELS),
-                           misses=miss, calls=tot)
+        f"N={N}, settle={SETTLE}. Of {tot} calls in the cells that survived the completeness gate, "
+        f"{miss} left the site unchanged ({off} answered off-alphabet, {unr} never answered). "
+        f"AND A DEFECT OF THE READOUT ITSELF, recorded because it was designed in rather than "
+        f"discovered: with a {len(ALPHABET)}-word alphabet on N={N}, top1 cannot fall below "
+        f"{1 / len(ALPHABET):.4f}, and a ring that crystallises into a period-p orbit reads exactly "
+        f"1/p whatever the model. See share_periodicity.py -- the stored rings are period-3 and "
+        f"period-4 crystals, so on this construction top1 is a period readout, not an attractor "
+        f"share.")
+    # `mean_rho` was referenced here and never defined -- a NameError on the branch where the rung
+    # PASSES, i.e. reachable only by the success path, which is why nothing caught it: every run so
+    # far returned early on a failed or unavailable rung. Spearman was removed as degenerate at
+    # n=2 (see above) and its summary went with it; the rows carry the answer.
+    res["analysis"] = dict(rung_passes=True, scaffold=sc, rows=rows,
+                           seed_agreement=float(np.mean(agree)) if agree else None,
+                           n_models=len(MODELS), misses=miss, calls=tot)
     res["verdict"] = " ".join(parts)
 
 

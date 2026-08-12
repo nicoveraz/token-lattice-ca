@@ -1,0 +1,4 @@
+=== archiving the scalar-only run 05:13
+=== groq_share re-run WITH the ring stored 05:13
+/tmp/queue9.sh: line 7: 58176 Terminated: 15          caffeinate -dimsu .venv/bin/python -u experiments/groq_share.py >> logs/groq_share.log 2>&1
+   exit 143 17:26

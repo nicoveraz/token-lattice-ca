@@ -3645,6 +3645,83 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F136 — the remote lattice's share is 1/PERIOD, not attractor dominance; the local instrument is clean, in one direction
+The remote run was re-launched storing the whole **ring** rather than only the scalars, because
+`top1 = 0.3333` on N = 24 is ambiguous: it is what a weak attractor reads, and it is exactly what
+three colours holding eight sites each read. The stored rings answered immediately and in the worse
+direction. The miss-free remote cells are **exact periodic crystals** — `b g y b g y …` at r = 2,
+`g r y b g r y b …` at r = 3 — with adjacent-repeat 0.000 and period-repeat 1.000. On such a ring
+`top1` is 1/period *by arithmetic* and carries nothing about attraction.
+
+```
+  remote, miss-free cells through the period detector
+    llama-3.1-8b r2.T0.2   p*=3  rep=1.00   top1=0.3333   1/p*=0.3333
+    llama-3.1-8b r3.T0.2   p*=4  rep=1.00   top1=0.2500   1/p*=0.2500   (both seeds)
+```
+
+**THAT IS A DEFECT IN A READOUT, SO THE QUESTION IS WHETHER THE LOCAL INSTRUMENT HAS IT.** Every
+transferring result rests on the local share, and F130's 120 stored cells could not answer — no
+local results file keeps a ring. So the local arm was re-run with rings stored, on F130's geometry
+at F130's seed, six models chosen to span its `top1` range from 1.000 to 0.040.
+
+```
+  RUNG (a) detector on constructed rings   constant->p*=1  period3->p*=3  period4->p*=4  random->rep 0.333
+  RUNG (b) local re-run vs F130's top1     worst error 0.0000 across 24 cells (tol 0.05)
+
+  PRIMARY   local crystal replicas         2 of 384        mean crystal fraction 0.0052
+            frozen (p* = 1) replicas       mean 0.2292
+  SECONDARY the high-share regime is FROZEN, not periodic
+            pythia-31m  r2.T0.02  top1=0.988  frozen=0.94  rep1=0.983
+            pythia-410m r2.T0.2   top1=0.853  frozen=0.94  rep1=0.952
+```
+
+**PRIMARY, and the registered branch fired on the strict side: local crystals EXIST.** The
+pre-registered prose said "a non-trivial crystal fraction"; the code tested `any crystal at all`.
+The code was stricter and the code is what is read. Two replicas of 384, both in
+`pythia-160m r2.T0.02`, both **period-2** (`rep1 = 0.000`, `distinct = 2`, `top1 = 0.5000` exactly).
+
+**THE CONTAINMENT IS DIRECTIONAL, AND THAT IS THE ACTUAL RESULT.** A period-p crystal reads
+`1/p ≤ 0.5`, so **the mechanism cannot manufacture a high share — only a low one.** In the single
+cell where crystals appear, frozen replicas read 0.982 and the two crystals read 0.500, *depressing*
+the pooled share to 0.905. F130's ranking is carried by high shares, and nothing that raises a share
+is at work here. The re-run reproduces F130's pooled numbers to 0.0000, so no stored figure moves.
+
+**What does change is the sentence.** `top1` is not "attractor dominance"; it is
+*dominance-or-period*, and only a stored ring separates them. At the top of the range the local
+lattice is frozen (one token, `rep1 ≈ top1`) and the reading is safe; at the bottom it is disordered
+and the reading is safe; the unsafe regime is the middle, where a short orbit reads like a moderate
+attractor. That regime is where the *remote* arm sat entirely.
+
+**THE REMOTE ARM DIED THREE INDEPENDENT WAYS, and this is the third.** (i) F135's scaffold rung
+fails at 0.1327 against a gate of 0.0406. (ii) With a 6-word alphabet `top1` cannot fall below
+0.1667, and every remote cell sat in [0.1667, 0.3333] — the bottom sixth of its range, restriction
+of range *designed into the readout* when the alphabet was chosen. (iii) The crystals above. Any
+one of the three is disqualifying; the route died of its **construction**, not of its interface.
+
+**AND A FOURTH DEFECT, of the harness rather than the measurement.** Five of eleven remote cells
+lost 56–75% of their updates to provider errors. A skipped update leaves the site at its random
+initial value, so those rings are part initial condition — yet they reported `top1` in the same
+range as the clean cells. Two of them are **byte-identical at two different temperatures**, which is
+the proof. `groq_share.py` now separates "answered off-alphabet" (a model behaviour) from "never
+answered" (an infrastructure hole), stores the initial ring and the per-sweep update count, and
+excludes any cell losing more than 10% of its updates. It also carried a latent `NameError` on the
+branch where the rung passes — unreachable so far only because every run returned early on a failed
+rung.
+
+**THIS IS THE THIRD INSTANCE OF ONE MECHANISM: the largest object a measurement produces is
+discarded, so its defects are invisible and every new question costs a full re-run.** F116 (no
+results file stored a damage cone), the remote scalars, and now the local share — which had to be
+re-run to answer a question 120 stored cells already contained. Three instances clears the registry's
+entry criterion, so it is a class with a gate owed, not an incident.
+
+**Boundary.** The local arm is 6 models × 4 constructions at one seed, chosen to span F130's `top1`
+range, not F130's whole grid — it bounds the defect to the remote construction *on this subset*. The
+remote arm is 11 cells on two models, read here only as a contrast; its own scaffold rung had
+already failed, so no model claim was available from it in any case. The crystal criterion
+(`rep ≥ 0.9` at `p* > 1`) is a threshold, and a ring at 0.85 would be called disordered.
+
+`experiments/share_periodicity.py` → `results/share_periodicity.json`
+
 ### F135 — a chat scaffold contaminates the attractor share's VALUES but preserves its RANKING
 F134 established that the attractor share survives a top-k interface, which is the restriction a
 commercial API imposes on the *distribution*. A chat API imposes a second one on the *context*: it
