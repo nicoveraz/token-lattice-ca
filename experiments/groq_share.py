@@ -48,7 +48,13 @@ from provenance import stamp, rel
 
 OUT = str(_ROOT / "results" / "groq_share.json")
 API = "https://api.groq.com/openai/v1/chat/completions"
-MODELS = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "gemma2-9b-it"]
+# TWO models, and the analysis below is built for two rather than pretending otherwise.
+# gemma2-9b-it is decommissioned. qwen3.6-27b and both gpt-oss models are REASONING models: they
+# emit chain-of-thought before answering, which is not a single forward-pass conditional and would
+# be a different object on the lattice, not merely a costlier one. allam-2-7b works but is
+# Arabic-focused, so on an English colour alphabet it adds a corpus confound to what is meant to be
+# a scale comparison -- excluded deliberately (author's call) rather than accepted for the extra n.
+MODELS = ["llama-3.1-8b-instant", "llama-3.3-70b-versatile"]
 CONSTRUCTIONS = [(2, 0.2), (2, 0.7), (3, 0.2)]
 N, SETTLE = 24, 12            # small: the free tier is rate-limited and this is a pilot
 SEEDS = [1, 2]
@@ -59,10 +65,29 @@ LOCAL_CAL = "gpt2"
 
 
 def _key():
+    """GROQ_API_KEY from the environment, or from a gitignored .env at the repo root.
+
+    The .env path exists because this repository's tooling runs each command in a fresh shell, so
+    an `export` in one invocation is not visible to the next. Parsed by hand rather than with
+    python-dotenv: one fewer dependency, and the parsing is four lines.
+
+    The key is never written to a results file, a log line, or an error message. If it is missing
+    this raises without echoing anything it did find.
+    """
     k = os.environ.get("GROQ_API_KEY")
     if not k:
-        raise SystemExit("GROQ_API_KEY not set. export it; it is never written to disk by this "
-                         "script.")
+        env = _ROOT / ".env"
+        if env.exists():
+            for line in env.read_text().splitlines():
+                line = line.strip()
+                if line.startswith("GROQ_API_KEY") and "=" in line:
+                    k = line.split("=", 1)[1].strip().strip("\'\"")
+                    break
+    if not k:
+        raise SystemExit(
+            "GROQ_API_KEY not found. Put it in a .env at the repo root as\n"
+            "  GROQ_API_KEY=gsk_...\n"
+            ".env is gitignored. Do not commit it and do not paste the key into a chat log.")
     return k
 
 
@@ -76,8 +101,12 @@ def ask(model, ctx, T, key, retries=5):
                                  f"only.\n{' '.join(w.strip() for w in ctx)}"}],
         "max_tokens": 4, "temperature": float(T),
     }).encode()
+    # USER-AGENT IS NOT OPTIONAL. urllib defaults to "Python-urllib/3.11", which the provider's
+    # Cloudflare front rejects with HTTP 403 and body "error code: 1010" -- a browser-signature ban,
+    # not an auth failure. The first smoke call hit exactly this and looked like a bad key.
     req = urllib.request.Request(API, data=body, headers={
-        "Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+        "Authorization": f"Bearer {key}", "Content-Type": "application/json",
+        "User-Agent": "token-lattice-ca/1.0 (research; +https://github.com/nicoveraz/token-lattice-ca)"})
     for attempt in range(retries):
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
@@ -90,7 +119,13 @@ def ask(model, ctx, T, key, retries=5):
             if e.code == 429:                       # rate limited: back off, do not give up
                 time.sleep(2 ** attempt)
                 continue
-            raise SystemExit(f"HTTP {e.code} from the provider (key not shown)")
+            # The body carries the reason and the status alone does not. Discarding it cost a
+            # diagnostic round-trip on the first failure; 403 could be auth, quota, or a bot block.
+            try:
+                detail = e.read().decode()[:200]
+            except Exception:
+                detail = "(no body)"
+            raise SystemExit(f"HTTP {e.code} from the provider: {detail} (key not shown)")
         except Exception:
             time.sleep(2 ** attempt)
     return None
@@ -148,13 +183,36 @@ def settle(model, r, T, seed, key):
 
 def analyse(res):
     parts, cells = [], res["cells"]
+    # THE THRESHOLD COMES FROM scaffold_effect.py, NOT FROM HERE. This script's own rung was coarse
+    # (N=24, one model, one seed) and gated against a 0.15 limit chosen by argument -- it read the
+    # shift as 0.167 where the proper measurement at N=64 gives 0.051 on the same model. Collection
+    # is allowed to proceed without it, because the gate constrains the READING, not the data.
     sc = res.get("scaffold_rung", {})
-    ok = sc and sc.get("shift", 1.0) <= SCAFFOLD_MAX
+    prop = _ROOT / "results" / "scaffold_effect.json"
+    if prop.exists():
+        d = json.load(open(prop)).get("analysis")
+        if d:
+            sc = dict(source="scaffold_effect.py", shift=max(d["shifts"].values()),
+                      gate=d["gate"], passed=d["passed"], raw_spread=d["raw_spread"])
+            ok = bool(d["passed"])
+        else:
+            sc, ok = dict(source="scaffold_effect.py", status="incomplete"), None
+    else:
+        sc, ok = dict(source="none"), None
+    if ok is None:
+        parts.append(
+            "RUNG NOT AVAILABLE: scaffold_effect.py has not produced an analysis yet, so the "
+            "scaffold's effect on the share is unmeasured at usable resolution. The remote cells "
+            "below are COLLECTED but NOT READ -- this script's own coarse rung (N=24, one model, "
+            "one seed) put the shift at 0.167 where the proper measurement gives 0.051 on the same "
+            "model, so gating on it would be gating on a bad number.")
+        res["analysis"] = dict(rung_passes=None, scaffold=sc, n_cells=len(cells))
+        res["verdict"] = " ".join(parts); return
     parts.append(
-        f"RUNG (the chat scaffold, measured locally BEFORE any remote call): on {LOCAL_CAL} the "
-        f"same lattice reads top1 = {sc.get('raw', float('nan')):.4f} raw and "
-        f"{sc.get('scaffolded', float('nan')):.4f} wrapped in the provider-style template, a shift "
-        f"of {sc.get('shift', float('nan')):.4f} against a limit of {SCAFFOLD_MAX}. "
+        f"RUNG (the chat scaffold, from scaffold_effect.py at N=64 over 3 models x 2 temperatures "
+        f"x 4 seeds): worst scaffold shift {sc.get('shift', float('nan')):.4f} against a gate of "
+        f"{sc.get('gate', float('nan')):.4f}, which is half the across-model spread rather than a "
+        f"number chosen by argument. Scaffolds passing: {sc.get('passed')}. "
         + ("The template does not dominate the readout, so the remote numbers are about the models."
            if ok else
            "The template moves the share more than the limit allows, so a remote measurement would "
@@ -162,37 +220,48 @@ def analyse(res):
     if not ok:
         res["analysis"] = dict(rung_passes=False, scaffold=sc)
         res["verdict"] = " ".join(parts); return
+    # SPEARMAN IS DEGENERATE AT n=2 AND IS NOT USED. With two models a "ranking" is just which is
+    # higher, so rho can only be +1 or -1 and a 0.6 threshold could not fail -- this project's own
+    # defect class (a criterion applied to a quantity with no room to vary) arriving in the
+    # analysis. At n=2 the answerable questions are whether the ORDERING is consistent, and whether
+    # the GAP exceeds the seed noise that would flip it.
     cons = sorted({c["construction"] for c in cells.values()})
-    def rank(con, seed):
-        v = []
-        for m in MODELS:
-            c = cells.get(f"{m}|{con}|s{seed}")
-            if c is None:
-                return None
-            v.append(c["top1"])
-        return v
-    agree = [spearman(rank(c, SEEDS[0]), rank(c, SEEDS[1]))
-             for c in cons if rank(c, SEEDS[0]) and rank(c, SEEDS[1])]
-    agree = [a for a in agree if np.isfinite(a)]
-    seed_ok = bool(agree) and float(np.mean(agree)) >= CONCORDANT
+    a, b = MODELS
+    rows, agree, gaps, noises = [], [], [], []
+    for con in cons:
+        va = [cells[f"{a}|{con}|s{sd}"]["top1"] for sd in SEEDS if f"{a}|{con}|s{sd}" in cells]
+        vb = [cells[f"{b}|{con}|s{sd}"]["top1"] for sd in SEEDS if f"{b}|{con}|s{sd}" in cells]
+        if len(va) < len(SEEDS) or len(vb) < len(SEEDS):
+            continue
+        ma, mb = float(np.mean(va)), float(np.mean(vb))
+        noise = float(np.mean([np.ptp(va), np.ptp(vb)]))
+        rows.append(dict(construction=con, a=round(ma, 4), b=round(mb, 4),
+                         gap=round(mb - ma, 4), seed_range=round(noise, 4)))
+        agree.append(mb > ma); gaps.append(abs(mb - ma)); noises.append(noise)
+    if not rows:
+        parts.append("PRIMARY: no construction has both models at every seed.")
+        res["analysis"] = dict(rung_passes=True, scaffold=sc, rows=rows)
+        res["verdict"] = " ".join(parts); return
+    same = sum(agree); n = len(agree)
+    sep = [g > nz for g, nz in zip(gaps, noises)]
     parts.append(
-        f"SECONDARY (seed stability at fixed construction, the gate F128 failed and F130 passed): "
-        f"{np.mean(agree):+.3f} over {len(agree)} constructions."
-        if agree else "SECONDARY: no comparable seed pairs.")
-    import itertools
-    live = [c for c in cons if rank(c, SEEDS[0])]
-    ps = [spearman(rank(x, SEEDS[0]), rank(y, SEEDS[0])) for x, y in itertools.combinations(live, 2)]
-    ps = [p for p in ps if np.isfinite(p)]
-    mean_rho = float(np.mean(ps)) if ps else float("nan")
+        f"PRIMARY (n=2, so ordering and separation rather than a rank correlation): "
+        + "; ".join(f"{r['construction']} {a.split('-')[2]}={r['a']:.3f} vs "
+                    f"{b.split('-')[2]}={r['b']:.3f} (gap {r['gap']:+.3f}, seed range "
+                    f"{r['seed_range']:.3f})" for r in rows)
+        + f". The 70B reads higher in {same} of {n} constructions, and the gap exceeds the seed "
+          f"range in {sum(sep)} of {n}. "
+        + ("Consistent ordering with separation above seed noise: the share distinguishes these two "
+           "models remotely."
+           if same in (0, n) and sum(sep) > n / 2 else
+           "Not a usable distinction -- the ordering is inconsistent across constructions, or the "
+           "gap sits inside the seed range that would flip it. At n=2 this is the whole claim "
+           "available, and it is not met."))
     parts.append(
-        f"PRIMARY: mean pairwise agreement between the model-rankings different constructions "
-        f"produce is {mean_rho:+.3f} over {len(live)} constructions, {len(MODELS)} models. "
-        + ("Only three models, so a single swap moves this a long way; read it as a direction, not "
-           "a measurement." if len(MODELS) < 5 else "")
-        + (f"At or above {CONCORDANT}: the share ranks these models consistently across "
-           f"constructions, as it did locally (F130)."
-           if np.isfinite(mean_rho) and mean_rho >= CONCORDANT and seed_ok else
-           "Below the registered threshold, or the seed gate failed, so no ranking claim is made."))
+        f"NO RANKING CLAIM IS MADE. Two models cannot establish that the share ranks models at "
+        f"scale; that needed the four-plus set the provider's usable line-up did not supply. What "
+        f"this can show is whether a remote, chat-scaffolded lattice produces a stable, separable "
+        f"reading at all.")
     miss = sum(c.get("misses", 0) for c in cells.values())
     tot = sum(c.get("calls", 0) for c in cells.values())
     parts.append(
@@ -217,17 +286,6 @@ def main():
              "remote call; if it exceeds scaffold_max the run stops",
         primary="do the remote models rank consistently across constructions, as F130's ten did",
         note="the provider samples; no logprobs are requested and none are needed")
-    if "scaffold_rung" not in res:
-        print("  measuring the scaffold effect locally first (no remote calls yet)...", flush=True)
-        res["scaffold_rung"] = scaffold_rung()
-        print(f"    raw={res['scaffold_rung']['raw']:.4f} "
-              f"scaffolded={res['scaffold_rung']['scaffolded']:.4f} "
-              f"shift={res['scaffold_rung']['shift']:.4f} (limit {SCAFFOLD_MAX})", flush=True)
-        json.dump(res, open(OUT, "w"), indent=1)
-    if res["scaffold_rung"]["shift"] > SCAFFOLD_MAX:
-        analyse(res); json.dump(res, open(OUT, "w"), indent=1)
-        print(f"\n  -> {res['verdict']}")
-        return
     key = _key()
     for m in MODELS:
         for r, T in CONSTRUCTIONS:
