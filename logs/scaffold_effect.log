@@ -67,3 +67,18 @@
   EleutherAI/pythia-410m|minimal|T0.7|s14        top1=0.3477 (85s)
 /Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
   warnings.warn('resource_tracker: There appear to be %d '
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 6058.88it/s]
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7363.11it/s]
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7479.72it/s]
+  EleutherAI/pythia-410m|full|T0.2|s11           top1=0.9121 (611s)
+  EleutherAI/pythia-410m|full|T0.2|s12           top1=0.9141 (581s)
+  EleutherAI/pythia-410m|full|T0.2|s13           top1=0.9082 (593s)
+  EleutherAI/pythia-410m|full|T0.2|s14           top1=0.8984 (619s)
+  EleutherAI/pythia-410m|full|T0.7|s11           top1=0.5254 (597s)
+  EleutherAI/pythia-410m|full|T0.7|s12           top1=0.5566 (587s)
+  EleutherAI/pythia-410m|full|T0.7|s13           top1=0.4844 (576s)
+  EleutherAI/pythia-410m|full|T0.7|s14           top1=0.5137 (575s)
+
+  -> REFERENCE: on the raw arm the across-model spread in top1 is 0.0813 (gpt2=0.419, gpt2-large=0.396, pythia-410m=0.478). That is the signal any scaffold effect would compete with, and the gate is set against it rather than against a number chosen by argument. PRIMARY, mean |shift| in top1 against a gate of 0.5 x spread = 0.0406: minimal 0.0610 +/- 0.0355 (n=24); full 0.1327 +/- 0.1330 (n=24). NO scaffold passes. Every template tested moves the share by more than half the across-model spread, so an API measurement using one would be reading the prompt as much as the model. SECONDARY, does the scaffold preserve the model RANKING: minimal rho=+0.866; full rho=+1.000. A large but UNIFORM shift leaves rankings usable, which is what an API measurement actually needs; a shift that reorders models does not. BOUNDARY: 3 models spanning 124M-774M, one alphabet, N=64, r=2. An instruction-tuned 70B may be far less scaffold-sensitive than these -- following the instruction is what it is trained for -- so a failure here bounds the naive design rather than the remote route.
+
+wrote results/scaffold_effect.json

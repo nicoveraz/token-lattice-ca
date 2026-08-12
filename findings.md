@@ -3645,6 +3645,66 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F135 — a chat scaffold contaminates the attractor share's VALUES but preserves its RANKING
+F134 established that the attractor share survives a top-k interface, which is the restriction a
+commercial API imposes on the *distribution*. A chat API imposes a second one on the *context*: it
+cannot condition on r tokens alone, because every request is wrapped in a system role, an
+instruction and formatting tokens. That is a different construction, and F126/F128 are the findings
+which say a different construction can move a readout further than the model does. So it had to be
+measured before any remote number was read.
+
+**THE THRESHOLD IS RELATIVE, AND THAT IS THE POINT.** A first version of this check gated against an
+absolute 0.15 — a number chosen by argument, which is the error this project keeps recording. A
+scaffold matters only in proportion to the signal it would corrupt, so the gate is half the
+**across-model spread** measured on the raw arm: the same shape as `gatecheck`'s noise gate, signal
+against the thing that would masquerade as it.
+
+```
+  reference   across-model spread, raw arm = 0.0813
+              gpt2 0.419   gpt2-large 0.396   pythia-410m 0.478
+  gate        0.5 x spread = 0.0406
+
+  PRIMARY   (values)    minimal  0.0610 +/- 0.0355   FAILS (1.5x)
+                        full     0.1327 +/- 0.1330   FAILS (3.3x)
+  SECONDARY (ranking)   minimal  rho = +0.866
+                        full     rho = +1.000
+```
+
+**PRIMARY: no scaffold passes.** An absolute attractor share measured through a chat API is not
+comparable to a locally measured one — the template moves it by more than half the spread that
+distinguishes models.
+
+**SECONDARY, and this is what keeps the remote route open: the model ORDERING survives, perfectly
+for the full scaffold.** A large but *uniform* shift leaves rankings usable; a small *differential*
+one does not. Since F134 had already established that cross-interface values are incomparable and
+only rankings ever transfer, failing the value gate confirms a known constraint rather than closing
+the route.
+
+**THE COARSE FIRST VERSION OVERSTATED THE EFFECT THREEFOLD.** At N=24 with a 6-word alphabet `top1`
+moves in steps of 1/24, so its headline "raw 0.5000 vs scaffolded 0.3333" was four cells of
+resolution on one model, one seed, one temperature. At N=64 the same comparison on gpt2 gives 0.3613
+against 0.3105 — a shift of 0.051, not 0.167. The coarse rung correctly *stopped* the remote run;
+the number it stopped on was wrong. Stopping on a bad measurement and then fixing the measurement is
+the right order, and proceeding past it would have been the error.
+
+**THE EFFECT IS TEMPERATURE-DEPENDENT AND LARGEST WHERE THE ATTRACTOR LIVES.** On `pythia-410m` the
+full scaffold reads 0.9121 and 0.8984 at T = 0.2 against ~0.38 raw — the instruction drives the ring
+to ~90% one token — while at T = 0.7 it reads 0.5254 against ~0.36. Low temperature is exactly where
+F117's readouts are taken, so the contamination is worst in the regime the share is most used.
+
+**THREE CAUTIONS AGAINST OVER-READING THE SECONDARY.** `rho = +1.000` on **three models** is one
+ordering out of six and is the same n = 3 weakness that made F128 unreadable. `rho = +0.866` is
+**not a value three distinct points can produce** — 3-point Spearman gives ±1 or ±0.5 — so it implies
+a near-tie generating averaged ranks, meaning two models are nearly indistinguishable on that arm.
+And `full` preserving the ranking *better* than `minimal`, despite shifting values 2.6x more, is the
+design's own premise (uniform beats differential) but is not a direction worth leaning on at n = 3.
+
+**BOUNDARY.** Three models spanning 124M–774M, one alphabet, N = 64, r = 2, 72 cells. An
+instruction-tuned 70B may be far less scaffold-sensitive than these — following the instruction is
+what it is trained for — so this bounds the naive design rather than the remote route itself.
+
+`experiments/scaffold_effect.py` → `results/scaffold_effect.json`
+
 ### F134 — the attractor share survives a TOP-K interface: the closed-model route is viable, with a caveat on absolute values
 F130 established the attractor share as the instrument's model-attributable readout, and it needs
 only a settle — no CRN twins, no full distribution — which makes it the one quantity computable
