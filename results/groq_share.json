@@ -1,11 +1,107 @@
 {
- "cells": {},
+ "cells": {
+  "llama-3.1-8b-instant|r2.T0.2|s1": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 1,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 975.4
+  },
+  "llama-3.1-8b-instant|r2.T0.2|s2": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 2091.4
+  },
+  "llama-3.1-8b-instant|r2.T0.7|s1": {
+   "top1": 0.2916666666666667,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.7",
+   "r": 2,
+   "T": 0.7,
+   "seed": 1,
+   "secs": 1800.8
+  },
+  "llama-3.1-8b-instant|r2.T0.7|s2": {
+   "top1": 0.375,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r2.T0.7",
+   "r": 2,
+   "T": 0.7,
+   "seed": 2,
+   "secs": 979.4
+  },
+  "llama-3.1-8b-instant|r3.T0.2|s1": {
+   "top1": 0.25,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r3.T0.2",
+   "r": 3,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 1056.7
+  },
+  "llama-3.1-8b-instant|r3.T0.2|s2": {
+   "top1": 0.20833333333333334,
+   "distinct": 6,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.1-8b-instant",
+   "construction": "r3.T0.2",
+   "r": 3,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 1057.8
+  },
+  "llama-3.3-70b-versatile|r2.T0.2|s1": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 1,
+   "secs": 957.4
+  },
+  "llama-3.3-70b-versatile|r2.T0.2|s2": {
+   "top1": 0.3333333333333333,
+   "distinct": 3,
+   "calls": 288,
+   "misses": 0,
+   "model": "llama-3.3-70b-versatile",
+   "construction": "r2.T0.2",
+   "r": 2,
+   "T": 0.2,
+   "seed": 2,
+   "secs": 1065.8
+  }
+ },
  "_preregistration": {
   "provider": "groq (free tier)",
   "models": [
-   "llama-3.3-70b-versatile",
    "llama-3.1-8b-instant",
-   "gemma2-9b-it"
+   "llama-3.3-70b-versatile"
   ],
   "alphabet": [
    " red",
@@ -32,19 +128,5 @@
   "rung": "the chat template's effect on the share is measured on a LOCAL model before any remote call; if it exceeds scaffold_max the run stops",
   "primary": "do the remote models rank consistently across constructions, as F130's ten did",
   "note": "the provider samples; no logprobs are requested and none are needed"
- },
- "scaffold_rung": {
-  "raw": 0.5,
-  "scaffolded": 0.3333333333333333,
-  "shift": 0.16666666666666669
- },
- "analysis": {
-  "rung_passes": false,
-  "scaffold": {
-   "raw": 0.5,
-   "scaffolded": 0.3333333333333333,
-   "shift": 0.16666666666666669
-  }
- },
- "verdict": "RUNG (the chat scaffold, measured locally BEFORE any remote call): on gpt2 the same lattice reads top1 = 0.5000 raw and 0.3333 wrapped in the provider-style template, a shift of 0.1667 against a limit of 0.15. The template moves the share more than the limit allows, so a remote measurement would be reading the scaffold rather than the model. Nothing below is read."
+ }
 }
