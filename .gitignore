@@ -58,3 +58,6 @@ quantum_reading.md
 .env
 *.key
 secrets.json
+
+# Next-paper planning -- deliberately local, must never reach the public repo
+future_work.md
