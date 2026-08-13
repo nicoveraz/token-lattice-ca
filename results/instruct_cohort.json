@@ -1,0 +1,223 @@
+{
+ "_preregistration": {
+  "param_min": 1.0,
+  "param_max": 4.0,
+  "target_n": 10,
+  "min_span": 30.0,
+  "near_floor": 2.0,
+  "max_at_floor": 2,
+  "benchmarks": [
+   "IFEval",
+   "BBH",
+   "MATH Lvl 5",
+   "GPQA",
+   "MUSR",
+   "MMLU-PRO"
+  ],
+  "first_party": [
+   "meta-llama",
+   "Qwen",
+   "google",
+   "microsoft",
+   "tiiuae",
+   "HuggingFaceTB",
+   "ibm-granite",
+   "allenai",
+   "stabilityai",
+   "LGAI-EXAONE",
+   "EleutherAI",
+   "mistralai",
+   "deepseek-ai",
+   "internlm",
+   "openbmb",
+   "CohereForAI",
+   "01-ai",
+   "Zyphra",
+   "state-spaces",
+   "bigscience"
+  ],
+  "name_exclude": [
+   "distill",
+   "-r1",
+   "reasoning",
+   "thinking",
+   "-jpn",
+   "-ko-",
+   "-ja-",
+   "chinese"
+  ],
+  "source": "https://huggingface.co/datasets/open-llm-leaderboard/contents/resolve/main/data/train-00000-of-00001.parquet",
+  "frame": "1-4B, chat/instruct type, all six benchmarks present, first-party org",
+  "one_per_family": "family is the independent unit; the instruct end of the leaderboard is dominated by fine-tunes of one base model, and ten of those would be n=1 dressed as n=10",
+  "range_gate": "IFEval span >= MIN_SPAN and no correctness benchmark with more than MAX_AT_FLOOR models at floor -- F139's lesson, applied before the cohort is fixed rather than after",
+  "why": "F138 showed the ten BASE models have no measurable variance in verifiable instruction-following; the cohort is the experiment now, not the instrument"
+ },
+ "cohort": [
+  {
+   "model": "LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct",
+   "org": "LGAI-EXAONE",
+   "params_b": 2.405,
+   "scores": {
+    "IFEval": 79.50449252428001,
+    "BBH": 15.94743717105687,
+    "MATH Lvl 5": 36.78247734138973,
+    "GPQA": 2.1252796420581683,
+    "MUSR": 3.165625,
+    "MMLU-PRO": 25.33798758865248
+   }
+  },
+  {
+   "model": "meta-llama/Llama-3.2-3B-Instruct",
+   "org": "meta-llama",
+   "params_b": 3.213,
+   "scores": {
+    "IFEval": 73.93161256576994,
+    "BBH": 24.059186446885473,
+    "MATH Lvl 5": 17.673716012084594,
+    "GPQA": 3.8031319910514525,
+    "MUSR": 1.3734374999999996,
+    "MMLU-PRO": 24.386820330969268
+   }
+  },
+  {
+   "model": "microsoft/Phi-4-mini-instruct",
+   "org": "microsoft",
+   "params_b": 3.836,
+   "scores": {
+    "IFEval": 73.77923908562614,
+    "BBH": 38.73553611173529,
+    "MATH Lvl 5": 16.993957703927492,
+    "GPQA": 7.941834451901568,
+    "MUSR": 6.446093750000002,
+    "MMLU-PRO": 32.5779403073286
+   }
+  },
+  {
+   "model": "tiiuae/Falcon3-3B-Instruct",
+   "org": "tiiuae",
+   "params_b": 3.228,
+   "scores": {
+    "IFEval": 69.76755010040026,
+    "BBH": 26.287229468432695,
+    "MATH Lvl 5": 25.0,
+    "GPQA": 5.145413870246088,
+    "MUSR": 11.13255208333333,
+    "MMLU-PRO": 22.281323877068555
+   }
+  },
+  {
+   "model": "Qwen/Qwen2.5-3B-Instruct",
+   "org": "Qwen",
+   "params_b": 3.0,
+   "scores": {
+    "IFEval": 64.74919879253714,
+    "BBH": 25.801393944088584,
+    "MATH Lvl 5": 36.78247734138973,
+    "GPQA": 3.0201342281879207,
+    "MUSR": 7.565625,
+    "MMLU-PRO": 25.05171394799054
+   }
+  },
+  {
+   "model": "ibm-granite/granite-3.1-2b-instruct",
+   "org": "ibm-granite",
+   "params_b": 2.534,
+   "scores": {
+    "IFEval": 62.8557782240012,
+    "BBH": 21.822956140794506,
+    "MATH Lvl 5": 15.256797583081571,
+    "GPQA": 5.257270693512303,
+    "MUSR": 4.867708333333335,
+    "MMLU-PRO": 20.212765957446805
+   }
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+   "org": "HuggingFaceTB",
+   "params_b": 1.711,
+   "scores": {
+    "IFEval": 53.678351219209475,
+    "BBH": 10.917989226208066,
+    "MATH Lvl 5": 5.81570996978852,
+    "GPQA": 3.9149888143176734,
+    "MUSR": 4.098958333333335,
+    "MMLU-PRO": 11.707668439716311
+   }
+  },
+  {
+   "model": "internlm/internlm2_5-1_8b-chat",
+   "org": "internlm",
+   "params_b": 1.89,
+   "scores": {
+    "IFEval": 38.490870889240554,
+    "BBH": 21.03092693656956,
+    "MATH Lvl 5": 15.861027190332328,
+    "GPQA": 5.369127516778524,
+    "MUSR": 4.424479166666669,
+    "MMLU-PRO": 3.322621158392436
+   }
+  },
+  {
+   "model": "stabilityai/stablelm-zephyr-3b",
+   "org": "stabilityai",
+   "params_b": 2.795,
+   "scores": {
+    "IFEval": 36.832271705740766,
+    "BBH": 14.7591192080273,
+    "MATH Lvl 5": 4.305135951661631,
+    "GPQA": 0.0,
+    "MUSR": 9.787760416666666,
+    "MMLU-PRO": 8.530954491725769
+   }
+  },
+  {
+   "model": "google/gemma-1.1-2b-it",
+   "org": "google",
+   "params_b": 2.506,
+   "scores": {
+    "IFEval": 30.674831668860847,
+    "BBH": 5.862826722774347,
+    "MATH Lvl 5": 1.812688821752266,
+    "GPQA": 2.572706935123044,
+    "MUSR": 2.024479166666666,
+    "MMLU-PRO": 5.372709810874704
+   }
+  }
+ ],
+ "n": 10,
+ "ifeval_span": 48.83,
+ "at_floor": {
+  "IFEval": 0,
+  "BBH": 0,
+  "MATH Lvl 5": 1,
+  "GPQA": 1,
+  "MUSR": 1,
+  "MMLU-PRO": 0
+ },
+ "floor_failures": [],
+ "passes": true,
+ "verdict": "COHORT: 10 instruction-tuned models, one per pretraining family, 1.0-4.0B. IFEval spans 48.8 points (gate 30.0); the ten BASE models of F117/F138 span 13.4 and could not be resolved. Correctness benchmarks at floor (<= 2.0): BBH=0/10, MATH Lvl 5=1/10, GPQA=1/10, MUSR=1/10, MMLU-PRO=0/10. PASSES: this cohort has the range the base cohort lacked, and no correctness benchmark is floored past the limit, so F139's comparator problem is not rebuilt into it.",
+ "_analysis_provenance": {
+  "script": "instruct_cohort.py",
+  "sha256": "8dd27a509b86a38ae96ae245ce00a828e7cb52f4034efd3f8e2d0f3d16377ada",
+  "imports": {
+   "experiments/instruct_cohort.py": "8dd27a509b86a38ae96ae245ce00a828e7cb52f4034efd3f8e2d0f3d16377ada",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
