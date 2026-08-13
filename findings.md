@@ -3645,6 +3645,101 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F139 — F117's HEADLINE selectivity binds on a floored benchmark; the pattern survives, the magnitude does not
+Found while interpreting F138, and it is about the *other* side of F117's statistic. Selectivity is
+`max|ρ(readout, compliance)| − max|ρ(readout, correctness)|`, so the number depends on which
+capability benchmark happens to carry the largest correlation — and on **which range that benchmark
+has on these ten models**.
+
+```
+  benchmark      min    max   span     sd   models at <= 1.0
+  IFEval       12.71  26.14  13.43   4.69      0/10
+  MMLU-PRO      1.48  16.53  15.05   5.02      0/10
+  BBH           3.42  14.23  10.81   3.65      0/10
+  MUSR          1.43  11.43  10.00   3.30      0/10
+  GPQA          0.00   7.38   7.38   2.40      4/10     <- floored
+  MATH Lvl 5    0.83   3.32   2.49   0.92      1/10     <- compressed
+
+  readout        binding correctness benchmark      selectivity        p
+  top1@0.02      MUSR (0.60)                            0.1091     0.1206
+  top1@0.2       MUSR (0.52)                            0.3393     0.0270
+  top1@0.436     MUSR (0.24)                            0.4484     0.0108
+  top1@0.7       GPQA (0.21)                            0.5269     0.0040   <- the quoted number
+  params         MATH Lvl 5 (0.51)                      0.1015     0.1285
+```
+
+**THE HEADLINE READOUT IS THE VULNERABLE ONE.** `top1@0.7` gives F117 its largest selectivity and
+its smallest p, and it is the only readout whose correctness side is set by **GPQA — four of ten
+models at zero**. A correlation computed against a floored predictor is attenuated, so
+`correctness_max` is *understated* there and the selectivity is correspondingly *overstated*. That
+is this project's own defect class (R1, restriction of range) arriving on the comparator rather than
+on the target, which is why no gate on the readout would have caught it.
+
+**THE PATTERN IS NOT AFFECTED, AND THAT DISTINCTION IS THE FINDING.** The other three readouts bind
+on **MUSR**, whose span (10.00) is comparable to IFEval's (13.43) — no floor problem. So "the
+attractor share loads on compliance and not on capability" rests on benchmarks with healthy range;
+only the *size* of the largest gap does not. F117 should be quoted on its structure — a whole
+row-block loading on one column — which is what its own text says the evidence is, and not on
+`+0.527`.
+
+**THE CONTROL IS UNAFFECTED IN THE SAFE DIRECTION.** `params` binds on MATH Lvl 5, the most
+compressed benchmark of the six. Attenuation there *inflates* the control's selectivity, and it
+still came out non-selective (0.1015, p = 0.1285) — so the negative control passes despite a bias
+that works against it, which is the direction one wants.
+
+**Boundary.** Ten models, Open LLM Leaderboard v2 point estimates with no published error bars. This
+records a restriction-of-range problem in the comparator; it does not measure how large the
+attenuation is, which would need per-item benchmark data this project does not have. No number in
+F117 is retracted — one of them is downgraded from a magnitude to a direction.
+
+`experiments/compliance_selectivity.py`, `results/band_benchmark_range.json`
+
+### F138 — the compliance instrument is FIXED and the models still do not separate: the limit is the models, not the measure
+F137 returned NOT_DECIDABLE because the measure could not resolve ten models (reliability −12.4),
+and specified the fix: resolution comes from constraint **types**, not items, so 40 types × 6
+prompts should reach an effective n near 49 against F137's 12.6. That prediction was correct and
+the measure still does not resolve them.
+
+```
+  design       40 types x 6 prompts = 240 items      (F137: 10 x 12 = 120)
+  ICC          0.618                                 (F137: 0.774)
+  effective n  51.8 of 340                           (F137: 12.6 of 100)   <- as predicted
+  pinned       6 of 40 types                         (F137: 2 of 10)
+  calibration  +0.631 predicted vs observed difficulty
+
+  GATE 0   span 0.1422 against the 0.1807 pure noise would give (3.08 SD at k=10)
+           reliability -0.032 against a floor of 0.5              (F137: -12.42)
+  verdict  NOT_DECIDABLE
+```
+
+**THE INSTRUMENT WORKED; THE PREDICTION HELD; THE ANSWER DID NOT CHANGE.** Effective n rose 4×,
+exactly as the ICC arithmetic said it would, and the difficulty predictions written before the run
+track the observed pass rates at +0.631 — the pool behaves as designed. Reliability improved from
+−12.4 to −0.032, which is the difference between *far worse than noise* and *indistinguishable from
+noise*. It is still not resolution.
+
+**SO THE LIMIT RELOCATES, AND THAT IS THE RESULT.** F137's failure was consistent with a coarse
+instrument. This one is not: with a well-calibrated 34-live-type pool the observed across-model
+variance (0.00334) still sits below the noise it is made of (0.00345), so the **true** between-model
+variance in verifiable-instruction-following is consistent with **zero**. These ten base models are
+not measurably different on this construct. More items will not fix that — noise falls as 1/types
+but a true variance of zero stays zero. What is needed is models that actually differ:
+instruction-tuned ones, or a wider capability span.
+
+**THE CONVERGENCE NUMBER IS NOT READ, AND SAYING SO IS THE POINT.** It would have been ρ = −0.219.
+Reported here only as a stored diagnostic, because Gate 0 failed: a measure that does not resolve
+its units cannot correlate with anything, and quoting a negative convergence as "the two measures
+disagree, so compliance is not one construct" would be exactly the misreading F137's corrected gate
+exists to prevent. I flagged that pattern as *emerging* while the run was in progress, on seven
+models; it did not survive its own gate, and the earlier remark should be read as premature.
+
+**Boundary.** Ten base models of 1.7–3.2B, 34 live constraint types, greedy decoding, one prompt
+format, 240 items. Ten models, not ten families. This bounds one operational reading of compliance
+on one model set; it says nothing about instruction-tuned models, where the construct may separate
+cleanly.
+
+`experiments/compliance_v2.py`, `experiments/verifiable_constraints.py` → `results/compliance_v2.json`
+
 ### F137 — paper 2's compliance blocker is NOT cleared: the second indicator does not resolve the models, and the gate that should have said so was itself vacuous
 F117's headline — the attractor share is compliance-selective, +0.53 at p = 0.004 — rests on
 **COMPLIANCE being a single column, IFEval**. With one indicator there is no way to separate "the
