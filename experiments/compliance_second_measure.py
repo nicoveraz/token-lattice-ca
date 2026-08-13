@@ -60,7 +60,7 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
 from ranking import rank as _rk
 from provenance import stamp, rel
-from gatecheck import dynamic_range, independence_report
+from gatecheck import resolves_units, independence_report
 
 OUT = str(_ROOT / "results" / "compliance_second_measure.json")
 BENCH = str(_ROOT / "results" / "band_benchmark_range.json")
@@ -246,10 +246,12 @@ def analyse(res):
                 icc_units.append(t)
         var_noise = float(np.mean(np.square(per_model_se)))
         var_obs = float(obs.var(ddof=1))
-        reliability = 1.0 - var_noise / var_obs if var_obs > 0 else float("-inf")
-        noise_span = E_SPAN_K * float(np.sqrt(var_noise))
-        rng_rep = dynamic_range(list(vals.values()), floor=noise_span / RANGE_K, k=RANGE_K,
-                                name=f"the new measure ({mode})")
+        # gatecheck.resolves_units now IS this check -- the incident below is the reason it exists,
+        # so the script uses the package rather than keeping a private copy of the fix.
+        rng_rep = resolves_units(list(vals.values()), noise_sd=per_model_se,
+                                 name=f"the new measure ({mode})")
+        noise_span = float(rng_rep.stats["expected_noise_span"])
+        reliability = float(rng_rep.stats["reliability"])
         unit = independence_report(icc_rows, icc_units, unit_name="constraint type")
         analysis.setdefault("_gate0_detail", {})[mode] = dict(
             var_obs=round(var_obs, 8), var_noise_cluster=round(var_noise, 8),
@@ -269,7 +271,7 @@ def analyse(res):
                "failure therefore says nothing about whether compliance is a construct."
                if reliability <= 0 else
                "The measure resolves the models above its own clustered noise."))
-        if reliability <= 0:
+        if not rng_rep.usable:
             analysis[mode] = dict(scores=vals, reliability=round(reliability, 4),
                                   gate0_passes=False,
                                   status="NOT_DECIDABLE: measure does not resolve the models")

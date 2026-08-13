@@ -40,6 +40,8 @@ __all__ = [
     "LeverageReport",
     "reduction_faithful",
     "dynamic_range",
+    "resolves_units",
+    "expected_range",
     "correlation_leverage",
     "noise_gate",
     "directional",
@@ -95,6 +97,77 @@ def dynamic_range(values: Sequence[float], *, floor: float, k: float = 2.0,
          f"({span / floor:.2f}x, gate {k}x)" if floor > 0 else
          f"{name} has a zero or undefined noise floor, so no range gate can be applied"),
         dict(span=span, floor=floor, ratio=(span / floor if floor > 0 else None), k=k))
+
+
+_E_RANGE = {2: 1.128, 3: 1.693, 4: 2.059, 5: 2.326, 6: 2.534, 7: 2.704, 8: 2.847,
+            9: 2.970, 10: 3.078, 12: 3.258, 15: 3.472, 20: 3.735, 30: 4.086, 50: 4.498}
+
+
+def expected_range(k: int) -> float:
+    """E[max - min] of k standard normals. The reference a SPAN must be judged against."""
+    if k < 2:
+        return 0.0
+    ks = sorted(_E_RANGE)
+    if k in _E_RANGE:
+        return _E_RANGE[k]
+    if k > ks[-1]:                                  # slow growth; extrapolate on log k
+        a, b = ks[-2], ks[-1]
+        return _E_RANGE[b] + (_E_RANGE[b] - _E_RANGE[a]) * (math.log(k / b) / math.log(b / a))
+    lo = max(x for x in ks if x < k)
+    hi = min(x for x in ks if x > k)
+    t = (k - lo) / (hi - lo)
+    return _E_RANGE[lo] + t * (_E_RANGE[hi] - _E_RANGE[lo])
+
+
+def resolves_units(values: Sequence[float], *, noise_sd: float | Sequence[float],
+                   min_reliability: float = 0.5,
+                   name: str = "measure") -> LeverageReport:
+    """Does this measure separate the things it is measuring, above its own noise?
+
+    THE FOOTGUN THIS CLOSES, and it bit the author of this package. `dynamic_range` asks whether a
+    SPAN exceeds k times a noise floor, and the natural floor to reach for is one observation's
+    standard error. That comparison is close to meaningless: the span of k draws from PURE NOISE is
+    already ~2.3 SD at k=5 and ~3.1 SD at k=10, so a `span >= 2 * SD` gate is passed BY NOISE, by
+    construction. It can only fail on something MORE degenerate than noise. In the incident that
+    produced this function it reported "2.27x, gate 2.0x -- passes" for a measure whose ten values
+    had less variance than the noise they were made of.
+
+    Two corrections, both here:
+      * the span is compared against `expected_range(k) * noise_sd`, what noise alone would give;
+      * the decisive quantity is RELIABILITY, 1 - var_noise / var_observed -- the share of observed
+        spread that is not noise. Reliability at or below zero means the units are not resolved at
+        all and every correlation computed from the measure is attenuated to zero. A rank
+        correlation from such a measure is not weak evidence; it is no evidence, and its failure
+        must not be reported as a finding about the thing being measured.
+
+    `noise_sd` is per-unit and is the CALLER'S to get right -- pass a scalar or one value per unit.
+    Compute it at the level of the independent unit (see `gatecheck.units`): with clustered
+    observations a per-observation standard error understates the noise by the square root of the
+    design effect, which was the second half of the same incident.
+    """
+    v = _finite(values)
+    k = len(v)
+    sds = [float(noise_sd)] if isinstance(noise_sd, (int, float)) else _finite(noise_sd)
+    var_noise = sum(s * s for s in sds) / len(sds)
+    if k > 1:
+        mean = sum(v) / k
+        var_obs = sum((x - mean) ** 2 for x in v) / (k - 1)
+    else:
+        var_obs = 0.0
+    span = max(v) - min(v)
+    noise_span = expected_range(k) * math.sqrt(var_noise) if var_noise > 0 else float("inf")
+    reliability = (1.0 - var_noise / var_obs) if var_obs > 0 else float("-inf")
+    ok = bool(k > 1 and var_noise > 0 and reliability >= min_reliability)
+    return LeverageReport(
+        "resolves_units", ok,
+        f"{name} spans {span:.4g} across {k} units against the {noise_span:.4g} that pure noise "
+        f"would produce (E[range] at k={k} is {expected_range(k):.2f} SD); reliability "
+        f"{reliability:+.3f} against a floor of {min_reliability}"
+        + ("" if ok else
+           " -- the units are NOT resolved, so every correlation computed from this measure is "
+           "attenuated toward zero and a failed correlation says nothing about what was measured"),
+        dict(k=k, span=span, expected_noise_span=noise_span, var_obs=var_obs,
+             var_noise=var_noise, reliability=reliability, min_reliability=min_reliability))
 
 
 def correlation_leverage(predictor: Sequence[float], target: Sequence[float], *,

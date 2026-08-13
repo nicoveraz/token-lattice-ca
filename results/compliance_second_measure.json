@@ -1621,7 +1621,7 @@
     "var_noise_cluster": 0.0114321,
     "reliability": -12.4203,
     "observed_span": 0.0833,
-    "expected_span_under_noise": 0.3293,
+    "expected_span_under_noise": 0.3291,
     "icc": 0.7739,
     "effective_n": 12.6,
     "n_obs": 100
@@ -1631,7 +1631,7 @@
     "var_noise_cluster": 0.0114321,
     "reliability": -12.4203,
     "observed_span": 0.0833,
-    "expected_span_under_noise": 0.3293,
+    "expected_span_under_noise": 0.3291,
     "icc": 0.7739,
     "effective_n": 12.6,
     "n_obs": 100
@@ -1689,19 +1689,19 @@
    "title_brackets": 0.6667
   }
  },
- "verdict": "STRICT -- GATE 0 (corrected): observed across-model span 0.0833 against the span PURE NOISE would produce, 0.3293 (3.08 x the cluster-level SD). Reliability = 1 - var_noise/var_obs = -12.420; the constraint type is the independent unit (ICC 0.77, effective n 13 of 100). The measure does NOT resolve these models: its across-model variance is smaller than the noise it is made of, so every correlation computed from it is attenuated to zero and NOTHING below can be read -- including the convergence rung, whose failure therefore says nothing about whether compliance is a construct. LOOSE -- GATE 0 (corrected): observed across-model span 0.0833 against the span PURE NOISE would produce, 0.3293 (3.08 x the cluster-level SD). Reliability = 1 - var_noise/var_obs = -12.420; the constraint type is the independent unit (ICC 0.77, effective n 13 of 100). The measure does NOT resolve these models: its across-model variance is smaller than the noise it is made of, so every correlation computed from it is attenuated to zero and NOTHING below can be read -- including the convergence rung, whose failure therefore says nothing about whether compliance is a construct. THE LOOSE ARM IS INERT: loose exceeds strict on 0 of 10 models. Base models on this pool do not wrap a compliant answer in boilerplate -- they continue the text and ignore the constraint -- so the failure mode loose scoring was added to catch does not occur here. There is ONE scoring mode in this measure, not two, and the two columns below are the same measurement reported twice. The loosener was deliberately NOT retuned after seeing this: a more aggressive one would start rescuing genuine violations, which converts the measure's noise floor into signal. PER-CONSTRAINT RANGE (loose), reported because an aggregate hides a pinned component: all_caps=0.00, end_phrase=0.25, forbid_word=0.08, include_word=0.67, lowercase=0.00, min_words=0.33, no_commas=0.92, three_bullets=0.58, title_brackets=0.67, wrap_quotes=0.08. PINNED (span < 0.05, carrying no model information): ['all_caps', 'lowercase']. BOUNDARY: 10 base models of 1.7-3.2B, one constraint family, greedy decoding, 120 items, one prompt format. Convergence here says compliance is a construct AT THIS SCALE AND IN THIS FAMILY -- a base model's instruction following is not an instruction-tuned model's, and the ten are not ten independent families.",
+ "verdict": "STRICT -- GATE 0 (corrected): observed across-model span 0.0833 against the span PURE NOISE would produce, 0.3291 (3.08 x the cluster-level SD). Reliability = 1 - var_noise/var_obs = -12.420; the constraint type is the independent unit (ICC 0.77, effective n 13 of 100). The measure does NOT resolve these models: its across-model variance is smaller than the noise it is made of, so every correlation computed from it is attenuated to zero and NOTHING below can be read -- including the convergence rung, whose failure therefore says nothing about whether compliance is a construct. LOOSE -- GATE 0 (corrected): observed across-model span 0.0833 against the span PURE NOISE would produce, 0.3291 (3.08 x the cluster-level SD). Reliability = 1 - var_noise/var_obs = -12.420; the constraint type is the independent unit (ICC 0.77, effective n 13 of 100). The measure does NOT resolve these models: its across-model variance is smaller than the noise it is made of, so every correlation computed from it is attenuated to zero and NOTHING below can be read -- including the convergence rung, whose failure therefore says nothing about whether compliance is a construct. THE LOOSE ARM IS INERT: loose exceeds strict on 0 of 10 models. Base models on this pool do not wrap a compliant answer in boilerplate -- they continue the text and ignore the constraint -- so the failure mode loose scoring was added to catch does not occur here. There is ONE scoring mode in this measure, not two, and the two columns below are the same measurement reported twice. The loosener was deliberately NOT retuned after seeing this: a more aggressive one would start rescuing genuine violations, which converts the measure's noise floor into signal. PER-CONSTRAINT RANGE (loose), reported because an aggregate hides a pinned component: all_caps=0.00, end_phrase=0.25, forbid_word=0.08, include_word=0.67, lowercase=0.00, min_words=0.33, no_commas=0.92, three_bullets=0.58, title_brackets=0.67, wrap_quotes=0.08. PINNED (span < 0.05, carrying no model information): ['all_caps', 'lowercase']. BOUNDARY: 10 base models of 1.7-3.2B, one constraint family, greedy decoding, 120 items, one prompt format. Convergence here says compliance is a construct AT THIS SCALE AND IN THIS FAMILY -- a base model's instruction following is not an instruction-tuned model's, and the ten are not ten independent families.",
  "_analysis_provenance": {
   "script": "compliance_second_measure.py",
-  "sha256": "9a684c09fed29144631b7556bad8218b3613bd29d050603f15e7fa4d52df3878",
+  "sha256": "cd6c2bb1b5019fa7a8bc01ff5c633856000ced5102e0d751516f5d94235e2903",
   "imports": {
-   "experiments/compliance_second_measure.py": "9a684c09fed29144631b7556bad8218b3613bd29d050603f15e7fa4d52df3878",
+   "experiments/compliance_second_measure.py": "cd6c2bb1b5019fa7a8bc01ff5c633856000ced5102e0d751516f5d94235e2903",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
    "experiments/ranking.py": "fb1a3d9594aca9cdddfb33d0717c37f89040930e7797b3f3e2bbce9c835164b0",
-   "gatecheck/src/gatecheck/__init__.py": "2a27a15b96730f5ca51b21b5005925bd82325b156815ac5fece266a63ea3f430",
+   "gatecheck/src/gatecheck/__init__.py": "7b14b1a77678bb2d09d577ed45b4f21763b9a4e4f102d9b4596dd18ee198a938",
    "gatecheck/src/gatecheck/discriminator.py": "a78b1af1481b8078c35eddbb6e764bb1c046857fc9dffa2db97eb20ff9da6190",
    "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
    "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
-   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
    "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
    "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
    "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
