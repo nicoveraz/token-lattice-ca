@@ -16,7 +16,7 @@ directory:
 
 ```bash
 pip install -e ".[test]"
-python -m pytest            # 42 tests, no network, < 1 s
+python -m pytest            # 126 tests, no network, ~1 s
 python examples/decay_exponent.py
 ```
 
