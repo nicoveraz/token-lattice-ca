@@ -40,6 +40,13 @@ jobs:
           pip freeze
 
       - name: textca suite
+        # EXPECTED_SKIPS is a tripwire, and the number is MEASURED, not derived: offline this suite
+        # skips 13 (2 paper.pdf, 2 superseded records, 1 absent HF cache, 8 real-backend tests),
+        # against 4 with weights available. It is deliberately exact, so adding a legitimate skip
+        # fails here and has to be acknowledged rather than absorbed -- a suite whose green depends
+        # on skips must not be able to grow new ones silently.
+        env:
+          EXPECTED_SKIPS: "13"
         run: pytest tests/ -q
 
       - name: gatecheck suite

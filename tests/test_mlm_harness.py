@@ -9,6 +9,8 @@ import os
 import numpy as np
 import pytest
 
+from _backends import load_or_skip
+
 os.environ.setdefault("HF_HOME", "./hf_cache")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
@@ -19,10 +21,8 @@ pytest.importorskip("transformers")
 @pytest.fixture(scope="module")
 def rule():
     from mlm_ca import MLMRule
-    try:
-        return MLMRule("prajjwal1/bert-tiny", fp16=False)
-    except Exception as e:                       # not cached / offline
-        pytest.skip(f"bert-tiny unavailable: {e}")
+    return load_or_skip(lambda: MLMRule("prajjwal1/bert-tiny", fp16=False),
+                        "prajjwal1/bert-tiny")
 
 
 def test_mlm_null_coupling_is_exactly_zero(rule):

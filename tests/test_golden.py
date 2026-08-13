@@ -15,6 +15,8 @@ os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 import numpy as np
 import pytest
 
+from _backends import load_or_skip
+
 from make_golden import CFG_RUN, TOY_CKPT, MLM_NAME, AR_NAME, _streams
 
 GOLD = ROOT / "tests" / "golden"
@@ -47,10 +49,7 @@ def test_golden_ca():
 
 def test_golden_mlm():
     from mlm_ca import MLMRule, run
-    try:
-        rule = MLMRule(MLM_NAME)
-    except Exception as e:
-        pytest.skip(f"{MLM_NAME} unavailable: {e}")
+    rule = load_or_skip(lambda: MLMRule(MLM_NAME), MLM_NAME)
     init, u = _streams(CFG_RUN["B"], CFG_RUN["N"], CFG_RUN["sweeps"], 0, len(rule.init_pool))
     init = rule.init_pool[init]
     out = run(rule, B=CFG_RUN["B"], N=CFG_RUN["N"], r=CFG_RUN["r"], T=CFG_RUN["T"],
@@ -61,10 +60,7 @@ def test_golden_mlm():
 
 def test_golden_ar():
     from ar_ca import ARRule, run
-    try:
-        rule = ARRule(AR_NAME)
-    except Exception as e:
-        pytest.skip(f"{AR_NAME} unavailable: {e}")
+    rule = load_or_skip(lambda: ARRule(AR_NAME), AR_NAME)
     init, u = _streams(CFG_RUN["B"], CFG_RUN["N"], CFG_RUN["sweeps"], 0, len(rule.init_pool))
     init = rule.init_pool[init]
     out = run(rule, B=CFG_RUN["B"], N=CFG_RUN["N"], r=CFG_RUN["r"], T=CFG_RUN["T"],
