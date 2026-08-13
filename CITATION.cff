@@ -9,6 +9,12 @@ authors:
 repository-code: "https://github.com/nicoveraz/token-lattice-ca"
 doi: 10.5281/zenodo.21880472
 identifiers:
+  - type: other
+    value: "arXiv:2608.10986"
+    description: "Preprint, cs.CL, 11 Aug 2026"
+  - type: doi
+    value: 10.48550/arXiv.2608.10986
+    description: "arXiv DOI"
   - type: doi
     value: 10.5281/zenodo.21880472
     description: "Concept DOI — resolves to the latest archived version"

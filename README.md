@@ -1,5 +1,6 @@
 # token-lattice-ca
 
+[![arXiv](https://img.shields.io/badge/arXiv-2608.10986-b31b1b.svg)](https://arxiv.org/abs/2608.10986)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21880472.svg)](https://doi.org/10.5281/zenodo.21880472)
 [![arXiv](https://img.shields.io/badge/arXiv-2608.10986-b31b1b.svg)](https://arxiv.org/abs/2608.10986)
 
@@ -632,6 +633,7 @@ for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
 
 ## Citation
 
+Paper: [arXiv:2608.10986](https://arxiv.org/abs/2608.10986) — cs.CL, 11 Aug 2026.
 Archived at [https://doi.org/10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472) (concept DOI — resolves to the latest
 version). `CITATION.cff` carries the machine-readable metadata.
 

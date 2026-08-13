@@ -1,0 +1,23 @@
+{
+  "title": "token-lattice-ca: a cellular automaton over token space as a black-box measurement instrument for language models",
+  "upload_type": "software",
+  "creators": [
+    {"name": "Vera Zúñiga, Nicolás", "affiliation": "Independent Researcher, Chile"}
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "language models", "cellular automata", "damage spreading",
+    "measurement validity", "reproducibility", "directed percolation"
+  ],
+  "related_identifiers": [
+    {"identifier": "arXiv:2608.10986",
+     "relation": "isSupplementTo",
+     "resource_type": "publication-preprint",
+     "scheme": "arxiv"},
+    {"identifier": "https://github.com/nicoveraz/token-lattice-ca",
+     "relation": "isSupplementTo",
+     "scheme": "url"}
+  ],
+  "description": "<p>A ring of token cells resampled in place by a language model's own windowed conditional, with common-random-number coupling so that undamaged copies diverge by <em>exactly</em> zero and damage spreading becomes measurable.</p><p>The repository is both the instrument and its research record. <code>findings.md</code> is a dated ledger that keeps <strong>retracted and amended findings in place rather than deleting them</strong>, with the correction stated where the claim was made. Several entries are corrections of other entries; that is the design, and a citation should carry the amendment with the finding.</p><p>Code is MIT (<code>LICENSE</code>); the prose, the findings ledger and <code>results/</code> as accompanying data are CC BY 4.0 (<code>LICENSE-docs</code>). Zenodo records a single licence field, which is the software one.</p><p>Accompanies arXiv:2608.10986 (cs.CL).</p>"
+}
