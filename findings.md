@@ -3645,6 +3645,67 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F137 — paper 2's compliance blocker is NOT cleared: the second indicator does not resolve the models, and the gate that should have said so was itself vacuous
+F117's headline — the attractor share is compliance-selective, +0.53 at p = 0.004 — rests on
+**COMPLIANCE being a single column, IFEval**. With one indicator there is no way to separate "the
+share tracks compliance" from "the share tracks IFEval", and that is the load-bearing weakness in
+paper 2. So a second indicator was built: 12 prompts × 10 programmatically verifiable output
+constraints = 120 items, no prompt or keyword shared with IFEval, scored by Python predicates with
+no judge model, run locally on the same ten cached base models.
+
+**RESULT: NOT_DECIDABLE. The measure does not resolve the ten models at all, so nothing downstream
+of it can be read — and the blocker stands.**
+
+```
+  observed across-model span        0.0833     (scores 0.167 - 0.250)
+  span PURE NOISE would produce     0.3293     (3.08 x the cluster-level SD, k = 10)
+  reliability  1 - var_noise/var_obs  -12.42
+  independent unit = constraint type   ICC 0.774,  effective n = 12.6 of 100
+```
+
+The observed spread is **four times smaller** than what indistinguishable models would produce by
+chance. Every correlation computed from this measure is attenuated to zero.
+
+**THE GATE I WROTE TO PREVENT EXACTLY THIS WAS ITSELF VACUOUS — the defect class inside the guard,
+for the second time.** Gate 0 compared the across-model *span* to one model's binomial SE and
+required 2×. But the span of k = 10 draws from **pure noise** is about 3.08 SD, so that gate is
+passed by noise *by construction*: it can only fail on a measure more degenerate than noise. It duly
+reported "2.27×, gate 2.0× — passes" on a measure with reliability −12.4. Two errors compounded:
+the reference should be the expected span **under noise**, not one SD; and the noise scale must be
+**cluster-aware**, since 120 items are 10 constraint types × 12 prompts and a model succeeds or
+fails near-uniformly within a type. `gatecheck.units` measures precisely this and I did not use it.
+Corrected, the gate fails by a factor of four.
+
+**THE RUNG'S FAILURE IS THEREFORE UNINFORMATIVE, and this is the part that matters for the paper.**
+Convergence with IFEval came in at ρ = +0.360 against a registered floor of 0.5. Read naively that
+says "compliance is not a stable construct on base models", which would be a much larger claim —
+it would undermine F117's single column too. It says no such thing: an unresolving measure cannot
+correlate with anything, so **the construct question was never actually asked.** Reporting the
+rung failure as evidence about compliance would have been the most damaging available error, and
+it is the one the corrected gate prevents.
+
+**WHAT WOULD ACTUALLY WORK, quantified rather than gestured at.** With ICC = 0.774 at 12 prompts per
+type the design effect is **9.5×** — adding prompts *within* a type buys almost nothing. Resolution
+comes from constraint **types**, not items: reaching an effective n of 50 needs roughly **40 distinct
+constraint types**, not more prompts against the same ten. That also explains why IFEval's single
+column works at all where this did not: its resolution comes from having many more instruction
+types (structural inference from the design, not a measurement of IFEval made here).
+
+**TWO SMALLER THINGS, RECORDED BECAUSE THEY BEAR ON THE DESIGN.** The **loose scoring arm is inert**
+— it exceeded strict on 0 of 10 models and rescued 0 of 240 items, because base models do not wrap a
+compliant answer in boilerplate, they continue the text and ignore the constraint. There is one
+scoring mode here, not two. The loosener was deliberately **not** retuned after seeing this: a more
+aggressive one would begin rescuing genuine violations, converting the measure's noise floor into
+signal. And **two constraint types are pinned** at span 0.00 across all ten models (`all_caps`,
+`lowercase`), carrying no model information — 24 of 120 items are dead weight.
+
+**Boundary.** Ten base models of 1.7–3.2B, one constraint family, greedy decoding, one prompt
+format, 120 items. This says the measure AS BUILT lacks the resolution to test the construct; it
+says nothing about whether compliance is a construct, and nothing about instruction-tuned models.
+F117 and F120 are untouched — neither confirmed nor weakened.
+
+`experiments/compliance_second_measure.py` → `results/compliance_second_measure.json`
+
 ### F136 — the remote lattice's share is 1/PERIOD, not attractor dominance; the local instrument is clean, in one direction
 The remote run was re-launched storing the whole **ring** rather than only the scalars, because
 `top1 = 0.3333` on N = 24 is ambiguous: it is what a weak attractor reads, and it is exactly what
