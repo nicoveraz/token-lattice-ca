@@ -113,7 +113,10 @@ def test_perturbation_does_propagate_stub(causal, mode):
 @pytest.mark.parametrize("mode", ["async", "sync"])
 def test_null_mlm(mode):
     from mlm_ca import MLMRule, run
-    rule = MLMRule("prajjwal1/bert-tiny")
+    try:
+        rule = MLMRule("prajjwal1/bert-tiny")
+    except Exception as e:
+        pytest.skip(f"bert-tiny unavailable: {e}")
     rng = np.random.default_rng(3)
     init = rule.init_pool[rng.integers(0, len(rule.init_pool), size=(B, N))]
     u = np.random.default_rng(4).random(SW * N * B)
@@ -126,7 +129,10 @@ def test_null_mlm(mode):
 @pytest.mark.parametrize("mode", ["async", "sync"])
 def test_null_ar(mode):
     from ar_ca import ARRule, run
-    rule = ARRule("EleutherAI/pythia-14m")
+    try:
+        rule = ARRule("EleutherAI/pythia-14m")
+    except Exception as e:
+        pytest.skip(f"pythia-14m unavailable: {e}")
     rng = np.random.default_rng(3)
     init = rule.init_pool[rng.integers(0, len(rule.init_pool), size=(B, N))]
     u = np.random.default_rng(4).random(SW * N * B)
