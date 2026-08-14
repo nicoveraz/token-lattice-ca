@@ -27,6 +27,8 @@ for **every** arm you run, including the ones you think are obvious:
 | `scheme` | `sync` / `async` / `ordered` / `none` — the visit order | |
 | `commitment` | `in_place` / `scheduled` / `rollback` / `append_only` / `free_ar` | |
 | `masking` | whatever masking policy applies | |
+| `domain` | what CONDITIONS the state: `raw` / `bos` / `system_prompt` / `chat_template` / `few_shot` / `custom` | |
+| `domain_tokens` | how many tokens that conditioning occupies | |
 
 `commitment` is the axis that separates the constructions people actually use, and it is ordered:
 
@@ -51,6 +53,24 @@ along a gradient, and the gradient is the point.
 **Why `scheme` is not cosmetic.** With asynchronous updating the within-sweep reach of an
 influence is set by the visit order, not by the radius. A project that assumed the synchronous
 bound published a cone width that was wrong by a factor of about six.
+
+**Why `domain` is the axis you are most likely to leave implicit, and least safe to.** It was added
+last because it turned out to move a readout further than anything else in this vector. The same
+greedy map, same weights, same estimator, same seeds, measured with nothing before the state and
+then behind each model's own chat template:
+
+```
+  nine template tokens   fixed-point fraction 0.948 -> 0.000   and the class changed
+  eleven template tokens fixed-point fraction 0.615 -> 0.844   and the class did not
+  one BOS token          frozen fraction      74.4% -> 24.1%
+```
+
+Two things follow. The domain is a **construction parameter** — two runs differing only in it are
+two constructions, and this protocol will treat them as such. And the direction was
+**model-specific**: structure destroyed in one model, reinforced in another. That means it cannot be
+corrected away with a factor; it has to be varied like any other axis. If your loop runs behind a
+system prompt or a chat template in deployment and you measure it raw, you are measuring a different
+construction and this vector is where you say so.
 
 ---
 

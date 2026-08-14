@@ -60,6 +60,7 @@ from .ranking import spearman
 __all__ = [
     "Loopness",
     "COMMITMENT_ORDER",
+    "DOMAIN_KINDS",
     "DiscriminatorReport",
     "discriminate",
     "nuisance_identity",
@@ -77,6 +78,20 @@ MODEL_DETERMINED = "MODEL_DETERMINED"
 # deployment. Ordered loosest-to-tightest so a sweep along it is a sweep in one direction.
 COMMITMENT_ORDER = ("in_place", "scheduled", "rollback", "append_only", "free_ar")
 
+# WHAT PRECEDES THE STATE. Added because it turned out to move a readout further than any parameter
+# already in this vector. In the project this package came from, the fixed-point class of a greedy
+# map was measured with nothing before the state and again behind each model's own chat template:
+# nine template tokens took one model's fixed-point fraction from 0.948 to 0.000 and changed its
+# class, while eleven tokens took another's from 0.615 to 0.844 and did not -- same weights, same
+# estimator, same seeds. An earlier result in the same project had already moved a frozen fraction
+# from 74.4% to 24.1% on a SINGLE bos token.
+#
+# Two consequences for anyone using this protocol. The domain is a CONSTRUCTION parameter, so two
+# runs differing only in it are two constructions and the discriminator will treat them as such.
+# And the effect was model-specific in direction -- destroying structure in one model, reinforcing
+# it in another -- so it cannot be calibrated away with a correction factor; it has to be varied.
+DOMAIN_KINDS = ("raw", "bos", "system_prompt", "chat_template", "few_shot", "custom")
+
 
 @dataclass(frozen=True)
 class Loopness:
@@ -91,6 +106,12 @@ class Loopness:
                    radius, and the project's own cone bound was wrong by ~6x for assuming otherwise.
       commitment   one of COMMITMENT_ORDER; see the note above.
       masking      whatever masking policy the construction applies, as a free-text label.
+      domain       what CONDITIONS the state before the loop sees it: one of DOMAIN_KINDS. "raw"
+                   means nothing precedes it. This is the axis most likely to be left implicit and
+                   least safe to leave implicit -- see the note on DOMAIN_KINDS above.
+      domain_tokens how many tokens that conditioning occupies. Recorded separately from the kind
+                   because the SIZE is the measurable quantity: one bos token and a thirty-token
+                   chat template are both "a prefix" and are not the same construction.
 
     `label` is what appears in reports. Two Loopness values that differ in any field are different
     constructions, and the whole point of the discriminator is that a readout is allowed to differ
@@ -102,6 +123,8 @@ class Loopness:
     scheme: str = "async"
     commitment: str = "in_place"
     masking: str = "none"
+    domain: str = "raw"
+    domain_tokens: int = 0
     label: str = ""
 
     def __post_init__(self) -> None:
@@ -112,6 +135,18 @@ class Loopness:
                 "because the position is what makes a gradient sweep meaningful")
         if self.scheme not in ("sync", "async", "ordered", "none"):
             raise ValueError(f"scheme {self.scheme!r} is not a recognised visit order")
+        if self.domain not in DOMAIN_KINDS:
+            raise ValueError(
+                f"domain {self.domain!r} is not one of {DOMAIN_KINDS}; use 'custom' and set "
+                "domain_tokens rather than inventing a label, so the axis stays comparable")
+        if self.domain == "raw" and self.domain_tokens:
+            raise ValueError("domain='raw' means nothing precedes the state, so domain_tokens "
+                             "must be 0; a nonzero prefix is a different domain")
+        if self.domain != "raw" and not self.domain_tokens:
+            raise ValueError(
+                f"domain={self.domain!r} with domain_tokens=0 records a prefix of unknown size. "
+                "The size is the measurable quantity -- one bos token and a thirty-token template "
+                "are not the same construction -- so it must be stated")
 
     @property
     def name(self) -> str:
@@ -121,6 +156,8 @@ class Loopness:
         if self.temperature is not None:
             bits.append(f"T{self.temperature:g}")
         bits += [self.scheme, self.commitment]
+        if self.domain != "raw":                    # raw is the default and stays silent
+            bits.append(f"{self.domain}{self.domain_tokens}")
         return ".".join(bits)
 
     @property
@@ -131,7 +168,8 @@ class Loopness:
     def block(self) -> dict:
         return dict(name=self.name, radius=self.radius, temperature=self.temperature,
                     scheme=self.scheme, commitment=self.commitment,
-                    commitment_rank=self.commitment_rank, masking=self.masking)
+                    commitment_rank=self.commitment_rank, masking=self.masking,
+                    domain=self.domain, domain_tokens=self.domain_tokens)
 
 
 def _grid(observations: Mapping[tuple, float]) -> tuple[list, list, list, dict]:

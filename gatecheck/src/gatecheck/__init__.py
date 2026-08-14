@@ -44,6 +44,7 @@ from .state import pack as pack_state, unpack as unpack_state, has_state, STATE_
 from .discriminator import (
     Loopness,
     COMMITMENT_ORDER,
+    DOMAIN_KINDS,
     DiscriminatorReport,
     discriminate,
     nuisance_identity,
@@ -66,6 +67,6 @@ __all__ = [
     "save_results", "load_results", "check_no_absolute_paths",
     "rank", "spearman",
     "state", "pack_state", "unpack_state", "has_state", "STATE_KEY",
-    "Loopness", "COMMITMENT_ORDER", "DiscriminatorReport", "discriminate", "nuisance_identity",
+    "Loopness", "COMMITMENT_ORDER", "DOMAIN_KINDS", "DiscriminatorReport", "discriminate", "nuisance_identity",
     "CONSTRUCTION_DETERMINED", "MODEL_DETERMINED",
 ]

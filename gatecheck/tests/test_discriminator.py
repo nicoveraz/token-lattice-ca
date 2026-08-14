@@ -177,3 +177,42 @@ def test_spearman_matches_scipy_where_available():
     a = [1.0, 5.0, 5.0, 2.0, 9.0, 3.0]
     b = [2.0, 2.0, 7.0, 1.0, 8.0, 4.0]
     assert spearman(a, b) == pytest.approx(float(scipy_stats.spearmanr(a, b).statistic))
+
+
+# --- the domain axis -------------------------------------------------------------------------
+
+def test_domain_defaults_to_raw_and_stays_silent_in_the_name():
+    lp = Loopness(radius=2, temperature=0.2)
+    assert lp.domain == "raw" and lp.domain_tokens == 0
+    assert "raw" not in lp.name            # the default does not clutter every report
+
+
+def test_domain_appears_in_the_name_and_block_when_set():
+    lp = Loopness(radius=2, temperature=0.2, domain="chat_template", domain_tokens=30)
+    assert lp.name.endswith("chat_template30")
+    b = lp.block()
+    assert b["domain"] == "chat_template" and b["domain_tokens"] == 30
+
+
+def test_two_domains_are_two_constructions():
+    """The whole point: a readout measured raw and behind a template is measured twice, not once."""
+    a = Loopness(radius=2, temperature=0.2, label="")
+    b = Loopness(radius=2, temperature=0.2, domain="chat_template", domain_tokens=30)
+    assert a.name != b.name and a != b
+
+
+def test_unknown_domain_kind_is_refused():
+    with pytest.raises(ValueError, match="not one of"):
+        Loopness(domain="template")        # near-miss for chat_template
+
+
+def test_a_prefix_of_unknown_size_is_refused():
+    """One BOS token and a thirty-token template are both 'a prefix' and are not the same thing."""
+    with pytest.raises(ValueError, match="unknown size"):
+        Loopness(domain="bos")
+    Loopness(domain="bos", domain_tokens=1)          # stating the size is enough
+
+
+def test_raw_with_a_prefix_is_refused():
+    with pytest.raises(ValueError, match="domain_tokens must be 0"):
+        Loopness(domain="raw", domain_tokens=5)

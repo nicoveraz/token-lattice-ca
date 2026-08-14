@@ -18,7 +18,9 @@
    "scheme": "async",
    "commitment": "in_place",
    "commitment_rank": 0,
-   "masking": "none"
+   "masking": "none",
+   "domain": "raw",
+   "domain_tokens": 0
   },
   {
    "name": "r2.T0.2",
@@ -27,7 +29,9 @@
    "scheme": "async",
    "commitment": "in_place",
    "commitment_rank": 0,
-   "masking": "none"
+   "masking": "none",
+   "domain": "raw",
+   "domain_tokens": 0
   },
   {
    "name": "r2.T0.7",
@@ -36,7 +40,9 @@
    "scheme": "async",
    "commitment": "in_place",
    "commitment_rank": 0,
-   "masking": "none"
+   "masking": "none",
+   "domain": "raw",
+   "domain_tokens": 0
   },
   {
    "name": "r3.T0.02",
@@ -45,7 +51,9 @@
    "scheme": "async",
    "commitment": "in_place",
    "commitment_rank": 0,
-   "masking": "none"
+   "masking": "none",
+   "domain": "raw",
+   "domain_tokens": 0
   },
   {
    "name": "r3.T0.2",
@@ -54,7 +62,9 @@
    "scheme": "async",
    "commitment": "in_place",
    "commitment_rank": 0,
-   "masking": "none"
+   "masking": "none",
+   "domain": "raw",
+   "domain_tokens": 0
   },
   {
    "name": "r3.T0.7",
@@ -63,7 +73,9 @@
    "scheme": "async",
    "commitment": "in_place",
    "commitment_rank": 0,
-   "masking": "none"
+   "masking": "none",
+   "domain": "raw",
+   "domain_tokens": 0
   }
  ],
  "reports": {
@@ -228,17 +240,18 @@
   "imports": {
    "experiments/discriminator_demo.py": "146fa0110fc27ce3554dac326e2182fb1e9d4a474a4fa56f938d939524fb9e5b",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-   "gatecheck/src/gatecheck/__init__.py": "e4ddcf3885064ebb05cc3bc2ff591ea75dbd0e58cbdff277f71d9fa977c4a3a0",
-   "gatecheck/src/gatecheck/discriminator.py": "a78b1af1481b8078c35eddbb6e764bb1c046857fc9dffa2db97eb20ff9da6190",
+   "gatecheck/src/gatecheck/__init__.py": "2b4d939029c72691c46ac188493dfd62771a7b51055055e32d5300e746967750",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
    "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
    "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
-   "gatecheck/src/gatecheck/leverage.py": "48bb80a34cec9145811cace90729d811c65290862f0acfd7acd7dde9880d3c2f",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
    "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
    "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
    "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
    "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
    "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
    "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
    "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
   },
   "env": {
