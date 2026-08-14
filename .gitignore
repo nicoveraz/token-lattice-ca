@@ -66,3 +66,8 @@ failure_registry.md
 # result, and it names a defect in an artifact that is already public -- so it stays local until
 # the author has decided what to do, at which point the decision (not this file) goes out.
 paper_corrections.md
+
+# review/: the private audit render -- one folder per stored result, rebuilt on demand
+# by experiments/build_review.py. Derived from results/ and findings.md, so it carries no
+# information they do not, and it is large (a chart per experiment).
+review/
