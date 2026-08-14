@@ -3645,6 +3645,72 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F141 — the confound audit: F117 SURVIVES partialling size, F140's null survives it too, and the one Simpson's paradox in this project was caught in 2026-08 without being named
+Prompted by a direct question — is any headline correlation here an aggregation artefact? Four
+checks, on stored data, no new runs.
+
+**THE PROJECT HAS EXACTLY ONE DOCUMENTED INSTANCE, and it is textbook.** `share_invariance.py`'s
+first rung compared RWKV's share against the median of **all** attention models and read a gap of
+**0.011** — no architectural effect. That pooled six non-Pile models with three Pile-trained
+Pythias. Corpus-controlled, the same comparison reads **+0.769**. GPT-2/OPT/BLOOM sit low because
+they are not Pile-trained, not because they have attention (F63: corpus dominates 78.1% vs 20.4% at
+an identical tokenizer). Aggregate says *no effect*, stratified says *large effect*. It is recorded
+in that script as a mis-specified rung and was never named as **Simpson's paradox**; it is one, and
+naming it makes the class searchable.
+
+**CHECK 1 — size stratification inside F117's cohort. No reversal.**
+```
+  small (n=5)   rho(top1@0.7, IFEval) = +0.400
+  large (n=5)                          = +0.900
+  pooled (n=10)                        = +0.733
+```
+Both strata positive, pooled between them. Consistent, not paradoxical.
+
+**CHECK 2 — partial correlations, and this DEFENDS F117.**
+```
+  readout        BASE raw   BASE partial|params    INSTRUCT raw   INSTR partial|params
+  top1@0.02        +0.709          +0.650              -0.143            +0.157
+  top1@0.2         +0.855          +0.809              -0.143            +0.020
+  top1@0.436       +0.685          +0.681              -0.095            +0.136
+  top1@0.7         +0.733          +0.690              -0.119            -0.105
+```
+F117's effect is **not a size artefact**: +0.733 → +0.690 with size partialled out. And F140's null
+is not one either — the instruct correlations stay at ~zero either way. Both results are robust to
+the most obvious confound, which is worth more than either was before this check.
+
+**CHECK 3 — the structural difference that IS real, and explains neither.**
+```
+  rho(IFEval, params)     base -0.612     instruct +0.810
+  rho(share@0.7, params)  base -0.370     instruct -0.071
+```
+**The size-compliance relationship reverses sign between cohorts**: bigger *base* models score worse
+on IFEval, bigger *instruct* models score better. That is a genuine structural difference and it is
+the right context for F140 — but since both results survive partialling, it is not their cause.
+Recorded as context, not as mechanism.
+
+**CHECK 4 — are F117's four temperature readouts "one quantity measured four ways"? YES, and this
+retracts a doubt I raised.** Pairwise agreement across the eight instruct models:
+```
+  0.02|0.2   +0.905     0.02|0.436  +0.857     0.02|0.7  +0.548
+  0.2|0.436  +0.976     0.2|0.7     +0.762     0.436|0.7 +0.810
+```
+Mostly ≥ 0.76, weakest +0.548. F117's framing holds. Watching the lattice fill in, I noted rank
+"flips" between temperatures and suggested the four might not be interchangeable; computed on the
+full cohort they largely are, and the flips were among closely-ranked models. **Second time in this
+sequence an impression from partial data did not survive the full computation** — the first being
+the claim that instruction tuning flattens the attractor, refuted by Falcon3 at 0.514.
+
+**WHAT CANNOT BE CHECKED, stated rather than left implied.** F117's cohort is ten models from ten
+families with **one** Pile-trained member, so the corpus stratification that caught the F130 instance
+is unavailable there. No grouping other than size has ≥ 4 members per stratum. So "no Simpson's
+paradox by size" is what was tested; "none by corpus" was not, and cannot be on this cohort.
+
+**Boundary.** Partial Spearman at n = 8 and n = 10 is a small-sample statistic with wide intervals;
+these are directional checks, not precise estimates. No p-values are quoted for the partials
+deliberately — the sample sizes do not support them.
+
+`results/confound_audit.json`
+
 ### F140 — F117's compliance correlation does NOT replicate on instruction-tuned models: it is a property of the base cohort
 F137 and F138 could not test F117's claim because their compliance measure would not resolve ten
 base models. F138 diagnosed the cohort rather than the instrument, and this is that diagnosis

@@ -1,0 +1,63 @@
+{
+ "base": {
+  "top1@0.02": {
+   "raw": 0.7091,
+   "partial_params": 0.6504,
+   "rho_share_params": -0.3818
+  },
+  "top1@0.2": {
+   "raw": 0.8545,
+   "partial_params": 0.8088,
+   "rho_share_params": -0.4788
+  },
+  "top1@0.436": {
+   "raw": 0.6848,
+   "partial_params": 0.6808,
+   "rho_share_params": -0.2727
+  },
+  "top1@0.7": {
+   "raw": 0.7333,
+   "partial_params": 0.6901,
+   "rho_share_params": -0.3697
+  }
+ },
+ "instruct": {
+  "top1@0.02": {
+   "raw": -0.1429,
+   "partial_params": 0.1572,
+   "rho_share_params": -0.2857
+  },
+  "top1@0.2": {
+   "raw": -0.1429,
+   "partial_params": 0.0197,
+   "rho_share_params": -0.1905
+  },
+  "top1@0.436": {
+   "raw": -0.0952,
+   "partial_params": 0.1364,
+   "rho_share_params": -0.2143
+  },
+  "top1@0.7": {
+   "raw": -0.119,
+   "partial_params": -0.1046,
+   "rho_share_params": -0.0714
+  }
+ },
+ "temperature_agreement": {
+  "0.02|0.2": 0.9048,
+  "0.02|0.436": 0.8571,
+  "0.02|0.7": 0.5476,
+  "0.2|0.436": 0.9762,
+  "0.2|0.7": 0.7619,
+  "0.436|0.7": 0.8095
+ },
+ "base_size_strata": {
+  "small": 0.4,
+  "large": 0.9,
+  "pooled": 0.7333
+ },
+ "rho_ifeval_params": {
+  "base": -0.6121,
+  "instruct": 0.8095
+ }
+}
