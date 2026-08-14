@@ -93,18 +93,42 @@ def freshness(res, script):
                      f"(stamped {str(prov.get('sha256'))[:12]}, on disk {actual[:12]})")
 
 
-def findings_citing(stem, script):
-    out = []
+_NUM = re.compile(r"\d+\.\d{3,}")
+
+
+def findings_citing(stem, script, res):
+    """Which findings rest on this file -- BY NAME, and failing that by its numbers.
+
+    THE NAME-ONLY VERSION WAS MEASURING THE WRONG THING. It reported 44 of 131 results files as
+    "not cited by any finding", which reads as 44 unwritten experiments. Checking each verdict's
+    distinctive numbers against the ledger instead, 23 of the 26 with numeric verdicts turn out to
+    be written up in full -- `ignition_level` has 14 of its 14 numbers in findings.md,
+    `coupling_primary` 13 of 14 -- with no `results/x.json` pointer beside them. That is
+    file-pointer hygiene, not missing science, and conflating the two makes the index cry wolf.
+
+    So: a name match is a CITATION; a numbers match is TRACED (the work is written up, the file is
+    not named); neither is a genuine gap. The distinction is reported rather than collapsed.
+    """
+    named, traced = [], []
     if not FINDINGS.exists():
-        return out
+        return named, traced, None
     txt = FINDINGS.read_text()
+    v = res.get("verdict")
+    nums = _NUM.findall(v)[:14] if isinstance(v, str) else []
     for m in re.finditer(r"^### (F\d+) — (.+)$", txt, re.M):
         start = m.end()
         nxt = txt.find("\n### ", start)
         body = txt[start:nxt if nxt > 0 else len(txt)]
         if stem in body or script in body:
-            out.append((m.group(1), m.group(2)))
-    return out
+            named.append((m.group(1), m.group(2)))
+    if not named and nums:
+        hit = sum(1 for n in nums if n in txt)
+        # FRACTION, not a floor of two. A verdict with ONE distinctive number that appears in the
+        # ledger is traced; requiring >= 2 marked such files UNWRITTEN and was the second version
+        # of the same mistake -- a threshold that cannot be met by the data it is applied to.
+        if hit >= 1 and hit / len(nums) >= 0.4:
+            traced.append(("numbers", f"{hit} of {len(nums)} verdict numbers appear in findings.md"))
+    return named, traced, (len(nums) if nums else None)
 
 
 # ---------------------------------------------------------------- chart detectors
@@ -246,7 +270,7 @@ def _lines(rows, ro, xkey, path, stem, xname, naxes=""):
 
 # ---------------------------------------------------------------- pages
 
-def page(stem, res, script, doc, fresh, why, chartfile, chartwhy, cites):
+def page(stem, res, script, doc, fresh, why, chartfile, chartwhy, cites, traced, full):
     L = [f"# {stem}", ""]
     L += [f"**Script** `experiments/{script}` · **Results** `results/{stem}.json`", ""]
     badge = {"fresh": "FRESH", "STALE": "STALE — do not quote these numbers",
@@ -254,9 +278,15 @@ def page(stem, res, script, doc, fresh, why, chartfile, chartwhy, cites):
     L += [f"**Freshness: {badge}** — {why}", ""]
     if cites:
         L += ["**Cited by:** " + ", ".join(f"{f} ({t[:60]}…)" for f, t in cites), ""]
+    elif traced:
+        L += [f"**Traced, not named:** {traced[0][1]}, so the work IS written up — the ledger "
+              f"simply does not name this file beside it.", ""]
+    elif not full.get("verdict"):
+        L += ["**No verdict recorded.** This run produced data and no conclusion — check whether "
+              "the analysis was ever completed.", ""]
     else:
-        L += ["**Cited by:** no finding references this file. Either it is scaffolding, or a "
-              "result was never written up.", ""]
+        L += ["**UNWRITTEN:** this file has a verdict, and neither its name nor its numbers appear "
+              "in findings.md. A result that was produced and never written up.", ""]
     L += ["---", "", "## What it asked", ""]
     if doc:
         para = doc.strip().split("\n\n")
@@ -293,34 +323,50 @@ def main():
         script = _pathlib.Path(str(script)).name
         doc = docstring_of(script)
         fresh, why = freshness(res, script)
-        cites = findings_citing(stem, script)
+        cites, traced, _n = findings_citing(stem, script, res)
         d = OUT / stem
         d.mkdir(exist_ok=True)
         cf, cw = chart(res, stem, d / "chart.png")
-        (d / "explanation.md").write_text(page(stem, res, script, doc, fresh, why, cf, cw, cites))
-        rows.append((stem, fresh, str(res.get("verdict") or "")[:110], len(cites)))
+        (d / "explanation.md").write_text(
+            page(stem, res, script, doc, fresh, why, cf, cw, cites, traced, res))
+        status = ("superseded" if stem.endswith("_superseded") else
+                  "cited" if cites else "traced" if traced else
+                  "no verdict" if not res.get("verdict") else "UNWRITTEN")
+        rows.append((stem, fresh, str(res.get("verdict") or "")[:110], len(cites), status))
     idx = ["# Review — every stored result, one folder each", "",
            f"{len(rows)} results files. Generated by `experiments/build_review.py`; it reads stored "
            "results only and re-runs nothing.", "",
            "`STALE` means the results file no longer matches the script that wrote it — those "
            "numbers must not be quoted until the analysis is re-run (the F45/F46 trap).", "",
-           "| experiment | fresh | findings | verdict (truncated) |", "|---|---|---|---|"]
-    for stem, fresh, v, n in rows:
-        idx.append(f"| [{stem}]({stem}/explanation.md) | {fresh} | {n} | {v.replace('|', '/')} |")
+           "`UNWRITTEN` means neither the filename nor the verdict's numbers appear in the "
+           "ledger. `traced` means the numbers do but the filename does not — the work is written "
+           "up, the pointer is missing.", "",
+           "| experiment | fresh | write-up | verdict (truncated) |", "|---|---|---|---|"]
+    for stem, fresh, v, n, status in rows:
+        idx.append(f"| [{stem}]({stem}/explanation.md) | {fresh} | {status} | {v.replace('|', '/')} |")
     stale = [r for r in rows if r[1] == "STALE"]
-    uncited = [r for r in rows if r[3] == 0]
+    unwritten = [r for r in rows if r[4] == "UNWRITTEN"]
+    noverdict = [r for r in rows if r[4] == "no verdict"]
     idx += ["", "## Summary", "",
             f"- **{sum(1 for r in rows if r[1] == 'fresh')}** fresh, **{len(stale)}** stale, "
             f"**{sum(1 for r in rows if r[1] == 'unknown')}** unverified",
-            f"- **{len(uncited)}** results files are not cited by any finding",
+            f"- **{sum(1 for r in rows if r[4]=='cited')}** cited by name, "
+            f"**{sum(1 for r in rows if r[4]=='traced')}** traced by their numbers only",
+            f"- **{len(unwritten)}** have a verdict that appears nowhere in the ledger",
+            f"- **{sum(1 for r in rows if r[4]=='superseded')}** superseded records, uncited by "
+            f"design",
+            f"- **{len(noverdict)}** produced data but recorded no verdict",
             "", "### Stale — re-run before quoting", ""]
     idx += [f"- `{r[0]}`" for r in stale] or ["- none"]
-    idx += ["", "### Not cited by any finding", ""]
-    idx += [f"- `{r[0]}`" for r in uncited] or ["- none"]
+    idx += ["", "### UNWRITTEN — a verdict with no home in the ledger", ""]
+    idx += [f"- `{r[0]}` — {r[2][:90]}" for r in unwritten] or ["- none"]
+    idx += ["", "### No verdict — data produced, conclusion never drawn", ""]
+    idx += [f"- `{r[0]}`" for r in noverdict] or ["- none"]
     (OUT / "INDEX.md").write_text("\n".join(idx))
     print(f"wrote {len(rows)} pages to review/")
     print(f"  fresh {sum(1 for r in rows if r[1]=='fresh')} | stale {len(stale)} | "
-          f"unverified {sum(1 for r in rows if r[1]=='unknown')} | uncited {len(uncited)}")
+          f"cited {sum(1 for r in rows if r[4]=='cited')} | traced {sum(1 for r in rows if r[4]=='traced')} | "
+          f"UNWRITTEN {len(unwritten)} | no-verdict {len(noverdict)}")
 
 
 if __name__ == "__main__":

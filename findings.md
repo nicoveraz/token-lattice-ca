@@ -3645,6 +3645,49 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F142 — F104's revival is UNDEFINED at step8000: the freeze it needs does not hold there, and the run had been sitting unanalysed
+Surfaced by the review render (`experiments/build_review.py`), which flags results files carrying
+data but no verdict. `revival_replication` was one: 54 runs, a full pre-registration with `primary`,
+`anti_vacuity`, `refuted` and `does_not_replicate` branches all written in advance — **and no
+analysis ever run**. Calling the script's own `analyse()` on the stored data answers it in seconds.
+
+**THE ANTI-VACUITY GATE FAILS, WHICH IS THE WHOLE RESULT.**
+```
+  step8000    unablated ignites        0.981
+              `attn_early` ignites     0.581      = 0.59x
+  registered gate: attn_early must ignite at most 0.50x, or there is nothing to revive from
+```
+F104's effect is *revival from a frozen reference*: with the early attention block ablated at
+step143000 the lattice is nearly frozen (ignition 0.181), and adding one further ablation revives
+it. At **step8000 the early block does not freeze the lattice at all** — it still ignites 59% as
+often as the unablated model. There is no frozen state to revive from, so the reviver and control
+arms cannot be read in either direction.
+
+**UNINFORMATIVE, NOT NEGATIVE, and the pre-registration says so in those words.** This is not
+"F104 fails to replicate": it is "the construction F104 requires does not exist at this checkpoint".
+The registered `does_not_replicate` branch — *no reviver rises against a reference that IS frozen*
+— was never reached, because its precondition failed first. Reporting this as a failed replication
+would be the error the gate was written to prevent.
+
+**126 OF 180 CELLS ARE UNRUN AND DO NOT NEED TO BE.** The gate is computed from the `none` and
+`attn_early` arms, both complete at 20/20 seeds. The reviver and control arms are 14/20 and 0/20 —
+and finishing them is ~4.7 h of compute that **cannot** change the verdict, because a verdict on
+them is undefined once the reference is not frozen. Recorded so the gap reads as a decision rather
+than an abandonment.
+
+**WHAT IT COSTS ELSEWHERE.** `plan_paper2` made this measurement row 4 of the discriminator table —
+the row showing the instrument responds when the MODEL varies and the construction is held fixed —
+and that row is still one model at one checkpoint. This attempt to strengthen it did not fail; it
+found that the second checkpoint cannot host the experiment. A stronger row 4 needs a checkpoint
+where the freeze holds, which is a scan (`ignition_prob` of `attn_early` across the ladder) rather
+than a replication.
+
+**Boundary.** One model, one alternative checkpoint. The freeze holding at step143000 and not at
+step8000 is itself a developmental fact about when the early attention block becomes load-bearing,
+and this run bounds rather than measures it: two points, not a curve.
+
+`experiments/revival_replication.py` → `results/revival_replication.json`
+
 ### F141 — the confound audit: F117 SURVIVES partialling size, F140's null survives it too, and the one Simpson's paradox in this project was caught in 2026-08 without being named
 Prompted by a direct question — is any headline correlation here an aggregation artefact? Four
 checks, on stored data, no new runs.
