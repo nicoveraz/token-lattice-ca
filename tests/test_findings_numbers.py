@@ -68,6 +68,19 @@ ALLOWED.update({v: _CONSTANT for v in (
     "0.9210340371976184", "0.9210340371976186",
 )})
 
+# Numbers QUOTED FROM EXTERNAL PAPERS during a prior-art gate. They are other people's
+# measurements, so they trace to a citation rather than to any results/*.json in this repo, and
+# demanding a local source for them would make the ledger unable to report what the literature
+# says. Each is named with the paper it comes from; that is the trace.
+_EXTERNAL = "quoted from an external paper in a prior-art gate; traces to its citation, not to results/"
+ALLOWED.update({v: _EXTERNAL for v in (
+    "47.79",     # Li et al. NeurIPS 2023 (arXiv:2310.10226), greedy rep-2 before SFT
+    "15.08",     # Li et al., greedy rep-2 after SFT
+    "74.4",      # arXiv:2608.10986, frozen fraction without a BOS token
+    "24.1",      # arXiv:2608.10986, frozen fraction with one BOS token prepended
+    "1.2",       # alignment-sharpening literature, effective branching factor after tuning
+)})
+
 assert all(ALLOWED.values()), "every ALLOWED entry needs a stated reason"
 
 
