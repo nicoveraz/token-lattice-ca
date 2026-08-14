@@ -3645,6 +3645,64 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F143 — the fixed-point CLASS survives instruction tuning: the geometry is set in pretraining, and the recipe axis is about pretraining recipes
+The taxonomy (`argmax_census_hardened`) classifies models by the fixed-point geometry of the argmax
+map — funnel / none / fragmented / borderline — stably, 17/17 across two census seeds. Its striking
+association is that **all 8 funnels are from-scratch and no `modified` model (distilled, pruned,
+annealed) is a funnel**. But every one of those 17 is a BASE model: the recipe axis is from-scratch
+vs modified, and **instruction tuning had never been on it**.
+
+That gap became worth closing because of F140's mechanism. On the exact pair
+`Llama-3.2-3B → -Instruct`, instruction tuning moves IFEval **+60.5 points** and the attractor share
+**−0.03**. Something enormous behaviourally is invisible to the scalar, and the class is a different
+object — a shape, not a level — so it is the natural place to look for what the scalar misses.
+
+**PAIRED DESIGN, with the same code.** `argmax_census` from `gate1` and `classify` / `N_STARTS` /
+`CENSUS_SEEDS` from `argmax_census_hardened` are imported, not reimplemented, so a class change
+cannot be the estimator.
+
+```
+  RUNG   class stability across two census seeds:  6 of 6 instruct models stable
+  CLEAN PAIRS (tuning isolated)
+    Llama-3.2-3B       none        ->  Llama-3.2-3B-Instruct    none        unchanged
+    stablelm-3b-4e1t   none        ->  stablelm-zephyr-3b       none        unchanged
+  LOOSE PAIRS (generation and/or size confounded — direction only)
+    SmolLM-1.7B        funnel      ->  SmolLM2-1.7B-Instruct    funnel      unchanged
+    gemma-2-2b         fragmented  ->  gemma-1.1-2b-it          funnel      CHANGED
+    Qwen1.5-1.8B       funnel      ->  Qwen2.5-3B-Instruct      none        CHANGED
+    Falcon3-1B-Base    borderline  ->  Falcon3-3B-Instruct      funnel      CHANGED
+```
+
+**PRIMARY: the class SURVIVES instruction tuning on both clean pairs**, with `fix` at 0.0 on all
+four runs — tuning creates no fixed points at all. This is the registered second reading, and it
+*extends* "recipe shapes the geometry" rather than contradicting it: **the recipes that move the
+class are the ones that change pretraining, not the ones that change behaviour.**
+
+**THE LOOSE PAIRS ARE THE CONTROL, AND THEY BEHAVE LIKE ONE.** All three that changed did so in
+*different directions* — `fragmented→funnel`, `funnel→none`, `borderline→funnel`. Vary the
+pretraining run (generation, size) and the class moves unpredictably; hold pretraining fixed and add
+tuning, and it does not move at all. That contrast is the strongest evidence here, and it is
+stronger than either half alone. The gemma change in particular needs no tuning explanation at all:
+the *base* is the census's distilled model, and distillation is already the recipe the taxonomy
+blames for non-funnel geometry.
+
+**A WITHIN-CLASS SHIFT EXISTS AND THE LABEL CANNOT CARRY IT.** `stablelm-zephyr-3b` collapses to
+endpoints [3, 5] from its base's [15, 16] — no seed overlap — with modal share [0.667, 0.688] against
+[0.469, 0.385], also non-overlapping, while staying `none` with zero fixed points. The Llama pair
+shows no such shift: its ranges overlap on both quantities. So tuning can concentrate the map's
+endpoints without changing its class, in at least one of two clean pairs. The four-way label is too
+coarse for that, which was in the boundary before the run.
+
+**PRIOR-ART GATE OWED, and no novelty claim is made here.** "Instruction tuning does not change
+fixed-point structure" is a claim against the instruction-tuning-and-degeneration literature, which
+this project has not searched — it is not the distillation/pruning literature already checked. The
+measurement stands; the novelty does not until F90/F91's check runs.
+
+**Boundary.** Six pairs, two clean. 96 starts, two census seeds, one greedy map per model, no
+lattice. A within-class shift is invisible to the class label, and two clean pairs is two.
+
+`experiments/argmax_census_instruct.py` → `results/argmax_census_instruct.json`
+
 ### F142 — F104's revival is UNDEFINED at step8000: the freeze it needs does not hold there, and the run had been sitting unanalysed
 Surfaced by the review render (`experiments/build_review.py`), which flags results files carrying
 data but no verdict. `revival_replication` was one: 54 runs, a full pre-registration with `primary`,
