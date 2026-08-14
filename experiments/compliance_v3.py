@@ -254,7 +254,10 @@ def main():
         correctness=CORRECTNESS, n_perm=N_PERM, min_reliability=MIN_RELIABILITY,
         pin_span=PIN_SPAN, converge=CONVERGE,
         prompt_format="each model's own chat template where present, else the v2 continuation "
-                      "format; recorded per model",
+                      "format; recorded per model, with one rendered exemplar stored",
+        max_new_note="96 new tokens, imported from v2 so the two runs share a cap. ~70 words, so "
+                     "min_words_50 and min_chars_300 remain satisfiable; the cap applies equally "
+                     "to every model and is registered rather than tuned after seeing output",
         why_chat="instruction-tuned models are trained and evaluated behind a template, and the "
                  "raw format would measure them through an interface they were not built for",
         why_not_for_the_lattice="F135: a chat scaffold moves the attractor share by more than half "
@@ -271,17 +274,34 @@ def main():
         for m in cohort:
             if m in res["models"] and res["models"][m].get("by_type"):
                 continue
+            if res["models"].get(m, {}).get("load_failed") and "--retry-failed" not in _sys.argv:
+                continue
             if limit and done_here >= limit:
                 print(f"  (stopping after {done_here}; re-run to continue)", flush=True)
                 break
             t0 = time.time()
-            try:
-                tok = AutoTokenizer.from_pretrained(m, trust_remote_code=True)
-                mdl = AutoModelForCausalLM.from_pretrained(
-                    m, trust_remote_code=True, torch_dtype=torch.float16).to(device).eval()
-            except Exception as e:
-                print(f"  {m}: LOAD FAILED {type(e).__name__}: {str(e)[:70]}", flush=True)
-                res["models"][m] = dict(error=type(e).__name__)
+            # TWO LOAD PATHS, and the fallback is the point. Several of these repos ship remote
+            # modeling code written against transformers 4.x, which raises on 5.x
+            # (EXAONE: create_causal_mask() unexpected kwarg; Phi-4-mini: cannot import
+            # LossKwargs). transformers now supports many of those architectures NATIVELY, so
+            # retrying with trust_remote_code=False rescues the model without pinning an old
+            # library for the whole project. Which path loaded is recorded per model, because
+            # "native" and "remote" are not guaranteed to be the same computation.
+            mdl = tok = None
+            load_path = None
+            for remote in (True, False):
+                try:
+                    tok = AutoTokenizer.from_pretrained(m, trust_remote_code=remote)
+                    mdl = AutoModelForCausalLM.from_pretrained(
+                        m, trust_remote_code=remote, torch_dtype=torch.float16).to(device).eval()
+                    load_path = "remote" if remote else "native"
+                    break
+                except Exception as e:
+                    last = f"{type(e).__name__}: {str(e)[:70]}"
+                    mdl = tok = None
+            if mdl is None:
+                print(f"  {m}: LOAD FAILED both paths -- {last}", flush=True)
+                res["models"][m] = dict(error=last, load_failed=True)
                 json.dump(res, open(OUT, "w"), indent=1)
                 continue
             texts, fmts = [], set()
@@ -300,8 +320,10 @@ def main():
                     outs.append(tok.decode(gg[0][enc["input_ids"].shape[1]:],
                                            skip_special_tokens=True))
             except Exception as e:
-                print(f"  {m}: GEN FAILED {type(e).__name__}: {str(e)[:70]}", flush=True)
-                res["models"][m] = dict(error=f"gen:{type(e).__name__}")
+                print(f"  {m}: GEN FAILED [{load_path}] {type(e).__name__}: {str(e)[:70]}",
+                      flush=True)
+                res["models"][m] = dict(error=f"gen:{type(e).__name__}", load_failed=True,
+                                        load_path=load_path)
                 del mdl
                 json.dump(res, open(OUT, "w"), indent=1)
                 continue
@@ -309,7 +331,14 @@ def main():
             bt = score(responses)
             res["models"][m] = dict(
                 by_type=bt, overall=float(np.mean(list(bt.values()))),
+                # ONE RENDERED PROMPT, STORED. Several chat templates inject a system preamble and
+                # some inject TODAY'S DATE (Llama-3.2 writes "Today Date: ..."), so the exact input
+                # is not reconstructable from the script alone and the run is not byte-reproducible
+                # across days. Keeping an exemplar makes the interface auditable, which is the
+                # relevant property -- the constraint text and the task are identical regardless.
+                prompt_example=texts[0],
                 prompt_format=("chat" if fmts == {"chat"} else "raw" if fmts == {"raw"} else "mixed"),
+                load_path=load_path,
                 responses={f"{c}|{j}": t for (c, j), t in responses.items()},
                 secs=round(time.time() - t0, 1))
             print(f"  {m:<44} overall={res['models'][m]['overall']:.3f} "

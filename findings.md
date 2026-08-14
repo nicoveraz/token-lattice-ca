@@ -3645,6 +3645,71 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F140 — F117's compliance correlation does NOT replicate on instruction-tuned models: it is a property of the base cohort
+F137 and F138 could not test F117's claim because their compliance measure would not resolve ten
+base models. F138 diagnosed the cohort rather than the instrument, and this is that diagnosis
+executed: eight instruction-tuned models, one per pretraining family, IFEval spanning 43.3 points
+against the base cohort's 13.4. **Every gate passes, and the effect is absent.**
+
+```
+  GATE 0    the compliance measure RESOLVES this cohort      reliability +0.545  (floor 0.5)
+            F137 -12.42, F138 -0.032 -- the first cohort where it works
+  RUNG      convergence with IFEval                          rho = +0.762       (floor 0.5)
+            two independently built instruction-following measures agree
+  LATTICE   signal above seed noise                          4 of 4 constructions
+            spreads 0.717 / 0.753 / 0.539 / 0.254 vs seed noise 0.017 / 0.023 / 0.015 / 0.014
+  F136 GATE 0 of 1024 settled replicas are periodic cycles -- every reading is a real share
+  CONTROL   params_b is NOT selective                        sel -0.143, p = 0.357
+```
+
+**PRIMARY: selectivity is NEGATIVE at every readout** — the share correlates *more* with correctness
+than with compliance. `top1@0.02` −0.191 (p = 0.452), `top1@0.2` −0.476 (p = 0.876), `top1@0.436`
+−0.429 (p = 0.837), `top1@0.7` −0.548 (p = 0.931). The two-indicator version (ours AND IFEval) is
+also negative throughout.
+
+**AND THE ORIGINAL CORRELATION IS GONE, WHICH IS THE LARGER RESULT.** Recomputing F117's own
+statistic — same readout, same benchmark, same lattice geometry, only the cohort changed:
+
+```
+                     rho(share, IFEval)   rho(share, ours)   rho(share, MUSR)
+  top1@0.02                 -0.143             -0.119             +0.310
+  top1@0.2                  -0.143             +0.071             +0.548
+  top1@0.436                -0.095             +0.048             +0.476
+  top1@0.7                  -0.119              0.000             +0.452
+
+  F117, ten BASE models:    rho(top1@0.7, IFEval) = +0.733
+```
+
+**+0.733 becomes −0.119.** This is not two compliance measures disagreeing: they agree with each
+other at +0.762, and *both* read ~zero against the share. On this cohort the share's strongest
+correlate is **MUSR**, a correctness benchmark, at +0.31 to +0.55 — the opposite of selective.
+
+**WHAT THIS DOES AND DOES NOT ESTABLISH.** It does not retract F117, which stands on its own cohort
+with its own gates. It bounds it severely: *compliance-selectivity is a property of the ten base
+models, not of the instrument.* Two readings remain open and this run cannot separate them —
+(i) the effect is real on base models and genuinely absent once models are instruction-tuned, a
+scope limitation; or (ii) the base-model effect was an artifact of n = 10, a single compliance
+indicator, and a floored comparator, and this is the failed replication that reveals it. **F139
+makes (ii) materially more live than it was**, since it showed F117's headline magnitude resting on
+GPQA with four of ten models at zero.
+
+**WHY THE NEGATIVE IS READABLE, which is the whole point of the gate order.** F137's and F138's
+negatives were not: an unresolving measure cannot correlate with anything. Here the measure resolves
+(+0.545), converges with IFEval (+0.762), the lattice has signal on 4 of 4 constructions at 18-42x
+seed noise, no replica is a periodic-cycle artefact, and the negative control behaves. The absence
+is measured rather than assumed.
+
+**Boundary and two honest deductions.** Eight families, not a population. The compliance side runs
+behind each model's own chat template while F138's ran raw, so v3 scores are not comparable to
+F138's — the within-cohort comparison is what is claimed and nothing across cohorts is. The
+difficulty **calibration fell to +0.384** here against +0.631 on the base cohort, so the pool's
+predicted difficulty ordering tracks this cohort less well; that is a fact about the pool worth
+carrying, not a defect that invalidates the gates it passed. EXAONE and internlm are excluded for
+technical load failures independent of what they would have scored.
+
+`experiments/compliance_v3.py`, `experiments/share_instruct.py`, `experiments/instruct_cohort.py`
+→ `results/compliance_v3.json`, `results/share_instruct.json`, `results/instruct_cohort.json`
+
 ### F139 — F117's HEADLINE selectivity binds on a floored benchmark; the pattern survives, the magnitude does not
 Found while interpreting F138, and it is about the *other* side of F117's statistic. Selectivity is
 `max|ρ(readout, compliance)| − max|ρ(readout, correctness)|`, so the number depends on which

@@ -1,0 +1,21 @@
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files:  10%|█         | 1/10 [00:00<00:05,  1.63it/s]Fetching 10 files:  20%|██        | 2/10 [00:00<00:03,  2.25it/s]Fetching 10 files:  30%|███       | 3/10 [00:01<00:02,  3.33it/s]Fetching 10 files:  40%|████      | 4/10 [03:08<07:24, 74.07s/it]Fetching 10 files: 100%|██████████| 10/10 [03:08<00:00, 18.82s/it]
+OK   LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct  (189s)
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files:   8%|▊         | 1/12 [00:00<00:04,  2.48it/s]Fetching 12 files:  33%|███▎      | 4/12 [03:43<08:02, 60.30s/it]Fetching 12 files: 100%|██████████| 12/12 [03:43<00:00, 18.60s/it]
+OK   meta-llama/Llama-3.2-3B-Instruct  (224s)
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files:   9%|▉         | 1/11 [00:00<00:06,  1.45it/s]Fetching 11 files:  36%|███▋      | 4/11 [00:00<00:01,  5.45it/s]Fetching 11 files:  45%|████▌     | 5/11 [04:34<07:38, 76.44s/it]Fetching 11 files: 100%|██████████| 11/11 [04:34<00:00, 24.99s/it]
+OK   microsoft/Phi-4-mini-instruct  (275s)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:00<00:05,  1.39it/s]Fetching 8 files:  38%|███▊      | 3/8 [03:56<07:18, 87.66s/it]Fetching 8 files: 100%|██████████| 8/8 [03:56<00:00, 29.61s/it]
+OK   tiiuae/Falcon3-3B-Instruct  (237s)
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files:  11%|█         | 1/9 [00:00<00:05,  1.50it/s]Fetching 9 files:  33%|███▎      | 3/9 [00:00<00:01,  4.04it/s]Fetching 9 files:  44%|████▍     | 4/9 [04:02<06:58, 83.63s/it]Fetching 9 files: 100%|██████████| 9/9 [04:02<00:00, 26.90s/it]
+OK   Qwen/Qwen2.5-3B-Instruct  (243s)
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files:   9%|▉         | 1/11 [00:00<00:07,  1.32it/s]Fetching 11 files:  45%|████▌     | 5/11 [03:14<04:08, 41.35s/it]Fetching 11 files: 100%|██████████| 11/11 [03:14<00:00, 17.69s/it]
+OK   ibm-granite/granite-3.1-2b-instruct  (195s)
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files:   8%|▊         | 1/12 [00:00<00:07,  1.46it/s]Fetching 12 files:  50%|█████     | 6/12 [02:01<02:07, 21.33s/it]Fetching 12 files: 100%|██████████| 12/12 [02:01<00:00, 10.15s/it]
+OK   HuggingFaceTB/SmolLM2-1.7B-Instruct  (122s)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:00<00:04,  1.60it/s]Fetching 8 files:  38%|███▊      | 3/8 [02:29<04:35, 55.19s/it]Fetching 8 files: 100%|██████████| 8/8 [02:29<00:00, 18.65s/it]
+OK   internlm/internlm2_5-1_8b-chat  (150s)
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files:  17%|█▋        | 1/6 [00:00<00:03,  1.35it/s]Fetching 6 files:  50%|█████     | 3/6 [03:36<04:00, 80.06s/it]Fetching 6 files: 100%|██████████| 6/6 [03:36<00:00, 36.06s/it]
+OK   stabilityai/stablelm-zephyr-3b  (217s)
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files:  11%|█         | 1/9 [00:00<00:03,  2.48it/s]Fetching 9 files:  33%|███▎      | 3/9 [03:02<06:46, 67.67s/it]Fetching 9 files: 100%|██████████| 9/9 [03:02<00:00, 20.32s/it]
+OK   google/gemma-1.1-2b-it  (183s)
+=== downloads done ===

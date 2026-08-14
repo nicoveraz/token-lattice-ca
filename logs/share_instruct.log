@@ -1,0 +1,249 @@
+=== pool finished ===
+=== retrying failed models with tiktoken available ===
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[ERROR] `cache_position` is part of ExaoneModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /Users/nicoveraz/Documents/GitHub/textca/hf_cache/modules/transformers_modules/LGAI_hyphen_EXAONE/EXAONE_hyphen_3_dot_5_hyphen_2_dot_4B_hyphen_Instruct/ccce25bd39c141fe053e0bc75818a8f5fe962802/modeling_exaone.py.
+[transformers] The `check_model_inputs` decorator is deprecated in favor of `merge_with_config_defaults`.
+[ERROR] `cache_position` is part of ExaoneForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /Users/nicoveraz/Documents/GitHub/textca/hf_cache/modules/transformers_modules/LGAI_hyphen_EXAONE/EXAONE_hyphen_3_dot_5_hyphen_2_dot_4B_hyphen_Instruct/ccce25bd39c141fe053e0bc75818a8f5fe962802/modeling_exaone.py.
+Loading weights:   0%|          | 0/272 [00:00<?, ?it/s]Loading weights:   3%|▎         | 7/272 [00:00<00:06, 42.20it/s]Loading weights:   6%|▌         | 16/272 [00:00<00:05, 45.63it/s]Loading weights:   9%|▉         | 25/272 [00:00<00:05, 47.80it/s]Loading weights:  12%|█▎        | 34/272 [00:00<00:04, 47.77it/s]Loading weights:  16%|█▌        | 43/272 [00:00<00:04, 48.06it/s]Loading weights:  19%|█▉        | 52/272 [00:01<00:04, 50.82it/s]Loading weights:  22%|██▏       | 61/272 [00:01<00:04, 49.98it/s]Loading weights:  26%|██▌       | 70/272 [00:01<00:04, 48.62it/s]Loading weights:  29%|██▉       | 79/272 [00:01<00:04, 48.19it/s]Loading weights:  32%|███▏      | 88/272 [00:01<00:03, 47.98it/s]Loading weights:  36%|███▌      | 97/272 [00:02<00:03, 47.83it/s]Loading weights:  39%|███▉      | 106/272 [00:02<00:03, 47.34it/s]Loading weights:  42%|████▏     | 115/272 [00:02<00:03, 47.29it/s]Loading weights:  49%|████▉     | 133/272 [00:02<00:02, 54.10it/s]Loading weights:  52%|█████▏    | 142/272 [00:03<00:03, 41.56it/s]Loading weights:  56%|█████▌    | 151/272 [00:03<00:03, 32.26it/s]Loading weights:  59%|█████▉    | 160/272 [00:04<00:04, 26.15it/s]Loading weights:  62%|██████▏   | 169/272 [00:04<00:04, 22.41it/s]Loading weights:  65%|██████▌   | 178/272 [00:05<00:04, 21.10it/s]Loading weights:  69%|██████▉   | 187/272 [00:05<00:04, 20.17it/s]Loading weights:  72%|███████▏  | 196/272 [00:05<00:03, 20.46it/s]Loading weights:  75%|███████▌  | 205/272 [00:06<00:03, 20.35it/s]Loading weights:  79%|███████▊  | 214/272 [00:06<00:02, 19.82it/s]Loading weights:  82%|████████▏ | 223/272 [00:07<00:02, 19.27it/s]Loading weights:  85%|████████▌ | 232/272 [00:07<00:02, 18.89it/s]Loading weights:  89%|████████▊ | 241/272 [00:08<00:01, 19.17it/s]Loading weights:  92%|█████████▏| 250/272 [00:08<00:01, 19.02it/s]Loading weights:  95%|█████████▌| 259/272 [00:09<00:00, 18.59it/s]Loading weights:  99%|█████████▊| 268/272 [00:09<00:00, 20.25it/s]Loading weights: 100%|██████████| 272/272 [00:10<00:00, 11.34it/s]Loading weights: 100%|██████████| 272/272 [00:10<00:00, 25.03it/s]
+[transformers] The remote code model you are currently using seems to expect `cache_position`. This arg has been removed from the Transformers library, and will stop being created in `generate` even for remote code models in a future release. Please open a PR on the remote code hub repo to remove any usage of `cache_position`.
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: GEN FAILED [remote] TypeError: create_causal_mask() got an unexpected keyword argument 'input_embeds'
+[transformers] Encountered exception while importing sentencepiece: No module named 'sentencepiece'
+[transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat: LOAD FAILED both paths -- ValueError: Error parsing line b'\x0e' in /Users/nicoveraz/Documents/GitHub/textca
+
+  -> TRIM: 1 of 40 types pinned (span < 0.05) and excluded: ['min_chars_300']. 39 carry model information. Widest: four_dashes=1.00, include_phrase_in_fact=1.00, max_chars_120=1.00, no_commas=1.00, no_periods=1.00. GATE 0 (resolution): the v3 compliance measure spans 0.2821 across 8 units against the 0.1811 that pure noise would produce (E[range] at k=8 is 2.85 SD); reliability +0.545 against a floor of 0.5. Independent unit is the constraint type (ICC 0.62, effective n 59 of 312). The measure resolves this cohort, which the base cohort never did, so the rung below is a real test. RUNG (convergence with IFEval): rho = +0.762 against a floor of 0.5. Convergent: two independently built verifiable-instruction measures agree on this cohort, so compliance is a construct here and the comparison below is licensed. PRIMARY not computed: results/share_instruct.json is absent, so the attractor share has not been measured on this cohort yet. The compliance side is ready and the lattice side is the remaining run. CALIBRATION (diagnostic, not a gate): predicted vs observed difficulty rho = +0.384. The predictions do not track the data on this cohort, worth knowing whatever else holds. BOUNDARY: 8 instruction-tuned models, one per pretraining family, 39 live constraint types, 6 prompts each, greedy decoding, 8 of 8 run behind their own chat template. Scores are NOT comparable to F138's base-cohort scores: the interface differs as well as the models, and no cross-cohort claim is made. Ten families is ten, not a population.
+
+wrote results/compliance_v3.json
+=== starting the lattice ===
+=== lattice pass 1 (models with cells: 0) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 5540.63it/s]
+  meta-llama/Llama-3.2-3B-Instruct|T0.02|s20260813     top1=0.1185 rep2=0.022 (152s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.02|s20260814     top1=0.1230 rep2=0.026 (149s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.2|s20260813      top1=0.0905 rep2=0.023 (149s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.2|s20260814      top1=0.0944 rep2=0.028 (149s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.436|s20260813    top1=0.0723 rep2=0.012 (150s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.436|s20260814    top1=0.0671 rep2=0.021 (150s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.7|s20260813      top1=0.0371 rep2=0.011 (149s)
+  meta-llama/Llama-3.2-3B-Instruct|T0.7|s20260814      top1=0.0410 rep2=0.011 (149s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 128 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.000 vs seed noise 0.005 FAILS; T=0.2: spread 0.000 vs seed noise 0.004 FAILS; T=0.436: spread 0.000 vs seed noise 0.005 FAILS; T=0.7: spread 0.000 vs seed noise 0.004 FAILS. 0 of 4 constructions carry model signal above seed noise. The share does NOT rank this cohort above its own seed noise, so there is nothing for the selectivity statistic to correlate and compliance_v3's PRIMARY is NOT_DECIDABLE. BOUNDARY: 1 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 2 (models with cells: 1) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+[transformers] This model config has set a `rope_parameters['original_max_position_embeddings']` field, to be used together with `max_position_embeddings` to determine a scaling factor. Please set the `factor` field of `rope_parameters`with this ratio instead -- we recommend the use of this field over `original_max_position_embeddings`, as it is compatible with most model architectures.
+Loading weights:   0%|          | 0/194 [00:00<?, ?it/s]Loading weights: 100%|██████████| 194/194 [00:00<00:00, 5746.96it/s]
+  microsoft/Phi-4-mini-instruct|T0.02|s20260813        top1=0.1120 rep2=0.018 (182s)
+  microsoft/Phi-4-mini-instruct|T0.02|s20260814        top1=0.1074 rep2=0.018 (175s)
+  microsoft/Phi-4-mini-instruct|T0.2|s20260813         top1=0.0977 rep2=0.024 (175s)
+  microsoft/Phi-4-mini-instruct|T0.2|s20260814         top1=0.0924 rep2=0.020 (175s)
+  microsoft/Phi-4-mini-instruct|T0.436|s20260813       top1=0.0866 rep2=0.017 (175s)
+  microsoft/Phi-4-mini-instruct|T0.436|s20260814       top1=0.0736 rep2=0.015 (175s)
+  microsoft/Phi-4-mini-instruct|T0.7|s20260813         top1=0.0729 rep2=0.009 (184s)
+  microsoft/Phi-4-mini-instruct|T0.7|s20260814         top1=0.0592 rep2=0.011 (181s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 256 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.007 vs seed noise 0.005 FAILS; T=0.2: spread 0.007 vs seed noise 0.005 FAILS; T=0.436: spread 0.014 vs seed noise 0.009 FAILS; T=0.7: spread 0.036 vs seed noise 0.009 OK. 1 of 4 constructions carry model signal above seed noise. The share does NOT rank this cohort above its own seed noise, so there is nothing for the selectivity statistic to correlate and compliance_v3's PRIMARY is NOT_DECIDABLE. BOUNDARY: 2 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 3 (models with cells: 2) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 5335.93it/s]
+  tiiuae/Falcon3-3B-Instruct|T0.02|s20260813           top1=0.5286 rep2=0.459 (132s)
+  tiiuae/Falcon3-3B-Instruct|T0.02|s20260814           top1=0.4993 rep2=0.413 (128s)
+  tiiuae/Falcon3-3B-Instruct|T0.2|s20260813            top1=0.5273 rep2=0.439 (131s)
+  tiiuae/Falcon3-3B-Instruct|T0.2|s20260814            top1=0.4870 rep2=0.388 (125s)
+  tiiuae/Falcon3-3B-Instruct|T0.436|s20260813          top1=0.3848 rep2=0.299 (126s)
+  tiiuae/Falcon3-3B-Instruct|T0.436|s20260814          top1=0.3620 rep2=0.268 (129s)
+  tiiuae/Falcon3-3B-Instruct|T0.7|s20260813            top1=0.2910 rep2=0.200 (131s)
+  tiiuae/Falcon3-3B-Instruct|T0.7|s20260814            top1=0.2656 rep2=0.190 (168s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 384 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.417 vs seed noise 0.013 OK; T=0.2: spread 0.437 vs seed noise 0.016 OK; T=0.436: spread 0.312 vs seed noise 0.014 OK; T=0.7: spread 0.254 vs seed noise 0.014 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 3 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 4 (models with cells: 3) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 5681.00it/s]
+  Qwen/Qwen2.5-3B-Instruct|T0.02|s20260813             top1=0.1257 rep2=0.072 (172s)
+  Qwen/Qwen2.5-3B-Instruct|T0.02|s20260814             top1=0.1113 rep2=0.059 (171s)
+  Qwen/Qwen2.5-3B-Instruct|T0.2|s20260813              top1=0.2533 rep2=0.191 (174s)
+  Qwen/Qwen2.5-3B-Instruct|T0.2|s20260814              top1=0.1816 rep2=0.136 (165s)
+  Qwen/Qwen2.5-3B-Instruct|T0.436|s20260813            top1=0.1458 rep2=0.078 (3005s)
+  Qwen/Qwen2.5-3B-Instruct|T0.436|s20260814            top1=0.1250 rep2=0.095 (163s)
+  Qwen/Qwen2.5-3B-Instruct|T0.7|s20260813              top1=0.0436 rep2=0.016 (164s)
+  Qwen/Qwen2.5-3B-Instruct|T0.7|s20260814              top1=0.0404 rep2=0.017 (164s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 512 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.417 vs seed noise 0.013 OK; T=0.2: spread 0.437 vs seed noise 0.030 OK; T=0.436: spread 0.312 vs seed noise 0.015 OK; T=0.7: spread 0.254 vs seed noise 0.012 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 4 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 5 (models with cells: 4) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 5098.38it/s]
+  ibm-granite/granite-3.1-2b-instruct|T0.02|s20260813  top1=0.3535 rep2=0.098 (146s)
+  ibm-granite/granite-3.1-2b-instruct|T0.02|s20260814  top1=0.3249 rep2=0.118 (144s)
+  ibm-granite/granite-3.1-2b-instruct|T0.2|s20260813   top1=0.3802 rep2=0.101 (144s)
+  ibm-granite/granite-3.1-2b-instruct|T0.2|s20260814   top1=0.3470 rep2=0.119 (144s)
+  ibm-granite/granite-3.1-2b-instruct|T0.436|s20260813 top1=0.2988 rep2=0.137 (143s)
+  ibm-granite/granite-3.1-2b-instruct|T0.436|s20260814 top1=0.2871 rep2=0.139 (144s)
+  ibm-granite/granite-3.1-2b-instruct|T0.7|s20260813   top1=0.1426 rep2=0.078 (144s)
+  ibm-granite/granite-3.1-2b-instruct|T0.7|s20260814   top1=0.1530 rep2=0.094 (144s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 640 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.417 vs seed noise 0.016 OK; T=0.2: spread 0.437 vs seed noise 0.031 OK; T=0.436: spread 0.312 vs seed noise 0.015 OK; T=0.7: spread 0.254 vs seed noise 0.011 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 5 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 6 (models with cells: 5) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 5495.60it/s]
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.02|s20260813  top1=0.7793 rep2=0.830 (94s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.02|s20260814  top1=0.8086 rep2=0.846 (93s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.2|s20260813   top1=0.8223 rep2=0.844 (93s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.2|s20260814   top1=0.8190 rep2=0.829 (93s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.436|s20260813 top1=0.5970 rep2=0.558 (98s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.436|s20260814 top1=0.5846 rep2=0.532 (95s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.7|s20260813   top1=0.1406 rep2=0.087 (96s)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct|T0.7|s20260814   top1=0.1764 rep2=0.106 (95s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 768 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.667 vs seed noise 0.018 OK; T=0.2: spread 0.732 vs seed noise 0.026 OK; T=0.436: spread 0.525 vs seed noise 0.014 OK; T=0.7: spread 0.254 vs seed noise 0.015 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 6 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 7 (models with cells: 6) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat: LOAD FAILED ValueError: Error parsing line b'\x0e' in /Users/nicoveraz/Documents/GitHub/textca
+Loading weights:   0%|          | 0/356 [00:00<?, ?it/s]Loading weights: 100%|██████████| 356/356 [00:00<00:00, 5657.43it/s]
+  stabilityai/stablelm-zephyr-3b|T0.02|s20260813       top1=0.5684 rep2=0.337 (138s)
+  stabilityai/stablelm-zephyr-3b|T0.02|s20260814       top1=0.5638 rep2=0.322 (135s)
+  stabilityai/stablelm-zephyr-3b|T0.2|s20260813        top1=0.4082 rep2=0.193 (134s)
+  stabilityai/stablelm-zephyr-3b|T0.2|s20260814        top1=0.4173 rep2=0.212 (134s)
+  stabilityai/stablelm-zephyr-3b|T0.436|s20260813      top1=0.1328 rep2=0.060 (132s)
+  stabilityai/stablelm-zephyr-3b|T0.436|s20260814      top1=0.1497 rep2=0.062 (134s)
+  stabilityai/stablelm-zephyr-3b|T0.7|s20260813        top1=0.0632 rep2=0.029 (134s)
+  stabilityai/stablelm-zephyr-3b|T0.7|s20260814        top1=0.0677 rep2=0.026 (132s)
+  (stopping after 1 model(s); re-run to continue)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 896 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.667 vs seed noise 0.016 OK; T=0.2: spread 0.732 vs seed noise 0.024 OK; T=0.436: spread 0.525 vs seed noise 0.015 OK; T=0.7: spread 0.254 vs seed noise 0.014 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 7 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 8 (models with cells: 7) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat: LOAD FAILED ValueError: Error parsing line b'\x0e' in /Users/nicoveraz/Documents/GitHub/textca
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]Loading weights: 100%|██████████| 164/164 [00:00<00:00, 4703.20it/s]
+  google/gemma-1.1-2b-it|T0.02|s20260813               top1=0.0625 rep2=0.512 (124s)
+  google/gemma-1.1-2b-it|T0.02|s20260814               top1=0.0859 rep2=0.488 (122s)
+  google/gemma-1.1-2b-it|T0.2|s20260813                top1=0.0690 rep2=0.518 (121s)
+  google/gemma-1.1-2b-it|T0.2|s20260814                top1=0.0898 rep2=0.499 (122s)
+  google/gemma-1.1-2b-it|T0.436|s20260813              top1=0.0579 rep2=0.555 (122s)
+  google/gemma-1.1-2b-it|T0.436|s20260814              top1=0.0742 rep2=0.554 (121s)
+  google/gemma-1.1-2b-it|T0.7|s20260813                top1=0.0547 rep2=0.607 (121s)
+  google/gemma-1.1-2b-it|T0.7|s20260814                top1=0.0384 rep2=0.613 (121s)
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 1024 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.717 vs seed noise 0.017 OK; T=0.2: spread 0.753 vs seed noise 0.023 OK; T=0.436: spread 0.539 vs seed noise 0.015 OK; T=0.7: spread 0.254 vs seed noise 0.014 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 8 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice pass 9 (models with cells: 8) ===
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct: LOAD FAILED AttributeError: 'PreTrainedConfig' object has no attribute 'max_position_embeddings'
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat: LOAD FAILED ValueError: Error parsing line b'\x0e' in /Users/nicoveraz/Documents/GitHub/textca
+
+  -> DEGENERACY (F136's gate, applied first): 0 of 1024 settled replicas are balanced periodic cycles, where top1 is 1/period by arithmetic rather than a share. None, so every reading below is an attractor share. RUNG (signal, as F130 required): T=0.02: spread 0.717 vs seed noise 0.017 OK; T=0.2: spread 0.753 vs seed noise 0.023 OK; T=0.436: spread 0.539 vs seed noise 0.015 OK; T=0.7: spread 0.254 vs seed noise 0.014 OK. 4 of 4 constructions carry model signal above seed noise. The share ranks this cohort, so compliance_v3's PRIMARY can be read. BOUNDARY: 8 instruction-tuned models, one per pretraining family, N=96, B=16, settle=16, r=2, raw r-token context with NO chat template (F135). Geometry copied from band_screen so top1@T is F117's quantity; these are ten families, not a population, and instruction-tuned lattices have no prior in this project.
+
+wrote results/share_instruct.json
+=== lattice: no progress, stopping ===
+=== lattice done ===
