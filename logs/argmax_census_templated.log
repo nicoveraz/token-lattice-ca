@@ -1,0 +1,70 @@
+=== tmpl pass 1 (models done: 0) ===
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 5671.30it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  meta-llama/Llama-3.2-3B-Instruct         RUNG noprefix cls=none        fix=0.000
+  meta-llama/Llama-3.2-3B-Instruct         tmpl s=20260803 cls=none        fix=0.000 modal=0.469 endpts=11 (prefix 35 tok)
+  meta-llama/Llama-3.2-3B-Instruct         tmpl s=990017 cls=none        fix=0.000 modal=0.417 endpts=19 (prefix 35 tok)
+  (789s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (prefix=None reproduces the stored raw census): 1 field-sets compared. Identical, so the optional `prefix` argument left the default path untouched and the comparison below is between one estimator and itself. STABILITY: 1 of 1 templated censuses agree across both seeds. PRIMARY (same weights, same seeds, only the domain changes): Llama-3.2-3B-Instruct [none] -> [none]. NO model changes class under its own chat template. The class is a property of the weights rather than of the domain at this scale of prefix, which strengthens F143 from 'invariance at fixed domain' to invariance across the domain a deployed instruct model actually runs in. SECONDARY (the within-class quantities the label cannot carry): Llama-3.2-3B-Instruct fix [0.0, 0.0]->[0.0, 0.0] endpoints [7, 14]->[11, 19]. BOUNDARY: 1 instruction-tuned models, one template each (35-35 prefix tokens), 96 starts, two census seeds. One template is one domain; base models have no template and cannot be run on this axis at all.
+
+wrote results/argmax_census_templated.json
+=== tmpl pass 2 (models done: 1) ===
+Loading weights:   0%|          | 0/356 [00:00<?, ?it/s]Loading weights: 100%|██████████| 356/356 [00:00<00:00, 5640.83it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  stabilityai/stablelm-zephyr-3b           RUNG noprefix cls=none        fix=0.000
+  stabilityai/stablelm-zephyr-3b           tmpl s=20260803 cls=none        fix=0.021 modal=0.104 endpts=47 (prefix 13 tok)
+  stabilityai/stablelm-zephyr-3b           tmpl s=990017 cls=none        fix=0.000 modal=0.115 endpts=43 (prefix 13 tok)
+  (502s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (prefix=None reproduces the stored raw census): 2 field-sets compared. Identical, so the optional `prefix` argument left the default path untouched and the comparison below is between one estimator and itself. STABILITY: 2 of 2 templated censuses agree across both seeds. PRIMARY (same weights, same seeds, only the domain changes): Llama-3.2-3B-Instruct [none] -> [none]; stablelm-zephyr-3b [none] -> [none]. NO model changes class under its own chat template. The class is a property of the weights rather than of the domain at this scale of prefix, which strengthens F143 from 'invariance at fixed domain' to invariance across the domain a deployed instruct model actually runs in. SECONDARY (the within-class quantities the label cannot carry): Llama-3.2-3B-Instruct fix [0.0, 0.0]->[0.0, 0.0] endpoints [7, 14]->[11, 19]; stablelm-zephyr-3b fix [0.0, 0.0]->[0.0208, 0.0] endpoints [3, 5]->[47, 43]. BOUNDARY: 2 instruction-tuned models, one template each (13-35 prefix tokens), 96 starts, two census seeds. One template is one domain; base models have no template and cannot be run on this axis at all.
+
+wrote results/argmax_census_templated.json
+=== tmpl pass 3 (models done: 2) ===
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 5055.31it/s]
+  HuggingFaceTB/SmolLM2-1.7B-Instruct      RUNG noprefix cls=funnel      fix=0.990
+  HuggingFaceTB/SmolLM2-1.7B-Instruct      tmpl s=20260803 cls=none        fix=0.010 modal=0.365 endpts=10 (prefix 30 tok)
+  HuggingFaceTB/SmolLM2-1.7B-Instruct      tmpl s=990017 cls=none        fix=0.010 modal=0.312 endpts=11 (prefix 30 tok)
+  (265s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (prefix=None reproduces the stored raw census): 3 field-sets compared. Identical, so the optional `prefix` argument left the default path untouched and the comparison below is between one estimator and itself. STABILITY: 3 of 3 templated censuses agree across both seeds. PRIMARY (same weights, same seeds, only the domain changes): Llama-3.2-3B-Instruct [none] -> [none]; stablelm-zephyr-3b [none] -> [none]; SmolLM2-1.7B-Instruct [funnel] -> [none]  CHANGED. 1 of 3 models change class under their own chat template. The fixed-point class is DOMAIN-determined, not a property of the weights alone — 2608.10986's BOS effect generalises from one token to a deployment prefix, and F143's null describes the RAW map only. SECONDARY (the within-class quantities the label cannot carry): Llama-3.2-3B-Instruct fix [0.0, 0.0]->[0.0, 0.0] endpoints [7, 14]->[11, 19]; stablelm-zephyr-3b fix [0.0, 0.0]->[0.0208, 0.0] endpoints [3, 5]->[47, 43]; SmolLM2-1.7B-Instruct fix [0.9896, 0.9688]->[0.0104, 0.0104] endpoints [3, 5]->[10, 11]. BOUNDARY: 3 instruction-tuned models, one template each (13-35 prefix tokens), 96 starts, two census seeds. One template is one domain; base models have no template and cannot be run on this axis at all.
+
+wrote results/argmax_census_templated.json
+=== tmpl pass 4 (models done: 3) ===
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]Loading weights: 100%|██████████| 164/164 [00:00<00:00, 5174.18it/s]
+  google/gemma-1.1-2b-it                   RUNG noprefix cls=funnel      fix=0.948
+  google/gemma-1.1-2b-it                   tmpl s=20260803 cls=none        fix=0.000 modal=0.333 endpts=16 (prefix 9 tok)
+  google/gemma-1.1-2b-it                   tmpl s=990017 cls=none        fix=0.000 modal=0.323 endpts=13 (prefix 9 tok)
+  (244s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (prefix=None reproduces the stored raw census): 4 field-sets compared. Identical, so the optional `prefix` argument left the default path untouched and the comparison below is between one estimator and itself. STABILITY: 4 of 4 templated censuses agree across both seeds. PRIMARY (same weights, same seeds, only the domain changes): Llama-3.2-3B-Instruct [none] -> [none]; stablelm-zephyr-3b [none] -> [none]; SmolLM2-1.7B-Instruct [funnel] -> [none]  CHANGED; gemma-1.1-2b-it [funnel] -> [none]  CHANGED. 2 of 4 models change class under their own chat template. The fixed-point class is DOMAIN-determined, not a property of the weights alone — 2608.10986's BOS effect generalises from one token to a deployment prefix, and F143's null describes the RAW map only. SECONDARY (the within-class quantities the label cannot carry): Llama-3.2-3B-Instruct fix [0.0, 0.0]->[0.0, 0.0] endpoints [7, 14]->[11, 19]; stablelm-zephyr-3b fix [0.0, 0.0]->[0.0208, 0.0] endpoints [3, 5]->[47, 43]; SmolLM2-1.7B-Instruct fix [0.9896, 0.9688]->[0.0104, 0.0104] endpoints [3, 5]->[10, 11]; gemma-1.1-2b-it fix [0.9479, 0.9479]->[0.0, 0.0] endpoints [10, 20]->[16, 13]. BOUNDARY: 4 instruction-tuned models, one template each (9-35 prefix tokens), 96 starts, two census seeds. One template is one domain; base models have no template and cannot be run on this axis at all.
+
+wrote results/argmax_census_templated.json
+=== tmpl pass 5 (models done: 4) ===
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 6311.55it/s]
+  Qwen/Qwen2.5-3B-Instruct                 RUNG noprefix cls=none        fix=0.000
+  Qwen/Qwen2.5-3B-Instruct                 tmpl s=20260803 cls=none        fix=0.021 modal=0.365 endpts=14 (prefix 29 tok)
+  Qwen/Qwen2.5-3B-Instruct                 tmpl s=990017 cls=none        fix=0.021 modal=0.365 endpts=18 (prefix 29 tok)
+  (607s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (prefix=None reproduces the stored raw census): 5 field-sets compared. Identical, so the optional `prefix` argument left the default path untouched and the comparison below is between one estimator and itself. STABILITY: 5 of 5 templated censuses agree across both seeds. PRIMARY (same weights, same seeds, only the domain changes): Llama-3.2-3B-Instruct [none] -> [none]; stablelm-zephyr-3b [none] -> [none]; SmolLM2-1.7B-Instruct [funnel] -> [none]  CHANGED; gemma-1.1-2b-it [funnel] -> [none]  CHANGED; Qwen2.5-3B-Instruct [none] -> [none]. 2 of 5 models change class under their own chat template. The fixed-point class is DOMAIN-determined, not a property of the weights alone — 2608.10986's BOS effect generalises from one token to a deployment prefix, and F143's null describes the RAW map only. SECONDARY (the within-class quantities the label cannot carry): Llama-3.2-3B-Instruct fix [0.0, 0.0]->[0.0, 0.0] endpoints [7, 14]->[11, 19]; stablelm-zephyr-3b fix [0.0, 0.0]->[0.0208, 0.0] endpoints [3, 5]->[47, 43]; SmolLM2-1.7B-Instruct fix [0.9896, 0.9688]->[0.0104, 0.0104] endpoints [3, 5]->[10, 11]; gemma-1.1-2b-it fix [0.9479, 0.9479]->[0.0, 0.0] endpoints [10, 20]->[16, 13]; Qwen2.5-3B-Instruct fix [0.0, 0.0]->[0.0208, 0.0208] endpoints [33, 36]->[14, 18]. BOUNDARY: 5 instruction-tuned models, one template each (9-35 prefix tokens), 96 starts, two census seeds. One template is one domain; base models have no template and cannot be run on this axis at all.
+
+wrote results/argmax_census_templated.json
+=== tmpl pass 6 (models done: 5) ===
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 4976.74it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-3B-Instruct               RUNG noprefix cls=funnel      fix=0.615
+  tiiuae/Falcon3-3B-Instruct               tmpl s=20260803 cls=funnel      fix=0.844 modal=0.844 endpts=5 (prefix 11 tok)
+  tiiuae/Falcon3-3B-Instruct               tmpl s=990017 cls=funnel      fix=0.833 modal=0.833 endpts=3 (prefix 11 tok)
+  (183s)
+
+  -> RUNG (prefix=None reproduces the stored raw census): 6 field-sets compared. Identical, so the optional `prefix` argument left the default path untouched and the comparison below is between one estimator and itself. STABILITY: 6 of 6 templated censuses agree across both seeds. PRIMARY (same weights, same seeds, only the domain changes): Llama-3.2-3B-Instruct [none] -> [none]; stablelm-zephyr-3b [none] -> [none]; SmolLM2-1.7B-Instruct [funnel] -> [none]  CHANGED; gemma-1.1-2b-it [funnel] -> [none]  CHANGED; Qwen2.5-3B-Instruct [none] -> [none]; Falcon3-3B-Instruct [funnel] -> [funnel]. 2 of 6 models change class under their own chat template. The fixed-point class is DOMAIN-determined, not a property of the weights alone — 2608.10986's BOS effect generalises from one token to a deployment prefix, and F143's null describes the RAW map only. SECONDARY (the within-class quantities the label cannot carry): Llama-3.2-3B-Instruct fix [0.0, 0.0]->[0.0, 0.0] endpoints [7, 14]->[11, 19]; stablelm-zephyr-3b fix [0.0, 0.0]->[0.0208, 0.0] endpoints [3, 5]->[47, 43]; SmolLM2-1.7B-Instruct fix [0.9896, 0.9688]->[0.0104, 0.0104] endpoints [3, 5]->[10, 11]; gemma-1.1-2b-it fix [0.9479, 0.9479]->[0.0, 0.0] endpoints [10, 20]->[16, 13]; Qwen2.5-3B-Instruct fix [0.0, 0.0]->[0.0208, 0.0208] endpoints [33, 36]->[14, 18]; Falcon3-3B-Instruct fix [0.6146, 0.7708]->[0.8438, 0.8333] endpoints [3, 4]->[5, 3]. BOUNDARY: 6 instruction-tuned models, one template each (9-35 prefix tokens), 96 starts, two census seeds. One template is one domain; base models have no template and cannot be run on this axis at all.
+
+wrote results/argmax_census_templated.json
+=== templated census: all 6 done ===
+=== templated census done ===

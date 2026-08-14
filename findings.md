@@ -3645,6 +3645,68 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F144 — the fixed-point class is a joint property of WEIGHTS AND DOMAIN: a 9-token chat template can destroy it or reinforce it
+F143's own prior-art gate found the threat inside this project's published paper: arXiv:2608.10986
+shows the frozen fraction is a property of the map's DOMAIN, not its parameters — one BOS token moves
+it 74.4% → 24.1% with zero weight change. F143 then reported class invariance under instruction
+tuning. This tests whether that invariance is about the weights or only about the raw domain.
+
+**THE COMPARISON IS WITHIN ONE MODEL.** Same weights, same census, same seeds, same 96 starts; only
+the tokens preceding the two-token state change, from nothing to the model's own rendered chat
+template. Any difference is the domain and nothing else.
+
+```
+  RUNG   prefix=None reproduces the stored raw census on 6 of 6 models, field for field
+  STABILITY  6 of 6 templated censuses agree across both seeds
+
+  model                    raw               templated (prefix tokens)
+  SmolLM2-1.7B-Instruct    funnel  fix 0.99  ->  none    fix 0.010   (30)   DESTROYED
+  gemma-1.1-2b-it          funnel  fix 0.95  ->  none    fix 0.000   ( 9)   DESTROYED
+  Falcon3-3B-Instruct      funnel  fix 0.62  ->  funnel  fix 0.84    (11)   REINFORCED
+  stablelm-zephyr-3b       none    endpts [3,5]  ->  [47,43]         (13)
+  Qwen2.5-3B-Instruct      none    endpts [33,36] ->  [14,18]        (29)
+  Llama-3.2-3B-Instruct    none    endpts [7,14]  ->  [11,19]        (35)
+```
+
+**PRIMARY: 2 of 6 change class, and the direction is MODEL-SPECIFIC.** Nine tokens eliminate
+gemma's entire fixed-point structure (0.948 → 0.000). Eleven tokens *strengthen* Falcon3's
+(0.615 → 0.844). This is not "templates wash out the geometry" — it is an **interaction**, and that
+is the harder version: a systematic effect could be corrected for, an interaction cannot.
+
+**THE RAW-DOMAIN CLASS DOES NOT PREDICT THE TEMPLATED-DOMAIN CLASS, not even in order.** Falcon3 is
+the *weakest* funnel on the raw map (0.615 against 0.990 and 0.948) and the *only* one to survive
+templating. Whatever the raw census ranks, it is not the templated map's fixed-point structure.
+
+**WHAT THIS COSTS F143, stated plainly.** F143's invariance under instruction tuning stands, but it
+describes the RAW map only, and it is now the less important of the two facts: the domain effect
+(up to 99× on `fix`, class-changing) dwarfs the tuning effect (zero). F143 is amended accordingly
+rather than left to imply more.
+
+**WHAT IT COSTS THE TAXONOMY.** `argmax_census_hardened`'s 17-model classification is a
+classification of the raw map. The classes are stable and reproducible and they do separate models —
+but "the class is a property of the model" must become "a property of the model IN THIS DOMAIN". For
+BASE models, used as continuers, the raw domain is close to their actual use; for instruct models it
+is not the domain they are deployed in.
+
+**AND IT SUPPLIES F140's MECHANISM FROM A NEW DIRECTION.** The attractor share is measured on raw
+r-token context; compliance is behaviour observed through chat templates. If a model's fixed-point
+structure differs that much between the two domains, a raw-domain readout has little reason to
+predict templated-domain behaviour. That is a deeper account than "compliance is a different
+construct", and it was not available before this run.
+
+**THE PROTOCOL GAINS AN AXIS.** `gatecheck.Loopness` parameterises radius, temperature, visit scheme,
+masking and commitment — and has **no domain axis**. On this evidence the domain belongs in the
+loopness vector, because it moves a readout further than any parameter already in it.
+
+**Boundary.** Six instruction-tuned models, ONE template each (9–35 prefix tokens), 96 starts, two
+census seeds. One template is one domain: this shows the domain matters enormously, not how it
+matters. Base models have no template and cannot be run on this axis at all, so the comparison
+exists only for instruct models. `gate1.argmax_census` gained an optional `prefix` argument; the
+rung above exists because that change could otherwise have made every comparison an estimator
+artefact.
+
+`experiments/argmax_census_templated.py` → `results/argmax_census_templated.json`
+
 ### F143 — the fixed-point CLASS survives instruction tuning: the geometry is set in pretraining, and the recipe axis is about pretraining recipes
 The taxonomy (`argmax_census_hardened`) classifies models by the fixed-point geometry of the argmax
 map — funnel / none / fragmented / borderline — stably, 17/17 across two census seeds. Its striking
@@ -3677,6 +3739,14 @@ cannot be the estimator.
 four runs — tuning creates no fixed points at all. This is the registered second reading, and it
 *extends* "recipe shapes the geometry" rather than contradicting it: **the recipes that move the
 class are the ones that change pretraining, not the ones that change behaviour.**
+
+> **AMENDED BY F144, and the amendment matters more than the finding.** This invariance holds on the
+> RAW map. F144 ran the same census through each model's own chat template and found the class is a
+> joint property of weights and domain: nine tokens destroy gemma's fixed-point structure entirely
+> (0.948 → 0.000) while eleven tokens *strengthen* Falcon3's (0.615 → 0.844). The domain effect is
+> up to 99× on `fix` and class-changing; the tuning effect measured here is zero. So the honest
+> reading of F143 is **"instruction tuning does not move the class, and the domain does"** — not
+> "the class is a property of the weights".
 
 **THE LOOSE PAIRS ARE THE CONTROL, AND THEY BEHAVE LIKE ONE.** All three that changed did so in
 *different directions* — `fragmented→funnel`, `funnel→none`, `borderline→funnel`. Vary the
