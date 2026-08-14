@@ -3698,8 +3698,30 @@ fixed-point structure" is a claim against the instruction-tuning-and-degeneratio
 this project has not searched — it is not the distillation/pruning literature already checked. The
 measurement stands; the novelty does not until F90/F91's check runs.
 
+**SIZE IS RULED OUT AS THE CONFOUND, INSIDE THE BAND.** The obvious alternative to "recipe shapes
+the geometry" is "small models are funnels". It does not hold:
+```
+  funnel      n=6   mean 2.25B   range 1.71-3.03
+  none        n=6   mean 2.44B   range 1.43-3.21
+  rho(is-funnel, params)                = +0.000
+  rho(is-funnel, from-scratch)          = +0.577
+  rho(is-funnel, from-scratch | params) = +0.580     <- unchanged by partialling size out
+```
+Funnel and `none` have overlapping ranges and near-identical means, and the recipe association is
+untouched by controlling for size. **The limit is the band**: the census spans 1.43–3.21B, a 2.2×
+range chosen for other reasons, so this rules size out *within that band* and says nothing across
+orders of magnitude. A first attempt at this check was wrong — it mixed raw parameter counts with
+billions, so the ranks were corrupted and the correlations meaningless; the numbers above are the
+corrected pass.
+
+**GENERATION CANNOT BE TESTED FROM STORED DATA**, and that is a real gap rather than a clean result:
+each family appears once, so generation is confounded with family identity and no release-date field
+exists. The only evidence is indirect — when the loose pairs vary generation the class moves in
+inconsistent directions, which is how a confound behaves rather than a signal.
+
 **Boundary.** Six pairs, two clean. 96 starts, two census seeds, one greedy map per model, no
-lattice. A within-class shift is invisible to the class label, and two clean pairs is two.
+lattice. A within-class shift is invisible to the class label, and two clean pairs is two. Size is
+controlled only within 1.43–3.21B; generation is not controlled at all.
 
 `experiments/argmax_census_instruct.py` → `results/argmax_census_instruct.json`
 
