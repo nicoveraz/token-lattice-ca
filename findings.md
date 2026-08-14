@@ -3693,10 +3693,54 @@ shows no such shift: its ranges overlap on both quantities. So tuning can concen
 endpoints without changing its class, in at least one of two clean pairs. The four-way label is too
 coarse for that, which was in the boundary before the run.
 
-**PRIOR-ART GATE OWED, and no novelty claim is made here.** "Instruction tuning does not change
-fixed-point structure" is a claim against the instruction-tuning-and-degeneration literature, which
-this project has not searched — it is not the distillation/pruning literature already checked. The
-measurement stands; the novelty does not until F90/F91's check runs.
+**PRIOR-ART GATE: RUN, AND IT CLEARS ONLY A NARROW CLAIM.** 100 agents, seven primary papers checked
+by full-text extraction with keyword censuses over appendices. Verdict: the composite claim
+(fixed-point CLASS + argmax map + matched base→instruct pair + invariance) is **unclaimed** — zero
+verified papers measure fixed points, attractors, absorbing states or basins of the deterministic
+argmax map, and zero pair a base model against its own instruction-tuned descendant on any such
+measure. But three things bound what may be said:
+
+**SELF-PRIOR-ART, AND IT IS THE BIGGEST CUT.** arXiv:2608.10986 — this project's own published
+paper — already identifies "an attracting fixed point of the argmax map", already reports the
+funnel-vs-none contrast (pythia-410m funnel, 18/24 starts to newline; gpt2-medium no fixed point,
+11 endpoints), and already links attractor share to instruction-following compliance at +0.53. **The
+census method and the FUNNEL/NONE distinction are ours and are published.** Novelty here is claimable
+on the **training-stage axis only**, not on the measurement.
+
+**A DOMAIN THREAT TO THE NULL'S INTERPRETATION, from our own paper.** 2608.10986 shows the frozen
+fraction is a property of the map's DOMAIN, not its parameters: prepending a single BOS token moves
+it from 74.4% to 24.1%. Large moves in fixed-point statistics can happen with *zero parameter
+change*. This census holds the domain fixed — raw two-token starts, no chat template, both sides —
+so the null is intact, but it must be stated as **invariance at fixed domain**. An instruct model
+read through its own chat template is exactly the domain change that paper showed can move
+everything, and that experiment has not been run.
+
+**THE LITERATURE PREDICTS CHANGE, so the null is non-trivial.** Alignment tuning is measured to
+sharpen the next-token conditional by 2–5× in effective branching factor and up to ~10× (12 → 1.2)
+at early positions; diversity-collapse work holds that post-training reshapes generative structure.
+That same prediction independently anticipates the within-class concentration observed here
+([15,16] → [3,5]), which is worth noting as a point *for* the literature rather than against it.
+
+**THREE PAPERS MUST BE CITED AND DISTINGUISHED:**
+- **Li et al., NeurIPS 2023 (arXiv:2310.10226)** — the most threatening. It already censused
+  degeneration BY TRAINING STAGE on a matched pair (Llama2-7B base vs its own QLoRA SFT) under
+  greedy decoding, and found greedy rep-2 falling **47.79 → 15.08**. It pre-empts the base-vs-instruct
+  framing, and asserts the *opposite* of invariance. Distinguished on object: surface n-gram
+  repetition of 128-token continuations from natural prompts, never the fixed points of an iterated
+  argmax map. Its causal account is sharper still — the *fine-tuning data's* repetition rate drives
+  the change, not the tuning stage — which is the mechanism this null has to argue against.
+- **Zekri et al., ICLR 2025 (arXiv:2410.02724)** — proves the inference chain is ergodic with a
+  unique stationary distribution. Extrapolated naively to T→0 it predicts *every* model is a funnel,
+  which the observed NONE and FRAGMENTED classes contradict. Pre-empts nothing; a reviewer will
+  raise it, and the rebuttal is that the theory is undefined on the argmax map.
+- **Wang et al., ACL 2025 (arXiv:2502.15208)** — owns "attractor" for LLM iterated generation and
+  taxonomizes fixed points and limit cycles. Different state space: whole texts under stochastic
+  multi-token generation, not the token-pair state of a short-window argmax map.
+
+**AND (d) IS UNCLAIMED:** no verified source argues decoding-time attractor structure is
+pretraining-determined and post-training-invariant. The closest is a claim that alignment steers
+models into low-entropy regions *already present in the base model* rather than reshaping structure
+— adjacent, and about a scalar rather than a discrete class.
 
 **SIZE IS RULED OUT AS THE CONFOUND, INSIDE THE BAND.** The obvious alternative to "recipe shapes
 the geometry" is "small models are funnels". It does not hold:
