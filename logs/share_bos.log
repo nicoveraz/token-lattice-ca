@@ -1,0 +1,202 @@
+=== bos pass 1 (cells: 0) ===
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 12842.12it/s]
+  EleutherAI/pythia-31m              RUNG none top1=0.9883
+  EleutherAI/pythia-31m|r2.T0.02|s20260810|bos         top1=0.0872 (11s)
+  EleutherAI/pythia-31m|r2.T0.02|s20260811|bos         top1=0.0924 (12s)
+  EleutherAI/pythia-31m|r2.T0.2|s20260810|bos          top1=0.1081 (12s)
+  EleutherAI/pythia-31m|r2.T0.2|s20260811|bos          top1=0.1016 (11s)
+  EleutherAI/pythia-31m|r2.T0.7|s20260810|bos          top1=0.0768 (11s)
+  EleutherAI/pythia-31m|r2.T0.7|s20260811|bos          top1=0.0638 (11s)
+  EleutherAI/pythia-31m|r3.T0.02|s20260810|bos         top1=0.1081 (14s)
+  EleutherAI/pythia-31m|r3.T0.02|s20260811|bos         top1=0.1471 (14s)
+  EleutherAI/pythia-31m|r3.T0.2|s20260810|bos          top1=0.1016 (14s)
+  EleutherAI/pythia-31m|r3.T0.2|s20260811|bos          top1=0.1159 (14s)
+  EleutherAI/pythia-31m|r3.T0.7|s20260810|bos          top1=0.0964 (15s)
+  EleutherAI/pythia-31m|r3.T0.7|s20260811|bos          top1=0.1003 (15s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 1 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. Only 1 models complete -- a rank correlation on fewer cannot fail informatively, so the PRIMARY is not read.
+
+wrote results/share_bos.json
+=== bos pass 2 (cells: 12) ===
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 17996.09it/s]
+  EleutherAI/pythia-160m             RUNG none top1=0.9049
+  EleutherAI/pythia-160m|r2.T0.02|s20260810|bos        top1=0.2357 (21s)
+  EleutherAI/pythia-160m|r2.T0.02|s20260811|bos        top1=0.2513 (20s)
+  EleutherAI/pythia-160m|r2.T0.2|s20260810|bos         top1=0.1992 (20s)
+  EleutherAI/pythia-160m|r2.T0.2|s20260811|bos         top1=0.2214 (21s)
+  EleutherAI/pythia-160m|r2.T0.7|s20260810|bos         top1=0.1719 (21s)
+  EleutherAI/pythia-160m|r2.T0.7|s20260811|bos         top1=0.1823 (21s)
+  EleutherAI/pythia-160m|r3.T0.02|s20260810|bos        top1=0.2526 (21s)
+  EleutherAI/pythia-160m|r3.T0.02|s20260811|bos        top1=0.2617 (21s)
+  EleutherAI/pythia-160m|r3.T0.2|s20260810|bos         top1=0.2552 (21s)
+  EleutherAI/pythia-160m|r3.T0.2|s20260811|bos         top1=0.2487 (21s)
+  EleutherAI/pythia-160m|r3.T0.7|s20260810|bos         top1=0.2227 (21s)
+  EleutherAI/pythia-160m|r3.T0.7|s20260811|bos         top1=0.2018 (21s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 2 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. Only 2 models complete -- a rank correlation on fewer cannot fail informatively, so the PRIMARY is not read.
+
+wrote results/share_bos.json
+=== bos pass 3 (cells: 24) ===
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7333.18it/s]
+  EleutherAI/pythia-410m             RUNG none top1=0.8034
+  EleutherAI/pythia-410m|r2.T0.02|s20260810|bos        top1=0.2148 (44s)
+  EleutherAI/pythia-410m|r2.T0.02|s20260811|bos        top1=0.2526 (44s)
+  EleutherAI/pythia-410m|r2.T0.2|s20260810|bos         top1=0.1888 (44s)
+  EleutherAI/pythia-410m|r2.T0.2|s20260811|bos         top1=0.2266 (44s)
+  EleutherAI/pythia-410m|r2.T0.7|s20260810|bos         top1=0.2109 (44s)
+  EleutherAI/pythia-410m|r2.T0.7|s20260811|bos         top1=0.1354 (45s)
+  EleutherAI/pythia-410m|r3.T0.02|s20260810|bos        top1=0.2734 (46s)
+  EleutherAI/pythia-410m|r3.T0.02|s20260811|bos        top1=0.2786 (46s)
+  EleutherAI/pythia-410m|r3.T0.2|s20260810|bos         top1=0.2201 (46s)
+  EleutherAI/pythia-410m|r3.T0.2|s20260811|bos         top1=0.3164 (47s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260810|bos         top1=0.2279 (48s)
+  EleutherAI/pythia-410m|r3.T0.7|s20260811|bos         top1=0.1992 (49s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 3 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. Only 3 models complete -- a rank correlation on fewer cannot fail informatively, so the PRIMARY is not read.
+
+wrote results/share_bos.json
+=== bos pass 4 (cells: 36) ===
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7645.07it/s]
+  gpt2                               RUNG none top1=0.1823
+  gpt2|r2.T0.02|s20260810|bos                          top1=0.1576 (16s)
+  gpt2|r2.T0.02|s20260811|bos                          top1=0.1836 (17s)
+  gpt2|r2.T0.2|s20260810|bos                           top1=0.1771 (19s)
+  gpt2|r2.T0.2|s20260811|bos                           top1=0.1667 (19s)
+  gpt2|r2.T0.7|s20260810|bos                           top1=0.1133 (19s)
+  gpt2|r2.T0.7|s20260811|bos                           top1=0.1328 (18s)
+  gpt2|r3.T0.02|s20260810|bos                          top1=0.2018 (18s)
+  gpt2|r3.T0.02|s20260811|bos                          top1=0.2396 (20s)
+  gpt2|r3.T0.2|s20260810|bos                           top1=0.2044 (18s)
+  gpt2|r3.T0.2|s20260811|bos                           top1=0.1953 (17s)
+  gpt2|r3.T0.7|s20260810|bos                           top1=0.1784 (17s)
+  gpt2|r3.T0.7|s20260811|bos                           top1=0.1901 (17s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 4 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.148/0.021, r2.T0.2 0.091/0.019, r2.T0.7 0.134/0.030, r3.T0.02 0.165/0.023, r3.T0.2 0.154/0.032, r3.T0.7 0.132/0.016). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: -0.200, r2.T0.2: -0.200, r2.T0.7: +0.800, r3.T0.02: -0.200, r3.T0.2: -0.400, r3.T0.7: +0.800. Below 0.6 on 4 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.5483, r2.T0.2: 0.5848, r2.T0.7: 0.0379, r3.T0.02: 0.0903, r3.T0.2: 0.0845, r3.T0.7: 0.0685. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 4 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== bos pass 5 (cells: 48) ===
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6283.60it/s]
+  gpt2-medium                        RUNG none top1=0.1393
+  gpt2-medium|r2.T0.02|s20260810|bos                   top1=0.2005 (35s)
+  gpt2-medium|r2.T0.02|s20260811|bos                   top1=0.1745 (35s)
+  gpt2-medium|r2.T0.2|s20260810|bos                    top1=0.1849 (35s)
+  gpt2-medium|r2.T0.2|s20260811|bos                    top1=0.1589 (35s)
+  gpt2-medium|r2.T0.7|s20260810|bos                    top1=0.1354 (40s)
+  gpt2-medium|r2.T0.7|s20260811|bos                    top1=0.1732 (39s)
+  gpt2-medium|r3.T0.02|s20260810|bos                   top1=0.1875 (41s)
+  gpt2-medium|r3.T0.02|s20260811|bos                   top1=0.2331 (39s)
+  gpt2-medium|r3.T0.2|s20260810|bos                    top1=0.1758 (38s)
+  gpt2-medium|r3.T0.2|s20260811|bos                    top1=0.1927 (39s)
+  gpt2-medium|r3.T0.7|s20260810|bos                    top1=0.1680 (40s)
+  gpt2-medium|r3.T0.7|s20260811|bos                    top1=0.1667 (38s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 5 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.148/0.022, r2.T0.2 0.091/0.021, r2.T0.7 0.134/0.031, r3.T0.02 0.165/0.027, r3.T0.2 0.154/0.029, r3.T0.7 0.132/0.013). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: -0.100, r2.T0.2: -0.051, r2.T0.7: +0.700, r3.T0.02: +0.000, r3.T0.2: -0.200, r3.T0.7: +0.900. Below 0.6 on 4 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.4491, r2.T0.2: 0.4751, r2.T0.7: 0.0409, r3.T0.02: 0.0887, r3.T0.2: 0.0758, r3.T0.7: 0.0694. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 5 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== bos pass 6 (cells: 60) ===
+Loading weights:   0%|          | 0/436 [00:00<?, ?it/s]Loading weights: 100%|██████████| 436/436 [00:00<00:00, 7136.76it/s]
+  gpt2-large                         RUNG none top1=0.1549
+  gpt2-large|r2.T0.02|s20260810|bos                    top1=0.2604 (66s)
+  gpt2-large|r2.T0.02|s20260811|bos                    top1=0.2240 (65s)
+  gpt2-large|r2.T0.2|s20260810|bos                     top1=0.1810 (65s)
+  gpt2-large|r2.T0.2|s20260811|bos                     top1=0.1875 (67s)
+  gpt2-large|r2.T0.7|s20260810|bos                     top1=0.1471 (64s)
+  gpt2-large|r2.T0.7|s20260811|bos                     top1=0.1458 (62s)
+  gpt2-large|r3.T0.02|s20260810|bos                    top1=0.2188 (69s)
+  gpt2-large|r3.T0.02|s20260811|bos                    top1=0.2669 (69s)
+  gpt2-large|r3.T0.2|s20260810|bos                     top1=0.2201 (69s)
+  gpt2-large|r3.T0.2|s20260811|bos                     top1=0.2109 (69s)
+  gpt2-large|r3.T0.7|s20260810|bos                     top1=0.1576 (69s)
+  gpt2-large|r3.T0.7|s20260811|bos                     top1=0.1862 (69s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 6 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.173/0.025, r2.T0.2 0.091/0.018, r2.T0.7 0.134/0.026, r3.T0.02 0.165/0.031, r3.T0.2 0.154/0.025, r3.T0.7 0.132/0.016). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: -0.143, r2.T0.2: -0.058, r2.T0.7: +0.600, r3.T0.02: +0.086, r3.T0.2: -0.143, r3.T0.7: +0.943. Below 0.6 on 4 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.3880, r2.T0.2: 0.4043, r2.T0.7: 0.0412, r3.T0.02: 0.0921, r3.T0.2: 0.0777, r3.T0.7: 0.0701. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 6 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== bos pass 7 (cells: 72) ===
+Loading weights:   0%|          | 0/388 [00:00<?, ?it/s]Loading weights: 100%|██████████| 388/388 [00:00<00:00, 45896.27it/s]
+  facebook/opt-350m                  RUNG none top1=0.1523
+  facebook/opt-350m|r2.T0.02|s20260810|bos             top1=0.0964 (44s)
+  facebook/opt-350m|r2.T0.02|s20260811|bos             top1=0.1016 (45s)
+  facebook/opt-350m|r2.T0.2|s20260810|bos              top1=0.1016 (44s)
+  facebook/opt-350m|r2.T0.2|s20260811|bos              top1=0.0872 (44s)
+  facebook/opt-350m|r2.T0.7|s20260810|bos              top1=0.0781 (44s)
+  facebook/opt-350m|r2.T0.7|s20260811|bos              top1=0.0794 (44s)
+  facebook/opt-350m|r3.T0.02|s20260810|bos             top1=0.1302 (47s)
+  facebook/opt-350m|r3.T0.02|s20260811|bos             top1=0.1654 (46s)
+  facebook/opt-350m|r3.T0.2|s20260810|bos              top1=0.1328 (47s)
+  facebook/opt-350m|r3.T0.2|s20260811|bos              top1=0.1562 (48s)
+  facebook/opt-350m|r3.T0.7|s20260810|bos              top1=0.0990 (48s)
+  facebook/opt-350m|r3.T0.7|s20260811|bos              top1=0.0911 (48s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 7 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.173/0.022, r2.T0.2 0.098/0.018, r2.T0.7 0.134/0.023, r3.T0.02 0.165/0.031, r3.T0.2 0.154/0.025, r3.T0.7 0.132/0.015). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: +0.000, r2.T0.2: +0.342, r2.T0.7: +0.607, r3.T0.02: +0.179, r3.T0.2: +0.071, r3.T0.7: +0.929. Below 0.6 on 4 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.3397, r2.T0.2: 0.3511, r2.T0.7: 0.0364, r3.T0.02: 0.0813, r3.T0.2: 0.0698, r3.T0.7: 0.0608. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 7 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== bos pass 8 (cells: 84) ===
+Loading weights:   0%|          | 0/293 [00:00<?, ?it/s]Loading weights: 100%|██████████| 293/293 [00:00<00:00, 6263.35it/s]
+  bigscience/bloom-560m              RUNG none top1=0.0573
+  bigscience/bloom-560m|r2.T0.02|s20260810|bos         top1=0.2057 (51s)
+  bigscience/bloom-560m|r2.T0.02|s20260811|bos         top1=0.1771 (50s)
+  bigscience/bloom-560m|r2.T0.2|s20260810|bos          top1=0.1393 (50s)
+  bigscience/bloom-560m|r2.T0.2|s20260811|bos          top1=0.1589 (51s)
+  bigscience/bloom-560m|r2.T0.7|s20260810|bos          top1=0.0664 (50s)
+  bigscience/bloom-560m|r2.T0.7|s20260811|bos          top1=0.0508 (50s)
+  bigscience/bloom-560m|r3.T0.02|s20260810|bos         top1=0.0846 (52s)
+  bigscience/bloom-560m|r3.T0.02|s20260811|bos         top1=0.0911 (51s)
+  bigscience/bloom-560m|r3.T0.2|s20260810|bos          top1=0.0820 (52s)
+  bigscience/bloom-560m|r3.T0.2|s20260811|bos          top1=0.0625 (53s)
+  bigscience/bloom-560m|r3.T0.7|s20260810|bos          top1=0.0273 (53s)
+  bigscience/bloom-560m|r3.T0.7|s20260811|bos          top1=0.0417 (53s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 8 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.173/0.023, r2.T0.2 0.098/0.018, r2.T0.7 0.145/0.022, r3.T0.02 0.189/0.028, r3.T0.2 0.173/0.024, r3.T0.7 0.201/0.015). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: +0.000, r2.T0.2: +0.371, r2.T0.7: +0.738, r3.T0.02: +0.452, r3.T0.2: +0.381, r3.T0.7: +0.952. Below 0.6 on 4 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.3150, r2.T0.2: 0.3192, r2.T0.7: 0.0364, r3.T0.02: 0.0771, r3.T0.2: 0.0661, r3.T0.7: 0.0553. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 8 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== bos pass 9 (cells: 96) ===
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 19324.54it/s]
+  state-spaces/mamba-130m-hf         RUNG none top1=0.1497
+  state-spaces/mamba-130m-hf|r2.T0.02|s20260810|bos    top1=0.7487 (92s)
+  state-spaces/mamba-130m-hf|r2.T0.02|s20260811|bos    top1=0.6927 (90s)
+  state-spaces/mamba-130m-hf|r2.T0.2|s20260810|bos     top1=0.8294 (90s)
+  state-spaces/mamba-130m-hf|r2.T0.2|s20260811|bos     top1=0.7799 (90s)
+  state-spaces/mamba-130m-hf|r2.T0.7|s20260810|bos     top1=0.2773 (89s)
+  state-spaces/mamba-130m-hf|r2.T0.7|s20260811|bos     top1=0.3008 (88s)
+  state-spaces/mamba-130m-hf|r3.T0.02|s20260810|bos    top1=0.2409 (108s)
+  state-spaces/mamba-130m-hf|r3.T0.02|s20260811|bos    top1=0.2357 (107s)
+  state-spaces/mamba-130m-hf|r3.T0.2|s20260810|bos     top1=0.2083 (107s)
+  state-spaces/mamba-130m-hf|r3.T0.2|s20260811|bos     top1=0.2057 (107s)
+  state-spaces/mamba-130m-hf|r3.T0.7|s20260810|bos     top1=0.1680 (107s)
+  state-spaces/mamba-130m-hf|r3.T0.7|s20260811|bos     top1=0.1602 (107s)
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 9 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.661/0.026, r2.T0.2 0.728/0.021, r2.T0.7 0.211/0.022, r3.T0.02 0.189/0.026, r3.T0.2 0.173/0.022, r3.T0.7 0.201/0.014). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: -0.033, r2.T0.2: +0.393, r2.T0.7: +0.533, r3.T0.02: +0.467, r3.T0.2: +0.350, r3.T0.7: +0.917. Below 0.6 on 5 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.3434, r2.T0.2: 0.3555, r2.T0.7: 0.0534, r3.T0.02: 0.0765, r3.T0.2: 0.0602, r3.T0.7: 0.0550. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 9 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== bos pass 10 (cells: 108) ===
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 46201.03it/s]
+  RWKV/rwkv-4-169m-pile              RUNG none top1=0.1510
+  RWKV/rwkv-4-169m-pile|r2.T0.02|s20260810|bos         top1=0.1680 (26s)
+  RWKV/rwkv-4-169m-pile|r2.T0.02|s20260811|bos         top1=0.1862 (26s)
+  RWKV/rwkv-4-169m-pile|r2.T0.2|s20260810|bos          top1=0.1471 (27s)
+  RWKV/rwkv-4-169m-pile|r2.T0.2|s20260811|bos          top1=0.1510 (27s)
+  RWKV/rwkv-4-169m-pile|r2.T0.7|s20260810|bos          top1=0.1615 (27s)
+  RWKV/rwkv-4-169m-pile|r2.T0.7|s20260811|bos          top1=0.1771 (27s)
+  RWKV/rwkv-4-169m-pile|r3.T0.02|s20260810|bos         top1=0.2357 (29s)
+  RWKV/rwkv-4-169m-pile|r3.T0.02|s20260811|bos         top1=0.2617 (29s)
+  RWKV/rwkv-4-169m-pile|r3.T0.2|s20260810|bos          top1=0.2591 (29s)
+  RWKV/rwkv-4-169m-pile|r3.T0.2|s20260811|bos          top1=0.2500 (29s)
+  RWKV/rwkv-4-169m-pile|r3.T0.7|s20260810|bos          top1=0.1940 (29s)
+  RWKV/rwkv-4-169m-pile|r3.T0.7|s20260811|bos          top1=0.1914 (29s)
+
+  -> RUNG (scheme='none' reproduces share_invariance): worst error 0.00e+00 across 10 cells (tolerance 1e-12). Bit-identical, so the BOS arm differs from F130's measurement in the DOMAIN and in nothing else. SIGNAL in the BOS arm: 6 of 6 constructions carry across-model spread above across-seed noise (r2.T0.02 0.661/0.026, r2.T0.2 0.728/0.020, r2.T0.7 0.211/0.021, r3.T0.02 0.189/0.026, r3.T0.2 0.177/0.021, r3.T0.7 0.201/0.013). The BOS ranking is a ranking, so the agreement below is interpretable. PRIMARY, agreement between the RAW and BOS model rankings: r2.T0.02: -0.103, r2.T0.2: +0.360, r2.T0.7: +0.491, r3.T0.02: +0.515, r3.T0.2: +0.358, r3.T0.7: +0.842. Below 0.6 on 5 of 6 constructions: ONE token is enough to reorder base models, so F145's result is neither an instruct-model effect nor a long-prefix effect, and the domain axis reaches the cohort every other finding in this project rests on. SECONDARY, mean |shift| in top1 between domains: r2.T0.02: 0.3103, r2.T0.2: 0.3205, r2.T0.7: 0.0563, r3.T0.02: 0.0770, r3.T0.2: 0.0650, r3.T0.7: 0.0592. For comparability with F135 (0.1327 on a chat scaffold) and F145 (0.1696 at T=0.02). BOUNDARY: 10 base models, 6 constructions, N=48, B=16, settle=30, and ONE domain change of ONE token. A null here bounds the domain effect to larger prefixes; it does not establish domain-invariance in general, and BOS is a special token whose embedding is trained differently from ordinary text.
+
+wrote results/share_bos.json
+=== share_bos: all 120 cells done ===
+=== share_bos done ===

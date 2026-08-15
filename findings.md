@@ -3645,6 +3645,59 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F146 — ONE BOS token reorders base models, and moves the share further than a 35-token chat template does
+F144 and F145 established the domain as the dominant variable, but both were instruct-only — base
+models have no chat template, so the axis had never touched the cohort every other finding in this
+project rests on. BOS is the domain change base models can have, and it is not a convenience
+substitute: arXiv:2608.10986 already reports one BOS token moving a frozen fraction 74.4% → 24.1%.
+`ar_ca.run` has carried `scheme="bos"` from the start; it had never been used for this question.
+
+```
+  RUNG    scheme="none" reproduces share_invariance: 0.00e+00 across 10 cells (tol 1e-12)
+  SIGNAL  the BOS arm resolves models above seed noise: 6 of 6 constructions
+
+  construction     rho    shift   raw span   bos span
+    r2.T0.02    -0.103   0.3103      0.923      0.661     <- F130's reference construction
+    r2.T0.2     +0.360   0.3205      0.944      0.728
+    r2.T0.7     +0.491   0.0563      0.195      0.211
+    r3.T0.02    +0.515   0.0770      0.238      0.189
+    r3.T0.2     +0.358   0.0650      0.224      0.177
+    r3.T0.7     +0.842   0.0592      0.105      0.201
+```
+
+**PRIMARY: below the 0.6 gate on 5 of 6 constructions, and at F130's own reference construction the
+agreement is −0.103 — no relationship at all.** One token is enough to reorder base models. So
+F145's result is neither an instruct-model effect nor a long-prefix effect: the domain axis reaches
+the cohort the whole programme is built on.
+
+**ONE TOKEN DOES MORE THAN THIRTY-FIVE.** The value shift here is **0.3103** at r2.T0.02, against
+F145's 0.1696 for a full chat template on instruct models and F135's 0.1327 for a hand-written
+scaffold. The domain effect is not monotone in prefix length — which F144 already suggested (nine
+template tokens moved a class where thirty did not) and this now shows on a different readout, a
+different cohort and a different domain change.
+
+**AND THE EFFECT IS LARGEST EXACTLY WHERE THE INSTRUMENT IS USED.** It concentrates at short radius
+and low temperature — shift 0.31 and 0.32 at r=2, T∈{0.02, 0.2}, against 0.06–0.08 everywhere else —
+which is precisely the cold, short-window regime F117's readouts are taken in and where F130's
+attractor is strongest. The one construction that survives the gate, r3.T0.7 at +0.842, is the
+hottest and widest: the regime where the attractor is weakest and there is least structure for a
+prefix to disturb. A plausible reading is that the prefix competes with the window for the
+conditional's attention, so it matters most when the window is short; that is a hypothesis this run
+does not test, and r is confounded with the prefix's share of the context (1 of 3 tokens at r=2
+against 1 of 4 at r=3).
+
+**WHAT IT DOES TO F130.** F130's rung construction is r2.T0.02. Its ranking there has **no
+correlation** with the same measurement one token away. F130 is not wrong — it never varied the
+domain — but its model-attributability is now demonstrated to be raw-domain-specific on its own
+reference construction, not merely on a construction chosen for this test.
+
+**Boundary.** Ten base models, six constructions, N=48, B=16, settle=30, and ONE domain change of
+ONE token. BOS is a special token whose embedding is trained differently from ordinary text, so this
+is not a general statement about one-token prefixes. The r-dependence is confounded with the
+prefix's fraction of the context and is reported as structure, not mechanism.
+
+`experiments/share_bos.py` → `results/share_bos.json`
+
 ### F145 — the attractor share's model RANKING does not survive the domain either: F130 is a raw-domain statement
 F144 established the domain as the dominant variable on the argmax map. The lattice is a different
 object, and paper 2's reframed thesis rests on it: F130 makes the attractor share the instrument's
