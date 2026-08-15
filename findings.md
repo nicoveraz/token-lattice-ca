@@ -3645,6 +3645,72 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F147 — the domain is NOT a length axis: at matched token count, prose and chat markup differ maximally and in OPPOSITE directions across models
+F144/F145/F146 established the domain as the dominant variable but left it unresolved *as a
+variable*: every comparison confounded prefix LENGTH with prefix KIND with cohort. F146's one BOS
+token moved the share further than F145's 35-token template, which is not what a length effect looks
+like — but BOS is a special token and a template is structured markup, so that comparison could not
+separate the two. M2 holds model and estimator fixed and sweeps four domains ordered by length:
+`raw` (0) → `bos` (1) → `text_matched` (the model's own template length, in prose) → `chat_template`.
+`text_matched` is the whole design: same token count as that model's template, none of its structure.
+Six instruction-tuned models, 96 starts, two census seeds, 24 new censuses. `raw` reuses F144 and
+`chat_template` reuses F145, and the RUNG confirms the raw arm reproduces F144 for all six.
+
+**PRIMARY — non-monotone in length, on 3 of the 4 models that can carry a shape.**
+
+| model | raw (0) | bos (1) | prose (n) | template (n) | n | monotone? |
+|---|---|---|---|---|---|---|
+| SmolLM2-1.7B-Instruct | 0.979 | 0.938 | 0.000 | 0.010 | 30 | yes |
+| gemma-1.1-2b-it | 0.948 | 0.005 | **1.000** | 0.000 | 9 | NO |
+| Qwen2.5-3B-Instruct | 0.000 | 0.057 | 0.016 | 0.021 | 29 | NO |
+| Falcon3-3B-Instruct | 0.693 | 0.141 | 0.000 | **0.839** | 11 | NO |
+
+Prefix length does not order the fixed-point structure, so a length-based correction would be wrong.
+The claim is existential, not proportional: one decisively non-monotone model refutes "the domain
+effect is a length effect" as a law, and 1-of-4-monotone is a count, not a rate.
+
+**CONTRAST at IDENTICAL length — and the direction FLIPS between models.** This is the result:
+
+- `gemma-1.1` at 9 tokens: prose **1.000**, its own template **0.000**
+- `Falcon3` at 11 tokens: prose **0.000**, its own template **0.839**
+
+Same contrast, same statistic, matched length, opposite signs. So it is neither "prose preserves
+funnels" nor "chat markup destroys them" — those readings are both refuted, and by the same table.
+`Falcon3`'s template value is the *highest* of its four domains, above raw. `gemma`'s prose funnel
+(1.000, both seeds, zero noise) is *more* perfect than its raw 0.948: nine tokens of ordinary text
+create a fixed-point structure that the unconditioned model does not have. Differ by ≥0.10 on 2 of 4
+readable models.
+
+**Stability.** 0 of 24 (model, domain) censuses disagree across census seeds. Every class above is
+seed-stable, including the two class changes (`Falcon3` funnel→borderline under one BOS token).
+
+**Three vacuity defects were caught and fixed mid-run — the same defect class, three levels.**
+Recorded in the results file's `_preregistration.amendments`:
+1. *Flat sequences scored as shapes.* The first two models' entire domain span was **one census
+   start** (0.010) against seed noise 0.021, and the original code scored that "not monotone". An
+   anti-vacuity gate now excludes models whose span is below `max(4/96, 2× own seed noise)` and names
+   them. Added **before** any model with room to vary completed, so it is not outcome-selected.
+2. *One trajectory flipping a verdict.* Monotonicity was tested exactly; `SmolLM2`'s 0.000→0.010 step
+   is one start in 96. Now judged up to a per-model tolerance.
+3. *Floored arms counted as agreement.* The CONTRAST concluded "prose and markup do the same thing"
+   from models with **both arms pinned at zero** — which cannot disagree. Now restricted to models
+   that clear anti-vacuity.
+
+**The floor cohort is not a null.** `Llama-3.2-3B` and `zephyr` sit at fix≈0 in all four domains and
+are excluded from the PRIMARY. Reading only `fixed_point_fraction` would have recorded them as "no
+signal" — but their greedy endpoints move: `zephyr` at matched length 13 gives **1** distinct
+endpoint under prose and **45** under its template. This ENDPOINT arm is **EXPLORATORY**: it was
+added mid-run after seeing the floor, its threshold was chosen with values visible, and it generates
+a hypothesis rather than testing one. Any claim resting on it needs its own pre-registered run.
+
+**Boundary.** Six instruction-tuned models, **one prose sample** (gate1's `CORPUS`, reused rather
+than chosen for this run), one template per model, two census seeds. "Kind" is three points — special
+token, prose, chat markup — not a taxonomy of prefixes, and prose truncated mid-sentence is its own
+oddity. Critically, `gemma`'s 1.000 may be a property of *those nine tokens* rather than of prose:
+varying the prose sample at fixed length is the obvious next run, and until it exists "prose" here
+means one text.
+`experiments/domain_gradient.py` → `results/domain_gradient.json`.
+
 ### F146 — ONE BOS token reorders base models, and moves the share further than a 35-token chat template does
 F144 and F145 established the domain as the dominant variable, but both were instruct-only — base
 models have no chat template, so the axis had never touched the cohort every other finding in this
