@@ -3645,6 +3645,61 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F148 — F147's kind contrast SURVIVES varying the prose, across registers — but the prose VALUES do not, and the endpoint counts do not at all
+F147's headline rested on ONE paragraph. Every model saw the first n tokens of gate1's `CORPUS`, and
+`gemma`'s n is NINE — so "nine tokens of ordinary prose build a funnel more perfect than the
+unconditioned model has" was nine specific tokens, drawn once. M3a varies the text at fixed length.
+Six models, 68 censuses, two census seeds. Samples are chosen **by offset, never by content** — three
+disjoint chunks of the same `CORPUS` paragraph (same register) plus `shakespeare.txt` at three fixed
+fractional positions (different source and register). `corpus0` is F147's prefix, and the RUNG
+reproduces its cell **bit-identically on all six models**.
+
+**The result is that two questions with the same data have different answers, and separating them is
+the finding.**
+
+**(a) Is the CONTRAST robust to the draw? YES, on both halves of the sign-flip.** Measured as how
+close the *closest* prose sample comes to that model's template value:
+
+| model | template | closest prose sample | F147 gap | verdict |
+|---|---|---|---|---|
+| gemma-1.1-2b-it | 0.000 | **0.859** away | 1.000 | robust |
+| Falcon3-3B-Instruct | 0.839 | **0.828** away | 0.839 | robust |
+
+`gemma`'s six samples are 1.000, 1.000, 1.000, 1.000, 0.859, 1.000 — five of six *exactly* 1.000,
+including two of three Shakespeare chunks. So the perfect prose funnel is not a property of those
+nine tokens, and it survives leaving the register entirely. F147's sign-flip stands.
+
+**(b) Are the prose VALUES themselves sample-independent? NO.** `gemma` spread 0.141 against seed
+noise 0.009; `Qwen` spread 0.057 against 0.017. Both TEXT-DEPENDENT. The contrast is a property of
+kind; the *number* is a property of the text. **Any claim quoting a single prose value must name its
+text**, even where (a) holds.
+
+**SECONDARY, and this one is PRE-REGISTERED (paying F147's M3c debt): endpoint counts are
+text-dependent on 0 of 6 models — that is, on none of them are they stable.** Spreads run 5.5 to
+41.0 against seed noise of 0.4–4.5. `Qwen` alone spans 4.0 to 45.0 across prose samples. This
+retro-justifies labelling F147's endpoint arm exploratory: at fixed length, **endpoint claims must
+name their text**, and F147's `zephyr` "prose 1 vs template 45" is now readable — the *1* was that
+chunk (other prose gives up to 10.5), but 45 still sits 4× above every prose sample, so that contrast
+survives while `Llama`'s (prose 1.0–14.5 vs template 15.0, template *inside* the prose range) does
+not.
+
+**The anti-vacuity gate had to be SPLIT, and using one gate for both questions got it exactly
+backwards.** The first version screened on "are the prose values floored?" — right for (b), wrong for
+(a). It **excluded `Falcon3`** (prose floored at ~0.000, template 0.839, so every sample is 0.83
+clear — the most decisive answer in the run) while **admitting `Qwen`** (whose entire F147 gap was
+0.005, half a census start) and calling it "contrast robust". (a) needs the *gap* to be real; (b)
+needs the *values* off the floor. This is R8 — the measurement's most informative object discarded —
+sitting inside the very gate written to prevent vacuity. A miscalibrated DECISIVE clause was also
+caught: it compared `gemma`'s spread to seed noise alone, declared "they SCATTER, the headline does
+not survive", and contradicted its own PRIMARY two sentences later.
+
+**Boundary.** Six models, up to 3 CORPUS chunks + 3 Shakespeare offsets, one length per model (its
+own template length), 96 starts, two census seeds. "Prose" is two registers, not a survey of text,
+and the Shakespeare stratum varies source and register together rather than separately. Four of six
+models are excluded from (a) because their F147 contrast was never larger than census noise — so (a)
+rests on two models, and it is an existence result about robustness, not a rate.
+`experiments/prose_samples.py` → `results/prose_samples.json`.
+
 ### F147 — the domain is NOT a length axis: at matched token count, prose and chat markup differ maximally and in OPPOSITE directions across models
 F144/F145/F146 established the domain as the dominant variable but left it unresolved *as a
 variable*: every comparison confounded prefix LENGTH with prefix KIND with cohort. F146's one BOS
