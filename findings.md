@@ -3645,6 +3645,53 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F149 — whether the domain's DIRECTION is predictable is NOT_DECIDABLE on this cohort: five of six models sit at a floor or a ceiling, so the deflationary account cannot be tested at all
+F144 and F147 report that the domain moves models in model-SPECIFIC directions, which reads as a
+claim about weights. M3b tests the dull alternative that would produce the same table: **a model at
+raw 0.948 has almost nowhere to go but down, and one at 0.000 has nowhere to go but up.** If
+direction is set by where the model STARTS, "model-specific" restates the raw value and is not a
+property of the interaction. This is analysis-only over F147 and F148 — the decisive test needs the
+same model moving both ways from its OWN raw value, which no additional models can supply.
+
+**PRIMARY — no model is bidirectional, so the floor/ceiling account is NOT refuted.** The sharpest
+form was run within the prose domain, where raw value, weights, kind and length are all held fixed
+and only the text differs, each sample judged against its OWN seed noise:
+
+| model | raw | robust up | robust down |
+|---|---|---|---|
+| SmolLM2 | 0.979 | none | all 5 samples (≈ −0.97) |
+| gemma-1.1 | 0.948 | 5 samples, **each exactly +0.0521** | none |
+| Qwen2.5 | 0.000 | 1 sample (+0.063) | none |
+| Falcon3 | 0.693 | none | all 6 samples (≈ −0.69) |
+
+`gemma` looked bidirectional and is not: its one down-sample (`shak1`, −0.089) has its own seed noise
+of 0.052, so its tolerance is 0.104 and the shift does not clear it. Per-sample noise was essential —
+a model-level tolerance would have hidden that one sample is six times noisier than the rest.
+
+**But the PRIMARY's negative is nearly empty, and the SECONDARY is why.** Scoring the baseline
+`sign(shift) = sign(0.5 − raw)` only where it *could have been wrong* — i.e. where the model had room
+to move both ways by more than its tolerance — leaves **1 of 6 models and 2 units**. Three models sit
+at raw 0.000 (cannot move down), `SmolLM2` at 0.979 has 0.021 of headroom against a 0.042 floor, and
+`Falcon3`'s raw is too seed-noisy to place (0.615 vs 0.771 across census seeds, tolerance 0.312 —
+which is also why its apparent +0.146 template rise is NOT a robust up). Even `gemma`'s scoreable
+"up" saturates: all five samples land on exactly 1.000, consuming its entire 0.052 of headroom.
+
+**So the finding is the untestability, not a null.** F147's model-specific direction is currently
+neither confirmed nor refuted, and the prerequisite is not more models like these — it is models with
+**MID-RANGE raw fixed-point fractions**, which this cohort essentially does not contain. A run that
+reported the unrestricted baseline would have said "9 of 9 units correct, 100%, the direction is
+mechanical"; every one of those units came from a model that could not have contradicted it.
+
+**TERTIARY refused by design.** Predictors of shift magnitude (raw value, template length, parameter
+count) were declared NOT COMPUTED in the pre-registration, before any number was seen: with six model
+clusters against a floor of ten, a rank correlation cannot fail informatively and would manufacture a
+result whatever the truth. F137's defect refused rather than repeated.
+
+**Boundary.** Six instruction-tuned models, `fixed_point_fraction` only, analysis-only over stored
+results. Prose is read as an ensemble per F148, never as a single draw. The PRIMARY is an existence
+test: it can refute a general floor/ceiling account but cannot measure how often models are
+bidirectional. `experiments/domain_direction.py` → `results/domain_direction.json`.
+
 ### F148 — F147's kind contrast SURVIVES varying the prose, across registers — but the prose VALUES do not, and the endpoint counts do not at all
 F147's headline rested on ONE paragraph. Every model saw the first n tokens of gate1's `CORPUS`, and
 `gemma`'s n is NINE — so "nine tokens of ordinary prose build a funnel more perfect than the
