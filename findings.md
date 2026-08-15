@@ -3645,6 +3645,62 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F145 — the attractor share's model RANKING does not survive the domain either: F130 is a raw-domain statement
+F144 established the domain as the dominant variable on the argmax map. The lattice is a different
+object, and paper 2's reframed thesis rests on it: F130 makes the attractor share the instrument's
+model-attributable readout, and every result that transfers is built on the share. Every one of
+those measurements was taken in the RAW domain — r tokens and nothing before them. This asks whether
+F130's ranking is a property of the models or of the domain they were measured in.
+
+```
+  RUNG     the subclass with its domain switched off reproduces share_instruct
+           worst error 0.00e+00 across 5 cells (tolerance 1e-9) — BIT-IDENTICAL
+  SIGNAL   templated arm, across-model spread vs across-seed noise
+           T=0.02: 0.053 vs 0.008 OK      T=0.7: 0.016 vs 0.007 OK      2 of 2
+  PRIMARY  agreement between the RAW and TEMPLATED model rankings
+           T=0.02: rho = +0.400           T=0.7: rho = +0.300           gate 0.6
+  SHIFT    mean |top1| difference between domains
+           T=0.02: 0.1696                 T=0.7: 0.0674
+```
+
+**THE SIGNAL GATE PASSING IS WHAT MAKES THIS READABLE, and it is the difference from F137/F138.**
+The templated arm resolves models above its own seed noise, so its ranking is not noise and the
+disagreement with the raw ranking is a real disagreement rather than an attenuation artefact. An
+unresolving arm would have produced the same low rho and meant nothing.
+
+**PRIMARY: the domain reorders the models on both temperatures.** F130's model-attributability is a
+**raw-domain statement**. This is precise rather than a retraction: F130 established invariance
+across the constructions it varied — radius and temperature, six of them — and never varied the
+domain. Adding the domain as an axis, the readout fails on it.
+
+**WHAT IT COSTS PAPER 2, which is the third revision in one day.** The reframe made "the share is a
+model-attributable readout, and what it tracks is corpus and architecture" the positive core. F140
+removed the behavioural correlate; this removes the claim that the ranking is a property of the
+models rather than of the domain they were measured in. What survives is narrower still: **the share
+ranks models consistently across radius and temperature, in the raw domain.** Whether that is worth
+a paper is now a real question rather than a rhetorical one.
+
+**ONE THING THAT IS LESS EXPOSED.** Base models are used as continuers, so the raw domain is close
+to their actual use — F63/F64's corpus and architecture discrimination, measured on base models, is
+not directly threatened by this. The exposure is to claims about instruction-tuned models, which are
+deployed behind templates.
+
+**THE INTERIM READ IS RECORDED BECAUSE IT WAS TAKEN.** At four complete models the primary read
++0.400 / +0.200; at five it reads +0.400 / +0.300. The verdict did not move, which is mild evidence
+the reading is not balanced on the last model — but both are weak, and reading at n=4 and again at
+n=5 is peeking. The registered analysis is the full-cohort one and that is what is quoted; the
+interim is here so the sequence is on the record rather than replaced by the more convenient number.
+
+**Boundary.** Five instruction-tuned models, ONE template each, N=96, B=16, settle=16, r=2, and only
+**two of share_instruct's four temperatures** — a templated cell costs 1617s against the raw run's
+150s, an 11× tax that made the full grid ~18 hours, so the extremes were kept and the coverage loss
+is stated rather than hidden. At n=5 Spearman takes discrete steps and +0.400 is two of them below
+the gate; this bounds the answer rather than settling it. One template is one domain: this shows the
+ranking does not survive THIS domain change, not domain changes in general. Base models have no
+template and cannot be run on this axis at all.
+
+`experiments/share_templated.py` → `results/share_templated.json`
+
 ### F144 — the fixed-point class is a joint property of WEIGHTS AND DOMAIN: a 9-token chat template can destroy it or reinforce it
 F143's own prior-art gate found the threat inside this project's published paper: arXiv:2608.10986
 shows the frozen fraction is a property of the map's DOMAIN, not its parameters — one BOS token moves
