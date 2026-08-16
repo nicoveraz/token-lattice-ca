@@ -3645,6 +3645,58 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F151 — the domain effect is UNIDIRECTIONAL: 18 of 18 arms move DOWN on models chosen to be able to move either way. This DEMOTES F147's sign-flip.
+F149 could not test whether the domain's direction is a real interaction or just floor and ceiling,
+because five of six models sat at an extreme. F150 screened for the missing instrument. This is the
+run those two set up, on `Qwen2.5-1.5B-Instruct` (raw 0.573, funnel, zero seed noise) and
+`gemma-2-2b-it` (raw 0.714, **fragmented**). Ten arms each — raw, bos, text_matched, chat_template,
+and F148's six prose samples — every shift judged against ITS OWN seed noise. RUNG reproduces F150's
+raw cells exactly; anti-vacuity confirms (rather than assumes) that both models had room to move both
+ways.
+
+**PRIMARY — every arm goes DOWN. 18 of 18.**
+
+| model | raw | class | arms | range of shifts |
+|---|---|---|---|---|
+| Qwen2.5-1.5B-Instruct | 0.573 | funnel | 9 | −0.339 to −0.562 |
+| gemma-2-2b-it | 0.714 | fragmented | 9 | −0.266 to −0.714 |
+
+Not one up-shift, on models selected precisely because they could produce one. **The deflationary
+account survived a test designed to break it**, and this is a far stronger null than F149's
+untestable: conditioning does not move models in model-specific directions, it moves them toward
+fewer fixed points, full stop.
+
+**This forces a re-reading of every apparent up-shift in the programme, and there were only three.**
+`gemma-1.1`'s prose +0.052 (F147/F148) went *exactly* to the ceiling at 1.000 — it consumed its
+entire remaining headroom and saturated. `Falcon3`'s template +0.146 (F147) lies inside its raw seed
+spread (F150: 0.615/0.771/0.792/0.677). `Qwen2.5-3B`'s bos +0.057 (F147) started from the floor at
+0.000. All three are mechanical. **F147's "the direction flips between models" does not survive**,
+and the striking gemma-vs-Falcon3 sign-flip table in F147 should be read as a floor/ceiling artefact.
+
+**SECONDARY — F147's kind contrast does not cleanly reproduce on fresh models either.** On BOTH new
+models the closest prose sample lands 0.005 from the template value: `Qwen2.5-1.5B` template 0.016 vs
+prose [0.010, 0.234]; `gemma-2-2b-it` template 0.000 vs prose [0.005, 0.448]. By F148's own
+criterion that is `single_draw`, not `contrast_robust`. Note what this does and does not say: on
+`gemma-2-2b-it` some prose (0.448) is maximally far from chat markup while other prose (0.005) is
+indistinguishable from it. The defensible claim is therefore **"chat markup is interchangeable with
+SOME prose"**, not F147's "chat markup is not interchangeable with prose".
+
+**What DOES survive.** The domain effect is large (up to −0.714 here), and its MAGNITUDE is strongly
+text-dependent — on `gemma-2-2b-it` the prose ensemble spans 0.005 to 0.448, most of the statistic's
+range, at a single length. F148's "any claim quoting a single prose number must name its text" is
+reinforced, and is now the more durable half of the F147/F148 pair.
+
+**FIRST FRAGMENTED MODEL in any domain run, and F144's class claim extends.** `gemma-2-2b-it` changes
+class under every domain: `fragmented` → `none` (bos, chat_template, shak0), `borderline`
+(text_matched, corpus0, shak1), `funnel` (corpus1), and two seed-UNSTABLE (corpus2, shak2). F144 had
+only ever been tested on funnels and nones; a fragmented model reorganises just as readily, and into
+a funnel under one prose chunk.
+
+**Boundary.** Two models, 96 starts, two census seeds, one prose ensemble. The PRIMARY is an
+existence test: 18 of 18 down on two mid-range models is a strong null but cannot prove no model is
+ever bidirectional. What it does establish is that the ONLY models in this programme that could have
+shown bidirectionality did not. `experiments/domain_midrange.py` → `results/domain_midrange.json`.
+
 ### F150 — the mid-range screen: two usable models found, one of them a class the domain work has never had, and instruct models really are mostly pinned at the extremes
 F149 could not test direction-predictability because five of six models sat at a floor or a ceiling.
 The blocker was the cohort's POSITION, not its size — six more models at raw 0.000 buy nothing. This
@@ -3797,6 +3849,16 @@ rests on two models, and it is an existence result about robustness, not a rate.
 `experiments/prose_samples.py` → `results/prose_samples.json`.
 
 ### F147 — the domain is NOT a length axis: at matched token count, prose and chat markup differ maximally and in OPPOSITE directions across models
+> **DEMOTED BY F151, and the demotion is larger than the finding.** Two of this entry's three claims
+> do not survive mid-range models. (1) **The sign-flip is a floor/ceiling artefact.** F151 ran ten
+> domain arms each on two models screened to have headroom in BOTH directions and got 18 of 18
+> DOWN. Every apparent up-shift in the programme is mechanical: `gemma-1.1`'s prose +0.052 saturated
+> exactly at the 1.000 ceiling, `Falcon3`'s template +0.146 sits inside its own raw seed spread
+> (F150), `Qwen2.5-3B`'s bos +0.057 started from the floor. (2) **The kind contrast does not cleanly
+> reproduce**: on both fresh models the closest prose sample lands 0.005 from the template value, so
+> the defensible claim is "chat markup is interchangeable with SOME prose". What SURVIVES is the
+> non-monotonicity in length, the size of the effect, and — reinforced — F148's finding that the
+> magnitude is strongly text-dependent. Read this entry only alongside F151.
 F144/F145/F146 established the domain as the dominant variable but left it unresolved *as a
 variable*: every comparison confounded prefix LENGTH with prefix KIND with cohort. F146's one BOS
 token moved the share further than F145's 35-token template, which is not what a length effect looks

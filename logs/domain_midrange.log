@@ -1,0 +1,64 @@
+=== midrange pass 1 (censuses: 0) ===
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6060.61it/s]
+  Qwen/Qwen2.5-1.5B-Instruct       template=29 tok, 6 prose samples
+  Qwen/Qwen2.5-1.5B-Instruct       raw        s=20260803 cls=funnel      fix=0.573
+  Qwen/Qwen2.5-1.5B-Instruct       raw        s=990017 cls=funnel      fix=0.573
+  Qwen/Qwen2.5-1.5B-Instruct       chat_template s=20260803 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct       chat_template s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct       bos        s=20260803 cls=none        fix=0.021
+  Qwen/Qwen2.5-1.5B-Instruct       bos        s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct       text_matched s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       text_matched s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       corpus0    s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       corpus0    s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       corpus1    s=20260803 cls=borderline  fix=0.198
+  Qwen/Qwen2.5-1.5B-Instruct       corpus1    s=990017 cls=borderline  fix=0.271
+  Qwen/Qwen2.5-1.5B-Instruct       corpus2    s=20260803 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct       corpus2    s=990017 cls=none        fix=0.021
+  Qwen/Qwen2.5-1.5B-Instruct       shak0      s=20260803 cls=none        fix=0.052
+  Qwen/Qwen2.5-1.5B-Instruct       shak0      s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       shak1      s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       shak1      s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct       shak2      s=20260803 cls=borderline  fix=0.125
+  Qwen/Qwen2.5-1.5B-Instruct       shak2      s=990017 cls=none        fix=0.052
+  Qwen/Qwen2.5-1.5B-Instruct       model done in 2489s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces midrange_screen): 2 cells compared, worst error 0.00e+00. Identical, so this is F150's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 0 of 1 models lack room to move both ways beyond tolerance, so both models can in principle show either direction. PRIMARY, bidirectionality from a single raw value (weights and starting point FIXED, only the domain varying, each shift against its own seed noise): Qwen2.5-1.5B-Instruct raw 0.573 [funnel] -> bos -0.562 (down, tol 0.042, none), text_matched -0.562 (down, tol 0.042, none), chat_template -0.557 (down, tol 0.062, none), prose:corpus0 -0.562 (down, tol 0.042, none), prose:corpus1 -0.339 (down, tol 0.146, borderline), prose:corpus2 -0.547 (down, tol 0.042, none), prose:shak0 -0.542 (down, tol 0.083, none), prose:shak1 -0.562 (down, tol 0.042, none), prose:shak2 -0.484 (down, tol 0.146, UNSTABLE). NEITHER model moves both ways, and unlike F149 these models COULD have. That is a much stronger null: on models with genuine headroom the domain still moves everything one way, so the deflationary account survives a test designed to break it. SECONDARY, the kind contrast at matched length on two FRESH models (F147's test, prose read as an ensemble per F148): Qwen2.5-1.5B-Instruct template 0.016 vs prose [0.010, 0.234], closest prose 0.005 away. A prose range that does not reach the template value extends F147's contrast to models it was not fitted on; one that straddles it bounds the contrast instead. BOUNDARY: 1 models, 96 starts, 2 census seeds, one prose ensemble per F148. The PRIMARY is an existence test either way: it can refute a general floor/ceiling account or fail to, but two models cannot say how common either is.
+
+wrote results/domain_midrange.json
+=== midrange pass 2 (censuses: 20) ===
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 5945.15it/s]
+  google/gemma-2-2b-it             template=9 tok, 6 prose samples
+  google/gemma-2-2b-it             raw        s=20260803 cls=fragmented  fix=0.719
+  google/gemma-2-2b-it             raw        s=990017 cls=fragmented  fix=0.708
+  google/gemma-2-2b-it             chat_template s=20260803 cls=none        fix=0.000
+  google/gemma-2-2b-it             chat_template s=990017 cls=none        fix=0.000
+  google/gemma-2-2b-it             bos        s=20260803 cls=none        fix=0.042
+  google/gemma-2-2b-it             bos        s=990017 cls=none        fix=0.031
+  google/gemma-2-2b-it             text_matched s=20260803 cls=borderline  fix=0.417
+  google/gemma-2-2b-it             text_matched s=990017 cls=borderline  fix=0.479
+  google/gemma-2-2b-it             corpus0    s=20260803 cls=borderline  fix=0.417
+  google/gemma-2-2b-it             corpus0    s=990017 cls=borderline  fix=0.479
+  google/gemma-2-2b-it             corpus1    s=20260803 cls=funnel      fix=0.458
+  google/gemma-2-2b-it             corpus1    s=990017 cls=funnel      fix=0.396
+  google/gemma-2-2b-it             corpus2    s=20260803 cls=none        fix=0.052
+  google/gemma-2-2b-it             corpus2    s=990017 cls=borderline  fix=0.115
+  google/gemma-2-2b-it             shak0      s=20260803 cls=none        fix=0.010
+  google/gemma-2-2b-it             shak0      s=990017 cls=none        fix=0.000
+  google/gemma-2-2b-it             shak1      s=20260803 cls=borderline  fix=0.167
+  google/gemma-2-2b-it             shak1      s=990017 cls=borderline  fix=0.156
+  google/gemma-2-2b-it             shak2      s=20260803 cls=borderline  fix=0.292
+  google/gemma-2-2b-it             shak2      s=990017 cls=funnel      fix=0.302
+  google/gemma-2-2b-it             model done in 1329s
+
+  -> RUNG (raw arm reproduces midrange_screen): 4 cells compared, worst error 0.00e+00. Identical, so this is F150's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 0 of 2 models lack room to move both ways beyond tolerance, so both models can in principle show either direction. PRIMARY, bidirectionality from a single raw value (weights and starting point FIXED, only the domain varying, each shift against its own seed noise): Qwen2.5-1.5B-Instruct raw 0.573 [funnel] -> bos -0.562 (down, tol 0.042, none), text_matched -0.562 (down, tol 0.042, none), chat_template -0.557 (down, tol 0.062, none), prose:corpus0 -0.562 (down, tol 0.042, none), prose:corpus1 -0.339 (down, tol 0.146, borderline), prose:corpus2 -0.547 (down, tol 0.042, none), prose:shak0 -0.542 (down, tol 0.083, none), prose:shak1 -0.562 (down, tol 0.042, none), prose:shak2 -0.484 (down, tol 0.146, UNSTABLE); gemma-2-2b-it raw 0.714 [fragmented] -> bos -0.677 (down, tol 0.042, none), text_matched -0.266 (down, tol 0.125, borderline), chat_template -0.714 (down, tol 0.042, none), prose:corpus0 -0.266 (down, tol 0.125, borderline), prose:corpus1 -0.286 (down, tol 0.125, funnel), prose:corpus2 -0.630 (down, tol 0.125, UNSTABLE), prose:shak0 -0.708 (down, tol 0.042, none), prose:shak1 -0.552 (down, tol 0.042, borderline), prose:shak2 -0.417 (down, tol 0.042, UNSTABLE). NEITHER model moves both ways, and unlike F149 these models COULD have. That is a much stronger null: on models with genuine headroom the domain still moves everything one way, so the deflationary account survives a test designed to break it. SECONDARY, the kind contrast at matched length on two FRESH models (F147's test, prose read as an ensemble per F148): Qwen2.5-1.5B-Instruct template 0.016 vs prose [0.010, 0.234], closest prose 0.005 away; gemma-2-2b-it template 0.000 vs prose [0.005, 0.448], closest prose 0.005 away. A prose range that does not reach the template value extends F147's contrast to models it was not fitted on; one that straddles it bounds the contrast instead. FIRST FRAGMENTED MODEL in any domain run (['gemma-2-2b-it']): classes across its domains are gemma-2-2b-it bos=none, text_matched=borderline, chat_template=none, prose:corpus0=borderline, prose:corpus1=funnel, prose:corpus2=UNSTABLE, prose:shak0=none, prose:shak1=borderline, prose:shak2=UNSTABLE. F144's class claim had only ever been tested on funnels and nones, so this is new coverage of the taxonomy regardless of what the PRIMARY returns. BOUNDARY: 2 models, 96 starts, 2 census seeds, one prose ensemble per F148. The PRIMARY is an existence test either way: it can refute a general floor/ceiling account or fail to, but two models cannot say how common either is.
+
+wrote results/domain_midrange.json
+=== midrange pass 3 (censuses: 40) ===
+
+  -> RUNG (raw arm reproduces midrange_screen): 4 cells compared, worst error 0.00e+00. Identical, so this is F150's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 0 of 2 models lack room to move both ways beyond tolerance, so both models can in principle show either direction. PRIMARY, bidirectionality from a single raw value (weights and starting point FIXED, only the domain varying, each shift against its own seed noise): Qwen2.5-1.5B-Instruct raw 0.573 [funnel] -> bos -0.562 (down, tol 0.042, none), text_matched -0.562 (down, tol 0.042, none), chat_template -0.557 (down, tol 0.062, none), prose:corpus0 -0.562 (down, tol 0.042, none), prose:corpus1 -0.339 (down, tol 0.146, borderline), prose:corpus2 -0.547 (down, tol 0.042, none), prose:shak0 -0.542 (down, tol 0.083, none), prose:shak1 -0.562 (down, tol 0.042, none), prose:shak2 -0.484 (down, tol 0.146, UNSTABLE); gemma-2-2b-it raw 0.714 [fragmented] -> bos -0.677 (down, tol 0.042, none), text_matched -0.266 (down, tol 0.125, borderline), chat_template -0.714 (down, tol 0.042, none), prose:corpus0 -0.266 (down, tol 0.125, borderline), prose:corpus1 -0.286 (down, tol 0.125, funnel), prose:corpus2 -0.630 (down, tol 0.125, UNSTABLE), prose:shak0 -0.708 (down, tol 0.042, none), prose:shak1 -0.552 (down, tol 0.042, borderline), prose:shak2 -0.417 (down, tol 0.042, UNSTABLE). NEITHER model moves both ways, and unlike F149 these models COULD have. That is a much stronger null: on models with genuine headroom the domain still moves everything one way, so the deflationary account survives a test designed to break it. SECONDARY, the kind contrast at matched length on two FRESH models (F147's test, prose read as an ensemble per F148): Qwen2.5-1.5B-Instruct template 0.016 vs prose [0.010, 0.234], closest prose 0.005 away; gemma-2-2b-it template 0.000 vs prose [0.005, 0.448], closest prose 0.005 away. A prose range that does not reach the template value extends F147's contrast to models it was not fitted on; one that straddles it bounds the contrast instead. FIRST FRAGMENTED MODEL in any domain run (['gemma-2-2b-it']): classes across its domains are gemma-2-2b-it bos=none, text_matched=borderline, chat_template=none, prose:corpus0=borderline, prose:corpus1=funnel, prose:corpus2=UNSTABLE, prose:shak0=none, prose:shak1=borderline, prose:shak2=UNSTABLE. F144's class claim had only ever been tested on funnels and nones, so this is new coverage of the taxonomy regardless of what the PRIMARY returns. BOUNDARY: 2 models, 96 starts, 2 census seeds, one prose ensemble per F148. The PRIMARY is an existence test either way: it can refute a general floor/ceiling account or fail to, but two models cannot say how common either is.
+
+wrote results/domain_midrange.json
+=== no progress (40), stopping ===
+=== domain_midrange done ===
