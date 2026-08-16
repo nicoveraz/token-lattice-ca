@@ -3645,6 +3645,49 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F153 — the up-shift is a TEXT × WEIGHTS interaction: no text raises both models, so there is no such thing as a structure-raising prefix
+F152 found the programme's only two surviving up-shifts, but each was found by **exactly one text** —
+`Minerva-3B`'s evidence was a text sample of size two pointing opposite ways. F148 exists to stop
+claims resting on single draws, so letting that stand would have repeated the defect it was built to
+catch. This samples the text axis: ten 9-token prefixes (four disjoint `CORPUS` chunks, six
+Shakespeare offsets, all selected by OFFSET and never by content), on both bidirectional models, two
+census seeds. `c0`/`s0` reproduce F152's cells exactly as the RUNG.
+
+**PRIMARY — bidirectionality is common, not anecdotal. 4 of 20 text-model units go UP.**
+
+| model | raw | up | down | flat | up-texts |
+|---|---|---|---|---|---|
+| Minerva-3B-base | 0.328 | **3/10** | 5 | 2 | s0 (+0.458), s1 (**+0.651**), s2 (+0.318) |
+| Falcon3-1B-Base | 0.213 | **1/10** | 5 | 4 | s4 (**+0.781**) |
+
+`Minerva`'s `s1` reaches 0.979 and `Falcon3-1B`'s `s4` reaches 0.994 — nine ordinary tokens turning a
+weak structure into a near-perfect funnel. So F152's bidirectionality carries a **rate**, not an
+anecdote, and the middle registered reading is the one that fired.
+
+**SECONDARY, and it is the sharper result — the up-shift is an INTERACTION, not a text property.**
+The same ten texts were run on both models. **The overlap between their up-sets is empty**:
+`Minerva` rises on s0/s1/s2, `Falcon3-1B` on s4, and each model's up-texts leave the other unmoved or
+push it down (`s4` drops `Minerva` to 0.000; `s1` does nothing to `Falcon3-1B`). Consequences:
+
+- **There is no such thing as a "structure-raising prefix."** A text cannot be characterised as
+  raising or lowering fixed-point structure independent of the model it is fed to.
+- **A predictor study on text surface features would be looking in the wrong place.** This was
+  pre-declared as NOT TESTED here (ten texts cannot fail such a test informatively — F149's refusal),
+  and the interaction result now says the study itself is misconceived, not merely underpowered.
+- **It is the strongest available form of "the axis cannot be calibrated away."** Not only are
+  direction and magnitude unpredictable from the prefix — they are not properties of the prefix at
+  all.
+
+**Descriptive lead, explicitly not a test.** All four up-texts are Shakespeare and all eight `CORPUS`
+chunks go down or flat across both models — but six Shakespeare samples also go down or flat, so
+"verse raises structure" is false as stated. With 4 vs 6 texts per model this cannot be tested; it is
+recorded as a lead for a run with a real text corpus.
+
+**Boundary.** Two models, ONE length (9 tokens), two English sources. A rate over ten texts is a rate
+over THESE ten texts, and the empty overlap is an existence claim about these two models, not a proof
+that no text ever raises two models. `experiments/domain_text_sample.py` →
+`results/domain_text_sample.json`.
+
 ### F152 — F151's unidirectional claim is FALSIFIED on base models: two of seven are BIDIRECTIONAL from their own raw value. "18 of 18" was overreach on n=2.
 F151 found 18 of 18 domain arms moving DOWN on two mid-range instruct models and that became paper
 2's headline. This tests it on four times the cohort, at zero screening cost: F143 had already

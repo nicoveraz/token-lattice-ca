@@ -1,0 +1,65 @@
+=== text pass 1 (censuses: 0) ===
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4422.90it/s]
+  sapienzanlp/Minerva-3B-base-v1.0   10 texts at 9 tok
+  sapienzanlp/Minerva-3B-base-v1.0   c0   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c0   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c1   s=20260803 cls=borderline  fix=0.135
+  sapienzanlp/Minerva-3B-base-v1.0   c1   s=990017 cls=none        fix=0.083
+  sapienzanlp/Minerva-3B-base-v1.0   c2   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c2   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c3   s=20260803 cls=borderline  fix=0.250
+  sapienzanlp/Minerva-3B-base-v1.0   c3   s=990017 cls=borderline  fix=0.146
+  sapienzanlp/Minerva-3B-base-v1.0   s0   s=20260803 cls=funnel      fix=0.865
+  sapienzanlp/Minerva-3B-base-v1.0   s0   s=990017 cls=funnel      fix=0.708
+  sapienzanlp/Minerva-3B-base-v1.0   s1   s=20260803 cls=funnel      fix=0.990
+  sapienzanlp/Minerva-3B-base-v1.0   s1   s=990017 cls=funnel      fix=0.969
+  sapienzanlp/Minerva-3B-base-v1.0   s2   s=20260803 cls=funnel      fix=0.635
+  sapienzanlp/Minerva-3B-base-v1.0   s2   s=990017 cls=funnel      fix=0.656
+  sapienzanlp/Minerva-3B-base-v1.0   s3   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   s3   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   s4   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   s4   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   s5   s=20260803 cls=funnel      fix=0.365
+  sapienzanlp/Minerva-3B-base-v1.0   s5   s=990017 cls=funnel      fix=0.427
+  sapienzanlp/Minerva-3B-base-v1.0   model done in 3407s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (c0/s0 reproduce domain_base's corpus@9/shak@9): 4 cells, worst error 0.00e+00. Identical, so this is F152's measurement with only the text varying. ANTI-VACUITY (re-checked, not assumed): 0 of 1 models lack room to move both ways, so both can show either direction. PRIMARY, fraction of 9-token texts producing a robust UP-shift: Minerva-3B-base-v1.0 raw 0.328: 3/10 up (s0,s1,s2), 5 down, 2 flat.  A minority of texts go up (3 of 10), so bidirectionality is a real and reasonably common property of these models rather than an anecdote, and F152's claim now carries a rate instead of a single draw. NOT TESTED, as declared before the run: surface features of the text as predictors of sign. 10 text-model units over 1 models cannot fail such a test informatively, and computing one would manufacture a result. BOUNDARY: 1 models, ONE length (9 tokens), 4 CORPUS chunks and 6 Shakespeare offsets, all selected by OFFSET and never by content. A rate over ten texts is a rate over THESE ten texts, and both sources are English prose or verse -- not a survey of what can precede a loop.
+
+wrote results/domain_text_sample.json
+=== text pass 2 (censuses: 20) ===
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 5023.26it/s]
+  tiiuae/Falcon3-1B-Base             10 texts at 9 tok
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-1B-Base             c0   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c0   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c1   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c1   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c2   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c2   s=990017 cls=none        fix=0.062
+  tiiuae/Falcon3-1B-Base             c3   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c3   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             s0   s=20260803 cls=borderline  fix=0.229
+  tiiuae/Falcon3-1B-Base             s0   s=990017 cls=borderline  fix=0.281
+  tiiuae/Falcon3-1B-Base             s1   s=20260803 cls=borderline  fix=0.167
+  tiiuae/Falcon3-1B-Base             s1   s=990017 cls=funnel      fix=0.312
+  tiiuae/Falcon3-1B-Base             s2   s=20260803 cls=borderline  fix=0.229
+  tiiuae/Falcon3-1B-Base             s2   s=990017 cls=borderline  fix=0.271
+  tiiuae/Falcon3-1B-Base             s3   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             s3   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             s4   s=20260803 cls=funnel      fix=0.990
+  tiiuae/Falcon3-1B-Base             s4   s=990017 cls=funnel      fix=1.000
+  tiiuae/Falcon3-1B-Base             s5   s=20260803 cls=borderline  fix=0.208
+  tiiuae/Falcon3-1B-Base             s5   s=990017 cls=borderline  fix=0.292
+  tiiuae/Falcon3-1B-Base             model done in 2306s
+
+  -> RUNG (c0/s0 reproduce domain_base's corpus@9/shak@9): 8 cells, worst error 0.00e+00. Identical, so this is F152's measurement with only the text varying. ANTI-VACUITY (re-checked, not assumed): 0 of 2 models lack room to move both ways, so both can show either direction. PRIMARY, fraction of 9-token texts producing a robust UP-shift: Minerva-3B-base-v1.0 raw 0.328: 3/10 up (s0,s1,s2), 5 down, 2 flat; Falcon3-1B-Base raw 0.213: 1/10 up (s4), 5 down, 4 flat.  A minority of texts go up (4 of 20), so bidirectionality is a real and reasonably common property of these models rather than an anecdote, and F152's claim now carries a rate instead of a single draw. SECONDARY, TEXT x MODEL over the same ten texts: up on both models -, up on exactly one ['s0', 's1', 's2', 's4']. No text raises both models, so the up-shift is an INTERACTION of text and weights: no property of the text alone can explain it, and a predictor study on text features would be looking in the wrong place. NOT TESTED, as declared before the run: surface features of the text as predictors of sign. 20 text-model units over 2 models cannot fail such a test informatively, and computing one would manufacture a result. BOUNDARY: 2 models, ONE length (9 tokens), 4 CORPUS chunks and 6 Shakespeare offsets, all selected by OFFSET and never by content. A rate over ten texts is a rate over THESE ten texts, and both sources are English prose or verse -- not a survey of what can precede a loop.
+
+wrote results/domain_text_sample.json
+=== text pass 3 (censuses: 40) ===
+
+  -> RUNG (c0/s0 reproduce domain_base's corpus@9/shak@9): 8 cells, worst error 0.00e+00. Identical, so this is F152's measurement with only the text varying. ANTI-VACUITY (re-checked, not assumed): 0 of 2 models lack room to move both ways, so both can show either direction. PRIMARY, fraction of 9-token texts producing a robust UP-shift: Minerva-3B-base-v1.0 raw 0.328: 3/10 up (s0,s1,s2), 5 down, 2 flat; Falcon3-1B-Base raw 0.213: 1/10 up (s4), 5 down, 4 flat.  A minority of texts go up (4 of 20), so bidirectionality is a real and reasonably common property of these models rather than an anecdote, and F152's claim now carries a rate instead of a single draw. SECONDARY, TEXT x MODEL over the same ten texts: up on both models -, up on exactly one ['s0', 's1', 's2', 's4']. No text raises both models, so the up-shift is an INTERACTION of text and weights: no property of the text alone can explain it, and a predictor study on text features would be looking in the wrong place. NOT TESTED, as declared before the run: surface features of the text as predictors of sign. 20 text-model units over 2 models cannot fail such a test informatively, and computing one would manufacture a result. BOUNDARY: 2 models, ONE length (9 tokens), 4 CORPUS chunks and 6 Shakespeare offsets, all selected by OFFSET and never by content. A rate over ten texts is a rate over THESE ten texts, and both sources are English prose or verse -- not a survey of what can precede a loop.
+
+wrote results/domain_text_sample.json
+=== no progress (40), stopping ===
+=== domain_text_sample done ===
