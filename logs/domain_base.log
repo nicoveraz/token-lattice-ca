@@ -1,0 +1,195 @@
+=== base pass 1 (censuses: 0) ===
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 6065.50it/s]
+  llm-jp/llm-jp-3-1.8b                 6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+  llm-jp/llm-jp-3-1.8b                 raw        s=20260803 cls=funnel      fix=0.844
+  llm-jp/llm-jp-3-1.8b                 raw        s=990017 cls=funnel      fix=0.708
+  llm-jp/llm-jp-3-1.8b                 bos        s=20260803 cls=funnel      fix=0.802
+  llm-jp/llm-jp-3-1.8b                 bos        s=990017 cls=funnel      fix=0.812
+  llm-jp/llm-jp-3-1.8b                 corpus@9   s=20260803 cls=none        fix=0.000
+  llm-jp/llm-jp-3-1.8b                 corpus@9   s=990017 cls=none        fix=0.000
+  llm-jp/llm-jp-3-1.8b                 shak@9     s=20260803 cls=funnel      fix=0.833
+  llm-jp/llm-jp-3-1.8b                 shak@9     s=990017 cls=funnel      fix=0.781
+  llm-jp/llm-jp-3-1.8b                 corpus@29  s=20260803 cls=borderline  fix=0.104
+  llm-jp/llm-jp-3-1.8b                 corpus@29  s=990017 cls=none        fix=0.083
+  llm-jp/llm-jp-3-1.8b                 shak@29    s=20260803 cls=none        fix=0.000
+  llm-jp/llm-jp-3-1.8b                 shak@29    s=990017 cls=none        fix=0.031
+  llm-jp/llm-jp-3-1.8b                 model done in 1219s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 2 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 1 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 0 BASE models (0 arms): 0 DOWN, 0 UP, 0 flat. NOT ONE arm moves up. Combined with F151's 18 of 18 on instruct models, that is 18 arms across 2 models spanning both cohorts, every one DOWN, on models selected to be able to move either way. The domain effect is unidirectional: conditioning destroys fixed-point structure. Per model: . BOUNDARY: 1 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 2 (censuses: 12) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/483 [00:00<?, ?it/s]Loading weights: 100%|██████████| 483/483 [00:00<00:00, 7131.26it/s]
+  bigcode/starcoder2-3b                6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  bigcode/starcoder2-3b                raw        s=20260803 cls=funnel      fix=0.677
+  bigcode/starcoder2-3b                raw        s=990017 cls=funnel      fix=0.771
+  bigcode/starcoder2-3b                bos        s=20260803 cls=borderline  fix=0.146
+  bigcode/starcoder2-3b                bos        s=990017 cls=borderline  fix=0.115
+  bigcode/starcoder2-3b                corpus@9   s=20260803 cls=none        fix=0.010
+  bigcode/starcoder2-3b                corpus@9   s=990017 cls=none        fix=0.000
+  bigcode/starcoder2-3b                shak@9     s=20260803 cls=none        fix=0.000
+  bigcode/starcoder2-3b                shak@9     s=990017 cls=none        fix=0.000
+  bigcode/starcoder2-3b                corpus@29  s=20260803 cls=none        fix=0.073
+  bigcode/starcoder2-3b                corpus@29  s=990017 cls=none        fix=0.021
+  bigcode/starcoder2-3b                shak@29    s=20260803 cls=none        fix=0.021
+  bigcode/starcoder2-3b                shak@29    s=990017 cls=none        fix=0.021
+  bigcode/starcoder2-3b                model done in 1446s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 4 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 2 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 1 BASE models (5 arms): 5 DOWN, 0 UP, 0 flat. NOT ONE arm moves up. Combined with F151's 18 of 18 on instruct models, that is 23 arms across 3 models spanning both cohorts, every one DOWN, on models selected to be able to move either way. The domain effect is unidirectional: conditioning destroys fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026. No cell spans >= 0.20, so on base models the magnitude is much less text-dependent than F148/F151 found on instruct models, and that difference needs explaining. BOUNDARY: 2 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 3 (censuses: 24) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4997.45it/s]
+  HuggingFaceTB/SmolLM-1.7B            6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+  HuggingFaceTB/SmolLM-1.7B            raw        s=20260803 cls=funnel      fix=0.594
+  HuggingFaceTB/SmolLM-1.7B            raw        s=990017 cls=funnel      fix=0.531
+  HuggingFaceTB/SmolLM-1.7B            bos        s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            bos        s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            corpus@9   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            corpus@9   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            shak@9     s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            shak@9     s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            corpus@29  s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            corpus@29  s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            shak@29    s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            shak@29    s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B            model done in 1025s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 6 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 3 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 2 BASE models (10 arms): 10 DOWN, 0 UP, 0 flat. NOT ONE arm moves up. Combined with F151's 18 of 18 on instruct models, that is 28 arms across 4 models spanning both cohorts, every one DOWN, on models selected to be able to move either way. The domain effect is unidirectional: conditioning destroys fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000. No cell spans >= 0.20, so on base models the magnitude is much less text-dependent than F148/F151 found on instruct models, and that difference needs explaining. BOUNDARY: 3 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 4 (censuses: 36) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6019.40it/s]
+  Qwen/Qwen1.5-1.8B                    6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+  Qwen/Qwen1.5-1.8B                    raw        s=20260803 cls=funnel      fix=0.521
+  Qwen/Qwen1.5-1.8B                    raw        s=990017 cls=funnel      fix=0.500
+  Qwen/Qwen1.5-1.8B                    bos        s=20260803 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                    bos        s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                    corpus@9   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen1.5-1.8B                    corpus@9   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                    shak@9     s=20260803 cls=none        fix=0.062
+  Qwen/Qwen1.5-1.8B                    shak@9     s=990017 cls=none        fix=0.094
+  Qwen/Qwen1.5-1.8B                    corpus@29  s=20260803 cls=none        fix=0.021
+  Qwen/Qwen1.5-1.8B                    corpus@29  s=990017 cls=none        fix=0.010
+  Qwen/Qwen1.5-1.8B                    shak@29    s=20260803 cls=borderline  fix=0.125
+  Qwen/Qwen1.5-1.8B                    shak@29    s=990017 cls=none        fix=0.073
+  Qwen/Qwen1.5-1.8B                    model done in 994s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 8 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 4 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 3 BASE models (15 arms): 15 DOWN, 0 UP, 0 flat. NOT ONE arm moves up. Combined with F151's 18 of 18 on instruct models, that is 33 arms across 5 models spanning both cohorts, every one DOWN, on models selected to be able to move either way. The domain effect is unidirectional: conditioning destroys fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down); Qwen1.5-1.8B raw 0.510 [funnel] -> bos -0.510 (down), corpus@29 -0.495 (down), corpus@9 -0.505 (down), shak@29 -0.411 (down), shak@9 -0.432 (down). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000; Qwen1.5-1.8B@9 spans [0.005, 0.078] = 0.073; Qwen1.5-1.8B@29 spans [0.016, 0.099] = 0.083. No cell spans >= 0.20, so on base models the magnitude is much less text-dependent than F148/F151 found on instruct models, and that difference needs explaining. BOUNDARY: 4 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 5 (censuses: 48) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7780.85it/s]
+  EleutherAI/pythia-410m               6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+  EleutherAI/pythia-410m               raw        s=20260803 cls=funnel      fix=0.490
+  EleutherAI/pythia-410m               raw        s=990017 cls=funnel      fix=0.427
+  EleutherAI/pythia-410m               bos        s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m               bos        s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m               corpus@9   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m               corpus@9   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m               shak@9     s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m               shak@9     s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m               corpus@29  s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m               corpus@29  s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m               shak@29    s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m               shak@29    s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m               model done in 383s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 10 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 5 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 4 BASE models (20 arms): 20 DOWN, 0 UP, 0 flat. NOT ONE arm moves up. Combined with F151's 18 of 18 on instruct models, that is 38 arms across 6 models spanning both cohorts, every one DOWN, on models selected to be able to move either way. The domain effect is unidirectional: conditioning destroys fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down); Qwen1.5-1.8B raw 0.510 [funnel] -> bos -0.510 (down), corpus@29 -0.495 (down), corpus@9 -0.505 (down), shak@29 -0.411 (down), shak@9 -0.432 (down); pythia-410m raw 0.458 [funnel] -> bos -0.458 (down), corpus@29 -0.458 (down), corpus@9 -0.458 (down), shak@29 -0.458 (down), shak@9 -0.458 (down). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000; Qwen1.5-1.8B@9 spans [0.005, 0.078] = 0.073; Qwen1.5-1.8B@29 spans [0.016, 0.099] = 0.083; pythia-410m@9 spans [0.000, 0.000] = 0.000; pythia-410m@29 spans [0.000, 0.000] = 0.000. No cell spans >= 0.20, so on base models the magnitude is much less text-dependent than F148/F151 found on instruct models, and that difference needs explaining. BOUNDARY: 5 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 6 (censuses: 60) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 15021.36it/s]
+  EleutherAI/pythia-410m-deduped       6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+  EleutherAI/pythia-410m-deduped       raw        s=20260803 cls=funnel      fix=0.417
+  EleutherAI/pythia-410m-deduped       raw        s=990017 cls=funnel      fix=0.438
+  EleutherAI/pythia-410m-deduped       bos        s=20260803 cls=none        fix=0.010
+  EleutherAI/pythia-410m-deduped       bos        s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       corpus@9   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       corpus@9   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       shak@9     s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       shak@9     s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       corpus@29  s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       corpus@29  s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       shak@29    s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       shak@29    s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped       model done in 558s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 12 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 6 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 5 BASE models (25 arms): 25 DOWN, 0 UP, 0 flat. NOT ONE arm moves up. Combined with F151's 18 of 18 on instruct models, that is 43 arms across 7 models spanning both cohorts, every one DOWN, on models selected to be able to move either way. The domain effect is unidirectional: conditioning destroys fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down); Qwen1.5-1.8B raw 0.510 [funnel] -> bos -0.510 (down), corpus@29 -0.495 (down), corpus@9 -0.505 (down), shak@29 -0.411 (down), shak@9 -0.432 (down); pythia-410m raw 0.458 [funnel] -> bos -0.458 (down), corpus@29 -0.458 (down), corpus@9 -0.458 (down), shak@29 -0.458 (down), shak@9 -0.458 (down); pythia-410m-deduped raw 0.427 [funnel] -> bos -0.422 (down), corpus@29 -0.427 (down), corpus@9 -0.427 (down), shak@29 -0.427 (down), shak@9 -0.427 (down). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000; Qwen1.5-1.8B@9 spans [0.005, 0.078] = 0.073; Qwen1.5-1.8B@29 spans [0.016, 0.099] = 0.083; pythia-410m@9 spans [0.000, 0.000] = 0.000; pythia-410m@29 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@9 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@29 spans [0.000, 0.000] = 0.000. No cell spans >= 0.20, so on base models the magnitude is much less text-dependent than F148/F151 found on instruct models, and that difference needs explaining. MATCHED PAIR, pythia-410m vs -deduped (identical but for corpus deduplication): raw 0.458 vs 0.427; arms bos -0.458 vs -0.422; corpus@29 -0.458 vs -0.427; corpus@9 -0.458 vs -0.427; shak@29 -0.458 vs -0.427; shak@9 -0.458 vs -0.427. The only pair in the project differing in ONE pretraining choice. BOUNDARY: 6 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 7 (censuses: 72) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [11:01<11:01, 661.53s/it]Fetching 2 files: 100%|██████████| 2/2 [11:01<00:00, 330.77s/it]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4466.97it/s]
+  sapienzanlp/Minerva-3B-base-v1.0     6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+  sapienzanlp/Minerva-3B-base-v1.0     raw        s=20260803 cls=funnel      fix=0.323
+  sapienzanlp/Minerva-3B-base-v1.0     raw        s=990017 cls=funnel      fix=0.333
+  sapienzanlp/Minerva-3B-base-v1.0     bos        s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0     bos        s=990017 cls=none        fix=0.010
+  sapienzanlp/Minerva-3B-base-v1.0     corpus@9   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0     corpus@9   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0     shak@9     s=20260803 cls=funnel      fix=0.865
+  sapienzanlp/Minerva-3B-base-v1.0     shak@9     s=990017 cls=funnel      fix=0.708
+  sapienzanlp/Minerva-3B-base-v1.0     corpus@29  s=20260803 cls=borderline  fix=0.115
+  sapienzanlp/Minerva-3B-base-v1.0     corpus@29  s=990017 cls=none        fix=0.042
+  sapienzanlp/Minerva-3B-base-v1.0     shak@29    s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0     shak@29    s=990017 cls=none        fix=0.010
+  sapienzanlp/Minerva-3B-base-v1.0     model done in 2501s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 14 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 7 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 6 BASE models (30 arms): 29 DOWN, 1 UP, 0 flat. UP-SHIFTS FOUND -- [('Minerva-3B-base-v1.0', 'shak@9', 0.4584)]. F151's unidirectional claim is FALSIFIED on base models, and paper 2's revised thesis needs revising again: conditioning does not only destroy fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down); Qwen1.5-1.8B raw 0.510 [funnel] -> bos -0.510 (down), corpus@29 -0.495 (down), corpus@9 -0.505 (down), shak@29 -0.411 (down), shak@9 -0.432 (down); pythia-410m raw 0.458 [funnel] -> bos -0.458 (down), corpus@29 -0.458 (down), corpus@9 -0.458 (down), shak@29 -0.458 (down), shak@9 -0.458 (down); pythia-410m-deduped raw 0.427 [funnel] -> bos -0.422 (down), corpus@29 -0.427 (down), corpus@9 -0.427 (down), shak@29 -0.427 (down), shak@9 -0.427 (down); Minerva-3B-base-v1.0 raw 0.328 [funnel] -> bos -0.323 (down), corpus@29 -0.250 (down), corpus@9 -0.328 (down), shak@29 -0.323 (down), shak@9 +0.458 (up). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000; Qwen1.5-1.8B@9 spans [0.005, 0.078] = 0.073; Qwen1.5-1.8B@29 spans [0.016, 0.099] = 0.083; pythia-410m@9 spans [0.000, 0.000] = 0.000; pythia-410m@29 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@9 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@29 spans [0.000, 0.000] = 0.000; Minerva-3B-base-v1.0@9 spans [0.000, 0.786] = 0.786; Minerva-3B-base-v1.0@29 spans [0.005, 0.078] = 0.073. 1 of 12 (model, length) cells span >= 0.20 on text alone, so the magnitude is strongly text-dependent on base models too -- the load-bearing half of the thesis holds on the other cohort. MATCHED PAIR, pythia-410m vs -deduped (identical but for corpus deduplication): raw 0.458 vs 0.427; arms bos -0.458 vs -0.422; corpus@29 -0.458 vs -0.427; corpus@9 -0.458 vs -0.427; shak@29 -0.458 vs -0.427; shak@9 -0.458 vs -0.427. The only pair in the project differing in ONE pretraining choice. BOUNDARY: 7 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 8 (censuses: 84) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 5450.75it/s]
+  tiiuae/Falcon3-1B-Base               6 arms: ['bos', 'corpus@29', 'corpus@9', 'raw', 'shak@29', 'shak@9']
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-1B-Base               raw        s=20260803 cls=borderline  fix=0.198
+  tiiuae/Falcon3-1B-Base               raw        s=990017 cls=borderline  fix=0.229
+  tiiuae/Falcon3-1B-Base               bos        s=20260803 cls=funnel      fix=0.885
+  tiiuae/Falcon3-1B-Base               bos        s=990017 cls=funnel      fix=0.927
+  tiiuae/Falcon3-1B-Base               corpus@9   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base               corpus@9   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base               shak@9     s=20260803 cls=borderline  fix=0.229
+  tiiuae/Falcon3-1B-Base               shak@9     s=990017 cls=borderline  fix=0.281
+  tiiuae/Falcon3-1B-Base               corpus@29  s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base               corpus@29  s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base               shak@29    s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base               shak@29    s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base               model done in 1241s
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 16 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 8 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 7 BASE models (35 arms): 32 DOWN, 2 UP, 1 flat. UP-SHIFTS FOUND -- [('Minerva-3B-base-v1.0', 'shak@9', 0.4584), ('Falcon3-1B-Base', 'bos', 0.6927)]. F151's unidirectional claim is FALSIFIED on base models, and paper 2's revised thesis needs revising again: conditioning does not only destroy fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down); Qwen1.5-1.8B raw 0.510 [funnel] -> bos -0.510 (down), corpus@29 -0.495 (down), corpus@9 -0.505 (down), shak@29 -0.411 (down), shak@9 -0.432 (down); pythia-410m raw 0.458 [funnel] -> bos -0.458 (down), corpus@29 -0.458 (down), corpus@9 -0.458 (down), shak@29 -0.458 (down), shak@9 -0.458 (down); pythia-410m-deduped raw 0.427 [funnel] -> bos -0.422 (down), corpus@29 -0.427 (down), corpus@9 -0.427 (down), shak@29 -0.427 (down), shak@9 -0.427 (down); Minerva-3B-base-v1.0 raw 0.328 [funnel] -> bos -0.323 (down), corpus@29 -0.250 (down), corpus@9 -0.328 (down), shak@29 -0.323 (down), shak@9 +0.458 (up); Falcon3-1B-Base raw 0.213 [borderline] -> bos +0.693 (up), corpus@29 -0.213 (down), corpus@9 -0.213 (down), shak@29 -0.213 (down), shak@9 +0.042 (flat). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000; Qwen1.5-1.8B@9 spans [0.005, 0.078] = 0.073; Qwen1.5-1.8B@29 spans [0.016, 0.099] = 0.083; pythia-410m@9 spans [0.000, 0.000] = 0.000; pythia-410m@29 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@9 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@29 spans [0.000, 0.000] = 0.000; Minerva-3B-base-v1.0@9 spans [0.000, 0.786] = 0.786; Minerva-3B-base-v1.0@29 spans [0.005, 0.078] = 0.073; Falcon3-1B-Base@9 spans [0.000, 0.255] = 0.255; Falcon3-1B-Base@29 spans [0.000, 0.000] = 0.000. 2 of 14 (model, length) cells span >= 0.20 on text alone, so the magnitude is strongly text-dependent on base models too -- the load-bearing half of the thesis holds on the other cohort. MATCHED PAIR, pythia-410m vs -deduped (identical but for corpus deduplication): raw 0.458 vs 0.427; arms bos -0.458 vs -0.422; corpus@29 -0.458 vs -0.427; corpus@9 -0.458 vs -0.427; shak@29 -0.458 vs -0.427; shak@9 -0.458 vs -0.427. The only pair in the project differing in ONE pretraining choice. BOUNDARY: 8 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== base pass 9 (censuses: 96) ===
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+
+  -> RUNG (raw arm reproduces argmax_census_hardened): 16 cells, worst error 0.00e+00. Identical, so this is F143's measurement with only the domain varying. ANTI-VACUITY (checked, not assumed): 1 of 8 models lack room to move both ways beyond tolerance -- [('llm-jp-3-1.8b', 0.776)], excluded. PRIMARY, direction of every arm on 7 BASE models (35 arms): 32 DOWN, 2 UP, 1 flat. UP-SHIFTS FOUND -- [('Minerva-3B-base-v1.0', 'shak@9', 0.4584), ('Falcon3-1B-Base', 'bos', 0.6927)]. F151's unidirectional claim is FALSIFIED on base models, and paper 2's revised thesis needs revising again: conditioning does not only destroy fixed-point structure. Per model: starcoder2-3b raw 0.724 [funnel] -> bos -0.594 (down), corpus@29 -0.677 (down), corpus@9 -0.719 (down), shak@29 -0.703 (down), shak@9 -0.724 (down); SmolLM-1.7B raw 0.562 [funnel] -> bos -0.562 (down), corpus@29 -0.562 (down), corpus@9 -0.562 (down), shak@29 -0.562 (down), shak@9 -0.562 (down); Qwen1.5-1.8B raw 0.510 [funnel] -> bos -0.510 (down), corpus@29 -0.495 (down), corpus@9 -0.505 (down), shak@29 -0.411 (down), shak@9 -0.432 (down); pythia-410m raw 0.458 [funnel] -> bos -0.458 (down), corpus@29 -0.458 (down), corpus@9 -0.458 (down), shak@29 -0.458 (down), shak@9 -0.458 (down); pythia-410m-deduped raw 0.427 [funnel] -> bos -0.422 (down), corpus@29 -0.427 (down), corpus@9 -0.427 (down), shak@29 -0.427 (down), shak@9 -0.427 (down); Minerva-3B-base-v1.0 raw 0.328 [funnel] -> bos -0.323 (down), corpus@29 -0.250 (down), corpus@9 -0.328 (down), shak@29 -0.323 (down), shak@9 +0.458 (up); Falcon3-1B-Base raw 0.213 [borderline] -> bos +0.693 (up), corpus@29 -0.213 (down), corpus@9 -0.213 (down), shak@29 -0.213 (down), shak@9 +0.042 (flat). SECONDARY, magnitude text-dependence at FIXED length (two prose sources per length): starcoder2-3b@9 spans [0.000, 0.005] = 0.005; starcoder2-3b@29 spans [0.021, 0.047] = 0.026; SmolLM-1.7B@9 spans [0.000, 0.000] = 0.000; SmolLM-1.7B@29 spans [0.000, 0.000] = 0.000; Qwen1.5-1.8B@9 spans [0.005, 0.078] = 0.073; Qwen1.5-1.8B@29 spans [0.016, 0.099] = 0.083; pythia-410m@9 spans [0.000, 0.000] = 0.000; pythia-410m@29 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@9 spans [0.000, 0.000] = 0.000; pythia-410m-deduped@29 spans [0.000, 0.000] = 0.000; Minerva-3B-base-v1.0@9 spans [0.000, 0.786] = 0.786; Minerva-3B-base-v1.0@29 spans [0.005, 0.078] = 0.073; Falcon3-1B-Base@9 spans [0.000, 0.255] = 0.255; Falcon3-1B-Base@29 spans [0.000, 0.000] = 0.000. 2 of 14 (model, length) cells span >= 0.20 on text alone, so the magnitude is strongly text-dependent on base models too -- the load-bearing half of the thesis holds on the other cohort. MATCHED PAIR, pythia-410m vs -deduped (identical but for corpus deduplication): raw 0.458 vs 0.427; arms bos -0.458 vs -0.422; corpus@29 -0.458 vs -0.427; corpus@9 -0.458 vs -0.427; shak@29 -0.458 vs -0.427; shak@9 -0.458 vs -0.427. The only pair in the project differing in ONE pretraining choice. BOUNDARY: 8 base models, 96 starts, 2 census seeds. NO chat-template arm exists for base models, so the largest-effect domain in F151 is untested here -- this extends the DIRECTION claim, not the template result. Two prefix lengths ((9, 29)) and two prose sources are not a survey of text.
+
+wrote results/domain_base.json
+=== no progress (96), stopping ===
+=== domain_base done ===

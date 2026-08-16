@@ -3645,7 +3645,65 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F152 — F151's unidirectional claim is FALSIFIED on base models: two of seven are BIDIRECTIONAL from their own raw value. "18 of 18" was overreach on n=2.
+F151 found 18 of 18 domain arms moving DOWN on two mid-range instruct models and that became paper
+2's headline. This tests it on four times the cohort, at zero screening cost: F143 had already
+censused 17 base models and eight were mid-range. Arms are `bos` and prose at two lengths grounded in
+the measured instruct template lengths (9 = gemma's, 29 = Qwen2.5's), each shift judged against its
+own seed noise. RUNG reproduces F143's raw cells exactly on all 16.
+
+**PRIMARY — 35 arms on 7 readable models: 32 DOWN, 2 UP, 1 flat. The claim does not hold.**
+
+| model | raw | the up-shift | tolerance |
+|---|---|---|---|
+| Falcon3-1B-Base | 0.213 | `bos` → **0.906**, +0.693 | 0.083 |
+| Minerva-3B-base-v1.0 | 0.328 | `shak@9` → **0.786**, +0.458 | 0.313 |
+
+**Both are BIDIRECTIONAL from a single raw value**, which is the form floor and ceiling cannot
+produce. `Falcon3-1B-Base` goes UP to 0.906 under one BOS token and DOWN to 0.000 under nine tokens
+of prose. `Minerva-3B` goes DOWN to 0.000 under `corpus@9` and UP to 0.786 under `shak@9` — **the
+same length, the same model, the same raw value, only the text differing.**
+
+**What this costs and what it restores.** F151's "the domain effect is unidirectional" was overreach
+from two models, and it had already been written into paper 2's thesis as the headline. F147's
+original claim — that direction is a joint property of weights and domain — was closer to right than
+F151's refutation of it, though F147's specific evidence for it (the gemma/Falcon3 sign-flip table)
+remains a floor/ceiling artefact and stays demoted. What survives is a strong TENDENCY, not a law:
+conditioning usually destroys fixed-point structure, 32 of 35 arms, but not always.
+
+**This strengthens the paper's practical claim rather than weakening it.** If direction were
+universally down, a reader could at least reason about the sign. With neither direction NOR magnitude
+predictable in advance, the axis genuinely cannot be corrected for — only reported and varied.
+
+**SECONDARY — magnitude text-dependence is REAL but NOT universal.** 2 of 14 (model, length) cells
+span ≥ 0.20 on text alone (`Minerva@9` spans 0.000→0.786; `Falcon3-1B@9` spans 0.000→0.255), while
+six cells span exactly 0.000 — different texts producing the identical total collapse. So the
+text-dependence F148/F151 found on instruct models is present here but concentrated in the same
+models that are bidirectional, rather than being a general property.
+
+**MATCHED PAIR — `pythia-410m` vs `pythia-410m-deduped`**, identical but for corpus deduplication:
+raw 0.458 vs 0.427, and all five arms collapse to ~0.000 in both. The cleanest control in the
+project — one pretraining decision changed, domain response unchanged.
+
+**The screening lesson, which cost a model.** F150's band screened on the raw MEAN and ignored raw
+SEED NOISE. `llm-jp-3-1.8b` (raw 0.776, noise 0.136) is mid-range by mean but its tolerance (0.271)
+exceeds its headroom (0.224), so it was excluded here after being run. The correct screen is
+`min(raw, 1−raw) > max(4/N_STARTS, 2×noise)` — headroom against tolerance, not position alone. Same
+anti-vacuity discipline, applied one level earlier.
+
+**Boundary.** Base models have NO chat template, the arm with the largest effect in F151, so this
+tests direction under BOS and prose only. Two prefix lengths and two prose sources are not a survey
+of text — and note that the two up-shifts were found by exactly one text each, so a wider text sample
+would likely find more. `experiments/domain_base.py` → `results/domain_base.json`.
+
 ### F151 — the domain effect is UNIDIRECTIONAL: 18 of 18 arms move DOWN on models chosen to be able to move either way. This DEMOTES F147's sign-flip.
+> **OVERTURNED BY F152.** "18 of 18" was overreach from TWO models. On seven base models (35 arms)
+> the count is 32 down, 2 up, and **two models are bidirectional from their own raw value**:
+> `Falcon3-1B-Base` goes +0.693 under one BOS token and to 0.000 under prose; `Minerva-3B` goes to
+> 0.000 under `corpus@9` and to 0.786 under `shak@9` — same length, same model, only the text
+> differing. What survives from this entry is the TENDENCY (conditioning usually destroys
+> fixed-point structure) and the demotion of F147's sign-flip table, which remains a floor/ceiling
+> artefact. The universal claim does not survive. Read this entry only alongside F152.
 F149 could not test whether the domain's direction is a real interaction or just floor and ceiling,
 because five of six models sat at an extreme. F150 screened for the missing instrument. This is the
 run those two set up, on `Qwen2.5-1.5B-Instruct` (raw 0.573, funnel, zero seed noise) and
