@@ -3645,6 +3645,55 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F150 — the mid-range screen: two usable models found, one of them a class the domain work has never had, and instruct models really are mostly pinned at the extremes
+F149 could not test direction-predictability because five of six models sat at a floor or a ceiling.
+The blocker was the cohort's POSITION, not its size — six more models at raw 0.000 buy nothing. This
+screens candidates on raw `fixed_point_fraction` alone (one census, no domain arms, ~1/20 the cost of
+a domain-gradient cell) against a band of **[0.2, 0.8] fixed before any candidate ran**, so a model
+has room to move by more than the 0.042 tolerance in BOTH directions. Registered as
+**instrument-building, not a hypothesis test**: the candidate list is convenience-cached plus a
+pre-specified extension, so the yield is NOT a population estimate and no rate may be quoted from it.
+The RUNG reproduces two known models exactly.
+
+**PRIMARY — two acquisitions, both confirmed on a second seed:**
+
+| model | seed 0 | seed 1 | class | note |
+|---|---|---|---|---|
+| Qwen2.5-1.5B-Instruct | 0.573 | 0.573 | funnel | zero seed noise |
+| gemma-2-2b-it | 0.719 | 0.708 | **fragmented** | a class the domain work has never exercised |
+
+`gemma-2-2b-it` is the more valuable of the two. Every model in F144–F149 is `funnel` or `none`; the
+taxonomy has four classes and the domain axis has only ever been run on two of them.
+
+**The rejections are themselves informative, and they were the pre-registered null.** Five of seven
+screened candidates are pinned: `granite-3.1-2b`, `Phi-4-mini`, `Llama-3.2-1B`, `Falcon3-1B` all at
+**0.000**, `SmolLM2-360M` at 0.990. Together with F149's cohort that is nine instruct models at an
+extreme against three mid-range. Near-zero raw fixed-point fractions really are typical here, so
+M3b's difficulty was not bad luck in model choice.
+
+**Size flips the statistic between extremes within a family, twice.** `Qwen2.5` 1.5B = 0.573 but 3B =
+0.000; `Falcon3` 3B = 0.714 but 1B = 0.000. Meanwhile `SmolLM2` is ~0.98 at both 360M and 1.7B, and
+`Llama-3.2` is 0.000 at both 1B and 3B. So size neither predicts the value nor is irrelevant to it —
+which is a caution for any future size analysis, not a result.
+
+**SECONDARY — `Falcon3`'s raw arm on four census seeds: 0.615, 0.771, 0.792, 0.677** (mean 0.714, sd
+0.083). The spread is real rather than a two-seed accident, so F149 was right to refuse its +0.146
+template rise: its tolerance genuinely swamps its domain shifts. Note this cuts against my own
+in-flight guess that four seeds would rescue it — the SE of the mean is 0.041, but the correct
+comparison for a single-seed-pair shift is the spread, not the SE of a mean it was not drawn from.
+
+**Coverage is lower than the candidate list suggests, and this is recorded rather than hidden.** Four
+of eleven attempted candidates NEVER LOADED and are **UNSCREENED, not rejected** —
+`internlm2_5-1_8b-chat` (corrupt cache), `EXAONE-3.5-2.4B` (transformers-version config
+incompatibility), `bitnet-b1.58-2B-4T` (missing import), and `OLMo-2-7B-Instruct`
+(**ResourceExhausted** — 7B fp16 is ~14GB and thrashed swap on a 16GB machine for 1h49m at 19% CPU
+before being stopped; putting a 7B in the extension list was a design error for this hardware, not a
+fact about the model). All four remain open candidates.
+
+**Boundary.** A convenience cohort screened on ONE statistic under the greedy map with 96 starts. The
+only output that counts is the LIST. `experiments/midrange_screen.py` →
+`results/midrange_screen.json`.
+
 ### F149 — whether the domain's DIRECTION is predictable is NOT_DECIDABLE on this cohort: five of six models sit at a floor or a ceiling, so the deflationary account cannot be tested at all
 F144 and F147 report that the domain moves models in model-SPECIFIC directions, which reads as a
 claim about weights. M3b tests the dull alternative that would produce the same table: **a model at

@@ -1,0 +1,292 @@
+=== screen pass 1 (censuses: 0) ===
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s]Loading weights: 100%|██████████| 164/164 [00:00<00:00, 5667.93it/s]
+  google/gemma-1.1-2b-it                       s=20260803 cls=funnel      fix=0.948
+  google/gemma-1.1-2b-it                       done in 25s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 1 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 0 candidates at seed 20260803: .  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: NONE. 0 of 0 landed in band on the screen seed, 0 survived confirmation. The screen found nothing usable yet. That is informative about the CANDIDATES, not about instruct models: extreme raw values may simply be typical, in which case M3b's question may not be answerable on instruct models at all and would need a different cohort or a different statistic. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 2 (censuses: 1) ===
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 4657.63it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-3B-Instruct                   s=20260803 cls=funnel      fix=0.615 <-- IN BAND
+  tiiuae/Falcon3-3B-Instruct                   s=990017 cls=funnel      fix=0.771 <-- IN BAND
+  tiiuae/Falcon3-3B-Instruct                   s=20260815 cls=funnel      fix=0.792 <-- IN BAND
+  tiiuae/Falcon3-3B-Instruct                   s=771013 cls=funnel      fix=0.677 <-- IN BAND
+  tiiuae/Falcon3-3B-Instruct                   done in 229s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 0 candidates at seed 20260803: .  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: NONE. 0 of 0 landed in band on the screen seed, 0 survived confirmation. The screen found nothing usable yet. That is informative about the CANDIDATES, not about instruct models: extreme raw values may simply be typical, in which case M3b's question may not be answerable on instruct models at all and would need a different cohort or a different statistic. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 3 (censuses: 5) ===
+Loading weights:   0%|          | 0/362 [00:00<?, ?it/s]Loading weights: 100%|██████████| 362/362 [00:00<00:00, 5110.91it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  ibm-granite/granite-3.1-2b-instruct          s=20260803 cls=none        fix=0.000
+  ibm-granite/granite-3.1-2b-instruct          done in 90s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 1 candidates at seed 20260803: granite-3.1-2b-instruct 0.000 (none).  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: NONE. 0 of 1 landed in band on the screen seed, 0 survived confirmation. The screen found nothing usable yet. That is informative about the CANDIDATES, not about instruct models: extreme raw values may simply be typical, in which case M3b's question may not be answerable on instruct models at all and would need a different cohort or a different statistic. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 4 (censuses: 6) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+[transformers] This model config has set a `rope_parameters['original_max_position_embeddings']` field, to be used together with `max_position_embeddings` to determine a scaling factor. Please set the `factor` field of `rope_parameters`with this ratio instead -- we recommend the use of this field over `original_max_position_embeddings`, as it is compatible with most model architectures.
+Loading weights:   0%|          | 0/194 [00:00<?, ?it/s]Loading weights: 100%|██████████| 194/194 [00:00<00:00, 5490.15it/s]
+  microsoft/Phi-4-mini-instruct                s=20260803 cls=none        fix=0.000
+  microsoft/Phi-4-mini-instruct                done in 213s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 2 candidates at seed 20260803: granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none).  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: NONE. 0 of 2 landed in band on the screen seed, 0 survived confirmation. The screen found nothing usable yet. That is informative about the CANDIDATES, not about instruct models: extreme raw values may simply be typical, in which case M3b's question may not be answerable on instruct models at all and would need a different cohort or a different statistic. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 5 (censuses: 7) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 15195.29it/s]
+  Qwen/Qwen2.5-1.5B-Instruct                   s=20260803 cls=funnel      fix=0.573 <-- IN BAND
+  Qwen/Qwen2.5-1.5B-Instruct                   done in 448s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 3 candidates at seed 20260803 (of 6 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: NONE. 1 of 3 landed in band on the screen seed, 0 survived confirmation. The screen found nothing usable yet. That is informative about the CANDIDATES, not about instruct models: extreme raw values may simply be typical, in which case M3b's question may not be answerable on instruct models at all and would need a different cohort or a different statistic. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 6 (censuses: 8) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5936.39it/s]
+  Qwen/Qwen2.5-1.5B-Instruct                   s=990017 cls=funnel      fix=0.573 <-- IN BAND
+  Qwen/Qwen2.5-1.5B-Instruct                   done in 68s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 3 candidates at seed 20260803 (of 6 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: Qwen2.5-1.5B-Instruct (0.573, 0.573). 1 of 3 landed in band on the screen seed, 1 survived confirmation. This is the cohort M3b needs -- models with room to move by more than tolerance in BOTH directions. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 7 (censuses: 9) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 18150.93it/s]
+  HuggingFaceTB/SmolLM2-360M-Instruct          s=20260803 cls=funnel      fix=0.990
+  HuggingFaceTB/SmolLM2-360M-Instruct          done in 133s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 4 candidates at seed 20260803 (of 7 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel); SmolLM2-360M-Instruct 0.990 (funnel). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: Qwen2.5-1.5B-Instruct (0.573, 0.573). 1 of 4 landed in band on the screen seed, 1 survived confirmation. This is the cohort M3b needs -- models with room to move by more than tolerance in BOTH directions. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 8 (censuses: 10) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Loading weights:   0%|          | 0/146 [00:00<?, ?it/s]Loading weights: 100%|██████████| 146/146 [00:00<00:00, 9212.56it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  meta-llama/Llama-3.2-1B-Instruct             s=20260803 cls=none        fix=0.000
+  meta-llama/Llama-3.2-1B-Instruct             done in 367s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 5 candidates at seed 20260803 (of 8 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel); SmolLM2-360M-Instruct 0.990 (funnel); Llama-3.2-1B-Instruct 0.000 (none). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: Qwen2.5-1.5B-Instruct (0.573, 0.573). 1 of 5 landed in band on the screen seed, 1 survived confirmation. This is the cohort M3b needs -- models with room to move by more than tolerance in BOTH directions. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 9 (censuses: 11) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [10:46<10:46, 646.87s/it]Fetching 2 files: 100%|██████████| 2/2 [10:46<00:00, 323.44s/it]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 7329.58it/s]
+  google/gemma-2-2b-it                         s=20260803 cls=fragmented  fix=0.719 <-- IN BAND
+  google/gemma-2-2b-it                         done in 683s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 6 candidates at seed 20260803 (of 9 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel); SmolLM2-360M-Instruct 0.990 (funnel); Llama-3.2-1B-Instruct 0.000 (none); gemma-2-2b-it 0.719 (fragmented). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: Qwen2.5-1.5B-Instruct (0.573, 0.573). 2 of 6 landed in band on the screen seed, 1 survived confirmation. This is the cohort M3b needs -- models with room to move by more than tolerance in BOTH directions. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 10 (censuses: 12) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 7031.28it/s]
+  google/gemma-2-2b-it                         s=990017 cls=fragmented  fix=0.708 <-- IN BAND
+  google/gemma-2-2b-it                         done in 27s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 6 candidates at seed 20260803 (of 9 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel); SmolLM2-360M-Instruct 0.990 (funnel); Llama-3.2-1B-Instruct 0.000 (none); gemma-2-2b-it 0.719 (fragmented). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: Qwen2.5-1.5B-Instruct (0.573, 0.573), gemma-2-2b-it (0.719, 0.708). 2 of 6 landed in band on the screen seed, 2 survived confirmation. This is the cohort M3b needs -- models with room to move by more than tolerance in BOTH directions. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 11 (censuses: 13) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 15792.53it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-1B-Instruct                   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Instruct                   done in 662s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (known models reproduce argmax_census_instruct at the same seed): 2 compared, worst error 0.00e+00. Identical, so this screen measures F144's quantity. SCREEN of 7 candidates at seed 20260803 (of 10 attempted): granite-3.1-2b-instruct 0.000 (none); Phi-4-mini-instruct 0.000 (none); Qwen2.5-1.5B-Instruct 0.573 (funnel); SmolLM2-360M-Instruct 0.990 (funnel); Llama-3.2-1B-Instruct 0.000 (none); gemma-2-2b-it 0.719 (fragmented); Falcon3-1B-Instruct 0.000 (none). 3 candidate(s) NEVER LOADED and are UNSCREENED, not rejected -- internlm2_5-1_8b-chat (ValueError); EXAONE-3.5-2.4B-Instruct (AttributeError); bitnet-b1.58-2B-4T-bf16 (ImportError). These are environment failures (cache corruption, transformers-version config incompatibility), not properties of the models, so they remain open candidates and the screen's coverage is lower than the candidate list suggests.  PRIMARY, candidates landing in the pre-registered band (0.2, 0.8) on BOTH seeds: Qwen2.5-1.5B-Instruct (0.573, 0.573), gemma-2-2b-it (0.719, 0.708). 2 of 7 landed in band on the screen seed, 2 survived confirmation. This is the cohort M3b needs -- models with room to move by more than tolerance in BOTH directions. SECONDARY, Falcon3-3B-Instruct's raw arm on 4 census seeds: 0.6146, 0.7708, 0.7917, 0.6771 (mean 0.7136, sd 0.0827). The spread is real, not a two-seed accident, so its tolerance genuinely swamps its domain shifts and F149's refusal to read its +0.146 template rise was correct. BOUNDARY: a CONVENIENCE cohort -- 5 cached models plus a pre-specified extension -- screened on ONE statistic with 96 starts. The yield is NOT a population estimate and no rate may be quoted from it; the only output that counts is the LIST of models that qualify.
+
+wrote results/midrange_screen.json
+=== screen pass 12 (censuses: 14) ===
+The repository internlm/internlm2_5-1_8b-chat contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat .
+ You can inspect the repository content at https://hf.co/internlm/internlm2_5-1_8b-chat.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `internlm2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+[transformers] Could not extract SentencePiece model from /Users/nicoveraz/Documents/GitHub/textca/hf_cache/hub/models--internlm--internlm2_5-1_8b-chat/snapshots/57dcbc5455bf050d27a80f0ebd7808387caa714d/tokenizer.model using sentencepiece library due to 
+SentencePieceExtractor requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+. Falling back to TikToken extractor.
+  internlm/internlm2_5-1_8b-chat               LOAD FAILED ValueError
+The repository LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct .
+ You can inspect the repository content at https://hf.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `exaone` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] PreTrainedConfig got `key=rope_scaling` in kwargs but hasn't set it as attribute. For RoPE standardization you need to set `self.rope_parameters` in model's config. 
+  LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct         LOAD FAILED AttributeError
+  microsoft/bitnet-b1.58-2B-4T-bf16            LOAD FAILED ImportError
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [34:23<1:08:46, 2063.24s/it]Fetching 3 files: 100%|██████████| 3/3 [34:23<00:00, 687.75s/it]   
+Loading weights:   0%|          | 0/355 [00:00<?, ?it/s]Loading weights: 100%|██████████| 355/355 [00:00<00:00, 5839.22it/s]
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
