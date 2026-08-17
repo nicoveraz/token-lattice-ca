@@ -3645,6 +3645,54 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F155 — structural text raises 2 of 3 models more often than prose, but the CONTROL FIRED: the "unraisable" model was raised too, so bidirectionality is NOT a model property
+F154's `p1` — Pile row 101, a table of contents — was the only text raising two models, suggesting a
+mechanism: templated boilerplate is exactly the context in which a next-token distribution collapses
+onto one continuation, so a structural prefix might build fixed points wherever the weights permit.
+But it was ONE text, and a hypothesis read off one observation is the defect this project keeps
+catching. **"Structural" was therefore defined mechanically and fixed before selection**: fraction of
+newline/markup/digit characters in the first 200 chars, ≥0.15 (the Pile's p95; `p1` scores 0.230, the
+p97.6) versus ≤0.02 for controls, with rows taken in INDEX ORDER and never read for content. Six of
+each, on the three models F154 showed raisable plus one it showed was not. 96 censuses; RUNG
+reproduces `p1` exactly.
+
+**PRIMARY — partial, and model-dependent.**
+
+| model | | structural | prose |
+|---|---|---|---|
+| Falcon3-1B-Base | raisable | **4/6** | 1/6 |
+| Minerva-3B-base | raisable | **3/6** | 1/6 |
+| Qwen1.5-1.8B | raisable | **0/6** | 1/6 |
+| SmolLM-1.7B | *control* | **1/6** | 0/6 |
+
+The pooled raisable ratio (7/18 vs 3/18, 2.3×) clears the pre-registered bar — **but a consistency
+gate added before the verdict refused to read it**, because two models support the effect and the
+third reverses it. Pooling across units that point different ways is the Simpson's shape this project
+was already caught by (F141). Without that gate this would have been written up as "the first
+predictive statement in the domain programme". The honest claim: structural text raises *some* models
+more often than prose, and **the mechanism is itself model-dependent** — which is what every other
+finding here also says. It yields no predictive rule about prefixes.
+
+**CONTROL FIRED, and this is the more consequential half.** `SmolLM-1.7B` was **0/12 up** in F154, and
+that observation is what grounded F154's claim that bidirectionality is a fixed MODEL property. Under
+structural text it goes up: `t4` — `"ARMED SERVICES BOARD OF CONTRACT APPEALS\n\nAppeal of --"` —
+takes it from 0.562 to **0.990**. So **"unraisable" was an artefact of the texts tried, not a property
+of the weights.** F154 amended. Every model tested in this programme is now known to be raisable by
+some text.
+
+**The pattern across F153 → F154 → F155 is now three-for-three**, and worth stating as a result in
+its own right: each time an apparent *property* (of a text, of a model) was tested by widening the
+sample, it dissolved into an interaction that had simply been undersampled. F153's "no text raises
+two models" died on a wider corpus; F154's "bidirectionality is a model property" died on a wider
+text class. The stable finding underneath is that **there are no clean factors here — only
+text×weights pairs.**
+
+**Boundary.** Four models, six texts per arm from ONE corpus at ONE length (9 tokens), under ONE
+operationalisation of "structural". Three raisable clusters cannot fail a significance test
+informatively, so this estimates rates and no p-value was computed — declared before the numbers.
+That `SmolLM` is raisable is an existence result from one text of six.
+`experiments/structural_text.py` → `results/structural_text.json`.
+
 ### F154 — a text CAN raise two models, so F153's empty overlap was a small-sample artefact — but the same nine tokens annihilate four others, and certification still fails
 F153's empty overlap became the clause in paper 2 that forecloses calibration, and it rested on the
 narrowest evidence in the thesis: two models, ten texts from one paragraph plus Shakespeare. Every
@@ -3674,8 +3722,11 @@ clause survives with a corrected rationale**: certification fails not because pr
 unshared, but because they are OPPOSITE. `p1` is simultaneously the most structure-building prefix in
 the run and among the most destructive. No prefix can be certified for an arbitrary model.
 
-**Bidirectionality is a MODEL property, and that is the cleaner statement.** 3 of 6 models can be
-raised by some text; 3 cannot be raised by ANY of twelve texts across three sources
+**Bidirectionality is a MODEL property, and that is the cleaner statement.** *(WITHDRAWN by F155:
+`SmolLM-1.7B`, 0/12 here, is raised to 0.990 by a legal-boilerplate prefix. "Unraisable" was an
+artefact of the texts tried. Read the rest of this paragraph as a statement about THESE twelve texts
+only.)* 3 of 6 models can be raised by some text; 3 cannot be raised by ANY of twelve texts across
+three sources
 (`pythia-410m-deduped` 0/12, `SmolLM-1.7B` 0/12, `Qwen2.5-1.5B-Instruct` 0/12). Among the raisable,
 up-sets are largely idiosyncratic — `Falcon3-1B` {p1, s2}, `Minerva` {p1, s0, s1}, `Qwen1.5` {p2} —
 with `p1` the only overlap. 6 of 72 text-model units go up.

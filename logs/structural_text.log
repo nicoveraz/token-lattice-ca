@@ -1,0 +1,159 @@
+=== st pass 1 (censuses: 0) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 3957.41it/s]
+  tiiuae/Falcon3-1B-Base             12 texts at 9 tok
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-1B-Base             t0   s=20260803 cls=funnel      fix=0.979
+  tiiuae/Falcon3-1B-Base             t0   s=990017 cls=funnel      fix=0.979
+  tiiuae/Falcon3-1B-Base             t1   s=20260803 cls=none        fix=0.073
+  tiiuae/Falcon3-1B-Base             t1   s=990017 cls=none        fix=0.031
+  tiiuae/Falcon3-1B-Base             t2   s=20260803 cls=none        fix=0.073
+  tiiuae/Falcon3-1B-Base             t2   s=990017 cls=borderline  fix=0.104
+  tiiuae/Falcon3-1B-Base             t3   s=20260803 cls=funnel      fix=0.323
+  tiiuae/Falcon3-1B-Base             t3   s=990017 cls=funnel      fix=0.385
+  tiiuae/Falcon3-1B-Base             t4   s=20260803 cls=funnel      fix=0.448
+  tiiuae/Falcon3-1B-Base             t4   s=990017 cls=funnel      fix=0.500
+  tiiuae/Falcon3-1B-Base             t5   s=20260803 cls=funnel      fix=0.417
+  tiiuae/Falcon3-1B-Base             t5   s=990017 cls=funnel      fix=0.396
+  tiiuae/Falcon3-1B-Base             r0   s=20260803 cls=funnel      fix=0.615
+  tiiuae/Falcon3-1B-Base             r0   s=990017 cls=funnel      fix=0.615
+  tiiuae/Falcon3-1B-Base             r1   s=20260803 cls=none        fix=0.010
+  tiiuae/Falcon3-1B-Base             r1   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             r2   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             r2   s=990017 cls=none        fix=0.010
+  tiiuae/Falcon3-1B-Base             r3   s=20260803 cls=none        fix=0.010
+  tiiuae/Falcon3-1B-Base             r3   s=990017 cls=none        fix=0.010
+  tiiuae/Falcon3-1B-Base             r4   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             r4   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             r5   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             r5   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             model done in 2026s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (t0 is F154's p1 and must reproduce it): 2 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6. Totals: structural 4/6, prose 1/6. Structural text raises these models far more often than prose does, so `p1` was an INSTANCE of a mechanism rather than a coincidence: templated boilerplate builds fixed points wherever the weights permit. This is the first PREDICTIVE statement in the domain programme -- everything before it says what cannot be predicted. NOT A TEST, declared before the numbers: 1 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 1 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.
+
+wrote results/structural_text.json
+=== st pass 2 (censuses: 24) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4711.41it/s]
+  sapienzanlp/Minerva-3B-base-v1.0   12 texts at 9 tok
+  sapienzanlp/Minerva-3B-base-v1.0   t0   s=20260803 cls=funnel      fix=1.000
+  sapienzanlp/Minerva-3B-base-v1.0   t0   s=990017 cls=funnel      fix=1.000
+  sapienzanlp/Minerva-3B-base-v1.0   t1   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   t1   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   t2   s=20260803 cls=funnel      fix=0.802
+  sapienzanlp/Minerva-3B-base-v1.0   t2   s=990017 cls=funnel      fix=0.708
+  sapienzanlp/Minerva-3B-base-v1.0   t3   s=20260803 cls=borderline  fix=0.271
+  sapienzanlp/Minerva-3B-base-v1.0   t3   s=990017 cls=borderline  fix=0.219
+  sapienzanlp/Minerva-3B-base-v1.0   t4   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   t4   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   t5   s=20260803 cls=funnel      fix=0.833
+  sapienzanlp/Minerva-3B-base-v1.0   t5   s=990017 cls=funnel      fix=0.885
+  sapienzanlp/Minerva-3B-base-v1.0   r0   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   r0   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   r1   s=20260803 cls=borderline  fix=0.188
+  sapienzanlp/Minerva-3B-base-v1.0   r1   s=990017 cls=borderline  fix=0.104
+  sapienzanlp/Minerva-3B-base-v1.0   r2   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   r2   s=990017 cls=none        fix=0.010
+  sapienzanlp/Minerva-3B-base-v1.0   r3   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   r3   s=990017 cls=none        fix=0.010
+  sapienzanlp/Minerva-3B-base-v1.0   r4   s=20260803 cls=funnel      fix=1.000
+  sapienzanlp/Minerva-3B-base-v1.0   r4   s=990017 cls=funnel      fix=1.000
+  sapienzanlp/Minerva-3B-base-v1.0   r5   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   r5   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   model done in 2593s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (t0 is F154's p1 and must reproduce it): 4 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6; Minerva-3B-base-v1.0 struct 3/6 vs prose 1/6. Totals: structural 7/12, prose 2/12. Structural text raises these models far more often than prose does, so `p1` was an INSTANCE of a mechanism rather than a coincidence: templated boilerplate builds fixed points wherever the weights permit. This is the first PREDICTIVE statement in the domain programme -- everything before it says what cannot be predicted. NOT A TEST, declared before the numbers: 2 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 2 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.
+
+wrote results/structural_text.json
+=== st pass 3 (censuses: 48) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5495.34it/s]
+  Qwen/Qwen1.5-1.8B                  12 texts at 9 tok
+  Qwen/Qwen1.5-1.8B                  t0   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  t0   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  t1   s=20260803 cls=funnel      fix=0.448
+  Qwen/Qwen1.5-1.8B                  t1   s=990017 cls=funnel      fix=0.375
+  Qwen/Qwen1.5-1.8B                  t2   s=20260803 cls=none        fix=0.062
+  Qwen/Qwen1.5-1.8B                  t2   s=990017 cls=none        fix=0.062
+  Qwen/Qwen1.5-1.8B                  t3   s=20260803 cls=funnel      fix=0.490
+  Qwen/Qwen1.5-1.8B                  t3   s=990017 cls=funnel      fix=0.406
+  Qwen/Qwen1.5-1.8B                  t4   s=20260803 cls=borderline  fix=0.250
+  Qwen/Qwen1.5-1.8B                  t4   s=990017 cls=borderline  fix=0.229
+  Qwen/Qwen1.5-1.8B                  t5   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  t5   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  r0   s=20260803 cls=funnel      fix=0.781
+  Qwen/Qwen1.5-1.8B                  r0   s=990017 cls=funnel      fix=0.708
+  Qwen/Qwen1.5-1.8B                  r1   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen1.5-1.8B                  r1   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  r2   s=20260803 cls=none        fix=0.042
+  Qwen/Qwen1.5-1.8B                  r2   s=990017 cls=none        fix=0.062
+  Qwen/Qwen1.5-1.8B                  r3   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen1.5-1.8B                  r3   s=990017 cls=none        fix=0.052
+  Qwen/Qwen1.5-1.8B                  r4   s=20260803 cls=none        fix=0.083
+  Qwen/Qwen1.5-1.8B                  r4   s=990017 cls=none        fix=0.031
+  Qwen/Qwen1.5-1.8B                  r5   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  r5   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  model done in 2215s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (t0 is F154's p1 and must reproduce it): 6 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6; Minerva-3B-base-v1.0 struct 3/6 vs prose 1/6; Qwen1.5-1.8B struct 0/6 vs prose 1/6. Totals: structural 7/18, prose 3/18. Structural text raises these models far more often than prose does, so `p1` was an INSTANCE of a mechanism rather than a coincidence: templated boilerplate builds fixed points wherever the weights permit. This is the first PREDICTIVE statement in the domain programme -- everything before it says what cannot be predicted. NOT A TEST, declared before the numbers: 3 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 3 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.
+
+wrote results/structural_text.json
+=== st pass 4 (censuses: 72) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 3340.63it/s]
+  HuggingFaceTB/SmolLM-1.7B          12 texts at 9 tok
+  HuggingFaceTB/SmolLM-1.7B          t0   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          t0   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          t1   s=20260803 cls=none        fix=0.073
+  HuggingFaceTB/SmolLM-1.7B          t1   s=990017 cls=none        fix=0.042
+  HuggingFaceTB/SmolLM-1.7B          t2   s=20260803 cls=funnel      fix=0.615
+  HuggingFaceTB/SmolLM-1.7B          t2   s=990017 cls=funnel      fix=0.677
+  HuggingFaceTB/SmolLM-1.7B          t3   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          t3   s=990017 cls=none        fix=0.010
+  HuggingFaceTB/SmolLM-1.7B          t4   s=20260803 cls=funnel      fix=0.979
+  HuggingFaceTB/SmolLM-1.7B          t4   s=990017 cls=funnel      fix=1.000
+  HuggingFaceTB/SmolLM-1.7B          t5   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          t5   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r0   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r0   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r1   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r1   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r2   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r2   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r3   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r3   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r4   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r4   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r5   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          r5   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          model done in 3027s
+
+  -> RUNG (t0 is F154's p1 and must reproduce it): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6; Minerva-3B-base-v1.0 struct 3/6 vs prose 1/6; Qwen1.5-1.8B struct 0/6 vs prose 1/6. Totals: structural 7/18, prose 3/18. Structural text raises these models far more often than prose does, so `p1` was an INSTANCE of a mechanism rather than a coincidence: templated boilerplate builds fixed points wherever the weights permit. This is the first PREDICTIVE statement in the domain programme -- everything before it says what cannot be predicted. CONTROL, the model F154 found unraisable (0/12 up): SmolLM-1.7B struct 1/6 vs prose 0/6. STRUCTURAL TEXT RAISES IT. F154's claim that bidirectionality is a fixed model property is WRONG -- the model was only unraisable by the texts tried, and that finding needs revising. NOT A TEST, declared before the numbers: 3 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 4 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.
+
+wrote results/structural_text.json
+=== st pass 5 (censuses: 96) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+
+  -> RUNG (t0 is F154's p1 and must reproduce it): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6; Minerva-3B-base-v1.0 struct 3/6 vs prose 1/6; Qwen1.5-1.8B struct 0/6 vs prose 1/6. Totals: structural 7/18, prose 3/18.  CONSISTENCY: 2 of 3 raisable models individually show a HIGHER up-rate under structural than under prose (['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']); 1 do not (['Qwen1.5-1.8B']). The models DISAGREE, so the pooled rate is NOT read as a summary -- pooling across units that point different ways is the Simpson's shape this project was already caught by (F141), and the per-model split below is the result instead.  VERDICT: PARTIAL and model-dependent. Structural text raises 2 of 3 raisable models more often than prose does, and REVERSES or fails on the rest. The pooled ratio (7/18 vs 3/18) clears the pre-registered bar, but it is carried by a subset, so the honest claim is that the MECHANISM IS ITSELF MODEL-DEPENDENT -- which is what every other finding in this programme also says. It does NOT yield a predictive rule about prefixes. CONTROL, the model F154 found unraisable (0/12 up): SmolLM-1.7B struct 1/6 vs prose 0/6. STRUCTURAL TEXT RAISES IT. F154's claim that bidirectionality is a fixed model property is WRONG -- the model was only unraisable by the texts tried, and that finding needs revising. NOT A TEST, declared before the numbers: 3 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 4 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.
+
+wrote results/structural_text.json
+=== no progress (96), stopping ===
+=== structural_text done ===

@@ -1,0 +1,4891 @@
+{
+ "runs": {
+  "tiiuae/Falcon3-1B-Base|s20260803|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.9792,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.9792,
+   "cyclic_fraction": 0.0208,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     94
+    ],
+    [
+     2035,
+     ",",
+     2
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9792,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.9792,
+   "cyclic_fraction": 0.0208,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     94
+    ],
+    [
+     2114,
+     "{",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.3333,
+   "modal_endpoint_token": " is",
+   "fixed_point_fraction": 0.0729,
+   "cyclic_fraction": 0.9271,
+   "endpoint_histogram": [
+    [
+     2340,
+     " is",
+     32
+    ],
+    [
+     3128,
+     " data",
+     19
+    ],
+    [
+     26505,
+     " hypothesis",
+     11
+    ],
+    [
+     2306,
+     " of",
+     9
+    ],
+    [
+     2040,
+     "1",
+     8
+    ],
+    [
+     2039,
+     "0",
+     7
+    ],
+    [
+     3902,
+     " following",
+     6
+    ],
+    [
+     2278,
+     " the",
+     3
+    ],
+    [
+     2710,
+     " what",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 15,
+   "modal_endpoint_share": 0.4062,
+   "modal_endpoint_token": " is",
+   "fixed_point_fraction": 0.0312,
+   "cyclic_fraction": 0.9688,
+   "endpoint_histogram": [
+    [
+     2340,
+     " is",
+     39
+    ],
+    [
+     3128,
+     " data",
+     19
+    ],
+    [
+     2040,
+     "1",
+     14
+    ],
+    [
+     2306,
+     " of",
+     5
+    ],
+    [
+     3902,
+     " following",
+     4
+    ],
+    [
+     2039,
+     "0",
+     3
+    ],
+    [
+     26505,
+     " hypothesis",
+     3
+    ],
+    [
+     12,
+     "\n",
+     2
+    ],
+    [
+     3351,
+     "for",
+     1
+    ],
+    [
+     2049,
+     ":",
+     1
+    ],
+    [
+     2053,
+     ">",
+     1
+    ],
+    [
+     2710,
+     " what",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ],
+    [
+     3249,
+     " test",
+     1
+    ],
+    [
+     2278,
+     " the",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.6771,
+   "modal_endpoint_token": "!!!!!!",
+   "fixed_point_fraction": 0.0729,
+   "cyclic_fraction": 0.9271,
+   "endpoint_histogram": [
+    [
+     84654,
+     "!!!!!!",
+     65
+    ],
+    [
+     12,
+     "\n",
+     24
+    ],
+    [
+     2039,
+     "0",
+     7
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.5729,
+   "modal_endpoint_token": "!!!!!!",
+   "fixed_point_fraction": 0.1042,
+   "cyclic_fraction": 0.8958,
+   "endpoint_histogram": [
+    [
+     84654,
+     "!!!!!!",
+     55
+    ],
+    [
+     12,
+     "\n",
+     30
+    ],
+    [
+     2039,
+     "0",
+     10
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.5312,
+   "modal_endpoint_token": "/",
+   "fixed_point_fraction": 0.3229,
+   "cyclic_fraction": 0.6771,
+   "endpoint_histogram": [
+    [
+     2038,
+     "/",
+     51
+    ],
+    [
+     12,
+     "\n",
+     27
+    ],
+    [
+     2037,
+     ".",
+     14
+    ],
+    [
+     2039,
+     "0",
+     4
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": "/",
+   "fixed_point_fraction": 0.3854,
+   "cyclic_fraction": 0.6146,
+   "endpoint_histogram": [
+    [
+     2038,
+     "/",
+     48
+    ],
+    [
+     12,
+     "\n",
+     35
+    ],
+    [
+     2037,
+     ".",
+     10
+    ],
+    [
+     2039,
+     "0",
+     2
+    ],
+    [
+     20102,
+     "linux",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.4479,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4479,
+   "cyclic_fraction": 0.5521,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     43
+    ],
+    [
+     2040,
+     "1",
+     36
+    ],
+    [
+     2037,
+     ".",
+     8
+    ],
+    [
+     2394,
+     " v",
+     6
+    ],
+    [
+     4460,
+     " United",
+     2
+    ],
+    [
+     2226,
+     " ",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.5,
+   "cyclic_fraction": 0.5,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     48
+    ],
+    [
+     2040,
+     "1",
+     29
+    ],
+    [
+     2037,
+     ".",
+     10
+    ],
+    [
+     2394,
+     " v",
+     6
+    ],
+    [
+     4460,
+     " United",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ],
+    [
+     2035,
+     ",",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.4167,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4167,
+   "cyclic_fraction": 0.5833,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     40
+    ],
+    [
+     2278,
+     " the",
+     33
+    ],
+    [
+     10997,
+     "                             ",
+     12
+    ],
+    [
+     2319,
+     "st",
+     8
+    ],
+    [
+     19087,
+     " Circuit",
+     1
+    ],
+    [
+     2058,
+     "C",
+     1
+    ],
+    [
+     2040,
+     "1",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.3958,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.3958,
+   "cyclic_fraction": 0.6042,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     38
+    ],
+    [
+     2278,
+     " the",
+     32
+    ],
+    [
+     10997,
+     "                             ",
+     19
+    ],
+    [
+     2319,
+     "st",
+     7
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.6042,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.6146,
+   "cyclic_fraction": 0.3854,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     58
+    ],
+    [
+     3416,
+     " next",
+     31
+    ],
+    [
+     2649,
+     " time",
+     4
+    ],
+    [
+     2226,
+     " ",
+     2
+    ],
+    [
+     2039,
+     "0",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.6042,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.6146,
+   "cyclic_fraction": 0.3854,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     58
+    ],
+    [
+     3416,
+     " next",
+     32
+    ],
+    [
+     2649,
+     " time",
+     3
+    ],
+    [
+     3559,
+     " family",
+     1
+    ],
+    [
+     2055,
+     "@",
+     1
+    ],
+    [
+     2793,
+     " use",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.625,
+   "modal_endpoint_token": " environment",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     4524,
+     " environment",
+     60
+    ],
+    [
+     2278,
+     " the",
+     19
+    ],
+    [
+     5907,
+     " huge",
+     8
+    ],
+    [
+     2923,
+     " way",
+     4
+    ],
+    [
+     4936,
+     " impact",
+     1
+    ],
+    [
+     76349,
+     " educa\u00e7\u00e3o",
+     1
+    ],
+    [
+     2039,
+     "0",
+     1
+    ],
+    [
+     2265,
+     " a",
+     1
+    ],
+    [
+     2303,
+     " in",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.5521,
+   "modal_endpoint_token": " environment",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     4524,
+     " environment",
+     53
+    ],
+    [
+     2278,
+     " the",
+     22
+    ],
+    [
+     5907,
+     " huge",
+     10
+    ],
+    [
+     2303,
+     " in",
+     5
+    ],
+    [
+     2923,
+     " way",
+     4
+    ],
+    [
+     3065,
+     " used",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.7604,
+   "modal_endpoint_token": "'",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     2030,
+     "'",
+     73
+    ],
+    [
+     11432,
+     " fishing",
+     19
+    ],
+    [
+     3523,
+     " company",
+     3
+    ],
+    [
+     2041,
+     "2",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.75,
+   "modal_endpoint_token": "'",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     2030,
+     "'",
+     72
+    ],
+    [
+     11432,
+     " fishing",
+     18
+    ],
+    [
+     3523,
+     " company",
+     3
+    ],
+    [
+     12404,
+     " Engineering",
+     1
+    ],
+    [
+     2035,
+     ",",
+     1
+    ],
+    [
+     2039,
+     "0",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.4062,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     2278,
+     " the",
+     39
+    ],
+    [
+     6556,
+     " East",
+     35
+    ],
+    [
+     3201,
+     " name",
+     15
+    ],
+    [
+     9850,
+     " god",
+     5
+    ],
+    [
+     2048,
+     "9",
+     1
+    ],
+    [
+     2302,
+     " to",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.4896,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     2278,
+     " the",
+     47
+    ],
+    [
+     6556,
+     " East",
+     21
+    ],
+    [
+     3201,
+     " name",
+     17
+    ],
+    [
+     9850,
+     " god",
+     7
+    ],
+    [
+     2302,
+     " to",
+     2
+    ],
+    [
+     2040,
+     "1",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.4167,
+   "modal_endpoint_token": "\u2018",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     3446,
+     "\u2018",
+     40
+    ],
+    [
+     2048,
+     "9",
+     34
+    ],
+    [
+     2226,
+     " ",
+     12
+    ],
+    [
+     2278,
+     " the",
+     6
+    ],
+    [
+     23349,
+     "Women",
+     4
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.4062,
+   "modal_endpoint_token": "\u2018",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     3446,
+     "\u2018",
+     39
+    ],
+    [
+     2048,
+     "9",
+     35
+    ],
+    [
+     2226,
+     " ",
+     9
+    ],
+    [
+     2278,
+     " the",
+     7
+    ],
+    [
+     23349,
+     "Women",
+     6
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s20260803|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.9688,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     93
+    ],
+    [
+     2226,
+     " ",
+     1
+    ],
+    [
+     2031,
+     "(",
+     1
+    ],
+    [
+     2032,
+     ")",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 20260803,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "tiiuae/Falcon3-1B-Base|s990017|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9375,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     90
+    ],
+    [
+     2032,
+     ")",
+     3
+    ],
+    [
+     2226,
+     " ",
+     3
+    ]
+   ],
+   "cls": "none",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "census_seed": 990017,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.9583,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     13,
+     "\n",
+     92
+    ],
+    [
+     32347,
+     "",
+     4
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9271,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     13,
+     "\n",
+     89
+    ],
+    [
+     32347,
+     "",
+     6
+    ],
+    [
+     4398,
+     "oo",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 16,
+   "modal_endpoint_share": 0.5938,
+   "modal_endpoint_token": "can",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9688,
+   "endpoint_histogram": [
+    [
+     508,
+     "can",
+     57
+    ],
+    [
+     337,
+     "M",
+     15
+    ],
+    [
+     32380,
+     "1",
+     3
+    ],
+    [
+     259,
+     "a",
+     3
+    ],
+    [
+     32377,
+     "0",
+     3
+    ],
+    [
+     2882,
+     "deal",
+     2
+    ],
+    [
+     1362,
+     "great",
+     2
+    ],
+    [
+     1259,
+     "way",
+     2
+    ],
+    [
+     806,
+     "new",
+     2
+    ],
+    [
+     285,
+     "the",
+     1
+    ],
+    [
+     32384,
+     "-",
+     1
+    ],
+    [
+     32368,
+     ",",
+     1
+    ],
+    [
+     367,
+     "is",
+     1
+    ],
+    [
+     32347,
+     "",
+     1
+    ],
+    [
+     882,
+     "get",
+     1
+    ],
+    [
+     32378,
+     "T",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 13,
+   "modal_endpoint_share": 0.6042,
+   "modal_endpoint_token": "can",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9792,
+   "endpoint_histogram": [
+    [
+     508,
+     "can",
+     58
+    ],
+    [
+     337,
+     "M",
+     18
+    ],
+    [
+     32378,
+     "T",
+     4
+    ],
+    [
+     32377,
+     "0",
+     4
+    ],
+    [
+     32384,
+     "-",
+     2
+    ],
+    [
+     32347,
+     "",
+     2
+    ],
+    [
+     259,
+     "a",
+     2
+    ],
+    [
+     882,
+     "get",
+     1
+    ],
+    [
+     1259,
+     "way",
+     1
+    ],
+    [
+     32380,
+     "1",
+     1
+    ],
+    [
+     806,
+     "new",
+     1
+    ],
+    [
+     32368,
+     ",",
+     1
+    ],
+    [
+     2882,
+     "deal",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.8021,
+   "modal_endpoint_token": "****",
+   "fixed_point_fraction": 0.8021,
+   "cyclic_fraction": 0.1875,
+   "endpoint_histogram": [
+    [
+     18800,
+     "****",
+     77
+    ],
+    [
+     13,
+     "\n",
+     9
+    ],
+    [
+     285,
+     "the",
+     7
+    ],
+    [
+     13590,
+     "carabinieri",
+     1
+    ],
+    [
+     32368,
+     ",",
+     1
+    ],
+    [
+     32355,
+     "s",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.6875,
+   "modal_endpoint_token": "****",
+   "fixed_point_fraction": 0.7083,
+   "cyclic_fraction": 0.2812,
+   "endpoint_histogram": [
+    [
+     18800,
+     "****",
+     66
+    ],
+    [
+     13,
+     "\n",
+     20
+    ],
+    [
+     32367,
+     ".",
+     4
+    ],
+    [
+     285,
+     "the",
+     3
+    ],
+    [
+     259,
+     "a",
+     1
+    ],
+    [
+     4398,
+     "oo",
+     1
+    ],
+    [
+     32377,
+     "0",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.2604,
+   "modal_endpoint_token": "U",
+   "fixed_point_fraction": 0.2708,
+   "cyclic_fraction": 0.7292,
+   "endpoint_histogram": [
+    [
+     32407,
+     "U",
+     25
+    ],
+    [
+     32440,
+     "#",
+     23
+    ],
+    [
+     2909,
+     "following",
+     19
+    ],
+    [
+     2060,
+     "The",
+     10
+    ],
+    [
+     32410,
+     "/",
+     7
+    ],
+    [
+     32380,
+     "1",
+     5
+    ],
+    [
+     1259,
+     "way",
+     3
+    ],
+    [
+     32377,
+     "0",
+     3
+    ],
+    [
+     32367,
+     ".",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.3125,
+   "modal_endpoint_token": "U",
+   "fixed_point_fraction": 0.2188,
+   "cyclic_fraction": 0.7812,
+   "endpoint_histogram": [
+    [
+     32407,
+     "U",
+     30
+    ],
+    [
+     2909,
+     "following",
+     20
+    ],
+    [
+     32440,
+     "#",
+     18
+    ],
+    [
+     2060,
+     "The",
+     12
+    ],
+    [
+     32380,
+     "1",
+     7
+    ],
+    [
+     32410,
+     "/",
+     4
+    ],
+    [
+     32377,
+     "0",
+     3
+    ],
+    [
+     1259,
+     "way",
+     1
+    ],
+    [
+     1771,
+     "same",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9583,
+   "modal_endpoint_token": "9",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     32408,
+     "9",
+     92
+    ],
+    [
+     4432,
+     "ST",
+     3
+    ],
+    [
+     32368,
+     ",",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9792,
+   "modal_endpoint_token": "9",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     32408,
+     "9",
+     94
+    ],
+    [
+     32368,
+     ",",
+     1
+    ],
+    [
+     32367,
+     ".",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.8333,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.8333,
+   "cyclic_fraction": 0.1667,
+   "endpoint_histogram": [
+    [
+     32377,
+     "0",
+     80
+    ],
+    [
+     32367,
+     ".",
+     14
+    ],
+    [
+     1259,
+     "way",
+     2
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.8854,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.8854,
+   "cyclic_fraction": 0.1146,
+   "endpoint_histogram": [
+    [
+     32377,
+     "0",
+     85
+    ],
+    [
+     32367,
+     ".",
+     11
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.5729,
+   "modal_endpoint_token": "step",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     4344,
+     "step",
+     55
+    ],
+    [
+     2179,
+     "next",
+     39
+    ],
+    [
+     305,
+     "to",
+     1
+    ],
+    [
+     4792,
+     "uomini",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.5312,
+   "modal_endpoint_token": "step",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     4344,
+     "step",
+     51
+    ],
+    [
+     2179,
+     "next",
+     44
+    ],
+    [
+     285,
+     "the",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.7812,
+   "modal_endpoint_token": "able",
+   "fixed_point_fraction": 0.1875,
+   "cyclic_fraction": 0.7917,
+   "endpoint_histogram": [
+    [
+     2110,
+     "able",
+     75
+    ],
+    [
+     13,
+     "\n",
+     17
+    ],
+    [
+     399,
+     "be",
+     2
+    ],
+    [
+     259,
+     "a",
+     1
+    ],
+    [
+     305,
+     "to",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.8854,
+   "modal_endpoint_token": "able",
+   "fixed_point_fraction": 0.1042,
+   "cyclic_fraction": 0.875,
+   "endpoint_histogram": [
+    [
+     2110,
+     "able",
+     85
+    ],
+    [
+     13,
+     "\n",
+     10
+    ],
+    [
+     305,
+     "to",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 17,
+   "modal_endpoint_share": 0.75,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     32380,
+     "1",
+     72
+    ],
+    [
+     1259,
+     "way",
+     3
+    ],
+    [
+     2359,
+     ">",
+     3
+    ],
+    [
+     32368,
+     ",",
+     3
+    ],
+    [
+     3800,
+     "casino",
+     2
+    ],
+    [
+     18820,
+     "bicicletta",
+     2
+    ],
+    [
+     13427,
+     "poesia",
+     1
+    ],
+    [
+     6233,
+     "calcio",
+     1
+    ],
+    [
+     15535,
+     "editing",
+     1
+    ],
+    [
+     18169,
+     "religione",
+     1
+    ],
+    [
+     1251,
+     "best",
+     1
+    ],
+    [
+     32393,
+     ":",
+     1
+    ],
+    [
+     2110,
+     "able",
+     1
+    ],
+    [
+     305,
+     "to",
+     1
+    ],
+    [
+     609,
+     "go",
+     1
+    ],
+    [
+     8162,
+     "fuoco",
+     1
+    ],
+    [
+     25208,
+     "boats",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.8854,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     32380,
+     "1",
+     85
+    ],
+    [
+     2359,
+     ">",
+     3
+    ],
+    [
+     1259,
+     "way",
+     2
+    ],
+    [
+     4398,
+     "oo",
+     1
+    ],
+    [
+     3800,
+     "casino",
+     1
+    ],
+    [
+     32393,
+     ":",
+     1
+    ],
+    [
+     609,
+     "go",
+     1
+    ],
+    [
+     1503,
+     "lavoro",
+     1
+    ],
+    [
+     32437,
+     "_",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.5,
+   "modal_endpoint_token": "ung",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     1051,
+     "ung",
+     48
+    ],
+    [
+     305,
+     "to",
+     29
+    ],
+    [
+     15909,
+     "uru",
+     14
+    ],
+    [
+     285,
+     "the",
+     5
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.4583,
+   "modal_endpoint_token": "ung",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     1051,
+     "ung",
+     44
+    ],
+    [
+     305,
+     "to",
+     34
+    ],
+    [
+     15909,
+     "uru",
+     17
+    ],
+    [
+     32380,
+     "1",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.9479,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     32380,
+     "1",
+     91
+    ],
+    [
+     32408,
+     "9",
+     5
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.9375,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     32380,
+     "1",
+     90
+    ],
+    [
+     32408,
+     "9",
+     6
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.8958,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     2060,
+     "The",
+     86
+    ],
+    [
+     6112,
+     "purpose",
+     8
+    ],
+    [
+     332,
+     "P",
+     1
+    ],
+    [
+     1090,
+     "ause",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 20260803,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|s990017|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.9167,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     2060,
+     "The",
+     88
+    ],
+    [
+     6112,
+     "purpose",
+     8
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "census_seed": 990017,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.6771,
+   "modal_endpoint_token": " ",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     220,
+     " ",
+     65
+    ],
+    [
+     271,
+     "\n\n",
+     27
+    ],
+    [
+     14374,
+     "###",
+     3
+    ],
+    [
+     16,
+     "1",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.7708,
+   "modal_endpoint_token": " ",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     220,
+     " ",
+     74
+    ],
+    [
+     271,
+     "\n\n",
+     19
+    ],
+    [
+     14374,
+     "###",
+     3
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 11,
+   "modal_endpoint_share": 0.4167,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.4479,
+   "cyclic_fraction": 0.5521,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     40
+    ],
+    [
+     30078,
+     " hypothesis",
+     24
+    ],
+    [
+     14279,
+     " normally",
+     12
+    ],
+    [
+     374,
+     " is",
+     7
+    ],
+    [
+     845,
+     " null",
+     7
+    ],
+    [
+     6949,
+     "\u0434",
+     1
+    ],
+    [
+     120,
+     "\ufffd",
+     1
+    ],
+    [
+     145251,
+     "\u265b",
+     1
+    ],
+    [
+     115000,
+     "\u77e9\u9635",
+     1
+    ],
+    [
+     65648,
+     "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+     1
+    ],
+    [
+     123800,
+     "\u05d8",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.375,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.375,
+   "cyclic_fraction": 0.6146,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     36
+    ],
+    [
+     30078,
+     " hypothesis",
+     20
+    ],
+    [
+     374,
+     " is",
+     16
+    ],
+    [
+     14279,
+     " normally",
+     12
+    ],
+    [
+     845,
+     " null",
+     10
+    ],
+    [
+     26289,
+     "\u0456",
+     1
+    ],
+    [
+     895,
+     " false",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9271,
+   "modal_endpoint_token": " \n",
+   "fixed_point_fraction": 0.0625,
+   "cyclic_fraction": 0.9167,
+   "endpoint_histogram": [
+    [
+     715,
+     " \n",
+     89
+    ],
+    [
+     15,
+     "0",
+     6
+    ],
+    [
+     17085,
+     "!!!!",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.9062,
+   "modal_endpoint_token": " \n",
+   "fixed_point_fraction": 0.0625,
+   "cyclic_fraction": 0.8958,
+   "endpoint_histogram": [
+    [
+     715,
+     " \n",
+     87
+    ],
+    [
+     15,
+     "0",
+     6
+    ],
+    [
+     32870,
+     " !!!",
+     1
+    ],
+    [
+     198,
+     "\n",
+     1
+    ],
+    [
+     2928,
+     "!!",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.4896,
+   "modal_endpoint_token": "8",
+   "fixed_point_fraction": 0.4896,
+   "cyclic_fraction": 0.5104,
+   "endpoint_histogram": [
+    [
+     23,
+     "8",
+     47
+    ],
+    [
+     25,
+     ":",
+     37
+    ],
+    [
+     73594,
+     "```",
+     7
+    ],
+    [
+     15,
+     "0",
+     2
+    ],
+    [
+     14,
+     "/",
+     2
+    ],
+    [
+     87236,
+     "Reaction",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.4688,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.4062,
+   "cyclic_fraction": 0.5938,
+   "endpoint_histogram": [
+    [
+     25,
+     ":",
+     45
+    ],
+    [
+     23,
+     "8",
+     39
+    ],
+    [
+     73594,
+     "```",
+     8
+    ],
+    [
+     15,
+     "0",
+     2
+    ],
+    [
+     14,
+     "/",
+     1
+    ],
+    [
+     21,
+     "6",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.3333,
+   "modal_endpoint_token": " ARM",
+   "fixed_point_fraction": 0.25,
+   "cyclic_fraction": 0.75,
+   "endpoint_histogram": [
+    [
+     30486,
+     " ARM",
+     32
+    ],
+    [
+     24,
+     "9",
+     23
+    ],
+    [
+     785,
+     "The",
+     18
+    ],
+    [
+     16,
+     "1",
+     14
+    ],
+    [
+     25633,
+     " SERVICES",
+     4
+    ],
+    [
+     198,
+     "\n",
+     3
+    ],
+    [
+     100655,
+     "\u9c7c",
+     1
+    ],
+    [
+     1479,
+     "ED",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.2708,
+   "modal_endpoint_token": " ARM",
+   "fixed_point_fraction": 0.2292,
+   "cyclic_fraction": 0.7708,
+   "endpoint_histogram": [
+    [
+     30486,
+     " ARM",
+     26
+    ],
+    [
+     785,
+     "The",
+     22
+    ],
+    [
+     24,
+     "9",
+     21
+    ],
+    [
+     16,
+     "1",
+     19
+    ],
+    [
+     198,
+     "\n",
+     4
+    ],
+    [
+     11,
+     ",",
+     2
+    ],
+    [
+     25633,
+     " SERVICES",
+     1
+    ],
+    [
+     47764,
+     "\u5b66",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.7292,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     279,
+     " the",
+     70
+    ],
+    [
+     4597,
+     "                             ",
+     26
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.75,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     279,
+     " the",
+     72
+    ],
+    [
+     4597,
+     "                             ",
+     23
+    ],
+    [
+     126270,
+     "\ubc95",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.7188,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.7812,
+   "cyclic_fraction": 0.2083,
+   "endpoint_histogram": [
+    [
+     16,
+     "1",
+     69
+    ],
+    [
+     1790,
+     " next",
+     10
+    ],
+    [
+     3019,
+     " step",
+     10
+    ],
+    [
+     15,
+     "0",
+     5
+    ],
+    [
+     99461,
+     "\u5df2\u7ecf",
+     1
+    ],
+    [
+     65648,
+     "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.6354,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.7083,
+   "cyclic_fraction": 0.2604,
+   "endpoint_histogram": [
+    [
+     16,
+     "1",
+     61
+    ],
+    [
+     1790,
+     " next",
+     13
+    ],
+    [
+     15,
+     "0",
+     8
+    ],
+    [
+     3019,
+     " step",
+     6
+    ],
+    [
+     220,
+     " ",
+     1
+    ],
+    [
+     262,
+     "   ",
+     1
+    ],
+    [
+     3837,
+     "\uff0c",
+     1
+    ],
+    [
+     104811,
+     "\u4e2d\u6587",
+     1
+    ],
+    [
+     33879,
+     " ART",
+     1
+    ],
+    [
+     12,
+     "-",
+     1
+    ],
+    [
+     65865,
+     "\uc804",
+     1
+    ],
+    [
+     2184,
+     "\u0440",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.6042,
+   "modal_endpoint_token": ",",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     11,
+     ",",
+     58
+    ],
+    [
+     279,
+     " the",
+     19
+    ],
+    [
+     2163,
+     " around",
+     6
+    ],
+    [
+     3873,
+     " bad",
+     4
+    ],
+    [
+     32664,
+     "\u5bf9",
+     3
+    ],
+    [
+     106247,
+     "\u884c\u70ba",
+     2
+    ],
+    [
+     103971,
+     "\u4eba\u7c7b",
+     1
+    ],
+    [
+     5421,
+     " impact",
+     1
+    ],
+    [
+     4573,
+     " environment",
+     1
+    ],
+    [
+     8959,
+     "\u0437",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.5104,
+   "modal_endpoint_token": ",",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     11,
+     ",",
+     49
+    ],
+    [
+     2163,
+     " around",
+     20
+    ],
+    [
+     279,
+     " the",
+     18
+    ],
+    [
+     32664,
+     "\u5bf9",
+     4
+    ],
+    [
+     3873,
+     " bad",
+     2
+    ],
+    [
+     103971,
+     "\u4eba\u7c7b",
+     1
+    ],
+    [
+     31763,
+     " canada",
+     1
+    ],
+    [
+     315,
+     " of",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 11,
+   "modal_endpoint_share": 0.4062,
+   "modal_endpoint_token": " Fishing",
+   "fixed_point_fraction": 0.0417,
+   "cyclic_fraction": 0.9583,
+   "endpoint_histogram": [
+    [
+     52308,
+     " Fishing",
+     39
+    ],
+    [
+     2813,
+     " company",
+     17
+    ],
+    [
+     910,
+     " Ch",
+     17
+    ],
+    [
+     525,
+     " are",
+     12
+    ],
+    [
+     15,
+     "0",
+     3
+    ],
+    [
+     12938,
+     " owned",
+     2
+    ],
+    [
+     14361,
+     "arters",
+     2
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     582,
+     " we",
+     1
+    ],
+    [
+     145251,
+     "\u265b",
+     1
+    ],
+    [
+     10304,
+     " Grand",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.2917,
+   "modal_endpoint_token": " company",
+   "fixed_point_fraction": 0.0625,
+   "cyclic_fraction": 0.9375,
+   "endpoint_histogram": [
+    [
+     2813,
+     " company",
+     28
+    ],
+    [
+     52308,
+     " Fishing",
+     26
+    ],
+    [
+     910,
+     " Ch",
+     21
+    ],
+    [
+     525,
+     " are",
+     10
+    ],
+    [
+     15,
+     "0",
+     6
+    ],
+    [
+     14361,
+     "arters",
+     1
+    ],
+    [
+     12938,
+     " owned",
+     1
+    ],
+    [
+     73623,
+     " Slam",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     2997,
+     " family",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.6458,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     25,
+     ":",
+     62
+    ],
+    [
+     66561,
+     " Mund",
+     20
+    ],
+    [
+     1939,
+     "?\n\n",
+     6
+    ],
+    [
+     355,
+     "us",
+     3
+    ],
+    [
+     504,
+     " from",
+     2
+    ],
+    [
+     144795,
+     "\u049b",
+     1
+    ],
+    [
+     279,
+     " the",
+     1
+    ],
+    [
+     15,
+     "0",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.625,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0521,
+   "cyclic_fraction": 0.9479,
+   "endpoint_histogram": [
+    [
+     25,
+     ":",
+     60
+    ],
+    [
+     66561,
+     " Mund",
+     21
+    ],
+    [
+     1939,
+     "?\n\n",
+     6
+    ],
+    [
+     15,
+     "0",
+     5
+    ],
+    [
+     355,
+     "us",
+     3
+    ],
+    [
+     504,
+     " from",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.6771,
+   "modal_endpoint_token": "9",
+   "fixed_point_fraction": 0.0833,
+   "cyclic_fraction": 0.9167,
+   "endpoint_histogram": [
+    [
+     24,
+     "9",
+     65
+    ],
+    [
+     198,
+     "\n",
+     22
+    ],
+    [
+     15,
+     "0",
+     6
+    ],
+    [
+     101968,
+     "\u5973\u6027",
+     1
+    ],
+    [
+     145251,
+     "\u265b",
+     1
+    ],
+    [
+     65648,
+     "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.625,
+   "modal_endpoint_token": "9",
+   "fixed_point_fraction": 0.0312,
+   "cyclic_fraction": 0.9688,
+   "endpoint_histogram": [
+    [
+     24,
+     "9",
+     60
+    ],
+    [
+     198,
+     "\n",
+     30
+    ],
+    [
+     15,
+     "0",
+     3
+    ],
+    [
+     101968,
+     "\u5973\u6027",
+     1
+    ],
+    [
+     26289,
+     "\u0456",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s20260803|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.5417,
+   "modal_endpoint_token": " a",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     264,
+     " a",
+     52
+    ],
+    [
+     943,
+     " type",
+     41
+    ],
+    [
+     15949,
+     "Abstract",
+     2
+    ],
+    [
+     198,
+     "\n",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 20260803,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "Qwen/Qwen1.5-1.8B|s990017|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.4896,
+   "modal_endpoint_token": " type",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     943,
+     " type",
+     47
+    ],
+    [
+     264,
+     " a",
+     46
+    ],
+    [
+     15949,
+     "Abstract",
+     3
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "census_seed": 990017,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.9062,
+   "modal_endpoint_token": "##",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     712,
+     "##",
+     87
+    ],
+    [
+     1863,
+     " book",
+     4
+    ],
+    [
+     79,
+     "_",
+     3
+    ],
+    [
+     913,
+     " water",
+     1
+    ],
+    [
+     36111,
+     " arousal",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|t0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9271,
+   "modal_endpoint_token": "##",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     712,
+     "##",
+     89
+    ],
+    [
+     1863,
+     " book",
+     6
+    ],
+    [
+     16205,
+     " Reference",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "t0",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.5417,
+   "modal_endpoint_token": "Q",
+   "fixed_point_fraction": 0.0729,
+   "cyclic_fraction": 0.9271,
+   "endpoint_histogram": [
+    [
+     65,
+     "Q",
+     52
+    ],
+    [
+     198,
+     "\n",
+     37
+    ],
+    [
+     32,
+     "0",
+     7
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|t1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.5729,
+   "modal_endpoint_token": "Q",
+   "fixed_point_fraction": 0.0417,
+   "cyclic_fraction": 0.9583,
+   "endpoint_histogram": [
+    [
+     65,
+     "Q",
+     55
+    ],
+    [
+     198,
+     "\n",
+     37
+    ],
+    [
+     32,
+     "0",
+     4
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "t1",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.6146,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.6146,
+   "cyclic_fraction": 0.3854,
+   "endpoint_histogram": [
+    [
+     32,
+     "0",
+     59
+    ],
+    [
+     5398,
+     "****",
+     16
+    ],
+    [
+     216,
+     " ",
+     8
+    ],
+    [
+     19,
+     "#",
+     6
+    ],
+    [
+     804,
+     " used",
+     2
+    ],
+    [
+     31,
+     "/",
+     1
+    ],
+    [
+     30,
+     ".",
+     1
+    ],
+    [
+     79,
+     "_",
+     1
+    ],
+    [
+     95,
+     "o",
+     1
+    ],
+    [
+     18143,
+     " bonding",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|t2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 16,
+   "modal_endpoint_share": 0.6458,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.6771,
+   "cyclic_fraction": 0.3229,
+   "endpoint_histogram": [
+    [
+     32,
+     "0",
+     62
+    ],
+    [
+     5398,
+     "****",
+     11
+    ],
+    [
+     19,
+     "#",
+     5
+    ],
+    [
+     216,
+     " ",
+     5
+    ],
+    [
+     15442,
+     "\u00a0",
+     2
+    ],
+    [
+     30,
+     ".",
+     1
+    ],
+    [
+     85,
+     "e",
+     1
+    ],
+    [
+     41345,
+     " landslide",
+     1
+    ],
+    [
+     95,
+     "o",
+     1
+    ],
+    [
+     79,
+     "_",
+     1
+    ],
+    [
+     43,
+     ";",
+     1
+    ],
+    [
+     31791,
+     "********************************",
+     1
+    ],
+    [
+     46154,
+     "dv",
+     1
+    ],
+    [
+     78,
+     "^",
+     1
+    ],
+    [
+     804,
+     " used",
+     1
+    ],
+    [
+     27749,
+     "\u062f",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "t2",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.5417,
+   "modal_endpoint_token": "```",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     3725,
+     "```",
+     52
+    ],
+    [
+     31,
+     "/",
+     25
+    ],
+    [
+     33,
+     "1",
+     15
+    ],
+    [
+     30,
+     ".",
+     2
+    ],
+    [
+     10391,
+     "\ufffd",
+     1
+    ],
+    [
+     79,
+     "_",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|t3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.5312,
+   "modal_endpoint_token": "```",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     3725,
+     "```",
+     51
+    ],
+    [
+     31,
+     "/",
+     27
+    ],
+    [
+     33,
+     "1",
+     14
+    ],
+    [
+     30,
+     ".",
+     3
+    ],
+    [
+     32,
+     "0",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "t3",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9792,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.9792,
+   "cyclic_fraction": 0.0208,
+   "endpoint_histogram": [
+    [
+     32,
+     "0",
+     94
+    ],
+    [
+     79,
+     "_",
+     1
+    ],
+    [
+     2811,
+     " gas",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|t4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 1,
+   "modal_endpoint_share": 1.0,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 1.0,
+   "cyclic_fraction": 0.0,
+   "endpoint_histogram": [
+    [
+     32,
+     "0",
+     96
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "t4",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.9896,
+   "modal_endpoint_token": "         ",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     17377,
+     "         ",
+     95
+    ],
+    [
+     25729,
+     " Fifth",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|t5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.9792,
+   "modal_endpoint_token": "         ",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     17377,
+     "         ",
+     94
+    ],
+    [
+     45374,
+     " --------",
+     1
+    ],
+    [
+     25729,
+     " Fifth",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "t5",
+   "n_prefix_tokens": 9,
+   "arm": "structural"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 19,
+   "modal_endpoint_share": 0.2396,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.25,
+   "endpoint_histogram": [
+    [
+     260,
+     " the",
+     23
+    ],
+    [
+     282,
+     " of",
+     17
+    ],
+    [
+     288,
+     " to",
+     9
+    ],
+    [
+     3241,
+     " bit",
+     8
+    ],
+    [
+     284,
+     " and",
+     6
+    ],
+    [
+     253,
+     " a",
+     6
+    ],
+    [
+     2545,
+     " check",
+     4
+    ],
+    [
+     28,
+     ",",
+     4
+    ],
+    [
+     1123,
+     " good",
+     3
+    ],
+    [
+     2359,
+     " idea",
+     3
+    ],
+    [
+     1277,
+     " want",
+     2
+    ],
+    [
+     685,
+     " go",
+     2
+    ],
+    [
+     357,
+     " it",
+     2
+    ],
+    [
+     5976,
+     " ahead",
+     2
+    ],
+    [
+     724,
+     " help",
+     1
+    ],
+    [
+     351,
+     " with",
+     1
+    ],
+    [
+     2174,
+     " quality",
+     1
+    ],
+    [
+     346,
+     " you",
+     1
+    ],
+    [
+     1492,
+     " look",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|r0": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 20,
+   "modal_endpoint_share": 0.3125,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.2917,
+   "endpoint_histogram": [
+    [
+     260,
+     " the",
+     30
+    ],
+    [
+     284,
+     " and",
+     10
+    ],
+    [
+     2545,
+     " check",
+     10
+    ],
+    [
+     282,
+     " of",
+     9
+    ],
+    [
+     253,
+     " a",
+     5
+    ],
+    [
+     28,
+     ",",
+     5
+    ],
+    [
+     288,
+     " to",
+     5
+    ],
+    [
+     5976,
+     " ahead",
+     4
+    ],
+    [
+     3241,
+     " bit",
+     3
+    ],
+    [
+     2359,
+     " idea",
+     2
+    ],
+    [
+     346,
+     " you",
+     2
+    ],
+    [
+     685,
+     " go",
+     2
+    ],
+    [
+     351,
+     " with",
+     2
+    ],
+    [
+     550,
+     " other",
+     1
+    ],
+    [
+     585,
+     " if",
+     1
+    ],
+    [
+     2174,
+     " quality",
+     1
+    ],
+    [
+     357,
+     " it",
+     1
+    ],
+    [
+     1188,
+     " take",
+     1
+    ],
+    [
+     1029,
+     " life",
+     1
+    ],
+    [
+     1123,
+     " good",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "r0",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.875,
+   "modal_endpoint_token": " human",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     1205,
+     " human",
+     84
+    ],
+    [
+     712,
+     "##",
+     10
+    ],
+    [
+     23213,
+     "\ufffd",
+     1
+    ],
+    [
+     33,
+     "1",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|r1": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.8646,
+   "modal_endpoint_token": " human",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     1205,
+     " human",
+     83
+    ],
+    [
+     712,
+     "##",
+     11
+    ],
+    [
+     33031,
+     "\ufffd",
+     1
+    ],
+    [
+     198,
+     "\n",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "r1",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.6771,
+   "modal_endpoint_token": " Fishing",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9375,
+   "endpoint_histogram": [
+    [
+     42136,
+     " Fishing",
+     65
+    ],
+    [
+     4130,
+     "lam",
+     18
+    ],
+    [
+     30,
+     ".",
+     4
+    ],
+    [
+     1191,
+     "ters",
+     2
+    ],
+    [
+     34,
+     "2",
+     2
+    ],
+    [
+     1903,
+     " **",
+     1
+    ],
+    [
+     42,
+     ":",
+     1
+    ],
+    [
+     1450,
+     " best",
+     1
+    ],
+    [
+     29975,
+     "Grand",
+     1
+    ],
+    [
+     216,
+     " ",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|r2": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.5625,
+   "modal_endpoint_token": " Fishing",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9271,
+   "endpoint_histogram": [
+    [
+     42136,
+     " Fishing",
+     54
+    ],
+    [
+     4130,
+     "lam",
+     25
+    ],
+    [
+     29975,
+     "Grand",
+     3
+    ],
+    [
+     1450,
+     " best",
+     3
+    ],
+    [
+     30,
+     ".",
+     3
+    ],
+    [
+     1191,
+     "ters",
+     2
+    ],
+    [
+     34,
+     "2",
+     1
+    ],
+    [
+     28,
+     ",",
+     1
+    ],
+    [
+     1903,
+     " **",
+     1
+    ],
+    [
+     10805,
+     "\u0627",
+     1
+    ],
+    [
+     359,
+     " are",
+     1
+    ],
+    [
+     334,
+     " S",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "r2",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.4688,
+   "modal_endpoint_token": " to",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     288,
+     " to",
+     45
+    ],
+    [
+     42,
+     ":",
+     34
+    ],
+    [
+     260,
+     " the",
+     9
+    ],
+    [
+     4081,
+     " north",
+     3
+    ],
+    [
+     442,
+     " N",
+     3
+    ],
+    [
+     49,
+     "A",
+     2
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|r3": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.3958,
+   "modal_endpoint_token": " to",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     288,
+     " to",
+     38
+    ],
+    [
+     42,
+     ":",
+     38
+    ],
+    [
+     442,
+     " N",
+     8
+    ],
+    [
+     260,
+     " the",
+     7
+    ],
+    [
+     4081,
+     " north",
+     3
+    ],
+    [
+     43421,
+     "\u017e",
+     1
+    ],
+    [
+     49,
+     "A",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "r3",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.5312,
+   "modal_endpoint_token": "9",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     41,
+     "9",
+     51
+    ],
+    [
+     216,
+     " ",
+     43
+    ],
+    [
+     33,
+     "1",
+     2
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|r4": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.6042,
+   "modal_endpoint_token": "9",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     41,
+     "9",
+     58
+    ],
+    [
+     216,
+     " ",
+     36
+    ],
+    [
+     33,
+     "1",
+     1
+    ],
+    [
+     22682,
+     "\u0647",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "r4",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s20260803|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 2,
+   "modal_endpoint_share": 0.875,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     42,
+     ":",
+     84
+    ],
+    [
+     33,
+     "1",
+     12
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 20260803,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  },
+  "HuggingFaceTB/SmolLM-1.7B|s990017|r5": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.8229,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     42,
+     ":",
+     79
+    ],
+    [
+     33,
+     "1",
+     16
+    ],
+    [
+     10805,
+     "\u0627",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "census_seed": 990017,
+   "text": "r5",
+   "n_prefix_tokens": 9,
+   "arm": "prose"
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "tiiuae/Falcon3-1B-Base",
+   "sapienzanlp/Minerva-3B-base-v1.0",
+   "Qwen/Qwen1.5-1.8B",
+   "HuggingFaceTB/SmolLM-1.7B"
+  ],
+  "raisable": [
+   "tiiuae/Falcon3-1B-Base",
+   "sapienzanlp/Minerva-3B-base-v1.0",
+   "Qwen/Qwen1.5-1.8B"
+  ],
+  "control": [
+   "HuggingFaceTB/SmolLM-1.7B"
+  ],
+  "length": 9,
+  "anchor_row": 101,
+  "struct_min": 0.15,
+  "prose_max": 0.02,
+  "n_per_arm": 6,
+  "scan_rows": 3000,
+  "n_starts": 96,
+  "census_seeds": [
+   20260803,
+   990017
+  ],
+  "definition": "structural = fraction of newline/markup/digit chars in the first 200 >= 0.15 (p95 of the Pile; p1 scores 0.230, p97.6). prose control <= 0.02. Rows taken in INDEX ORDER after thresholding, never read for content.",
+  "rung": "t0 IS F154's p1 and must reproduce it exactly",
+  "primary": "up-rate under structural vs prose text, on the three models F154 showed raisable",
+  "control_check": "the unraisable model must stay unraisable, or F154's model-property claim is wrong",
+  "not_a_test": "three raisable clusters cannot fail a significance test informatively; rates only, no p-value",
+  "why": "p1 is one text, and a hypothesis read off one observation is the defect this project keeps catching -- F153's 'all up-texts are Shakespeare' died the same way",
+  "struct_rows": [
+   101,
+   7,
+   86,
+   108,
+   121,
+   135
+  ],
+  "prose_rows": [
+   0,
+   2,
+   4,
+   5,
+   6,
+   12
+  ]
+ },
+ "analysis": {
+  "rows": {
+   "tiiuae/Falcon3-1B-Base": {
+    "raw": 0.2135,
+    "texts": {
+     "r0": {
+      "value": 0.6146,
+      "shift": 0.4011,
+      "tol": 0.0626,
+      "dir": "up"
+     },
+     "r1": {
+      "value": 0.0052,
+      "shift": -0.2083,
+      "tol": 0.0626,
+      "dir": "down"
+     },
+     "r2": {
+      "value": 0.0052,
+      "shift": -0.2083,
+      "tol": 0.0626,
+      "dir": "down"
+     },
+     "r3": {
+      "value": 0.0104,
+      "shift": -0.2031,
+      "tol": 0.0626,
+      "dir": "down"
+     },
+     "r4": {
+      "value": 0.0,
+      "shift": -0.2135,
+      "tol": 0.0626,
+      "dir": "down"
+     },
+     "r5": {
+      "value": 0.0,
+      "shift": -0.2135,
+      "tol": 0.0626,
+      "dir": "down"
+     },
+     "t0": {
+      "value": 0.9792,
+      "shift": 0.7656,
+      "tol": 0.0626,
+      "dir": "up"
+     },
+     "t1": {
+      "value": 0.052,
+      "shift": -0.1615,
+      "tol": 0.0834,
+      "dir": "down"
+     },
+     "t2": {
+      "value": 0.0886,
+      "shift": -0.125,
+      "tol": 0.0626,
+      "dir": "down"
+     },
+     "t3": {
+      "value": 0.3542,
+      "shift": 0.1406,
+      "tol": 0.125,
+      "dir": "up"
+     },
+     "t4": {
+      "value": 0.4739,
+      "shift": 0.2604,
+      "tol": 0.1042,
+      "dir": "up"
+     },
+     "t5": {
+      "value": 0.4062,
+      "shift": 0.1927,
+      "tol": 0.0626,
+      "dir": "up"
+     }
+    }
+   },
+   "sapienzanlp/Minerva-3B-base-v1.0": {
+    "raw": 0.3281,
+    "texts": {
+     "r0": {
+      "value": 0.0,
+      "shift": -0.3281,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "r1": {
+      "value": 0.1459,
+      "shift": -0.1822,
+      "tol": 0.1666,
+      "dir": "down"
+     },
+     "r2": {
+      "value": 0.0052,
+      "shift": -0.3229,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "r3": {
+      "value": 0.0052,
+      "shift": -0.3229,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "r4": {
+      "value": 1.0,
+      "shift": 0.6719,
+      "tol": 0.0417,
+      "dir": "up"
+     },
+     "r5": {
+      "value": 0.0,
+      "shift": -0.3281,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t0": {
+      "value": 1.0,
+      "shift": 0.6719,
+      "tol": 0.0417,
+      "dir": "up"
+     },
+     "t1": {
+      "value": 0.0,
+      "shift": -0.3281,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t2": {
+      "value": 0.7552,
+      "shift": 0.4271,
+      "tol": 0.1876,
+      "dir": "up"
+     },
+     "t3": {
+      "value": 0.2448,
+      "shift": -0.0833,
+      "tol": 0.104,
+      "dir": "flat"
+     },
+     "t4": {
+      "value": 0.0,
+      "shift": -0.3281,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t5": {
+      "value": 0.8594,
+      "shift": 0.5312,
+      "tol": 0.1042,
+      "dir": "up"
+     }
+    }
+   },
+   "Qwen/Qwen1.5-1.8B": {
+    "raw": 0.5104,
+    "texts": {
+     "r0": {
+      "value": 0.7448,
+      "shift": 0.2344,
+      "tol": 0.1458,
+      "dir": "up"
+     },
+     "r1": {
+      "value": 0.0052,
+      "shift": -0.5052,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "r2": {
+      "value": 0.0521,
+      "shift": -0.4583,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "r3": {
+      "value": 0.0312,
+      "shift": -0.4791,
+      "tol": 0.0834,
+      "dir": "down"
+     },
+     "r4": {
+      "value": 0.0572,
+      "shift": -0.4531,
+      "tol": 0.1042,
+      "dir": "down"
+     },
+     "r5": {
+      "value": 0.0,
+      "shift": -0.5104,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t0": {
+      "value": 0.0,
+      "shift": -0.5104,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t1": {
+      "value": 0.4114,
+      "shift": -0.0989,
+      "tol": 0.1458,
+      "dir": "flat"
+     },
+     "t2": {
+      "value": 0.0625,
+      "shift": -0.4479,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t3": {
+      "value": 0.4479,
+      "shift": -0.0625,
+      "tol": 0.1668,
+      "dir": "flat"
+     },
+     "t4": {
+      "value": 0.2396,
+      "shift": -0.2708,
+      "tol": 0.0417,
+      "dir": "down"
+     },
+     "t5": {
+      "value": 0.0,
+      "shift": -0.5104,
+      "tol": 0.0417,
+      "dir": "down"
+     }
+    }
+   },
+   "HuggingFaceTB/SmolLM-1.7B": {
+    "raw": 0.5625,
+    "texts": {
+     "r0": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "r1": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "r2": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "r3": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "r4": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "r5": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "t0": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "t1": {
+      "value": 0.0573,
+      "shift": -0.5052,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "t2": {
+      "value": 0.6459,
+      "shift": 0.0834,
+      "tol": 0.1252,
+      "dir": "flat"
+     },
+     "t3": {
+      "value": 0.0052,
+      "shift": -0.5573,
+      "tol": 0.1252,
+      "dir": "down"
+     },
+     "t4": {
+      "value": 0.9896,
+      "shift": 0.4271,
+      "tol": 0.1252,
+      "dir": "up"
+     },
+     "t5": {
+      "value": 0.0,
+      "shift": -0.5625,
+      "tol": 0.1252,
+      "dir": "down"
+     }
+    }
+   }
+  },
+  "excluded": [],
+  "counts": {
+   "tiiuae/Falcon3-1B-Base": {
+    "struct_up": 4,
+    "struct_n": 6,
+    "prose_up": 1,
+    "prose_n": 6,
+    "raisable": true
+   },
+   "sapienzanlp/Minerva-3B-base-v1.0": {
+    "struct_up": 3,
+    "struct_n": 6,
+    "prose_up": 1,
+    "prose_n": 6,
+    "raisable": true
+   },
+   "Qwen/Qwen1.5-1.8B": {
+    "struct_up": 0,
+    "struct_n": 6,
+    "prose_up": 1,
+    "prose_n": 6,
+    "raisable": true
+   },
+   "HuggingFaceTB/SmolLM-1.7B": {
+    "struct_up": 1,
+    "struct_n": 6,
+    "prose_up": 0,
+    "prose_n": 6,
+    "raisable": false
+   }
+  },
+  "per_model_direction": {
+   "supports": [
+    "Falcon3-1B-Base",
+    "Minerva-3B-base-v1.0"
+   ],
+   "reverses_or_flat": [
+    "Qwen1.5-1.8B"
+   ]
+  }
+ },
+ "verdict": "RUNG (t0 is F154's p1 and must reproduce it): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6; Minerva-3B-base-v1.0 struct 3/6 vs prose 1/6; Qwen1.5-1.8B struct 0/6 vs prose 1/6. Totals: structural 7/18, prose 3/18.  CONSISTENCY: 2 of 3 raisable models individually show a HIGHER up-rate under structural than under prose (['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']); 1 do not (['Qwen1.5-1.8B']). The models DISAGREE, so the pooled rate is NOT read as a summary -- pooling across units that point different ways is the Simpson's shape this project was already caught by (F141), and the per-model split below is the result instead.  VERDICT: PARTIAL and model-dependent. Structural text raises 2 of 3 raisable models more often than prose does, and REVERSES or fails on the rest. The pooled ratio (7/18 vs 3/18) clears the pre-registered bar, but it is carried by a subset, so the honest claim is that the MECHANISM IS ITSELF MODEL-DEPENDENT -- which is what every other finding in this programme also says. It does NOT yield a predictive rule about prefixes. CONTROL, the model F154 found unraisable (0/12 up): SmolLM-1.7B struct 1/6 vs prose 0/6. STRUCTURAL TEXT RAISES IT. F154's claim that bidirectionality is a fixed model property is WRONG -- the model was only unraisable by the texts tried, and that finding needs revising. NOT A TEST, declared before the numbers: 3 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 4 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.",
+ "_analysis_provenance": {
+  "script": "structural_text.py",
+  "sha256": "9b5e5eb15464e075f149ec90a00fe6f64094c481362d42373dfc3a70d4d01c73",
+  "imports": {
+   "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
+   "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
+   "experiments/argmax_census_templated.py": "59cc595273efb03e3975042c35a8ebdf79d7f7e679f041f23b99725c4fc86dba",
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/structural_text.py": "9b5e5eb15464e075f149ec90a00fe6f64094c481362d42373dfc3a70d4d01c73",
+   "fingerprint/gate1.py": "86e58f562f673af3e3509e45cea1a19ad39cbcc9d108f21f4e07f86bbefa7c42",
+   "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
+   "gatecheck/src/gatecheck/__init__.py": "2b4d939029c72691c46ac188493dfd62771a7b51055055e32d5300e746967750",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
