@@ -3645,6 +3645,60 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F159 — the regime difference is CONTENT, not length: on real text BOS raises the sink uniformly; on random tokens it does not. Paper 2 narrows from "contradiction" to "different regime".
+F158 found sink strength failing to predict the sign of the domain effect, and the sink literature's
+uniformity claim failing to reproduce at 3-token contexts. It named ONE regime difference — length —
+and declined to read the non-reproduction as a refutation. But there are **two** axes, and F158 named
+only the first: that literature measures long contexts **on real text**, while our probe draws
+**uniformly random tokens**, which is out-of-distribution in a way real text is not. This crosses
+both: 5 lengths × 2 contents × 2 arms × 6 models.
+
+**SECONDARY first, because it gates everything.** Sink concentration (attention to position 0 × sequence
+length, i.e. multiples of uniform) **rises with context length on 6 of 6 models in both contents** —
+from ~2× uniform at $n{=}2$ to ~144× at $n{=}512$. The measurement reproduces the phenomenon it claims
+to measure, so the primary is interpretable.
+
+**PRIMARY — content separates the regimes; length does not.**
+
+| | resolved | down | | resolved | down |
+|---|---|---|---|---|---|
+| random@2 | 6 | **2** | text@2 | 5 | 1 |
+| random@8 | 4 | **1** | text@8 | 4 | **0** UNIFORM |
+| random@32 | 4 | **1** | text@32 | 2 | 0 |
+| random@128 | 5 | **2** | text@128 | 3 | **0** UNIFORM |
+| random@512 | 3 | **2** | text@512 | 1 | 0 |
+
+On real text, **no resolved model shows sink decreasing under BOS at any length ≥ 8**. On random
+tokens, some do at every length. So the attention-sink account holds in its own regime, and F158's
+non-reproduction was an artefact of feeding it out-of-distribution input.
+
+**Consequence for paper 2, and it is a narrowing.** The claim moves from *"we contradict the
+attention-sink account"* to *"the account's regime is not our probe's regime, so it does not
+straightforwardly apply"*. Weaker, and defensible. The specific axis is **input distribution**, not
+context size — which is worth stating because "long context" is the obvious guess and it is wrong.
+
+**Two defects caught, and the second nearly produced a false claim against established work.**
+1. *The pre-registered secondary was mis-specified.* It required the raw attention **fraction** to
+   rise with length. That fraction is arithmetically forced to fall as $1/S$ shrinks, so the test
+   could only ever fail — a criterion with no room to vary, in a new costume. It fired on the smoke
+   test and would have killed a valid measurement. Corrected to the normalised quantity, which rises
+   6 of 6. The correction is recorded because it changed a pre-registered criterion after seeing data.
+2. **A noise gate turned a false negative into the real result.** At $K{=}8$ draws the sign votes
+   included differences like $-0.0096$ sitting well inside their own standard error, and the run
+   reported *"uniformity does NOT emerge on real text at long context — the account's own prediction
+   is not reproduced even in the regime it is about."* A strong claim against established work,
+   caused by the draw count. Gating each model's vote on $|d| > 2\,\mathrm{SE}$ showed the
+   long-context cells were **underpowered, not non-uniform**; re-running at $K{=}32$ resolved them
+   and reversed the verdict. The $K{=}8$ results are kept as
+   `results/sink_long_context_K8_superseded.json` because they are what motivated the change.
+
+**Boundary.** Six models, one Pile row for the text arm, one definition of sink strength, one prefix
+kind (BOS). The long-text cells rest on few resolved models (`text@128` on 3, `text@512` on 1), so
+"no resolved model decreases" is a statement about those few. $\phi$ is not measurable at these
+lengths — the census is defined at two-token starts — so this run bounds the mechanism's regime and
+cannot connect it to our readout. `experiments/sink_long_context.py` →
+`results/sink_long_context.json`.
+
 ### F158 — attention-sink strength does NOT predict the sign of the domain effect: 2 of 5 models agree, at chance. Paper 2's centrepiece now has both quantities measured.
 F157 left paper 2 reporting a discrepancy against a mechanism **we had never measured** — comparing
 our numbers to the attention-sink account rather than to its quantity. This measures both on the same

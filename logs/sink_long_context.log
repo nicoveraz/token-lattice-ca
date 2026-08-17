@@ -1,0 +1,193 @@
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 4946.18it/s]
+  tiiuae/Falcon3-1B-Base             text arm has 3118 tokens
+  tiiuae/Falcon3-1B-Base             random n=2    raw sink=0.65415 (1.96x uniform)
+  tiiuae/Falcon3-1B-Base             random n=2    bos sink=0.71395 (2.14x uniform)
+  tiiuae/Falcon3-1B-Base             random n=8    raw sink=0.46591 (4.19x uniform)
+  tiiuae/Falcon3-1B-Base             random n=8    bos sink=0.46917 (4.22x uniform)
+  tiiuae/Falcon3-1B-Base             random n=32   raw sink=0.36069 (11.90x uniform)
+  tiiuae/Falcon3-1B-Base             random n=32   bos sink=0.30065 (9.92x uniform)
+  tiiuae/Falcon3-1B-Base             random n=128  raw sink=0.28699 (37.02x uniform)
+  tiiuae/Falcon3-1B-Base             random n=128  bos sink=0.22061 (28.46x uniform)
+  tiiuae/Falcon3-1B-Base             random n=512  raw sink=0.26219 (134.50x uniform)
+  tiiuae/Falcon3-1B-Base             random n=512  bos sink=0.20244 (103.85x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=2    raw sink=0.68797 (2.06x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=2    bos sink=0.72825 (2.18x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=8    raw sink=0.51788 (4.66x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=8    bos sink=0.55570 (5.00x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=32   raw sink=0.39059 (12.89x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=32   bos sink=0.39012 (12.87x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=128  raw sink=0.29367 (37.88x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=128  bos sink=0.31034 (40.03x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=512  raw sink=0.23550 (120.81x uniform)
+  tiiuae/Falcon3-1B-Base             text   n=512  bos sink=0.22881 (117.38x uniform)
+  tiiuae/Falcon3-1B-Base             done in 149s
+  (stopping after 1; re-run to continue)
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: n/a (needs 3+ resolved) of 1, mean +0.0598; random@32: n/a (needs 3+ resolved) of 1, mean -0.0600; random@128: n/a (needs 3+ resolved) of 1, mean -0.0664; random@512: n/a (needs 3+ resolved) of 1, mean -0.0597; text@2: n/a (needs 3+ resolved) of 1, mean +0.0403; text@8: n/a (needs 3+ resolved) of 1, mean +0.0378. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@32 -; random@128 -; random@512 -; text@2 -; text@8 -.  Uniformity does NOT emerge on real text at long context. The account's own prediction is not reproduced even in the regime it is about, on this measurement. State this carefully: it is a claim about our implementation of their quantity as much as about their quantity. CONTENT vs LENGTH: uniform on 0 of 2 real-text cells and 0 of 4 random-token cells. Neither axis alone separates the regimes on this evidence. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 1 of 1 models; text: 1 of 1 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5134.20it/s]
+  sapienzanlp/Minerva-3B-base-v1.0   text arm has 3274 tokens
+  sapienzanlp/Minerva-3B-base-v1.0   random n=2    raw sink=0.59985 (1.80x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=2    bos sink=0.67146 (2.01x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=8    raw sink=0.43694 (3.93x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=8    bos sink=0.53083 (4.78x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=32   raw sink=0.30491 (10.06x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=32   bos sink=0.40350 (13.32x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=128  raw sink=0.25961 (33.49x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=128  bos sink=0.29710 (38.33x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=512  raw sink=0.19556 (100.32x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   random n=512  bos sink=0.21661 (111.12x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=2    raw sink=0.56835 (1.71x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=2    bos sink=0.66324 (1.99x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=8    raw sink=0.37537 (3.38x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=8    bos sink=0.46029 (4.14x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=32   raw sink=0.24341 (8.03x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=32   bos sink=0.31185 (10.29x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=128  raw sink=0.15294 (19.73x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=128  bos sink=0.20154 (26.00x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=512  raw sink=0.15252 (78.24x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   text   n=512  bos sink=0.16479 (84.54x uniform)
+  sapienzanlp/Minerva-3B-base-v1.0   done in 299s
+  (stopping after 1; re-run to continue)
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: n/a (needs 3+ resolved) of 2, mean +0.0657; random@8: n/a (needs 3+ resolved) of 1, mean +0.0939; random@32: n/a (needs 3+ resolved) of 2, mean +0.0193; random@128: n/a (needs 3+ resolved) of 2, mean -0.0144; random@512: n/a (needs 3+ resolved) of 1, mean -0.0597; text@2: n/a (needs 3+ resolved) of 2, mean +0.0676; text@8: n/a (needs 3+ resolved) of 2, mean +0.0614; text@32: n/a (needs 3+ resolved) of 1, mean +0.0684; text@128: n/a (needs 3+ resolved) of 1, mean +0.0486. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base']; random@32 -; random@128 -; random@512 ['Minerva-3B-base-v1.0']; text@2 -; text@8 -; text@32 ['Falcon3-1B-Base']; text@128 ['Falcon3-1B-Base'].  Uniformity does NOT emerge on real text at long context. The account's own prediction is not reproduced even in the regime it is about, on this measurement. State this carefully: it is a claim about our implementation of their quantity as much as about their quantity. CONTENT vs LENGTH: uniform on 0 of 4 real-text cells and 0 of 5 random-token cells. Neither axis alone separates the regimes on this evidence. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 2 of 2 models; text: 2 of 2 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7613.73it/s]
+  EleutherAI/pythia-410m-deduped     text arm has 3146 tokens
+  EleutherAI/pythia-410m-deduped     random n=2    raw sink=0.62622 (1.88x uniform)
+  EleutherAI/pythia-410m-deduped     random n=2    bos sink=0.61026 (1.83x uniform)
+  EleutherAI/pythia-410m-deduped     random n=8    raw sink=0.44760 (4.03x uniform)
+  EleutherAI/pythia-410m-deduped     random n=8    bos sink=0.43188 (3.89x uniform)
+  EleutherAI/pythia-410m-deduped     random n=32   raw sink=0.36680 (12.10x uniform)
+  EleutherAI/pythia-410m-deduped     random n=32   bos sink=0.35649 (11.76x uniform)
+  EleutherAI/pythia-410m-deduped     random n=128  raw sink=0.30812 (39.75x uniform)
+  EleutherAI/pythia-410m-deduped     random n=128  bos sink=0.28905 (37.29x uniform)
+  EleutherAI/pythia-410m-deduped     random n=512  raw sink=0.23693 (121.55x uniform)
+  EleutherAI/pythia-410m-deduped     random n=512  bos sink=0.23658 (121.36x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=2    raw sink=0.57347 (1.72x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=2    bos sink=0.59615 (1.79x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=8    raw sink=0.42838 (3.86x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=8    bos sink=0.43983 (3.96x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=32   raw sink=0.28809 (9.51x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=32   bos sink=0.29322 (9.68x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=128  raw sink=0.16153 (20.84x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=128  bos sink=0.17056 (22.00x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=512  raw sink=0.12761 (65.47x uniform)
+  EleutherAI/pythia-410m-deduped     text   n=512  bos sink=0.12950 (66.43x uniform)
+  EleutherAI/pythia-410m-deduped     done in 53s
+  (stopping after 1; re-run to continue)
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (1 down) of 3, mean +0.0385; random@8: n/a (needs 3+ resolved) of 1, mean +0.0939; random@32: n/a (needs 3+ resolved) of 2, mean +0.0193; random@128: n/a (needs 3+ resolved) of 2, mean -0.0144; random@512: n/a (needs 3+ resolved) of 1, mean -0.0597; text@2: n/a (needs 3+ resolved) of 2, mean +0.0676; text@8: n/a (needs 3+ resolved) of 2, mean +0.0614; text@32: n/a (needs 3+ resolved) of 1, mean +0.0684; text@128: n/a (needs 3+ resolved) of 1, mean +0.0486. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped'].  Uniformity does NOT emerge on real text at long context. The account's own prediction is not reproduced even in the regime it is about, on this measurement. State this carefully: it is a claim about our implementation of their quantity as much as about their quantity. CONTENT vs LENGTH: uniform on 0 of 4 real-text cells and 0 of 5 random-token cells. Neither axis alone separates the regimes on this evidence. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 3 of 3 models; text: 3 of 3 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6167.44it/s]
+  Qwen/Qwen1.5-1.8B                  text arm has 2963 tokens
+  Qwen/Qwen1.5-1.8B                  random n=2    raw sink=0.71518 (2.15x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=2    bos sink=0.74544 (2.24x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=8    raw sink=0.57348 (5.16x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=8    bos sink=0.61189 (5.51x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=32   raw sink=0.47182 (15.57x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=32   bos sink=0.52353 (17.28x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=128  raw sink=0.39679 (51.19x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=128  bos sink=0.44821 (57.82x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=512  raw sink=0.38322 (196.59x uniform)
+  Qwen/Qwen1.5-1.8B                  random n=512  bos sink=0.40207 (206.26x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=2    raw sink=0.64326 (1.93x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=2    bos sink=0.71501 (2.15x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=8    raw sink=0.52781 (4.75x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=8    bos sink=0.54805 (4.93x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=32   raw sink=0.44540 (14.70x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=32   bos sink=0.45890 (15.14x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=128  raw sink=0.37737 (48.68x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=128  bos sink=0.40032 (51.64x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=512  raw sink=0.35458 (181.90x uniform)
+  Qwen/Qwen1.5-1.8B                  text   n=512  bos sink=0.35481 (182.02x uniform)
+  Qwen/Qwen1.5-1.8B                  done in 171s
+  (stopping after 1; re-run to continue)
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (1 down) of 4, mean +0.0364; random@8: n/a (needs 3+ resolved) of 2, mean +0.0662; random@32: mixed (1 down) of 3, mean +0.0301; random@128: mixed (1 down) of 3, mean +0.0075; random@512: n/a (needs 3+ resolved) of 1, mean -0.0597; text@2: UNIFORM of 3, mean +0.0690; text@8: UNIFORM of 3, mean +0.0477; text@32: n/a (needs 3+ resolved) of 1, mean +0.0684; text@128: n/a (needs 3+ resolved) of 2, mean +0.0358. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped'].  Uniformity does NOT emerge on real text at long context. The account's own prediction is not reproduced even in the regime it is about, on this measurement. State this carefully: it is a claim about our implementation of their quantity as much as about their quantity. CONTENT vs LENGTH: uniform on 2 of 4 real-text cells and 0 of 5 random-token cells. Content matters more than length here -- the relevant regime difference is out-of-distribution input, not context size. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 4 of 4 models; text: 4 of 4 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 5231.96it/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3152 > 2048). Running this sequence through the model will result in indexing errors
+  HuggingFaceTB/SmolLM-1.7B          text arm has 3152 tokens
+  HuggingFaceTB/SmolLM-1.7B          random n=2    raw sink=0.62224 (1.87x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=2    bos sink=0.76921 (2.31x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=8    raw sink=0.44526 (4.01x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=8    bos sink=0.62601 (5.63x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=32   raw sink=0.37301 (12.31x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=32   bos sink=0.54750 (18.07x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=128  raw sink=0.29909 (38.58x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=128  bos sink=0.45168 (58.27x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=512  raw sink=0.28555 (146.49x uniform)
+  HuggingFaceTB/SmolLM-1.7B          random n=512  bos sink=0.37295 (191.33x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=2    raw sink=0.53837 (1.62x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=2    bos sink=0.74440 (2.23x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=8    raw sink=0.35025 (3.15x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=8    bos sink=0.56180 (5.06x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=32   raw sink=0.18550 (6.12x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=32   bos sink=0.42750 (14.11x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=128  raw sink=0.10998 (14.19x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=128  bos sink=0.32508 (41.94x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=512  raw sink=0.07661 (39.30x uniform)
+  HuggingFaceTB/SmolLM-1.7B          text   n=512  bos sink=0.30022 (154.01x uniform)
+  HuggingFaceTB/SmolLM-1.7B          done in 191s
+  (stopping after 1; re-run to continue)
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (1 down) of 5, mean +0.0585; random@8: UNIFORM of 3, mean +0.1043; random@32: mixed (1 down) of 4, mean +0.0662; random@128: mixed (1 down) of 4, mean +0.0438; random@512: n/a (needs 3+ resolved) of 2, mean +0.0138; text@2: UNIFORM of 4, mean +0.1032; text@8: UNIFORM of 4, mean +0.0886; text@32: n/a (needs 3+ resolved) of 2, mean +0.1552; text@128: UNIFORM of 3, mean +0.0955; text@512: n/a (needs 3+ resolved) of 1, mean +0.2236. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped']; text@512 ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B'].  Uniformity EMERGES on real text at long context, so the account holds in its own regime and F158's non-reproduction is a regime artefact. Paper 2 must narrow its claim from 'we contradict the account' to 'the account's regime is not our probe's regime, so it does not straightforwardly apply' -- weaker, and more defensible. CONTENT vs LENGTH: uniform on 3 of 5 real-text cells and 1 of 5 random-token cells. Content matters more than length here -- the relevant regime difference is out-of-distribution input, not context size. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 5 of 5 models; text: 5 of 5 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 6696.49it/s]
+  Qwen/Qwen2.5-1.5B-Instruct         text arm has 2963 tokens
+  Qwen/Qwen2.5-1.5B-Instruct         random n=2    raw sink=0.67371 (2.02x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=2    bos sink=0.62086 (1.86x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=8    raw sink=0.50571 (4.55x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=8    bos sink=0.42915 (3.86x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=32   raw sink=0.39103 (12.90x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=32   bos sink=0.38018 (12.55x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=128  raw sink=0.34388 (44.36x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=128  bos sink=0.31013 (40.01x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=512  raw sink=0.33115 (169.88x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         random n=512  bos sink=0.28112 (144.21x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=2    raw sink=0.68297 (2.05x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=2    bos sink=0.65270 (1.96x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=8    raw sink=0.53673 (4.83x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=8    bos sink=0.53053 (4.77x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=32   raw sink=0.43901 (14.49x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=32   bos sink=0.44935 (14.83x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=128  raw sink=0.34606 (44.64x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=128  bos sink=0.37041 (47.78x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=512  raw sink=0.31398 (161.07x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         text   n=512  bos sink=0.30818 (158.10x uniform)
+  Qwen/Qwen2.5-1.5B-Instruct         done in 170s
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (2 down) of 6, mean +0.0400; random@8: mixed (1 down) of 4, mean +0.0591; random@32: mixed (1 down) of 4, mean +0.0662; random@128: mixed (2 down) of 5, mean +0.0283; random@512: mixed (2 down) of 3, mean -0.0075; text@2: mixed (1 down) of 5, mean +0.0765; text@8: UNIFORM of 4, mean +0.0886; text@32: n/a (needs 3+ resolved) of 2, mean +0.1552; text@128: UNIFORM of 3, mean +0.0955; text@512: n/a (needs 3+ resolved) of 1, mean +0.2236. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@512 ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct'].  Uniformity EMERGES on real text at long context, so the account holds in its own regime and F158's non-reproduction is a regime artefact. Paper 2 must narrow its claim from 'we contradict the account' to 'the account's regime is not our probe's regime, so it does not straightforwardly apply' -- weaker, and more defensible. CONTENT vs LENGTH: uniform on 2 of 5 real-text cells and 0 of 5 random-token cells. Content matters more than length here -- the relevant regime difference is out-of-distribution input, not context size. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 6 of 6 models; text: 6 of 6 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (2 down) of 6, mean +0.0400; random@8: mixed (1 down) of 4, mean +0.0591; random@32: mixed (1 down) of 4, mean +0.0662; random@128: mixed (2 down) of 5, mean +0.0283; random@512: mixed (2 down) of 3, mean -0.0075; text@2: mixed (1 down) of 5, mean +0.0765; text@8: UNIFORM of 4, mean +0.0886; text@32: n/a (needs 3+ resolved) of 2, mean +0.1552; text@128: UNIFORM of 3, mean +0.0955; text@512: n/a (needs 3+ resolved) of 1, mean +0.2236. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@512 ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct'].  Uniformity EMERGES on real text at long context, so the account holds in its own regime and F158's non-reproduction is a regime artefact. Paper 2 must narrow its claim from 'we contradict the account' to 'the account's regime is not our probe's regime, so it does not straightforwardly apply' -- weaker, and more defensible. CONTENT vs LENGTH: uniform on 2 of 5 real-text cells and 0 of 5 random-token cells. Content matters more than length here -- the relevant regime difference is out-of-distribution input, not context size. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 6 of 6 models; text: 6 of 6 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+
+  -> PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (2 down) of 6, mean +0.0400; random@8: mixed (1 down) of 4, mean +0.0591; random@32: mixed (1 down) of 4, mean +0.0662; random@128: mixed (2 down) of 5, mean +0.0283; random@512: mixed (2 down) of 3, mean -0.0075; text@2: mixed (1 down) of 5, mean +0.0765; text@8: UNIFORM of 4, mean +0.0886; text@32: n/a (needs 3+ resolved) of 2, mean +0.1552; text@128: UNIFORM of 3, mean +0.0955; text@512: n/a (needs 3+ resolved) of 1, mean +0.2236. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@512 ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct'].  Uniformity EMERGES on real text at long context, so the account holds in its own regime and F158's non-reproduction is a regime artefact. Paper 2 must narrow its claim from 'we contradict the account' to 'the account's regime is not our probe's regime, so it does not straightforwardly apply' -- weaker, and more defensible. CONTENT vs LENGTH: uniform on 2 of 5 real-text cells and 0 of 5 random-token cells. Content matters more than length here -- the relevant regime difference is out-of-distribution input, not context size. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 6 of 6 models; text: 6 of 6 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.
+
+wrote results/sink_long_context.json
+=== slc done ===

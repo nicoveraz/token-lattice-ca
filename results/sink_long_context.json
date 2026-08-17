@@ -1,0 +1,1334 @@
+{
+ "cells": {
+  "tiiuae/Falcon3-1B-Base|random|2|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6541527642144098,
+   "sink_sd": 0.08373108559629709,
+   "seq_len": 3
+  },
+  "tiiuae/Falcon3-1B-Base|random|2|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.7139485677083333,
+   "sink_sd": 0.025266031436403467,
+   "seq_len": 3
+  },
+  "tiiuae/Falcon3-1B-Base|random|8|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.4659089512295193,
+   "sink_sd": 0.12027056265938726,
+   "seq_len": 9
+  },
+  "tiiuae/Falcon3-1B-Base|random|8|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.46916537814670145,
+   "sink_sd": 0.0723848031798765,
+   "seq_len": 9
+  },
+  "tiiuae/Falcon3-1B-Base|random|32|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.36069173283047146,
+   "sink_sd": 0.07687451486096405,
+   "seq_len": 33
+  },
+  "tiiuae/Falcon3-1B-Base|random|32|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.30064815945095485,
+   "sink_sd": 0.0761563546868406,
+   "seq_len": 33
+  },
+  "tiiuae/Falcon3-1B-Base|random|128|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.2869879992471801,
+   "sink_sd": 0.08910349033729437,
+   "seq_len": 129
+  },
+  "tiiuae/Falcon3-1B-Base|random|128|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.22061411539713544,
+   "sink_sd": 0.07922079598325457,
+   "seq_len": 129
+  },
+  "tiiuae/Falcon3-1B-Base|random|512|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.26219142145580715,
+   "sink_sd": 0.08750491090681858,
+   "seq_len": 513
+  },
+  "tiiuae/Falcon3-1B-Base|random|512|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "random",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.2024412684970432,
+   "sink_sd": 0.06798522690600556,
+   "seq_len": 513
+  },
+  "tiiuae/Falcon3-1B-Base|text|2|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6879713270399306,
+   "sink_sd": 0.019476396593304465,
+   "seq_len": 3
+  },
+  "tiiuae/Falcon3-1B-Base|text|2|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.7282545301649306,
+   "sink_sd": 0.027947320117355505,
+   "seq_len": 3
+  },
+  "tiiuae/Falcon3-1B-Base|text|8|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.5178782145182291,
+   "sink_sd": 0.049966444258443175,
+   "seq_len": 9
+  },
+  "tiiuae/Falcon3-1B-Base|text|8|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.5557013617621528,
+   "sink_sd": 0.0498645260447576,
+   "seq_len": 9
+  },
+  "tiiuae/Falcon3-1B-Base|text|32|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.3905949592590332,
+   "sink_sd": 0.06460135486400743,
+   "seq_len": 33
+  },
+  "tiiuae/Falcon3-1B-Base|text|32|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.39011552598741317,
+   "sink_sd": 0.05603475714562729,
+   "seq_len": 33
+  },
+  "tiiuae/Falcon3-1B-Base|text|128|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.2936667402585348,
+   "sink_sd": 0.057942734015602425,
+   "seq_len": 129
+  },
+  "tiiuae/Falcon3-1B-Base|text|128|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.31034300062391496,
+   "sink_sd": 0.05603390556311094,
+   "seq_len": 129
+  },
+  "tiiuae/Falcon3-1B-Base|text|512|raw": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.23550470401015544,
+   "sink_sd": 0.062131884080742474,
+   "seq_len": 513
+  },
+  "tiiuae/Falcon3-1B-Base|text|512|bos": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "content": "text",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.22881245613098145,
+   "sink_sd": 0.047935613274342204,
+   "seq_len": 513
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|2|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.5998544692993164,
+   "sink_sd": 0.03671000934323403,
+   "seq_len": 3
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|2|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.6714611053466797,
+   "sink_sd": 0.027422856393045994,
+   "seq_len": 3
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|8|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.4369356632232666,
+   "sink_sd": 0.04406915483065761,
+   "seq_len": 9
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|8|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.5308332443237305,
+   "sink_sd": 0.05176047529531014,
+   "seq_len": 9
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|32|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.30491143465042114,
+   "sink_sd": 0.0596117167767388,
+   "seq_len": 33
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|32|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.40349534153938293,
+   "sink_sd": 0.0683966278042673,
+   "seq_len": 33
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|128|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.2596113011240959,
+   "sink_sd": 0.06210641766701416,
+   "seq_len": 129
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|128|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.2970951199531555,
+   "sink_sd": 0.059490007559046196,
+   "seq_len": 129
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|512|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.19556236849166453,
+   "sink_sd": 0.061264989308170106,
+   "seq_len": 513
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|512|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "random",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.21661046892404556,
+   "sink_sd": 0.06011860682888323,
+   "seq_len": 513
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|2|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.5683484077453613,
+   "sink_sd": 0.039972210091339916,
+   "seq_len": 3
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|2|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.6632356643676758,
+   "sink_sd": 0.03860607160714962,
+   "seq_len": 3
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|8|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.3753727674484253,
+   "sink_sd": 0.061801628570374745,
+   "seq_len": 9
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|8|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.4602947235107422,
+   "sink_sd": 0.04322721943504801,
+   "seq_len": 9
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|32|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.243407242000103,
+   "sink_sd": 0.05926065614203442,
+   "seq_len": 33
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|32|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.3118487596511841,
+   "sink_sd": 0.050051104009172676,
+   "seq_len": 33
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|128|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.15293604787439108,
+   "sink_sd": 0.04307440713526336,
+   "seq_len": 129
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|128|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.20153972506523132,
+   "sink_sd": 0.06200333287505172,
+   "seq_len": 129
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|512|raw": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.15252038999460638,
+   "sink_sd": 0.05461263555231301,
+   "seq_len": 513
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|512|bos": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "content": "text",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.1647931281477213,
+   "sink_sd": 0.052169325084334695,
+   "seq_len": 513
+  },
+  "EleutherAI/pythia-410m-deduped|random|2|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6262197494506836,
+   "sink_sd": 0.03100046649820164,
+   "seq_len": 3
+  },
+  "EleutherAI/pythia-410m-deduped|random|2|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.6102641423543295,
+   "sink_sd": 0.02318815607381305,
+   "seq_len": 3
+  },
+  "EleutherAI/pythia-410m-deduped|random|8|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.44760378201802575,
+   "sink_sd": 0.05509114702854206,
+   "seq_len": 9
+  },
+  "EleutherAI/pythia-410m-deduped|random|8|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.4318833351135254,
+   "sink_sd": 0.05629810351074826,
+   "seq_len": 9
+  },
+  "EleutherAI/pythia-410m-deduped|random|32|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.36680418252944946,
+   "sink_sd": 0.05374301760028768,
+   "seq_len": 33
+  },
+  "EleutherAI/pythia-410m-deduped|random|32|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.3564856251080831,
+   "sink_sd": 0.06059495917865967,
+   "seq_len": 33
+  },
+  "EleutherAI/pythia-410m-deduped|random|128|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.3081156561772028,
+   "sink_sd": 0.07122291830797148,
+   "seq_len": 129
+  },
+  "EleutherAI/pythia-410m-deduped|random|128|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.2890494068463644,
+   "sink_sd": 0.07524361990196177,
+   "seq_len": 129
+  },
+  "EleutherAI/pythia-410m-deduped|random|512|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.23693357221782207,
+   "sink_sd": 0.07079215012901019,
+   "seq_len": 513
+  },
+  "EleutherAI/pythia-410m-deduped|random|512|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "random",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.23657695576548576,
+   "sink_sd": 0.07782784966126136,
+   "seq_len": 513
+  },
+  "EleutherAI/pythia-410m-deduped|text|2|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.5734742482503254,
+   "sink_sd": 0.08626557316344675,
+   "seq_len": 3
+  },
+  "EleutherAI/pythia-410m-deduped|text|2|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.5961459477742513,
+   "sink_sd": 0.04423180611508014,
+   "seq_len": 3
+  },
+  "EleutherAI/pythia-410m-deduped|text|8|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.42837758858998615,
+   "sink_sd": 0.09361939350374286,
+   "seq_len": 9
+  },
+  "EleutherAI/pythia-410m-deduped|text|8|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.4398292303085327,
+   "sink_sd": 0.09008841055375154,
+   "seq_len": 9
+  },
+  "EleutherAI/pythia-410m-deduped|text|32|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.28808899968862534,
+   "sink_sd": 0.11299601727004306,
+   "seq_len": 33
+  },
+  "EleutherAI/pythia-410m-deduped|text|32|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.29321572681268054,
+   "sink_sd": 0.10967806532265102,
+   "seq_len": 33
+  },
+  "EleutherAI/pythia-410m-deduped|text|128|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.16152970617016157,
+   "sink_sd": 0.018514714738255826,
+   "seq_len": 129
+  },
+  "EleutherAI/pythia-410m-deduped|text|128|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.17055590823292732,
+   "sink_sd": 0.031017185581796954,
+   "seq_len": 129
+  },
+  "EleutherAI/pythia-410m-deduped|text|512|raw": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.12761490303091705,
+   "sink_sd": 0.01712873169128198,
+   "seq_len": 513
+  },
+  "EleutherAI/pythia-410m-deduped|text|512|bos": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "content": "text",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.12950210211177665,
+   "sink_sd": 0.01841020223099176,
+   "seq_len": 513
+  },
+  "Qwen/Qwen1.5-1.8B|random|2|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.7151819864908854,
+   "sink_sd": 0.03037375134815605,
+   "seq_len": 3
+  },
+  "Qwen/Qwen1.5-1.8B|random|2|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.7454350789388021,
+   "sink_sd": 0.021176207078694016,
+   "seq_len": 3
+  },
+  "Qwen/Qwen1.5-1.8B|random|8|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.5734762748082478,
+   "sink_sd": 0.04867487807874599,
+   "seq_len": 9
+  },
+  "Qwen/Qwen1.5-1.8B|random|8|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.6118920644124348,
+   "sink_sd": 0.03678495628308651,
+   "seq_len": 9
+  },
+  "Qwen/Qwen1.5-1.8B|random|32|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.4718221426010132,
+   "sink_sd": 0.08028752287745042,
+   "seq_len": 33
+  },
+  "Qwen/Qwen1.5-1.8B|random|32|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.5235337416330974,
+   "sink_sd": 0.06232076443581828,
+   "seq_len": 33
+  },
+  "Qwen/Qwen1.5-1.8B|random|128|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.39678990592559177,
+   "sink_sd": 0.050930236938244944,
+   "seq_len": 129
+  },
+  "Qwen/Qwen1.5-1.8B|random|128|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.4482075572013855,
+   "sink_sd": 0.04431319770361503,
+   "seq_len": 129
+  },
+  "Qwen/Qwen1.5-1.8B|random|512|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.3832157105207443,
+   "sink_sd": 0.06279028968882776,
+   "seq_len": 513
+  },
+  "Qwen/Qwen1.5-1.8B|random|512|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "random",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.4020664691925049,
+   "sink_sd": 0.04887635402960496,
+   "seq_len": 513
+  },
+  "Qwen/Qwen1.5-1.8B|text|2|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6432553132375081,
+   "sink_sd": 0.04444585579288542,
+   "seq_len": 3
+  },
+  "Qwen/Qwen1.5-1.8B|text|2|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.7150068283081055,
+   "sink_sd": 0.04295795699802391,
+   "seq_len": 3
+  },
+  "Qwen/Qwen1.5-1.8B|text|8|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.5278144876162212,
+   "sink_sd": 0.039018146006634974,
+   "seq_len": 9
+  },
+  "Qwen/Qwen1.5-1.8B|text|8|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.5480511983235677,
+   "sink_sd": 0.03682467140452738,
+   "seq_len": 9
+  },
+  "Qwen/Qwen1.5-1.8B|text|32|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.44539639353752136,
+   "sink_sd": 0.05105638820710086,
+   "seq_len": 33
+  },
+  "Qwen/Qwen1.5-1.8B|text|32|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.45890434583028156,
+   "sink_sd": 0.04644005058731821,
+   "seq_len": 33
+  },
+  "Qwen/Qwen1.5-1.8B|text|128|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.3773698421816031,
+   "sink_sd": 0.039055311528777406,
+   "seq_len": 129
+  },
+  "Qwen/Qwen1.5-1.8B|text|128|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.40032003323237103,
+   "sink_sd": 0.04430951121316603,
+   "seq_len": 129
+  },
+  "Qwen/Qwen1.5-1.8B|text|512|raw": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.3545775134116411,
+   "sink_sd": 0.04950588533813725,
+   "seq_len": 513
+  },
+  "Qwen/Qwen1.5-1.8B|text|512|bos": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "content": "text",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.3548126171032588,
+   "sink_sd": 0.044430063213177426,
+   "seq_len": 513
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|2|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6222419738769531,
+   "sink_sd": 0.03261397105927371,
+   "seq_len": 3
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|2|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.7692082722981771,
+   "sink_sd": 0.028283396413211332,
+   "seq_len": 3
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|8|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.4452563921610514,
+   "sink_sd": 0.03767518753360734,
+   "seq_len": 9
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|8|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.6260058085123699,
+   "sink_sd": 0.04222845091824879,
+   "seq_len": 9
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|32|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.3730138142903646,
+   "sink_sd": 0.055342039112214525,
+   "seq_len": 33
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|32|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.547498067220052,
+   "sink_sd": 0.049073366983268425,
+   "seq_len": 33
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|128|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.2990897794564565,
+   "sink_sd": 0.042667683548063204,
+   "seq_len": 129
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|128|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.45168383916219074,
+   "sink_sd": 0.05581433592670015,
+   "seq_len": 129
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|512|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.28554934884111083,
+   "sink_sd": 0.07399690105875842,
+   "seq_len": 513
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|512|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "random",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.3729535738627116,
+   "sink_sd": 0.04882945744872752,
+   "seq_len": 513
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|2|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.5383749008178711,
+   "sink_sd": 0.09123641019606027,
+   "seq_len": 3
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|2|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.7443962097167969,
+   "sink_sd": 0.06337058993727351,
+   "seq_len": 3
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|8|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.35025374094645184,
+   "sink_sd": 0.1062141220750883,
+   "seq_len": 9
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|8|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.5617990493774414,
+   "sink_sd": 0.08847705436598312,
+   "seq_len": 9
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|32|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.18549961348374688,
+   "sink_sd": 0.07618376644585573,
+   "seq_len": 33
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|32|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.4275029500325521,
+   "sink_sd": 0.06176367243180429,
+   "seq_len": 33
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|128|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.10997931783397993,
+   "sink_sd": 0.009113437337009415,
+   "seq_len": 129
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|128|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.3250792821248372,
+   "sink_sd": 0.046551789898566544,
+   "seq_len": 129
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|512|raw": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.0766087107670804,
+   "sink_sd": 0.015811895575438883,
+   "seq_len": 513
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|512|bos": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "content": "text",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.3002201318740845,
+   "sink_sd": 0.05129372648241034,
+   "seq_len": 513
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|2|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6737074170793806,
+   "sink_sd": 0.03914770962773244,
+   "seq_len": 3
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|2|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.620858873639788,
+   "sink_sd": 0.10161295153007134,
+   "seq_len": 3
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|8|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.505706753049578,
+   "sink_sd": 0.04490290392546897,
+   "seq_len": 9
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|8|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.4291497639247349,
+   "sink_sd": 0.10732442998602662,
+   "seq_len": 9
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|32|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.3910268374851772,
+   "sink_sd": 0.03747638216307226,
+   "seq_len": 33
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|32|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.38017860480717247,
+   "sink_sd": 0.06368833246458185,
+   "seq_len": 33
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|128|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.3438795086528574,
+   "sink_sd": 0.0348637032849763,
+   "seq_len": 129
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|128|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.3101300150156021,
+   "sink_sd": 0.07368094800506253,
+   "seq_len": 129
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|512|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.3311520576743143,
+   "sink_sd": 0.05079996354539067,
+   "seq_len": 513
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|512|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "random",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.2811152230549071,
+   "sink_sd": 0.07367785791532158,
+   "seq_len": 513
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|2|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 2,
+   "arm": "raw",
+   "sink": 0.6829680034092493,
+   "sink_sd": 0.025832127568355324,
+   "seq_len": 3
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|2|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 2,
+   "arm": "bos",
+   "sink": 0.6526976994105748,
+   "sink_sd": 0.037368027906310275,
+   "seq_len": 3
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|8|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 8,
+   "arm": "raw",
+   "sink": 0.5367299829210554,
+   "sink_sd": 0.054969441877435486,
+   "seq_len": 9
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|8|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 8,
+   "arm": "bos",
+   "sink": 0.5305262974330357,
+   "sink_sd": 0.03408226540666849,
+   "seq_len": 9
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|32|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 32,
+   "arm": "raw",
+   "sink": 0.43900855524199356,
+   "sink_sd": 0.05941781348671623,
+   "seq_len": 33
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|32|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 32,
+   "arm": "bos",
+   "sink": 0.449346060199397,
+   "sink_sd": 0.06789685420682762,
+   "seq_len": 33
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|128|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 128,
+   "arm": "raw",
+   "sink": 0.34606325014361317,
+   "sink_sd": 0.04436730770849308,
+   "seq_len": 129
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|128|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 128,
+   "arm": "bos",
+   "sink": 0.3704053384384939,
+   "sink_sd": 0.052791576972308164,
+   "seq_len": 129
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|512|raw": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 512,
+   "arm": "raw",
+   "sink": 0.3139822347688356,
+   "sink_sd": 0.06016052650797659,
+   "seq_len": 513
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|512|bos": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "content": "text",
+   "n": 512,
+   "arm": "bos",
+   "sink": 0.3081828580969679,
+   "sink_sd": 0.05415982290612715,
+   "seq_len": 513
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "tiiuae/Falcon3-1B-Base",
+   "sapienzanlp/Minerva-3B-base-v1.0",
+   "EleutherAI/pythia-410m-deduped",
+   "Qwen/Qwen1.5-1.8B",
+   "HuggingFaceTB/SmolLM-1.7B",
+   "Qwen/Qwen2.5-1.5B-Instruct"
+  ],
+  "lengths": [
+   2,
+   8,
+   32,
+   128,
+   512
+  ],
+  "contents": [
+   "random",
+   "text"
+  ],
+  "k_starts": 32,
+  "seed": 20260817,
+  "pile_row": 0,
+  "primary": "is d(sink) uniform in sign across models, per (content, length) cell",
+  "readings": {
+   "uniformity_emerges_long_text": "the account holds in its own regime; F158's non-reproduction is a regime artefact and paper 2 must NARROW to 'different regime', not 'contradiction'",
+   "persists": "the prediction fails in its own regime too -- state carefully",
+   "content_not_length": "the regime difference is out-of-distribution input, not size"
+  },
+  "secondary": "does raw-arm sink RISE with length -- if not, this is not reproducing the phenomenon and the primary is uninterpretable",
+  "boundary": "phi is not measurable at long context; this can narrow paper 2's claim, not rescue it",
+  "why": "F158 named ONE regime difference (length) but there are TWO -- the account is measured on real text and our probe draws uniformly random tokens"
+ },
+ "analysis": {
+  "grid": {
+   "random@2": {
+    "n_models": 6,
+    "n_sub_noise": 0,
+    "sub_noise": [],
+    "readable": true,
+    "uniform": false,
+    "n_down": 2,
+    "mean_d": 0.03997,
+    "per_model": {
+     "Falcon3-1B-Base": 0.0598,
+     "Minerva-3B-base-v1.0": 0.07161,
+     "pythia-410m-deduped": -0.01596,
+     "Qwen1.5-1.8B": 0.03025,
+     "SmolLM-1.7B": 0.14697,
+     "Qwen2.5-1.5B-Instruct": -0.05285
+    }
+   },
+   "random@8": {
+    "n_models": 4,
+    "n_sub_noise": 2,
+    "sub_noise": [
+     "Falcon3-1B-Base",
+     "pythia-410m-deduped"
+    ],
+    "readable": true,
+    "uniform": false,
+    "n_down": 1,
+    "mean_d": 0.05913,
+    "per_model": {
+     "Minerva-3B-base-v1.0": 0.0939,
+     "Qwen1.5-1.8B": 0.03842,
+     "SmolLM-1.7B": 0.18075,
+     "Qwen2.5-1.5B-Instruct": -0.07656
+    }
+   },
+   "random@32": {
+    "n_models": 4,
+    "n_sub_noise": 2,
+    "sub_noise": [
+     "pythia-410m-deduped",
+     "Qwen2.5-1.5B-Instruct"
+    ],
+    "readable": true,
+    "uniform": false,
+    "n_down": 1,
+    "mean_d": 0.06618,
+    "per_model": {
+     "Falcon3-1B-Base": -0.06004,
+     "Minerva-3B-base-v1.0": 0.09858,
+     "Qwen1.5-1.8B": 0.05171,
+     "SmolLM-1.7B": 0.17448
+    }
+   },
+   "random@128": {
+    "n_models": 5,
+    "n_sub_noise": 1,
+    "sub_noise": [
+     "pythia-410m-deduped"
+    ],
+    "readable": true,
+    "uniform": false,
+    "n_down": 2,
+    "mean_d": 0.02827,
+    "per_model": {
+     "Falcon3-1B-Base": -0.06637,
+     "Minerva-3B-base-v1.0": 0.03748,
+     "Qwen1.5-1.8B": 0.05142,
+     "SmolLM-1.7B": 0.15259,
+     "Qwen2.5-1.5B-Instruct": -0.03375
+    }
+   },
+   "random@512": {
+    "n_models": 3,
+    "n_sub_noise": 3,
+    "sub_noise": [
+     "Minerva-3B-base-v1.0",
+     "pythia-410m-deduped",
+     "Qwen1.5-1.8B"
+    ],
+    "readable": true,
+    "uniform": false,
+    "n_down": 2,
+    "mean_d": -0.00746,
+    "per_model": {
+     "Falcon3-1B-Base": -0.05975,
+     "SmolLM-1.7B": 0.0874,
+     "Qwen2.5-1.5B-Instruct": -0.05004
+    }
+   },
+   "text@2": {
+    "n_models": 5,
+    "n_sub_noise": 1,
+    "sub_noise": [
+     "pythia-410m-deduped"
+    ],
+    "readable": true,
+    "uniform": false,
+    "n_down": 1,
+    "mean_d": 0.07653,
+    "per_model": {
+     "Falcon3-1B-Base": 0.04028,
+     "Minerva-3B-base-v1.0": 0.09489,
+     "Qwen1.5-1.8B": 0.07175,
+     "SmolLM-1.7B": 0.20602,
+     "Qwen2.5-1.5B-Instruct": -0.03027
+    }
+   },
+   "text@8": {
+    "n_models": 4,
+    "n_sub_noise": 2,
+    "sub_noise": [
+     "pythia-410m-deduped",
+     "Qwen2.5-1.5B-Instruct"
+    ],
+    "readable": true,
+    "uniform": true,
+    "n_down": 0,
+    "mean_d": 0.08863,
+    "per_model": {
+     "Falcon3-1B-Base": 0.03782,
+     "Minerva-3B-base-v1.0": 0.08492,
+     "Qwen1.5-1.8B": 0.02024,
+     "SmolLM-1.7B": 0.21155
+    }
+   },
+   "text@32": {
+    "n_models": 2,
+    "n_sub_noise": 4,
+    "sub_noise": [
+     "Falcon3-1B-Base",
+     "pythia-410m-deduped",
+     "Qwen1.5-1.8B",
+     "Qwen2.5-1.5B-Instruct"
+    ],
+    "readable": false,
+    "uniform": null,
+    "n_down": 0,
+    "mean_d": 0.15522,
+    "per_model": {
+     "Minerva-3B-base-v1.0": 0.06844,
+     "SmolLM-1.7B": 0.242
+    }
+   },
+   "text@128": {
+    "n_models": 3,
+    "n_sub_noise": 3,
+    "sub_noise": [
+     "Falcon3-1B-Base",
+     "pythia-410m-deduped",
+     "Qwen2.5-1.5B-Instruct"
+    ],
+    "readable": true,
+    "uniform": true,
+    "n_down": 0,
+    "mean_d": 0.09555,
+    "per_model": {
+     "Minerva-3B-base-v1.0": 0.0486,
+     "Qwen1.5-1.8B": 0.02295,
+     "SmolLM-1.7B": 0.2151
+    }
+   },
+   "text@512": {
+    "n_models": 1,
+    "n_sub_noise": 5,
+    "sub_noise": [
+     "Falcon3-1B-Base",
+     "Minerva-3B-base-v1.0",
+     "pythia-410m-deduped",
+     "Qwen1.5-1.8B",
+     "Qwen2.5-1.5B-Instruct"
+    ],
+    "readable": false,
+    "uniform": null,
+    "n_down": 0,
+    "mean_d": 0.22361,
+    "per_model": {
+     "SmolLM-1.7B": 0.22361
+    }
+   }
+  },
+  "raw_sink_rises_with_length": {
+   "random": [
+    6,
+    6
+   ],
+   "text": [
+    6,
+    6
+   ]
+  }
+ },
+ "verdict": "PRIMARY, is d(sink) = sink(bos) - sink(length-matched raw) UNIFORM in sign across models, per (content, length) cell? random@2: mixed (2 down) of 6, mean +0.0400; random@8: mixed (1 down) of 4, mean +0.0591; random@32: mixed (1 down) of 4, mean +0.0662; random@128: mixed (2 down) of 5, mean +0.0283; random@512: mixed (2 down) of 3, mean -0.0075; text@2: mixed (1 down) of 5, mean +0.0765; text@8: UNIFORM of 4, mean +0.0886; text@32: n/a (needs 3+ resolved) of 2, mean +0.1552; text@128: UNIFORM of 3, mean +0.0955; text@512: n/a (needs 3+ resolved) of 1, mean +0.2236. Models whose d(sink) does not clear 2.0x its standard error are recorded as UNRESOLVED and do not vote: random@2 -; random@8 ['Falcon3-1B-Base', 'pythia-410m-deduped']; random@32 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; random@128 ['pythia-410m-deduped']; random@512 ['Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B']; text@2 ['pythia-410m-deduped']; text@8 ['pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@32 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct']; text@128 ['Falcon3-1B-Base', 'pythia-410m-deduped', 'Qwen2.5-1.5B-Instruct']; text@512 ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0', 'pythia-410m-deduped', 'Qwen1.5-1.8B', 'Qwen2.5-1.5B-Instruct'].  Uniformity EMERGES on real text at long context, so the account holds in its own regime and F158's non-reproduction is a regime artefact. Paper 2 must narrow its claim from 'we contradict the account' to 'the account's regime is not our probe's regime, so it does not straightforwardly apply' -- weaker, and more defensible. CONTENT vs LENGTH: uniform on 2 of 5 real-text cells and 0 of 5 random-token cells. Content matters more than length here -- the relevant regime difference is out-of-distribution input, not context size. SECONDARY, does raw-arm sink concentration (sink x sequence length, i.e. multiples of uniform) RISE with context length -- the account's basic prediction? random: 6 of 6 models; text: 6 of 6 models. It does on most models, so this measurement is reproducing the phenomenon and the PRIMARY above is interpretable. BOUNDARY: phi is NOT measured here and cannot be -- the census is defined at two-token starts, so there is no long-context fixed-point fraction to correlate against. This run asks whether the MECHANISM behaves as described, not whether it explains our readout. It can narrow paper 2's claim; it cannot rescue it. Lengths (2, 8, 32, 128, 512), contents ('random', 'text'), 32 draws per cell, one Pile row for the text arm.",
+ "_analysis_provenance": {
+  "script": "sink_long_context.py",
+  "sha256": "a9bba865924bede6c74cac531b7b85cba7687ef20a6a1a4a02e06dbce32c4fb9",
+  "imports": {
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/sink_long_context.py": "a9bba865924bede6c74cac531b7b85cba7687ef20a6a1a4a02e06dbce32c4fb9"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
