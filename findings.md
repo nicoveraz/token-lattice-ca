@@ -3645,6 +3645,55 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F158 — attention-sink strength does NOT predict the sign of the domain effect: 2 of 5 models agree, at chance. Paper 2's centrepiece now has both quantities measured.
+F157 left paper 2 reporting a discrepancy against a mechanism **we had never measured** — comparing
+our numbers to the attention-sink account rather than to its quantity. This measures both on the same
+forward passes. Cheap: seconds per model, not a 96-start census.
+
+**PRIMARY — sink and $\phi$ under one BOS token, length-matched.**
+
+| model | sink raw3 | sink bos | $\Delta$sink | $\Delta\phi$ | agree? |
+|---|---|---|---|---|---|
+| Falcon3-1B-Base | 0.6826 | 0.7229 | **+0.0403** | **+0.693** | yes |
+| Minerva-3B-base | 0.5985 | 0.6660 | +0.0675 | −0.323 | no |
+| pythia-410m-deduped | 0.6251 | 0.6054 | −0.0197 | −0.422 | yes |
+| Qwen1.5-1.8B | 0.7135 | 0.7433 | +0.0298 | −0.510 | no |
+| SmolLM-1.7B | 0.6263 | 0.7748 | +0.1484 | −0.562 | no |
+| Qwen2.5-1.5B-Instruct | 0.6638 | 0.6394 | −0.0244 | n/a | — |
+
+**Sink strength does not predict the sign: 2 of 5, at chance.** The mechanism moves one way while the
+structural consequence moves another. Paper 2's discrepancy therefore stands, and now with both
+quantities measured rather than one assumed.
+
+**A second, separate observation.** The literature's uniformity claim — that initial-token effects
+vary across models in magnitude but never in sign — **does not reproduce at this context length**:
+2 of 6 models show sink *decreasing* under BOS. This is not a refutation of that work, and the finding
+says so explicitly. The sink literature measures long contexts, where the phenomenon is about
+attention concentrating despite many competing positions; here the context is 3 tokens.
+
+**Three defects were caught inside this one short experiment, and the second is the serious one.**
+1. *Length confound*, caught by a smoke test before any model ran in anger. The census condition is a
+   2-token start, where the last position attends over only two positions and attention to position 0
+   is near-forced (0.778 measured). Adding BOS makes three. A naive raw-vs-bos comparison confounds
+   *is position 0 a BOS* with *how many positions compete*. Fixed with a length-matched `raw3` arm;
+   the `raw2`–`raw3` gap now measures the artefact directly (it is large: 0.75 → 0.63 on SmolLM).
+2. **A NaN inverted the verdict.** fp16 eager attention returned NaN in 7 of 24 layers on
+   `pythia-410m-deduped` and on all of `Qwen2.5-1.5B-Instruct`. `np.sign(nan)` is `nan`, so a single
+   unmeasured cell enlarged the sign set, and the run reported *"sink also changes sign, the account
+   explains our result, this is a MECHANISM — the first predictive statement in this programme."*
+   The exact opposite of the truth, stated in the most excited available language. Non-finite cells
+   are now excluded and named. Switched to bf16, which measures NaN-free at fp16's memory cost.
+3. *The correspondence test was missing.* The registered readings assumed sink would come out
+   uniform, so the non-uniform branch asserted sink "tracks" $\phi$ **without ever checking
+   agreement**. Whether a mechanism explains a sign pattern is a question about per-model agreement,
+   not about whether each quantity is separately uniform. That test now exists and is what the
+   verdict turns on.
+
+**Boundary.** One definition of sink strength (mean attention from the last position to position 0,
+over all layers and heads, 16 starts), one context length, six models, one prefix kind. A null here
+bounds the sink account at this context length; it does not refute it. $\phi$ is read from stored
+censuses, never recomputed. `experiments/sink_vs_fixedpoint.py` → `results/sink_vs_fixedpoint.json`.
+
 ### F157 — the prior-art gate NARROWS paper 2 sharply: C4, the headline, is already taken under other names. What survives is the instrument, not the concept.
 The novelty gate for the DOMAIN claim (paper 1's gate covered only the fixed-point-class claim) ran
 adversarially — instructed to find work that PRE-EMPTS, not to confirm novelty. 99 agents completed;
