@@ -1,0 +1,375 @@
+% The domain axis: what conditions a self-feeding loop before it starts.
+%
+% DRAFTING NOTES (delete before submission)
+%  * Same conventions as paper 1 (paper_arxiv/main.tex), deliberately: portable preamble, plain
+%    `article` + standard packages, no venue style file.
+%  * EVERY number carries a source comment naming the finding and the results file it came from.
+%    Do not edit a number without editing its source comment.
+%  * Sections marked PENDING depend on a run that has not landed. Do not write around them.
+%  * This paper's subject was revised three times (see future_work.md). The version here is the
+%    one that survived F152/F154/F155/F156. Two earlier headline claims -- a prose-vs-template
+%    "sign flip" and a universal downward direction -- are WITHDRAWN and must not be reinstated
+%    from older drafts; findings.md carries the demotion banners.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+\graphicspath{{../fig/}}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newcommand{\fpf}{\phi}                     % fixed-point fraction of the argmax map
+\newcommand{\Nstarts}{96}
+
+\title{The Domain Axis\\
+{\large What conditions a self-feeding probe before it starts, and why it cannot be corrected for}}
+
+% ARXIV: named. TMLR: replace with the anonymous block.
+\author{Nicol\'as Vera Z\'u\~niga\\
+Independent Researcher, Chile\\
+\texttt{nicovera@quetru.cl}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Probes that feed a language model its own output are read as measurements of the model. We show that
+such readings are dominated by a variable almost nobody reports: the tokens that condition the model
+\emph{before} the loop begins. We call this the \emph{domain}. Varying it alone --- same weights,
+same estimator, same geometry --- moves a discrete class label, a model ranking, and a scalar value,
+by more than instruction tuning does and often by the full range of the statistic. Nine tokens of
+ordinary text can take a model's fixed-point fraction from $0.21$ to $0.98$, or from $0.71$ to
+$0.01$.% F154 results/text_interaction.json (Falcon3-1B-Base 0.2135 -> 0.979);
+% F151 results/domain_midrange.json (gemma-2-2b-it 0.714 -> 0.005 under a 9-token prose sample) The obvious remedies all fail. The effect is not monotone in prefix length. Its direction is
+not fixed: on models screened to be able to move either way, most conditioning destroys fixed-point
+structure, but not all of it does. Its magnitude is not a property of the prefix: the same nine
+tokens build a near-perfect funnel in two models and annihilate it in four. We report four separate
+attempts to name a factor behind this --- a prose-versus-markup contrast, a universal direction, a
+model-level property, a cohort difference --- each of which we withdrew within one run of proposing
+it, in every case because widening the sample dissolved the factor into an interaction that had
+merely been undersampled. That is the paper's central claim: on this axis there are no clean factors,
+only text-by-weights pairs, so the domain cannot be corrected for and must be reported and varied.
+We give the protocol that makes varying it cheap, and the anti-vacuity discipline that caught our own
+withdrawals before review did.
+\end{abstract}
+
+% =================================================================================================
+\section{Introduction}
+
+A self-feeding probe reads a language model by iterating the model on its own output. The reading is
+then attributed to the model: this model is more stable, that one collapses sooner, these two rank in
+this order. Paper~1 \citep{veraz2026probes} showed that some such readings belong to the
+\emph{construction} rather than to the model, and gave a discriminator that separates them: hold the
+construction fixed and vary the model, or the reverse, and see which readings move.
+
+This paper is about a variable that discriminator did not include, because we did not think to vary
+it. Every loop starts somewhere. Before the first iterate, the model has been conditioned on
+\emph{something} --- nothing at all, a BOS token, a system prompt, a chat template, a few-shot
+preamble. We call that the \textbf{domain}. It is reported in almost no paper we are aware of, and it
+is rarely held fixed across the comparisons those papers make.
+
+We find that the domain dominates. It moves the readouts further than the model does, further than
+instruction tuning does, and it does so in a way that resists every summary we tried to impose on it.
+
+\paragraph{What this paper claims.}
+\begin{enumerate}
+\item The domain moves a discrete class label, a model ranking and a scalar value, at magnitudes up
+      to the full range of the statistic (\S\ref{sec:moves}).
+\item It is not a length effect: the response is not monotone in the number of conditioning tokens
+      (\S\ref{sec:length}).
+\item Neither its direction nor its magnitude can be predicted in advance, and --- the part that
+      forecloses calibration --- neither is a property of the conditioning text at all
+      (\S\ref{sec:direction}).
+\item Four attempts to name a factor behind the effect were each withdrawn within one run of being
+      proposed, always by the same mechanism (\S\ref{sec:withdrawals}). We argue this is the
+      substantive finding, not an apology for the previous three.
+\end{enumerate}
+
+\paragraph{What this paper does not claim.} We do not claim the effect is universal across probes; we
+measure one construction. We do not offer a correction, and \S\ref{sec:direction} is our argument
+that none is available. We do not claim instruct and base models differ on this axis --- we tried to
+show that and failed (\S\ref{sec:withdrawals}).
+
+% =================================================================================================
+\section{Setup}
+
+\paragraph{The estimator.} We use the \emph{short-window argmax map}: iterate
+\[
+  x_{t+1} \;=\; \arg\max_{x} \; p\!\left(x \mid x_{t-1}, x_{t}\right)
+\]
+from $\Nstarts$ random two-token starts, and census where the trajectories land. The map is
+deterministic given a start, so the census has no sampling noise; its only stochasticity is the
+choice of starts, controlled by a census seed. The readout we report throughout is the
+\emph{fixed-point fraction} $\fpf$, the proportion of starts whose trajectory terminates in a fixed
+point. Trajectories are also classified into four \emph{fixed-point classes} --- \textsc{funnel} (one
+dominant attracting fixed point), \textsc{none} (no fixed points; cycles or wandering),
+\textsc{fragmented} (many small basins), \textsc{borderline}.
+
+\paragraph{The domain, operationally.} A domain is a token prefix prepended to the model's context
+before every forward pass of the loop, implemented as a wrapper around the model rather than a change
+to the estimator, so that the quantity being measured is provably unchanged. We report five kinds:
+\textsc{raw} (no prefix), \textsc{bos} (one beginning-of-sequence token), \textsc{text} (ordinary
+text, truncated to a stated token count), \textsc{template} (the model's own chat template), and
+\textsc{struct} (text with high markup density, defined in \S\ref{sec:withdrawals}).
+
+\paragraph{Resolution and tolerance.} With $\Nstarts$ starts, $\fpf$ is quantised at
+$1/\Nstarts \approx 0.0104$. Throughout, a shift counts as real only if it exceeds that model's own
+tolerance, defined as $\max(4/\Nstarts,\, 2\sigma)$ where $\sigma$ is the model's across-seed range
+on the arm in question. Every claim below is gated at this resolution, and \S\ref{sec:discipline}
+explains why we state the rule so prominently: applying a shape criterion to a quantity with no room
+to vary was our most frequent error.
+
+% =================================================================================================
+\section{The domain moves what the probe reports}\label{sec:moves}
+
+Table~\ref{tab:moves} collects the effect on three different kinds of readout. In each row the model
+and the estimator are held fixed and only the conditioning prefix changes.
+
+\begin{table}[t]\centering
+\small
+\begin{tabular}{llll}
+\toprule
+readout & domain change & effect & source \\
+\midrule
+% F144, results/argmax_census_templated.json
+fixed-point CLASS      & 9-token chat template & $\fpf: 0.948 \to 0.000$, class changes & F144 \\
+% F151, results/domain_midrange.json -- gemma-2-2b-it, the only fragmented model measured
+class, \textsc{fragmented} model & every domain tested & changes under all of them & F151 \\
+% F145, results/share_templated.json -- Spearman against a 0.6 concordance gate, signal gate PASSED
+model RANKING          & chat template & $\rho = +0.400 / +0.300$ vs a $0.6$ gate & F145 \\
+% F135, results/groq_share.json -- 0.1327 mean |shift| against a relative gate of 0.0406
+scalar VALUE           & chat scaffold & $0.1327$ shift vs a $0.0406$ gate ($3.3\times$) & F135 \\
+% arXiv:2608.10986, already published -- frozen fraction under one BOS token
+frozen fraction        & ONE bos token & $74.4\% \to 24.1\%$ & Paper~1 \\
+% F152, results/domain_base.json -- Falcon3-1B-Base
+$\fpf$, base model     & ONE bos token & $0.214 \to 0.906$ & F152 \\
+\bottomrule
+\end{tabular}
+\caption{The domain moves every kind of readout the probe produces, holding weights and estimator
+fixed. The last two rows are the same one-token change in opposite directions on different models,
+which \S\ref{sec:direction} takes up.}
+\label{tab:moves}
+\end{table}
+
+\paragraph{The contrast that makes this a finding rather than a truism.} It is not that any
+perturbation moves these quantities. Instruction tuning is a large intervention by any behavioural
+measure --- on one matched pair it moves IFEval by $+60.5$ points --- and it moves the fixed-point
+class by \emph{zero}.% F143, results/argmax_census_instruct.json; IFEval from the public leaderboard
+A domain change of nine tokens moves the class completely. The sensitivity is specific to the domain,
+not general to perturbation.
+
+% =================================================================================================
+\section{It is not a length effect}\label{sec:length}
+
+The natural first hypothesis is that more conditioning does more, so that the axis could be summarised
+by a token count. It cannot. We swept four domains ordered by prefix length --- \textsc{raw} (0),
+\textsc{bos} (1), \textsc{text} matched to that model's own template length, and \textsc{template}
+--- on six instruction-tuned models.
+
+The design's load-bearing element is the length-matched text arm: it has the same token count as the
+model's chat template and none of its structure, so \textsc{text} versus \textsc{template} isolates
+the \emph{kind} of prefix at fixed length, while \textsc{raw} $\to$ \textsc{bos} $\to$ \textsc{text}
+traces length at roughly fixed kind. Without it, ``templates change the class'' cannot be
+distinguished from ``any prefix of that length changes it''.
+
+% F147, results/domain_gradient.json. Two of six models were excluded by the anti-vacuity gate:
+% their entire span across all four domains was one census start, below their own seed noise.
+Of the four models whose span was large enough to carry a shape at all, three are \textbf{not}
+monotone in prefix length. One model's sequence runs $0.948 \to 0.005 \to 1.000 \to 0.000$ across
+increasing prefix lengths --- a single BOS token nearly annihilating its structure, nine tokens of
+ordinary prose restoring it to a \emph{perfect} funnel, and nine tokens of chat markup destroying it
+again. Prefix length does not order the fixed-point structure, and a length-based correction would be
+wrong.
+
+% =================================================================================================
+\section{Neither direction nor magnitude is predictable}\label{sec:direction}
+
+\subsection{Direction}
+
+Since length fails, the next hope is sign: perhaps conditioning always destroys structure, so at
+least the direction of the bias is known. Testing this requires models with room to move
+\emph{both} ways --- a model at $\fpf = 0.000$ can only go up, one at $0.98$ can only go down, and
+scoring such models tells you about the floor rather than about the domain.
+
+% F149, results/domain_direction.json -- scoring only where the baseline could have been wrong left
+% 1 of 6 models and 2 units.
+Our first attempt failed on exactly this. Scoring a floor/ceiling baseline only where it \emph{could
+have been wrong} left one model and two units out of six models; the unrestricted version of the same
+baseline reports ``9 of 9 correct, 100\%, direction is mechanical'', where every one of those nine
+units came from a model that could not have contradicted it.
+
+% F150, results/midrange_screen.json
+We therefore screened for the missing instrument --- one cheap census per candidate, keeping models
+whose $\fpf$ lands in $[0.2, 0.8]$ with headroom exceeding their own tolerance on both sides. The
+screen is instructive in itself: of seven instruct candidates, four sat at $0.000$ and one at
+$0.990$. Extreme values are typical, which is why this question is usually unanswerable by accident.
+
+% F152, results/domain_base.json -- 35 arms on 7 readable base models: 32 down, 2 up, 1 flat.
+On nine screened models across two cohorts, most conditioning does reduce fixed-point structure ---
+but not all of it. Two base models move \emph{both} ways from a single raw value:
+\texttt{Falcon3-1B-Base} rises from $0.214$ to $0.906$ under one BOS token and falls to $0.000$ under
+nine tokens of prose; \texttt{Minerva-3B-base} falls to $0.000$ under one nine-token prose sample and
+rises to $0.786$ under another \emph{of the same length}. Weights fixed, starting value fixed, only
+the domain varying: no floor or ceiling can produce that.
+
+\subsection{Magnitude, and why it is not a property of the prefix}
+
+% F154, results/text_interaction.json -- p1 is Pile row 101, a table of contents.
+The strongest form of the result is Table~\ref{tab:p1}. A single nine-token prefix --- Pile row 101,
+the opening of a table of contents, \verb|"\n\nGreat Britain\n\n# Contents\n"| --- was applied
+unchanged to six models screened for headroom.
+
+\begin{table}[t]\centering
+\small
+\begin{tabular}{lrrl}
+\toprule
+model & raw $\fpf$ & under the prefix & \\
+\midrule
+Falcon3-1B-Base       & 0.214 & \textbf{0.979} & up \\
+Minerva-3B-base       & 0.328 & \textbf{1.000} & up \\
+pythia-410m-deduped   & 0.427 & 0.016 & down \\
+Qwen1.5-1.8B          & 0.510 & 0.000 & down \\
+SmolLM-1.7B           & 0.562 & 0.000 & down \\
+Qwen2.5-1.5B-Instruct & 0.573 & 0.005 & down \\
+\bottomrule
+\end{tabular}
+\caption{The same nine tokens, six models. It builds a near-perfect funnel in two and annihilates it
+in four. Source: F154, \texttt{results/text\_interaction.json}.}
+\label{tab:p1}
+\end{table}
+
+This is what forecloses correction. A reader who accepts that the domain matters will reach for the
+obvious fix: characterise prefixes, publish a list of safe ones. Table~\ref{tab:p1} says that cannot
+work --- not because prefix effects are unshared, but because they are \emph{opposite}. The single
+most structure-building prefix we measured is also among the most destructive, depending on which
+weights receive it. A predictor study on text features would have to predict the interaction, not the
+text.
+
+% =================================================================================================
+\section{Four withdrawals, and why they are the result}\label{sec:withdrawals}
+
+We proposed four factors that would have made the domain tractable. We withdrew all four, each within
+one run of proposing it, and in every case for the same reason: widening the sample dissolved the
+factor into an interaction that had merely been undersampled.
+
+\begin{table}[t]\centering
+\small
+\begin{tabular}{lll}
+\toprule
+claim & died on & source \\
+\midrule
+``prose and markup differ, and the sign flips by model'' & mid-range models & F147 $\to$ F151 \\
+``the effect is unidirectional: 18 of 18 arms down''      & a wider model set & F151 $\to$ F152 \\
+``no text raises two models''                             & a wider corpus & F153 $\to$ F154 \\
+``bidirectionality is a model property''                  & a wider text class & F154 $\to$ F155 \\
+``instruct models resist raising''                        & ONE additional text & F156 \\
+\bottomrule
+\end{tabular}
+\caption{Every factor we named was withdrawn within one run. The mechanism was the same each time.}
+\label{tab:withdrawals}
+\end{table}
+
+Two are worth stating in full because of what they cost.
+
+% F151, results/domain_midrange.json -> F152, results/domain_base.json
+\paragraph{A universal from $n=2$.} On two mid-range instruct models, all $18$ domain arms moved
+down, and every apparent up-shift in the programme to that point turned out to be mechanical --- one
+saturating exactly at the ceiling, one inside its own seed spread, one starting from the floor. We
+wrote ``the domain effect is unidirectional, without exception''. Seven base models produced two
+bidirectional counterexamples immediately.
+
+% F155, results/structural_text.json -> F156, results/instruct_raisable.json
+\paragraph{A null we wanted.} After finding that structural text (markup density $\geq 0.15$ over the
+first 200 characters, the Pile's 95th percentile) raises some models more often than prose does, we
+noted that two instruct models resisted every text tried. We pre-registered that a null here would be
+\emph{the first factor in this programme to survive a widening} --- a positive structural claim the
+paper otherwise lacks --- and said so before running. One text of twelve refused it: a C source-file
+header takes \texttt{gemma-2-2b-it} from $0.714$ to $0.917$. We report the null we wanted and did not
+get.
+
+\paragraph{What survives.} A rate difference: instruct models were raised on $1$ of $24$ text-model
+units against $11$ of $48$ for base models on the \emph{same} twelve texts. With two instruct clusters
+this cannot be tested, and Table~\ref{tab:withdrawals} is four consecutive instances of exactly this
+kind of gap dissolving. We record it as a lead and decline to promote it.
+
+\paragraph{The claim.} On this axis there are no clean factors --- only text-by-weights pairs. We
+state this not as a summary of failures but as the most robust structural finding here: it is the one
+claim that survived every widening we applied, precisely because each widening was an attempt to
+replace it with something stronger.
+
+% =================================================================================================
+\section{The discipline that caught this}\label{sec:discipline}
+
+The withdrawals above were found by design, not in review, and the mechanism is worth reporting
+because it generalises past this instrument.
+
+\paragraph{A criterion with a shape must not be applied to a quantity with no room to vary.} Our most
+frequent error, by a wide margin. Instances: flat sequences scored as monotone-or-not when their
+entire span was one census start; a single trajectory in $\Nstarts$ flipping a monotonicity verdict;
+two floored arms counted as ``agreement'' when neither could disagree; a baseline scoring
+$9/9 = 100\%$ where no unit could have contradicted it; and, twice, the defect appearing inside the
+anti-vacuity gate written to prevent it --- once excluding the most decisive model in a run while
+admitting one whose whole effect was half a census start.
+
+\paragraph{Its sibling: a criterion applied where it cannot \emph{yet} fail.} A confident universal
+from $n=2$ is not vacuous in the same way --- a counterexample was possible --- but it was unlikely
+enough that the claim was never really at risk. Both are cheap to catch by widening before claiming.
+
+\paragraph{The protocol.} (i) Screen for headroom before testing direction; (ii) gate each question
+separately, because ``is the contrast robust'' needs the gap to be real while ``is the value stable''
+needs the values off the floor; (iii) judge each shift against its own noise, not a pooled tolerance;
+(iv) verify anti-vacuity rather than assume it, even when the models were selected for it; (v) refuse
+tests that cannot fail informatively at the available $n$, and say so before seeing the numbers.
+Point (v) is not rhetorical: we declined to compute predictors of shift magnitude on six clusters,
+and declined a significance test on three, in both cases recording the refusal in the
+pre-registration.
+
+\paragraph{Pooling.} One consistency gate deserves separate mention. Structural text raised two of
+three models more often than prose, and the pooled ratio ($7/18$ vs $3/18$) cleared our
+pre-registered bar --- but the third model reversed. A gate added before the verdict refused to read
+the pooled number, on the grounds that pooling across units pointing different ways is a Simpson's
+shape. Without it we would have reported ``the first predictive statement'' in this programme.
+
+% =================================================================================================
+\section{Limits}
+
+\paragraph{One construction.} We measure the short-window argmax map. That the domain dominates
+\emph{this} probe does not establish it dominates self-consistency, iterated refinement, or agentic
+loops, though all condition a model before iterating and none, to our knowledge, reports the domain.
+
+\paragraph{Small cohorts.} The largest single comparison here is six models and twelve texts.
+Table~\ref{tab:withdrawals} is the reason we state boundaries in the specific form ``these models
+resisted these texts'' rather than in the general form: four times, the general form was wrong.
+
+\paragraph{One length, one corpus, three sources.} The interaction results fix the prefix at nine
+tokens and draw text from The Pile, Shakespeare, and one written paragraph. ``Structural'' has one
+operationalisation. A different length or corpus could change the rates, though not the existence
+results.
+
+\paragraph{Confounds we could not break.} \texttt{gemma-2-2b-it} is the only \textsc{fragmented}
+model in our domain cohort, so class and cohort are confounded in it. \texttt{Falcon3-3B-Instruct} is
+excluded from direction work entirely: its raw census varies $0.615$--$0.792$ across four seeds, so
+its tolerance swamps every domain shift it has.% F150, results/midrange_screen.json
+
+\paragraph{PENDING --- prior art.} The novelty gate for the domain claim specifically has not been
+run. Paper~1's gate covered the fixed-point-class claim; the literature on prompt sensitivity and
+prefix conditioning is large and adjacent, and this section must not be written before that gate.
+
+% =================================================================================================
+\section{Conclusion}
+
+The tokens that condition a language model before a self-feeding loop begins dominate what the loop
+reports. The effect is large, is not ordered by prefix length, and has neither a predictable direction
+nor a predictable magnitude. It is not a property of the conditioning text: the same nine tokens
+build a near-perfect funnel in some models and annihilate it in others. We tried four times to find a
+factor underneath it and withdrew each attempt within a run, always because widening the sample
+turned the factor into an interaction. The practical consequence is narrow and firm: the domain
+cannot be corrected for, so it must be reported and varied. The package that makes varying it cheap
+ships with this paper.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}
