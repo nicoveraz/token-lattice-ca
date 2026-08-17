@@ -1,0 +1,269 @@
+=== ti pass 1 (censuses: 0) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 5209.37it/s]
+  tiiuae/Falcon3-1B-Base             12 texts at 9 tok
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-1B-Base             c0   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c0   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c1   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c1   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c2   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             c2   s=990017 cls=none        fix=0.062
+  tiiuae/Falcon3-1B-Base             s0   s=20260803 cls=borderline  fix=0.229
+  tiiuae/Falcon3-1B-Base             s0   s=990017 cls=borderline  fix=0.281
+  tiiuae/Falcon3-1B-Base             s1   s=20260803 cls=borderline  fix=0.229
+  tiiuae/Falcon3-1B-Base             s1   s=990017 cls=borderline  fix=0.271
+  tiiuae/Falcon3-1B-Base             s2   s=20260803 cls=funnel      fix=0.990
+  tiiuae/Falcon3-1B-Base             s2   s=990017 cls=funnel      fix=1.000
+  tiiuae/Falcon3-1B-Base             p0   s=20260803 cls=none        fix=0.073
+  tiiuae/Falcon3-1B-Base             p0   s=990017 cls=none        fix=0.031
+  tiiuae/Falcon3-1B-Base             p1   s=20260803 cls=funnel      fix=0.979
+  tiiuae/Falcon3-1B-Base             p1   s=990017 cls=funnel      fix=0.979
+  tiiuae/Falcon3-1B-Base             p2   s=20260803 cls=none        fix=0.083
+  tiiuae/Falcon3-1B-Base             p2   s=990017 cls=borderline  fix=0.125
+  tiiuae/Falcon3-1B-Base             p3   s=20260803 cls=borderline  fix=0.271
+  tiiuae/Falcon3-1B-Base             p3   s=990017 cls=borderline  fix=0.208
+  tiiuae/Falcon3-1B-Base             p4   s=20260803 cls=none        fix=0.021
+  tiiuae/Falcon3-1B-Base             p4   s=990017 cls=none        fix=0.010
+  tiiuae/Falcon3-1B-Base             p5   s=20260803 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             p5   s=990017 cls=none        fix=0.000
+  tiiuae/Falcon3-1B-Base             model done in 2903s
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (c0/s0 reproduce F153): 4 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. Only 1 model(s) complete -- the overlap question needs at least two and is not read.
+
+wrote results/text_interaction.json
+=== ti pass 2 (censuses: 24) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4710.79it/s]
+  sapienzanlp/Minerva-3B-base-v1.0   12 texts at 9 tok
+  sapienzanlp/Minerva-3B-base-v1.0   c0   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c0   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c1   s=20260803 cls=borderline  fix=0.135
+  sapienzanlp/Minerva-3B-base-v1.0   c1   s=990017 cls=none        fix=0.083
+  sapienzanlp/Minerva-3B-base-v1.0   c2   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   c2   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   s0   s=20260803 cls=funnel      fix=0.865
+  sapienzanlp/Minerva-3B-base-v1.0   s0   s=990017 cls=funnel      fix=0.708
+  sapienzanlp/Minerva-3B-base-v1.0   s1   s=20260803 cls=funnel      fix=0.635
+  sapienzanlp/Minerva-3B-base-v1.0   s1   s=990017 cls=funnel      fix=0.656
+  sapienzanlp/Minerva-3B-base-v1.0   s2   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   s2   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p0   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p0   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p1   s=20260803 cls=funnel      fix=1.000
+  sapienzanlp/Minerva-3B-base-v1.0   p1   s=990017 cls=funnel      fix=1.000
+  sapienzanlp/Minerva-3B-base-v1.0   p2   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p2   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p3   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p3   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p4   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p4   s=990017 cls=none        fix=0.010
+  sapienzanlp/Minerva-3B-base-v1.0   p5   s=20260803 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   p5   s=990017 cls=none        fix=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   model done in 5061s
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (c0/s0 reproduce F153): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. PRIMARY, does ANY text raise TWO OR MORE of the 2 models? YES -- p1 raises ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']. F153's empty overlap was a SMALL-SAMPLE ARTEFACT. Some texts DO raise structure across different weights, so 'structure-raising prefix' is a partly coherent category after all, text properties may be partly predictive, and the thesis clause that no prefix can be certified in advance must be withdrawn or heavily qualified. SECONDARY, per-model UP rate over a real corpus: Falcon3-1B-Base raw 0.213: 2/12 up (p1,s2); Minerva-3B-base-v1.0 raw 0.328: 3/12 up (p1,s0,s1). TERTIARY (DESCRIPTIVE ONLY, declared before the numbers -- 2 model clusters cannot fail this test informatively): up-rate by source c=0/6, p=2/12, s=3/6 (c=CORPUS, p=pile, s=shakespeare). F153 logged 'all up-texts were Shakespeare' as an untestable lead; this is the same lead with a real corpus beside it, and it is still not a test. BOUNDARY: 2 models, 12 texts, ONE length (9 tokens), three English sources. An empty overlap over these texts and models is an existence claim, not a proof that no text ever raises two models.
+
+wrote results/text_interaction.json
+=== ti pass 3 (censuses: 48) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5314.41it/s]
+  EleutherAI/pythia-410m-deduped     12 texts at 9 tok
+  EleutherAI/pythia-410m-deduped     c0   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     c0   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     c1   s=20260803 cls=none        fix=0.010
+  EleutherAI/pythia-410m-deduped     c1   s=990017 cls=none        fix=0.010
+  EleutherAI/pythia-410m-deduped     c2   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     c2   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     s0   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     s0   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     s1   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     s1   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     s2   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     s2   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p0   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p0   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p1   s=20260803 cls=none        fix=0.031
+  EleutherAI/pythia-410m-deduped     p1   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p2   s=20260803 cls=none        fix=0.010
+  EleutherAI/pythia-410m-deduped     p2   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p3   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p3   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p4   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p4   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p5   s=20260803 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     p5   s=990017 cls=none        fix=0.000
+  EleutherAI/pythia-410m-deduped     model done in 1223s
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (c0/s0 reproduce F153): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. PRIMARY, does ANY text raise TWO OR MORE of the 3 models? YES -- p1 raises ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']. F153's empty overlap was a SMALL-SAMPLE ARTEFACT. Some texts DO raise structure across different weights, so 'structure-raising prefix' is a partly coherent category after all, text properties may be partly predictive, and the thesis clause that no prefix can be certified in advance must be withdrawn or heavily qualified. SECONDARY, per-model UP rate over a real corpus: Falcon3-1B-Base raw 0.213: 2/12 up (p1,s2); Minerva-3B-base-v1.0 raw 0.328: 3/12 up (p1,s0,s1); pythia-410m-deduped raw 0.427: 0/12 up (-). TERTIARY (DESCRIPTIVE ONLY, declared before the numbers -- 3 model clusters cannot fail this test informatively): up-rate by source c=0/9, p=2/18, s=3/9 (c=CORPUS, p=pile, s=shakespeare). F153 logged 'all up-texts were Shakespeare' as an untestable lead; this is the same lead with a real corpus beside it, and it is still not a test. BOUNDARY: 3 models, 12 texts, ONE length (9 tokens), three English sources. An empty overlap over these texts and models is an existence claim, not a proof that no text ever raises two models.
+
+wrote results/text_interaction.json
+=== ti pass 4 (censuses: 72) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5947.16it/s]
+  Qwen/Qwen1.5-1.8B                  12 texts at 9 tok
+  Qwen/Qwen1.5-1.8B                  c0   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen1.5-1.8B                  c0   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  c1   s=20260803 cls=borderline  fix=0.104
+  Qwen/Qwen1.5-1.8B                  c1   s=990017 cls=none        fix=0.073
+  Qwen/Qwen1.5-1.8B                  c2   s=20260803 cls=none        fix=0.052
+  Qwen/Qwen1.5-1.8B                  c2   s=990017 cls=none        fix=0.052
+  Qwen/Qwen1.5-1.8B                  s0   s=20260803 cls=none        fix=0.062
+  Qwen/Qwen1.5-1.8B                  s0   s=990017 cls=none        fix=0.094
+  Qwen/Qwen1.5-1.8B                  s1   s=20260803 cls=none        fix=0.021
+  Qwen/Qwen1.5-1.8B                  s1   s=990017 cls=none        fix=0.010
+  Qwen/Qwen1.5-1.8B                  s2   s=20260803 cls=none        fix=0.021
+  Qwen/Qwen1.5-1.8B                  s2   s=990017 cls=none        fix=0.021
+  Qwen/Qwen1.5-1.8B                  p0   s=20260803 cls=funnel      fix=0.448
+  Qwen/Qwen1.5-1.8B                  p0   s=990017 cls=funnel      fix=0.375
+  Qwen/Qwen1.5-1.8B                  p1   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  p1   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  p2   s=20260803 cls=funnel      fix=0.969
+  Qwen/Qwen1.5-1.8B                  p2   s=990017 cls=funnel      fix=0.990
+  Qwen/Qwen1.5-1.8B                  p3   s=20260803 cls=none        fix=0.042
+  Qwen/Qwen1.5-1.8B                  p3   s=990017 cls=none        fix=0.083
+  Qwen/Qwen1.5-1.8B                  p4   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  p4   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  p5   s=20260803 cls=none        fix=0.021
+  Qwen/Qwen1.5-1.8B                  p5   s=990017 cls=none        fix=0.000
+  Qwen/Qwen1.5-1.8B                  model done in 4424s
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (c0/s0 reproduce F153): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. PRIMARY, does ANY text raise TWO OR MORE of the 4 models? YES -- p1 raises ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']. F153's empty overlap was a SMALL-SAMPLE ARTEFACT. Some texts DO raise structure across different weights, so 'structure-raising prefix' is a partly coherent category after all, text properties may be partly predictive, and the thesis clause that no prefix can be certified in advance must be withdrawn or heavily qualified. SECONDARY, per-model UP rate over a real corpus: Falcon3-1B-Base raw 0.213: 2/12 up (p1,s2); Minerva-3B-base-v1.0 raw 0.328: 3/12 up (p1,s0,s1); pythia-410m-deduped raw 0.427: 0/12 up (-); Qwen1.5-1.8B raw 0.510: 1/12 up (p2). TERTIARY (DESCRIPTIVE ONLY, declared before the numbers -- 4 model clusters cannot fail this test informatively): up-rate by source c=0/12, p=3/24, s=3/12 (c=CORPUS, p=pile, s=shakespeare). F153 logged 'all up-texts were Shakespeare' as an untestable lead; this is the same lead with a real corpus beside it, and it is still not a test. BOUNDARY: 4 models, 12 texts, ONE length (9 tokens), three English sources. An empty overlap over these texts and models is an existence claim, not a proof that no text ever raises two models.
+
+wrote results/text_interaction.json
+=== ti pass 5 (censuses: 96) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4653.93it/s]
+  HuggingFaceTB/SmolLM-1.7B          12 texts at 9 tok
+  HuggingFaceTB/SmolLM-1.7B          c0   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          c0   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          c1   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          c1   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          c2   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          c2   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          s0   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          s0   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          s1   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          s1   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          s2   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          s2   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p0   s=20260803 cls=none        fix=0.073
+  HuggingFaceTB/SmolLM-1.7B          p0   s=990017 cls=none        fix=0.042
+  HuggingFaceTB/SmolLM-1.7B          p1   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p1   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p2   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p2   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p3   s=20260803 cls=none        fix=0.021
+  HuggingFaceTB/SmolLM-1.7B          p3   s=990017 cls=none        fix=0.031
+  HuggingFaceTB/SmolLM-1.7B          p4   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p4   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p5   s=20260803 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          p5   s=990017 cls=none        fix=0.000
+  HuggingFaceTB/SmolLM-1.7B          model done in 3583s
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (c0/s0 reproduce F153): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. PRIMARY, does ANY text raise TWO OR MORE of the 5 models? YES -- p1 raises ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']. F153's empty overlap was a SMALL-SAMPLE ARTEFACT. Some texts DO raise structure across different weights, so 'structure-raising prefix' is a partly coherent category after all, text properties may be partly predictive, and the thesis clause that no prefix can be certified in advance must be withdrawn or heavily qualified. SECONDARY, per-model UP rate over a real corpus: Falcon3-1B-Base raw 0.213: 2/12 up (p1,s2); Minerva-3B-base-v1.0 raw 0.328: 3/12 up (p1,s0,s1); pythia-410m-deduped raw 0.427: 0/12 up (-); Qwen1.5-1.8B raw 0.510: 1/12 up (p2); SmolLM-1.7B raw 0.562: 0/12 up (-). TERTIARY (DESCRIPTIVE ONLY, declared before the numbers -- 5 model clusters cannot fail this test informatively): up-rate by source c=0/15, p=3/30, s=3/15 (c=CORPUS, p=pile, s=shakespeare). F153 logged 'all up-texts were Shakespeare' as an untestable lead; this is the same lead with a real corpus beside it, and it is still not a test. BOUNDARY: 5 models, 12 texts, ONE length (9 tokens), three English sources. An empty overlap over these texts and models is an existence claim, not a proof that no text ever raises two models.
+
+wrote results/text_interaction.json
+=== ti pass 6 (censuses: 120) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5751.82it/s]
+  Qwen/Qwen2.5-1.5B-Instruct         12 texts at 9 tok
+  Qwen/Qwen2.5-1.5B-Instruct         c0   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         c0   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         c1   s=20260803 cls=none        fix=0.042
+  Qwen/Qwen2.5-1.5B-Instruct         c1   s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         c2   s=20260803 cls=none        fix=0.094
+  Qwen/Qwen2.5-1.5B-Instruct         c2   s=990017 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct         s0   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         s0   s=990017 cls=none        fix=0.021
+  Qwen/Qwen2.5-1.5B-Instruct         s1   s=20260803 cls=none        fix=0.052
+  Qwen/Qwen2.5-1.5B-Instruct         s1   s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         s2   s=20260803 cls=borderline  fix=0.125
+  Qwen/Qwen2.5-1.5B-Instruct         s2   s=990017 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct         p0   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         p0   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         p1   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         p1   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         p2   s=20260803 cls=none        fix=0.021
+  Qwen/Qwen2.5-1.5B-Instruct         p2   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         p3   s=20260803 cls=none        fix=0.062
+  Qwen/Qwen2.5-1.5B-Instruct         p3   s=990017 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct         p4   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         p4   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         p5   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         p5   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         model done in 4424s
+
+  -> RUNG (c0/s0 reproduce F153): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. PRIMARY, does ANY text raise TWO OR MORE of the 6 models? YES -- p1 raises ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']. F153's empty overlap was a SMALL-SAMPLE ARTEFACT. Some texts DO raise structure across different weights, so 'structure-raising prefix' is a partly coherent category after all, text properties may be partly predictive, and the thesis clause that no prefix can be certified in advance must be withdrawn or heavily qualified. SECONDARY, per-model UP rate over a real corpus: Falcon3-1B-Base raw 0.213: 2/12 up (p1,s2); Minerva-3B-base-v1.0 raw 0.328: 3/12 up (p1,s0,s1); pythia-410m-deduped raw 0.427: 0/12 up (-); Qwen1.5-1.8B raw 0.510: 1/12 up (p2); SmolLM-1.7B raw 0.562: 0/12 up (-); Qwen2.5-1.5B-Instruct raw 0.573: 0/12 up (-). TERTIARY (DESCRIPTIVE ONLY, declared before the numbers -- 6 model clusters cannot fail this test informatively): up-rate by source c=0/18, p=3/36, s=3/18 (c=CORPUS, p=pile, s=shakespeare). F153 logged 'all up-texts were Shakespeare' as an untestable lead; this is the same lead with a real corpus beside it, and it is still not a test. BOUNDARY: 6 models, 12 texts, ONE length (9 tokens), three English sources. An empty overlap over these texts and models is an existence claim, not a proof that no text ever raises two models.
+
+wrote results/text_interaction.json
+=== ti pass 7 (censuses: 144) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+
+  -> RUNG (c0/s0 reproduce F153): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so every model below can show either direction. PRIMARY, does ANY text raise TWO OR MORE of the 6 models? YES -- p1 raises ['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']. F153's empty overlap was a SMALL-SAMPLE ARTEFACT. Some texts DO raise structure across different weights, so 'structure-raising prefix' is a partly coherent category after all, text properties may be partly predictive, and the thesis clause that no prefix can be certified in advance must be withdrawn or heavily qualified. SECONDARY, per-model UP rate over a real corpus: Falcon3-1B-Base raw 0.213: 2/12 up (p1,s2); Minerva-3B-base-v1.0 raw 0.328: 3/12 up (p1,s0,s1); pythia-410m-deduped raw 0.427: 0/12 up (-); Qwen1.5-1.8B raw 0.510: 1/12 up (p2); SmolLM-1.7B raw 0.562: 0/12 up (-); Qwen2.5-1.5B-Instruct raw 0.573: 0/12 up (-). TERTIARY (DESCRIPTIVE ONLY, declared before the numbers -- 6 model clusters cannot fail this test informatively): up-rate by source c=0/18, p=3/36, s=3/18 (c=CORPUS, p=pile, s=shakespeare). F153 logged 'all up-texts were Shakespeare' as an untestable lead; this is the same lead with a real corpus beside it, and it is still not a test. BOUNDARY: 6 models, 12 texts, ONE length (9 tokens), three English sources. An empty overlap over these texts and models is an existence claim, not a proof that no text ever raises two models.
+
+wrote results/text_interaction.json
+=== no progress (144), stopping ===
+=== text_interaction done ===

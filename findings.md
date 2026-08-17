@@ -3645,7 +3645,56 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F154 — a text CAN raise two models, so F153's empty overlap was a small-sample artefact — but the same nine tokens annihilate four others, and certification still fails
+F153's empty overlap became the clause in paper 2 that forecloses calibration, and it rested on the
+narrowest evidence in the thesis: two models, ten texts from one paragraph plus Shakespeare. Every
+claim in this programme has weakened the first time n widened, so this widened it deliberately —
+models 2 → 6 (raw 0.213 to 0.573, including the instruct cohort), texts drawn mostly from **The
+Pile** rather than one paragraph. 144 censuses. RUNG reproduces F153's `c0`/`s0` cells exactly, and
+`s2` here is F153's `s4` and returns **+0.781 in both runs**, identical to four decimals.
+
+**PRIMARY — falsified. `p1` raises TWO models.** F153's "no text raises two models" is dead, and the
+operative change was the SOURCE, not the model count: F153's texts contained nothing structural, and
+a shared up-text appeared the moment a real corpus entered.
+
+**But the same text annihilates four others, and this is the finding:**
+
+| model | raw | under `p1` | |
+|---|---|---|---|
+| Falcon3-1B-Base | 0.213 | **0.979** | +0.766 UP |
+| Minerva-3B-base | 0.328 | **1.000** | +0.672 UP |
+| pythia-410m-deduped | 0.427 | 0.016 | −0.411 down |
+| Qwen1.5-1.8B | 0.510 | 0.000 | −0.510 down |
+| SmolLM-1.7B | 0.562 | 0.000 | −0.562 down |
+| Qwen2.5-1.5B-Instruct | 0.573 | 0.005 | −0.568 down |
+
+`p1` is Pile row 101 — `"\n\nGreat Britain\n\n# Contents\n"`, structural boilerplate, not prose.
+Nine tokens that build a near-perfect funnel in two models and destroy it in four. **So the thesis
+clause survives with a corrected rationale**: certification fails not because prefix effects are
+unshared, but because they are OPPOSITE. `p1` is simultaneously the most structure-building prefix in
+the run and among the most destructive. No prefix can be certified for an arbitrary model.
+
+**Bidirectionality is a MODEL property, and that is the cleaner statement.** 3 of 6 models can be
+raised by some text; 3 cannot be raised by ANY of twelve texts across three sources
+(`pythia-410m-deduped` 0/12, `SmolLM-1.7B` 0/12, `Qwen2.5-1.5B-Instruct` 0/12). Among the raisable,
+up-sets are largely idiosyncratic — `Falcon3-1B` {p1, s2}, `Minerva` {p1, s0, s1}, `Qwen1.5` {p2} —
+with `p1` the only overlap. 6 of 72 text-model units go up.
+
+**F153's Shakespeare lead is dead.** By source: `CORPUS` 0/18, Pile 3/36, Shakespeare 3/18. The Pile
+supplies half the up-shifts, so "verse raises structure" was an artefact of F153 having no other
+corpus. Still descriptive — six clusters cannot test it, declared before the run.
+
+**Boundary.** Six models, twelve texts, ONE length (9 tokens), three English sources. That `p1`
+raises exactly two models is an existence result over these six; a wider model set would likely find
+more shared texts, and would also test whether the up-sets stay idiosyncratic.
+`experiments/text_interaction.py` → `results/text_interaction.json`.
+
 ### F153 — the up-shift is a TEXT × WEIGHTS interaction: no text raises both models, so there is no such thing as a structure-raising prefix
+> **AMENDED BY F154.** The empty overlap was a SMALL-SAMPLE ARTEFACT of having no structural text in
+> the sample: on 6 models and a Pile-drawn corpus, `p1` raises two. What survives — and is
+> strengthened — is the CONCLUSION: `p1` lifts two models to ~1.000 while driving four to ~0.000, so
+> no prefix can be certified for an arbitrary model. The rationale changes from "effects are
+> unshared" to "effects are OPPOSITE". Read alongside F154.
 F152 found the programme's only two surviving up-shifts, but each was found by **exactly one text** —
 `Minerva-3B`'s evidence was a text sample of size two pointing opposite ways. F148 exists to stop
 claims resting on single draws, so letting that stand would have repeated the defect it was built to
