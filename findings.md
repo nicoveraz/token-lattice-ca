@@ -3645,6 +3645,71 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F157 — the prior-art gate NARROWS paper 2 sharply: C4, the headline, is already taken under other names. What survives is the instrument, not the concept.
+The novelty gate for the DOMAIN claim (paper 1's gate covered only the fixed-point-class claim) ran
+adversarially — instructed to find work that PRE-EMPTS, not to confirm novelty. 99 agents completed;
+95 claims extracted; 74 put through adversarial verification, **61 surviving** and 13 refuted (mostly
+for overreaching their own sources on load-bearing universals). The workflow died at the synthesis
+stage only, so the synthesis below is by hand from the preserved journal
+(`results/prior_art_domain_journal.jsonl`).
+
+**Verdicts, per claim.**
+
+| claim | verdict |
+|---|---|
+| C1 domain dominates; moves the model RANKING | **partially anticipated, strongly** |
+| C2 not monotone in prefix length | **partially anticipated** |
+| C3 direction not fixed | partially anticipated |
+| C4 same prefix, OPPOSITE effects; no prefix can be certified | **ALREADY TAKEN, under other names** |
+| BOS result | **heavily anticipated** — but with a sign discrepancy worth chasing |
+
+**C4 is the serious one, and it is not close.** The concept — that a prompt's effect is not a
+property of the prompt, so prompts cannot be certified independent of the model — is established
+prior art under at least three names: **"Model Drifting"** (a prompt optimised for a source LLM is
+suboptimal on a target), **prompt non-transferability**, and the finding that formats have **"no
+model-independent valence"** (a format better under model M has $<0.62$ probability of keeping that
+ordering under another). MAPO (Chen et al. 2024) is credited in the literature as the earliest anchor
+for prompt effectiveness being model-specific. Voronov et al. report the same template component
+being best for one model and among the worst for another. One paper states the "cannot be certified
+independent of the model" conclusion in its abstract.
+
+**C1 is also well covered.** Format perturbations reorder an 11-model leaderboard by up to 8
+positions; adversarial prompt selection can promote *any* model in a study to rank 1; cross-model
+concordance of per-prompt rankings is Kendall's $W = 0.238$; LLaMA-2-13B vs -70B reverse ordering
+with probability 0.141 at a fixed accuracy margin. Ranking instability under prompt change is
+established, so F145 is an instance of a known phenomenon on a new readout, not a new phenomenon.
+
+**The BOS result is anticipated by the attention-sink literature — with one real tension.** Initial
+tokens dominate a scalar readout by three orders of magnitude; the effect is *positional, not
+semantic* (linebreak tokens restore perplexity nearly as well as the originals); removing BOS from
+Gemma 7B destroys the sink and catastrophically degrades it. **But that literature reports the
+initial-token effect varying across models in MAGNITUDE only, never in SIGN** — while we find one BOS
+token raising `Falcon3-1B-Base` 0.214 → 0.906 and destroying others. That discrepancy is the most
+promising residue in this gate and should be chased before it is written up as anything.
+
+**What actually survives as novel:**
+1. **The instrument.** Nothing found censuses fixed points of a *deterministic short-window argmax
+   map* under varying pre-loop conditioning. The nearest hits are Welleck et al.'s non-termination
+   ratio (a census-style greedy readout, but with the conditioning context held FIXED at $k{=}10$ and
+   different context distributions reported as producing similar results), and a paper censusing
+   fixed points of an iterated *text-level* self-application map.
+2. **Opposite signs on a deterministic structural readout across six models.** The closest prior hit
+   — iterated LLM transmission chains — shows different models drifting in opposite directions on a
+   structural text property, but with $n{=}2$–3 models, stochastic sampling, and text-level iteration.
+3. **The anti-vacuity methodology** (F149–F156). Nothing adjacent found.
+
+**What must change in the draft.** C4 cannot be the headline; §\ref{sec:direction} must cite Model
+Drifting/MAPO/Voronov and position our contribution as *the structural-readout instance* of a known
+accuracy-level phenomenon. C1 must cite the format-sensitivity literature and narrow correspondingly.
+The BOS paragraph must engage the attention-sink work and lead with the sign discrepancy. One
+retrieved paper additionally claims iterated-map attractor states are **model-independent**, which is
+the direct negation of our C1/C4 in its regime and must be addressed rather than ignored.
+
+**Boundary.** This is a literature search, not a proof of novelty: it found what it found. 13 of 74
+claims were refuted for overreach, so individual citations must be re-read before use — the gate's
+own agents misread scope repeatedly, which is the same failure mode this project catches in itself.
+`results/prior_art_domain_journal.jsonl`, `results/prior_art_domain_summary.json`.
+
 ### F156 — the instruct cohort is NOT categorically resistant: `gemma-2-2b-it` is raised by C source code. Four for four, every named factor dissolves.
 F151's two instruct models were the last cohort never re-run with sampled text, and sampling the text
 axis is what broke F152, F153 and F154 in turn. They were given **F155's twelve texts unchanged**, so

@@ -353,9 +353,31 @@ model in our domain cohort, so class and cohort are confounded in it. \texttt{Fa
 excluded from direction work entirely: its raw census varies $0.615$--$0.792$ across four seeds, so
 its tolerance swamps every domain shift it has.% F150, results/midrange_screen.json
 
-\paragraph{PENDING --- prior art.} The novelty gate for the domain claim specifically has not been
-run. Paper~1's gate covered the fixed-point-class claim; the literature on prompt sensitivity and
-prefix conditioning is large and adjacent, and this section must not be written before that gate.
+\paragraph{Prior art --- and a required reframing.}% F157, results/prior_art_domain_journal.jsonl
+The novelty gate has now run, adversarially, and it narrows this paper. The \emph{concept} behind
+\S\ref{sec:direction} --- that a prompt's effect is not a property of the prompt, so prompts cannot
+be certified independent of the model --- is established prior art under at least three names:
+``Model Drifting'', prompt non-transferability, and the finding that formats have no
+model-independent valence. Ranking instability under prompt-format change is likewise established
+(leaderboard reorderings of up to 8 positions; cross-model concordance of per-prompt rankings at
+Kendall's $W = 0.238$). The BOS result is anticipated by the attention-sink literature, which reports
+initial tokens dominating scalar readouts by three orders of magnitude via a \emph{positional}
+mechanism.
+
+What survives is narrower and must be stated as such: (i) the instrument --- no prior work found
+censuses fixed points of a deterministic short-window argmax map under varying pre-loop conditioning;
+(ii) opposite-signed effects on a \emph{deterministic structural} readout across six models, where
+the nearest prior hit uses two to three models, stochastic sampling and text-level iteration; and
+(iii) the anti-vacuity methodology of \S\ref{sec:discipline}.
+
+\paragraph{PENDING --- three items the gate opened.} (a) \S\ref{sec:direction} and
+\S\ref{sec:moves} must cite and position against the works above; they are currently written as if
+the concept were new, and it is not. (b) The attention-sink literature reports the initial-token
+effect varying across models in magnitude \emph{but never in sign}, while we observe one BOS token
+raising one model from $0.214$ to $0.906$ and destroying others. That discrepancy is unresolved and
+is the most promising residue of the gate. (c) One retrieved paper claims iterated-map attractor
+states are \emph{model-independent}, the direct negation of our position in its regime; it must be
+addressed, not omitted.
 
 % =================================================================================================
 \section{Conclusion}

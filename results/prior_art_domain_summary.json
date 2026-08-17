@@ -1,0 +1,9 @@
+{
+ "agents_completed": 99,
+ "agents_error": 2,
+ "claims_extracted": 95,
+ "verification_verdicts": 74,
+ "survived": 61,
+ "refuted": 13,
+ "note": "workflow failed at the SYNTHESIS stage only; all search/fetch/verify agents completed and their outputs are in this journal. Synthesis done by hand -- see F157."
+}
