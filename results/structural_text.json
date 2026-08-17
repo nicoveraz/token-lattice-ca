@@ -4846,7 +4846,7 @@
  "verdict": "RUNG (t0 is F154's p1 and must reproduce it): 8 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so all can show either direction. PRIMARY, up-rate under STRUCTURAL vs PROSE text, on the models F154 showed are raisable: Falcon3-1B-Base struct 4/6 vs prose 1/6; Minerva-3B-base-v1.0 struct 3/6 vs prose 1/6; Qwen1.5-1.8B struct 0/6 vs prose 1/6. Totals: structural 7/18, prose 3/18.  CONSISTENCY: 2 of 3 raisable models individually show a HIGHER up-rate under structural than under prose (['Falcon3-1B-Base', 'Minerva-3B-base-v1.0']); 1 do not (['Qwen1.5-1.8B']). The models DISAGREE, so the pooled rate is NOT read as a summary -- pooling across units that point different ways is the Simpson's shape this project was already caught by (F141), and the per-model split below is the result instead.  VERDICT: PARTIAL and model-dependent. Structural text raises 2 of 3 raisable models more often than prose does, and REVERSES or fails on the rest. The pooled ratio (7/18 vs 3/18) clears the pre-registered bar, but it is carried by a subset, so the honest claim is that the MECHANISM IS ITSELF MODEL-DEPENDENT -- which is what every other finding in this programme also says. It does NOT yield a predictive rule about prefixes. CONTROL, the model F154 found unraisable (0/12 up): SmolLM-1.7B struct 1/6 vs prose 0/6. STRUCTURAL TEXT RAISES IT. F154's claim that bidirectionality is a fixed model property is WRONG -- the model was only unraisable by the texts tried, and that finding needs revising. NOT A TEST, declared before the numbers: 3 raisable model clusters cannot fail a significance test informatively, so this estimates RATES and no p-value is computed. BOUNDARY: 4 models, 6 structural and 6 prose texts from ONE corpus at ONE length (9 tokens), under ONE operationalisation of 'structural' (newline/markup/digit density >= 0.15 over the first 200 chars, vs <= 0.02). Rows were chosen by INDEX ORDER after thresholding, never by reading them.",
  "_analysis_provenance": {
   "script": "structural_text.py",
-  "sha256": "9b5e5eb15464e075f149ec90a00fe6f64094c481362d42373dfc3a70d4d01c73",
+  "sha256": "51d82069fa2c7cd3d2eddb03de816316ad71aadbb85801b631a4698e8605712c",
   "imports": {
    "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
    "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
@@ -4855,7 +4855,7 @@
    "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-   "experiments/structural_text.py": "9b5e5eb15464e075f149ec90a00fe6f64094c481362d42373dfc3a70d4d01c73",
+   "experiments/structural_text.py": "51d82069fa2c7cd3d2eddb03de816316ad71aadbb85801b631a4698e8605712c",
    "fingerprint/gate1.py": "86e58f562f673af3e3509e45cea1a19ad39cbcc9d108f21f4e07f86bbefa7c42",
    "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
    "gatecheck/src/gatecheck/__init__.py": "2b4d939029c72691c46ac188493dfd62771a7b51055055e32d5300e746967750",
