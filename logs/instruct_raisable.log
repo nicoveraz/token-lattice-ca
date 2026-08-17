@@ -1,0 +1,84 @@
+=== ir pass 1 (censuses: 0) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5529.20it/s]
+  Qwen/Qwen2.5-1.5B-Instruct     12 texts at 9 tok
+  Qwen/Qwen2.5-1.5B-Instruct     t0   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct     t0   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     t1   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     t1   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     t2   s=20260803 cls=borderline  fix=0.281
+  Qwen/Qwen2.5-1.5B-Instruct     t2   s=990017 cls=funnel      fix=0.302
+  Qwen/Qwen2.5-1.5B-Instruct     t3   s=20260803 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct     t3   s=990017 cls=none        fix=0.021
+  Qwen/Qwen2.5-1.5B-Instruct     t4   s=20260803 cls=none        fix=0.094
+  Qwen/Qwen2.5-1.5B-Instruct     t4   s=990017 cls=borderline  fix=0.156
+  Qwen/Qwen2.5-1.5B-Instruct     t5   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct     t5   s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct     r0   s=20260803 cls=borderline  fix=0.104
+  Qwen/Qwen2.5-1.5B-Instruct     r0   s=990017 cls=none        fix=0.062
+  Qwen/Qwen2.5-1.5B-Instruct     r1   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     r1   s=990017 cls=none        fix=0.021
+  Qwen/Qwen2.5-1.5B-Instruct     r2   s=20260803 cls=none        fix=0.042
+  Qwen/Qwen2.5-1.5B-Instruct     r2   s=990017 cls=none        fix=0.031
+  Qwen/Qwen2.5-1.5B-Instruct     r3   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct     r3   s=990017 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct     r4   s=20260803 cls=none        fix=0.010
+  Qwen/Qwen2.5-1.5B-Instruct     r4   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     r5   s=20260803 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     r5   s=990017 cls=none        fix=0.000
+  Qwen/Qwen2.5-1.5B-Instruct     model done in 2315s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (t0 is F154's p1 on Qwen2.5-1.5B-Instruct): 2 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so both can show either direction. PRIMARY, is either INSTRUCT model raised by any of the twelve texts? Qwen2.5-1.5B-Instruct raw 0.573: 0 up of 12 (none). Total 0 of 12. NEITHER is raised by any of twelve texts, six of them structural -- the same texts that took `SmolLM-1.7B` from 0.562 to 0.990. This is the FIRST factor in this programme to survive a widening: instruct models resist raising where every base model tested does not. It is a positive claim paper 2 can make, and it needs replication on more instruct models before being leaned on -- two models is exactly the n at which F151 and F153 both failed. SECONDARY, structural vs prose on the SAME twelve texts F155 used on base models: Qwen2.5-1.5B-Instruct struct 0/6, prose 0/6. F155's base-model comparison: Falcon3-1B 4/6 vs 1/6, Minerva 3/6 vs 1/6, Qwen1.5 0/6 vs 1/6, SmolLM 1/6 vs 0/6. BOUNDARY: TWO instruct models, twelve texts, ONE length (9 tokens), one corpus. A null here is 'these two resisted these twelve', NOT 'instruct models are unraisable' -- and this programme's history is that the distinction is where claims die. `gemma-2-2b-it` is also the only FRAGMENTED model in the domain work, so cohort and class are confounded in it.
+
+wrote results/instruct_raisable.json
+=== ir pass 2 (censuses: 24) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 5620.72it/s]
+  google/gemma-2-2b-it           12 texts at 9 tok
+  google/gemma-2-2b-it           t0   s=20260803 cls=borderline  fix=0.208
+  google/gemma-2-2b-it           t0   s=990017 cls=none        fix=0.094
+  google/gemma-2-2b-it           t1   s=20260803 cls=funnel      fix=0.750
+  google/gemma-2-2b-it           t1   s=990017 cls=funnel      fix=0.708
+  google/gemma-2-2b-it           t2   s=20260803 cls=funnel      fix=0.885
+  google/gemma-2-2b-it           t2   s=990017 cls=funnel      fix=0.948
+  google/gemma-2-2b-it           t3   s=20260803 cls=borderline  fix=0.115
+  google/gemma-2-2b-it           t3   s=990017 cls=borderline  fix=0.156
+  google/gemma-2-2b-it           t4   s=20260803 cls=borderline  fix=0.208
+  google/gemma-2-2b-it           t4   s=990017 cls=borderline  fix=0.146
+  google/gemma-2-2b-it           t5   s=20260803 cls=funnel      fix=0.333
+  google/gemma-2-2b-it           t5   s=990017 cls=borderline  fix=0.260
+  google/gemma-2-2b-it           r0   s=20260803 cls=funnel      fix=0.354
+  google/gemma-2-2b-it           r0   s=990017 cls=borderline  fix=0.260
+  google/gemma-2-2b-it           r1   s=20260803 cls=funnel      fix=0.625
+  google/gemma-2-2b-it           r1   s=990017 cls=funnel      fix=0.552
+  google/gemma-2-2b-it           r2   s=20260803 cls=borderline  fix=0.156
+  google/gemma-2-2b-it           r2   s=990017 cls=borderline  fix=0.135
+  google/gemma-2-2b-it           r3   s=20260803 cls=funnel      fix=0.427
+  google/gemma-2-2b-it           r3   s=990017 cls=funnel      fix=0.448
+  google/gemma-2-2b-it           r4   s=20260803 cls=borderline  fix=0.198
+  google/gemma-2-2b-it           r4   s=990017 cls=borderline  fix=0.229
+  google/gemma-2-2b-it           r5   s=20260803 cls=fragmented  fix=0.406
+  google/gemma-2-2b-it           r5   s=990017 cls=fragmented  fix=0.458
+  google/gemma-2-2b-it           model done in 1121s
+
+  -> RUNG (t0 is F154's p1 on Qwen2.5-1.5B-Instruct): 2 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so both can show either direction. PRIMARY, is either INSTRUCT model raised by any of the twelve texts? Qwen2.5-1.5B-Instruct raw 0.573: 0 up of 12 (none); gemma-2-2b-it raw 0.714: 1 up of 12 (t2). Total 1 of 24. RAISED. F151's 18-of-18 was a text-sampling artefact on the instruct cohort too, just as F152 showed for base models. There is NO instruct-vs-base cohort difference here, and the programme's 'no clean factors -- only text x weights pairs' pattern goes FOUR for four. SECONDARY, structural vs prose on the SAME twelve texts F155 used on base models: Qwen2.5-1.5B-Instruct struct 0/6, prose 0/6; gemma-2-2b-it struct 1/6, prose 0/6. F155's base-model comparison: Falcon3-1B 4/6 vs 1/6, Minerva 3/6 vs 1/6, Qwen1.5 0/6 vs 1/6, SmolLM 1/6 vs 0/6. BOUNDARY: TWO instruct models, twelve texts, ONE length (9 tokens), one corpus. A null here is 'these two resisted these twelve', NOT 'instruct models are unraisable' -- and this programme's history is that the distinction is where claims die. `gemma-2-2b-it` is also the only FRAGMENTED model in the domain work, so cohort and class are confounded in it.
+
+wrote results/instruct_raisable.json
+=== ir pass 3 (censuses: 48) ===
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  structural rows [101, 7, 86, 108, 121, 135]
+  prose rows      [0, 2, 4, 5, 6, 12]
+
+  -> RUNG (t0 is F154's p1 on Qwen2.5-1.5B-Instruct): 2 cells, worst error 0.00e+00. Identical. ANTI-VACUITY: 0 model(s) lack room to move both ways, so both can show either direction. PRIMARY, is either INSTRUCT model raised by any of the twelve texts? Qwen2.5-1.5B-Instruct raw 0.573: 0 up of 12 (none); gemma-2-2b-it raw 0.714: 1 up of 12 (t2). Total 1 of 24. RAISED. F151's 18-of-18 was a text-sampling artefact on the instruct cohort too, just as F152 showed for base models. There is NO instruct-vs-base cohort difference here, and the programme's 'no clean factors -- only text x weights pairs' pattern goes FOUR for four. SECONDARY, structural vs prose on the SAME twelve texts F155 used on base models: Qwen2.5-1.5B-Instruct struct 0/6, prose 0/6; gemma-2-2b-it struct 1/6, prose 0/6. F155's base-model comparison: Falcon3-1B 4/6 vs 1/6, Minerva 3/6 vs 1/6, Qwen1.5 0/6 vs 1/6, SmolLM 1/6 vs 0/6. BOUNDARY: TWO instruct models, twelve texts, ONE length (9 tokens), one corpus. A null here is 'these two resisted these twelve', NOT 'instruct models are unraisable' -- and this programme's history is that the distinction is where claims die. `gemma-2-2b-it` is also the only FRAGMENTED model in the domain work, so cohort and class are confounded in it.
+
+wrote results/instruct_raisable.json
+=== no progress (48), stopping ===
+=== instruct_raisable done ===

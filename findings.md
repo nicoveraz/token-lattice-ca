@@ -3645,6 +3645,51 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F156 — the instruct cohort is NOT categorically resistant: `gemma-2-2b-it` is raised by C source code. Four for four, every named factor dissolves.
+F151's two instruct models were the last cohort never re-run with sampled text, and sampling the text
+axis is what broke F152, F153 and F154 in turn. They were given **F155's twelve texts unchanged**, so
+the cohorts are compared on identical prefixes. 48 censuses; RUNG reproduces F154's `p1` exactly.
+
+**PRIMARY — the interesting null FAILED, by one text.**
+
+| model | raw | up | note |
+|---|---|---|---|
+| Qwen2.5-1.5B-Instruct | 0.573 | **0/12** | resists every text, structural and prose |
+| gemma-2-2b-it | 0.714 | **1/12** | `t2` → **0.917**, funnel both seeds (0.885 / 0.948) |
+
+`t2` is Pile row 86, a **C source-file header** (`\ufeff/*****…`), shift +0.203 against tolerance
+0.125. So instruct models are **not** categorically resistant, there is no clean instruct-vs-base
+cohort difference, and F151's 18-of-18 was a text-sampling artefact on this cohort exactly as F152
+showed for base models.
+
+**This was pre-registered as the outcome that would have been most valuable, and it did not happen.**
+Had neither model been raisable, it would have been the first factor in this programme to survive a
+widening — a positive structural claim paper 2 does not otherwise have. It is worth recording that
+the null was wanted and still refused: one text of twelve was enough to withdraw it.
+
+**A rate difference survives, and is explicitly NOT a factor.** Instruct: 1 of 24 units up. Base
+(F155, same twelve texts): 11 of 48 — `Falcon3-1B` 5/12, `Minerva` 4/12, `Qwen1.5` 1/12, `SmolLM`
+1/12. So instruct models look several times harder to raise. With TWO instruct clusters that cannot
+be tested, and this project's history is that exactly this kind of suggestive gap dissolves when the
+cohort widens. Recorded as a lead, not a result.
+
+**The pattern is now four for four**, and it is the paper's most defensible structural claim:
+
+| withdrawn | died on |
+|---|---|
+| F151 "18 of 18, without exception" | a wider MODEL set (F152) |
+| F153 "no text raises two models" | a wider CORPUS (F154) |
+| F154 "bidirectionality is a model property" | a wider TEXT CLASS (F155) |
+| F156 "instruct models resist raising" | ONE additional text |
+
+Every apparent *property* — of a text, of a model, of a cohort — dissolved into an interaction that
+had merely been undersampled. **There are no clean factors on this axis, only text×weights pairs**,
+and every withdrawal was found by design rather than in review.
+
+**Boundary.** Two instruct models, twelve texts, one length, one corpus. `gemma-2-2b-it` is also the
+only FRAGMENTED model in the domain work, so cohort and class are confounded in it — its raisability
+could be about either. `experiments/instruct_raisable.py` → `results/instruct_raisable.json`.
+
 ### F155 — structural text raises 2 of 3 models more often than prose, but the CONTROL FIRED: the "unraisable" model was raised too, so bidirectionality is NOT a model property
 F154's `p1` — Pile row 101, a table of contents — was the only text raising two models, suggesting a
 mechanism: templated boilerplate is exactly the context in which a next-token distribution collapses
