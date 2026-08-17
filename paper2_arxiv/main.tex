@@ -30,8 +30,8 @@
 \newcommand{\citepend}[1]{\textcolor{red}{\textbf{[CITE: #1]}}}
 
 \title{Prompt--Model Interaction Reaches the Fixed Points\\
-{\large A deterministic structural readout, where the attention-sink account predicts magnitude and
-we observe sign}}
+{\large A deterministic, task-free structural readout --- and a probe that runs outside the regime
+its nearest mechanistic account describes}}
 
 \author{Nicol\'as Vera Z\'u\~niga\\
 Independent Researcher, Chile\\
@@ -54,10 +54,12 @@ sampling noise and no task, so a prefix cannot help or hurt it in the ordinary s
 model on as few as nine tokens beforehand moves this readout across most of its range, changes a
 four-way structural class, and reorders models. The effect is not monotone in prefix length. One
 fixed nine-token prefix drives four models to a fixed-point fraction near $0$ and two others to near
-$1$. Most sharply: a single beginning-of-sequence token takes one model from $0.21$ to $0.91$ while
-collapsing others --- whereas the attention-sink account, which explains initial-token dominance by a
-positional, content-free mechanism, reports that effect varying across models in magnitude but not in
-sign. We report four attempts of our own to name a factor behind the pattern, each withdrawn within
+$1$. A single beginning-of-sequence token takes one model from $0.21$ to $0.91$ while collapsing others.
+Measuring the nearest mechanistic account's own quantity on the same forward passes, attention-sink
+strength predicts the sign of that shift on $2$ of $5$ models --- chance --- and crossing context
+length against content shows why: the account holds on real text and fails on the uniformly random
+tokens our probe feeds it. We therefore do not claim to contradict it, but to operate outside the
+regime it describes. We report four attempts of our own to name a factor behind the pattern, each withdrawn within
 one run of proposing it, and give the anti-vacuity discipline that caught them: our recurring error
 was applying a criterion with a shape to a quantity with no room to vary.
 \end{abstract}
@@ -102,10 +104,11 @@ performance here, because there is no performance.
 \item One fixed nine-token prefix drives four models toward $0$ and two toward $1$
       (\S\ref{sec:interaction}). This is the structural-readout instance of the known accuracy-level
       result, and we position it as such rather than claiming it.
-\item \textbf{The sign behaviour contradicts the adjacent mechanistic account} (\S\ref{sec:sink}).
-      Attention-sink work explains initial-token dominance positionally and reports cross-model
-      variation in magnitude, not sign; we observe sign reversal under one BOS token. We do not
-      resolve this and report it as a discrepancy a positional account must explain.
+\item \textbf{Sink strength does not predict the sign, and the probe runs outside the account's
+      regime} (\S\ref{sec:sink}). Measuring both quantities on the same forward passes, sink and
+      $\fpf$ agree in sign on $2$ of $5$ models --- chance. Crossing length against content then shows
+      the attention-sink account holds on real text and fails on random tokens, which is our probe's
+      input. We do not claim a contradiction; we claim the account does not reach this regime.
 \item Four factors of our own, named and withdrawn, and the discipline that caught them
       (\S\ref{sec:withdrawals}--\S\ref{sec:discipline}).
 \end{enumerate}
@@ -258,12 +261,22 @@ consequence agree on 2 of 5 models. Source: F158, \texttt{results/sink\_vs\_fixe
 \label{tab:sink}
 \end{table}
 
-\paragraph{One honest complication.} At this context length the sink literature's own uniformity
-claim does not reproduce either: 2 of 6 models show sink \emph{decreasing} under BOS. We do not read
-that as a refutation --- that work measures long contexts, where the phenomenon is about attention
-concentrating despite many competing positions, and ours is three tokens. It does mean our comparison
-is against the account's \emph{prediction} rather than against a reproduction of its regime, and the
-long-context version of this measurement remains unrun.
+\paragraph{The regime differs on CONTENT, not length --- and this narrows our claim.}% F159, results/sink_long_context.json
+The obvious explanation for the mismatch is context size, and it is wrong. Crossing five lengths
+($2$--$512$) with two contents (uniformly random tokens versus real text) on the same six models: sink
+\emph{concentration} --- attention to position $0$ times sequence length --- rises with length on
+$6$ of $6$ models in both contents, from ${\sim}2\times$ uniform at $n{=}2$ to ${\sim}144\times$ at
+$n{=}512$, so the measurement reproduces the phenomenon. But on \textbf{real text no resolved model
+shows sink decreasing under BOS at any length $\geq 8$}, while on \textbf{random tokens some do at
+every length}.
+
+The attention-sink account therefore holds in its own regime. Our probe draws uniformly random
+two-token starts, which is out-of-distribution input in a way real text is not, and that --- rather
+than context size --- is where the account's uniformity fails. We accordingly do \emph{not} claim to
+contradict it. The claim is narrower: \textbf{the probe operates outside the regime its nearest
+mechanistic account describes}, so that account cannot be assumed to explain what the probe reports,
+and $\S\ref{sec:sink}$'s failure of sink strength to predict the sign is unexplained rather than
+contradictory.
 
 \paragraph{Why this is a real tension and not a definitional one.} A positional, content-free
 mechanism predicts a shared direction: if the first token's role is to absorb attention mass, then
@@ -369,11 +382,11 @@ every domain shift it has.% F150, results/midrange_screen.json
 produced this framing refuted $13$ of $74$ extracted claims for overreaching their own sources,% F157, results/prior_art_domain_journal.jsonl
 so each work must be read in full before its key is entered. Do not submit with placeholders.
 
-\paragraph{PENDING --- the long-context sink measurement.} Table~\ref{tab:sink} measures sink
-strength at the census's own context length, three tokens. The account it is compared against is
-about long contexts, and at three tokens that account's own uniformity prediction does not reproduce
-(2 of 6 models show sink decreasing). Repeating the measurement in a streaming-length regime, and
-relating it to $\fpf$ there, is the remaining work on this section.
+\paragraph{A gap this cannot close.} $\fpf$ is not measurable at long context --- the census is
+defined at two-token starts --- so we can bound where the sink account applies but cannot connect it
+to our readout in the regime where it holds. Whether a probe built on in-distribution starts would
+show the same domain effects is open, and is the natural next construction rather than a fix to this
+one.
 
 % =================================================================================================
 \section{Conclusion}
