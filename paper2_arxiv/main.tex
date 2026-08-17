@@ -234,14 +234,44 @@ adding initial tokens moves the readout the same way in every model examined.
 $0.906$,% F152, results/domain_base.json
 and collapses other models toward zero on the same arm. The sign is not shared.
 
+\paragraph{We measured the mechanism, not just our own readout.} Comparing a BOS-prefixed context
+against a \emph{length-matched} ordinary one --- so the arms differ only in the identity of position
+0 --- sink strength and $\fpf$ move the same way on 2 of 5 models, which is chance
+(Table~\ref{tab:sink}).% F158, results/sink_vs_fixedpoint.json
+Sink strength does not predict the sign of the fixed-point shift.
+
+\begin{table}[t]\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+model & $\Delta$sink & $\Delta\fpf$ & agree \\
+\midrule
+Falcon3-1B-Base       & $+0.0403$ & $+0.693$ & yes \\
+Minerva-3B-base       & $+0.0675$ & $-0.323$ & no  \\
+pythia-410m-deduped   & $-0.0197$ & $-0.422$ & yes \\
+Qwen1.5-1.8B          & $+0.0298$ & $-0.510$ & no  \\
+SmolLM-1.7B           & $+0.1484$ & $-0.562$ & no  \\
+\bottomrule
+\end{tabular}
+\caption{One BOS token, against a length-matched ordinary prefix. The mechanism and the structural
+consequence agree on 2 of 5 models. Source: F158, \texttt{results/sink\_vs\_fixedpoint.json}.}
+\label{tab:sink}
+\end{table}
+
+\paragraph{One honest complication.} At this context length the sink literature's own uniformity
+claim does not reproduce either: 2 of 6 models show sink \emph{decreasing} under BOS. We do not read
+that as a refutation --- that work measures long contexts, where the phenomenon is about attention
+concentrating despite many competing positions, and ours is three tokens. It does mean our comparison
+is against the account's \emph{prediction} rather than against a reproduction of its regime, and the
+long-context version of this measurement remains unrun.
+
 \paragraph{Why this is a real tension and not a definitional one.} A positional, content-free
 mechanism predicts a shared direction: if the first token's role is to absorb attention mass, then
 supplying one should push every model the same way, differing only in how much. Our readout is
 structural rather than perplexity-like, so the two do not measure the same quantity --- but a
 mechanism advertised as content-independent and architecture-general should not reverse sign across
-models on \emph{any} downstream property. We report the discrepancy without resolving it. The
-experiment that would settle it --- sink strength and $\fpf$ measured on the same models under the
-same prefixes --- we have not run (\S\ref{sec:limits}).
+models on \emph{any} downstream property, and Table~\ref{tab:sink} shows the mechanism's own
+magnitude failing to carry the sign even where we measure both at once.
 
 % =================================================================================================
 \section{Four factors we named and withdrew}\label{sec:withdrawals}
@@ -339,10 +369,11 @@ every domain shift it has.% F150, results/midrange_screen.json
 produced this framing refuted $13$ of $74$ extracted claims for overreaching their own sources,% F157, results/prior_art_domain_journal.jsonl
 so each work must be read in full before its key is entered. Do not submit with placeholders.
 
-\paragraph{PENDING --- the sink experiment.} \S\ref{sec:sink} reports a discrepancy against a
-mechanism without measuring that mechanism. Sink strength and $\fpf$ on the same models under the same
-prefixes is the experiment that turns it into a result or dissolves it, and it is the highest-value
-run remaining.
+\paragraph{PENDING --- the long-context sink measurement.} Table~\ref{tab:sink} measures sink
+strength at the census's own context length, three tokens. The account it is compared against is
+about long contexts, and at three tokens that account's own uniformity prediction does not reproduce
+(2 of 6 models show sink decreasing). Repeating the measurement in a streaming-length regime, and
+relating it to $\fpf$ there, is the remaining work on this section.
 
 % =================================================================================================
 \section{Conclusion}
