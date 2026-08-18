@@ -1,0 +1,3596 @@
+{
+ "cells": {
+  "tiiuae/Falcon3-1B-Base|rung": {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "abs_err": 0.0,
+   "theirs": 0.1979,
+   "mine": 0.1979
+  },
+  "tiiuae/Falcon3-1B-Base|random|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.7083,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.1979,
+   "cyclic_fraction": 0.8021,
+   "endpoint_histogram": [
+    [
+     2040,
+     "1",
+     68
+    ],
+    [
+     12,
+     "\n",
+     19
+    ],
+    [
+     2048,
+     "9",
+     5
+    ],
+    [
+     2226,
+     " ",
+     4
+    ]
+   ],
+   "cls": "borderline",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "tiiuae/Falcon3-1B-Base|random|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.8333,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.8854,
+   "cyclic_fraction": 0.1146,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     80
+    ],
+    [
+     2037,
+     ".",
+     8
+    ],
+    [
+     2039,
+     "0",
+     5
+    ],
+    [
+     2226,
+     " ",
+     2
+    ],
+    [
+     81747,
+     " delusions",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "tiiuae/Falcon3-1B-Base|random|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.6667,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.2292,
+   "cyclic_fraction": 0.7708,
+   "endpoint_histogram": [
+    [
+     2040,
+     "1",
+     64
+    ],
+    [
+     12,
+     "\n",
+     22
+    ],
+    [
+     2226,
+     " ",
+     4
+    ],
+    [
+     2048,
+     "9",
+     3
+    ],
+    [
+     31117,
+     "frac",
+     3
+    ]
+   ],
+   "cls": "borderline",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "tiiuae/Falcon3-1B-Base|random|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 4,
+   "modal_endpoint_share": 0.8229,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.9271,
+   "cyclic_fraction": 0.0729,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     79
+    ],
+    [
+     2039,
+     "0",
+     10
+    ],
+    [
+     2037,
+     ".",
+     4
+    ],
+    [
+     2226,
+     " ",
+     3
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "tiiuae/Falcon3-1B-Base|text|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.6771,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.2396,
+   "cyclic_fraction": 0.7188,
+   "endpoint_histogram": [
+    [
+     2040,
+     "1",
+     65
+    ],
+    [
+     12,
+     "\n",
+     20
+    ],
+    [
+     2048,
+     "9",
+     4
+    ],
+    [
+     2039,
+     "0",
+     3
+    ],
+    [
+     2035,
+     ",",
+     2
+    ],
+    [
+     2226,
+     " ",
+     2
+    ]
+   ],
+   "cls": "borderline",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "tiiuae/Falcon3-1B-Base|text|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.7917,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.9583,
+   "cyclic_fraction": 0.0417,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     76
+    ],
+    [
+     2039,
+     "0",
+     16
+    ],
+    [
+     2037,
+     ".",
+     2
+    ],
+    [
+     2226,
+     " ",
+     1
+    ],
+    [
+     2040,
+     "1",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "tiiuae/Falcon3-1B-Base|text|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.5312,
+   "modal_endpoint_token": "1",
+   "fixed_point_fraction": 0.2604,
+   "cyclic_fraction": 0.6979,
+   "endpoint_histogram": [
+    [
+     2040,
+     "1",
+     51
+    ],
+    [
+     12,
+     "\n",
+     25
+    ],
+    [
+     2048,
+     "9",
+     8
+    ],
+    [
+     2226,
+     " ",
+     5
+    ],
+    [
+     2035,
+     ",",
+     2
+    ],
+    [
+     2052,
+     "=",
+     2
+    ],
+    [
+     31117,
+     "frac",
+     2
+    ],
+    [
+     14230,
+     " vie",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "tiiuae/Falcon3-1B-Base|text|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 3,
+   "modal_endpoint_share": 0.875,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.9688,
+   "cyclic_fraction": 0.0312,
+   "endpoint_histogram": [
+    [
+     12,
+     "\n",
+     84
+    ],
+    [
+     2039,
+     "0",
+     9
+    ],
+    [
+     2037,
+     ".",
+     3
+    ]
+   ],
+   "cls": "funnel",
+   "model": "tiiuae/Falcon3-1B-Base",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|rung": {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "abs_err": 0.0,
+   "theirs": 0.3229,
+   "mine": 0.3229
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.9271,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.3229,
+   "cyclic_fraction": 0.6771,
+   "endpoint_histogram": [
+    [
+     32377,
+     "0",
+     89
+    ],
+    [
+     32381,
+     "2",
+     3
+    ],
+    [
+     882,
+     "get",
+     1
+    ],
+    [
+     32361,
+     "m",
+     1
+    ],
+    [
+     25823,
+     "vitamine",
+     1
+    ],
+    [
+     525,
+     "not",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.6458,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     32393,
+     ":",
+     62
+    ],
+    [
+     32380,
+     "1",
+     24
+    ],
+    [
+     32368,
+     ",",
+     4
+    ],
+    [
+     358,
+     "for",
+     1
+    ],
+    [
+     2780,
+     "mia",
+     1
+    ],
+    [
+     3413,
+     "La",
+     1
+    ],
+    [
+     32370,
+     "w",
+     1
+    ],
+    [
+     5498,
+     "morte",
+     1
+    ],
+    [
+     9076,
+     "grinding",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 6,
+   "modal_endpoint_share": 0.9062,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.3333,
+   "cyclic_fraction": 0.6667,
+   "endpoint_histogram": [
+    [
+     32377,
+     "0",
+     87
+    ],
+    [
+     32381,
+     "2",
+     4
+    ],
+    [
+     882,
+     "get",
+     2
+    ],
+    [
+     11621,
+     "jaw",
+     1
+    ],
+    [
+     4398,
+     "oo",
+     1
+    ],
+    [
+     32361,
+     "m",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|random|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.5208,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     32393,
+     ":",
+     50
+    ],
+    [
+     32380,
+     "1",
+     34
+    ],
+    [
+     32368,
+     ",",
+     3
+    ],
+    [
+     3413,
+     "La",
+     2
+    ],
+    [
+     541,
+     "tra",
+     2
+    ],
+    [
+     5498,
+     "morte",
+     1
+    ],
+    [
+     4398,
+     "oo",
+     1
+    ],
+    [
+     18194,
+     "Maryland",
+     1
+    ],
+    [
+     32355,
+     "s",
+     1
+    ],
+    [
+     32410,
+     "/",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.8125,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.4375,
+   "cyclic_fraction": 0.5625,
+   "endpoint_histogram": [
+    [
+     32377,
+     "0",
+     78
+    ],
+    [
+     882,
+     "get",
+     7
+    ],
+    [
+     525,
+     "not",
+     4
+    ],
+    [
+     32381,
+     "2",
+     3
+    ],
+    [
+     1259,
+     "way",
+     1
+    ],
+    [
+     32453,
+     "<",
+     1
+    ],
+    [
+     10877,
+     "Parigi",
+     1
+    ],
+    [
+     2049,
+     "sure",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.6667,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0521,
+   "cyclic_fraction": 0.9479,
+   "endpoint_histogram": [
+    [
+     32393,
+     ":",
+     64
+    ],
+    [
+     32380,
+     "1",
+     17
+    ],
+    [
+     32367,
+     ".",
+     4
+    ],
+    [
+     32347,
+     "",
+     3
+    ],
+    [
+     543,
+     "...",
+     2
+    ],
+    [
+     13,
+     "\n",
+     2
+    ],
+    [
+     32416,
+     "?",
+     1
+    ],
+    [
+     32368,
+     ",",
+     1
+    ],
+    [
+     3413,
+     "La",
+     1
+    ],
+    [
+     32355,
+     "s",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.8229,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.4062,
+   "cyclic_fraction": 0.5938,
+   "endpoint_histogram": [
+    [
+     32377,
+     "0",
+     79
+    ],
+    [
+     882,
+     "get",
+     5
+    ],
+    [
+     32381,
+     "2",
+     4
+    ],
+    [
+     525,
+     "not",
+     3
+    ],
+    [
+     32361,
+     "m",
+     3
+    ],
+    [
+     32453,
+     "<",
+     1
+    ],
+    [
+     32408,
+     "9",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0|text|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.625,
+   "modal_endpoint_token": ":",
+   "fixed_point_fraction": 0.0729,
+   "cyclic_fraction": 0.9271,
+   "endpoint_histogram": [
+    [
+     32393,
+     ":",
+     60
+    ],
+    [
+     32380,
+     "1",
+     17
+    ],
+    [
+     543,
+     "...",
+     5
+    ],
+    [
+     32367,
+     ".",
+     4
+    ],
+    [
+     13,
+     "\n",
+     4
+    ],
+    [
+     32347,
+     "",
+     4
+    ],
+    [
+     32410,
+     "/",
+     1
+    ],
+    [
+     32368,
+     ",",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "EleutherAI/pythia-410m-deduped|rung": {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "abs_err": 0.0,
+   "theirs": 0.4167,
+   "mine": 0.4167
+  },
+  "EleutherAI/pythia-410m-deduped|random|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 14,
+   "modal_endpoint_share": 0.4167,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4167,
+   "cyclic_fraction": 0.5833,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     40
+    ],
+    [
+     253,
+     " the",
+     38
+    ],
+    [
+     18,
+     "1",
+     3
+    ],
+    [
+     673,
+     " time",
+     3
+    ],
+    [
+     15,
+     ".",
+     2
+    ],
+    [
+     285,
+     " and",
+     2
+    ],
+    [
+     11382,
+     " Chem",
+     1
+    ],
+    [
+     14,
+     "-",
+     1
+    ],
+    [
+     5186,
+     "\u00d0",
+     1
+    ],
+    [
+     1133,
+     " hand",
+     1
+    ],
+    [
+     643,
+     " other",
+     1
+    ],
+    [
+     16,
+     "/",
+     1
+    ],
+    [
+     806,
+     " first",
+     1
+    ],
+    [
+     89,
+     "x",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "EleutherAI/pythia-410m-deduped|random|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.6979,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9792,
+   "endpoint_histogram": [
+    [
+     510,
+     "The",
+     67
+    ],
+    [
+     187,
+     "\n",
+     15
+    ],
+    [
+     61,
+     "\\",
+     3
+    ],
+    [
+     15,
+     ".",
+     3
+    ],
+    [
+     14,
+     "-",
+     2
+    ],
+    [
+     16,
+     "/",
+     2
+    ],
+    [
+     64,
+     "_",
+     1
+    ],
+    [
+     20691,
+     "\u3064",
+     1
+    ],
+    [
+     12882,
+     "\u200b",
+     1
+    ],
+    [
+     40117,
+     "CoA",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "EleutherAI/pythia-410m-deduped|random|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.4375,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4375,
+   "cyclic_fraction": 0.5521,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     42
+    ],
+    [
+     253,
+     " the",
+     40
+    ],
+    [
+     673,
+     " time",
+     3
+    ],
+    [
+     89,
+     "x",
+     2
+    ],
+    [
+     64,
+     "_",
+     2
+    ],
+    [
+     285,
+     " and",
+     1
+    ],
+    [
+     1133,
+     " hand",
+     1
+    ],
+    [
+     241,
+     "\ufffd",
+     1
+    ],
+    [
+     643,
+     " other",
+     1
+    ],
+    [
+     38093,
+     "\u03c1\u03c9",
+     1
+    ],
+    [
+     806,
+     " first",
+     1
+    ],
+    [
+     16,
+     "/",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "EleutherAI/pythia-410m-deduped|random|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.7917,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     510,
+     "The",
+     76
+    ],
+    [
+     187,
+     "\n",
+     11
+    ],
+    [
+     15,
+     ".",
+     4
+    ],
+    [
+     16,
+     "/",
+     2
+    ],
+    [
+     85,
+     "t",
+     1
+    ],
+    [
+     954,
+     " most",
+     1
+    ],
+    [
+     50274,
+     "    ",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "EleutherAI/pythia-410m-deduped|text|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 14,
+   "modal_endpoint_share": 0.5521,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.5521,
+   "cyclic_fraction": 0.4479,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     53
+    ],
+    [
+     253,
+     " the",
+     18
+    ],
+    [
+     285,
+     " and",
+     5
+    ],
+    [
+     15,
+     ".",
+     4
+    ],
+    [
+     673,
+     " time",
+     4
+    ],
+    [
+     755,
+     " get",
+     2
+    ],
+    [
+     18,
+     "1",
+     2
+    ],
+    [
+     643,
+     " other",
+     2
+    ],
+    [
+     89,
+     "x",
+     1
+    ],
+    [
+     806,
+     " first",
+     1
+    ],
+    [
+     17,
+     "0",
+     1
+    ],
+    [
+     1133,
+     " hand",
+     1
+    ],
+    [
+     16,
+     "/",
+     1
+    ],
+    [
+     13,
+     ",",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "EleutherAI/pythia-410m-deduped|text|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 5,
+   "modal_endpoint_share": 0.6354,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     510,
+     "The",
+     61
+    ],
+    [
+     187,
+     "\n",
+     26
+    ],
+    [
+     15,
+     ".",
+     6
+    ],
+    [
+     61,
+     "\\",
+     2
+    ],
+    [
+     85,
+     "t",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "EleutherAI/pythia-410m-deduped|text|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.5208,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.5208,
+   "cyclic_fraction": 0.4792,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     50
+    ],
+    [
+     253,
+     " the",
+     23
+    ],
+    [
+     673,
+     " time",
+     9
+    ],
+    [
+     285,
+     " and",
+     5
+    ],
+    [
+     1133,
+     " hand",
+     3
+    ],
+    [
+     15,
+     ".",
+     2
+    ],
+    [
+     643,
+     " other",
+     2
+    ],
+    [
+     18,
+     "1",
+     1
+    ],
+    [
+     806,
+     " first",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "EleutherAI/pythia-410m-deduped|text|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 11,
+   "modal_endpoint_share": 0.7083,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     510,
+     "The",
+     68
+    ],
+    [
+     187,
+     "\n",
+     18
+    ],
+    [
+     16,
+     "/",
+     2
+    ],
+    [
+     61,
+     "\\",
+     1
+    ],
+    [
+     7,
+     "&",
+     1
+    ],
+    [
+     64,
+     "_",
+     1
+    ],
+    [
+     6422,
+     " powerful",
+     1
+    ],
+    [
+     50274,
+     "    ",
+     1
+    ],
+    [
+     2911,
+     "$-",
+     1
+    ],
+    [
+     15,
+     ".",
+     1
+    ],
+    [
+     954,
+     " most",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "EleutherAI/pythia-410m-deduped",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen1.5-1.8B|rung": {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "abs_err": 0.0,
+   "theirs": 0.5208,
+   "mine": 0.5208
+  },
+  "Qwen/Qwen1.5-1.8B|random|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 17,
+   "modal_endpoint_share": 0.5104,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.5208,
+   "cyclic_fraction": 0.4375,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     49
+    ],
+    [
+     279,
+     " the",
+     13
+    ],
+    [
+     48312,
+     "\ufffd",
+     10
+    ],
+    [
+     854,
+     "\u201d",
+     5
+    ],
+    [
+     220,
+     " ",
+     3
+    ],
+    [
+     1782,
+     "the",
+     2
+    ],
+    [
+     1156,
+     " first",
+     2
+    ],
+    [
+     13,
+     ".",
+     2
+    ],
+    [
+     882,
+     " time",
+     2
+    ],
+    [
+     46515,
+     " usar",
+     1
+    ],
+    [
+     1852,
+     " same",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ],
+    [
+     3019,
+     " step",
+     1
+    ],
+    [
+     20673,
+     " puede",
+     1
+    ],
+    [
+     60709,
+     " misma",
+     1
+    ],
+    [
+     17787,
+     "\u0438\u0442\u044c",
+     1
+    ],
+    [
+     286,
+     "       ",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen1.5-1.8B|random|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.8333,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.8333,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     80
+    ],
+    [
+     16,
+     "1",
+     6
+    ],
+    [
+     13,
+     ".",
+     2
+    ],
+    [
+     481,
+     " -",
+     2
+    ],
+    [
+     271,
+     "\n\n",
+     1
+    ],
+    [
+     104145,
+     "\u7535\u8111",
+     1
+    ],
+    [
+     2,
+     "#",
+     1
+    ],
+    [
+     17,
+     "2",
+     1
+    ],
+    [
+     854,
+     "\u201d",
+     1
+    ],
+    [
+     279,
+     " the",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen1.5-1.8B|random|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 19,
+   "modal_endpoint_share": 0.5104,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.5,
+   "cyclic_fraction": 0.4792,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     49
+    ],
+    [
+     279,
+     " the",
+     11
+    ],
+    [
+     1782,
+     "the",
+     6
+    ],
+    [
+     13,
+     ".",
+     5
+    ],
+    [
+     854,
+     "\u201d",
+     5
+    ],
+    [
+     48312,
+     "\ufffd",
+     3
+    ],
+    [
+     1156,
+     " first",
+     3
+    ],
+    [
+     262,
+     "   ",
+     2
+    ],
+    [
+     882,
+     " time",
+     2
+    ],
+    [
+     7587,
+     " \u0438",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ],
+    [
+     4102,
+     "\u00a0",
+     1
+    ],
+    [
+     42311,
+     "\u093f\ufffd",
+     1
+    ],
+    [
+     456,
+     " }\n",
+     1
+    ],
+    [
+     3896,
+     "first",
+     1
+    ],
+    [
+     67406,
+     "\u044d",
+     1
+    ],
+    [
+     716,
+     " _",
+     1
+    ],
+    [
+     1372,
+     " number",
+     1
+    ],
+    [
+     286,
+     "       ",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen1.5-1.8B|random|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.8229,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.8958,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     79
+    ],
+    [
+     16,
+     "1",
+     3
+    ],
+    [
+     13,
+     ".",
+     3
+    ],
+    [
+     220,
+     " ",
+     3
+    ],
+    [
+     38507,
+     "\u7a0b",
+     1
+    ],
+    [
+     8532,
+     "\u0644",
+     1
+    ],
+    [
+     104174,
+     "\u53d1\u5c55\u7684",
+     1
+    ],
+    [
+     9665,
+     "iostream",
+     1
+    ],
+    [
+     481,
+     " -",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     279,
+     " the",
+     1
+    ],
+    [
+     48312,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen1.5-1.8B|text|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 18,
+   "modal_endpoint_share": 0.2083,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.1979,
+   "cyclic_fraction": 0.7604,
+   "endpoint_histogram": [
+    [
+     279,
+     " the",
+     20
+    ],
+    [
+     15,
+     "0",
+     19
+    ],
+    [
+     1782,
+     "the",
+     17
+    ],
+    [
+     1156,
+     " first",
+     11
+    ],
+    [
+     882,
+     " time",
+     8
+    ],
+    [
+     48312,
+     "\ufffd",
+     5
+    ],
+    [
+     315,
+     " of",
+     3
+    ],
+    [
+     323,
+     " and",
+     2
+    ],
+    [
+     11,
+     ",",
+     2
+    ],
+    [
+     20673,
+     " puede",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ],
+    [
+     1565,
+     " `",
+     1
+    ],
+    [
+     5510,
+     " ways",
+     1
+    ],
+    [
+     102018,
+     "\u800c\u8a00",
+     1
+    ],
+    [
+     17,
+     "2",
+     1
+    ],
+    [
+     90,
+     "{",
+     1
+    ],
+    [
+     3019,
+     " step",
+     1
+    ],
+    [
+     2608,
+     " height",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen1.5-1.8B|text|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 9,
+   "modal_endpoint_share": 0.7917,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9167,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     76
+    ],
+    [
+     279,
+     " the",
+     7
+    ],
+    [
+     16,
+     "1",
+     4
+    ],
+    [
+     11,
+     ",",
+     2
+    ],
+    [
+     13,
+     ".",
+     2
+    ],
+    [
+     1424,
+     " hand",
+     2
+    ],
+    [
+     14,
+     "/",
+     1
+    ],
+    [
+     92,
+     "}",
+     1
+    ],
+    [
+     3745,
+     " box",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen1.5-1.8B|text|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 20,
+   "modal_endpoint_share": 0.2708,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.2812,
+   "cyclic_fraction": 0.6875,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     26
+    ],
+    [
+     279,
+     " the",
+     16
+    ],
+    [
+     1782,
+     "the",
+     13
+    ],
+    [
+     1156,
+     " first",
+     10
+    ],
+    [
+     882,
+     " time",
+     9
+    ],
+    [
+     315,
+     " of",
+     4
+    ],
+    [
+     48312,
+     "\ufffd",
+     3
+    ],
+    [
+     323,
+     " and",
+     2
+    ],
+    [
+     1565,
+     " `",
+     2
+    ],
+    [
+     32664,
+     "\u5bf9",
+     1
+    ],
+    [
+     1281,
+     " make",
+     1
+    ],
+    [
+     63,
+     "`",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ],
+    [
+     3019,
+     " step",
+     1
+    ],
+    [
+     21791,
+     " forma",
+     1
+    ],
+    [
+     220,
+     " ",
+     1
+    ],
+    [
+     1372,
+     " number",
+     1
+    ],
+    [
+     366,
+     " <",
+     1
+    ],
+    [
+     262,
+     "   ",
+     1
+    ]
+   ],
+   "cls": "borderline",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen1.5-1.8B|text|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.8229,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.8854,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     79
+    ],
+    [
+     279,
+     " the",
+     5
+    ],
+    [
+     16,
+     "1",
+     4
+    ],
+    [
+     13,
+     ".",
+     3
+    ],
+    [
+     20673,
+     " puede",
+     2
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     17,
+     "2",
+     1
+    ],
+    [
+     1008,
+     " other",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen1.5-1.8B",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "HuggingFaceTB/SmolLM-1.7B|rung": {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "abs_err": 0.0,
+   "theirs": 0.5938,
+   "mine": 0.5938
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.4062,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.5938,
+   "cyclic_fraction": 0.4062,
+   "endpoint_histogram": [
+    [
+     198,
+     "\n",
+     39
+    ],
+    [
+     808,
+     " first",
+     30
+    ],
+    [
+     41,
+     "9",
+     16
+    ],
+    [
+     34,
+     "2",
+     7
+    ],
+    [
+     32,
+     "0",
+     2
+    ],
+    [
+     655,
+     " time",
+     1
+    ],
+    [
+     33,
+     "1",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.4792,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     260,
+     " the",
+     46
+    ],
+    [
+     19,
+     "#",
+     18
+    ],
+    [
+     808,
+     " first",
+     9
+    ],
+    [
+     30,
+     ".",
+     8
+    ],
+    [
+     768,
+     " most",
+     4
+    ],
+    [
+     1273,
+     " common",
+     3
+    ],
+    [
+     1443,
+     " few",
+     3
+    ],
+    [
+     198,
+     "\n",
+     2
+    ],
+    [
+     42,
+     ":",
+     2
+    ],
+    [
+     246,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 7,
+   "modal_endpoint_share": 0.3958,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.5312,
+   "cyclic_fraction": 0.4688,
+   "endpoint_histogram": [
+    [
+     198,
+     "\n",
+     38
+    ],
+    [
+     808,
+     " first",
+     33
+    ],
+    [
+     41,
+     "9",
+     10
+    ],
+    [
+     34,
+     "2",
+     8
+    ],
+    [
+     32,
+     "0",
+     4
+    ],
+    [
+     33,
+     "1",
+     2
+    ],
+    [
+     241,
+     "\ufffd",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "HuggingFaceTB/SmolLM-1.7B|random|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 14,
+   "modal_endpoint_share": 0.3542,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     260,
+     " the",
+     34
+    ],
+    [
+     30,
+     ".",
+     15
+    ],
+    [
+     768,
+     " most",
+     14
+    ],
+    [
+     19,
+     "#",
+     11
+    ],
+    [
+     808,
+     " first",
+     10
+    ],
+    [
+     1273,
+     " common",
+     3
+    ],
+    [
+     1443,
+     " few",
+     2
+    ],
+    [
+     41345,
+     " landslide",
+     1
+    ],
+    [
+     28,
+     ",",
+     1
+    ],
+    [
+     198,
+     "\n",
+     1
+    ],
+    [
+     123,
+     "\ufffd",
+     1
+    ],
+    [
+     314,
+     " is",
+     1
+    ],
+    [
+     17498,
+     " shrubs",
+     1
+    ],
+    [
+     42,
+     ":",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.5312,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.7188,
+   "cyclic_fraction": 0.2812,
+   "endpoint_histogram": [
+    [
+     198,
+     "\n",
+     51
+    ],
+    [
+     808,
+     " first",
+     20
+    ],
+    [
+     41,
+     "9",
+     16
+    ],
+    [
+     32,
+     "0",
+     3
+    ],
+    [
+     820,
+     " get",
+     2
+    ],
+    [
+     34,
+     "2",
+     2
+    ],
+    [
+     655,
+     " time",
+     1
+    ],
+    [
+     33,
+     "1",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.4479,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     260,
+     " the",
+     43
+    ],
+    [
+     19,
+     "#",
+     19
+    ],
+    [
+     30,
+     ".",
+     10
+    ],
+    [
+     768,
+     " most",
+     7
+    ],
+    [
+     808,
+     " first",
+     6
+    ],
+    [
+     198,
+     "\n",
+     4
+    ],
+    [
+     42,
+     ":",
+     3
+    ],
+    [
+     1273,
+     " common",
+     2
+    ],
+    [
+     1443,
+     " few",
+     1
+    ],
+    [
+     1502,
+     " type",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 13,
+   "modal_endpoint_share": 0.4583,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.6146,
+   "cyclic_fraction": 0.3854,
+   "endpoint_histogram": [
+    [
+     198,
+     "\n",
+     44
+    ],
+    [
+     808,
+     " first",
+     22
+    ],
+    [
+     41,
+     "9",
+     13
+    ],
+    [
+     32,
+     "0",
+     3
+    ],
+    [
+     428,
+     " R",
+     3
+    ],
+    [
+     34,
+     "2",
+     3
+    ],
+    [
+     820,
+     " get",
+     2
+    ],
+    [
+     2771,
+     "right",
+     1
+    ],
+    [
+     216,
+     " ",
+     1
+    ],
+    [
+     33,
+     "1",
+     1
+    ],
+    [
+     260,
+     " the",
+     1
+    ],
+    [
+     970,
+     " way",
+     1
+    ],
+    [
+     655,
+     " time",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "HuggingFaceTB/SmolLM-1.7B|text|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.3125,
+   "modal_endpoint_token": " the",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 1.0,
+   "endpoint_histogram": [
+    [
+     260,
+     " the",
+     30
+    ],
+    [
+     768,
+     " most",
+     17
+    ],
+    [
+     30,
+     ".",
+     16
+    ],
+    [
+     19,
+     "#",
+     12
+    ],
+    [
+     808,
+     " first",
+     7
+    ],
+    [
+     1273,
+     " common",
+     5
+    ],
+    [
+     198,
+     "\n",
+     4
+    ],
+    [
+     42,
+     ":",
+     1
+    ],
+    [
+     46,
+     ">",
+     1
+    ],
+    [
+     378,
+     " The",
+     1
+    ],
+    [
+     5770,
+     " prices",
+     1
+    ],
+    [
+     28,
+     ",",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|rung": {
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "abs_err": 0.0,
+   "theirs": 0.5729,
+   "mine": 0.5729
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 15,
+   "modal_endpoint_share": 0.5833,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.5729,
+   "cyclic_fraction": 0.375,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     56
+    ],
+    [
+     5510,
+     " ways",
+     18
+    ],
+    [
+     397,
+     ">\n",
+     7
+    ],
+    [
+     67879,
+     " \u044d\u0442\u043e",
+     2
+    ],
+    [
+     8591,
+     " numpy",
+     2
+    ],
+    [
+     486,
+     "::",
+     2
+    ],
+    [
+     220,
+     " ",
+     1
+    ],
+    [
+     100339,
+     "\u674e",
+     1
+    ],
+    [
+     130324,
+     "\u4ed6\u306e",
+     1
+    ],
+    [
+     125194,
+     "\u062b\u064a\u0631",
+     1
+    ],
+    [
+     39357,
+     " ciudad",
+     1
+    ],
+    [
+     1731,
+     "Info",
+     1
+    ],
+    [
+     104078,
+     "\u7acb\u5373",
+     1
+    ],
+    [
+     32,
+     "A",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 16,
+   "modal_endpoint_share": 0.7292,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0208,
+   "cyclic_fraction": 0.9479,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     70
+    ],
+    [
+     25,
+     ":",
+     6
+    ],
+    [
+     3572,
+     ".Collections",
+     4
+    ],
+    [
+     62,
+     "_",
+     3
+    ],
+    [
+     19,
+     "4",
+     2
+    ],
+    [
+     96555,
+     "\u6b63\u5728",
+     1
+    ],
+    [
+     63638,
+     " Charlottesville",
+     1
+    ],
+    [
+     1,
+     "\"",
+     1
+    ],
+    [
+     101645,
+     "\u6109",
+     1
+    ],
+    [
+     8425,
+     "Scroll",
+     1
+    ],
+    [
+     486,
+     "::",
+     1
+    ],
+    [
+     111567,
+     "\u70b3",
+     1
+    ],
+    [
+     821,
+     " data",
+     1
+    ],
+    [
+     27,
+     "<",
+     1
+    ],
+    [
+     26758,
+     ",,,,",
+     1
+    ],
+    [
+     50350,
+     "\u53d6\u6d88",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 18,
+   "modal_endpoint_share": 0.5833,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.5729,
+   "cyclic_fraction": 0.3438,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     56
+    ],
+    [
+     5510,
+     " ways",
+     16
+    ],
+    [
+     8591,
+     " numpy",
+     4
+    ],
+    [
+     39357,
+     " ciudad",
+     4
+    ],
+    [
+     128382,
+     " g\u00ec",
+     2
+    ],
+    [
+     130324,
+     "\u4ed6\u306e",
+     2
+    ],
+    [
+     2661,
+     " given",
+     1
+    ],
+    [
+     44991,
+     "\u4e09",
+     1
+    ],
+    [
+     220,
+     " ",
+     1
+    ],
+    [
+     50511,
+     "\u5e94",
+     1
+    ],
+    [
+     3837,
+     "\uff0c",
+     1
+    ],
+    [
+     8997,
+     "\u3002\n",
+     1
+    ],
+    [
+     104078,
+     "\u7acb\u5373",
+     1
+    ],
+    [
+     46295,
+     "WebRequest",
+     1
+    ],
+    [
+     21543,
+     "Recognizer",
+     1
+    ],
+    [
+     198,
+     "\n",
+     1
+    ],
+    [
+     125194,
+     "\u062b\u064a\u0631",
+     1
+    ],
+    [
+     2130,
+     "____",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "random",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|random|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 18,
+   "modal_endpoint_share": 0.7083,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.8958,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     68
+    ],
+    [
+     25,
+     ":",
+     10
+    ],
+    [
+     62,
+     "_",
+     2
+    ],
+    [
+     536,
+     " class",
+     2
+    ],
+    [
+     428,
+     "=\"",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ],
+    [
+     105692,
+     "\u4eba\u4e8b",
+     1
+    ],
+    [
+     67670,
+     " unsett",
+     1
+    ],
+    [
+     19,
+     "4",
+     1
+    ],
+    [
+     9397,
+     ".support",
+     1
+    ],
+    [
+     46295,
+     "WebRequest",
+     1
+    ],
+    [
+     111473,
+     "\u4fdd\u536b",
+     1
+    ],
+    [
+     611,
+     "div",
+     1
+    ],
+    [
+     3572,
+     ".Collections",
+     1
+    ],
+    [
+     3133,
+     ".v",
+     1
+    ],
+    [
+     27,
+     "<",
+     1
+    ],
+    [
+     65877,
+     "\ufffd",
+     1
+    ],
+    [
+     124669,
+     "\u0627\u0631\u0627\u062a",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "random",
+   "arm": "bos",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|raw|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.4792,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.4792,
+   "cyclic_fraction": 0.4688,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     46
+    ],
+    [
+     5510,
+     " ways",
+     41
+    ],
+    [
+     8591,
+     " numpy",
+     3
+    ],
+    [
+     13,
+     ".",
+     2
+    ],
+    [
+     397,
+     ">\n",
+     1
+    ],
+    [
+     220,
+     " ",
+     1
+    ],
+    [
+     3405,
+     " question",
+     1
+    ],
+    [
+     3084,
+     " length",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|bos|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 16,
+   "modal_endpoint_share": 0.7604,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.8854,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     73
+    ],
+    [
+     25,
+     ":",
+     4
+    ],
+    [
+     428,
+     "=\"",
+     2
+    ],
+    [
+     448,
+     " with",
+     2
+    ],
+    [
+     611,
+     "div",
+     2
+    ],
+    [
+     1140,
+     " list",
+     2
+    ],
+    [
+     3133,
+     ".v",
+     2
+    ],
+    [
+     31041,
+     " discord",
+     1
+    ],
+    [
+     198,
+     "\n",
+     1
+    ],
+    [
+     35036,
+     " artifacts",
+     1
+    ],
+    [
+     62,
+     "_",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     13,
+     ".",
+     1
+    ],
+    [
+     1940,
+     "\u2026",
+     1
+    ],
+    [
+     220,
+     " ",
+     1
+    ],
+    [
+     5954,
+     "android",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 20260803
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|raw|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.5208,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.5104,
+   "cyclic_fraction": 0.4271,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     50
+    ],
+    [
+     5510,
+     " ways",
+     30
+    ],
+    [
+     8591,
+     " numpy",
+     8
+    ],
+    [
+     13,
+     ".",
+     2
+    ],
+    [
+     198,
+     "\n",
+     1
+    ],
+    [
+     39357,
+     " ciudad",
+     1
+    ],
+    [
+     16,
+     "1",
+     1
+    ],
+    [
+     3405,
+     " question",
+     1
+    ],
+    [
+     397,
+     ">\n",
+     1
+    ],
+    [
+     366,
+     " <",
+     1
+    ]
+   ],
+   "cls": "funnel",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "text",
+   "arm": "raw",
+   "census_seed": 990017
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct|text|bos|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 15,
+   "modal_endpoint_share": 0.7396,
+   "modal_endpoint_token": "0",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.8646,
+   "endpoint_histogram": [
+    [
+     15,
+     "0",
+     71
+    ],
+    [
+     428,
+     "=\"",
+     3
+    ],
+    [
+     611,
+     "div",
+     3
+    ],
+    [
+     1140,
+     " list",
+     3
+    ],
+    [
+     76,
+     "m",
+     2
+    ],
+    [
+     25,
+     ":",
+     2
+    ],
+    [
+     5954,
+     "android",
+     2
+    ],
+    [
+     13,
+     ".",
+     2
+    ],
+    [
+     3572,
+     ".Collections",
+     2
+    ],
+    [
+     62,
+     "_",
+     1
+    ],
+    [
+     1,
+     "\"",
+     1
+    ],
+    [
+     12645,
+     " machines",
+     1
+    ],
+    [
+     2203,
+     "post",
+     1
+    ],
+    [
+     448,
+     " with",
+     1
+    ],
+    [
+     8123,
+     " volume",
+     1
+    ]
+   ],
+   "cls": "none",
+   "model": "Qwen/Qwen2.5-1.5B-Instruct",
+   "start_kind": "text",
+   "arm": "bos",
+   "census_seed": 990017
+  }
+ },
+ "_preregistration": {
+  "models": [
+   "tiiuae/Falcon3-1B-Base",
+   "sapienzanlp/Minerva-3B-base-v1.0",
+   "EleutherAI/pythia-410m-deduped",
+   "Qwen/Qwen1.5-1.8B",
+   "HuggingFaceTB/SmolLM-1.7B",
+   "Qwen/Qwen2.5-1.5B-Instruct"
+  ],
+  "start_kinds": [
+   "random",
+   "text"
+  ],
+  "arms": [
+   "raw",
+   "bos"
+  ],
+  "pile_rows": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39
+  ],
+  "n_starts": 96,
+  "census_seeds": [
+   20260803,
+   990017
+  ],
+  "min_shift": 0.041666666666666664,
+  "noise_factor": 2.0,
+  "rung": "the local census must reproduce gate1.argmax_census BIT-IDENTICALLY on the starts that function would have drawn; gate1 is not edited because its import closure is stamped into every stored result",
+  "primary": "does d(phi) = phi(bos) - phi(raw) survive when starts are in-distribution bigrams",
+  "readings": {
+   "survives": "the domain effect is not an OOD artefact; paper 2 stands as drafted",
+   "collapses": "F144-F159 are CONDITIONAL ON OOD INPUT -- must go in the abstract, not the limits",
+   "mixed": "report per model; do not summarise as a rate"
+  },
+  "secondary": "phi under text vs random starts on the raw arm -- a large baseline shift means the two regimes are not probing the same object",
+  "why": "F66 already found this construction's degeneracy to be an out-of-distribution prompt artefact, and F159 found the sink account failing specifically on the uniformly random tokens our census feeds"
+ },
+ "analysis": {
+  "rows": {
+   "tiiuae/Falcon3-1B-Base": {
+    "random|raw": {
+     "phi": 0.2135,
+     "noise": 0.0313
+    },
+    "random|bos": {
+     "phi": 0.9062,
+     "noise": 0.0417
+    },
+    "text|raw": {
+     "phi": 0.25,
+     "noise": 0.0208
+    },
+    "text|bos": {
+     "phi": 0.9636,
+     "noise": 0.0105
+    }
+   },
+   "sapienzanlp/Minerva-3B-base-v1.0": {
+    "random|raw": {
+     "phi": 0.3281,
+     "noise": 0.0104
+    },
+    "random|bos": {
+     "phi": 0.0052,
+     "noise": 0.0104
+    },
+    "text|raw": {
+     "phi": 0.4219,
+     "noise": 0.0313
+    },
+    "text|bos": {
+     "phi": 0.0625,
+     "noise": 0.0208
+    }
+   },
+   "EleutherAI/pythia-410m-deduped": {
+    "random|raw": {
+     "phi": 0.4271,
+     "noise": 0.0208
+    },
+    "random|bos": {
+     "phi": 0.0052,
+     "noise": 0.0104
+    },
+    "text|raw": {
+     "phi": 0.5365,
+     "noise": 0.0313
+    },
+    "text|bos": {
+     "phi": 0.0,
+     "noise": 0.0
+    }
+   },
+   "Qwen/Qwen1.5-1.8B": {
+    "random|raw": {
+     "phi": 0.5104,
+     "noise": 0.0208
+    },
+    "random|bos": {
+     "phi": 0.0,
+     "noise": 0.0
+    },
+    "text|raw": {
+     "phi": 0.2395,
+     "noise": 0.0833
+    },
+    "text|bos": {
+     "phi": 0.0,
+     "noise": 0.0
+    }
+   },
+   "HuggingFaceTB/SmolLM-1.7B": {
+    "random|raw": {
+     "phi": 0.5625,
+     "noise": 0.0626
+    },
+    "random|bos": {
+     "phi": 0.0,
+     "noise": 0.0
+    },
+    "text|raw": {
+     "phi": 0.6667,
+     "noise": 0.1042
+    },
+    "text|bos": {
+     "phi": 0.0,
+     "noise": 0.0
+    }
+   },
+   "Qwen/Qwen2.5-1.5B-Instruct": {
+    "random|raw": {
+     "phi": 0.5729,
+     "noise": 0.0
+    },
+    "random|bos": {
+     "phi": 0.0104,
+     "noise": 0.0208
+    },
+    "text|raw": {
+     "phi": 0.4948,
+     "noise": 0.0312
+    },
+    "text|bos": {
+     "phi": 0.0052,
+     "noise": 0.0104
+    }
+   }
+  },
+  "table": [
+   {
+    "model": "tiiuae/Falcon3-1B-Base",
+    "phi_rand_raw": 0.2135,
+    "phi_rand_bos": 0.9062,
+    "d_random": 0.6927,
+    "tol_random": 0.0834,
+    "phi_text_raw": 0.25,
+    "phi_text_bos": 0.9636,
+    "d_text": 0.7136,
+    "tol_text": 0.0417,
+    "verdict": "survives"
+   },
+   {
+    "model": "sapienzanlp/Minerva-3B-base-v1.0",
+    "phi_rand_raw": 0.3281,
+    "phi_rand_bos": 0.0052,
+    "d_random": -0.3229,
+    "tol_random": 0.0417,
+    "phi_text_raw": 0.4219,
+    "phi_text_bos": 0.0625,
+    "d_text": -0.3594,
+    "tol_text": 0.0626,
+    "verdict": "survives"
+   },
+   {
+    "model": "EleutherAI/pythia-410m-deduped",
+    "phi_rand_raw": 0.4271,
+    "phi_rand_bos": 0.0052,
+    "d_random": -0.4219,
+    "tol_random": 0.0417,
+    "phi_text_raw": 0.5365,
+    "phi_text_bos": 0.0,
+    "d_text": -0.5365,
+    "tol_text": 0.0626,
+    "verdict": "survives"
+   },
+   {
+    "model": "Qwen/Qwen1.5-1.8B",
+    "phi_rand_raw": 0.5104,
+    "phi_rand_bos": 0.0,
+    "d_random": -0.5104,
+    "tol_random": 0.0417,
+    "phi_text_raw": 0.2395,
+    "phi_text_bos": 0.0,
+    "d_text": -0.2395,
+    "tol_text": 0.1666,
+    "verdict": "survives"
+   },
+   {
+    "model": "HuggingFaceTB/SmolLM-1.7B",
+    "phi_rand_raw": 0.5625,
+    "phi_rand_bos": 0.0,
+    "d_random": -0.5625,
+    "tol_random": 0.1252,
+    "phi_text_raw": 0.6667,
+    "phi_text_bos": 0.0,
+    "d_text": -0.6667,
+    "tol_text": 0.2084,
+    "verdict": "survives"
+   },
+   {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "phi_rand_raw": 0.5729,
+    "phi_rand_bos": 0.0104,
+    "d_random": -0.5625,
+    "tol_random": 0.0417,
+    "phi_text_raw": 0.4948,
+    "phi_text_bos": 0.0052,
+    "d_text": -0.4896,
+    "tol_text": 0.0624,
+    "verdict": "survives"
+   }
+  ],
+  "survives": [
+   "tiiuae/Falcon3-1B-Base",
+   "sapienzanlp/Minerva-3B-base-v1.0",
+   "EleutherAI/pythia-410m-deduped",
+   "Qwen/Qwen1.5-1.8B",
+   "HuggingFaceTB/SmolLM-1.7B",
+   "Qwen/Qwen2.5-1.5B-Instruct"
+  ],
+  "collapses": [],
+  "undecided": [],
+  "primary_readable": true,
+  "baseline_shift": [
+   {
+    "model": "tiiuae/Falcon3-1B-Base",
+    "phi_random": 0.2135,
+    "phi_text": 0.25,
+    "shift": 0.0365
+   },
+   {
+    "model": "sapienzanlp/Minerva-3B-base-v1.0",
+    "phi_random": 0.3281,
+    "phi_text": 0.4219,
+    "shift": 0.0938
+   },
+   {
+    "model": "EleutherAI/pythia-410m-deduped",
+    "phi_random": 0.4271,
+    "phi_text": 0.5365,
+    "shift": 0.1094
+   },
+   {
+    "model": "Qwen/Qwen1.5-1.8B",
+    "phi_random": 0.5104,
+    "phi_text": 0.2395,
+    "shift": -0.2708
+   },
+   {
+    "model": "HuggingFaceTB/SmolLM-1.7B",
+    "phi_random": 0.5625,
+    "phi_text": 0.6667,
+    "shift": 0.1042
+   },
+   {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "phi_random": 0.5729,
+    "phi_text": 0.4948,
+    "shift": -0.0781
+   }
+  ]
+ },
+ "verdict": "RUNG (local census reproduces gate1.argmax_census on identical starts): 6 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives; SmolLM-1.7B: random -0.562 (tol 0.125) vs text -0.667 (tol 0.208) -> survives; Qwen2.5-1.5B-Instruct: random -0.562 (tol 0.042) vs text -0.490 (tol 0.062) -> survives. Survives on 6, collapses or reverses on 0, untestable on 0 of 6. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271); SmolLM-1.7B 0.562 -> 0.667 (+0.104); Qwen2.5-1.5B-Instruct 0.573 -> 0.495 (-0.078). 1 of 6 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 6 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.",
+ "_analysis_provenance": {
+  "script": "in_distribution_census.py",
+  "sha256": "8f35837cd7eae34647c53dcd3664d877cec2e07efb0fd68febb9b65c397a82ff",
+  "imports": {
+   "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
+   "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
+   "experiments/argmax_census_templated.py": "59cc595273efb03e3975042c35a8ebdf79d7f7e679f041f23b99725c4fc86dba",
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/in_distribution_census.py": "8f35837cd7eae34647c53dcd3664d877cec2e07efb0fd68febb9b65c397a82ff",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "fingerprint/gate1.py": "86e58f562f673af3e3509e45cea1a19ad39cbcc9d108f21f4e07f86bbefa7c42",
+   "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
+   "gatecheck/src/gatecheck/__init__.py": "2b4d939029c72691c46ac188493dfd62771a7b51055055e32d5300e746967750",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

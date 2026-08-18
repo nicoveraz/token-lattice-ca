@@ -3645,6 +3645,66 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F160 — the domain effect is NOT an out-of-distribution artefact: it survives in-distribution starts on 6 of 6 models. F66's warning does not extend to this readout.
+The highest-stakes check in the domain sequence, and it is a check on our own foundations rather than
+on the literature. **F66 already found this construction's degeneracy to be an out-of-distribution
+prompt artefact** — a two-token context is far outside anything a model trained on thousands of
+tokens has seen, and one BOS token collapsed the frozen fraction 74.4% → 24.1%, which F66 read as
+*the signature of an OOD prompt, not of model dynamics*. Every finding F144–F159 runs on that same
+census, with starts drawn **uniformly from the vocabulary** — not merely short, but token pairs no
+corpus contains. F159 then found the attention-sink account failing specifically on such tokens. If
+the domain effects were conditional on that, paper 2's subject would shrink to *how models respond to
+conditioning when seeded with nonsense*.
+
+**PRIMARY — the effect survives on all six models.** Holding everything fixed except where starts
+come from (`random` = two tokens drawn uniformly; `text` = two **adjacent** tokens from real Pile
+text, so the bigram is one a corpus contains):
+
+| model | raw→bos, random | raw→bos, text | Δ random | Δ text | |
+|---|---|---|---|---|---|
+| Falcon3-1B-Base | 0.214 → 0.906 | 0.250 → **0.964** | +0.693 | +0.714 | survives, **up** |
+| Minerva-3B-base | 0.328 → 0.005 | 0.422 → 0.062 | −0.323 | −0.359 | survives |
+| pythia-410m-deduped | 0.427 → 0.005 | 0.536 → 0.000 | −0.422 | −0.536 | survives |
+| Qwen1.5-1.8B | 0.510 → 0.000 | 0.240 → 0.000 | −0.510 | −0.239 | survives |
+| SmolLM-1.7B | 0.562 → 0.000 | 0.667 → 0.000 | −0.562 | −0.667 | survives |
+| Qwen2.5-1.5B-Instruct | 0.573 → 0.010 | 0.495 → 0.005 | −0.562 | −0.490 | survives |
+
+Every effect keeps its sign and its rough magnitude, **including the bidirectionality** — `Falcon3-1B`
+still rises to 0.964 while the rest collapse. That is what F154's central table depends on, and it is
+not an artefact of feeding the loop nonsense.
+
+**Why F66 and F160 are both right.** F66's frozen fraction was the attractor share at temperature, and
+BOS collapsed it. Here the argmax map's fixed-point structure responds to conditioning the same way on
+random pairs and on real bigrams. The OOD sensitivity F66 identified is a property of *that* readout,
+not of the two-token context as such.
+
+**A magnitude comparison that must NOT be made, and the finding says so.** Four of six models reach
+$\phi \approx 0$ under BOS in **both** regimes (`pythia`, `Qwen1.5`, `SmolLM`, `Qwen2.5-1.5B`). Their
+$\Delta\phi$ is therefore **floor-bounded** — it cannot exceed the baseline — so comparing
+$|\Delta\phi|$ across regimes measures the difference in starting points, not in effect. `Qwen1.5`
+is the clean example: $-0.510$ versus $-0.239$ looks like the effect halving, but both arms annihilate
+the structure completely and the gap is entirely its baseline shift. Read correctly this is
+*stronger* evidence of survival. Comparing shift magnitudes across differing baselines is the floor
+confound F149 exists to catch.
+
+**RUNG.** `gate1.argmax_census` draws its starts internally and cannot take them as an argument, and
+editing `gate1` would invalidate every stored result through the provenance import closure — a
+mistake already made once in this project. So this experiment carries its own census and **proves**
+it reproduces `argmax_census` bit-identically on the starts that function would have drawn:
+error $0.00\mathrm{e}{+}00$ on all six models.
+
+**SECONDARY, and it bounds the reading.** Baseline $\phi$ on the raw arm shifts by $<0.11$ on five
+models but by $-0.271$ on `Qwen1.5` (0.510 → 0.240). One model past the 0.20 threshold is enough that
+the PRIMARY should be read as a comparison **between two regimes** rather than a robustness check
+within one — the two start distributions are not everywhere probing the same object.
+
+**Boundary.** Six models, ONE text source (Pile rows 0–39), ONE prefix kind (BOS), two census seeds.
+"In-distribution" here means adjacent pairs from one corpus, not representative of use. An n≥3 gate
+was added before reading the primary: the unguarded version had already printed "the domain effect is
+NOT an out-of-distribution artefact" from a single model, which would have been the fifth confident
+universal from a handful of models in this programme (F151, F153, F154, F156 were the first four).
+`experiments/in_distribution_census.py` → `results/in_distribution_census.json`.
+
 ### F159 — the regime difference is CONTENT, not length: on real text BOS raises the sink uniformly; on random tokens it does not. Paper 2 narrows from "contradiction" to "different regime".
 F158 found sink strength failing to predict the sign of the domain effect, and the sink literature's
 uniformity claim failing to reproduce at 3-token contexts. It named ONE regime difference — length —

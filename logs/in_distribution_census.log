@@ -1,0 +1,112 @@
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4501.64it/s]
+  sapienzanlp/Minerva-3B-base-v1.0   RUNG theirs=0.3229 mine=0.3229 err=0.00e+00
+  sapienzanlp/Minerva-3B-base-v1.0   random raw s=20260803 cls=funnel      phi=0.323
+  sapienzanlp/Minerva-3B-base-v1.0   random bos s=20260803 cls=none        phi=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   random raw s=990017 cls=funnel      phi=0.333
+  sapienzanlp/Minerva-3B-base-v1.0   random bos s=990017 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   text   raw s=20260803 cls=funnel      phi=0.438
+  sapienzanlp/Minerva-3B-base-v1.0   text   bos s=20260803 cls=none        phi=0.052
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   text   raw s=990017 cls=funnel      phi=0.406
+  sapienzanlp/Minerva-3B-base-v1.0   text   bos s=990017 cls=none        phi=0.073
+  sapienzanlp/Minerva-3B-base-v1.0   done in 1046s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 2 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, per model so far: Falcon3-1B-Base: random +0.693 vs text +0.714 -> survives; Minerva-3B-base-v1.0: random -0.323 vs text -0.359 -> survives. NOT READ: 2 of 3 models required. A confident universal from a handful of models is the defect this programme has hit four times (F151, F153, F154, F156); the count gate is here so it cannot happen a fifth.
+
+wrote results/in_distribution_census.json
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6801.30it/s]
+  EleutherAI/pythia-410m-deduped     RUNG theirs=0.4167 mine=0.4167 err=0.00e+00
+  EleutherAI/pythia-410m-deduped     random raw s=20260803 cls=funnel      phi=0.417
+  EleutherAI/pythia-410m-deduped     random bos s=20260803 cls=none        phi=0.010
+  EleutherAI/pythia-410m-deduped     random raw s=990017 cls=funnel      phi=0.438
+  EleutherAI/pythia-410m-deduped     random bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     text   raw s=20260803 cls=funnel      phi=0.552
+  EleutherAI/pythia-410m-deduped     text   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     text   raw s=990017 cls=funnel      phi=0.521
+  EleutherAI/pythia-410m-deduped     text   bos s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     done in 415s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 3 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives. Survives on 3, collapses or reverses on 0, untestable on 0 of 3. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109). No model shifts by >= 0.20, so the two start distributions probe comparable objects and the PRIMARY is a robustness check in the ordinary sense. BOUNDARY: 3 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6692.85it/s]
+  Qwen/Qwen1.5-1.8B                  RUNG theirs=0.5208 mine=0.5208 err=0.00e+00
+  Qwen/Qwen1.5-1.8B                  random raw s=20260803 cls=funnel      phi=0.521
+  Qwen/Qwen1.5-1.8B                  random bos s=20260803 cls=none        phi=0.000
+  Qwen/Qwen1.5-1.8B                  random raw s=990017 cls=funnel      phi=0.500
+  Qwen/Qwen1.5-1.8B                  random bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  text   raw s=20260803 cls=borderline  phi=0.198
+  Qwen/Qwen1.5-1.8B                  text   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  text   raw s=990017 cls=borderline  phi=0.281
+  Qwen/Qwen1.5-1.8B                  text   bos s=990017 cls=none        phi=0.000
+  Qwen/Qwen1.5-1.8B                  done in 1117s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 4 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives. Survives on 4, collapses or reverses on 0, untestable on 0 of 4. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271). 1 of 4 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 4 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4831.23it/s]
+  HuggingFaceTB/SmolLM-1.7B          RUNG theirs=0.5938 mine=0.5938 err=0.00e+00
+  HuggingFaceTB/SmolLM-1.7B          random raw s=20260803 cls=funnel      phi=0.594
+  HuggingFaceTB/SmolLM-1.7B          random bos s=20260803 cls=none        phi=0.000
+  HuggingFaceTB/SmolLM-1.7B          random raw s=990017 cls=funnel      phi=0.531
+  HuggingFaceTB/SmolLM-1.7B          random bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          text   raw s=20260803 cls=funnel      phi=0.719
+  HuggingFaceTB/SmolLM-1.7B          text   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          text   raw s=990017 cls=funnel      phi=0.615
+  HuggingFaceTB/SmolLM-1.7B          text   bos s=990017 cls=none        phi=0.000
+  HuggingFaceTB/SmolLM-1.7B          done in 1013s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 5 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives; SmolLM-1.7B: random -0.562 (tol 0.125) vs text -0.667 (tol 0.208) -> survives. Survives on 5, collapses or reverses on 0, untestable on 0 of 5. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271); SmolLM-1.7B 0.562 -> 0.667 (+0.104). 1 of 5 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 5 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5943.16it/s]
+  Qwen/Qwen2.5-1.5B-Instruct         RUNG theirs=0.5729 mine=0.5729 err=0.00e+00
+  Qwen/Qwen2.5-1.5B-Instruct         random raw s=20260803 cls=funnel      phi=0.573
+  Qwen/Qwen2.5-1.5B-Instruct         random bos s=20260803 cls=none        phi=0.021
+  Qwen/Qwen2.5-1.5B-Instruct         random raw s=990017 cls=funnel      phi=0.573
+  Qwen/Qwen2.5-1.5B-Instruct         random bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         text   raw s=20260803 cls=funnel      phi=0.479
+  Qwen/Qwen2.5-1.5B-Instruct         text   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         text   raw s=990017 cls=funnel      phi=0.510
+  Qwen/Qwen2.5-1.5B-Instruct         text   bos s=990017 cls=none        phi=0.010
+  Qwen/Qwen2.5-1.5B-Instruct         done in 1416s
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 6 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives; SmolLM-1.7B: random -0.562 (tol 0.125) vs text -0.667 (tol 0.208) -> survives; Qwen2.5-1.5B-Instruct: random -0.562 (tol 0.042) vs text -0.490 (tol 0.062) -> survives. Survives on 6, collapses or reverses on 0, untestable on 0 of 6. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271); SmolLM-1.7B 0.562 -> 0.667 (+0.104); Qwen2.5-1.5B-Instruct 0.573 -> 0.495 (-0.078). 1 of 6 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 6 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 6 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives; SmolLM-1.7B: random -0.562 (tol 0.125) vs text -0.667 (tol 0.208) -> survives; Qwen2.5-1.5B-Instruct: random -0.562 (tol 0.042) vs text -0.490 (tol 0.062) -> survives. Survives on 6, collapses or reverses on 0, untestable on 0 of 6. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271); SmolLM-1.7B 0.562 -> 0.667 (+0.104); Qwen2.5-1.5B-Instruct 0.573 -> 0.495 (-0.078). 1 of 6 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 6 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 6 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives; SmolLM-1.7B: random -0.562 (tol 0.125) vs text -0.667 (tol 0.208) -> survives; Qwen2.5-1.5B-Instruct: random -0.562 (tol 0.042) vs text -0.490 (tol 0.062) -> survives. Survives on 6, collapses or reverses on 0, untestable on 0 of 6. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271); SmolLM-1.7B 0.562 -> 0.667 (+0.104); Qwen2.5-1.5B-Instruct 0.573 -> 0.495 (-0.078). 1 of 6 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 6 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+
+  -> RUNG (local census reproduces gate1.argmax_census on identical starts): 6 models compared, worst error 0.00e+00. Bit-identical, so the only thing that differs below is WHERE THE STARTS COME FROM. PRIMARY, does the BOS domain effect survive in-distribution starts? Falcon3-1B-Base: random +0.693 (tol 0.083) vs text +0.714 (tol 0.042) -> survives; Minerva-3B-base-v1.0: random -0.323 (tol 0.042) vs text -0.359 (tol 0.063) -> survives; pythia-410m-deduped: random -0.422 (tol 0.042) vs text -0.536 (tol 0.063) -> survives; Qwen1.5-1.8B: random -0.510 (tol 0.042) vs text -0.239 (tol 0.167) -> survives; SmolLM-1.7B: random -0.562 (tol 0.125) vs text -0.667 (tol 0.208) -> survives; Qwen2.5-1.5B-Instruct: random -0.562 (tol 0.042) vs text -0.490 (tol 0.062) -> survives. Survives on 6, collapses or reverses on 0, untestable on 0 of 6. The domain effect is NOT an out-of-distribution artefact on these models: it survives when the loop is seeded with real bigrams. F66's warning does not extend to this readout, and paper 2's claims stand as drafted. SECONDARY, phi under text starts vs random starts on the RAW arm: Falcon3-1B-Base 0.214 -> 0.250 (+0.036); Minerva-3B-base-v1.0 0.328 -> 0.422 (+0.094); pythia-410m-deduped 0.427 -> 0.536 (+0.109); Qwen1.5-1.8B 0.510 -> 0.240 (-0.271); SmolLM-1.7B 0.562 -> 0.667 (+0.104); Qwen2.5-1.5B-Instruct 0.573 -> 0.495 (-0.078). 1 of 6 models shift by >= 0.20, so the two start distributions are not probing the same object and the PRIMARY must be read as a comparison between two regimes rather than a robustness check within one. BOUNDARY: 6 models, ONE text source (Pile rows 0-39), ONE prefix kind (BOS), 2 census seeds, 96 starts. 'In-distribution' here means adjacent pairs from one corpus, not representative of use. The local census is gate1's, proven by the RUNG rather than assumed.
+
+wrote results/in_distribution_census.json
+=== idc done ===
