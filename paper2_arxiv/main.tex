@@ -382,11 +382,28 @@ every domain shift it has.% F150, results/midrange_screen.json
 produced this framing refuted $13$ of $74$ extracted claims for overreaching their own sources,% F157, results/prior_art_domain_journal.jsonl
 so each work must be read in full before its key is entered. Do not submit with placeholders.
 
-\paragraph{A gap this cannot close.} $\fpf$ is not measurable at long context --- the census is
-defined at two-token starts --- so we can bound where the sink account applies but cannot connect it
-to our readout in the regime where it holds. Whether a probe built on in-distribution starts would
-show the same domain effects is open, and is the natural next construction rather than a fix to this
-one.
+\paragraph{The probe's own input distribution, tested.}% F160, results/in_distribution_census.json
+Our census draws starts uniformly from the vocabulary --- token pairs no corpus contains --- and
+\S\ref{sec:sink} shows the nearest mechanistic account behaves differently on exactly such input.
+That raises the obvious worry that the domain effects are an out-of-distribution artefact, and it is
+not hypothetical: earlier work of ours on a sibling readout found precisely that, reading a collapse
+under one BOS token as the signature of an OOD prompt rather than of model dynamics.
+
+Holding everything fixed but the start distribution --- uniform token pairs versus \emph{adjacent}
+pairs drawn from real text --- the domain effect survives on $6$ of $6$ models, keeping its sign and
+rough magnitude, \textbf{including the bidirectionality of Table~\ref{tab:p1}}: one model still rises
+to $0.964$ while the rest collapse. The effect is therefore not an artefact of seeding the loop with
+nonsense.
+
+Two cautions belong with that. Four of the six reach $\fpf \approx 0$ under BOS in \emph{both}
+regimes, so their $\Delta\fpf$ is floor-bounded and its magnitude cannot be compared across regimes
+--- a difference there measures the starting point, not the effect. And baseline $\fpf$ itself shifts
+by $-0.271$ on one model, so this is a comparison between two regimes rather than a robustness check
+within one.
+
+\paragraph{A gap this still cannot close.} $\fpf$ remains unmeasurable at long context, since the
+census is defined at two-token starts. We can bound where the sink account applies but cannot connect
+it to our readout in the regime where that account holds.
 
 % =================================================================================================
 \section{Conclusion}
