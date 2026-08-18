@@ -138,11 +138,16 @@
   author={Utimula, Keishu},
   year={2026}, eprint={2602.00036}, archivePrefix={arXiv}}
 
+% Cited in paper 2 (sec:interaction). Published at ICLR 2025; kept as @misc with the eprint
+% because the arXiv v3 is the version verified. Six models per its Sec. 3.1 (an earlier sentence
+% in the same paper still says "five" -- see CITATIONS.md).
 @misc{telephone,
   title={When {LLMs} Play the Telephone Game: Cultural Attractors as Conceptual Tools to Evaluate {LLMs} in Multi-turn Settings},
   author={Perez, J{\'e}r{\'e}my and Kova{\v{c}}, Grgur and L{\'e}ger, Corentin and Colas, C{\'e}dric and Molinaro, Gaia and Derex, Maxime and Oudeyer, Pierre-Yves and Moulin-Frier, Cl{\'e}ment},
   year={2024}, eprint={2407.04503}, archivePrefix={arXiv}}
 
+% Cited in paper 2 (sec:interaction, sec:limits) as the direct contradiction: it reports attractor
+% states as model-independent. Verified against the arXiv v1 full text, Sec. 5.2.
 @misc{paraphrase2cycle,
   title={Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing},
   author={Wang, Zhilin and Li, Yafu and Yan, Jianhao and Cheng, Yu and Zhang, Yue},
@@ -330,4 +335,67 @@
   author  = {Voronov, Anton and Wolf, Lena and Ryabinin, Max},
   journal = {arXiv preprint arXiv:2401.06766},
   year    = {2024}
+}
+
+% --- paper 2 prior art, second batch. VERIFIED against the source, 18 Aug 2026.
+% Quotes in paper2_arxiv/CITATIONS.md. These resolve the eight \citepend{} placeholders.
+
+@inproceedings{lu2022ordered,
+  title     = {Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot
+               Prompt Order Sensitivity},
+  author    = {Lu, Yao and Bartolo, Max and Moore, Alastair and Riedel, Sebastian and
+               Stenetorp, Pontus},
+  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational
+               Linguistics (Volume 1: Long Papers)},
+  pages     = {8086--8098},
+  year      = {2022},
+  doi       = {10.18653/v1/2022.acl-long.556},
+  eprint    = {2104.08786}, archivePrefix = {arXiv}
+}
+
+% NOTE ON YEAR: the arXiv posting is 2024 (2407.04118) but the paper is Findings of EMNLP
+% *2023*. Cite it as 2023. Our earlier draft note said "Chen et al. 2024"; that was wrong.
+@inproceedings{chen2023mapo,
+  title     = {{MAPO}: Boosting Large Language Model Performance with Model-Adaptive
+               Prompt Optimization},
+  author    = {Chen, Yuyan and Wen, Zhihao and Fan, Ge and Chen, Zhengyu and Wu, Wei and
+               Liu, Dayiheng and Li, Zhixu and Liu, Bang and Xiao, Yanghua},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2023},
+  pages     = {3279--3304},
+  year      = {2023},
+  eprint    = {2407.04118}, archivePrefix = {arXiv}
+}
+
+@article{wang2025promptbridge,
+  title   = {{PromptBridge}: Cross-Model Prompt Transfer for Large Language Models},
+  author  = {Wang, Yaxuan and Liu, Quan and Wang, Zhenting and Li, Zichao and Wei, Wei and
+             Liu, Yang and Bao, Yujia},
+  journal = {arXiv preprint arXiv:2512.01420},
+  year    = {2025}
+}
+
+@article{kostiuk2026oneprompt,
+  title   = {One prompt is not enough: Instruction Sensitivity Undermines Embedding
+             Model Evaluation},
+  author  = {Kostiuk, Yevhen and Enevoldsen, Kenneth},
+  journal = {arXiv preprint arXiv:2605.22544},
+  year    = {2026}
+}
+
+@inproceedings{sclar2024format,
+  title     = {Quantifying Language Models' Sensitivity to Spurious Features in Prompt
+               Design or: How I learned to start worrying about prompt formatting},
+  author    = {Sclar, Melanie and Choi, Yejin and Tsvetkov, Yulia and Suhr, Alane},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  eprint    = {2310.11324}, archivePrefix = {arXiv}
+}
+
+@inproceedings{gu2025sink,
+  title     = {When Attention Sink Emerges in Language Models: An Empirical View},
+  author    = {Gu, Xiangming and Pang, Tianyu and Du, Chao and Liu, Qian and Zhang, Fengzhuo
+               and Du, Cunxiao and Wang, Ye and Lin, Min},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  eprint    = {2410.10781}, archivePrefix = {arXiv}
 }

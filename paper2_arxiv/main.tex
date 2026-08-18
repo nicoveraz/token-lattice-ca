@@ -13,9 +13,10 @@
 %    readout, and the sign behaviour contradicts what the adjacent mechanistic account predicts.
 %  * Two earlier headline claims -- a prose-vs-template "sign flip" and a universal downward
 %    direction -- are WITHDRAWN on our own evidence (F152, F155). findings.md carries the banners.
-%  * CITATIONS ARE PENDING. F157's gate refuted 13 of 74 extracted claims for overreaching their own
-%    sources. Every work referred to below must be re-read in full before its key goes in.
-%    Placeholders are \citepend{...} and render in red so they cannot be missed in a built PDF.
+%  * CITATIONS ARE RESOLVED (18 Aug 2026). F157's gate refuted 13 of 74 extracted claims for
+%    overreaching their own sources, so no key here came from a gate summary: each was read at the
+%    source and its quote recorded in CITATIONS.md. The \citepend{} macro is kept as a tripwire --
+%    it renders red in the PDF -- so any new unresolved citation cannot be missed. There are none.
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
@@ -70,13 +71,15 @@ was applying a criterion with a shape to a quantity with no room to vary.
 \subsection{What is already known}\label{sec:intro-known}
 
 Language model evaluations are sensitive to the prompt in ways that are not nuisances. Semantically
-neutral reformatting reorders leaderboards by up to eight positions\citep{alzahrani2024benchmarks}; adversarial prompt selection can promote essentially any model in a study to first
-place\citepend{embedding-model prompt selection}; per-prompt performance rankings agree across models
-only weakly, at Kendall's $W = 0.238$\citep{cao2024worstprompt}. A prompt
-optimised for one model is suboptimal on another --- named \emph{Model Drifting}\citepend{model
-drifting} and anticipated by earlier work establishing that prompt effectiveness is
-model-specific\citepend{MAPO, Chen et al. 2024}. The best prompt templates do not transfer between
-models, even within a single model family\citep{voronov2024format}.
+neutral reformatting reorders leaderboards by up to eight positions\citep{alzahrani2024benchmarks};
+under adversarial prompt selection ``any model can be promoted to first place'' in a six-model,
+eleven-dataset embedding benchmark\citep{kostiuk2026oneprompt}; per-prompt performance rankings agree
+across models only weakly, at Kendall's $W = 0.238$\citep{cao2024worstprompt}; format performance
+``only weakly correlates between models''\citep{sclar2024format}. A prompt optimised for one model is
+suboptimal on another --- named \emph{Model Drifting}\citep{wang2025promptbridge}, and anticipated by
+earlier work establishing that a good prompt ``binds to the nature of the LLM in
+question''\citep{chen2023mapo}. The best prompt templates do not transfer between models, even within
+a single model family\citep{voronov2024format}.
 
 We take all of this as given. \textbf{This paper does not claim to discover prompt--model
 interaction.}
@@ -177,8 +180,10 @@ nine tokens of chat markup destroying it again.
 
 The length-matched text arm is what makes this readable --- same token count as the model's own
 template, none of its structure --- so \textsc{text} versus \textsc{template} isolates kind at fixed
-length. Prior work reports non-monotonicity in the number of in-context examples\citepend{shot-count
-non-monotonicity}; this is the same shape on a readout containing no examples.
+length. The accuracy-level prompt space has the same shape: it is reported as ``largely
+non-monotonic'', with graded atomic format changes giving monotone accuracy triples $32.4\%$ and
+$33.6\%$ of the time against a $33.3\%$ chance rate\citep{sclar2024format}. Ours is that shape on a
+readout with no task, no format and no examples in it.
 
 % =================================================================================================
 \section{One prefix, opposite outcomes}\label{sec:interaction}
@@ -204,18 +209,23 @@ screened to have headroom in both directions. Source: F154,
 \end{table}
 
 Table~\ref{tab:p1} is the structural-readout instance of a known accuracy-level phenomenon. We claim
-no priority for the pattern: that a prompt cannot be certified independent of the model appears in
-the abstract of at least one prior work\citepend{prompt certification / non-transferability}, is named
-\emph{Model Drifting} in another\citepend{model drifting}, and is anticipated by MAPO\citepend{MAPO}.
+no priority for the pattern. That prompt quality does not certify across weights is in the abstract
+of \citet{lu2022ordered} --- ``a given good permutation for one model is not transferable to
+another'', with prompt rankings correlating at $0.05$ between their $2.7$B and $175$B models --- and
+one fixed permutation there already moves accuracy from $88.7\%$ to $51.6\%$ between two sizes of
+GPT-2. The phenomenon is named \emph{Model Drifting} by \citet{wang2025promptbridge}, and MAPO
+established prompt effectiveness as model-specific\citep{chen2023mapo}.
 What Table~\ref{tab:p1} adds is that it holds where there is nothing to be good or bad at: the same
 prefix is not merely \emph{less useful} to some models, it moves a deterministic property of their
 conditional in opposite directions.
 
-The nearest prior work on a structural readout uses iterated text-level transmission chains with
-stochastic sampling and two to three models, reporting models drifting in opposite directions on a
-scalar text property\citepend{iterated transmission chains}. A separate line reports iterated-map
-attractor states as \emph{model-independent}\citepend{model-independent attractors}, contradicting our
-position in its regime; \S\ref{sec:limits} takes this up.
+The nearest prior work on a structural readout uses iterated text-level transmission chains under
+stochastic sampling ($T = 0.8$, top-$p$ $0.95$) over six instruction-tuned models, and reports that
+``different models lead the distributions to be shifted in opposite directions'' on a scalar text
+property --- text length shortens under GPT3.5 and Llama3-8B and lengthens under Mixtral-8x7B and
+GPT-4o-mini\citep{telephone}. A separate line reports iterated-map attractor states as
+\emph{model-independent}\citep{paraphrase2cycle}, contradicting our position in its regime;
+\S\ref{sec:limits} takes this up.
 
 % =================================================================================================
 \section{Where the sink account predicts magnitude, we observe sign}\label{sec:sink}
@@ -224,12 +234,15 @@ This is the finding we cannot place in the existing literature, and the one we w
 refuted.
 
 \paragraph{What the sink account says.} Initial tokens dominate: their presence or absence moves a
-scalar readout by orders of magnitude, holding weights and decoding fixed\citep{xiao2023streamingllm}. The proposed mechanism is \emph{positional}, not semantic --- replacing the first
-tokens with meaningless linebreaks restores the readout nearly as well as the originals, because
-SoftMax normalisation forces attention mass onto early tokens regardless of content. On that account
-the first token acts as a no-op key bias absorbing attention mass\citepend{sink as no-op key bias},
-and the reported cross-model variation is in \emph{magnitude and saturation point}, not in sign:
-adding initial tokens moves the readout the same way in every model examined.
+scalar readout by orders of magnitude, holding weights and decoding
+fixed\citep{xiao2023streamingllm}. The proposed mechanism is \emph{positional}, not semantic ---
+substituting the first four tokens with the linebreak token restores perplexity nearly as well as the
+originals ($5.60$ against $5.40$ on Llama-2-13B, versus $5158.07$ with those positions dropped),
+because SoftMax normalisation forces attention mass onto early tokens regardless of content. On that
+account the sink ``acts more like key biases, storing extra attention scores, which could be
+non-informative and not contribute to the value computation''\citep{gu2025sink}, and the reported
+cross-model variation is in \emph{magnitude and saturation point}, not in sign: adding initial tokens
+moves the readout the same way in every model examined.
 
 \paragraph{What we observe.} A single BOS token takes \texttt{Falcon3-1B-Base} from $0.214$ to
 $0.906$,% F152, results/domain_base.json
@@ -360,11 +373,16 @@ ranking instability under formatting are prior art (\S\ref{sec:intro-known}). Ou
 the interaction reaches a deterministic, task-free structural readout, plus the sign behaviour of
 \S\ref{sec:sink}.
 
-\paragraph{A direct contradiction we must address.} At least one prior line reports iterated-map
-attractor states as model-\emph{independent}\citepend{model-independent attractors}. That regime
-differs from ours --- text-level iteration, stochastic sampling, an attractor defined as a fitted
-equilibrium of a scalar text property rather than a fixed point of a deterministic map --- but the
-difference is ours to defend, not to leave implicit.
+\paragraph{A direct contradiction we must address.} \citet{paraphrase2cycle} report iterated-map
+attractor states as model-\emph{independent}: ``the attractor states are not confined to a single
+model's parameter space. Instead, they reflect a more general statistical optimum that multiple LLMs
+gravitate toward.'' Three things differ from our regime. The iteration is at the text level, through
+an instruction-conditioned paraphrase call under stochastic decoding, not a token-level deterministic
+argmax map. The attractor is a $2$-period edit-distance cycle, not a fixed point. And the
+model-independence is inferred from \emph{alternating} models within one chain, plus a cross-model
+perplexity check, rather than from one prefix held fixed across separate models --- the design our
+Table~\ref{tab:p1} runs. Those are differences we have to defend, not leave implicit; they do not
+make the contradiction go away in the regime where it was measured.
 
 \paragraph{Small cohorts, one construction.} The largest single comparison is six models and twelve
 texts, at one prefix length, from three English sources, under one operationalisation of
@@ -376,9 +394,11 @@ in the cohort, so class and cohort are confounded in it. \texttt{Falcon3-3B-Inst
 direction work: its raw census varies $0.615$--$0.792$ across four seeds, so its tolerance swamps
 every domain shift it has.% F150, results/midrange_screen.json
 
-\paragraph{PENDING --- citations.} Every \citepend{} above is unresolved. The novelty gate that
-produced this framing refuted $13$ of $74$ extracted claims for overreaching their own sources,% F157, results/prior_art_domain_journal.jsonl
-so each work must be read in full before its key is entered. Do not submit with placeholders.
+\paragraph{How the prior art here was checked.} The novelty gate that produced this framing refuted
+$13$ of $74$ extracted claims for overreaching their own sources,% F157, results/prior_art_domain_journal.jsonl
+so its summaries were not citable. Every work cited above was therefore read at the source --- the
+abstract where the claim is in the abstract, the full text where it is not --- and the supporting
+quote recorded beside its key in \texttt{CITATIONS.md}.
 
 \paragraph{The probe's own input distribution, tested.}% F160, results/in_distribution_census.json
 Our census draws starts uniformly from the vocabulary --- token pairs no corpus contains --- and
