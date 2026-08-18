@@ -70,14 +70,13 @@ was applying a criterion with a shape to a quantity with no room to vary.
 \subsection{What is already known}\label{sec:intro-known}
 
 Language model evaluations are sensitive to the prompt in ways that are not nuisances. Semantically
-neutral reformatting reorders leaderboards\citepend{format sensitivity: 11-model leaderboard, up to 8
-positions}; adversarial prompt selection can promote essentially any model in a study to first
+neutral reformatting reorders leaderboards by up to eight positions\citep{alzahrani2024benchmarks}; adversarial prompt selection can promote essentially any model in a study to first
 place\citepend{embedding-model prompt selection}; per-prompt performance rankings agree across models
-only weakly, at Kendall's $W = 0.238$\citepend{worst-prompt performance, arXiv:2406.10248}. A prompt
+only weakly, at Kendall's $W = 0.238$\citep{cao2024worstprompt}. A prompt
 optimised for one model is suboptimal on another --- named \emph{Model Drifting}\citepend{model
 drifting} and anticipated by earlier work establishing that prompt effectiveness is
-model-specific\citepend{MAPO, Chen et al. 2024}. The same template component can be best for one
-model and among the worst for another\citepend{Voronov et al.}.
+model-specific\citepend{MAPO, Chen et al. 2024}. The best prompt templates do not transfer between
+models, even within a single model family\citep{voronov2024format}.
 
 We take all of this as given. \textbf{This paper does not claim to discover prompt--model
 interaction.}
@@ -225,8 +224,7 @@ This is the finding we cannot place in the existing literature, and the one we w
 refuted.
 
 \paragraph{What the sink account says.} Initial tokens dominate: their presence or absence moves a
-scalar readout by orders of magnitude, holding weights and decoding fixed\citepend{StreamingLLM /
-attention sinks}. The proposed mechanism is \emph{positional}, not semantic --- replacing the first
+scalar readout by orders of magnitude, holding weights and decoding fixed\citep{xiao2023streamingllm}. The proposed mechanism is \emph{positional}, not semantic --- replacing the first
 tokens with meaningless linebreaks restores the readout nearly as well as the originals, because
 SoftMax normalisation forces attention mass onto early tokens regardless of content. On that account
 the first token acts as a no-op key bias absorbing attention mass\citepend{sink as no-op key bias},
