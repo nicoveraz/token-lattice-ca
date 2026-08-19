@@ -1,0 +1,32 @@
+{
+ "name": "matched-entropy-prefix-pair-v1",
+ "status": "FROZEN DRAFT -- awaiting human approval. No run has been made against this.",
+ "motivation": "F162 found that phi-raising prefixes add the NEWLINE token, and F158/F159 found the attention-sink account does not carry the sign. A simpler mediator remains untested: a prefix may act purely by sharpening the conditional. If the whole domain effect is entropy mediation, then two prefixes matched in induced conditional-entropy shift must produce the same dphi within a model, whatever their content. This is the cheapest remaining reduction of the interaction to a scalar.",
+ "hypotheses": {
+  "H1_entropy_mediation": "within a model, two prefixes matched in induced conditional-entropy shift produce the same dphi",
+  "H2_content_beyond_entropy": "content matters beyond entropy: matched-entropy prefixes differing in document type produce different dphi within the same model"
+ },
+ "frozen": {
+  "matching_quantity": "mean conditional entropy of p(. | prefix, x1, x2) over the SAME 96 two-token starts the census uses, per model; the existing cond_entropy_mean field is the same statistic and is already stored in band_screen.json for some cells",
+  "matching_tolerance": "two prefixes are MATCHED for a model if their induced mean-entropy shifts differ by <= 0.10 nats; pairs that cannot be matched within that band for a given model are NOT tested on that model and are named",
+  "pair_construction": "candidate prefixes drawn from the Pile by INDEX order at a fixed length of 9 tokens, entropy measured first, then paired post hoc by entropy WITHOUT reference to dphi -- dphi is not computed until the pairing is frozen and written to disk",
+  "arms_per_model": "raw, prefix A, prefix B",
+  "geometry": {"n_starts": 96, "census_seeds": [20260803, 990017], "prefix_len": 9},
+  "cohort": "the six models of results/text_interaction.json, which already have raw and p1 arms",
+  "estimator": "dphi(A) - dphi(B) per model, judged against max(4/96, 2 * across-seed range) of that model's noisiest arm in the pair",
+  "unit": "model"
+ },
+ "kill_conditions": {
+  "K1_mediation_dies": "|dphi(A) - dphi(B)| exceeds tolerance on a MAJORITY of readable models -> entropy mediation is dead as a complete account; content matters beyond entropy",
+  "K2_mediation_holds": "|dphi(A) - dphi(B)| is within tolerance on a majority AND at least one pair spans a large |dphi| (>= 0.3) -> entropy mediation survives as a candidate reduction",
+  "K3_vacuity": "if no model yields a pair whose dphi on either arm exceeds its own tolerance, the comparison is between two nothings: NOT DECIDABLE, do not read"
+ },
+ "anti_vacuity": "a model enters only if at least one arm of its pair moves phi beyond that model's tolerance AND the model has headroom on the side the effect moves. Floored and ceilinged arms are excluded and named, per F149/F161.",
+ "refusals_recorded_before_numbers": [
+  "no significance test: with a six-model cohort a paired test cannot fail informatively",
+  "no correlation between entropy shift and dphi magnitude across models -- six clusters cannot fail a rank correlation, the F149 refusal"
+ ],
+ "independent_unit": "model (prefix pairs are matched WITHIN a model, so the model is the cluster)",
+ "note": "Entropy is measured on the same starts the census uses so the two quantities describe the same forward passes, which is the correction F158 had to make after comparing against an unmeasured mechanism. The pairing must be frozen to disk before any dphi is computed; a pairing chosen after seeing dphi would guarantee whichever answer was wanted.",
+ "owed": "the prior-art gate for greedy-decoding degeneration and repetition self-reinforcement is owed before any entropy-mediation claim is written up; entropy sharpening under a prefix is close to that literature's territory."
+}

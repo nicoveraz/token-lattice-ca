@@ -1,0 +1,2989 @@
+{
+ "_preregistration": {
+  "hypothesis": "dphi(prefix, model) ~ u_prefix * v_model -- a bilinear effect produces systematic interaction with NO marginal factor, which is the F147-F156 pattern",
+  "estimator": "rank-1 ALS on observed cells only, SVD warm start discarded after init, 200 iters",
+  "primary": "fraction of ABOVE-TOLERANCE variance explained",
+  "thresholds": {
+   "supported": 0.8,
+   "dead": 0.5,
+   "between": "NOT DECIDABLE"
+  },
+  "masking": "cells with |dphi| <= max(4/96, 2*across-seed range) are MASKED: excluded from the fit, never zeroed and never imputed. Zero is a claim and imputation is a louder one, and floored/ceilinged arms are this project's own defect class.",
+  "insufficiency": "< 60% coverage or < 4 usable columns -> NOT DECIDABLE FOR INSUFFICIENCY, listing the runs that would fill it",
+  "also": [
+   "sign-only agreement",
+   "loadings u and v with signs",
+   "leave-one-column-out stability"
+  ],
+  "boundary": "dphi is measured against each file's own raw arm where it has one and against domain_base's raw otherwise; the baseline is recorded per cell",
+  "census_seeds": [
+   20260803,
+   990017
+  ],
+  "min_shift": 0.041666666666666664,
+  "noise_factor": 2.0
+ },
+ "n_cells": 148,
+ "cells": {
+  "EleutherAI/pythia-410m||F152:bos": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|bos",
+    "EleutherAI/pythia-410m|s990017|bos"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F152:corpus@29": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|corpus@29",
+    "EleutherAI/pythia-410m|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F152:corpus@9": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|corpus@9",
+    "EleutherAI/pythia-410m|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F152:shak@29": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|shak@29",
+    "EleutherAI/pythia-410m|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F152:shak@9": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|shak@9",
+    "EleutherAI/pythia-410m|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F152:bos": {
+   "dphi": -0.4219,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|bos",
+    "EleutherAI/pythia-410m-deduped|s990017|bos"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0052
+  },
+  "EleutherAI/pythia-410m-deduped||F152:corpus@29": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|corpus@29",
+    "EleutherAI/pythia-410m-deduped|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F152:corpus@9": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|corpus@9",
+    "EleutherAI/pythia-410m-deduped|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F152:shak@29": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|shak@29",
+    "EleutherAI/pythia-410m-deduped|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F152:shak@9": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|shak@9",
+    "EleutherAI/pythia-410m-deduped|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:c0": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|c0",
+    "EleutherAI/pythia-410m-deduped|s990017|c0"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:c1": {
+   "dphi": -0.4167,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|c1",
+    "EleutherAI/pythia-410m-deduped|s990017|c1"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0104
+  },
+  "EleutherAI/pythia-410m-deduped||F154:c2": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|c2",
+    "EleutherAI/pythia-410m-deduped|s990017|c2"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:p0": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|p0",
+    "EleutherAI/pythia-410m-deduped|s990017|p0"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:p1": {
+   "dphi": -0.4115,
+   "tol": 0.0624,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|p1",
+    "EleutherAI/pythia-410m-deduped|s990017|p1"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0156
+  },
+  "EleutherAI/pythia-410m-deduped||F154:p2": {
+   "dphi": -0.4219,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|p2",
+    "EleutherAI/pythia-410m-deduped|s990017|p2"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0052
+  },
+  "EleutherAI/pythia-410m-deduped||F154:p3": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|p3",
+    "EleutherAI/pythia-410m-deduped|s990017|p3"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:p4": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|p4",
+    "EleutherAI/pythia-410m-deduped|s990017|p4"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:p5": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|p5",
+    "EleutherAI/pythia-410m-deduped|s990017|p5"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:s0": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|s0",
+    "EleutherAI/pythia-410m-deduped|s990017|s0"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:s1": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|s1",
+    "EleutherAI/pythia-410m-deduped|s990017|s1"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m-deduped||F154:s2": {
+   "dphi": -0.4271,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|s2",
+    "EleutherAI/pythia-410m-deduped|s990017|s2"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F152:bos": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|bos",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|bos"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F152:corpus@29": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|corpus@29",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F152:corpus@9": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|corpus@9",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F152:shak@29": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|shak@29",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F152:shak@9": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|shak@9",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:c0": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|c0",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|c0"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:c1": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|c1",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|c1"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:c2": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|c2",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|c2"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:p0": {
+   "dphi": -0.5052,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|p0",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|p0"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0573
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:p1": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|p1",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|p1"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:p2": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|p2",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|p2"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:p3": {
+   "dphi": -0.5365,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|p3",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|p3"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.026
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:p4": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|p4",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|p4"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:p5": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|p5",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|p5"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:s0": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|s0",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|s0"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:s1": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|s1",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|s1"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F154:s2": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|s2",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|s2"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:r0": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|r0",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|r0"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:r1": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|r1",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|r1"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:r2": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|r2",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|r2"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:r3": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|r3",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|r3"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:r4": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|r4",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|r4"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:r5": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|r5",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|r5"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:t0": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|t0",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|t0"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:t1": {
+   "dphi": -0.5052,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|t1",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|t1"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0573
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:t2": {
+   "dphi": 0.0834,
+   "tol": 0.1252,
+   "masked": true,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|t2",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|t2"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.6459
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:t3": {
+   "dphi": -0.5573,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|t3",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|t3"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0052
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:t4": {
+   "dphi": 0.4271,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|t4",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|t4"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.9896
+  },
+  "HuggingFaceTB/SmolLM-1.7B||F155:t5": {
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|t5",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|t5"
+   ],
+   "raw_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0
+  },
+  "Qwen/Qwen1.5-1.8B||F152:bos": {
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|bos",
+    "Qwen/Qwen1.5-1.8B|s990017|bos"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0
+  },
+  "Qwen/Qwen1.5-1.8B||F152:corpus@29": {
+   "dphi": -0.4948,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|corpus@29",
+    "Qwen/Qwen1.5-1.8B|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0156
+  },
+  "Qwen/Qwen1.5-1.8B||F152:corpus@9": {
+   "dphi": -0.5052,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|corpus@9",
+    "Qwen/Qwen1.5-1.8B|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0052
+  },
+  "Qwen/Qwen1.5-1.8B||F152:shak@29": {
+   "dphi": -0.4114,
+   "tol": 0.1042,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|shak@29",
+    "Qwen/Qwen1.5-1.8B|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.099
+  },
+  "Qwen/Qwen1.5-1.8B||F152:shak@9": {
+   "dphi": -0.4322,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|shak@9",
+    "Qwen/Qwen1.5-1.8B|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0781
+  },
+  "Qwen/Qwen1.5-1.8B||F154:c0": {
+   "dphi": -0.5052,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|c0",
+    "Qwen/Qwen1.5-1.8B|s990017|c0"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0052
+  },
+  "Qwen/Qwen1.5-1.8B||F154:c1": {
+   "dphi": -0.4218,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|c1",
+    "Qwen/Qwen1.5-1.8B|s990017|c1"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0886
+  },
+  "Qwen/Qwen1.5-1.8B||F154:c2": {
+   "dphi": -0.4583,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|c2",
+    "Qwen/Qwen1.5-1.8B|s990017|c2"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0521
+  },
+  "Qwen/Qwen1.5-1.8B||F154:p0": {
+   "dphi": -0.0989,
+   "tol": 0.1458,
+   "masked": true,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|p0",
+    "Qwen/Qwen1.5-1.8B|s990017|p0"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.4114
+  },
+  "Qwen/Qwen1.5-1.8B||F154:p1": {
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|p1",
+    "Qwen/Qwen1.5-1.8B|s990017|p1"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0
+  },
+  "Qwen/Qwen1.5-1.8B||F154:p2": {
+   "dphi": 0.4688,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|p2",
+    "Qwen/Qwen1.5-1.8B|s990017|p2"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.9792
+  },
+  "Qwen/Qwen1.5-1.8B||F154:p3": {
+   "dphi": -0.4479,
+   "tol": 0.0832,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|p3",
+    "Qwen/Qwen1.5-1.8B|s990017|p3"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0625
+  },
+  "Qwen/Qwen1.5-1.8B||F154:p4": {
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|p4",
+    "Qwen/Qwen1.5-1.8B|s990017|p4"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0
+  },
+  "Qwen/Qwen1.5-1.8B||F154:p5": {
+   "dphi": -0.5,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|p5",
+    "Qwen/Qwen1.5-1.8B|s990017|p5"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0104
+  },
+  "Qwen/Qwen1.5-1.8B||F154:s0": {
+   "dphi": -0.4322,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|s0",
+    "Qwen/Qwen1.5-1.8B|s990017|s0"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0781
+  },
+  "Qwen/Qwen1.5-1.8B||F154:s1": {
+   "dphi": -0.4948,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|s1",
+    "Qwen/Qwen1.5-1.8B|s990017|s1"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0156
+  },
+  "Qwen/Qwen1.5-1.8B||F154:s2": {
+   "dphi": -0.4896,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|s2",
+    "Qwen/Qwen1.5-1.8B|s990017|s2"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0208
+  },
+  "Qwen/Qwen1.5-1.8B||F155:r0": {
+   "dphi": 0.2344,
+   "tol": 0.1458,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|r0",
+    "Qwen/Qwen1.5-1.8B|s990017|r0"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.7448
+  },
+  "Qwen/Qwen1.5-1.8B||F155:r1": {
+   "dphi": -0.5052,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|r1",
+    "Qwen/Qwen1.5-1.8B|s990017|r1"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0052
+  },
+  "Qwen/Qwen1.5-1.8B||F155:r2": {
+   "dphi": -0.4583,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|r2",
+    "Qwen/Qwen1.5-1.8B|s990017|r2"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0521
+  },
+  "Qwen/Qwen1.5-1.8B||F155:r3": {
+   "dphi": -0.4791,
+   "tol": 0.0834,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|r3",
+    "Qwen/Qwen1.5-1.8B|s990017|r3"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0312
+  },
+  "Qwen/Qwen1.5-1.8B||F155:r4": {
+   "dphi": -0.4531,
+   "tol": 0.1042,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|r4",
+    "Qwen/Qwen1.5-1.8B|s990017|r4"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0572
+  },
+  "Qwen/Qwen1.5-1.8B||F155:r5": {
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|r5",
+    "Qwen/Qwen1.5-1.8B|s990017|r5"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0
+  },
+  "Qwen/Qwen1.5-1.8B||F155:t0": {
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|t0",
+    "Qwen/Qwen1.5-1.8B|s990017|t0"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0
+  },
+  "Qwen/Qwen1.5-1.8B||F155:t1": {
+   "dphi": -0.0989,
+   "tol": 0.1458,
+   "masked": true,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|t1",
+    "Qwen/Qwen1.5-1.8B|s990017|t1"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.4114
+  },
+  "Qwen/Qwen1.5-1.8B||F155:t2": {
+   "dphi": -0.4479,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|t2",
+    "Qwen/Qwen1.5-1.8B|s990017|t2"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0625
+  },
+  "Qwen/Qwen1.5-1.8B||F155:t3": {
+   "dphi": -0.0625,
+   "tol": 0.1668,
+   "masked": true,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|t3",
+    "Qwen/Qwen1.5-1.8B|s990017|t3"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.4479
+  },
+  "Qwen/Qwen1.5-1.8B||F155:t4": {
+   "dphi": -0.2708,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|t4",
+    "Qwen/Qwen1.5-1.8B|s990017|t4"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.2396
+  },
+  "Qwen/Qwen1.5-1.8B||F155:t5": {
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|t5",
+    "Qwen/Qwen1.5-1.8B|s990017|t5"
+   ],
+   "raw_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0
+  },
+  "bigcode/starcoder2-3b||F152:bos": {
+   "dphi": -0.5938,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|bos",
+    "bigcode/starcoder2-3b|s990017|bos"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.1302
+  },
+  "bigcode/starcoder2-3b||F152:corpus@29": {
+   "dphi": -0.6771,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|corpus@29",
+    "bigcode/starcoder2-3b|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0469
+  },
+  "bigcode/starcoder2-3b||F152:corpus@9": {
+   "dphi": -0.7188,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|corpus@9",
+    "bigcode/starcoder2-3b|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0052
+  },
+  "bigcode/starcoder2-3b||F152:shak@29": {
+   "dphi": -0.7032,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|shak@29",
+    "bigcode/starcoder2-3b|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0208
+  },
+  "bigcode/starcoder2-3b||F152:shak@9": {
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|shak@9",
+    "bigcode/starcoder2-3b|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0
+  },
+  "llm-jp/llm-jp-3-1.8b||F152:bos": {
+   "dphi": 0.0312,
+   "tol": 0.271,
+   "masked": true,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|bos",
+    "llm-jp/llm-jp-3-1.8b|s990017|bos"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.8073
+  },
+  "llm-jp/llm-jp-3-1.8b||F152:corpus@29": {
+   "dphi": -0.6823,
+   "tol": 0.271,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|corpus@29",
+    "llm-jp/llm-jp-3-1.8b|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0938
+  },
+  "llm-jp/llm-jp-3-1.8b||F152:corpus@9": {
+   "dphi": -0.7761,
+   "tol": 0.271,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|corpus@9",
+    "llm-jp/llm-jp-3-1.8b|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0
+  },
+  "llm-jp/llm-jp-3-1.8b||F152:shak@29": {
+   "dphi": -0.7605,
+   "tol": 0.271,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|shak@29",
+    "llm-jp/llm-jp-3-1.8b|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0156
+  },
+  "llm-jp/llm-jp-3-1.8b||F152:shak@9": {
+   "dphi": 0.0312,
+   "tol": 0.271,
+   "masked": true,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|shak@9",
+    "llm-jp/llm-jp-3-1.8b|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.8073
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F152:bos": {
+   "dphi": -0.3229,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|bos",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|bos"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0052
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F152:corpus@29": {
+   "dphi": -0.25,
+   "tol": 0.1458,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|corpus@29",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0781
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F152:corpus@9": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|corpus@9",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F152:shak@29": {
+   "dphi": -0.3229,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|shak@29",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0052
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F152:shak@9": {
+   "dphi": 0.4584,
+   "tol": 0.3126,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|shak@9",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.7865
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:c0": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|c0",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|c0"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:c1": {
+   "dphi": -0.2188,
+   "tol": 0.1042,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|c1",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|c1"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.1094
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:c2": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|c2",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|c2"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:p0": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p0",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p0"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:p1": {
+   "dphi": 0.6719,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p1",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p1"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 1.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:p2": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p2",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p2"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:p3": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p3",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p3"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:p4": {
+   "dphi": -0.3229,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p4",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p4"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0052
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:p5": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p5",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p5"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:s0": {
+   "dphi": 0.4584,
+   "tol": 0.3126,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|s0",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|s0"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.7865
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:s1": {
+   "dphi": 0.3177,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|s1",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|s1"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.6458
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F154:s2": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|s2",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|s2"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:r0": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r0",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|r0"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:r1": {
+   "dphi": -0.1822,
+   "tol": 0.1666,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r1",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|r1"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.1459
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:r2": {
+   "dphi": -0.3229,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r2",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|r2"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0052
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:r3": {
+   "dphi": -0.3229,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r3",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|r3"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0052
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:r4": {
+   "dphi": 0.6719,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r4",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|r4"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 1.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:r5": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|r5",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|r5"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:t0": {
+   "dphi": 0.6719,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t0",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t0"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 1.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:t1": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t1",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t1"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:t2": {
+   "dphi": 0.4271,
+   "tol": 0.1876,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t2",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t2"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.7552
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:t3": {
+   "dphi": -0.0833,
+   "tol": 0.104,
+   "masked": true,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t3",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t3"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.2448
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:t4": {
+   "dphi": -0.3281,
+   "tol": 0.0417,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t4",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t4"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0||F155:t5": {
+   "dphi": 0.5312,
+   "tol": 0.1042,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t5",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t5"
+   ],
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.3281,
+   "phi_arm": 0.8594
+  },
+  "tiiuae/Falcon3-1B-Base||F152:bos": {
+   "dphi": 0.6927,
+   "tol": 0.0834,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|bos",
+    "tiiuae/Falcon3-1B-Base|s990017|bos"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.9062
+  },
+  "tiiuae/Falcon3-1B-Base||F152:corpus@29": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|corpus@29",
+    "tiiuae/Falcon3-1B-Base|s990017|corpus@29"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F152:corpus@9": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|corpus@9",
+    "tiiuae/Falcon3-1B-Base|s990017|corpus@9"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F152:shak@29": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|shak@29",
+    "tiiuae/Falcon3-1B-Base|s990017|shak@29"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F152:shak@9": {
+   "dphi": 0.0416,
+   "tol": 0.104,
+   "masked": true,
+   "file": "domain_base.json",
+   "finding": "F152",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|shak@9",
+    "tiiuae/Falcon3-1B-Base|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.2552
+  },
+  "tiiuae/Falcon3-1B-Base||F154:c0": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|c0",
+    "tiiuae/Falcon3-1B-Base|s990017|c0"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F154:c1": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|c1",
+    "tiiuae/Falcon3-1B-Base|s990017|c1"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F154:c2": {
+   "dphi": -0.1823,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|c2",
+    "tiiuae/Falcon3-1B-Base|s990017|c2"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0312
+  },
+  "tiiuae/Falcon3-1B-Base||F154:p0": {
+   "dphi": -0.1615,
+   "tol": 0.0834,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p0",
+    "tiiuae/Falcon3-1B-Base|s990017|p0"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.052
+  },
+  "tiiuae/Falcon3-1B-Base||F154:p1": {
+   "dphi": 0.7656,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p1",
+    "tiiuae/Falcon3-1B-Base|s990017|p1"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.9792
+  },
+  "tiiuae/Falcon3-1B-Base||F154:p2": {
+   "dphi": -0.1094,
+   "tol": 0.0834,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p2",
+    "tiiuae/Falcon3-1B-Base|s990017|p2"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.1041
+  },
+  "tiiuae/Falcon3-1B-Base||F154:p3": {
+   "dphi": 0.026,
+   "tol": 0.125,
+   "masked": true,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p3",
+    "tiiuae/Falcon3-1B-Base|s990017|p3"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.2395
+  },
+  "tiiuae/Falcon3-1B-Base||F154:p4": {
+   "dphi": -0.1979,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p4",
+    "tiiuae/Falcon3-1B-Base|s990017|p4"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0156
+  },
+  "tiiuae/Falcon3-1B-Base||F154:p5": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p5",
+    "tiiuae/Falcon3-1B-Base|s990017|p5"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F154:s0": {
+   "dphi": 0.0416,
+   "tol": 0.104,
+   "masked": true,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|s0",
+    "tiiuae/Falcon3-1B-Base|s990017|s0"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.2552
+  },
+  "tiiuae/Falcon3-1B-Base||F154:s1": {
+   "dphi": 0.0365,
+   "tol": 0.0832,
+   "masked": true,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|s1",
+    "tiiuae/Falcon3-1B-Base|s990017|s1"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.25
+  },
+  "tiiuae/Falcon3-1B-Base||F154:s2": {
+   "dphi": 0.7812,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|s2",
+    "tiiuae/Falcon3-1B-Base|s990017|s2"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.9948
+  },
+  "tiiuae/Falcon3-1B-Base||F155:r0": {
+   "dphi": 0.4011,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|r0",
+    "tiiuae/Falcon3-1B-Base|s990017|r0"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.6146
+  },
+  "tiiuae/Falcon3-1B-Base||F155:r1": {
+   "dphi": -0.2083,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|r1",
+    "tiiuae/Falcon3-1B-Base|s990017|r1"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0052
+  },
+  "tiiuae/Falcon3-1B-Base||F155:r2": {
+   "dphi": -0.2083,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|r2",
+    "tiiuae/Falcon3-1B-Base|s990017|r2"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0052
+  },
+  "tiiuae/Falcon3-1B-Base||F155:r3": {
+   "dphi": -0.2031,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|r3",
+    "tiiuae/Falcon3-1B-Base|s990017|r3"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0104
+  },
+  "tiiuae/Falcon3-1B-Base||F155:r4": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|r4",
+    "tiiuae/Falcon3-1B-Base|s990017|r4"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F155:r5": {
+   "dphi": -0.2135,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|r5",
+    "tiiuae/Falcon3-1B-Base|s990017|r5"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0
+  },
+  "tiiuae/Falcon3-1B-Base||F155:t0": {
+   "dphi": 0.7656,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t0",
+    "tiiuae/Falcon3-1B-Base|s990017|t0"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.9792
+  },
+  "tiiuae/Falcon3-1B-Base||F155:t1": {
+   "dphi": -0.1615,
+   "tol": 0.0834,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t1",
+    "tiiuae/Falcon3-1B-Base|s990017|t1"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.052
+  },
+  "tiiuae/Falcon3-1B-Base||F155:t2": {
+   "dphi": -0.125,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t2",
+    "tiiuae/Falcon3-1B-Base|s990017|t2"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.0886
+  },
+  "tiiuae/Falcon3-1B-Base||F155:t3": {
+   "dphi": 0.1406,
+   "tol": 0.125,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t3",
+    "tiiuae/Falcon3-1B-Base|s990017|t3"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.3542
+  },
+  "tiiuae/Falcon3-1B-Base||F155:t4": {
+   "dphi": 0.2604,
+   "tol": 0.1042,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t4",
+    "tiiuae/Falcon3-1B-Base|s990017|t4"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.4739
+  },
+  "tiiuae/Falcon3-1B-Base||F155:t5": {
+   "dphi": 0.1927,
+   "tol": 0.0626,
+   "masked": false,
+   "file": "structural_text.json",
+   "finding": "F155",
+   "arm_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t5",
+    "tiiuae/Falcon3-1B-Base|s990017|t5"
+   ],
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.2135,
+   "phi_arm": 0.4062
+  }
+ },
+ "absence": {
+  "total_cells": 232,
+  "measured": 148,
+  "never_measured": 84,
+  "measured_but_masked": 11,
+  "observed": 137,
+  "coverage_over_all": 0.5905,
+  "coverage_over_measured": 0.9257
+ },
+ "shape": {
+  "models": 8,
+  "columns": 29,
+  "usable_models": 8,
+  "usable_columns": 29,
+  "observed_cells": 137,
+  "coverage": 0.5905,
+  "masked_cells": 95
+ },
+ "would_fill": [
+  {
+   "column": "F154:c0",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:c1",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:c2",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:p0",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:p1",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:p2",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:p3",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:p4",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:p5",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:s0",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:s1",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F154:s2",
+   "file": "text_interaction.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 3
+  },
+  {
+   "column": "F155:t0",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:t1",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:t2",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:t3",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:t4",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:t5",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:r0",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:r1",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:r2",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:r3",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:r4",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  },
+  {
+   "column": "F155:r5",
+   "file": "structural_text.json",
+   "never_measured_models": [
+    "pythia-410m",
+    "pythia-410m-deduped",
+    "starcoder2-3b",
+    "llm-jp-3-1.8b"
+   ],
+   "n_missing": 4
+  }
+ ],
+ "verdict": "MATRIX: 8 models x 29 prefix arms from five results files. 137 of 232 cells are usable; the rest split into 84 NEVER MEASURED and 11 measured-but-MASKED (|dphi| within their own tolerance, excluded from the fit -- never zeroed, never imputed). After dropping rows and columns with fewer than two observed cells: 8 models x 29 arms, coverage 59%. ABSENCE vs MASKING: of 232 cells, 84 were NEVER MEASURED (the model was not run on that arm) and 11 were measured and fell within their own tolerance. Only the first kind is a coverage hole a run could fill; the second carries no direction and rerunning it would remeasure a flat quantity. Coverage over MEASURED cells alone is 93%. NOT DECIDABLE FOR INSUFFICIENCY: coverage 59% against the floor of 60% declared before the fit -- it misses by one point, and the threshold is NOT moved to reach a verdict. 29 usable columns clears its floor of 4. The runs that would fill the never-measured cells are LISTED in `would_fill`, cheapest first, and are NOT run here. BOUNDARY: every cell records its file, its arm keys, its baseline keys and its own tolerance. Cells from different files share the estimator and the 96-start geometry but are not assumed commensurable beyond that. Masked cells are excluded, not zeroed.",
+ "_analysis_provenance": {
+  "script": "bilinear_rank1.py",
+  "sha256": "734c4ba553b7d4dbe9f9e6408015d396311062bfca453129d1f031c8d817070a",
+  "imports": {
+   "experiments/bilinear_rank1.py": "734c4ba553b7d4dbe9f9e6408015d396311062bfca453129d1f031c8d817070a",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

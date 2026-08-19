@@ -1,0 +1,33 @@
+{
+ "name": "copy-vs-repeat-behavioral-probe-v1",
+ "status": "FROZEN DRAFT -- awaiting human approval. No run has been made against this.",
+ "motivation": "F162 found that phi-raising prefixes install the NEWLINE as a fixed point, and that the raising prefixes are newline-dense. That suggests the mechanism is COPYING: a model that strongly continues a repeated pattern will, under a prefix full of newlines, emit a newline and then keep emitting it -- which is exactly a fixed point of the argmax map. If so, a model's copy strength should predict which way its phi moves under a structured prefix, and copy strength is a BEHAVIOURAL quantity measurable without any census.",
+ "hypotheses": {
+  "H1_copy_predicts_collapse": "copy strength predicts phi-collapse under structured prefixes: models that copy strongly move phi toward the prefix's dominant token, models that copy weakly do not",
+  "H2_copy_is_the_missing_loading": "copy strength correlates with the model loading v of a bilinear fit, should F164's coverage ever be filled -- i.e. copy strength IS the model-side factor the marginal searches missed"
+ },
+ "frozen": {
+  "copy_estimator": "induction-style copy score: for K=64 random token pairs (a,b) drawn from the same pool the census uses, build the context [a, b, ..., a] with a filler of F=8 random tokens between, and record whether argmax p(. | context) == b. copy_score = fraction of the K probes where it does. Deterministic given a seed; no sampling.",
+  "why_this_estimator": "it measures the behaviour the mechanism needs -- continue a pattern seen earlier in context -- with one forward pass per probe and no reference to phi. It is NOT an induction-head circuit claim and no attention is inspected.",
+  "geometry": {"K": 64, "filler_len": 8, "seeds": [20260803, 990017], "n_starts_for_phi": 96},
+  "cohort": "the eight models of results/domain_base.json, all of which already have raw and bos arms",
+  "phi_side": "dphi under the structured arms already stored: F154 p1 (a table-of-contents fragment) and F155 t0..t5 (markup-density >= 0.15). No new census is needed for the phi side.",
+  "primary": "sign agreement between copy_score rank and dphi rank across models on the p1 arm",
+  "unit": "model"
+ },
+ "kill_conditions": {
+  "K1_copy_dead": "copy_score does not separate the up-models from the down-models on the p1 arm -- i.e. the ranges overlap -- and the copy account is dropped",
+  "K2_copy_lives": "the up-models and down-models have disjoint copy_score ranges on the p1 arm, with at least 2 models on each side",
+  "K3_vacuity": "if fewer than 2 models fall on either side of the p1 split after the anti-vacuity gate, the comparison has no contrast: NOT DECIDABLE",
+  "K4_ceiling": "if copy_score is >= 0.95 or <= 0.05 on every model, the predictor has no variance and cannot discriminate: NOT DECIDABLE for predictor imbalance, the F163 defect"
+ },
+ "anti_vacuity": "a model enters only if its dphi on the p1 arm exceeds max(4/96, 2 * across-seed range) AND it had headroom on the side it moved. K4 additionally gates the PREDICTOR, because F163 showed a lopsided predictor produces a high raw agreement that is pure base rate.",
+ "refusals_recorded_before_numbers": [
+  "no p-value: eight models cannot fail a significance test informatively",
+  "no rank correlation between copy_score and |dphi| -- eight clusters is below the ten-cluster floor this project uses, the F149 refusal",
+  "balanced accuracy, not raw accuracy, is reported for any two-class call, because F163 showed raw agreement to be a base-rate artefact at this cohort's class balance"
+ ],
+ "independent_unit": "model",
+ "note": "The phi side is entirely existing data, so the only new compute is K=64 short forward passes per model -- cheaper than one census cell. If H1 survives it supplies the first MODEL-SIDE quantity in the programme that predicts a sign, which every marginal search from F147 to F156 failed to find; if it dies, it dies on a behavioural measurement rather than on an argument.",
+ "owed": "the prior-art gate for induction heads and repetition self-reinforcement is OWED and is a precondition for writing this up, not a follow-up. The copy estimator is deliberately named 'induction-style' rather than 'induction head' because the circuit claim belongs to that literature and this probe does not test it."
+}

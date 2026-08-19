@@ -1,0 +1,192 @@
+{
+ "_preregistration": {
+  "prediction": "models whose tokenizer config prepends BOS (add_bos_token true) move phi UP under the bos arm; models without the convention collapse or hold",
+  "kill": "BALANCED accuracy <= chance (50%) on the readable models; raw agreement is not used because it is a base-rate artefact when the predictor is imbalanced",
+  "caution": "n is small and CONFIG IS CONFOUNDED WITH FAMILY; this is a SCREEN yielding a candidate hypothesis and a confusion table, not a test",
+  "refusal": "no significance test is computed -- at this n a chi-square could not fail informatively. Recorded before the numbers, per the project's standing rule.",
+  "source": "MEASURED by encoding a probe string with the local tokenizer and testing whether the first id is bos_token_id (no weights, no forward passes); the declared add_bos_token key is recorded alongside where present, and disagreements are named. Six of eight models omit the key entirely, and absence is silence rather than a false -- inferring it from family name would manufacture the confound.",
+  "census_seeds": [
+   20260803,
+   990017
+  ],
+  "min_shift": 0.041666666666666664,
+  "noise_factor": 2.0
+ },
+ "models": [
+  {
+   "model": "EleutherAI/pythia-410m",
+   "add_bos_token": false,
+   "config_source": "measured: first id != bos_token_id (0)",
+   "phi_raw": 0.4583,
+   "phi_bos": 0.0,
+   "d_phi": -0.4583,
+   "tol": 0.125,
+   "direction": "down",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw",
+    "EleutherAI/pythia-410m|s20260803|bos",
+    "EleutherAI/pythia-410m|s990017|bos"
+   ]
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "add_bos_token": false,
+   "config_source": "measured: first id != bos_token_id (0)",
+   "phi_raw": 0.4271,
+   "phi_bos": 0.0052,
+   "d_phi": -0.4219,
+   "tol": 0.0417,
+   "direction": "down",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "EleutherAI/pythia-410m-deduped|s20260803|raw",
+    "EleutherAI/pythia-410m-deduped|s990017|raw",
+    "EleutherAI/pythia-410m-deduped|s20260803|bos",
+    "EleutherAI/pythia-410m-deduped|s990017|bos"
+   ]
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "add_bos_token": false,
+   "config_source": "measured: first id != bos_token_id (0)",
+   "phi_raw": 0.5625,
+   "phi_bos": 0.0,
+   "d_phi": -0.5625,
+   "tol": 0.1252,
+   "direction": "down",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|raw",
+    "HuggingFaceTB/SmolLM-1.7B|s20260803|bos",
+    "HuggingFaceTB/SmolLM-1.7B|s990017|bos"
+   ]
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "add_bos_token": false,
+   "config_source": "measured: tokenizer has no BOS token at all",
+   "phi_raw": 0.5104,
+   "phi_bos": 0.0,
+   "d_phi": -0.5104,
+   "tol": 0.0417,
+   "direction": "down",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "Qwen/Qwen1.5-1.8B|s20260803|raw",
+    "Qwen/Qwen1.5-1.8B|s990017|raw",
+    "Qwen/Qwen1.5-1.8B|s20260803|bos",
+    "Qwen/Qwen1.5-1.8B|s990017|bos"
+   ]
+  },
+  {
+   "model": "bigcode/starcoder2-3b",
+   "add_bos_token": false,
+   "config_source": "measured: first id != bos_token_id (0)",
+   "phi_raw": 0.724,
+   "phi_bos": 0.1302,
+   "d_phi": -0.5938,
+   "tol": 0.1874,
+   "direction": "down",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw",
+    "bigcode/starcoder2-3b|s20260803|bos",
+    "bigcode/starcoder2-3b|s990017|bos"
+   ]
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "add_bos_token": true,
+   "config_source": "measured: first id == bos_token_id (1); declared True in hf_cache/hub/models--llm-jp--llm-jp-3-1.8b/snapshots/60acda32e07c72b82ce5a73d60b21b3d65e0c810/tokenizer_config.json",
+   "phi_raw": 0.7761,
+   "phi_bos": 0.8073,
+   "d_phi": 0.0312,
+   "tol": 0.271,
+   "direction": "flat",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw",
+    "llm-jp/llm-jp-3-1.8b|s20260803|bos",
+    "llm-jp/llm-jp-3-1.8b|s990017|bos"
+   ]
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "add_bos_token": true,
+   "config_source": "measured: first id == bos_token_id (1); declared True in hf_cache/hub/models--sapienzanlp--Minerva-3B-base-v1.0/snapshots/129ae5366bae3611a1c9f8c68606c38b7de8b055/tokenizer_config.json",
+   "phi_raw": 0.3281,
+   "phi_bos": 0.0052,
+   "d_phi": -0.3229,
+   "tol": 0.0417,
+   "direction": "down",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|bos",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|bos"
+   ]
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "add_bos_token": false,
+   "config_source": "measured: tokenizer has no BOS token at all",
+   "phi_raw": 0.2135,
+   "phi_bos": 0.9062,
+   "d_phi": 0.6927,
+   "tol": 0.0834,
+   "direction": "up",
+   "source_file": "results/domain_base.json",
+   "source_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw",
+    "tiiuae/Falcon3-1B-Base|s20260803|bos",
+    "tiiuae/Falcon3-1B-Base|s990017|bos"
+   ]
+  }
+ ],
+ "unknown": [],
+ "confusion": {
+  "add_bos=True|up": 0,
+  "add_bos=True|down": 1,
+  "add_bos=False|up": 1,
+  "add_bos=False|down": 5
+ },
+ "agreement": {
+  "agree": 5,
+  "n": 7,
+  "raw_accuracy": 0.714,
+  "n_true": 1,
+  "n_false": 6,
+  "balanced_accuracy": 0.417
+ },
+ "verdict": "COVERAGE: 8 models with a readable add_bos_token in the local cache; 0 UNKNOWN and excluded. ANTI-VACUITY: 1 of 8 models are FLAT under bos (|d phi| within their own tolerance) and cannot vote on a two-class prediction; they are named and excluded: ['llm-jp-3-1.8b']. CONFUSION (rows = measured BOS convention, cols = phi direction under bos): true/up 0, true/down 1, false/up 1, false/down 5. Raw agreement 5 of 7 (71%), BALANCED accuracy 0.42.  NOT DECIDABLE -- PREDICTOR IMBALANCE: only 1 model(s) carry the convention and 6 do not. Raw agreement of 71% is a BASE-RATE ARTEFACT: with the predictor this lopsided, a rule that ignores it entirely and always answers 'down' scores 6/7. Balanced accuracy, which is the quantity that can fail, is 0.42 -- BELOW chance. The screen is not read, and this was caught before reporting rather than after. CAUTION, PRE-REGISTERED: n is small and add_bos_token is confounded with model family, so a 'config' effect may be a family effect wearing a config label. No significance test is computed: at this n it could not fail informatively, and that refusal was recorded before the numbers. Every phi traces to results/domain_base.json; every config value traces to a tokenizer_config.json path recorded per model.",
+ "_analysis_provenance": {
+  "script": "bos_convention_screen.py",
+  "sha256": "ccbacc312365c419f7bc4967127b240361a8e43274cb011e257630b66556c117",
+  "imports": {
+   "experiments/bos_convention_screen.py": "ccbacc312365c419f7bc4967127b240361a8e43274cb011e257630b66556c117",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

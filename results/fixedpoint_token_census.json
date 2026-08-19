@@ -1,0 +1,514 @@
+{
+ "_preregistration": {
+  "purity_min": 0.5,
+  "min_pairs": 3,
+  "word_share_kill": 0.5,
+  "census_seeds": [
+   20260803,
+   990017
+  ],
+  "classes": [
+   "whitespace",
+   "punctuation",
+   "digit",
+   "list_marker",
+   "markup",
+   "byte_fallback",
+   "non_latin",
+   "word"
+  ],
+  "inventory_constraint": "fixed-point token identities were NEVER stored; endpoint_histogram pools fixed / cyclic / wandering outcomes and no per-trajectory label exists in any results file. phi doubles as the histogram's PURITY.",
+  "gate": "a (model, prefix) pair enters only if the RAISED arm has phi >= PURITY_MIN, so its histogram is majority fixed-point; contaminated pairs are named, never imputed",
+  "prediction": "tokens GAINED under a phi-raising prefix are FORMAT-CONGRUENT with the prefix's document type (the F154 raiser is a table-of-contents fragment)",
+  "kill": "ordinary-word share of gained mass > 0.5 on a majority of readable pairs -> the corpus-statistics reading dies",
+  "not_decidable": "fewer than 3 readable pairs",
+  "boundary": "token CLASS is a lexical judgement from the decoded string, not a measurement; the classifier is fixed in the script and reported in full"
+ },
+ "pairs": [
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raised_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|bos",
+    "llm-jp/llm-jp-3-1.8b|s990017|bos"
+   ],
+   "raw_phi": 0.7761,
+   "raised_phi": 0.8073,
+   "gained_total": 42,
+   "gained_class_share": {
+    "whitespace": 0.1429,
+    "punctuation": 0.0238,
+    "digit": 0.0,
+    "list_marker": 0.0,
+    "markup": 0.0238,
+    "byte_fallback": 0.0238,
+    "non_latin": 0.0952,
+    "word": 0.6905
+   },
+   "word_share": 0.6905,
+   "format_share": 0.3095,
+   "top_gained": [
+    [
+     316,
+     "to",
+     15
+    ],
+    [
+     2978,
+     "United",
+     10
+    ],
+    [
+     18,
+     "\n",
+     4
+    ],
+    [
+     29356,
+     "\u3000",
+     2
+    ],
+    [
+     28995,
+     "\u30fc",
+     1
+    ],
+    [
+     66054,
+     "\u4f7f\u3048\u308b",
+     1
+    ],
+    [
+     28728,
+     ".",
+     1
+    ],
+    [
+     3617,
+     "date",
+     1
+    ]
+   ]
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raised_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|bos",
+    "tiiuae/Falcon3-1B-Base|s990017|bos"
+   ],
+   "raw_phi": 0.2135,
+   "raised_phi": 0.9062,
+   "gained_total": 146,
+   "gained_class_share": {
+    "whitespace": 0.8082,
+    "punctuation": 0.0822,
+    "digit": 0.1027,
+    "list_marker": 0.0,
+    "markup": 0.0,
+    "byte_fallback": 0.0,
+    "non_latin": 0.0,
+    "word": 0.0068
+   },
+   "word_share": 0.0068,
+   "format_share": 0.9932,
+   "top_gained": [
+    [
+     12,
+     "\n",
+     118
+    ],
+    [
+     2039,
+     "0",
+     15
+    ],
+    [
+     2037,
+     ".",
+     12
+    ],
+    [
+     81747,
+     " delusions",
+     1
+    ]
+   ]
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "arm": "p1",
+   "file": "text_interaction.json",
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raised_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|p1",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|p1"
+   ],
+   "raw_phi": 0.3281,
+   "raised_phi": 1.0,
+   "gained_total": 191,
+   "gained_class_share": {
+    "whitespace": 1.0,
+    "punctuation": 0.0,
+    "digit": 0.0,
+    "list_marker": 0.0,
+    "markup": 0.0,
+    "byte_fallback": 0.0,
+    "non_latin": 0.0,
+    "word": 0.0
+   },
+   "word_share": 0.0,
+   "format_share": 1.0,
+   "top_gained": [
+    [
+     13,
+     "\n",
+     181
+    ],
+    [
+     32347,
+     "",
+     10
+    ]
+   ]
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "arm": "p1",
+   "file": "text_interaction.json",
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raised_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|p1",
+    "tiiuae/Falcon3-1B-Base|s990017|p1"
+   ],
+   "raw_phi": 0.2135,
+   "raised_phi": 0.9792,
+   "gained_total": 151,
+   "gained_class_share": {
+    "whitespace": 0.9735,
+    "punctuation": 0.0199,
+    "digit": 0.0,
+    "list_marker": 0.0,
+    "markup": 0.0,
+    "byte_fallback": 0.0066,
+    "non_latin": 0.0,
+    "word": 0.0
+   },
+   "word_share": 0.0,
+   "format_share": 1.0,
+   "top_gained": [
+    [
+     12,
+     "\n",
+     147
+    ],
+    [
+     2035,
+     ",",
+     2
+    ],
+    [
+     2114,
+     "{",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ]
+   ]
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "arm": "struct_t0",
+   "file": "structural_text.json",
+   "raw_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|raw",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|raw"
+   ],
+   "raised_keys": [
+    "sapienzanlp/Minerva-3B-base-v1.0|s20260803|t0",
+    "sapienzanlp/Minerva-3B-base-v1.0|s990017|t0"
+   ],
+   "raw_phi": 0.3281,
+   "raised_phi": 1.0,
+   "gained_total": 191,
+   "gained_class_share": {
+    "whitespace": 1.0,
+    "punctuation": 0.0,
+    "digit": 0.0,
+    "list_marker": 0.0,
+    "markup": 0.0,
+    "byte_fallback": 0.0,
+    "non_latin": 0.0,
+    "word": 0.0
+   },
+   "word_share": 0.0,
+   "format_share": 1.0,
+   "top_gained": [
+    [
+     13,
+     "\n",
+     181
+    ],
+    [
+     32347,
+     "",
+     10
+    ]
+   ]
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "arm": "struct_t0",
+   "file": "structural_text.json",
+   "raw_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|raw",
+    "tiiuae/Falcon3-1B-Base|s990017|raw"
+   ],
+   "raised_keys": [
+    "tiiuae/Falcon3-1B-Base|s20260803|t0",
+    "tiiuae/Falcon3-1B-Base|s990017|t0"
+   ],
+   "raw_phi": 0.2135,
+   "raised_phi": 0.9792,
+   "gained_total": 151,
+   "gained_class_share": {
+    "whitespace": 0.9735,
+    "punctuation": 0.0199,
+    "digit": 0.0,
+    "list_marker": 0.0,
+    "markup": 0.0,
+    "byte_fallback": 0.0066,
+    "non_latin": 0.0,
+    "word": 0.0
+   },
+   "word_share": 0.0,
+   "format_share": 1.0,
+   "top_gained": [
+    [
+     12,
+     "\n",
+     147
+    ],
+    [
+     2035,
+     ",",
+     2
+    ],
+    [
+     2114,
+     "{",
+     1
+    ],
+    [
+     47375,
+     "\ufffd",
+     1
+    ]
+   ]
+  }
+ ],
+ "contaminated": [
+  {
+   "model": "EleutherAI/pythia-410m",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raised_phi": 0.0052,
+   "reason": "raised-arm phi 0.005 < purity 0.5"
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  },
+  {
+   "model": "bigcode/starcoder2-3b",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raised_phi": 0.1302,
+   "reason": "raised-arm phi 0.130 < purity 0.5"
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "arm": "bos",
+   "file": "domain_base.json",
+   "raised_phi": 0.0052,
+   "reason": "raised-arm phi 0.005 < purity 0.5"
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "arm": "p1",
+   "file": "text_interaction.json",
+   "raised_phi": 0.0156,
+   "reason": "raised-arm phi 0.016 < purity 0.5"
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "arm": "p1",
+   "file": "text_interaction.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "arm": "p1",
+   "file": "text_interaction.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "arm": "struct_t0",
+   "file": "structural_text.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "arm": "struct_t0",
+   "file": "structural_text.json",
+   "raised_phi": 0.0,
+   "reason": "raised-arm phi 0.000 < purity 0.5"
+  }
+ ],
+ "missing": [
+  {
+   "model": "EleutherAI/pythia-410m",
+   "arm": "p1",
+   "file": "text_interaction.json"
+  },
+  {
+   "model": "bigcode/starcoder2-3b",
+   "arm": "p1",
+   "file": "text_interaction.json"
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "arm": "p1",
+   "file": "text_interaction.json"
+  },
+  {
+   "model": "EleutherAI/pythia-410m",
+   "arm": "struct_t0",
+   "file": "structural_text.json"
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "arm": "struct_t0",
+   "file": "structural_text.json"
+  },
+  {
+   "model": "bigcode/starcoder2-3b",
+   "arm": "struct_t0",
+   "file": "structural_text.json"
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "arm": "struct_t0",
+   "file": "structural_text.json"
+  },
+  {
+   "model": "EleutherAI/pythia-410m",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "bigcode/starcoder2-3b",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "arm": "text_matched",
+   "file": "domain_midrange.json"
+  }
+ ],
+ "summary": {
+  "n_pairs": 6,
+  "median_word_share": 0.0,
+  "n_word_dominated": 1
+ },
+ "verdict": "INVENTORY CONSTRAINT: fixed-point token identities were never stored. endpoint_histogram pools fixed / cyclic / wandering endpoints, and phi is the fraction of them that are fixed points -- so phi is also the histogram's PURITY. This census therefore reads only cells whose RAISED arm has phi >= 0.5, where the histogram is majority fixed-point. No model was re-run. COVERAGE: 6 readable (model, arm) pairs; 11 excluded by the purity gate or for having no gained mass; 15 absent from the files. PER PAIR, share of GAINED endpoint mass by class: llm-jp-3-1.8b [bos] word 0.69, format 0.31 (phi 0.78 -> 0.81); Falcon3-1B-Base [bos] word 0.01, format 0.99 (phi 0.21 -> 0.91); Minerva-3B-base-v1.0 [p1] word 0.00, format 1.00 (phi 0.33 -> 1.00); Falcon3-1B-Base [p1] word 0.00, format 1.00 (phi 0.21 -> 0.98); Minerva-3B-base-v1.0 [struct_t0] word 0.00, format 1.00 (phi 0.33 -> 1.00); Falcon3-1B-Base [struct_t0] word 0.00, format 1.00 (phi 0.21 -> 0.98).  PREDICTION HELD: gained mass is format-congruent (non-word) on 5 of 6 pairs, median word share 0.00. The tokens a raising prefix adds are the furniture of its own document type, not ordinary vocabulary. BOUNDARY: token class is a lexical judgement from the decoded string, fixed in the script before any output was seen. 'Gained' is per-token-id count increase from the raw arm to the raised arm, summed over census seeds. Purity is known exactly but is not perfect: at phi = 0.5 a readable histogram is still half non-fixed-point endpoints.",
+ "_analysis_provenance": {
+  "script": "fixedpoint_token_census.py",
+  "sha256": "f0f79577ce111e67cd64e88d2dabb490bea63dbbb1343fa36a3167c3c12cba21",
+  "imports": {
+   "experiments/fixedpoint_token_census.py": "f0f79577ce111e67cd64e88d2dabb490bea63dbbb1343fa36a3167c3c12cba21",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

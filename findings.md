@@ -3645,6 +3645,122 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F164 — the bilinear hypothesis is NOT DECIDABLE for insufficiency: 59% coverage against a floor of 60%, and the shortfall is absence, not masking
+The first structural hypothesis in this programme that PREDICTS the pattern of failures rather than
+adding to it. Five marginal factors died on widening (F147–F156), and a bilinear effect
+$\Delta\phi(\text{prefix}, \text{model}) \sim u_{\text{prefix}} \cdot v_{\text{model}}$ would produce
+exactly that signature: systematic interaction with no marginal factor, because neither loading alone
+predicts a sign once the other varies.
+
+**Pre-registered before any fit.** Rank-1 ALS on observed cells only. Fraction of above-tolerance
+variance explained: $\geq 0.80$ supported, $< 0.50$ dead, between NOT DECIDABLE. Insufficiency gate
+declared first: $< 60\%$ coverage or $< 4$ usable columns → NOT DECIDABLE FOR INSUFFICIENCY, with
+the filling runs LISTED and not run.
+
+**Masking is the design, and it is this project's defect class made operational.** A cell whose
+$|\Delta\phi|$ sits inside its own tolerance carries no direction; fitting it as a small number would
+let floored and ceilinged arms vote on the structure. Such cells are excluded from the fit — never
+zeroed, never imputed, because zero is a claim and imputation is a louder one.
+
+**VERDICT: NOT DECIDABLE FOR INSUFFICIENCY.** 8 models × 29 arms from five results files; coverage
+**59%** against the pre-registered floor of **60%**. It misses by one point and **the threshold was
+not moved**. 29 usable columns clears its own floor of 4.
+
+**The decomposition is what makes the verdict actionable**, and it corrects a reporting error caught
+mid-analysis: the matrix conflated cells *never measured* with cells *measured and flat*. Separated:
+
+| | cells |
+|---|---|
+| usable (above tolerance) | 137 |
+| **never measured** (model not run on that arm) | **84** |
+| measured but masked (flat) | 11 |
+| coverage over MEASURED cells alone | **93%** |
+
+So the shortfall is almost entirely **absence**, not masking. Only 11 cells are genuinely
+direction-free. Rerunning those would remeasure a flat quantity; the 84 are a hole a run can fill.
+
+**The cheapest filling run, listed and not run.** The same three models — `pythia-410m`,
+`starcoder2-3b`, `llm-jp-3-1.8b` — are absent from all 24 text-arm columns (F154's twelve and F155's
+twelve). Running the three on F154's twelve texts fills 36 cells and takes coverage to ~75%, which
+clears the gate with margin rather than by one cell. Deliberately **not** the minimal run that would
+scrape past 60%: gaming a pre-registered threshold by three cells would be the same defect wearing a
+different hat.
+
+**Owed and not run: the prior-art gate** for the adjacent repetition literature — greedy-decoding
+degeneration loops, repetition self-reinforcement, induction heads. F157's gate covered the domain
+claim, not this one, and a bilinear-interaction claim about fixed points of greedy decoding sits much
+closer to that literature. It is owed before any bilinear result is written up.
+`experiments/bilinear_rank1.py` → `results/bilinear_rank1.json`.
+
+### F163 — the BOS convention does not screen the sign: NOT DECIDABLE for predictor imbalance, and the raw 71% agreement is a base-rate artefact
+F152 found one BOS token raising `Falcon3-1B-Base` 0.214 → 0.906 while collapsing others, and F158
+found attention-sink strength does not predict that sign. A cheaper explanation was available and
+untested: if a model's pretraining convention prepends BOS, then its *raw* arm is the
+out-of-distribution one and adding BOS restores it.
+
+**Prediction, frozen before the join:** models whose convention prepends BOS move $\phi$ UP; models
+without it collapse or hold. **Kill:** agreement at or below chance. **Caution, pre-registered:** $n$
+is small and the convention is confounded with family, so this is a SCREEN yielding a candidate
+hypothesis, not a test. No significance test was computed — at this $n$ it could not fail
+informatively, and that refusal was recorded before the numbers.
+
+**The convention had to be MEASURED, not read.** Six of eight models omit `add_bos_token` from
+`tokenizer_config.json` entirely, and absence of the key is silence, not a `false`. Inferring it from
+family name would manufacture the very confound the caution names. So it is measured by encoding a
+probe string with the local tokenizer and testing whether the first id is `bos_token_id` — tokenizer
+only, no weights, no forward passes. That took coverage from 2 of 8 to 8 of 8.
+
+**VERDICT: NOT DECIDABLE — predictor imbalance.** Confusion over the 7 non-flat models
+(`llm-jp-3-1.8b` is flat and excluded): true/up 0, true/down 1, false/up 1, false/down 5.
+
+- Raw agreement **5 of 7 (71%)** — and this is a **base-rate artefact**. Only one model carries the
+  convention. A rule that ignores the predictor entirely and always answers "down" scores 6 of 7.
+- **Balanced accuracy 0.42 — below chance.** That is the quantity that can fail, and it does.
+
+The raw number was computed first and would have been reported as "screen passes as a candidate". The
+imbalance gate was added on seeing the 1-vs-6 split, and it is the project's own defect class — a
+criterion applied where the predictor has almost no variance — appearing inside a screen written to
+avoid it. Recorded because the near-miss is the useful part.
+`experiments/bos_convention_screen.py` → `results/bos_convention_screen.json`.
+
+### F162 — the fixed point is the NEWLINE: phi-raising prefixes add '\n', not ordinary vocabulary. But fixed-point token identities were never stored, and this reads endpoints under a purity gate
+**Inventory constraint first, because it bounds the claim.** Terminal *fixed-point* token identities
+were never stored anywhere. `endpoint_histogram` records the terminal token of all 96 trajectories
+with fixed-point, cyclic and wandering outcomes POOLED; outcome survives only as aggregate
+`fixed_point_fraction` / `cyclic_fraction`. Verified over the union of cell keys across all sixteen
+histogram-bearing results files. No model was re-run.
+
+**What makes a partial reading legitimate.** $\phi$ is exactly the fraction of a cell's 96 endpoints
+that are fixed points, so $\phi$ doubles as that histogram's PURITY. A cell at $\phi = 0.97$ has a
+histogram 97% composed of fixed points; one at $\phi = 0.10$ is 90% something else. Purity was
+therefore pre-registered as a gate: a pair enters only if the RAISED arm has $\phi \geq 0.50$.
+
+**Pre-registered prediction:** tokens GAINED under a $\phi$-raising prefix are format-congruent with
+the prefix's document type (the F154 raiser is a table-of-contents fragment). **Kill:** gained tokens
+ordinary-word-dominated on a majority of readable pairs.
+
+**PREDICTION HELD, 5 of 6 readable pairs, median word share of gained mass 0.00.** And the result is
+sharper than the prediction: the gained token is overwhelmingly the **newline**.
+
+| pair | $\phi$ | top gained |
+|---|---|---|
+| Falcon3-1B-Base [bos] | 0.21 → 0.91 | `'\n'`×118, `'0'`×15, `'.'`×12 |
+| Minerva-3B-base [p1] | 0.33 → 1.00 | `'\n'`×181 |
+| Falcon3-1B-Base [p1] | 0.21 → 0.98 | `'\n'`×147 |
+
+$\phi$-raising is not "format-congruent tokens" in general — it is the map collapsing onto `'\n'` as
+a fixed point under newline-dense prefixes. Two free checks pass: `struct_t0` and `p1` give
+byte-identical results because `t0` *is* Pile row 101; and the single word-dominated pair
+(`llm-jp-3-1.8b`, 0.69) is the one whose $\phi$ barely moved (0.78 → 0.81), i.e. noise-level
+reshuffling rather than a raise.
+
+**Boundary.** Six readable pairs; eleven excluded by the purity gate because most $\phi$-raising arms
+in this programme raise $\phi$ to values well below 0.5, so their histograms are mostly cycles and
+wanderers. Token class is a lexical judgement from the decoded string, fixed in the script before any
+output was seen. At $\phi = 0.50$ a readable histogram is still half non-fixed-point endpoints.
+Recovering the literal claim needs per-trajectory outcome labels, i.e. a re-run, which was not
+authorised. `experiments/fixedpoint_token_census.py` → `results/fixedpoint_token_census.json`.
+
 ### F161 — the READOUT is a short-window property: at a 16-token window five of six models have no fixed points left, so the domain question cannot be asked there
 F160 defended the probe's input *distribution*; this tests its *window*. Every finding F144–F160 uses
 one estimator — the argmax map with a **two-token** window — and the first objection a reader makes is
