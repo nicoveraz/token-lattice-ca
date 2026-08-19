@@ -305,3 +305,21 @@ Systems View of Successive Paraphrasing*, 2025.
   mechanically: every `\cite*` key in `main.tex` resolves to a `refs.bib` entry (12 of 12), and
   `refs.bib` has no duplicate keys. `refs.bib` still carries paper 1's unused entries; BibTeX
   ignores those.
+
+## 13. `veraz2026probes` — arXiv:2608.10986 (our own companion paper)
+
+Vera Zúñiga, *What Iterated Self-Feeding Probes of Language Models Measure, and a test that
+separates the construction from the model*, 2026.
+
+- **Cited in:** §ladder, "Relation to the companion instrument".
+- **Our claim:** it established the estimator family's validity conditions, asked which readings of
+  an iterated probe belong to the construction and which to the model, and gave the two-axis test
+  separating them. This paper positions the prefix as a construction axis in that vocabulary.
+- **Verification:** SELF-CITATION. Verified by authorship rather than by fetch — the source is
+  `paper_arxiv/main.tex` in this repository, and its abstract states the discriminator directly:
+  "hold the construction fixed and vary the model, or hold the model fixed and vary the
+  construction, and see which readings move."
+- **Why it is in this ledger anyway:** the ledger's rule is that every cited work carries a recorded
+  basis, and "we wrote it" is a basis that should be stated rather than assumed. It was added when
+  `tests/test_paper2_citations.py` failed on the restructure — the guard doing exactly its job on a
+  citation that had been wired in without an entry.

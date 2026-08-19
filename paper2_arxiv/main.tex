@@ -17,6 +17,16 @@
 %    overreaching their own sources, so no key here came from a gate summary: each was read at the
 %    source and its quote recorded in CITATIONS.md. The \citepend{} macro is kept as a tripwire --
 %    it renders red in the PDF -- so any new unresolved citation cannot be missed. There are none.
+%  * RESTRUCTURED 19 Aug 2026 around the spine the sections already implied. The paper is one
+%    argument: the interaction reaches a task-free structural readout (locus), and every attempted
+%    factorization of what moves it -- prefix-side, model-side, mechanistic -- failed under
+%    widening. Changes: the withdrawals table is now the roadmap at the end of the introduction and
+%    its narratives live inside the factor sections (\S4 prefix side, \S5 model side); the sink
+%    section is the ladder's mechanistic rung; the share is defined in Setup because two rows of
+%    Table 2 are share rows; the companion paper is cited (veraz2026probes -- the key was already
+%    in refs.bib, unwired); the short-window scope now appears in the abstract; Table 3 forward-
+%    references the in-distribution control; the conclusion states the factor criterion. NO
+%    experiment, number, or source comment was changed.
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
@@ -31,8 +41,7 @@
 \newcommand{\citepend}[1]{\textcolor{red}{\textbf{[CITE: #1]}}}
 
 \title{Prompt--Model Interaction Reaches the Fixed Points\\
-{\large A deterministic, task-free structural readout --- and a probe that runs outside the regime
-its nearest mechanistic account describes}}
+{\large A deterministic, task-free structural readout --- and the factorizations of it that failed}}
 
 \author{Nicol\'as Vera Z\'u\~niga\\
 Independent Researcher, Chile\\
@@ -47,22 +56,28 @@ Independent Researcher, Chile\\
 That a prompt's effect on a language model is not a property of the prompt is established: prompts
 optimised for one model degrade on another, formats have no model-independent valence, and benchmark
 rankings reorder under semantically neutral reformatting. All of that evidence is about \emph{task
-accuracy}. We ask whether the interaction reaches further --- into a deterministic structural property
-of the model's own decoding map --- and find that it does, with one behaviour the adjacent
-mechanistic literature does not predict. Our readout is the fixed-point structure of the short-window
-argmax map $x_{t+1} = \arg\max_x p(x \mid x_{t-1}, x_t)$, censused from $\Nstarts$ starts; it has no
-sampling noise and no task, so a prefix cannot help or hurt it in the ordinary sense. Conditioning the
-model on as few as nine tokens beforehand moves this readout across most of its range, changes a
-four-way structural class, and reorders models. The effect is not monotone in prefix length. One
-fixed nine-token prefix drives four models to a fixed-point fraction near $0$ and two others to near
-$1$. A single beginning-of-sequence token takes one model from $0.21$ to $0.91$ while collapsing others.
-Measuring the nearest mechanistic account's own quantity on the same forward passes, attention-sink
-strength predicts the sign of that shift on $2$ of $5$ models --- chance --- and crossing context
-length against content shows why: the account holds on real text and fails on the uniformly random
-tokens our probe feeds it. We therefore do not claim to contradict it, but to operate outside the
-regime it describes. We report four attempts of our own to name a factor behind the pattern, each withdrawn within
-one run of proposing it, and give the anti-vacuity discipline that caught them: our recurring error
-was applying a criterion with a shape to a quantity with no room to vary.
+accuracy}, and a task readout cannot say where the interaction lives --- in the machinery of
+performing tasks, or in the conditional distribution itself. We ask on a readout with no task in it:
+the fixed-point structure of the short-window argmax map
+$x_{t+1} = \arg\max_x p(x \mid x_{t-1}, x_t)$, censused from $\Nstarts$ starts. It is deterministic,
+so nothing can be helped or hurt; and it exists only at short windows --- four of six models lose it
+entirely by window $16$ --- so everything here is a statement about how a model reads a
+\emph{fragment}. Two results. First, the interaction reaches this readout at full magnitude: nine
+tokens of conditioning move the fixed-point fraction across most of its range, change a four-way
+structural class, and reorder models, while an instruction-tuning intervention that moves IFEval by
+$60.5$ points moves the class by zero. Second, nothing we proposed carries the effect. Prefix length
+fails: the effect is not monotone. Four phenomenological factors --- prose-versus-markup, a
+universal direction, bidirectionality as a model property, instruct-resistance --- were each
+withdrawn within one run of being proposed, dissolved by widening the sample. And the nearest
+mechanistic account, attention-sink dominance of early tokens, predicts the sign of the shift on
+$2$ of $5$ models --- chance --- with a length-by-content cross showing why: the account holds on
+real text and fails on the uniformly random input our probe feeds it, so we operate outside its
+regime rather than against it. One fixed nine-token prefix drives four models toward fixed-point
+fraction $0$ and two toward $1$; a single beginning-of-sequence token takes one model from $0.21$ to
+$0.91$ while collapsing others; the bidirectionality survives in-distribution starts. On this
+readout the unit of explanation is the prompt--model pair. We close with the discipline that caught
+our own four factors, whose recurring error has a name: a criterion with a shape applied to a
+quantity with no room to vary.
 \end{abstract}
 
 % =================================================================================================
@@ -97,23 +112,62 @@ a property of the conditional alone. There is no answer to get right, no format 
 verbalizer, and --- the map being deterministic --- no sampling noise. A prefix cannot help or hurt
 performance here, because there is no performance.
 
-\subsection{Findings}
+\subsection{The claim, and the ladder}\label{sec:ladder}
+
+The interaction reaches this readout --- and then resists explanation in a specific, documentable
+way: every factorization of the effect we proposed, by a property of the prefix, a property of the
+model, or the nearest mechanistic account, failed when the sample widened. The paper is organised as
+that ladder.
 
 \begin{enumerate}
-\item The interaction reaches this readout at large magnitude: nine tokens move the fixed-point
-      fraction across most of its range and change a four-way structural class (\S\ref{sec:moves}).
-\item It is not ordered by prefix length (\S\ref{sec:length}).
-\item One fixed nine-token prefix drives four models toward $0$ and two toward $1$
-      (\S\ref{sec:interaction}). This is the structural-readout instance of the known accuracy-level
-      result, and we position it as such rather than claiming it.
-\item \textbf{Sink strength does not predict the sign, and the probe runs outside the account's
-      regime} (\S\ref{sec:sink}). Measuring both quantities on the same forward passes, sink and
-      $\fpf$ agree in sign on $2$ of $5$ models --- chance. Crossing length against content then shows
-      the attention-sink account holds on real text and fails on random tokens, which is our probe's
-      input. We do not claim a contradiction; we claim the account does not reach this regime.
-\item Four factors of our own, named and withdrawn, and the discipline that caught them
-      (\S\ref{sec:withdrawals}--\S\ref{sec:discipline}).
+\item \textbf{The locus} (\S\ref{sec:moves}). Nine tokens move the fixed-point fraction across most
+      of its range and change a four-way structural class, while instruction tuning --- $+60.5$
+      IFEval points on a matched pair --- moves the class by zero. The effect is large and
+      selective, and it is a fact about the conditional, not about task machinery.
+\item \textbf{Prefix-side factors fail} (\S\ref{sec:prefix}). The effect is not monotone in prefix
+      length, and both factors we proposed on the prefix's content died on widening
+      (Table~\ref{tab:withdrawals}, rows 1 and 3).
+\item \textbf{Model-side factors fail} (\S\ref{sec:interaction}). A universal direction,
+      bidirectionality as a model property, and instruct-resistance died the same way (rows 2, 4,
+      5). What remains is pairwise: one fixed prefix drives four models toward $0$ and
+      two toward $1$, and the pattern survives in-distribution starts.
+\item \textbf{The mechanistic factor fails to carry the sign} (\S\ref{sec:sink}). Measured on the
+      same forward passes, attention-sink strength agrees with the fixed-point shift on $2$ of $5$
+      models --- chance --- and a length-by-content cross shows the account holds on real text and
+      fails on our probe's input: outside its regime, not contradicted.
+\item \textbf{The discipline} (\S\ref{sec:discipline}): what kept the factor search honest, and the
+      recurring error it caught in ourselves.
 \end{enumerate}
+
+We do not claim that no factorization exists. We claim that five natural ones did not survive
+widening, we state the criterion each was held to (\S\ref{sec:conclusion}), and we invite the sixth.
+
+\begin{table}[t]\centering
+\small
+\begin{tabular}{lll}
+\toprule
+claim & died on & source \\
+\midrule
+``prose and markup differ, and the sign flips by model'' & mid-range models & F147 $\to$ F151 \\
+``the effect is unidirectional: 18 of 18 arms down''      & a wider model set & F151 $\to$ F152 \\
+``no text raises two models''                             & a wider corpus & F153 $\to$ F154 \\
+``bidirectionality is a model property''                  & a wider text class & F154 $\to$ F155 \\
+``instruct models resist raising''                        & ONE additional text & F156 \\
+\bottomrule
+\end{tabular}
+\caption{The factor record, and the paper's roadmap. Each proposed factor was withdrawn within one
+run of being proposed, always because widening the sample dissolved it into an interaction that had
+been undersampled. \S\ref{sec:prefix}--\S\ref{sec:sink} walk the ladder; \texttt{findings.md}
+carries the banners.}
+\label{tab:withdrawals}
+\end{table}
+
+\paragraph{Relation to the companion instrument.} The estimator family is the one whose validity
+conditions we established in \citet{veraz2026probes}, which asked which readings of an iterated
+probe belong to the construction and which to the model, and gave the two-axis test separating them.
+In that vocabulary, the prefix is a construction axis; the window sweep in Setup scopes the readout
+itself; and this paper's result is that the axis's effect on the readout is model-conditioned in
+sign --- the interaction is what survives the discriminator.
 
 % =================================================================================================
 \section{Setup}
@@ -122,13 +176,16 @@ performance here, because there is no performance.
 trajectories land. The readout is the \emph{fixed-point fraction} $\fpf$, the proportion of starts
 terminating in a fixed point; trajectories are also classified \textsc{funnel} (one dominant
 attracting fixed point), \textsc{none} (cycles or wandering), \textsc{fragmented} (many small basins),
-\textsc{borderline}.
+\textsc{borderline}. Two rows of Table~\ref{tab:moves} use the \emph{share}, this readout's
+stochastic sibling from the same instrument family --- the fraction of settled mass in the dominant
+attractor of the sampled ring \citep{veraz2026probes}; everything else in the paper is the
+deterministic census above.
 
 \paragraph{Domain.} A token prefix prepended to the context before every forward pass, implemented as
 a wrapper around the model rather than a change to the estimator, so the measured quantity is
 provably unchanged. Kinds: \textsc{raw} (none), \textsc{bos}, \textsc{text} (ordinary text truncated
 to a stated count), \textsc{template} (the model's own chat template), \textsc{struct} (high markup
-density, \S\ref{sec:withdrawals}).
+density, Table~\ref{tab:withdrawals}).
 
 \paragraph{Scope: a short-window estimator, by nature and not by choice.}% F161, results/window_length_domain.json
 Generalising the map so the state is the last $W$ tokens and sweeping $W \in \{2,4,8,16\}$, the
@@ -143,11 +200,11 @@ scope rather than in limits because it is a property of the construction, not a 
 evidence; \S\ref{sec:limits} does not weaken it.
 
 \paragraph{Tolerance.} $\fpf$ is quantised at $1/\Nstarts \approx 0.0104$. A shift counts only if it
-exceeds that model's own tolerance $\max(4/\Nstarts,\, 2\sigma)$, with $\sigma$ the across-seed range
+exceeds that model's own tolerance $\max(4/\Nstarts,\, 2s)$, with $s$ the across-seed range
 on the arm in question. \S\ref{sec:discipline} explains why this is stated so prominently.
 
 % =================================================================================================
-\section{The interaction reaches a task-free structural readout}\label{sec:moves}
+\section{The locus: the interaction reaches a task-free structural readout}\label{sec:moves}
 
 \begin{table}[t]\centering
 \small
@@ -168,8 +225,9 @@ $\fpf$             & 9 tokens of prose & $0.714 \to 0.005$ & F151 \\
 \bottomrule
 \end{tabular}
 \caption{Conditioning moves a task-free structural readout at magnitudes comparable to those the
-literature reports for accuracy. The ranking row is an instance of known ranking instability
-(\S\ref{sec:intro-known}); the class rows have no accuracy analogue.}
+literature reports for accuracy. Rows 3--4 are measured on the share, the stochastic sibling readout
+(Setup); the ranking row is an instance of known ranking instability (\S\ref{sec:intro-known}); the
+class rows have no accuracy analogue.}
 \label{tab:moves}
 \end{table}
 
@@ -179,9 +237,13 @@ This readout is therefore not sensitive to everything: a large behavioural inter
 where it was, while nine tokens of conditioning move it completely. Whatever the domain does here is
 not generic fragility.
 
-% =================================================================================================
-\section{Not ordered by prefix length}\label{sec:length}
+The remainder of the paper asks what carries the effect, and reports the failure of each candidate
+in turn.
 
+% =================================================================================================
+\section{Prefix-side factors fail}\label{sec:prefix}
+
+\paragraph{Length is not the factor.}
 % F147, results/domain_gradient.json. Two of six models excluded by anti-vacuity: their entire span
 % across all four domains was one census start, below their own seed noise.
 Sweeping \textsc{raw} (0 tokens) $\to$ \textsc{bos} (1) $\to$ \textsc{text} (matched to that model's
@@ -197,14 +259,43 @@ non-monotonic'', with graded atomic format changes giving monotone accuracy trip
 $33.6\%$ of the time against a $33.3\%$ chance rate\citep{sclar2024format}. Ours is that shape on a
 readout with no task, no format and no examples in it.
 
+\paragraph{The prefix's content is not the factor either.} Two content factors followed the length
+result and died on widening (Table~\ref{tab:withdrawals}, rows 1 and 3): ``prose and markup differ,
+and the sign flips by model'' did not survive the mid-range models (F147 $\to$ F151), and ``no text
+raises two models'' did not survive a wider corpus (F153 $\to$ F154). Their narratives continue in
+\S\ref{sec:interaction}, because what dissolved them was in each case the \emph{model} side of the
+sample.
+
 % =================================================================================================
-\section{One prefix, opposite outcomes}\label{sec:interaction}
+\section{Model-side factors fail, and what remains is pairwise}\label{sec:interaction}
+
+% F151, results/domain_midrange.json -> F152, results/domain_base.json
+\paragraph{A universal from $n=2$.} On two mid-range instruct models all $18$ domain arms moved down,
+and every apparent up-shift to that point proved mechanical --- one saturating exactly at the ceiling,
+one inside its own seed spread, one starting from the floor. We wrote ``unidirectional, without
+exception''. Seven base models produced two bidirectional counterexamples immediately.
+
+% F155, results/structural_text.json -> F156, results/instruct_raisable.json
+\paragraph{A null we wanted.} Having found that high-markup text raises some models more often than
+prose, we noted two instruct models resisting every text tried, and pre-registered that a null would
+be \emph{the first factor here to survive a widening} --- a positive claim this paper otherwise lacks.
+One text of twelve refused it: a C source-file header takes \texttt{gemma-2-2b-it} from $0.714$ to
+$0.917$. We report the null we wanted and did not get.
+
+% F156, results/instruct_raisable.json vs F155, results/structural_text.json
+\paragraph{What survives, unpromoted.} Instruct models were raised on $1$ of $24$ text-model units
+against $11$ of $48$ for base models on the \emph{same} twelve texts. Two instruct clusters cannot
+test that, and Table~\ref{tab:withdrawals} is four consecutive instances of this kind of gap
+dissolving. We record it and decline to promote it.
+
+\paragraph{What remains when the factors are gone.} With no prefix-side and no model-side factor
+surviving, the residual is the pair itself.
 
 \begin{table}[t]\centering
 \small
 \begin{tabular}{lrrl}
 \toprule
-model & raw $\fpf$ & under the prefix & \\
+model & raw $\fpf$ & under the prefix & direction \\
 \midrule
 Falcon3-1B-Base       & 0.214 & \textbf{0.979} & up \\
 Minerva-3B-base       & 0.328 & \textbf{1.000} & up \\
@@ -215,7 +306,8 @@ Qwen2.5-1.5B-Instruct & 0.573 & 0.005 & down \\
 \bottomrule
 \end{tabular}
 \caption{One fixed nine-token prefix (a table-of-contents fragment) applied unchanged to six models
-screened to have headroom in both directions. Source: F154,
+screened to have headroom in both directions. The bidirectionality survives the in-distribution
+control of \S\ref{sec:limits} (F160). Source: F154,
 \texttt{results/text\_interaction.json}.}
 \label{tab:p1}
 \end{table}
@@ -240,7 +332,8 @@ GPT-4o-mini\citep{telephone}. A separate line reports iterated-map attractor sta
 \S\ref{sec:limits} takes this up.
 
 % =================================================================================================
-\section{Where the sink account predicts magnitude, we observe sign}\label{sec:sink}
+\section{The mechanistic factor: where the sink account predicts magnitude, we observe
+sign}\label{sec:sink}
 
 This is the finding we cannot place in the existing literature, and the one we would most like
 refuted.
@@ -268,7 +361,7 @@ Sink strength does not predict the sign of the fixed-point shift.
 
 \begin{table}[t]\centering
 \small
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrl}
 \toprule
 model & $\Delta$sink & $\Delta\fpf$ & agree \\
 \midrule
@@ -310,46 +403,6 @@ models on \emph{any} downstream property, and Table~\ref{tab:sink} shows the mec
 magnitude failing to carry the sign even where we measure both at once.
 
 % =================================================================================================
-\section{Four factors we named and withdrew}\label{sec:withdrawals}
-
-\begin{table}[t]\centering
-\small
-\begin{tabular}{lll}
-\toprule
-claim & died on & source \\
-\midrule
-``prose and markup differ, and the sign flips by model'' & mid-range models & F147 $\to$ F151 \\
-``the effect is unidirectional: 18 of 18 arms down''      & a wider model set & F151 $\to$ F152 \\
-``no text raises two models''                             & a wider corpus & F153 $\to$ F154 \\
-``bidirectionality is a model property''                  & a wider text class & F154 $\to$ F155 \\
-``instruct models resist raising''                        & ONE additional text & F156 \\
-\bottomrule
-\end{tabular}
-\caption{Each factor was withdrawn within one run of being proposed, always because widening the
-sample dissolved it into an interaction that had been undersampled.}
-\label{tab:withdrawals}
-\end{table}
-
-% F151, results/domain_midrange.json -> F152, results/domain_base.json
-\paragraph{A universal from $n=2$.} On two mid-range instruct models all $18$ domain arms moved down,
-and every apparent up-shift to that point proved mechanical --- one saturating exactly at the ceiling,
-one inside its own seed spread, one starting from the floor. We wrote ``unidirectional, without
-exception''. Seven base models produced two bidirectional counterexamples immediately.
-
-% F155, results/structural_text.json -> F156, results/instruct_raisable.json
-\paragraph{A null we wanted.} Having found that high-markup text raises some models more often than
-prose, we noted two instruct models resisting every text tried, and pre-registered that a null would
-be \emph{the first factor here to survive a widening} --- a positive claim this paper otherwise lacks.
-One text of twelve refused it: a C source-file header takes \texttt{gemma-2-2b-it} from $0.714$ to
-$0.917$. We report the null we wanted and did not get.
-
-% F156, results/instruct_raisable.json vs F155, results/structural_text.json
-\paragraph{What survives, unpromoted.} Instruct models were raised on $1$ of $24$ text-model units
-against $11$ of $48$ for base models on the \emph{same} twelve texts. Two instruct clusters cannot
-test that, and Table~\ref{tab:withdrawals} is four consecutive instances of this kind of gap
-dissolving. We record it and decline to promote it.
-
-% =================================================================================================
 \section{The discipline}\label{sec:discipline}
 
 \paragraph{A criterion with a shape must not be applied to a quantity with no room to vary.} Our most
@@ -382,8 +435,8 @@ a predictive rule.
 
 \paragraph{We do not claim the concept.} Prompt--model interaction, prompt non-transferability and
 ranking instability under formatting are prior art (\S\ref{sec:intro-known}). Our contribution is that
-the interaction reaches a deterministic, task-free structural readout, plus the sign behaviour of
-\S\ref{sec:sink}.
+the interaction reaches a deterministic, task-free structural readout, that no factor we tested
+carries it, and the sign behaviour of \S\ref{sec:sink}.
 
 \paragraph{A direct contradiction we must address.} \citet{paraphrase2cycle} report iterated-map
 attractor states as model-\emph{independent}: ``the attractor states are not confined to a single
@@ -394,7 +447,10 @@ argmax map. The attractor is a $2$-period edit-distance cycle, not a fixed point
 model-independence is inferred from \emph{alternating} models within one chain, plus a cross-model
 perplexity check, rather than from one prefix held fixed across separate models --- the design our
 Table~\ref{tab:p1} runs. Those are differences we have to defend, not leave implicit; they do not
-make the contradiction go away in the regime where it was measured.
+make the contradiction go away in the regime where it was measured. In the ladder's terms, theirs is
+a main-effect claim --- the attractor as a property of the text distribution, models
+interchangeable --- and ours is that in our regime no main effect survived; the regimes must be kept
+distinct precisely because the claims point opposite ways.
 
 \paragraph{Small cohorts, one estimator family.} The largest single comparison is six models and twelve
 texts, at one prefix length, from three English sources, under one operationalisation of
@@ -442,18 +498,24 @@ census is defined at two-token starts. We can bound where the sink account appli
 it to our readout in the regime where that account holds.
 
 % =================================================================================================
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 
 Prompt--model interaction is established for task performance. We show it reaches a property with no
-task in it: the fixed-point structure of a model's own deterministic argmax map. Nine tokens move that
-structure across most of its range and change a four-way class; one fixed prefix drives four models
-toward zero and two toward one. The effect is not ordered by prefix length. Most sharply, a single
-beginning-of-sequence token reverses sign across models, where the positional account of initial-token
-dominance predicts a shared direction --- a discrepancy we report rather than resolve. Along the way we
-named four factors that would have made the axis tractable and withdrew all four within a run of
-proposing them, each time because widening the sample turned the factor into an interaction. The
-discipline that caught those withdrawals, rather than any of the factors, is what we would most want
-carried forward.
+task in it --- the fixed-point structure of a model's own deterministic argmax map, a short-window
+readout of how a model treats a fragment --- and that on this readout it resisted every factorization
+we could propose. Prefix length is not the factor: the effect is non-monotone. The prefix's content
+is not the factor: both content factors died on widening. The model alone is not the factor: a
+universal direction, bidirectionality as a model property and instruct-resistance died the same way,
+and one fixed prefix drives four models toward zero and two toward one, surviving in-distribution
+starts. The nearest mechanistic account is not the factor: its own quantity, measured on the same
+forward passes, carries the sign at chance, and the account holds on real text while failing on the
+probe's input --- outside its regime, not contradicted.
+
+The criterion each factor was held to is the one we offer forward: \emph{a factor survives if a
+pre-registered widening it did not choose fails to dissolve it}. Five did not survive. Until one
+does, the unit of explanation at this readout is the prompt--model pair, and the discipline that kept
+the search honest --- refuse any criterion with a shape wherever the quantity has no room to vary ---
+is what we would most want carried forward.
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
