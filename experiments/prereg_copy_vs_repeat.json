@@ -4,12 +4,20 @@
  "motivation": "F162 found that phi-raising prefixes install the NEWLINE as a fixed point, and that the raising prefixes are newline-dense. That suggests the mechanism is COPYING: a model that strongly continues a repeated pattern will, under a prefix full of newlines, emit a newline and then keep emitting it -- which is exactly a fixed point of the argmax map. If so, a model's copy strength should predict which way its phi moves under a structured prefix, and copy strength is a BEHAVIOURAL quantity measurable without any census.",
  "hypotheses": {
   "H1_copy_predicts_collapse": "copy strength predicts phi-collapse under structured prefixes: models that copy strongly move phi toward the prefix's dominant token, models that copy weakly do not",
-  "H2_copy_is_the_missing_loading": "copy strength correlates with the model loading v of a bilinear fit, should F164's coverage ever be filled -- i.e. copy strength IS the model-side factor the marginal searches missed"
+  "H2_copy_is_the_missing_loading": "BLOCKED ON F164, marked before running. This hypothesis ties copy strength to the model loading v of a bilinear fit, and that fit is NOT DECIDABLE (0.790 against a pre-registered 0.80, threshold unmoved). A loading from a fit that has not been licensed cannot serve as a criterion, so H2 is NOT EVALUATED in this run and no correlation against v is computed. Original text: 'copy strength correlates with the model loading v of a bilinear fit, should F164's coverage ever be filled -- i.e. copy strength IS the model-side factor the marginal searches missed.'"
  },
  "frozen": {
   "copy_estimator": "induction-style copy score: for K=64 random token pairs (a,b) drawn from the same pool the census uses, build the context [a, b, ..., a] with a filler of F=8 random tokens between, and record whether argmax p(. | context) == b. copy_score = fraction of the K probes where it does. Deterministic given a seed; no sampling.",
   "why_this_estimator": "it measures the behaviour the mechanism needs -- continue a pattern seen earlier in context -- with one forward pass per probe and no reference to phi. It is NOT an induction-head circuit claim and no attention is inspected.",
-  "geometry": {"K": 64, "filler_len": 8, "seeds": [20260803, 990017], "n_starts_for_phi": 96},
+  "geometry": {
+   "K": 64,
+   "filler_len": 8,
+   "seeds": [
+    20260803,
+    990017
+   ],
+   "n_starts_for_phi": 96
+  },
   "cohort": "the eight models of results/domain_base.json, all of which already have raw and bos arms",
   "phi_side": "dphi under the structured arms already stored: F154 p1 (a table-of-contents fragment) and F155 t0..t5 (markup-density >= 0.15). No new census is needed for the phi side.",
   "primary": "sign agreement between copy_score rank and dphi rank across models on the p1 arm",
@@ -29,5 +37,9 @@
  ],
  "independent_unit": "model",
  "note": "The phi side is entirely existing data, so the only new compute is K=64 short forward passes per model -- cheaper than one census cell. If H1 survives it supplies the first MODEL-SIDE quantity in the programme that predicts a sign, which every marginal search from F147 to F156 failed to find; if it dies, it dies on a behavioural measurement rather than on an argument.",
- "owed": "the prior-art gate for induction heads and repetition self-reinforcement is OWED and is a precondition for writing this up, not a follow-up. The copy estimator is deliberately named 'induction-style' rather than 'induction head' because the circuit claim belongs to that literature and this probe does not test it."
+ "owed": "the prior-art gate for induction heads and repetition self-reinforcement is OWED and is a precondition for writing this up, not a follow-up. The copy estimator is deliberately named 'induction-style' rather than 'induction head' because the circuit claim belongs to that literature and this probe does not test it.",
+ "amendment_log": [
+  "19 Aug 2026, BEFORE the run: H2 marked BLOCKED ON F164. F164's coverage gate was cleared by the fill (59% -> 74%) but its PRIMARY landed at 0.790 against 0.80 and stayed NOT DECIDABLE, so the loading v is not a licensed quantity. H1 is untouched and is what this run tests.",
+  "19 Aug 2026, BEFORE the run: recorded that F166 qualified F165 -- u_prefix is NOT 'which token the prefix selects' (best cross-model agreement on an arm's endpoint token is 4 of 9). The SURVIVING half is that, given a shared endpoint token, self-continuation is model-specific. H1 tests exactly that surviving half with an independent behavioural quantity, which is why this prereg is still live after F166."
+ ]
 }
