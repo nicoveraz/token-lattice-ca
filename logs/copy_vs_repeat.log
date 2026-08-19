@@ -1,0 +1,22 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6615.59it/s]
+  EleutherAI/pythia-410m         copy_score 0.539  (seeds [0.46875, 0.609375])
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5926.14it/s]
+  EleutherAI/pythia-410m-deduped copy_score 0.586  (seeds [0.546875, 0.625])
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4581.57it/s]
+  HuggingFaceTB/SmolLM-1.7B      copy_score 0.203  (seeds [0.25, 0.15625])
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4134.24it/s]
+  Qwen/Qwen1.5-1.8B              copy_score 0.422  (seeds [0.40625, 0.4375])
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/483 [00:00<?, ?it/s]Loading weights: 100%|██████████| 483/483 [00:00<00:00, 5473.09it/s]
+  bigcode/starcoder2-3b          copy_score 0.594  (seeds [0.546875, 0.640625])
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4769.05it/s]
+  llm-jp/llm-jp-3-1.8b           copy_score 0.227  (seeds [0.25, 0.203125])
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4559.42it/s]
+  sapienzanlp/Minerva-3B-base-v1.0 copy_score 0.125  (seeds [0.125, 0.125])
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 3270.31it/s]
+  tiiuae/Falcon3-1B-Base         copy_score 0.148  (seeds [0.125, 0.171875])
+
+COPY SCORE, K=64 probes x 2 seeds, CPU, no attention inspected: pythia-410m 0.539; pythia-410m-deduped 0.586; SmolLM-1.7B 0.203; Qwen1.5-1.8B 0.422; starcoder2-3b 0.594; llm-jp-3-1.8b 0.227; Minerva-3B-base-v1.0 0.125; Falcon3-1B-Base 0.148.  ANTI-VACUITY: 7 of 8 models are readable on the p1 arm (|dphi| beyond tolerance AND headroom on the side it moved); excluded: [('llm-jp-3-1.8b', 'flat')]. PRIMARY (K1/K2): copy_score on the UP models spans [0.125, 0.148], on the DOWN models [0.203, 0.594]. Ranges are DISJOINT: copy strength separates the direction of the p1 effect, and this is the first model-side quantity in the programme to predict a sign. H2 is BLOCKED ON F164 and NOT evaluated: the bilinear loading v comes from a fit that stands at 0.790 against a pre-registered 0.80 and was never licensed. BOUNDARY: one arm (p1), 8 models, K=64, CPU float32. No p-value and no rank correlation are computed -- both refusals were recorded before the numbers. The prior-art gate for induction heads and repetition self-reinforcement remains OWED and gates any write-up.
+
+wrote results/copy_vs_repeat.json

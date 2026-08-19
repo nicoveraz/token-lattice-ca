@@ -3645,6 +3645,66 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F167 — copy strength: NOT DECIDABLE FOR PRECISION, the separation is smaller than the predictor's own noise — and the direction is inverted from the hypothesis anyway
+The frozen `copy_vs_repeat` prereg, run. It tests the half of F165 that survived F166 — given a shared
+endpoint token, self-continuation is model-specific — with a quantity measured independently of any
+census: for K random pairs `(a,b)`, build `[a, b, filler×8, a]` and ask whether argmax returns `b`.
+Behavioural, one pass per probe, no attention inspected, deliberately named *induction-style* rather
+than *induction head* because the circuit claim belongs to a literature this does not test.
+
+**Two amendments were made BEFORE any join and both are logged with dates.** H2 (copy strength vs the
+bilinear loading `v`) was marked **BLOCKED ON F164** — that fit stands at 0.790 against a bar it never
+cleared, so `v` is not a licensed quantity and using it would borrow authority the fit does not have.
+And **K5_precision was added after one model's seed spread was visible** (`pythia-410m`: 0.469/0.609)
+and before any dphi was joined.
+
+**VERDICT: NOT DECIDABLE FOR PRECISION (K5).**
+
+| | copy_score | on p1 |
+|---|---|---|
+| Minerva-3B-base | **0.125** | UP (0.328 → 1.000) |
+| Falcon3-1B-Base | **0.148** | UP (0.214 → 0.979) |
+| SmolLM-1.7B | 0.203 | down |
+| Qwen1.5-1.8B | 0.422 | down |
+| pythia-410m | 0.539 | down |
+| pythia-410m-deduped | 0.586 | down |
+| starcoder2-3b | 0.594 | down |
+| llm-jp-3-1.8b | 0.227 | *flat — excluded by anti-vacuity* |
+
+The ranges are disjoint — UP `[0.125, 0.148]`, DOWN `[0.203, 0.594]` — but **by 0.055 against a
+predictor noise scale of 0.069**. That is not a separation, it is a coin landing on its edge.
+
+**Without K5 this run would have claimed a headline.** The pre-K5 code printed, verbatim: *"Ranges are
+DISJOINT: copy strength separates the direction of the p1 effect, and this is the first model-side
+quantity in the programme to predict a sign."* On a gap of 0.055 with noise of 0.069. The gate was
+written after seeing one model's seed spread and before any outcome, which is the only reason it
+counts.
+
+**The direction is INVERTED from H1, which is the second finding.** H1 states *"models that copy
+strongly move phi toward the prefix's dominant token."* The data says the reverse: the two weakest
+copiers RAISE, the strongest FALLS. So even had the separation resolved, H1 as written would be
+refuted.
+
+**A prereg defect this exposes, and it is mine.** K1 and K2 are **direction-agnostic** — K2 asks only
+for disjoint ranges with ≥2 models a side. A resolved-but-inverted result would therefore have
+satisfied K2 while contradicting the hypothesis K2 exists to test: a pass on the letter, a failure on
+the substance. **Kill conditions on a directional hypothesis must specify the sign.** Logged for the
+registry.
+
+**The cheapest resolution, and it is not a relaxed criterion.** Noise falls as `1/sqrt(K)`; reaching a
+scale below the observed 0.055 gap needs roughly `K = 128`–`256`, i.e. 2–4× the probes. At CPU float32
+that is 8–16 hours for the cohort, or far less on MPS float16 with the reproducibility caveat stated.
+The gap may also simply vanish, which is the more likely outcome given this programme's record.
+
+**A post-hoc reading, flagged as such and not claimed.** A strong copier pulled toward the prefix's
+content may never sit still on one token, while a weak copier collapses to a generic one. That would
+explain an inverted sign. It is reasoning after the fact and is recorded only so the next prereg can
+state a direction rather than inventing one later.
+
+**Owed, not run:** the prior-art gate for induction heads and repetition self-reinforcement. It gates
+any write-up of this, and the estimator's name was chosen to avoid pre-empting it.
+`experiments/copy_vs_repeat.py` → `results/copy_vs_repeat.json`.
+
 ### F166 — the endpoint token is a model×prefix INTERACTION, not a prefix property: the token-partition explanation of the rank-1 shortfall is NOT DECIDABLE, and F165's u is over-read
 F164/F165 left the pooled rank-1 fit at **0.790** against a pre-registered 0.80, with
 leave-one-column-out stability **1.000** — stable, and short. F165's decomposition suggested why: if

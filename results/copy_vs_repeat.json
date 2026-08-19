@@ -1,0 +1,219 @@
+{
+ "_preregistration_file": "experiments/prereg_copy_vs_repeat.json",
+ "_h2_status": "BLOCKED ON F164 -- not evaluated, no correlation against the bilinear loading v is computed",
+ "copy_scores": {
+  "EleutherAI/pythia-410m": {
+   "copy_score": 0.5391,
+   "per_seed": [
+    0.4688,
+    0.6094
+   ],
+   "seed_range": 0.1406,
+   "secs": 21.7
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "copy_score": 0.5859,
+   "per_seed": [
+    0.5469,
+    0.625
+   ],
+   "seed_range": 0.0781,
+   "secs": 20.2
+  },
+  "HuggingFaceTB/SmolLM-1.7B": {
+   "copy_score": 0.2031,
+   "per_seed": [
+    0.25,
+    0.1562
+   ],
+   "seed_range": 0.0938,
+   "secs": 5905.7
+  },
+  "Qwen/Qwen1.5-1.8B": {
+   "copy_score": 0.4219,
+   "per_seed": [
+    0.4062,
+    0.4375
+   ],
+   "seed_range": 0.0312,
+   "secs": 108.9
+  },
+  "bigcode/starcoder2-3b": {
+   "copy_score": 0.5938,
+   "per_seed": [
+    0.5469,
+    0.6406
+   ],
+   "seed_range": 0.0938,
+   "secs": 3538.0
+  },
+  "llm-jp/llm-jp-3-1.8b": {
+   "copy_score": 0.2266,
+   "per_seed": [
+    0.25,
+    0.2031
+   ],
+   "seed_range": 0.0469,
+   "secs": 87.9
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0": {
+   "copy_score": 0.125,
+   "per_seed": [
+    0.125,
+    0.125
+   ],
+   "seed_range": 0.0,
+   "secs": 6314.6
+  },
+  "tiiuae/Falcon3-1B-Base": {
+   "copy_score": 0.1484,
+   "per_seed": [
+    0.125,
+    0.1719
+   ],
+   "seed_range": 0.0469,
+   "secs": 376.9
+  }
+ },
+ "p1_join": [
+  {
+   "model": "EleutherAI/pythia-410m",
+   "copy_score": 0.5391,
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0,
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "copy_score": 0.5859,
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0156,
+   "dphi": -0.4115,
+   "tol": 0.0624,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "copy_score": 0.2031,
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0,
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "copy_score": 0.4219,
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0,
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "bigcode/starcoder2-3b",
+   "copy_score": 0.5938,
+   "phi_raw": 0.724,
+   "phi_arm": 0.0,
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "copy_score": 0.2266,
+   "phi_raw": 0.7761,
+   "phi_arm": 0.9948,
+   "dphi": 0.2188,
+   "tol": 0.271,
+   "direction": "flat",
+   "headroom_ok": false
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "copy_score": 0.125,
+   "phi_raw": 0.3281,
+   "phi_arm": 1.0,
+   "dphi": 0.6719,
+   "tol": 0.0417,
+   "direction": "up",
+   "headroom_ok": true
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "copy_score": 0.1484,
+   "phi_raw": 0.2135,
+   "phi_arm": 0.9792,
+   "dphi": 0.7656,
+   "tol": 0.0626,
+   "direction": "up",
+   "headroom_ok": true
+  }
+ ],
+ "balance": {
+  "readable": 7,
+  "n_up": 2,
+  "n_down": 5,
+  "gate_readable": true,
+  "gate_reason": "p1 direction is usable: {'down': 5, 'up': 2}, minority class 2 >= 2. Chance is the majority-class rate 71%; report balanced accuracy against it, not raw agreement."
+ },
+ "separation": {
+  "up_range": [
+   0.125,
+   0.1484
+  ],
+  "down_range": [
+   0.2031,
+   0.5938
+  ],
+  "disjoint": true,
+  "gap": 0.0547,
+  "pooled_half_seed_range": 0.0346,
+  "beats_noise": false
+ },
+ "verdict": "COPY SCORE, K=64 probes x 2 seeds, CPU, no attention inspected: pythia-410m 0.539; pythia-410m-deduped 0.586; SmolLM-1.7B 0.203; Qwen1.5-1.8B 0.422; starcoder2-3b 0.594; llm-jp-3-1.8b 0.227; Minerva-3B-base-v1.0 0.125; Falcon3-1B-Base 0.148.  ANTI-VACUITY: 7 of 8 models are readable on the p1 arm (|dphi| beyond tolerance AND headroom on the side it moved); excluded: [('llm-jp-3-1.8b', 'flat')]. PRIMARY (K1/K2): copy_score on the UP models spans [0.125, 0.148], on the DOWN models [0.203, 0.594]. Ranges are disjoint by 0.055 but that does NOT beat the predictor's own noise (0.069 at K=64): NOT DECIDABLE FOR PRECISION (K5). The fix is more probes, which is cheap, not a relaxed criterion. H2 is BLOCKED ON F164 and NOT evaluated: the bilinear loading v comes from a fit that stands at 0.790 against a pre-registered 0.80 and was never licensed. BOUNDARY: one arm (p1), 8 models, K=64, CPU float32. No p-value and no rank correlation are computed -- both refusals were recorded before the numbers. The prior-art gate for induction heads and repetition self-reinforcement remains OWED and gates any write-up.",
+ "_analysis_provenance": {
+  "script": "copy_vs_repeat.py",
+  "sha256": "ef3658e5fcbb382ba206628fa4f01d9be8e0638d7c7f1b543f07edd7a71e51ad",
+  "imports": {
+   "experiments/copy_vs_repeat.py": "ef3658e5fcbb382ba206628fa4f01d9be8e0638d7c7f1b543f07edd7a71e51ad",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

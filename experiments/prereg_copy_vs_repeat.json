@@ -27,7 +27,8 @@
   "K1_copy_dead": "copy_score does not separate the up-models from the down-models on the p1 arm -- i.e. the ranges overlap -- and the copy account is dropped",
   "K2_copy_lives": "the up-models and down-models have disjoint copy_score ranges on the p1 arm, with at least 2 models on each side",
   "K3_vacuity": "if fewer than 2 models fall on either side of the p1 split after the anti-vacuity gate, the comparison has no contrast: NOT DECIDABLE",
-  "K4_ceiling": "if copy_score is >= 0.95 or <= 0.05 on every model, the predictor has no variance and cannot discriminate: NOT DECIDABLE for predictor imbalance, the F163 defect"
+  "K4_ceiling": "if copy_score is >= 0.95 or <= 0.05 on every model, the predictor has no variance and cannot discriminate: NOT DECIDABLE for predictor imbalance, the F163 defect",
+  "K5_precision": "ADDED 19 Aug 2026 after seeing ONE model's copy_score seed spread (pythia-410m: 0.469 / 0.609, range 0.14) and BEFORE any join to dphi. At K=64 the binomial SE is ~0.0625, so a raw min/max 'disjoint' test can separate two groups by noise alone. DISJOINTNESS IS THEREFORE JUDGED AGAINST THE PREDICTOR'S OWN NOISE: the gap between the up-group and down-group ranges must exceed 2 * the pooled across-seed SE of copy_score. If the groups separate on raw values but not beyond that noise, the verdict is NOT DECIDABLE FOR PRECISION -- not a pass -- and the fix is more probes (K), which is cheap, not a relaxed criterion."
  },
  "anti_vacuity": "a model enters only if its dphi on the p1 arm exceeds max(4/96, 2 * across-seed range) AND it had headroom on the side it moved. K4 additionally gates the PREDICTOR, because F163 showed a lopsided predictor produces a high raw agreement that is pure base rate.",
  "refusals_recorded_before_numbers": [
@@ -40,6 +41,7 @@
  "owed": "the prior-art gate for induction heads and repetition self-reinforcement is OWED and is a precondition for writing this up, not a follow-up. The copy estimator is deliberately named 'induction-style' rather than 'induction head' because the circuit claim belongs to that literature and this probe does not test it.",
  "amendment_log": [
   "19 Aug 2026, BEFORE the run: H2 marked BLOCKED ON F164. F164's coverage gate was cleared by the fill (59% -> 74%) but its PRIMARY landed at 0.790 against 0.80 and stayed NOT DECIDABLE, so the loading v is not a licensed quantity. H1 is untouched and is what this run tests.",
-  "19 Aug 2026, BEFORE the run: recorded that F166 qualified F165 -- u_prefix is NOT 'which token the prefix selects' (best cross-model agreement on an arm's endpoint token is 4 of 9). The SURVIVING half is that, given a shared endpoint token, self-continuation is model-specific. H1 tests exactly that surviving half with an independent behavioural quantity, which is why this prereg is still live after F166."
+  "19 Aug 2026, BEFORE the run: recorded that F166 qualified F165 -- u_prefix is NOT 'which token the prefix selects' (best cross-model agreement on an arm's endpoint token is 4 of 9). The SURVIVING half is that, given a shared endpoint token, self-continuation is model-specific. H1 tests exactly that surviving half with an independent behavioural quantity, which is why this prereg is still live after F166.",
+  "19 Aug 2026, after one model, BEFORE any join: added K5_precision. The original disjointness test compared raw min/max with no reference to the predictor's own noise, which is the project's own defect class (a criterion with a shape on a quantity whose spread was never measured). Logged rather than silently applied."
  ]
 }
