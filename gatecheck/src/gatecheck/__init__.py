@@ -39,6 +39,9 @@ from .leverage import (
 from .manifest import Manifest, Entry, strip_tex_comments
 from .results import save_results, load_results, check_no_absolute_paths
 from .ranking import rank, spearman
+from .balance import (
+    BalanceReport, balance_report, balanced_accuracy, gate_join,
+)
 from . import state as state
 from .state import pack as pack_state, unpack as unpack_state, has_state, STATE_KEY
 from .discriminator import (
@@ -53,6 +56,7 @@ from .discriminator import (
 )
 
 __all__ = [
+    "BalanceReport", "balance_report", "balanced_accuracy", "gate_join",
     "Gate", "GateCheck", "Verdict", "gated", "DECIDED", "NOT_DECIDABLE",
     "stamp", "verify_stamp", "source_sha256", "rel", "environment_fingerprint",
     "Preregistration", "verify_block", "quarantine", "evaluate_kills",
