@@ -1,0 +1,231 @@
+{
+ "_preregistration_file": "experiments/prereg_token_partition.json",
+ "_tier": "TIER 2 -- the pooled 0.790 was already seen; no partitioned fit has been",
+ "pooled_rank1_comparison_point": 0.7904,
+ "arm_token": {
+  "F152:bos": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F152:corpus@29": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F152:corpus@9": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F152:shak@29": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F152:shak@9": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:c0": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:c1": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:c2": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:p0": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:p1": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:p2": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:p3": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:p4": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:p5": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:s0": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:s1": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F154:s2": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:r0": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:r1": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:r2": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:r3": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:r4": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:r5": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:t0": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:t1": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:t2": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:t3": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:t4": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  },
+  "F155:t5": {
+   "token_id": "MIXED",
+   "decoded": "MIXED"
+  }
+ },
+ "mixed_arms": [
+  "F152:bos",
+  "F152:corpus@29",
+  "F152:corpus@9",
+  "F152:shak@29",
+  "F152:shak@9",
+  "F154:c0",
+  "F154:c1",
+  "F154:c2",
+  "F154:p0",
+  "F154:p1",
+  "F154:p2",
+  "F154:p3",
+  "F154:p4",
+  "F154:p5",
+  "F154:s0",
+  "F154:s1",
+  "F154:s2",
+  "F155:r0",
+  "F155:r1",
+  "F155:r2",
+  "F155:r3",
+  "F155:r4",
+  "F155:r5",
+  "F155:t0",
+  "F155:t1",
+  "F155:t2",
+  "F155:t3",
+  "F155:t4",
+  "F155:t5"
+ ],
+ "partitions": {
+  "MIXED": [
+   "F152:bos",
+   "F152:corpus@29",
+   "F152:corpus@9",
+   "F152:shak@29",
+   "F152:shak@9",
+   "F154:c0",
+   "F154:c1",
+   "F154:c2",
+   "F154:p0",
+   "F154:p1",
+   "F154:p2",
+   "F154:p3",
+   "F154:p4",
+   "F154:p5",
+   "F154:s0",
+   "F154:s1",
+   "F154:s2",
+   "F155:r0",
+   "F155:r1",
+   "F155:r2",
+   "F155:r3",
+   "F155:r4",
+   "F155:r5",
+   "F155:t0",
+   "F155:t1",
+   "F155:t2",
+   "F155:t3",
+   "F155:t4",
+   "F155:t5"
+  ]
+ },
+ "partition_fits": {
+  "MIXED": {
+   "frac": 0.7903721877073798,
+   "n_cells": 171,
+   "n_models": 8,
+   "n_cols": 29,
+   "u": {
+    "pythia-410m": -0.8437,
+    "pythia-410m-deduped": -0.7836,
+    "SmolLM-1.7B": -1.0379,
+    "Qwen1.5-1.8B": -0.8264,
+    "starcoder2-3b": -1.237,
+    "llm-jp-3-1.8b": -1.4067,
+    "Minerva-3B-base-v1.0": -0.1052,
+    "Falcon3-1B-Base": 0.0189
+   }
+  }
+ },
+ "partition_skipped": {},
+ "verdict": "PARTITION: 29 arms assigned a token modal across the models carrying them; 1 groups, 29 arms MIXED. Groups: 'MIXED' x29.  NOT DECIDABLE FOR INSUFFICIENCY (K2): 1 partition(s) clear the floors of 12 cells and 3 models. Nothing to compare. NO THRESHOLD GAMING (K4): F164's 0.80 bar was set for the POOLED rank-1 fit and is not re-applied here. Nothing above is reported as clearing it, and the pooled verdict remains NOT DECIDABLE at 0.790.",
+ "_analysis_provenance": {
+  "script": "token_partition_rank.py",
+  "sha256": "edcfae247da9e137f4dd91e6e12b1a457a0a163c7bd626917eae19c91c7b0ee3",
+  "imports": {
+   "experiments/bilinear_rank1.py": "fb7772cd54325472f53112b45cfc12e5e48be7187a5e12d866143f1ab6dc33b4",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/token_partition_rank.py": "edcfae247da9e137f4dd91e6e12b1a457a0a163c7bd626917eae19c91c7b0ee3"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

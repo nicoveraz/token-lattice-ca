@@ -3645,7 +3645,57 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F166 — the endpoint token is a model×prefix INTERACTION, not a prefix property: the token-partition explanation of the rank-1 shortfall is NOT DECIDABLE, and F165's u is over-read
+F164/F165 left the pooled rank-1 fit at **0.790** against a pre-registered 0.80, with
+leave-one-column-out stability **1.000** — stable, and short. F165's decomposition suggested why: if
+`u_prefix` picks a token and `v_model` decides whether that token self-continues, then pooling
+`'\n'`-selecting arms with `'0'`-selecting ones forces one `v` to serve two different model
+properties, which is exactly the configuration that yields a good-but-not-great rank-1 fit. That was
+testable on stored endpoint histograms at zero compute, and was registered as TIER 2 (the pooled
+0.790 had already been seen; no partitioned fit had).
+
+**VERDICT: NOT DECIDABLE for insufficiency (K2) — and the reason is the finding.** Every one of the 29
+arms was classified **MIXED**: no arm has a modal endpoint token shared by even half the models
+carrying it. With one partition there is nothing to compare, so the fit was never run.
+
+| arm | carriers | best agreement |
+|---|---|---|
+| `p2` | 9 | `'0'` × **4/9** — the strongest in the matrix |
+| `p3` | 9 | `' more'` × 4/9 |
+| `p1` | 9 | `'\n'` × 3/9 |
+| `c0` | 9 | `' fundamental'` × 2/9 |
+
+**This over-turns half of F165's decomposition, one entry after it was written.** `u_prefix` is not
+"which token the prefix selects" — the token is jointly determined by prefix and model. The half that
+survives is the one that was verified directly rather than inferred: given a *shared* endpoint token,
+self-continuation is model-specific. `SmolLM` under `p2` remains the clean instance — 84 of 96
+trajectories to `'0'`, φ 0.000, beside two models that reach `'0'` and raise to ~1.0.
+
+**What this does NOT do.** It does not touch the pooled fit: F164's verdict stands at 0.790, NOT
+DECIDABLE, threshold unmoved. It removes a proposed *explanation* of the shortfall, not the
+shortfall. The case for another widening therefore returns unchanged, and it can no longer be
+answered for free.
+
+**The control that would have mattered was frozen and never needed.** Smaller matrices fit better
+mechanically, so the prereg froze a permutation control — same partition shapes, arms assigned at
+random — with H1 dead if random partitions did as well. K2 fired first, so the control never ran. It
+is recorded because the next attempt at a partition needs it, and because writing it before the fit
+is why a positive result here would have meant anything.
+
+**A tokenizer subtlety left unresolved and flagged.** In `p2`'s tally two distinct entries both render
+as `'0'`, so the true agreement on that arm may be higher or the two may be different tokens that
+print alike. It is not chased here; any future partition rule must key on token ID, never on the
+decoded string. `experiments/token_partition_rank.py` → `results/token_partition_rank.json`.
+
 ### F165 — the fill run: H1 killed by one cell, T2 confirmed exactly, and the mechanism refines from "newline" to "the prefix picks the token, the model decides if it self-continues"
+> **QUALIFIED BY F166, on the half of the decomposition it over-read.** F165 states that
+> `u_prefix` is *which token the prefix pulls trajectories toward*. A partition test on stored
+> endpoint histograms shows that is too strong: across the nine models carrying each arm, the best
+> agreement on a modal endpoint token is **4 of 9** (`p2` → `'0'`), and most arms sit at 2–4 of 9.
+> **The endpoint token is itself a model×prefix interaction, not a prefix property.** What survives
+> is the other half, which was verified directly: GIVEN a shared endpoint token, whether it
+> self-continues is model-specific (`SmolLM` under `p2`, `'0'`×84, φ 0.000, against two models that
+> reach `'0'` and raise). Read this entry with F166.
 The 36-cell fill was chosen by F164's coverage analysis **before F162 existed**, so the newline factor
 faced a pre-registered widening it had no hand in selecting — this project's own criterion for a
 factor that survives. Margins were measured and sha256-hashed **before any fill cell existed**

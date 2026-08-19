@@ -1,0 +1,34 @@
+{
+ "name": "token-partitioned-rank-v1",
+ "status": "FROZEN before computing any partitioned fit. Zero new forward passes -- every quantity comes from endpoint histograms already stored.",
+ "epistemic_tier": "TIER 2, and labelled so. The pooled rank-1 result (0.790) has ALREADY been seen; this prediction is informed by it. What has NOT been seen is any partitioned fit, and those are what the kill conditions below are written against. Tier 1 would have required registering this before F164 ever ran, and it was not, because the mechanism that motivates it did not exist until F165.",
+ "motivation": "F165 decomposed the two vectors: u_prefix is WHICH token the prefix pulls trajectories toward, v_model is whether THAT token self-continues in that model. If that is right, dphi is NOT rank-1 in general. A prefix selecting '\\n' and a prefix selecting '0' load on DIFFERENT model properties -- newline self-continuation and digit self-continuation are separate facts about a model. Pooling them into one matrix forces a single v to serve both, which is exactly the configuration that yields a good-but-not-great rank-1 fit. The pooled fit landed at 0.790 against a 0.80 bar with leave-one-column-out stability of 1.000: stable, and short. This asks whether the shortfall is STRUCTURE rather than noise.",
+ "hypotheses": {
+  "H1_within_partition": "partitioning arms by their selected token and fitting rank-1 WITHIN each partition explains a larger fraction of above-tolerance variance than the pooled 0.790, on every partition with enough cells to fit",
+  "H2_rank_equals_token_groups": "the pooled matrix needs rank >= 2; a rank-K fit with K = the number of token partitions explains >= 0.80 where rank-1 did not",
+  "H3_v_is_token_specific": "a model's loading differs between partitions -- i.e. being raisable by a newline-selecting prefix does not imply being raisable by a digit-selecting one. SmolLM under p2 is the motivating instance: 84 of 96 trajectories reach '0' and phi stays 0.000."
+ },
+ "frozen": {
+  "partition_rule": "each ARM is assigned the token that is MODAL across models for that arm, computed from the stored endpoint_histogram of the arm's cells. The rule is fixed here: modal by summed count across all models that have the arm, ties broken by lowest token id. Arms whose modal token is shared by fewer than half the models carrying that arm are labelled MIXED and form their own partition rather than being forced into one.",
+  "why_arm_level_not_cell_level": "a cell-level partition would let the OUTCOME choose the grouping, which is circular. The arm's modal token is a property of the prefix across models, which is what u is supposed to be.",
+  "min_cells_per_partition": 12,
+  "min_models_per_partition": 3,
+  "estimator": "the same masked rank-1 ALS as bilinear_rank1.py, unchanged, applied within each partition; rank-K by sequential deflation on observed cells",
+  "masking": "unchanged -- |dphi| <= max(4/96, 2*across-seed range) is excluded, never zeroed, never imputed",
+  "source": "results/bilinear_rank1.json cells (which already carry file, keys, baseline and tolerance per cell) joined to endpoint histograms from the same results files"
+ },
+ "kill_conditions": {
+  "K1_partition_explains_nothing": "if within-partition rank-1 does NOT beat the pooled 0.790 on a majority of readable partitions, the token-partition does not explain the shortfall and H1 is dead. The 0.790 would then be a property of the data rather than of the pooling, and the case for more cells returns.",
+  "K2_insufficient_partitions": "if fewer than 2 partitions clear both min_cells_per_partition and min_models_per_partition, there is nothing to compare and the verdict is NOT DECIDABLE for insufficiency -- list what would fill it, do not run it",
+  "K3_degenerate_partition": "a partition in which every model loads with the same sign AND similar magnitude carries no discrimination; it is reported and excluded from the H1 count rather than inflating it",
+  "K4_no_threshold_gaming": "the pooled 0.80 bar is NOT re-applied to partitioned fits as a pass/fail gate. H1 is a COMPARISON against 0.790, and H2's 0.80 applies only to the rank-K pooled fit, which is the same estimator on the same matrix. No partition result is reported as clearing F164's bar, because F164's bar was set for the pooled rank-1 fit and nothing else."
+ },
+ "refusals_recorded_before_numbers": [
+  "no p-value on partitions of an 8-model matrix -- the cluster count is the model count and it cannot fail a significance test informatively",
+  "no claim that a higher within-partition fit VINDICATES the bilinear hypothesis: a smaller matrix fits better almost mechanically, so the comparison is reported alongside the cell counts and is explicitly not a like-for-like improvement",
+  "no rank correlation between partition size and fit quality -- too few partitions"
+ ],
+ "the_confound_that_must_be_reported": "SMALLER MATRICES FIT BETTER. A rank-1 fit to a 4-column partition will beat a rank-1 fit to 29 columns for reasons that have nothing to do with the mechanism. H1 is therefore reported WITH a permutation control: the same partition SIZES, arms assigned at random, refit. If random partitions of the same shape do as well as the token partition, H1 is dead however good the absolute numbers look. This control is frozen here, before any fit.",
+ "independent_unit": "model",
+ "owed": "the prior-art gate for greedy-decoding degeneration, repetition self-reinforcement and induction heads remains owed and gates any write-up of the mechanism this prereg tests."
+}
