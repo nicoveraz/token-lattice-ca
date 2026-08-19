@@ -23,7 +23,7 @@
   "min_shift": 0.041666666666666664,
   "noise_factor": 2.0
  },
- "n_cells": 148,
+ "n_cells": 184,
  "cells": {
   "EleutherAI/pythia-410m||F152:bos": {
    "dphi": -0.4583,
@@ -106,6 +106,222 @@
    "arm_keys": [
     "EleutherAI/pythia-410m|s20260803|shak@9",
     "EleutherAI/pythia-410m|s990017|shak@9"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:c0": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|c0",
+    "EleutherAI/pythia-410m|s990017|c0"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:c1": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|c1",
+    "EleutherAI/pythia-410m|s990017|c1"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:c2": {
+   "dphi": -0.4531,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|c2",
+    "EleutherAI/pythia-410m|s990017|c2"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0052
+  },
+  "EleutherAI/pythia-410m||F154:p0": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|p0",
+    "EleutherAI/pythia-410m|s990017|p0"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:p1": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|p1",
+    "EleutherAI/pythia-410m|s990017|p1"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:p2": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|p2",
+    "EleutherAI/pythia-410m|s990017|p2"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:p3": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|p3",
+    "EleutherAI/pythia-410m|s990017|p3"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:p4": {
+   "dphi": -0.4531,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|p4",
+    "EleutherAI/pythia-410m|s990017|p4"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0052
+  },
+  "EleutherAI/pythia-410m||F154:p5": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|p5",
+    "EleutherAI/pythia-410m|s990017|p5"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:s0": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|s0",
+    "EleutherAI/pythia-410m|s990017|s0"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:s1": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|s1",
+    "EleutherAI/pythia-410m|s990017|s1"
+   ],
+   "raw_keys": [
+    "EleutherAI/pythia-410m|s20260803|raw",
+    "EleutherAI/pythia-410m|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0
+  },
+  "EleutherAI/pythia-410m||F154:s2": {
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "EleutherAI/pythia-410m|s20260803|s2",
+    "EleutherAI/pythia-410m|s990017|s2"
    ],
    "raw_keys": [
     "EleutherAI/pythia-410m|s20260803|raw",
@@ -1555,6 +1771,222 @@
    "phi_raw": 0.724,
    "phi_arm": 0.0
   },
+  "bigcode/starcoder2-3b||F154:c0": {
+   "dphi": -0.7188,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|c0",
+    "bigcode/starcoder2-3b|s990017|c0"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0052
+  },
+  "bigcode/starcoder2-3b||F154:c1": {
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|c1",
+    "bigcode/starcoder2-3b|s990017|c1"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0
+  },
+  "bigcode/starcoder2-3b||F154:c2": {
+   "dphi": -0.6875,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|c2",
+    "bigcode/starcoder2-3b|s990017|c2"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0364
+  },
+  "bigcode/starcoder2-3b||F154:p0": {
+   "dphi": -0.6719,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|p0",
+    "bigcode/starcoder2-3b|s990017|p0"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0521
+  },
+  "bigcode/starcoder2-3b||F154:p1": {
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|p1",
+    "bigcode/starcoder2-3b|s990017|p1"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0
+  },
+  "bigcode/starcoder2-3b||F154:p2": {
+   "dphi": 0.2708,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|p2",
+    "bigcode/starcoder2-3b|s990017|p2"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.9948
+  },
+  "bigcode/starcoder2-3b||F154:p3": {
+   "dphi": -0.6771,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|p3",
+    "bigcode/starcoder2-3b|s990017|p3"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0469
+  },
+  "bigcode/starcoder2-3b||F154:p4": {
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|p4",
+    "bigcode/starcoder2-3b|s990017|p4"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0
+  },
+  "bigcode/starcoder2-3b||F154:p5": {
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|p5",
+    "bigcode/starcoder2-3b|s990017|p5"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0
+  },
+  "bigcode/starcoder2-3b||F154:s0": {
+   "dphi": -0.724,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|s0",
+    "bigcode/starcoder2-3b|s990017|s0"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0
+  },
+  "bigcode/starcoder2-3b||F154:s1": {
+   "dphi": -0.7188,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|s1",
+    "bigcode/starcoder2-3b|s990017|s1"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0052
+  },
+  "bigcode/starcoder2-3b||F154:s2": {
+   "dphi": -0.6615,
+   "tol": 0.1874,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "bigcode/starcoder2-3b|s20260803|s2",
+    "bigcode/starcoder2-3b|s990017|s2"
+   ],
+   "raw_keys": [
+    "bigcode/starcoder2-3b|s20260803|raw",
+    "bigcode/starcoder2-3b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.724,
+   "phi_arm": 0.0625
+  },
   "llm-jp/llm-jp-3-1.8b||F152:bos": {
    "dphi": 0.0312,
    "tol": 0.271,
@@ -1644,6 +2076,222 @@
    "raw_file": "domain_base.json",
    "phi_raw": 0.7761,
    "phi_arm": 0.8073
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:c0": {
+   "dphi": -0.7761,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|c0",
+    "llm-jp/llm-jp-3-1.8b|s990017|c0"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:c1": {
+   "dphi": -0.7657,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|c1",
+    "llm-jp/llm-jp-3-1.8b|s990017|c1"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0104
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:c2": {
+   "dphi": -0.7709,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|c2",
+    "llm-jp/llm-jp-3-1.8b|s990017|c2"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0052
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:p0": {
+   "dphi": -0.7761,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|p0",
+    "llm-jp/llm-jp-3-1.8b|s990017|p0"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:p1": {
+   "dphi": 0.2188,
+   "tol": 0.271,
+   "masked": true,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|p1",
+    "llm-jp/llm-jp-3-1.8b|s990017|p1"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.9948
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:p2": {
+   "dphi": -0.7761,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|p2",
+    "llm-jp/llm-jp-3-1.8b|s990017|p2"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:p3": {
+   "dphi": -0.7657,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|p3",
+    "llm-jp/llm-jp-3-1.8b|s990017|p3"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0104
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:p4": {
+   "dphi": -0.7761,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|p4",
+    "llm-jp/llm-jp-3-1.8b|s990017|p4"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:p5": {
+   "dphi": -0.7709,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|p5",
+    "llm-jp/llm-jp-3-1.8b|s990017|p5"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0052
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:s0": {
+   "dphi": 0.0312,
+   "tol": 0.271,
+   "masked": true,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|s0",
+    "llm-jp/llm-jp-3-1.8b|s990017|s0"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.8073
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:s1": {
+   "dphi": -0.7605,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|s1",
+    "llm-jp/llm-jp-3-1.8b|s990017|s1"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0156
+  },
+  "llm-jp/llm-jp-3-1.8b||F154:s2": {
+   "dphi": -0.7552,
+   "tol": 0.271,
+   "masked": false,
+   "file": "text_interaction.json",
+   "finding": "F154",
+   "arm_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|s2",
+    "llm-jp/llm-jp-3-1.8b|s990017|s2"
+   ],
+   "raw_keys": [
+    "llm-jp/llm-jp-3-1.8b|s20260803|raw",
+    "llm-jp/llm-jp-3-1.8b|s990017|raw"
+   ],
+   "raw_file": "domain_base.json",
+   "phi_raw": 0.7761,
+   "phi_arm": 0.0208
   },
   "sapienzanlp/Minerva-3B-base-v1.0||F152:bos": {
    "dphi": -0.3229,
@@ -2692,282 +3340,75 @@
  },
  "absence": {
   "total_cells": 232,
-  "measured": 148,
-  "never_measured": 84,
-  "measured_but_masked": 11,
-  "observed": 137,
-  "coverage_over_all": 0.5905,
-  "coverage_over_measured": 0.9257
+  "measured": 184,
+  "never_measured": 48,
+  "measured_but_masked": 13,
+  "observed": 171,
+  "coverage_over_all": 0.7371,
+  "coverage_over_measured": 0.9293
  },
  "shape": {
   "models": 8,
   "columns": 29,
   "usable_models": 8,
   "usable_columns": 29,
-  "observed_cells": 137,
-  "coverage": 0.5905,
-  "masked_cells": 95
+  "observed_cells": 171,
+  "coverage": 0.7371,
+  "masked_cells": 61
  },
- "would_fill": [
-  {
-   "column": "F154:c0",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
+ "fit": {
+  "frac_explained": 0.7904,
+  "sign_agreement": 0.8187,
+  "u_models": {
+   "pythia-410m": -0.8437,
+   "pythia-410m-deduped": -0.7836,
+   "SmolLM-1.7B": -1.0379,
+   "Qwen1.5-1.8B": -0.8264,
+   "starcoder2-3b": -1.237,
+   "llm-jp-3-1.8b": -1.4067,
+   "Minerva-3B-base-v1.0": -0.1052,
+   "Falcon3-1B-Base": 0.0189
   },
-  {
-   "column": "F154:c1",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
+  "v_arms": {
+   "F152:bos": 0.5412,
+   "F152:corpus@9": 0.5652,
+   "F152:corpus@29": 0.5349,
+   "F152:shak@9": 0.5424,
+   "F152:shak@29": 0.5472,
+   "F154:c0": 0.5652,
+   "F154:c1": 0.5506,
+   "F154:c2": 0.5518,
+   "F154:p0": 0.5402,
+   "F154:p1": 0.5519,
+   "F154:p2": 0.2578,
+   "F154:p3": 0.5446,
+   "F154:p4": 0.5661,
+   "F154:p5": 0.5644,
+   "F154:s0": 0.5424,
+   "F154:s1": 0.551,
+   "F154:s2": 0.5509,
+   "F155:t0": 0.5359,
+   "F155:t1": 0.5105,
+   "F155:t2": 0.4649,
+   "F155:t3": 0.5392,
+   "F155:t4": -0.1016,
+   "F155:t5": 0.5381,
+   "F155:r0": 0.244,
+   "F155:r1": 0.5738,
+   "F155:r2": 0.5603,
+   "F155:r3": 0.57,
+   "F155:r4": 0.4987,
+   "F155:r5": 0.5848
   },
-  {
-   "column": "F154:c2",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:p0",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:p1",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:p2",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:p3",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:p4",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:p5",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:s0",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:s1",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F154:s2",
-   "file": "text_interaction.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 3
-  },
-  {
-   "column": "F155:t0",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:t1",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:t2",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:t3",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:t4",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:t5",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:r0",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:r1",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:r2",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:r3",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:r4",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  },
-  {
-   "column": "F155:r5",
-   "file": "structural_text.json",
-   "never_measured_models": [
-    "pythia-410m",
-    "pythia-410m-deduped",
-    "starcoder2-3b",
-    "llm-jp-3-1.8b"
-   ],
-   "n_missing": 4
-  }
- ],
- "verdict": "MATRIX: 8 models x 29 prefix arms from five results files. 137 of 232 cells are usable; the rest split into 84 NEVER MEASURED and 11 measured-but-MASKED (|dphi| within their own tolerance, excluded from the fit -- never zeroed, never imputed). After dropping rows and columns with fewer than two observed cells: 8 models x 29 arms, coverage 59%. ABSENCE vs MASKING: of 232 cells, 84 were NEVER MEASURED (the model was not run on that arm) and 11 were measured and fell within their own tolerance. Only the first kind is a coverage hole a run could fill; the second carries no direction and rerunning it would remeasure a flat quantity. Coverage over MEASURED cells alone is 93%. NOT DECIDABLE FOR INSUFFICIENCY: coverage 59% against the floor of 60% declared before the fit -- it misses by one point, and the threshold is NOT moved to reach a verdict. 29 usable columns clears its floor of 4. The runs that would fill the never-measured cells are LISTED in `would_fill`, cheapest first, and are NOT run here. BOUNDARY: every cell records its file, its arm keys, its baseline keys and its own tolerance. Cells from different files share the estimator and the 96-start geometry but are not assumed commensurable beyond that. Masked cells are excluded, not zeroed.",
+  "loo_column_stability_min": 0.9985,
+  "loo_column_stability_median": 0.9999
+ },
+ "verdict": "MATRIX: 8 models x 29 prefix arms from five results files. 171 of 232 cells are usable; the rest split into 48 NEVER MEASURED and 13 measured-but-MASKED (|dphi| within their own tolerance, excluded from the fit -- never zeroed, never imputed). After dropping rows and columns with fewer than two observed cells: 8 models x 29 arms, coverage 74%. PRIMARY, fraction of above-tolerance variance explained by the rank-1 fit: 0.790. Sign-only agreement 82%. Leave-one-column-out stability of the model loadings: median 1.000, min 0.999. NOT DECIDABLE: 0.790 falls between the pre-registered 50% and 80% bounds. Neither reading is licensed. MODEL loadings u and ARM loadings v are stored with their signs; a sign flip in u against v is what a bilinear effect uses to send the same prefix in opposite directions on different models. BOUNDARY: every cell records its file, its arm keys, its baseline keys and its own tolerance. Cells from different files share the estimator and the 96-start geometry but are not assumed commensurable beyond that. Masked cells are excluded, not zeroed.",
  "_analysis_provenance": {
   "script": "bilinear_rank1.py",
-  "sha256": "734c4ba553b7d4dbe9f9e6408015d396311062bfca453129d1f031c8d817070a",
+  "sha256": "fb7772cd54325472f53112b45cfc12e5e48be7187a5e12d866143f1ab6dc33b4",
   "imports": {
-   "experiments/bilinear_rank1.py": "734c4ba553b7d4dbe9f9e6408015d396311062bfca453129d1f031c8d817070a",
+   "experiments/bilinear_rank1.py": "fb7772cd54325472f53112b45cfc12e5e48be7187a5e12d866143f1ab6dc33b4",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
   },
   "env": {

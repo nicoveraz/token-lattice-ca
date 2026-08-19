@@ -61,12 +61,25 @@ SPECS = [
 BASE_RAW = ("domain_base.json", "{m}|s{cs}|raw")
 
 
+# The 36-cell fill lives in its own file so the producer stayed ignorant of the frozen
+# predictions. For matrix purposes its cells ARE F154 cells: identical prefixes, identical
+# geometry, identical baseline. Merged here, and every cell still records the file it came from.
+MERGE = {"text_interaction.json": "text_interaction_fill.json"}
+
+
 def load(name):
     p = _ROOT / "results" / name
     if not p.exists():
         return {}
     d = json.load(open(p))
-    return d.get("runs") or d.get("cells") or {}
+    out = dict(d.get("runs") or d.get("cells") or {})
+    extra = MERGE.get(name)
+    if extra:
+        q = _ROOT / "results" / extra
+        if q.exists():
+            e = json.load(open(q))
+            out.update(e.get("runs") or e.get("cells") or {})
+    return out
 
 
 def phi(runs, tmpl, m, a=None):

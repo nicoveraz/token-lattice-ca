@@ -3645,6 +3645,73 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F165 — the fill run: H1 killed by one cell, T2 confirmed exactly, and the mechanism refines from "newline" to "the prefix picks the token, the model decides if it self-continues"
+The 36-cell fill was chosen by F164's coverage analysis **before F162 existed**, so the newline factor
+faced a pre-registered widening it had no hand in selecting — this project's own criterion for a
+factor that survives. Margins were measured and sha256-hashed **before any fill cell existed**
+(tier 1 `72d5f1ce…`, tier 2 `92af21f4…`), so the ordering is checkable by someone who was not here.
+
+**The margins inverted the expected configuration, visibly, pre-census.** All three fill models
+already had `'\n'` as a fixed point at raw — margins **+1.99 / +0.12 / +2.70**, argmax the newline in
+every case — and the twelve prefixes *destroy* it (−8 to −15). That mirrors F162, whose raisers had
+*low* raw φ and whose prefixes *installed* the loop. Same mechanism, opposite starting side. H1
+thereby degenerated to predicting **no raising anywhere**, and was **left standing rather than
+repaired** — rewriting a hypothesis after seeing its predictor destroys the ordering the design
+exists to protect.
+
+**H1: DEAD. One cell killed it.** `starcoder2-3b` under `p2` rises to **φ = 0.995** (Δφ +0.271) with a
+newline margin of **−11.75**. A raising cell whose margin did not flip positive is exactly K1. Tier-2
+T1 dies on the same cell.
+
+**T2: CONFIRMED, exactly as frozen.** `llm-jp-3-1.8b`'s only two positive-margin arms rank **#1 and
+#2 in φ of twelve**: `p1` (+0.17 → φ 0.995, `'\n'`×96) and `s0` (+0.19 → φ 0.807, `'\n'`×80). The
+other ten have negative margins, collapse to ~0, and land on `'fundamental'`, `','`, `'of'`, `'A'`,
+`'The'`, `'ric'`, `'DY'`, `'love'` — none self-continuing.
+
+**What the refutation bought, which is more than the confirmation.** The killing cell's fixed point is
+not a newline — it is the digit `'0'` (95–96 of 96 trajectories), under a prefix that decodes to
+`'2007 to be hottest year'`. Checking existing F154 data for that same arm:
+
+| `p2` (digit-leading) | φ | top endpoint | |
+|---|---|---|---|
+| Qwen1.5-1.8B | 0.969 | `'0'`×93 | raised |
+| starcoder2-3b | 0.995 | `'0'`×95 | raised |
+| **SmolLM-1.7B** | **0.000** | **`'0'`×84** | **not raised** |
+| Qwen2.5-1.5B-Instruct | 0.021 | `'0'`×56 | not raised |
+
+`SmolLM` is the decisive cell: **84 of 96 trajectories reach the same endpoint token as the two
+raisers, and φ is still zero.** The prefix pulled them there; the token simply does not self-continue
+in that model. So the two vectors are not what F162 read them as:
+
+- **u_prefix** — *which* token the prefix pulls trajectories toward (newline-dense → `'\n'`;
+  digit-leading → `'0'`).
+- **v_model** — whether *that* token self-continues in that model.
+
+φ rises only when both align, which is precisely why every marginal factor died: neither vector alone
+fixes a sign. F162's newline reading was one instantiation — its raisers happened to be newline-dense
+prefixes — and `p2`/`'0'` is now a second, so the mechanism is token-agnostic rather than about
+newlines. The margin to measure is `margin(model, prefix, token*)` with `token*` the prefix-selected
+modal endpoint; still no internals required.
+
+**F164's coverage gate: CLEARED. Its primary: still NOT DECIDABLE, by 0.010.** The fill takes the
+matrix from 59% to **74%** coverage (48 cells never measured remain, 13 measured-but-masked). The
+rank-1 fit explains **0.790** of above-tolerance variance against a pre-registered `>= 0.80`
+supported / `< 0.50` dead. **0.790 falls between them and the threshold was not moved** — the second
+one-hair refusal in this sequence, after 59-vs-60 (registry R9).
+
+Supporting numbers, reported because they are not the primary and should not be read as one:
+sign-only agreement **82%**; leave-one-column-out stability of the model loadings median **1.000**,
+min **0.999**. Model loadings run `Falcon3-1B +0.019`, `Minerva −0.105`, then `−0.78` to `−1.41` for
+the rest — the sign split at the top is how one prefix sends models opposite ways. A fit this stable
+landing this close to its bar is the case for one more widening, not for relaxing the bar.
+
+**Owed and not run: the prior-art gate** for greedy-decoding degeneration loops, repetition
+self-reinforcement, and induction heads. A self-loop on a high-frequency formatting or numeric token
+is squarely that literature's territory, and it is a precondition for writing the mechanism up, not a
+follow-up. `experiments/text_interaction_fill.py`, `experiments/newline_margin_freeze.py` →
+`results/text_interaction_fill.json`, `results/newline_margin_frozen.json`,
+`results/bilinear_rank1.json`.
+
 ### F164 — the bilinear hypothesis is NOT DECIDABLE for insufficiency: 59% coverage against a floor of 60%, and the shortfall is absence, not masking
 The first structural hypothesis in this programme that PREDICTS the pattern of failures rather than
 adding to it. Five marginal factors died on widening (F147–F156), and a bilinear effect

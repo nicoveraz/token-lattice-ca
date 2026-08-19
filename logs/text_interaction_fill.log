@@ -1,0 +1,138 @@
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7170.04it/s]
+  EleutherAI/pythia-410m       12 texts
+  EleutherAI/pythia-410m       c0   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       c0   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       c1   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       c1   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       c2   s=20260803 cls=none        phi=0.010
+  EleutherAI/pythia-410m       c2   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       s0   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       s0   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       s1   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       s1   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       s2   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       s2   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p0   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p0   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p1   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p1   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p2   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p2   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p3   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p3   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p4   s=20260803 cls=none        phi=0.010
+  EleutherAI/pythia-410m       p4   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p5   s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m       p5   s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m       model done in 1499s
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  24/72 census cells stored
+wrote results/text_interaction_fill.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/483 [00:00<?, ?it/s]Loading weights: 100%|██████████| 483/483 [00:00<00:00, 6590.55it/s]
+  bigcode/starcoder2-3b        12 texts
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  bigcode/starcoder2-3b        c0   s=20260803 cls=none        phi=0.010
+  bigcode/starcoder2-3b        c0   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        c1   s=20260803 cls=none        phi=0.000
+  bigcode/starcoder2-3b        c1   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        c2   s=20260803 cls=none        phi=0.052
+  bigcode/starcoder2-3b        c2   s=990017 cls=none        phi=0.021
+  bigcode/starcoder2-3b        s0   s=20260803 cls=none        phi=0.000
+  bigcode/starcoder2-3b        s0   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        s1   s=20260803 cls=none        phi=0.010
+  bigcode/starcoder2-3b        s1   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        s2   s=20260803 cls=none        phi=0.062
+  bigcode/starcoder2-3b        s2   s=990017 cls=none        phi=0.062
+  bigcode/starcoder2-3b        p0   s=20260803 cls=none        phi=0.042
+  bigcode/starcoder2-3b        p0   s=990017 cls=none        phi=0.062
+  bigcode/starcoder2-3b        p1   s=20260803 cls=none        phi=0.000
+  bigcode/starcoder2-3b        p1   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        p2   s=20260803 cls=funnel      phi=0.990
+  bigcode/starcoder2-3b        p2   s=990017 cls=funnel      phi=1.000
+  bigcode/starcoder2-3b        p3   s=20260803 cls=none        phi=0.031
+  bigcode/starcoder2-3b        p3   s=990017 cls=none        phi=0.062
+  bigcode/starcoder2-3b        p4   s=20260803 cls=none        phi=0.000
+  bigcode/starcoder2-3b        p4   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        p5   s=20260803 cls=none        phi=0.000
+  bigcode/starcoder2-3b        p5   s=990017 cls=none        phi=0.000
+  bigcode/starcoder2-3b        model done in 6132s
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  (stopping after 1; re-run to continue)
+
+  48/72 census cells stored
+wrote results/text_interaction_fill.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4582.43it/s]
+  llm-jp/llm-jp-3-1.8b         12 texts
+  llm-jp/llm-jp-3-1.8b         c0   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         c0   s=990017 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         c1   s=20260803 cls=none        phi=0.010
+  llm-jp/llm-jp-3-1.8b         c1   s=990017 cls=none        phi=0.010
+  llm-jp/llm-jp-3-1.8b         c2   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         c2   s=990017 cls=none        phi=0.010
+  llm-jp/llm-jp-3-1.8b         s0   s=20260803 cls=funnel      phi=0.833
+  llm-jp/llm-jp-3-1.8b         s0   s=990017 cls=funnel      phi=0.781
+  llm-jp/llm-jp-3-1.8b         s1   s=20260803 cls=none        phi=0.010
+  llm-jp/llm-jp-3-1.8b         s1   s=990017 cls=none        phi=0.021
+  llm-jp/llm-jp-3-1.8b         s2   s=20260803 cls=none        phi=0.021
+  llm-jp/llm-jp-3-1.8b         s2   s=990017 cls=none        phi=0.021
+  llm-jp/llm-jp-3-1.8b         p0   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p0   s=990017 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p1   s=20260803 cls=funnel      phi=1.000
+  llm-jp/llm-jp-3-1.8b         p1   s=990017 cls=funnel      phi=0.990
+  llm-jp/llm-jp-3-1.8b         p2   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p2   s=990017 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p3   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p3   s=990017 cls=none        phi=0.021
+  llm-jp/llm-jp-3-1.8b         p4   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p4   s=990017 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p5   s=20260803 cls=none        phi=0.000
+  llm-jp/llm-jp-3-1.8b         p5   s=990017 cls=none        phi=0.010
+  llm-jp/llm-jp-3-1.8b         model done in 2633s
+
+  72/72 census cells stored
+wrote results/text_interaction_fill.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+
+  72/72 census cells stored
+wrote results/text_interaction_fill.json
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 49151), got 50256. This may result in unexpected behavior.
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+
+  72/72 census cells stored
+wrote results/text_interaction_fill.json
+=== fill done ===
