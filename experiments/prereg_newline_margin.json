@@ -1,0 +1,86 @@
+{
+ "name": "newline-margin-bilinear-v1",
+ "status": "FROZEN. Margins are computed and hashed BEFORE any cell of the fill census exists. The hash of the per-cell predictions is recorded in results/newline_margin_frozen.json and repeated here on freeze.",
+ "motivation": "F162 gave Table p1 a face: the raising models are not sharpening toward structure in general, they are falling into the '\\n' self-loop when the prefix makes newline runs in-distribution. That supplies the bilinear hypothesis with two directly measurable vectors and no internals: u_prefix is the prefix's newline affordance, v_model is the model's newline self-continuation margin. F164 is NOT DECIDABLE at 59% coverage and its filling run -- three models on twelve texts -- was selected by the coverage analysis BLIND TO F162, before this factor existed. That is the project's own criterion for a surviving factor: a pre-registered widening the factor did not choose.",
+ "the_measured_quantity": {
+  "newline_margin": "margin(model, prefix) = logit('\\n' | prefix, '\\n', '\\n') - max_{t != '\\n'} logit(t | prefix, '\\n', '\\n')",
+  "why_this_and_not_a_probability": "the argmax map is scale-free: only the ORDER of logits matters, so the margin against the best rival is the quantity that decides whether the diagonal state ('\\n','\\n') reproduces itself. A softmax probability would add a temperature the estimator does not have.",
+  "interpretation": "margin > 0 means '\\n' IS a fixed point of the argmax map under that prefix. It is NECESSARY for a newline funnel and NOT SUFFICIENT: trajectories must also REACH ('\\n','\\n') from their starts. The primary below is therefore a necessary-condition test, which can fail cleanly and cannot alone establish sufficiency. Stated here so it is not claimed later.",
+  "newline_token": "the model's own encoding of '\\n'; where a tokenizer has several newline-bearing ids the LOWEST id whose decoded form is exactly '\\n' is used, and the chosen id is recorded per model",
+  "cost": "ONE forward pass per (model, prefix) cell. 3 models x 13 arms = 39 passes."
+ },
+ "hypotheses": {
+  "H1_raising_primary": "on cells where the fill census returns dphi > tolerance (RAISING), the newline margin FLIPPED POSITIVE under the prefix: margin(model, prefix) > 0 while margin(model, raw) <= 0",
+  "H2_sign_map_secondary": "across all readable fill cells, the sign of the margin flip agrees with the sign of dphi",
+  "H3_asymmetry_registered_in_advance": "the newline account explains RAISING specifically. FALLING may be generic -- any prefix giving the copy machinery something to pull toward can break a self-loop -- so for down-cells the prediction is NECESSARY-NOT-SUFFICIENT: margin stays <= 0. If down-cells turn out to carry their own token story, that is a FINDING, not a failure of this prereg."
+ },
+ "directional_priors_registered_before_the_run": {
+  "starcoder2-3b": "RAISABLE. Code pretraining makes newline runs deeply in-distribution, so if the mechanism is real this is the model whose margin should flip positive most readily.",
+  "llm-jp-3-1.8b": "probes whether the story survives a different script and tokenizer; no directional prior is registered, only the scope question",
+  "pythia-410m": "no directional prior. Its raw phi is high (F152: 0.589 at W=2) and it collapsed under every arm tested, so it tests whether a high-phi model can be raised at all."
+ },
+ "frozen": {
+  "fill_cohort": [
+   "EleutherAI/pythia-410m",
+   "bigcode/starcoder2-3b",
+   "llm-jp/llm-jp-3-1.8b"
+  ],
+  "arms": [
+   "c0",
+   "c1",
+   "c2",
+   "p0",
+   "p1",
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "s0",
+   "s1",
+   "s2"
+  ],
+  "arms_source": "results/text_interaction.json -- the identical twelve prefixes, reconstructed by the same offset-selected procedure, never re-chosen",
+  "census_geometry": {
+   "n_starts": 96,
+   "census_seeds": [
+    20260803,
+    990017
+   ]
+  },
+  "raw_baseline": "results/domain_base.json, {m}|s{cs}|raw -- the same baseline bilinear_rank1.py uses for F154 columns",
+  "tolerance": "max(4/96, 2 * across-seed range) per cell, the project standard",
+  "prediction_freeze": "per-cell predicted direction is computed from the margins ALONE, written to results/newline_margin_frozen.json, and sha256-hashed BEFORE the fill census is launched. The hash is recorded in this file on freeze."
+ },
+ "kill_conditions": {
+  "K1_primary_dies": "any RAISING cell (dphi > tolerance) whose newline margin did NOT flip positive kills H1 as stated -- the newline is then not the mechanism of raising, or not the only one. Report the count, not a rate.",
+  "K2_secondary_dies": "margin-flip sign agrees with dphi sign at or below chance across readable cells -> H2 dead. Balanced accuracy is the statistic, never raw agreement, per F163.",
+  "K3_predictor_vacuity": "if the frozen margins are all the same sign across the 36 cells, the predictor has no variance and cannot discriminate: NOT DECIDABLE for predictor imbalance, and the gate fires BEFORE the join (gatecheck.balance).",
+  "K4_no_raising_cells": "if the fill returns no cell with dphi > tolerance, H1 has nothing to test: NOT DECIDABLE for absence of raising, and only H2/H3 are read."
+ },
+ "anti_vacuity": "a fill cell enters the sign map only if |dphi| exceeds its own tolerance AND the model had headroom on the side it moved (F149/F161). A cell at the floor cannot fall and a cell at the ceiling cannot rise, and neither may vote.",
+ "refusals_recorded_before_numbers": [
+  "no p-value on 36 cells clustered in 3 models -- three clusters cannot fail a significance test informatively",
+  "no rank correlation between margin magnitude and |dphi| -- three model clusters is far below the ten-cluster floor this project uses (F149)",
+  "raw agreement is not reported as a headline for any two-class call; balanced accuracy is, because F163 showed raw agreement to be a base-rate artefact at lopsided class balance"
+ ],
+ "what_this_run_settles_simultaneously": {
+  "F164": "the same 36 cells take the bilinear matrix from 59% to ~75% coverage, clearing the pre-registered 60% floor with margin rather than by three cells",
+  "newline_factor": "faces a widening it had no hand in choosing -- the fill cohort was selected by F164's coverage analysis before F162 existed"
+ },
+ "independent_unit": "model for anything aggregated across cells; the cell for the primary, which is a per-cell necessary condition",
+ "note_for_the_sink_section": "NOT a claim of this prereg, recorded because it will be easy to lose: xiao2023streamingllm uses the linebreak token as its CONTENTLESS PLACEHOLDER -- substituting four initial tokens with '\\n' restores perplexity to 5.60 vs 5.40 -- i.e. the account treats '\\n' as semantically inert ballast. F162's census says the self-continuation of that same token is among the most model-discriminating properties in this cohort. The contrast is not evidence for anything here; it belongs in a mechanism paper's opening, and it is banked so it is not rediscovered.",
+ "owed": "the prior-art gate for greedy-decoding degeneration loops, repetition self-reinforcement and induction heads is OWED and is a precondition for writing a newline-mechanism claim, not a follow-up. A self-loop on a high-frequency formatting token is squarely that literature's territory.",
+ "frozen_predictions_sha256": "72d5f1ce12073ae2f99f20b3f4f25c25418918d130c6c3dae7b5fd2be7384ba5",
+ "frozen_predictions_file": "results/newline_margin_frozen.json",
+ "frozen_at": "before the fill census; see results/newline_margin_frozen.json _order_note",
+ "tier2_post_margin_pre_census": {
+  "epistemic_status": "WEAKER THAN TIER 1 AND LABELLED SO. These predictions were written AFTER the margins were measured and hashed (72d5f1ce...) but BEFORE any cell of the fill census existed. They are not post-hoc with respect to phi, which is what matters, but they ARE informed by the margins. Tier 1 (H1/H3, hash above) is untouched and is the claim that carries weight.",
+  "why_a_second_tier_was_needed": "H1 assumed F162's configuration -- low-phi models whose margin FLIPS positive under a prefix. All three fill models instead have margin ALREADY POSITIVE at raw (+1.99, +0.12, +2.70; argmax is the newline in every case), so no flip is possible and H1 degenerates to predicting no raising anywhere. That degeneracy is itself falsifiable and is left standing rather than repaired.",
+  "T1_direction": "the 34 cells whose arm margin is NEGATIVE should FALL or HOLD -- destroying the newline self-loop cannot raise phi through it. A rise in such a cell means raising happens by a route the newline account does not cover.",
+  "T2_the_two_survivors": "llm-jp-3-1.8b p1 (+0.19) and s0 are the ONLY cells retaining a positive margin. If the newline account governs this cohort they should be the least-collapsed cells for that model, i.e. rank highest in phi among its twelve arms.",
+  "T3_magnitude_refusal": "no prediction is made about HOW FAR phi falls as a function of margin magnitude, and no correlation will be computed: three model clusters cannot fail a rank correlation informatively (F149).",
+  "kill_T1": "a cell with negative arm margin whose phi RISES beyond tolerance",
+  "kill_T2": "llm-jp p1/s0 not among its top phi arms"
+ },
+ "tier2_sha256": "92af21f4133038061d7562cb57189efea25b92d8c35fd538c10f380200bdbb08"
+}
