@@ -71,3 +71,12 @@ paper_corrections.md
 # by experiments/build_review.py. Derived from results/ and findings.md, so it carries no
 # information they do not, and it is large (a chart per experiment).
 review/
+
+# paper2 build artefacts -- main.tex and refs.bib are the sources; the PDF is rebuilt by
+# `cd paper2_arxiv && tectonic main.tex`
+paper2_arxiv/main.pdf
+paper2_arxiv/main.log
+paper2_arxiv/main.blg
+paper2_arxiv/main.aux
+paper2_arxiv/main.bbl
+paper2_arxiv/main.out
