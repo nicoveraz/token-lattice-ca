@@ -3645,6 +3645,63 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F161 — the READOUT is a short-window property: at a 16-token window five of six models have no fixed points left, so the domain question cannot be asked there
+F160 defended the probe's input *distribution*; this tests its *window*. Every finding F144–F160 uses
+one estimator — the argmax map with a **two-token** window — and the first objection a reader makes is
+that no model ever sees a two-token context. F159 conceded that $\phi$ "is not measurable at long
+context" and called a longer-window probe a new construction. This is that construction: the same map
+generalised so the state is the last $W$ tokens, with a fixed point being the diagonal state
+$(t,\dots,t)$ reproducing $t$. **The RUNG proves $W{=}2$ is bit-identical to `gate1.argmax_census`**
+on all six models, so the generalisation is verified rather than assumed. Starts are in-distribution
+$W$-grams, licensed by F160.
+
+**PRIMARY — NOT_DECIDABLE at $W{=}16$, and the reason is the result.**
+
+| model | $\lvert\Delta\phi\rvert$ W2 | W4 | W8 | W16 | raw $\phi$: W2 → W16 |
+|---|---|---|---|---|---|
+| Falcon3-1B-Base | 0.745 | 0.250 | 0.099 | **0.010** | 0.224 → **0.099** |
+| Minerva-3B-base | 0.297 | 0.078 | 0.078 | 0.083 | 0.385 → 0.016 |
+| pythia-410m-deduped | 0.583 | 0.005 | 0.005 | 0.000 | 0.589 → 0.000 |
+| Qwen1.5-1.8B | 0.260 | 0.015 | 0.000 | 0.010 | 0.260 → 0.000 |
+| SmolLM-1.7B | 0.703 | 0.042 | 0.016 | 0.005 | 0.703 → 0.000 |
+| Qwen2.5-1.5B-Instruct | 0.521 | **0.547** | 0.021 | 0.000 | 0.526 → 0.000 |
+
+**Five of six models are excluded at $W{=}16$** because their raw $\phi$ has collapsed and they can no
+longer move in the direction their $W{=}2$ effect had. Only `Falcon3-1B-Base` retains measurable
+structure ($\phi = 0.099$), and there the effect has died: $0.745 \to 0.010$. One readable model is
+below the $n\geq3$ gate, so the registered primary is **not read**.
+
+**SECONDARY — this is the finding.** Raw $\phi$ collapses W2 → W16 on five of six models, four of them
+to $0.000$. **The fixed-point structure of the argmax map is a short-window property**: widen the
+window and the object being measured stops existing. The domain question at $W{=}16$ is therefore not
+answered-in-the-negative but *unaskable*, and separating those two was the entire purpose of the
+secondary.
+
+**What this bounds, stated plainly.** The paper's estimator has something to measure only in a
+short-window regime. That is a property of the construction to declare, not a limitation to
+apologise for — but it does mean F144–F160 describe what conditioning does to a model reading a
+**fragment**, and the paper should say so in scope rather than in limits.
+
+**One model resists at $W{=}4$, and it is worth keeping.** `Qwen2.5-1.5B-Instruct` shows
+$\lvert\Delta\phi\rvert = 0.547$ at $W{=}4$ against $0.521$ at $W{=}2$ — the effect is undiminished
+at double the window, while every other model has already lost it. Its structure then collapses by
+$W{=}8$. A single model is not a rate, and this programme has withdrawn four factors called from
+this kind of n; recorded as a lead.
+
+**The anti-vacuity gate had to be fixed mid-run, and it is the third time this defect has been found
+INSIDE a guard written against it.** The first version computed headroom for the *observed* direction,
+which is circular: an effect that can only move one way always shows room in that way. `Minerva`
+exposed it — its raw $\phi$ falls to $\sim0.01$ by $W{=}4$, so its $W{=}2$ **downward** effect becomes
+unmeasurable and the small upward one left over was being scored as a readable cell, i.e. as
+persistence. Headroom is now judged against the direction whose survival is being tested, and
+persistence requires the $W{=}2$ **sign** to survive rather than merely something exceeding tolerance.
+Under the old gate, `Minerva`'s $+0.083$ would have counted as the effect persisting at $W{=}16$.
+
+**Boundary.** Six models, four windows, ONE prefix kind (BOS), one text source, two census seeds. A
+16-token window is still not a long context in the streaming sense, so this does not reach the regime
+where F159 found the attention-sink account holds. `experiments/window_length_domain.py` →
+`results/window_length_domain.json`.
+
 ### F160 — the domain effect is NOT an out-of-distribution artefact: it survives in-distribution starts on 6 of 6 models. F66's warning does not extend to this readout.
 The highest-stakes check in the domain sequence, and it is a check on our own foundations rather than
 on the literature. **F66 already found this construction's degeneracy to be an out-of-distribution

@@ -1,0 +1,249 @@
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 3673.20it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  tiiuae/Falcon3-1B-Base             RUNG W2 theirs=0.1979 mine=0.1979 err=0.00e+00
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W2   raw s=20260803 cls=borderline  phi=0.188
+  tiiuae/Falcon3-1B-Base             W2   bos s=20260803 cls=funnel      phi=0.969
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W2   raw s=990017 cls=borderline  phi=0.260
+  tiiuae/Falcon3-1B-Base             W2   bos s=990017 cls=funnel      phi=0.969
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W4   raw s=20260803 cls=none        phi=0.094
+  tiiuae/Falcon3-1B-Base             W4   bos s=20260803 cls=funnel      phi=0.344
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W4   raw s=990017 cls=none        phi=0.094
+  tiiuae/Falcon3-1B-Base             W4   bos s=990017 cls=funnel      phi=0.344
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W8   raw s=20260803 cls=none        phi=0.094
+  tiiuae/Falcon3-1B-Base             W8   bos s=20260803 cls=borderline  phi=0.177
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W8   raw s=990017 cls=none        phi=0.083
+  tiiuae/Falcon3-1B-Base             W8   bos s=990017 cls=borderline  phi=0.198
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W16  raw s=20260803 cls=borderline  phi=0.104
+  tiiuae/Falcon3-1B-Base             W16  bos s=20260803 cls=borderline  phi=0.125
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  tiiuae/Falcon3-1B-Base             W16  raw s=990017 cls=none        phi=0.094
+  tiiuae/Falcon3-1B-Base             W16  bos s=990017 cls=none        phi=0.094
+  tiiuae/Falcon3-1B-Base             done in 3216s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 1 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (asterisk = below tolerance, dagger = vacuous, no headroom): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*.  ANTI-VACUITY: 1 of 1 models can be read at W=16 -- a cell is excluded if it has no headroom on the side the effect moves, or if the effect was not real at W=2 to begin with. PRIMARY NOT READ: 1 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4865.14it/s]
+  sapienzanlp/Minerva-3B-base-v1.0   RUNG W2 theirs=0.3229 mine=0.3229 err=0.00e+00
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W2   raw s=20260803 cls=funnel      phi=0.427
+  sapienzanlp/Minerva-3B-base-v1.0   W2   bos s=20260803 cls=borderline  phi=0.115
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W2   raw s=990017 cls=funnel      phi=0.344
+  sapienzanlp/Minerva-3B-base-v1.0   W2   bos s=990017 cls=none        phi=0.062
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W4   raw s=20260803 cls=none        phi=0.021
+  sapienzanlp/Minerva-3B-base-v1.0   W4   bos s=20260803 cls=none        phi=0.083
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W4   raw s=990017 cls=none        phi=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   W4   bos s=990017 cls=none        phi=0.094
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W8   raw s=20260803 cls=none        phi=0.031
+  sapienzanlp/Minerva-3B-base-v1.0   W8   bos s=20260803 cls=borderline  phi=0.115
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W8   raw s=990017 cls=none        phi=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   W8   bos s=990017 cls=none        phi=0.073
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W16  raw s=20260803 cls=none        phi=0.031
+  sapienzanlp/Minerva-3B-base-v1.0   W16  bos s=20260803 cls=borderline  phi=0.115
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  sapienzanlp/Minerva-3B-base-v1.0   W16  raw s=990017 cls=none        phi=0.000
+  sapienzanlp/Minerva-3B-base-v1.0   W16  bos s=990017 cls=none        phi=0.083
+  sapienzanlp/Minerva-3B-base-v1.0   done in 5805s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 2 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (asterisk = below tolerance, dagger = vacuous, no headroom): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078, W8=0.078*, W16=0.083.  ANTI-VACUITY: 2 of 2 models can be read at W=16 -- a cell is excluded if it has no headroom on the side the effect moves, or if the effect was not real at W=2 to begin with. PRIMARY NOT READ: 2 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7110.68it/s]
+  EleutherAI/pythia-410m-deduped     RUNG W2 theirs=0.4167 mine=0.4167 err=0.00e+00
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W2   raw s=20260803 cls=funnel      phi=0.635
+  EleutherAI/pythia-410m-deduped     W2   bos s=20260803 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W2   raw s=990017 cls=funnel      phi=0.542
+  EleutherAI/pythia-410m-deduped     W2   bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W4   raw s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     W4   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W4   raw s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     W4   bos s=990017 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W8   raw s=20260803 cls=none        phi=0.010
+  EleutherAI/pythia-410m-deduped     W8   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W8   raw s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     W8   bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W16  raw s=20260803 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     W16  bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  EleutherAI/pythia-410m-deduped     W16  raw s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     W16  bos s=990017 cls=none        phi=0.000
+  EleutherAI/pythia-410m-deduped     done in 1613s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 3 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (asterisk = below tolerance, dagger = vacuous, no headroom): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078, W8=0.078*, W16=0.083; pythia-410m-deduped: W2=0.583, W4=0.005*, W8=0.005†, W16=0.000†.  ANTI-VACUITY: 2 of 3 models can be read at W=16 -- a cell is excluded if it has no headroom on the side the effect moves, or if the effect was not real at W=2 to begin with (['pythia-410m-deduped'] excluded). PRIMARY NOT READ: 2 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5717.09it/s]
+  Qwen/Qwen1.5-1.8B                  RUNG W2 theirs=0.5208 mine=0.5208 err=0.00e+00
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W2   raw s=20260803 cls=borderline  phi=0.240
+  Qwen/Qwen1.5-1.8B                  W2   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W2   raw s=990017 cls=borderline  phi=0.281
+  Qwen/Qwen1.5-1.8B                  W2   bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W4   raw s=20260803 cls=borderline  phi=0.271
+  Qwen/Qwen1.5-1.8B                  W4   bos s=20260803 cls=borderline  phi=0.219
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W4   raw s=990017 cls=borderline  phi=0.156
+  Qwen/Qwen1.5-1.8B                  W4   bos s=990017 cls=borderline  phi=0.177
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W8   raw s=20260803 cls=none        phi=0.062
+  Qwen/Qwen1.5-1.8B                  W8   bos s=20260803 cls=none        phi=0.052
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W8   raw s=990017 cls=none        phi=0.042
+  Qwen/Qwen1.5-1.8B                  W8   bos s=990017 cls=none        phi=0.052
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W16  raw s=20260803 cls=none        phi=0.000
+  Qwen/Qwen1.5-1.8B                  W16  bos s=20260803 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen1.5-1.8B                  W16  raw s=990017 cls=none        phi=0.000
+  Qwen/Qwen1.5-1.8B                  W16  bos s=990017 cls=none        phi=0.010
+  Qwen/Qwen1.5-1.8B                  done in 4646s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 4 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (* = below tolerance; + = one direction unavailable): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078+, W8=0.078*+, W16=0.083+; pythia-410m-deduped: W2=0.583, W4=0.005*+, W8=0.005*+, W16=0.000*+; Qwen1.5-1.8B: W2=0.260, W4=0.015*+, W8=0.000*, W16=0.010*+.  ANTI-VACUITY: 1 of 4 models can be read at W=16. A model is excluded if its W=16 cell cannot show the DIRECTION its W=2 effect had -- headroom is judged against that direction, not against the observed one, because scoring the observed sign is circular: [('Minerva-3B-base-v1.0', 'W=16 cannot show the W=2 direction (down); room 0.016 <= tol 0.063'), ('pythia-410m-deduped', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen1.5-1.8B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042')]. PRIMARY NOT READ: 1 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4625.61it/s]
+  HuggingFaceTB/SmolLM-1.7B          RUNG W2 theirs=0.5938 mine=0.5938 err=0.00e+00
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W2   raw s=20260803 cls=funnel      phi=0.750
+  HuggingFaceTB/SmolLM-1.7B          W2   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W2   raw s=990017 cls=funnel      phi=0.656
+  HuggingFaceTB/SmolLM-1.7B          W2   bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W4   raw s=20260803 cls=none        phi=0.083
+  HuggingFaceTB/SmolLM-1.7B          W4   bos s=20260803 cls=borderline  phi=0.104
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W4   raw s=990017 cls=none        phi=0.052
+  HuggingFaceTB/SmolLM-1.7B          W4   bos s=990017 cls=borderline  phi=0.115
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W8   raw s=20260803 cls=none        phi=0.052
+  HuggingFaceTB/SmolLM-1.7B          W8   bos s=20260803 cls=none        phi=0.021
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W8   raw s=990017 cls=none        phi=0.042
+  HuggingFaceTB/SmolLM-1.7B          W8   bos s=990017 cls=none        phi=0.042
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W16  raw s=20260803 cls=none        phi=0.000
+  HuggingFaceTB/SmolLM-1.7B          W16  bos s=20260803 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  HuggingFaceTB/SmolLM-1.7B          W16  raw s=990017 cls=none        phi=0.000
+  HuggingFaceTB/SmolLM-1.7B          W16  bos s=990017 cls=none        phi=0.000
+  HuggingFaceTB/SmolLM-1.7B          done in 5281s
+  (stopping after 1; re-run to continue)
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 5 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (* = below tolerance; + = one direction unavailable): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078+, W8=0.078*+, W16=0.083+; pythia-410m-deduped: W2=0.583, W4=0.005*+, W8=0.005*+, W16=0.000*+; Qwen1.5-1.8B: W2=0.260, W4=0.015*+, W8=0.000*, W16=0.010*+; SmolLM-1.7B: W2=0.703, W4=0.042*, W8=0.016*, W16=0.005*+.  ANTI-VACUITY: 1 of 5 models can be read at W=16. A model is excluded if its W=16 cell cannot show the DIRECTION its W=2 effect had -- headroom is judged against that direction, not against the observed one, because scoring the observed sign is circular: [('Minerva-3B-base-v1.0', 'W=16 cannot show the W=2 direction (down); room 0.016 <= tol 0.063'), ('pythia-410m-deduped', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen1.5-1.8B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('SmolLM-1.7B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042')]. PRIMARY NOT READ: 1 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5408.25it/s]
+  Qwen/Qwen2.5-1.5B-Instruct         RUNG W2 theirs=0.5729 mine=0.5729 err=0.00e+00
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W2   raw s=20260803 cls=funnel      phi=0.479
+  Qwen/Qwen2.5-1.5B-Instruct         W2   bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W2   raw s=990017 cls=funnel      phi=0.573
+  Qwen/Qwen2.5-1.5B-Instruct         W2   bos s=990017 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W4   raw s=20260803 cls=funnel      phi=0.552
+  Qwen/Qwen2.5-1.5B-Instruct         W4   bos s=20260803 cls=none        phi=0.010
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W4   raw s=990017 cls=funnel      phi=0.552
+  Qwen/Qwen2.5-1.5B-Instruct         W4   bos s=990017 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W8   raw s=20260803 cls=none        phi=0.052
+  Qwen/Qwen2.5-1.5B-Instruct         W8   bos s=20260803 cls=none        phi=0.083
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W8   raw s=990017 cls=none        phi=0.062
+  Qwen/Qwen2.5-1.5B-Instruct         W8   bos s=990017 cls=none        phi=0.073
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W16  raw s=20260803 cls=none        phi=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         W16  bos s=20260803 cls=none        phi=0.000
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+  Qwen/Qwen2.5-1.5B-Instruct         W16  raw s=990017 cls=none        phi=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         W16  bos s=990017 cls=none        phi=0.000
+  Qwen/Qwen2.5-1.5B-Instruct         done in 5734s
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 6 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (* = below tolerance; + = one direction unavailable): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078+, W8=0.078*+, W16=0.083+; pythia-410m-deduped: W2=0.583, W4=0.005*+, W8=0.005*+, W16=0.000*+; Qwen1.5-1.8B: W2=0.260, W4=0.015*+, W8=0.000*, W16=0.010*+; SmolLM-1.7B: W2=0.703, W4=0.042*, W8=0.016*, W16=0.005*+; Qwen2.5-1.5B-Instruct: W2=0.521, W4=0.547, W8=0.021*, W16=0.000*+.  ANTI-VACUITY: 1 of 6 models can be read at W=16. A model is excluded if its W=16 cell cannot show the DIRECTION its W=2 effect had -- headroom is judged against that direction, not against the observed one, because scoring the observed sign is circular: [('Minerva-3B-base-v1.0', 'W=16 cannot show the W=2 direction (down); room 0.016 <= tol 0.063'), ('pythia-410m-deduped', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen1.5-1.8B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('SmolLM-1.7B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen2.5-1.5B-Instruct', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042')]. PRIMARY NOT READ: 1 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 6 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (* = below tolerance; + = one direction unavailable): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078+, W8=0.078*+, W16=0.083+; pythia-410m-deduped: W2=0.583, W4=0.005*+, W8=0.005*+, W16=0.000*+; Qwen1.5-1.8B: W2=0.260, W4=0.015*+, W8=0.000*, W16=0.010*+; SmolLM-1.7B: W2=0.703, W4=0.042*, W8=0.016*, W16=0.005*+; Qwen2.5-1.5B-Instruct: W2=0.521, W4=0.547, W8=0.021*, W16=0.000*+.  ANTI-VACUITY: 1 of 6 models can be read at W=16. A model is excluded if its W=16 cell cannot show the DIRECTION its W=2 effect had -- headroom is judged against that direction, not against the observed one, because scoring the observed sign is circular: [('Minerva-3B-base-v1.0', 'W=16 cannot show the W=2 direction (down); room 0.016 <= tol 0.063'), ('pythia-410m-deduped', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen1.5-1.8B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('SmolLM-1.7B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen2.5-1.5B-Instruct', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042')]. PRIMARY NOT READ: 1 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+
+  -> RUNG (window-2 map reproduces gate1.argmax_census): 6 models, worst error 0.00e+00. Bit-identical, so the only thing varying below is the WINDOW. Per model, |d(phi)| by window (* = below tolerance; + = one direction unavailable): Falcon3-1B-Base: W2=0.745, W4=0.250, W8=0.099, W16=0.010*; Minerva-3B-base-v1.0: W2=0.297, W4=0.078+, W8=0.078*+, W16=0.083+; pythia-410m-deduped: W2=0.583, W4=0.005*+, W8=0.005*+, W16=0.000*+; Qwen1.5-1.8B: W2=0.260, W4=0.015*+, W8=0.000*, W16=0.010*+; SmolLM-1.7B: W2=0.703, W4=0.042*, W8=0.016*, W16=0.005*+; Qwen2.5-1.5B-Instruct: W2=0.521, W4=0.547, W8=0.021*, W16=0.000*+.  ANTI-VACUITY: 1 of 6 models can be read at W=16. A model is excluded if its W=16 cell cannot show the DIRECTION its W=2 effect had -- headroom is judged against that direction, not against the observed one, because scoring the observed sign is circular: [('Minerva-3B-base-v1.0', 'W=16 cannot show the W=2 direction (down); room 0.016 <= tol 0.063'), ('pythia-410m-deduped', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen1.5-1.8B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('SmolLM-1.7B', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042'), ('Qwen2.5-1.5B-Instruct', 'W=16 cannot show the W=2 direction (down); room 0.000 <= tol 0.042')]. PRIMARY NOT READ: 1 of 3 readable models required. Four factors in this programme were withdrawn after being called from a handful of models (F151, F153, F154, F156), so the count gate is not optional.
+
+wrote results/window_length_domain.json
+=== wld done ===
