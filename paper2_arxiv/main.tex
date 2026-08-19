@@ -130,6 +130,18 @@ provably unchanged. Kinds: \textsc{raw} (none), \textsc{bos}, \textsc{text} (ord
 to a stated count), \textsc{template} (the model's own chat template), \textsc{struct} (high markup
 density, \S\ref{sec:withdrawals}).
 
+\paragraph{Scope: a short-window estimator, by nature and not by choice.}% F161, results/window_length_domain.json
+Generalising the map so the state is the last $W$ tokens and sweeping $W \in \{2,4,8,16\}$, the
+\emph{readout itself} disappears: raw $\fpf$ falls from $0.22$--$0.70$ at $W{=}2$ to $0.000$ on four
+of six models by $W{=}16$, and to $\leq 0.10$ on a fifth. Only one model retains measurable
+fixed-point structure at the longest window. The fixed-point structure of the argmax map is therefore
+a short-window property: widen the window and there is nothing left to measure, so questions about the
+domain at $W{=}16$ are not answered in the negative --- they are unaskable.
+
+Everything below is accordingly a statement about a model reading a \emph{fragment}. We put this in
+scope rather than in limits because it is a property of the construction, not a shortfall of the
+evidence; \S\ref{sec:limits} does not weaken it.
+
 \paragraph{Tolerance.} $\fpf$ is quantised at $1/\Nstarts \approx 0.0104$. A shift counts only if it
 exceeds that model's own tolerance $\max(4/\Nstarts,\, 2\sigma)$, with $\sigma$ the across-seed range
 on the arm in question. \S\ref{sec:discipline} explains why this is stated so prominently.
@@ -384,10 +396,16 @@ perplexity check, rather than from one prefix held fixed across separate models 
 Table~\ref{tab:p1} runs. Those are differences we have to defend, not leave implicit; they do not
 make the contradiction go away in the regime where it was measured.
 
-\paragraph{Small cohorts, one construction.} The largest single comparison is six models and twelve
+\paragraph{Small cohorts, one estimator family.} The largest single comparison is six models and twelve
 texts, at one prefix length, from three English sources, under one operationalisation of
 ``structural''. Table~\ref{tab:withdrawals} is why boundaries here read ``these models resisted these
 texts'' rather than generally: four times, the general form was wrong.
+
+The window sweep bounds the estimator rather than the cohort. At $W{=}4$ the domain effect has already
+decayed on five of six models --- though one, \texttt{Qwen2.5-1.5B-Instruct}, shows it undiminished
+($\lvert\Delta\fpf\rvert = 0.547$ at $W{=}4$ against $0.521$ at $W{=}2$) before its structure
+collapses by $W{=}8$. One model is not a rate and we do not promote it; it is recorded because a
+reader will reasonably ask whether the two-token result is knife-edge, and on that model it is not.
 
 \paragraph{Confounds we could not break.} \texttt{gemma-2-2b-it} is the only \textsc{fragmented} model
 in the cohort, so class and cohort are confounded in it. \texttt{Falcon3-3B-Instruct} is excluded from
