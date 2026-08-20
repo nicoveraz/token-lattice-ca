@@ -3645,6 +3645,83 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F169 — the owed prior-art gate, run: the copy MECHANISM is taken, its published direction is the OPPOSITE of ours, and the cross-model readout is the only thing left standing
+20 Aug 2026. F167 and F168 both ended by recording this gate as owed and stopping. It is now run —
+partially, by hand, and the limits are stated below because they change what the result licenses.
+It covers only what F90/F91/F92 (the fixed-point object) and F157 (the domain claim) left open:
+**greedy-decoding degeneration loops, repetition self-reinforcement, induction heads.**
+
+**The decisive find.** *Induction Head Toxicity Mechanistically Explains Repetition Curse in Large
+Language Models* (arXiv:2505.13514) makes the claim this programme was circling: induction heads,
+when they dominate, *cause* repetition — *"induction heads suppress contributions from other attention
+heads, enforcing rigid pattern replication and limiting diversity."* Direction: **stronger copying →
+more repetition.** So the mechanism is published, and **the programme may not claim it.**
+
+**And its direction is the inverse of ours.** F167 observed, and F168 reproduced on fresh probes at 4×
+precision, that models which *raise* φ under a structured prefix have **lower** copy scores. Three
+readings, and only measurement separates them:
+
+1. **The quantities are not the same one.** Their toxicity `τ` is a *dominance ratio* — the share of
+   causal head influence held by induction heads, thresholded at 0.65. Our `copy_score` is an absolute
+   behavioural rate. A model can copy weakly in absolute terms while induction heads still dominate
+   what little it does. These are not commensurable.
+2. **φ is not a repetition rate.** It is the fixed-point fraction of a two-token map, measured without
+   generating anything (F92's distinction, which the whole readout rests on).
+3. **Different cohorts.** Theirs is 5 **instruct** models, 1.5B–9B. Ours is 8 **base** models — and
+   F156 already found instruct models resist this effect.
+
+**The honest position is (1)+(2): the two quantities are not comparable, so this is not a refutation
+and must not be written as one.** F168's NOT DECIDABLE verdict independently forbids claiming the
+inverse direction at all. Both guards point the same way, which is the only reason the conflict is
+safe to record.
+
+**What is left open, and it is narrow.** 2505.13514 does **not** correlate per-model toxicity against
+a repetition statistic *across* models — no coefficient, no cross-model comparison. So *"does a
+per-model copy score predict the sign of a prefix effect across models"* is untested by anyone. That
+is exactly F167/F168's question, and F168 showed this cohort cannot answer it at K=256.
+
+**Three more results that bite, in descending order:**
+
+- **The funnel class may already be owned, and this is unresolved.** Fu et al., *A Theoretical Analysis
+  of the Repetition Problem in Text Generation* (arXiv:2012.14660), attribute repetition to the
+  **high inflow problem**: *"there exist too many words predicting the same word as the subsequent word
+  with high probability. Consequently, it is easy to go back to that word and form repetitions."* That
+  is the funnel geometry, named and derived, in 2020. Their treatment is theoretical (a Markov
+  generation model, an Average Repetition Probability, upper bounds) and ours is a measurement across
+  17 models — but **noticing the geometry is theirs, not ours.** *The PDF failed text extraction and
+  the abstract is all that was read.* Whether they measure in-degree on real models is **unknown**, and
+  it gates any description of the funnel class as this project's.
+- **Structured context engaging copying is published.** *Repetitions are not all alike* (arXiv:2504.01100,
+  full text read) finds prompt type changes the repetition *mechanism*: natural prompts give high
+  confidence and diffuse attention, ICL prompts give sparse heads (L4H4, L9H9, L10H2) and *"procedural
+  copying behavior."* Adjacent to the whole domain axis. It is Pythia-only (70M/1.4B/6.9B), measures no
+  fixed points, and never identifies *which* token is installed — which is where C2 still has room.
+- **Not a threat.** *Markovian Generation Chains* (arXiv:2603.11228) iterates a model over its own
+  **text** under a prompt template at temperature, converging to "a small recurrent set". Sentence-level,
+  not the two-token conditional. Different object.
+
+**Boundary, and it is a real one.** This was **6 searches and 4 fetches by hand in one session** — not
+the 100-agent protocol behind F91 and F157, and not equivalent to it. Every claim in
+`results/prior_art_copy_gate.json` carries the grade of the evidence actually seen: FULL_TEXT for
+2505.13514 and 2504.01100, ABSTRACT for 2012.14660 and 2603.11228 (**both PDFs failed extraction**),
+SNIPPET for four background items (2407.07011, 2404.07129, 2511.16893, 2205.10487) that have **not been
+read at all**. This pass is enough to establish that the mechanism is **taken**; it is **not** enough to
+certify that nothing else is.
+
+**Consequences, and they are binding on the write-up.** The copy probe is introduced as a *replication
+of an established mechanism in a new readout*, never as a discovery. Wherever the F167/F168 sign
+appears, 2505.13514's opposite direction appears with it, together with the non-commensurability —
+omitting it is the over-crediting-ourselves error, asserting a refutation is the over-reading error,
+and this project has committed the first before (F143's own gate found the threat inside its published
+paper). Fu et al. must be **read in full** before the funnel class is described as ours.
+
+**`refs.bib` contains zero induction, repetition or degeneration entries** — none of these papers is
+cited anywhere in the repo except Xu et al. (2206.02369), which F90 already recorded as prior art.
+Not edited here: the standing instruction is that `refs.bib` is not mine to touch.
+
+`results/prior_art_copy_gate.json`. The gate is **no longer owed for the copy branch**; it is **still
+owed at protocol depth**, and C1b is now an open question that did not exist this morning.
+
 ### F168 — quadrupling the probes did not move the gap by one part in 512, and the gate that blocks it is built on a two-point estimator of its own noise
 20 Aug 2026. F167 ended NOT DECIDABLE FOR PRECISION and named its own remedy: *"the fix is more
 probes, which is cheap, not a relaxed criterion."* This is that fix, at K=256 — four times the probes,
@@ -3727,9 +3804,11 @@ cohort by cost is legitimate; truncating it without re-checking every gate that 
 is not.
 
 **No p-value and no rank correlation**, both refused before the numbers: seven clusters is below this
-project's ten-cluster floor (F149). **The prior-art gate for greedy-decoding degeneration loops,
-repetition self-reinforcement and induction heads remains OWED**, and gates any write-up of the
-mechanism — the estimator is named *induction-style* for that reason.
+project's ten-cluster floor (F149). The prior-art gate for greedy-decoding degeneration loops,
+repetition self-reinforcement and induction heads was recorded as OWED here and **was run the same
+day in F169**: the mechanism is **taken** (arXiv:2505.13514), and its published direction is the
+inverse of the one measured above. The estimator's name — *induction-style*, not *induction head* —
+turned out to be load-bearing rather than cautious.
 
 `experiments/copy_precision_k256.py` → `results/copy_precision_k256.json`; F167 and
 `results/copy_vs_repeat.json` are unchanged and stand.
@@ -3741,6 +3820,9 @@ mechanism — the estimator is named *induction-style* for that reason.
 > applied at K=256 and moved the gap by **zero**, because the noise term that gates it is a two-point
 > range whose own scatter is ~0.6× its mean; more probes cannot stabilise a two-point estimator. The
 > axis is more **seeds**, or a paired design. See F168 and registry R12.
+>
+> **The prior-art gate this entry records as owed was run in F169.** The copy *mechanism* is
+> taken (arXiv:2505.13514), with a published direction opposite to the one measured here.
 
 The frozen `copy_vs_repeat` prereg, run. It tests the half of F165 that survived F166 — given a shared
 endpoint token, self-continuation is model-specific — with a quantity measured independently of any

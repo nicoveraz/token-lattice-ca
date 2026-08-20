@@ -1,0 +1,113 @@
+{
+ "_what": "Prior-art gate for the COPY / repetition branch (F167-F168). The domain branch was gated separately in F157, and the fixed-point-object branch in F90/F91/F92; this covers only what those left owed: greedy-decoding degeneration loops, repetition self-reinforcement, and induction heads.",
+ "_method": "hand-run web search and fetch, 6 searches and 4 fetches, one session. NOT the 100-agent deep-research protocol used for F91/F157. Every claim below carries the grade of the evidence actually seen, and two PDFs failed text extraction.",
+ "_evidence_grades": {
+  "FULL_TEXT": "HTML fetched and read",
+  "ABSTRACT": "abstract read verbatim; body not accessible",
+  "SNIPPET": "search-result summary only -- weakest grade, treat as a lead, not a finding"
+ },
+ "claims_gated": {
+  "C1_fixed_point_census": {
+   "claim": "fixed points of the short-window argmax map, censused from random starts, with a per-model phi and a taxonomy",
+   "verdict": "NOT TAKEN, unchanged from F90/F92. Nothing found in this pass contradicts that.",
+   "nearest": [
+    {
+     "id": "2603.11228",
+     "title": "Markovian Generation Chains in LLMs",
+     "grade": "ABSTRACT",
+     "why_not": "SENTENCE-level iterated rephrasing under a prompt template, temperature-driven, converging to 'a small recurrent set'. Different object: it iterates the model over its own TEXT, not the two-token conditional. No census, no per-model fixed-point fraction."
+    }
+   ]
+  },
+  "C1b_funnel_geometry": {
+   "claim": "the funnel class -- many starts landing on one dominant attracting token",
+   "verdict": "THREATENED, and NOT VERIFIED. Fu et al.'s 'high inflow problem' states repetition arises because TOO MANY WORDS PREDICT THE SAME SUCCESSOR WORD with high probability. That is the funnel geometry, named and derived, five years earlier.",
+   "nearest": [
+    {
+     "id": "2012.14660",
+     "title": "A Theoretical Analysis of the Repetition Problem in Text Generation (Fu et al.)",
+     "grade": "ABSTRACT",
+     "why_it_bites": "theoretical, on a Markov generation model, with an Average Repetition Probability and upper bounds -- but the CONCEPT of repetition-as-high-in-degree is theirs. Our contribution would be measuring it in real models, not noticing it.",
+     "unresolved": "PDF text extraction FAILED. Whether they measure in-degree on real models, and on how many, is UNKNOWN and must be settled before any write-up."
+    }
+   ]
+  },
+  "C2_prefix_installs_the_token": {
+   "claim": "a structured prefix installs a SPECIFIC token (the newline) as the fixed point",
+   "verdict": "NOT TAKEN as stated, but the ADJACENT claim is taken.",
+   "nearest": [
+    {
+     "id": "2504.01100",
+     "title": "Repetitions are not all alike: distinct mechanisms sustain repetition in language models",
+     "grade": "FULL_TEXT",
+     "why_it_bites": "shows the PROMPT TYPE changes the repetition MECHANISM: natural prompts give high confidence and diffuse attention; ICL prompts give low initial confidence, sparse heads (L4H4, L9H9, L10H2) and 'procedural copying behavior'. So 'structured context engages copying and sustains repetition by a different route' is published.",
+     "what_it_does_not_do": "Pythia only (70M/1.4B/6.9B), no fixed points of an argmax map, no identification of WHICH token is installed, no cross-model comparison."
+    }
+   ]
+  },
+  "C3_copy_strength_predicts_direction": {
+   "claim": "a per-model copy strength predicts WHICH WAY phi moves under a structured prefix",
+   "verdict": "THE MECHANISM IS TAKEN AND ITS PUBLISHED DIRECTION IS THE OPPOSITE OF OURS. THE CROSS-MODEL READOUT IS NOT TAKEN.",
+   "nearest": [
+    {
+     "id": "2505.13514",
+     "title": "Induction Head Toxicity Mechanistically Explains Repetition Curse in Large Language Models",
+     "grade": "FULL_TEXT",
+     "direction": "STRONGER induction dominance -> MORE repetition",
+     "quote": "induction heads suppress contributions from other attention heads, enforcing rigid pattern replication and limiting diversity",
+     "quantity": "toxicity tau = share of causal head influence held by induction heads, threshold 0.65. A DOMINANCE RATIO, not an absolute copying rate.",
+     "cohort": "5 INSTRUCT models, 1.5B-9B (Qwen2.5-Instruct x3, LLaMA3-8B-Instruct, Gemma2-9b-it)",
+     "the_gap_it_leaves": "it does NOT correlate per-model toxicity against a repetition statistic ACROSS models -- no coefficient, no cross-model comparison. The cross-model form of the question is therefore open."
+    }
+   ],
+   "the_direct_conflict": "F168 observed the INVERSE: models that RAISE phi under p1 have LOWER copy_score. Published mechanism says strong copiers repeat MORE. Three ways that can be reconciled and only measurement separates them: (i) the quantities differ -- tau is a dominance RATIO over heads, copy_score is an absolute behavioural rate, and a model can be weak in absolute copying while its induction heads still dominate what little it does; (ii) phi is a fixed-point fraction of a two-token map, not a repetition rate in generated text; (iii) their cohort is 5 INSTRUCT models, ours is 8 BASE models, and F156 already found instruct models resist the effect. RIGHT NOW THE HONEST POSITION IS (i)+(ii): the two quantities are not commensurable, so this is NOT a refutation of published work and must not be written as one. F168's NOT DECIDABLE verdict forbids claiming the inverse direction anyway."
+  },
+  "C4_repetition_self_reinforcement": {
+   "claim": "repetition is self-reinforcing",
+   "verdict": "PRIOR ART, already recorded in F90 (Xu et al., 2206.02369). Unchanged.",
+   "nearest": [
+    {
+     "id": "2410.13497",
+     "title": "Repetition Neurons: How Do Language Models Produce Repetitions?",
+     "grade": "SNIPPET",
+     "note": "another mechanistic account; uncited here; a lead, not yet assessed"
+    }
+   ]
+  }
+ },
+ "background_now_established_and_uncited": [
+  {
+   "id": "2407.07011",
+   "grade": "SNIPPET",
+   "note": "induction heads as the pattern-matching mechanism for ICL"
+  },
+  {
+   "id": "2404.07129",
+   "grade": "SNIPPET",
+   "note": "how induction heads form"
+  },
+  {
+   "id": "2511.16893",
+   "grade": "SNIPPET",
+   "note": "predicting induction-head formation"
+  },
+  {
+   "id": "2205.10487",
+   "grade": "SNIPPET",
+   "note": "scaling laws / learning from repeated data"
+  }
+ ],
+ "verdict": "THE COPY MECHANISM IS TAKEN; THE CROSS-MODEL READOUT IS NOT. This is the same shape as F157's verdict for the domain branch -- what survives is the instrument, not the concept. The programme may NOT claim that copying drives fixed-point formation: that is 2505.13514's claim, published, with a direction opposite to our (undecidable) observation. What is still open is whether a per-model copy score PREDICTS the sign of a prefix effect across models, which nobody has tested and which F168 shows this cohort cannot answer at K=256.",
+ "consequences_for_the_write_up": [
+  "the induction-style copy probe must be introduced as a REPLICATION of an established mechanism in a new readout, never as a discovery",
+  "2505.13514's opposite direction must be stated explicitly wherever the F167/F168 sign appears, together with the non-commensurability of tau and copy_score -- omitting it would be the over-crediting-ourselves error, and asserting a refutation would be the over-reading error",
+  "Fu et al. 2012.14660 must be READ IN FULL before the funnel class is described as ours in any form; its 'high inflow problem' may already own the geometry",
+  "refs.bib currently contains ZERO of these: it has no induction, repetition or degeneration entry. Not edited here -- the standing instruction is that refs.bib is not mine to touch."
+ ],
+ "still_owed": [
+  "full text of Fu et al. 2012.14660 (PDF extraction failed) -- gates C1b",
+  "full text of 2603.11228 (PDF extraction failed) -- low risk, abstract suffices to distinguish",
+  "the four SNIPPET-grade items above, none of which has been read",
+  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is."
+ ]
+}
