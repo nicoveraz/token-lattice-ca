@@ -1,0 +1,368 @@
+{
+ "copy_scores": {
+  "tiiuae/Falcon3-1B-Base": {
+   "copy_score": 0.1777,
+   "per_seed": [
+    0.1719,
+    0.1836
+   ],
+   "seed_half_range": 0.0059,
+   "se_binomial": 0.0169,
+   "n_probes": 512,
+   "secs": 200.0
+  },
+  "HuggingFaceTB/SmolLM-1.7B": {
+   "copy_score": 0.2324,
+   "per_seed": [
+    0.2617,
+    0.2031
+   ],
+   "seed_half_range": 0.0293,
+   "se_binomial": 0.0187,
+   "n_probes": 512,
+   "secs": 5816.3
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0": {
+   "copy_score": 0.125,
+   "per_seed": [
+    0.1133,
+    0.1367
+   ],
+   "seed_half_range": 0.0117,
+   "se_binomial": 0.0146,
+   "n_probes": 512,
+   "secs": 18876.3
+  },
+  "Qwen/Qwen1.5-1.8B": {
+   "copy_score": 0.3535,
+   "per_seed": [
+    0.3477,
+    0.3594
+   ],
+   "seed_half_range": 0.0059,
+   "se_binomial": 0.0211,
+   "n_probes": 512,
+   "secs": 165.2
+  },
+  "EleutherAI/pythia-410m": {
+   "copy_score": 0.5098,
+   "per_seed": [
+    0.4961,
+    0.5234
+   ],
+   "seed_half_range": 0.0137,
+   "se_binomial": 0.0221,
+   "n_probes": 512,
+   "secs": 63.4
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "copy_score": 0.5508,
+   "per_seed": [
+    0.5391,
+    0.5625
+   ],
+   "seed_half_range": 0.0117,
+   "se_binomial": 0.022,
+   "n_probes": 512,
+   "secs": 63.5
+  },
+  "llm-jp/llm-jp-3-1.8b": {
+   "copy_score": 0.2227,
+   "per_seed": [
+    0.2383,
+    0.207
+   ],
+   "seed_half_range": 0.0156,
+   "se_binomial": 0.0184,
+   "n_probes": 512,
+   "secs": 193.5
+  }
+ },
+ "_preregistration": {
+  "supersedes": "F167's K=64 measurement; copy_vs_repeat.py is unchanged and its result stands",
+  "K": 256,
+  "seeds": [
+   20260803,
+   990017
+  ],
+  "filler": 8,
+  "device": "cpu float32",
+  "H1_prime": "models that RAISE phi under p1 have LOWER copy_score than models that FALL -- the direction observed at K=64, POST-HOC IN ORIGIN and PRE-REGISTERED IN TEST, on fresh probes rather than on the measurements that suggested it",
+  "why_direction_registered": "F167's kill conditions were direction-agnostic (registry R10): a separation either way would have satisfied K2 while the hypothesis specified a sign. Registered here so that cannot recur.",
+  "noise_criterion": "SE(gap) = sqrt(SE_hi^2 + SE_lo^2) with SE_m = sqrt(p(1-p)/N_m), N_m = K * n_seeds pooled probes; also the 2-point seed range as in F167; the LARGER is used. Conservative and not tunable after the fact.",
+  "kill_K1": "ranges overlap -> the copy account is dropped",
+  "kill_K5": "ranges separate but the gap does not exceed NOISE_FACTOR * SE(gap) -> NOT DECIDABLE FOR PRECISION again, and the remedy stays more probes, never a relaxed criterion",
+  "kill_direction": "ranges separate with UP ABOVE DOWN -> H1' is refuted; that is the ORIGINAL H1's direction and would mean the K=64 sign was noise",
+  "order": "boundary models first, so a truncated run still decides the gap",
+  "refusals": [
+   "no p-value: 8 models cannot fail a significance test informatively",
+   "no rank correlation: below this project's ten-cluster floor (F149)"
+  ]
+ },
+ "p1_join": [
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "copy_score": 0.1777,
+   "per_seed": [
+    0.1719,
+    0.1836
+   ],
+   "seed_half_range": 0.0059,
+   "se_binomial": 0.0169,
+   "n_probes": 512,
+   "secs": 200.0,
+   "phi_raw": 0.2135,
+   "phi_arm": 0.9792,
+   "dphi": 0.7656,
+   "tol": 0.0626,
+   "direction": "up",
+   "headroom_ok": true
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "copy_score": 0.2324,
+   "per_seed": [
+    0.2617,
+    0.2031
+   ],
+   "seed_half_range": 0.0293,
+   "se_binomial": 0.0187,
+   "n_probes": 512,
+   "secs": 5816.3,
+   "phi_raw": 0.5625,
+   "phi_arm": 0.0,
+   "dphi": -0.5625,
+   "tol": 0.1252,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "copy_score": 0.125,
+   "per_seed": [
+    0.1133,
+    0.1367
+   ],
+   "seed_half_range": 0.0117,
+   "se_binomial": 0.0146,
+   "n_probes": 512,
+   "secs": 18876.3,
+   "phi_raw": 0.3281,
+   "phi_arm": 1.0,
+   "dphi": 0.6719,
+   "tol": 0.0417,
+   "direction": "up",
+   "headroom_ok": true
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "copy_score": 0.3535,
+   "per_seed": [
+    0.3477,
+    0.3594
+   ],
+   "seed_half_range": 0.0059,
+   "se_binomial": 0.0211,
+   "n_probes": 512,
+   "secs": 165.2,
+   "phi_raw": 0.5104,
+   "phi_arm": 0.0,
+   "dphi": -0.5104,
+   "tol": 0.0417,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "EleutherAI/pythia-410m",
+   "copy_score": 0.5098,
+   "per_seed": [
+    0.4961,
+    0.5234
+   ],
+   "seed_half_range": 0.0137,
+   "se_binomial": 0.0221,
+   "n_probes": 512,
+   "secs": 63.4,
+   "phi_raw": 0.4583,
+   "phi_arm": 0.0,
+   "dphi": -0.4583,
+   "tol": 0.125,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "copy_score": 0.5508,
+   "per_seed": [
+    0.5391,
+    0.5625
+   ],
+   "seed_half_range": 0.0117,
+   "se_binomial": 0.022,
+   "n_probes": 512,
+   "secs": 63.5,
+   "phi_raw": 0.4271,
+   "phi_arm": 0.0156,
+   "dphi": -0.4115,
+   "tol": 0.0624,
+   "direction": "down",
+   "headroom_ok": true
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "copy_score": 0.2227,
+   "per_seed": [
+    0.2383,
+    0.207
+   ],
+   "seed_half_range": 0.0156,
+   "se_binomial": 0.0184,
+   "n_probes": 512,
+   "secs": 193.5,
+   "phi_raw": 0.7761,
+   "phi_arm": 0.9948,
+   "dphi": 0.2188,
+   "tol": 0.271,
+   "direction": "flat",
+   "headroom_ok": false
+  }
+ ],
+ "verdict": "K=256 x 2 seeds = 512 probes per model, CPU float32. Falcon3-1B-Base 0.1777; SmolLM-1.7B 0.2324; Minerva-3B-base-v1.0 0.1250; Qwen1.5-1.8B 0.3535; pythia-410m 0.5098; pythia-410m-deduped 0.5508; llm-jp-3-1.8b 0.2227.  UP [0.1250, 0.1777], DOWN [0.2324, 0.5508].  NOT DECIDABLE FOR PRECISION again: gap 0.0547 against 2.0x noise 0.0598 (binomial 0.0252, seed 0.0299, larger used). Quadrupling the probes did not resolve it; the remedy stays more measurement. BOUNDARY: one arm (p1), 7 models, K=256, CPU float32, boundary models run first. No p-value and no rank correlation. The prior-art gate for induction heads and repetition self-reinforcement remains OWED and gates any write-up.",
+ "_analysis_provenance": {
+  "script": "copy_precision_k256.py",
+  "sha256": "df65fd023a90876ede14346fc95542af4a62f6fbfdcca3c04877ac7ca4e91bcc",
+  "imports": {
+   "experiments/copy_precision_k256.py": "df65fd023a90876ede14346fc95542af4a62f6fbfdcca3c04877ac7ca4e91bcc",
+   "experiments/copy_vs_repeat.py": "ef3658e5fcbb382ba206628fa4f01d9be8e0638d7c7f1b543f07edd7a71e51ad",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ },
+ "_skipped_slow": [
+  "bigcode/starcoder2-3b"
+ ],
+ "separation": {
+  "up_range": [
+   0.125,
+   0.1777
+  ],
+  "down_range": [
+   0.2324,
+   0.5508
+  ],
+  "direction": "up_below",
+  "gap": 0.0547,
+  "se_gap_binomial": 0.0252,
+  "se_gap_seed": 0.0299,
+  "noise_used": 0.0299,
+  "beats_noise": false
+ },
+ "_not_measured": {
+  "models": [
+   "bigcode/starcoder2-3b"
+  ],
+  "why": "cost. float32 CPU on a 16GB machine; these were the expensive cells and the gap is decided by the BOUNDARY models -- max(UP) and min(DOWN) -- which were run first.",
+  "can_they_move_the_boundary": "no. Each unmeasured model scored >= 0.59 at K=64 (F167), and min(DOWN) here is 0.2324; moving the boundary would need a true score ~0.36 lower than its K=64 estimate, against a K=256 binomial SE of ~0.022. Stated as a bound, not as a guess: if any of them DID fall inside [0.1777, 0.2324] the verdict changes."
+ },
+ "balance": {
+  "readable": 6,
+  "n_up": 2,
+  "n_down": 4,
+  "excluded": [
+   [
+    "llm-jp-3-1.8b",
+    "flat",
+    false
+   ]
+  ],
+  "gate_readable": true,
+  "gate_reason": "p1 direction is usable: {'up': 2, 'down': 4}, minority class 2 >= 2. Chance is the majority-class rate 67%; report balanced accuracy against it, not raw agreement."
+ },
+ "noise_estimator_reliability": {
+  "what": "seed_half_range / SE_binomial per model, against its distribution under PURE count noise. If the observed ratios sit inside the simulated spread, the across-seed term carries no information the binomial term lacks -- it is just a noisier estimate of the same thing, and the max() rule is then gated by estimator scatter.",
+  "per_model": {
+   "Falcon3-1B-Base": {
+    "observed_ratio": 0.349,
+    "expected_ratio": 0.798,
+    "sd_of_ratio": 0.602,
+    "p_at_least_this_extreme": 0.687
+   },
+   "SmolLM-1.7B": {
+    "observed_ratio": 1.57,
+    "expected_ratio": 0.798,
+    "sd_of_ratio": 0.604,
+    "p_at_least_this_extreme": 0.104
+   },
+   "Minerva-3B-base-v1.0": {
+    "observed_ratio": 0.801,
+    "expected_ratio": 0.795,
+    "sd_of_ratio": 0.604,
+    "p_at_least_this_extreme": 0.463
+   },
+   "Qwen1.5-1.8B": {
+    "observed_ratio": 0.279,
+    "expected_ratio": 0.796,
+    "sd_of_ratio": 0.601,
+    "p_at_least_this_extreme": 0.747
+   },
+   "pythia-410m": {
+    "observed_ratio": 0.62,
+    "expected_ratio": 0.798,
+    "sd_of_ratio": 0.607,
+    "p_at_least_this_extreme": 0.505
+   },
+   "pythia-410m-deduped": {
+    "observed_ratio": 0.532,
+    "expected_ratio": 0.796,
+    "sd_of_ratio": 0.607,
+    "p_at_least_this_extreme": 0.622
+   },
+   "llm-jp-3-1.8b": {
+    "observed_ratio": 0.848,
+    "expected_ratio": 0.797,
+    "sd_of_ratio": 0.608,
+    "p_at_least_this_extreme": 0.422
+   }
+  },
+  "threshold_that_set_the_gate": 1.57,
+  "p_each_model_reaches_that_threshold": {
+   "Falcon3-1B-Base": 0.119,
+   "SmolLM-1.7B": 0.104,
+   "Minerva-3B-base-v1.0": 0.125,
+   "Qwen1.5-1.8B": 0.124,
+   "pythia-410m": 0.119,
+   "pythia-410m-deduped": 0.121,
+   "llm-jp-3-1.8b": 0.124
+  },
+  "p_largest_of_cohort_reaches_that_threshold": 0.589,
+  "reading": "a two-point range has sd ~0.6x its own mean, so across 7 models the largest ratio is expected to be roughly double the typical one BY CONSTRUCTION. More probes shrink the binomial term and the true seed variance but cannot stabilise a two-point ESTIMATOR of that variance; more SEEDS, or a paired design scoring the compared models on the SAME probe pairs, is the axis that would."
+ }
+}

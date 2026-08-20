@@ -1,0 +1,12 @@
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6076.70it/s]
+  Qwen/Qwen1.5-1.8B                copy 0.3535  SE_binom 0.0211  seed_half 0.0059  (165s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6960.83it/s]
+  EleutherAI/pythia-410m           copy 0.5098  SE_binom 0.0221  seed_half 0.0137  (63s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7444.98it/s]
+  EleutherAI/pythia-410m-deduped   copy 0.5508  SE_binom 0.0220  seed_half 0.0117  (64s)
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 4680.09it/s]
+  llm-jp/llm-jp-3-1.8b             copy 0.2227  SE_binom 0.0184  seed_half 0.0156  (193s)
+
+K=256 x 2 seeds = 512 probes per model, CPU float32. Falcon3-1B-Base 0.1777; SmolLM-1.7B 0.2324; Minerva-3B-base-v1.0 0.1250; Qwen1.5-1.8B 0.3535; pythia-410m 0.5098; pythia-410m-deduped 0.5508; llm-jp-3-1.8b 0.2227.  UP [0.1250, 0.1777], DOWN [0.2324, 0.5508].  NOT DECIDABLE FOR PRECISION again: gap 0.0547 against 2.0x noise 0.0598 (binomial 0.0252, seed 0.0299, larger used). Quadrupling the probes did not resolve it; the remedy stays more measurement. BOUNDARY: one arm (p1), 7 models, K=256, CPU float32, boundary models run first. No p-value and no rank correlation. The prior-art gate for induction heads and repetition self-reinforcement remains OWED and gates any write-up.
+
+wrote results/copy_precision_k256.json

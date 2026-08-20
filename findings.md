@@ -3645,7 +3645,103 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F168 — quadrupling the probes did not move the gap by one part in 512, and the gate that blocks it is built on a two-point estimator of its own noise
+20 Aug 2026. F167 ended NOT DECIDABLE FOR PRECISION and named its own remedy: *"the fix is more
+probes, which is cheap, not a relaxed criterion."* This is that fix, at K=256 — four times the probes,
+fresh draws, `copy_vs_repeat.py` untouched so F167's stamp stands and the estimator is *imported*
+rather than copied. Two things were done that F167 could not do, both because F167 exposed them.
+
+**The direction was registered before the run.** F167's kill conditions were direction-agnostic
+(registry R10): K2 asked only for *disjoint ranges*, so a separation either way would have satisfied
+it while the hypothesis specified a sign — and the data came back inverted. That inverted direction is
+now a hypothesis in its own right, `H1' : models that RAISE phi under p1 have LOWER copy_score than
+models that FALL`, **post-hoc in origin and pre-registered in test**, on fresh probes rather than on
+the measurements that suggested it. Both halves of that label are true and both matter.
+
+**The noise criterion was made stricter, and it is the one F167 should have used.** The gap is a
+difference between two measured endpoints, so its uncertainty combines both:
+`SE(gap) = sqrt(SE_hi² + SE_lo²)`. Both that and F167's across-seed range are computed, and the
+**larger** is used — conservative, and fixed before any number was seen.
+
+**The result, on 7 of 8 models** (`starcoder2-3b` skipped; see the boundary):
+
+| | copy K=64 | copy K=256 | Δφ on p1 | direction |
+|---|---|---|---|---|
+| Minerva-3B-base | 0.1250 | **0.1250** | +0.672 | up |
+| Falcon3-1B-Base | 0.1484 | **0.1777** | +0.766 | up |
+| llm-jp-3-1.8b | 0.2266 | 0.2227 | +0.219 | *flat, excluded* |
+| SmolLM-1.7B | 0.2031 | **0.2324** | −0.563 | down |
+| Qwen1.5-1.8B | 0.4219 | 0.3535 | −0.510 | down |
+| pythia-410m | 0.5391 | 0.5098 | −0.458 | down |
+| pythia-410m-deduped | 0.5859 | 0.5508 | −0.412 | down |
+
+UP spans [0.1250, 0.1777], DOWN spans [0.2324, 0.5508]. The ranges are disjoint, the sign is the one
+registered, and **the gap is 0.0547 — identical to K=64 to the last digit.** Both boundary endpoints
+moved up by exactly 0.0293 and the difference between them did not move at all. Against `2×` noise of
+0.0598 (binomial 0.0252, seed-based 0.0299, larger used as registered): **NOT DECIDABLE FOR PRECISION
+a second time.** The threshold is not touched. The gap sits *between* the two noise estimates — it
+would have passed on the binomial term alone — and that is exactly the situation the "use the larger"
+rule was written to refuse in advance, so refusing it now is not a new judgement.
+
+**What the second failure teaches, which the first did not.** F167's named remedy was wrong, and this
+run says why. The across-seed noise term is a **two-point range**, and a two-point range is a wild
+estimator of its own quantity. Simulated at these `p` and this `K`, under *pure count noise*:
+
+- `E[half-range / SE] = 0.80`, sd `0.60` — the estimator's own scatter is three quarters of its mean
+- `P(ratio ≥ 1.57) = 0.104` for `SmolLM` alone; **`P(the largest of the 7 reaches 1.57) = 0.589`**
+
+The observed ratios are 0.28, 0.35, 0.53, 0.62, 0.80, 0.85, **1.57** — six of the seven sit inside one
+sd of 0.80, i.e. exactly where pure count noise puts them. The high one is `SmolLM`, which
+is also `min(DOWN)` — so a coin-flip draw on a two-point estimator, landing on a boundary model, set
+the gate that blocked the verdict. **I read this the wrong way first:** I recorded SmolLM's spread as
+evidence that the probe draw carries structure beyond count noise. It is not — it is what a two-point
+range does half the time. The correction changes the remedy, which is why it is here and not silently
+fixed: more probes shrink the binomial term and the true seed variance, but they cannot stabilise a
+two-point *estimator* of that variance. **A conservative `max()` rule resting on it can therefore stay
+unresolvable no matter how much of the named remedy is applied** — registry R12. The axis that would
+move it is more **seeds**, or a **paired design** in which the models being compared are scored on the
+*same* probe pairs, so the draw cancels out of the between-model difference instead of being estimated.
+
+**What survives.** The sign reproduced on fresh probes at 4× precision, and the rank order is nearly
+preserved (`Qwen` and the two `pythia` models fell ~0.03–0.07; nothing crossed). That is consistent
+with a real ordering — and consistent with none, at this precision, which is what NOT DECIDABLE means.
+It is also worth stating plainly that the surviving direction is **the inverse of the hypothesis the
+programme started with**: F167's H1 said strong copiers *raise* phi under a structured prefix. Weak
+copiers do. No mechanism is claimed for that, and none is written down here.
+
+**Boundary.** One arm (p1), 7 models, K=256 × 2 seeds = 512 probes, CPU float32. `bigcode/starcoder2-3b`
+was not measured: it is the most expensive cell and scored 0.5938 at K=64, the *highest* of the eight,
+so moving `min(DOWN) = 0.2324` would need a true score ~0.36 below its K=64 estimate against a K=256
+binomial SE of ~0.022. Stated as a bound, not a guess — recorded in `_not_measured` in the results
+file, and if it *did* fall inside [0.1777, 0.2324] the verdict changes. `llm-jp-3-1.8b` is excluded by
+the anti-vacuity gate on its own terms (Δφ +0.219 against a tolerance of 0.271, and no headroom on the
+side it moved), not for its copy score. The balance gate passes: 2 up, 4 down, minority ≥ 2 — chance
+here is the majority-class rate 67%, not 50%.
+
+**An operational error, recorded because it nearly cost the verdict.** The run was first stopped after
+three models on my recommendation, on the argument that the gap depends only on the boundary models.
+That argument is true of the *gap* and false of the *verdict*: three models left the split at 2 up / 1
+down, and `gatecheck.balance` correctly refused it for predictor imbalance — the F163 defect, caught
+by the gate installed for it. Four cheap models restored the contrast in ~9 minutes. Truncating a
+cohort by cost is legitimate; truncating it without re-checking every gate that reads cohort *shape*
+is not.
+
+**No p-value and no rank correlation**, both refused before the numbers: seven clusters is below this
+project's ten-cluster floor (F149). **The prior-art gate for greedy-decoding degeneration loops,
+repetition self-reinforcement and induction heads remains OWED**, and gates any write-up of the
+mechanism — the estimator is named *induction-style* for that reason.
+
+`experiments/copy_precision_k256.py` → `results/copy_precision_k256.json`; F167 and
+`results/copy_vs_repeat.json` are unchanged and stand.
+
 ### F167 — copy strength: NOT DECIDABLE FOR PRECISION, the separation is smaller than the predictor's own noise — and the direction is inverted from the hypothesis anyway
+
+> **QUALIFIED BY F168 (20 Aug 2026).** The verdict below stands and the measurement is unchanged. What
+> does **not** stand is the remedy this entry names — *"the fix is more probes, which is cheap."* It was
+> applied at K=256 and moved the gap by **zero**, because the noise term that gates it is a two-point
+> range whose own scatter is ~0.6× its mean; more probes cannot stabilise a two-point estimator. The
+> axis is more **seeds**, or a paired design. See F168 and registry R12.
+
 The frozen `copy_vs_repeat` prereg, run. It tests the half of F165 that survived F166 — given a shared
 endpoint token, self-continuation is model-specific — with a quantity measured independently of any
 census: for K random pairs `(a,b)`, build `[a, b, filler×8, a]` and ask whether argmax returns `b`.
