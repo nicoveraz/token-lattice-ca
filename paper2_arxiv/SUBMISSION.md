@@ -79,3 +79,41 @@ on the local `paper2` branch.** Until `paper2` is merged, a reader following tha
 prepares that merge and does not perform it.
 
 Submitting before the merge would publish a link that does not yet resolve to the cited evidence.
+
+---
+
+## After the ID exists — add paper 2 to `CITATION.cff`
+
+Do this once arXiv announces and the identifier is final, **not** at submission time: an ID that
+does not resolve yet is worse in a citation record than an absent one.
+
+Paper 2 goes in `identifiers`, alongside paper 1. It does **not** replace `preferred-citation`,
+which stays pointed at paper 1 — that field names the citation for *the software*, and paper 1 is
+the instrument paper.
+
+Both lines are required. An arXiv paper carries a bare ID and a resolvable DOI, and listing one
+without the other leaves the record with a paper nobody can follow:
+
+```yaml
+  - type: other
+    value: "arXiv:NNNN.NNNNN"
+    description: "Paper 2 preprint, cs.CL, DD Mon 2026"
+  - type: doi
+    value: 10.48550/arXiv.NNNN.NNNNN
+    description: "Paper 2 arXiv DOI"
+```
+
+Substitute `NNNN.NNNNN` in **both** lines and set the real announcement date. Then:
+
+```bash
+python -m pytest tests/test_citation_cff.py -q
+```
+
+`tests/test_citation_cff.py` guards exactly the two ways this goes wrong. It fails if a template or
+placeholder ID reaches the file — that check runs without PyYAML, so it cannot be skipped — and it
+fails if an arXiv ID appears in one form but not the other. Both were verified to fire on the
+mistake and pass on the correct entry.
+
+While you are in the file, the `abstract` describes the repository rather than either paper and
+needs no change; if paper 2's subject belongs in `keywords`, `prompt sensitivity` and
+`fixed points` are the two that are missing.
