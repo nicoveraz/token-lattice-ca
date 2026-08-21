@@ -93,24 +93,32 @@
  },
  "background_now_established_and_uncited": [
   {
-   "id": "2407.07011",
-   "grade": "SNIPPET",
-   "note": "induction heads as the pattern-matching mechanism for ICL"
-  },
-  {
-   "id": "2404.07129",
-   "grade": "SNIPPET",
-   "note": "how induction heads form"
+   "id": "2205.10487",
+   "grade": "FULL_TEXT",
+   "read": "21 Aug 2026, pdftotext",
+   "title": "Scaling Laws and Interpretability of Learning from Repeated Data (Hernandez et al., Anthropic 2022)",
+   "why_it_matters": "an explicit DATA-SIDE to WEIGHTS-SIDE bridge: 'data repetition disproportionately damages copying and internal structures associated with generalization, such as induction heads'. Also: strong DOUBLE DESCENT -- damage is non-monotonic with a specific damaging range, peaking at roughly 100x repeats of 0.1% of the data, which degrades an 800M model to a 400M one."
   },
   {
    "id": "2511.16893",
-   "grade": "SNIPPET",
-   "note": "predicting induction-head formation"
+   "grade": "FULL_TEXT",
+   "read": "21 Aug 2026, pdftotext",
+   "title": "Predicting the Emergence of Induction Heads in Language Model Pretraining (Aoyama & Wilcox)",
+   "why_it_matters": "a SECOND data-to-weights bridge, and on the same object F171 measured: 'surface bigram repetition frequency and reliability strongly affect the formation of IHs', with an effective decision boundary in those two values. Their 35/60 models are TRAINED BY THEM, natural and synthetic, so it is not a census of pretrained models."
   },
   {
-   "id": "2205.10487",
-   "grade": "SNIPPET",
-   "note": "scaling laws / learning from repeated data"
+   "id": "2407.07011",
+   "grade": "FULL_TEXT",
+   "read": "21 Aug 2026, pdftotext",
+   "title": "Induction Heads as an Essential Mechanism for Pattern Matching in In-context Learning",
+   "why_it_matters": "ablation study on 2 Llama-family models. Zero mentions of fixed points or degeneration. Background, not a threat to either paper."
+  },
+  {
+   "id": "2404.07129",
+   "grade": "FULL_TEXT",
+   "read": "21 Aug 2026, pdftotext",
+   "title": "What needs to go right for an induction head?",
+   "why_it_matters": "mechanistic study of IH formation on synthetic data. Zero mentions of fixed points or degeneration. Background, not a threat."
   }
  ],
  "verdict": "THE COPY MECHANISM IS TAKEN; THE CROSS-MODEL READOUT IS NOT. This is the same shape as F157's verdict for the domain branch -- what survives is the instrument, not the concept. The programme may NOT claim that copying drives fixed-point formation: that is 2505.13514's claim, published, with a direction opposite to our (undecidable) observation. What is still open is whether a per-model copy score PREDICTS the sign of a prefix effect across models, which nobody has tested and which F168 shows this cohort cannot answer at K=256.",
@@ -122,7 +130,7 @@
  ],
  "still_owed": [
   "full text of 2603.11228 (PDF extraction failed) -- low risk, abstract suffices to distinguish",
-  "the four SNIPPET-grade items above, none of which has been read",
-  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is."
+  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is.",
+  "the F91/F157 protocol-depth gate itself. Reading the four SNIPPET items closes F169's specific debt; it does not discharge the protocol requirement."
  ]
 }

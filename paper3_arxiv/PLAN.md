@@ -16,8 +16,12 @@ over stored censuses, not new forward passes.
 ## 1. The question, and why it is open
 
 Two accounts of repetition/degeneration coexist in the literature and have never been arbitrated
-across a broad cohort of *pretrained* models, because each camp measures in a way that cannot see the
-other:
+across a broad cohort of *pretrained* models. *(Corrected 21 Aug 2026, F176. The original wording
+added "because each camp measures in a way that cannot see the other" — that clause is **false** and
+is withdrawn. The camps cross repeatedly: Li et al. subsume Fu's inflow into repetition-in-data
+(F175); Hernandez et al. 2022 show repeated training data damages induction heads; Aoyama & Wilcox
+show surface bigram repetition frequency governs IH formation. What is genuinely absent is the
+COHORT — every one of those papers trains its own models.)*
 
 - **Language/data side.** Repetition is caused by properties of the training text. Fu et al.
   (arXiv:2012.14660, AAAI 2021) derive it from corpus bigram structure — the *high inflow* term — and
@@ -67,7 +71,15 @@ landing on the same endpoint token (`'\n'`) and the same class (funnel), with id
 If that holds under the analysis in §5, it is a targeted null against the strongest data-side form,
 at zero training cost.
 **Small-n is the whole risk here: this is ONE pair. The registered claim must be scoped to it before
-anything is computed.**
+anything is computed.** **AND A SECOND RISK, added 21 Aug 2026 (F176): the null is weakly
+identified.** Hernandez et al. (arXiv:2205.10487) show repeated-data damage is **non-monotonic**,
+concentrated in a specific range of repetition frequency and peaking near 100× repeats of 0.1% of the
+data. If the Pile's duplication does not sit in that range, the data-side account **also** predicts
+no effect, and E1's null is consistent with both camps. E1 cannot lead the paper.
+
+**E3 leads instead** (F172, F176): `gpt-neo-2.7B` **none** against both pythias **funnel** — one
+corpus, the same endpoint token `'\n'`, φ 0.036 vs 0.458. Heterogeneity at fixed corpus is the
+exhibit no one else has, and Li et al. concede the architecture axis is unevaluated.
 
 **E2 — the corpus term fails its author's own control** (F171, F174). **DEMOTED 21 Aug 2026 by F175, and the demotion is binding.** Li et al. §6.2 already subsumes Fu's inflow by a controlled experiment — merging only repetitive∩high-inflow pairs (8.1% of words) matches full HI-RE (31.1%), while random high-inflow pairs of the same size do nothing. **E2 is therefore CONVERGENT with the data-side camp, not a strike against it**, and must be staged as a consistency check rather than a refutation. Zihao Fu co-authors both papers. Endpoint
 inflow beats frequency-matched peers on **1 of 13** models, median matched percentile **32.0** — while

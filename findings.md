@@ -3645,6 +3645,55 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F176 — the four unread items, read: the two camps paper 3 says "cannot see each other" were bridged twice, in 2022 and again since, and E1's null loses most of its force
+21 Aug 2026. F169 graded four works SNIPPET — search summaries only, never read — and recorded that
+as owed. All four fetched as PDFs, extracted with `pdftotext -layout`, read. Two are background; two
+change what paper 3 may claim.
+
+**`2407.07011` and `2404.07129`: background, no threat.** Induction-head ablation on two Llama-family
+models, and a mechanistic study of IH formation on synthetic data. **Zero** mentions of fixed points
+and **zero** of degeneration in either. Cited as background if at all.
+
+**`2205.10487` — Hernandez et al., Anthropic 2022 — is a data-side→weights-side bridge, stated in the
+abstract.** *"Data repetition disproportionately damages copying and internal structures associated
+with generalization, such as induction heads, providing a possible mechanism for the shift from
+generalization to memorization."* Repeated **training data** damaging **copying circuits** is exactly
+the connection PLAN.md §1 says the two camps cannot make.
+
+**And it damages E1 specifically.** Their central result is a **double descent**: damage from repeated
+data is **non-monotonic**, concentrated in *"a specific range of repetition frequency"*, peaking at
+roughly **100× repeats of 0.1% of the data** — enough to degrade an 800M model to a 400M one while
+90% of tokens stay unique. E1 reads `pythia-410m` vs `-deduped` showing no class change as a null
+against the data-side account. Under Hernandez et al. that inference does not go through: **if the
+Pile's duplication does not sit in the damaging range, the data-side account predicts no effect
+either**, and a null is then consistent with both camps. E1 was already one pair (F172); it is now
+one pair whose interpretation requires knowing where the Pile sits on a curve we have not measured.
+
+**`2511.16893` — Aoyama & Wilcox — is a second bridge, and it lands on the exact object F171
+measured.** *"Surface bigram repetition frequency and reliability strongly affect the formation of
+IHs"*, with an effective decision boundary in those two values. Corpus **bigram** structure is where
+Fu's inflow lives and is what F171/F174 counted. Their 35 and 60 models are **trained by them**
+across natural and synthetic settings, so this is not a census of pretrained models and does not take
+paper 3's object — but it does take the idea that corpus bigram statistics govern copying behaviour.
+
+**The framing that has to go, and this is the third correction to the plan in two days.** PLAN.md §1:
+the two accounts *"have never been arbitrated across a broad cohort of pretrained models, because each
+camp measures in a way that cannot see the other."* The second clause is false. F175 showed Li et al.
+subsuming Fu's inflow into repetition-in-data; this entry adds two more crossings — repeated data
+damaging induction heads (2022), and bigram repetition statistics governing IH formation. **The camps
+see each other quite well.** What is still absent is the *cohort*: every one of these papers trains
+its own models, so the first clause survives intact.
+
+**Where paper 3 stands after this.** Its object is untouched — no fixed-point census across
+off-the-shelf pretrained models exists, and Li et al. name the architecture gap themselves. But the
+exhibits have moved: **E2 is convergent rather than adversarial (F175), E1's null is now weakly
+identified (this entry), and E3 is carrying the paper.** E3 is the within-corpus split from F172:
+`gpt-neo-2.7B` **none** against both pythias **funnel**, one corpus, the same endpoint token, φ 0.036
+vs 0.458. That is the exhibit no one else has, and it should lead.
+
+**Still owed and unchanged: the F91/F157 protocol-depth gate.** Reading these four discharges F169's
+specific debt and nothing more. K4 is live, and drafting remains blocked.
+
 ### F175 — Li et al. read in full: paper 3's object survives, but E2 is CONVERGENT with the data-side camp rather than a challenge to it, and they name the architecture gap themselves
 21 Aug 2026. `PLAN.md` §5.5 makes reading Li et al. (arXiv:2310.10226, NeurIPS 2023) in full a
 precondition for drafting, "before any sentence about it is written". Fetched, extracted with
