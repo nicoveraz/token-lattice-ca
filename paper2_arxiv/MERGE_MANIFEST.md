@@ -1,8 +1,16 @@
 # Merge manifest — `paper2` → `main`
 
-**Prepared, not executed.** The merge is the author's act. Nothing in this file has been run against
-`main`, and no branch was pushed. This exists so the decision can be made from facts rather than from
-a diff scrolled past at midnight.
+> **EXECUTED 21 Aug 2026, on the author's instruction.** `paper2` fast-forwarded into `main` at
+> `a7e3c8a`, the suite ran green on `main` (741 passed, 5 skipped), and `main` was pushed. Two things
+> this document did not anticipate and which are recorded in the commit history rather than rewritten
+> here: `main` was locked by a **prunable worktree** at `/private/tmp/tlca-main` whose directory had
+> outlived its `.git` link, and a `paper3` branch existed carrying a next-paper plan, so the merge was
+> `paper2` only and one stranded commit was cherry-picked across. The plan below is kept as written,
+> as the record of what was decided before it was done.
+
+**Prepared, not executed** *(as written; see the banner above)*. The merge is the author's act.
+Nothing in this file has been run against `main`, and no branch was pushed. This exists so the
+decision can be made from facts rather than from a diff scrolled past at midnight.
 
 **Why it is needed at all.** Paper 2's results files exist only on this branch. The submission
 comments line points readers at `https://github.com/nicoveraz/token-lattice-ca`, and until `paper2`

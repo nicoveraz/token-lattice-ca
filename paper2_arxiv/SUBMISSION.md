@@ -70,15 +70,26 @@ this file by hand.
 | every decimal literal traces to `results/` | enforced by `tests/test_paper2_numbers.py` |
 | every cited key is ledgered with a quote | enforced by `tests/test_paper2_citations.py` |
 
-## One thing that is NOT ready, and is the author's decision
+## The one blocker — CLEARED 21 Aug 2026
 
-**The repository link in the comments line points at `main`, and paper 2's results files exist only
-on the local `paper2` branch.** Until `paper2` is merged, a reader following that URL will not find
-`results/text_interaction_fill.json`, `results/token_partition_rank.json`, or the F162–F171 entries in
-`findings.md` — the evidence for the Note added, among others. `paper2_arxiv/MERGE_MANIFEST.md`
-prepares that merge and does not perform it.
+The comments line points readers at the repository and the archived DOI, and for most of this
+paper's life both resolved to a snapshot without its evidence. That is now fixed, in three steps,
+each verified:
 
-Submitting before the merge would publish a link that does not yet resolve to the cited evidence.
+1. **`paper2` merged into `main`** (fast-forward, `a7e3c8a`) and pushed. `results/text_interaction.json`,
+   `results/text_interaction_fill.json`, `results/token_partition_rank.json` and the F162–F171 entries
+   in `findings.md` are public.
+2. **Release [`v1.1.0`](https://github.com/nicoveraz/token-lattice-ca/releases/tag/v1.1.0)** cut at
+   `5d2ae1c`, the exact commit CI passed on, with the verified `arxiv-submission.tar.gz` and
+   `main.pdf` attached.
+3. **Zenodo archived it**, confirmed by the author. The concept DOI
+   [10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472) resolves to *latest*, so it now
+   reaches a snapshot containing everything the paper cites — including
+   `results/text_interaction.json`, which the converse-exhibit sentence names directly. No link in
+   the manuscript changed, because the concept DOI is stable across versions.
+
+**Nothing now blocks submission.** What remains is the submission itself, and then the
+`CITATION.cff` step below once an ID exists.
 
 ---
 
