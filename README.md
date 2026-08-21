@@ -2,212 +2,128 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2608.10986-b31b1b.svg)](https://arxiv.org/abs/2608.10986)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21880472.svg)](https://doi.org/10.5281/zenodo.21880472)
-[![arXiv](https://img.shields.io/badge/arXiv-2608.10986-b31b1b.svg)](https://arxiv.org/abs/2608.10986)
 
-> **Status — 10 Aug 2026.** The NeurIPS I4D submission is **withdrawn** (author decision,
-> 7 Aug 2026). There is one live manuscript, `paper_arxiv/main.tex`, targeting TMLR. Now public as [arXiv:2608.10986](https://arxiv.org/abs/2608.10986). It builds at
-> 15 pages with no undefined references, and every decimal literal in it is asserted to trace to a
-> file in `results/` by `tests/test_arxiv_paper_numbers.py`. The earlier submission remains pinned
-> at the tag `submission/neurips26-i4d` for reproduction; `main` has moved a long way past it.
->
-> **What the instrument measures, in one line: it splits in two, and only one half reads the
-> model.** The construction has more dynamic range than the model does — varying radius and
-> temperature moves `λ_ca` from 0.122 to 0.804, while varying the model across ten models spanning
-> six families and four architecture classes moves it by 0.051 (**F128/F129**). That ordering is
-> not reproducible (seed stability 0.030) and it is blind to the architectural contrast this
-> project established most strongly: RWKV, which has no attractor at all, sits mid-pack. **`λ_ca`
-> is a within-model developmental quantity, not a model-comparison one.** Its training curve
-> (+0.336 → −0.339 → +0.168) is untouched by this — that is one model at one construction, over a
-> range roughly seven times the cross-model spread.
->
-> **The attractor share passes every gate `λ_ca` fails** (**F130**): signal on 6 of 6 constructions
-> against 2 of 4, a seed-stable ranking of 0.848 against 0.030, construction-invariance at
-> ρ = +0.752, and a cross-model spread of 0.923. Corpus-controlled, it recovers the architecture
-> effect at +0.769. Every result that has transferred out of this instrument — **F35**'s error
-> persistence, **F63/F64**'s corpus and architecture discrimination, **F86**'s `T*` — is built on
-> the share. So the deflationary reading is *bounded*: it applies to `λ_ca` and to the sub-alphabet
-> family, not to the instrument.
->
-> **The earlier deflation still stands and is the project's most portable result.** The
-> universality-class programme (#80–#86) measured a damage-spreading transition, found a critical
-> point (**F58**), fitted exponents (**F59**), and then established the object was the melting of
-> an **out-of-distribution prompt degeneracy** rather than a property of language models: a second
-> family showed no transition (**F62**), screening nineteen models refuted a corpus explanation
-> (**F63**) and established that attention is necessary and corpus determines (**F64**), the frozen
-> phase exists only at r=2 carried by one token (**F65**), and the masked-LM construction shows
-> none of it (**F66**). The exponents are not wrong; what they are exponents *of* is the probe.
-> **Varying the subject is not a substitute for varying the apparatus** — and F126/F128 are that
-> same lesson arriving from a second, independent direction.
->
-> Getting here has cost **eleven** confident verdicts, every one caught by its own check before
-> reaching a paper. The sharpest is **F119**: for months, fifteen scripts ranked with
-> `argsort(argsort(x))`, which breaks ties by input position, so a scalar whose twenty-four measured
-> values were all exactly 0.000 was reported as correlating with the growth rate at ρ = +0.829. The
-> data was honest; the defect was in the correlation function, where no data-level gate could see
-> it. Re-running all fifteen on identical stored inputs moved five results, changed no conclusion,
-> and never touched the externally predictive one.
+Turn a language model into a **cellular automaton over token space**, then use it as a black-box
+measurement instrument. A ring of *N* token cells is updated by the model's own windowed conditional
+`p_r(x_i | x_{i±r})`; nothing about the weights is inspected and nothing is trained.
 
+The research record is a dated ledger, [`findings.md`](findings.md), currently **F1–F171**. It keeps
+retracted and corrected findings in place, with the correction stated where the claim was made —
+quoting a finding without its amendment misrepresents it.
 
-A cellular automaton over **token space**, developed into a **validated black-box
-measurement instrument** for language-model dynamics. A ring of *N* token cells is
-updated by a model's windowed conditional `p_r(x_i | x_{i±r})` (radius *r*,
-temperature *T*), with common-random-number (CRN) damage spreading as the probe.
+---
 
-The organizing principle is **validation by reproduction**: before measuring a
-language model — whose "true" dynamical metrics are unknown — the instrument
-reproduces *known* metrics on systems where the answer is established (the
-**validation ladder**): a decisive **ordered-vs-rest separation on elementary CA
-rules** (p=0.0000, Cohen d=3.03, measured on ignition probability — the finer 3-class
-ordering does **not** survive, F33/F34/F36), the known transition matrices of
-synthetic Markov sources, and the **Domany–Kinzel** stochastic PCA — the rungs that share
-the instrument's regime (discrete state, finite O(1) perturbation) — plus smooth-limit
-arithmetic checks on the logistic map and a coupled-map lattice.
+## Two papers
 
-> **The strongest rung is exact.** Domany–Kinzel is the only rung that is stochastic *and*
-> discrete, i.e. the instrument's own regime. On its `p2=0` line the CRN damage field is
-> provably *itself* a DK automaton at the same `p1` (Kohring & Schreckenberg 1992), so the
-> damage machinery is checked **bit-for-bit against an independent prediction — 0
-> mismatching cells, no error bar** — through the same loop that produces every
-> language-model number here. The critical points come back at 0.15% (site DP) and 0.06%
-> (Wolfram-18) of published values. See F38, `experiments/dk_calib.py`, `fig/dk_ladder.png`.
+**Paper 1 — the instrument.** *What Iterated Self-Feeding Probes of Language Models Measure, and a
+test that separates the construction from the model.* **Published: [arXiv:2608.10986](https://arxiv.org/abs/2608.10986)** (cs.CL, 11 Aug 2026), 15 pages.
 
-> **Honest scope of the logistic rung (do not overread it).** The logistic-map
-> agreement is a **unit test of the growth-rate arithmetic in the smooth limit**, not
-> a validation of the instrument. Its estimator renormalizes the twin separation back
-> to ε along the *same* orbit as the analytic reference, so
-> `log(d/ε) = log|f'(x)| + O(ε)` — it is a finite-difference evaluation of the
-> derivative it is compared against, which is why agreement is exact at ε=1e-9. A
-> token flip is **O(1)** in a discrete alphabet, so there is no ε→0 limit in token
-> space. See `experiments/logistic_epsilon_sweep.py` (error is O(ε), log-log slope
-> 0.79) and `--finite-perturbation` (no renormalization: an irreducible ≈0.15
-> bias floor that does *not* vanish as ε→0). The weight-bearing rungs are the ECA
-> ordered-vs-chaotic separation and the census.
+Its subject is the apparatus. The instrument is validated by *reproduction* — before measuring a
+language model, whose true dynamical metrics are unknown, it reproduces known metrics on systems
+where the answer is established (elementary CA rules, synthetic Markov sources, and the
+Domany–Kinzel PCA, where the damage machinery is checked **bit-for-bit, zero mismatching cells**).
+The load-bearing result is a **discriminator**: hold the construction fixed and vary the model, or
+hold the model fixed and vary the construction, and see which readings move. Applied to itself it
+splits the instrument in two — the construction has more dynamic range than the model does, so
+`λ_ca` is a within-model developmental quantity rather than a model-comparison one, while the
+attractor share passes every gate `λ_ca` fails. Source: [`paper_arxiv/`](paper_arxiv/).
 
-Only then does it report the weights-free LM measurements it yields (token-space
-Lyapunov, damping length, effective interaction radius, damage light cone, attractor
-census), and the **boundaries** where those readings provably stop applying.
+**Paper 2 — the domain.** *Prompt–Model Interaction Reaches the Fixed Points: a deterministic,
+task-free structural readout — and the factorizations of it that failed.* **Submission-ready, not
+yet submitted**, 11 pages; source in [`paper2_arxiv/`](paper2_arxiv/).
 
-> **What the instrument measures — read this before using any number here (F35).**
-> Real autoregressive generation does **not** absorb a single injected token error:
-> `P_persist = 1.000` on pythia-70m/160m/410m (32 trials each, CRN null exactly 0), and
-> distributionally `TV_norm ≈ 0.97` — the twins end as far apart as two *unrelated*
-> continuations. The mechanism is structural: **free generation never resamples a token**,
-> so an error stays in context permanently, whereas the ring CA revisits every site, which
-> is what makes healing possible at all. Therefore the damping length / `D_norm` /
-> "repair length" characterise the **iterated-resampling construction**, not the model's
-> generative process. This retroactively explains the kinematic light cone (F16/F21), the
-> model-invariance of λ_ca(r) (F28), and the structural white-box failure (F29/F31).
+Its subject is what the instrument is pointed at. That a prompt's effect is not a property of the
+prompt is established — but all of that evidence is about *task accuracy*, which cannot say whether
+the interaction lives in the machinery of performing tasks or in the conditional distribution
+itself. So it asks on a readout with no task in it: the fixed-point structure of the short-window
+argmax map `x_{t+1} = argmax p(x | x_{t-1}, x_t)`, censused from 96 starts. Two results. The
+interaction **reaches** that readout — nine tokens of conditioning move the fixed-point fraction
+across most of its range and change a four-way structural class, while instruction tuning worth
++60.5 IFEval points moves the class by zero. And **nothing proposed carries it**. Prefix length fails:
+the effect is not monotone. Five factorizations — two on the prefix's content, three on the model —
+each dissolved when the sample widened, four of them within one run of being proposed. And the
+nearest mechanistic account, attention-sink dominance, predicts the sign of the shift on 2 of 5
+models, which is chance. What is left is the prompt–model pair.
 
-**New here? Start with [`explainer.md`](explainer.md)** — the whole project in plain English, no
-background assumed: what a cellular automaton is, why you would turn a language model into one, how
-the measurement works, and the twist that reframed the result.
+The two are companions: paper 1 establishes what readings of an iterated probe belong to the
+construction rather than the model, and paper 2 varies a construction axis — the prefix — and
+reports that its effect on the readout is model-conditioned in sign.
 
-**[`ca_constructions.md`](ca_constructions.md)** draws the four rules side by side in plain ASCII —
-elementary CA, Domany–Kinzel, and this project's two token-lattice constructions — with the damage
-measurement, the per-replica visit order, and where the artifact lives. Start there if you want the
-shape of the thing before the numbers.
+---
 
-The reframed write-up is in **[paper_arxiv/main.tex](paper_arxiv/main.tex)**; substantive
-results in **[findings.md](findings.md)** (F1–F66); the adversarial audit that
-reshaped the claims in **[paper_arxiv/REVIEW.md](paper_arxiv/REVIEW.md)**.
+## Where the detail lives
 
-> **Note on earlier claims.** An adversarial audit (REVIEW.md; findings F26–F29)
-> demoted/retracted several earlier headlines. In particular the F23
-> "capacity→sensitivity, *p*<10⁻⁴" result was **pseudoreplicated (n=2 seeds)** and
-> is retracted as a significance claim, and the λ "kinematics⊥stability"
-> decomposition is **withdrawn**. The cross-level proxy hypothesis (black-box
-> token-space criticality → white-box activation criticality) is a **clean
-> negative** (F26/F28/F29). The table below is annotated accordingly.
+Nothing below is summarised twice. Each document is the authority for its own scope.
 
-### Findings at a glance
+| Document | What it is the authority for |
+|---|---|
+| [`explainer.md`](explainer.md) | The whole project in plain English, no background assumed. **Start here if you are new.** |
+| [`ca_constructions.md`](ca_constructions.md) | The four rules drawn side by side in ASCII — elementary CA, Domany–Kinzel, and this project's two token-lattice constructions. |
+| [`findings.md`](findings.md) | The dated research record, F1–F171: every pre-registration, verdict, boundary, retraction and amendment. |
+| [`what_it_measures.md`](what_it_measures.md) | What the instrument does and does not read, stated as scope rather than as caveats. |
+| [`critical_analysis.md`](critical_analysis.md) | The standing adversarial read of the programme. |
+| [`paper_arxiv/REVIEW.md`](paper_arxiv/REVIEW.md) | The audit that reshaped paper 1's claims. |
+| [`paper2_arxiv/CITATIONS.md`](paper2_arxiv/CITATIONS.md) | Paper 2's citation ledger: every cited work verified at source with the supporting quote recorded. |
+| [`paper2_arxiv/SUBMISSION.md`](paper2_arxiv/SUBMISSION.md) | Paper 2's arXiv metadata, and what is still owed before it can be submitted. |
+| [`gatecheck/`](gatecheck/) | The verdict layer, published as an installable package with its own design notes. |
 
-`findings.md` is the authoritative record — each entry there carries its
-pre-registration, its verdict, and its boundary. This table is an index.
+---
 
-| # | Finding | Phase |
-|---|---------|-------|
-| F1–F9 | Pilot reproduced on M1: temperature phase structure, radius-blind statics but radius-set damage cones, partial corpus recovery, metastable churn, sync period-2 artifact, measure-not-sample, early crystallization, learned self-healing, CRN certification (null = 0) | 1 |
-| F10 | BPE kills the `<unk>` artifact — word-level top attractors were 11–13/15 `<unk>`; BPE 0/15, real text | 2 |
-| F11 | Phase curves survive ≥5-seed error bars (max std 0.026) | 2 |
-| **F12** | **The temperature "transition" is a finite-size crossover, not a true transition** (χ_peak ∝ 1/N) | 2 |
-| F13 | Block-flip ignition probability separated from conditional spread | 2 |
-| F14 | Instrument ports to bert-tiny/mini/base; **null CRN coupling stays exactly 0** | 3 |
-| **F15** | **Real MLMs are NOT radius-blind** (unlike the toy) — long-range structure peaks at intermediate r | 3 |
-| F16 | Damage light cones replicate; **front velocity ∝ r and model-invariant** | 3 |
-| **F17** | **No strong self-healing phase** on real MLMs — far more damage-fragile than the toy; boundary below the τ≈1.5–2 full-context crossover | 3 |
-| F18 | Differential certification holds; the **special-token scheme is a first-class apparatus factor** | 3 |
-| F19 | Proxy census recovers WikiText's format skeleton, improving with scale | 3 |
-| F20 | F15 certified as a model effect **at a fixed scheme** — but CLS/SEP is a first-class apparatus (scheme swap ≥ model shift) | A |
-| F21 | F16 velocity plateau was **finite-size wraparound**; velocity∝r continues (r=16: 11.5→47.5 as N grows) | A |
-| F22 | F15's raw large-r growth was **repetition**; the repetition-robust signal is an intermediate-radius optimum (r≈4) | A |
-| F23 | A diversity-controlled **damping length** (D_norm=D/D0) shrinks with radius. A capacity gap **tiny ≪ {mini,base}** appears but is **suggestive only** — the "p<10⁻⁴" was pseudoreplicated (n=2 seeds); **retracted** as significance (see F26/F29) | B |
-| F24 | velocity∝r + damping-length-radius-trend **replicate on AR** (Pythia causal window) — not MLM artifacts; but the **capacity→sensitivity effect does NOT** (non-monotone over 4 Pythia sizes, ρ=0.17 p=0.29) — masked-specific | C1 |
-| F25 | **Developmental**: across Pythia training, D_norm traces chaotic-init → order-minimum → edge-of-chaos climb; structure crystallizes before sensitivity (real-model F7) | D |
-| **F26** | **Cross-level**: black-box token-space criticality does NOT robustly proxy white-box activation-space λ_top — cross-model family-dependent (Pythia +0.71 / GPT-2 −0.43) | D |
-| **F27** | **Ground-truth calibration**: the ECA rung separates ordered from chaotic. *Partly superseded:* the 3-class ordering (F33) and the Rule 90 nuance (F34) are demoted/retracted | D |
-| F28 | Cross-level negative confirmed: within-T confounded (uniform −0.9), within-r null (λ_ca model-invariant/kinematic); GPT-2 non-replication | D |
-| **F29** | The negative is **structural**: white-box λ_top is architectural (flat across training, ≈1/L); masked ladder r=−0.92 is depth-mediated → no *useful* weights-free proxy | D/E |
-| **F30** | **The logistic rung was circular** — its estimator renormalizes to the reference orbit, so it is a finite-difference derivative (error O(ε), slope 0.79); demoted to a smooth-limit arithmetic unit test. Finite/no-renorm regime has a ≈0.15 bias floor | 0 |
-| F31 | Repo-wide circularity hunt: `cml_lyap` renormalizes too (same failure mode); the LM damage path is **clean** (twins never re-anchored). Also: λ_top is *tangent-space* while λ_ca is *finite* — a second cause for the cross-level negative | 0 |
-| F32 | `lyap_from_cone`'s branch constants are robust (ordering holds 54/54), but a **fixed** fit window inverts edge-vs-chaotic 3/4 times → use a saturation-relative window | 0 |
-| **F33** | Hardened ECA rung (19 rules × 12 seeds, rule-level bootstrap): **ordered < chaotic p<10⁻⁴ CONFIRMED**; **edge < chaotic p=0.17 NOT significant** → the 3-class ordering is demoted | 2 |
-| **F34** | The ECA rung had an **ignition confound** (λ averaged over ignited + dead runs). Rule 30's negative reading explained (λ\|ignited=+0.45); **Rule 90 "marginal" nuance RETRACTED** (λ\|ignited=+0.28). The real discriminator is **ignition probability** (ordered 0.05 vs edge 0.67 vs chaotic 0.68) | 2 |
-| **F35** | **Real generation does not absorb a single-token error** — P_persist=1.000 on 3 models, TV_norm≈0.97 distributionally, nulls exactly 0. Healing is a property of the **in-place-resampling construction**, not of the model | ext |
-| **F36** | ECA classes tested on the right statistic (**ignition probability**): ordered 0.046 vs rest, **p=0.0000, Cohen d=3.03**; edge-vs-chaotic **p=0.47** — the 3-class ordering is definitively not recoverable | 2 |
-| F37 | CML rung given an exact **Benettin/Jacobian** reference: `cml_lyap` is correct (max diff 0.0011). Also corrected a paper error — the exponent is **non-monotone** in coupling | 2 |
-| **F38** | **Domany–Kinzel rung: the exact anchor holds.** CRN damage field ≡ a DK automaton on `p2=0` — **0 mismatching cells** (16 in the off-line control); p_c recovered to **0.15%** (site DP 0.705489) and **0.06%** (W18, HWD 0.8087). Also recovers Rule 90's exact `2^popcount(t)` cell count at p1=1 | 2 |
-| **F41** | **Correction to F38 (raised in review).** Our CRN is the *monotone* coupling, not the maximal one — they coincide at \|V\|=2 (so DK stays exact) but not at \|V\|=30522. The "damage numbers are a lower bound over couplings" claim is **retracted** for the LM backends. Measured excess disagreement 1.3–5.4%; 1.16–1.38× near agreement. Relative comparisons and the null are untouched | 4 |
-| **F39** | **Developmental transition survives at two lattice sizes.** All 4 pre-registered family members survive BH-FDR (p_BH ≤ 2e−05). Headline stated ordinally: seeds disagree on λ's *sign* before, **0 of 48 plateau runs negative** after (min +0.107). λ_ca is size-robust (95% retention; plateau levels agree within **±14%**, 95% CI); D_norm is **not** (53%, level 0.569 vs 0.306) — so λ_ca carries the claim | 4 |
-| F40 | Ordered-group λ in the ECA rung is the estimator's **dead-damage floor** (−0.4·ln10), not a measurement — 5/7 rules pinned there with zero-width CI. Named as `DEAD_DAMAGE_FLOOR` with a predicate | 4 |
-| **F42** | **λ_ca is undefined when damage never ignites**, and the estimator emits a number anyway that spans an order of magnitude for the same outcome (−0.165 vs −1.713). `is_dead_damage_floor` catches neither. Rule: `is_unignited(mean_damage)`, ignition fraction per cell, λ stats over ignited runs only, **rank test keeps all runs**. Asymmetric by design — D_norm keeps them, since zero damage is a true zero | 4 |
-| **F66** | **The degeneracy is an out-of-distribution prompt artifact.** A single BOS prefix takes pythia-410m from 74.4% to 24.1%; the **masked-LM construction shows none of it** (9–14% at every T, r=2 and r=4). Masked-centre infilling is BERT's *native* objective, unlike asking an AR model to continue from two tokens. The universality programme was measuring the probe | 4 |
-| **F65** | **Two interventions land.** Read against a control, the family-distinguishing frozen phase exists **only at r=2** (+60 points there, within ±6 at r=4/8/16 — the control *acquires* one at r=16, so that is a generic long-context effect). And banning `'\n'` **alone** drops 74%→15% without relocating: one vocabulary entry carries it | 4 |
-| **F64** | **Attention necessary, corpus determines.** Scale eliminated across a 70× Pythia ladder and a 12× GPT-2 ladder — no flip in either, families never overlap (+54 points). `gpt-neo`/`gpt2` share an **identical tokenizer**, differ only in corpus: 78.1% vs 20.4%. Pre-registered and confirmed: RWKV (Pile, no attention) → no attractor | 4 |
-| **F63** | **The attractor is not the corpus** — refuted from both directions across 19 models. `mamba` is Pile-trained with none; `Qwen` is non-Pile with one. Dominant token varies (`'\n'`, `' '`, `'0'`), so it is not newline specifically. F62's mechanism retracted; the *requirement* stands | 4 |
-| **F62** | **The frozen phase is a whitespace attractor**, and why a second family has no transition. Pythia at T=0.02 collapses to **4 distinct tokens of 96** (81 newlines); gpt2-medium has no fixed-point token and no frozen phase at any T. F58's T_c sits at **52% newline**. F10's `<unk>` pathology recurring one level up | 4 |
-| **F61** | **The Λ test cannot discriminate here.** Extrapolated to DK's critical point — where the answer is *known* to be DP — four estimator variants all give Λ≈0, the multiplicative-noise signature. Discrete dynamics has no transverse direction to linearise, so Λ collapses onto the relaxation rate, which vanishes at *any* critical point | 4 |
-| **F60** | **The collapse estimator degrades with absolute ladder size**, unexplained. On DK: {12,24,48} 0.9%, {24,48,96} 7.9% off, bias always downward. Six hypotheses refuted — band, replicas (16× buys nothing), window, transient cut, dilution, "N=12 is special". Any z from N≥96 must disclose it | 4 |
-| **F59** | **z sits below DP but cannot be separated from it** (amended). FSS at T_c over N∈{12,24,48} gave z=1.325 [1.010,1.450], *excluding* DP's 1.5807; adding N=96 gives z=1.380 [1.134,1.606], which *includes* it. The estimate is stable across ladders (1.325/1.380/1.360) — the **interval widened**, it did not move. Class unsettled | 4 |
-| **F58** | **The transition is a genuine critical point.** δ and θ reach their DP values at a *common* temperature, T_c ∈ [0.4343, 0.4391] — bootstrap intervals for the two crossings overlap. Robust to the fit window at both ends and to boundary saturation. Calibration gate passed *before* the LM numbers were read | 4 |
-| **F57** | **One visit order decided the whole batch.** `lattice.run` drew a single permutation per sweep for all replicas; damage seeded at *j* heals unless *j+1* or *j+2* is visited first (1/3 of orders), so a third of runs died *entirely*. Explains F42's unignited runs. Independent unit was the seed, not the replica — error bars were ~8× too small. Fixed as opt-in `order="per_replica"`; default untouched | 4 |
-| **F56** | **A calibration measured at the wrong geometry inverted a verdict.** The DP tolerance came from DK at N=512/200 sweeps while the LM ran N=96/40, where the same estimator misses δ by ~20% *on data that provably IS directed percolation*. The resulting "not in the DP class" reading is **retracted** — that threshold rejects DK itself | 4 |
-| **F49** | **The transition is only *detectable* at intermediate T** (#17). Not detectable at T=0.3 or T=1.1 (both p_BH=0.44). Diagnosed: T=1.1 is a **ceiling** (ignition 0.98→0.99), T=0.3 a **floor** (0.20→0.21). Claim restated as *at intermediate sampling temperature* | 4 |
-| **F48** | **W2's floor objection bounded at 4%** (closes #34). The CRN/maximal floors it proposed are *structurally zero* — identical twins stay identical — so the coupling mismatch is unavoidable. Sweeping the shared-draw fraction 0→0.9 moves D_norm only **1.04×**; at exactly 1.0 the floor collapses to 0, so the CRN floor is an **isolated point**, not the family's limit | 4 |
-| **F47** | **N/B confound resolved by manipulation** (closes #39). Ran the missing 2×2 cell (N=48, B=4): **6/16** unignited, differing from N=48 B=16 (0/16, p=0.018) and matching N=192 B=4 (5/16, p=1.00). It is **batch size**. Per-lattice death probability measured directly (d=0.734) vs F44's fitted 0.690 | 4 |
-| **F46** | **Transition timing across model scale** (192 runs, 4 Pythia sizes × 6 checkpoints × 8 seeds). Replicates in **all four** (p_BH 0.015/0.003/0.000/0.00002). Crossing moves **later** with size then **saturates**: 70m before step128, 160m 128→256, 410m and 1b both 256→512. Plateau **level** is non-monotone (0.162/0.164/0.174/0.166) — **no capacity axis** | 4 |
-| **F45** | **Third lattice size.** Over N=48/96/192: λ_ca 0.168/0.169/0.160 = **N^−0.04, intensive across 4×**; D_norm 0.569/0.306/0.139 = **N^−1.02, i.e. 1/N**. Mechanism confirmed. My pre-registered D_norm band missed by 2% — mis-built, reported as a miss | 4 |
-| F44 | "Unignited runs rise with N" (Fisher p=0.022) is a **batch-size confound**: B halves as N doubles, and one constant per-lattice death probability fits all three sizes (χ² p=0.91). No evidence of an N effect | 4 |
-| F43 | Three citations were carrying **invented titles**; `plainnat` printed "Title/authors to verify" in the compiled bibliography. All five verified against arXiv; one prior-art claim narrowed to match what the cited works actually say | 4 |
-| **F67** | **The clean construction has no transition either** — the confirming null. Masked-centre infilling, the construction F66 showed is free of the degeneracy artifact, shows no developmental transition, so the transition was not hiding behind the artifact | 4 |
-| **F68** | T\* against text degeneration: **underpowered**, and the binary is a clean null (#90) | 5 |
-| **F69** | The degeneracy is **confined to r ≤ 2** — one extra token of context is the whole difference (#91) | 5 |
-| **F70** | It is an attracting **FIXED POINT of the argmax map**, not a data-sparsity effect (#92) | 5 |
-| **F71** | The clean construction produces **structured novelty**; the AR probe does not (#93) | 5 |
-| **F72** | The prompt is **erased** and the absorbing state has a negligible basin (#94) | 5 |
-| F73 | The assembly rung is built, and it **falsified the specification that asked for it** — RePair is not exact on `a^n` (52 overshoots in an exhaustive sweep) (#20) | 5 |
-| F74 | No compression or entropy baseline reproduces Δ's ordering; the difference is in **shape** (#20) | 5 |
-| F75 | The assembly index plays **no role** in Δ, and F74's framing is withdrawn (#20) | 5 |
-| **F76** | **Δ fails its own instrument-selection rung** — and AMENDED: so does everything else (#20) | 5 |
-| **F77** | The developmental transition is **NOT confined to the two-token window** (#99) | 5 |
-| F78 | Context-use onset does not sharply explain the transition, but **shares its saturation** | 5 |
-| F79 | Ablation route 3: no component-specific selectivity, but **the statistic was contaminated** (#100) | 5 |
-| **F80** | **No single attention layer carries λ_ca**; the effect is strongly non-additive (#100) | 5 |
-| **F81** | The dip measured directly: timing **halves with width**, and 2 of 3 reach true extinction (#95) | 5 |
-| F82 | Conditional collapse does **not** explain the dip — the two events move by different factors (#97) | 5 |
-| F83 | Nor does conditional insensitivity explain extinction — the third candidate gone (#97) | 5 |
-| **F84** | The argmax **funnel forms by step 8**, wanders in identity, and predates everything else dated (#98) | 5 |
-| F85 | The funnel's identity **genuinely swaps** — a contested basin, not one attractor with a noisy label (#98) | 5 |
-| **F86** | **T\* predicts degeneration at family level** — the band screen delivers the external anchor (#90, #101) | 5 |
-| **F87** | "No attractor" is **two mechanisms**, and F86 is a conditional claim (band census reanalysis) | 5 |
-| F88 | λ_ca vs loss is **NOT DECIDABLE** — and the knife-edge was mine (#84) | 5 |
-| F89 | Memorization is **vacuous by erasure**; the registered criterion tested the wrong thing (#102) | 5 |
-| **F90** | The **funnel / none / fragmented** taxonomy is stable, survives its confound, and is partly anticipated | 5 |
-| **F91** | The recipe correlate is **partially anticipated**, and F90 pooled two opposite mechanisms | 5 |
-| **F92** | **The static map does NOT predict degeneration and the CA does** — the deflationary test, run on the anchor | 5 |
-| F93 | The second target **rejects itself**, and that scopes F86 rather than testing it | 5 |
-| **F94** | **λ_ca is not derivable from single-token sensitivity.** Annealed mean field (`λ_MF = log r·s`) run on the full ladder: DK −38% low, ECA 17/18 correct, and on the model `s` is flat while λ_ca moves. The registered deflationary outcome does NOT fire (residual 0.445 vs a 0.023 seed floor) — **the ring is not redundant** | 5 |
-| **F95** | **Fingerprint prior-art check, finally run.** (a) black-box model ID is **taken** (IRIS, 0.99 AUROC); **(b) iterated/dynamical probes are NOT anticipated — that is the ground**; (c) corpus inference partially (tokenizer-only methods can't make the same-tokenizer call); (d) quantization taken, **distillation/pruning untouched**; (e) round-trip merging worse than believed. T\* gains an external formula: `I* ≈ (1/8)(Δβ)²·T³dH/dT` | 5 |
-| **F96** | The registered primary **dies at its own gate** (3 of 6 settled cells below the distinct-context floor). What survives: **F94 measured `s` in the wrong regime** — on the states the ring occupies `s` spans 0.331 not 0.071 and the predictor clears the range gate at 1.72 vs 0.29. Bounded by degeneracy and circularity | 5 |
+## Two results to read before using any number here
+
+Both are boundaries the project established against itself, and both are load-bearing.
+
+**The instrument measures the construction, not the generative process (F35).** Real autoregressive
+generation does not absorb an injected token error — `P_persist = 1.000` on three models, with the
+CRN null exactly zero. Free generation never resamples a token, so an error stays in context
+permanently, whereas the ring CA revisits every site, which is what makes healing possible at all.
+Damping length and repair length therefore characterise the **iterated-resampling construction**.
+
+**The universality-class programme was measuring the probe (F62–F66).** A damage-spreading
+transition was found, a critical point located and exponents fitted — and then the object turned out
+to be the melting of an **out-of-distribution prompt degeneracy**: a second model family shows no
+transition, nineteen models refute a corpus explanation, the frozen phase exists only at `r=2`
+carried by one vocabulary entry, and the masked-LM construction shows none of it. The exponents are
+not wrong; what they are exponents *of* is the probe. **Varying the subject is not a substitute for
+varying the apparatus.**
+
+Getting here cost eleven confident verdicts, every one caught by its own check before reaching a
+paper. `findings.md` carries them with their banners.
+
+---
+
+## The validation ladder
+
+Before measuring a language model — whose true dynamical metrics are unknown — the instrument
+reproduces *known* metrics on systems where the answer is established: elementary CA rules (ordered
+vs rest separates decisively on ignition probability; the finer three-class ordering does **not**
+survive), the known transition matrices of synthetic Markov sources, and the **Domany–Kinzel**
+stochastic PCA, which is the only rung that is both stochastic and discrete — the instrument's own
+regime — and where the damage machinery is checked bit-for-bit against an independent prediction.
+
+Two rungs are weaker than they look and are labelled as such rather than quietly counted: the
+logistic map and the coupled-map lattice are **smooth-limit arithmetic unit tests**, not validations
+of the instrument, because their estimator renormalises along the reference orbit while a token flip
+is O(1) in a discrete alphabet. See F30/F31 in [`findings.md`](findings.md) and
+[`what_it_measures.md`](what_it_measures.md) for the full accounting, including which earlier
+headlines an adversarial audit demoted and why.
+
+### The findings record
+
+[`findings.md`](findings.md) is the authoritative record — **F1–F171**, each entry carrying its
+pre-registration, its verdict and its boundary. It is not summarised here: an index that drifts from
+the ledger is worse than no index, and this one drifted for ninety rows before it was removed.
+
+A few landmarks, to show what kind of thing is in there:
+
+| | |
+|---|---|
+| **F38** | The Domany–Kinzel rung is **exact** — the CRN damage field is provably a DK automaton, checked cell-for-cell, zero mismatches, through the same loop every model number comes from. |
+| **F35** | Real generation does not absorb a token error, so healing is a property of the construction. |
+| **F66** | The degeneracy is an out-of-distribution prompt artifact; the masked-LM construction shows none of it. |
+| **F119** | Fifteen scripts ranked with `argsort(argsort(x))`, so a scalar whose 24 measured values were all exactly 0.000 was reported as correlating at ρ = +0.829. The data was honest; the defect was in the correlation function. |
+| **F157** | Paper 2's prior-art gate refuted 13 of 74 extracted claims for overreaching their own sources — which is why `CITATIONS.md` records quotes rather than summaries. |
+| **F171** | An outside theory's prediction about this data passes the obvious test at the 99.9th percentile and dies against a frozen frequency-matched control. |
 
 ## Layout
 
@@ -283,7 +199,8 @@ ckpt/          0.42M-param checkpoints (step1000..6000, final) — tracked, no r
 results/       raw npz + summary.jsonl / census.json / analysis.json / differential.json
                NEVER hand-edited — when a results file is wrong, the SCRIPT is fixed and re-run
 fig/           figures (png)
-paper_arxiv/   main.tex (the live paper) + plans + the withdrawn I4D submission
+paper_arxiv/   paper 1 (published): main.tex + REVIEW.md + the withdrawn I4D submission
+paper2_arxiv/  paper 2 (submission-ready): main.tex, CITATIONS.md, SUBMISSION.md, packaging
 ```
 
 The library and scripts use **paths relative to the repo root** (`data/`,
@@ -317,7 +234,7 @@ runs sharing model, init, update order, and uniforms must diverge by **exactly
 zero**. If it fails, the common-random-number coupling is broken and every
 damage / differential number is meaningless — fix the harness first.
 
-The suite is **138 tests** and covers every backend, not just the toy JAX path:
+The suite is **741 tests** and covers every backend, not just the toy JAX path:
 
 - `tests/test_null_all_backends.py` — the exact-zero null over `{stub, mlm, ar}` ×
   `{async, sync}`. All three backends run through one loop (`src/lattice.py`), so a
@@ -633,9 +550,13 @@ for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
 
 ## Citation
 
-Paper: [arXiv:2608.10986](https://arxiv.org/abs/2608.10986) — cs.CL, 11 Aug 2026.
-Archived at [https://doi.org/10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472) (concept DOI — resolves to the latest
-version). `CITATION.cff` carries the machine-readable metadata.
+**Paper 1 (the instrument)** — [arXiv:2608.10986](https://arxiv.org/abs/2608.10986), cs.CL,
+11 Aug 2026. Archived at [https://doi.org/10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472)
+(concept DOI — resolves to the latest version). `CITATION.cff` carries the machine-readable metadata.
+
+**Paper 2 (the domain)** — not yet submitted, so **there is nothing to cite yet**. The source is in
+[`paper2_arxiv/`](paper2_arxiv/) and builds from this repository; cite paper 1 and the repository
+until paper 2 has an identifier of its own.
 
 When citing a finding, carry its amendment with it: `findings.md` keeps retracted and corrected
 findings in place rather than deleting them, and several entries are corrections of other entries.
