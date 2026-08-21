@@ -313,8 +313,10 @@ SmolLM-1.7B           & 0.562 & 0.000 & down \\
 Qwen2.5-1.5B-Instruct & 0.573 & 0.005 & down \\
 \bottomrule
 \end{tabular}
-\caption{One fixed nine-token prefix (a table-of-contents fragment) applied unchanged to six models
-screened to have headroom in both directions. The bidirectionality survives the in-distribution
+\caption{One fixed nine-token prefix (a table-of-contents fragment) applied to six models
+screened to have headroom in both directions. The prefix is the same source text at the same index,
+truncated to nine tokens under \emph{each model's own} tokenizer --- so the length is held fixed and
+the character span varies slightly between models; per-cell token counts are in the results file. The bidirectionality survives the in-distribution
 control of \S\ref{sec:limits} (F160). Source: F154,
 \texttt{results/text\_interaction.json}.}
 \label{tab:p1}
@@ -329,15 +331,19 @@ GPT-2. The phenomenon is named \emph{Model Drifting} by \citet{wang2025promptbri
 established prompt effectiveness as model-specific\citep{chen2023mapo}.
 What Table~\ref{tab:p1} adds is that it holds where there is nothing to be good or bad at: the same
 prefix is not merely \emph{less useful} to some models, it moves a deterministic property of their
-conditional in opposite directions.
+conditional in opposite directions. The same battery contains the converse exhibit: under a
+second fixed prefix from the same source, \texttt{Qwen1.5-1.8B} --- a faller in
+Table~\ref{tab:p1} --- rises to $0.979$ while \texttt{SmolLM-1.7B} stays at
+$0.000$.% F154, results/text_interaction.json
+The direction is set by the pair, not by the model.
 
 The nearest prior work on a structural readout uses iterated text-level transmission chains under
 stochastic sampling ($T = 0.8$, top-$p$ $0.95$) over six instruction-tuned models, and reports that
 ``different models lead the distributions to be shifted in opposite directions'' on a scalar text
 property --- text length shortens under GPT3.5 and Llama3-8B and lengthens under Mixtral-8x7B and
 GPT-4o-mini\citep{telephone}. A separate line reports iterated-map attractor states as
-\emph{model-independent}\citep{paraphrase2cycle}, contradicting our position in its regime;
-\S\ref{sec:limits} takes this up.
+\emph{model-independent}\citep{paraphrase2cycle}; \S\ref{sec:limits} takes up why both claims can
+stand, each in its own scope.
 
 % =================================================================================================
 \section{The mechanistic factor: where the sink account predicts magnitude, we observe
@@ -399,7 +405,7 @@ two-token starts, which is out-of-distribution input in a way real text is not, 
 than context size --- is where the account's uniformity fails. We accordingly do \emph{not} claim to
 contradict it. The claim is narrower: \textbf{the probe operates outside the regime its nearest
 mechanistic account describes}, so that account cannot be assumed to explain what the probe reports,
-and $\S\ref{sec:sink}$'s failure of sink strength to predict the sign is unexplained rather than
+and the failure above of sink strength to predict the sign is unexplained rather than
 contradictory.
 
 \paragraph{Why this is a real tension and not a definitional one.} A positional, content-free
@@ -446,19 +452,26 @@ ranking instability under formatting are prior art (\S\ref{sec:intro-known}). Ou
 the interaction reaches a deterministic, task-free structural readout, that no factor we tested
 carries it, and the sign behaviour of \S\ref{sec:sink}.
 
-\paragraph{A direct contradiction we must address.} \citet{paraphrase2cycle} report iterated-map
-attractor states as model-\emph{independent}: ``the attractor states are not confined to a single
-model's parameter space. Instead, they reflect a more general statistical optimum that multiple LLMs
-gravitate toward.'' Three things differ from our regime. The iteration is at the text level, through
-an instruction-conditioned paraphrase call under stochastic decoding, not a token-level deterministic
-argmax map. The attractor is a $2$-period edit-distance cycle, not a fixed point. And the
-model-independence is inferred from \emph{alternating} models within one chain, plus a cross-model
-perplexity check, rather than from one prefix held fixed across separate models --- the design our
-Table~\ref{tab:p1} runs. Those are differences we have to defend, not leave implicit; they do not
-make the contradiction go away in the regime where it was measured. In the ladder's terms, theirs is
-a main-effect claim --- the attractor as a property of the text distribution, models
-interchangeable --- and ours is that in our regime no main effect survived; the regimes must be kept
-distinct precisely because the claims point opposite ways.
+\paragraph{A neighbouring result that reads as a contradiction, and is a scope collision.}
+\citet{paraphrase2cycle} report iterated-map attractor states as model-\emph{independent}: ``the
+attractor states are not confined to a single model's parameter space. Instead, they reflect a
+more general statistical optimum that multiple LLMs gravitate toward.'' Read beside
+Table~\ref{tab:p1}, the two claims point opposite ways. The two measurements, however, share no
+object: their iteration is text-level, through an instruction-conditioned paraphrase call under
+stochastic decoding, where ours is a token-level deterministic argmax map; their attractor is a
+$2$-period edit-distance cycle, not a fixed point; and their model-independence is inferred from
+\emph{alternating} models within one chain plus a cross-model perplexity check, not from one
+prefix held fixed across separate models --- the design Table~\ref{tab:p1} runs. Neither dataset
+therefore contradicts the other. What collides is the phrasing: their conclusion is stated as a
+property of LLMs at large, our regime is a counterexample to that phrasing at large, and the
+symmetric correction is to keep both claims scoped, which we do.
+
+One reading is consistent with both results, and is testable: their loop contains a task --- an
+instruction the chain obeys at every step --- and ours was built to contain none. If the shared
+attractor belongs to the task layer that instruction-tuned models hold in common,
+model-independence there and model-conditioned sign here are the two sides of the distinction
+this paper draws between task machinery and the conditional. Their protocol with the instruction
+varied, or run over base models, would test it; nothing in our data does.
 
 \paragraph{Small cohorts, one estimator family.} The largest single comparison is six models and twelve
 texts, at one prefix length, from three English sources, under one operationalisation of

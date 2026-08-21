@@ -1,7 +1,7 @@
 # arXiv submission metadata — paper 2
 
 Everything below is ready to paste into the arXiv submission form. Numbers in the comments line come
-from the verified build (`./make_arxiv_package.sh`), not from an estimate: 10 pages, 4 tables.
+from the verified build (`./make_arxiv_package.sh`), not from an estimate: 11 pages, 4 tables.
 
 **Source package:** `paper2_arxiv/arxiv-submission.tar.gz` — rebuild with
 `./paper2_arxiv/make_arxiv_package.sh`, which verifies the tarball by unpacking it into a clean
@@ -42,7 +42,7 @@ mechanical one.
 ## Comments
 
 ```
-10 pages, 4 tables. Companion to arXiv:2608.10986. Code, per-run results, and the findings ledger: https://github.com/nicoveraz/token-lattice-ca (archived: https://doi.org/10.5281/zenodo.21880472)
+11 pages, 4 tables. Companion to arXiv:2608.10986. Code, per-run results, and the findings ledger: https://github.com/nicoveraz/token-lattice-ca (archived: https://doi.org/10.5281/zenodo.21880472)
 ```
 
 ## Abstract (plain text, ready to paste)
