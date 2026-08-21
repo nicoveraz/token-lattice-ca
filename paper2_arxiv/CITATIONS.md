@@ -5,12 +5,14 @@ their own sources. Its summaries are therefore not citable. Every entry in `refs
 `main.tex` must be verified against the source itself, and the supporting quote recorded here so the
 next reader can check the citation without repeating the fetch.
 
-Status: **all 12 `\citepend{}` placeholders (8 distinct works) are resolved.** Twelve works are now
-cited by `main.tex` and all twelve are verified below. The `\citepend` macro is kept in the preamble
+Status: **all 12 `\citepend{}` placeholders (8 distinct works) are resolved.** Fifteen works are now
+cited by `main.tex` and all fifteen are verified below. The `\citepend` macro is kept in the preamble
 as a tripwire — it renders red in the PDF — so a future unresolved citation cannot slip through.
 There are none now, and `tests/test_paper2_citations.py` fails if one appears.
 
-Entries 1–4 were verified in 3d64a66; entries 5–12 on 18 Aug 2026.
+Entries 1–4 were verified in 3d64a66; entries 5–12 on 18 Aug 2026; entry 13 on the
+restructure; entries 14–15 on 21 Aug 2026, for the submission edits (the funnel credit in Setup
+and the adjacent-repetition sentence in the introduction).
 
 ---
 
@@ -323,3 +325,62 @@ separates the construction from the model*, 2026.
   basis, and "we wrote it" is a basis that should be stated rather than assumed. It was added when
   `tests/test_paper2_citations.py` failed on the restructure — the guard doing exactly its job on a
   citation that had been wired in without an entry.
+
+## 14. `fu2021repetition` — arXiv:2012.14660 (AAAI 2021)
+
+Fu, Lam, So, Shi, *A Theoretical Analysis of the Repetition Problem in Text Generation*, 2021.
+
+- **Cited in:** §Setup, at the sentence defining the trajectory classes.
+- **Our claim:** the funnel geometry — many states feeding one self-continuing token — was derived
+  theoretically by them, and their inflow analysis explains why trajectories concentrate. The
+  paper's classes are that geometry measured on a model's own conditional rather than on corpus
+  counts.
+- **Source (body, §2.2, discussion of Corollary 1.2):** "the inflow for a word is the probability
+  sum of all words that take it as the subsequent word. If it is too big, the upper bound can be
+  magnified extensively. This observation theoretically justifies the claim that high inflow words
+  are more likely to go back to itself and cause the repetition problem." Corollary 1.2 labels the
+  two halves of its denominator `outflow` and `inflow` explicitly.
+- **Also supports (body, §2.1):** that greedy decoding makes the chain deterministic — "In greedy
+  sampling, each word only takes a fixed subsequent word and thus $\zeta n = 1$. Therefore, ARP can
+  be very large and even diverges to infinity." This is why the credit is for the geometry rather
+  than for anything specific to our estimator: the deterministic argmax map is named in their §2.1,
+  at a one-token window.
+- **Verification:** FULL TEXT. The arXiv PDF (v4, 22 Mar 2021) was downloaded and extracted with
+  `pdftotext -layout`; quotes above are transcribed from that extraction, not from an abstract and
+  not from a search summary. Authors, title and the journal-ref line ("AAAI 21 Paper with Appendix")
+  were re-checked against the arXiv abstract page on 21 Aug 2026.
+- **What we deliberately do NOT claim from it.** Their transition matrix is built from **corpus word
+  counts** in all three places it appears (Algorithm 1; §3; §4.2 "The Markov transition matrix is
+  calculated by counting words in Wiki-103") — they never measure a model's own conditional. The
+  paper credits the *explanation* and says its classes are the same geometry measured on the
+  conditional instead. It makes no claim about their corpus-side inflow term. A separate repository
+  finding (F171) tests that term directly and reports that it does not predict our endpoints once
+  frequency is controlled; **that result is out of this paper's scope and is not cited here**, and
+  nothing in the paper depends on it either way.
+- **No page or volume numbers** are recorded in `refs.bib`: the arXiv journal-ref gives none, and
+  inventing them is the failure mode this ledger exists to prevent.
+
+## 15. `mahaut2025repetitions` — arXiv:2504.01100v2 (4 Nov 2025)
+
+Mahaut, Franzon, *Repetitions are not all alike: distinct mechanisms sustain repetition in language
+models*, 2025.
+
+- **Cited in:** §intro-known, as adjacent to the axis this paper varies.
+- **Our claim:** prompt *type* changes the mechanism of repetition itself — ICL setups that require
+  copying recruit a dedicated, progressively specialising head network, while natural repetition
+  emerges early without defined circuitry. And: that work measures no fixed points.
+- **Source (abstract, v2, verbatim):** "ICL-induced repetition relies on a dedicated network of
+  attention heads that progressively specialize over training, whereas naturally occurring
+  repetition emerges early and lacks a defined circuitry. Attention inspection further shows that
+  natural repetition focuses disproportionately on low-information tokens."
+- **Verification:** the sentence quoted in `main.tex` is taken verbatim from the v2 **abstract**,
+  re-fetched from the arXiv abstract page on 21 Aug 2026. The negative claim ("measures no fixed
+  points") rests on a full-text read of v1 recorded in `results/prior_art_copy_gate.json`, which
+  also records the cohort as Pythia 70M/1.4B/6.9B with no cross-model comparison.
+- **A version discrepancy, recorded because it changed the draft.** The gate record was written from
+  **v1**, whose framing named specific heads (L4H4, L9H9, L10H2) and "procedural copying behaviour".
+  The live version is **v2**, whose abstract states the contrast differently. The sentence in the
+  paper was re-drafted from v2 rather than from the gate note. Citing v1's phrasing against a v2
+  paper would have been a quote the source no longer contains.
+- **Not cited:** arXiv:2505.13514 (induction-head toxicity). The paper does not discuss copying, and
+  that citation belongs to a mechanism write-up rather than to this manuscript.
