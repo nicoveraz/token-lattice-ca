@@ -286,9 +286,19 @@ Systems View of Successive Paraphrasing*, 2025.
   stochastic decoding rather than a token-level deterministic argmax map; a 2-period cycle rather
   than a fixed point; and — the strongest of the three — model-independence inferred from
   **alternating** models *within* one chain plus a cross-model perplexity check, never from one
-  prompt held fixed across separate models, which is the design our Table 1 runs.
-- **Do not overstate the escape:** the contradiction is real in the regime where it was measured.
-  §limits says so.
+  prompt held fixed across separate models, which is the design our Table 3 runs (the
+  bidirectionality table; it was Table 1 when this entry was written and the numbering has
+  since moved).
+- **Do not overstate the escape — REWRITTEN 21 Aug 2026, because §limits changed under it.** The
+  earlier wording read: *"the contradiction is real in the regime where it was measured. §limits
+  says so."* §limits no longer says that. It now argues the two measurements share no object, so
+  neither dataset contradicts the other, and relocates the collision to the phrasing: their
+  conclusion is stated as a property of LLMs at large, our regime is a counterexample to that
+  phrasing at large, and both claims are kept scoped rather than either being declared wrong. The
+  escape is still not free — what must not be overstated now is the *dissolution*. Our regime is a
+  genuine counterexample to their general phrasing, and this entry's three named differences are
+  what license the scoping. Recorded as a rewrite rather than edited silently, because the previous
+  wording was correct about a paragraph that no longer exists.
 
 ---
 
