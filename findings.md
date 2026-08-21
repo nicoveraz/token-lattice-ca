@@ -3645,6 +3645,90 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F171 — Fu et al.'s prediction, tested: it PASSES the obvious test at the 99.9th percentile and FAILS the frozen control. The endpoints are common, not high-inflow.
+20 Aug 2026. F170 ended by noting that Fu et al. (arXiv:2012.14660) make a checkable prediction about
+this project's data and that stating it is not running it. Run now, at **zero forward passes** — the
+model side is the stored 17-model census, the corpus side is **wikitext-103, the corpus Fu et al.
+themselves used**, tokenised with each model's own tokenizer. Pre-registered in
+`experiments/prereg_inflow_funnel.json`, frozen and hashed before any inflow value existed
+(`2f32a42d…` pre-amendment, `f180e1c3…` post-amendment, both dated before the run).
+
+**The headline is what the control did.** On the registered criterion the prediction looks
+overwhelming:
+
+> **12 of 13 endpoint tokens sit at or above the 90th inflow percentile, median 99.87.**
+
+That number is real, and reporting it alone would have been the R1 defect committed in public: a
+criterion with a shape applied to a quantity with no room to vary. Fu et al. draw the distinction
+themselves — *"it is not the high-frequency words, but the high inflow words that really lead to
+repetition"* — so the pre-registration judged H2 on a **frequency-matched null**: each endpoint's
+inflow percentile among the 50 tokens nearest it in log-frequency. Against that control:
+
+> **Endpoint inflow beats frequency-matched peers in 1 of 13 models. Median percentile 32.0, against
+> 50 by construction.**
+
+**K3 fires.** Inflow adds nothing to frequency here. The correct statement — in the words the
+pre-registration fixed before the numbers — is that **these maps funnel to COMMON tokens, not to
+HIGH-INFLOW ones.** Fu et al.'s *specific* claim is unsupported on this data; the trivial claim that
+models get stuck on frequent tokens stands untouched, and nobody disputed it.
+
+| model | class | endpoint | corpus count | inflow pctl | **freq-matched** | inflow rank |
+|---|---|---|---|---|---|---|
+| gemma-2-2b | fragmented | `'\n'` | 44 158 | 99.99 | 44.0 | 33 |
+| llm-jp-3-1.8b | funnel | `'\n'` | 44 158 | 99.94 | 36.0 | 55 |
+| gpt-neo-2.7B | none | `'\n'` | 44 158 | 99.93 | 36.0 | 37 |
+| pythia-410m / -deduped | funnel | `'\n'` | 44 158 | 99.92 | 32.0 | 42 |
+| SmolLM-1.7B | funnel | `'\n'` | 44 158 | 99.90 | 38.0 | 49 |
+| OLMo-2-0425-1B | none | `'0'` | 8 622 | 99.87 | **52.0** | 131 |
+| Falcon3-1B-Base | borderline | `'1'` | 67 437 | 99.84 | 40.0 | 208 |
+| Llama-3.2-3B | none | `'8'` | 5 421 | 99.68 | 24.0 | 415 |
+| Qwen1.5-1.8B | funnel | `'0'` | 59 956 | 99.16 | 8.0 | 1 281 |
+| helium-1-preview-2b | funnel | `'9'` | 35 740 | 98.38 | 18.0 | 780 |
+| Minerva-3B-base | funnel | `'0'` | 59 956 | 96.41 | 12.0 | 1 177 |
+| stablelm-3b-4e1t | none | `','` | 5 285 | 88.72 | 2.0 | 5 669 |
+
+**And the trivial rule never fires (K2).** *"The endpoint is the single most-inflow token"* is right
+for **0 of 13**. Endpoint inflow ranks run from 33 to 5 669 — high percentiles on a 50k–150k
+vocabulary, and nowhere near the top. The map does not go where inflow is greatest.
+
+**If anything the sign is reversed, and I am not claiming it.** A median matched percentile of 32
+means endpoints tend to sit *below* their frequency-matched peers. With 13 models that are **not 13
+independent tests** — `'\n'` is the endpoint for 6 of them and `'0'` for 3, and models sharing a token
+share its corpus statistics *exactly*, while `pythia-410m` and `-deduped` share a tokenizer and
+produce identical rows — this reversal is not a result. It is recorded as an observation and left
+there. Non-independence is reported in the results file and **not corrected for**, because any
+weighting scheme would be one nobody registered.
+
+**H3, the null, holds (TIER 2).** Max corpus inflow spans **[1320.7, 4684.9]** on funnels and
+**[2651.7, 15196.2]** on non-funnels — overlapping, so this corpus statistic does not separate models
+whose φ differs by nearly the whole range. As registered, that is stated as *does not separate* and
+**not** as proof of language-independence. But it is the shape a weights-side account predicts and
+Fu et al.'s *"caused by the language itself"* does not.
+
+**Exclusions, kept apart because they mean different things.** `LFM2-2.6B` and `starcoder2-3b` never
+entered: their two census seeds disagree on the modal endpoint (`'.'`/`'력'` and `'\n'`/`'0'`), and the
+prereg requires the predicted quantity to be stable first. `bloom-3b` is excluded by coverage — its
+endpoint `' ciudad'` occurs **0 times** in an English corpus, which is a statement about the corpus
+being wrong for that model and **not** evidence against the theory. `polyglot-ko-1.3b` is excluded for
+a tokenizer load failure, an infrastructure fact with no evidential content at all. Three reasons,
+three lists.
+
+**What this changes.** F170 conceded that the funnel's *explanation* belongs to Fu et al. It still
+does — the concept and the derivation are theirs. But their inflow term, measured on the corpus they
+used and against a control they themselves motivate, **does not pick out where these maps actually
+go.** The endpoint is a frequent token, not a high-inflow one, and no corpus statistic tested here
+distinguishes a funnel from a non-funnel. That is one more factor dead on the language side, and it
+is the first time this programme has killed a factor belonging to *someone else's* theory rather than
+its own.
+
+**Boundary.** One corpus (English), one window, 13 readable models with repeated endpoints among them,
+one inflow estimator. No p-value, no causal claim, and explicitly no claim to have tested Fu et al.'s
+*bound*, which is a different object from their inflow term. A Japanese or Korean corpus would test
+`llm-jp` and `polyglot-ko` properly and is not run.
+
+`experiments/inflow_funnel.py` → `results/inflow_funnel.json`; prereg hashes in
+`experiments/prereg_inflow_funnel.sha256`.
+
 ### F170 — Fu et al. read in full: the funnel's EXPLANATION is theirs, the measurement is not, and their thesis is a named opponent to this project's
 20 Aug 2026. F169 flagged arXiv:2012.14660 (Fu, Lam, So, Shi; AAAI 2021) as the sharpest unresolved
 threat — its **high inflow problem** looked like the funnel class, named in 2020 — and recorded that
@@ -3687,6 +3771,9 @@ programme.
    tokens should be **high-inflow tokens under corpus bigram statistics**. Every ingredient is
    already stored — endpoint histograms from the census — so this costs **zero forward passes**. It is
    the first time an outside theory has made a checkable prediction about this project's data.
+   **RUN THE SAME DAY IN F171: it fails.** The prediction passes on the obvious criterion
+   (median 99.87th inflow percentile) and dies against the frozen frequency-matched control (1
+   of 13). These maps funnel to COMMON tokens, not to high-inflow ones.
 2. **A named opponent.** Their thesis is that *"the repetition problem is caused by the language
    itself. Too many high inflow words in the human language make it easy to go back to themselves."*
    Language-caused predicts **uniformity** across models trained on similar corpora. This project's
@@ -3697,8 +3784,8 @@ programme.
 
 **Boundary.** One paper, read in full, v4 (22 Mar 2021). This resolves the C1b item F169 left open and
 nothing else: the four SNIPPET-grade background items are still unread, and the gate has still not
-been re-run at F91/F157 protocol depth. The prediction in (1) is **stated, not tested** — writing it
-down is not running it.
+been re-run at F91/F157 protocol depth. The prediction in (1) was **stated here and tested the same day in F171**, where
+it failed the control — writing it down was not running it, and running it changed the answer.
 
 `results/prior_art_copy_gate.json` (C1b now RESOLVED, with the quotes and the two lists). `refs.bib`
 still untouched and now owes this citation more clearly than before.

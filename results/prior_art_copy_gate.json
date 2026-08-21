@@ -45,7 +45,8 @@
     }
    ],
    "what_this_costs_us": "the funnel class may still be reported as measured, but NOT as explained by us. 'Many tokens map to one, so trajectories pile up there' is Fu et al. 2021's high inflow problem and must be cited at the point of explanation, not in a related-work list.",
-   "what_this_buys_us": "two things that did not exist before the paper was read. (1) A TESTABLE PREDICTION FROM PRIOR ART: if inflow is a corpus property, the funnel endpoint tokens should be high-inflow tokens under corpus bigram statistics -- checkable against stored endpoint histograms with zero forward passes. (2) A TENSION worth stating: their thesis is that repetition is caused by 'the language itself', which predicts uniformity across models trained on similar corpora; this project's census found only 8 of 17 models are funnels, and pythia-410m vs -deduped shares a corpus and a class while other same-corpus-era models differ. That is evidence the geometry is NOT purely a language property -- which is this programme's text-x-weights thesis, now with a named opponent."
+   "what_this_buys_us": "two things that did not exist before the paper was read. (1) A TESTABLE PREDICTION FROM PRIOR ART: if inflow is a corpus property, the funnel endpoint tokens should be high-inflow tokens under corpus bigram statistics -- checkable against stored endpoint histograms with zero forward passes. (2) A TENSION worth stating: their thesis is that repetition is caused by 'the language itself', which predicts uniformity across models trained on similar corpora; this project's census found only 8 of 17 models are funnels, and pythia-410m vs -deduped shares a corpus and a class while other same-corpus-era models differ. That is evidence the geometry is NOT purely a language property -- which is this programme's text-x-weights thesis, now with a named opponent.",
+   "prediction_TESTED": "F171, 20 Aug 2026. Fu et al.'s inflow term was computed on wikitext-103 (the corpus they used) with each model's own tokenizer and joined to the stored census endpoints. It PASSES the naive test (12 of 13 endpoints above the 90th inflow percentile, median 99.87) and FAILS the pre-registered frequency-matched control (beats matched peers in 1 of 13, median percentile 32.0). The endpoints are COMMON tokens, not HIGH-INFLOW ones. The trivial rule 'endpoint = top inflow token' is right 0 of 13. Their explanation is still theirs to be cited; it does not predict where these maps go."
   },
   "C2_prefix_installs_the_token": {
    "claim": "a structured prefix installs a SPECIFIC token (the newline) as the fixed point",
@@ -122,7 +123,6 @@
  "still_owed": [
   "full text of 2603.11228 (PDF extraction failed) -- low risk, abstract suffices to distinguish",
   "the four SNIPPET-grade items above, none of which has been read",
-  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is.",
-  "test of Fu et al.'s prediction: are funnel endpoint tokens high-inflow under corpus bigram statistics? Zero forward passes; not yet run."
+  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is."
  ]
 }

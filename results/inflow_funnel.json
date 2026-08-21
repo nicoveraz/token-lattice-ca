@@ -1,0 +1,563 @@
+{
+ "_preregistration_file": "experiments/prereg_inflow_funnel.json",
+ "_prereg_sha256": "2f32a42df3aca8001a162a7b8a63456ab73d706aca8c3bd103b9fafacc1e34fe  prereg_inflow_funnel.json  (frozen, pre-amendment)\nf180e1c357a923c5e5ded9a988b78e6693464c6416ebc4abbbd762a5e6c896b4  prereg_inflow_funnel.json  (frozen, post-amendment, both dated BEFORE the run)",
+ "_census_source": "results/argmax_census_hardened.json",
+ "_forward_passes": 0,
+ "endpoints": {
+  "EleutherAI/gpt-neo-2.7B": {
+   "token_id": 198,
+   "decoded": "\n",
+   "cls": "none",
+   "phi": 0.0364
+  },
+  "EleutherAI/polyglot-ko-1.3b": {
+   "token_id": 307,
+   "decoded": " \uc774",
+   "cls": "none",
+   "phi": 0.0312
+  },
+  "EleutherAI/pythia-410m": {
+   "token_id": 187,
+   "decoded": "\n",
+   "cls": "funnel",
+   "phi": 0.4583
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "token_id": 187,
+   "decoded": "\n",
+   "cls": "funnel",
+   "phi": 0.4271
+  },
+  "HuggingFaceTB/SmolLM-1.7B": {
+   "token_id": 198,
+   "decoded": "\n",
+   "cls": "funnel",
+   "phi": 0.5625
+  },
+  "Qwen/Qwen1.5-1.8B": {
+   "token_id": 15,
+   "decoded": "0",
+   "cls": "funnel",
+   "phi": 0.5104
+  },
+  "allenai/OLMo-2-0425-1B": {
+   "token_id": 15,
+   "decoded": "0",
+   "cls": "none",
+   "phi": 0.0052
+  },
+  "bigscience/bloom-3b": {
+   "token_id": 8705,
+   "decoded": " ciudad",
+   "cls": "none",
+   "phi": 0.0156
+  },
+  "google/gemma-2-2b": {
+   "token_id": 108,
+   "decoded": "\n",
+   "cls": "fragmented",
+   "phi": 0.8334
+  },
+  "kyutai/helium-1-preview-2b": {
+   "token_id": 380,
+   "decoded": "9",
+   "cls": "funnel",
+   "phi": 1.0
+  },
+  "llm-jp/llm-jp-3-1.8b": {
+   "token_id": 18,
+   "decoded": "\n",
+   "cls": "funnel",
+   "phi": 0.7761
+  },
+  "meta-llama/Llama-3.2-3B": {
+   "token_id": 23,
+   "decoded": "8",
+   "cls": "none",
+   "phi": 0.0
+  },
+  "sapienzanlp/Minerva-3B-base-v1.0": {
+   "token_id": 32377,
+   "decoded": "0",
+   "cls": "funnel",
+   "phi": 0.3281
+  },
+  "stabilityai/stablelm-3b-4e1t": {
+   "token_id": 13,
+   "decoded": ",",
+   "cls": "none",
+   "phi": 0.0156
+  },
+  "tiiuae/Falcon3-1B-Base": {
+   "token_id": 2040,
+   "decoded": "1",
+   "cls": "borderline",
+   "phi": 0.2135
+  }
+ },
+ "excluded_unstable_endpoint": [
+  [
+   "LiquidAI/LFM2-2.6B",
+   [
+    [
+     523,
+     "."
+    ],
+    [
+     13750,
+     "\ub825"
+    ]
+   ]
+  ],
+  [
+   "bigcode/starcoder2-3b",
+   [
+    [
+     222,
+     "\n"
+    ],
+    [
+     53,
+     "0"
+    ]
+   ]
+  ]
+ ],
+ "corpus": {
+  "name": "wikitext-103-raw-v1 train",
+  "n_chars": 20000000,
+  "sha256": "1654df515bfacc5b6087f22fddb273031a3fe280b8b625a71bbdbb297a20912f"
+ },
+ "per_model": [
+  {
+   "model": "EleutherAI/gpt-neo-2.7B",
+   "cls": "none",
+   "phi": 0.0364,
+   "endpoint_id": 198,
+   "endpoint": "\n",
+   "endpoint_corpus_count": 44158,
+   "inflow_pctl_all_vocab": 99.926,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.911,
+   "freq_matched_pctl": 36.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 37,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 3119.3911,
+   "top10_inflow_share": 0.29766,
+   "vocab": 50257,
+   "n_tokens": 4373008,
+   "n_distinct_bigrams": 1108366,
+   "secs": 6.2
+  },
+  {
+   "model": "EleutherAI/polyglot-ko-1.3b",
+   "error": "OSError"
+  },
+  {
+   "model": "EleutherAI/pythia-410m",
+   "cls": "funnel",
+   "phi": 0.4583,
+   "endpoint_id": 187,
+   "endpoint": "\n",
+   "endpoint_corpus_count": 44158,
+   "inflow_pctl_all_vocab": 99.916,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.887,
+   "freq_matched_pctl": 32.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 42,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 2651.7341,
+   "top10_inflow_share": 0.28319,
+   "vocab": 50277,
+   "n_tokens": 4443257,
+   "n_distinct_bigrams": 1085866,
+   "secs": 6.5
+  },
+  {
+   "model": "EleutherAI/pythia-410m-deduped",
+   "cls": "funnel",
+   "phi": 0.4271,
+   "endpoint_id": 187,
+   "endpoint": "\n",
+   "endpoint_corpus_count": 44158,
+   "inflow_pctl_all_vocab": 99.916,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.887,
+   "freq_matched_pctl": 32.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 42,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 2651.7341,
+   "top10_inflow_share": 0.28319,
+   "vocab": 50277,
+   "n_tokens": 4443257,
+   "n_distinct_bigrams": 1085866,
+   "secs": 6.4
+  },
+  {
+   "model": "HuggingFaceTB/SmolLM-1.7B",
+   "cls": "funnel",
+   "phi": 0.5625,
+   "endpoint_id": 198,
+   "endpoint": "\n",
+   "endpoint_corpus_count": 44158,
+   "inflow_pctl_all_vocab": 99.9,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.877,
+   "freq_matched_pctl": 38.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 49,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 3017.164,
+   "top10_inflow_share": 0.30154,
+   "vocab": 49152,
+   "n_tokens": 4698652,
+   "n_distinct_bigrams": 1060456,
+   "secs": 6.2
+  },
+  {
+   "model": "Qwen/Qwen1.5-1.8B",
+   "cls": "funnel",
+   "phi": 0.5104,
+   "endpoint_id": 15,
+   "endpoint": "0",
+   "endpoint_corpus_count": 59956,
+   "inflow_pctl_all_vocab": 99.155,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 97.139,
+   "freq_matched_pctl": 8.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 1281,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 3325.3906,
+   "top10_inflow_share": 0.28049,
+   "vocab": 151646,
+   "n_tokens": 4606371,
+   "n_distinct_bigrams": 1079261,
+   "secs": 6.8
+  },
+  {
+   "model": "allenai/OLMo-2-0425-1B",
+   "cls": "none",
+   "phi": 0.0052,
+   "endpoint_id": 15,
+   "endpoint": "0",
+   "endpoint_corpus_count": 8622,
+   "inflow_pctl_all_vocab": 99.869,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.71,
+   "freq_matched_pctl": 52.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 131,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 3303.7368,
+   "top10_inflow_share": 0.278,
+   "vocab": 100278,
+   "n_tokens": 4457220,
+   "n_distinct_bigrams": 1095806,
+   "secs": 6.7
+  },
+  {
+   "model": "bigscience/bloom-3b",
+   "cls": "none",
+   "phi": 0.0156,
+   "endpoint_id": 8705,
+   "endpoint": " ciudad",
+   "endpoint_corpus_count": 0,
+   "inflow_pctl_all_vocab": 0.0,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 0.0,
+   "freq_matched_pctl": NaN,
+   "matched_n": 0,
+   "endpoint_inflow_rank": 180936,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 3058.4962,
+   "top10_inflow_share": 0.2472,
+   "vocab": 250680,
+   "n_tokens": 4392970,
+   "n_distinct_bigrams": 1093235,
+   "secs": 6.8
+  },
+  {
+   "model": "google/gemma-2-2b",
+   "cls": "fragmented",
+   "phi": 0.8334,
+   "endpoint_id": 108,
+   "endpoint": "\n",
+   "endpoint_corpus_count": 44158,
+   "inflow_pctl_all_vocab": 99.987,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.954,
+   "freq_matched_pctl": 44.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 33,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 6147.282,
+   "top10_inflow_share": 0.30891,
+   "vocab": 256000,
+   "n_tokens": 4451198,
+   "n_distinct_bigrams": 1105951,
+   "secs": 6.1
+  },
+  {
+   "model": "kyutai/helium-1-preview-2b",
+   "cls": "funnel",
+   "phi": 1.0,
+   "endpoint_id": 380,
+   "endpoint": "9",
+   "endpoint_corpus_count": 35740,
+   "inflow_pctl_all_vocab": 98.375,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 97.42,
+   "freq_matched_pctl": 18.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 780,
+   "trivial_top_inflow_token": "''",
+   "trivial_rule_hits": false,
+   "top_freq_token": "''",
+   "max_inflow": 4684.8637,
+   "top10_inflow_share": 0.35849,
+   "vocab": 48000,
+   "n_tokens": 5166106,
+   "n_distinct_bigrams": 957740,
+   "secs": 7.3
+  },
+  {
+   "model": "llm-jp/llm-jp-3-1.8b",
+   "cls": "funnel",
+   "phi": 0.7761,
+   "endpoint_id": 18,
+   "endpoint": "\n",
+   "endpoint_corpus_count": 44158,
+   "inflow_pctl_all_vocab": 99.945,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.772,
+   "freq_matched_pctl": 36.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 55,
+   "trivial_top_inflow_token": "','",
+   "trivial_rule_hits": false,
+   "top_freq_token": "'the'",
+   "max_inflow": 1481.0266,
+   "top10_inflow_share": 0.25906,
+   "vocab": 99574,
+   "n_tokens": 4692606,
+   "n_distinct_bigrams": 988973,
+   "secs": 7.8
+  },
+  {
+   "model": "meta-llama/Llama-3.2-3B",
+   "cls": "none",
+   "phi": 0.0,
+   "endpoint_id": 23,
+   "endpoint": "8",
+   "endpoint_corpus_count": 5421,
+   "inflow_pctl_all_vocab": 99.676,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.102,
+   "freq_matched_pctl": 24.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 415,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 3387.1344,
+   "top10_inflow_share": 0.27595,
+   "vocab": 128256,
+   "n_tokens": 4452899,
+   "n_distinct_bigrams": 1095839,
+   "secs": 6.1
+  },
+  {
+   "model": "sapienzanlp/Minerva-3B-base-v1.0",
+   "cls": "funnel",
+   "phi": 0.3281,
+   "endpoint_id": 32377,
+   "endpoint": "0",
+   "endpoint_corpus_count": 59956,
+   "inflow_pctl_all_vocab": 96.408,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 94.518,
+   "freq_matched_pctl": 12.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 1177,
+   "trivial_top_inflow_token": "','",
+   "trivial_rule_hits": false,
+   "top_freq_token": "'the'",
+   "max_inflow": 1320.7335,
+   "top10_inflow_share": 0.24615,
+   "vocab": 32768,
+   "n_tokens": 5043383,
+   "n_distinct_bigrams": 957661,
+   "secs": 6.7
+  },
+  {
+   "model": "stabilityai/stablelm-3b-4e1t",
+   "cls": "none",
+   "phi": 0.0156,
+   "endpoint_id": 13,
+   "endpoint": ",",
+   "endpoint_corpus_count": 5285,
+   "inflow_pctl_all_vocab": 88.724,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 84.768,
+   "freq_matched_pctl": 2.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 5669,
+   "trivial_top_inflow_token": "' ,'",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' the'",
+   "max_inflow": 2651.7341,
+   "top10_inflow_share": 0.28319,
+   "vocab": 50277,
+   "n_tokens": 4443257,
+   "n_distinct_bigrams": 1085866,
+   "secs": 6.4
+  },
+  {
+   "model": "tiiuae/Falcon3-1B-Base",
+   "cls": "borderline",
+   "phi": 0.2135,
+   "endpoint_id": 2040,
+   "endpoint": "1",
+   "endpoint_corpus_count": 67437,
+   "inflow_pctl_all_vocab": 99.841,
+   "inflow_pctl_seen_only_NOT_REGISTERED": 99.686,
+   "freq_matched_pctl": 40.0,
+   "matched_n": 50,
+   "endpoint_inflow_rank": 208,
+   "trivial_top_inflow_token": "' '",
+   "trivial_rule_hits": false,
+   "top_freq_token": "' '",
+   "max_inflow": 15196.226,
+   "top10_inflow_share": 0.3945,
+   "vocab": 131072,
+   "n_tokens": 5047629,
+   "n_distinct_bigrams": 1040462,
+   "secs": 9.3
+  }
+ ],
+ "excluded_by_K4_coverage": [
+  {
+   "model": "bigscience/bloom-3b",
+   "endpoint": " ciudad",
+   "count": 0,
+   "why": "endpoint token occurs <100 times in an ENGLISH corpus -- the corpus is wrong for this model, which says nothing about the theory"
+  }
+ ],
+ "excluded_tokenizer_load_failed": [
+  {
+   "model": "EleutherAI/polyglot-ko-1.3b",
+   "error": "OSError",
+   "why": "the tokenizer would not load from the local cache. An infrastructure failure, not a coverage failure and not evidence about the hypothesis."
+  }
+ ],
+ "h2_frequency_matched": {
+  "n": 13,
+  "median": 32.0,
+  "n_above_50": 1,
+  "values": [
+   36.0,
+   32.0,
+   32.0,
+   38.0,
+   8.0,
+   52.0,
+   44.0,
+   18.0,
+   36.0,
+   24.0,
+   12.0,
+   2.0,
+   40.0
+  ]
+ },
+ "h3_balance": {
+  "n_funnel": 7,
+  "n_other": 6,
+  "gate_readable": true,
+  "gate_reason": "fixed-point class is usable: {'not': 6, 'funnel': 7}, minority class 6 >= 2. Chance is the majority-class rate 54%; report balanced accuracy against it, not raw agreement."
+ },
+ "h3_concentration": {
+  "funnel_max_inflow": [
+   2651.73,
+   2651.73,
+   3017.16,
+   3325.39,
+   4684.86,
+   1481.03,
+   1320.73
+  ],
+  "other_max_inflow": [
+   3119.39,
+   3303.74,
+   6147.28,
+   3387.13,
+   2651.73,
+   15196.23
+  ],
+  "funnel_range": [
+   1320.73,
+   4684.86
+  ],
+  "other_range": [
+   2651.73,
+   15196.23
+  ],
+  "overlap": true
+ },
+ "predictor_non_independence": {
+  "endpoint_token_counts": {
+   "\n": 6,
+   "0": 3,
+   "9": 1,
+   "8": 1,
+   ",": 1,
+   "1": 1
+  },
+  "note": "models sharing an endpoint token share its corpus inflow and frequency EXACTLY, so the 13 readable models are not 13 independent tests of H1/H2. pythia-410m and -deduped additionally share a tokenizer, making their rows identical. Reported, not corrected for -- correcting would require a weighting scheme that was not pre-registered."
+ },
+ "verdict": "ZERO FORWARD PASSES. wikitext-103 (20M chars), each model's own tokenizer, inflow = Fu et al. Corollary 1.2's term.  K4 COVERAGE: 13 of 15 models readable. Excluded for coverage: [('bloom-3b', ' ciudad', 0)]. Excluded for TOKENIZER LOAD FAILURE, a separate and non-evidential reason: [('polyglot-ko-1.3b', 'OSError')].  K2 TRIVIAL RULE: 'the endpoint is the single most-inflow token' is right for 0 of 13. That rate, not 50%, is the baseline H1 must beat.  H1 (registered, whole-vocabulary percentile): 12 of 13 endpoints are at or above the 90th inflow percentile (median 99.87). H1 SURVIVES on the registered criterion.  H2 (FREQUENCY-MATCHED, the load-bearing test): endpoint inflow beats frequency-matched peers in 1 of 13 models, median percentile 32.0 against 50 by construction. K3 FIRES: inflow adds nothing to frequency. The correct statement is that these maps funnel to COMMON tokens, not to HIGH-INFLOW ones. Fu et al.'s specific claim is UNSUPPORTED on this data; the trivial claim stands untouched. H3 (TIER 2, a NULL): max inflow spans [1320.7, 4684.9] on funnels and [2651.7, 15196.2] on non-funnels. The ranges OVERLAP, so corpus inflow concentration does NOT separate the classes. Stated as registered: this does not PROVE language-independence, it shows this corpus statistic fails to distinguish models that differ sharply in phi -- which is what a weights-side account predicts and a 'caused by the language itself' account does not. NON-INDEPENDENCE, reported not corrected: endpoint tokens repeat across models ({'\\n': 6, '0': 3}), and models sharing a token share its corpus statistics exactly, so the readable models are fewer than 13 independent tests.  REFUSALS, recorded before the numbers: no p-value; no causal claim (corpus bigram inflow is not the model's conditional); no claim that this validates Fu et al.'s BOUND, which is a different object.",
+ "_analysis_provenance": {
+  "script": "inflow_funnel.py",
+  "sha256": "7d8aaa26c81ebef29d84072ddc000e8ac7056fb068f4333484a329cea96919ed",
+  "imports": {
+   "experiments/inflow_funnel.py": "7d8aaa26c81ebef29d84072ddc000e8ac7056fb068f4333484a329cea96919ed",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
