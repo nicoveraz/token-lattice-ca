@@ -1,5 +1,15 @@
 # arXiv submission metadata — paper 2
 
+> **SUBMITTED 21 Aug 2026** — arXiv `submit/7978448`, status *processing*. That is a temporary
+> submission handle, **not** the paper's identifier: the real `arXiv:NNNN.NNNNN` appears only on
+> announcement. Do not put `submit/7978448` in `CITATION.cff`, the README, or anywhere else — the
+> block below waits for the announced ID.
+>
+> **Known cosmetic issue, fixable while the status is still *processing*.** The title was pasted with
+> `--` where the LaTeX source has an em dash (`---`). arXiv's title field is plain text, so it renders
+> as two literal hyphens. Use **Update** to replace it with `—` or a single `-`. The abstract's `--`
+> are correct and conventional and should be left alone.
+
 Everything below is ready to paste into the arXiv submission form. Numbers in the comments line come
 from the verified build (`./make_arxiv_package.sh`), not from an estimate: 11 pages, 4 tables.
 
