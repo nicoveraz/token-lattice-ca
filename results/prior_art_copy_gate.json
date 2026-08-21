@@ -21,16 +21,31 @@
   },
   "C1b_funnel_geometry": {
    "claim": "the funnel class -- many starts landing on one dominant attracting token",
-   "verdict": "THREATENED, and NOT VERIFIED. Fu et al.'s 'high inflow problem' states repetition arises because TOO MANY WORDS PREDICT THE SAME SUCCESSOR WORD with high probability. That is the funnel geometry, named and derived, five years earlier.",
+   "verdict": "RESOLVED 20 Aug 2026 by reading the full text: PARTIALLY ANTICIPATED. The EXPLANATION is theirs and must be cited as such. The MEASUREMENT is not -- every transition matrix in the paper is built from CORPUS WORD COUNTS, never from a model's own conditional.",
    "nearest": [
     {
      "id": "2012.14660",
      "title": "A Theoretical Analysis of the Repetition Problem in Text Generation (Fu et al.)",
      "grade": "ABSTRACT",
      "why_it_bites": "theoretical, on a Markov generation model, with an Average Repetition Probability and upper bounds -- but the CONCEPT of repetition-as-high-in-degree is theirs. Our contribution would be measuring it in real models, not noticing it.",
-     "unresolved": "PDF text extraction FAILED. Whether they measure in-degree on real models, and on how many, is UNKNOWN and must be settled before any write-up."
+     "read": "FULL_TEXT (pdftotext on the arXiv PDF, v4, 22 Mar 2021, AAAI 2021)",
+     "what_is_theirs": [
+      "the CONCEPT: 'the inflow for a word is the probability sum of all words that take it as the subsequent word. If it is too big, the upper bound can be magnified extensively' (Corollary 1.2, which splits the bound into named 'outflow' and 'inflow' terms)",
+      "the CLAIM that this causes repetition: 'high inflow words are more likely to go back to itself and cause the repetition problem'",
+      "the observation that GREEDY DECODING MAKES THE CHAIN DETERMINISTIC: under greedy 'each word only takes a fixed subsequent word and thus zeta*n = 1. Therefore, ARP can be very large and even diverges to infinity.' The deterministic argmax map is named, at window 1.",
+      "the framing that this is a property of LANGUAGE: 'the repetition problem is caused by the language itself. Too many high inflow words in the human language make it easy to go back to themselves.'"
+     ],
+     "what_is_NOT_theirs": [
+      "ANY measurement on a model's own conditional. The matrix is corpus counts in all three places it appears: Algorithm 1 builds M by counting adjacent words in the training text; sec 3 'makes a statistical transition matrix with the encoded training text'; sec 4.2 'The Markov transition matrix is calculated by counting words in Wiki-103.'",
+      "a cohort. Two models, both trained by the authors: an IWSLT'14 En-De Transformer (NMT) and a Wiki-103 Transformer decoder (LM). No pretrained models, no cross-model comparison, no per-model statistic.",
+      "any census of fixed points. Greedy is one decoding BASELINE scored by rep-w / rep-n / rep-r on GENERATED TEXT. The map is never iterated from random starts and its fixed points are never enumerated or classified. B^k_ii appears inside the ARP derivation as a k-step RETURN probability, not as an argmax fixed point.",
+      "the window. Their Markov generation model is p(w_i | w_{i-1}) -- ONE token. This project's map conditions on TWO.",
+      "any notion that inflow is model-specific. Their thesis is the opposite: it is language-specific."
+     ]
     }
-   ]
+   ],
+   "what_this_costs_us": "the funnel class may still be reported as measured, but NOT as explained by us. 'Many tokens map to one, so trajectories pile up there' is Fu et al. 2021's high inflow problem and must be cited at the point of explanation, not in a related-work list.",
+   "what_this_buys_us": "two things that did not exist before the paper was read. (1) A TESTABLE PREDICTION FROM PRIOR ART: if inflow is a corpus property, the funnel endpoint tokens should be high-inflow tokens under corpus bigram statistics -- checkable against stored endpoint histograms with zero forward passes. (2) A TENSION worth stating: their thesis is that repetition is caused by 'the language itself', which predicts uniformity across models trained on similar corpora; this project's census found only 8 of 17 models are funnels, and pythia-410m vs -deduped shares a corpus and a class while other same-corpus-era models differ. That is evidence the geometry is NOT purely a language property -- which is this programme's text-x-weights thesis, now with a named opponent."
   },
   "C2_prefix_installs_the_token": {
    "claim": "a structured prefix installs a SPECIFIC token (the newline) as the fixed point",
@@ -105,9 +120,9 @@
   "refs.bib currently contains ZERO of these: it has no induction, repetition or degeneration entry. Not edited here -- the standing instruction is that refs.bib is not mine to touch."
  ],
  "still_owed": [
-  "full text of Fu et al. 2012.14660 (PDF extraction failed) -- gates C1b",
   "full text of 2603.11228 (PDF extraction failed) -- low risk, abstract suffices to distinguish",
   "the four SNIPPET-grade items above, none of which has been read",
-  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is."
+  "a re-run at the F91/F157 protocol depth. This pass was 6 searches and 4 fetches by hand and is NOT equivalent; it is enough to establish that the mechanism is taken, not enough to certify that nothing else is.",
+  "test of Fu et al.'s prediction: are funnel endpoint tokens high-inflow under corpus bigram statistics? Zero forward passes; not yet run."
  ]
 }

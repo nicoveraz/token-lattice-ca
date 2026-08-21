@@ -3645,6 +3645,64 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F170 — Fu et al. read in full: the funnel's EXPLANATION is theirs, the measurement is not, and their thesis is a named opponent to this project's
+20 Aug 2026. F169 flagged arXiv:2012.14660 (Fu, Lam, So, Shi; AAAI 2021) as the sharpest unresolved
+threat — its **high inflow problem** looked like the funnel class, named in 2020 — and recorded that
+only the abstract had been read because PDF extraction failed. Extracted with `pdftotext` and read in
+full. The threat is **real, bounded, and more useful than it looked.**
+
+**What is theirs, and it is the explanation.** Corollary 1.2 splits their bound on the Average
+Repetition Probability into two named terms, `outflow` and `inflow`, where *"the inflow for a word is
+the probability sum of all words that take it as the subsequent word. If it is too big, the upper
+bound can be magnified extensively."* They conclude *"high inflow words are more likely to go back to
+itself and cause the repetition problem."* They also name the deterministic map: under greedy
+sampling *"each word only takes a fixed subsequent word and thus ζn = 1. Therefore, ARP can be very
+large and even diverges to infinity."* So *many-tokens-map-to-one → trajectories pile up there* is
+**published, derived, and five years old.** This project may report the funnel class as measured, but
+**not as explained by us** — the citation belongs at the point of explanation, not in a related-work
+list.
+
+**What is not theirs, and it is everything measured.** The paper never touches a model's own
+conditional. Its transition matrix is **corpus word counts**, in all three places it appears:
+Algorithm 1 builds `M` by counting adjacent words in the training text; §3 *"makes a statistical
+transition matrix with the encoded training text"*; §4.2 *"The Markov transition matrix is calculated
+by counting words in Wiki-103."* Further:
+
+- **No cohort.** Two models, both trained by the authors — an IWSLT'14 En–De Transformer and a
+  Wiki-103 Transformer decoder. No pretrained models, no cross-model comparison, no per-model statistic.
+- **No census.** Greedy is one decoding *baseline*, scored by `rep-w`/`rep-n`/`rep-r` on **generated
+  text**. The map is never iterated from random starts; its fixed points are never enumerated or
+  classified. `B^k_ii` appears inside the derivation as a k-step **return probability**, not an argmax
+  fixed point.
+- **Wrong window.** Their Markov generation model is `p(w_i | w_{i-1})` — **one** token. This map
+  conditions on two (and F161 already bounded the readout to short windows).
+
+**Verdict: PARTIALLY ANTICIPATED.** The same shape as F157 and F169 — the concept is taken, the
+instrument is not. That is now three times in a row, and it is the honest description of this
+programme.
+
+**And the paper hands over two things that did not exist this morning.**
+
+1. **A testable prediction from prior art.** If inflow is a *corpus* property, the funnel endpoint
+   tokens should be **high-inflow tokens under corpus bigram statistics**. Every ingredient is
+   already stored — endpoint histograms from the census — so this costs **zero forward passes**. It is
+   the first time an outside theory has made a checkable prediction about this project's data.
+2. **A named opponent.** Their thesis is that *"the repetition problem is caused by the language
+   itself. Too many high inflow words in the human language make it easy to go back to themselves."*
+   Language-caused predicts **uniformity** across models trained on similar corpora. This project's
+   census found **8 of 17** models are funnels, with `pythia-410m` and `-deduped` sharing a corpus and
+   a class while other same-era models diverge. If that holds up it is evidence the geometry is not
+   purely a language property — which is exactly this programme's text×weights thesis, and it now has
+   a specific published claim to argue against instead of an absence.
+
+**Boundary.** One paper, read in full, v4 (22 Mar 2021). This resolves the C1b item F169 left open and
+nothing else: the four SNIPPET-grade background items are still unread, and the gate has still not
+been re-run at F91/F157 protocol depth. The prediction in (1) is **stated, not tested** — writing it
+down is not running it.
+
+`results/prior_art_copy_gate.json` (C1b now RESOLVED, with the quotes and the two lists). `refs.bib`
+still untouched and now owes this citation more clearly than before.
+
 ### F169 — the owed prior-art gate, run: the copy MECHANISM is taken, its published direction is the OPPOSITE of ours, and the cross-model readout is the only thing left standing
 20 Aug 2026. F167 and F168 both ended by recording this gate as owed and stopping. It is now run —
 partially, by hand, and the limits are stated below because they change what the result licenses.
@@ -3688,9 +3746,10 @@ is exactly F167/F168's question, and F168 showed this cohort cannot answer it at
   with high probability. Consequently, it is easy to go back to that word and form repetitions."* That
   is the funnel geometry, named and derived, in 2020. Their treatment is theoretical (a Markov
   generation model, an Average Repetition Probability, upper bounds) and ours is a measurement across
-  17 models — but **noticing the geometry is theirs, not ours.** *The PDF failed text extraction and
-  the abstract is all that was read.* Whether they measure in-degree on real models is **unknown**, and
-  it gates any description of the funnel class as this project's.
+  17 models — but **noticing the geometry is theirs, not ours.** *At the time of writing only the abstract had been
+  read.* **RESOLVED THE SAME DAY IN F170:** extracted with `pdftotext` and read in full. They never
+  measure a model's conditional — every transition matrix in the paper is corpus word counts — so the
+  verdict is PARTIALLY ANTICIPATED: the explanation is theirs, the measurement is not.
 - **Structured context engaging copying is published.** *Repetitions are not all alike* (arXiv:2504.01100,
   full text read) finds prompt type changes the repetition *mechanism*: natural prompts give high
   confidence and diffuse attention, ICL prompts give sparse heads (L4H4, L9H9, L10H2) and *"procedural
