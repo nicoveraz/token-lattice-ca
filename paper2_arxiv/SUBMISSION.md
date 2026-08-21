@@ -5,10 +5,10 @@
 > announcement. Do not put `submit/7978448` in `CITATION.cff`, the README, or anywhere else — the
 > block below waits for the announced ID.
 >
-> **Known cosmetic issue, fixable while the status is still *processing*.** The title was pasted with
-> `--` where the LaTeX source has an em dash (`---`). arXiv's title field is plain text, so it renders
-> as two literal hyphens. Use **Update** to replace it with `—` or a single `-`. The abstract's `--`
-> are correct and conventional and should be left alone.
+> **Cosmetic, raised and declined by the author — do not "fix" it.** The title carries `--` where the
+> LaTeX source has an em dash, and arXiv's title field is plain text, so it renders as two literal
+> hyphens. This was flagged while Update was still available and the author chose to leave it. It is
+> recorded here so a later reader treats it as a decision rather than an oversight.
 
 Everything below is ready to paste into the arXiv submission form. Numbers in the comments line come
 from the verified build (`./make_arxiv_package.sh`), not from an estimate: 11 pages, 4 tables.
