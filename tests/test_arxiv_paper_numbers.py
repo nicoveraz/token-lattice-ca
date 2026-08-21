@@ -51,7 +51,11 @@ def _body():
     if not TEX.exists():
         pytest.skip("paper_arxiv/main.tex not present")
     t = TEX.read_text()
-    t = re.sub(r'(?m)%.*$', '', t)                       # comments carry SOURCE notes, not claims
+    # Unescaped `%` only. `(?m)%.*$` also eats `\%`, so in a line like `$32.4\%$ ... $33.3\%$`
+    # everything after the FIRST percent sign vanished and those numbers were never checked. Two
+    # literals in this paper (0.714, 24.1) were invisible for that reason; both trace, so closing
+    # the hole changed no verdict here -- but it was a hole in the guarantee, not in the paper.
+    t = re.sub(r'(?m)(?<!\\)%.*$', '', t)               # comments carry SOURCE notes, not claims
     t = re.sub(r'\\(cite[a-z]*|ref|label|input|include|usepackage|documentclass)\{[^}]*\}', ' ', t)
     return t
 
@@ -117,6 +121,13 @@ def test_the_matcher_rejects_a_prefix_match():
     assert _present("0.579", '{"x": 0.5786}')          # faithful rounding at 3dp
     assert not _present("0.580", '{"x": 0.5786}')      # not a faithful rounding
     assert not _present("0.579", '{"x": 0.6}')         # nothing near it
+
+
+def test_the_comment_stripper_does_not_eat_escaped_percent_signs():
+    """Pin the hole shut. An escaped percent is content; only an unescaped one starts a comment."""
+    stripped = re.sub(r'(?m)(?<!\\)%.*$', '', r'a $33.3\%$ rate % this is a real comment')
+    assert "33.3" in stripped, "an escaped percent must not hide the numbers after it"
+    assert "real comment" not in stripped, "an unescaped percent must still start a comment"
 
 
 def test_the_live_paper_is_the_one_being_guarded():
