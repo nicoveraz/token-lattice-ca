@@ -30,8 +30,12 @@ other:
   line (arXiv:2505.13514) makes copying circuits the cause; *Repetitions are not all alike*
   (arXiv:2504.01100) shows prompt type selects the mechanism.
 
-**The gap.** The data-side camp proves causation by *training* models — few models, own corpora, no
-cross-model comparison. The weights-side camp goes deep on 3–5 models with no corpus term. Nobody has
+**The gap.** The data-side camp proves causation by *training* models — few models, own corpora, and
+no cross-**architecture** comparison. *(Corrected 21 Aug 2026 after F175 read Li et al. in full: the
+earlier wording said "no cross-model comparison", which their Figure 2(b) refutes — an off-the-shelf
+OPT size ladder. What they lack is a cross-architecture or cross-corpus comparison of pretrained
+models, and any readout that is not generation. They also state the architecture gap themselves:
+"the two factors have not been quantitatively evaluated".)* The weights-side camp goes deep on 3–5 models with no corpus term. Nobody has
 measured a corpus-independent structural readout across a *wide* cohort of off-the-shelf pretrained
 models and asked which account predicts what varies.
 
@@ -65,7 +69,7 @@ at zero training cost.
 **Small-n is the whole risk here: this is ONE pair. The registered claim must be scoped to it before
 anything is computed.**
 
-**E2 — the corpus term fails its author's own control** (F171, already run and frozen). Endpoint
+**E2 — the corpus term fails its author's own control** (F171, F174). **DEMOTED 21 Aug 2026 by F175, and the demotion is binding.** Li et al. §6.2 already subsumes Fu's inflow by a controlled experiment — merging only repetitive∩high-inflow pairs (8.1% of words) matches full HI-RE (31.1%), while random high-inflow pairs of the same size do nothing. **E2 is therefore CONVERGENT with the data-side camp, not a strike against it**, and must be staged as a consistency check rather than a refutation. Zihao Fu co-authors both papers. Endpoint
 inflow beats frequency-matched peers on **1 of 13** models, median matched percentile **32.0** — while
 the naive uncontrolled criterion reads **12 of 13 at or above the 90th percentile, median 99.87**.
 The control is one Fu et al. themselves motivate (*"it is not the high-frequency words, but the high
@@ -156,7 +160,8 @@ drafting, not a follow-up.
    matched peer set changes and the swing cannot be attributed to language. **This step required
    network access**: nothing non-English of usable size was cached (302 Korean characters locally),
    and `polyglot-ko`'s tokenizer was missing, which was all of F171's `OSError`.
-5. 5.5 gate at protocol depth; Li et al. in full.
+5. 5.5 gate — **Li et al. in full: DONE 21 Aug 2026, F175.** **Protocol-depth gate: NOT RUN**, and
+   it is the larger half. K4 remains live, so **drafting is still blocked**.
 6. Draft only then. Structure to follow paper 2's ladder idiom: the question, what each account
    predicts, exhibit by exhibit, then a limits section that concedes the causal currency gap first
    rather than last.

@@ -3645,6 +3645,63 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F175 — Li et al. read in full: paper 3's object survives, but E2 is CONVERGENT with the data-side camp rather than a challenge to it, and they name the architecture gap themselves
+21 Aug 2026. `PLAN.md` §5.5 makes reading Li et al. (arXiv:2310.10226, NeurIPS 2023) in full a
+precondition for drafting, "before any sentence about it is written". Fetched, extracted with
+`pdftotext -layout`, read end to end. **The protocol-depth prior-art gate, the other half of §5.5, is
+NOT run — see the owed note at the bottom.**
+
+**First, a fact the plan does not record and that changes how the two data-side pillars relate.**
+`Zihao Fu` — first author of Fu et al. 2021, the theory paper — is a **co-author of Li et al.** The
+plan presents them as two independent camps' champions. They are not independent: the empirical paper
+that subsumes the theory paper is co-written by the theory paper's author.
+
+**Li et al. SUBSUME Fu's inflow, and do it with a clean controlled dissection.** §6.2 argues the
+high-inflow account works *because* high-inflow words overlap repetitive ones: 26% of high-inflow
+word pairs in Wikitext-103 are repetitive, and in their Table 3 — merging only the
+repetitive∩high-inflow subset (**8.1%** of training words) matches the full HI-RE method
+(**31.1%** of words), while merging **random** high-inflow pairs of the same 8.1% size **fails to
+alleviate degeneration at all**. Their conclusion: *"penalizing repetitions in data is critical in the
+success of Fu et al."*
+
+**This reframes E2 and the reframing is not optional.** F171 found endpoints are common tokens, not
+high-inflow ones, and F174 found the same on three languages. Paper 3's §3 stages that as "the corpus
+term fails its author's own control", implying a point against the data-side account. **It is not.
+The data-side camp's leading paper already demoted inflow**, by a controlled experiment, two years
+earlier. E2 is *convergent* with Li et al., not a challenge to them — and a draft that presents it as
+a challenge would be attacking a position the cited opponent does not hold. This is the F157 failure
+shape (over-reading what a source claims) pointed at ourselves.
+
+**What Li et al. do NOT have, verified against the text rather than assumed:**
+- **No fixed-point census, and no readout that is not generation.** Every measurement is `rep-n` on
+  *generated* text under greedy search. Our object does not appear.
+- **No cross-architecture comparison of pretrained models.** Their controlled arm *trains* GPT-2 on
+  six rep-2-sorted shards of five datasets; the instruction arm QLoRA-fine-tunes one LLaMA 2-7B.
+- **They say the gap out loud.** Related Work: *"The model architecture and size may also contribute,
+  but the two factors have not been quantitatively evaluated."* They then partially fill the **size**
+  half themselves with an off-the-shelf OPT ladder — and **architecture is left where they found it.**
+  F172's Pile triple (`gpt-neo-2.7B` **none** vs both pythias **funnel**, one corpus, same endpoint
+  token) is exactly an architecture comparison at fixed corpus.
+
+**A correction to PLAN.md §1, owed before drafting.** It states the data-side camp offers "no
+cross-model comparison". Li et al. **do** have one — the OPT size ladder, off-the-shelf pretrained
+models compared on a degeneration statistic. The claim must narrow to what is actually true: no
+cross-**architecture**, cross-**corpus** comparison of pretrained models, and none on a readout
+without generation in it. Stated loosely, the sentence is refutable by their Figure 2(b).
+
+**Net effect on the paper.** The object survives — nobody has censused fixed points across a wide
+pretrained cohort, and Li et al. confirm the architecture axis is unevaluated by their own account.
+What does **not** survive is E2's framing as a strike against the data side. The honest structure
+puts **E3/E1 first** (heterogeneity at fixed corpus, and a corpus manipulation that moves nothing),
+with E2 demoted to a consistency check that happens to agree with Li et al. on inflow. That is a
+weaker paper than the plan describes and a defensible one.
+
+**Still owed, and it is the larger half of §5.5.** The prior-art gate at **F91/F157 protocol depth**
+has not been run. F169 was six searches by hand with four SNIPPET-grade items still unread; F172's
+field check does not replace it either. K4 remains live: if that gate finds a cross-model repetition
+census, paper 3 is a replication or a comment. **Drafting is still blocked**, and this entry closes
+only the Li et al. half.
+
 ### F174 — §5.3 on own-language corpora: K2 does not fire, the two models English could never measure both land far below the null, and the one paired cell swings 60 points
 21 Aug 2026. `PLAN.md` §5.3, registered in `experiments/prereg_own_language.json` (frozen
 `b21bb918…` before any non-English inflow existed). K2 asks whether measuring each model on **its
