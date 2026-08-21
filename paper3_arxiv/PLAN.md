@@ -131,9 +131,15 @@ drafting, not a follow-up.
 
 ## 7. Sequencing
 
-1. Paper 2 submitted and announced (in flight).
-2. 5.1 pair search + 5.4 stability table — cheapest, and 5.1 may kill the paper (K1) before anything
-   else is spent.
+1. Paper 2 submitted and announced (in flight). **Submitted 21 Aug 2026, awaiting announcement.**
+2. ~~5.1 pair search + 5.4 stability table~~ — **DONE 21 Aug 2026, F172.** K1 did not fire, but not
+   reassuringly: it is conditioned on a *second* manipulation pair and there is no second one, so E1
+   rests on the single `pythia-410m` / `-deduped` pair as the plan feared. Class is stable 17/17,
+   modal endpoint 15/17. Two things the plan did not anticipate: the cohort holds a same-corpus
+   **triple** (`gpt-neo-2.7B` is Pile-trained too) in which all three models reach the *same* endpoint
+   token `'\n'` while φ spans 0.036 to 0.458 — so E3 gains a *within-corpus* instance, stronger than
+   the "comparable corpora" version written in §3 — and 7 of 17 models have undisclosed corpora, so
+   the pair search's null is bounded by what model cards disclose.
 3. 5.2 cluster prereg, frozen and hashed.
 4. 5.3 second corpus.
 5. 5.5 gate at protocol depth; Li et al. in full.

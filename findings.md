@@ -3645,6 +3645,69 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F172 — paper 3's first two runs: the cohort holds exactly ONE corpus manipulation, and within The Pile the corpus sets the endpoint token while the weights decide whether it self-continues
+21 Aug 2026. `paper3_arxiv/PLAN.md` §7 sequences the pair search (§5.1) and the stability table
+(§5.4) first, because K1 could kill the paper's primary exhibit at no cost. Both are **zero forward
+passes** — the 17-model census already exists and this is a counting exercise over it.
+
+**§5.4 — the stability assumption, printed for the first time.** Class is stable across census seeds
+on **17 of 17** models. The *modal endpoint token* is stable on **15 of 17**; the two exceptions are
+`LFM2-2.6B` (`'.'` / `'력'`) and `starcoder2-3b` (`'\n'` / `'0'`), already known from F166 and F171
+and already excluded there by the same rule. The cohort's class stability had been assumed since F90
+and never tabulated; it now is.
+
+**§5.1 — the pair search returns exactly one, and K1 does not fire for a reason that is a warning
+rather than a reassurance.** K1 kills E1 if a *second* matched-corpus pair exists and its class
+differs across the manipulation. There is no second pair, so K1 cannot fire — **E1 rests on one
+pair, and the search for a companion came back empty.** That is precisely the small-n risk the plan
+flagged, and it is now measured rather than anticipated.
+
+| pair | manipulation | class | φ | endpoint |
+|---|---|---|---|---|
+| `pythia-410m` → `-deduped` | deduplication | funnel → **funnel** | 0.458 → 0.427 | `'\n'` → `'\n'` |
+
+**The finding that was not in the plan.** Attributing training corpora across the cohort turns up a
+same-corpus **triple**, not just the pair — `gpt-neo-2.7B` is Pile-trained too:
+
+| model (all The Pile) | class | φ | modal endpoint |
+|---|---|---|---|
+| `gpt-neo-2.7B` | **none** | 0.036 | `'\n'` |
+| `pythia-410m` | funnel | 0.458 | `'\n'` |
+| `pythia-410m-deduped` | funnel | 0.427 | `'\n'` |
+
+**All three land on the same token. Only one of them stays there.** φ spans 0.036 to 0.458 within a
+single corpus, while the endpoint token is identical across all three. So on this evidence the corpus
+appears to set *which* token trajectories reach, and something on the weights side decides whether
+that token self-continues.
+
+That is the same shape F165/F166 found on the *prefix* axis — the prefix selects a token, the model
+decides whether it self-continues — arriving here on the *corpus* axis, which is a different axis and
+an independent observation. **It is recorded as a resonance and nothing more.** The mechanism thread
+is paper 4 by PLAN.md §8, it is blocked on widenings that have not run, and importing its pending
+verdicts to prop up this one would be exactly the borrowing this project keeps refusing.
+
+**The two comparisons cross, and that is stronger than either alone.** Hold the corpus fixed and vary
+the weights (`gpt-neo` vs `pythia`): the class changes. Hold the weights fixed and vary the corpus
+(dedup): nothing moves. Both point the same way, and the crossing is a better argument shape than E1
+standing alone — E1 by itself is formally compatible with "the class is a corpus property this
+manipulation happens not to touch", and the Pile triple is not.
+
+**What it does not license, stated because the shape invites it.** `gpt-neo-2.7B` differs from
+`pythia-410m` in architecture **and** size (2.7B vs 410m), so "weights side" here is a bucket, not an
+identified factor — this cannot separate architecture from scale, and does not try. It is a
+confounded sibling comparison, deliberately reported in a list separate from the manipulation pair so
+that it cannot fire K1, which is written about manipulations and would be meaningless applied to a
+comparison with nothing held fixed.
+
+**A coverage bound, which is the honest limit of a documentation-derived search.** **7 of 17** models
+(`Llama-3.2-3B`, `gemma-2-2b`, `Qwen1.5-1.8B`, `Falcon3-1B-Base`, `helium-1-preview-2b`,
+`LFM2-2.6B`, `stablelm-3b-4e1t`) have an undisclosed or proprietary-mixture training corpus. A second
+manipulation pair could exist in this very cohort and be invisible to this method. **Absence of a
+second pair is not evidence that none exists**, and the corpus labels throughout are model-card
+claims rather than measurements — F90's caveat, still in force.
+
+`experiments/cohort_pairs_and_stability.py` → `results/cohort_pairs_and_stability.json`.
+
 ### F171 — Fu et al.'s prediction, tested: it PASSES the obvious test at the 99.9th percentile and FAILS the frozen control. The endpoints are common, not high-inflow.
 20 Aug 2026. F170 ended by noting that Fu et al. (arXiv:2012.14660) make a checkable prediction about
 this project's data and that stating it is not running it. Run now, at **zero forward passes** — the
