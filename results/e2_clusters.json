@@ -1,0 +1,353 @@
+{
+ "_preregistration_file": "experiments/prereg_e2_clusters.json",
+ "_prereg_sha256": "5137678c2ef2deb77519fd365746e59cb4884ac0d2f205ce708a5df3a28d0527  prereg_e2_clusters.json  (frozen, pre-amendment)\n4b4bbb7ec09777ea298c55e7e1caa8cdf3fbbc09748f204964041bc81f7eea09  prereg_e2_clusters.json  (frozen, post-amendment; both dated BEFORE the run)",
+ "_forward_passes": 0,
+ "_standing_decision": "H0 -- E2 reported descriptively, as F171 reports it. The burden is on H1 and only this registered analysis can move it.",
+ "n_models": 13,
+ "primary_clusters": [
+  {
+   "key": "(5285, 88.724, 5669)",
+   "n": 1,
+   "models": [
+    "stablelm-3b-4e1t"
+   ],
+   "values": [
+    2.0
+   ],
+   "median": 2.0,
+   "below_null": true
+  },
+  {
+   "key": "(59956, 99.155, 1281)",
+   "n": 1,
+   "models": [
+    "Qwen1.5-1.8B"
+   ],
+   "values": [
+    8.0
+   ],
+   "median": 8.0,
+   "below_null": true
+  },
+  {
+   "key": "(59956, 96.408, 1177)",
+   "n": 1,
+   "models": [
+    "Minerva-3B-base-v1.0"
+   ],
+   "values": [
+    12.0
+   ],
+   "median": 12.0,
+   "below_null": true
+  },
+  {
+   "key": "(35740, 98.375, 780)",
+   "n": 1,
+   "models": [
+    "helium-1-preview-2b"
+   ],
+   "values": [
+    18.0
+   ],
+   "median": 18.0,
+   "below_null": true
+  },
+  {
+   "key": "(5421, 99.676, 415)",
+   "n": 1,
+   "models": [
+    "Llama-3.2-3B"
+   ],
+   "values": [
+    24.0
+   ],
+   "median": 24.0,
+   "below_null": true
+  },
+  {
+   "key": "(44158, 99.916, 42)",
+   "n": 2,
+   "models": [
+    "pythia-410m",
+    "pythia-410m-deduped"
+   ],
+   "values": [
+    32.0,
+    32.0
+   ],
+   "median": 32.0,
+   "below_null": true
+  },
+  {
+   "key": "(44158, 99.926, 37)",
+   "n": 1,
+   "models": [
+    "gpt-neo-2.7B"
+   ],
+   "values": [
+    36.0
+   ],
+   "median": 36.0,
+   "below_null": true
+  },
+  {
+   "key": "(44158, 99.945, 55)",
+   "n": 1,
+   "models": [
+    "llm-jp-3-1.8b"
+   ],
+   "values": [
+    36.0
+   ],
+   "median": 36.0,
+   "below_null": true
+  },
+  {
+   "key": "(44158, 99.9, 49)",
+   "n": 1,
+   "models": [
+    "SmolLM-1.7B"
+   ],
+   "values": [
+    38.0
+   ],
+   "median": 38.0,
+   "below_null": true
+  },
+  {
+   "key": "(67437, 99.841, 208)",
+   "n": 1,
+   "models": [
+    "Falcon3-1B-Base"
+   ],
+   "values": [
+    40.0
+   ],
+   "median": 40.0,
+   "below_null": true
+  },
+  {
+   "key": "(44158, 99.987, 33)",
+   "n": 1,
+   "models": [
+    "gemma-2-2b"
+   ],
+   "values": [
+    44.0
+   ],
+   "median": 44.0,
+   "below_null": true
+  },
+  {
+   "key": "(8622, 99.869, 131)",
+   "n": 1,
+   "models": [
+    "OLMo-2-0425-1B"
+   ],
+   "values": [
+    52.0
+   ],
+   "median": 52.0,
+   "below_null": false
+  }
+ ],
+ "sensitivity_clusters": [
+  {
+   "key": ",",
+   "n": 1,
+   "models": [
+    "stablelm-3b-4e1t"
+   ],
+   "values": [
+    2.0
+   ],
+   "median": 2.0,
+   "below_null": true
+  },
+  {
+   "key": "0",
+   "n": 3,
+   "models": [
+    "Minerva-3B-base-v1.0",
+    "OLMo-2-0425-1B",
+    "Qwen1.5-1.8B"
+   ],
+   "values": [
+    8.0,
+    12.0,
+    52.0
+   ],
+   "median": 12.0,
+   "below_null": true
+  },
+  {
+   "key": "9",
+   "n": 1,
+   "models": [
+    "helium-1-preview-2b"
+   ],
+   "values": [
+    18.0
+   ],
+   "median": 18.0,
+   "below_null": true
+  },
+  {
+   "key": "8",
+   "n": 1,
+   "models": [
+    "Llama-3.2-3B"
+   ],
+   "values": [
+    24.0
+   ],
+   "median": 24.0,
+   "below_null": true
+  },
+  {
+   "key": "\n",
+   "n": 6,
+   "models": [
+    "SmolLM-1.7B",
+    "gemma-2-2b",
+    "gpt-neo-2.7B",
+    "llm-jp-3-1.8b",
+    "pythia-410m",
+    "pythia-410m-deduped"
+   ],
+   "values": [
+    32.0,
+    32.0,
+    36.0,
+    36.0,
+    38.0,
+    44.0
+   ],
+   "median": 36.0,
+   "below_null": true
+  },
+  {
+   "key": "1",
+   "n": 1,
+   "models": [
+    "Falcon3-1B-Base"
+   ],
+   "values": [
+    40.0
+   ],
+   "median": 40.0,
+   "below_null": true
+  }
+ ],
+ "K7_primary_premise_violations": [],
+ "K7_sensitivity_premise_violations": [
+  {
+   "key": "0",
+   "models": [
+    "Minerva-3B-base-v1.0",
+    "OLMo-2-0425-1B",
+    "Qwen1.5-1.8B"
+   ],
+   "violates": [
+    "corpus_count",
+    "inflow_rank"
+   ],
+   "corpus_counts": [
+    8622,
+    59956
+   ],
+   "inflow_ranks": [
+    131,
+    1177,
+    1281
+   ]
+  },
+  {
+   "key": "\n",
+   "models": [
+    "SmolLM-1.7B",
+    "gemma-2-2b",
+    "gpt-neo-2.7B",
+    "llm-jp-3-1.8b",
+    "pythia-410m",
+    "pythia-410m-deduped"
+   ],
+   "violates": [
+    "inflow_rank"
+   ],
+   "corpus_counts": [
+    44158
+   ],
+   "inflow_ranks": [
+    33,
+    37,
+    42,
+    49,
+    55
+   ]
+  }
+ ],
+ "primary_summary": {
+  "n_clusters": 12,
+  "n_singletons": 11,
+  "all_below_null": false,
+  "medians": [
+   2.0,
+   8.0,
+   12.0,
+   18.0,
+   24.0,
+   32.0,
+   36.0,
+   36.0,
+   38.0,
+   40.0,
+   44.0,
+   52.0
+  ],
+  "at_or_above_null": [
+   "(8622, 99.869, 131)"
+  ]
+ },
+ "sensitivity_summary": {
+  "n_clusters": 6,
+  "n_singletons": 4,
+  "all_below_null": true,
+  "medians": [
+   2.0,
+   12.0,
+   18.0,
+   24.0,
+   36.0,
+   40.0
+  ],
+  "at_or_above_null": []
+ },
+ "K6_rules_agree": false,
+ "claim_supported": false,
+ "verdict": "ZERO FORWARD PASSES; 13 readable models from results/inflow_funnel.json, aggregated to clusters under two registered rules.  PRIMARY (identical corpus statistics): 12 clusters, 11 of them singletons; cluster medians [2.0, 8.0, 12.0, 18.0, 24.0, 32.0, 36.0, 36.0, 38.0, 40.0, 44.0, 52.0]. SENSITIVITY (decoded glyph, the rule the plan assumed): 6 clusters, 4 singletons; medians [2.0, 12.0, 18.0, 24.0, 36.0, 40.0].  K7: the SENSITIVITY rule violates the non-independence premise on 2 cluster(s) -- [('0', ['corpus_count', 'inflow_rank']), ('\\n', ['inflow_rank'])] -- confirming, from the data rather than by argument, that grouping on the decoded glyph merges models that were scored against different corpus statistics. The plan's premise is false as written.  K7 passes on the PRIMARY rule: every cluster's members share corpus count and inflow rank exactly, so each cluster is one test rather than several.  K6 FIRES: the two rules DISAGREE on the criterion -- primary all-below-50 = False, sensitivity = True. Neither is reported as the answer. The disagreement IS the result: E2's direction is not robust to a defensible change in aggregation, and it turns on whether one model scored against a different corpus statistic is counted as its own unit.  H1 NOT SUPPORTED, and H0 STANDS: unanimity fails -- cluster(s) at or above 50: ['(8622, 99.869, 131)']. E2 is reported exactly as F171 reports it: the reversal is an observation, not a claim.  K5 FIRES: 11 of 12 primary clusters are singletons, so clustering reduced 13 models to 12 units and most of those units are one model. This analysis must NOT be presented as having controlled for non-independence -- it is close to the per-model analysis under another name, and the cluster count is reported with the singleton count beside it for that reason.  REFUSALS, recorded before the numbers: no p-value (cluster count is below F149's ten-cluster floor); no confidence interval on a median of fewer than ten clusters; no rank correlation between cluster size and median; no re-measurement.",
+ "_analysis_provenance": {
+  "script": "e2_clusters.py",
+  "sha256": "7fdb160f786a51e47fc8000b92031f0adbac93ddfca1c6ac69fff3d8945d81a3",
+  "imports": {
+   "experiments/e2_clusters.py": "7fdb160f786a51e47fc8000b92031f0adbac93ddfca1c6ac69fff3d8945d81a3",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

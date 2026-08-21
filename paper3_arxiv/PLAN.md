@@ -140,7 +140,14 @@ drafting, not a follow-up.
    token `'\n'` while φ spans 0.036 to 0.458 — so E3 gains a *within-corpus* instance, stronger than
    the "comparable corpora" version written in §3 — and 7 of 17 models have undisclosed corpora, so
    the pair search's null is bounded by what model cards disclose.
-3. 5.2 cluster prereg, frozen and hashed.
+3. ~~5.2 cluster prereg, frozen and hashed.~~ **DONE 21 Aug 2026, F173.** Registered, then run.
+   H1 not supported and **H0 stands** — E2 stays descriptive. Three gates fired: K6 (the two
+   aggregation rules disagree, so neither is the answer — `OLMo-2` at 52.0 is unanimity's only
+   obstacle and the glyph rule hides it), K7 (§5.2's premise is false, confirmed from data), and K5
+   (the clustering did almost no work). **§5.2's premise was wrong in both directions**: the glyph
+   rule over-merges, and "13 rows are ~5 clusters" is really 12 clusters, 11 of them singletons. The
+   models are very nearly independent already, which also qualifies F171's non-independence caveat.
+   The re-aggregation axis is now exhausted; only more models would move E2.
 4. 5.3 second corpus.
 5. 5.5 gate at protocol depth; Li et al. in full.
 6. Draft only then. Structure to follow paper 2's ladder idiom: the question, what each account

@@ -3645,6 +3645,68 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F173 — the registered cluster analysis: H0 stands, and the non-independence it was written to control turns out to be mostly illusory
+21 Aug 2026. `PLAN.md` §5.2 required the cluster-level treatment of E2 to be registered before it was
+run, *including whether the reversal is reported at all*. Registered in
+`experiments/prereg_e2_clusters.json` (frozen `5137678c…`, post-amendment `4b4bbb7e…`, both dated
+before the run), then run at **zero forward passes** over stored numbers.
+
+**Verdict: H1 not supported. H0 stands, and E2 is reported exactly as F171 reports it** — the
+reversal is an observation, not a claim. Three registered gates fired on the way, and each says
+something different.
+
+**K6 — the two rules disagree, so neither is the answer.** Unanimity below 50 holds under the glyph
+rule and fails under the corpus-statistics rule, because `OLMo-2-0425-1B` sits at **52.0**, the only
+model above the null. Grouped by glyph it is outvoted inside a cluster of median 12.0; separated on
+its statistics it stands alone. **The aggregation rule decides the verdict**, which is why it was
+registered first and why the disagreement is reported as the result rather than resolved in favour of
+either.
+
+**K7 — the plan's premise is false, confirmed from the data rather than by argument.** §5.2 asserts
+that models sharing an endpoint token share corpus statistics exactly. The glyph rule violates that
+on two of its six clusters: `'0'` on **both** corpus count and inflow rank (8 622 vs 59 956 — a
+different token, differently segmented), and `'\n'` on inflow rank. This is F166's rule arriving in
+its cross-model form: never key a partition on the decoded string. Across models the token ID is not
+comparable at all, so what must be keyed on is the shared statistic itself.
+
+**K5 — and here is the part that was not anticipated at all.** Under the principled rule the 13
+models resolve to **12 clusters, 11 of them singletons.** Only `pythia-410m` and `-deduped` cluster,
+and only because they share a tokenizer outright. The six `'\n'` models share a corpus *count*
+(44 158) but not an inflow rank: inflow is computed over each model's own tokenization of the same
+corpus, so the quantity each was scored against is its own.
+
+| rule | clusters | singletons | all below 50 |
+|---|---|---|---|
+| primary (identical corpus statistics) | **12** | 11 | **no** — `OLMo-2` at 52.0 |
+| sensitivity (decoded glyph, as the plan assumed) | 6 | 4 | yes |
+
+**So §5.2's premise was wrong in both directions at once.** It *over-merged* — grouping by glyph puts
+models scored against different statistics into one unit — and it *over-stated the dependence*: "13
+rows are ~5 clusters" is not 5, it is 12. The models are very nearly independent already.
+
+**This qualifies F171, not just the plan.** F171 recorded that "the readable models are not 13
+independent tests" and declined to correct for it, on the grounds that any weighting would be
+unregistered. The decision to decline was right; **the stated reason was too strong.** They are
+closer to 13 independent tests than that caveat implies. A banner is on F171 accordingly.
+
+**Why H0 still stands, given that.** Two reasons, and neither is the caveat that just weakened. The
+registered criterion is unanimity, and unanimity fails at 52.0. And K5 means the clustering did
+almost no work: reducing 13 models to 12 units is not a control for non-independence, and this
+analysis must not be presented as one. The right description of E2 is the one F171 already used —
+the median sits at 32.0 against a constructed null of 50, one model sits above it, and the direction
+is recorded rather than claimed.
+
+**What would move it, stated so the next attempt does not have to guess.** Not a re-aggregation:
+that axis is now exhausted and this run is its record. It would take models — enough independent
+units that a majority means something, or a cohort where the direction is unanimous without a rule
+chosen to make it so.
+
+**Boundary.** One English corpus, 13 models, one matched-null construction, one statistic. No
+p-value, no confidence interval, no rank correlation, no re-measurement — all four refused in the
+pre-registration before the numbers were aggregated.
+
+`experiments/e2_clusters.py` → `results/e2_clusters.json`.
+
 ### F172 — paper 3's first two runs: the cohort holds exactly ONE corpus manipulation, and within The Pile the corpus sets the endpoint token while the weights decide whether it self-continues
 21 Aug 2026. `paper3_arxiv/PLAN.md` §7 sequences the pair search (§5.1) and the stability table
 (§5.4) first, because K1 could kill the paper's primary exhibit at no cost. Both are **zero forward
@@ -3709,6 +3771,16 @@ claims rather than measurements — F90's caveat, still in force.
 `experiments/cohort_pairs_and_stability.py` → `results/cohort_pairs_and_stability.json`.
 
 ### F171 — Fu et al.'s prediction, tested: it PASSES the obvious test at the 99.9th percentile and FAILS the frozen control. The endpoints are common, not high-inflow.
+
+> **QUALIFIED BY F173 (21 Aug 2026), on the non-independence caveat only.** The verdict below stands
+> and every number is unchanged. What was too strong is the stated reason for declining to correct
+> for non-independence: this entry says models sharing an endpoint token share corpus statistics
+> exactly, so "the readable models are fewer than 13 independent tests". A registered cluster
+> analysis finds they resolve to **12 clusters, 11 of them singletons** — only `pythia-410m` and
+> `-deduped` genuinely share statistics. The six `'\n'` models share a corpus count but not an
+> inflow rank, since inflow is computed over each model's own tokenization. The decision to decline
+> a correction was right; the dependence it invoked is mostly not there.
+
 20 Aug 2026. F170 ended by noting that Fu et al. (arXiv:2012.14660) make a checkable prediction about
 this project's data and that stating it is not running it. Run now, at **zero forward passes** — the
 model side is the stored 17-model census, the corpus side is **wikitext-103, the corpus Fu et al.
