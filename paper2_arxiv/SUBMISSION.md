@@ -47,14 +47,26 @@ mechanical one.
 
 ## Abstract (plain text, ready to paste)
 
-```
-That a prompt's effect on a language model is not a property of the prompt is established: prompts optimised for one model degrade on another, formats have no model-independent valence, and benchmark rankings reorder under semantically neutral reformatting. All of that evidence is about task accuracy, and a task readout cannot say where the interaction lives -- in the machinery of performing tasks, or in the conditional distribution itself. We ask on a readout with no task in it: the fixed-point structure of the short-window argmax map x_{t+1} = argmax_x p(x | x_{t-1}, x_t), censused from 96 starts. It is deterministic, so nothing can be helped or hurt; and it exists only at short windows -- four of six models lose it entirely by window 16 -- so everything here is a statement about how a model reads a fragment. Two results. First, the interaction reaches this readout at full magnitude: nine tokens of conditioning move the fixed-point fraction across most of its range, change a four-way structural class, and reorder models, while an instruction-tuning intervention that moves IFEval by 60.5 points moves the class by zero. Second, nothing we proposed carries the effect. Prefix length fails: the effect is not monotone. Four phenomenological factors -- prose-versus-markup, a universal direction, bidirectionality as a model property, instruct-resistance -- were each withdrawn within one run of being proposed, dissolved by widening the sample. And the nearest mechanistic account, attention-sink dominance of early tokens, predicts the sign of the shift on 2 of 5 models -- chance -- with a length-by-content cross showing why: the account holds on real text and fails on the uniformly random input our probe feeds it, so we operate outside its regime rather than against it. One fixed nine-token prefix drives four models toward fixed-point fraction 0 and two toward 1; a single beginning-of-sequence token takes one model from 0.21 to 0.91 while collapsing others; the bidirectionality survives in-distribution starts. On this readout the unit of explanation is the prompt-model pair. We close with the discipline that caught our own four factors, whose recurring error has a name: a criterion with a shape applied to a quantity with no room to vary.```
+**arXiv caps this field at 1,920 characters.** The manuscript's abstract is 2,269, so what follows is
+a trimmed version at **1,885 characters** — 35 to spare, deliberately, because a field that fits by
+one character fails the moment the form counts a trailing newline differently.
 
-The abstract is extracted mechanically from `\begin{abstract}` in `main.tex` and de-TeXed: `\Nstarts`
-resolved to 96, `\fpf` to "phi", the display of the map written inline as
-`x_{t+1} = argmax_x p(x | x_{t-1}, x_t)`, em-dashes as ` -- `, and compound en-dashes as single
-hyphens. No wording was changed. If the abstract in `main.tex` changes, regenerate rather than edit
-this file by hand.
+```
+That a prompt's effect is not a property of the prompt is established: prompts optimised for one model degrade on another, and rankings reorder under neutral reformatting. That evidence is about task accuracy, which cannot say whether the interaction is a fact about task machinery or about the conditional distribution itself. We ask on a readout with no task in it: the fixed-point structure of the short-window argmax map x_{t+1} = argmax_x p(x | x_{t-1}, x_t), censused from 96 starts. It is deterministic, so nothing can be helped or hurt, and it exists only at short windows -- four of six models lose it entirely by window 16 -- so everything here concerns how a model reads a fragment. Two results. First, the interaction reaches this readout at full magnitude: nine tokens of conditioning move the fixed-point fraction across most of its range, change a four-way structural class, and reorder models, while instruction tuning worth 60.5 IFEval points moves the class by zero. Second, nothing we proposed carries it. Prefix length fails: the effect is not monotone. Four phenomenological factors -- prose-versus-markup, a universal direction, bidirectionality, instruct-resistance -- were each withdrawn within one run of being proposed, dissolved by widening the sample. And the nearest mechanistic account, attention-sink dominance of early tokens, predicts the sign of the shift on 2 of 5 models -- chance -- while a length-by-content cross shows it holds on real text and fails on our probe's uniformly random input, so we are outside its regime, not against it. One fixed nine-token prefix drives four models toward 0 and two toward 1; the bidirectionality survives in-distribution starts. On this readout the unit of explanation is the prompt-model pair. The recurring error it caught in us has a name: a criterion with a shape applied to a quantity with no room to vary.
+```
+
+**Nothing was dropped that the paper claims.** Every result, both headline findings and every number
+that survived — 96 starts, window 16, 60.5 IFEval points, 2 of 5 models, four models to 0 and two to
+1 — is still here. The 384 characters came out of phrasing, plus one illustration: the manuscript
+also cites a single BOS token taking one model from 0.21 to 0.91, and that example is the only
+content the arXiv field lacks. It is an *additional* instance of bidirectionality, which the retained
+"four models toward 0 and two toward 1" already states.
+
+The manuscript's own abstract is unchanged. A shorter arXiv field is routine and expected at this
+limit; do not edit `main.tex` to match, or the paper and the record diverge for no gain.
+
+If the abstract in `main.tex` ever changes, regenerate both from it rather than editing this file by
+hand.
 
 ---
 
