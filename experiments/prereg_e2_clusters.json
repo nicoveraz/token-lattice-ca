@@ -1,0 +1,59 @@
+{
+ "name": "e2-cluster-level-nonindependence-v1",
+ "status": "FROZEN before any cluster-level statistic is computed. Zero forward passes: every input is already stored in results/inflow_funnel.json.",
+ "plan_section": "paper3_arxiv/PLAN.md section 5.2, and its kill condition K3",
+
+ "epistemic_tier": "TIER 3, and the label is doing real work here. The per-model inputs are ALREADY PUBLISHED in F171 -- all thirteen frequency-matched percentiles appear in the findings entry and in results/inflow_funnel.json. Before writing this file I also inspected the CLUSTER COMPOSITION, which is how the defect in section 5.2's premise below was found. So nothing about the data is unknown to the author, and a registration that implied otherwise would be theatre. What is registered, and what genuinely is not yet fixed, is the AGGREGATION RULE and the REPORTING DECISION -- written down before the aggregation is computed, so the rule cannot be selected for the answer it gives. That is the only guarantee this file offers, and it is stated rather than dressed up.",
+
+ "why_this_matters_more_than_usual": "The two candidate clustering rules GIVE DIFFERENT VERDICTS, and that was verified before either was adopted. Under one rule every cluster falls below 50 and the reversal would be claimable; under the other a cluster lands at 52.0 and it would not. A rule chosen after seeing that is not a rule, it is a preference. Both are therefore registered here, with the primary chosen on a stated principle and the alternative retained as a disclosed sensitivity.",
+
+ "the_defect_this_prereg_found_in_its_own_plan": {
+  "plan_text": "PLAN.md section 5.2 states that F171's rows are ~5 clusters because \"'\\n' is the endpoint for 6 models, '0' for 3, and models sharing a token share corpus statistics exactly\".",
+  "the_premise_is_false": "Models sharing a DECODED endpoint do NOT necessarily share corpus statistics. The three models whose modal endpoint decodes to '0' split: Qwen1.5-1.8B and Minerva-3B both have corpus count 59956, while OLMo-2-0425-1B has 8622. Different tokenizers segment digits differently, so OLMo's '0' is a different object in corpus terms and its inflow and frequency were computed against a different token. It is not statistically dependent on the other two.",
+  "why_it_decides_the_analysis": "OLMo-2 carries 52.0, the ONLY per-model value above 50 in the cohort. Grouped by glyph it is outvoted inside a cluster whose median is 12.0; separated by corpus statistics it is a singleton at 52.0. Any criterion sensitive to whether all clusters fall below 50 therefore flips on the clustering rule alone.",
+  "relation_to_F166": "F166 recorded the same class of error one level down -- 'any future partition rule must key on token ID, never on the decoded string' -- after two distinct entries in one model's histogram both rendered as '0'. Across models the token ID is not comparable (different tokenizers), so the cross-model analogue of that rule is to key on the corpus statistics themselves, which is what non-independence actually consists of."
+ },
+
+ "hypotheses": {
+  "H1_reversal_survives_clustering": "the reversal F171 observed but declined to claim -- endpoint tokens sitting BELOW their frequency-matched peers in inflow, per-model median 32.0 against 50 by construction -- survives aggregation to independent clusters",
+  "H0_default": "it does not survive, and E2 is reported descriptively as F171 already reports it. THIS IS THE STANDING DECISION. PLAN.md: F171 'recorded it as an observation and declined to claim it; that decision stands until a registered cluster analysis says otherwise.' The burden is on H1."
+ },
+
+ "frozen": {
+  "source": "results/inflow_funnel.json, per_model rows, restricted to the 13 that cleared F171's K4 coverage floor. No re-measurement.",
+  "statistic_per_model": "freq_matched_pctl -- the endpoint token's inflow percentile among the 50 tokens nearest it in log-frequency. 50 is its expected value by construction.",
+
+  "PRIMARY_clustering_rule": "cluster by IDENTICAL CORPUS STATISTICS: two models are in the same cluster if and only if their endpoint's corpus count AND inflow value are equal. Chosen on the principle that non-independence is a property of the SHARED STATISTIC, not of a shared glyph -- two models scored against the same corpus number are one test, and two models scored against different numbers are two, whatever they print as.",
+  "why_the_primary_is_the_harder_rule": "DISCLOSED so the choice cannot be read as self-serving: this rule SEPARATES OLMo-2 into a singleton at 52.0 and therefore makes H1 harder to satisfy, while the glyph rule absorbs it into a cluster median of 12.0 and makes H1 easier. The principled rule is also the strict one, which is the only configuration in which choosing it is not a preference.",
+
+  "SENSITIVITY_clustering_rule": "cluster by DECODED endpoint string, i.e. the rule PLAN.md section 5.2 assumed. Reported alongside the primary, always, whether or not the two agree. If they disagree, the disagreement IS the result and is reported as such.",
+
+  "cluster_statistic": "the MEDIAN of freq_matched_pctl across the models in a cluster, giving one value per cluster. Median rather than mean because the per-model quantity is itself a percentile and F171's headline used a median; fixed here so it cannot be swapped after the fact.",
+  "unit": "cluster"
+ },
+
+ "claim_criterion": {
+  "rule": "H1 is claimable ONLY IF every cluster's median falls below 50 under the PRIMARY rule AND under the SENSITIVITY rule. Unanimity across clusters, under both rules.",
+  "why_unanimity_and_not_a_test": "with fewer than ten clusters this project refuses significance testing (F149's ten-cluster floor), so there is no test to run. What remains is a sign-consistency criterion, and at this cluster count only unanimity is meaningful -- a majority of six is not evidence of a direction.",
+  "anti_vacuity": "the criterion has room to fail and is known to be able to fail: a single cluster at or above 50 defeats it. This is not a criterion whose shape guarantees its own satisfaction, which is registry defect R1 and this project's most frequent error.",
+  "if_not_claimable": "E2 is reported exactly as F171 reports it -- the reversal recorded as an observation, not claimed -- and the cluster analysis is reported as the reason, with the per-cluster values printed so a reader can see how close it came."
+ },
+
+ "kill_conditions": {
+  "K3_from_the_plan": "if fewer than 4 independent clusters survive under the PRIMARY rule, E2 is reported as DESCRIPTIVE ONLY, with no rate and no comparison to 50. Verbatim from PLAN.md section 6.",
+  "K5_singleton_dominance": "ADDED HERE, before running. If more than half the clusters are singletons, clustering has not meaningfully reduced the effective sample and the 'cluster analysis' is close to the per-model analysis wearing a different name. In that case the cluster count is reported WITH the singleton count beside it, and no claim rests on the reduction in n. A cluster analysis that leaves n almost unchanged must not be presented as having controlled for non-independence.",
+  "K6_rule_disagreement": "if the primary and sensitivity rules give different verdicts, NEITHER is reported as the answer. The disagreement is the finding, and it is reported as evidence that E2 is not robust to a defensible change in aggregation.",
+  "K7_premise_check": "the primary rule's clusters must actually satisfy the premise -- every member sharing corpus count and inflow exactly. This is asserted by the rule's construction and is verified in the output rather than assumed, because assuming it is what put the false premise into the plan."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value: the cluster count is below F149's ten-cluster floor, and 13 rows that are not 13 independent tests cannot fail a significance test informatively",
+  "no confidence interval on a median of fewer than ten clusters",
+  "no rank correlation between cluster size and cluster median -- too few clusters, and the question is not asked",
+  "no re-measurement: this is an aggregation of stored numbers, and if the answer depended on re-running the probe it would be a different experiment"
+ ],
+
+ "what_this_cannot_settle": "Whether endpoints sit below frequency-matched peers in the population of language models. Thirteen models chosen for a census, clustered to fewer, on one English corpus, is not a sample of anything. The most this can establish is whether the direction F171 observed is consistent across the independent units available here.",
+
+ "owed_and_unaffected": "PLAN.md section 5.5's protocol-depth prior-art gate and the full read of Li et al. (arXiv:2310.10226) remain owed and are preconditions for drafting, not for this run."
+}
