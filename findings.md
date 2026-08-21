@@ -3645,6 +3645,68 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F174 — §5.3 on own-language corpora: K2 does not fire, the two models English could never measure both land far below the null, and the one paired cell swings 60 points
+21 Aug 2026. `PLAN.md` §5.3, registered in `experiments/prereg_own_language.json` (frozen
+`b21bb918…` before any non-English inflow existed). K2 asks whether measuring each model on **its
+own language** reverses E2; if it did, F171's result would be an English artefact and paper 3 would
+be about that instead.
+
+**This required leaving the offline envelope, which is worth stating plainly.** Nothing non-English
+of usable size was cached: the local Pile sample yields 54 177 Japanese characters and **302** Korean
+ones, against F171's 20 000 000 English — 369× and 66 000× short. `polyglot-ko`'s tokenizer was not
+cached either, which is the whole of F171's `OSError`. Three Wikipedia corpora were streamed at
+**exactly 20 000 000 characters each**, matching F171's English budget so that corpus size cannot
+explain any difference (K9).
+
+**K8 first, because nothing else would mean anything without it.** `llm-jp`'s English cell is the one
+re-measurement in the grid, and it reproduces F171's stored **36.0 exactly, drift 0.0**. The pipeline
+is the same one; the estimator is imported from `inflow_funnel.py` rather than restated.
+
+| model | corpus | endpoint | count | matched pctl | inflow rank |
+|---|---|---|---|---|---|
+| `bloom-3b` | **es** | `' ciudad'` | 2 221 | **6.0** | 7 137 |
+| `bloom-3b` | en | `' ciudad'` | **0** | — | not readable |
+| `polyglot-ko-1.3b` | **ko** | `' 이'` | 30 685 | **16.0** | 116 |
+| `polyglot-ko-1.3b` | en | `' 이'` | **0** | — | not readable |
+| `llm-jp-3-1.8b` | **ja** | `'\n'` | 503 066 | **96.0** | 3 |
+| `llm-jp-3-1.8b` | en | `'\n'` | 44 158 | 36.0 | 55 |
+
+**Coverage went from 1 of 3 to 3 of 3.** Two models that English could not measure at all — their
+endpoints occur **zero** times in an English corpus — are now readable, and both land far below the
+null: `bloom` at 6.0 on Spanish, `polyglot-ko` at 16.0 on Korean. F171's exclusions were statements
+about the corpus rather than the theory, and read on the right corpus they agree with the direction
+F171 measured.
+
+**K2 does not fire.** Endpoints beat their frequency-matched peers in **1 of 3** readable
+own-language cells, not a majority. The direction is not reversed by measuring each model on its own
+language, and F171's result is not shown to be an English artefact.
+
+**The one cell that does invert is the interesting one, and it is not clean.** `llm-jp` on Japanese
+sits at **96.0** against **36.0** on English — same model, same endpoint **token id**, same corpus
+size, a **+60.0** paired swing. It is the only paired comparison the design admits, and it must not
+be read as a language effect, because **the endpoint's frequency changed by 11× in the process**:
+`'\n'` occurs 44 158 times in the English corpus and 503 066 times in the Japanese one. The
+frequency-matched control selects its 50 peers *by frequency within that corpus*, so the two cells
+are scored against completely different peer sets. The swing confounds "the corpus is Japanese" with
+"the endpoint moved from the 44k-frequency band to the 503k band", and this design cannot separate
+them. Recorded as an observation, claimed as nothing.
+
+**What survives, stated at the strength the evidence carries.** E2's direction — endpoints sitting
+below their frequency-matched peers — now holds on three languages rather than one, including two
+models it was previously impossible to measure. That is a real widening of the evidence base and it
+did not dissolve the effect, which is the outcome this project's factors usually do not survive. It
+is *not* a demonstration that the direction is language-independent: three models, one corpus per
+language, one encyclopedic register.
+
+**Boundary and refusals, registered before the numbers.** No p-value on three models. No claim that
+one language generalises to "non-English". No comparison of raw inflow *values* across corpora, since
+they are computed over different vocabularies and texts — only the frequency-matched percentile is
+compared, and the `llm-jp` caveat above shows even that comparison has a confound when the endpoint's
+frequency band moves. K2 firing would have been a trigger to re-scope the paper deliberately, never a
+licence to rewrite the thesis inside a results file; it did not fire.
+
+`experiments/own_language_inflow.py` → `results/own_language_inflow.json`.
+
 ### F173 — the registered cluster analysis: H0 stands, and the non-independence it was written to control turns out to be mostly illusory
 21 Aug 2026. `PLAN.md` §5.2 required the cluster-level treatment of E2 to be registered before it was
 run, *including whether the reversal is reported at all*. Registered in

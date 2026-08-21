@@ -1,0 +1,32 @@
+{
+ "name": "e2-own-language-corpus-v1",
+ "status": "FROZEN before any non-English inflow value was computed.",
+ "plan_section": "paper3_arxiv/PLAN.md section 5.3, and its kill condition K2",
+ "epistemic_tier": "TIER 1 for the non-English cells. No inflow has ever been computed on a non-English corpus in this project, and two of the three models have never been measured at all -- bloom-3b was excluded by F171's coverage floor and polyglot-ko-1.3b's tokenizer was not cached. The English cells for those two are also new. Only llm-jp's English cell is a re-measurement, and it is included as a reproduction check.",
+
+ "why": "F171 measured Fu et al.'s inflow term on English wikitext and found endpoints sit BELOW their frequency-matched peers. Three models in the cohort have non-English modal endpoints or non-English training, and F171 excluded or lost two of them. PLAN.md section 5.3: this turns those exclusions from embarrassments into data. K2 says that if the own-language corpus REVERSES the result, F171's finding is an English artefact and the paper is about that instead.",
+
+ "frozen": {
+  "corpora": "wikimedia/wikipedia, config 20231101.{es,ja,ko}, streamed, first 20,000,000 characters of each -- the SAME size as F171's English corpus, so corpus size cannot explain a difference. English arm re-uses wikitext-103 at 20,000,000 chars exactly as F171 did.",
+  "assignment": "each model is measured on its OWN language and on English, giving a 3x2 design: bigscience/bloom-3b -> es (its modal endpoint ' ciudad' is Spanish); llm-jp/llm-jp-3-1.8b -> ja; EleutherAI/polyglot-ko-1.3b -> ko (modal endpoint ' 이').",
+  "endpoint": "the model's modal endpoint TOKEN ID from results/argmax_census_hardened.json, never the decoded string -- F166's rule, and F173 showed the decoded string merges different tokens across models.",
+  "estimator": "identical to F171 and imported from it where possible: inflow(t) = sum_a B[a,t] with B row-normalised (Fu Corollary 1.2's term); frequency-matched control = the endpoint's inflow percentile among the 50 tokens nearest it in log-frequency. 50 is the expected value by construction.",
+  "coverage_floor": "unchanged from F171: a cell is NOT DECIDABLE if the endpoint occurs fewer than 100 times in that corpus. Applied per cell, so a model can be readable in one language and not the other -- which is itself the point."
+ },
+
+ "kill_conditions": {
+  "K2_from_the_plan": "if endpoints beat frequency-matched peers (percentile > 50) in a MAJORITY of readable own-language cells, E2 is reversed on own-language corpora, F171's result is an English artefact, and the paper is re-scoped to that. With three models, majority means 2 of 3.",
+  "K2b_insufficient": "if fewer than 2 own-language cells clear the coverage floor, K2 is NOT DECIDABLE and no claim is made in either direction. Two unreadable cells cannot establish an artefact or refute one.",
+  "K8_english_arm_must_reproduce": "llm-jp's English cell is a re-measurement of a stored F171 number (36.0). If it does not reproduce, the pipeline has drifted and every number in this run is void -- reported as a failure of the run, not as a finding about language.",
+  "K9_size_matched": "any difference between a model's own-language and English cells must not be attributable to corpus size, which is why both are 20,000,000 characters. If a corpus yields fewer characters than requested, the shortfall is reported and that cell is marked size-mismatched."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value: three models, and the cells are not independent tests of one another",
+  "no claim that a single language generalises to 'non-English'",
+  "no re-scoping of the paper on this run alone -- K2 firing is a trigger to re-scope deliberately, not a licence to rewrite the thesis inside a results file",
+  "no comparison of inflow VALUES across corpora: they are computed over different vocabularies and different texts, so only the frequency-matched PERCENTILE is comparable, and that is the only quantity compared"
+ ],
+
+ "what_this_cannot_settle": "Whether the direction holds for these languages generally. One corpus per language, one encyclopedic register, one model each. Wikipedia is not a sample of a language."
+}

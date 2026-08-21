@@ -148,7 +148,14 @@ drafting, not a follow-up.
    rule over-merges, and "13 rows are ~5 clusters" is really 12 clusters, 11 of them singletons. The
    models are very nearly independent already, which also qualifies F171's non-independence caveat.
    The re-aggregation axis is now exhausted; only more models would move E2.
-4. 5.3 second corpus.
+4. ~~5.3 second corpus.~~ **DONE 21 Aug 2026, F174.** Three languages at 20M chars each (es/ja/ko),
+   size-matched to F171's English. **K2 does not fire** (1 of 3 above the null). Coverage went 1/3 →
+   3/3: `bloom-3b` (es, 6.0) and `polyglot-ko-1.3b` (ko, 16.0) were unmeasurable in English — their
+   endpoints occur **zero** times there — and both land far below the null, agreeing with F171.
+   `llm-jp` swings +60 (36.0 en → 96.0 ja) but its endpoint's frequency also moves 11×, so the
+   matched peer set changes and the swing cannot be attributed to language. **This step required
+   network access**: nothing non-English of usable size was cached (302 Korean characters locally),
+   and `polyglot-ko`'s tokenizer was missing, which was all of F171's `OSError`.
 5. 5.5 gate at protocol depth; Li et al. in full.
 6. Draft only then. Structure to follow paper 2's ladder idiom: the question, what each account
    predicts, exhibit by exhibit, then a limits section that concedes the causal currency gap first

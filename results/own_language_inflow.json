@@ -1,0 +1,174 @@
+{
+ "_preregistration_file": "experiments/prereg_own_language.json",
+ "_prereg_sha256": "b21bb91853afdfced774c22e655f84fcbb869fd5721c3ac804ee9b2b86bdd086  prereg_own_language.json  (frozen before any non-English inflow existed)",
+ "_estimator": "imported from experiments/inflow_funnel.py (F171), not restated",
+ "endpoints": {
+  "bigscience/bloom-3b": {
+   "token_id": 8705,
+   "decoded": " ciudad",
+   "stable": true
+  },
+  "llm-jp/llm-jp-3-1.8b": {
+   "token_id": 18,
+   "decoded": "\n",
+   "stable": true
+  },
+  "EleutherAI/polyglot-ko-1.3b": {
+   "token_id": 307,
+   "decoded": " \uc774",
+   "stable": true
+  }
+ },
+ "corpora": {
+  "es": {
+   "n_chars": 20000000,
+   "sha256": "fe29f32cf180b159",
+   "size_matched": true
+  },
+  "ja": {
+   "n_chars": 20000000,
+   "sha256": "a8a96ffd4a16e92d",
+   "size_matched": true
+  },
+  "ko": {
+   "n_chars": 20000000,
+   "sha256": "3ab8b33af2052528",
+   "size_matched": true
+  },
+  "en": {
+   "n_chars": 20000000,
+   "sha256": "1654df515bfacc5b",
+   "size_matched": true
+  }
+ },
+ "grid": {
+  "bigscience/bloom-3b": {
+   "own_language": "es",
+   "endpoint": " ciudad",
+   "endpoint_id": 8705,
+   "es": {
+    "endpoint_corpus_count": 2221,
+    "vocab": 250680,
+    "n_tokens": 4433796,
+    "readable": true,
+    "freq_matched_pctl": 6.0,
+    "matched_n": 50,
+    "inflow_pctl_all_vocab": 97.153,
+    "endpoint_inflow_rank": 7137
+   },
+   "en": {
+    "endpoint_corpus_count": 0,
+    "vocab": 250680,
+    "n_tokens": 4392970,
+    "readable": false,
+    "why": "endpoint occurs 0 < 100 times"
+   }
+  },
+  "llm-jp/llm-jp-3-1.8b": {
+   "own_language": "ja",
+   "endpoint": "\n",
+   "endpoint_id": 18,
+   "ja": {
+    "endpoint_corpus_count": 503066,
+    "vocab": 99574,
+    "n_tokens": 10637747,
+    "readable": true,
+    "freq_matched_pctl": 96.0,
+    "matched_n": 50,
+    "inflow_pctl_all_vocab": 99.997,
+    "endpoint_inflow_rank": 3
+   },
+   "en": {
+    "endpoint_corpus_count": 44158,
+    "vocab": 99574,
+    "n_tokens": 4692606,
+    "readable": true,
+    "freq_matched_pctl": 36.0,
+    "matched_n": 50,
+    "inflow_pctl_all_vocab": 99.945,
+    "endpoint_inflow_rank": 55
+   }
+  },
+  "EleutherAI/polyglot-ko-1.3b": {
+   "own_language": "ko",
+   "endpoint": " \uc774",
+   "endpoint_id": 307,
+   "ko": {
+    "endpoint_corpus_count": 30685,
+    "vocab": 30003,
+    "n_tokens": 11067553,
+    "readable": true,
+    "freq_matched_pctl": 16.0,
+    "matched_n": 50,
+    "inflow_pctl_all_vocab": 99.613,
+    "endpoint_inflow_rank": 116
+   },
+   "en": {
+    "endpoint_corpus_count": 0,
+    "vocab": 30003,
+    "n_tokens": 9677347,
+    "readable": false,
+    "why": "endpoint occurs 0 < 100 times"
+   }
+  }
+ },
+ "K8_reproduction": {
+  "stored": 36.0,
+  "remeasured": 36.0,
+  "drift": 0.0,
+  "ok": true
+ },
+ "own_readable": [
+  "EleutherAI/polyglot-ko-1.3b",
+  "bigscience/bloom-3b",
+  "llm-jp/llm-jp-3-1.8b"
+ ],
+ "paired": [
+  {
+   "model": "llm-jp-3-1.8b",
+   "own": "ja",
+   "own_pctl": 96.0,
+   "en_pctl": 36.0,
+   "delta": 60.0
+  }
+ ],
+ "verdict": "OWN-LANGUAGE vs ENGLISH, 20M characters per corpus, estimator imported from F171.  K8 passes: llm-jp's English cell reproduces F171's 36.0 exactly, so the pipeline is the same one.  COVERAGE: 3 of 3 own-language cells clear the 100-occurrence floor.  OWN-LANGUAGE percentiles: polyglot-ko-1.3b (ko) 16.0; bloom-3b (es) 6.0; llm-jp-3-1.8b (ja) 96.0.  K2 DOES NOT FIRE: endpoints beat matched peers in 1 of 3 readable own-language cells, not a majority. The direction F171 measured on English is not reversed by measuring each model on its own language. PAIRED (own minus English, same model, same endpoint id, same corpus size): llm-jp-3-1.8b +60.0.  REFUSALS, registered before the numbers: no p-value; no claim that one language generalises to 'non-English'; no comparison of raw inflow VALUES across corpora, since they are computed over different vocabularies and texts.",
+ "_analysis_provenance": {
+  "script": "own_language_inflow.py",
+  "sha256": "4d79bc789af9dfd44834a5751f635ba1b88e8d896563fcd0293966f95d3256a1",
+  "imports": {
+   "experiments/inflow_funnel.py": "7d8aaa26c81ebef29d84072ddc000e8ac7056fb068f4333484a329cea96919ed",
+   "experiments/own_language_inflow.py": "4d79bc789af9dfd44834a5751f635ba1b88e8d896563fcd0293966f95d3256a1",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
