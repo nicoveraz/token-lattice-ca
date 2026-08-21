@@ -94,7 +94,12 @@ across models only weakly, at Kendall's $W = 0.238$\citep{cao2024worstprompt}; f
 suboptimal on another --- named \emph{Model Drifting}\citep{wang2025promptbridge}, and anticipated by
 earlier work establishing that a good prompt ``binds to the nature of the LLM in
 question''\citep{chen2023mapo}. The best prompt templates do not transfer between models, even within
-a single model family\citep{voronov2024format}.
+a single model family\citep{voronov2024format}. Adjacent to the axis we vary, though on a different
+readout, \citet{mahaut2025repetitions} find that prompt \emph{type} changes the mechanism of
+repetition itself: repetition induced by in-context learning setups that explicitly require copying
+``relies on a dedicated network of attention heads that progressively specialize over training,
+whereas naturally occurring repetition emerges early and lacks a defined circuitry''. That work
+measures no fixed points.
 
 We take all of this as given. \textbf{This paper does not claim to discover prompt--model
 interaction.}
@@ -176,7 +181,10 @@ sign --- the interaction is what survives the discriminator.
 trajectories land. The readout is the \emph{fixed-point fraction} $\fpf$, the proportion of starts
 terminating in a fixed point; trajectories are also classified \textsc{funnel} (one dominant
 attracting fixed point), \textsc{none} (cycles or wandering), \textsc{fragmented} (many small basins),
-\textsc{borderline}. Two rows of Table~\ref{tab:moves} use the \emph{share}, this readout's
+\textsc{borderline}. The funnel geometry --- many states feeding one self-continuing token --- was
+derived theoretically by \citet{fu2021repetition}, whose inflow analysis explains why trajectories
+concentrate; the classes here are that geometry measured on a model's own conditional rather than on
+corpus counts. Two rows of Table~\ref{tab:moves} use the \emph{share}, this readout's
 stochastic sibling from the same instrument family --- the fraction of settled mass in the dominant
 attractor of the sampled ring \citep{veraz2026probes}; everything else in the paper is the
 deterministic census above.
@@ -496,6 +504,20 @@ within one.
 \paragraph{A gap this still cannot close.} $\fpf$ remains unmeasurable at long context, since the
 census is defined at two-token starts. We can bound where the sink account applies but cannot connect
 it to our readout in the regime where that account holds.
+
+\paragraph{Note added.} \S\ref{sec:conclusion} invites a sixth factorization. Between freezing this
+draft and submitting it one was attempted, and held to the criterion stated there. The candidate
+carrier was the endpoint token: that a prefix selects which token trajectories are pulled toward,
+while the model decides whether that token self-continues --- two vectors whose product would fix a
+sign where no single factor had. It faced a widening that had been pre-registered on coverage grounds
+\emph{before} the candidate existed, which is the ordering the criterion requires. The strong form
+died on one cell: a model rises to $\fpf = 0.995$ under a prefix whose margin for the predicted token
+never turns positive.% F165, results/text_interaction_fill.json
+What survives is not a factor but another interaction. Across the nine models carrying each arm, the
+best cross-model agreement on an arm's modal endpoint token is $4$ of $9$,% F166, results/token_partition_rank.json
+so which token is selected is itself a model--prefix interaction rather than a property of the
+prefix. The repository's findings ledger carries the full sequence (F162--F166); the paper's claims
+stand as frozen.
 
 % =================================================================================================
 \section{Conclusion}\label{sec:conclusion}
