@@ -94,13 +94,29 @@ written afterwards and contain no run data) for credential and personal-data pat
 
 ### Two flags, both examined and neither blocking
 
-**1. Absolute home paths in 11 log files.** `logs/compliance_v3.log`, `logs/copy_precision_k256.log`,
-`logs/instruct_raisable.log`, `logs/midrange_screen.log`, `logs/scaffold_effect.log`,
-`logs/share_instruct.log`, `logs/structural_text.log`, `logs/text_interaction.log` and three others
-contain `/Users/nicoveraz/...`. This discloses the local account name, which already matches the
-public GitHub handle and the git author on every commit. **It is also pre-existing policy, not a new
-exposure: `main` already tracks 11 log files containing `/Users/` paths.** Raised here so the choice
-is made rather than inherited — scrubbing them is a one-line `sed` across `logs/` if preferred.
+**1. Absolute home paths in 11 files — and NOT all of them are logs.** Corrected after a recount:
+an earlier pass of this sweep said "11 log files", which was wrong in a way that would have
+understated it. The actual set is **8 logs and 3 results files**:
+
+```
+logs/compliance_v3.log          results/compliance_v3.json
+logs/copy_precision_k256.log    results/midrange_screen.json
+logs/instruct_raisable.log      results/prior_art_domain_journal.jsonl
+logs/midrange_screen.log
+logs/scaffold_effect.log
+logs/share_instruct.log
+logs/structural_text.log
+logs/text_interaction.log
+```
+
+(This manifest is a twelfth match, because the paragraph you are reading quotes the path.)
+
+What it discloses is the local account name, which already matches the public GitHub handle and the
+git author on every commit. **It is pre-existing policy rather than a new exposure: `main` already
+tracks 19 files containing `/Users/` paths — 11 logs, 4 results, and one each in `experiments/`,
+`tests/`, `paper_arxiv/` and `build_mirror.py`.** Raised so the choice is made rather than inherited;
+scrubbing is a one-line `sed` across `logs/` and `results/` if preferred, though rewriting stored
+results to change a path would invalidate their provenance stamps and is not a free edit.
 
 **2. An apparent email address in two results files — FALSE POSITIVE, confirmed by reading it.**
 `results/compliance_second_measure.json` and `results/compliance_v2.json` matched an email regex. The
