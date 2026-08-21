@@ -1,0 +1,326 @@
+{
+ "_what": "PLAN.md 5.5 / sec 2: the F91/F157 protocol-depth prior-art gate for paper 3.",
+ "_protocol": "deep-research workflow: 5 search angles, source fetch with full-text extraction, 3-vote adversarial verification per claim, synthesis. 99 agents, 0 errors, 3,051,404 subagent tokens, 990 tool calls, 36 minutes.",
+ "_date": "21 Aug 2026",
+ "summary": "The kill condition in (1) is NOT triggered by any third party: no published work censuses a repetition/degeneration/attractor property across a broad cohort of off-the-shelf pretrained models, and nothing anywhere iterates the greedy argmax next-token map or reports fixed points, basins or a FUNNEL/NONE class (verified by zero-hit term censuses over the full text of every candidate). The measurement in (2) is, however, already published BY THE AUTHOR \u2014 arXiv:2608.10986 (paper 1, cs.CL, 11 Aug 2026) states \"the mechanism is an attracting fixed point of the argmax map\", already reports the funnel-vs-none contrast (pythia-410m: 18/24 starts to newline; gpt2-medium: no fixed point, 11 endpoints) and the BOS domain effect 74.4%\u219224.1%; so novelty in paper 2 attaches to the 17-model census scale, the four-way class, and the corpus-vs-weights attribution, not to the measurement. E3's design shape is the most exposed exhibit: Michaelov, Arnett & Bergen (arXiv:2404.19178, COLM 2024) already ran same-corpus (Pile), size-matched, off-the-shelf Pythia-vs-RWKV-vs-Mamba and reported that architecture changes the readout \u2014 so \"same corpus, different architecture, public checkpoints\" is an established named design, and E3's gpt-neo-2.7B/pythia-410m pair, which confounds architecture with size, is a weaker instantiation of it. E1 is prior-art-clean on its readout but carries two live reviewer attacks: Pythia itself publishes a dedup null (on LM benchmarks) and the dedup pair is confounded by epochs (~207B-token deduped Pile trained to ~300B tokens \u2248 1.45 epochs), which re-introduces repetition in a paper about repetition attractors. Verdicts: (1) OPEN, one live citation-level risk; (2) OPEN vs third parties but CONSTRAINED by self-prior-art; (3) PARTIALLY ANTICIPATED bordering TAKEN in design, OPEN in readout; (4) OPEN in measurement, PARTIALLY ANTICIPATED in design and reviewer prior; (5) OPEN, but the published prior runs the opposite way (invariance/universality), so E3 must argue as a counterexample, not into a vacuum.",
+ "findings": [
+  {
+   "claim": "Q1 VERDICT \u2014 OPEN. The kill condition is NOT triggered. No third-party paper censuses a repetition/degeneration/attractor property across a broad cohort of off-the-shelf pretrained models. Every candidate fails on cohort, on property, or on both: arXiv:2504.15471 (NeurIPS 2025) is two families (Pythia 70M-1B, GPT-2 small-large) and measures bigram subnetworks, not degeneration; arXiv:2601.04854 is n=2 author-LoRA-adapted backbones (Granite 3B Code, GPT-2 Medium) varying the DECODING INTERFACE with the model held fixed \u2014 the inverse of a census; arXiv:2605.02236 is n=2 closed-weight same-vendor OpenAI models (gpt-4o-mini, gpt-4.1-nano) and concedes it in a section headed 'Evidence is concentrated in two OpenAI generators'; arXiv:2510.24963 and arXiv:2404.19178 do span broad pretrained cohorts but on likelihood/psycholinguistic readouts with zero repetition or degeneration content.",
+   "confidence": "high",
+   "vote": "3-0 across five independent claims",
+   "sources": [
+    "https://arxiv.org/abs/2504.15471",
+    "https://arxiv.org/html/2601.04854v3",
+    "https://arxiv.org/pdf/2605.02236",
+    "https://arxiv.org/abs/2510.24963",
+    "https://arxiv.org/abs/2404.19178"
+   ],
+   "evidence": "Verified by full-text extraction plus term censuses, not abstracts. 2504.15471 v3 \u00a73.1 verbatim: 'We focus on Pythia (Biderman et al. 2023) and GPT-2 models (Radford et al. 2019), with sizes up to Pythia 1B and GPT-2 large' \u2014 camera-ready did not broaden the cohort. 2605.02236 abstract: 'We report 37 experiments on gpt-4o-mini with within-vendor replication on gpt-4.1-nano'; \u00a78.1 lists cross-vendor replication as future work. 2601.04854 baselines are five LoRA adapters on ONE Granite backbone with identical FineWeb data, 'to isolate differences in decoding strategy'. 2510.24963 whole-document counts: repetit=0, degenerat=0, attractor=0, 'fixed point'=0, greedy=0, argmax=0. 2404.19178: greedy/argmax/degenerat/'fixed point'/attractor/decod/beam/top-k/nucleus all zero hits; 'repetit' appears only in bibliography titles about human ERP repetition effects."
+  },
+  {
+   "claim": "Q1 RESIDUAL RISK \u2014 the single live citation-level threat is Du & Tanaka-Ishii, 'Correlation Dimension of Auto-Regressive Large Language Models' (arXiv:2510.21258, NeurIPS 2025). It measures a degeneration-DETECTING dynamical property (Grassberger-Procaccia correlation dimension of next-token log-probability trajectories) across multiple independently-trained off-the-shelf families (GPT-2, Pythia, Falcon3, OpenLLaMA, Yi1.5, Mamba, Qwen2.5) and tabulates them side by side. It is the closest published object to 'a cross-model census of a degeneration-adjacent dynamical property' and REQUIRES an explicit distinguishing paragraph. It does not take the measurement: zero occurrences of argmax, greedy, 'fixed point', 'fixed-point', basin, or self-map, and its state space is continuous log-probability vectors seeded from real text (60 longest SEP articles, Project Gutenberg, source code), not a deterministic map over discrete token space from random pairs.",
+   "confidence": "medium",
+   "vote": "3-0 on the framing/state-space claims; the stronger version asserting a ~19-model cohort and 'main threat to Q1' was refuted 0-3",
+   "sources": [
+    "https://arxiv.org/html/2510.21258v1",
+    "https://neurips.cc/virtual/2025/poster/116508"
+   ],
+   "evidence": "\u00a75 verbatim: 'Conceptually, degeneration is viewed as a sudden collapse from a higher-dimensional trajectory in the model's state space into a lower-dimensional attractor. Such collapses are generally irreversible, mirroring the boundary crisis phenomenon in chaotic dynamical systems (grebogi1983crises).' Method: x_t(w) = log P_theta(w_t = w | w_{t-c},...,w_{t-1}) for all w in Omega, correlation integral over Euclidean distances between log-prob vectors. Model-name counts in the 92.5K-char text: Qwen 33, Falcon 30, Pythia 12, OpenLLaMA 6, Mamba 4, Yi1.5 3, Llama3 3, gpt2 1. Note it includes a same-corpus/different-architecture pairing (Pythia vs Mamba, both Pile-trained). 'dedup'/'deduplicat' occur 0 times, so E1 is untouched. Three verifiers rejected the maximal cohort listing, so the exact breadth of the census is uncertain \u2014 the parent should re-read Fig. 2 and Table 9 before writing the distinguishing paragraph."
+  },
+  {
+   "claim": "Q2 VERDICT \u2014 OPEN against third parties, but CONSTRAINED BY SELF-PRIOR-ART, which is the biggest single cut in this gate. This project's own published paper 1, arXiv:2608.10986 (cs.CL, 11 Aug 2026), already identifies the attracting fixed point of the argmax map, already reports the funnel-vs-none contrast on named models, and already reports that the frozen fraction is a property of the map's DOMAIN rather than its parameters. The census method and the FUNNEL/NONE distinction are therefore published and cannot be claimed as new; what remains claimable in paper 2 is the 17-model scale, the four-way FUNNEL/NONE/FRAGMENTED/BORDERLINE class with seed stability 17/17, and the corpus-vs-weights attribution in E1/E2/E3. This cannot trigger the kill condition (which asks whether ANYONE ELSE scooped the census), but it bounds the novelty claim and a reviewer who reads paper 1 will enforce that bound.",
+   "confidence": "high",
+   "vote": "web verifiers refuted all four claims about this ID 0-3; overturned here by direct inspection of the primary local source of record",
+   "sources": [
+    "/Users/nicoveraz/Documents/GitHub/textca/paper_arxiv/main.tex",
+    "/Users/nicoveraz/Documents/GitHub/textca/README.md",
+    "/Users/nicoveraz/Documents/GitHub/textca/CITATION.cff",
+    "/Users/nicoveraz/Documents/GitHub/textca/findings.md",
+    "https://arxiv.org/abs/2608.10986"
+   ],
+   "evidence": "paper_arxiv/main.tex:298-305 verbatim: 'The mechanism is an attracting fixed point of the argmax map. At T = 0.02 the update is essentially deterministic, so the dynamics are governed by the map x -> arg max p_r. For pythia-410m this map sends 18 of 24 random starts to the newline token --- a genuine fixed point. For gpt2-medium it has no such point and wanders to 11 distinct endpoints. Prepending a single beginning-of-sequence token moves the frozen fraction from 74.4% to 24.1%, because it changes the map's domain rather than its parameters.' README.md:19 and CITATION.cff confirm publication as arXiv:2608.10986, 11 Aug 2026, DOI 10.48550/arXiv.2608.10986. findings.md:5612 states it in the project's own words: 'SELF-PRIOR-ART, AND IT IS THE BIGGEST CUT... The census method and the FUNNEL/NONE distinction are ours and are published.' The three web verifiers who refuted the 2608.10986 claims most plausibly hit a retrievability failure on a ten-day-old arXiv entry rather than a factual one."
+  },
+  {
+   "claim": "Q2 SUB-VERDICT \u2014 nobody outside this project iterates the greedy argmax next-token map or reports fixed points of it. Across every candidate examined at full-text depth, the term censuses return zero for argmax, greedy, 'fixed point'/'fixed-point', and basin. The adjacent literature partitions cleanly into the two categories question (2) already excludes: continuous-trajectory geometry over sampled/teacher-forced generation (arXiv:2510.21258) and text-level recursive loops with sampled generation and context-update policies (arXiv:2605.02236, 30-step append/replace/dialog loops, 12,000-character tail clip, ~600-character passages as the unit of iteration). The deterministic two-token argmax map is not even runnable on the closed chat endpoints those papers use.",
+   "confidence": "high",
+   "vote": "3-0",
+   "sources": [
+    "https://arxiv.org/pdf/2605.02236",
+    "https://arxiv.org/html/2510.21258v1",
+    "https://arxiv.org/abs/2504.15471",
+    "https://arxiv.org/abs/2410.06672",
+    "https://arxiv.org/abs/2510.24963"
+   ],
+   "evidence": "2605.02236 abstract: 'We study this in 30-step recursive loops by separating the model from the context-update rule: append, replace, and dialog updates expose different histories to the same generator'; results are reported in text units (escape crosses 50% near 400 tokens of injected dose); 'Stochastic Floors' in its own title concedes the loop is sampled. 2504.15471 isolates the one-step conditional P(w_i|w_{i-1}) as a mechanistic object but never composes it with itself: zero hits for 'fixed point', 'attractor', 'iterat*', 'recurs*', 'argmax', 'greedy', 'basin', 'dynamical' in the v3 PDF; the only 'trajector*' hit is a bibliography title. 2410.06672 full text: 'greedy' 0, 'argmax' 0, 'fixed point' 0, 'attractor' 0 \u2014 every experiment is a single forward pass with activation/path patching."
+  },
+  {
+   "claim": "THE DYNAMICAL-SYSTEMS VOCABULARY IS NOT NOVEL and must not be claimed as such. 'Degeneration as collapse onto a low-dimensional attractor' is already in print in a NeurIPS 2025 paper with an explicit borrowing from chaos theory, and attractor/basin/escape language for LLM degeneration is over-determined across recent preprints. The novelty must be located in the OBJECT (a deterministic map over discrete token space with self-mapping fixed points and a per-model termination fraction), never in the framing.",
+   "confidence": "high",
+   "vote": "3-0",
+   "sources": [
+    "https://arxiv.org/html/2510.21258v1",
+    "https://arxiv.org/pdf/2605.02236",
+    "https://arxiv.org/abs/2605.00435"
+   ],
+   "evidence": "2510.21258 \u00a75 cites Grebogi, Ott & Yorke, 'Crises, sudden changes in chaotic attractors, and transient chaos', Physica D 7(1-3):181-200, 1983, and also cites Henon, Takens and Grassberger-Procaccia \u2014 the borrowing is deliberate and sourced. 2605.02236 uses attractor/basin/source-basin-escape vocabulary for recursive text loops. arXiv:2605.00435 'Escaping Mode Collapse in LLM Generation via Geometric Regulation' deploys the same vocabulary. None of them localises the attractor to a specific self-mapping token, which is where the remaining novelty sits."
+  },
+  {
+   "claim": "Q3 VERDICT \u2014 PARTIALLY ANTICIPATED, bordering on TAKEN for the DESIGN SHAPE; OPEN only in the readout. The lead threat is Michaelov, Arnett & Bergen, 'Revenge of the Fallen? Recurrent Models Match Transformers at Predicting Human Language Comprehension Metrics' (arXiv:2404.19178, COLM 2024): 14 off-the-shelf pretrained checkpoints from three families (Pythia transformer, RWKV-4, Mamba), ALL trained on The Pile, matched by weight class from ~130-169M up to ~2.8-3B, with the explicit stated purpose of measuring the effect of architecture at fixed corpus \u2014 and it reports that architecture changes the readout (recurrent architectures generally out-perform transformers on N400 fit, Mamba best). E3 must therefore cite it and cannot present same-corpus-different-architecture comparison of pretrained models as a novel move.",
+   "confidence": "high",
+   "vote": "3-0 on the affirmative-answer claim (the stronger 'cleaner instantiation than E3 itself' phrasing was refuted 0-3)",
+   "sources": [
+    "https://arxiv.org/abs/2404.19178",
+    "https://openreview.net/forum?id=amhPBLFYWv"
+   ],
+   "evidence": "Methods verbatim: 'All models are trained on the Pile, a 300B token English-language dataset... For each architecture, we selected models of comparable size (i.e., weight class)' and 'Since all models were trained on the same dataset and have comparable numbers of parameters, we are able to measure the effect of architecture on the extent to which a language model's predictions correlate with metrics of human language comprehension.' Discussion verbatim: 'We show, by contrast, that on 6 datasets, when comparing models of the same size and trained on the same data, contemporary recurrent language model architectures generally out-perform transformers, with surprisal values calculated using Mamba models tending to provide the best fit to the N400 data.' Caveats that soften the reviewer threat: the architecture effect is trend-level ('these latter results are suggestive rather than conclusive', 14 observations/dataset), it weakens when perplexity is controlled, reading-time results are mixed, and the paper's own headline framing is parity ('Match')."
+  },
+  {
+   "claim": "Q3 SECOND THREAT, on a COPYING readout \u2014 Wang et al., 'Towards Universality: Studying Mechanistic Similarity Across Language Model Architectures' (arXiv:2410.06672, ICLR 2025). It compares off-the-shelf Pythia-160M vs Mamba-130M (plus RWKV-4-169M in Appendix D), same tokenizer, both Pile-trained, on induction circuits \u2014 i.e. an [A][B]...[A] -> [B] pattern-completion readout, which falls inside question (3)'s enumerated 'copying' scope. It is doubly threatening because it supplies a QUANTIFIED opposing prior E3 must beat: cross-architecture SAE feature correlation 0.74 versus a same-architecture different-seed baseline of 0.76, i.e. changing architecture costs about as much as changing a seed.",
+   "confidence": "high",
+   "vote": "3-0 on scope and readout; 2-1 on the convergence characterisation",
+   "sources": [
+    "https://arxiv.org/abs/2410.06672",
+    "https://openreview.net/forum?id=2J18i8T0oI"
+   ],
+   "evidence": "Verbatim: 'We choose to study Pythia-160M and an open-sourced version of Mamba. These two models are of near size i.e. 160M and 130M, respectively. They adopt the same tokenizer and both are trained on the Pile dataset.' And: 'Cross-arch SAE MPPC has an average of 0.74, compared to 0.76 for model seed variant and 0.81 for SAE seed variant.' Independently corroborated: HF state-spaces/mamba-130m-hf is trained on 300B tokens of the Pile with the GPT-NeoX tokenizer, identical to Pythia-160M's. Only public checkpoints were used; the authors trained only the SAEs. The paper does report one architecture-level DIFFERENCE \u2014 the 'Off-by-One motif' ('Mamba often writes the information of a specific token into the SSM state in its next token... interaction between tokens in Transformers does not exhibit such trend') \u2014 but as a secondary motif inside a similarity-framed paper."
+  },
+  {
+   "claim": "Q3/E3 THIRD THREAT, and the one most likely to damage E3's HEADLINE \u2014 Michaelov, Levy & Bergen, 'Language Model Behavioral Phases are Consistent Across Architecture, Training Data, and Scale' (arXiv:2510.24963, NeurIPS 2025). Its title asserts the directional opposite of E3, it runs E3's design axis (data held fixed, architecture varied: Parc-Pythia 160M vs Parc-Mamba 130M vs Parc-RWKV 169M, 6 seeds each, same OpenWebText sequences at the same steps, same tokenizer), and it spans an OVERLAPPING cohort \u2014 the Pythia 14M-12B Pile suite that contains E3's own pythia-410m, plus PolyPythia seeds and Open-GPT2, across 1,418 checkpoints. It cannot pre-empt E3 on the merits (readout is word log-probability regressed on unigram/n-gram/semantic-similarity heuristics; zero repetition/degeneration/attractor content) and its architecture arm is SELF-TRAINED rather than off-the-shelf, so E3's exact configuration is not instantiated. But a reviewer can assert 'architecture-invariance is already established at NeurIPS', and E3 must pre-empt that.",
+   "confidence": "high",
+   "vote": "3-0",
+   "sources": [
+    "https://arxiv.org/abs/2510.24963",
+    "https://neurips.cc/virtual/2025/poster/118883",
+    "https://openreview.net/forum?id=HenpVfO3Wp"
+   ],
+   "evidence": "Abstract verbatim: 'We show that across architecture (Transformer vs. Mamba vs. RWKV), training dataset (OpenWebText vs. The Pile), and scale (14 million parameters to 12 billion parameters), autoregressive language models exhibit highly consistent patterns of change in their behavior over the course of pretraining.' Cross-architecture result: 'Parc-Pythia, Parc-Mamba, and Parc-RWKV show a Pearson correlation r >= 0.93 overall at each step >= 80.' Whole-document counts: repetit=0, degenerat=0, attractor=0, 'fixed point'=0, greedy=0, argmax=0, dedup=0, duplicat=0 \u2014 so it touches neither Q1, Q2 nor Q4. gpt-neo-2.7B is never censused; all five 'neo' hits are citations. Two rebuttal handles for E3: the consistency is DEVELOPMENTAL (phase ordering over pretraining, not two models at a fixed checkpoint), and the paper itself reports non-invariances ('In the Pythia models, phases generally occur earlier in the larger models... but in the two Open-GPT2 models, this pattern is reversed')."
+  },
+  {
+   "claim": "E3 STRUCTURAL WEAKNESS EXPOSED BY THE PRIOR ART (not a novelty problem, a reviewer problem): because arXiv:2404.19178 and arXiv:2410.06672 both established the SIZE-MATCHED, Pile-fixed, off-the-shelf architecture contrast, E3's gpt-neo-2.7B (class NONE, 0.036) vs pythia-410m (FUNNEL, 0.458) pair \u2014 which the paper itself concedes confounds architecture with size \u2014 will be read as a weaker instance of an established design. The obvious reviewer demand is a size-matched Pile arm.",
+   "confidence": "medium",
+   "vote": "inferred from 3-0 claims about both papers' designs; the explicit 'cleaner instantiation' framing was refuted 0-3",
+   "sources": [
+    "https://arxiv.org/abs/2404.19178",
+    "https://arxiv.org/abs/2410.06672"
+   ],
+   "evidence": "2404.19178 selects 'models of comparable size (i.e., weight class)' across Pythia/RWKV/Mamba on the Pile and additionally controls for perplexity as a covariate (Appendix B WikiText-2 word-level perplexity per model), pre-empting the size/quality confound move. 2410.06672 matches 160M against 130M on the same tokenizer and corpus. The Pile offers same-corpus size-matched candidates E3 does not currently use (e.g. gpt-neo-125M against pythia-160m, or gpt-neo-1.3B against pythia-1.4b), and paper 1's own Pythia ladder already spans 70x, so the ladder machinery exists."
+  },
+  {
+   "claim": "Q4 VERDICT \u2014 OPEN in measurement, PARTIALLY ANTICIPATED in design and in the reviewer's prior. Nobody has applied a degeneration, repetition or attractor readout to the Pythia deduplicated/non-deduplicated pair: searches surfaced the pair used only as a memorization control (arXiv:2304.11158 NeurIPS 2023 D&B; arXiv:2406.17746), and the nearest repetition work uses pythia-2.8b-deduped as a single model with no dedup contrast (arXiv:2410.13497, Repetition Neurons, NAACL 2025). But two things bound E1: the pair is a deliberately published controlled corpus manipulation, so the DESIGN is not novel; and Pythia itself already published a dedup null, so a reviewer will say 'the Pythia authors already reported dedup changes nothing'. E1's null must be argued as informative specifically because the attractor readout is a non-benchmark observable with no prior expectation of invariance.",
+   "confidence": "high",
+   "vote": "3-0 on both claims",
+   "sources": [
+    "https://arxiv.org/abs/2304.01373",
+    "https://arxiv.org/abs/2304.11158",
+    "https://arxiv.org/abs/2410.13497"
+   ],
+   "evidence": "Pythia \u00a72 verbatim: 'We train 2 copies of the Pythia suite using identical architectures. Each suite contains 8 models spanning 8 different sizes. We train one suite of 8 models on the Pile, and the other on a copy of the Pile after applying near-deduplication with MinHashLSH and a threshold of 0.87' \u2014 explicitly framed to 'allow users of the Pythia suite to study deduplication in greater detail'. \u00a72.6 verbatim: 'We find that deduplication of our training data has no clear benefit on language modeling performance', scoped by the preceding sentence to 'eight common language modeling benchmarks (Appendix G)'. Whole-text counts in the Pythia paper: repetit=0, degenerat=0, attractor=0, 'fixed point'=0, greedy=0, argmax=0 (vs dedup=60, memoriz=36) \u2014 the observable class E1 uses is untouched. One tightening: the dedup comparison is NOT a null everywhere \u2014 the companion arXiv:2304.11158 reports memorization slightly decreased for the deduped models."
+  },
+  {
+   "claim": "E1 CARRIES A DESIGN DEFECT INDEPENDENT OF PRIOR ART, and it is specifically dangerous for a paper about repetition attractors: the Pythia dedup pair does NOT differ only in deduplication. The deduplicated Pile is ~207B tokens while both suites train to ~299.9B tokens, so the deduped models run ~1.45 epochs and re-see roughly 45% of their corpus a second time, while the standard models run just under one epoch. E1's stated framing 'same architecture and size, differing only in corpus deduplication' is factually wrong as written, and the confound re-introduces exactly the repetition-in-training-data variable that Li et al. (arXiv:2310.10226) and Hernandez et al. (arXiv:2205.10487) identify as causal. State the caveat explicitly rather than let a reviewer find it.",
+   "confidence": "high",
+   "vote": "3-0 (raised as a precision defect by two independent verifiers)",
+   "sources": [
+    "https://arxiv.org/abs/2304.01373",
+    "https://huggingface.co/EleutherAI/pythia-410m-deduped"
+   ],
+   "evidence": "Pythia \u00a72.2: 'the deduplicated Pile is approximately 207B tokens in size, compared to the original Pile which contains 300B tokens', with both suites trained to ~299.9B tokens (EleutherAI/pythia README). Secondary notes: the 14M/31M models were added post-release and have no deduped twin; the v0-to-current retrain unified batch size to 1024 sequences, applied symmetrically to both suites so it is not a differential confound. Note the sign works in E1's favour rhetorically \u2014 the deduped arm has MORE within-training repetition, which should have moved a repetition-driven readout, and did not."
+  },
+  {
+   "claim": "Q5 VERDICT \u2014 OPEN. No published work claims that degeneration or repetition structure is determined by architecture rather than by training data (or vice versa) as evaluated across PRETRAINED models. The causal literature on repetition attributes it to data and establishes that by TRAINING NEW MODELS (Li et al. arXiv:2310.10226 trains GPT-2 on repetition-sorted shards; Hernandez et al. arXiv:2205.10487; Aoyama & Wilcox arXiv:2511.16893), while the cross-pretrained-model literature that varies architecture at fixed corpus measures something else entirely and reports INVARIANCE or universality. E3's attribution claim \u2014 corpus sets WHICH token trajectories reach, weights decide whether it self-continues \u2014 is therefore unclaimed, but it argues against a standing published prior rather than into a vacuum, and must be framed as a counterexample on a generation-side readout.",
+   "confidence": "medium",
+   "vote": "synthesised from 3-0 claims about each paper individually; no claim tested Q5 head-on",
+   "sources": [
+    "https://arxiv.org/abs/2510.24963",
+    "https://arxiv.org/abs/2410.06672",
+    "https://arxiv.org/abs/2404.19178",
+    "https://arxiv.org/abs/2310.10226"
+   ],
+   "evidence": "The three same-corpus/different-architecture pretrained studies point toward invariance: 2510.24963's title asserts consistency across architecture, training data AND scale with r >= 0.93 cross-architecture; 2410.06672 reports cross-architecture SAE similarity 0.74 against a 0.76 seed baseline and concludes 'most features are similar in these two models'; 2404.19178's headline framing is parity ('Recurrent Models MATCH Transformers') even though its Discussion reports a directional architecture effect. Against that, Li et al. (NeurIPS 2023) locates the cause of repetition in training-data repetition, i.e. on the data side \u2014 the opposite pole from E3's 'something on the weights side decides whether it self-continues'. A later commentary on 2510.24963 supplies E3's rebuttal handle: 'the analysis is limited to three architectures, and in the case of Mamba and RWKV, only relatively small models (130-169M models trained on ~2B tokens). Thus, it is possible that other models could show different training dynamics.'"
+  },
+  {
+   "claim": "THREE CANDIDATES ARE FULLY CLEARED and threaten nothing, though two are worth citing. arXiv:2601.04854 (Projected Autoregression, IBM Research Haifa, preprint, no venue) is an architecture/decoding-interface proposal on two author-adapted backbones \u2014 it does measure repetition (srep4 .480 for AR greedy vs .001 for Projected AR) but on LoRA-finetuned models with the backbone held fixed, the inverse of a census, and contains no attractor/fixed-point content. arXiv:2605.02236 (Kaplanski, 93pp preprint, no venue) is a text-level recursive-loop study on two closed same-vendor OpenAI models \u2014 cite it in related work as text-level attractor dynamics, inside the exclusion question (2) already carves out. arXiv:2504.15471 (Chang & Bergen, NeurIPS 2025) is a SUPPORTIVE citation for E3's 'corpus sets WHICH token' half rather than a threat.",
+   "confidence": "high",
+   "vote": "3-0 on all three (four separate claims)",
+   "sources": [
+    "https://arxiv.org/html/2601.04854v3",
+    "https://arxiv.org/pdf/2605.02236",
+    "https://arxiv.org/abs/2504.15471"
+   ],
+   "evidence": "2504.15471 is the useful one: it establishes that the one-step bigram conditional is a real mechanistic object localised to a sparse subnetwork (<0.2% of parameters, concentrated in the first Transformer MLP layer, bigram surprisal correlation r > 0.95 against corpus bigram statistics) \u2014 a setup for, not a pre-emption of, iterating that map. Its Appendix A.10 / Table 4 reports that with the bigram subnetwork ablated, GPT-2 large degenerates into a run of '\\n' tokens, which is anecdotally adjacent to E3's modal endpoint token '\\n' and worth citing as a mechanistic hint that the newline endpoint is corpus-statistical in origin. Two wording repairs flagged by verifiers: do not say 2504.15471 has 'no feedback of a prediction back into the input' (Appendix A.10 samples at tau=0.30); say 'no iterated map is analysed'. Do not say 2601.04854 'measures no property of pretrained models'; say 'does not census a property across a cohort of unmodified pretrained models'."
+  },
+  {
+   "claim": "E2 WAS NOT TESTED BY THIS GATE and remains the least-examined exhibit. No candidate paper in this round runs a frequency-controlled test of corpus inflow against endpoint selection, so E2 is OPEN by default rather than by verification. One adjacent citation risk surfaced: arXiv:2510.24963 reports that up to 98% of word-level behavioural variance across pretrained models is explained by unigram frequency plus n-gram probability plus semantic similarity, which is the same 'corpus statistics explain the readout' territory E2 argues against and should be checked as an E2-side framing threat.",
+   "confidence": "low",
+   "vote": "raised by one verifier as an incompleteness note; no claim tested E2 directly",
+   "sources": [
+    "https://arxiv.org/abs/2510.24963"
+   ],
+   "evidence": "The verifier of the 2510.24963 claims noted explicitly: 'the claim addresses only E3. The paper's up to 98% of word-level behavioural variance is explained by unigram frequency + n-gram probability + semantic similarity is adjacent to E2 (corpus statistics vs frequency-controlled endpoint selection) and should be checked as an E2-side citation threat rather than ignored.' No verified claim in this round examined Fu-style inflow, frequency-matched null construction, or multilingual replication, so E2's OPEN status rests on absence of search rather than on a completed search."
+  }
+ ],
+ "caveats": "MOST CONSEQUENTIAL DISCREPANCY: all four claims about arXiv:2608.10986 were refuted 0-3 by web verifiers, yet the local repository \u2014 CITATION.cff (DOI 10.48550/arXiv.2608.10986), README.md:19 ('Published: arXiv:2608.10986, cs.CL, 11 Aug 2026'), and paper_arxiv/main.tex:298-305 \u2014 confirms the paper exists and contains the argmax-fixed-point mechanism verbatim. I treat this as a retrievability failure on a ten-day-old arXiv entry, not a factual refutation, and I have overridden the vote on the strength of the primary local source. The parent should confirm the arXiv listing is live before citing it, but should NOT treat the refutation as clearing the self-prior-art constraint \u2014 findings.md:5612 records the project's own earlier gate reaching the same conclusion independently.\n\nSECOND DISCREPANCY: the claim that arXiv:2510.21258 is 'the main threat to question (1)', with a ~19-model cohort listing, was refuted 0-3 \u2014 but two other verifiers, checking different claims about the same paper, independently flagged it as the leading Q1 risk. The disagreement is about the SIZE and composition of its model cohort, not about its existence, its degeneration framing, or its relevance. Re-read its Fig. 2 and Table 9 to fix the cohort before writing the distinguishing paragraph; do not let the refutation be read as 'this paper is harmless'.\n\nTWO CLAIMS WERE 2-1 SPLITS, not unanimous: the characterisation of arXiv:2504.15471 as containing 'no feedback of a prediction back into the input' (contradicted by its Appendix A.10 sampled generations) and the characterisation of arXiv:2410.06672's headline as 'architecture largely does not matter' (the paper hedges, and reports the Off-by-One motif as a real architectural difference). Both wordings should be softened before they appear in the paper.\n\nSEARCH COVERAGE IS ARXIV-SHAPED AND RECENT. Every source examined is a 2023-2026 arXiv preprint or its conference version. No pre-2020 literature was searched: absorbing states of Markov chains induced by n-gram or RNN language models, older 'text degeneration' work (Holtzman et al. and its lineage), and the RNN-era fixed-point-of-the-decoder literature could all contain prior art for the measurement and were not checked. The dynamical-systems and complex-systems venues (Physica D, Chaos, Entropy) were likewise not searched, and that is precisely where an iterated-map-over-a-discrete-alphabet result would most plausibly hide.\n\nVERDICTS ARE ASYMMETRIC IN STRENGTH. The OPEN verdicts on (1), (2) and (4) rest largely on exhaustive term censuses returning zero hits, which is strong evidence about the papers actually examined and no evidence at all about papers not examined. The PARTIALLY ANTICIPATED verdict on (3) rests on affirmative, verbatim-quoted evidence and is the most robust conclusion in this report.\n\nE2 IS ESSENTIALLY UNGATED (see the corresponding finding); its OPEN status is by absence of search, not by verification.\n\nTIME SENSITIVITY: 2510.21258 and 2510.24963 are ~10 months old and both are NeurIPS 2025 papers with active follow-up lines; the ICLR/NeurIPS 2026 cycle could land a cross-model degeneration census before paper 2 is submitted. Re-run the Q1 check against the current cycle immediately before submission \u2014 Q1 is the only question whose answer can flip.",
+ "open_questions": [
+  "arXiv:2604.15400, 'Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation', was surfaced incidentally by one verifier and NEVER ASSESSED. Its title implicates attractor dynamics in transformer generation with a causal claim, which is the closest unexamined object to Q2 and E3. This is the highest-priority remaining check in the gate.",
+  "Exactly what does self-prior-art arXiv:2608.10986 already claim about the census, and what is the residual delta for paper 2? Paper 1 reports 24 starts, two named models, and a windowed conditional p_r at T=0.02; paper 2 reports 96 starts, 17 models, a four-way class and seed stability. The paper needs one explicit paragraph stating the delta, or a reviewer holding paper 1 will make that argument instead.",
+  "Can E3 survive the size confound? Is there a size-matched Pile pair (gpt-neo-125M vs pythia-160m, or gpt-neo-1.3B vs pythia-1.4b) that reproduces the 0.036-vs-0.458 split with architecture varied and size held? Given that arXiv:2404.19178 established the size-matched Pile design and controlled for perplexity as well, a reviewer will ask why E3 did not.",
+  "Does E1's null survive the epoch confound, and can it be argued as a stronger result because of it? The deduped arm sees ~1.45 epochs and re-sees ~45% of its corpus, so it has MORE within-training repetition than the standard arm \u2014 which should have moved a repetition-driven readout in a known direction and did not.",
+  "Does any pre-arXiv or non-NLP literature (Markov-chain absorbing states of n-gram models, RNN-era decoder fixed points, symbolic-dynamics work in Physica D / Chaos / Entropy) already contain a fixed-point census of an iterated argmax map over a discrete alphabet? Not searched in this round.",
+  "Is arXiv:2510.24963's '98% of word-level behavioural variance from unigram + n-gram + semantic similarity' a citation threat to E2's frequency-controlled null, and does any paper run a frequency-matched-peer test against corpus inflow the way E2 does?"
+ ],
+ "refuted": [
+  {
+   "claim": "arXiv:2608.10986 is authored by Nicol\u00e1s Vera Z\u00fa\u00f1iga \u2014 the same author as the paper under the prior-art gate (the local repo confirms it is cited in paper2_arxiv/refs.bib as `veraz2026probes` and labelled 'our own companion paper' in paper2_arxiv/CITATIONS.md:321). It is therefore SELF-prior-art, not a third-party novelty threat, and cannot on its own trigger kill condition (1), which asks whether *anyone* has scooped the cross-model census. It does, however, constrain how much of the census can be claimed as new in paper 2.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/abs/2608.10986"
+  },
+  {
+   "claim": "The paper already runs a cross-model measurement over a broad cohort of pretrained models \u2014 19 models plus two scale ladders spanning 70x \u2014 establishing that a multi-model census of an iterated-self-feeding readout exists in the literature as of 11 Aug 2026. The headline finding for the Lyapunov exponent is NEGATIVE for model discrimination: its radius scaling is model-INVARIANT, i.e. it is fixed by the construction, not by the model.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/abs/2608.10986"
+  },
+  {
+   "claim": "The paper reports that an 'attractor share' does track the model and ranks models consistently across constructions. This PARTIALLY ANTICIPATES question (2) \u2014 a cross-model census of an attractor-like property \u2014 but the quantity is the dominant token's occupancy of a settled ring under a lattice construction, not the fraction of greedy-argmax trajectories terminating in a self-mapping fixed point, and no four-way FUNNEL/NONE/FRAGMENTED/BORDERLINE class is reported.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/abs/2608.10986"
+  },
+  {
+   "claim": "The update rule censused here is stochastic in-place resampling of a ring of token cells from a two-sided windowed conditional (Glauber dynamics), which is a fundamentally different map from the deterministic one-sided greedy map x_{t+1} = argmax p(x | x_{t-1}, x_t). The abstract contains no mention of greedy/argmax decoding, of The Pile, of gpt-neo, of Pythia deduplicated-vs-non-deduplicated, or of any architecture-versus-corpus attribution \u2014 so exhibits E1 and E3 are not pre-empted by this source.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/abs/2608.10986"
+  },
+  {
+   "claim": "The paper runs a single dynamical-systems readout (correlation dimension of next-token log-probability trajectories) across a broad cohort of off-the-shelf pretrained LLMs \u2014 Pythia (14M/160M/1B/2.8B/12B), GPT-2, OpenLLaMA 3B/13B, Falcon3 1B/3B/7B/10B, Qwen2.5 0.5B/7B/32B, Llama3.2-1B, Yi1.5-34B, Mamba, Amber-7B, InternLM2.5, Mistral-7B, GLM4-9B \u2014 and tabulates/compares the values across them. This is the closest published instance of a cross-model census of a degeneration-adjacent dynamical property over independently-trained public models, and is the main threat to question (1).",
+   "vote": "0-3",
+   "source": "https://arxiv.org/html/2510.21258v1"
+  },
+  {
+   "claim": "The paper executes exactly E3's design logic \u2014 hold pretraining corpus fixed, vary architecture across OFF-THE-SHELF PRETRAINED suites \u2014 and states that purpose explicitly. It compares 14 downloaded checkpoints from three families (Pythia transformer, RWKV-4, Mamba), all trained on The Pile, matched by weight class (169M/160M/130M up to 3B/2.8B/2.8B). This is a cleaner instantiation of E3's shape than E3 itself: architecture is varied with size held constant, whereas E3's gpt-neo-2.7B vs pythia-410m contrast confounds architecture with size. A reviewer aware of this paper will ask why the user did not size-match, and will note the same-corpus-different-architecture comparison of pretrained models is an established, named design rather than a novel move.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/abs/2404.19178"
+  },
+  {
+   "claim": "The Pythia paper itself performs a same-corpus / different-architecture comparison against GPT-Neo (both Pile-trained) and reports PARITY on standard evaluations. This means E3's comparison axis is pre-existing in print, but with the opposite sign: the published finding is that Pythia and GPT-Neo are equivalent, which strengthens rather than pre-empts E3 (benchmark-equivalent models diverge sharply on fixed-point fraction, 0.458 vs 0.036). No repetition/degeneration/attractor readout is used in this comparison.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/abs/2304.01373"
+  }
+ ],
+ "unverified": [],
+ "sources": [
+  {
+   "url": "https://arxiv.org/abs/2608.10986",
+   "quality": "primary",
+   "angle": "Mechanism \u2014 fixed points and attractors of the greedy argmax token map",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2504.15471",
+   "quality": "primary",
+   "angle": "Mechanism \u2014 fixed points and attractors of the greedy argmax token map",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/html/2510.21258v1",
+   "quality": "primary",
+   "angle": "Mechanism \u2014 fixed points and attractors of the greedy argmax token map",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/html/2601.04854v3",
+   "quality": "primary",
+   "angle": "Mechanism \u2014 fixed points and attractors of the greedy argmax token map",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/pdf/2605.02236",
+   "quality": "primary",
+   "angle": "Mechanism \u2014 fixed points and attractors of the greedy argmax token map",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/html/2606.18315v1",
+   "quality": "primary",
+   "angle": "Mechanism \u2014 fixed points and attractors of the greedy argmax token map",
+   "claimCount": 4
+  },
+  {
+   "url": "https://arxiv.org/abs/2510.24963",
+   "quality": "primary",
+   "angle": "E3 shape \u2014 same pretraining corpus, different architecture",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2404.19178",
+   "quality": "primary",
+   "angle": "E3 shape \u2014 same pretraining corpus, different architecture",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2410.06672",
+   "quality": "primary",
+   "angle": "E3 shape \u2014 same pretraining corpus, different architecture",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2304.01373",
+   "quality": "primary",
+   "angle": "E3 shape \u2014 same pretraining corpus, different architecture",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2410.13497",
+   "quality": "primary",
+   "angle": "E3 shape \u2014 same pretraining corpus, different architecture",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2504.14218",
+   "quality": "primary",
+   "angle": "E3 shape \u2014 same pretraining corpus, different architecture",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2107.06499",
+   "quality": "primary",
+   "angle": "E1 shape \u2014 the Pythia dedup pair as an instrument",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2304.11158",
+   "quality": "primary",
+   "angle": "E1 shape \u2014 the Pythia dedup pair as an instrument",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2202.06539",
+   "quality": "primary",
+   "angle": "E1 shape \u2014 the Pythia dedup pair as an instrument",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2504.12608",
+   "quality": "primary",
+   "angle": "Attribution claim \u2014 architecture vs data, and eval suites reporting repetition",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/abs/2402.01032",
+   "quality": "primary",
+   "angle": "Attribution claim \u2014 architecture vs data, and eval suites reporting repetition",
+   "claimCount": 5
+  }
+ ],
+ "stats": {
+  "angles": 5,
+  "sourcesFetched": 17,
+  "claimsExtracted": 84,
+  "claimsVerified": 25,
+  "confirmed": 18,
+  "killed": 7,
+  "unverified": 0,
+  "afterSynthesis": 14,
+  "urlDupes": 6,
+  "budgetDropped": 7,
+  "agentCalls": 99
+ }
+}

@@ -3645,6 +3645,81 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F177 — the protocol-depth gate: K4 does NOT fire, but E1 is factually wrong as written, E3's design is largely taken, and the sharpest hit is our own published paper
+21 Aug 2026. `PLAN.md` §5.5's owed gate, run at F91/F157 depth: **99 agents, 0 errors, 3.05M subagent
+tokens, 990 tool calls, 36 minutes**, with 3-vote adversarial verification per claim and full-text
+extraction rather than abstracts. 14 findings survived; **7 claims were refuted and are recorded**.
+
+**K4 DOES NOT FIRE (Q1: OPEN).** No third party censuses a repetition/degeneration/attractor property
+across a broad cohort of off-the-shelf pretrained models. Every candidate fails on cohort, on
+property, or both — verified by term censuses over full texts, not abstracts. Paper 3 is not a
+replication. **Drafting is unblocked**, and everything below is about what it may say.
+
+**The sharpest cut is self-inflicted (Q2).** Nobody outside this project iterates the greedy argmax
+map — zero hits for *argmax*, *greedy*, *fixed point*, *basin* across every candidate. But
+**arXiv:2608.10986, our own published paper 1**, already prints: *"The mechanism is an attracting
+fixed point of the argmax map… For `pythia-410m` this map sends 18 of 24 random starts to the newline
+token --- a genuine fixed point. For `gpt2-medium` it has no such point and wanders to 11 distinct
+endpoints. Prepending a single beginning-of-sequence token moves the frozen fraction from 74.4\% to
+24.1\%, because it changes the map's domain rather than its parameters."* The map, the
+**funnel-vs-none contrast on named models**, and the **BOS-changes-the-domain** observation are all
+published. What remains claimable is the **17-model scale**, the **four-way class with 17/17 seed
+stability**, and the **corpus-vs-weights attribution**. This is the second time this project's gate
+has found its threat inside its own published paper (F143 was the first).
+
+**Q3 — E3, the exhibit F176 promoted to lead, is PARTIALLY ANTICIPATED bordering on TAKEN in design.**
+Three papers, all verified verbatim:
+
+- **arXiv:2404.19178** (Michaelov, Arnett & Bergen, **COLM 2024**) — 14 off-the-shelf Pile-trained
+  checkpoints across Pythia / RWKV-4 / Mamba, **size-matched by weight class**, with the stated
+  purpose *"to measure the effect of architecture"* at fixed corpus, and it reports architecture
+  changes the readout. Same-corpus-different-architecture on public checkpoints is an **established
+  named design**, and E3 cannot present it as a new move.
+- **arXiv:2410.06672** (Wang et al., **ICLR 2025**) — Pythia-160M vs Mamba-130M, same tokenizer, both
+  Pile, on **induction circuits**, i.e. a copying readout. It supplies a quantified *opposing* prior:
+  cross-architecture SAE feature correlation **0.74** against a same-architecture different-seed
+  baseline of **0.76** — changing architecture costs about what changing a seed costs.
+- **arXiv:2510.24963** (Michaelov, Levy & Bergen, **NeurIPS 2025**) — the title asserts E3's
+  directional opposite: *"Language Model Behavioral Phases are Consistent Across Architecture,
+  Training Data, and Scale"*, r ≥ 0.93 cross-architecture, over a cohort that **contains our own
+  `pythia-410m`**.
+
+**So E3 argues against a standing published prior, not into a vacuum**, and must be framed as a
+counterexample on a readout those papers do not use. Worse for us: their design is **size-matched**
+and ours is not — F172 already conceded `gpt-neo-2.7B` confounds architecture with size. **The
+obvious reviewer demand is a size-matched Pile arm, and it is a fair demand.**
+
+**Q4 — E1 is factually wrong as written, and the defect is the paper's own subject.** The Pythia pair
+does **not** differ only in deduplication. The deduplicated Pile is **~207B tokens** while both suites
+train to **~299.9B**, so the deduped models run **~1.45 epochs** and re-see roughly **45% of their
+corpus a second time**, while the standard models run just under one. **A paper about repetition
+attractors cannot describe that pair as "differing only in deduplication"** — the confound
+re-introduces exactly the repetition-in-training-data variable Li et al. and Hernandez et al.
+identify as causal. Compounding it, Pythia's own paper already published a dedup null on benchmarks,
+so a reviewer arrives expecting one. E1's null is arguable *only* because the attractor readout is a
+non-benchmark observable with no prior expectation of invariance — and that argument must be made
+explicitly.
+
+**Q5 — OPEN**, and unclaimed: nobody attributes degeneration structure to architecture rather than
+data across *pretrained* models. But the three papers above all point toward **invariance**, so this
+is a counterexample claim.
+
+**Two more things to carry.** The dynamical-systems vocabulary is **not** novel — arXiv:2510.21258
+(Du & Tanaka-Ishii, NeurIPS 2025) already frames degeneration as *"collapse from a higher-dimensional
+trajectory… into a lower-dimensional attractor"*, citing Grebogi/Ott/Yorke, and measures a
+degeneration-detecting dynamical property across GPT-2, Pythia, Falcon3, OpenLLaMA, Yi1.5, Mamba and
+Qwen2.5. It is the closest published object to a cross-model census of a degeneration-adjacent
+dynamical property and **requires its own distinguishing paragraph**. And **E2 was not tested by this
+gate at all** — it is OPEN by default rather than by verification, with one flagged risk
+(arXiv:2510.24963 explains up to 98% of word-level behavioural variance by unigram frequency +
+n-gram + semantic similarity, which is E2's territory).
+
+**Net.** The paper survives and is narrower again: not a replication, but its measurement is bounded
+by our own paper 1, its lead exhibit's design is taken and its instantiation is weaker than the
+published one, and its second exhibit needs a factual correction before it can be stated at all.
+
+`results/prior_art_paper3_gate.json` carries all 14 findings, the 7 refuted claims, and 17 sources.
+
 ### F176 — the four unread items, read: the two camps paper 3 says "cannot see each other" were bridged twice, in 2022 and again since, and E1's null loses most of its force
 21 Aug 2026. F169 graded four works SNIPPET — search summaries only, never read — and recorded that
 as owed. All four fetched as PDFs, extracted with `pdftotext -layout`, read. Two are background; two

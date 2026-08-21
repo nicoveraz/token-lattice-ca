@@ -57,7 +57,11 @@ Field check 21 Aug 2026 — three searches, four fetches, recorded here as a SCA
   is training-loss dynamics under document duplication and explicitly does not address generation.
   Neither collides.
 - **The funnel's explanation is Fu et al.'s** (F170) and is credited as such in paper 2 already.
-- **Owed and binding:** the prior-art gate at F91/F157 protocol depth. F169 was six searches by hand
+- **RUN 21 Aug 2026 (F177), and K4 DID NOT FIRE.** 99 agents, 3-vote adversarial verification,
+  full-text term censuses. No third party censuses a repetition/degeneration/attractor property
+  across a broad pretrained cohort, so this is not a replication and **drafting is unblocked**. What
+  it cost is recorded in §3 and §6 below. Historical text follows.
+- ~~**Owed and binding:** the prior-art gate at F91/F157 protocol depth.~~ F169 was six searches by hand
   with four SNIPPET-grade items unread and two PDFs unextracted; the field check above does not
   replace it. Li et al. (2310.10226) must additionally be read in FULL before any sentence about it
   is written.
@@ -65,8 +69,17 @@ Field check 21 Aug 2026 — three searches, four fetches, recorded here as a SCA
 ## 3. The exhibits, in the order they should be argued
 
 **E1 — the matched-corpus pair (primary, and the one the field cannot currently deliver).**
-`pythia-410m` and `pythia-410m-deduped`: same architecture, same corpus, one deduplicated — the exact
-manipulation the data-side account says should matter, available off the shelf. F171 records both
+`pythia-410m` and `pythia-410m-deduped`: same architecture, same corpus, one deduplicated — the
+nearest thing to the manipulation the data-side account says should matter, available off the shelf.
+
+> **FACTUAL CORRECTION, 21 Aug 2026 (F177). The pair does NOT differ only in deduplication, and this
+> paper cannot say that it does.** The deduplicated Pile is **~207B tokens** against both suites
+> training to **~299.9B**, so the deduped models run **~1.45 epochs** and re-see roughly **45% of
+> their corpus a second time**. In a paper about repetition attractors that confound re-introduces
+> the exact causal variable Li et al. and Hernandez et al. name. Pythia's own paper also already
+> published a dedup null on benchmarks, so a reviewer expects one. E1's null is arguable only because
+> the attractor readout is a non-benchmark observable with no prior expectation of invariance — and
+> that argument has to be made out loud, not assumed. F171 records both
 landing on the same endpoint token (`'\n'`) and the same class (funnel), with identical inflow rows.
 If that holds under the analysis in §5, it is a targeted null against the strongest data-side form,
 at zero training cost.
@@ -90,6 +103,17 @@ ones. The trivial claim — models get stuck on frequent tokens — stands untou
 
 **E3 — heterogeneity a uniformity thesis cannot produce.** 8 of 17 models are funnels; same-era models
 trained on comparable corpora diverge in class. Language-caused predicts uniformity.
+
+> **REPOSITIONED 21 Aug 2026 (F177). The design is PARTIALLY ANTICIPATED bordering on TAKEN, and the
+> published priors run the other way.** arXiv:2404.19178 (COLM 2024) already ran 14 off-the-shelf
+> Pile-trained checkpoints across Pythia/RWKV/Mamba, **size-matched**, explicitly to measure the
+> effect of architecture at fixed corpus. arXiv:2410.06672 (ICLR 2025) did it on a **copying**
+> readout and reports cross-architecture similarity **0.74** against a **0.76** seed baseline.
+> arXiv:2510.24963 (NeurIPS 2025) asserts the directional opposite in its title and its cohort
+> **contains our `pythia-410m`**. E3 must therefore (a) cite all three, (b) argue as a
+> **counterexample on a readout they do not use**, and (c) answer the fair reviewer demand for a
+> **size-matched Pile arm** — our `gpt-neo-2.7B` vs `pythia-410m` confounds architecture with size,
+> which the established design does not.
 
 **E4 — no corpus statistic tested separates the classes** (F171 H3, TIER 2). Max corpus inflow spans
 [1320.7, 4684.9] on funnels and [2651.7, 15196.2] on non-funnels — overlapping. Registered as *does
@@ -142,8 +166,19 @@ drafting, not a follow-up.
   paper is about that instead.
 - **K3.** If the cluster-level analysis (5.2) leaves fewer than 4 independent clusters, E2 is reported
   as descriptive only, with no rate and no comparison to 50.
-- **K4.** If the protocol-depth gate finds a cross-model repetition census, this paper is a
-  replication or a comment, and is re-scoped accordingly.
+- ~~**K4.**~~ **RESOLVED 21 Aug 2026 (F177): did not fire.** No such census exists.
+- **K10 (new, from F177).** The measurement is bounded by our own arXiv:2608.10986, which already
+  publishes the argmax-map fixed point, the funnel-vs-none contrast on named models, and the
+  BOS-changes-the-domain observation. **The paper may claim the 17-model scale, the four-way class
+  with 17/17 seed stability, and the corpus-vs-weights attribution — not the measurement.** A
+  reviewer who reads paper 1 will enforce this.
+- **K11 (new, from F177).** arXiv:2510.21258 (NeurIPS 2025) frames degeneration as collapse onto a
+  low-dimensional attractor and measures a degeneration-detecting dynamical property across seven
+  pretrained families. The dynamical-systems **vocabulary is not ours**, and this paper needs its own
+  distinguishing paragraph. Locate novelty in the OBJECT, never in the framing.
+- **K12 (new, from F177).** E2 was **not tested** by the gate and is OPEN by default rather than by
+  verification. Before drafting anything on E2, check arXiv:2510.24963's claim that up to 98% of
+  word-level behavioural variance is explained by unigram frequency + n-gram + semantic similarity.
 
 ## 7. Sequencing
 
@@ -172,8 +207,8 @@ drafting, not a follow-up.
    matched peer set changes and the swing cannot be attributed to language. **This step required
    network access**: nothing non-English of usable size was cached (302 Korean characters locally),
    and `polyglot-ko`'s tokenizer was missing, which was all of F171's `OSError`.
-5. 5.5 gate — **Li et al. in full: DONE 21 Aug 2026, F175.** **Protocol-depth gate: NOT RUN**, and
-   it is the larger half. K4 remains live, so **drafting is still blocked**.
+5. ~~5.5 gate~~ — **DONE 21 Aug 2026. Li et al. in full (F175); protocol-depth gate (F177).** K4
+   did not fire. **Drafting is unblocked**, subject to K10–K12 and to fixing E1's factual error.
 6. Draft only then. Structure to follow paper 2's ladder idiom: the question, what each account
    predicts, exhibit by exhibit, then a limits section that concedes the causal currency gap first
    rather than last.
