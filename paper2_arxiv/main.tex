@@ -240,7 +240,8 @@ class rows have no accuracy analogue.}
 \end{table}
 
 \paragraph{A contrast that bounds the interpretation.} Instruction tuning moves IFEval by $+60.5$
-points on one matched pair and moves the structural class by \emph{zero}.% F143, results/argmax_census_instruct.json
+points on one matched pair and moves the structural class by \emph{zero}.
+% F143, results/argmax_census_instruct.json
 This readout is therefore not sensitive to everything: a large behavioural intervention leaves it
 where it was, while nine tokens of conditioning move it completely. Whatever the domain does here is
 not generic fragility.
@@ -334,7 +335,8 @@ prefix is not merely \emph{less useful} to some models, it moves a deterministic
 conditional in opposite directions. The same battery contains the converse exhibit: under a
 second fixed prefix from the same source, \texttt{Qwen1.5-1.8B} --- a faller in
 Table~\ref{tab:p1} --- rises to $0.979$ while \texttt{SmolLM-1.7B} stays at
-$0.000$.% F154, results/text_interaction.json
+$0.000$.
+% F154, results/text_interaction.json
 The direction is set by the pair, not by the model.
 
 The nearest prior work on a structural readout uses iterated text-level transmission chains under
@@ -364,13 +366,15 @@ cross-model variation is in \emph{magnitude and saturation point}, not in sign: 
 moves the readout the same way in every model examined.
 
 \paragraph{What we observe.} A single BOS token takes \texttt{Falcon3-1B-Base} from $0.214$ to
-$0.906$,% F152, results/domain_base.json
+$0.906$,
+% F152, results/domain_base.json
 and collapses other models toward zero on the same arm. The sign is not shared.
 
 \paragraph{We measured the mechanism, not just our own readout.} Comparing a BOS-prefixed context
 against a \emph{length-matched} ordinary one --- so the arms differ only in the identity of position
 0 --- sink strength and $\fpf$ move the same way on 2 of 5 models, which is chance
-(Table~\ref{tab:sink}).% F158, results/sink_vs_fixedpoint.json
+(Table~\ref{tab:sink}).
+% F158, results/sink_vs_fixedpoint.json
 Sink strength does not predict the sign of the fixed-point shift.
 
 \begin{table}[t]\centering
@@ -490,7 +494,8 @@ direction work: its raw census varies $0.615$--$0.792$ across four seeds, so its
 every domain shift it has.% F150, results/midrange_screen.json
 
 \paragraph{How the prior art here was checked.} The novelty gate that produced this framing refuted
-$13$ of $74$ extracted claims for overreaching their own sources,% F157, results/prior_art_domain_journal.jsonl
+$13$ of $74$ extracted claims for overreaching their own sources,
+% F157, results/prior_art_domain_journal.jsonl
 so its summaries were not citable. Every work cited above was therefore read at the source --- the
 abstract where the claim is in the abstract, the full text where it is not --- and the supporting
 quote recorded beside its key in \texttt{CITATIONS.md}.
@@ -525,9 +530,11 @@ while the model decides whether that token self-continues --- two vectors whose 
 sign where no single factor had. It faced a widening that had been pre-registered on coverage grounds
 \emph{before} the candidate existed, which is the ordering the criterion requires. The strong form
 died on one cell: a model rises to $\fpf = 0.995$ under a prefix whose margin for the predicted token
-never turns positive.% F165, results/text_interaction_fill.json
+never turns positive.
+% F165, results/text_interaction_fill.json
 What survives is not a factor but another interaction. Across the nine models carrying each arm, the
-best cross-model agreement on an arm's modal endpoint token is $4$ of $9$,% F166, results/token_partition_rank.json
+best cross-model agreement on an arm's modal endpoint token is $4$ of $9$,
+% F166, results/token_partition_rank.json
 so which token is selected is itself a model--prefix interaction rather than a property of the
 prefix. The repository's findings ledger carries the full sequence (F162--F166); the paper's claims
 stand as frozen.
