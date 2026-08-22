@@ -1,0 +1,40 @@
+{
+ "name": "size-matched-pile-architecture-arm-v1",
+ "status": "FROZEN before any new census cell was computed. New forward passes ARE required; this is not a counting exercise.",
+ "plan_section": "paper3_arxiv/PLAN.md E3, after F177 repositioned it",
+
+ "epistemic_tier": "TIER 1. No model below except pythia-410m has ever been run through this census, and pythia-410m's cells are reused unchanged from results/argmax_census_hardened.json rather than re-measured.",
+
+ "why": "F177 found E3's design PARTIALLY ANTICIPATED bordering TAKEN: arXiv:2404.19178 (COLM 2024) and arXiv:2410.06672 (ICLR 2025) both ran SIZE-MATCHED, Pile-fixed, off-the-shelf architecture contrasts, while F172's instance (gpt-neo-2.7B vs pythia-410m) confounds architecture with size. The reviewer demand for a size-matched Pile arm is fair and this answers it. It can also kill E3, which is the point of running it.",
+
+ "the_decisive_cell": "EleutherAI/gpt-neo-125m against EleutherAI/pythia-160m. F172's headline rests on gpt-neo-2.7B being NONE while pythia-410m is FUNNEL, confounded by a 6.6x size gap. gpt-neo-125m is the SAME architecture family as gpt-neo-2.7B at a size matched to pythia-160m. If the class difference survives here it is not a size effect; if it does not, F172's architecture reading is refuted at matched size and E3 dies as an architecture claim.",
+
+ "frozen": {
+  "estimator": "unchanged and IMPORTED: gate1.argmax_census at N_STARTS=96, census seeds [20260803, 990017], and the classify() thresholds already registered in argmax_census_hardened.py (FUNNEL fix>=0.30 and modal>=0.30; NONE fix<=0.10; FRAGMENTED fix>=0.30 and modal<0.20; BORDERLINE otherwise). Nothing about the measurement changes, so the new cells are directly comparable to the stored 17.",
+  "device": "CPU, float32, matching how the stored cohort was measured",
+  "cohort": {
+   "tier_400M": ["EleutherAI/pythia-410m", "RWKV/rwkv-4-430m-pile", "state-spaces/mamba-370m-hf"],
+   "tier_150M": ["EleutherAI/pythia-160m", "RWKV/rwkv-4-169m-pile", "state-spaces/mamba-130m-hf", "EleutherAI/gpt-neo-125m"]
+  },
+  "why_these": "every one is trained on The Pile, so corpus is held fixed by construction. Four architecture families: GPTNeoX (pythia), GPTNeo (gpt-neo), RWKV (recurrent), Mamba (state-space). Two size tiers so a class difference can be checked at more than one scale. This is the Pythia/RWKV/Mamba design arXiv:2404.19178 and arXiv:2410.06672 established, applied to a readout neither uses.",
+  "size_matching_rule": "within a tier, the largest and smallest parameter counts must be within 1.5x. Tier 400M spans 370M-430M (1.16x); tier 150M spans 125M-169M (1.35x). Both clear it. Stated as a rule so that no model can be moved between tiers after the numbers are seen.",
+  "reused_not_remeasured": "pythia-410m's two cells come from results/argmax_census_hardened.json unchanged. Re-measuring them would invite a drift I would then have to explain."
+ },
+
+ "kill_conditions": {
+  "KA_anchor_fails": "if pythia-160m is not FUNNEL, the 150M tier has no anchor -- pythia's own class would be size-dependent -- and the decisive cell is NOT DECIDABLE at that tier. Report and do not force it.",
+  "KB_E3_DIES": "if gpt-neo-125m and pythia-160m land in the SAME class, F172's architecture reading is refuted at matched size, the gpt-neo-2.7B/pythia-410m difference is attributable to scale, and E3 must be withdrawn as an architecture claim. This is the outcome that costs the paper its lead exhibit and it is registered here so it cannot be re-described afterwards.",
+  "KC_unstable": "any model whose two census seeds disagree on class is excluded from every comparison, exactly as LFM2 and starcoder2 were in F172. Instability is the finding 'underpowered here', never a fourth class.",
+  "KD_uniform": "if every architecture in a tier lands in the same class, that tier shows NO heterogeneity at fixed corpus and fixed size, which is evidence FOR the invariance prior of arXiv:2510.24963 and against E3. Report it in those words.",
+  "KE_load_failure": "a model that will not load is reported as an infrastructure failure by name, never silently dropped and never counted as evidence either way."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value: at most four architectures per tier, and they are not a sample of anything",
+  "no claim that RWKV or Mamba results generalise beyond the checkpoints tested",
+  "no re-measurement of pythia-410m, and no adjustment of the classify() thresholds -- they were registered before F87 and are not touched here",
+  "no claim about WHY an architecture differs; this run can only establish whether it does at matched size"
+ ],
+
+ "what_this_cannot_settle": "Whether architecture or training recipe drives any difference found. These are different families trained by different groups with different hyperparameters and schedules; only the corpus and the parameter count are controlled. A difference here means 'not explained by corpus or scale', never 'caused by architecture' in a mechanistic sense."
+}

@@ -104,6 +104,17 @@ ones. The trivial claim — models get stuck on frequent tokens — stands untou
 **E3 — heterogeneity a uniformity thesis cannot produce.** 8 of 17 models are funnels; same-era models
 trained on comparable corpora diverge in class. Language-caused predicts uniformity.
 
+> **ANSWERED 22 Aug 2026 (F178): the size-matched arm is run and E3's confound is closed — but the
+> word "architecture" is withdrawn.** Seven Pile-trained models across two size tiers (1.16× and
+> 1.35× spans), 0 failures, 0 class-unstable. `pythia` is FUNNEL in both tiers; RWKV, Mamba **and
+> `gpt-neo-125m` — a transformer** — are all NONE. So the split is not transformer-versus-recurrent
+> and E3 must be stated as *the class is not determined at fixed corpus and fixed scale*, with a
+> second transformer family on the same corpus landing among the recurrent models. The cleanest cell
+> is `rwkv-4-169m-pile` vs `pythia-160m`: same corpus, matched size, **same modal endpoint `'\n'`**,
+> modal share 0.474 vs 0.432, φ **0.000 vs 0.432**. Not excluded: that the Pythia recipe is simply
+> idiosyncratic — one funnel against three, twice, needs a second funnel from another family to
+> break.
+>
 > **REPOSITIONED 21 Aug 2026 (F177). The design is PARTIALLY ANTICIPATED bordering on TAKEN, and the
 > published priors run the other way.** arXiv:2404.19178 (COLM 2024) already ran 14 off-the-shelf
 > Pile-trained checkpoints across Pythia/RWKV/Mamba, **size-matched**, explicitly to measure the

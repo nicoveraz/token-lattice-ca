@@ -3645,6 +3645,69 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F178 — the size-matched Pile arm: the class difference is NOT a size effect, but "architecture" is the wrong word for it — a transformer sits with the recurrent models
+22 Aug 2026. F177's gate found E3's design partially anticipated and its instance confounded:
+`gpt-neo-2.7B` vs `pythia-410m` differ 6.6× in size, while the published same-corpus contrasts
+(arXiv:2404.19178 COLM 2024, arXiv:2410.06672 ICLR 2025) are size-matched. This is the size-matched
+arm, registered in `experiments/prereg_size_matched_pile.json` (frozen `d771f1e5…` **before any new
+cell existed**, with the kill condition that would withdraw E3 written first). Estimator and class
+thresholds imported unchanged from the run that produced the stored 17-model census; `pythia-410m`
+reused rather than re-measured. **7 models, 2 tiers, 0 load failures, 0 class-unstable.**
+
+| tier | model | family | class | φ | modal share | modal endpoint |
+|---|---|---|---|---|---|---|
+| 400M | `pythia-410m` | GPTNeoX | **funnel** | 0.458 | 0.453 | `'\n'` |
+| 400M | `rwkv-4-430m-pile` | RWKV | none | 0.010 | 0.521 | `' time'` |
+| 400M | `mamba-370m-hf` | Mamba | none | 0.010 | 0.823 | `' first'` |
+| 150M | `pythia-160m` | GPTNeoX | **funnel** | 0.432 | 0.432 | `'\n'` |
+| 150M | `rwkv-4-169m-pile` | RWKV | none | 0.000 | 0.474 | `'\n'` |
+| 150M | `mamba-130m-hf` | Mamba | none | 0.000 | 0.573 | `'The'` |
+| 150M | `gpt-neo-125m` | GPTNeo | none | 0.052 | 0.464 | `' side'` |
+
+**KB does not fire, and E3's confound is closed.** The decisive cell — `gpt-neo-125m` against
+`pythia-160m`, same corpus, 1.28× apart — comes back **none against funnel**, both stable across
+seeds. F172's class difference therefore reproduces at matched size and **is not a size effect**.
+**KD does not fire either**: both tiers show two classes, so there is no invariance at fixed corpus
+and fixed scale.
+
+**The cleanest cell this project has produced.** `rwkv-4-169m-pile` and `pythia-160m`: same corpus,
+matched weight class, **the same modal endpoint token `'\n'`**, and nearly the same concentration on
+it — modal share **0.474 vs 0.432**. Yet φ is **0.000 against 0.432**. Both funnel trajectories onto
+the newline at the same rate; in one model the newline maps to itself and in the other it does not.
+Every model in the table concentrates (modal 0.43–0.82). **What varies is not where trajectories go
+but whether the destination self-continues.**
+
+**And now the part that costs E3 its headline word.** `gpt-neo-125m` is a **transformer**, from the
+same lab, on the same corpus — and it sits with RWKV and Mamba at φ = 0.052, not with Pythia.
+**Pythia is the only funnel in either tier.** So the split is *not* transformer-versus-recurrent, and
+**"architecture" is the wrong label for what varies.** E3 must be restated as: *at fixed corpus and
+fixed scale the class is not determined, and a second transformer family on the same corpus lands
+with the recurrent models.* That is a stronger claim against corpus-determinism and a weaker one
+about mechanism, which is the trade the evidence actually supports.
+
+**The alternative this cannot exclude, stated because it is the obvious reading.** One funnel against
+three non-funnels, twice, with the same family funnelling both times, is equally consistent with
+**the Pythia recipe being idiosyncratic** rather than with any general property. Distinguishing those
+needs a second funnel from a different family at fixed corpus, and the cohort does not currently
+contain one. The registered boundary already forbade the causal claim — *"not explained by corpus or
+scale", never "caused by architecture"* — and this result narrows it further: not explained by
+corpus, not by scale, and **not by transformer-versus-recurrent either.**
+
+**Cost, recorded for planning.** Mamba is brutal on CPU without fast-path kernels: `mamba-370m`
+**16 899 s (4.7 h)** and `mamba-130m` **6 233 s** for two seeds each, against `rwkv-4-430m` at 806 s
+and `pythia-160m` at **70 s**. The decisive pair was split into
+`experiments/size_matched_decisive.py` and run in parallel precisely because Mamba's cost put the
+result hours away; that split also avoided editing a live script and invalidating its provenance
+stamp mid-run.
+
+**Boundary, as registered.** Two tiers, four families, one corpus, one readout. No p-value. No
+generalisation beyond these checkpoints. No adjustment of the class thresholds, which were fixed
+before F87. These families differ in schedule and hyperparameters as well as architecture, and this
+design separates none of those.
+
+`experiments/size_matched_pile.py` → `results/size_matched_pile.json`;
+`experiments/size_matched_decisive.py` → `results/size_matched_decisive.json`.
+
 ### F177 — the protocol-depth gate: K4 does NOT fire, but E1 is factually wrong as written, E3's design is largely taken, and the sharpest hit is our own published paper
 21 Aug 2026. `PLAN.md` §5.5's owed gate, run at F91/F157 depth: **99 agents, 0 errors, 3.05M subagent
 tokens, 990 tool calls, 36 minutes**, with 3-vote adversarial verification per claim and full-text

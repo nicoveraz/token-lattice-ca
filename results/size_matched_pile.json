@@ -1,0 +1,1210 @@
+{
+ "runs": {
+  "EleutherAI/pythia-410m|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 15,
+   "modal_endpoint_share": 0.4792,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4896,
+   "cyclic_fraction": 0.5104,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     46
+    ],
+    [
+     253,
+     " the",
+     26
+    ],
+    [
+     13,
+     ",",
+     5
+    ],
+    [
+     285,
+     " and",
+     5
+    ],
+    [
+     673,
+     " time",
+     3
+    ],
+    [
+     643,
+     " other",
+     2
+    ],
+    [
+     1133,
+     " hand",
+     1
+    ],
+    [
+     806,
+     " first",
+     1
+    ],
+    [
+     5186,
+     "\u00d0",
+     1
+    ],
+    [
+     5589,
+     "ldots",
+     1
+    ],
+    [
+     2418,
+     " State",
+     1
+    ],
+    [
+     41438,
+     " Hair",
+     1
+    ],
+    [
+     12882,
+     "\u200b",
+     1
+    ],
+    [
+     559,
+     " +",
+     1
+    ],
+    [
+     14,
+     "-",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "funnel",
+   "_reused_from": "results/argmax_census_hardened.json"
+  },
+  "EleutherAI/pythia-410m|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.4271,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4271,
+   "cyclic_fraction": 0.5729,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     41
+    ],
+    [
+     253,
+     " the",
+     37
+    ],
+    [
+     13,
+     ",",
+     6
+    ],
+    [
+     285,
+     " and",
+     2
+    ],
+    [
+     673,
+     " time",
+     2
+    ],
+    [
+     806,
+     " first",
+     2
+    ],
+    [
+     1133,
+     " hand",
+     1
+    ],
+    [
+     64,
+     "_",
+     1
+    ],
+    [
+     17,
+     "0",
+     1
+    ],
+    [
+     89,
+     "x",
+     1
+    ],
+    [
+     10,
+     ")",
+     1
+    ],
+    [
+     370,
+     " $",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "funnel",
+   "_reused_from": "results/argmax_census_hardened.json"
+  },
+  "RWKV/rwkv-4-430m-pile|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.5208,
+   "modal_endpoint_token": " time",
+   "fixed_point_fraction": 0.0208,
+   "cyclic_fraction": 0.9792,
+   "endpoint_histogram": [
+    [
+     673,
+     " time",
+     50
+    ],
+    [
+     806,
+     " first",
+     30
+    ],
+    [
+     18,
+     "1",
+     4
+    ],
+    [
+     559,
+     " +",
+     2
+    ],
+    [
+     19,
+     "2",
+     2
+    ],
+    [
+     1072,
+     " same",
+     2
+    ],
+    [
+     16,
+     "/",
+     1
+    ],
+    [
+     5186,
+     "\u00d0",
+     1
+    ],
+    [
+     89,
+     "x",
+     1
+    ],
+    [
+     50254,
+     "                        ",
+     1
+    ],
+    [
+     12882,
+     "\u200b",
+     1
+    ],
+    [
+     27,
+     ":",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "none",
+   "model": "RWKV/rwkv-4-430m-pile",
+   "tier": "400M",
+   "family": "RWKV"
+  },
+  "RWKV/rwkv-4-430m-pile|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.5208,
+   "modal_endpoint_token": " time",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     673,
+     " time",
+     50
+    ],
+    [
+     806,
+     " first",
+     34
+    ],
+    [
+     89,
+     "x",
+     3
+    ],
+    [
+     18,
+     "1",
+     2
+    ],
+    [
+     1072,
+     " same",
+     2
+    ],
+    [
+     13,
+     ",",
+     1
+    ],
+    [
+     26472,
+     " 227",
+     1
+    ],
+    [
+     39913,
+     " barley",
+     1
+    ],
+    [
+     10,
+     ")",
+     1
+    ],
+    [
+     16,
+     "/",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "none",
+   "model": "RWKV/rwkv-4-430m-pile",
+   "tier": "400M",
+   "family": "RWKV"
+  },
+  "state-spaces/mamba-370m-hf|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 15,
+   "modal_endpoint_share": 0.7812,
+   "modal_endpoint_token": " first",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9583,
+   "endpoint_histogram": [
+    [
+     806,
+     " first",
+     75
+    ],
+    [
+     559,
+     " +",
+     7
+    ],
+    [
+     76,
+     "k",
+     2
+    ],
+    [
+     1133,
+     " hand",
+     1
+    ],
+    [
+     5186,
+     "\u00d0",
+     1
+    ],
+    [
+     1532,
+     "---",
+     1
+    ],
+    [
+     1986,
+     " United",
+     1
+    ],
+    [
+     253,
+     " the",
+     1
+    ],
+    [
+     89,
+     "x",
+     1
+    ],
+    [
+     37087,
+     "medsc",
+     1
+    ],
+    [
+     12882,
+     "\u200b",
+     1
+    ],
+    [
+     17,
+     "0",
+     1
+    ],
+    [
+     393,
+     " \\",
+     1
+    ],
+    [
+     23358,
+     " \u0431\u044b",
+     1
+    ],
+    [
+     673,
+     " time",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "none",
+   "model": "state-spaces/mamba-370m-hf",
+   "tier": "400M",
+   "family": "Mamba"
+  },
+  "state-spaces/mamba-370m-hf|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 11,
+   "modal_endpoint_share": 0.8646,
+   "modal_endpoint_token": " first",
+   "fixed_point_fraction": 0.0104,
+   "cyclic_fraction": 0.9792,
+   "endpoint_histogram": [
+    [
+     806,
+     " first",
+     83
+    ],
+    [
+     559,
+     " +",
+     3
+    ],
+    [
+     5,
+     "$",
+     2
+    ],
+    [
+     370,
+     " $",
+     1
+    ],
+    [
+     107,
+     "\ufffd",
+     1
+    ],
+    [
+     89,
+     "x",
+     1
+    ],
+    [
+     7879,
+     " Twitter",
+     1
+    ],
+    [
+     4407,
+     " \u0432",
+     1
+    ],
+    [
+     50254,
+     "                        ",
+     1
+    ],
+    [
+     187,
+     "\n",
+     1
+    ],
+    [
+     1986,
+     " United",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "none",
+   "model": "state-spaces/mamba-370m-hf",
+   "tier": "400M",
+   "family": "Mamba"
+  },
+  "EleutherAI/pythia-160m|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.4271,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4271,
+   "cyclic_fraction": 0.5729,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     41
+    ],
+    [
+     253,
+     " the",
+     28
+    ],
+    [
+     673,
+     " time",
+     16
+    ],
+    [
+     13,
+     ",",
+     4
+    ],
+    [
+     806,
+     " first",
+     3
+    ],
+    [
+     14,
+     "-",
+     2
+    ],
+    [
+     5589,
+     "ldots",
+     1
+    ],
+    [
+     298,
+     " l",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "funnel",
+   "model": "EleutherAI/pythia-160m",
+   "tier": "150M",
+   "family": "GPTNeoX"
+  },
+  "EleutherAI/pythia-160m|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 11,
+   "modal_endpoint_share": 0.4375,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.4375,
+   "cyclic_fraction": 0.5625,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     42
+    ],
+    [
+     253,
+     " the",
+     28
+    ],
+    [
+     673,
+     " time",
+     16
+    ],
+    [
+     81,
+     "p",
+     2
+    ],
+    [
+     13,
+     ",",
+     2
+    ],
+    [
+     75,
+     "j",
+     1
+    ],
+    [
+     5891,
+     "\u3057",
+     1
+    ],
+    [
+     10396,
+     " Special",
+     1
+    ],
+    [
+     298,
+     " l",
+     1
+    ],
+    [
+     10,
+     ")",
+     1
+    ],
+    [
+     2574,
+     "eq",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "funnel",
+   "model": "EleutherAI/pythia-160m",
+   "tier": "150M",
+   "family": "GPTNeoX"
+  },
+  "RWKV/rwkv-4-169m-pile|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.4792,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     46
+    ],
+    [
+     510,
+     "The",
+     32
+    ],
+    [
+     13,
+     ",",
+     5
+    ],
+    [
+     559,
+     " +",
+     3
+    ],
+    [
+     89,
+     "x",
+     2
+    ],
+    [
+     806,
+     " first",
+     2
+    ],
+    [
+     20504,
+     " 230",
+     1
+    ],
+    [
+     1252,
+     "201",
+     1
+    ],
+    [
+     673,
+     " time",
+     1
+    ],
+    [
+     1270,
+     " great",
+     1
+    ],
+    [
+     18836,
+     " 144",
+     1
+    ],
+    [
+     29,
+     "<",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "none",
+   "model": "RWKV/rwkv-4-169m-pile",
+   "tier": "150M",
+   "family": "RWKV"
+  },
+  "RWKV/rwkv-4-169m-pile|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 8,
+   "modal_endpoint_share": 0.4688,
+   "modal_endpoint_token": "\n",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     187,
+     "\n",
+     45
+    ],
+    [
+     510,
+     "The",
+     37
+    ],
+    [
+     13,
+     ",",
+     5
+    ],
+    [
+     559,
+     " +",
+     3
+    ],
+    [
+     673,
+     " time",
+     2
+    ],
+    [
+     2968,
+     " deal",
+     2
+    ],
+    [
+     75,
+     "j",
+     1
+    ],
+    [
+     16,
+     "/",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "none",
+   "model": "RWKV/rwkv-4-169m-pile",
+   "tier": "150M",
+   "family": "RWKV"
+  },
+  "state-spaces/mamba-130m-hf|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.5625,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9688,
+   "endpoint_histogram": [
+    [
+     510,
+     "The",
+     54
+    ],
+    [
+     187,
+     "\n",
+     24
+    ],
+    [
+     18,
+     "1",
+     8
+    ],
+    [
+     13,
+     ",",
+     3
+    ],
+    [
+     987,
+     " right",
+     2
+    ],
+    [
+     5186,
+     "\u00d0",
+     1
+    ],
+    [
+     368,
+     " you",
+     1
+    ],
+    [
+     1769,
+     "\ufffd",
+     1
+    ],
+    [
+     281,
+     " to",
+     1
+    ],
+    [
+     2119,
+     " sure",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "none",
+   "model": "state-spaces/mamba-130m-hf",
+   "tier": "150M",
+   "family": "Mamba"
+  },
+  "state-spaces/mamba-130m-hf|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 10,
+   "modal_endpoint_share": 0.5833,
+   "modal_endpoint_token": "The",
+   "fixed_point_fraction": 0.0,
+   "cyclic_fraction": 0.9896,
+   "endpoint_histogram": [
+    [
+     510,
+     "The",
+     56
+    ],
+    [
+     187,
+     "\n",
+     26
+    ],
+    [
+     18,
+     "1",
+     6
+    ],
+    [
+     2934,
+     " idea",
+     2
+    ],
+    [
+     2869,
+     "\ufffd",
+     1
+    ],
+    [
+     7879,
+     " Twitter",
+     1
+    ],
+    [
+     987,
+     " right",
+     1
+    ],
+    [
+     2574,
+     "eq",
+     1
+    ],
+    [
+     138,
+     "\ufffd",
+     1
+    ],
+    [
+     10,
+     ")",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "none",
+   "model": "state-spaces/mamba-130m-hf",
+   "tier": "150M",
+   "family": "Mamba"
+  },
+  "EleutherAI/gpt-neo-125m|s20260803": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 13,
+   "modal_endpoint_share": 0.4375,
+   "modal_endpoint_token": " side",
+   "fixed_point_fraction": 0.0521,
+   "cyclic_fraction": 0.9479,
+   "endpoint_histogram": [
+    [
+     1735,
+     " side",
+     42
+    ],
+    [
+     198,
+     "\n",
+     16
+    ],
+    [
+     464,
+     "The",
+     9
+    ],
+    [
+     640,
+     " time",
+     8
+    ],
+    [
+     976,
+     " same",
+     8
+    ],
+    [
+     220,
+     " ",
+     5
+    ],
+    [
+     584,
+     " other",
+     2
+    ],
+    [
+     26897,
+     "\u0631",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     87,
+     "x",
+     1
+    ],
+    [
+     255,
+     "\ufffd",
+     1
+    ],
+    [
+     7437,
+     "American",
+     1
+    ],
+    [
+     21913,
+     " Planning",
+     1
+    ]
+   ],
+   "census_seed": 20260803,
+   "cls": "none",
+   "model": "EleutherAI/gpt-neo-125m",
+   "tier": "150M",
+   "family": "GPTNeo"
+  },
+  "EleutherAI/gpt-neo-125m|s990017": {
+   "n_starts": 96,
+   "n_distinct_endpoints": 12,
+   "modal_endpoint_share": 0.4896,
+   "modal_endpoint_token": " side",
+   "fixed_point_fraction": 0.0521,
+   "cyclic_fraction": 0.9479,
+   "endpoint_histogram": [
+    [
+     1735,
+     " side",
+     47
+    ],
+    [
+     198,
+     "\n",
+     12
+    ],
+    [
+     976,
+     " same",
+     11
+    ],
+    [
+     640,
+     " time",
+     8
+    ],
+    [
+     464,
+     "The",
+     7
+    ],
+    [
+     220,
+     " ",
+     5
+    ],
+    [
+     87,
+     "x",
+     1
+    ],
+    [
+     11,
+     ",",
+     1
+    ],
+    [
+     584,
+     " other",
+     1
+    ],
+    [
+     12466,
+     " \ufffd",
+     1
+    ],
+    [
+     113,
+     "\ufffd",
+     1
+    ],
+    [
+     1248,
+     " 18",
+     1
+    ]
+   ],
+   "census_seed": 990017,
+   "cls": "none",
+   "model": "EleutherAI/gpt-neo-125m",
+   "tier": "150M",
+   "family": "GPTNeo"
+  }
+ },
+ "_preregistration_file": "experiments/prereg_size_matched_pile.json",
+ "_prereg_sha256": "d771f1e591f80edee9ea3fcb5ae2aa5f2ff678360d9b8f1d79ba30c2aebed1db  prereg_size_matched_pile.json  (frozen before any new census cell)",
+ "_estimator": "gate1.argmax_census + argmax_census_hardened.classify, both imported unchanged",
+ "table": [
+  {
+   "tier": "400M",
+   "model": "EleutherAI/pythia-410m",
+   "family": "GPTNeoX",
+   "classes": [
+    "funnel"
+   ],
+   "stable": true,
+   "phi": [
+    0.4896,
+    0.4271
+   ],
+   "modal": [
+    0.4792,
+    0.4271
+   ],
+   "endpoint": [
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "tier": "400M",
+   "model": "RWKV/rwkv-4-430m-pile",
+   "family": "RWKV",
+   "classes": [
+    "none"
+   ],
+   "stable": true,
+   "phi": [
+    0.0208,
+    0.0
+   ],
+   "modal": [
+    0.5208,
+    0.5208
+   ],
+   "endpoint": [
+    " time",
+    " time"
+   ]
+  },
+  {
+   "tier": "400M",
+   "model": "state-spaces/mamba-370m-hf",
+   "family": "Mamba",
+   "classes": [
+    "none"
+   ],
+   "stable": true,
+   "phi": [
+    0.0104,
+    0.0104
+   ],
+   "modal": [
+    0.7812,
+    0.8646
+   ],
+   "endpoint": [
+    " first",
+    " first"
+   ]
+  },
+  {
+   "tier": "150M",
+   "model": "EleutherAI/pythia-160m",
+   "family": "GPTNeoX",
+   "classes": [
+    "funnel"
+   ],
+   "stable": true,
+   "phi": [
+    0.4271,
+    0.4375
+   ],
+   "modal": [
+    0.4271,
+    0.4375
+   ],
+   "endpoint": [
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "tier": "150M",
+   "model": "RWKV/rwkv-4-169m-pile",
+   "family": "RWKV",
+   "classes": [
+    "none"
+   ],
+   "stable": true,
+   "phi": [
+    0.0,
+    0.0
+   ],
+   "modal": [
+    0.4792,
+    0.4688
+   ],
+   "endpoint": [
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "tier": "150M",
+   "model": "state-spaces/mamba-130m-hf",
+   "family": "Mamba",
+   "classes": [
+    "none"
+   ],
+   "stable": true,
+   "phi": [
+    0.0,
+    0.0
+   ],
+   "modal": [
+    0.5625,
+    0.5833
+   ],
+   "endpoint": [
+    "The",
+    "The"
+   ]
+  },
+  {
+   "tier": "150M",
+   "model": "EleutherAI/gpt-neo-125m",
+   "family": "GPTNeo",
+   "classes": [
+    "none"
+   ],
+   "stable": true,
+   "phi": [
+    0.0521,
+    0.0521
+   ],
+   "modal": [
+    0.4375,
+    0.4896
+   ],
+   "endpoint": [
+    " side",
+    " side"
+   ]
+  }
+ ],
+ "unstable": [],
+ "failed": [],
+ "decisive": {
+  "pythia_160m": "funnel",
+  "gpt_neo_125m": "none",
+  "same_class": false,
+  "phi_pythia": 0.4323,
+  "phi_gptneo": 0.0521
+ },
+ "verdict": "SIZE-MATCHED PILE ARM. Corpus fixed (The Pile), scale fixed within tier, architecture varied. 96 starts x 2 census seeds, CPU float32, estimator and class rule imported unchanged.  TIER 400M: pythia-410m (GPTNeoX) funnel phi=0.458; rwkv-4-430m-pile (RWKV) none phi=0.010; mamba-370m-hf (Mamba) none phi=0.010.  Heterogeneity at 400M: 2 distinct classes ['funnel', 'none'] at one corpus and one weight class.  TIER 150M: pythia-160m (GPTNeoX) funnel phi=0.432; rwkv-4-169m-pile (RWKV) none phi=0.000; mamba-130m-hf (Mamba) none phi=0.000; gpt-neo-125m (GPTNeo) none phi=0.052.  Heterogeneity at 150M: 2 distinct classes ['funnel', 'none'] at one corpus and one weight class.  THE DECISIVE CELL SURVIVES: at matched size pythia-160m is funnel (phi 0.432) and gpt-neo-125m is none (phi 0.052). F172's class difference is NOT a size effect. Per the registered boundary this means 'not explained by corpus or scale', never 'caused by architecture' mechanistically -- these families differ in schedule and hyperparameters too. REFUSALS, registered before the numbers: no p-value; no generalisation beyond these checkpoints; no adjustment of the class thresholds; no claim about WHY.",
+ "_analysis_provenance": {
+  "script": "size_matched_pile.py",
+  "sha256": "edc8341ffce38a1684c7a21ef2d1069462285e5c0d03b192e5690a43e82da01b",
+  "imports": {
+   "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/size_matched_pile.py": "edc8341ffce38a1684c7a21ef2d1069462285e5c0d03b192e5690a43e82da01b",
+   "fingerprint/gate1.py": "86e58f562f673af3e3509e45cea1a19ad39cbcc9d108f21f4e07f86bbefa7c42",
+   "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

@@ -1,0 +1,27 @@
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 44872.01it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  [400M] RWKV/rwkv-4-430m-pile                  none/none       fix=0.021/0.000 (806s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 6211.72it/s]
+  [400M] state-spaces/mamba-370m-hf             none/none       fix=0.010/0.010 (16899s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7677.13it/s]
+  [150M] EleutherAI/pythia-160m               funnel/funnel     fix=0.427/0.438 (70s)
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 64720.61it/s]
+  [150M] RWKV/rwkv-4-169m-pile                  none/none       fix=0.000/0.000 (225s)
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 6640.16it/s]
+  [150M] state-spaces/mamba-130m-hf             none/none       fix=0.000/0.000 (6233s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 7085.65it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  [150M] EleutherAI/gpt-neo-125m                none/none       fix=0.052/0.052 (217s)
+
+SIZE-MATCHED PILE ARM. Corpus fixed (The Pile), scale fixed within tier, architecture varied. 96 starts x 2 census seeds, CPU float32, estimator and class rule imported unchanged.  TIER 400M: pythia-410m (GPTNeoX) funnel phi=0.458; rwkv-4-430m-pile (RWKV) none phi=0.010; mamba-370m-hf (Mamba) none phi=0.010.  Heterogeneity at 400M: 2 distinct classes ['funnel', 'none'] at one corpus and one weight class.  TIER 150M: pythia-160m (GPTNeoX) funnel phi=0.432; rwkv-4-169m-pile (RWKV) none phi=0.000; mamba-130m-hf (Mamba) none phi=0.000; gpt-neo-125m (GPTNeo) none phi=0.052.  Heterogeneity at 150M: 2 distinct classes ['funnel', 'none'] at one corpus and one weight class.  THE DECISIVE CELL SURVIVES: at matched size pythia-160m is funnel (phi 0.432) and gpt-neo-125m is none (phi 0.052). F172's class difference is NOT a size effect. Per the registered boundary this means 'not explained by corpus or scale', never 'caused by architecture' mechanistically -- these families differ in schedule and hyperparameters too. REFUSALS, registered before the numbers: no p-value; no generalisation beyond these checkpoints; no adjustment of the class thresholds; no claim about WHY.
+
+wrote results/size_matched_pile.json
