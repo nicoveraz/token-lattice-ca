@@ -3645,6 +3645,68 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F179 — the family scale ladder: both families are uniform across an order of magnitude, and six of seven models land on the SAME token while only one family stays there
+22 Aug 2026. F178 closed E3's size confound but left one alternative it could not exclude: that the
+Pythia recipe is idiosyncratic rather than the split being real. This is the affordable partial
+answer — does the split hold *across scale within each family*, or did F178 pick two unrepresentative
+checkpoints? Registered in `experiments/prereg_family_scale_ladder.json` (frozen `49adb654…` before
+any new cell), estimator and thresholds imported unchanged, the four existing cells **reused rather
+than re-measured**. **7 models, 0 load failures, 0 class-unstable.**
+
+| family | size | class | φ | modal share | modal endpoint |
+|---|---|---|---|---|---|
+| Pythia | 70M | funnel | **0.802** | 0.792 | `'\n'` |
+| Pythia | 160M | funnel | 0.432 | 0.432 | `'\n'` |
+| Pythia | 410M | funnel | 0.458 | 0.453 | `'\n'` |
+| Pythia | 1000M | funnel | 0.365 | 0.406 | `'\n'` |
+| GPT-Neo | 125M | none | 0.052 | 0.464 | `' side'` |
+| GPT-Neo | 1300M | none | **0.000** | 0.536 | `'\n'` |
+| GPT-Neo | 2700M | none | 0.036 | 0.594 | `'\n'` |
+
+**Both ladders are uniform.** Pythia funnels at every scale over a **14× span**; GPT-Neo at none over
+a **22× span**. Neither KF nor KG fires. F178's split is a stable property of the families across
+roughly an order of magnitude, not an artefact of the two checkpoints it happened to use.
+
+**The sharper finding is in the endpoint column, and it was not what this run was for.** **Six of the
+seven models land on the same token, `'\n'`** — every Pythia, and GPT-Neo at 1.3B and 2.7B. And
+GPT-Neo concentrates on it *harder* than some Pythias do: modal share **0.536 and 0.594** against
+`pythia-160m`'s **0.432**. Yet GPT-Neo's φ is **0.000 and 0.036** while every Pythia is above 0.36.
+
+So across two families, seven checkpoints and an order of magnitude of scale, at one fixed corpus:
+**where trajectories go is shared, and whether the destination self-continues is not.** The models
+that concentrate most on the newline are among those that never stay on it. This is the same
+decomposition F178 found in `rwkv-4-169m` vs `pythia-160m` and F172 found in the Pile triple, now
+holding across scale in two families rather than in a single matched pair.
+
+**A secondary pattern, reported and not promoted.** Within Pythia, φ falls as scale rises — 0.802 at
+70M to 0.365 at 1B — while the class never changes. Four points, one family, no trend test run and
+none licensed at that n. Recorded because a reader will see it in the table.
+
+**KH is registered and binding, and it is why this entry does not say more.** A uniform ladder shows
+the split is **stable**; it does not show it is architectural, recipe-driven, or general. Settling
+whether Pythia is simply idiosyncratic needs **a second funnel from a different family at fixed
+corpus**, and the cohort has none: the obvious Pile candidate, GPT-J-6B, is ~24 GB in float32 on a
+16 GB machine, and Cerebras-GPT did not resolve under the repository names tried. **That gap is the
+honest limit of E3 and the paper must state it**, not bury it in limitations.
+
+**Boundary.** Two families, seven checkpoints, one corpus, one readout, thresholds fixed before F87.
+No p-value — two families are not a sample. No claim about *what* differs between them: this design
+holds corpus and scale, and separates neither training schedule nor hyperparameters nor architecture.
+
+`experiments/family_scale_ladder.py` → `results/family_scale_ladder.json`.
+
+---
+
+**K12, cleared the same day.** `PLAN.md`'s remaining precondition for writing on E2 was to check
+arXiv:2510.24963's claim that up to 98% of word-level behavioural variance is explained by unigram
+frequency, n-gram probability and semantic similarity. Read in full: the 98% is the **R² of a
+regression predicting a model's log-probability for words in natural context**, and it is a *peak*
+across training (0.86–0.98, falling afterwards, never below 0.5). Different dependent variable from
+E2, which concerns the **endpoint of an iterated argmax map from random starts**. And its mechanism —
+unigram frequency dominates — **is E2's own conclusion**. Not a threat; mildly corroborative. The
+consequence is another narrowing: E2 is a specific instance of a broadly established pattern on a new
+readout, which reinforces F175's demotion to a consistency check and supplies its second citation.
+
 ### F178 — the size-matched Pile arm: the class difference is NOT a size effect, but "architecture" is the wrong word for it — a transformer sits with the recurrent models
 22 Aug 2026. F177's gate found E3's design partially anticipated and its instance confounded:
 `gpt-neo-2.7B` vs `pythia-410m` differ 6.6× in size, while the published same-corpus contrasts

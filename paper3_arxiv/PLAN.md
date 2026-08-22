@@ -187,9 +187,14 @@ drafting, not a follow-up.
   low-dimensional attractor and measures a degeneration-detecting dynamical property across seven
   pretrained families. The dynamical-systems **vocabulary is not ours**, and this paper needs its own
   distinguishing paragraph. Locate novelty in the OBJECT, never in the framing.
-- **K12 (new, from F177).** E2 was **not tested** by the gate and is OPEN by default rather than by
-  verification. Before drafting anything on E2, check arXiv:2510.24963's claim that up to 98% of
-  word-level behavioural variance is explained by unigram frequency + n-gram + semantic similarity.
+- ~~**K12 (new, from F177).**~~ **CLEARED 22 Aug 2026.** arXiv:2510.24963 read in full: its 98% is
+  the R² of a regression predicting a model's **log-probability for words in natural context**, and
+  it is a *peak* across training (0.86–0.98, later falling, never below 0.5). Different dependent
+  variable from E2, which is about the **endpoint of an iterated argmax map from random starts**. And
+  its mechanism — unigram frequency dominates — is *E2's own conclusion*. **Not a threat; mildly
+  corroborative.** Consequence: E2 is less novel still, a specific instance of a broadly established
+  pattern on a new readout, which reinforces F175's demotion to a consistency check and gives it a
+  second citation.
 
 ## 7. Sequencing
 
@@ -220,7 +225,16 @@ drafting, not a follow-up.
    and `polyglot-ko`'s tokenizer was missing, which was all of F171's `OSError`.
 5. ~~5.5 gate~~ — **DONE 21 Aug 2026. Li et al. in full (F175); protocol-depth gate (F177).** K4
    did not fire. **Drafting is unblocked**, subject to K10–K12 and to fixing E1's factual error.
-6. Draft only then. Structure to follow paper 2's ladder idiom: the question, what each account
+6. **Draft — UNBLOCKED 22 Aug 2026.** Every registered gate is resolved: K4 did not fire (F177),
+   K12 cleared (F179), KB/KD did not fire (F178), KF/KG did not fire (F179). K10 and K11 are wording
+   constraints, not blockers. Before drafting, three things are binding:
+   - **E3 leads**, stated as *the class is not determined at fixed corpus and fixed scale* — never
+     as "architecture", which F178 withdrew when a transformer landed with the recurrent models.
+     Cite arXiv:2404.19178, arXiv:2410.06672 and arXiv:2510.24963 and argue as a counterexample.
+   - **E1 carries its correction** (the ~1.45-epoch confound) in the text, not the appendix.
+   - **E2 is a consistency check**, citing Li et al. and Michaelov et al., never a refutation.
+   The honest limit to state up front: no second funnel family at fixed corpus exists in reach, so
+   "the Pythia recipe is idiosyncratic" is not excluded. Structure to follow paper 2's ladder idiom: the question, what each account
    predicts, exhibit by exhibit, then a limits section that concedes the causal currency gap first
    rather than last.
 

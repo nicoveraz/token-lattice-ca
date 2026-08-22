@@ -322,5 +322,14 @@
   "urlDupes": 6,
   "budgetDropped": 7,
   "agentCalls": 99
+ },
+ "K12_resolved": {
+  "date": "22 Aug 2026",
+  "question": "PLAN.md K12: before writing anything on E2, check arXiv:2510.24963's claim that up to 98% of word-level behavioural variance is explained by unigram frequency + n-gram probability + semantic similarity, which is E2's territory.",
+  "read": "FULL_TEXT, pdftotext -layout, 3492 lines",
+  "what_the_98_percent_actually_is": "the R^2 of a regression predicting a MODEL'S LOG-PROBABILITY for words in natural sentence contexts (their NaWoCo dataset, 150k words from FineWeb) from three heuristics. Verbatim: 'the regressions best predict language model log-probability (R2 = 0.86 - 0.98 depending on the model) when the effect of unigram log-probability on language model log-probability is at its peak, after which fit decreases sharply'. So 98% is a PEAK across training, not a general figure; fit later falls and 'does not fall below R2 = 0.5'.",
+  "verdict": "NOT A THREAT TO E2, and mildly CORROBORATIVE. Different dependent variable: they predict a probability assigned to a word IN NATURAL CONTEXT; E2 concerns which token is the ENDPOINT of an iterated argmax map from RANDOM two-token starts, which is not a probability and not in context. And their headline mechanism is that UNIGRAM FREQUENCY dominates -- which is exactly E2's conclusion, that the maps funnel to COMMON tokens rather than to high-inflow ones.",
+  "consequence": "E2 is even less novel than F175 left it. Frequency-dominates is broadly established, so E2 is a specific instance of a known pattern measured on a new readout. This REINFORCES the F175 demotion to a consistency check and supplies a second citation for it. It does not weaken the result, only the claim that can be built on it.",
+  "K12_status": "CLEARED -- E2 may be written, as a consistency check citing both Li et al. (arXiv:2310.10226) and Michaelov et al. (arXiv:2510.24963)."
  }
 }

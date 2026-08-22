@@ -1,0 +1,33 @@
+{
+ "name": "family-scale-ladder-v1",
+ "status": "FROZEN before any new cell. New forward passes required.",
+ "plan_section": "paper3_arxiv/PLAN.md E3, answering the one alternative F178 could not exclude",
+ "epistemic_tier": "TIER 1. None of pythia-70m, pythia-1b or gpt-neo-1.3B has been censused. The existing cells (pythia-160m, pythia-410m, gpt-neo-125m, gpt-neo-2.7B) are REUSED unchanged, never re-measured.",
+
+ "the_question": "F178 established that the funnel/none split between Pythia and GPT-Neo is not a size effect -- it reproduces at matched size. What it could NOT exclude is that the PYTHIA RECIPE is simply idiosyncratic: one funnel against three, twice, with the same family both times. This does not settle that (settling it needs a second funnel from a different family at fixed corpus, and no affordable candidate exists -- GPT-J-6B is ~24GB in float32 on a 16GB machine). What it CAN settle is whether the split is a stable FAMILY property across scale or an artefact of the particular checkpoints F178 happened to use.",
+
+ "frozen": {
+  "estimator": "unchanged and imported: gate1.argmax_census at 96 starts, census seeds [20260803, 990017], argmax_census_hardened.classify thresholds. Identical to every cell it will be compared against.",
+  "device": "CPU float32",
+  "new_cells": ["EleutherAI/pythia-70m", "EleutherAI/pythia-1b", "EleutherAI/gpt-neo-1.3B"],
+  "reused": {"EleutherAI/pythia-160m": "results/size_matched_decisive.json",
+             "EleutherAI/pythia-410m": "results/argmax_census_hardened.json",
+             "EleutherAI/gpt-neo-125m": "results/size_matched_decisive.json",
+             "EleutherAI/gpt-neo-2.7B": "results/argmax_census_hardened.json"},
+  "resulting_ladders": "Pythia at 70M/160M/410M/1B (four scales, ~14x span); GPT-Neo at 125M/1.3B/2.7B (three scales, ~22x span). Both families trained on The Pile, so corpus is fixed across the whole design."
+ },
+
+ "kill_conditions": {
+  "KF_pythia_not_uniform": "if Pythia is NOT funnel at every scale tested, the family reading is broken. Report the scale at which it breaks and STOP describing the split as a family property -- it would then be a scale-window property, which is a different and weaker claim.",
+  "KG_gptneo_funnels": "if GPT-Neo is funnel at ANY scale, the same conclusion follows from the other side, and E3's contrast becomes scale-dependent rather than family-level.",
+  "KC_unstable": "any model whose two census seeds disagree on class is excluded from the ladder and reported as underpowered, exactly as in F172 and F178.",
+  "KH_still_not_settled": "whatever this returns, it does NOT settle the Pythia-idiosyncrasy question. Both ladders passing means the split is a stable family property; it does not mean the property is architectural, recipe-driven, or general. The finding must say so explicitly rather than let a clean ladder imply more than it shows."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value: two families are not a sample",
+  "no claim that a uniform ladder identifies WHAT differs between the families",
+  "no re-measurement of existing cells, and no adjustment of the class thresholds",
+  "no extrapolation beyond the scales tested"
+ ]
+}
