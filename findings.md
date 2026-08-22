@@ -3714,6 +3714,11 @@ gate at all** — it is OPEN by default rather than by verification, with one fl
 (arXiv:2510.24963 explains up to 98% of word-level behavioural variance by unigram frequency +
 n-gram + semantic similarity, which is E2's territory).
 
+**The paper-2 consequence was raised and declined (21 Aug 2026).** Applying K10 to the already-
+submitted paper 2 was this session's extension of the gate, not the gate's own verdict. A sentence
+making the delta from paper 1 explicit was drafted; the author declined it and paper 2 ships as
+written. Recorded so this is read as a decision rather than an oversight. **K10 still binds paper 3.**
+
 **Net.** The paper survives and is narrower again: not a replication, but its measurement is bounded
 by our own paper 1, its lead exhibit's design is taken and its instantiation is weaker than the
 published one, and its second exhibit needs a factual correction before it can be stated at all.

@@ -9,6 +9,17 @@
 > LaTeX source has an em dash, and arXiv's title field is plain text, so it renders as two literal
 > hyphens. This was flagged while Update was still available and the author chose to leave it. It is
 > recorded here so a later reader treats it as a decision rather than an oversight.
+>
+> **Self-citation depth: raised and declined, 21 Aug 2026 — do not "fix" it either.** Paper 3's
+> protocol-depth gate (F177) noted that arXiv:2608.10986 already publishes the argmax map's
+> attracting fixed point, the funnel-versus-none contrast on two named models, and a BOS token
+> moving that paper's frozen fraction "because it changes the map's domain rather than its
+> parameters". Paper 2 cites the companion for the estimator family and the discriminator but does
+> not attribute those three specifically, so a referee reading both could find the delta
+> under-stated. A one-sentence addition was drafted and **the author declined it**; the paper is
+> defensible as written, the readouts genuinely differ (a ring frozen fraction with a 24-start
+> diagnostic, versus a 96-start census as the primary instrument), and paper 2's other two
+> contributions are untouched. For **paper 3** this is a hard constraint (K10) and remains one.
 
 Everything below is ready to paste into the arXiv submission form. Numbers in the comments line come
 from the verified build (`./make_arxiv_package.sh`), not from an estimate: 11 pages, 4 tables.
