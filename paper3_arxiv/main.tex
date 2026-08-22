@@ -129,9 +129,38 @@ argmax map and contrasts a model sending most starts to the newline token agains
 point. We claim neither here. What is new is the scale of the census, the class taxonomy and its
 stability, and the corpus-versus-weights attribution the census makes possible.
 
+\paragraph{Scope: a short-window readout, by nature and not by choice.}% F161, results/window_length_domain.json
+The same companion work establishes that this readout \emph{disappears} as the window widens:
+generalising the map so the state is the last $W$ tokens, raw $\fpf$ falls to $0.000$ on four of six
+models by $W = 16$ \citep{veraz2026probes}. Everything below is therefore a statement about how a
+model reads a \emph{fragment}. We put this in Setup rather than in Limits because it is a property of
+the construction rather than a shortfall of the evidence, and because a reader who takes our
+$\fpf$ for a general property of the model would be taking it for something it is not.
+
 \paragraph{Classes.} Trajectories are classified \textsc{funnel} (one dominant attracting fixed
 point), \textsc{none} (cycles or wandering), \textsc{fragmented} (many small basins) and
-\textsc{borderline}, under thresholds fixed before the data. The funnel geometry --- many states
+\textsc{borderline}. The \emph{modal share} of a census is the fraction of the $\Nstarts$ starts whose
+trajectory ends at the single most common endpoint token; it measures how concentrated the
+destinations are, independently of whether any of them is a fixed point. Class is a deterministic
+function of the pair $(\fpf, \text{modal share})$ under a rule fixed before the data was seen:
+
+\begin{center}\small
+\begin{tabular}{ll}
+\toprule
+class & rule \\
+\midrule
+\textsc{funnel}     & $\fpf \geq 0.30$ and modal share $\geq 0.30$ \\
+\textsc{none}       & $\fpf \leq 0.10$ \\
+\textsc{fragmented} & $\fpf \geq 0.30$ and modal share $< 0.20$ \\
+\textsc{borderline} & anything else, reported and never forced into a class \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The gap matters for \S\ref{sec:e3}, so we state it rather than leave it to be
+reconstructed: \textsc{funnel} and \textsc{none} are separated by an entire unoccupied band, and the
+models the paper contrasts sit far from both edges of it. No boundary in this rule falls between the
+values being compared. The funnel geometry --- many states
 feeding one self-continuing token --- was derived theoretically by \citet{fu2021repetition}, whose
 inflow analysis explains why trajectories concentrate; the classes here are that geometry measured
 on a model's own conditional rather than on corpus counts.
@@ -252,9 +281,20 @@ newline endpoint at nearly the same concentration, $0.474$ against $0.432$, with
 against $0.432$.% F178, results/size_matched_pile.json
 
 \textbf{Where trajectories go is shared; whether the destination self-continues is not.} The models
-that funnel hardest onto the newline are among those that never stay on it. This is the decomposition
-the rest of the paper is organised around, and it is visible at fixed corpus, at fixed scale, and
-across an order of magnitude.
+that funnel hardest onto the newline are among those that never stay on it.
+
+\paragraph{The decomposition is arithmetic, not a reading of the table.}% F179, results/family_scale_ladder.json
+Compare $\fpf$ against the modal share row by row in Table~\ref{tab:ladder}. For every Pythia the two
+agree to within four census starts out of $\Nstarts$ --- $0.802$ against $0.792$, $0.432$ against
+$0.432$, $0.458$ against $0.453$, $0.365$ against $0.406$. For every GPT-Neo the share exceeds $\fpf$
+by forty to fifty-four starts. In other words $\fpf$ factorises, to within the census resolution, as
+\[
+  \fpf \;\approx\; (\text{mass arriving at the modal endpoint}) \times (\text{whether that endpoint self-continues}),
+\]
+with the second factor near $1$ for one family and near $0$ for the other while the first is
+comparable across both. The corpus appears to fix the first term and something on the weights side
+the second. We state this as a factorisation others can test rather than as an impression, and
+\S\ref{sec:conclusion} asks for exactly that test.
 
 % =================================================================================================
 \section{E1: an off-the-shelf corpus manipulation that does not change the class}\label{sec:e1}
@@ -290,9 +330,18 @@ manipulation the field would ask for, and we report what it does and does not es
 the probability sum over all its predecessors. If the endpoints our maps reach are the tokens that
 account predicts, they should be high-inflow ones.
 
-% F171, results/inflow_funnel.json
-On an uncontrolled reading they are: $12$ of $13$ readable models have an endpoint at or above the
-$90$th inflow percentile, median $99.87$. That reading is an artefact of frequency.
+% F171, results/inflow_funnel.json -- the 17 -> 13 arithmetic, all four exclusions named here
+Thirteen of the seventeen models are readable for this comparison, and the four exclusions are of
+three different kinds. Two (\texttt{LFM2-2.6B}, \texttt{starcoder2-3b}) disagree with themselves
+across census seeds about which endpoint token is modal, so the quantity being predicted is not
+stable and they are dropped before anything is computed. One (\texttt{bloom-3b}) has an endpoint
+token that occurs \emph{zero} times in an English corpus --- a statement about the corpus, not about
+the theory, and \S\ref{sec:e2} returns to it. One (\texttt{polyglot-ko-1.3b}) had a tokenizer that
+would not load, which is an infrastructure failure and evidence about nothing. We keep the three
+reasons apart because they license different inferences.
+
+On an uncontrolled reading the endpoints are high-inflow: $12$ of the $13$ have an endpoint at or
+above the $90$th inflow percentile, median $99.87$. That reading is an artefact of frequency.
 \citet{fu2021repetition} themselves distinguish the two, arguing that it is not the high-frequency
 words but the high-inflow words that lead to repetition, so we compare each endpoint against the $50$
 tokens nearest it in log-frequency. Against that control the endpoint beats its matched peers in

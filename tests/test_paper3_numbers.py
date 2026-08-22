@@ -31,6 +31,13 @@ pytestmark = pytest.mark.skipif(not TEX.exists(), reason="paper3_arxiv/main.tex 
 # instead of quoting the figures, because quoting a peak R^2 as a headline is the over-reading
 # CITATIONS.md exists to prevent. The staleness test below caught them sitting here unused.
 ALLOWED = {
+    # --- design constants: a rule fixed BEFORE the data, not a measurement from any run. These
+    # would otherwise pass on a coincidental collision in results/, which is exactly the weakness
+    # this file's docstring describes. Declaring them makes the pass meaningful.
+    "0.30": "class threshold: FUNNEL requires phi >= 0.30 and modal share >= 0.30. Fixed in "
+            "experiments/argmax_census_hardened.py before F87 and never adjusted since.",
+    "0.10": "class threshold: NONE requires phi <= 0.10. Same rule, same provenance.",
+    "0.20": "class threshold: FRAGMENTED requires phi >= 0.30 and modal share < 0.20. Same rule.",
     "1.45": "derived arithmetic on biderman2023pythia's stated corpus sizes (~207B deduplicated "
             "against ~300B trained), not a measurement of ours. Kept here because the extractor "
             "cannot tell a derived ratio from a measured one.",
@@ -60,6 +67,27 @@ def test_every_decimal_literal_in_paper3_traces_to_a_results_file():
         f"any results/*.json:\n  " + "\n  ".join(missing) +
         "\nEither the number was not derived from a run, or the run was never committed. If it is "
         "somebody else's number, add it to ALLOWED naming whose it is.")
+
+
+def test_the_class_thresholds_in_the_paper_match_the_code():
+    """The paper now PRINTS the class rule, so it can disagree with the code that applied it.
+
+    E3's whole claim is that the class differs between models, which makes the threshold rule load
+    bearing rather than descriptive. If Setup's table and classify() ever drift apart, every class
+    in the paper becomes unverifiable -- so the numbers are compared directly.
+    """
+    import re as _re
+    src = (ROOT / "experiments" / "argmax_census_hardened.py").read_text()
+    fn = src[src.index("def classify("):src.index('return "borderline"')]
+    code = sorted(set(_re.findall(r'0\.\d+', fn)))
+    body = _body()
+    setup = body[body.index("Trajectories are classified"):body.index("The funnel geometry")]
+    printed = sorted(set(_re.findall(r'0\.\d+', setup)))
+    assert code == printed, (
+        f"the class rule printed in Setup does not match classify() in the census code.\n"
+        f"  code:    {code}\n  printed: {printed}\n"
+        f"E3 claims the class varies; if the rule that assigns it is misprinted, the claim is "
+        f"unverifiable from the paper.")
 
 
 def test_allowed_entries_all_carry_a_reason():

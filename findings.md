@@ -3645,6 +3645,49 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F182 — review pass on the paper 3 draft: the scope statement I had dropped, the rule I never printed, and a decomposition that is arithmetic rather than rhetoric
+22 Aug 2026. Four items from a full read of the draft, all accepted, all text-only except one new
+guard. Three were omissions; the interesting one is that the paper was **understating** a result.
+
+**1. The short-window scope was missing, and we published it ourselves.** F161 established that this
+readout *disappears* as the window widens — raw $\fpf$ falls to $0.000$ on four of six models by
+$W=16$. Paper 2 puts that in Setup and calls everything downstream a statement about reading a
+*fragment*. Paper 3 said "two-token conditional" and never mentioned it, **while citing the companion
+in the same section** — so a referee following the citation would find the scope caveat disappearing
+exactly as the paper got more ambitious. Restored to Setup in paper 2's own phrasing.
+
+**2. The class thresholds were never printed.** Setup said "thresholds fixed before the data" and
+gave no numbers. In paper 2 the classes were descriptive; **here the class is the dependent
+variable** — E3's entire claim is that it varies at fixed corpus and scale — so a reader could not
+check whether $\fpf = 0.052$ against $0.432$ crosses a boundary or whether a boundary had been drawn
+between them. Now printed as a table, with modal share defined (it was load-bearing and existed only
+as a column heading), and with the statement that class is a **deterministic function of
+$(\fpf,\text{modal share})$**. The gap is stated too: \textsc{funnel} and \textsc{none} are
+separated by an unoccupied band and the contrasted models sit far from both edges.
+
+**3. The decomposition was understated — it is a near-identity.** For every Pythia, $\fpf$ and the
+modal share agree to within **four census starts of 96**: $+1.0$, $0.0$, $+0.5$, $-4.0$. For every
+GPT-Neo the share exceeds $\fpf$ by **40 to 54 starts**. So
+$\fpf \approx (\text{mass arriving at the modal endpoint}) \times (\text{whether it self-continues})$,
+with the second factor near $1$ for one family and near $0$ for the other while the first is
+comparable. The draft had reported this as a reading of the table; it is arithmetic, and stating it
+as a factorisation makes the closing invitation concrete — others are asked to test a factorisation,
+not an impression.
+
+**4. The $17 \to 13$ arithmetic in E2** now names all four exclusions where the $13$ first appears,
+kept as three kinds because they license different inferences: two models disagree with themselves
+across seeds about the modal endpoint, one has an endpoint occurring zero times in an English corpus,
+one had a tokenizer that would not load.
+
+**A guard the review made necessary.** Printing the class rule creates a way for the paper to
+contradict the code that applied it. `tests/test_paper3_numbers.py` now extracts the thresholds from
+`classify()` and from Setup and asserts they match — proved non-vacuous against a copy with one
+threshold altered. The same commit **declares the three thresholds in the allowlist**: they are design
+constants, not measurements, and were previously passing the trace test on a coincidental collision
+in `results/` — the precise weakness that file's docstring describes.
+
+Draft rebuilt clean: **8 pages** (from 7), 0 undefined citations or references, 0 LaTeX warnings.
+
 ### F181 — the limit was overstated, and the cohort refutes it: funnels are common, the gap is corpus-specific
 22 Aug 2026. F179 and F180 recorded paper 3's sharpest limit as *"a recipe idiosyncratic to one model
 suite is not excluded"*, and I wrote that sentence into the manuscript's abstract, introduction and
