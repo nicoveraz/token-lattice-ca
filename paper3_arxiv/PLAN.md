@@ -233,6 +233,29 @@ drafting, not a follow-up.
    submission: a packaging script, submission metadata, and a decision on whether the one-funnel-
    family limit should be answered with a model rather than a sentence.
 
+   **PARKED 22 Aug 2026, by author decision, pending paper 2's arXiv identifier.** The draft is
+   complete and green; what it is waiting for is a citation it cannot yet make.
+
+   **Why the wait is substantive, not bookkeeping.** `paper3_arxiv/refs.bib` currently cites paper 1
+   (`veraz2026probes`) and has **zero** entries for paper 2, which is still `submit/7978448`,
+   *processing*. Paper 2 is not optional here: it measures the *same readout* and shows that nine
+   tokens of prefix move $\phi$ across most of its range and change the four-way class. Paper 3
+   censuses at the **raw domain only** and never says so. So a referee can ask — fairly — whether
+   these classes are properties of the model or of the model *at one prompt condition*, and paper 2
+   is simultaneously the answer and the caveat.
+
+   **Resume list, in order, when the identifier exists:**
+   1. Add the paper-2 bib entry and a `CITATIONS.md` ledger entry (self-citation, verified by
+      authorship, as entry 1 records for paper 1).
+   2. Add a **raw-domain scope sentence to Setup**, beside the short-window one restored in F182.
+      This is the same defect class: a scope caveat we have published and did not repeat. Something
+      of the form *"every census here is at the raw domain; a nine-token prefix moves $\phi$ across
+      most of its range and changes the class \citep{veraz2026domain}, so these classes are
+      properties of the model under this condition rather than of the model simpliciter."*
+   3. Consider whether E3's claim needs the same qualifier — "not determined at fixed corpus and
+      fixed scale" is currently silent about the domain being fixed too, and it is.
+   4. Packaging script and `SUBMISSION.md`, both adaptable from `paper2_arxiv/`.
+
    ~~**Draft — UNBLOCKED 22 Aug 2026.**~~ Every registered gate is resolved: K4 did not fire (F177),
    K12 cleared (F179), KB/KD did not fire (F178), KF/KG did not fire (F179). K10 and K11 are wording
    constraints, not blockers. Before drafting, three things are binding:
