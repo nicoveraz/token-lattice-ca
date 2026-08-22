@@ -3645,6 +3645,47 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F180 — paper 3 drafted: 7 pages, every exhibit narrower than the plan proposed, and two of the gate's constraints now enforced by a test
+22 Aug 2026. `PLAN.md` §7 step 6, written after every registered gate resolved. `paper3_arxiv/main.tex`
+compiles clean under `tectonic`: **7 pages, 2 tables, 0 undefined citations, 0 undefined references,
+0 LaTeX warnings, 0 `\citepend` uses**, 10 cited works all carrying ledger entries in
+`paper3_arxiv/CITATIONS.md`.
+
+**The paper it turned out to be, against the paper the plan proposed.** E3 leads and is stated as
+*the class is not determined at fixed corpus and fixed scale* — never as "architecture", which F178
+withdrew when a transformer landed with the recurrent models. E1 carries its ~1.45-epoch confound in
+the body text and concedes that Hernandez et al.'s double descent makes the null consistent with both
+accounts. E2 is a consistency check that **agrees** with the data-side camp rather than opposing it.
+The plan's original framing — that the two camps "cannot see each other" — is gone, and the
+introduction concedes the currency gap before presenting any result rather than in a limitations
+paragraph.
+
+**Two of the gate's constraints are now mechanical rather than remembered.**
+`tests/test_paper3_numbers.py` fails if Setup stops citing arXiv:2608.10986 (K10, the measurement is
+already published in our own paper 1) and fails if the manuscript ever claims architecture *causes*
+the split (F178's withdrawal). Both were proved non-vacuous against a deliberately broken copy before
+being trusted.
+
+**A defect the guards caught in themselves.** The allowlist initially excused four numbers —
+`0.74`, `0.76`, `0.86`, `0.98` — that the manuscript deliberately does **not** quote, reporting them
+qualitatively instead because quoting a peak R² as a headline is the over-reading `CITATIONS.md`
+exists to prevent. The staleness test found the allowlist describing a paper that was never written.
+And the K10 assertion was initially checked against comment-stripped text, where a citation key
+cannot survive — unfalsifiable by construction, now reading the raw source.
+
+**A caveat stated in the test rather than hidden by it.** `results/` now holds enough numbers that a
+common two-decimal literal matches something by coincidence. The number guard is strong against
+invented values at three or more decimals and weak at two, which is why every externally-quoted or
+derived number is allowlisted by name instead of being left to a chance collision.
+
+**What the paper says it cannot do, in its own introduction.** It is observational and cannot refute
+a training intervention. And exactly one family funnels at fixed corpus, so a recipe idiosyncratic to
+one model suite is not excluded — the obvious public Pile candidate for a second funnel family
+exceeded available memory. That limit is in §1, not §Limits.
+
+`paper3_arxiv/main.tex`, `paper3_arxiv/refs.bib`, `paper3_arxiv/CITATIONS.md`,
+`tests/test_paper3_numbers.py`.
+
 ### F179 — the family scale ladder: both families are uniform across an order of magnitude, and six of seven models land on the SAME token while only one family stays there
 22 Aug 2026. F178 closed E3's size confound but left one alternative it could not exclude: that the
 Pythia recipe is idiosyncratic rather than the split being real. This is the affordable partial

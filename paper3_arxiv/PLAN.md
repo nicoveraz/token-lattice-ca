@@ -225,7 +225,13 @@ drafting, not a follow-up.
    and `polyglot-ko`'s tokenizer was missing, which was all of F171's `OSError`.
 5. ~~5.5 gate~~ — **DONE 21 Aug 2026. Li et al. in full (F175); protocol-depth gate (F177).** K4
    did not fire. **Drafting is unblocked**, subject to K10–K12 and to fixing E1's factual error.
-6. **Draft — UNBLOCKED 22 Aug 2026.** Every registered gate is resolved: K4 did not fire (F177),
+6. **Draft — WRITTEN 22 Aug 2026 (F180).** `paper3_arxiv/main.tex`, 7 pages, 2 tables, 10 cited
+   works all ledgered, compiles clean. All three binding conditions are honoured and two of them are
+   now enforced by `tests/test_paper3_numbers.py` rather than by intention. Remaining before
+   submission: a packaging script, submission metadata, and a decision on whether the one-funnel-
+   family limit should be answered with a model rather than a sentence.
+
+   ~~**Draft — UNBLOCKED 22 Aug 2026.**~~ Every registered gate is resolved: K4 did not fire (F177),
    K12 cleared (F179), KB/KD did not fire (F178), KF/KG did not fire (F179). K10 and K11 are wording
    constraints, not blockers. Before drafting, three things are binding:
    - **E3 leads**, stated as *the class is not determined at fixed corpus and fixed scale* — never
