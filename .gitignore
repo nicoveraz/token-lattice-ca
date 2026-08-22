@@ -83,3 +83,15 @@ paper2_arxiv/main.blg
 paper2_arxiv/main.aux
 paper2_arxiv/main.bbl
 paper2_arxiv/main.out
+
+# Paper 3 build artefacts. Rebuild with `cd paper3_arxiv && tectonic main.tex`. Tracked by mistake
+# until 22 Aug 2026 -- a wholesale `git add paper3_arxiv/` caught them, so every rebuild dirtied the
+# tree and the repository carried a second copy of the paper that could silently disagree with
+# main.tex. Same policy as papers 1 and 2.
+paper3_arxiv/main.pdf
+paper3_arxiv/main.log
+paper3_arxiv/main.blg
+paper3_arxiv/main.aux
+paper3_arxiv/main.bbl
+paper3_arxiv/main.out
+paper3_arxiv/arxiv-submission.tar.gz
