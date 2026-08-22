@@ -111,9 +111,11 @@ trained on comparable corpora diverge in class. Language-caused predicts uniform
 > and E3 must be stated as *the class is not determined at fixed corpus and fixed scale*, with a
 > second transformer family on the same corpus landing among the recurrent models. The cleanest cell
 > is `rwkv-4-169m-pile` vs `pythia-160m`: same corpus, matched size, **same modal endpoint `'\n'`**,
-> modal share 0.474 vs 0.432, φ **0.000 vs 0.432**. Not excluded: that the Pythia recipe is simply
-> idiosyncratic — one funnel against three, twice, needs a second funnel from another family to
-> break.
+> modal share 0.474 vs 0.432, φ **0.000 vs 0.432**. **NARROWED BY F181:** funnels appear in 7
+> families across 5 corpora, so this is not about the phenomenon being one suite's quirk. What a
+> second Pile funnel family would add is *corpus-independence* of the split — and censusing GPT-J-6B
+> for it was assessed and **declined**: marginal upside, real downside if it is not a funnel,
+> confounded by shared lineage and scale, and it does not fit in memory at float32.
 >
 > **REPOSITIONED 21 Aug 2026 (F177). The design is PARTIALLY ANTICIPATED bordering on TAKEN, and the
 > published priors run the other way.** arXiv:2404.19178 (COLM 2024) already ran 14 off-the-shelf
@@ -239,8 +241,11 @@ drafting, not a follow-up.
      Cite arXiv:2404.19178, arXiv:2410.06672 and arXiv:2510.24963 and argue as a counterexample.
    - **E1 carries its correction** (the ~1.45-epoch confound) in the text, not the appendix.
    - **E2 is a consistency check**, citing Li et al. and Michaelov et al., never a refutation.
-   The honest limit to state up front: no second funnel family at fixed corpus exists in reach, so
-   "the Pythia recipe is idiosyncratic" is not excluded. Structure to follow paper 2's ladder idiom: the question, what each account
+   The honest limit to state up front, **narrowly** (F181): funnels are common — 8 of 17 models, 7
+   families, 5 corpora — so the phenomenon is not one suite's peculiarity, and conceding that would
+   be false. What is unshown is **corpus-independence of the split**: within The Pile only one
+   available family funnels. Do not reinstate the broader wording.
+   Structure to follow paper 2's ladder idiom: the question, what each account
    predicts, exhibit by exhibit, then a limits section that concedes the causal currency gap first
    rather than last.
 
