@@ -22,27 +22,25 @@ scratch/
 # Note: ckpt/ (0.42M-param checkpoints), data/, results/, and fig/ ARE tracked
 # on purpose — the pilot must be reproducible without retraining.
 
-# LaTeX build artifacts (paper.pdf IS committed; intermediates are not)
+# Paper 1 build artefacts. Rebuild with `cd paper_arxiv && tectonic main.tex`.
+#
+# Consolidated 22 Aug 2026 from two overlapping blocks that also CONTRADICTED each other: the first
+# was headed "paper.pdf IS committed" while the second ignored paper_arxiv/*.pdf. The second won,
+# both being ignore rules, so the pdf has never been committed and the comment was wrong -- which is
+# the kind of stale note that makes someone re-add a 100KB artefact believing it belongs. The union
+# of the two blocks is preserved exactly; every pattern below appeared in one or both.
 paper_arxiv/*.aux
 paper_arxiv/*.bbl
 paper_arxiv/*.blg
 paper_arxiv/*.log
 paper_arxiv/*.out
+paper_arxiv/*.pdf
 paper_arxiv/*.xdv
 paper_arxiv/*.fdb_latexmk
 paper_arxiv/*.fls
 
 # personal planning doc: contains the author's username and absolute paths (double-blind)
 paper_arxiv/plan_to_submission_i4d.md
-
-# tectonic intermediates
-paper_arxiv/*.xdv
-paper_arxiv/*.bbl
-paper_arxiv/*.blg
-paper_arxiv/*.pdf
-paper_arxiv/*.aux
-paper_arxiv/*.log
-paper_arxiv/*.out
 
 # Claude Code local settings (workflows are tracked deliberately)
 .claude/settings.local.json
