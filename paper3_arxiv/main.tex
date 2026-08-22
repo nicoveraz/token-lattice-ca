@@ -15,8 +15,11 @@
 %            fixed scale".
 %  * E1 carries its ~1.45-epoch correction IN THE TEXT (F177). E2 is a consistency check that
 %    AGREES with li2023repetition, never a refutation (F175).
-%  * The honest limit goes up front, not in limitations: no second funnel family at fixed corpus is
-%    in reach, so "the Pythia recipe is idiosyncratic" is not excluded (F179, KH).
+%  * The honest limit goes up front, not in limitations -- but state it NARROWLY. An earlier draft
+%    said "a recipe idiosyncratic to one model suite is not excluded", which MISDESCRIBES our own
+%    data: 8 of 17 models funnel across 7 families and 5 corpora (F172), so the phenomenon is common.
+%    The real limit is that within The Pile only one available family funnels, so corpus-independence
+%    of the split is unshown. Do not reinstate the broader wording; it concedes something false.
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx,amsmath,amssymb,booktabs,hyperref,xcolor}
@@ -58,8 +61,11 @@ where trajectories go but whether the destination self-continues. A corpus manip
 off the shelf, the deduplicated Pythia suite, does not change the class. And the corpus-side
 \emph{inflow} term proposed for this phenomenon does not select our endpoints once frequency is
 controlled, on English and on three further languages. We are explicit about what this cannot do: it
-is observational, it cannot refute a training intervention, and no second funnel family at fixed
-corpus was within reach, so a recipe idiosyncratic to one model suite is not excluded.
+is observational and cannot refute a training intervention. Funnels themselves are common in our
+cohort --- eight of seventeen models across seven families and five corpora --- so the limit is not
+that the phenomenon might be one model's peculiarity; it is that within the single corpus where
+training data can be held fixed, only one of the available families funnels, so we cannot show from
+that subset that the split is corpus-independent.
 \end{abstract}
 
 % =================================================================================================
@@ -100,9 +106,15 @@ measured the consequence, and we did not. Our claim is narrower and of a differe
 a task-free structural readout, holding corpus and scale fixed does not fix the outcome.
 
 We are equally explicit about the sharpest limit, and it goes here rather than in a limitations
-paragraph. In our cohort exactly one model family funnels at fixed corpus. \textbf{We could not
-obtain a second funnel family at fixed corpus}, so the possibility that the effect is idiosyncratic
-to one training recipe is \emph{not excluded} by anything below.
+paragraph --- but it is narrower than it first appears, and stating it loosely would misdescribe our
+own data. Funnels are neither rare nor peculiar to one model: \textbf{eight of our seventeen models
+are funnels, spanning seven families and five distinct training corpora}, with $\fpf$ from $0.328$ to
+$1.000$.% F172, results/cohort_pairs_and_stability.json
+What is scarce is not the phenomenon but a \emph{second funnel family within one corpus}. The only
+corpus for which we can hold training data fixed across families is The Pile, and of the families
+available there exactly one funnels. So the split reported in \S\ref{sec:e3} is not in doubt, and
+neither is the existence of funnels across many unrelated models --- what we cannot establish from
+that subset alone is that the split is \emph{corpus-independent}.
 
 % =================================================================================================
 \section{Setup}\label{sec:setup}
@@ -309,12 +321,15 @@ training data and measured the consequence. We measured pretrained models and co
 observational contrast across models cannot refute a controlled intervention, and nothing here should
 be read as doing so. Where our results bear on theirs at all, as in \S\ref{sec:e2}, they agree.
 
-\paragraph{One funnel family.} In our cohort, at fixed corpus, exactly one family funnels. Four
-Pythia checkpoints funnelling and six non-Pythia checkpoints not funnelling is equally consistent
-with a property of that training recipe as with anything more general. Distinguishing those requires a
-second funnel family at fixed corpus; the obvious public candidate on The Pile exceeded the memory
-available to us, and we did not obtain one. \textbf{This is the single largest weakness of
-\S\ref{sec:e3} and we do not think it can be argued away.}
+\paragraph{One funnel family \emph{within the fixed-corpus subset}.} A reader may worry that
+\S\ref{sec:e3} rests on a peculiarity of one model suite. Our own cohort answers that: funnels appear
+in seven families across five corpora (\S\ref{sec:intro}), so the phenomenon is common and is not a
+Pythia artefact. The genuine limit is more specific. Within The Pile --- the one corpus where we can
+vary the family with training data held fixed --- only Pythia funnels among the families available to
+us. A second funnel family at fixed corpus would let us show the split is corpus-independent rather
+than a fact about which families happen to be Pile-trained; the obvious public candidate exceeded the
+memory available to us, and we did not obtain one. \textbf{That is what \S\ref{sec:e3} cannot
+currently show, and it is narrower than "the effect may not be real".}
 
 \paragraph{What ``not determined'' does and does not mean.} \S\ref{sec:e3} holds corpus and parameter
 count fixed. It does not hold fixed the training schedule, the optimiser, the data order, the

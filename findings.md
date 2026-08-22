@@ -3645,6 +3645,51 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F181 — the limit was overstated, and the cohort refutes it: funnels are common, the gap is corpus-specific
+22 Aug 2026. F179 and F180 recorded paper 3's sharpest limit as *"a recipe idiosyncratic to one model
+suite is not excluded"*, and I wrote that sentence into the manuscript's abstract, introduction and
+limits. **It misdescribes this project's own data.** Asked what a second funnel family would actually
+buy, I checked the cohort instead of answering from the framing, and the framing was wrong.
+
+| model | corpus | φ |
+|---|---|---|
+| `helium-1-preview-2b` | undisclosed | 1.000 |
+| `llm-jp-3-1.8b` | llm-jp | 0.776 |
+| `starcoder2-3b` | The Stack | 0.724 |
+| `SmolLM-1.7B` | SmolLM-Corpus | 0.563 |
+| `Qwen1.5-1.8B` | undisclosed | 0.510 |
+| `pythia-410m` | The Pile | 0.458 |
+| `Minerva-3B-base` | Minerva mix | 0.328 |
+
+**Eight of seventeen models funnel, across seven families and five distinct corpora** — six of those
+families unrelated to Pythia.% F172, results/cohort_pairs_and_stability.json
+The proposition that the phenomenon might be peculiar to one training recipe is not an open question;
+it is refuted by the table the paper already reports. Conceding it would have handed a referee
+something false.
+
+**The real limit, which is narrower and defensible.** The Pile is the only corpus in the cohort where
+training data can be held fixed while the family varies, and among the families available there
+exactly one funnels. So §E3's split is not in doubt, and neither is the existence of funnels across
+unrelated models — what cannot be shown *from that subset* is that the split is **corpus-independent**.
+
+**What this decided, and it was a decision not to run something.** The proposed remedy was to census
+GPT-J-6B, the obvious Pile-trained candidate for a second funnel family. Against the corrected limit
+it is a bad bet: the upside is a marginal strengthening of a claim already resting on two
+size-matched tiers and two scale ladders; the downside is real, since a non-funnel would make the
+Pile subset one against five and **weaken** E3; and even a funnel would be weak evidence, because
+GPT-J shares a laboratory and a NeoX lineage with Pythia and is larger than anything else tested, so
+it confounds with scale. It also does not fit in memory at float32. **Not run, deliberately, and
+recorded here so the next session does not re-propose it.**
+
+**The defect class.** This is a limitation stated more broadly than the evidence required —
+conceding a weakness that is not there. The project's usual failure runs the other way, claiming more
+than the data supports, and the discipline built against that made the opposite error easy to miss:
+an overstated limit reads as rigour. It was caught only because the question *what does this buy*
+forced a look at the table.
+
+Corrected in `paper3_arxiv/main.tex` (abstract, §1, §Limits and the drafting notes), with banners on
+F179 and F180 rather than edits to their records.
+
 ### F180 — paper 3 drafted: 7 pages, every exhibit narrower than the plan proposed, and two of the gate's constraints now enforced by a test
 22 Aug 2026. `PLAN.md` §7 step 6, written after every registered gate resolved. `paper3_arxiv/main.tex`
 compiles clean under `tectonic`: **7 pages, 2 tables, 0 undefined citations, 0 undefined references,
@@ -3679,14 +3724,25 @@ invented values at three or more decimals and weak at two, which is why every ex
 derived number is allowlisted by name instead of being left to a chance collision.
 
 **What the paper says it cannot do, in its own introduction.** It is observational and cannot refute
-a training intervention. And exactly one family funnels at fixed corpus, so a recipe idiosyncratic to
-one model suite is not excluded — the obvious public Pile candidate for a second funnel family
-exceeded available memory. That limit is in §1, not §Limits.
+a training intervention. The second limit was **restated on 22 Aug 2026 (F181)** because the first
+version misdescribed our own data: it said a recipe idiosyncratic to one model suite was not
+excluded, when 8 of 17 models funnel across 7 families and 5 corpora. The paper now states the narrow
+and correct version — within The Pile only one available family funnels, so corpus-independence of
+the split is unshown. That limit is in §1, not §Limits.
 
 `paper3_arxiv/main.tex`, `paper3_arxiv/refs.bib`, `paper3_arxiv/CITATIONS.md`,
 `tests/test_paper3_numbers.py`.
 
 ### F179 — the family scale ladder: both families are uniform across an order of magnitude, and six of seven models land on the SAME token while only one family stays there
+
+> **NARROWED BY F181 (22 Aug 2026), on the scope of KH only.** Every number below stands. What was
+> stated too broadly is the threat: this entry frames the open question as whether "the Pythia recipe
+> is idiosyncratic", which invites the reading that the whole phenomenon might be one model suite.
+> The cohort refutes that on its own terms — **8 of 17 models funnel, across 7 families and 5
+> corpora** (F172). The real gap is narrower: within **The Pile**, only one available family funnels,
+> so the split cannot be shown corpus-independent from that subset. The paper states the narrow
+> version.
+
 22 Aug 2026. F178 closed E3's size confound but left one alternative it could not exclude: that the
 Pythia recipe is idiosyncratic rather than the split being real. This is the affordable partial
 answer — does the split hold *across scale within each family*, or did F178 pick two unrepresentative
