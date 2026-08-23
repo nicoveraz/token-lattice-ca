@@ -89,6 +89,14 @@ def main():
     res["probe_candidates"] = n_strings
     ctrl_same = bool(np.array_equal(pid[CONTROL[0]], pid[CONTROL[1]])) if CONTROL[1] in cells else None
     res["control_shares_tokenizer"] = ctrl_same
+    if CONTROL[1] in cells and not ctrl_same:
+        # the control is the same repo at a second dtype, so this cannot happen without something
+        # having gone wrong -- and if it did, the control's margins would carry NaN at probe
+        # positions the model resolves and the floor would be read off a shorter vector.
+        raise AssertionError(
+            "the precision control resolves the probe strings differently from the cell it "
+            "controls, though both load the same repo id. The floor K1 reads would be computed "
+            "over a different set of positions than the decisive distance.")
 
     # bit and margin vectors, indexed by PROBE STRING so models with different vocabularies align
     for m, d in cells.items():
@@ -118,7 +126,7 @@ def main():
         res["verdict"] = " ".join(parts + [
             f"K2 FIRES on the coverage arm: the intersection is {len(idx)} < the registered floor of "
             f"{MIN_I}. NOT DECIDABLE for insufficient signal; the run stops here as registered."])
-        _write(res, parts=None)
+        _write(res)
         return
 
     B = np.array([cells[m]["bits"][idx] for m in sorted(models)])
@@ -147,7 +155,7 @@ def main():
             f"K2 FIRES on the signal arm: {res['constant_fraction']:.1%} of probe bits are identical "
             f"across all {len(models)} models, above the registered 0.90. NOT DECIDABLE for "
             f"insufficient signal; the run stops here as registered."])
-        _write(res, parts=None)
+        _write(res)
         return
     res["K2_fires"] = False
 
@@ -303,7 +311,7 @@ def main():
         "downloading one was not authorised, and bfloat16 rounding is a far smaller perturbation "
         "than 4- or 8-bit quantization. THE PRIOR-ART RE-CHECK IS OWED: F95 cleared a battery of "
         "SCALARS, this is a different feature, and no write-up may proceed until that gate runs."])
-    _write(res, parts)
+    _write(res)
 
 
 def _cohort():
@@ -311,7 +319,7 @@ def _cohort():
     return selfcont_set.COHORT
 
 
-def _write(res, parts):
+def _write(res):
     res["_analysis_provenance"] = stamp(__file__)
     json.dump(res, open(OUT, "w"), indent=1)
     print("\n" + res["verdict"])
