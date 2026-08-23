@@ -140,11 +140,33 @@ def main():
     res["self_cont_in_none"] = int((~B).all(axis=0).sum())
     res["per_model_probe_self_cont"] = {m: int(cells[m]["bits"][idx].sum()) for m in sorted(models)}
 
+    # DESCRIPTIVE, and the most useful thing in the file for anyone deciding what to probe next.
+    # The probe set was frozen from corpus frequency before any model ran, which is the right order
+    # but says nothing about whether frequent words are where self-continuation has room to vary.
+    # This says which KIND of string carries the variance, and names the variable strings outright.
+    probe_meta = json.load(open(_ROOT / "experiments" / "probe_strings_selfcont.json"))["strings"]
+    by_arm = {}
+    for pos, v in zip(idx, var):
+        a = probe_meta[int(pos)]["arm"]
+        d = by_arm.setdefault(a, {"in_intersection": 0, "variable": 0})
+        d["in_intersection"] += 1
+        d["variable"] += int(v)
+    res["by_arm"] = dict(sorted(by_arm.items()))
+    var_strings = [probe_meta[int(pos)]["s"] for pos, v in zip(idx, var) if v]
+    res["variable_strings"] = dict(
+        n=len(var_strings), shown=var_strings[:200],
+        _note="the probe strings whose self-continuation bit is not constant across the cohort. "
+              "Capped at 200; `n` is the true count. DESCRIPTIVE.")
+
     # ---- K3, mandatory and stated BEFORE any distance is read ----
     parts.append(
         f"K3 (anti-vacuity, registered as mandatory): of those {len(idx)} probe tokens, "
         f"{res['self_cont_in_all']} self-continue in EVERY model and {res['self_cont_in_none']} in "
-        f"NONE, leaving {n_var} VARIABLE. Fractions below are normalised by the variable subset "
+        f"NONE, leaving {n_var} VARIABLE"
+        + (" -- " + ", ".join(f"{k} {v['variable']}/{v['in_intersection']}"
+                              for k, v in res["by_arm"].items() if v["variable"]) + " by arm"
+           if any(v["variable"] for v in res["by_arm"].values()) else "")
+        + f". Fractions below are normalised by the variable subset "
         f"({n_var}), never by the intersection; the PRIMARY figure is the raw Hamming count, which "
         f"constant tokens cannot inflate because they contribute exactly zero to it. ")
 
