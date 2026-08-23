@@ -1,0 +1,910 @@
+{
+ "_preregistration_file": "experiments/prereg_selfcont.json",
+ "_prereg_sha256": "3af2e81ee871c855cafbda6c349cd47849ebc9831a540de5d6bdfb05c7adb96f",
+ "_probe_strings_sha256": "df37c33a8fb02f194328a0032f944a4397647c2e3f1a26a45bde84b05d8e42c5",
+ "cells_measured": [
+  "EleutherAI/gpt-neo-1.3B",
+  "EleutherAI/gpt-neo-125m",
+  "EleutherAI/gpt-neo-2.7B",
+  "EleutherAI/pythia-160m",
+  "EleutherAI/pythia-1b",
+  "EleutherAI/pythia-410m",
+  "EleutherAI/pythia-410m-deduped",
+  "EleutherAI/pythia-410m@bf16",
+  "EleutherAI/pythia-70m",
+  "RWKV/rwkv-4-169m-pile",
+  "RWKV/rwkv-4-430m-pile",
+  "state-spaces/mamba-130m-hf",
+  "state-spaces/mamba-370m-hf"
+ ],
+ "models": [
+  "EleutherAI/gpt-neo-1.3B",
+  "EleutherAI/gpt-neo-125m",
+  "EleutherAI/gpt-neo-2.7B",
+  "EleutherAI/pythia-160m",
+  "EleutherAI/pythia-1b",
+  "EleutherAI/pythia-410m",
+  "EleutherAI/pythia-410m-deduped",
+  "EleutherAI/pythia-70m",
+  "RWKV/rwkv-4-169m-pile",
+  "RWKV/rwkv-4-430m-pile",
+  "state-spaces/mamba-130m-hf",
+  "state-spaces/mamba-370m-hf"
+ ],
+ "failed": [],
+ "missing": [],
+ "K4_cohort_shrank": false,
+ "intersection_size": 3471,
+ "probe_candidates": 4090,
+ "control_shares_tokenizer": true,
+ "constant_bits": 1787,
+ "variable_bits": 1684,
+ "constant_fraction": 0.5148,
+ "self_cont_in_all": 2,
+ "self_cont_in_none": 1785,
+ "per_model_probe_self_cont": {
+  "EleutherAI/gpt-neo-1.3B": 847,
+  "EleutherAI/gpt-neo-125m": 276,
+  "EleutherAI/gpt-neo-2.7B": 634,
+  "EleutherAI/pythia-160m": 10,
+  "EleutherAI/pythia-1b": 13,
+  "EleutherAI/pythia-410m": 8,
+  "EleutherAI/pythia-410m-deduped": 8,
+  "EleutherAI/pythia-70m": 39,
+  "RWKV/rwkv-4-169m-pile": 74,
+  "RWKV/rwkv-4-430m-pile": 446,
+  "state-spaces/mamba-130m-hf": 523,
+  "state-spaces/mamba-370m-hf": 667
+ },
+ "by_arm": {
+  "ascii": {
+   "in_intersection": 43,
+   "variable": 4
+  },
+  "ascii_sp": {
+   "in_intersection": 42,
+   "variable": 38
+  },
+  "whitespace": {
+   "in_intersection": 3,
+   "variable": 3
+  },
+  "word": {
+   "in_intersection": 1470,
+   "variable": 954
+  },
+  "word_sp": {
+   "in_intersection": 1913,
+   "variable": 685
+  }
+ },
+ "variable_strings": {
+  "n": 1684,
+  "shown": [
+   "and",
+   " s",
+   "that",
+   " I",
+   "with",
+   "from",
+   "by",
+   "be",
+   "you",
+   "at",
+   " t",
+   "this",
+   " this",
+   "have",
+   "not",
+   " not",
+   " A",
+   " pm",
+   " www",
+   "were",
+   "he",
+   "can",
+   "we",
+   "his",
+   " i",
+   " d",
+   "MAP",
+   " MAP",
+   " m",
+   "one",
+   "am",
+   " n",
+   "up",
+   "It",
+   "my",
+   " my",
+   " h",
+   "they",
+   "In",
+   "more",
+   " more",
+   " x",
+   "uk",
+   " B",
+   " me",
+   "about",
+   "will",
+   "would",
+   " so",
+   "when",
+   "your",
+   "into",
+   "This",
+   "St",
+   " St",
+   " p",
+   "just",
+   "than",
+   "We",
+   "co",
+   " co",
+   "j",
+   " j",
+   " mu",
+   " S",
+   " no",
+   "who",
+   " r",
+   "where",
+   "He",
+   " He",
+   "said",
+   " said",
+   " c",
+   "such",
+   "what",
+   " what",
+   "first",
+   "get",
+   "could",
+   " C",
+   "between",
+   " k",
+   "our",
+   " re",
+   "You",
+   " You",
+   "new",
+   " new",
+   " R",
+   "any",
+   "then",
+   " right",
+   "There",
+   " f",
+   " e",
+   " W",
+   " th",
+   " Let",
+   " v",
+   "here",
+   " b",
+   "back",
+   " back",
+   "day",
+   " day",
+   "through",
+   "see",
+   "well",
+   "way",
+   "Sat",
+   " Sat",
+   " F",
+   "after",
+   " after",
+   "around",
+   " ref",
+   "people",
+   "used",
+   " used",
+   " l",
+   "because",
+   "three",
+   " g",
+   " gamma",
+   "et",
+   "What",
+   " What",
+   "child",
+   " N",
+   "now",
+   "work",
+   " work",
+   "while",
+   "know",
+   " left",
+   " P",
+   "long",
+   " long",
+   "make",
+   " make",
+   "using",
+   " minutes",
+   " D",
+   "good",
+   "how",
+   "end",
+   "value",
+   "before",
+   " down",
+   " y",
+   "don",
+   "off",
+   "Sun",
+   " Sun",
+   "much",
+   " T",
+   " return",
+   "But",
+   " But",
+   "set",
+   "many",
+   " many",
+   " le",
+   "still",
+   "each",
+   " E",
+   "Mon",
+   " Mon",
+   "hours",
+   " hours",
+   "ll",
+   " ll",
+   "case",
+   "adult",
+   "both",
+   "same",
+   "high",
+   " alpha",
+   "need",
+   "z",
+   " z",
+   " la",
+   "X",
+   " X",
+   "town",
+   "year",
+   " K",
+   "very",
+   " very",
+   "being",
+   "org",
+   " org",
+   "think",
+   " bar",
+   "number",
+   " L",
+   " M",
+   " go",
+   "under"
+  ],
+  "_note": "the probe strings whose self-continuation bit is not constant across the cohort. Capped at 200; `n` is the true count. DESCRIPTIVE."
+ },
+ "decisive": {
+  "a": "EleutherAI/pythia-410m",
+  "b": "EleutherAI/pythia-410m-deduped",
+  "hamming": 2,
+  "fraction_of_variable": 0.0012,
+  "robust": {
+   "0.0": 2,
+   "0.1": 2,
+   "0.5": 1,
+   "1.0": 1,
+   "2.0": 0
+  }
+ },
+ "should_be_far": [
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "state-spaces/mamba-370m-hf",
+   "hamming": 661,
+   "fraction_of_variable": 0.3925,
+   "robust": {
+    "0.0": 661,
+    "0.1": 621,
+    "0.5": 473,
+    "1.0": 316,
+    "2.0": 109
+   }
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "hamming": 440,
+   "fraction_of_variable": 0.2613,
+   "robust": {
+    "0.0": 440,
+    "0.1": 420,
+    "0.5": 316,
+    "1.0": 198,
+    "2.0": 49
+   }
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/gpt-neo-125m",
+   "hamming": 276,
+   "fraction_of_variable": 0.1639,
+   "robust": {
+    "0.0": 276,
+    "0.1": 261,
+    "0.5": 197,
+    "1.0": 137,
+    "2.0": 54
+   }
+  }
+ ],
+ "control": {
+  "a": "EleutherAI/pythia-410m",
+  "b": "EleutherAI/pythia-410m@bf16",
+  "hamming": 0,
+  "fraction_of_variable": 0.0,
+  "robust": {
+   "0.0": 0,
+   "0.1": 0,
+   "0.5": 0,
+   "1.0": 0,
+   "2.0": 0
+  }
+ },
+ "K2_fires": false,
+ "K1_fires": false,
+ "resolution_floor": 0,
+ "resolution_ratio": null,
+ "k1_corollary_full_vocab": {
+  "decisive": {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "hamming_full_vocab": 52,
+   "vocab": 50277
+  },
+  "floor": {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "hamming_full_vocab": 15,
+   "vocab": 50277
+  },
+  "ratio_full_vocab": 3.47,
+  "_reading": "the registered floor is computed on the intersection. At full vocabulary the SAME two comparisons give a nonzero floor, so a zero on the intersection is a fact about the probe set rather than about numeric stability. Read the ratio, not the zero."
+ },
+ "pairwise_hamming": {
+  "order": [
+   "EleutherAI/gpt-neo-1.3B",
+   "EleutherAI/gpt-neo-125m",
+   "EleutherAI/gpt-neo-2.7B",
+   "EleutherAI/pythia-160m",
+   "EleutherAI/pythia-1b",
+   "EleutherAI/pythia-410m",
+   "EleutherAI/pythia-410m-deduped",
+   "EleutherAI/pythia-70m",
+   "RWKV/rwkv-4-169m-pile",
+   "RWKV/rwkv-4-430m-pile",
+   "state-spaces/mamba-130m-hf",
+   "state-spaces/mamba-370m-hf"
+  ],
+  "matrix": [
+   [
+    0,
+    865,
+    799,
+    847,
+    844,
+    843,
+    845,
+    860,
+    805,
+    829,
+    860,
+    846
+   ],
+   [
+    865,
+    0,
+    706,
+    278,
+    281,
+    276,
+    278,
+    299,
+    298,
+    568,
+    599,
+    709
+   ],
+   [
+    799,
+    706,
+    0,
+    636,
+    633,
+    632,
+    634,
+    647,
+    600,
+    630,
+    691,
+    711
+   ],
+   [
+    847,
+    278,
+    636,
+    0,
+    9,
+    4,
+    4,
+    33,
+    72,
+    444,
+    523,
+    665
+   ],
+   [
+    844,
+    281,
+    633,
+    9,
+    0,
+    7,
+    5,
+    36,
+    69,
+    441,
+    520,
+    660
+   ],
+   [
+    843,
+    276,
+    632,
+    4,
+    7,
+    0,
+    2,
+    31,
+    70,
+    440,
+    521,
+    661
+   ],
+   [
+    845,
+    278,
+    634,
+    4,
+    5,
+    2,
+    0,
+    33,
+    70,
+    442,
+    523,
+    663
+   ],
+   [
+    860,
+    299,
+    647,
+    33,
+    36,
+    31,
+    33,
+    0,
+    93,
+    453,
+    536,
+    680
+   ],
+   [
+    805,
+    298,
+    600,
+    72,
+    69,
+    70,
+    70,
+    93,
+    0,
+    412,
+    489,
+    621
+   ],
+   [
+    829,
+    568,
+    630,
+    444,
+    441,
+    440,
+    442,
+    453,
+    412,
+    0,
+    581,
+    637
+   ],
+   [
+    860,
+    599,
+    691,
+    523,
+    520,
+    521,
+    523,
+    536,
+    489,
+    581,
+    0,
+    648
+   ],
+   [
+    846,
+    709,
+    711,
+    665,
+    660,
+    661,
+    663,
+    680,
+    621,
+    637,
+    648,
+    0
+   ]
+  ],
+  "_status": "DESCRIPTIVE, not registered: only the decisive pair and three far controls were registered. Carries no verdict."
+ },
+ "cardinality_confound": {
+  "n_pairs": 66,
+  "pearson_hamming_vs_size_sum": 0.9128,
+  "variance_explained": 0.8332,
+  "mean_overlap_same_family": 0.7409,
+  "mean_overlap_cross_family": 0.5421,
+  "_reading": "the overlap coefficient |A and B| / min(|A|,|B|) is the size-free companion. It is NOT a registered estimand and carries no verdict; it is reported so the reader can see whether any identity signal survives once cardinality is taken out."
+ },
+ "identification": {
+  "n": 12,
+  "rank1_same_family": 7,
+  "rank1_accuracy": 0.5833,
+  "tie_aware_accuracy": 0.5833,
+  "_tie_note": "rank1_accuracy resolves co-minimal neighbours by array order, which is alphabetical. tie_aware_accuracy credits each model with the fraction of its co-minimal neighbours that share its family. A gap between them means the rank-1 figure is partly an artefact of how the models are named.",
+  "chance_instance_level": 0.0909,
+  "chance_family_level": 0.2273,
+  "majority_class_rate": 0.4167,
+  "balance": "family label is usable: {'GPT-Neo': 3, 'Pythia': 5, 'RWKV': 2, 'Mamba': 2}, minority class 2 >= 2. Chance is the majority-class rate 42%; report balanced accuracy against it, not raw agreement.",
+  "family_counts": {
+   "GPT-Neo": 3,
+   "Pythia": 5,
+   "RWKV": 2,
+   "Mamba": 2
+  },
+  "nearest_neighbour": {
+   "EleutherAI/gpt-neo-1.3B": {
+    "nearest": "EleutherAI/gpt-neo-2.7B",
+    "distance": 799,
+    "same_family": true,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 1,
+    "tie_aware_credit": 1.0
+   },
+   "EleutherAI/gpt-neo-125m": {
+    "nearest": "EleutherAI/pythia-410m",
+    "distance": 276,
+    "same_family": false,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 0,
+    "tie_aware_credit": 0.0
+   },
+   "EleutherAI/gpt-neo-2.7B": {
+    "nearest": "RWKV/rwkv-4-169m-pile",
+    "distance": 600,
+    "same_family": false,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 0,
+    "tie_aware_credit": 0.0
+   },
+   "EleutherAI/pythia-160m": {
+    "nearest": "EleutherAI/pythia-410m",
+    "distance": 4,
+    "same_family": true,
+    "n_tied_at_that_distance": 2,
+    "n_tied_same_family": 2,
+    "tie_aware_credit": 1.0
+   },
+   "EleutherAI/pythia-1b": {
+    "nearest": "EleutherAI/pythia-410m-deduped",
+    "distance": 5,
+    "same_family": true,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 1,
+    "tie_aware_credit": 1.0
+   },
+   "EleutherAI/pythia-410m": {
+    "nearest": "EleutherAI/pythia-410m-deduped",
+    "distance": 2,
+    "same_family": true,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 1,
+    "tie_aware_credit": 1.0
+   },
+   "EleutherAI/pythia-410m-deduped": {
+    "nearest": "EleutherAI/pythia-410m",
+    "distance": 2,
+    "same_family": true,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 1,
+    "tie_aware_credit": 1.0
+   },
+   "EleutherAI/pythia-70m": {
+    "nearest": "EleutherAI/pythia-410m",
+    "distance": 31,
+    "same_family": true,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 1,
+    "tie_aware_credit": 1.0
+   },
+   "RWKV/rwkv-4-169m-pile": {
+    "nearest": "EleutherAI/pythia-1b",
+    "distance": 69,
+    "same_family": false,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 0,
+    "tie_aware_credit": 0.0
+   },
+   "RWKV/rwkv-4-430m-pile": {
+    "nearest": "RWKV/rwkv-4-169m-pile",
+    "distance": 412,
+    "same_family": true,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 1,
+    "tie_aware_credit": 1.0
+   },
+   "state-spaces/mamba-130m-hf": {
+    "nearest": "RWKV/rwkv-4-169m-pile",
+    "distance": 489,
+    "same_family": false,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 0,
+    "tie_aware_credit": 0.0
+   },
+   "state-spaces/mamba-370m-hf": {
+    "nearest": "RWKV/rwkv-4-169m-pile",
+    "distance": 621,
+    "same_family": false,
+    "n_tied_at_that_distance": 1,
+    "n_tied_same_family": 0,
+    "tie_aware_credit": 0.0
+   }
+  },
+  "_what_it_is_not": "FAMILY ATTRIBUTION, not instance identification. Registered before the run: a proper instance test needs repeated INDEPENDENT measurements of the same weights, determinism makes those bit-identical, and a test that cannot fail informatively is refused rather than run and over-read.",
+  "_confounds": "family is confounded with tokenizer (Pythia/RWKV/Mamba use GPT-NeoX vocabularies, GPT-Neo uses GPT-2's) and, for the two-member families, with nearest-in-size. A rank-1 success cannot separate these."
+ },
+ "outside_intersection": {
+  "per_model": {
+   "EleutherAI/gpt-neo-1.3B": {
+    "vocab_measured": 50257,
+    "n_outside": 46786,
+    "self_continuing_outside": 19927,
+    "self_continuing_total": 20774
+   },
+   "EleutherAI/gpt-neo-125m": {
+    "vocab_measured": 50257,
+    "n_outside": 46786,
+    "self_continuing_outside": 5439,
+    "self_continuing_total": 5715
+   },
+   "EleutherAI/pythia-160m": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 131,
+    "self_continuing_total": 141
+   },
+   "EleutherAI/pythia-1b": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 184,
+    "self_continuing_total": 197
+   },
+   "EleutherAI/pythia-410m": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 138,
+    "self_continuing_total": 146
+   },
+   "EleutherAI/pythia-410m-deduped": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 118,
+    "self_continuing_total": 126
+   },
+   "EleutherAI/pythia-70m": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 661,
+    "self_continuing_total": 700
+   },
+   "RWKV/rwkv-4-169m-pile": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 1256,
+    "self_continuing_total": 1330
+   },
+   "RWKV/rwkv-4-430m-pile": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 6014,
+    "self_continuing_total": 6460
+   },
+   "state-spaces/mamba-130m-hf": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 10149,
+    "self_continuing_total": 10672
+   },
+   "state-spaces/mamba-370m-hf": {
+    "vocab_measured": 50277,
+    "n_outside": 46806,
+    "self_continuing_outside": 12266,
+    "self_continuing_total": 12933
+   }
+  },
+  "not_covered": [
+   "EleutherAI/gpt-neo-2.7B"
+  ],
+  "_coverage_limit": "['EleutherAI/gpt-neo-2.7B'] were measured on the probe set only and have no outside-intersection coverage; see their _coverage_note.",
+  "_what_it_is": "each model's self-continuation bits over the tokens of its OWN vocabulary that are not in the shared probe set. Not comparable across tokenizers; comparable within a tokenizer group, which is where the within-family signature lives."
+ },
+ "full_vocab_within_tokenizer_group": {
+  "pairs": [
+   {
+    "a": "EleutherAI/gpt-neo-1.3B",
+    "b": "EleutherAI/gpt-neo-125m",
+    "vocab": 50257,
+    "hamming_full_vocab": 19603,
+    "same_family": true
+   },
+   {
+    "a": "RWKV/rwkv-4-169m-pile",
+    "b": "RWKV/rwkv-4-430m-pile",
+    "vocab": 50277,
+    "hamming_full_vocab": 5986,
+    "same_family": true
+   },
+   {
+    "a": "state-spaces/mamba-130m-hf",
+    "b": "state-spaces/mamba-370m-hf",
+    "vocab": 50277,
+    "hamming_full_vocab": 12471,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-160m",
+    "b": "EleutherAI/pythia-1b",
+    "vocab": 50277,
+    "hamming_full_vocab": 140,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-160m",
+    "b": "EleutherAI/pythia-410m",
+    "vocab": 50277,
+    "hamming_full_vocab": 97,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-160m",
+    "b": "EleutherAI/pythia-410m-deduped",
+    "vocab": 50277,
+    "hamming_full_vocab": 95,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-160m",
+    "b": "EleutherAI/pythia-70m",
+    "vocab": 50277,
+    "hamming_full_vocab": 645,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-1b",
+    "b": "EleutherAI/pythia-410m",
+    "vocab": 50277,
+    "hamming_full_vocab": 77,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-1b",
+    "b": "EleutherAI/pythia-410m-deduped",
+    "vocab": 50277,
+    "hamming_full_vocab": 91,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-1b",
+    "b": "EleutherAI/pythia-70m",
+    "vocab": 50277,
+    "hamming_full_vocab": 657,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-410m",
+    "b": "EleutherAI/pythia-410m-deduped",
+    "vocab": 50277,
+    "hamming_full_vocab": 52,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-410m",
+    "b": "EleutherAI/pythia-70m",
+    "vocab": 50277,
+    "hamming_full_vocab": 624,
+    "same_family": true
+   },
+   {
+    "a": "EleutherAI/pythia-410m-deduped",
+    "b": "EleutherAI/pythia-70m",
+    "vocab": 50277,
+    "hamming_full_vocab": 634,
+    "same_family": true
+   }
+  ],
+  "balance": "same_family within vocab group has ONE class (True) over 13 units: it cannot discriminate, and any agreement it appears to show is the base rate. NOT DECIDABLE for predictor imbalance.",
+  "readable": false,
+  "_caveat": "grouped by (measured vocab size, logit rows), which is a NECESSARY not sufficient test of tokenizer identity. Two tokenizers of equal size could still disagree on a token id; the intersection arm above does not have this weakness and is the one every verdict uses.",
+  "_status": "DESCRIPTIVE. Balance-gated above; if it is not readable the arm is reported as NOT DECIDABLE for predictor imbalance and carries nothing."
+ },
+ "verdict": "SELF-CONTINUATION SET, registered in experiments/prereg_selfcont.json (sha256 3af2e81ee871..., frozen before any model was loaded) over probe strings frozen one commit earlier. 12 models, 4 families, all Pile-trained so CORPUS IS HELD FIXED across the whole cohort. Deterministic estimator: no census seeds, no random starts, and every cell asserted bit-for-bit reproducible before it was written.  INTERSECTION: 3471 of 4090 frozen strings encode to exactly one token under all 12 tokenizers.  K3 (anti-vacuity, registered as mandatory): of those 3471 probe tokens, 2 self-continue in EVERY model and 1785 in NONE, leaving 1684 VARIABLE -- ascii 4/43, ascii_sp 38/42, whitespace 3/3, word 954/1470, word_sp 685/1913 by arm. Fractions below are normalised by the variable subset (1684), never by the intersection; the PRIMARY figure is the raw Hamming count, which constant tokens cannot inflate because they contribute exactly zero to it.  DECISIVE PAIR (H1) pythia-410m vs pythia-410m-deduped -- the pair phi cannot separate (0.458 vs 0.427, both funnel, same modal endpoint): HAMMING = 2 over 3471 probe tokens, 0.1% of the variable subset; robust disagreements at the PRIMARY tau=1.0 = 1.  SHOULD BE FAR: vs mamba-370m-hf 661 (robust@1.0 316); vs rwkv-4-430m-pile 440 (robust@1.0 198); vs gpt-neo-125m 276 (robust@1.0 137).  THE FLOOR: the same weights at two numeric precisions (float32 vs bfloat16) differ on 0 probe bits, with 0 of those robust at tau=1.0.  K1 does not fire, and the registered corollary applies: the floor is EXACTLY ZERO, which makes K1 a WEAK test -- any nonzero distance clears it. What the zero floor does establish is that bfloat16 rounding moves no bit at all, so the 2 bits that separate the deduped pair are not numeric noise. It says nothing about a real quantized variant, which is a far larger perturbation and is registered OWED.  K1'S COROLLARY, FOLLOWED UP: the registered floor is computed on the intersection, and the same two comparisons at FULL VOCABULARY give 52 bits for the decisive pair against 15 for bfloat16 rounding of the same weights -- a ratio of 3.47. So the intersection floor of zero is a fact about the PROBE SET, not about the estimator's numeric stability, and the honest resolution figure is the ratio rather than the zero. Wider coverage, one control cell, DESCRIPTIVE: it does not change K1's verdict on the registered estimand.  THE CONFOUND K3 DOES NOT COVER, and it is the most important number here: across the 66 pairs the registered Hamming distance correlates with the SUM OF THE TWO SET SIZES at r = 0.913, so 83% of it is cardinality alone. K3 gates constant tokens, which contribute zero to a Hamming count; it does not gate this, because Hamming between sparse sets IS |A| + |B| - 2|A and B|. Any attribution built on this metric is therefore substantially a set-SIZE result -- a scalar, which is what this revision set out to escape. The size-free companion, the overlap coefficient, runs 0.741 same-family against 0.542 cross-family; it is unregistered and carries no verdict.  IDENTIFICATION (Task 4): leave-one-out rank-1 nearest neighbour by Hamming over the intersection puts 7 of 12 models next to a model of their OWN family, 58% against a family-level chance of 22.7% and a majority-class rate of 42%. Ties at the minimum are broken by array order there, so the tie-aware figure -- each model credited with the fraction of its co-minimal neighbours that share its family -- is reported beside it at 58%. The instance-level 1/(n-1) = 9.1% is the wrong baseline here and is reported only so it cannot be quoted as the right one. This is FAMILY ATTRIBUTION; instance identification was refused before the run, because determinism makes repeated measurement of one checkpoint bit-identical and the test cannot fail.  THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: same_family within vocab group has ONE class (True) over 13 units: it cannot discriminate, and any agreement it appears to show is the base rate. NOT DECIDABLE for predictor imbalance.  REFUSALS, registered before the numbers: no p-value (12 checkpoints in 4 families is not a sample); no instance-identification claim; no adjustment of tau, of the intersection floor, or of K2(b) after the fact; no claim that the set fingerprints models whose tokenizers do not share the probe strings; no claim about WHY a bit differs. QUANTIZATION ROBUSTNESS IS OWED AND NOT RUN: no quantized variant of any cohort member is in the local cache, downloading one was not authorised, and bfloat16 rounding is a far smaller perturbation than 4- or 8-bit quantization. THE PRIOR-ART RE-CHECK IS OWED: F95 cleared a battery of SCALARS, this is a different feature, and no write-up may proceed until that gate runs.",
+ "_analysis_provenance": {
+  "script": "selfcont_analysis.py",
+  "sha256": "d8a6d8bf12cc5f09372a8e00f02fbd2f7b45eb4d255b765123b27ba4b9b7947e",
+  "imports": {
+   "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
+   "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
+   "experiments/argmax_census_templated.py": "59cc595273efb03e3975042c35a8ebdf79d7f7e679f041f23b99725c4fc86dba",
+   "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
+   "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
+   "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
+   "experiments/newline_margin_freeze.py": "62890fb51ca550699f38624c9409c786c546fb7df66962921e0b151b742077bf",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/selfcont_analysis.py": "d8a6d8bf12cc5f09372a8e00f02fbd2f7b45eb4d255b765123b27ba4b9b7947e",
+   "experiments/selfcont_set.py": "51bae621b567b230846a2cae18649f85d5b451c52295bc2fd6bfa3fe7f5ccb75",
+   "experiments/structural_text.py": "51d82069fa2c7cd3d2eddb03de816316ad71aadbb85801b631a4698e8605712c",
+   "experiments/text_interaction.py": "3f52bb00a468ca209d6747f2735d83b4d8707c4d4bee69499bcf9db65a38b9f6",
+   "fingerprint/gate1.py": "86e58f562f673af3e3509e45cea1a19ad39cbcc9d108f21f4e07f86bbefa7c42",
+   "fingerprint/reanalysis.py": "9b5e5f02d7132a706122904ac13c29a6d61ee5b36695ec6289b77f44dcefd30d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}
