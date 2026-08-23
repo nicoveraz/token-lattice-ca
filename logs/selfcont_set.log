@@ -1,0 +1,40 @@
+  EleutherAI/pythia-70m              V=50277  full n=50277  self-cont   700 (0.0139)  probe 1-token 3683/4090  oracle gap 0.00e+00 flips 0  (15s)
+  EleutherAI/pythia-160m             V=50277  full n=50277  self-cont   141 (0.0028)  probe 1-token 3683/4090  oracle gap 0.00e+00 flips 0  (36s)
+  EleutherAI/pythia-410m             V=50277  full n=50277  self-cont   146 (0.0029)  probe 1-token 3683/4090  oracle gap 4.80e-07 flips 0  (101s)
+  EleutherAI/pythia-410m-deduped     V=50277  full n=50277  self-cont   126 (0.0025)  probe 1-token 3683/4090  oracle gap 4.80e-07 flips 0  (108s)
+  EleutherAI/pythia-1b               V=50277  full n=50277  self-cont   197 (0.0039)  probe 1-token 3683/4090  oracle gap 4.80e-07 flips 0  (187s)
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125m            V=50257  full n=50257  self-cont  5715 (0.1137)  probe 1-token 3522/4090  oracle gap 4.80e-07 flips 0  (48s)
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-1.3B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.attention.masked_bias | UNEXPECTED |  | 
+transformer.h.{0...22}.attn.attention.bias        | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-1.3B            V=50257  full n=50257  self-cont 20774 (0.4134)  probe 1-token 3522/4090  oracle gap 4.80e-07 flips 0  (329s)
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-2.7B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...31}.attn.attention.masked_bias | UNEXPECTED |  | 
+transformer.h.{0...30}.attn.attention.bias        | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-2.7B            V=50257  PROBE n=3522   self-cont   652 (0.1851)  probe 1-token 3522/4090  oracle gap 4.80e-07 flips 0  (6303s)
+  RWKV/rwkv-4-169m-pile              V=50277  full n=50277  self-cont  1330 (0.0265)  probe 1-token 3683/4090  oracle gap 4.80e-07 flips 0  (63s)
+  RWKV/rwkv-4-430m-pile              V=50277  full n=50277  self-cont  6460 (0.1285)  probe 1-token 3683/4090  oracle gap 6.68e-06 flips 0  (183s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+  state-spaces/mamba-130m-hf         V=50277  full n=50277  self-cont 10672 (0.2123)  probe 1-token 3683/4090  oracle gap 7.63e-05 flips 0  (1532s)
+  state-spaces/mamba-370m-hf         V=50277  full n=50277  self-cont 12933 (0.2572)  probe 1-token 3683/4090  oracle gap 8.20e-05 flips 0  (12761s)
+  EleutherAI/pythia-410m@bf16        V=50277  full n=50277  self-cont   137 (0.0027)  probe 1-token 3683/4090  oracle gap 0.00e+00 flips 0  (346s)
+
+wrote results/selfcont_set_*.json
