@@ -341,9 +341,6 @@ def main():
     parts.append(
         f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
         f"{fv_bal.reason} ")
-    parts.append(
-        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
-        f"{fv_bal.reason} ")
     res["verdict"] = " ".join(parts + [
         "REFUSALS, registered before the numbers: no p-value (12 checkpoints in 4 families is not a "
         "sample); no instance-identification claim; no adjustment of tau, of the intersection floor, "
