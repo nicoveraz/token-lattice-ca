@@ -28,6 +28,12 @@ is an index into it, so the cross-model comparison and the within-family signatu
 measurement. No sampling anywhere, no census seeds, no random starts: this estimator is
 deterministic, and the script asserts bit-for-bit reproducibility on a repeated call before writing.
 
+ONE MODEL IS MEASURED ON THE PROBE SET ALONE. gpt-neo-2.7B pages against a 16GB machine and runs at
+651 ms/token where gpt-neo-1.3B runs at 6.6 -- nine hours for its vocabulary. Since every registered
+estimand is defined over the intersection, that cell measures the probe tokens only; see PROBE_ONLY
+below. The choice was made from a wall-clock benchmark before any bit of that model was read, and it
+keeps the model IN the cohort where the registered alternative, K4, would have dropped it.
+
 Usage:  caffeinate -dimsu .venv/bin/python -u experiments/selfcont_set.py
         (resumable, one file per model, keyed by results/selfcont_set_<model>.json)
 """
@@ -70,8 +76,19 @@ COHORT = [
 ]
 
 BATCH = 256
-BATCH_BIG = 64          # >=1.5B params: 2.7B in float32 is ~10.8GB on a 16GB machine
+BATCH_BIG = 32          # 2.7B in float32 is a 9.9GB checkpoint on a 16GB machine
 BIG = {"EleutherAI/gpt-neo-2.7B"}
+
+# PROBE-ONLY COVERAGE, and the reason is measured rather than asserted. gpt-neo-2.7B runs at 651
+# ms/token against gpt-neo-1.3B's 6.6 -- a 100x slowdown for a 2x model, which is paging a 9.9GB
+# checkpoint against ~10GB of usable RAM, not compute. Its whole vocabulary would take 9 hours.
+# Every estimand registered in prereg_selfcont.json is defined over the INTERSECTION, so measuring
+# this model on the probe tokens alone keeps it in every registered comparison at 1/14th the cost
+# and forfeits only the unregistered within-family arm, which is stated as a coverage limit rather
+# than left to be noticed. Decided from the wall-clock benchmark, before any bit of this model was
+# read, and it PRESERVES the cohort where the alternative -- K4 -- would have shrunk it.
+PROBE_ONLY = {"EleutherAI/gpt-neo-2.7B"}
+SENTINEL = -2147483648   # margins_e4 value for a token this cell did not measure
 N_ORACLE = 96           # tokens re-measured one at a time through the imported estimator
 N_REPEAT = 1024         # tokens re-measured through the batched path, for the determinism assert
 DTYPE = {"fp32": torch.float32, "bf16": torch.bfloat16}
@@ -129,17 +146,24 @@ def measure(m, fam, dt, probe):
     V_logits = int(model.get_output_embeddings().weight.shape[0])
     V_own = min(V_logits, len(tok))     # ids at or above len(tok) are untrained padding rows and
                                         # would manufacture structure; excluded, and both are recorded
-    ids = list(range(V_own))
-    marg, amax = batched(model, ids, dev, batch)
+    probe_ids = resolve_probes(tok, probe["strings_list"])
+    full = m not in PROBE_ONLY
+    measured = (list(range(V_own)) if full
+                else sorted({i for i in probe_ids if 0 <= i < V_own}))
 
-    # DETERMINISM, asserted rather than assumed. A fixed slice plus a fixed stride across the whole
-    # vocabulary, re-measured through the same path at the same batch size, must be bit-identical.
-    rep_ids = sorted(set(list(range(min(N_REPEAT, V_own)))
-                         + list(range(0, V_own, max(1, V_own // N_REPEAT)))))
+    dense_m = np.full(V_own, float(SENTINEL))
+    dense_a = np.full(V_own, -1, np.int64)
+    mm, aa = batched(model, measured, dev, batch)
+    dense_m[measured], dense_a[measured] = mm, aa
+
+    # DETERMINISM, asserted rather than assumed. A fixed slice plus a fixed stride across the
+    # MEASURED ids, re-measured through the same path at the same batch size, must be bit-identical.
+    step = max(1, len(measured) // N_REPEAT)
+    rep_ids = sorted(set(measured[:min(N_REPEAT, len(measured))] + measured[::step]))
     rmarg, ramax = batched(model, rep_ids, dev, batch)
-    same = np.array_equal(rmarg, marg[rep_ids]) and np.array_equal(ramax, amax[rep_ids])
+    same = np.array_equal(rmarg, dense_m[rep_ids]) and np.array_equal(ramax, dense_a[rep_ids])
     if not same:
-        bad = int(np.sum(rmarg != marg[rep_ids]))
+        bad = int(np.sum(rmarg != dense_m[rep_ids]))
         raise AssertionError(
             f"{cell_key(m, dt)} IS NOT DETERMINISTIC: {bad} of {len(rep_ids)} re-measured tokens "
             f"differ bit-for-bit at the same batch size. Every claim in prereg_selfcont.json assumes "
@@ -148,17 +172,19 @@ def measure(m, fam, dt, probe):
     # THE ORACLE: newline_margin_freeze.margin, one token at a time. Not expected to be bit-identical
     # -- batching changes the reduction order -- so what is required is that the BIT agrees, and the
     # margin gap is reported. This is also the batch-invariance diagnostic.
-    o_ids = sorted(set(np.linspace(0, V_own - 1, N_ORACLE).astype(int).tolist()))
+    o_ids = sorted({measured[int(k)] for k in
+                    np.linspace(0, len(measured) - 1, N_ORACLE).astype(int)})
     gaps, flips = [], []
     for t in o_ids:
         om, oa = oracle_margin(model, dev, [], int(t))
-        gaps.append(abs(om - marg[t]))
-        if (om > 0) != (marg[t] > 0) or oa != amax[t]:
+        gaps.append(abs(om - dense_m[t]))
+        if (om > 0) != (dense_m[t] > 0) or oa != dense_a[t]:
             flips.append(dict(token=int(t), oracle_margin=round(om, 6),
-                              batched_margin=round(float(marg[t]), 6),
-                              oracle_argmax=int(oa), batched_argmax=int(amax[t])))
+                              batched_margin=round(float(dense_m[t]), 6),
+                              oracle_argmax=int(oa), batched_argmax=int(dense_a[t])))
 
-    bits = marg > 0
+    marg, amax = dense_m, dense_a
+    bits = marg > 0                     # the sentinel is negative, so unmeasured is never a hit
     # MARGINS ARE STORED AS SCALED INTEGERS, and the reason is a guard elsewhere in the repo.
     # tests/test_findings_numbers.py builds its pool of "numbers this project can trace to" from
     # every float in every results/*.json. Thirteen cells x 50k float margins would have added ~300k
@@ -170,7 +196,7 @@ def measure(m, fam, dt, probe):
     # unrounded values and remains authoritative.
     m4 = np.where(marg == 0, 0,
                   np.sign(marg) * np.maximum(1.0, np.round(np.abs(marg) * 1e4))).astype(np.int64)
-    probe_ids = resolve_probes(tok, probe["strings_list"])
+    m4[marg == float(SENTINEL)] = SENTINEL
     del model
     gc.collect()
 
@@ -188,13 +214,26 @@ def measure(m, fam, dt, probe):
         _oracle_check=dict(n_tokens=len(o_ids), max_abs_margin_gap=round(float(max(gaps)), 8),
                            median_abs_margin_gap=round(float(np.median(gaps)), 8),
                            n_bit_or_argmax_disagreements=len(flips), disagreements=flips[:20],
-                           note="batch-256 path vs the imported one-at-a-time estimator. Bits must "
+                           batch=batch,
+                           note="the batched path vs the imported one-at-a-time estimator. Bits must "
                                 "agree; margins need not be bit-identical because batching changes "
                                 "the floating-point reduction order. Doubles as the batch-invariance "
                                 "diagnostic: argmax is brittle at near-ties."),
         vocab_logits=V_logits, vocab_tokenizer=int(len(tok)), vocab_measured=V_own,
+        coverage=("full_vocabulary" if full else "probe_only"), n_measured=len(measured),
+        _unmeasured_sentinel=SENTINEL,
+        _coverage_note=("every token of this model's own vocabulary was measured" if full else
+                        "PROBE-ONLY: only the tokens the frozen probe strings resolve to were "
+                        "measured, because this checkpoint pages on a 16GB machine and its whole "
+                        "vocabulary would take 9 hours. Every REGISTERED estimand is defined over "
+                        "the intersection and is unaffected; the within-family arm over tokens "
+                        "outside the probe set is not available for this cell and is reported as a "
+                        "coverage limit."),
         n_self_continuing=int(bits.sum()),
-        self_continuing_fraction=round(float(bits.mean()), 6),
+        # denominator is what was MEASURED, not the vocabulary. For a probe-only cell the two
+        # differ by 14x, and dividing by the vocabulary would report a fraction of a population
+        # this cell never looked at.
+        self_continuing_fraction=round(float(bits.sum()) / len(measured), 6),
         self_continuing_ids=[int(i) for i in np.flatnonzero(bits)],
         margins_e4=[int(x) for x in m4],
         _margin_scale="1e-4 logits, stored as integers; see the comment in measure(). A nonzero "
@@ -227,6 +266,8 @@ def main():
         res["_analysis_provenance"] = stamp(__file__)
         json.dump(res, open(p, "w"), indent=1)
         print(f"  {res['cell']:<34} V={res['vocab_measured']:<6} "
+              f"{'full' if res['coverage'] == 'full_vocabulary' else 'PROBE'} "
+              f"n={res['n_measured']:<6} "
               f"self-cont {res['n_self_continuing']:>5} ({res['self_continuing_fraction']:.4f})  "
               f"probe 1-token {res['n_probe_single_token']:>4}/{len(probe['strings_list'])}  "
               f"oracle gap {res['_oracle_check']['max_abs_margin_gap']:.2e} "
