@@ -115,3 +115,24 @@ def test_the_identification_chance_levels_are_the_ones_the_cohort_actually_impli
         "on any cohort with a family of more than one member, family-level chance EXCEEDS "
         "instance-level chance. If this ever inverts, the two have been swapped, and quoting "
         "1/(n-1) for a family test is exactly the base-rate slip gatecheck.balance exists for.")
+
+
+@pytest.mark.skipif(not (RESULTS / "selfcont_verdict.json").exists(),
+                    reason="selfcont_verdict.json not present")
+def test_the_anti_vacuity_block_is_present_whatever_the_verdict_said():
+    """K3 is registered MANDATORY 'whatever the distances say'. A verdict without it is incomplete.
+
+    This is not decoration. The registered kill condition that stops the run, K2(b), fires on
+    exactly the condition K3 is written for -- vectors dominated by constant bits -- so the path
+    where K3's numbers are easiest to lose is the path where they matter most.
+    """
+    v = _load(RESULTS / "selfcont_verdict.json")
+    for k in ("intersection_size", "constant_bits", "variable_bits", "constant_fraction",
+              "self_cont_in_all", "self_cont_in_none"):
+        assert k in v, f"K3's mandatory report is missing `{k}` from the verdict"
+    assert v["constant_bits"] + v["variable_bits"] == v["intersection_size"], (
+        "the constant and variable subsets do not partition the intersection, so one of the three "
+        "counts is wrong and every fraction normalised by the variable subset is too")
+    assert "K3 (anti-vacuity" in v["verdict"], (
+        "the verdict prose no longer states the anti-vacuity report. The numbers being in the file "
+        "is not enough -- the verdict is what gets read and quoted.")
