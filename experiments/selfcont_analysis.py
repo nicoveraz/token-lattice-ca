@@ -175,21 +175,32 @@ def main():
     D = res["decisive"]["hamming"] if res["decisive"] else None
     C = res["control"]["hamming"] if res["control"] else None
 
-    parts.append(
-        f"DECISIVE PAIR (H1) pythia-410m vs pythia-410m-deduped -- the pair phi cannot separate "
-        f"(0.458 vs 0.427, both funnel, same modal endpoint): HAMMING = {D} over {len(idx)} probe "
-        f"tokens, {res['decisive']['fraction_of_variable']:.1%} of the variable subset; robust "
-        f"disagreements at the PRIMARY tau={TAU_P} = {res['decisive']['robust'][str(TAU_P)]}. ")
-    parts.append("SHOULD BE FAR: "
-                 + "; ".join(f"vs {r['b'].split('/')[-1]} {r['hamming']}"
-                             f" (robust@{TAU_P} {r['robust'][str(TAU_P)]})"
-                             for r in res["should_be_far"]) + ". ")
+    if D is None:
+        # K4 again: without both halves of the decisive pair there is no H1 to decide, and saying so
+        # is the whole point of naming a failed cell instead of dropping it.
+        parts.append("H1 IS NOT DECIDABLE: one half of the decisive pair is missing from the "
+                     "measured cells, so there is no distance to read. ")
+    else:
+        parts.append(
+            f"DECISIVE PAIR (H1) pythia-410m vs pythia-410m-deduped -- the pair phi cannot separate "
+            f"(0.458 vs 0.427, both funnel, same modal endpoint): HAMMING = {D} over {len(idx)} "
+            f"probe tokens, {res['decisive']['fraction_of_variable']:.1%} of the variable subset; "
+            f"robust disagreements at the PRIMARY tau={TAU_P} = "
+            f"{res['decisive']['robust'][str(TAU_P)]}. ")
+    if res["should_be_far"]:
+        parts.append("SHOULD BE FAR: "
+                     + "; ".join(f"vs {r['b'].split('/')[-1]} {r['hamming']}"
+                                 f" (robust@{TAU_P} {r['robust'][str(TAU_P)]})"
+                                 for r in res["should_be_far"]) + ". ")
 
     # ---- K1 ----
-    if C is None:
+    if C is None or D is None:
         res["K1_fires"] = None
-        parts.append("K1 IS NOT EVALUABLE: the precision control cell is missing, so there is no "
-                     "floor to read the decisive distance against. H1 is NOT DECIDABLE. ")
+        parts.append("K1 IS NOT EVALUABLE: "
+                     + ("the precision control cell is missing, so there is no floor to read the "
+                        "decisive distance against. " if C is None else
+                        "the decisive pair is incomplete. ")
+                     + "H1 is NOT DECIDABLE. ")
     else:
         res["K1_fires"] = bool(D <= C)
         res["resolution_floor"] = C
