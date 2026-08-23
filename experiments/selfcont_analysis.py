@@ -107,6 +107,14 @@ def main():
         v[good] = marg[tid[good]]
         d["marg"] = v
         d["bits"] = v > 0
+    # A probe-only cell carries a sentinel at every token it did not measure. None of those may be
+    # in the intersection -- if one were, its bit would read False and the model would look as if it
+    # had been measured and found not to self-continue there.
+    SENT = cells[models[0]].get("_unmeasured_sentinel", -2147483648) / 1e4
+    leaked = [m for m in cells if np.any(cells[m]["marg"][idx] == SENT)]
+    assert not leaked, (
+        f"unmeasured tokens leaked into the intersection for {leaked}. A sentinel reads as a "
+        f"negative margin, so those positions would silently count as 'does not self-continue'.")
 
     parts = []
     parts.append(
@@ -329,9 +337,12 @@ def main():
         f"repeated measurement of one checkpoint bit-identical and the test cannot fail. ")
 
     # ---- the within-family signature, outside the intersection ----
-    outside = {}
+    outside, no_outside = {}, []
     for m in order:
         d = cells[m]
+        if d.get("coverage") != "full_vocabulary":
+            no_outside.append(m)
+            continue
         tid = pid[m]
         inter = set(int(x) for x in tid[idx])
         own = np.array(d["margins_e4"], np.int64) > 0
@@ -342,7 +353,10 @@ def main():
                           self_continuing_outside=int((own & mask).sum()),
                           self_continuing_total=d["n_self_continuing"])
     res["outside_intersection"] = dict(
-        per_model=outside,
+        per_model=outside, not_covered=no_outside,
+        _coverage_limit=(f"{no_outside} were measured on the probe set only and have no "
+                         f"outside-intersection coverage; see their _coverage_note."
+                         if no_outside else "every model has full-vocabulary coverage"),
         _what_it_is="each model's self-continuation bits over the tokens of its OWN vocabulary that "
                     "are not in the shared probe set. Not comparable across tokenizers; comparable "
                     "within a tokenizer group, which is where the within-family signature lives.")
@@ -350,6 +364,8 @@ def main():
     # within-tokenizer full-vocabulary distances, where the vocabularies actually match
     groups = {}
     for m in order:
+        if cells[m].get("coverage") != "full_vocabulary":
+            continue                    # a probe-only cell has no full-vocabulary vector to compare
         groups.setdefault((cells[m]["vocab_measured"], cells[m]["vocab_logits"]), []).append(m)
     full = []
     for key, ms in sorted(groups.items()):
