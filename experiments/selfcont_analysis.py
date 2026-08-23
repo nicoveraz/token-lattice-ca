@@ -123,10 +123,7 @@ def main():
     # ---- K2(a) ----
     if len(idx) < MIN_I:
         res["K2_fires"] = True
-        parts.append(
-        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
-        f"{fv_bal.reason} ")
-    res["verdict"] = " ".join(parts + [
+        res["verdict"] = " ".join(parts + [
             f"K2 FIRES on the coverage arm: the intersection is {len(idx)} < the registered floor of "
             f"{MIN_I}. NOT DECIDABLE for insufficient signal; the run stops here as registered."])
         _write(res)
@@ -154,10 +151,7 @@ def main():
     # ---- K2(b) ----
     if res["constant_fraction"] > MAX_CONST:
         res["K2_fires"] = True
-        parts.append(
-        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
-        f"{fv_bal.reason} ")
-    res["verdict"] = " ".join(parts + [
+        res["verdict"] = " ".join(parts + [
             f"K2 FIRES on the signal arm: {res['constant_fraction']:.1%} of probe bits are identical "
             f"across all {len(models)} models, above the registered 0.90. NOT DECIDABLE for "
             f"insufficient signal; the run stops here as registered."])
@@ -344,6 +338,9 @@ def main():
         _status="DESCRIPTIVE. Balance-gated above; if it is not readable the arm is reported as "
                 "NOT DECIDABLE for predictor imbalance and carries nothing.")
 
+    parts.append(
+        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
+        f"{fv_bal.reason} ")
     parts.append(
         f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
         f"{fv_bal.reason} ")
