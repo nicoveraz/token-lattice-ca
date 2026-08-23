@@ -100,7 +100,7 @@ def main():
 
     # bit and margin vectors, indexed by PROBE STRING so models with different vocabularies align
     for m, d in cells.items():
-        marg = np.array(d["margins"], np.float64)
+        marg = np.array(d["margins_e4"], np.float64) / 1e4     # integers by design; see selfcont_set
         tid = pid[m]
         v = np.full(n_strings, np.nan)
         good = tid >= 0
@@ -280,7 +280,7 @@ def main():
         d = cells[m]
         tid = pid[m]
         inter = set(int(x) for x in tid[idx])
-        own = np.array(d["margins"], np.float64) > 0
+        own = np.array(d["margins_e4"], np.int64) > 0
         mask = np.ones(len(own), bool)
         mask[list(inter)] = False
         outside[m] = dict(vocab_measured=d["vocab_measured"],
@@ -302,8 +302,8 @@ def main():
         if len(ms) < 2:
             continue
         for a, b in itertools.combinations(sorted(ms), 2):
-            va = np.array(cells[a]["margins"], np.float64) > 0
-            vb = np.array(cells[b]["margins"], np.float64) > 0
+            va = np.array(cells[a]["margins_e4"], np.int64) > 0
+            vb = np.array(cells[b]["margins_e4"], np.int64) > 0
             full.append(dict(a=a, b=b, vocab=key[0], hamming_full_vocab=int((va != vb).sum()),
                              same_family=bool(fam[a] == fam[b])))
     res["full_vocab_within_tokenizer_group"] = dict(

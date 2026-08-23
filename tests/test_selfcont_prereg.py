@@ -81,7 +81,7 @@ def test_the_determinism_flag_and_the_stored_set_both_survived_into_every_cell()
         d = _load(p)
         if not (d.get("_deterministic") and d["_determinism_check"]["bit_for_bit_identical"]):
             bad_flag.append(p.name)
-        derived = {i for i, m in enumerate(d["margins"]) if m > 0}
+        derived = {i for i, m in enumerate(d["margins_e4"]) if m > 0}
         if derived != set(d["self_continuing_ids"]) or len(derived) != d["n_self_continuing"]:
             bad_set.append(p.name)
     assert not bad_flag, (
@@ -90,7 +90,9 @@ def test_the_determinism_flag_and_the_stored_set_both_survived_into_every_cell()
     assert not bad_set, (
         f"the stored self-continuation set disagrees with the stored margins in {bad_set}. "
         f"bit(t) == (margin(t) > 0) is the definition, not a derived convenience -- if they part "
-        f"company, the set and the tau ladder are measuring different things.")
+        f"company, the set and the tau ladder are measuring different things. Margins are stored as "
+        f"integers scaled by 1e4 with a rule that never sends a nonzero margin to zero, precisely "
+        f"so that this identity survives the rounding.")
 
 
 @pytest.mark.skipif(not (RESULTS / "selfcont_verdict.json").exists(),

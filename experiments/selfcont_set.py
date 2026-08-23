@@ -159,6 +159,17 @@ def measure(m, fam, dt, probe):
                               oracle_argmax=int(oa), batched_argmax=int(amax[t])))
 
     bits = marg > 0
+    # MARGINS ARE STORED AS SCALED INTEGERS, and the reason is a guard elsewhere in the repo.
+    # tests/test_findings_numbers.py builds its pool of "numbers this project can trace to" from
+    # every float in every results/*.json. Thirteen cells x 50k float margins would have added ~300k
+    # literals to a baseline of 72k, so any two- to four-decimal number written in findings.md would
+    # then match by coincidence -- weakening a repo-wide guard for the whole project, to store a
+    # per-token array nobody quotes. Integers do not enter that pool. The scale is 1e-4 logits and
+    # the rounding NEVER sends a nonzero margin to zero, because the sign of the margin IS the
+    # self-continuation bit and must stay exact; `self_continuing_ids` is computed from the
+    # unrounded values and remains authoritative.
+    m4 = np.where(marg == 0, 0,
+                  np.sign(marg) * np.maximum(1.0, np.round(np.abs(marg) * 1e4))).astype(np.int64)
     probe_ids = resolve_probes(tok, probe["strings_list"])
     del model
     gc.collect()
@@ -185,7 +196,10 @@ def measure(m, fam, dt, probe):
         n_self_continuing=int(bits.sum()),
         self_continuing_fraction=round(float(bits.mean()), 6),
         self_continuing_ids=[int(i) for i in np.flatnonzero(bits)],
-        margins=[round(float(x), 4) for x in marg],
+        margins_e4=[int(x) for x in m4],
+        _margin_scale="1e-4 logits, stored as integers; see the comment in measure(). A nonzero "
+                      "margin never rounds to zero, so sign(margins_e4) == the self-continuation "
+                      "bit exactly, and self_continuing_ids is computed from the unrounded values.",
         argmax_ids=[int(x) for x in amax],
         probe_token_ids=probe_ids,
         n_probe_single_token=int(sum(1 for i in probe_ids if i >= 0)),
