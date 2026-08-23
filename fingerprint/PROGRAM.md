@@ -264,6 +264,38 @@ paper's external anchor until the family count moves. Per plan_paper2's own
 caution, three papers out of this material would be over-slicing unless this program's
 external anchor lands — the decision point is after Gate 2, not before.
 
+**THE FEATURE SET WAS REVISED AND TESTED (23 Aug 2026, F183).** The battery frozen in
+[`prereg.json`](prereg.json) is six **scalars**, and Gate 0's complaint about them never went away:
+the profile is low-dimensional and bands models rather than identifying them. F166, F172 and F179
+then said the scalars read the wrong half of the object — the endpoint token is a model×prefix
+interaction, six of seven models share it across a 22× span of scale, and what varies is whether the
+destination *self-continues*. So the candidate feature was rewritten as a **set**: for every token
+`t`, is `argmax p(·|t,t) == t`? Deterministic, no lattice, no temperature, no seeds. Registered in
+[`../experiments/prereg_selfcont.json`](../experiments/prereg_selfcont.json) and run over 12 models
+in 4 families, all Pile-trained.
+
+Entry by entry against the frozen battery: `argmax fixed-point count` (entry 6) becomes the set —
+the same probe at the resolution the count discards. `dominant_token id` (entry 2) is **struck** as
+an identifier. The four-temperature `top1_share` profile and `tstar` (entries 1 and 3) are **not
+used** — the set is defined on logit order, so no temperature enters. The frozen geometry (N=96,
+B=16, r=2, 16 sweeps, 4 seeds) **does not apply**. Attribution moves from nearest family centroid
+over four numbers to nearest neighbour over 3471 bits.
+
+**What it returned, and it is not the capability.** Leave-one-out family attribution is 7 of 12
+against a family-level chance of 0.2273 — above chance, below a capability, and §7's "coherence, not
+identification" verdict is unchanged. Worse, the metric carries the confound the scalars did: the
+registered Hamming distance correlates with the sum of the two set sizes at r = 0.913, so most of it
+is **cardinality** — a scalar again. And the decisive corpus pair separates by 2 bits in 3471 where
+the far controls separate by 276–661, so the set does not resolve below family. **§7's binding
+constraint is still breadth, and this revision did not touch it.**
+
+**One prior-art consequence, and it is not routine.** F95 cleared this programme on ground (b) —
+*iterated / dynamical probes are not anticipated* — and §1 concluded "pitch the novelty as the
+dynamics, not the fingerprint." The self-continuation bit is dynamically motivated but **statically
+computed**: one forward pass per token, no iteration. It steps off exactly the ground F95 called
+defensible. The re-check is **owed and has not run**, and no write-up on this feature may proceed
+until it does.
+
 ## 8. What this program does not claim
 
 Nothing here reaches model internals; a passing program yields behavioral characterization —
