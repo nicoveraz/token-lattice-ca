@@ -241,19 +241,34 @@ def main():
     labels = [fam[m] for m in order]
     bal = balance_report(labels, name="family label")
     n = len(order)
-    hits, nn = 0, {}
+    hits, tie_credit, nn = 0, 0.0, {}
     for i in range(n):
         d = M[i].astype(float).copy()
         d[i] = np.inf
         j = int(np.argmin(d))
         ties = [k for k in range(n) if k != i and M[i, k] == M[i, j]]
+        # Distances here are INTEGER Hamming counts, so ties at the minimum are likely and
+        # np.argmin breaks them by array order -- which is alphabetical, and would hand the verdict
+        # to how the models happen to be named. The arbitrary-resolution figure is kept because it
+        # is the literal rank-1 rule, and a tie-aware figure is reported beside it: each model gets
+        # the FRACTION of its co-minimal neighbours that share its family. They should be read
+        # together, and a large gap between them means the rank-1 number is an artefact of sorting.
+        same_tied = sum(1 for k in ties if fam[order[k]] == fam[order[i]])
+        tie_credit += same_tied / len(ties)
         nn[order[i]] = dict(nearest=order[j], distance=int(M[i, j]),
                             same_family=bool(fam[order[j]] == fam[order[i]]),
-                            n_tied_at_that_distance=len(ties))
+                            n_tied_at_that_distance=len(ties),
+                            n_tied_same_family=same_tied,
+                            tie_aware_credit=round(same_tied / len(ties), 4))
         hits += int(fam[order[j]] == fam[order[i]])
     chance_family = float(np.mean([(labels.count(fam[m]) - 1) / (n - 1) for m in order]))
     res["identification"] = dict(
         n=n, rank1_same_family=hits, rank1_accuracy=round(hits / n, 4),
+        tie_aware_accuracy=round(tie_credit / n, 4),
+        _tie_note="rank1_accuracy resolves co-minimal neighbours by array order, which is "
+                  "alphabetical. tie_aware_accuracy credits each model with the fraction of its "
+                  "co-minimal neighbours that share its family. A gap between them means the rank-1 "
+                  "figure is partly an artefact of how the models are named.",
         chance_instance_level=round(1 / (n - 1), 4),
         chance_family_level=round(chance_family, 4),
         majority_class_rate=round(bal.majority_rate, 4),
@@ -269,7 +284,9 @@ def main():
         f"IDENTIFICATION (Task 4): leave-one-out rank-1 nearest neighbour by Hamming over the "
         f"intersection puts {hits} of {n} models next to a model of their OWN family, "
         f"{hits/n:.0%} against a family-level chance of {chance_family:.1%} and a majority-class "
-        f"rate of {bal.majority_rate:.0%}. The instance-level 1/(n-1) = {1/(n-1):.1%} is the wrong "
+        f"rate of {bal.majority_rate:.0%}. Ties at the minimum are broken by array order there, so "
+        f"the tie-aware figure -- each model credited with the fraction of its co-minimal "
+        f"neighbours that share its family -- is reported beside it at {tie_credit/n:.0%}. The instance-level 1/(n-1) = {1/(n-1):.1%} is the wrong "
         f"baseline here and is reported only so it cannot be quoted as the right one. This is FAMILY "
         f"ATTRIBUTION; instance identification was refused before the run, because determinism makes "
         f"repeated measurement of one checkpoint bit-identical and the test cannot fail. ")
