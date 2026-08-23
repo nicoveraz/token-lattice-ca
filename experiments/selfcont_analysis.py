@@ -272,6 +272,38 @@ def main():
                 f"K1 does not fire: {D} against a floor of {C}, a ratio of "
                 f"{res['resolution_ratio']}x. ")
 
+    # ---- K1's REGISTERED COROLLARY, followed up at wider coverage ----
+    # The prereg says a floor of exactly zero makes K1 a WEAK test and that this must be said rather
+    # than allowed to read as a clean pass. It is worth knowing WHY the floor is zero, and the same
+    # estimand at full vocabulary answers it: if bfloat16 moves bits there but none in the
+    # intersection, the zero is a property of the PROBE SET, not of the estimator's stability.
+    # This does not change K1's verdict, which is computed on the registered estimand above; it
+    # interrogates the floor that verdict rests on, which the corollary explicitly asks for.
+    fv = {}
+    for lbl, (x, y) in {"decisive": DECISIVE, "floor": CONTROL}.items():
+        if x in cells and y in cells and all(
+                cells[k].get("coverage") == "full_vocabulary" for k in (x, y)):
+            bx = np.array(cells[x]["margins_e4"], np.int64) > 0
+            by = np.array(cells[y]["margins_e4"], np.int64) > 0
+            if len(bx) == len(by):
+                fv[lbl] = dict(a=x, b=y, hamming_full_vocab=int((bx != by).sum()), vocab=len(bx))
+    if {"decisive", "floor"} <= set(fv):
+        D_fv, C_fv = fv["decisive"]["hamming_full_vocab"], fv["floor"]["hamming_full_vocab"]
+        fv["ratio_full_vocab"] = None if C_fv == 0 else round(D_fv / C_fv, 2)
+        fv["_reading"] = (
+            "the registered floor is computed on the intersection. At full vocabulary the SAME two "
+            "comparisons give a nonzero floor, so a zero on the intersection is a fact about the "
+            "probe set rather than about numeric stability. Read the ratio, not the zero.")
+        parts.append(
+            f"K1'S COROLLARY, FOLLOWED UP: the registered floor is computed on the intersection, and "
+            f"the same two comparisons at FULL VOCABULARY give {D_fv} bits for the decisive pair "
+            f"against {C_fv} for bfloat16 rounding of the same weights -- a ratio of "
+            f"{fv['ratio_full_vocab']}. So the intersection floor of zero is a fact about the PROBE "
+            f"SET, not about the estimator's numeric stability, and the honest resolution figure is "
+            f"the ratio rather than the zero. Wider coverage, one control cell, DESCRIPTIVE: it does "
+            f"not change K1's verdict on the registered estimand. ")
+    res["k1_corollary_full_vocab"] = fv
+
     # ---- descriptive, unregistered ----
     order = sorted(models)
     M = np.zeros((len(order), len(order)), int)
@@ -281,8 +313,46 @@ def main():
                                    _status="DESCRIPTIVE, not registered: only the decisive pair and "
                                            "three far controls were registered. Carries no verdict.")
 
-    # ---- Task 4: leave-one-out rank-1 FAMILY attribution ----
+    # ---- THE VACUITY K3 DID NOT COVER, and it is the most important number in this file. ----
+    # K3 gates the CONSTANT tokens: a bit that never varies contributes exactly zero to a Hamming
+    # distance, which is why the prereg named the raw count primary. That reasoning is right and
+    # incomplete. Hamming between two sparse sets is |A| + |B| - 2|A and B|, so it is dominated by
+    # CARDINALITY whenever the sets are small relative to the probe. If it is, then a family
+    # attribution built on it is a set-SIZE result -- a scalar -- which is precisely what this
+    # revision set out to escape. Measured rather than assumed.
     fam = {m: cells[m]["family"] for m in order}
+    card, ham, same = [], [], []
+    for i, j in itertools.combinations(range(len(order)), 2):
+        a, b = cells[order[i]]["bits"][idx], cells[order[j]]["bits"][idx]
+        card.append(int(a.sum()) + int(b.sum()))
+        ham.append(int((a != b).sum()))
+        same.append(fam[order[i]] == fam[order[j]])
+    r_card = float(np.corrcoef(np.array(ham, float), np.array(card, float))[0, 1])
+    def _ov(i, j):
+        a, b = cells[order[i]]["bits"][idx], cells[order[j]]["bits"][idx]
+        return int((a & b).sum()) / max(1, min(int(a.sum()), int(b.sum())))
+    ovs = [_ov(i, j) for i, j in itertools.combinations(range(len(order)), 2)]
+    res["cardinality_confound"] = dict(
+        n_pairs=len(ham), pearson_hamming_vs_size_sum=round(r_card, 4),
+        variance_explained=round(r_card ** 2, 4),
+        mean_overlap_same_family=round(float(np.mean([o for o, s in zip(ovs, same) if s])), 4),
+        mean_overlap_cross_family=round(float(np.mean([o for o, s in zip(ovs, same) if not s])), 4),
+        _reading="the overlap coefficient |A and B| / min(|A|,|B|) is the size-free companion. It is "
+                 "NOT a registered estimand and carries no verdict; it is reported so the reader can "
+                 "see whether any identity signal survives once cardinality is taken out.")
+    parts.append(
+        f"THE CONFOUND K3 DOES NOT COVER, and it is the most important number here: across the "
+        f"{len(ham)} pairs the registered Hamming distance correlates with the SUM OF THE TWO SET "
+        f"SIZES at r = {r_card:.3f}, so {r_card ** 2:.0%} of it is cardinality alone. K3 gates "
+        f"constant tokens, which contribute zero to a Hamming count; it does not gate this, because "
+        f"Hamming between sparse sets IS |A| + |B| - 2|A and B|. Any attribution built on this "
+        f"metric is therefore substantially a set-SIZE result -- a scalar, which is what this "
+        f"revision set out to escape. The size-free companion, the overlap coefficient, runs "
+        f"{np.mean([o for o, s in zip(ovs, same) if s]):.3f} same-family against "
+        f"{np.mean([o for o, s in zip(ovs, same) if not s]):.3f} cross-family; it is unregistered "
+        f"and carries no verdict. ")
+
+    # ---- Task 4: leave-one-out rank-1 FAMILY attribution ----
     labels = [fam[m] for m in order]
     bal = balance_report(labels, name="family label")
     n = len(order)
