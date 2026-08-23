@@ -148,17 +148,6 @@ def main():
         f"({n_var}), never by the intersection; the PRIMARY figure is the raw Hamming count, which "
         f"constant tokens cannot inflate because they contribute exactly zero to it. ")
 
-    # ---- K2(b) ----
-    if res["constant_fraction"] > MAX_CONST:
-        res["K2_fires"] = True
-        res["verdict"] = " ".join(parts + [
-            f"K2 FIRES on the signal arm: {res['constant_fraction']:.1%} of probe bits are identical "
-            f"across all {len(models)} models, above the registered 0.90. NOT DECIDABLE for "
-            f"insufficient signal; the run stops here as registered."])
-        _write(res)
-        return
-    res["K2_fires"] = False
-
     # ---- the registered comparisons ----
     def pair_row(a, b):
         if a not in cells or b not in cells:
@@ -171,6 +160,32 @@ def main():
     res["decisive"] = pair_row(*DECISIVE)
     res["should_be_far"] = [r for r in (pair_row(*p) for p in FAR) if r]
     res["control"] = pair_row(*CONTROL)
+
+    # ---- K2(b). K3 IS MANDATORY EVEN HERE, and that is not a softening of K2. K3 is written for
+    # exactly the case K2 stops on -- vectors dominated by tokens that are constant across the
+    # cohort -- so stopping without reporting the variable-subset distances would leave the run
+    # holding an anti-vacuity procedure it never got to use. The verdict below is still NOT
+    # DECIDABLE; what changes is that the numbers K3 obliges are in the record beside it.
+    if res["constant_fraction"] > MAX_CONST:
+        res["K2_fires"] = True
+        d = res["decisive"]
+        c = res["control"]
+        res["verdict"] = " ".join(parts + [
+            f"K2 FIRES on the signal arm: {res['constant_fraction']:.1%} of probe bits are identical "
+            f"across all {len(models)} models, above the registered 0.90. NOT DECIDABLE for "
+            f"insufficient signal, and the run stops here as registered -- no identification test, "
+            f"no capability claim. ",
+            (f"K3 still obliges the variable-subset numbers, and they are: the decisive pair differs "
+             f"on {d['hamming']} probe bits ({d['fraction_of_variable']:.1%} of the {n_var} variable "
+             f"ones, robust at tau={TAU_P} on {d['robust'][str(TAU_P)]}), against a precision floor "
+             f"of {c['hamming']}. " if d and c else
+             "K3's variable-subset numbers cannot be reported: the decisive pair or its control is "
+             "missing from the measured cells. "),
+            "These are reported because K3 is mandatory whatever the distances say; they do NOT "
+            "overturn K2, and no claim rests on them."])
+        _write(res)
+        return
+    res["K2_fires"] = False
 
     D = res["decisive"]["hamming"] if res["decisive"] else None
     C = res["control"]["hamming"] if res["control"] else None
