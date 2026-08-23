@@ -123,7 +123,10 @@ def main():
     # ---- K2(a) ----
     if len(idx) < MIN_I:
         res["K2_fires"] = True
-        res["verdict"] = " ".join(parts + [
+        parts.append(
+        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
+        f"{fv_bal.reason} ")
+    res["verdict"] = " ".join(parts + [
             f"K2 FIRES on the coverage arm: the intersection is {len(idx)} < the registered floor of "
             f"{MIN_I}. NOT DECIDABLE for insufficient signal; the run stops here as registered."])
         _write(res)
@@ -151,7 +154,10 @@ def main():
     # ---- K2(b) ----
     if res["constant_fraction"] > MAX_CONST:
         res["K2_fires"] = True
-        res["verdict"] = " ".join(parts + [
+        parts.append(
+        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
+        f"{fv_bal.reason} ")
+    res["verdict"] = " ".join(parts + [
             f"K2 FIRES on the signal arm: {res['constant_fraction']:.1%} of probe bits are identical "
             f"across all {len(models)} models, above the registered 0.90. NOT DECIDABLE for "
             f"insufficient signal; the run stops here as registered."])
@@ -323,13 +329,24 @@ def main():
             vb = np.array(cells[b]["margins_e4"], np.int64) > 0
             full.append(dict(a=a, b=b, vocab=key[0], hamming_full_vocab=int((va != vb).sum()),
                              same_family=bool(fam[a] == fam[b])))
+    # gatecheck.balance BEFORE the arm is read. If every pair inside a vocabulary group happens to
+    # be same-family, `same_family` has one class and the arm cannot discriminate at all -- any
+    # pattern it appears to show is the base rate. That is F163's defect, and it is likelier here
+    # than anywhere else in this run, because the largest group is a single family with five
+    # members.
+    fv_bal = balance_report([p["same_family"] for p in full], name="same_family within vocab group")
     res["full_vocab_within_tokenizer_group"] = dict(
-        pairs=full,
+        pairs=full, balance=fv_bal.reason, readable=bool(fv_bal),
         _caveat="grouped by (measured vocab size, logit rows), which is a NECESSARY not sufficient "
                 "test of tokenizer identity. Two tokenizers of equal size could still disagree on a "
                 "token id; the intersection arm above does not have this weakness and is the one "
-                "every verdict uses.")
+                "every verdict uses.",
+        _status="DESCRIPTIVE. Balance-gated above; if it is not readable the arm is reported as "
+                "NOT DECIDABLE for predictor imbalance and carries nothing.")
 
+    parts.append(
+        f"THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: "
+        f"{fv_bal.reason} ")
     res["verdict"] = " ".join(parts + [
         "REFUSALS, registered before the numbers: no p-value (12 checkpoints in 4 families is not a "
         "sample); no instance-identification claim; no adjustment of tau, of the intersection floor, "
