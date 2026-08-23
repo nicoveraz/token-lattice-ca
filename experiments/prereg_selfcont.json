@@ -1,0 +1,106 @@
+{
+ "name": "selfcont-set-v1",
+ "status": "FROZEN before any model was loaded and before any cell of results/selfcont_set_*.json existed. The probe strings were frozen one commit earlier, in experiments/probe_strings_selfcont.json.",
+ "plan_section": "fingerprint/PROGRAM.md -- this REVISES the frozen feature set of prereg.json, which is a battery of SCALARS.",
+ "epistemic_tier": "TIER 1. No cell of this estimator exists for any model. New forward passes required.",
+ "probe_strings_sha256": "df37c33a8fb02f194328a0032f944a4397647c2e3f1a26a45bde84b05d8e42c5",
+ "probe_strings_file": "experiments/probe_strings_selfcont.json",
+ "why_the_feature_changes": "fingerprint/PROGRAM.md proposed a fingerprint made of SCALARS -- attractor share, its temperature profile, the dominant-token identity, T*, and radius/BOS sensitivity -- and Gate 0 already reported that the profile is effectively low-dimensional, banding models into strong/weak-attractor groups at 4/14 leave-one-out family attribution. Three findings since then say the scalar is reading the wrong half of the object. F179: six of seven models across two families and an order of magnitude of scale land on the SAME endpoint token, so WHERE trajectories go barely varies. F166: the endpoint token is a model x prefix INTERACTION, not a model property, so it cannot be a stable identifier. F172: within one corpus the endpoint token is identical across three models while phi spans 0.036 to 0.458 -- the corpus sets the destination and the weights decide whether it self-continues. The discriminative half is therefore SELF-CONTINUATION, and the natural object is not a scalar summary of it but the SET of tokens that have it.",
+ "the_feature": {
+  "definition": "for a model M and a token t, bit_M(t) = 1 iff argmax_x logit_M(x | t, t) == t, i.e. the two-token state (t,t) reproduces itself under the argmax map. The fingerprint is the vector of these bits over a fixed probe set.",
+  "margin": "margin_M(t) = logit_M(t | t, t) - max_{x != t} logit_M(x | t, t), stored as float. By construction bit_M(t) == (margin_M(t) > 0); the run asserts this.",
+  "estimator_provenance": "the per-token quantity is exactly experiments/newline_margin_freeze.py's margin(model, dev, prefix_ids=[], nl=t), generalised from '\\n' to arbitrary t. That function is IMPORTED, not restated, and is used as the reference oracle against which the batched implementation is checked.",
+  "why_not_a_census": "deterministic. No random starts, no census seeds, no sampling anywhere. The seed noise that forces every phi in this project to be reported across two census seeds does not exist here."
+ },
+ "cohort": {
+  "models": [
+   "EleutherAI/pythia-70m",
+   "EleutherAI/pythia-160m",
+   "EleutherAI/pythia-410m",
+   "EleutherAI/pythia-410m-deduped",
+   "EleutherAI/pythia-1b",
+   "EleutherAI/gpt-neo-125m",
+   "EleutherAI/gpt-neo-1.3B",
+   "EleutherAI/gpt-neo-2.7B",
+   "RWKV/rwkv-4-169m-pile",
+   "RWKV/rwkv-4-430m-pile",
+   "state-spaces/mamba-130m-hf",
+   "state-spaces/mamba-370m-hf"
+  ],
+  "families": {
+   "Pythia": 5,
+   "GPT-Neo": 3,
+   "RWKV": 2,
+   "Mamba": 2
+  },
+  "n": 12,
+  "corpus": "every model is trained on The Pile, so CORPUS IS HELD FIXED across the entire cohort and no result here can be a corpus effect. Corpus labels are model-card claims, not measurements -- F90's caveat, still in force.",
+  "device": "CPU float32, except the precision control below",
+  "all_cached": "every listed model is already in the local HF cache. No download is performed and none is authorised."
+ },
+ "H1": "the self-continuation SET distinguishes EleutherAI/pythia-410m from EleutherAI/pythia-410m-deduped -- the pair phi cannot separate (0.458 vs 0.427, both funnel, both modal endpoint '\\n'; F172, F178). This is the decisive pair because it is the cohort's only corpus manipulation and the scalar readout returns effectively nothing on it.",
+ "estimands": {
+  "primary": "HAMMING = the raw count of probe tokens t in the intersection I where bit_A(t) != bit_B(t). A raw count, not a fraction: constant tokens contribute exactly 0 to a Hamming distance, so the count is already immune to the padding K3 is about. Any FRACTION quoted is normalised by |V|, the VARIABLE subset, never by |I|.",
+  "secondary": "ROBUST[tau] = the count of t where the bits disagree AND |margin| >= tau on BOTH sides. These are the disagreements that are not near-ties and would survive a small numeric perturbation."
+ },
+ "thresholds": {
+  "tau_ladder": [
+   0.0,
+   0.1,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "tau_primary": 1.0,
+  "tau_units": "logits (natural-log-scale pre-softmax scores). The argmax map cares only about the ORDER of logits, so no temperature enters and a probability would import one the estimator does not have -- newline_margin_freeze.py's reasoning, unchanged.",
+  "why_a_ladder_and_not_one_number": "a single tau chosen now could be too strict to leave signal or too loose to mean anything, and choosing it after seeing the distances is threshold-shopping. The whole ladder is registered, tau=1.0 is named PRIMARY in advance, and every rung is reported whatever it says.",
+  "min_intersection": 500
+ },
+ "registered_comparisons": {
+  "decisive": [
+   "EleutherAI/pythia-410m vs EleutherAI/pythia-410m-deduped"
+  ],
+  "should_be_far": [
+   "EleutherAI/pythia-410m vs state-spaces/mamba-370m-hf",
+   "EleutherAI/pythia-410m vs RWKV/rwkv-4-430m-pile",
+   "EleutherAI/pythia-410m vs EleutherAI/gpt-neo-125m"
+  ],
+  "should_be_near_identical": {
+   "cell": "EleutherAI/pythia-410m float32 vs EleutherAI/pythia-410m bfloat16",
+   "what_it_is": "the SAME weights read at two numeric precisions. It is a PRECISION floor, not an independent-measurement control.",
+   "why_no_better_control_exists": "the estimator is deterministic, so measuring one checkpoint twice at one precision gives Hamming 0 by construction and is uninformative. A same-model two-REVISION control would be the right instrument and the cache holds no second revision of any cohort member; obtaining one is a download and is not authorised. This is recorded as the control the design wanted and did not have.",
+   "under_reads_what": "bfloat16 rounding is a far smaller perturbation than 4-bit or 8-bit quantization, so C under-states the floor a real quantized variant would set. Task 5 stays owed."
+  }
+ },
+ "kill_conditions": {
+  "K1_no_resolution_below_family": "let D = HAMMING(pythia-410m, pythia-410m-deduped) and C = HAMMING(pythia-410m fp32, pythia-410m bf16). If D <= C, the set does not resolve below family, H1 is DEAD, and the reported finding is the RESOLUTION FLOOR -- the number of bits that move for numeric noise alone -- not a distance. Registered corollary: if C == 0 exactly, K1 becomes a WEAK test, because then any nonzero D passes it; that must be said in the finding rather than allowed to read as a clean pass.",
+  "K2_insufficient_signal": "NOT DECIDABLE and STOP if either (a) |I| < 500, or (b) the fraction of probe tokens whose bit is identical across ALL successfully measured models exceeds 0.90. Neither number is adjustable after the fact.",
+  "K3_anti_vacuity": "MANDATORY whatever the distances say. Report |V| = the number of probe tokens whose bit is NOT constant across the cohort, and report every distance over V as well as over I, naming which is primary (the raw Hamming count over I; fractions normalise by |V|). This project's most frequent error is a criterion with a shape on a quantity with no room to vary, and a bit vector is not exempt.",
+  "K4_cohort_shrinks": "if any model fails to load it is NAMED and the run continues. Every gate that reads cohort shape must then be re-evaluated on the surviving cohort: K2(b)'s 'across ALL models', K3's variable subset, and Task 4's chance levels all change. Silently shrinking the cohort is forbidden."
+ },
+ "identification_test": {
+  "when": "only if neither K1 nor K2 fires",
+  "what": "leave-one-out rank-1 nearest neighbour by HAMMING over I. For each model, is its nearest neighbour among the other 11 a model of the SAME family?",
+  "chance_instance_level": 0.0909,
+  "chance_instance_level_formula": "1/(n-1) = 1/11 -- the chance of picking one specific model",
+  "chance_family_level": 0.2273,
+  "chance_family_level_formula": "mean over models of (|family|-1)/(n-1) = (5*4 + 3*2 + 2*1 + 2*1)/(12*11) = 30/132. THIS is the chance level the family test must beat; 1/(n-1) is the instance-level number and would flatter the result by a factor of 2.5 if quoted here.",
+  "balance": "family labels are a categorical predictor and are balance-gated with gatecheck.balance before the join is read, so the majority-class rate is reported as the third baseline.",
+  "what_it_is_not": "this measures FAMILY ATTRIBUTION, not instance identification. A proper instance test needs repeated INDEPENDENT measurements of the same weights, and determinism makes those bit-identical -- which makes the test trivial and therefore uninformative. Registered here so that a good number cannot later be reported as identification.",
+  "confounds_registered_now": "within this cohort family is confounded with tokenizer (Pythia, RWKV and Mamba use GPT-NeoX vocabularies; GPT-Neo uses GPT-2's) and with size ordering (RWKV and Mamba contribute two checkpoints each, so their same-family neighbour is also their nearest-in-size neighbour). A rank-1 success cannot separate these and will not be claimed to."
+ },
+ "quantization_robustness": {
+  "status": "OWED AND NOT RUN",
+  "rule": "run only if a QUANTIZED variant of a measured model is already in the local HF cache. Do not download one.",
+  "cache_state_at_freeze": "checked before freezing: the cache holds no GPTQ/AWQ/bitsandbytes/GGUF variant of any cohort member. microsoft/bitnet-b1.58-2B-4T-bf16 is natively low-bit-trained and is not a quantized variant of anything measured here.",
+  "why_it_matters": "argmax is brittle at near-ties. The margin field exists precisely to support a threshold rule that survives quantization, and ROBUST[tau] is that rule, but it is UNTESTED against real quantization. The bf16 precision control is a weaker perturbation and does not stand in for it."
+ },
+ "refusals_recorded_before_numbers": [
+  "no p-value: 12 checkpoints in 4 families is not a sample, and family is the independent unit throughout (F68)",
+  "no instance-identification claim, for the reason registered above -- determinism makes the within-instance variance exactly zero, so the test that would license it cannot fail informatively at this n and is REFUSED rather than run and over-read",
+  "no adjustment of tau, of |I|'s floor, or of K2(b)'s 0.90 after any distance is seen",
+  "no claim that the set fingerprints models whose tokenizers do not share the probe strings: outside the intersection the vectors are not comparable at all",
+  "no claim about WHY a bit differs -- this design separates neither architecture nor schedule nor hyperparameters, and every cohort member shares a corpus",
+  "no write-up of any kind until the prior-art re-check runs. F95 cleared a BATTERY OF SCALARS; this is a different feature, model fingerprinting is a fast-moving field, and F95's own synthesis stage failed on a session limit."
+ ]
+}
