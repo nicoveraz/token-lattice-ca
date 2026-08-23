@@ -33,6 +33,51 @@
  ],
  "failed": [],
  "missing": [],
+ "wall": {
+  "total_seconds": 22012.5,
+  "total_hours": 6.11,
+  "per_cell": {
+   "EleutherAI/gpt-neo-1.3B": 328.8,
+   "EleutherAI/gpt-neo-125m": 47.6,
+   "EleutherAI/gpt-neo-2.7B": 6303.1,
+   "EleutherAI/pythia-160m": 36.3,
+   "EleutherAI/pythia-1b": 187.0,
+   "EleutherAI/pythia-410m": 101.2,
+   "EleutherAI/pythia-410m-deduped": 108.3,
+   "EleutherAI/pythia-410m@bf16": 345.8,
+   "EleutherAI/pythia-70m": 15.3,
+   "RWKV/rwkv-4-169m-pile": 63.3,
+   "RWKV/rwkv-4-430m-pile": 183.0,
+   "state-spaces/mamba-130m-hf": 1532.2,
+   "state-spaces/mamba-370m-hf": 12760.6
+  },
+  "slowest": [
+   [
+    12760.6,
+    "state-spaces/mamba-370m-hf"
+   ],
+   [
+    6303.1,
+    "EleutherAI/gpt-neo-2.7B"
+   ],
+   [
+    1532.2,
+    "state-spaces/mamba-130m-hf"
+   ]
+  ]
+ },
+ "registered_thresholds": {
+  "tau_ladder": [
+   0.0,
+   0.1,
+   0.5,
+   1.0,
+   2.0
+  ],
+  "tau_primary": 1.0,
+  "min_intersection": 500,
+  "max_constant_fraction": 0.9
+ },
  "K4_cohort_shrank": false,
  "intersection_size": 3471,
  "probe_candidates": 4090,
@@ -564,7 +609,29 @@
   "variance_explained": 0.8332,
   "mean_overlap_same_family": 0.7409,
   "mean_overlap_cross_family": 0.5421,
-  "_reading": "the overlap coefficient |A and B| / min(|A|,|B|) is the size-free companion. It is NOT a registered estimand and carries no verdict; it is reported so the reader can see whether any identity signal survives once cardinality is taken out."
+  "_reading": "the overlap coefficient |A and B| / min(|A|,|B|) is the size-free companion. It is NOT a registered estimand and carries no verdict; it is reported so the reader can see whether any identity signal survives once cardinality is taken out.",
+  "worked_example": [
+   {
+    "a": "RWKV/rwkv-4-169m-pile",
+    "b": "EleutherAI/pythia-1b",
+    "size_a": 74,
+    "size_b": 13,
+    "intersection": 9,
+    "hamming": 69,
+    "overlap_coefficient": 0.6923,
+    "same_family": false
+   },
+   {
+    "a": "RWKV/rwkv-4-169m-pile",
+    "b": "RWKV/rwkv-4-430m-pile",
+    "size_a": 74,
+    "size_b": 446,
+    "intersection": 54,
+    "hamming": 412,
+    "overlap_coefficient": 0.7297,
+    "same_family": true
+   }
+  ]
  },
  "identification": {
   "n": 12,
@@ -860,7 +927,7 @@
  "verdict": "SELF-CONTINUATION SET, registered in experiments/prereg_selfcont.json (sha256 3af2e81ee871..., frozen before any model was loaded) over probe strings frozen one commit earlier. 12 models, 4 families, all Pile-trained so CORPUS IS HELD FIXED across the whole cohort. Deterministic estimator: no census seeds, no random starts, and every cell asserted bit-for-bit reproducible before it was written.  INTERSECTION: 3471 of 4090 frozen strings encode to exactly one token under all 12 tokenizers.  K3 (anti-vacuity, registered as mandatory): of those 3471 probe tokens, 2 self-continue in EVERY model and 1785 in NONE, leaving 1684 VARIABLE -- ascii 4/43, ascii_sp 38/42, whitespace 3/3, word 954/1470, word_sp 685/1913 by arm. Fractions below are normalised by the variable subset (1684), never by the intersection; the PRIMARY figure is the raw Hamming count, which constant tokens cannot inflate because they contribute exactly zero to it.  DECISIVE PAIR (H1) pythia-410m vs pythia-410m-deduped -- the pair phi cannot separate (0.458 vs 0.427, both funnel, same modal endpoint): HAMMING = 2 over 3471 probe tokens, 0.1% of the variable subset; robust disagreements at the PRIMARY tau=1.0 = 1.  SHOULD BE FAR: vs mamba-370m-hf 661 (robust@1.0 316); vs rwkv-4-430m-pile 440 (robust@1.0 198); vs gpt-neo-125m 276 (robust@1.0 137).  THE FLOOR: the same weights at two numeric precisions (float32 vs bfloat16) differ on 0 probe bits, with 0 of those robust at tau=1.0.  K1 does not fire, and the registered corollary applies: the floor is EXACTLY ZERO, which makes K1 a WEAK test -- any nonzero distance clears it. What the zero floor does establish is that bfloat16 rounding moves no bit at all, so the 2 bits that separate the deduped pair are not numeric noise. It says nothing about a real quantized variant, which is a far larger perturbation and is registered OWED.  K1'S COROLLARY, FOLLOWED UP: the registered floor is computed on the intersection, and the same two comparisons at FULL VOCABULARY give 52 bits for the decisive pair against 15 for bfloat16 rounding of the same weights -- a ratio of 3.47. So the intersection floor of zero is a fact about the PROBE SET, not about the estimator's numeric stability, and the honest resolution figure is the ratio rather than the zero. Wider coverage, one control cell, DESCRIPTIVE: it does not change K1's verdict on the registered estimand.  THE CONFOUND K3 DOES NOT COVER, and it is the most important number here: across the 66 pairs the registered Hamming distance correlates with the SUM OF THE TWO SET SIZES at r = 0.913, so 83% of it is cardinality alone. K3 gates constant tokens, which contribute zero to a Hamming count; it does not gate this, because Hamming between sparse sets IS |A| + |B| - 2|A and B|. Any attribution built on this metric is therefore substantially a set-SIZE result -- a scalar, which is what this revision set out to escape. The size-free companion, the overlap coefficient, runs 0.741 same-family against 0.542 cross-family; it is unregistered and carries no verdict.  IDENTIFICATION (Task 4): leave-one-out rank-1 nearest neighbour by Hamming over the intersection puts 7 of 12 models next to a model of their OWN family, 58% against a family-level chance of 22.7% and a majority-class rate of 42%. Ties at the minimum are broken by array order there, so the tie-aware figure -- each model credited with the fraction of its co-minimal neighbours that share its family -- is reported beside it at 58%. The instance-level 1/(n-1) = 9.1% is the wrong baseline here and is reported only so it cannot be quoted as the right one. This is FAMILY ATTRIBUTION; instance identification was refused before the run, because determinism makes repeated measurement of one checkpoint bit-identical and the test cannot fail.  THE WITHIN-FAMILY ARM, over each model's OWN vocabulary outside the shared probe set: same_family within vocab group has ONE class (True) over 13 units: it cannot discriminate, and any agreement it appears to show is the base rate. NOT DECIDABLE for predictor imbalance.  REFUSALS, registered before the numbers: no p-value (12 checkpoints in 4 families is not a sample); no instance-identification claim; no adjustment of tau, of the intersection floor, or of K2(b) after the fact; no claim that the set fingerprints models whose tokenizers do not share the probe strings; no claim about WHY a bit differs. QUANTIZATION ROBUSTNESS IS OWED AND NOT RUN: no quantized variant of any cohort member is in the local cache, downloading one was not authorised, and bfloat16 rounding is a far smaller perturbation than 4- or 8-bit quantization. THE PRIOR-ART RE-CHECK IS OWED: F95 cleared a battery of SCALARS, this is a different feature, and no write-up may proceed until that gate runs.",
  "_analysis_provenance": {
   "script": "selfcont_analysis.py",
-  "sha256": "d8a6d8bf12cc5f09372a8e00f02fbd2f7b45eb4d255b765123b27ba4b9b7947e",
+  "sha256": "1a32f3525fdd6e70e89b1656d044b67e72d264c27aa1c0a07af9f847f0b7bacc",
   "imports": {
    "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
    "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
@@ -870,7 +937,7 @@
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/newline_margin_freeze.py": "62890fb51ca550699f38624c9409c786c546fb7df66962921e0b151b742077bf",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-   "experiments/selfcont_analysis.py": "d8a6d8bf12cc5f09372a8e00f02fbd2f7b45eb4d255b765123b27ba4b9b7947e",
+   "experiments/selfcont_analysis.py": "1a32f3525fdd6e70e89b1656d044b67e72d264c27aa1c0a07af9f847f0b7bacc",
    "experiments/selfcont_set.py": "51bae621b567b230846a2cae18649f85d5b451c52295bc2fd6bfa3fe7f5ccb75",
    "experiments/structural_text.py": "51d82069fa2c7cd3d2eddb03de816316ad71aadbb85801b631a4698e8605712c",
    "experiments/text_interaction.py": "3f52bb00a468ca209d6747f2735d83b4d8707c4d4bee69499bcf9db65a38b9f6",

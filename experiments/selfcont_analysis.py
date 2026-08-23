@@ -72,6 +72,17 @@ def main():
                failed=failed, missing=missing)
 
     # ---- K4: cohort shape. Every gate below reads it, so it is resolved first. ----
+    # wall time, summed from the cells rather than recomputed, so the finding can quote it and the
+    # number traces to a results file like every other number in this project
+    res["wall"] = dict(total_seconds=round(sum(c["secs"] for c in cells.values()), 1),
+                       total_hours=round(sum(c["secs"] for c in cells.values()) / 3600, 2),
+                       per_cell={k: c["secs"] for k, c in sorted(cells.items())},
+                       slowest=sorted(((c["secs"], k) for k, c in cells.items()), reverse=True)[:3])
+    # the registered thresholds, copied into the results file. A number a kill condition turns on
+    # must be traceable from results/ like every other number this project quotes; without this the
+    # 0.90 in K2(b) lives only in the prereg and nothing downstream can check what fired on what.
+    res["registered_thresholds"] = dict(tau_ladder=TAUS, tau_primary=TAU_P,
+                                        min_intersection=MIN_I, max_constant_fraction=MAX_CONST)
     res["K4_cohort_shrank"] = bool(failed or missing)
     if failed or missing:
         res["K4_note"] = (f"cells unusable and NAMED, not dropped: "
@@ -339,7 +350,22 @@ def main():
         mean_overlap_cross_family=round(float(np.mean([o for o, s in zip(ovs, same) if not s])), 4),
         _reading="the overlap coefficient |A and B| / min(|A|,|B|) is the size-free companion. It is "
                  "NOT a registered estimand and carries no verdict; it is reported so the reader can "
-                 "see whether any identity signal survives once cardinality is taken out.")
+                 "see whether any identity signal survives once cardinality is taken out.",
+        # the pair that shows the confound doing damage, stored rather than left to be recomputed:
+        # a model nearer a stranger than its own sibling, at near-identical overlap.
+        worked_example=[
+            dict(a=x, b=y, size_a=int(cells[x]["bits"][idx].sum()),
+                 size_b=int(cells[y]["bits"][idx].sum()),
+                 intersection=int((cells[x]["bits"][idx] & cells[y]["bits"][idx]).sum()),
+                 hamming=int((cells[x]["bits"][idx] != cells[y]["bits"][idx]).sum()),
+                 overlap_coefficient=round(
+                     int((cells[x]["bits"][idx] & cells[y]["bits"][idx]).sum())
+                     / max(1, min(int(cells[x]["bits"][idx].sum()),
+                                  int(cells[y]["bits"][idx].sum()))), 4),
+                 same_family=bool(cells[x]["family"] == cells[y]["family"]))
+            for x, y in (("RWKV/rwkv-4-169m-pile", "EleutherAI/pythia-1b"),
+                         ("RWKV/rwkv-4-169m-pile", "RWKV/rwkv-4-430m-pile"))
+            if x in cells and y in cells])
     parts.append(
         f"THE CONFOUND K3 DOES NOT COVER, and it is the most important number here: across the "
         f"{len(ham)} pairs the registered Hamming distance correlates with the SUM OF THE TWO SET "

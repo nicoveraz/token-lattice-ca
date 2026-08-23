@@ -3645,6 +3645,123 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F183 — the fingerprint feature moves from a SCALAR to a SET, and the set does not resolve below family: H1 survives its kill condition at 2 bits out of 3471 while the far controls sit at 276–661
+23 Aug 2026. `fingerprint/PROGRAM.md` froze a battery of **scalars** and Gate 0 already named their
+weakness — the profile is low-dimensional and bands models into strong/weak-attractor groups rather
+than identifying them, at 4/14 leave-one-out. Three findings since say the scalars read the wrong
+half of the object. F179: six of seven models across two families and a 22× span of scale land on the
+**same** endpoint token, so *where* trajectories go barely varies. F166: that token is a
+model×prefix **interaction**, not a model property. F172: within one corpus three models share an
+endpoint while $\varphi$ spans 0.036 to 0.458 — the corpus sets the destination, the weights decide
+whether it self-continues. So the candidate feature becomes the **set** of tokens $t$ with
+$\arg\max p(\cdot \mid t,t) = t$: deterministic, no census, no random starts, no seeds, and
+high-dimensional where the scalars are not.
+
+Registered in `experiments/prereg_selfcont.json` (sha256 `3af2e81e…`), frozen **before any model was
+loaded**, over probe strings frozen in a separate commit before that (`df37c33a…`). Two commits, both
+preceding every cell. **13 cells, 12 models, 4 families, 0 load failures — K4 does not fire.**
+6.11 hours CPU.
+
+**The probe set, and the coverage it bought.** 4090 strings — the 2000 most frequent case-sensitive
+words of 2000 Pile documents, bare and space-prefixed, plus the printable ASCII block both ways and a
+fixed whitespace list. **3471 encode to exactly one token under all 12 tokenizers**, far above the
+registered floor of 500, so K2(a) does not fire.
+
+**K3, mandatory and registered before the numbers.** Of those 3471 probe tokens, **2 self-continue in
+every model and 1785 in none, leaving 1684 variable** — so K2(b), which stops the run above 0.90
+constant, does not fire either. The estimator has room.
+
+| comparison | Hamming | robust at $\tau=1$ | at $\tau=2$ |
+|---|---|---|---|
+| **decisive: `pythia-410m` → `-deduped`** | **2** | **1** | **0** |
+| far: vs `gpt-neo-125m` | 276 | 137 | 54 |
+| far: vs `rwkv-4-430m-pile` | 440 | 198 | 49 |
+| far: vs `mamba-370m-hf` | 661 | 316 | 109 |
+| floor: `pythia-410m` fp32 vs bf16 | 0 | 0 | 0 |
+
+**K1 does not fire, and that is the least informative true thing to say about this table.** The
+registered condition is $D \le C$; $D = 2$ against $C = 0$, so it passes. Its own registered
+corollary is what carries: a floor of exactly zero makes K1 a **weak** test, because any nonzero
+distance clears it. The substance is that the pair $\varphi$ cannot separate (0.458 vs 0.427, both
+funnel, same modal endpoint) is separated by **two bits in 3471**, and by **zero** at the strictest
+rung, while the three registered far controls hold 49–109 disagreements there. **The set resolves
+families roughly two orders of magnitude better than it resolves the one corpus manipulation the
+cohort contains.** H1 is alive by the letter of its kill condition and is a near-null in substance;
+recorded that way rather than as a pass.
+
+**The zero floor is a property of the PROBE SET, not of the estimator.** The corollary asks why, and
+the same estimand at full vocabulary answers: `pythia-410m` against `-deduped` differs on **52** bits
+there, and bfloat16 rounding of the **same weights** moves **15** — a ratio of **3.47**, not
+infinity. A floor that reads as zero on 3471 frequent English strings is 15 bits wide across 50277
+tokens. Wider coverage, one control cell, descriptive.
+
+**THE DEFECT THIS RUN FOUND IN ITS OWN PRIMARY ESTIMAND, and it is the finding.** The prereg named
+the raw Hamming count primary on the grounds that a constant bit contributes exactly zero to it, so
+the count is immune to the padding K3 gates. That is true and incomplete. Hamming between sparse sets
+**is** $|A| + |B| - 2|A \cap B|$, so it is dominated by **cardinality**. Measured across the 66
+pairs: the registered distance correlates with the sum of the two set sizes at **r = 0.913**, 83% of
+it. The misattributions are exactly what that predicts — `rwkv-4-169m` is nearer `pythia-1b` at 69
+than its own sibling `rwkv-4-430m` at 412, while their overlap coefficients are 0.6923 and 0.7297.
+**K3 gates the vacuity on the constant tokens and does not gate its sibling on the variable ones.**
+An attribution built on this metric is substantially a set-**size** result — a scalar, which is what
+the revision set out to escape. The size-free companion is reported and carries no verdict: overlap
+0.741 same-family against 0.542 cross-family, so some identity signal does survive cardinality.
+
+**Identification (Task 4), and its baseline.** Leave-one-out rank-1 nearest neighbour puts **7 of 12**
+models beside their own family — 0.5833 against a **family-level** chance of 0.2273 and a
+majority-class rate of 0.4167. The tie-aware figure is identical at 0.5833, so no part of it is a
+sorting artefact. The instance-level 1/(n−1) = 0.0909 is the **wrong** baseline here and is recorded
+only so it cannot be quoted as the right one. Above chance, below a capability — and per the
+paragraph above, substantially a size result. **This is family attribution, not instance
+identification**, which was refused before the run: determinism makes repeated measurement of one
+checkpoint bit-identical, so the test that would license it cannot fail informatively and was not run.
+
+**What changed relative to `fingerprint/PROGRAM.md`'s frozen battery.** Its `prereg.json` freezes six
+scalars. Entry 6, `argmax fixed-point count`, becomes the **set** — the same probe read at the
+resolution the count discards. Entry 2, `dominant_token id`, is **struck as an identifier**: F166
+makes it an interaction and F179 has six of seven models sharing it. Entries 1 and 3, the
+four-temperature `top1_share` profile and `tstar`, are **not used at all** — the set is defined on
+logit order, so no temperature enters. The frozen **geometry** (N=96, B=16, r=2, 16 sweeps, 4 seeds)
+**does not apply**: there is no lattice and no seed. And the attribution protocol changes from
+nearest family centroid over four numbers to nearest neighbour over 3471 bits.
+
+**A cross-family observation, unregistered and carrying no verdict.** Over the shared probe set the
+self-continuing counts run `pythia-410m` 8, `-deduped` 8, `pythia-160m` 10, `pythia-1b` 13,
+`pythia-70m` 39, `rwkv-4-169m` 74, `gpt-neo-125m` 276, `rwkv-4-430m` 446, `mamba-130m` 523,
+`gpt-neo-2.7B` 634, `mamba-370m` 667, `gpt-neo-1.3B` 847. **Pythia — the cohort's only funnel family
+(F179) — has by far the fewest available fixed points**, and `gpt-neo-1.3B`, whose $\varphi$ is
+0.000, has the most. Availability and reachability come apart completely: a model can have a quarter
+of the probe set as fixed points of the diagonal map and send none of 96 random starts to one. That
+is F172/F179's decomposition with a term it did not have, and it is an observation on 12 checkpoints
+of one corpus, not a claim.
+
+**THE PRIOR-ART RE-CHECK IS OWED AND HAS NOT RUN, and the reason is sharper than "F95 is old".**
+F95 cleared this programme on ground (b): *iterated / dynamical probes are NOT anticipated — every
+published feature set is single-shot scoring of supplied text*, and PROGRAM.md §1 concluded **"pitch
+the novelty as the dynamics, not the fingerprint."** The self-continuation bit is dynamically
+*motivated* but **statically computed** — one forward pass per token, no iteration. **This feature
+steps off the exact ground F95 said was defensible and onto the ground where the prior art lives.**
+The gate is therefore load-bearing rather than routine, and no write-up may proceed until it runs.
+
+**Quantization robustness is OWED and NOT RUN.** The rule was registered as run-only-if-cached; the
+cache holds no quantized variant of any cohort member, verified before freezing, and downloading one
+was not authorised. `bitnet-b1.58-2B-4T` is natively low-bit-trained, not a quantized variant of
+anything measured. Argmax is brittle at near-ties and the margin field exists to support a threshold
+rule; that rule is **untested** against real quantization, and bfloat16 is a far weaker perturbation.
+
+**Boundary.** 12 checkpoints, 4 families, **one corpus throughout** — so nothing here can be a corpus
+effect, and equally nothing here says anything about corpus. Family is confounded with tokenizer
+(Pythia/RWKV/Mamba use GPT-NeoX vocabularies, GPT-Neo uses GPT-2's) and, for the two-member families,
+with nearest-in-size. `gpt-neo-2.7B` carries probe-only coverage: it pages on a 16 GB machine, and the run's own
+wall times show it — 6303.1 s for its **3522 probe tokens** against 328.8 s for `gpt-neo-1.3B`'s full
+**50257**, so it was measured on the probe tokens alone — every registered estimand is defined over the intersection and is unaffected, but it
+has no outside-intersection arm. That arm is **NOT DECIDABLE** anyway: every pair inside a vocabulary
+group is same-family, one class over 13 units, `gatecheck.balance` refusing the join before it is
+read. No p-value: 12 checkpoints in 4 families is not a sample.
+
+`experiments/selfcont_set.py`, `experiments/selfcont_analysis.py` →
+`results/selfcont_set_*.json`, `results/selfcont_verdict.json`.
+
 ### F182 — review pass on the paper 3 draft: the scope statement I had dropped, the rule I never printed, and a decomposition that is arithmetic rather than rhetoric
 22 Aug 2026. Four items from a full read of the draft, all accepted, all text-only except one new
 guard. Three were omissions; the interesting one is that the paper was **understating** a result.
