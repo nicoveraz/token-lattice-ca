@@ -65,6 +65,9 @@ Nothing below is summarised twice. Each document is the authority for its own sc
 | [`paper_arxiv/REVIEW.md`](paper_arxiv/REVIEW.md) | The audit that reshaped paper 1's claims. |
 | [`paper2_arxiv/CITATIONS.md`](paper2_arxiv/CITATIONS.md) | Paper 2's citation ledger: every cited work verified at source with the supporting quote recorded. |
 | [`paper2_arxiv/SUBMISSION.md`](paper2_arxiv/SUBMISSION.md) | Paper 2's arXiv metadata, and what is still owed before it can be submitted. |
+| [`paper3_arxiv/CITATIONS.md`](paper3_arxiv/CITATIONS.md) | Paper 3's citation ledger, same discipline: verification basis recorded per entry. |
+| [`paper3_arxiv/SUBMISSION.md`](paper3_arxiv/SUBMISSION.md) | Paper 3's arXiv metadata and the checks that gate its packaging script. |
+| `paper3_arxiv/PLAN.md` | **Deliberately not in this repository.** Paper 3's pre-registration record — its kill conditions, sequencing and exhibit order — kept local by author decision. Several frozen preregistrations under `experiments/` cite it by name in their `plan_section` field, and those files carry sha256 freezes that must not be edited, so the references remain and point at a document you will not find here. It is not withheld for double-blind or confidentiality reasons: it contains no paths, usernames or unpublished results, and everything it registered is reported in `findings.md` F172–F184. |
 | [`gatecheck/`](gatecheck/) | The verdict layer, published as an installable package with its own design notes. |
 
 ---
