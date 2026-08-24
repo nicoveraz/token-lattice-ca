@@ -51,8 +51,9 @@ repetition features. The accounts have never been arbitrated across a broad coho
 \emph{pretrained} models, because the causal work necessarily trains its own. We report an
 observational cross-model measurement in a different currency: the fixed-point structure of a
 model's own short-window argmax map, censused from $\Nstarts$ random two-token starts over $17$
-off-the-shelf models, with the four-way structural class stable across census seeds on $17$ of
-$17$. Three exhibits. At fixed corpus (The Pile) and fixed scale, the class is \emph{not determined}:
+off-the-shelf models --- always unprompted, which a companion paper shows is a scope condition
+rather than a detail, since nine tokens of conditioning move this readout across most of its range
+--- with the four-way structural class stable across census seeds on $17$ of $17$. Three exhibits. At fixed corpus (The Pile) and fixed scale, the class is \emph{not determined}:
 across two size-matched tiers, \texttt{pythia} is a funnel while RWKV, Mamba and a second
 transformer family are not, and both families hold their class across roughly an order of magnitude
 of scale. Six of seven models in that ladder reach the \emph{same} endpoint token, and the models
