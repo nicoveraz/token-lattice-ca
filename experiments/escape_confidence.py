@@ -1,0 +1,213 @@
+"""Is the escape destination's brittleness a near-tie problem? 6 cells, the intersection only.
+
+Registered in experiments/prereg_escape_confidence.json (frozen `43b8ee81...` before any unmasked
+top-2 existed).
+
+WHY. Arm 1 measured a precision floor of 0.7127: bfloat16 rounding of IDENTICAL WEIGHTS changes 29%
+of escape destinations. The decisive pair's signal is 0.0772 of agreement against 0.2873 of floor
+disagreement, so the floor is nearly four times the signal. If the flipped destinations are near-ties
+a confidence threshold should shrink the floor toward 1.0; if they are not, the brittleness is
+structural and no threshold repairs the estimand. KB registers the second outcome as a finding.
+
+WHY NOT THE FREE VERSION. The stored margin is logit(t|t,t) - max_{x!=t} logit(x|t,t): confidence in
+LEAVING rather than staying. What flips under rounding is WHICH destination wins -- top-1 against
+top-2 of the UNMASKED distribution, which has never been stored. Thresholding on the stored margin
+would have cost nothing and measured the wrong quantity, and is refused in the prereg rather than run.
+
+This is also the first test of the margin-threshold rule prereg_selfcont.json registered as owed.
+It is NOT a quantization test; bfloat16 is a far smaller perturbation and that obligation stays open.
+"""
+import sys as _sys, pathlib as _pathlib
+_ROOT = _pathlib.Path(__file__).resolve().parents[1]
+_sys.path[:0] = [str(_ROOT / "src"), str(_ROOT / "experiments"), str(_ROOT / "fingerprint"),
+                 str(_ROOT / "gatecheck" / "src")]
+import collections, gc, json, os, time
+
+os.environ.setdefault("HF_HOME", str(_ROOT / "hf_cache"))
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
+import numpy as np
+import torch
+
+from provenance import stamp, rel
+from selfcont_set import DTYPE, BATCH, BATCH_BIG, BIG, cell_key, out_path
+
+PREREG = "experiments/prereg_escape_confidence.json"
+PR = json.load(open(_ROOT / PREREG))
+OUT = _ROOT / "results" / "escape_confidence.json"
+PROBES = _ROOT / "experiments" / "probe_strings_selfcont.json"
+
+CELLS = [("EleutherAI/pythia-410m", "Pythia", "fp32"),
+         ("EleutherAI/pythia-410m-deduped", "Pythia", "fp32"),
+         ("EleutherAI/pythia-410m", "Pythia", "bf16"),
+         ("state-spaces/mamba-370m-hf", "Mamba", "fp32"),
+         ("RWKV/rwkv-4-430m-pile", "RWKV", "fp32"),
+         ("EleutherAI/gpt-neo-125m", "GPT-Neo", "fp32")]
+DECISIVE = ("EleutherAI/pythia-410m", "EleutherAI/pythia-410m-deduped")
+FAR = [("EleutherAI/pythia-410m", "state-spaces/mamba-370m-hf"),
+       ("EleutherAI/pythia-410m", "RWKV/rwkv-4-430m-pile"),
+       ("EleutherAI/pythia-410m", "EleutherAI/gpt-neo-125m")]
+CONTROL = ("EleutherAI/pythia-410m", "EleutherAI/pythia-410m@bf16")
+TAUS = PR["thresholds"]["tau_ladder"]
+TAU_P = PR["thresholds"]["tau_primary"]
+MIN_SRC = PR["thresholds"]["min_shared_sources"]
+CACHE = _ROOT / "results" / "escape_confidence_cells.json"
+
+
+@torch.no_grad()
+def top2(model, ids, dev, batch):
+    """Unmasked top-2 ids and logits at the two-token state (t,t). The quantity that actually flips."""
+    n = len(ids)
+    tid = np.empty((n, 2), np.int64); tlg = np.empty((n, 2), np.float64)
+    for i in range(0, n, batch):
+        ch = ids[i:i + batch]
+        x = torch.tensor(ch, dtype=torch.long, device=dev).view(-1, 1).repeat(1, 2)
+        lg = model(input_ids=x).logits[:, -1].float()
+        v, j = torch.topk(lg, 2, dim=-1)
+        tid[i:i + len(ch)] = j.cpu().numpy(); tlg[i:i + len(ch)] = v.cpu().numpy()
+    return tid, tlg
+
+
+def main():
+    probe = json.load(open(PROBES))
+    n_str = len(probe["strings"])
+    cache = json.load(open(CACHE)) if CACHE.exists() else {}
+    failed = []
+
+    from transformers import AutoTokenizer, AutoModelForCausalLM
+    for m, fam, dt in CELLS:
+        key = cell_key(m, dt)
+        if key in cache:
+            print(f"  {key:<34} cached", flush=True); continue
+        src = json.load(open(out_path(m, dt)))
+        pid = np.array(src["probe_token_ids"])
+        idx = np.flatnonzero(pid >= 0)
+        t0 = time.time()
+        try:
+            tok = AutoTokenizer.from_pretrained(m)
+            model = AutoModelForCausalLM.from_pretrained(m).eval().to("cpu", DTYPE[dt])
+        except Exception as e:
+            failed.append(dict(cell=key, error=type(e).__name__)); print(f"  {key} FAILED", flush=True)
+            continue
+        ids = [int(i) for i in pid[idx]]
+        tid, tlg = top2(model, ids, "cpu", BATCH_BIG if m in BIG else BATCH)
+        V = len(tok)
+        dec1 = [tok.decode([int(i)]) for i in tid[:, 0]]
+        del model; gc.collect()
+        cache[key] = dict(cell=key, model=m, family=fam, dtype=dt,
+                          probe_positions=[int(i) for i in idx], source_ids=ids,
+                          top1_id=[int(i) for i in tid[:, 0]], top1_str=dec1,
+                          conf_e4=[int(round(x)) for x in (tlg[:, 0] - tlg[:, 1]) * 1e4],
+                          escapes=[bool(int(a) != int(b)) for a, b in zip(tid[:, 0], ids)],
+                          secs=round(time.time() - t0, 1))
+        json.dump(cache, open(CACHE, "w"))
+        print(f"  {key:<34} n={len(ids):<6} escaping="
+              f"{sum(cache[key]['escapes']):<6} ({cache[key]['secs']:.0f}s)", flush=True)
+
+    _verdict(cache, failed, n_str)
+
+
+def _verdict(cache, failed, n_str):
+    keys = list(cache)
+    # shared source positions across all six cells, keyed by PROBE POSITION (the string bridge)
+    shared = None
+    for k in keys:
+        s = set(cache[k]["probe_positions"])
+        shared = s if shared is None else (shared & s)
+    shared = sorted(shared)
+    pos = {k: {p: i for i, p in enumerate(cache[k]["probe_positions"])} for k in keys}
+
+    def arrays(k):
+        i = [pos[k][p] for p in shared]
+        return (np.array(cache[k]["conf_e4"], np.float64)[i] / 1e4,
+                np.array([cache[k]["top1_str"][j] for j in i], dtype=object),
+                np.array(cache[k]["escapes"], bool)[i])
+
+    A = {k: arrays(k) for k in keys}
+    res = dict(_preregistration_file=PREREG,
+               _prereg_sha256=open(_ROOT / "experiments" / "prereg_escape_confidence.sha256").read().split()[0],
+               cells=keys, failed=failed, n_shared_sources=len(shared),
+               registered_thresholds=dict(tau_ladder=TAUS, tau_primary=TAU_P,
+                                          min_shared_sources=MIN_SRC))
+
+    def rung(a, b, tau):
+        ca, sa, ea = A[a]; cb, sb, eb = A[b]
+        keep = ea & eb & (ca >= tau) & (cb >= tau)
+        n = int(keep.sum())
+        if n == 0:
+            return dict(tau=tau, n=0, agreement=None, not_decidable=True, modal_share=None)
+        ag = float(np.mean(sa[keep] == sb[keep]))
+        c = collections.Counter(sa[keep].tolist())
+        return dict(tau=tau, n=n, agreement=round(ag, 4), not_decidable=bool(n < MIN_SRC),
+                    modal_share=round(c.most_common(1)[0][1] / n, 4),
+                    modal_destination=c.most_common(1)[0][0])
+
+    def ladder(a, b):
+        return [rung(a, b, t) for t in TAUS]
+
+    res["floor"] = dict(pair=list(CONTROL), rungs=ladder(*CONTROL))
+    res["decisive"] = dict(pair=list(DECISIVE), rungs=ladder(*DECISIVE))
+    res["should_be_far"] = [dict(pair=list(p), rungs=ladder(*p)) for p in FAR]
+
+    f0, f2 = res["floor"]["rungs"][0]["agreement"], res["floor"]["rungs"][-1]["agreement"]
+    res["KB_fires"] = bool(f0 is not None and f2 is not None and f2 <= f0)
+
+    def at(rungs, tau):
+        return next((r for r in rungs if r["tau"] == tau), None)
+
+    sep0 = sep_p = None
+    d0, dp = at(res["decisive"]["rungs"], 0.0), at(res["decisive"]["rungs"], TAU_P)
+    fars0 = [at(x["rungs"], 0.0) for x in res["should_be_far"]]
+    farsp = [at(x["rungs"], TAU_P) for x in res["should_be_far"]]
+    if d0 and d0["agreement"] is not None and all(f and f["agreement"] is not None for f in fars0):
+        sep0 = round(d0["agreement"] - float(np.mean([f["agreement"] for f in fars0])), 4)
+    if dp and dp["agreement"] is not None and all(f and f["agreement"] is not None for f in farsp):
+        sep_p = round(dp["agreement"] - float(np.mean([f["agreement"] for f in farsp])), 4)
+    res["separation"] = dict(at_tau_0=sep0, at_tau_primary=sep_p,
+                             _definition="decisive agreement minus the mean of the three far pairs. "
+                                         "KD requires this beside any floor improvement.")
+    res["KD_trade"] = bool(sep0 is not None and sep_p is not None and sep_p < sep0)
+
+    p = [f"ESCAPE CONFIDENCE, registered in {PREREG} (sha256 {res['_prereg_sha256'][:12]}..., frozen "
+         f"before any unmasked top-2 existed). Six cells, {len(shared)} shared probe sources. The "
+         f"quantity is top-1 minus top-2 of the UNMASKED distribution -- the thing that actually "
+         f"flips -- not the stored margin, which measures leaving rather than choosing and was "
+         f"refused in the prereg. "]
+    p.append("THE FLOOR ACROSS THE LADDER (pythia-410m fp32 vs bf16, identical weights): "
+             + "; ".join(f"tau={r['tau']} {r['agreement']} (n={r['n']}"
+                         + (", NOT DECIDABLE" if r["not_decidable"] else "") + ")"
+                         for r in res["floor"]["rungs"]) + ". ")
+    if res["KB_fires"]:
+        p.append("KB FIRES: the floor does not rise across the ladder. The flipped destinations are "
+                 "NOT near-ties, the brittleness is structural, and no confidence threshold repairs "
+                 "this estimand. Registered as an outcome before the run, not a disappointment. ")
+    else:
+        p.append(f"KB does not fire: the floor rises from {f0} to {f2} across the ladder, so the "
+                 f"flips are substantially near-ties. ")
+    p.append("THE DECISIVE PAIR: " + "; ".join(
+        f"tau={r['tau']} {r['agreement']} (n={r['n']}" + (", NOT DECIDABLE" if r["not_decidable"] else "")
+        + ")" for r in res["decisive"]["rungs"]) + ". ")
+    for x in res["should_be_far"]:
+        p.append(f"far vs {x['pair'][1].split('/')[-1]}: " + "; ".join(
+            f"{r['tau']}:{r['agreement']}" for r in x["rungs"]) + ". ")
+    p.append(f"KD, registered because it is the tempting half-report: decisive-minus-far separation "
+             f"is {sep0} at tau=0 and {sep_p} at the primary tau={TAU_P}"
+             + (". IT DEGRADES -- the threshold buys precision at the cost of discrimination, and "
+                "the floor improvement may not be quoted without this. " if res["KD_trade"] else
+                ", so discrimination survives the threshold. "))
+    p.append("KC: modal-destination share among survivors is reported at every rung, so a rising "
+             "agreement that is really a concentration onto one destination is visible. ")
+    p.append("REFUSALS: no p-value; no adjustment of the ladder or the 500-source floor; no claim "
+             "that this makes the estimand quantization-robust -- bfloat16 is a far smaller "
+             "perturbation and that test remains OWED; no semantic reading of any destination. "
+             "THE PRIOR-ART RE-CHECK IS OWED AND BLOCKS WRITE-UP.")
+    res["verdict"] = " ".join(p)
+    res["_analysis_provenance"] = stamp(__file__)
+    json.dump(res, open(OUT, "w"), indent=1)
+    print("\n" + res["verdict"])
+    print("\nwrote", rel(str(OUT)))
+
+
+if __name__ == "__main__":
+    main()
