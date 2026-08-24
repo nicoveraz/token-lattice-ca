@@ -102,7 +102,7 @@ nearest mechanistic account, attention-sink dominance, predicts the sign of the 
 models, which is chance. What is left is the prompt–model pair.
 
 **Paper 3 — the cohort.** *What a Cross-Model Fixed-Point Census Can and Cannot Arbitrate About
-Repetition.* **Submission-ready, not yet announced**, 9 pages; source in
+Repetition.* **Submitted; awaiting announcement**, 9 pages; source in
 [`paper3_arxiv/`](paper3_arxiv/).
 
 Its subject is what the readout says across models rather than within one. Two accounts of neural
@@ -638,9 +638,25 @@ to the latest archived version rather than to any one of them.
 Companion to paper 1; the source is in [`paper2_arxiv/`](paper2_arxiv/) and builds from this
 repository.
 
-`CITATION.cff` carries the machine-readable metadata: both papers under `identifiers`, each with its
-bare arXiv ID *and* its DOI, while `preferred-citation` stays pointed at paper 1 — that field names
-the citation for the **software**, not for the newest result.
+**Paper 3 (the cohort)** — *submitted, awaiting its arXiv identifier.* Until it is announced there
+is nothing stable to cite: cite paper 1 and this repository, and the source is in
+[`paper3_arxiv/`](paper3_arxiv/). The submission identifier is deliberately **not** recorded here —
+it does not resolve, and an identifier that does not resolve is worse in a citation record than an
+absent one. When the announced ID exists it goes in three places, and the checklist is in
+[`paper3_arxiv/SUBMISSION.md`](paper3_arxiv/SUBMISSION.md):
+
+> ```
+> Paper 3 (the cohort) — arXiv:NNNN.NNNNN, cs.CL, DD Mon 2026.
+> DOI 10.48550/arXiv.NNNN.NNNNN.
+> ```
+>
+> …plus the badge row at the top of this file, and `CITATION.cff` under `identifiers` in **both**
+> forms — the bare ID and the DOI. `tests/test_citation_cff.py` fails if a placeholder reaches the
+> file, and fails again if an ID appears in one form but not the other.
+
+`CITATION.cff` carries the machine-readable metadata: papers 1 and 2 under `identifiers`, each with
+its bare arXiv ID *and* its DOI, while `preferred-citation` stays pointed at paper 1 — that field
+names the citation for the **software**, not for the newest result.
 
 When citing a finding, carry its amendment with it: `findings.md` keeps retracted and corrected
 findings in place rather than deleting them, and several entries are corrections of other entries.
