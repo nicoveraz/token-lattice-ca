@@ -12,7 +12,7 @@
 %            object, never the framing. The distinguishing paragraph is in Related work.
 %      E3  -- never say "architecture". F178 withdrew that word when gpt-neo-125m, a transformer,
 %            landed with the recurrent models. The claim is "not determined at fixed corpus and
-%            fixed scale".
+%            fixed scale" -- and the DOMAIN is fixed too, which E3 now states rather than implies.
 %  * E1 carries its ~1.45-epoch correction IN THE TEXT (F177). E2 is a consistency check that
 %    AGREES with li2023repetition, never a refutation (F175).
 %  * The honest limit goes up front, not in limitations -- but state it NARROWLY. An earlier draft
@@ -130,12 +130,22 @@ point. We claim neither here. What is new is the scale of the census, the class 
 stability, and the corpus-versus-weights attribution the census makes possible.
 
 \paragraph{Scope: a short-window readout, by nature and not by choice.}% F161, results/window_length_domain.json
-The same companion work establishes that this readout \emph{disappears} as the window widens:
+A companion paper establishes that this readout \emph{disappears} as the window widens:
 generalising the map so the state is the last $W$ tokens, raw $\fpf$ falls to $0.000$ on four of six
-models by $W = 16$ \citep{veraz2026probes}. Everything below is therefore a statement about how a
+models by $W = 16$ \citep{veraz2026domain}. Everything below is therefore a statement about how a
 model reads a \emph{fragment}. We put this in Setup rather than in Limits because it is a property of
 the construction rather than a shortfall of the evidence, and because a reader who takes our
 $\fpf$ for a general property of the model would be taking it for something it is not.
+
+\paragraph{Scope: the raw domain, and only it.}% F144/F151, and see paper 2's table of domain moves
+Every census reported here conditions on nothing: the two-token starts are drawn at random and no
+prefix precedes them. That is a second scope condition, and the same companion paper is what makes
+it load-bearing rather than a technicality --- nine tokens of conditioning move $\fpf$ across most of
+its range and change the four-way class, while an instruction-tuning intervention worth $60.5$
+IFEval points moves the class by zero \citep{veraz2026domain}. The classes below are therefore
+properties of \emph{a model under this condition}, not of the model simpliciter, and a reader who
+carries one of our class labels to a prompted setting is carrying it somewhere it has been measured
+not to hold. We state both scopes here, together, because they bound every number in the paper.
 
 \paragraph{Classes.} Trajectories are classified \textsc{funnel} (one dominant attracting fixed
 point), \textsc{none} (cycles or wandering), \textsc{fragmented} (many small basins) and
@@ -244,6 +254,14 @@ transformer-versus-recurrent, and naming it after architecture would be reading 
 What the evidence supports is the weaker and more precise statement: \textbf{at fixed corpus and
 fixed scale the class is not determined}, and something on the weights side that we have not
 identified decides it.
+
+\paragraph{The domain is held fixed here too, and saying so is not a formality.}% see Setup, "the raw domain, and only it"
+Every cell in Table~\ref{tab:tiers} is a raw-domain census, per Setup. That third fixed condition
+deserves naming beside the other two, because unlike them it is known to be capable of moving the
+quantity: nine tokens of conditioning change this class in the companion measurement
+\citep{veraz2026domain}. So what E3 establishes is non-determination \emph{at one domain}. Whether
+these same seven models separate the same way under a prefix is a different experiment, not a
+corollary of this one, and we do not run it.
 
 \begin{table}[t]\centering
 \small
