@@ -553,13 +553,19 @@ for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
 ## Citation
 
 **Paper 1 (the instrument)** — [arXiv:2608.10986](https://arxiv.org/abs/2608.10986), cs.CL,
-11 Aug 2026. Archived at [https://doi.org/10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472)
-(concept DOI — resolves to the latest version). `CITATION.cff` carries the machine-readable metadata.
+11 Aug 2026. DOI [10.48550/arXiv.2608.10986](https://doi.org/10.48550/arXiv.2608.10986).
+The repository itself is archived at
+[10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472) — a *concept* DOI, which resolves
+to the latest archived version rather than to any one of them.
 
 **Paper 2 (the domain)** — [arXiv:2608.21315](https://arxiv.org/abs/2608.21315), cs.CL,
-21 Aug 2026. Companion to paper 1; the source is in [`paper2_arxiv/`](paper2_arxiv/) and builds
-from this repository. `CITATION.cff` carries both papers under `identifiers`, while
-`preferred-citation` stays pointed at paper 1 — that field names the citation for the *software*.
+21 Aug 2026. DOI [10.48550/arXiv.2608.21315](https://doi.org/10.48550/arXiv.2608.21315).
+Companion to paper 1; the source is in [`paper2_arxiv/`](paper2_arxiv/) and builds from this
+repository.
+
+`CITATION.cff` carries the machine-readable metadata: both papers under `identifiers`, each with its
+bare arXiv ID *and* its DOI, while `preferred-citation` stays pointed at paper 1 — that field names
+the citation for the **software**, not for the newest result.
 
 When citing a finding, carry its amendment with it: `findings.md` keeps retracted and corrected
 findings in place rather than deleting them, and several entries are corrections of other entries.
