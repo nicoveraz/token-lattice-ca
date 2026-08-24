@@ -4322,6 +4322,29 @@ the split is unshown. That limit is in §1, not §Limits.
 > so the split cannot be shown corpus-independent from that subset. The paper states the narrow
 > version.
 
+> **A PHRASING NOTE, 24 Aug 2026, on this entry's closing sentence and paper 3's abstract.** No
+> number moves and nothing is retracted. This entry says *"the models that concentrate most on the
+> newline are among those that never stay on it"*, and paper 3's abstract compresses it to *"those
+> concentrating on it most strongly are among those that never stay there"*. That sentence admits
+> two readings and only one is true. **Weak reading — some of the top concentrators are
+> non-stayers: TRUE.** `gpt-neo-2.7B` at $0.594$ and `gpt-neo-1.3B` at $0.536$ are ranks 2 and 3 of
+> the six newline models and both pass through, out-concentrating three of the four that stay
+> ($0.453$, $0.432$, $0.406$). **Strong reading — the most strongly concentrating model is a
+> non-stayer: FALSE.** The largest is `pythia-70m` at $0.792$, and it stays, at $\fpf = 0.802$.
+>
+> **The manuscript body is precise and does not have this problem**: §E3 says GPT-Neo concentrates
+> *"more strongly than **some** Pythias do"* and quotes $0.536$ and $0.594$ against
+> `pythia-160m`'s $0.432$. The softness is created by the abstract's compression of a correct
+> sentence, which is the ordinary way an abstract goes wrong.
+>
+> Found while rewriting the repository README into plain English: forcing the claim to name a
+> physical referent turned "concentrate most strongly" into "send the largest share of their
+> trajectories there", and that version is checkable and false. The README now states the narrow
+> version. Recorded here rather than acted on — paper 3 is submitted, the weak reading is the
+> natural one for *"are among those"*, and the body carries the exact numbers — but it is the
+> sentence to tighten in any revision, and a referee reading the ladder table could make the same
+> move.
+
 22 Aug 2026. F178 closed E3's size confound but left one alternative it could not exclude: that the
 Pythia recipe is idiosyncratic rather than the split being real. This is the affordable partial
 answer — does the split hold *across scale within each family*, or did F178 pick two unrepresentative
