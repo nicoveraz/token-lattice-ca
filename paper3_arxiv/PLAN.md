@@ -244,17 +244,32 @@ drafting, not a follow-up.
    these classes are properties of the model or of the model *at one prompt condition*, and paper 2
    is simultaneously the answer and the caveat.
 
-   **Resume list, in order, when the identifier exists:**
-   1. Add the paper-2 bib entry and a `CITATIONS.md` ledger entry (self-citation, verified by
-      authorship, as entry 1 records for paper 1).
-   2. Add a **raw-domain scope sentence to Setup**, beside the short-window one restored in F182.
-      This is the same defect class: a scope caveat we have published and did not repeat. Something
-      of the form *"every census here is at the raw domain; a nine-token prefix moves $\phi$ across
-      most of its range and changes the class \citep{veraz2026domain}, so these classes are
-      properties of the model under this condition rather than of the model simpliciter."*
-   3. Consider whether E3's claim needs the same qualifier — "not determined at fixed corpus and
-      fixed scale" is currently silent about the domain being fixed too, and it is.
-   4. Packaging script and `SUBMISSION.md`, both adaptable from `paper2_arxiv/`.
+   **UNPARKED 23 Aug 2026.** Paper 2 announced as **arXiv:2608.21315**. All four resume items are
+   done (F184); the manuscript is 9 pages, 11 works cited and ledgered, and
+   `paper3_arxiv/make_arxiv_package.sh` verifies the tarball from its own contents. **Paper 3 is
+   ready to upload**; `paper3_arxiv/SUBMISSION.md` holds every field the form asks for.
+
+   ~~**Resume list, in order, when the identifier exists:**~~
+   1. ~~Add the paper-2 bib entry and a `CITATIONS.md` ledger entry.~~ **DONE.** `veraz2026domain`,
+      ledger entry 11. It also **caught a misattribution**: Setup credited the $W{=}16$ window
+      result to `veraz2026probes`, which is paper 1 and contains no window sweep — the result is
+      paper 2's. Forced rather than careless (F182 restored that paragraph when paper 2 had no
+      citable ID), and exactly what the ledger exists to catch, since entry 1's recorded claim does
+      not cover the window result.
+   2. ~~Add a raw-domain scope sentence to Setup.~~ **DONE.** Setup now carries both scopes together
+      — short-window and raw-domain — because they bound every number in the paper.
+   3. ~~Consider whether E3's claim needs the same qualifier.~~ **DONE, and it did.** E3 now states
+      that the domain is the third condition held fixed, that unlike corpus and scale it is *known*
+      to move this quantity, and that what E3 establishes is non-determination **at one domain**.
+      The abstract was brought to the same precision, which was not on this list: item 3 created the
+      inconsistency by fixing the body alone.
+   4. ~~Packaging script and `SUBMISSION.md`.~~ **DONE**, with two checks beyond paper 2's — the
+      shipped `.tex` must begin with `\documentclass` and must still carry its self-citations, since
+      an over-aggressive strip is the failure mode with no other symptom.
+
+   **What remains before upload is a decision, not work.** The one open question F180 recorded —
+   whether the one-funnel-family limit should be answered with a model rather than a sentence — is
+   unchanged and is the author's call. Nothing else is owed.
 
    ~~**Draft — UNBLOCKED 22 Aug 2026.**~~ Every registered gate is resolved: K4 did not fire (F177),
    K12 cleared (F179), KB/KD did not fire (F178), KF/KG did not fire (F179). K10 and K11 are wording

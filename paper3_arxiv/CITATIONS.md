@@ -13,7 +13,7 @@ through 3-vote adversarial verification. The gate is a strong basis but it is no
 entries resting on it are marked so that a future reader can escalate them if a claim becomes
 load-bearing.
 
-Status: **10 works cited, 10 verified.** `\citepend{}` is kept in the preamble as a tripwire — it
+Status: **11 works cited, 11 verified.** `\citepend{}` is kept in the preamble as a tripwire — it
 renders red in the PDF — and there are zero uses.
 
 ---
@@ -170,11 +170,41 @@ renders red in the PDF — and there are zero uses.
   "differing only in deduplication", which this source shows is **false**. §E1 now carries the epoch
   confound in the body text rather than in a footnote.
 
+
+## 11. `veraz2026domain` — arXiv:2608.21315 (our own paper 2)
+
+- **Cited in:** §Setup, twice — for the short-window scope and for the raw-domain scope — and
+  §E3, where the domain is the third condition held fixed.
+- **Our claim:** the *same readout* is moved across most of its range, and its four-way class
+  changed, by nine tokens of conditioning; and the readout itself disappears as the window widens.
+- **Source (paper 2, Table "Conditioning moves a task-free structural readout", row 1, F144):**
+  \textsc{structural class}, 9-token chat template, "$\fpf: 0.948 \to 0.000$, class changes". Row 5
+  (F151): $\fpf$, 9 tokens of prose, "$0.714 \to 0.005$".
+- **Source (paper 2, §Setup, "Scope: a short-window estimator, by nature and not by choice"):** "raw
+  $\fpf$ falls from $0.22$--$0.70$ at $W{=}2$ to $0.000$ on four of six models by $W{=}16$, and to
+  $\leq 0.10$ on a fifth."
+- **Verification:** SELF-CITATION, read directly in `paper2_arxiv/main.tex` in this repository —
+  the same basis as entry 1. Announced 21 Aug 2026; the identifier is in `CITATION.cff`.
+- **A citation this entry CORRECTS, recorded rather than quietly fixed.** Until this entry existed,
+  Setup's short-window paragraph attributed the $W{=}16$ result to `veraz2026probes` — **paper 1**.
+  That is wrong: paper 1 contains no window sweep, and the result is paper 2's, carried in its
+  abstract and marked `% F161` in its source. The misattribution was not careless drafting; it was
+  forced, because when F182 restored that paragraph paper 2 had no citable identifier and paper 1
+  was the only self-citation available. It is exactly the defect this ledger exists to catch: entry
+  1's recorded claim for `veraz2026probes` covers the argmax map and the funnel/none contrast and
+  **does not cover the window result**, so the ledger and the manuscript disagreed. The citation now
+  points at paper 2.
+- **Why the second citation is not decoration.** Paper 3 censuses at the **raw domain only** and,
+  before this, never said so. A referee can fairly ask whether these classes are properties of the
+  model or of the model *at one prompt condition*; paper 2 is simultaneously the answer and the
+  caveat, and Setup now states it.
+
 ---
 
 ## Method notes for whoever checks this next
 
-- Entries 1–5 and 8 are LOCAL FULL TEXT: fetched and extracted on this machine. Entries 6, 7, 9 and
+- Entries 1 and 11 are SELF-CITATIONS, read in this repository. Entries 2–5 and 8 are LOCAL
+  FULL TEXT: fetched and extracted on this machine. Entries 6, 7, 9 and
   10 are GATE FULL TEXT: extracted and 3-vote verified by the protocol-depth gate recorded in
   `results/prior_art_paper3_gate.json`. If any of those four becomes load-bearing for a claim beyond
   what is quoted here, fetch it directly before strengthening the sentence.
