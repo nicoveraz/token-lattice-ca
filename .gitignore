@@ -63,6 +63,13 @@ secrets.json
 # Next-paper planning -- deliberately local, must never reach the public repo
 future_work.md
 failure_registry.md
+# Paper 3's own pre-registration record. Untracked 24 Aug 2026 so paper3 could merge to main
+# without carrying it into the tree. NOTE, so nobody is misled: this file is NOT a next-paper plan
+# -- it registers paper 3's own kill conditions and sequencing, contains no paths or usernames, and
+# its section 8 only says that the mechanism thread belongs to a later paper. It is untracked by
+# author decision, not by the double-blind or the next-paper rule above. Its nearest precedents,
+# paper_arxiv/plan_paper2.md and plan_paper3.md, ARE public.
+paper3_arxiv/PLAN.md
 # paper_corrections.md: weighs a correction to a PUBLISHED paper. It is a decision record, not a
 # result, and it names a defect in an artifact that is already public -- so it stays local until
 # the author has decided what to do, at which point the decision (not this file) goes out.
