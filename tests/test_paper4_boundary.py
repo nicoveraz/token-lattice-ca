@@ -74,7 +74,12 @@ def test_the_boundary_claims_survive_into_the_manuscript():
 def test_the_attribution_number_is_never_quoted_bare():
     """10/12 is the number a reader will lift. It may not appear without its caveat nearby."""
     body = _body()
-    hits = [m.start() for m in re.finditer(r"(?i)\b10\s*(of|/)\s*12\b|\b83(\.3)?\s*\\?%", body)]
+    # Match the ATTRIBUTION figure specifically. An earlier version also matched a bare "83%",
+    # which caught E1's cardinality variance -- an unrelated percentage that happens to share two
+    # digits with the accuracy. A guard that fires on the wrong sentence trains its reader to
+    # ignore it, so the pattern names the figure as the paper actually writes it: 0.8333, or a
+    # spelled-out ratio.
+    hits = [m.start() for m in re.finditer(r"(?i)\b10\s*(of|/)\s*12\b|0\.8333", body)]
     if not hits:
         pytest.skip("the attribution figure is not quoted in the manuscript")
     caveat = re.compile(r"(?is)architecture class|recurrent|tokeni[sz]er|chance")

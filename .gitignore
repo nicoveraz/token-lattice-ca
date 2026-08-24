@@ -93,3 +93,13 @@ paper3_arxiv/main.aux
 paper3_arxiv/main.bbl
 paper3_arxiv/main.out
 paper3_arxiv/arxiv-submission.tar.gz
+
+# paper4 build artefacts -- main.tex and refs.bib are the sources; the PDF is rebuilt by
+# `cd paper4_arxiv && tectonic main.tex`, and the tarball by ./make_arxiv_package.sh
+paper4_arxiv/main.pdf
+paper4_arxiv/main.log
+paper4_arxiv/main.blg
+paper4_arxiv/main.aux
+paper4_arxiv/main.bbl
+paper4_arxiv/main.out
+paper4_arxiv/arxiv-submission.tar.gz
