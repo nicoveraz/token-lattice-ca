@@ -15,6 +15,12 @@ identifiers:
   - type: doi
     value: 10.48550/arXiv.2608.10986
     description: "arXiv DOI"
+  - type: other
+    value: "arXiv:2608.21315"
+    description: "Paper 2 preprint, cs.CL, 21 Aug 2026"
+  - type: doi
+    value: 10.48550/arXiv.2608.21315
+    description: "Paper 2 arXiv DOI"
   - type: doi
     value: 10.5281/zenodo.21880472
     description: "Concept DOI — resolves to the latest archived version"
@@ -34,6 +40,8 @@ keywords:
   - damage spreading
   - measurement validity
   - reproducibility
+  - prompt sensitivity
+  - fixed points
 preferred-citation:
   type: article
   title: "What Iterated Self-Feeding Probes of Language Models Measure, and a test that separates the construction from the model"
