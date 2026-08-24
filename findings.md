@@ -3645,6 +3645,83 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F187 — quantization: 8-bit survivable, 4-bit fatal, and the sparse-set Hamming would have reported the opposite; the τ=0.5 replication returns NOT DECIDABLE on a floor that vanished
+24 Aug 2026. Two obligations discharged. `prereg_quant_robustness.json` (frozen `728d162b…`) and
+`prereg_tau_replication.json` (frozen `5dccdb37…`), both committed before any cell existed.
+
+**QUANTIZATION, which `prereg_selfcont.json` left OWED AND NOT RUN.** bfloat16 did not discharge it,
+and this is why: 4- and 8-bit are categorically larger perturbations, and they are what deployment
+applies. No download was needed — weight-only symmetric per-output-channel round-to-nearest over
+every `nn.Linear`, applied in place to a freshly loaded float32 model. Embeddings, norms and biases
+untouched; the count of quantized layers is stored per cell, because *"we quantized the model"* is
+not a measurement and the module list is.
+
+| cell | escape agreement vs fp32 | self-continuation set kept |
+|---|---|---|
+| `pythia-410m` int8 | $0.9018$ | $8/8$ |
+| `pythia-410m-deduped` int8 | $0.8966$ | $8/8$ |
+| `rwkv-4-430m` int8 | $0.9508$ | $464/470$ |
+| `gpt-neo-125m` int8 | $0.7734$ | $244/279$ |
+| `mamba-370m` int8 | $0.4606$ | $404/711$ |
+| `pythia-410m` int4 | $0.0098$ | $\mathbf{0/8}$ |
+| `gpt-neo-125m` int4 | $0.0$ | $1/279$ |
+| `mamba-370m` int4 | $0.0151$ | $0/711$ |
+| `rwkv-4-430m` int4 | $0.4286$ | $288/470$ |
+
+**KQ1 does not fire; KQ2 fires.** At 8 bits the anchor holds agreement at $0.9018$, well above the
+$0.6355$ the corpus manipulation produces — 8-bit rounding moves the escape destination *less* than
+deduplicating the training corpus does. At 4 bits it collapses to $0.0098$, and **the fingerprint is
+scoped to full precision and may not be claimed for quantized deployment.**
+
+**KQ3 binds that negative and was registered before the run.** RTN is the *weakest* standard
+quantizer; GPTQ and AWQ calibrate. Surviving RTN implies surviving those; **failing RTN does not
+imply failing them.** KQ2 scopes the claim; it does not establish that a real quantized deployment
+breaks the fingerprint.
+
+**THE DEFECT THIS ARM ALMOST SHIPPED, and it is the third appearance of one pattern.** Feature A was
+to be reported as a Hamming distance between the fp32 and quantized bit vectors. `pythia-410m`'s
+int4 Hamming is $8$ — out of $3471$ probe tokens, which reads as near-perfect robustness. It is
+**total loss**: the model has $8$ self-continuing tokens in the intersection and keeps $0$ of them.
+A small Hamming on a sparse set is consistent with annihilation, and I would have written the
+opposite of the truth. The results file now stores kept / gained / lost and the verdict quotes the
+**kept fraction**, never the count. This is F183's cardinality confound ($r = 0.913$) and the reason
+F185 paired by source token, arriving a third time on a third estimand — the pattern is not a
+recurring accident, it is what Hamming distances do to sparse sets, and this project should stop
+reaching for one.
+
+**A dissociation worth naming, and not over-reading.** At 8 bits the two features come apart on
+`mamba-370m`: the escape destination degrades to $0.4606$ while the self-continuation set keeps
+$404$ of $711$. On `rwkv-4-430m` at 4 bits the set keeps $288$ of $470$ while the escape agreement
+falls to $0.4286$. The set survives perturbation better than the destination does — which is the
+opposite ordering to F185's, where the destination discriminated better. Robustness and
+discrimination are not the same axis, and the two features rank differently on each. Five cells, one
+quantizer, no claim.
+
+**THE τ=0.5 REPLICATION: NOT DECIDABLE, on a registered condition.** Six held-out cells, none of
+which produced F185's observation, with the prediction — resolution peaks at $\tau = 0.5$, above
+both $\tau = 0$ and $\tau = 1$ — written down in advance. It cannot be evaluated, and **KR3 named
+this outcome before the run**: the held-out floor, `pythia-160m` at float32 against bfloat16, reaches
+agreement $1.0$ by $\tau = 0.5$. With the floor at $1.0$ there is nothing left to resolve against and
+the ratio is undefined. The rung is therefore **neither replicated nor demoted**. It stays exactly
+what F185 called it: an observation, not a claim, and still unquotable.
+
+**What that failure exposed, which is more interesting than the test.** The held-out floor at
+$\tau = 0$ is $0.3458$. `pythia-410m`'s was $0.7089$. **The smaller model is twice as
+precision-brittle on this readout**, and neither prereg anticipated a floor that varies by model at
+all — F185 measured one floor on one model and the confidence arm treated it as *the* floor. It is
+not. Any claim about precision robustness that quotes a single floor is quoting one model's.
+
+**Boundary.** Quantization: five cells, two bit widths, one quantizer, weights only. Activation
+quantization, real serving stacks and any deployed quantized checkpoint are untouched and remain
+**OWED**. The τ arm: six cells, and its near pair is same-family-different-scale rather than a
+matched corpus manipulation — registered as a design limit in advance, so even a pass could only
+have licensed *"the ladder is non-monotone on held-out models"*, never the deduped-pair number. No
+p-value on either. **No other rung was promoted when $\tau = 0.5$ failed to decide** — that would be
+the same threshold-shopping one level down, and the refusal was registered.
+
+`experiments/quant_robustness.py`, `experiments/tau_replication.py` →
+`results/quant_robustness.json`, `results/tau_replication.json`.
+
 ### F186 — the prior-art gate fired: the self-continuation set is PARTIALLY ANTICIPATED, the escape destination survives, and the binding constraint is our own published record
 24 Aug 2026. Registered as OWED in both `prereg_selfcont.json` and `prereg_escape_rival.json`, each
 of which said no write-up may proceed until it ran. It ran: 5 search angles, full-text fetch, 3-vote

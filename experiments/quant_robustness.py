@@ -123,11 +123,25 @@ def _verdict(cache):
             agree = float(np.mean(base_str[esc] == q_str[esc])) if n else None
             q_bit = q_id == np.array(c["source_ids"], np.int64)
             ham = int((q_bit != base_bit).sum())
+            # A HAMMING COUNT ON A SPARSE SET CANNOT BE READ ALONE, and this arm is where that
+            # would have gone wrong. pythia-410m has 8 self-continuing tokens in the intersection,
+            # so "Hamming 8" at int4 is consistent with perfect robustness AND with the set being
+            # annihilated. It is annihilation: 0 of 8 kept. The decomposition is therefore stored
+            # beside the count, and the KEPT FRACTION is what any robustness claim must quote.
+            kept = int((base_bit & q_bit).sum())
+            gained = int((~base_bit & q_bit).sum())
+            lost = int((base_bit & ~q_bit).sum())
+            nb = int(base_bit.sum())
             cnt = collections.Counter(q_str[esc].tolist())
             res["cells"][key] = dict(
                 model=m, bits=bits, n_escaping_sources=n,
                 escape_agreement_vs_fp32=None if agree is None else round(agree, 4),
                 feature_A_hamming_vs_fp32=ham, n_probe_sources=int(len(idx)),
+                feature_A_base_set_size=nb, feature_A_quant_set_size=int(q_bit.sum()),
+                feature_A_kept=kept, feature_A_gained=gained, feature_A_lost=lost,
+                feature_A_kept_fraction=round(kept / nb, 4) if nb else None,
+                _feature_A_reading="quote the KEPT FRACTION, never the Hamming count: on a sparse "
+                                   "set a small Hamming is consistent with total destruction.",
                 modal_destination=cnt.most_common(1)[0][0] if n else None,
                 modal_share=round(cnt.most_common(1)[0][1] / n, 4) if n else None,
                 n_linear_quantized=c["n_linear_quantized"],
@@ -143,10 +157,16 @@ def _verdict(cache):
          f"OWED; bfloat16 did not, because 4- and 8-bit are categorically larger and are what "
          f"deployment applies. Weight-only symmetric per-channel RTN over nn.Linear only; "
          f"embeddings, norms and biases untouched, counts per cell in the file. "]
-    for key, c in sorted(res["cells"].items()):
+    for key, c in sorted(res["cells"].items(), key=lambda kv: (kv[1]["bits"], kv[1]["model"])):
         p.append(f"{key.split('/')[-1]}: escape agreement vs fp32 {c['escape_agreement_vs_fp32']} "
-                 f"over {c['n_escaping_sources']} sources, feature-A Hamming {c['feature_A_hamming_vs_fp32']} "
-                 f"of {c['n_probe_sources']}, modal share {c['modal_share']}. ")
+                 f"over {c['n_escaping_sources']} sources; feature-A keeps {c['feature_A_kept']} of "
+                 f"{c['feature_A_base_set_size']} ({c['feature_A_kept_fraction']}), modal share "
+                 f"{c['modal_share']}. ")
+    p.append("FEATURE A IS REPORTED AS A KEPT FRACTION AND NOT AS A HAMMING COUNT, because this arm "
+             "is where the count would have misled: pythia-410m has 8 self-continuing tokens in the "
+             "intersection, so its int4 Hamming of 8 is consistent with perfect robustness and is in "
+             "fact total loss -- 0 of 8 kept. A sparse set makes a small Hamming meaningless on its "
+             "own, which is the same defect F183 found at r=0.913 and F185 avoided by pairing. ")
     p.append(f"THE REGISTERED COMPARISON POINT is arm 1's decisive pair at {DECISIVE_FP32}. ")
     for lbl, fired, v, b in (("KQ1", res["KQ1_fires"], q8, 8), ("KQ2", res["KQ2_fires"], q4, 4)):
         if v is None:
