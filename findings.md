@@ -3645,6 +3645,98 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F186 — the prior-art gate fired: the self-continuation set is PARTIALLY ANTICIPATED, the escape destination survives, and the binding constraint is our own published record
+24 Aug 2026. Registered as OWED in both `prereg_selfcont.json` and `prereg_escape_rival.json`, each
+of which said no write-up may proceed until it ran. It ran: 5 search angles, full-text fetch, 3-vote
+adversarial verification per claim, **101 agents, 0 errors**. Record in
+`results/prior_art_selfcont_gate.json`.
+
+**Why it was load-bearing rather than routine, and the framing was right.** F95 cleared this
+programme on exactly one ground — *"iterated / dynamical probes are NOT anticipated; every published
+feature set is single-shot scoring of supplied text"* — and `PROGRAM.md` §1 concluded from it *"pitch
+the novelty as the dynamics, not the fingerprint."* **Neither new feature iterates.** The
+self-continuation bit is one forward pass; the escape destination is *the same* forward pass. The
+gate was asked whether F95's protection still applies. **It does not.**
+
+**FEATURE (A), the self-continuation set: PARTIALLY ANTICIPATED.** The threat is
+`arXiv:2410.06287`, Hammouri, Derya & Sunar, *Non-Halting Queries: Exploiting Fixed Points in LLMs*
+(IEEE SaTML 2025). It already probes with degenerate repeated-token inputs, already formalises the
+temperature-zero argmax fixed-point condition, already publishes a per-word × per-model matrix, and
+already observes that fixed points are inherited across model lineages — which is the same
+invariance our family attribution rests on.
+
+**I verified it myself rather than taking the gate's word**, per this project's rule never to grade
+prior art from a summary when the PDF can be on disk. Fetched, `pdftotext -layout`, three quotes
+checked against the extraction:
+
+> *"For $\tau = 0$, any fixed point $x$ of $f$ such that $f(x_1,x_2,x_3) = x_1,x_2,x_3$ gives us a
+> non-halting anomaly."*
+
+That is our fixed-point condition, at a three-token window against our two. And:
+
+> *"We repeated this experiment for single token inputs with words like 'John' or 'Adam' and observed
+> that a repetition of 3 times to form the cycle-pattern ... was sufficient"*
+
+That is the degenerate diagonal probe. **The gate's characterisation is accurate on every point I
+checked.** What survives as new in (A) is narrow: the exhaustive vocabulary sweep, the *set-valued*
+feature (which tokens, not how many), the stored margin, and the use as an identity signal. The
+instruction is explicit and I am recording it as binding: **do not pitch (A) as "degenerate probes"
+or as "fixed points of greedy decoding" — both are taken.**
+
+**FEATURE (B), the escape destination map: NOVEL, BUT NARROW AND SURROUNDED.** The observable is
+genuinely unoccupied, and the proof is in the threat paper's own caption:
+
+> *"A zero means the model does not produce a non-halting response for the corresponding word."*
+
+**Hammouri had the escaping tokens and logged them as `0`.** The one paper that could have taken (B)
+discarded exactly what (B) keeps — which is the same thing this project discarded until F185. But
+(B) is surrounded on both sides: its comparison metric is standard (`arXiv:2607.25880` Stemma's
+agreement rate; `arXiv:2502.00706` Model Provenance Testing's next-token agreement), and its
+evaluation protocol is already published from a **non-iterated single-forward-pass probe** —
+`arXiv:2607.10252`, *One Token Is Enough*, runs a fixed probe battery, collects one output token per
+query, and reports leave-one-out nearest-neighbour **family attribution against a chance rate**. That
+is F185's design. What it does not anticipate is the feature representation: its index set is
+(task, language), never the vocabulary. **The claimable delta is exactly the input construction —
+the $(t,t)$ diagonal — crossed with the vocabulary index set, read as decoded strings.**
+
+**THE BINDING CONSTRAINT IS NOT A THIRD PARTY. IT IS US.** The gate's sharpest finding is that our
+own paper 1 (`arXiv:2608.10986`) already treats the argmax map as a dynamical object over token
+space and reports its per-model fixed-point structure as a distinguishing contrast — and that the
+public findings record paper 1 cites, this file, **already contains the diagonal probe**. Feature (A)
+is therefore in print at small scale, on named models, under our own name. Worse for the framing:
+paper 1's related-work section asserts *on the record* that single-shot feature sets are what the
+identification literature already does. We published the argument that now cuts against us.
+
+**The salvageable reframing, and why it is not free.** The OBJECT measured is dynamical — fixed
+points and destinations of the argmax map — even though the MEASUREMENT is single-shot. The gate
+notes that reframing runs straight into paper 1, which already banked that object. (The strong form
+of this threat, *"cannot inherit the dynamics defence at all"*, was **refuted 0–3** by the verifiers;
+the weaker form stands. Recorded so the retreat is not overstated either.)
+
+**What this changes, concretely.** Three things, none of them optional:
+1. `fingerprint/PROGRAM.md` §1 records verdict (b) as *"iterated / dynamical probes are NOT
+   anticipated — this is the programme's defensible ground."* That sentence is now **false for these
+   two features** and is corrected in the same commit as this entry.
+2. Any write-up needs an explicit delta paragraph against `arXiv:2410.06287` **and** against paper 1.
+   Not a citation — a delta.
+3. The novelty must be pitched as the **vocabulary-wide set-valued destination map**, never as
+   degenerate probes or as fixed points.
+
+**What the gate did not do.** It did not kill either feature. It killed a *framing*, and it did so
+for the price of one overnight run rather than a referee report. That is the whole reason both
+preregs made it a blocker rather than a courtesy, and it is the second time this project has been
+saved by refusing to write before checking — F157 refuted 13 of 74 claims for overreaching their own
+sources, and this is the same discipline arriving one level up, on our own novelty rather than on
+somebody else's sentence.
+
+**Boundary.** A gate is a search, and absence of evidence in it is not evidence of absence — F169's
+caution, unchanged. The verdicts above are about what five angles and 101 verified agents found, and
+the top threat is the only one I read in full myself; the others rest on the gate's 3-vote
+verification and are marked as such in the results file. Anything that becomes load-bearing for a
+sentence in a manuscript must be fetched directly first, exactly as `CITATIONS.md` requires.
+
+`results/prior_art_selfcont_gate.json`.
+
 ### F185 — the discarded half of the measurement: escape destinations attribute families at 10/12 for zero forward passes, and the confidence threshold that fixes the noise floor destroys the signal with it
 24 Aug 2026. At every iteration this estimator has a distribution over ~50k tokens and keeps the
 argmax. Registered in `experiments/prereg_escape_rival.json` (frozen `cf1e02ff…`) and

@@ -28,7 +28,8 @@ a region of the model's function that normal evaluation never visits.
 (a) generic black-box model identification is **taken** (Model Equality Testing, ICLR 2025; IRIS
 arXiv 2607.20860 at 0.99 verification AUROC); **(b) iterated / dynamical probes are NOT anticipated —
 every published feature set is single-shot scoring of supplied text, and this is the programme's
-defensible ground**; (c) corpus inference partially anticipated, but tokenizer-only methods return
+defensible ground** (**narrowed 24 Aug 2026 — see F186 and the note at the end of §7: this verdict
+does NOT cover the self-continuation set or the escape destination map, neither of which iterates**); (c) corpus inference partially anticipated, but tokenizer-only methods return
 identical answers for models sharing a tokenizer and so cannot make this battery's gpt2 vs
 gpt-neo-125M call; (d) quantization **taken**, distillation and pruning **untouched**; (e) tokenizer
 round-trip merging substantially anticipated as a mechanism — only the API-probing hazard framing and
@@ -295,6 +296,32 @@ dynamics, not the fingerprint." The self-continuation bit is dynamically motivat
 computed**: one forward pass per token, no iteration. It steps off exactly the ground F95 called
 defensible. The re-check is **owed and has not run**, and no write-up on this feature may proceed
 until it does.
+
+**THE PRIOR-ART GATE ON THE REVISED FEATURES HAS NOW RUN (24 Aug 2026, F186), AND IT NARROWED §1.**
+The revision recorded above replaced the battery's scalar with a set, and then F185 added a second
+feature, the escape destination map. Both were registered with the prior-art re-check as a blocker
+on write-up. It ran — 5 angles, full-text fetch, 3-vote adversarial verification, 101 agents — and
+the record is in [`../results/prior_art_selfcont_gate.json`](../results/prior_art_selfcont_gate.json).
+
+- **§1's verdict (b) does not cover these features.** It cleared the programme because *iterated*
+  probes were unanticipated. Neither of these iterates: each is one forward pass on a two-token
+  input. The defence stated in §1 — "pitch the novelty as the dynamics, not the fingerprint" — no
+  longer protects them as written.
+- **The self-continuation set is PARTIALLY ANTICIPATED** by arXiv:2410.06287 (Hammouri, Derya &
+  Sunar, IEEE SaTML 2025), which already probes with repeated tokens, already formalises the
+  temperature-zero argmax fixed-point condition, already publishes a per-word × per-model matrix, and
+  already reports lineage inheritance of fixed points. Verified in full text on this machine, not
+  from the gate's summary. It may no longer be pitched as "degenerate probes" or as "fixed points of
+  greedy decoding".
+- **The escape destination map survives as novel in construction** — Hammouri had those tokens and
+  logged them as `0` — but its metric (Stemma, Model Provenance Testing) and its evaluation protocol
+  (arXiv:2607.10252, leave-one-out family attribution from a single-shot probe battery) are both
+  already published. The claimable delta is the (t,t) diagonal crossed with the vocabulary index set.
+- **The binding constraint is self-prior-art.** Paper 1 already banks the argmax map as a dynamical
+  object and the per-model fixed-point contrast, and the public findings record it cites contains the
+  diagonal probe. Any write-up needs a delta paragraph against paper 1 as well as against 2410.06287.
+
+None of this kills a feature. It kills a framing, one overnight run before a referee would have.
 
 ## 8. What this program does not claim
 
