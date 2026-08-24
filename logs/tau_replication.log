@@ -1,0 +1,26 @@
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 7589.37it/s]
+  EleutherAI/pythia-160m             n=3683   escaping=3673   (3s)
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 18576.64it/s]
+  EleutherAI/pythia-160m@bf16        n=3683   escaping=3677   (9s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 6434.69it/s]
+  EleutherAI/pythia-1b               n=3683   escaping=3670   (16s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 5826.86it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  state-spaces/mamba-130m-hf         n=3683   escaping=3130   (100s)
+Loading weights:   0%|          | 0/222 [00:00<?, ?it/s]Loading weights: 100%|██████████| 222/222 [00:00<00:00, 70992.34it/s]
+  RWKV/rwkv-4-169m-pile              n=3683   escaping=3605   (5s)
+Loading weights:   0%|          | 0/316 [00:00<?, ?it/s]Loading weights: 100%|██████████| 316/316 [00:00<00:00, 6565.71it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-1.3B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...23}.attn.attention.masked_bias | UNEXPECTED |  | 
+transformer.h.{0...22}.attn.attention.bias        | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-1.3B            n=3522   escaping=2647   (28s)
+
+TAU=0.5 REPLICATION, registered in experiments/prereg_tau_replication.json (sha256 5dccdb37a0b9..., frozen before any held-out cell was measured). Six cells, none of which produced the observation; 3471 shared probe sources. The prediction, written down in advance: resolution peaks at tau=0.5, above both tau=0 and tau=1.  THE HELD-OUT LADDER: tau=0.0 floor 0.3458 near 0.541 -> 0.7x (n=3455); tau=0.1 floor 0.9915 near 0.6195 -> 44.76x (n=2518, NOT DECIDABLE); tau=0.5 floor 1.0 near 0.8664 -> Nonex (n=891, NOT DECIDABLE); tau=1.0 floor 1.0 near 0.9872 -> Nonex (n=391, NOT DECIDABLE); tau=2.0 floor 1.0 near 1.0 -> Nonex (n=109, NOT DECIDABLE).  NOT DECIDABLE: the tau=0.5 rung is too thin, or the floor is degenerate (KR3), so there is nothing to resolve against. The observation stays an observation.  REFUSALS: no p-value; no adjustment of the ladder, the prediction or the source floor; and explicitly NO promotion of any other rung if this one failed -- that would be the same threshold-shopping one level down, and the prediction named tau=0.5 alone.
+
+wrote results/tau_replication.json

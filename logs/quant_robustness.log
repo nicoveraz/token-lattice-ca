@@ -1,0 +1,43 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6613.66it/s]
+  EleutherAI/pythia-410m@int8              lin=97   emb_untouched=1 (9s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6739.28it/s]
+  EleutherAI/pythia-410m@int4              lin=97   emb_untouched=1 (7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 5761.41it/s]
+  EleutherAI/pythia-410m-deduped@int8      lin=97   emb_untouched=1 (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 11580.01it/s]
+  EleutherAI/pythia-410m-deduped@int4      lin=97   emb_untouched=1 (7s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 6072.80it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  state-spaces/mamba-370m-hf@int8          lin=193  emb_untouched=1 (278s)
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 8554.30it/s]
+  state-spaces/mamba-370m-hf@int4          lin=193  emb_untouched=1 (283s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 38662.06it/s]
+  RWKV/rwkv-4-430m-pile@int8               lin=169  emb_untouched=1 (13s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 65451.94it/s]
+  RWKV/rwkv-4-430m-pile@int4               lin=169  emb_untouched=1 (12s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 5998.83it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/gpt-neo-125m@int8             lin=73   emb_untouched=2 (4s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 17902.86it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125m@int4             lin=73   emb_untouched=2 (3s)
+
+QUANTIZATION ROBUSTNESS, registered in experiments/prereg_quant_robustness.json (sha256 728d162b1ee8..., frozen before any quantized cell existed). This DISCHARGES the test prereg_selfcont left OWED; bfloat16 did not, because 4- and 8-bit are categorically larger and are what deployment applies. Weight-only symmetric per-channel RTN over nn.Linear only; embeddings, norms and biases untouched, counts per cell in the file.  gpt-neo-125m@int4: escape agreement vs fp32 0.0 over 3243 sources, feature-A Hamming 283 of 3522, modal share 0.0244.  gpt-neo-125m@int8: escape agreement vs fp32 0.7734 over 3243 sources, feature-A Hamming 85 of 3522, modal share 0.3117.  pythia-410m-deduped@int4: escape agreement vs fp32 0.0103 over 3675 sources, feature-A Hamming 12 of 3683, modal share 0.2879.  pythia-410m-deduped@int8: escape agreement vs fp32 0.8966 over 3675 sources, feature-A Hamming 0 of 3683, modal share 0.1744.  pythia-410m@int4: escape agreement vs fp32 0.0098 over 3675 sources, feature-A Hamming 8 of 3683, modal share 0.3233.  pythia-410m@int8: escape agreement vs fp32 0.9018 over 3675 sources, feature-A Hamming 0 of 3683, modal share 0.16.  rwkv-4-430m-pile@int4: escape agreement vs fp32 0.4286 over 3213 sources, feature-A Hamming 381 of 3683, modal share 0.1836.  rwkv-4-430m-pile@int8: escape agreement vs fp32 0.9508 over 3213 sources, feature-A Hamming 20 of 3683, modal share 0.3115.  mamba-370m-hf@int4: escape agreement vs fp32 0.0151 over 2972 sources, feature-A Hamming 712 of 3683, modal share 0.1373.  mamba-370m-hf@int8: escape agreement vs fp32 0.4606 over 2972 sources, feature-A Hamming 405 of 3683, modal share 0.2177.  THE REGISTERED COMPARISON POINT is arm 1's decisive pair at 0.6355.  KQ1 does not fire: 8-bit leaves agreement at 0.9018, above the 0.6355 the corpus manipulation produces.  KQ2 FIRES: 4-bit weight rounding of pythia-410m moves the escape destination to 0.0098, at or below the 0.6355 that separates the corpus manipulation. The fingerprint is SCOPED TO FULL PRECISION and may not be claimed for quantized deployment.  KQ3, BINDING ON ANY NEGATIVE ABOVE: RTN is the WEAKEST standard quantizer. Surviving it implies surviving GPTQ or AWQ; failing it does NOT imply failing them, because those calibrate. A fired kill condition here scopes the claim, it does not establish that a real quantized deployment breaks the fingerprint.  STILL OWED and not touched by this arm: activation quantization, real serving stacks, and any deployed quantized checkpoint. REFUSALS: no p-value on five cells; no adjustment of the bit widths or the comparison point; no semantic reading.
+
+wrote results/quant_robustness.json
