@@ -1,0 +1,66 @@
+{
+ "name": "escape-widening-v1",
+ "status": "FROZEN before any new cell was measured. The cohort was chosen by a TOKENIZER-ONLY feasibility sweep recorded under what_was_looked_at_first; no model was run and no escape destination was read.",
+ "plan_section": "paper 4. Widens F185's escape-destination arm from 12 models on one corpus to 20 across several, and converts two disclosed confounds into tested questions.",
+ "epistemic_tier": "TIER 1 for the eight new cells. The twelve core cells are REUSED from results/selfcont_set_*.json, never re-measured.",
+
+ "why_the_cohort_is_not_the_17_model_census_cohort": {
+  "the_plan_was": "run the escape map on the 17-model census cohort, which has 7 families and 5 corpora.",
+  "why_that_fails": [
+   "IT CONTAINS NO RECURRENT MODELS. All 17 are transformers, so the architecture-class hypothesis -- the whole reason for the widening, since both of F185's attribution misses were Mamba landing on RWKV -- has nothing to test.",
+   "The frozen probe set intersected over its 16 loadable tokenizers is 152 strings, below the registered floor of 500. polyglot-ko-1.3b alone resolves only 290 of 4090; dropping it raises the intersection to 1229.",
+   "Its families are singletons: 13 of 14 organisations contribute one model, so leave-one-out family attribution cannot be scored for most of the cohort.",
+   "LiquidAI/LFM2-2.6B's tokenizer does not load (OSError), the same failure F171 recorded."
+  ],
+  "what_is_run_instead": "F185's twelve, which contain RWKV and Mamba, PLUS eight models chosen to add corpus, family and tokenizer diversity while keeping the shared index usable. Measured before freezing: the intersection falls from 3471 to 3302, so nine additions cost 169 strings.",
+  "ByteDance/Ouro-1.4B_excluded": "it requires trust_remote_code, i.e. executing code shipped in a model repository, and it added zero strings to the intersection. Excluded on the first ground; the second makes the exclusion free."
+ },
+
+ "what_was_looked_at_first": {
+  "checked": "TOKENIZERS ONLY. For each candidate model, how many of the 4090 frozen probe strings encode to exactly one token, and the resulting intersection for each candidate cohort.",
+  "not_checked": "no model weights were loaded, no argmax was computed, no escape destination was decoded, no agreement was calculated.",
+  "why_this_is_legitimate_before_freezing": "the intersection is a property of the probe set and the tokenizers, not of any model's behaviour. Choosing a cohort whose shared index clears the registered floor is a feasibility decision; it cannot select for an outcome because no outcome exists yet."
+ },
+
+ "cohort": {
+  "reused": ["EleutherAI/pythia-70m","EleutherAI/pythia-160m","EleutherAI/pythia-410m",
+             "EleutherAI/pythia-410m-deduped","EleutherAI/pythia-1b","EleutherAI/gpt-neo-125m",
+             "EleutherAI/gpt-neo-1.3B","EleutherAI/gpt-neo-2.7B","RWKV/rwkv-4-169m-pile",
+             "RWKV/rwkv-4-430m-pile","state-spaces/mamba-130m-hf","state-spaces/mamba-370m-hf"],
+  "new": ["Zyphra/Zamba2-2.7B","google/gemma-2-2b","meta-llama/Llama-3.2-3B","Qwen/Qwen1.5-1.8B",
+          "allenai/OLMo-2-0425-1B","tiiuae/Falcon3-1B-Base","stabilityai/stablelm-3b-4e1t",
+          "HuggingFaceTB/SmolLM-1.7B"],
+  "n": 20,
+  "architecture_class": {"recurrent_or_ssm": ["RWKV/rwkv-4-169m-pile","RWKV/rwkv-4-430m-pile","state-spaces/mamba-130m-hf","state-spaces/mamba-370m-hf","Zyphra/Zamba2-2.7B"],
+                         "transformer": "the remaining 15",
+                         "note": "Zamba2 is a hybrid Mamba/attention architecture and is labelled RECURRENT here. That label is fixed now, before any distance is read, precisely because it is the one a result could tempt us to move."},
+  "corpus": "NO LONGER FIXED. The twelve reused models are Pile-trained; the eight new ones are not. This is the point of the widening -- F185 could not say anything about corpus because it held corpus constant, and could not rule corpus out either."
+ },
+
+ "estimand": "unchanged from F185: escape-destination AGREEMENT, paired by source token over the shared intersection, destinations compared as decoded strings. Same estimator, no new machinery.",
+
+ "hypotheses": {
+  "H_widen": "leave-one-out rank-1 family attribution survives on the wider, multi-corpus, multi-tokenizer cohort. Scored only over models that have at least one same-family peer, which is the convention arXiv:2607.10252 uses and which this ledger verified in full text.",
+  "H_arch": "ARCHITECTURE CLASS. Recurrent and SSM models cluster together on escape-destination agreement, distinct from transformers. This is the hypothesis F185 could only disclose as a confound: both of its attribution misses were Mamba landing on RWKV. Scored as balanced accuracy of the nearest neighbour's class, balance-gated with gatecheck.balance before the join is read, because 5 against 15 is a lopsided predictor and raw agreement would inherit the base rate.",
+  "H_tok": "FAMILY VERSUS TOKENIZER. With nine distinct tokenizers the two are no longer confounded as they were in F185. Compare mean agreement within-family against within-tokenizer-group, and report which better predicts agreement."
+ },
+
+ "kill_conditions": {
+  "KW1_the_central_number_was_luck": "if rank-1 family attribution on the wider cohort falls to or below the family-level chance rate computed for THIS cohort, then F185's 10 of 12 was small-cohort luck. The paper must then say so and may not quote 10/12 as a capability. Registered before the run because it is the expensive outcome and the whole reason for widening.",
+  "KW2_architecture_is_not_the_story": "if the balanced accuracy of the recurrent/transformer call is at or below its majority-class rate, the architecture-class reading of F185's misses is refuted, and the misses stay what they were -- two misses.",
+  "KW3_tokenizer_beats_family": "if mean within-TOKENIZER agreement exceeds mean within-FAMILY agreement, the fingerprint is substantially reading the tokenizer, not the model, and every attribution claim in the paper must be restated as such. This is the confound F185 could only disclose; the wider cohort is what makes it testable.",
+  "KW4_thin_index": "if the realised intersection over the measured cohort falls below 500, the run is NOT DECIDABLE for coverage, exactly as in prereg_escape_rival.",
+  "KW5_anti_vacuity": "report the modal-destination share per model. If one destination dominates, the agreement is that concentration and the modal-excluded figure becomes primary, as in arm 1.",
+  "KW6_cohort_shrinks": "a model that fails to load is NAMED and the run continues; every gate reading cohort shape -- the chance rates, the class balance, the intersection -- is recomputed on the survivors."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value; family remains the independent unit and 20 checkpoints are not a sample",
+  "no reassignment of Zamba2's architecture label after any distance is seen",
+  "no adjustment of the 500 floor or of the scoring convention after the fact",
+  "no instance-identification claim, for the reason registered in prereg_selfcont: determinism makes repeated measurement of one checkpoint bit-identical",
+  "no claim that a surviving attribution is a CORPUS result -- corpus now varies but is not controlled, and this design cannot separate corpus from family",
+  "no semantic reading of any destination",
+  "the quantization envelope of F187 stands unchanged: any claim here inherits it, and 4-bit remains fatal"
+ ]
+}
