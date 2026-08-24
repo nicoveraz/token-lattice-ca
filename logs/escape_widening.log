@@ -1,0 +1,23 @@
+[transformers] The fast path is not available because one of `(selective_state_update, causal_conv1d_fn, causal_conv1d_update)` is None. Falling back to the naive implementation. To install follow https://github.com/state-spaces/mamba/#installation and https://github.com/Dao-AILab/causal-conv1d
+  Zyphra/Zamba2-2.7B                   LOAD FAILED ValueError
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]Loading weights: 100%|██████████| 288/288 [00:00<00:00, 4855.94it/s]
+  google/gemma-2-2b                    n=4004   escaping=491    (358s)
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 5063.56it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  meta-llama/Llama-3.2-3B              n=3697   escaping=3697   (929s)
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4396.37it/s]
+  Qwen/Qwen1.5-1.8B                    n=3694   escaping=3687   (30s)
+Loading weights:   0%|          | 0/179 [00:00<?, ?it/s]Loading weights: 100%|██████████| 179/179 [00:00<00:00, 4566.57it/s]
+  allenai/OLMo-2-0425-1B               n=3694   escaping=3693   (22s)
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 4551.44it/s]
+  tiiuae/Falcon3-1B-Base               n=3912   escaping=3906   (25s)
+Loading weights:   0%|          | 0/356 [00:00<?, ?it/s]Loading weights: 100%|██████████| 356/356 [00:00<00:00, 4885.33it/s]
+  stabilityai/stablelm-3b-4e1t         n=3683   escaping=3673   (485s)
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4629.71it/s]
+  HuggingFaceTB/SmolLM-1.7B            n=3605   escaping=3583   (32s)
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+
+ESCAPE MAP WIDENED, registered in experiments/prereg_escape_widening.json (sha256 3c04677f16cb...). 19 models, 7 tokenizer groups, corpus NO LONGER FIXED. Intersection 3355 of 4090 -- KW4 clears. Same estimator as F185; the twelve core cells are reused, never re-measured.  KW6: 1 cell(s) NAMED and dropped: ['Zyphra/Zamba2-2.7B'].  ATTRIBUTION: 10 of 12 scored models (0.8333) against a family-level chance of 0.1389, scored over models with at least one same-family peer.  KW1 does not fire: attribution survives the widening.  ARCHITECTURE CLASS (H_arch, the hypothesis F185 could only disclose): architecture class is usable: {'transformer': 15, 'recurrent': 4}, minority class 4 >= 2. Chance is the majority-class rate 79%; report balanced accuracy against it, not raw agreement. Balanced accuracy 1.0 against a majority rate of 0.7895, per class {'transformer': 1.0, 'recurrent': 1.0}.  KW2 does not fire: recurrent and transformer models are separated above the base rate.  FAMILY VERSUS TOKENIZER (H_tok), which F185 could not ask because eleven of its twelve models shared a vocabulary: within-family agreement 0.5251 against 0.322 across (lift 0.2031); within-tokenizer 0.4258 against 0.3053 across (lift 0.1205).  KW3 does not fire: family lift exceeds tokenizer lift, so the attribution is not principally a tokenizer effect.  KW5: the largest single-destination share in any model is 0.8832.  REFUSALS: no p-value; no reassignment of Zamba2's architecture label; no claim that a surviving attribution is a CORPUS result, since corpus now varies but is not controlled; no instance identification; no semantic reading. F187's quantization envelope stands unchanged and 4-bit remains fatal.
+
+wrote results/escape_widening.json
