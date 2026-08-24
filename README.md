@@ -8,13 +8,67 @@ Turn a language model into a **cellular automaton over token space**, then use i
 measurement instrument. A ring of *N* token cells is updated by the model's own windowed conditional
 `p_r(x_i | x_{i±r})`; nothing about the weights is inspected and nothing is trained.
 
-The research record is a dated ledger, [`findings.md`](findings.md), currently **F1–F171**. It keeps
+The research record is a dated ledger, [`findings.md`](findings.md), currently **F1–F184**. It keeps
 retracted and corrected findings in place, with the correction stated where the claim was made —
 quoting a finding without its amendment misrepresents it.
 
 ---
 
-## Two papers
+## In plain English: what these papers are about
+
+If you are not already inside this project, the papers are easier to follow in ordinary language.
+
+**The basic move.** A language model, asked to continue a couple of tokens, produces another token.
+Feed that back in and you have a little machine that runs on its own output. Watching where that
+machine settles tells you something about the model — not about how well it answers questions, but
+about the shape of the probability distribution underneath. Nothing here inspects weights and
+nothing is trained. It is all done from the outside, the way you would probe a black box.
+
+**Paper 1 asked whether the ruler was measuring the wood or itself.** That is the whole paper. If
+you build an apparatus to measure models, some of what you read off is a property of the model and
+some is a property of your apparatus, and telling those apart is not optional. The test is simple to
+state: hold the apparatus fixed and swap models, then hold the model fixed and change the apparatus,
+and see which readings move. One of the two quantities this project had been using turned out to be
+mostly measuring the apparatus, and it was demoted. The other survived. Publishing that split was
+the point.
+
+**Paper 2 asked whether what you put in front of the model changes the answer.** It does, and by
+much more than expected. Nine tokens of text placed before the probe can move the measurement across
+almost its whole range and flip the model from one structural category to another. For contrast, a
+full round of instruction tuning — the kind of training that moves a standard benchmark by sixty
+points — moves this category by nothing at all. So the measurement is not fragile in general; it is
+specifically and strongly sensitive to context.
+
+The second half of paper 2 is a list of failures, and that is deliberate. We proposed five
+explanations for *which* prompts do this and *to which* models, and every one of them dissolved when
+we tested it on more models. The nearest existing theory in the literature predicts the direction of
+the effect correctly on two models out of five, which is chance. The honest conclusion is that the
+effect belongs to the prompt and the model **as a pair**, and we could not factor it further.
+
+**Paper 3 walks into someone else's argument.** Language models sometimes get stuck repeating
+themselves, and there are two camps about why. One says the cause is in the training data —
+repetition in, repetition out. The other says it is in the network — specific circuits that copy.
+Both camps make their case by training their own models, which means neither has checked whether the
+pattern holds across the models people actually download and use.
+
+So we measured seventeen off-the-shelf models. The result is a counterexample rather than a theory:
+hold the training corpus fixed *and* hold the model size fixed, and models still land in different
+structural categories. Something on the weights side decides it, and we say plainly that we have not
+identified what. We also report the sharper thing we found by accident — six of seven models in one
+comparison arrive at the *same* token, and the ones that arrive there most strongly are among those
+that do not stay. Where a model goes and whether it stays are different questions, and only the
+second separates these models.
+
+**The thread running through all three.** Each paper contains a result we did not want. Paper 1
+demoted one of our own measurements. Paper 2 withdrew five explanations, four of them within a
+single run of proposing them. Paper 3 states, up front rather than in a footnote, the one thing its
+design cannot show. [`findings.md`](findings.md) keeps every retraction in place with the correction
+written where the original claim was made, so the record shows the wrong turns rather than a tidied
+path. If you quote a finding from it, carry its amendment too.
+
+---
+
+## Three papers
 
 **Paper 1 — the instrument.** *What Iterated Self-Feeding Probes of Language Models Measure, and a
 test that separates the construction from the model.* **Published: [arXiv:2608.10986](https://arxiv.org/abs/2608.10986)** (cs.CL, 11 Aug 2026), 15 pages.
@@ -47,9 +101,27 @@ each dissolved when the sample widened, four of them within one run of being pro
 nearest mechanistic account, attention-sink dominance, predicts the sign of the shift on 2 of 5
 models, which is chance. What is left is the prompt–model pair.
 
-The two are companions: paper 1 establishes what readings of an iterated probe belong to the
-construction rather than the model, and paper 2 varies a construction axis — the prefix — and
-reports that its effect on the readout is model-conditioned in sign.
+**Paper 3 — the cohort.** *What a Cross-Model Fixed-Point Census Can and Cannot Arbitrate About
+Repetition.* **Submission-ready, not yet announced**, 9 pages; source in
+[`paper3_arxiv/`](paper3_arxiv/).
+
+Its subject is what the readout says across models rather than within one. Two accounts of neural
+text degeneration coexist — one locating the cause in the training corpus, the other in the trained
+network — and neither has been arbitrated over a broad cohort of *pretrained* models, because the
+causal work necessarily trains its own. This censuses 17 off-the-shelf models, with the four-way
+class stable across census seeds on 17 of 17, and reports three exhibits. At fixed corpus (The Pile)
+and fixed scale the class is **not determined**: across two size-matched tiers `pythia` is a funnel
+while RWKV, Mamba and a second transformer family are not, and both families hold their class across
+roughly an order of magnitude of scale. Six of seven models in that ladder reach the *same* endpoint
+token while only one family stays there. And the corpus-side *inflow* term proposed for this
+phenomenon does not select our endpoints once frequency is controlled. It is explicit that an
+observational census cannot refute a training intervention.
+
+The three are companions. Paper 1 establishes what readings of an iterated probe belong to the
+construction rather than the model. Paper 2 varies a construction axis — the prefix — and reports
+that its effect on the readout is model-conditioned in sign. Paper 3 holds the construction fixed at
+one condition and varies the *model*, which is only a licensed comparison because papers 1 and 2
+bounded what such a comparison can mean; paper 3's Setup cites both for exactly that reason.
 
 ---
 
@@ -61,7 +133,7 @@ Nothing below is summarised twice. Each document is the authority for its own sc
 |---|---|
 | [`explainer.md`](explainer.md) | The whole project in plain English, no background assumed. **Start here if you are new.** |
 | [`ca_constructions.md`](ca_constructions.md) | The four rules drawn side by side in ASCII — elementary CA, Domany–Kinzel, and this project's two token-lattice constructions. |
-| [`findings.md`](findings.md) | The dated research record, F1–F171: every pre-registration, verdict, boundary, retraction and amendment. |
+| [`findings.md`](findings.md) | The dated research record, F1–F184: every pre-registration, verdict, boundary, retraction and amendment. |
 | [`what_it_measures.md`](what_it_measures.md) | What the instrument does and does not read, stated as scope rather than as caveats. |
 | [`critical_analysis.md`](critical_analysis.md) | The standing adversarial read of the programme. |
 | [`paper_arxiv/REVIEW.md`](paper_arxiv/REVIEW.md) | The audit that reshaped paper 1's claims. |
@@ -115,7 +187,7 @@ headlines an adversarial audit demoted and why.
 
 ### The findings record
 
-[`findings.md`](findings.md) is the authoritative record — **F1–F171**, each entry carrying its
+[`findings.md`](findings.md) is the authoritative record — **F1–F184**, each entry carrying its
 pre-registration, its verdict and its boundary. It is not summarised here: an index that drifts from
 the ledger is worse than no index, and this one drifted for ninety rows before it was removed.
 
