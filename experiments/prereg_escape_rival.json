@@ -1,0 +1,84 @@
+{
+ "name": "escape-rival-v1",
+ "status": "FROZEN before any escape destination was decoded and before any rival was measured. The structural checks that preceded it are recorded under `what_was_looked_at_first` and were feasibility only.",
+ "plan_section": "paper 4 / fingerprint. Follows F183, which found the registered Hamming estimand 83% explained by set cardinality.",
+ "epistemic_tier": "TIER 1 for the rival and top-k (no cell exists). TIER 2 for escapes: the values are ALREADY STORED in results/selfcont_set_*.json as argmax_ids, so this prereg is what stops them being read post-hoc.",
+
+ "why_this_exists": "At every iteration the estimator has a distribution over ~50k tokens and keeps the argmax. F162 (the fixed point is the newline), F171 (endpoints are common, not high-inflow) and F179 (six of seven models share an endpoint while one family stays) are the project's strongest token-CONTENT findings and none could be read off a scalar. The discard pile has three things in it, and a structural check before freezing established that they are two runs, not three.",
+
+ "what_was_looked_at_first": {
+  "checked": "field presence, per-cell counts, and one correctness claim: that where bit==0 the stored argmax IS the best rival. Verified on 546823 non-self-continuing tokens, 0 exceptions.",
+  "not_checked": "no escape destination was decoded, no destination distribution was tabulated, no pair was compared, no family was grouped. Feasibility only.",
+  "consequence": "the rival and the escape are the SAME quantity split by the bit. Where a token does not self-continue, its argmax is both. The rival is a distinct quantity only where the bit is 1 -- exactly the ~60k tokens the discard threw away."
+ },
+
+ "F166_INVERSION_governing_every_cross_model_claim": "F166's rule was 'key on token ID, never the decoded string'. For cross-MODEL work that rule INVERTS: ids are meaningless across tokenizers, so string identity is the only bridge. Both are right in their own scope and confusing them manufactures findings. Here: sources are keyed by the frozen probe STRINGS; escape and rival destinations are compared as DECODED STRINGS, never as ids; and within a single model, ids remain authoritative. Leading-space and byte-fallback are the known hazards of the string bridge and are reported per arm.",
+
+ "ARM_1_escape_destinations": {
+  "cost": "zero forward passes. Values already stored.",
+  "sources": "the frozen probe intersection I (3471 strings, experiments/probe_strings_selfcont.json), so the source set is shared and string-keyed across all 12 models.",
+  "definition": "for a model M and source string s in I with bit_M(s) == 0, escape_M(s) = the decoded string of argmax_M(token_M(s)). Destinations are unrestricted -- any token the model emits.",
+  "primary_estimand": "AGREEMENT: for models A,B let S_AB = {s in I : bit_A(s)=0 and bit_B(s)=0}; agree_AB = |{s in S_AB : escape_A(s) == escape_B(s)}| / |S_AB|. Paired by source token, so it is not a set-size statistic by construction. |S_AB| is reported with every value.",
+  "registered_comparisons": {
+   "decisive": "EleutherAI/pythia-410m vs EleutherAI/pythia-410m-deduped",
+   "should_be_far": ["EleutherAI/pythia-410m vs state-spaces/mamba-370m-hf",
+                     "EleutherAI/pythia-410m vs RWKV/rwkv-4-430m-pile",
+                     "EleutherAI/pythia-410m vs EleutherAI/gpt-neo-125m"],
+   "precision_floor": "EleutherAI/pythia-410m float32 vs bfloat16"
+  },
+  "identification": "leave-one-out rank-1 nearest neighbour by AGREEMENT (higher = nearer) over the 12 models. Chance levels are the ones F183 computed for this cohort and they are unchanged: family-level 0.2273, instance-level 0.0909. Family labels are balance-gated with gatecheck.balance before the join is read. FAMILY ATTRIBUTION, never instance identification."
+ },
+
+ "ARM_2_rival_and_topk_at_self_continuing_tokens": {
+  "cost": "~60k forward passes of length 2, one per self-continuing token, cohort-wide. Estimated 75 minutes, dominated by mamba-370m and gpt-neo-2.7B.",
+  "what_is_stored": "for every token t with bit_M(t)==1, the top-8 ids with their logits and the full-vocabulary logsumexp, so exact top-k probabilities are recoverable. Logits stored as integers scaled by 1e-4, for the reason recorded in selfcont_set.py.",
+  "rival": "rival_M(t) = the rank-2 entry, i.e. the best token other than t. Its DECODED STRING is the quantity.",
+  "Q1_neighbourhood_homogeneity": "is the rival in the same CHARACTER CLASS as the token it loses to? Per model, over that model's own full-vocabulary self-continuing set.",
+  "Q2_cross_model_rival_agreement": "over shared self-continuing sources in I, do two models put the same string second? FORESEEN AND REGISTERED NOW: the Pythia models have 8 to 39 self-continuing tokens inside I, so every Pythia pair is expected to fire KF and be NOT DECIDABLE. That is written down before the run so a small number cannot later be presented as a result.",
+  "Q3_topk_concentration": "p(top1) and the summed p(top8) at self-continuing tokens: is the attractor a narrow spike or a spike on a neighbourhood? Reported as a distribution per model, never as a single scalar."
+ },
+
+ "CHARACTER_CLASS_PARTITION_frozen_before_any_string_was_read": {
+  "why_it_is_not_semantics": "token IDENTITY is safe ground; token SEMANTICS is where this kind of work goes wrong, because 'the model is attracted to concept X' is a story that can be told about any token list. This partition is MECHANICAL -- it is a function of the characters in the string and involves no judgement about meaning. It is frozen here, before any destination or rival string was looked at, exactly as F162's purity gate was.",
+  "rule_in_order_first_match_wins": [
+   "whitespace: the string is non-empty and every character is whitespace",
+   "punctuation: every character is ASCII, non-alphanumeric and non-whitespace",
+   "alnum_leading_space: the string starts with a single space and the remainder is non-empty ASCII alphanumeric",
+   "alnum_bare: the string is non-empty ASCII alphanumeric",
+   "other: everything else, including non-ASCII and mixed forms"
+  ],
+  "no_further_classes": "no class may be added, merged or split after any string has been read. If the partition turns out to be a poor fit, that is reported as a finding about the partition, not repaired."
+ },
+
+ "FREQUENCY_MATCHED_NULL_mandatory_for_every_token_content_claim": {
+  "why": "F171 is the proof. The naive reading of the endpoints passed at the 99.87th percentile and DIED at 32.0 against the frequency-matched control. A token-content claim without its frequency null is a rediscovery of Zipf wearing a mechanism costume.",
+  "corpus": "NeelNanda/pile-10k at revision 127bfedcd5047750df5ccf3a12979a47bfa0bafa, the first 2000 documents -- the same corpus and the same slice that defined the probe strings.",
+  "counts": "each model's OWN tokenizer is run over those documents and token counts are taken per id. Frequency is therefore always in the model's own vocabulary, never transferred across tokenizers.",
+  "band": "tokens are ranked by count, ties broken by id. A token's matched peers are the 50 nearest by RANK, which is F171's construction.",
+  "null_draws": 200,
+  "arm_1_null": "each model's escape destination is independently replaced by a uniform draw from its own frequency band, and agreement is recomputed. If two models agree only because both escape to frequent tokens, the perturbation preserves that and agreement stays high.",
+  "arm_2_null": "each rival is replaced the same way and the character-class agreement of Q1 is recomputed.",
+  "statistic": "the observed value's PERCENTILE within the null distribution, reported as F171 reported its percentile. This is a within-pair control on one comparison, not an inference about the cohort, and it is not a p-value on the model sample -- that refusal is unchanged and is restated below."
+ },
+
+ "kill_conditions": {
+  "KA_thin_pair": "any registered pair with |S_AB| < 500 shared escaping sources is NOT DECIDABLE and reports no agreement.",
+  "KB_vacuity_one_destination": "if any model sends more than 0.50 of its escapes over I to a single string, the PRIMARY agreement figure for every pair becomes the one computed with each model's modal destination excluded, and the raw figure is reported beside it. Decided now, not after seeing which way it goes.",
+  "KC_frequency": "if the observed agreement for the decisive pair falls at or below the 95th percentile of its frequency-matched null, the escape destination carries no identity information beyond frequency. The finding is then that null, and no clustering claim is made.",
+  "KD_cardinality": "F183's defect, checked for its sibling here. Report Pearson r across the 66 pairs between agree_AB and the sum of the two models' distinct-escape counts. If |r| > 0.7 the agreement is substantially a destination-DIVERSITY effect -- a scalar again -- and must be reported as such rather than as identity.",
+  "KE_base_rate": "roughly 50100 of a Pythia's tokens do not self-continue, and their argmax is whatever that model's generic high-probability continuation is. The frequency-matched null is therefore not a control on this arm, it IS the test, and a positive result is only readable against it.",
+  "KF_thin_self_continuing_set": "any model with fewer than 20 self-continuing tokens in the relevant set is NOT DECIDABLE for that statistic. Applies per model and per question.",
+  "KG_anti_vacuity_partition": "if the character-class distribution of rivals is dominated by one class in every model, report the comparison over the VARIABLE classes as well and name which is primary. A criterion with a shape on a quantity with no room to vary is this project's most frequent error and a partition is not exempt.",
+  "KH_cohort_shrinks": "a cell that fails is NAMED and the run continues; every gate reading cohort shape is then re-evaluated on the survivors."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value on the model cohort: 12 checkpoints in 4 families is not a sample, and family is the independent unit (F68). The null percentiles above are within-comparison controls and are not offered as inference about the cohort.",
+  "no semantic reading of any token list. The character-class partition is mechanical and frozen; no class named after meaning may be introduced afterwards, and no sentence of the form 'the model is attracted to X' may be written from this data.",
+  "no cross-model comparison keyed on token ID (the F166 inversion above).",
+  "no instance identification: determinism makes repeated measurement of one checkpoint bit-identical, so the test cannot fail informatively and is refused rather than run and over-read.",
+  "no adjustment of the 0.50 modal gate, the 0.7 cardinality bound, the 20-token floor, the 500-source floor, or the band size of 50, after any value is seen.",
+  "no claim that escape destinations explain anything mechanistically -- this design separates neither architecture nor schedule nor corpus, and every cohort member shares a corpus.",
+  "no write-up: the prior-art re-check owed since F183 is still owed and still blocks it."
+ ]
+}
