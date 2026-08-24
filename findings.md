@@ -3645,6 +3645,60 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F184 — paper 3 unparked: the ledger caught a self-citation pointing at the wrong paper of ours, and fixing E3's scope left the abstract behind
+23 Aug 2026. Paper 2 announced as **arXiv:2608.21315**, which was the only thing paper 3 was waiting
+for. `paper3_arxiv/PLAN.md` §7's four-item resume list is closed. Three of the four were as planned;
+the first turned up a defect and the third created one.
+
+**1. The citation that pointed at the wrong paper.** Setup's short-window paragraph attributed the
+$W = 16$ result — the readout disappearing as the window widens — to `veraz2026probes`. That is
+**paper 1, which contains no window sweep**; the result is paper 2's, carried in its abstract and
+marked `% F161` in its source. This was not careless drafting. When F182 restored that paragraph,
+paper 2 was still `submit/7978448` with no citable identifier, and paper 1 was the only
+self-citation available. **It is precisely what `CITATIONS.md` exists to catch**: ledger entry 1
+records the claim for `veraz2026probes` as the argmax map and the funnel/none contrast, and that
+entry **does not cover the window result** — so the ledger and the manuscript had been disagreeing
+since F182, and nothing but reading them against each other would have found it. Entry 11 now records
+`veraz2026domain` and the correction, rather than the citation being quietly repointed.
+
+**2. The scope the paper never stated.** Every census in paper 3 is at the **raw domain** and the
+paper never said so, while paper 2 measures nine tokens of conditioning moving $\fpf$ across most of
+its range and changing the four-way class. Setup now carries both scope conditions together, because
+they bound every number in the paper. Same defect class as F182 item 1 — a scope caveat we published
+ourselves and did not repeat.
+
+**3. The qualifier E3 needed, and the inconsistency it created.** E3's claim, *at fixed corpus and
+fixed scale the class is not determined*, was silent about the domain being fixed too. It now says
+so, and says why that third condition is not a formality: unlike corpus and scale, the domain is
+**known to move this quantity**. What E3 establishes is non-determination **at one domain**, and
+whether the same seven models separate under a prefix is a different experiment, not a corollary.
+
+**Fixing the body then left the abstract at a lower precision than the paper.** The abstract stated
+E3 without the third condition, so abstract and body disagreed — an inconsistency created by the fix,
+not present before it. The abstract now records that the census is always unprompted and why that is
+a scope condition. This was **not on the resume list**; it is recorded here as a judgement call
+rather than a planned edit, and it is one edit to revert.
+
+**4. Packaging, with two checks paper 2's script does not have.** `make_arxiv_package.sh` builds the
+tarball, unpacks it into a clean directory, builds **from the tarball's own contents**, and inspects
+the result. Beyond paper 2's checks it requires that the shipped `.tex` begins with
+`\documentclass` and still carries its self-citations — because the drafting-header strip is the
+only transformation applied to the source, and **a strip that ate too much has no other symptom**:
+the tarball would still build, just as a different paper. Both were proved to fire by disabling the
+strip, which reports `DRAFTING NOTES: 1`, the wrong first line, and exits 1.
+
+**State.** 9 pages (from 8), 2 numbered tables, **11 works cited, 11 verified, 0 dangling, 0
+unledgered, 0 ledger orphans**. Builds with 0 undefined citations or references and 0 `\citepend`
+uses. The two hbox warnings are pre-existing: building the pre-edit tree puts them at lines 267 and
+310 against 285 and 328 now, exactly the shift the two new paragraphs add. The arXiv abstract field
+caps at 1,920 characters and the manuscript abstract is 2,184, so `SUBMISSION.md` carries a trimmed
+version with 40 characters to spare — paper 2's margin, for the reason paper 2 gave.
+
+**What is left is a decision, not work.** F180's open question — whether the one-funnel-family limit
+should be answered with a model rather than a sentence — is unchanged and is the author's.
+
+`paper3_arxiv/main.tex`, `refs.bib`, `CITATIONS.md`, `SUBMISSION.md`, `make_arxiv_package.sh`.
+
 ### F182 — review pass on the paper 3 draft: the scope statement I had dropped, the rule I never printed, and a decomposition that is arithmetic rather than rhetoric
 22 Aug 2026. Four items from a full read of the draft, all accepted, all text-only except one new
 guard. Three were omissions; the interesting one is that the paper was **understating** a result.
