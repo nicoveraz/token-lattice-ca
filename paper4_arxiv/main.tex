@@ -42,9 +42,11 @@ Independent Researcher, Chile\\
 \maketitle
 
 \begin{abstract}
-Black-box model identification is an established problem with established solutions, and every
-published feature set we know of scores supplied natural-language text. We ask what a model does on
-an input that is not text at all: its own token, twice. For each token $t$ in a vocabulary, read
+Black-box model identification is an established problem with established solutions, and they work
+by scoring a model's response to natural-language prompts. One line of work does feed models a
+degenerate input --- their own token, repeated --- but in order to find a failure mode rather than an
+identity. We take that same input and ask a different question of it: not whether the model gets
+stuck, but where it goes when it does not. For each token $t$ in a vocabulary, read
 $\arg\max p(\cdot \mid t, t)$ in a single forward pass. The resulting object is a map defined on the
 whole vocabulary, and it has two halves. The first --- which tokens are fixed points of that map ---
 is partially anticipated, and we report it as a \emph{failed} estimand: the natural distance on it is
@@ -53,13 +55,15 @@ against a precision floor of zero, and it attributes families at $0.5833$. The s
 map sends tokens that are \emph{not} fixed points, is not recorded in prior work; the one paper that
 had those tokens logged them as a zero. Pairing the comparison on the source token removes the
 cardinality confound by construction ($r$ from $0.9128$ to $-0.0932$) and attributes model families
-at $0.8333$ against a chance rate of $0.1389$ over $19$ models, seven tokenizer groups and several
-corpora. Two nulls clear it: frequency-matched destinations agree at $0.1429$, independent marginals
+at $0.8333$ --- twelve models scored against a pool of nineteen --- with a chance rate of
+$0.1389$, across seven tokenizer groups and several corpora. Two nulls clear it: frequency-matched destinations agree at $0.1429$, independent marginals
 at $0.0798$. Family predicts agreement better than tokenizer ($0.2031$ against $0.1205$), and
-recurrent architectures cluster at balanced accuracy $1.0$ against a majority rate of $0.7895$. We
+recurrent architectures cluster, at balanced accuracy $1.0$ against a majority rate of $0.7895$ and
+$0.90$ once each model's dominant destination is excluded, which is the figure we stand behind. We
 measure the robustness envelope rather than assume it: $8$-bit weight rounding moves the map less
 than deduplicating the training corpus does ($0.9018$ against $0.6353$), $4$-bit destroys it
-($0.0098$), and the numeric precision floor varies by model from $0.3458$ to $0.7089$, so every
+($0.0098$) under the weakest standard quantizer, which bounds that negative rather than generalising
+it, and the numeric precision floor varies by model from $0.3458$ to $0.7089$, so every
 robustness statement here is per-model. All estimands, thresholds and kill conditions were registered
 before the data, and the failed one is reported at the same length as the surviving one.
 \end{abstract}
