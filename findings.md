@@ -3645,6 +3645,120 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F185 — the discarded half of the measurement: escape destinations attribute families at 10/12 for zero forward passes, and the confidence threshold that fixes the noise floor destroys the signal with it
+24 Aug 2026. At every iteration this estimator has a distribution over ~50k tokens and keeps the
+argmax. Registered in `experiments/prereg_escape_rival.json` (frozen `cf1e02ff…`) and
+`experiments/prereg_escape_confidence.json` (frozen `43b8ee81…`), both committed before the numbers
+they govern. A structural check preceded the first freeze and is recorded inside it: **the rival and
+the escape are the same quantity split by the bit** — where a token does not self-continue its argmax
+is both — verified on $546823$ non-self-continuing tokens with zero exceptions. So the three
+candidate features were two runs, one of them free.
+
+**ARM 1 — escape destinations, zero forward passes, and a better instrument than F183's.**
+Sources are the $3471$ shared probe strings; destinations are compared as decoded **strings**, per
+the F166 inversion (ids within a model, strings across them).
+
+| | F183 self-continuation set | escape destinations |
+|---|---|---|
+| decisive pair vs floor | $2$ bits vs floor **$0$** | $0.6355$ vs floor $0.7127$ |
+| resolves below family? | no | yes, $1.27\times$ the floor |
+| cardinality confound | $r = 0.913$ | $r = -0.0932$ |
+| family attribution | $7/12$ | $\mathbf{10/12}$ |
+| forward passes | ~600k | **zero** |
+
+The ordering is the one an instrument should produce: floor $0.7127$ > decisive $0.6355$ > far
+$0.3393$–$0.3902$. **KD is the point.** Pairing by source token removed the cardinality confound *by
+construction* rather than by luck — $r$ went from $0.913$ to $-0.0932$. The scalar was not hiding in
+the metric this time.
+
+**The frequency discipline held twice.** Registered null (F171's band construction): decisive
+$0.6355$ against $0.1429$, sd $0.0056$. Not Zipf. A second null the prereg did not register was added
+because KE says the base rate is what must be beaten and every model sends a share between $0.177$ and $0.332$ of its
+escapes to one punctuation mark: under **independent marginals** the decisive pair would agree
+$0.0798$. Observed is eight times that.
+
+**ARM 2 — the rival and the top-k at the $59983$ self-continuing tokens.** 13 cells, 0 failures,
+oracle gaps at or near zero, so the rival is a rival of the same map whose bit selected it. KG does
+not fire: rival character classes are spread (punctuation $0.422$, whitespace, alnum), so the frozen
+partition has room to vary. **Q1 splits by family and survives its null in the direction that
+matters** — is the rival in the token's own character class?
+
+| family | Q1 rate | vs its own frequency-matched null |
+|---|---|---|
+| Pythia (5) | $0.5257$–$0.637$ | **100th percentile**, nulls $0.1569$–$0.2954$ |
+| GPT-Neo (3) | $0.1993$–$0.2674$ | 0th to 35th — at or **below** null |
+| RWKV (2) | $0.205$–$0.3293$ | one 100th, one **0th** |
+| Mamba (2) | $0.1703$–$0.2222$ | 0th and 21st |
+
+Q2 fired **KF on 57 of 78 pairs**, which the prereg wrote down in advance: Pythia has 8 to 39
+self-continuing tokens inside the shared probe set, so every Pythia pair was foreseen as NOT
+DECIDABLE. A foreseen null reported as foreseen is worth more than a small number presented as a
+result. Q3: median $p$ of the self-continuing token is $0.3222$–$0.4898$ for Pythia against
+$0.172$–$0.2549$ elsewhere.
+
+**THE CONFIDENCE ARM ANSWERS ITS QUESTION AND THEN TAKES THE ANSWER BACK.** The floor was wide —
+bfloat16 rounding of identical weights changed 29% of escape destinations — so the registered
+question was whether the flips are near-ties. **KB does not fire: they are.** The floor rises
+$0.7089 \to 0.8195 \to 0.995 \to 0.9983 \to 1.0$ across the $\tau$ ladder. But **KD fires**, and the
+derived resolution ladder shows what that costs:
+
+| $\tau$ | floor | decisive | resolution | $n$ |
+|---|---|---|---|---|
+| $0.0$ | $0.7089$ | $0.6355$ | $1.25\times$ | 3462 |
+| $0.1$ | $0.8195$ | $0.728$ | $1.51\times$ | 2526 |
+| $0.5$ | $0.995$ | $0.9412$ | $11.76\times$ | 1038 |
+| **$1.0$ (registered primary)** | $0.9983$ | $0.9981$ | $\mathbf{1.12\times}$ | 521 |
+| $2.0$ | $1.0$ | $1.0$ | — | 157, NOT DECIDABLE |
+
+**At the registered primary the decisive pair has become indistinguishable from numeric noise.**
+Thresholding cleans the floor by removing precisely the low-confidence escapes that carried the
+discrimination: decisive-minus-far separation degrades $0.2759 \to 0.1424$. Signal and noise live in
+the same place.
+
+**The ladder peaks at $\tau = 0.5$ at $11.76\times$, and that rung is not promoted.** The ladder was
+registered in full and $\tau = 1.0$ named primary *in advance*, precisely so that no rung would have
+to be chosen afterwards. Selecting $0.5$ now is the threshold-shopping registering it was meant to
+prevent. It is recorded as an observation needing its own pre-registered replication, and the primary
+verdict stands at $1.12\times$ — which is to say, at nothing.
+
+**A FREE CONTROL NEITHER PREREG REGISTERED, found by chasing a discrepancy.** Arm 1 put the floor at
+$0.7127$ and the confidence arm recomputed it at $0.7089$ on the same pair and the same $n$. That gap
+should not exist. The two runs compute the same top-1 on the same weights with the same estimator and
+differ **only in which tokens share a batch**, which changes the reduction order of the matmul —
+a hazard `selfcont_set.py` flagged in its oracle note and never measured.
+
+```
+  float32    0 of 18254 top-1s change across 5 cells   -- batch-invariant
+  bfloat16   163 of 3683 change (4.43%)                -- NOT batch-invariant
+```
+
+So the float32 estimator is reproducible against its own batching, which is **stronger** than the
+within-run determinism F183 asserted. The bf16 control is not, and that share of the "precision
+floor" is irreproducibility rather than precision. It is the smaller part — the floor disagrees on
+29% — so the floor stands, but it may no longer be quoted as pure precision.
+
+**Boundary.** 12 models, 4 families, **one corpus throughout**, so nothing here is a corpus effect
+and nothing here says anything about corpus. Both identification misses are Mamba landing on RWKV —
+recurrent on recurrent — so what is recovered may be closer to architecture class than to family, and
+the $10/12$ should not be quoted without that. Family is confounded with tokenizer. The confidence
+arm is six cells and four families are not represented in it. No p-value: the null percentiles are
+within-comparison controls, not inference about the cohort.
+
+**Refused, and recorded before the numbers.** The free version of the confidence test: thresholding
+on the stored margin would have cost nothing and measured confidence in *leaving rather than staying*,
+where what flips is *which destination wins*. No semantic reading of any token list — the
+character-class partition is mechanical, frozen before any string was read, and no sentence of the
+form "the model is attracted to X" is licensed by any of this. Quantization robustness remains
+**OWED**: bfloat16 is a far smaller perturbation than 4- or 8-bit.
+
+**THE PRIOR-ART RE-CHECK IS STILL OWED AND STILL BLOCKS WRITE-UP**, and F183's reason has not
+weakened: F95 cleared this programme on the ground that *iterated* probes are unanticipated, and the
+escape destination is one forward pass — the same forward pass as the bit. Neither iterates.
+
+`experiments/escape_destinations.py`, `experiments/rival_topk.py`, `experiments/rival_analysis.py`,
+`experiments/escape_confidence.py` → `results/escape_destinations.json`, `results/rival_topk_*.json`,
+`results/rival_analysis.json`, `results/escape_confidence.json`.
+
 ### F184 — paper 3 unparked: the ledger caught a self-citation pointing at the wrong paper of ours, and fixing E3's scope left the abstract behind
 23 Aug 2026. Paper 2 announced as **arXiv:2608.21315**, which was the only thing paper 3 was waiting
 for. `paper3_arxiv/PLAN.md` §7's four-item resume list is closed. Three of the four were as planned;
