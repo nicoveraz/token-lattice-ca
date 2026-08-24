@@ -1,0 +1,38 @@
+{
+ "name": "tau-replication-v1",
+ "status": "FROZEN before any held-out cell was measured.",
+ "plan_section": "paper 4. Decides the fate of the tau=0.5 rung recorded in F185.",
+ "epistemic_tier": "TIER 1 for the six held-out cells; none has an unmasked top-2 measurement.",
+
+ "what_this_is_about": "F185's confidence ladder was registered in full with tau=1.0 named PRIMARY in advance. At that primary the decisive pair reached resolution 1.12x -- indistinguishable from numeric noise. The ladder peaked at tau=0.5 at 11.76x. That rung was NOT promoted, and was recorded as an observation needing its own pre-registered replication before it could be a claim. This is that replication, and it is the only thing that can turn the observation into a claim or retire it.",
+
+ "the_prediction_registered_before_the_data": "On models NOT used to generate the observation, the resolution ladder is NON-MONOTONE with an interior peak: resolution(tau=0.5) > resolution(tau=0.0) AND resolution(tau=0.5) > resolution(tau=1.0).",
+
+ "held_out_cells": ["EleutherAI/pythia-160m", "EleutherAI/pythia-160m@bf16", "EleutherAI/pythia-1b",
+                    "state-spaces/mamba-130m-hf", "RWKV/rwkv-4-169m-pile", "EleutherAI/gpt-neo-1.3B"],
+ "why_these": "none appears in results/escape_confidence.json, whose six cells produced the observation. pythia-160m@bf16 is a NEW cell and supplies the precision floor this ladder is measured against.",
+
+ "pairs": {
+  "near": "EleutherAI/pythia-160m vs EleutherAI/pythia-1b",
+  "floor": "EleutherAI/pythia-160m float32 vs bfloat16",
+  "far": ["EleutherAI/pythia-160m vs state-spaces/mamba-130m-hf",
+          "EleutherAI/pythia-160m vs RWKV/rwkv-4-169m-pile",
+          "EleutherAI/pythia-160m vs EleutherAI/gpt-neo-1.3B"]
+ },
+ "A_LIMIT_OF_THIS_DESIGN_REGISTERED_NOW": "the near pair here is same-family-different-SCALE, not a matched corpus manipulation -- the cohort contains exactly one of those and it generated the observation. So this replicates the SHAPE of the ladder (does resolution peak at intermediate confidence?) and cannot replicate the deduped-pair number itself. A pass licenses 'the ladder is non-monotone on held-out models', never 'tau=0.5 resolves the deduped pair at 11.76x'.",
+
+ "thresholds": {"tau_ladder": [0.0, 0.1, 0.5, 1.0, 2.0], "min_shared_sources": 500},
+
+ "kill_conditions": {
+  "KR1_permanent_demotion": "if the registered prediction fails -- the ladder is monotone, or its peak is not at tau=0.5 -- the tau=0.5 rung is PERMANENTLY DEMOTED. It may then never be quoted as a claim in any write-up, and F185's entry gains a note saying the replication failed. Registered as the outcome, not as a disappointment.",
+  "KR2_thin": "any rung with fewer than 500 surviving shared sources is NOT DECIDABLE at that rung, and if tau=0.5 itself is not decidable the replication returns NOT DECIDABLE rather than a pass.",
+  "KR3_floor_degenerate": "if the float32/bfloat16 floor for pythia-160m is 1.0 at tau=0, there is no floor to resolve against and the ratio is undefined; the replication is then NOT DECIDABLE for want of a control."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value",
+  "no adjustment of the ladder, the prediction, or the 500-source floor after any value is seen",
+  "no promotion of any OTHER rung if tau=0.5 fails but a different one peaks -- that would be the same threshold-shopping one level down, and the registered prediction names tau=0.5 alone",
+  "no transfer of a pass to the deduped pair, per the design limit above"
+ ]
+}

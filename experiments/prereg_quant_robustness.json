@@ -1,0 +1,48 @@
+{
+ "name": "quant-robustness-v1",
+ "status": "FROZEN before any quantized cell was measured. A 256-token feasibility probe on pythia-70m preceded it and is recorded under what_was_looked_at_first; it established that offline quantization is possible and gave a rough magnitude, on a model and a source set neither arm uses.",
+ "plan_section": "paper 4. Discharges the obligation prereg_selfcont.json registered as OWED AND NOT RUN.",
+ "epistemic_tier": "TIER 1. No quantized cell exists for any model.",
+
+ "the_obligation_being_discharged": "prereg_selfcont.json registered quantization robustness as run-only-if-a-quantized-variant-is-cached, and none was, so it was left OWED with the note that argmax is brittle at near-ties and the margin field exists to support a threshold rule that had never been tested. F185 then tested that rule against BFLOAT16 and explicitly refused to call it a quantization test. This is the quantization test. bfloat16 does not discharge it: 4- and 8-bit are categorically larger perturbations and they are the deployment-relevant ones.",
+
+ "what_was_looked_at_first": {
+  "checked": "whether weight-only quantization is possible offline with no download and no new dependency, and roughly how large the effect is. pythia-70m, the first 256 token ids as sources, int8 moved 50 of 256 top-1s and int4 moved 247 of 256.",
+  "not_checked": "no cohort model, no probe source, no agreement, no pair, no floor.",
+  "consequence": "the arm is runnable without authorisation to download, and the perturbation is confirmed to be far larger than bfloat16's."
+ },
+
+ "quantizer": {
+  "method": "weight-only, symmetric, per-output-channel round-to-nearest (RTN). For each nn.Linear weight W: s = max|W| per output row / (2^(b-1) - 1), then W := round(W/s).clamp * s. Applied in place to a freshly loaded float32 model.",
+  "bit_widths": [8, 4],
+  "what_is_NOT_quantized": "nn.Embedding, LayerNorm, biases, and any module that is not nn.Linear. The per-model count of quantized Linear layers is recorded in the results file, because 'we quantized the model' is not a measurement and the module list is.",
+  "WHY_RTN_AND_THE_ASYMMETRY_THIS_CREATES": "RTN is the weakest standard quantizer -- GPTQ and AWQ use calibration data and preserve behaviour better. So RTN is a WORST CASE. Surviving RTN implies surviving a real calibrated quantizer; FAILING RTN does NOT imply failing GPTQ or AWQ. Every negative result from this arm is scoped by that asymmetry, and it is registered now so the scope cannot be forgotten if the result is bad.",
+  "what_this_is_still_not": "a real deployed quantized checkpoint, activation quantization, or a mixed-precision serving stack. It is weight rounding at two bit widths."
+ },
+
+ "cells": ["EleutherAI/pythia-410m", "EleutherAI/pythia-410m-deduped",
+           "state-spaces/mamba-370m-hf", "RWKV/rwkv-4-430m-pile", "EleutherAI/gpt-neo-125m"],
+ "sources": "the frozen probe intersection, as in arm 1, so the numbers are directly comparable to results/escape_destinations.json",
+
+ "estimands": {
+  "feature_B_quantization_floor": "agreement(fp32, quantized) on the escape destination for each cell at each bit width, computed exactly as arm 1's agreement: paired by source token, decoded strings.",
+  "feature_A_bit_vector_drift": "Hamming distance between the fp32 and quantized self-continuation bit vectors over the intersection.",
+  "the_comparison_that_gives_it_meaning": "arm 1 measured the decisive pair at 0.6355 and the bfloat16 floor at 0.7127. The question is where the quantization floor falls relative to the decisive pair."
+ },
+
+ "kill_conditions": {
+  "KQ1_eight_bit": "if agreement(fp32, int8) for pythia-410m is at or BELOW the decisive pair's fp32 agreement of 0.6355, then 8-bit weight rounding moves the escape destination at least as much as the corpus manipulation does. The fingerprint is then scoped to full precision and may not be claimed for quantized deployment. Registered before the run because it is the expensive outcome.",
+  "KQ2_four_bit": "the same test at 4 bits.",
+  "KQ3_asymmetry_binding_on_any_negative": "a KQ1 or KQ2 firing is scoped by the RTN asymmetry above: it shows the estimand does not survive the WEAKEST quantizer, which does not establish that it fails under GPTQ or AWQ. The finding must say so.",
+  "KQ4_anti_vacuity": "report the modal destination share of every quantized cell. If quantization collapses the destinations onto one token, a low agreement is that collapse and not a discrimination result.",
+  "KQ5_the_module_list_is_part_of_the_result": "the count of quantized Linear layers and the confirmation that embeddings were untouched are reported per cell. A quantization claim without them is not checkable."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value; five cells",
+  "no claim that surviving RTN establishes robustness to any particular deployed quantizer, only that it survives a worst case",
+  "no adjustment of the bit widths or the 0.6355 comparison point after any value is seen",
+  "no semantic reading of any destination",
+  "no claim that this closes the deployment question: activation quantization and real serving stacks remain untested and stay OWED"
+ ]
+}
