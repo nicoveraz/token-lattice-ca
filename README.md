@@ -1,6 +1,7 @@
 # token-lattice-ca
 
 [![arXiv](https://img.shields.io/badge/arXiv-2608.10986-b31b1b.svg)](https://arxiv.org/abs/2608.10986)
+[![arXiv](https://img.shields.io/badge/arXiv-2608.21315-b31b1b.svg)](https://arxiv.org/abs/2608.21315)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21880472.svg)](https://doi.org/10.5281/zenodo.21880472)
 
 Turn a language model into a **cellular automaton over token space**, then use it as a black-box
@@ -29,8 +30,9 @@ splits the instrument in two — the construction has more dynamic range than th
 attractor share passes every gate `λ_ca` fails. Source: [`paper_arxiv/`](paper_arxiv/).
 
 **Paper 2 — the domain.** *Prompt–Model Interaction Reaches the Fixed Points: a deterministic,
-task-free structural readout — and the factorizations of it that failed.* **Submission-ready, not
-yet submitted**, 11 pages; source in [`paper2_arxiv/`](paper2_arxiv/).
+task-free structural readout — and the factorizations of it that failed.* **Published:
+[arXiv:2608.21315](https://arxiv.org/abs/2608.21315)** (cs.CL, 21 Aug 2026), 11 pages; source in
+[`paper2_arxiv/`](paper2_arxiv/).
 
 Its subject is what the instrument is pointed at. That a prompt's effect is not a property of the
 prompt is established — but all of that evidence is about *task accuracy*, which cannot say whether
@@ -64,7 +66,7 @@ Nothing below is summarised twice. Each document is the authority for its own sc
 | [`critical_analysis.md`](critical_analysis.md) | The standing adversarial read of the programme. |
 | [`paper_arxiv/REVIEW.md`](paper_arxiv/REVIEW.md) | The audit that reshaped paper 1's claims. |
 | [`paper2_arxiv/CITATIONS.md`](paper2_arxiv/CITATIONS.md) | Paper 2's citation ledger: every cited work verified at source with the supporting quote recorded. |
-| [`paper2_arxiv/SUBMISSION.md`](paper2_arxiv/SUBMISSION.md) | Paper 2's arXiv metadata, and what is still owed before it can be submitted. |
+| [`paper2_arxiv/SUBMISSION.md`](paper2_arxiv/SUBMISSION.md) | Paper 2's arXiv metadata, and the record of what was decided at submission -- including two points raised and declined. |
 | [`paper3_arxiv/CITATIONS.md`](paper3_arxiv/CITATIONS.md) | Paper 3's citation ledger, same discipline: verification basis recorded per entry. |
 | [`paper3_arxiv/SUBMISSION.md`](paper3_arxiv/SUBMISSION.md) | Paper 3's arXiv metadata and the checks that gate its packaging script. |
 | `paper3_arxiv/PLAN.md` | **Deliberately not in this repository.** Paper 3's pre-registration record — its kill conditions, sequencing and exhibit order — kept local by author decision. Several frozen preregistrations under `experiments/` cite it by name in their `plan_section` field, and those files carry sha256 freezes that must not be edited, so the references remain and point at a document you will not find here. It is not withheld for double-blind or confidentiality reasons: it contains no paths, usernames or unpublished results, and everything it registered is reported in `findings.md` F172–F184. |
@@ -554,12 +556,19 @@ for 1B / gpt2-xl; all runs are resumable + `caffeinate`-wrapped).
 ## Citation
 
 **Paper 1 (the instrument)** — [arXiv:2608.10986](https://arxiv.org/abs/2608.10986), cs.CL,
-11 Aug 2026. Archived at [https://doi.org/10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472)
-(concept DOI — resolves to the latest version). `CITATION.cff` carries the machine-readable metadata.
+11 Aug 2026. DOI [10.48550/arXiv.2608.10986](https://doi.org/10.48550/arXiv.2608.10986).
+The repository itself is archived at
+[10.5281/zenodo.21880472](https://doi.org/10.5281/zenodo.21880472) — a *concept* DOI, which resolves
+to the latest archived version rather than to any one of them.
 
-**Paper 2 (the domain)** — not yet submitted, so **there is nothing to cite yet**. The source is in
-[`paper2_arxiv/`](paper2_arxiv/) and builds from this repository; cite paper 1 and the repository
-until paper 2 has an identifier of its own.
+**Paper 2 (the domain)** — [arXiv:2608.21315](https://arxiv.org/abs/2608.21315), cs.CL,
+21 Aug 2026. DOI [10.48550/arXiv.2608.21315](https://doi.org/10.48550/arXiv.2608.21315).
+Companion to paper 1; the source is in [`paper2_arxiv/`](paper2_arxiv/) and builds from this
+repository.
+
+`CITATION.cff` carries the machine-readable metadata: both papers under `identifiers`, each with its
+bare arXiv ID *and* its DOI, while `preferred-citation` stays pointed at paper 1 — that field names
+the citation for the **software**, not for the newest result.
 
 When citing a finding, carry its amendment with it: `findings.md` keeps retracted and corrected
 findings in place rather than deleting them, and several entries are corrections of other entries.
