@@ -1,0 +1,37 @@
+  intersection 3471 of 4090
+Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3180 > 2048). Running this sequence through the model will result in indexing errors
+  counts EleutherAI/gpt-neo-1.3B            45441 distinct ids
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3180 > 2048). Running this sequence through the model will result in indexing errors
+  counts EleutherAI/gpt-neo-125m            45441 distinct ids
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3180 > 2048). Running this sequence through the model will result in indexing errors
+  counts EleutherAI/gpt-neo-2.7B            45441 distinct ids
+  counts EleutherAI/pythia-160m             46031 distinct ids
+  counts EleutherAI/pythia-1b               46031 distinct ids
+  counts EleutherAI/pythia-410m             46031 distinct ids
+  counts EleutherAI/pythia-410m-deduped     46031 distinct ids
+  counts EleutherAI/pythia-70m              46031 distinct ids
+  counts RWKV/rwkv-4-169m-pile              46031 distinct ids
+  counts RWKV/rwkv-4-430m-pile              46031 distinct ids
+  counts state-spaces/mamba-130m-hf         46031 distinct ids
+  counts state-spaces/mamba-370m-hf         46031 distinct ids
+  decoded EleutherAI/gpt-neo-1.3B            50257
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  decoded EleutherAI/gpt-neo-125m            50257
+  decoded EleutherAI/gpt-neo-2.7B            50257
+  decoded EleutherAI/pythia-160m             50277
+  decoded EleutherAI/pythia-1b               50277
+  decoded EleutherAI/pythia-410m             50277
+  decoded EleutherAI/pythia-410m-deduped     50277
+  decoded EleutherAI/pythia-410m@bf16        50277
+  decoded EleutherAI/pythia-70m              50277
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  decoded RWKV/rwkv-4-169m-pile              50277
+  decoded RWKV/rwkv-4-430m-pile              50277
+  decoded state-spaces/mamba-130m-hf         50277
+  decoded state-spaces/mamba-370m-hf         50277
+
+ESCAPE DESTINATIONS (arm 1), registered in experiments/prereg_escape_rival.json (sha256 cf1e02ff90ad..., frozen before any destination was decoded). ZERO forward passes: the values were already stored as argmax_ids. Sources are the 3471 shared probe strings; destinations are compared as DECODED STRINGS, never ids, per the F166 inversion.  KB: the largest single-destination share in any model is 33.2%, below the registered 0.5, so the raw figure is primary.  DECISIVE PAIR pythia-410m vs -deduped: agreement 0.6355 over 3462 shared escaping sources (raw 0.6355, modal-excluded 0.6418 over 2303).  SHOULD BE FAR: vs mamba-370m-hf 0.3493; vs rwkv-4-430m-pile 0.3393; vs gpt-neo-125m 0.3902.  PRECISION FLOOR (fp32 vs bf16, same weights): 0.7127 over 3463 sources.  KC, AND FOR THIS ARM THE NULL IS THE TEST: the decisive pair's observed agreement 0.6355 against a frequency-matched null of 0.1429 (sd 0.0056, p95 0.1514), observed percentile 100.0.  KC does not fire: the agreement survives frequency matching.  KD: agreement correlates with destination diversity at r = -0.0932 across 66 pairs, below the registered 0.7.  IDENTIFICATION: rank-1 nearest neighbour by agreement puts 10 of 12 models beside their own family, 83% against a family-level chance of 22.7% and a majority-class rate of 42%; tie-aware 83%. FAMILY ATTRIBUTION, never instance identification.  REFUSALS, registered before the numbers: no p-value on the cohort (the null percentiles are within-comparison controls); no semantic reading of any token list; no cross-model comparison keyed on token id; no adjustment of any gate after the fact; no mechanistic claim. THE PRIOR-ART RE-CHECK OWED SINCE F183 IS STILL OWED and still blocks write-up.
+
+wrote results/escape_destinations.json

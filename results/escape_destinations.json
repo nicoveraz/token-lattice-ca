@@ -1,0 +1,619 @@
+{
+ "_preregistration_file": "experiments/prereg_escape_rival.json",
+ "_prereg_sha256": "cf1e02ff90ad674a3981bcaff3fed0bb6eee3bd680d32fd5574dedddca4752fc",
+ "_probe_strings_sha256": "df37c33a8fb02f194328a0032f944a4397647c2e3f1a26a45bde84b05d8e42c5",
+ "models": [
+  "EleutherAI/gpt-neo-1.3B",
+  "EleutherAI/gpt-neo-125m",
+  "EleutherAI/gpt-neo-2.7B",
+  "EleutherAI/pythia-160m",
+  "EleutherAI/pythia-1b",
+  "EleutherAI/pythia-410m",
+  "EleutherAI/pythia-410m-deduped",
+  "EleutherAI/pythia-70m",
+  "RWKV/rwkv-4-169m-pile",
+  "RWKV/rwkv-4-430m-pile",
+  "state-spaces/mamba-130m-hf",
+  "state-spaces/mamba-370m-hf"
+ ],
+ "n_probe_candidates": 4090,
+ "intersection_size": 3471,
+ "string_bridge_hazards": {
+  "EleutherAI/gpt-neo-1.3B": {
+   "destinations_with_leading_space": 791,
+   "destinations_non_ascii": 4,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/gpt-neo-125m": {
+   "destinations_with_leading_space": 979,
+   "destinations_non_ascii": 13,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "destinations_with_leading_space": 804,
+   "destinations_non_ascii": 8,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/pythia-160m": {
+   "destinations_with_leading_space": 1149,
+   "destinations_non_ascii": 6,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/pythia-1b": {
+   "destinations_with_leading_space": 1437,
+   "destinations_non_ascii": 6,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/pythia-410m": {
+   "destinations_with_leading_space": 1532,
+   "destinations_non_ascii": 2,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "destinations_with_leading_space": 1495,
+   "destinations_non_ascii": 7,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/pythia-410m@bf16": {
+   "destinations_with_leading_space": 1779,
+   "destinations_non_ascii": 1,
+   "destinations_empty_string": 0
+  },
+  "EleutherAI/pythia-70m": {
+   "destinations_with_leading_space": 1328,
+   "destinations_non_ascii": 3,
+   "destinations_empty_string": 0
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "destinations_with_leading_space": 918,
+   "destinations_non_ascii": 12,
+   "destinations_empty_string": 0
+  },
+  "RWKV/rwkv-4-430m-pile": {
+   "destinations_with_leading_space": 815,
+   "destinations_non_ascii": 9,
+   "destinations_empty_string": 0
+  },
+  "state-spaces/mamba-130m-hf": {
+   "destinations_with_leading_space": 828,
+   "destinations_non_ascii": 6,
+   "destinations_empty_string": 0
+  },
+  "state-spaces/mamba-370m-hf": {
+   "destinations_with_leading_space": 784,
+   "destinations_non_ascii": 3,
+   "destinations_empty_string": 0
+  }
+ },
+ "n_distinct_destination_strings": 1665,
+ "per_model": {
+  "EleutherAI/gpt-neo-1.3B": {
+   "n_escaping_sources": 2624,
+   "n_distinct": 424,
+   "modal_destination": ".",
+   "modal_share": 0.2431
+  },
+  "EleutherAI/gpt-neo-125m": {
+   "n_escaping_sources": 3195,
+   "n_distinct": 434,
+   "modal_destination": ".",
+   "modal_share": 0.2648
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "n_escaping_sources": 2837,
+   "n_distinct": 455,
+   "modal_destination": ".",
+   "modal_share": 0.2214
+  },
+  "EleutherAI/pythia-160m": {
+   "n_escaping_sources": 3461,
+   "n_distinct": 177,
+   "modal_destination": ".",
+   "modal_share": 0.2817
+  },
+  "EleutherAI/pythia-1b": {
+   "n_escaping_sources": 3458,
+   "n_distinct": 351,
+   "modal_destination": ".",
+   "modal_share": 0.1929
+  },
+  "EleutherAI/pythia-410m": {
+   "n_escaping_sources": 3463,
+   "n_distinct": 290,
+   "modal_destination": ".",
+   "modal_share": 0.1773
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "n_escaping_sources": 3463,
+   "n_distinct": 274,
+   "modal_destination": ",",
+   "modal_share": 0.192
+  },
+  "EleutherAI/pythia-70m": {
+   "n_escaping_sources": 3432,
+   "n_distinct": 177,
+   "modal_destination": ",",
+   "modal_share": 0.3007
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "n_escaping_sources": 3397,
+   "n_distinct": 569,
+   "modal_destination": ".",
+   "modal_share": 0.3318
+  },
+  "RWKV/rwkv-4-430m-pile": {
+   "n_escaping_sources": 3025,
+   "n_distinct": 514,
+   "modal_destination": ".",
+   "modal_share": 0.2936
+  },
+  "state-spaces/mamba-130m-hf": {
+   "n_escaping_sources": 2948,
+   "n_distinct": 340,
+   "modal_destination": ".",
+   "modal_share": 0.2775
+  },
+  "state-spaces/mamba-370m-hf": {
+   "n_escaping_sources": 2804,
+   "n_distinct": 415,
+   "modal_destination": ".",
+   "modal_share": 0.3149
+  },
+  "EleutherAI/pythia-410m@bf16": {
+   "n_escaping_sources": 3463,
+   "n_distinct": 234,
+   "modal_destination": ",",
+   "modal_share": 0.1952
+  }
+ },
+ "KB_fires": false,
+ "modal_share_max": 0.3318,
+ "decisive": {
+  "a": "EleutherAI/pythia-410m",
+  "b": "EleutherAI/pythia-410m-deduped",
+  "n_shared_sources": 3462,
+  "agreement_raw": 0.6355,
+  "n_shared_excl_modal": 2303,
+  "agreement_excl_modal": 0.6418,
+  "primary": 0.6355,
+  "KA_not_decidable": false
+ },
+ "should_be_far": [
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared_sources": 2803,
+   "agreement_raw": 0.3493,
+   "n_shared_excl_modal": 1741,
+   "agreement_excl_modal": 0.3906,
+   "primary": 0.3493,
+   "KA_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared_sources": 3024,
+   "agreement_raw": 0.3393,
+   "n_shared_excl_modal": 1931,
+   "agreement_excl_modal": 0.3661,
+   "primary": 0.3393,
+   "KA_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/gpt-neo-125m",
+   "n_shared_sources": 3191,
+   "agreement_raw": 0.3902,
+   "n_shared_excl_modal": 2106,
+   "agreement_excl_modal": 0.4345,
+   "primary": 0.3902,
+   "KA_not_decidable": false
+  }
+ ],
+ "control": {
+  "a": "EleutherAI/pythia-410m",
+  "b": "EleutherAI/pythia-410m@bf16",
+  "n_shared_sources": 3463,
+  "agreement_raw": 0.7127,
+  "n_shared_excl_modal": 2355,
+  "agreement_excl_modal": 0.7941,
+  "primary": 0.7127,
+  "KA_not_decidable": false
+ },
+ "frequency_null": {
+  "decisive": {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "observed": 0.6355,
+   "null_mean": 0.1429,
+   "null_sd": 0.0056,
+   "null_p95": 0.1514,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "far:state-spaces/mamba-370m-hf": {
+   "a": "EleutherAI/pythia-410m",
+   "b": "state-spaces/mamba-370m-hf",
+   "observed": 0.3493,
+   "null_mean": 0.1291,
+   "null_sd": 0.0059,
+   "null_p95": 0.1395,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "far:RWKV/rwkv-4-430m-pile": {
+   "a": "EleutherAI/pythia-410m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "observed": 0.3393,
+   "null_mean": 0.1221,
+   "null_sd": 0.0057,
+   "null_p95": 0.1306,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "far:EleutherAI/gpt-neo-125m": {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/gpt-neo-125m",
+   "observed": 0.3902,
+   "null_mean": 0.0136,
+   "null_sd": 0.0021,
+   "null_p95": 0.0169,
+   "observed_percentile": 100.0,
+   "draws": 200
+  }
+ },
+ "KC_fires": false,
+ "resolution_vs_precision_floor": {
+  "floor_disagreement": 0.2873,
+  "decisive": 1.27,
+  "should_be_far": {
+   "state-spaces/mamba-370m-hf": 2.26,
+   "RWKV/rwkv-4-430m-pile": 2.3,
+   "EleutherAI/gpt-neo-125m": 2.12
+  },
+  "_reading": "how many times further apart than the same weights at two numeric precisions. Derived from the registered agreements; not itself an estimand."
+ },
+ "independent_marginals_chance": {
+  "decisive": 0.0798,
+  "should_be_far": {
+   "state-spaces/mamba-370m-hf": 0.0833,
+   "RWKV/rwkv-4-430m-pile": 0.0809,
+   "EleutherAI/gpt-neo-125m": 0.088
+  },
+  "control": 0.0697,
+  "_status": "UNREGISTERED and descriptive. sum_d pA(d)pB(d) over the shared sources: what the pair would agree on if each drew independently from its own escape distribution."
+ },
+ "KD_cardinality": {
+  "n_pairs": 66,
+  "pearson": -0.0932,
+  "fires": false
+ },
+ "identification": {
+  "n": 12,
+  "rank1_same_family": 10,
+  "rank1_accuracy": 0.8333,
+  "tie_aware_accuracy": 0.8333,
+  "chance_family_level": 0.2273,
+  "chance_instance_level": 0.0909,
+  "majority_class_rate": 0.4167,
+  "family_counts": {
+   "GPT-Neo": 3,
+   "Pythia": 5,
+   "RWKV": 2,
+   "Mamba": 2
+  },
+  "balance": "family label is usable: {'GPT-Neo': 3, 'Pythia': 5, 'RWKV': 2, 'Mamba': 2}, minority class 2 >= 2. Chance is the majority-class rate 42%; report balanced accuracy against it, not raw agreement.",
+  "nearest_neighbour": {
+   "EleutherAI/gpt-neo-1.3B": {
+    "nearest": "EleutherAI/gpt-neo-2.7B",
+    "agreement": 0.5208,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/gpt-neo-125m": {
+    "nearest": "EleutherAI/gpt-neo-1.3B",
+    "agreement": 0.4756,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/gpt-neo-2.7B": {
+    "nearest": "EleutherAI/gpt-neo-1.3B",
+    "agreement": 0.5208,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/pythia-160m": {
+    "nearest": "EleutherAI/pythia-410m-deduped",
+    "agreement": 0.5564,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/pythia-1b": {
+    "nearest": "EleutherAI/pythia-410m",
+    "agreement": 0.6656,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/pythia-410m": {
+    "nearest": "EleutherAI/pythia-1b",
+    "agreement": 0.6656,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/pythia-410m-deduped": {
+    "nearest": "EleutherAI/pythia-410m",
+    "agreement": 0.6355,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "EleutherAI/pythia-70m": {
+    "nearest": "EleutherAI/pythia-160m",
+    "agreement": 0.5175,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "RWKV/rwkv-4-169m-pile": {
+    "nearest": "RWKV/rwkv-4-430m-pile",
+    "agreement": 0.4982,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "RWKV/rwkv-4-430m-pile": {
+    "nearest": "RWKV/rwkv-4-169m-pile",
+    "agreement": 0.4982,
+    "same_family": true,
+    "n_tied": 1,
+    "n_tied_same_family": 1
+   },
+   "state-spaces/mamba-130m-hf": {
+    "nearest": "RWKV/rwkv-4-430m-pile",
+    "agreement": 0.4659,
+    "same_family": false,
+    "n_tied": 1,
+    "n_tied_same_family": 0
+   },
+   "state-spaces/mamba-370m-hf": {
+    "nearest": "RWKV/rwkv-4-430m-pile",
+    "agreement": 0.4673,
+    "same_family": false,
+    "n_tied": 1,
+    "n_tied_same_family": 0
+   }
+  },
+  "_what_it_is_not": "FAMILY ATTRIBUTION, not instance identification -- refused before the run."
+ },
+ "agreement_matrix": {
+  "order": [
+   "EleutherAI/gpt-neo-1.3B",
+   "EleutherAI/gpt-neo-125m",
+   "EleutherAI/gpt-neo-2.7B",
+   "EleutherAI/pythia-160m",
+   "EleutherAI/pythia-1b",
+   "EleutherAI/pythia-410m",
+   "EleutherAI/pythia-410m-deduped",
+   "EleutherAI/pythia-70m",
+   "RWKV/rwkv-4-169m-pile",
+   "RWKV/rwkv-4-430m-pile",
+   "state-spaces/mamba-130m-hf",
+   "state-spaces/mamba-370m-hf"
+  ],
+  "matrix": [
+   [
+    0.0,
+    0.4756,
+    0.5208,
+    0.3627,
+    0.3784,
+    0.3524,
+    0.3476,
+    0.3195,
+    0.4452,
+    0.4531,
+    0.4228,
+    0.4291
+   ],
+   [
+    0.4756,
+    0.0,
+    0.4228,
+    0.4167,
+    0.4156,
+    0.3902,
+    0.3918,
+    0.3758,
+    0.462,
+    0.4264,
+    0.4333,
+    0.4163
+   ],
+   [
+    0.5208,
+    0.4228,
+    0.0,
+    0.3497,
+    0.3582,
+    0.3324,
+    0.3318,
+    0.2931,
+    0.4217,
+    0.4327,
+    0.402,
+    0.4093
+   ],
+   [
+    0.3627,
+    0.4167,
+    0.3497,
+    0.0,
+    0.541,
+    0.5454,
+    0.5564,
+    0.5175,
+    0.3784,
+    0.3688,
+    0.3959,
+    0.3693
+   ],
+   [
+    0.3784,
+    0.4156,
+    0.3582,
+    0.541,
+    0.0,
+    0.6656,
+    0.6163,
+    0.4494,
+    0.3808,
+    0.376,
+    0.3928,
+    0.3692
+   ],
+   [
+    0.3524,
+    0.3902,
+    0.3324,
+    0.5454,
+    0.6656,
+    0.0,
+    0.6355,
+    0.4659,
+    0.3449,
+    0.3393,
+    0.3616,
+    0.3493
+   ],
+   [
+    0.3476,
+    0.3918,
+    0.3318,
+    0.5564,
+    0.6163,
+    0.6355,
+    0.0,
+    0.4978,
+    0.3461,
+    0.3407,
+    0.3787,
+    0.349
+   ],
+   [
+    0.3195,
+    0.3758,
+    0.2931,
+    0.5175,
+    0.4494,
+    0.4659,
+    0.4978,
+    0.0,
+    0.3124,
+    0.3041,
+    0.3409,
+    0.3099
+   ],
+   [
+    0.4452,
+    0.462,
+    0.4217,
+    0.3784,
+    0.3808,
+    0.3449,
+    0.3461,
+    0.3124,
+    0.0,
+    0.4982,
+    0.4583,
+    0.4466
+   ],
+   [
+    0.4531,
+    0.4264,
+    0.4327,
+    0.3688,
+    0.376,
+    0.3393,
+    0.3407,
+    0.3041,
+    0.4982,
+    0.0,
+    0.4659,
+    0.4673
+   ],
+   [
+    0.4228,
+    0.4333,
+    0.402,
+    0.3959,
+    0.3928,
+    0.3616,
+    0.3787,
+    0.3409,
+    0.4583,
+    0.4659,
+    0.0,
+    0.4569
+   ],
+   [
+    0.4291,
+    0.4163,
+    0.4093,
+    0.3693,
+    0.3692,
+    0.3493,
+    0.349,
+    0.3099,
+    0.4466,
+    0.4673,
+    0.4569,
+    0.0
+   ]
+  ],
+  "_status": "DESCRIPTIVE; four comparisons were registered."
+ },
+ "verdict": "ESCAPE DESTINATIONS (arm 1), registered in experiments/prereg_escape_rival.json (sha256 cf1e02ff90ad..., frozen before any destination was decoded). ZERO forward passes: the values were already stored as argmax_ids. Sources are the 3471 shared probe strings; destinations are compared as DECODED STRINGS, never ids, per the F166 inversion.  KB: the largest single-destination share in any model is 33.2%, below the registered 0.5, so the raw figure is primary.  DECISIVE PAIR pythia-410m vs -deduped: agreement 0.6355 over 3462 shared escaping sources (raw 0.6355, modal-excluded 0.6418 over 2303).  SHOULD BE FAR: vs mamba-370m-hf 0.3493; vs rwkv-4-430m-pile 0.3393; vs gpt-neo-125m 0.3902.  PRECISION FLOOR (fp32 vs bf16, same weights): 0.7127 over 3463 sources.  KC, AND FOR THIS ARM THE NULL IS THE TEST: the decisive pair's observed agreement 0.6355 against a frequency-matched null of 0.1429 (sd 0.0056, p95 0.1514), observed percentile 100.0.  KC does not fire: the agreement survives frequency matching.  RESOLUTION AGAINST THAT FLOOR, derived: the decisive pair disagrees 1.27x as often as bfloat16 rounding of the same weights, against 2.26x (mamba-370m-hf), 2.3x (rwkv-4-430m-pile), 2.12x (gpt-neo-125m). So this estimand DOES resolve below family, modestly, where the self-continuation set of F183 gave a floor of exactly zero and could not.  AND A SECOND NULL THE PREREG DID NOT REGISTER, because KE says the base rate is what must be beaten here: if each model drew independently from its own escape distribution the decisive pair would agree 0.0798 of the time, against an observed 0.6355. Unregistered and descriptive.  KD: agreement correlates with destination diversity at r = -0.0932 across 66 pairs, below the registered 0.7.  IDENTIFICATION: rank-1 nearest neighbour by agreement puts 10 of 12 models beside their own family, 83% against a family-level chance of 22.7% and a majority-class rate of 42%; tie-aware 83%. FAMILY ATTRIBUTION, never instance identification.  REFUSALS, registered before the numbers: no p-value on the cohort (the null percentiles are within-comparison controls); no semantic reading of any token list; no cross-model comparison keyed on token id; no adjustment of any gate after the fact; no mechanistic claim. THE PRIOR-ART RE-CHECK OWED SINCE F183 IS STILL OWED and still blocks write-up.",
+ "_analysis_provenance": {
+  "script": "escape_destinations.py",
+  "sha256": "7c63675ca3c2dc405ba8b51ed29d9c323a6a945a1cd5dcafb7e0370f35cdda1a",
+  "imports": {
+   "experiments/escape_destinations.py": "7c63675ca3c2dc405ba8b51ed29d9c323a6a945a1cd5dcafb7e0370f35cdda1a",
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

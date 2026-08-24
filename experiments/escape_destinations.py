@@ -66,10 +66,15 @@ def load_cells():
     return cells
 
 
-def corpus_counts(models):
-    """Per-model token counts over the SAME corpus slice that defined the probe strings."""
+def corpus_counts(repo_ids):
+    """Token counts over the SAME corpus slice that defined the probe strings.
+
+    Keyed by REPO ID, not by cell key: the precision control is the same weights at a second dtype
+    and therefore the same tokenizer, so it reuses its base model's counts rather than trying to load
+    `pythia-410m@bf16` from the hub, which is not a repo id at all.
+    """
     cache = json.load(open(FREQ)) if FREQ.exists() else {}
-    todo = [m for m in models if m not in cache]
+    todo = [m for m in repo_ids if m not in cache]
     if todo:
         from datasets import load_dataset
         from transformers import AutoTokenizer
@@ -110,7 +115,8 @@ def main():
     res["intersection_size"] = int(len(idx))
 
     print(f"  intersection {len(idx)} of {len(strings)}", flush=True)
-    counts = corpus_counts(sorted(cells))
+    repo_of = {c: cells[c]["model"] for c in cells}
+    counts = corpus_counts(sorted(set(repo_of.values())))
 
     # decode each vocabulary once; the string bridge needs it and so does the frequency band
     vocab = {}
@@ -143,7 +149,7 @@ def main():
         esc[m], srcmask[m] = dest, bit0
         escv[m] = amax[tid]
         # frequency band, by RANK over this model's own corpus counts (F171's construction)
-        cm = counts[m]
+        cm = counts[repo_of[m]]
         V = len(vocab[m])
         cnt = np.zeros(V, np.int64)
         for k, v in cm.items():
@@ -249,6 +255,47 @@ def main():
     dec = nulls.get("decisive")
     res["KC_fires"] = bool(dec and dec["observed"] is not None and dec["observed"] <= dec["null_p95"])
 
+    # ---- derived from registered quantities, and a SECOND null the prereg did not register ----
+    # (a) Resolution against the precision floor, the analogue of F183's ratio. Agreement is a
+    #     similarity, so the comparable quantity is DISAGREEMENT: how much further apart is a pair
+    #     than the same weights read at two precisions? Derived, not a new estimand.
+    # (b) The registered null perturbs each destination inside its frequency BAND, which asks "is
+    #     the agreement about this token rather than about tokens of its frequency?" -- F171's
+    #     question. It does NOT ask what two models would agree by chance given their own escape
+    #     distributions, and with every model sending 18-33% of escapes to one punctuation mark that
+    #     base rate is not negligible. So the independent-marginals agreement, sum_d pA(d)pB(d), is
+    #     computed beside it. UNREGISTERED, descriptive, and it carries no verdict -- it is here
+    #     because KE says the base rate is the thing to beat on this arm.
+    cfloor = res["control"]
+    def ratio(r):
+        if not (r and cfloor and r["agreement_raw"] is not None
+                and cfloor["agreement_raw"] is not None):
+            return None
+        den = 1.0 - cfloor["agreement_raw"]
+        return None if den <= 0 else round((1.0 - r["agreement_raw"]) / den, 2)
+
+    def marginal_chance(a, b):
+        both = srcmask[a] & srcmask[b]
+        if int(both.sum()) == 0:
+            return None
+        ca = collections.Counter(esc[a][both].tolist())
+        cb = collections.Counter(esc[b][both].tolist())
+        n = int(both.sum())
+        return round(sum((ca[d] / n) * (cb[d] / n) for d in set(ca) | set(cb)), 4)
+
+    res["resolution_vs_precision_floor"] = dict(
+        floor_disagreement=round(1.0 - cfloor["agreement_raw"], 4) if cfloor else None,
+        decisive=ratio(res["decisive"]),
+        should_be_far={r["b"]: ratio(r) for r in res["should_be_far"]},
+        _reading="how many times further apart than the same weights at two numeric precisions. "
+                 "Derived from the registered agreements; not itself an estimand.")
+    res["independent_marginals_chance"] = dict(
+        decisive=marginal_chance(*DECISIVE),
+        should_be_far={p[1]: marginal_chance(*p) for p in FAR},
+        control=marginal_chance(*CONTROL),
+        _status="UNREGISTERED and descriptive. sum_d pA(d)pB(d) over the shared sources: what the "
+                "pair would agree on if each drew independently from its own escape distribution.")
+
     # ---- KD: F183's defect, checked for its sibling ----
     ags, cards = [], []
     for a, b in itertools.combinations(models, 2):
@@ -326,6 +373,19 @@ def _verdict(res):
         p.append("KC FIRES -- the escape destination carries no identity information beyond "
                  "frequency, and the finding is that null. " if res["KC_fires"] else
                  "KC does not fire: the agreement survives frequency matching. ")
+    rr = res["resolution_vs_precision_floor"]
+    mc = res["independent_marginals_chance"]
+    if rr["decisive"] is not None:
+        p.append(f"RESOLUTION AGAINST THAT FLOOR, derived: the decisive pair disagrees "
+                 f"{rr['decisive']}x as often as bfloat16 rounding of the same weights, against "
+                 + ", ".join(f"{v}x ({k.split('/')[-1]})" for k, v in rr["should_be_far"].items())
+                 + ". So this estimand DOES resolve below family, modestly, where the "
+                   "self-continuation set of F183 gave a floor of exactly zero and could not. ")
+    if mc["decisive"] is not None:
+        p.append(f"AND A SECOND NULL THE PREREG DID NOT REGISTER, because KE says the base rate is "
+                 f"what must be beaten here: if each model drew independently from its own escape "
+                 f"distribution the decisive pair would agree {mc['decisive']} of the time, against "
+                 f"an observed {res['decisive']['agreement_raw']}. Unregistered and descriptive. ")
     k = res["KD_cardinality"]
     p.append(f"KD: agreement correlates with destination diversity at r = {k['pearson']} across "
              f"{k['n_pairs']} pairs"
