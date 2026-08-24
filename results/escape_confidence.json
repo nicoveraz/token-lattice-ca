@@ -320,16 +320,58 @@
  ],
  "_primary_tau_is_still": 1.0,
  "_resolution_note": "The ladder was registered IN FULL and tau=1.0 was named PRIMARY in advance, precisely so that no rung has to be chosen after the fact. Reporting the whole ladder is not the same as selecting the best rung from it: any rung other than the registered primary is an observation that would need its own pre-registered replication before it is a claim.",
- "verdict": "ESCAPE CONFIDENCE, registered in experiments/prereg_escape_confidence.json (sha256 43b8ee81ffb8..., frozen before any unmasked top-2 existed). Six cells, 3471 shared probe sources. The quantity is top-1 minus top-2 of the UNMASKED distribution -- the thing that actually flips -- not the stored margin, which measures leaving rather than choosing and was refused in the prereg.  THE FLOOR ACROSS THE LADDER (pythia-410m fp32 vs bf16, identical weights): tau=0.0 0.7089 (n=3463); tau=0.1 0.8195 (n=2615); tau=0.5 0.995 (n=1205); tau=1.0 0.9983 (n=593); tau=2.0 1.0 (n=166, NOT DECIDABLE).  KB does not fire: the floor rises from 0.7089 to 1.0 across the ladder, so the flips are substantially near-ties.  THE DECISIVE PAIR: tau=0.0 0.6355 (n=3462); tau=0.1 0.728 (n=2526); tau=0.5 0.9412 (n=1038); tau=1.0 0.9981 (n=521); tau=2.0 1.0 (n=157, NOT DECIDABLE).  far vs mamba-370m-hf: 0.0:0.3493; 0.1:0.3995; 0.5:0.6254; 1.0:0.8315; 2.0:0.9697.  far vs rwkv-4-430m-pile: 0.0:0.3393; 0.1:0.3801; 0.5:0.587; 1.0:0.8232; 2.0:0.9574.  far vs gpt-neo-125m: 0.0:0.3902; 0.1:0.4442; 0.5:0.6784; 1.0:0.9124; 2.0:1.0.  KD, registered because it is the tempting half-report: decisive-minus-far separation is 0.2759 at tau=0 and 0.1424 at the primary tau=1.0. IT DEGRADES -- the threshold buys precision at the cost of discrimination, and the floor improvement may not be quoted without this.  RESOLUTION AGAINST THE FLOOR AT EACH RUNG, derived, and it moves OPPOSITE to KD's separation: tau=0.0 1.25x; tau=0.1 1.51x; tau=0.5 11.76x; tau=1.0 1.12x. The registered PRIMARY remains tau=1.0. Any other rung is an observation, not a claim: the ladder was registered in full so that no rung would have to be chosen after the fact, and choosing one now would be exactly the threshold-shopping that registering it was meant to prevent.  KC: modal-destination share among survivors is reported at every rung, so a rising agreement that is really a concentration onto one destination is visible.  REFUSALS: no p-value; no adjustment of the ladder or the 500-source floor; no claim that this makes the estimand quantization-robust -- bfloat16 is a far smaller perturbation and that test remains OWED; no semantic reading of any destination. THE PRIOR-ART RE-CHECK IS OWED AND BLOCKS WRITE-UP.",
+ "batch_invariance": {
+  "per_cell": {
+   "EleutherAI/pythia-410m": {
+    "n_sources": 3683,
+    "n_top1_differs": 0,
+    "rate": 0.0,
+    "dtype": "fp32"
+   },
+   "EleutherAI/pythia-410m-deduped": {
+    "n_sources": 3683,
+    "n_top1_differs": 0,
+    "rate": 0.0,
+    "dtype": "fp32"
+   },
+   "EleutherAI/pythia-410m@bf16": {
+    "n_sources": 3683,
+    "n_top1_differs": 163,
+    "rate": 0.044257,
+    "dtype": "bf16"
+   },
+   "state-spaces/mamba-370m-hf": {
+    "n_sources": 3683,
+    "n_top1_differs": 0,
+    "rate": 0.0,
+    "dtype": "fp32"
+   },
+   "RWKV/rwkv-4-430m-pile": {
+    "n_sources": 3683,
+    "n_top1_differs": 0,
+    "rate": 0.0,
+    "dtype": "fp32"
+   },
+   "EleutherAI/gpt-neo-125m": {
+    "n_sources": 3522,
+    "n_top1_differs": 0,
+    "rate": 0.0,
+    "dtype": "fp32"
+   }
+  },
+  "_what_differs": "identical weights, identical dtype, identical estimator; only the batch composition differs, which changes the reduction order of the matmul",
+  "_reading": "a nonzero rate means the estimand is not reproducible against its own batching, and any floor measured with that cell inherits the irreproducibility."
+ },
+ "verdict": "ESCAPE CONFIDENCE, registered in experiments/prereg_escape_confidence.json (sha256 43b8ee81ffb8..., frozen before any unmasked top-2 existed). Six cells, 3471 shared probe sources. The quantity is top-1 minus top-2 of the UNMASKED distribution -- the thing that actually flips -- not the stored margin, which measures leaving rather than choosing and was refused in the prereg.  THE FLOOR ACROSS THE LADDER (pythia-410m fp32 vs bf16, identical weights): tau=0.0 0.7089 (n=3463); tau=0.1 0.8195 (n=2615); tau=0.5 0.995 (n=1205); tau=1.0 0.9983 (n=593); tau=2.0 1.0 (n=166, NOT DECIDABLE).  KB does not fire: the floor rises from 0.7089 to 1.0 across the ladder, so the flips are substantially near-ties.  THE DECISIVE PAIR: tau=0.0 0.6355 (n=3462); tau=0.1 0.728 (n=2526); tau=0.5 0.9412 (n=1038); tau=1.0 0.9981 (n=521); tau=2.0 1.0 (n=157, NOT DECIDABLE).  far vs mamba-370m-hf: 0.0:0.3493; 0.1:0.3995; 0.5:0.6254; 1.0:0.8315; 2.0:0.9697.  far vs rwkv-4-430m-pile: 0.0:0.3393; 0.1:0.3801; 0.5:0.587; 1.0:0.8232; 2.0:0.9574.  far vs gpt-neo-125m: 0.0:0.3902; 0.1:0.4442; 0.5:0.6784; 1.0:0.9124; 2.0:1.0.  KD, registered because it is the tempting half-report: decisive-minus-far separation is 0.2759 at tau=0 and 0.1424 at the primary tau=1.0. IT DEGRADES -- the threshold buys precision at the cost of discrimination, and the floor improvement may not be quoted without this.  RESOLUTION AGAINST THE FLOOR AT EACH RUNG, derived, and it moves OPPOSITE to KD's separation: tau=0.0 1.25x; tau=0.1 1.51x; tau=0.5 11.76x; tau=1.0 1.12x. The registered PRIMARY remains tau=1.0. Any other rung is an observation, not a claim: the ladder was registered in full so that no rung would have to be chosen after the fact, and choosing one now would be exactly the threshold-shopping that registering it was meant to prevent.  A FREE CONTROL THE PREREG DID NOT REGISTER, and it bounds how the floor may be read: this run and selfcont_set.py compute the same top-1 on the same weights and differ only in which tokens share a batch. In float32 that changes 0 of 18254 top-1s across 5 cells -- the estimator is batch-invariant there. In bfloat16 it changes 163 of 3683 (4.43%). So the bf16 arm is not reproducible against its own batching, and that share of the floor is irreproducibility rather than precision. It is the smaller part: the floor's disagreement at tau=0 is far larger. Unregistered and descriptive.  KC: modal-destination share among survivors is reported at every rung, so a rising agreement that is really a concentration onto one destination is visible.  REFUSALS: no p-value; no adjustment of the ladder or the 500-source floor; no claim that this makes the estimand quantization-robust -- bfloat16 is a far smaller perturbation and that test remains OWED; no semantic reading of any destination. THE PRIOR-ART RE-CHECK IS OWED AND BLOCKS WRITE-UP.",
  "_analysis_provenance": {
   "script": "escape_confidence.py",
-  "sha256": "7056384590f93dd17ab5ab2c1030b321cf1561a3b42f91afed1281ab888121f5",
+  "sha256": "63b596512017e417468390c71364dc7d622330061f148b453032322cc5c0c004",
   "imports": {
    "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
    "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
    "experiments/argmax_census_templated.py": "59cc595273efb03e3975042c35a8ebdf79d7f7e679f041f23b99725c4fc86dba",
    "experiments/dev_transition_phase3.py": "c35271224968bcbcdcb67edea1fcdb704d5aa00548a348dc6cc1bf1431964988",
-   "experiments/escape_confidence.py": "7056384590f93dd17ab5ab2c1030b321cf1561a3b42f91afed1281ab888121f5",
+   "experiments/escape_confidence.py": "63b596512017e417468390c71364dc7d622330061f148b453032322cc5c0c004",
    "experiments/lyapunov.py": "fe0c0f745a441e7174e3d41060f89725b98456b98028b9ddf3ac9ebe43982e28",
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/newline_margin_freeze.py": "62890fb51ca550699f38624c9409c786c546fb7df66962921e0b151b742077bf",

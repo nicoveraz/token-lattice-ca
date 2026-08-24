@@ -105,11 +105,45 @@ def main():
         print(f"  {key:<34} n={len(ids):<6} escaping="
               f"{sum(cache[key]['escapes']):<6} ({cache[key]['secs']:.0f}s)", flush=True)
 
+    _batch_invariance(cache)
     _verdict(cache, failed, n_str)
 
 
+def _batch_invariance(cache):
+    """A free control the prereg did not register, and it changes how the floor must be read.
+
+    This run and selfcont_set.py compute the SAME top-1 on the SAME weights with the SAME estimator.
+    What differs is only WHICH TOKENS SHARE A BATCH -- the whole vocabulary in id order there, the
+    probe sources here -- which changes the floating-point reduction order in the matmul. That was
+    flagged as a hazard in selfcont_set.py's oracle note and never measured. It is measurable for
+    nothing now, and it must be measured, because if bfloat16 is not reproducible against its own
+    batching then part of the 'precision floor' is not precision at all.
+    """
+    out = {}
+    for k, c in cache.items():
+        f = _ROOT / "results" / f"selfcont_set_{k.replace('/', '__').replace('@', '__')}.json"
+        if not f.exists():
+            continue
+        a = np.array(json.load(open(f))["argmax_ids"], np.int64)[np.array(c["source_ids"])]
+        b = np.array(c["top1_id"], np.int64)
+        n = len(b)
+        d = int((a != b).sum())
+        out[k] = dict(n_sources=n, n_top1_differs=d, rate=round(d / n, 6), dtype=c["dtype"])
+    cache["_batch_invariance"] = dict(
+        per_cell=out,
+        _what_differs="identical weights, identical dtype, identical estimator; only the batch "
+                      "composition differs, which changes the reduction order of the matmul",
+        _reading="a nonzero rate means the estimand is not reproducible against its own batching, "
+                 "and any floor measured with that cell inherits the irreproducibility.")
+    json.dump(cache, open(CACHE, "w"))
+    print("\n  BATCH INVARIANCE (free, unregistered): " + "; ".join(
+        f"{k.split('/')[-1]} {v['n_top1_differs']}/{v['n_sources']} ({v['rate']:.4%}, {v['dtype']})"
+        for k, v in sorted(out.items())), flush=True)
+
+
 def _verdict(cache, failed, n_str):
-    keys = list(cache)
+    cache_ref = cache
+    keys = [k for k in cache if not k.startswith("_")]   # `_batch_invariance` is not a cell
     # shared source positions across all six cells, keyed by PROBE POSITION (the string bridge)
     shared = None
     for k in keys:
@@ -229,6 +263,22 @@ def _verdict(cache, failed, n_str):
              f"claim: the ladder was registered in full so that no rung would have to be chosen "
              f"after the fact, and choosing one now would be exactly the threshold-shopping that "
              f"registering it was meant to prevent. ")
+    bi = cache_ref.get("_batch_invariance", {}).get("per_cell", {}) if cache_ref else {}
+    if bi:
+        fp = [v for k, v in bi.items() if v["dtype"] == "fp32"]
+        bf = [v for k, v in bi.items() if v["dtype"] == "bf16"]
+        res["batch_invariance"] = cache_ref["_batch_invariance"]
+        p.append("A FREE CONTROL THE PREREG DID NOT REGISTER, and it bounds how the floor may be "
+                 "read: this run and selfcont_set.py compute the same top-1 on the same weights and "
+                 "differ only in which tokens share a batch. In float32 that changes "
+                 f"{sum(v['n_top1_differs'] for v in fp)} of {sum(v['n_sources'] for v in fp)} "
+                 f"top-1s across {len(fp)} cells -- the estimator is batch-invariant there. In "
+                 f"bfloat16 it changes {sum(v['n_top1_differs'] for v in bf)} of "
+                 f"{sum(v['n_sources'] for v in bf)} "
+                 f"({sum(v['n_top1_differs'] for v in bf)/max(1,sum(v['n_sources'] for v in bf)):.2%}). "
+                 "So the bf16 arm is not reproducible against its own batching, and that share of "
+                 "the floor is irreproducibility rather than precision. It is the smaller part: the "
+                 "floor's disagreement at tau=0 is far larger. Unregistered and descriptive. ")
     p.append("KC: modal-destination share among survivors is reported at every rung, so a rising "
              "agreement that is really a concentration onto one destination is visible. ")
     p.append("REFUSALS: no p-value; no adjustment of the ladder or the 500-source floor; no claim "
