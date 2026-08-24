@@ -54,10 +54,17 @@ pattern holds across the models people actually download and use.
 So we measured seventeen off-the-shelf models. The result is a counterexample rather than a theory:
 hold the training corpus fixed *and* hold the model size fixed, and models still land in different
 structural categories. Something on the weights side decides it, and we say plainly that we have not
-identified what. We also report the sharper thing we found by accident — six of seven models in one
-comparison arrive at the *same* token, and the ones that arrive there most strongly are among those
-that do not stay. Where a model goes and whether it stays are different questions, and only the
-second separates these models.
+identified what.
+
+We also report the sharper thing we found by accident, and it takes one sentence of setup. When we
+iterate a model's own top prediction from many random starting points, the trajectories tend to
+collect at a single token — and that destination is shared: in one seven-model comparison, six
+models collect at the same token, the newline (the "press Enter" character). What is not shared is
+what happens on arrival. Some models, sitting at that token, predict it again — so they repeat it
+forever; they stay. Others, sitting at the same token, predict something else — so they pass through
+and never settle. And these are not models that merely brush past it: two of them send more of their
+trajectories to that token than three of the four models that do stay. Where a model goes is shared
+across models; whether it stays put once it arrives is not. Only the second separates them.
 
 **The thread running through all three.** Each paper contains a result we did not want. Paper 1
 demoted one of our own measurements. Paper 2 withdrew five explanations, four of them within a
