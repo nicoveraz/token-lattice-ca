@@ -84,15 +84,20 @@ elements.
 | lineage transfer of fixed points, quoted verbatim | **LOCAL FULL TEXT** — *"once we identify a cycle in the base model for some LLM, we may transfer the same cycle to target a different aligned model"* |
 | non-halting requires generation, not a logit read | **LOCAL FULL TEXT** — the anomaly is defined by the model never sampling `<eos>` over many steps |
 | paper 1's 18/24, 11 endpoints, 74.4→24.1 | **SELF-CITATION**, read in `paper_arxiv/main.tex` in this repository |
-| agreement statistic is standard (Stemma, MPT) | **GATE FULL TEXT** (F186, `results/prior_art_selfcont_gate.json`) |
-| LOO family attribution published for a single-shot battery | **GATE FULL TEXT** (F186) |
+| agreement statistic is standard (Stemma Eq. 7, MPT's $\mu$) | **LOCAL FULL TEXT** — both fetched 24 Aug 2026; see `CITATIONS.md` entries 2 and 3 |
+| LOO family attribution published for a single-shot battery | **LOCAL FULL TEXT** — fetched; `CITATIONS.md` entry 4 |
 
-**Why the two GATE-basis entries are acceptable here and would not be elsewhere.** `CITATIONS.md`'s
-escalation rule exists to stop a citation being *over-read* — a claim resting on more than the source
-says. Both gate-basis citations are used to **concede** priority, not to claim it. Conceding on
-weaker evidence than you strictly need costs the reader nothing and costs us only credit we were not
-entitled to assume. They should still be fetched before submission, but nothing in the argument
-breaks if they turn out to concede too much.
+**All three gate-basis citations have since been fetched, and the fetch corrected the record twice.**
+The gate called Hammouri's five models commercial; two are open-weight. The gate quoted *One Token Is
+Enough* as "163 models"; the paper probes **165** and runs the family test on the **163 that have at
+least one same-family peer**. Both figures came from claims the verifiers had passed 3–0 — which is
+evidence about a claim's substance, not about the precision of every number attached to it. Nothing
+in the argument changed; two sentences would have been wrong.
+
+**One concession the fetch added.** `mpt2025` assesses its agreement against a set of **control
+models**, because "even two unrelated models might agree on some proportion of outputs by chance".
+That is structurally what our registered *should-be-far* pairs do. We arrived at it independently,
+but the shape is theirs first and the draft must not present it as an innovation.
 
 ## What these paragraphs may not say
 
@@ -120,7 +125,5 @@ Binding, from F186:
 }
 ```
 
-`veraz2026probes` (`2608.10986`) and `veraz2026domain` (`2608.21315`) already exist in
-`paper3_arxiv/refs.bib` and can be copied unchanged. `stemma2026` (`2607.25880`), `mpt2025`
-(`2502.00706`) and `onetoken2026` (`2607.10252`) need entries, and each needs its own `CITATIONS.md`
-row recording GATE basis until it is fetched.
+All six now exist in `paper4_arxiv/refs.bib`, and all six are ledgered in
+`paper4_arxiv/CITATIONS.md` at LOCAL FULL TEXT or SELF basis. No entry rests on the gate's summary.
