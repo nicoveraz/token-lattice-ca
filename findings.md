@@ -3645,6 +3645,89 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F188 — the widening: attribution survives at 6× chance, recurrent models do cluster, and family beats tokenizer — but the scored set never grew and the specified cohort could not have answered any of it
+24 Aug 2026. Registered in `experiments/prereg_escape_widening.json` (frozen `3c04677f…`) before any
+new cell. **19 models measured, 1 named failure, intersection $3355$ of $4090$, seven tokenizer
+groups, and corpus no longer held fixed.** Same estimator as F185; the twelve core cells are reused,
+never re-measured.
+
+**THE SPECIFIED COHORT WAS REFUSED, AND THE REFUSAL IS THE FIRST RESULT.** The plan was to run this
+on the 17-model census cohort — 7 families, 5 corpora. A tokenizer-and-manifest sweep, no weights
+loaded, found three independent blockers, and the first is decisive: **that cohort contains no
+recurrent models.** All 17 are transformers, so the architecture-class hypothesis — the entire reason
+for widening — would have had zero variance in its predictor. Its probe intersection is **$152$**,
+below the registered floor of $500$. Its families are singletons in 13 of 14 organisations, so
+leave-one-out attribution could not be scored for most of it. `LFM2-2.6B`'s tokenizer does not load,
+F171's `OSError` again. The run was not launched on it.
+
+| cohort | intersection |
+|---|---|
+| 12 Pile models (F185) | $3471$ |
+| 17-model census cohort, 16 loadable tokenizers | $\mathbf{152}$ |
+| …dropping `polyglot-ko-1.3b` alone | $1229$ |
+| the 20 actually specified | $3302$ |
+
+**One model with a 30k Korean vocabulary cost 88% of the probe set.** That is a general property of
+shared-string probe sets and it is now `R14` in the failure registry: the models that make a cohort
+linguistically diverse are the ones that destroy its common support, so diversity and coverage are
+not independent knobs. F171 is its second instance from the other end — `bloom-3b` and `polyglot-ko`
+were unmeasurable in English because their endpoints occur zero times there.
+
+**THE THREE REGISTERED GATES, ALL CLEARING.**
+
+| gate | result |
+|---|---|
+| **KW1** — was $10/12$ small-cohort luck? | **does not fire.** $10$ of $12$, $0.8333$, against a family-level chance of $0.1389$ — $6.0\times$ chance where F185's was $3.7\times$, because the candidate pool grew to 19 while the hits did not fall |
+| **KW2** — is architecture the story? | **does not fire.** Recurrent against transformer at balanced accuracy $1.0$, majority rate $0.7895$ |
+| **KW3** — does tokenizer beat family? | **does not fire.** Family lift $0.2031$ against tokenizer lift $0.1205$, across seven tokenizer groups |
+
+KW3 is the one that matters most, because F185 could only *disclose* it: eleven of its twelve models
+shared a GPT-NeoX or GPT-2 vocabulary, so family and tokenizer were the same variable. They are not
+here, and family wins.
+
+**WHAT THE WIDENING DID NOT WIDEN, and a reader will assume otherwise.** The candidate pool grew from
+12 to 19. The **scored set did not**: no new family reached two members, so the twelve models scored
+for attribution are *exactly* F185's twelve. And the recurrent class did not: `Zamba2-2.7B` failed to
+load (`ValueError`, KW6), and it was the informative cell — a hybrid Mamba/attention model,
+**pre-registered as RECURRENT before any distance was read**, precisely because a hybrid is where the
+hypothesis could be caught out. So **H\_arch is tested against seven new transformer distractors and
+against no new recurrent model: the four that generated the hypothesis are the four that test it.**
+The perfect separation must be read as that, and the loss is a loader failure rather than a design
+choice.
+
+**A DEFECT IN MY OWN PREREG, recorded because the rule it breaks is this project's own.** KW5 reads
+*"if one destination dominates"*. That is an adjective. Directions and thresholds here are numbers,
+and KW5 cannot fire mechanically. The nearest **registered** number is arm 1's KB at $0.50$, and this
+cohort trips it — `gemma-2-2b` sends $0.8832$ of its escapes to one destination. Every headline was
+therefore recomputed with each model's modal destination removed:
+
+```
+                       registered      modal-excluded
+  attribution           10/12  0.8333   9/12  0.75
+  architecture bal.acc         1.0            0.90
+  family lift                  0.2031         0.2013
+  tokenizer lift               0.1205         0.1166
+```
+
+**All three verdicts hold. The perfect $1.0$ does not**, and that is the honest headline for H\_arch:
+architecture separates well above its base rate and not perfectly.
+
+**Two more unregistered additions, both reporting discipline rather than new estimands.**
+*Re-baselining*: F185's numbers sit on a $3471$-string support and these on $3355$, so the same
+comparisons were recomputed here — decisive pair $0.6353$ ($n = 3351$) against F185's $0.6355$, far
+pairs $0.3508$, $0.3415$, $0.3926$. No number from one support may be quoted against the other.
+*Per-pair thinness*: `prereg_escape_rival` gated this per pair as KA and this prereg gates only the
+global index, so **18 pairs** fall below $500$ shared escaping sources — all involving models that
+rarely escape, `gemma-2-2b` most of all, which escapes on $433$ of $3355$.
+
+**Boundary.** Corpus now varies but is **not controlled**, so nothing here is a corpus result — the
+widening removed a limit on what can be said, not a confound. Family attribution is scored over
+models with a same-family peer, the convention `arXiv:2607.10252` uses. The recurrent class is four
+models from two families. `Zamba2` is owed. No p-value. F187's quantization envelope stands
+unchanged: 8-bit survivable, **4-bit fatal**, and every claim here inherits it.
+
+`experiments/escape_widening.py` → `results/escape_widening.json`.
+
 ### F187 — quantization: 8-bit survivable, 4-bit fatal, and the sparse-set Hamming would have reported the opposite; the τ=0.5 replication returns NOT DECIDABLE on a floor that vanished
 24 Aug 2026. Two obligations discharged. `prereg_quant_robustness.json` (frozen `728d162b…`) and
 `prereg_tau_replication.json` (frozen `5dccdb37…`), both committed before any cell existed.
