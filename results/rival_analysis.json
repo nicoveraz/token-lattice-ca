@@ -1,0 +1,1130 @@
+{
+ "_preregistration_file": "experiments/prereg_escape_rival.json",
+ "_prereg_sha256": "cf1e02ff90ad674a3981bcaff3fed0bb6eee3bd680d32fd5574dedddca4752fc",
+ "cells": [
+  "EleutherAI/gpt-neo-1.3B",
+  "EleutherAI/gpt-neo-125m",
+  "EleutherAI/gpt-neo-2.7B",
+  "EleutherAI/pythia-160m",
+  "EleutherAI/pythia-1b",
+  "EleutherAI/pythia-410m",
+  "EleutherAI/pythia-410m-deduped",
+  "EleutherAI/pythia-410m@bf16",
+  "EleutherAI/pythia-70m",
+  "RWKV/rwkv-4-169m-pile",
+  "RWKV/rwkv-4-430m-pile",
+  "state-spaces/mamba-130m-hf",
+  "state-spaces/mamba-370m-hf"
+ ],
+ "n_cells": 13,
+ "frozen_partition": [
+  "whitespace: the string is non-empty and every character is whitespace",
+  "punctuation: every character is ASCII, non-alphanumeric and non-whitespace",
+  "alnum_leading_space: the string starts with a single space and the remainder is non-empty ASCII alphanumeric",
+  "alnum_bare: the string is non-empty ASCII alphanumeric",
+  "other: everything else, including non-ASCII and mixed forms"
+ ],
+ "Q1_neighbourhood_homogeneity": {
+  "EleutherAI/gpt-neo-1.3B": {
+   "n": 20774,
+   "same_class": 4140,
+   "rate": 0.1993,
+   "not_decidable": false
+  },
+  "EleutherAI/gpt-neo-125m": {
+   "n": 5715,
+   "same_class": 1528,
+   "rate": 0.2674,
+   "not_decidable": false
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "n": 652,
+   "same_class": 136,
+   "rate": 0.2086,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-160m": {
+   "n": 141,
+   "same_class": 84,
+   "rate": 0.5957,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-1b": {
+   "n": 197,
+   "same_class": 118,
+   "rate": 0.599,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-410m": {
+   "n": 146,
+   "same_class": 93,
+   "rate": 0.637,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "n": 126,
+   "same_class": 72,
+   "rate": 0.5714,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-410m@bf16": {
+   "n": 137,
+   "same_class": 79,
+   "rate": 0.5766,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-70m": {
+   "n": 700,
+   "same_class": 368,
+   "rate": 0.5257,
+   "not_decidable": false
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "n": 1330,
+   "same_class": 438,
+   "rate": 0.3293,
+   "not_decidable": false
+  },
+  "RWKV/rwkv-4-430m-pile": {
+   "n": 6460,
+   "same_class": 1324,
+   "rate": 0.205,
+   "not_decidable": false
+  },
+  "state-spaces/mamba-130m-hf": {
+   "n": 10672,
+   "same_class": 1817,
+   "rate": 0.1703,
+   "not_decidable": false
+  },
+  "state-spaces/mamba-370m-hf": {
+   "n": 12933,
+   "same_class": 2874,
+   "rate": 0.2222,
+   "not_decidable": false
+  }
+ },
+ "class_tables": {
+  "EleutherAI/gpt-neo-1.3B": {
+   "token": {
+    "punctuation": 139,
+    "alnum_bare": 6336,
+    "other": 362,
+    "whitespace": 13,
+    "alnum_leading_space": 13924
+   },
+   "rival": {
+    "whitespace": 8762,
+    "punctuation": 6804,
+    "other": 212,
+    "alnum_leading_space": 2493,
+    "alnum_bare": 2503
+   }
+  },
+  "EleutherAI/gpt-neo-125m": {
+   "token": {
+    "alnum_bare": 2122,
+    "other": 180,
+    "punctuation": 79,
+    "whitespace": 9,
+    "alnum_leading_space": 3325
+   },
+   "rival": {
+    "punctuation": 2717,
+    "other": 175,
+    "whitespace": 1010,
+    "alnum_leading_space": 852,
+    "alnum_bare": 961
+   }
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "token": {
+    "punctuation": 1,
+    "alnum_bare": 321,
+    "whitespace": 3,
+    "alnum_leading_space": 301,
+    "other": 26
+   },
+   "rival": {
+    "whitespace": 213,
+    "punctuation": 242,
+    "alnum_bare": 80,
+    "alnum_leading_space": 108,
+    "other": 9
+   }
+  },
+  "EleutherAI/pythia-160m": {
+   "token": {
+    "punctuation": 33,
+    "whitespace": 7,
+    "alnum_leading_space": 10,
+    "other": 53,
+    "alnum_bare": 38
+   },
+   "rival": {
+    "alnum_bare": 32,
+    "punctuation": 49,
+    "other": 32,
+    "whitespace": 23,
+    "alnum_leading_space": 5
+   }
+  },
+  "EleutherAI/pythia-1b": {
+   "token": {
+    "other": 55,
+    "punctuation": 40,
+    "whitespace": 11,
+    "alnum_leading_space": 21,
+    "alnum_bare": 70
+   },
+   "rival": {
+    "other": 28,
+    "whitespace": 42,
+    "alnum_bare": 63,
+    "punctuation": 51,
+    "alnum_leading_space": 13
+   }
+  },
+  "EleutherAI/pythia-410m": {
+   "token": {
+    "punctuation": 39,
+    "whitespace": 11,
+    "alnum_bare": 55,
+    "other": 36,
+    "alnum_leading_space": 5
+   },
+   "rival": {
+    "other": 23,
+    "whitespace": 28,
+    "alnum_bare": 46,
+    "punctuation": 45,
+    "alnum_leading_space": 4
+   }
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "token": {
+    "punctuation": 36,
+    "whitespace": 10,
+    "alnum_bare": 45,
+    "other": 30,
+    "alnum_leading_space": 5
+   },
+   "rival": {
+    "other": 18,
+    "whitespace": 29,
+    "alnum_bare": 38,
+    "punctuation": 38,
+    "alnum_leading_space": 3
+   }
+  },
+  "EleutherAI/pythia-410m@bf16": {
+   "token": {
+    "punctuation": 36,
+    "whitespace": 11,
+    "alnum_bare": 54,
+    "other": 30,
+    "alnum_leading_space": 6
+   },
+   "rival": {
+    "other": 17,
+    "whitespace": 24,
+    "alnum_bare": 46,
+    "punctuation": 48,
+    "alnum_leading_space": 2
+   }
+  },
+  "EleutherAI/pythia-70m": {
+   "token": {
+    "punctuation": 83,
+    "whitespace": 27,
+    "other": 147,
+    "alnum_leading_space": 342,
+    "alnum_bare": 101
+   },
+   "rival": {
+    "whitespace": 99,
+    "alnum_bare": 137,
+    "punctuation": 199,
+    "alnum_leading_space": 175,
+    "other": 90
+   }
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "token": {
+    "punctuation": 70,
+    "whitespace": 18,
+    "alnum_leading_space": 719,
+    "other": 157,
+    "alnum_bare": 366
+   },
+   "rival": {
+    "other": 72,
+    "alnum_bare": 211,
+    "whitespace": 425,
+    "punctuation": 415,
+    "alnum_leading_space": 207
+   }
+  },
+  "RWKV/rwkv-4-430m-pile": {
+   "token": {
+    "punctuation": 109,
+    "whitespace": 21,
+    "alnum_leading_space": 4688,
+    "alnum_bare": 1398,
+    "other": 244
+   },
+   "rival": {
+    "other": 138,
+    "whitespace": 1998,
+    "punctuation": 2736,
+    "alnum_leading_space": 851,
+    "alnum_bare": 737
+   }
+  },
+  "state-spaces/mamba-130m-hf": {
+   "token": {
+    "alnum_bare": 3464,
+    "other": 856,
+    "punctuation": 288,
+    "whitespace": 36,
+    "alnum_leading_space": 6028
+   },
+   "rival": {
+    "alnum_bare": 1175,
+    "whitespace": 2471,
+    "other": 525,
+    "punctuation": 5722,
+    "alnum_leading_space": 779
+   }
+  },
+  "state-spaces/mamba-370m-hf": {
+   "token": {
+    "punctuation": 267,
+    "alnum_bare": 5456,
+    "other": 923,
+    "whitespace": 29,
+    "alnum_leading_space": 6258
+   },
+   "rival": {
+    "whitespace": 2714,
+    "punctuation": 6254,
+    "other": 607,
+    "alnum_leading_space": 1150,
+    "alnum_bare": 2208
+   }
+  }
+ },
+ "Q1_frequency_null": {
+  "EleutherAI/gpt-neo-1.3B": {
+   "observed": 0.1993,
+   "null_mean": 0.2496,
+   "null_sd": 0.0027,
+   "null_p95": 0.2537,
+   "observed_percentile": 0.0,
+   "draws": 200
+  },
+  "EleutherAI/gpt-neo-125m": {
+   "observed": 0.2674,
+   "null_mean": 0.2704,
+   "null_sd": 0.0052,
+   "null_p95": 0.2786,
+   "observed_percentile": 29.5,
+   "draws": 200
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "observed": 0.2086,
+   "null_mean": 0.2144,
+   "null_sd": 0.0148,
+   "null_p95": 0.2393,
+   "observed_percentile": 35.5,
+   "draws": 200
+  },
+  "EleutherAI/pythia-160m": {
+   "observed": 0.5957,
+   "null_mean": 0.1569,
+   "null_sd": 0.0283,
+   "null_p95": 0.1989,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "EleutherAI/pythia-1b": {
+   "observed": 0.599,
+   "null_mean": 0.2109,
+   "null_sd": 0.0268,
+   "null_p95": 0.249,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "EleutherAI/pythia-410m": {
+   "observed": 0.637,
+   "null_mean": 0.1902,
+   "null_sd": 0.0301,
+   "null_p95": 0.2466,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "observed": 0.5714,
+   "null_mean": 0.1864,
+   "null_sd": 0.0337,
+   "null_p95": 0.254,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "EleutherAI/pythia-410m@bf16": {
+   "observed": 0.5766,
+   "null_mean": 0.1919,
+   "null_sd": 0.028,
+   "null_p95": 0.2336,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "EleutherAI/pythia-70m": {
+   "observed": 0.5257,
+   "null_mean": 0.2954,
+   "null_sd": 0.0151,
+   "null_p95": 0.3171,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "observed": 0.3293,
+   "null_mean": 0.2668,
+   "null_sd": 0.0116,
+   "null_p95": 0.2857,
+   "observed_percentile": 100.0,
+   "draws": 200
+  },
+  "RWKV/rwkv-4-430m-pile": {
+   "observed": 0.205,
+   "null_mean": 0.2751,
+   "null_sd": 0.0049,
+   "null_p95": 0.2819,
+   "observed_percentile": 0.0,
+   "draws": 200
+  },
+  "state-spaces/mamba-130m-hf": {
+   "observed": 0.1703,
+   "null_mean": 0.2164,
+   "null_sd": 0.0034,
+   "null_p95": 0.222,
+   "observed_percentile": 0.0,
+   "draws": 200
+  },
+  "state-spaces/mamba-370m-hf": {
+   "observed": 0.2222,
+   "null_mean": 0.2253,
+   "null_sd": 0.0035,
+   "null_p95": 0.2308,
+   "observed_percentile": 21.0,
+   "draws": 200
+  }
+ },
+ "KG_partition_balance": {
+  "rival_class_totals": {
+   "whitespace": 17838,
+   "punctuation": 25320,
+   "other": 1946,
+   "alnum_leading_space": 6642,
+   "alnum_bare": 8237
+  },
+  "dominant": "punctuation",
+  "dominant_share": 0.4221,
+  "fires": false,
+  "_note": "if one class holds the rivals in every model there is no room to vary and any criterion with a shape on this quantity is vacuous."
+ },
+ "Q2_cross_model_rival_agreement": [
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/gpt-neo-125m",
+   "n_shared": 131,
+   "agreement": 0.3969,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/gpt-neo-2.7B",
+   "n_shared": 352,
+   "agreement": 0.3807,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/pythia-160m",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/pythia-1b",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/pythia-410m",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 13,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 58,
+   "agreement": 0.3621,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 232,
+   "agreement": 0.3793,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 255,
+   "agreement": 0.3412,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-1.3B",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 334,
+   "agreement": 0.3174,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/gpt-neo-2.7B",
+   "n_shared": 104,
+   "agreement": 0.2596,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/pythia-160m",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/pythia-1b",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/pythia-410m",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "n_shared": 3,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 26,
+   "agreement": 0.3846,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 77,
+   "agreement": 0.3117,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 100,
+   "agreement": 0.34,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-125m",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 117,
+   "agreement": 0.2991,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "EleutherAI/pythia-160m",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "EleutherAI/pythia-1b",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "EleutherAI/pythia-410m",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 13,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 54,
+   "agreement": 0.3889,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 225,
+   "agreement": 0.3733,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 233,
+   "agreement": 0.3262,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/gpt-neo-2.7B",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 295,
+   "agreement": 0.2915,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "EleutherAI/pythia-1b",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "EleutherAI/pythia-410m",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-160m",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "EleutherAI/pythia-410m",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 9,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 9,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-1b",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 10,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/pythia-410m-deduped",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m-deduped",
+   "b": "EleutherAI/pythia-410m@bf16",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m-deduped",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m-deduped",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m-deduped",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m-deduped",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 4,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m-deduped",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m@bf16",
+   "b": "EleutherAI/pythia-70m",
+   "n_shared": 8,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m@bf16",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 6,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m@bf16",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m@bf16",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 5,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-410m@bf16",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 7,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-70m",
+   "b": "RWKV/rwkv-4-169m-pile",
+   "n_shared": 10,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-70m",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 16,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-70m",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 13,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "EleutherAI/pythia-70m",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 13,
+   "agreement": null,
+   "KF_not_decidable": true
+  },
+  {
+   "a": "RWKV/rwkv-4-169m-pile",
+   "b": "RWKV/rwkv-4-430m-pile",
+   "n_shared": 57,
+   "agreement": 0.386,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "RWKV/rwkv-4-169m-pile",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 57,
+   "agreement": 0.3509,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "RWKV/rwkv-4-169m-pile",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 63,
+   "agreement": 0.3333,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "RWKV/rwkv-4-430m-pile",
+   "b": "state-spaces/mamba-130m-hf",
+   "n_shared": 206,
+   "agreement": 0.3932,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "RWKV/rwkv-4-430m-pile",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 247,
+   "agreement": 0.3846,
+   "KF_not_decidable": false
+  },
+  {
+   "a": "state-spaces/mamba-130m-hf",
+   "b": "state-spaces/mamba-370m-hf",
+   "n_shared": 286,
+   "agreement": 0.3636,
+   "KF_not_decidable": false
+  }
+ ],
+ "Q2_n_not_decidable": 57,
+ "Q3_topk_concentration": {
+  "EleutherAI/gpt-neo-1.3B": {
+   "n": 20774,
+   "p_top1_median": 0.2549,
+   "p_top1_q1": 0.1507,
+   "p_top1_q3": 0.4256,
+   "p_top8_median": 0.506,
+   "not_decidable": false
+  },
+  "EleutherAI/gpt-neo-125m": {
+   "n": 5715,
+   "p_top1_median": 0.1984,
+   "p_top1_q1": 0.1138,
+   "p_top1_q3": 0.3763,
+   "p_top8_median": 0.4337,
+   "not_decidable": false
+  },
+  "EleutherAI/gpt-neo-2.7B": {
+   "n": 652,
+   "p_top1_median": 0.1743,
+   "p_top1_q1": 0.1055,
+   "p_top1_q3": 0.2734,
+   "p_top8_median": 0.4105,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-160m": {
+   "n": 141,
+   "p_top1_median": 0.3624,
+   "p_top1_q1": 0.1535,
+   "p_top1_q3": 0.8047,
+   "p_top8_median": 0.6433,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-1b": {
+   "n": 197,
+   "p_top1_median": 0.4898,
+   "p_top1_q1": 0.186,
+   "p_top1_q3": 0.8391,
+   "p_top8_median": 0.6617,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-410m": {
+   "n": 146,
+   "p_top1_median": 0.4114,
+   "p_top1_q1": 0.1457,
+   "p_top1_q3": 0.8179,
+   "p_top8_median": 0.6059,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-410m-deduped": {
+   "n": 126,
+   "p_top1_median": 0.4505,
+   "p_top1_q1": 0.159,
+   "p_top1_q3": 0.7292,
+   "p_top8_median": 0.6323,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-410m@bf16": {
+   "n": 137,
+   "p_top1_median": 0.3222,
+   "p_top1_q1": 0.1163,
+   "p_top1_q3": 0.7163,
+   "p_top8_median": 0.4959,
+   "not_decidable": false
+  },
+  "EleutherAI/pythia-70m": {
+   "n": 700,
+   "p_top1_median": 0.2096,
+   "p_top1_q1": 0.0864,
+   "p_top1_q3": 0.6146,
+   "p_top8_median": 0.4725,
+   "not_decidable": false
+  },
+  "RWKV/rwkv-4-169m-pile": {
+   "n": 1330,
+   "p_top1_median": 0.172,
+   "p_top1_q1": 0.1044,
+   "p_top1_q3": 0.3568,
+   "p_top8_median": 0.4282,
+   "not_decidable": false
+  },
+  "RWKV/rwkv-4-430m-pile": {
+   "n": 6460,
+   "p_top1_median": 0.2092,
+   "p_top1_q1": 0.1279,
+   "p_top1_q3": 0.3552,
+   "p_top8_median": 0.472,
+   "not_decidable": false
+  },
+  "state-spaces/mamba-130m-hf": {
+   "n": 10672,
+   "p_top1_median": 0.1963,
+   "p_top1_q1": 0.1164,
+   "p_top1_q3": 0.3545,
+   "p_top8_median": 0.4429,
+   "not_decidable": false
+  },
+  "state-spaces/mamba-370m-hf": {
+   "n": 12933,
+   "p_top1_median": 0.2308,
+   "p_top1_q1": 0.1308,
+   "p_top1_q3": 0.4193,
+   "p_top8_median": 0.478,
+   "not_decidable": false
+  }
+ },
+ "family_balance": "family label is usable: {'GPT-Neo': 3, 'Pythia': 5, 'RWKV': 2, 'Mamba': 2}, minority class 2 >= 2. Chance is the majority-class rate 42%; report balanced accuracy against it, not raw agreement.",
+ "verdict": "RIVAL AND TOP-K at self-continuing tokens, registered in experiments/prereg_escape_rival.json (sha256 cf1e02ff90ad...). 13 cells, zero forward passes in this analysis. The character-class partition was frozen in the prereg before any rival string was read and is mechanical, not semantic.  KG (anti-vacuity): the rival classes across the cohort are {'whitespace': 17838, 'punctuation': 25320, 'other': 1946, 'alnum_leading_space': 6642, 'alnum_bare': 8237}, dominant 'punctuation' at 42.2%, below 0.90, so the partition has room to vary.  Q1, is the rival in the token's own character class: gpt-neo-1.3B 0.1993; gpt-neo-125m 0.2674; gpt-neo-2.7B 0.2086; pythia-160m 0.5957; pythia-1b 0.599; pythia-410m 0.637; pythia-410m-deduped 0.5714; pythia-410m@bf16 0.5766; pythia-70m 0.5257; rwkv-4-169m-pile 0.3293; rwkv-4-430m-pile 0.205; mamba-130m-hf 0.1703; mamba-370m-hf 0.2222.  AGAINST THE FREQUENCY-MATCHED NULL (F171's discipline, and the reason it is not optional): gpt-neo-1.3B obs 0.1993 vs null 0.2496 (pct 0.0); gpt-neo-125m obs 0.2674 vs null 0.2704 (pct 29.5); gpt-neo-2.7B obs 0.2086 vs null 0.2144 (pct 35.5); pythia-160m obs 0.5957 vs null 0.1569 (pct 100.0); pythia-1b obs 0.599 vs null 0.2109 (pct 100.0); pythia-410m obs 0.637 vs null 0.1902 (pct 100.0); pythia-410m-deduped obs 0.5714 vs null 0.1864 (pct 100.0); pythia-410m@bf16 obs 0.5766 vs null 0.1919 (pct 100.0); pythia-70m obs 0.5257 vs null 0.2954 (pct 100.0); rwkv-4-169m-pile obs 0.3293 vs null 0.2668 (pct 100.0); rwkv-4-430m-pile obs 0.205 vs null 0.2751 (pct 0.0); mamba-130m-hf obs 0.1703 vs null 0.2164 (pct 0.0); mamba-370m-hf obs 0.2222 vs null 0.2253 (pct 21.0).  Q2, do two models put the same string second: 57 of 78 pairs are NOT DECIDABLE under KF, which the prereg foresaw and wrote down before the run -- Pythia has 8 to 39 self-continuing tokens inside the shared probe set.  Decidable pairs: gpt-neo-1.3B~gpt-neo-125m 0.3969 (n=131); rwkv-4-430m-pile~mamba-130m-hf 0.3932 (n=206); gpt-neo-2.7B~rwkv-4-169m-pile 0.3889 (n=54); rwkv-4-169m-pile~rwkv-4-430m-pile 0.386 (n=57); gpt-neo-125m~rwkv-4-169m-pile 0.3846 (n=26); rwkv-4-430m-pile~mamba-370m-hf 0.3846 (n=247).  Q3, mass at the spike (median p of the self-continuing token): gpt-neo-1.3B 0.2549; gpt-neo-125m 0.1984; gpt-neo-2.7B 0.1743; pythia-160m 0.3624; pythia-1b 0.4898; pythia-410m 0.4114; pythia-410m-deduped 0.4505; pythia-410m@bf16 0.3222; pythia-70m 0.2096; rwkv-4-169m-pile 0.172; rwkv-4-430m-pile 0.2092; mamba-130m-hf 0.1963; mamba-370m-hf 0.2308.  REFUSALS: no semantic reading -- the partition is mechanical and frozen, and no sentence of the form 'the model is attracted to X' is licensed by any of this; no p-value; no cross-model comparison keyed on token id. THE PRIOR-ART RE-CHECK IS OWED AND BLOCKS WRITE-UP.",
+ "_analysis_provenance": {
+  "script": "rival_analysis.py",
+  "sha256": "55a74703d61b99c9c19627c1503d9b5532974ace61032432ce2863b918b6151a",
+  "imports": {
+   "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
+   "experiments/rival_analysis.py": "55a74703d61b99c9c19627c1503d9b5532974ace61032432ce2863b918b6151a",
+   "gatecheck/src/gatecheck/__init__.py": "ed4132151f75914fd259a940f5a116877eceabe7c8e463559930e41f01af106d",
+   "gatecheck/src/gatecheck/balance.py": "0dd0b61ddf9e48735715b283f771ad1539a69be26568dac5865c96becd082b85",
+   "gatecheck/src/gatecheck/discriminator.py": "cda8635314304b7959c2cde8ef275a9a08084cd85cdb8ef0522e21808fd88847",
+   "gatecheck/src/gatecheck/fits.py": "53e05cdd787eae16b1656b191a1e9341d9417f5792df72431a8d95d8aafc1a75",
+   "gatecheck/src/gatecheck/gate.py": "186f56c558e61e2abd054b221ad658d1962b3cd2426a5f9899834902bdfeb146",
+   "gatecheck/src/gatecheck/leverage.py": "9c650ea34a5b9ec8a1ffdbff01f69456fc5386cd3d22d16289c552019b848751",
+   "gatecheck/src/gatecheck/manifest.py": "1a877e7765f4bae07960f59f7426dfb327ab776e210d4b8cb46d1eaec5814785",
+   "gatecheck/src/gatecheck/nulltest.py": "aac07a4c87632fd63a2779b9a670d5b1c2a6ace3b689a60c1636449ae5606b82",
+   "gatecheck/src/gatecheck/prereg.py": "cce0328ac75f8ba175e40b0cc89cb9a8d40eabdb810086595d84e0d411aa1c49",
+   "gatecheck/src/gatecheck/provenance.py": "783d5e6e2e749a3b3eb388e975897f82754379d99355beb4820e59f805723fbc",
+   "gatecheck/src/gatecheck/ranking.py": "5aa7d0331af5f45aa24cc7b716cee80e0624b29172a627696c9ce9c3fb7f227e",
+   "gatecheck/src/gatecheck/results.py": "87fa8675ed17095ddfec61b7f9d7240cef68ada6cbcc13ab8e127b2c7044f954",
+   "gatecheck/src/gatecheck/state.py": "1f8ff949abaf3df3adc9546df66859b69d35b0c805b0b9792779e9b9f476bef0",
+   "gatecheck/src/gatecheck/units.py": "308a1a17a1cf1a44390ec3d7e9cd20a50975b608b5f33cef0f05996afcbe4175"
+  },
+  "env": {
+   "python": "3.11.5",
+   "implementation": "CPython",
+   "platform": "macOS-26.5.2-arm64-arm-64bit",
+   "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.13.0",
+    "jax": "0.10.2",
+    "transformers": "5.14.1",
+    "pandas": "3.0.3",
+    "matplotlib": "3.11.1"
+   }
+  },
+  "note": "sha256 of the analysis source at write time, plus the repo-local import closure. If any of these does not match the file on disk, the analysis was produced by a different version of the code -- re-run it before reading the numbers (issue #38; the imports half closes the same hole one level down the import graph). Third-party package versions are NOT covered."
+ }
+}

@@ -169,6 +169,30 @@ def _verdict(cache, failed, n_str):
                                          "KD requires this beside any floor improvement.")
     res["KD_trade"] = bool(sep0 is not None and sep_p is not None and sep_p < sep0)
 
+    # DERIVED from the registered agreements, and it answers a different question from KD's
+    # separation. Separation asks whether near still looks different from far. RESOLUTION asks
+    # whether the decisive pair still looks different from NUMERIC NOISE: how many times further
+    # apart is it than the same weights at two precisions, at the same tau. Both are reported
+    # because they can move in opposite directions, and here they do.
+    res["resolution_ladder"] = []
+    for tau in TAUS:
+        fr, dr = at(res["floor"]["rungs"], tau), at(res["decisive"]["rungs"], tau)
+        r = None
+        if fr and dr and fr["agreement"] is not None and dr["agreement"] is not None:
+            den = 1.0 - fr["agreement"]
+            r = None if den <= 1e-12 else round((1.0 - dr["agreement"]) / den, 2)
+        res["resolution_ladder"].append(dict(
+            tau=tau, floor_agreement=fr["agreement"] if fr else None,
+            decisive_agreement=dr["agreement"] if dr else None, resolution=r,
+            n_floor=fr["n"] if fr else 0, n_decisive=dr["n"] if dr else 0,
+            not_decidable=bool((fr and fr["not_decidable"]) or (dr and dr["not_decidable"]))))
+    res["_primary_tau_is_still"] = TAU_P
+    res["_resolution_note"] = (
+        "The ladder was registered IN FULL and tau=1.0 was named PRIMARY in advance, precisely so "
+        "that no rung has to be chosen after the fact. Reporting the whole ladder is not the same as "
+        "selecting the best rung from it: any rung other than the registered primary is an "
+        "observation that would need its own pre-registered replication before it is a claim.")
+
     p = [f"ESCAPE CONFIDENCE, registered in {PREREG} (sha256 {res['_prereg_sha256'][:12]}..., frozen "
          f"before any unmasked top-2 existed). Six cells, {len(shared)} shared probe sources. The "
          f"quantity is top-1 minus top-2 of the UNMASKED distribution -- the thing that actually "
@@ -196,6 +220,15 @@ def _verdict(cache, failed, n_str):
              + (". IT DEGRADES -- the threshold buys precision at the cost of discrimination, and "
                 "the floor improvement may not be quoted without this. " if res["KD_trade"] else
                 ", so discrimination survives the threshold. "))
+    rl = res["resolution_ladder"]
+    p.append("RESOLUTION AGAINST THE FLOOR AT EACH RUNG, derived, and it moves OPPOSITE to KD's "
+             "separation: " + "; ".join(
+                 f"tau={r['tau']} {r['resolution']}x" + (" (NOT DECIDABLE)" if r["not_decidable"] else "")
+                 for r in rl if r["resolution"] is not None) + ". "
+             f"The registered PRIMARY remains tau={TAU_P}. Any other rung is an observation, not a "
+             f"claim: the ladder was registered in full so that no rung would have to be chosen "
+             f"after the fact, and choosing one now would be exactly the threshold-shopping that "
+             f"registering it was meant to prevent. ")
     p.append("KC: modal-destination share among survivors is reported at every rung, so a rising "
              "agreement that is really a concentration onto one destination is visible. ")
     p.append("REFUSALS: no p-value; no adjustment of the ladder or the 500-source floor; no claim "

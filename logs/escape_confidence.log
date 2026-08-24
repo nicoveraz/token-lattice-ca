@@ -1,0 +1,27 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7633.99it/s]
+  EleutherAI/pythia-410m             n=3683   escaping=3675   (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6819.74it/s]
+  EleutherAI/pythia-410m-deduped     n=3683   escaping=3675   (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 13844.00it/s]
+  EleutherAI/pythia-410m@bf16        n=3683   escaping=3675   (25s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 6377.52it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  state-spaces/mamba-370m-hf         n=3683   escaping=2972   (274s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 46061.21it/s]
+  RWKV/rwkv-4-430m-pile              n=3683   escaping=3213   (16s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 7099.74it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/gpt-neo-125m            n=3522   escaping=3243   (4s)
+
+ESCAPE CONFIDENCE, registered in experiments/prereg_escape_confidence.json (sha256 43b8ee81ffb8..., frozen before any unmasked top-2 existed). Six cells, 3471 shared probe sources. The quantity is top-1 minus top-2 of the UNMASKED distribution -- the thing that actually flips -- not the stored margin, which measures leaving rather than choosing and was refused in the prereg.  THE FLOOR ACROSS THE LADDER (pythia-410m fp32 vs bf16, identical weights): tau=0.0 0.7089 (n=3463); tau=0.1 0.8195 (n=2615); tau=0.5 0.995 (n=1205); tau=1.0 0.9983 (n=593); tau=2.0 1.0 (n=166, NOT DECIDABLE).  KB does not fire: the floor rises from 0.7089 to 1.0 across the ladder, so the flips are substantially near-ties.  THE DECISIVE PAIR: tau=0.0 0.6355 (n=3462); tau=0.1 0.728 (n=2526); tau=0.5 0.9412 (n=1038); tau=1.0 0.9981 (n=521); tau=2.0 1.0 (n=157, NOT DECIDABLE).  far vs mamba-370m-hf: 0.0:0.3493; 0.1:0.3995; 0.5:0.6254; 1.0:0.8315; 2.0:0.9697.  far vs rwkv-4-430m-pile: 0.0:0.3393; 0.1:0.3801; 0.5:0.587; 1.0:0.8232; 2.0:0.9574.  far vs gpt-neo-125m: 0.0:0.3902; 0.1:0.4442; 0.5:0.6784; 1.0:0.9124; 2.0:1.0.  KD, registered because it is the tempting half-report: decisive-minus-far separation is 0.2759 at tau=0 and 0.1424 at the primary tau=1.0. IT DEGRADES -- the threshold buys precision at the cost of discrimination, and the floor improvement may not be quoted without this.  KC: modal-destination share among survivors is reported at every rung, so a rising agreement that is really a concentration onto one destination is visible.  REFUSALS: no p-value; no adjustment of the ladder or the 500-source floor; no claim that this makes the estimand quantization-robust -- bfloat16 is a far smaller perturbation and that test remains OWED; no semantic reading of any destination. THE PRIOR-ART RE-CHECK IS OWED AND BLOCKS WRITE-UP.
+
+wrote results/escape_confidence.json
