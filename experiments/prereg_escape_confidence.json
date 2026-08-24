@@ -1,0 +1,51 @@
+{
+ "name": "escape-confidence-v1",
+ "status": "FROZEN before any unmasked top-2 was measured. Arm 1 (results/escape_destinations.json) is complete and its numbers are known; what is NOT known and is registered here is anything about escape CONFIDENCE.",
+ "plan_section": "paper 4 / fingerprint. Follows the precision floor arm 1 measured.",
+ "epistemic_tier": "TIER 1. The unmasked top-2 at a source token has never been stored for any model.",
+
+ "the_problem_this_addresses": "Arm 1 found that bfloat16 rounding of IDENTICAL WEIGHTS changes 29% of escape destinations: agreement between pythia-410m at float32 and at bfloat16 is 0.7127, not 1.0. That is a wide noise floor, and it is the near-tie brittleness of argmax showing up in the estimand. The decisive pair's signal is 0.0772 of agreement against 0.2873 of floor disagreement, so the floor is nearly four times the signal. If the flips are near-ties, a confidence threshold should shrink the floor; if they are not, the brittleness is structural and no threshold fixes it.",
+
+ "why_the_cheap_version_was_refused": "The stored margin is logit(t | t,t) - max_{x != t} logit(x | t,t), which for an escaping token is confidence in LEAVING rather than staying. The quantity that flips under rounding is WHICH destination wins, i.e. top-1 against top-2 of the UNMASKED distribution. Thresholding on the stored margin would have been free and would have measured the wrong thing; it is refused here rather than run and reported as a threshold test.",
+
+ "measurement": {
+  "what": "for every source token t in the frozen probe intersection I, the unmasked top-2 ids and logits at the two-token state (t,t).",
+  "escape_confidence": "conf(t) = logit(top1) - logit(top2), defined only where top1 != t, i.e. where the token escapes.",
+  "cells": ["EleutherAI/pythia-410m", "EleutherAI/pythia-410m-deduped", "EleutherAI/pythia-410m@bf16",
+            "state-spaces/mamba-370m-hf", "RWKV/rwkv-4-430m-pile", "EleutherAI/gpt-neo-125m"],
+  "why_only_six": "these are exactly the cells arm 1's registered comparisons use -- the decisive pair, its precision control, and the three should-be-far models. The question is about the floor, and the floor is only defined where the control is. Restricting to the intersection rather than the whole vocabulary is what makes this 16 minutes instead of six hours, and the estimand was already defined on the intersection.",
+  "device": "CPU float32 except the bf16 control, exactly as the cells being explained were measured"
+ },
+
+ "thresholds": {
+  "tau_ladder": [0.0, 0.1, 0.5, 1.0, 2.0],
+  "tau_primary": 1.0,
+  "units": "logits, matching prereg_selfcont.json so the two ladders are comparable",
+  "min_shared_sources": 500
+ },
+
+ "questions": {
+  "Q1_does_the_floor_tighten": "agreement(pythia-410m fp32, pythia-410m bf16) restricted to sources where BOTH cells have conf >= tau, across the ladder. If the flips are near-ties this rises toward 1.0.",
+  "Q2_does_discrimination_survive": "the same restriction applied to the decisive pair and the three far pairs. Reported at every rung.",
+  "Q3_coverage": "the number of shared sources surviving each tau, per pair. A threshold that buys agreement by discarding almost everything has bought nothing."
+ },
+
+ "kill_conditions": {
+  "KA_thin": "at any tau, a pair with fewer than 500 surviving shared sources is NOT DECIDABLE at that tau and reports no agreement. Same floor as arm 1.",
+  "KB_not_near_ties": "if the precision floor does NOT rise between tau=0 and tau=2, the flipped destinations are not near-ties, the brittleness is structural, and no confidence threshold repairs this estimand. That is then the finding, and it is registered as an outcome rather than a disappointment.",
+  "KC_anti_vacuity": "report the modal-destination share among SURVIVING sources at every tau. If thresholding concentrates the survivors onto one destination, the rising agreement is that concentration and not confidence, and the modal-excluded figure becomes primary exactly as KB did in arm 1.",
+  "KD_the_trade_must_be_reported": "registered before the numbers because it is the tempting half-report: if the floor tightens while the decisive-versus-far separation DEGRADES, the threshold has bought precision at the cost of discrimination. The floor improvement may not be quoted without the separation alongside it.",
+  "KE_cohort": "a cell that fails is NAMED and the run continues."
+ },
+
+ "what_this_finally_tests": "prereg_selfcont.json registered quantization robustness as OWED AND NOT RUN, noting that argmax is brittle at near-ties and that the margin field exists to support a threshold rule -- a rule that has never been tested. This is the first test of it. It is still NOT a quantization test: bfloat16 rounding is a far smaller perturbation than 4- or 8-bit quantization, and that obligation stays open.",
+
+ "refusals_recorded_before_numbers": [
+  "no p-value; the cohort here is six cells and four families are not represented",
+  "no adjustment of the tau ladder, the primary tau, or the 500-source floor after any value is seen",
+  "no reporting of a tightened floor without the discrimination figures at the same tau (KD)",
+  "no claim that a threshold makes this estimand quantization-robust; that test remains owed",
+  "no semantic reading of any surviving destination",
+  "no write-up: the prior-art re-check owed since F183 is still owed and still blocks it"
+ ]
+}
