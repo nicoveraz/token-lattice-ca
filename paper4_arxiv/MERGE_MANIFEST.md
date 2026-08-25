@@ -1,6 +1,19 @@
 # Merge manifest — `paper4` → `main`
 
-**Prepared, not executed.** The merge is the author's act. Nothing here has been run against `main`
+> **EXECUTED 25 Aug 2026, on the author's instruction.** `paper4` fast-forwarded into `main` at
+> `52336d3`, the suite ran green on `main` (833 passed, 9 skipped), and `main` was pushed — 61
+> commits, `e8062ab..52336d3`. Two things this document did not anticipate, recorded here rather
+> than rewritten above. The privacy sweep below **asserted a check it had not run**: four files
+> carried `/Users/<name>/…`, none printed by our own code, and they were scrubbed in `52336d3`
+> before the push. And the release was **not** cut with the merge — paper 3 is on hold at arXiv, so
+> `v1.3.0` and paper 4's submission are both parked; the notes are written in `RELEASE_NOTES.md`
+> with the two lines the identifier will fill.
+>
+> **Merging was deliberately decoupled from submitting.** Publishing the evidence is the
+> precondition for submitting, not a decision to submit, and submitting a fourth paper while the
+> third sits under moderation review is the action most likely to lengthen that review.
+
+**Prepared, not executed** *(as written; see the banner above)*. The merge is the author's act. Nothing here has been run against `main`
 and no branch has been pushed. This exists so the decision can be made from facts rather than from a
 diff scrolled past at midnight.
 
