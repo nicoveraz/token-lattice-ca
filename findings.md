@@ -3645,6 +3645,158 @@ Each would have produced a difference of roughly the size F41 predicts for a rea
 coupling-invariance in general, and F41's absolute gap is untouched — this is about the relative
 reading only.
 
+### F190 — matched-entropy: the last open thread of the mechanism programme ends in vacuity, and the first reading of it said the opposite
+25 Aug 2026. `experiments/prereg_matched_entropy.json`, frozen as a draft on 12 Aug and unrun since,
+finally executed. It asked the cheapest remaining reduction of the prompt–model interaction to a
+scalar: **if the whole domain effect is entropy mediation, two prefixes matched in induced
+conditional-entropy shift must produce the same $\Delta\fpf$, whatever their content.**
+
+**The two-phase ordering, which is the part that would have been worth doing even had the result been
+clean.** The prereg's own note says a pairing chosen after seeing $\Delta\fpf$ would guarantee
+whichever answer was wanted. So phase 1 measured induced entropy, paired, hashed the pairing and
+**committed it in a tree containing no $\Delta\fpf$ at all** (`ea091f5`, pairing sha256
+`9f3012b7…`); phase 2 re-derived that hash and matched it before loading a single model. The ordering
+lives in the commit graph rather than in my discipline.
+
+Six models, six pairs, none unmatched — entropy shifts within $0.009$ to $0.072$ nats against the
+registered $0.10$ tolerance, every pair spanning two document types taken from the corpus's own
+`pile_set_name` rather than a label we invent. `Minerva-3B` was then excluded for memory: float32
+does not fit in 16 GB and a census cannot be batched, measured at resident set $1.58$ GB against a
+$12$ GB model, swap at $13481$ of $14336$ MB, and CPU advancing $17$ seconds per $120$ of wall clock.
+**Fourteen per cent efficiency, entirely paging, zero arms completed** — so nothing was discarded and
+no result could have influenced the exclusion. That exclusion is *unregistered*: this prereg predates
+the cohort-shrink clause the later ones carry, and it is recorded as unregistered rather than dressed
+as a gate.
+
+**THE FIRST READING WAS K2 HOLDS — 5 OF 5. IT WAS WRONG.**
+
+| model | raw $\fpf$ | $\fpf$ under A | under B | gap |
+|---|---|---|---|---|
+| `pythia-410m-deduped` | $0.4271$ | $0.0$ | $0.0$ | $0.0$ |
+| `SmolLM-1.7B` | $0.5625$ | $0.0$ | $0.0$ | $0.0$ |
+| `Qwen1.5-1.8B` | $0.5104$ | $0.0104$ | $0.0$ | $0.0104$ |
+| `Qwen2.5-1.5B-Instruct` | $0.5729$ | $0.0$ | $0.0$ | $0.0$ |
+| `Falcon3-1B-Base` | $0.224$ | $0.0$ | $0.0$ | $0.0$ |
+
+Every gap is at or near zero, comfortably inside every model's tolerance, and read as a majority it
+says matched entropy produces matched $\Delta\fpf$ — entropy mediation surviving as a reduction of
+the interaction to a scalar. **Look at the arms instead of the gaps and it evaporates.** Both prefixes
+drive $\fpf$ to *zero* in every model. They agree because the measurement is **censored at the
+floor**, not because the entropy matching worked. Two arms pinned to the same wall agree exactly as
+trivially as two arms that never moved.
+
+**THE GATE DID NOT IMPLEMENT THE RULE THE PREREG STATES, AND THAT IS THE FINDING ABOUT US.** The
+prereg's anti-vacuity clause requires that *"the model has headroom on the side the effect moves"*. I
+coded it as requiring the **raw** arm to sit at a boundary — which is the wrong test, because raw
+sits mid-range here at $0.224$–$0.5729$ while both **arms** land on zero. The corrected gate takes
+the direction the effect moves and asks whether both arms are on *that* boundary. Five of five are
+censored at the floor, **zero models are readable, and K3 fires: NOT DECIDABLE.**
+
+**So the comparison cannot separate H1 from H2**, and the reason is not that entropy mediation is
+false — it is that these prefixes saturate the readout before the question can be asked. A prefix
+that moves $\fpf$ from $0.57$ to $0$ has left no room for a second prefix to differ from it.
+
+**The shape of this ending is the programme's own defect class eating the experiment the programme
+designed.** R1 is *a criterion with a shape applied to a quantity with no room to vary*, and it is the
+error this ledger has recorded more often than any other. Here it arrived through a gate written
+specifically to prevent it, because the gate tested the wrong quantity for headroom. A registry entry
+does not immunise you against its own class; it only means that when the class arrives you have the
+vocabulary to recognise it — which is what happened, one reading late.
+
+**What this closes and does not close.** The paper-2 mechanism thread had one untested reduction left
+and it is now untestable *with these prefixes*: matched-entropy pairs drawn from the Pile by index at
+nine tokens saturate the readout. A future attempt needs prefixes chosen for **partial** effect — the
+anti-vacuity condition promoted from a filter applied afterwards to a *constraint on selection*,
+which is the design change this failure argues for. Entropy mediation itself is neither supported nor
+refuted.
+
+**Boundary.** Five readable-cohort models, one excluded for memory, one prefix pair per model, one
+length, one corpus of prefixes. No significance test — a paired test on six models cannot fail
+informatively, which was registered as a refusal before the numbers. **The prior-art gate for
+greedy-decoding degeneration and repetition self-reinforcement is OWED** before any entropy-mediation
+claim could be written up; it is moot for now, because there is no claim to write.
+
+`experiments/matched_entropy_pairing.py`, `experiments/matched_entropy.py` →
+`results/matched_entropy_pairing.json`, `results/matched_entropy.json`.
+
+### F189 — the envelope arms: the τ=0.5 rung is RETIRED rather than unreplicated, and granularity is not what killed 4-bit
+25 Aug 2026. Two arms run after paper 4's draft existed, both registered before their cells, and both
+answering questions the draft had left as hedges. `experiments/prereg_floor_survey.json` (frozen
+`05bc8157…`) and `experiments/prereg_quant_grouped.json` (frozen `953d354e…`).
+
+**THE FLOOR SURVEY: KF1 FIRES, AND THE RUNG IS RETIRED.** F185's ladder peaked at $\tau = 0.5$ with
+resolution $11.76\times$ and that rung was never promoted; its registered replication returned
+\textsc{not decidable} under KR3 because the held-out floor reached $1.0$, leaving nothing to resolve
+against. Two models, both degenerate, and the open question was whether that is a property of *those
+two models* or of *the estimand*. Six more floors settle it.
+
+| model | floor at $\tau = 0.5$ |
+|---|---|
+| `gpt-neo-125m` | $1.0$ |
+| `gpt-neo-1.3B` | $1.0$ |
+| `pythia-70m` | $1.0$ (n = 254, NOT DECIDABLE) |
+| `pythia-160m` | $1.0$ (reused) |
+| `pythia-1b` | $1.0$ |
+| `pythia-410m` | $0.995$ (reused) |
+| `rwkv-4-430m-pile` | $1.0$ |
+| `mamba-130m-hf` | $1.0$ |
+
+**Every floor in the cohort is at or above the registered $0.99$.** The resolution ratio has no stable
+denominator anywhere, so $11.76\times$ may never be quoted — and this is a *stronger* retirement than
+the replication's \textsc{not decidable}: the rung is not unreplicated on one pair, it is
+**unresolvable on this estimand**. KF1 named that outcome before the six new floors were measured.
+
+**The refusal held, and it is the part worth keeping.** KF2 did not fire, but the prereg said that
+*even if a usable floor turned up*, the replication would not be run here — a model chosen because
+its floor proved usable is a model chosen on the data, and running there would be the threshold
+shopping the ladder was registered to prevent. It would have named the model and stopped.
+
+**AND THE SPREAD IS FAR WIDER THAN F187 SAW.** At $\tau = 0$ the floors run **$0.201$ to $0.9778$**
+across six models, against the $0.3458$–$0.7089$ that two models had suggested. Bfloat16 rounding
+changes four fifths of one model's escape destinations and one fiftieth of another's. Both earlier
+preregistrations had treated a single model's floor as *the* floor; it is not, and every per-model
+robustness statement rests on this spread instead.
+
+**GROUPED QUANTIZATION: KG1 FIRES, AND THE 4-BIT NEGATIVE IS NOW LOCATED RATHER THAN MERELY SCOPED.**
+F187 quantized with per-output-channel round-to-nearest and registered the asymmetry that follows —
+RTN is the weakest standard quantizer, so failing it does not imply failing a calibrated one. But
+per-channel RTN is also the *coarsest granularity possible*, and nothing deployed uses it: GPTQ, AWQ
+and bitsandbytes all quantize over groups of $128$ input channels. The $4$-bit negative therefore
+confounded granularity with calibration. This separates them by changing granularity and nothing
+else.
+
+| cell | grouped $g=128$ | per-channel |
+|---|---|---|
+| `pythia-410m` int8 | $0.9121$ | $0.9018$ |
+| `pythia-410m-deduped` int8 | $0.9475$ | $0.8966$ |
+| `rwkv-4-430m` int8 | $0.9608$ | $0.9508$ |
+| `gpt-neo-125m` int8 | $0.8175$ | $0.7734$ |
+| `mamba-370m` int8 | $0.5498$ | $0.4606$ |
+| **`pythia-410m` int4** | $\mathbf{0.1812}$ | $0.0098$ |
+
+**KG3 passed as the correctness check it was registered to be**: every grouped 8-bit cell is *above*
+its per-channel counterpart, which it must be, since grouping is strictly finer. A quantizer whose
+finer setting scored worse would have been an implementation error reported as a finding, and that is
+what KG3 exists to stop.
+
+**KG1 fires.** Grouped $4$-bit reaches $0.1812$, still far below the $0.6355$ that deduplicating the
+training corpus produces. Grouping buys an order of magnitude over $0.0098$ and **still fails by a
+factor of three and a half**. Granularity is not what killed $4$-bit. The paper's full-precision
+scoping stands, and it stands on a firmer footing than before: the negative is no longer merely
+bounded by "the weakest quantizer", it is attributed.
+
+**What remains owed, narrowed rather than closed.** Grouping is not calibration. GPTQ compensates
+quantization error with a Hessian-based update and AWQ with activation-aware scaling, and neither is
+implemented here. The owed item survives as **calibration alone**; activation quantization and real
+serving stacks are untouched.
+
+**Boundary.** Eight floors and five quantization cells, one machine, one quantizer family. No
+p-value. Feature A is reported as a kept fraction throughout and never as a Hamming count, which is
+R13's rule and the one F187 had to learn when $8$ of $3471$ turned out to be total loss.
+
+`experiments/floor_survey.py`, `experiments/quant_grouped.py` → `results/floor_survey.json`,
+`results/quant_grouped.json`.
+
 ### F188 — the widening: attribution survives at 6× chance, recurrent models do cluster, and family beats tokenizer — but the scored set never grew and the specified cohort could not have answered any of it
 24 Aug 2026. Registered in `experiments/prereg_escape_widening.json` (frozen `3c04677f…`) before any
 new cell. **19 models measured, 1 named failure, intersection $3355$ of $4090$, seven tokenizer
