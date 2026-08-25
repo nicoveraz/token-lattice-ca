@@ -1,0 +1,43 @@
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 8660.83it/s]
+  EleutherAI/pythia-410m@int8g128            lin=97   (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 17232.34it/s]
+  EleutherAI/pythia-410m@int4g128            lin=97   (7s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6822.59it/s]
+  EleutherAI/pythia-410m-deduped@int8g128    lin=97   (8s)
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 12590.46it/s]
+  EleutherAI/pythia-410m-deduped@int4g128    lin=97   (7s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 6244.74it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  state-spaces/mamba-370m-hf@int8g128        lin=193  (272s)
+Loading weights:   0%|          | 0/482 [00:00<?, ?it/s]Loading weights: 100%|██████████| 482/482 [00:00<00:00, 18921.38it/s]
+  state-spaces/mamba-370m-hf@int4g128        lin=193  (266s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 53769.98it/s]
+  RWKV/rwkv-4-430m-pile@int8g128             lin=169  (13s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 44725.63it/s]
+  RWKV/rwkv-4-430m-pile@int4g128             lin=169  (10s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 7264.83it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/gpt-neo-125m@int8g128           lin=73   (4s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 13758.86it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125m@int4g128           lin=73   (3s)
+
+GROUPED QUANTIZATION at g=128, registered in experiments/prereg_quant_grouped.json (sha256 953d354e0ac5...). Same estimator, same cells, same probe set as F187; the ONLY change is granularity -- one scale per (output row, group of 128 input channels) instead of one per row. That is the granularity GPTQ, AWQ and bitsandbytes quantize at.  gpt-neo-125m@int4g128: 0.0022 against per-channel 0.0; feature-A keeps 5 of 279 (0.0179).  pythia-410m@int4g128: 0.1812 against per-channel 0.0098; feature-A keeps 3 of 8 (0.375).  pythia-410m-deduped@int4g128: 0.2563 against per-channel 0.0103; feature-A keeps 1 of 8 (0.125).  rwkv-4-430m-pile@int4g128: 0.5297 against per-channel 0.4286; feature-A keeps 261 of 470 (0.5553).  mamba-370m-hf@int4g128: 0.0404 against per-channel 0.0151; feature-A keeps 2 of 711 (0.0028).  gpt-neo-125m@int8g128: 0.8175 against per-channel 0.7734; feature-A keeps 250 of 279 (0.8961).  pythia-410m@int8g128: 0.9121 against per-channel 0.9018; feature-A keeps 8 of 8 (1.0).  pythia-410m-deduped@int8g128: 0.9475 against per-channel 0.8966; feature-A keeps 7 of 8 (0.875).  rwkv-4-430m-pile@int8g128: 0.9608 against per-channel 0.9508; feature-A keeps 462 of 470 (0.983).  mamba-370m-hf@int8g128: 0.5498 against per-channel 0.4606; feature-A keeps 532 of 711 (0.7482).  KG1 FIRES: grouped 4-bit reaches 0.1812, still at or below the 0.6355 the corpus manipulation produces. GRANULARITY IS NOT WHAT KILLED 4-BIT. The paper's full-precision scoping stands unchanged, and the remaining hope for 4-bit rests entirely on calibration, which this run does not implement.  WHAT REMAINS OWED, unchanged and narrowed rather than closed: grouping is not calibration. GPTQ compensates quantization error with a Hessian-based update and AWQ with activation-aware scaling, and neither is implemented here. The owed item survives as calibration alone; activation quantization and real serving stacks are untouched. REFUSALS: no p-value on five cells; no adjustment of the group size, bit widths or comparison point; feature A reported as a kept fraction and never as a Hamming count.
+
+wrote results/quant_grouped.json
