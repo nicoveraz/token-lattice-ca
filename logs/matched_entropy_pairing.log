@@ -1,17 +1,29 @@
 Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
-Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
-Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7151.41it/s]
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 292/292 [00:00<00:00, 7151.41it/s]
   EleutherAI/pythia-410m-deduped     rows 12/33  shifts -1.202/-1.245 (gap 0.043)  types PubMed Abstracts/StackExchange  (69s)
-Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 3879.48it/s]
+
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 218/218 [00:00<00:00, 3879.48it/s]
 [transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3152 > 2048). Running this sequence through the model will result in indexing errors
   HuggingFaceTB/SmolLM-1.7B          rows 19/36  shifts +0.509/+0.564 (gap 0.055)  types Pile-CC/Wikipedia (en)  (1636s)
-Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6113.07it/s]
+
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6113.07it/s]
   Qwen/Qwen1.5-1.8B                  rows 10/12  shifts -0.914/-0.928 (gap 0.014)  types Wikipedia (en)/PubMed Abstracts  (265s)
-Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5741.76it/s]
+
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5741.76it/s]
   Qwen/Qwen2.5-1.5B-Instruct         rows 7/12  shifts -0.951/-1.023 (gap 0.072)  types StackExchange/PubMed Abstracts  (197s)
-Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4583.68it/s]
+
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4583.68it/s]
   sapienzanlp/Minerva-3B-base-v1.0   rows 5/19  shifts +0.593/+0.584 (gap 0.009)  types StackExchange/Pile-CC  (5176s)
-Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]Loading weights: 100%|██████████| 165/165 [00:00<00:00, 3708.87it/s]
+
+Loading weights:   0%|          | 0/165 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 165/165 [00:00<00:00, 3708.87it/s]
   tiiuae/Falcon3-1B-Base             rows 6/11  shifts -0.559/-0.574 (gap 0.015)  types Pile-CC/Github  (202s)
 
   6 pairs frozen, 0 model(s) unmatched

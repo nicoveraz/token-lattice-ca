@@ -1,6 +1,6 @@
   intersection 3471 of 4090
 Using the latest cached version of the dataset since NeelNanda/pile-10k couldn't be found on the Hugging Face Hub (offline mode is enabled).
-Found the latest cached dataset configuration 'default' at /Users/nicoveraz/Documents/GitHub/textca/hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
+Found the latest cached dataset configuration 'default' at hf_cache/datasets/NeelNanda___pile-10k/default/0.0.0/127bfedcd5047750df5ccf3a12979a47bfa0bafa (last modified on Sun Jul 26 23:23:39 2026).
 [transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3180 > 2048). Running this sequence through the model will result in indexing errors
   counts EleutherAI/gpt-neo-1.3B            45441 distinct ids
 [transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3180 > 2048). Running this sequence through the model will result in indexing errors

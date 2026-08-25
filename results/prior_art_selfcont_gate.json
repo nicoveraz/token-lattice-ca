@@ -35,9 +35,9 @@
    "vote": "claim [6] 2-1; two stronger versions of this claim were REFUTED 0-3, so the overlap is conceptual/mechanistic, not the full estimand; verified against the arXiv PDF and the local sources of record",
    "sources": [
     "https://arxiv.org/abs/2608.10986",
-    "/Users/nicoveraz/Documents/GitHub/textca/paper_arxiv/main.tex",
-    "/Users/nicoveraz/Documents/GitHub/textca/findings.md",
-    "/Users/nicoveraz/Documents/GitHub/textca/results/prior_art_paper3_gate.json"
+    "paper_arxiv/main.tex",
+    "findings.md",
+    "results/prior_art_paper3_gate.json"
    ],
    "evidence": "main.tex:297-303 (published verbatim, confirmed by pdftotext on the arXiv PDF): \"The mechanism is an attracting fixed point of the argmax map. At T = 0.02 the update is essentially deterministic, so the dynamics are governed by the map x -> arg max p_r. For pythia-410m this map sends 18 of 24 random starts to the newline token --- a genuine fixed point. For gpt2-medium it has no such point and wanders to 11 distinct endpoints.\" findings.md:2323 and :2326 record the non-iterated diagonal directly: \"argmax(x | '\\n','\\n') == '\\n' FIXED POINT\" and \"argmax(x | ' the',' the') != ' the' NO FIXED POINT\". WHAT IS NOT PRE-EMPTED (and why the stronger claims were refuted): a term census over the published full text returns 0 hits for fingerprint, provenance, escape, destination, basin, diagonal, self-continuation, bit-vector; gpt2's endpoints are a count, never per-token identities; scale is 24 starts x 2 models vs ~50k tokens x 12 models; and there is no cross-model agreement rate or LOO attribution. An earlier gate in this repo reached the same conclusion independently \u2014 results/prior_art_paper3_gate.json calls self-prior-art \"the biggest single cut in this gate\", noting web verifiers refuted all four claims on this ID 0-3 before it was overturned by direct inspection of the local source of record. A reviewer cannot call this a scoop, but can call it unacknowledged self-overlap if the delta is left unstated."
   },
@@ -77,7 +77,7 @@
    "vote": "the strong form (\"cannot inherit the dynamics defence\") was REFUTED 0-3; the weaker form here is supported by claim [6]'s verifier evidence and by direct inspection of main.tex",
    "sources": [
     "https://arxiv.org/abs/2608.10986",
-    "/Users/nicoveraz/Documents/GitHub/textca/paper_arxiv/main.tex"
+    "paper_arxiv/main.tex"
    ],
    "evidence": "main.tex:747-749, published verbatim: \"in the model-identification literature specifically, every published feature set performs single-shot scoring of supplied text rather than measuring dynamics at all\" \u2014 the sentence that stakes paper 1's novelty on dynamics. The same section concedes \"We do not claim the observation that iteration has attractors\", locating paper 1's contribution in the measurement (damage spreading with an exact-zero null, Lyapunov exponent, damping length). Features (A) and (B) do not iterate, so by paper 1's own framing they fall on the single-shot side. The refutation of the strong form is worth respecting: measuring a fixed point of a map is a dynamical-systems question regardless of iteration count, so a reviewer need not accept that the features are \"merely\" single-shot. But that argument buys ground already occupied by paper 1, not new ground."
   },

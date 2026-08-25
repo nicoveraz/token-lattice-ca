@@ -89,8 +89,16 @@ git diff --name-only main..paper4 | grep -E 'PLAN|future_work|failure_registry' 
 
 ## Privacy sweep of the files that WOULD merge
 
-- No absolute paths or usernames in any added file (`gatecheck.check_no_absolute_paths` covers
-  `results/`; the `experiments/` scripts use `_ROOT`-relative paths throughout).
+- No absolute paths or usernames in any added file — **after a correction.** This claim was written
+  before it was checked and was false: a pre-push sweep found `/Users/<name>/…` in four files, none
+  of them printed by our own code. Two logs carried HuggingFace's dataset-cache path, one carried a
+  Python `multiprocessing` warning, and `results/prior_art_selfcont_gate.json` recorded local file
+  paths in the deep-research gate's `sources` field. The repository's own test passed throughout,
+  because it is scoped to paths *we* print. All four are scrubbed to repo-relative form; the sweep
+  now returns nothing. The username is public anyway via the repository name and `CITATION.cff`, so
+  the exposure was directory layout rather than identity — but `.gitignore` already excludes one
+  file specifically for carrying "the author's username and absolute paths", and consistency with
+  that policy is the reason this was fixed rather than waved through.
 - No API keys: the GROQ key lives in a gitignored `.env` and no run in this branch touches a remote
   API — every measurement is local, CPU, offline (`HF_HUB_OFFLINE=1`).
 - `logs/` carries per-cell wall times and oracle checks, no paths.
