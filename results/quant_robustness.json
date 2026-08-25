@@ -214,12 +214,58 @@
    "secs": 3.3
   }
  },
+ "rebaselined_on_widening_support": {
+  "support": 3355,
+  "pairs": {
+   "EleutherAI/pythia-410m@int8": {
+    "agreement": 0.9004,
+    "n_escaping_sources": 3352
+   },
+   "EleutherAI/pythia-410m@int4": {
+    "agreement": 0.0104,
+    "n_escaping_sources": 3352
+   },
+   "EleutherAI/pythia-410m-deduped@int8": {
+    "agreement": 0.8967,
+    "n_escaping_sources": 3351
+   },
+   "EleutherAI/pythia-410m-deduped@int4": {
+    "agreement": 0.0104,
+    "n_escaping_sources": 3351
+   },
+   "state-spaces/mamba-370m-hf@int8": {
+    "agreement": 0.4623,
+    "n_escaping_sources": 2749
+   },
+   "state-spaces/mamba-370m-hf@int4": {
+    "agreement": 0.016,
+    "n_escaping_sources": 2749
+   },
+   "RWKV/rwkv-4-430m-pile@int8": {
+    "agreement": 0.9502,
+    "n_escaping_sources": 2953
+   },
+   "RWKV/rwkv-4-430m-pile@int4": {
+    "agreement": 0.4189,
+    "n_escaping_sources": 2953
+   },
+   "EleutherAI/gpt-neo-125m@int8": {
+    "agreement": 0.7709,
+    "n_escaping_sources": 3108
+   },
+   "EleutherAI/gpt-neo-125m@int4": {
+    "agreement": 0.0,
+    "n_escaping_sources": 3108
+   }
+  },
+  "_reading": "the manuscript quotes THESE figures beside the decisive pair's 0.6353, because that pair lives on this support. The per-model figures above are on each model's own probe set and may not be set beside it."
+ },
  "KQ1_fires": false,
  "KQ2_fires": true,
- "verdict": "QUANTIZATION ROBUSTNESS, registered in experiments/prereg_quant_robustness.json (sha256 728d162b1ee8..., frozen before any quantized cell existed). This DISCHARGES the test prereg_selfcont left OWED; bfloat16 did not, because 4- and 8-bit are categorically larger and are what deployment applies. Weight-only symmetric per-channel RTN over nn.Linear only; embeddings, norms and biases untouched, counts per cell in the file.  gpt-neo-125m@int4: escape agreement vs fp32 0.0 over 3243 sources; feature-A keeps 1 of 279 (0.0036), modal share 0.0244.  pythia-410m@int4: escape agreement vs fp32 0.0098 over 3675 sources; feature-A keeps 0 of 8 (0.0), modal share 0.3233.  pythia-410m-deduped@int4: escape agreement vs fp32 0.0103 over 3675 sources; feature-A keeps 1 of 8 (0.125), modal share 0.2879.  rwkv-4-430m-pile@int4: escape agreement vs fp32 0.4286 over 3213 sources; feature-A keeps 288 of 470 (0.6128), modal share 0.1836.  mamba-370m-hf@int4: escape agreement vs fp32 0.0151 over 2972 sources; feature-A keeps 0 of 711 (0.0), modal share 0.1373.  gpt-neo-125m@int8: escape agreement vs fp32 0.7734 over 3243 sources; feature-A keeps 244 of 279 (0.8746), modal share 0.3117.  pythia-410m@int8: escape agreement vs fp32 0.9018 over 3675 sources; feature-A keeps 8 of 8 (1.0), modal share 0.16.  pythia-410m-deduped@int8: escape agreement vs fp32 0.8966 over 3675 sources; feature-A keeps 8 of 8 (1.0), modal share 0.1744.  rwkv-4-430m-pile@int8: escape agreement vs fp32 0.9508 over 3213 sources; feature-A keeps 464 of 470 (0.9872), modal share 0.3115.  mamba-370m-hf@int8: escape agreement vs fp32 0.4606 over 2972 sources; feature-A keeps 404 of 711 (0.5682), modal share 0.2177.  FEATURE A IS REPORTED AS A KEPT FRACTION AND NOT AS A HAMMING COUNT, because this arm is where the count would have misled: pythia-410m has 8 self-continuing tokens in the intersection, so its int4 Hamming of 8 is consistent with perfect robustness and is in fact total loss -- 0 of 8 kept. A sparse set makes a small Hamming meaningless on its own, which is the same defect F183 found at r=0.913 and F185 avoided by pairing.  THE REGISTERED COMPARISON POINT is arm 1's decisive pair at 0.6355.  KQ1 does not fire: 8-bit leaves agreement at 0.9018, above the 0.6355 the corpus manipulation produces.  KQ2 FIRES: 4-bit weight rounding of pythia-410m moves the escape destination to 0.0098, at or below the 0.6355 that separates the corpus manipulation. The fingerprint is SCOPED TO FULL PRECISION and may not be claimed for quantized deployment.  KQ3, BINDING ON ANY NEGATIVE ABOVE: RTN is the WEAKEST standard quantizer. Surviving it implies surviving GPTQ or AWQ; failing it does NOT imply failing them, because those calibrate. A fired kill condition here scopes the claim, it does not establish that a real quantized deployment breaks the fingerprint.  STILL OWED and not touched by this arm: activation quantization, real serving stacks, and any deployed quantized checkpoint. REFUSALS: no p-value on five cells; no adjustment of the bit widths or the comparison point; no semantic reading.",
+ "verdict": "QUANTIZATION ROBUSTNESS, registered in experiments/prereg_quant_robustness.json (sha256 728d162b1ee8..., frozen before any quantized cell existed). This DISCHARGES the test prereg_selfcont left OWED; bfloat16 did not, because 4- and 8-bit are categorically larger and are what deployment applies. Weight-only symmetric per-channel RTN over nn.Linear only; embeddings, norms and biases untouched, counts per cell in the file.  gpt-neo-125m@int4: escape agreement vs fp32 0.0 over 3243 sources; feature-A keeps 1 of 279 (0.0036), modal share 0.0244.  pythia-410m@int4: escape agreement vs fp32 0.0098 over 3675 sources; feature-A keeps 0 of 8 (0.0), modal share 0.3233.  pythia-410m-deduped@int4: escape agreement vs fp32 0.0103 over 3675 sources; feature-A keeps 1 of 8 (0.125), modal share 0.2879.  rwkv-4-430m-pile@int4: escape agreement vs fp32 0.4286 over 3213 sources; feature-A keeps 288 of 470 (0.6128), modal share 0.1836.  mamba-370m-hf@int4: escape agreement vs fp32 0.0151 over 2972 sources; feature-A keeps 0 of 711 (0.0), modal share 0.1373.  gpt-neo-125m@int8: escape agreement vs fp32 0.7734 over 3243 sources; feature-A keeps 244 of 279 (0.8746), modal share 0.3117.  pythia-410m@int8: escape agreement vs fp32 0.9018 over 3675 sources; feature-A keeps 8 of 8 (1.0), modal share 0.16.  pythia-410m-deduped@int8: escape agreement vs fp32 0.8966 over 3675 sources; feature-A keeps 8 of 8 (1.0), modal share 0.1744.  rwkv-4-430m-pile@int8: escape agreement vs fp32 0.9508 over 3213 sources; feature-A keeps 464 of 470 (0.9872), modal share 0.3115.  mamba-370m-hf@int8: escape agreement vs fp32 0.4606 over 2972 sources; feature-A keeps 404 of 711 (0.5682), modal share 0.2177.  FEATURE A IS REPORTED AS A KEPT FRACTION AND NOT AS A HAMMING COUNT, because this arm is where the count would have misled: pythia-410m has 8 self-continuing tokens in the intersection, so its int4 Hamming of 8 is consistent with perfect robustness and is in fact total loss -- 0 of 8 kept. A sparse set makes a small Hamming meaningless on its own, which is the same defect F183 found at r=0.913 and F185 avoided by pairing.  SAME-SUPPORT RE-BASELINING, because the figures above sit on each model's own probe set while the decisive pair sits on the 19-model shared support of 3355 positions: on that support the anchor's 8-bit agreement is 0.9004 over 3352 sources. That is the figure the manuscript quotes beside 0.6353; setting the own-probe-set number beside it would break the paper's own re-baselining rule.  THE REGISTERED COMPARISON POINT is arm 1's decisive pair at 0.6355.  KQ1 does not fire: 8-bit leaves agreement at 0.9018, above the 0.6355 the corpus manipulation produces.  KQ2 FIRES: 4-bit weight rounding of pythia-410m moves the escape destination to 0.0098, at or below the 0.6355 that separates the corpus manipulation. The fingerprint is SCOPED TO FULL PRECISION and may not be claimed for quantized deployment.  KQ3, BINDING ON ANY NEGATIVE ABOVE: RTN is the WEAKEST standard quantizer. Surviving it implies surviving GPTQ or AWQ; failing it does NOT imply failing them, because those calibrate. A fired kill condition here scopes the claim, it does not establish that a real quantized deployment breaks the fingerprint.  STILL OWED and not touched by this arm: activation quantization, real serving stacks, and any deployed quantized checkpoint. REFUSALS: no p-value on five cells; no adjustment of the bit widths or the comparison point; no semantic reading.",
  "_analysis_provenance": {
   "script": "quant_robustness.py",
-  "sha256": "ee6eac11cf7b0a292c5ee51e0203a44c59c43ef8526cca835e1925f608a0d697",
+  "sha256": "a00b292c8b0d5d65562bb86ad9a398fb6bb9eb1168253181a3c74ed89387a0f9",
   "imports": {
    "experiments/argmax_census_hardened.py": "b8a77ea50e9fcc88128a33e8f5a684134727bedefb5303cf2f470a87d05919d2",
    "experiments/argmax_census_instruct.py": "f0e314d9c61683d45021d129efe9e874b3228bba67fdadff09f706f1c97f865a",
@@ -229,7 +275,7 @@
    "experiments/mlm_lib.py": "269f33ce0ee77ad2f2c142744da82487aafcf4a7ae033815c6e108c9e5cb233f",
    "experiments/newline_margin_freeze.py": "62890fb51ca550699f38624c9409c786c546fb7df66962921e0b151b742077bf",
    "experiments/provenance.py": "18f310a4e46d4d557b4d20fda2abb71b9292b4fc0b30c0ebd5707a127586ef9d",
-   "experiments/quant_robustness.py": "ee6eac11cf7b0a292c5ee51e0203a44c59c43ef8526cca835e1925f608a0d697",
+   "experiments/quant_robustness.py": "a00b292c8b0d5d65562bb86ad9a398fb6bb9eb1168253181a3c74ed89387a0f9",
    "experiments/selfcont_set.py": "51bae621b567b230846a2cae18649f85d5b451c52295bc2fd6bfa3fe7f5ccb75",
    "experiments/structural_text.py": "51d82069fa2c7cd3d2eddb03de816316ad71aadbb85801b631a4698e8605712c",
    "experiments/text_interaction.py": "3f52bb00a468ca209d6747f2735d83b4d8707c4d4bee69499bcf9db65a38b9f6",

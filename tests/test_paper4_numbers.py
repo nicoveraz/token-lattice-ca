@@ -78,3 +78,47 @@ def test_the_two_prohibited_pitches_never_appear():
         assert phrase not in body, (
             f"paper 4 pitches itself using '{phrase}', which F186's prior-art gate prohibited: "
             f"{whose}. The registered pitch is the vocabulary-wide set-valued destination map.")
+
+
+def test_the_int8_and_decisive_figures_are_on_the_same_support():
+    """The paper sets 8-bit agreement beside the corpus manipulation and says "on one support".
+
+    That claim is checkable and was FALSE when first written. The quantization cells are computed
+    over each model's OWN resolvable probe set -- 3675 escaping sources for pythia-410m -- while the
+    decisive-pair figure lives on the 19-model shared support of results/escape_widening.json, 3351
+    escaping sources. Quoting 0.9018 beside 0.6353 compared two different index sets, which the
+    paper's own re-baselining rule forbids.
+
+    So this asserts what the manuscript must quote: the re-based 8-bit figure, not the own-probe-set
+    one, and both from supports that actually match.
+    """
+    import json
+    q = json.load(open(ROOT / "results" / "quant_robustness.json"))
+    w = json.load(open(ROOT / "results" / "escape_widening.json"))
+    reb = q.get("rebaselined_on_widening_support", {})
+    assert reb.get("pairs"), (
+        "results/quant_robustness.json carries no same-support re-baselining, so the manuscript has "
+        "nothing legitimate to quote beside the decisive pair.")
+    assert reb["support"] == w["intersection"], (
+        f"the re-baselining used a support of {reb['support']} against the widening's "
+        f"{w['intersection']}; they must be the same index set or the comparison is meaningless.")
+
+    anchor = reb["pairs"]["EleutherAI/pythia-410m@int8"]
+    dec = w["rebaselined_on_this_support"]["pairs"]["decisive"]
+    assert abs(anchor["n_escaping_sources"] - dec["n_shared"]) <= 25, (
+        f"the two figures rest on {anchor['n_escaping_sources']} and {dec['n_shared']} escaping "
+        f"sources. They are drawn from one index set, so a large gap means one of them was computed "
+        f"somewhere else.")
+
+    body = _body()
+    a, d = f"{anchor['agreement']}", f"{dec['agreement']}"
+    assert a in body and d in body, (
+        f"the manuscript should quote the re-based pair {a} against {d}; found "
+        f"{a in body} / {d in body}.")
+    own = json.load(open(ROOT / "results" / "quant_robustness.json"))["cells"] \
+        ["EleutherAI/pythia-410m@int8"]["escape_agreement_vs_fp32"]
+    if abs(own - anchor["agreement"]) > 1e-9:
+        assert f"{own}" not in body, (
+            f"the manuscript quotes {own}, the 8-bit agreement on pythia-410m's OWN probe set, "
+            f"beside a decisive figure computed on the shared support. Quote {a} instead -- that is "
+            f"the same-support figure, and the difference is exactly the defect this test exists for.")

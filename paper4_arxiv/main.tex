@@ -61,7 +61,7 @@ at $0.0798$. Family predicts agreement better than tokenizer ($0.2031$ against $
 recurrent architectures cluster, at balanced accuracy $1.0$ against a majority rate of $0.7895$ and
 $0.90$ once each model's dominant destination is excluded, which is the figure we stand behind. We
 measure the robustness envelope rather than assume it: $8$-bit weight rounding moves the map less
-than deduplicating the training corpus does ($0.9018$ against $0.6353$), $4$-bit destroys it
+than deduplicating the training corpus does ($0.9004$ against $0.6353$, on one support), $4$-bit destroys it
 ($0.0098$, and $0.1812$ at the granularity deployment actually uses, so the failure is not an
 artefact of coarse quantization), and the numeric precision floor varies by model from $0.201$ to
 $0.9778$, so every robustness statement here is per-model. All estimands, thresholds and kill conditions were registered
@@ -312,8 +312,10 @@ We registered the perturbations before running them.
 
 \paragraph{Quantization.} Weight-only symmetric per-channel round-to-nearest over every linear
 layer, with embeddings and norms untouched. At $8$ bits the destination map agrees with its
-full-precision self at $0.9018$ --- \textbf{less movement than deduplicating the training corpus produces}
-($0.6353$ on the same support). At $4$ bits it collapses to $0.0098$, and the fingerprint is scoped
+full-precision self at $0.9004$ --- \textbf{less movement than deduplicating the training corpus
+produces} ($0.6353$). Both are computed on the same $3355$-string support, $3352$ and $3351$
+escaping sources respectively; per-model probe sets differ, and a number from one may not be set
+beside a number from another. At $4$ bits it collapses to $0.0098$, and the fingerprint is scoped
 to full precision. That negative is located rather than merely bounded. Per-output-channel rounding
 is the coarsest granularity possible and nothing deployed uses it, so we repeated the measurement
 over groups of $128$ input channels --- the granularity GPTQ, AWQ and bitsandbytes all quantize at.
@@ -329,10 +331,11 @@ reason \S\ref{sec:e1} gives.
 
 \paragraph{Numeric precision, and why it is reported per model.}% F189, results/floor_survey.json
 Reading the same weights at \texttt{bfloat16} instead of \texttt{float32} changes the destination on
-$2\%$ of sources for one model and on $80\%$ for another --- floors of $0.9778$ and $0.201$ across
-eight models. There is no single precision floor for this instrument, and the spread is wide enough
-that a paper quoting one model's would be quoting one model's. There is no single precision
-floor for this instrument; the smaller model is roughly twice as brittle. In \texttt{float32} the
+$2\%$ of sources for one model and on $80\%$ for another. There is no single precision floor for this
+instrument: they run from $0.201$ to $0.9778$ across eight models, so every robustness statement here
+is per-model. Within \texttt{pythia} the floor rises monotonically with scale, $0.201$ at $70$M to
+$0.8989$ at $1$B, but that ordering does not survive leaving the family --- \texttt{gpt-neo-125m} is
+the smaller model and the more robust, at $0.9569$. In \texttt{float32} the
 measurement is invariant to how tokens are grouped into batches ($0$ of $18254$ argmaxes change); in
 \texttt{bfloat16} it is not ($163$ of $3683$), so part of any \texttt{bfloat16} floor is
 irreproducibility rather than precision.

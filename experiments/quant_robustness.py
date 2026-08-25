@@ -146,6 +146,51 @@ def _verdict(cache):
                 modal_share=round(cnt.most_common(1)[0][1] / n, 4) if n else None,
                 n_linear_quantized=c["n_linear_quantized"],
                 n_embedding_untouched=c["n_embedding_untouched"], secs=c["secs"])
+    # SAME-SUPPORT RE-BASELINING. The cells above are computed over each model's OWN resolvable
+    # probe set -- 3675 escaping sources for pythia-410m. The decisive-pair figure this arm is
+    # compared against lives on the 19-model shared support of results/escape_widening.json (3355
+    # positions, 3351 escaping). Quoting one against the other would break the paper's own rule that
+    # no number from one index set may be set beside a number from another, so the anchor cell is
+    # recomputed here on the widening's support and THAT is the figure the manuscript quotes.
+    try:
+        wid = json.load(open(_ROOT / "results" / "escape_widening.json"))
+        shared = None
+        for mm in wid["models"]:
+            f = _ROOT / "results" / f"selfcont_set_{mm.replace('/', '__')}.json"
+            if f.exists():
+                s = set(int(i) for i in np.flatnonzero(
+                    np.array(json.load(open(f))["probe_token_ids"]) >= 0))
+            else:
+                s = set(json.load(open(_ROOT / "results" / "escape_widening_cells.json"))[mm]["probe_positions"])
+            shared = s if shared is None else (shared & s)
+        reb = {}
+        for m in CELLS:
+            srcj = json.load(open(out_path(m, "fp32")))
+            pidj = np.array(srcj["probe_token_ids"]); idxj = np.flatnonzero(pidj >= 0)
+            mg = np.array(srcj["margins_e4"], np.int64)
+            sentj = srcj.get("_unmeasured_sentinel", -2147483648)
+            bb = (mg[pidj[idxj]] > 0) & (mg[pidj[idxj]] != sentj)
+            tokj = AutoTokenizer.from_pretrained(m)
+            bs = np.array([tokj.decode([int(i)]) for i in
+                           np.array(srcj["argmax_ids"], np.int64)[pidj[idxj]]], dtype=object)
+            sel = np.array([int(pp) in shared for pp in idxj])
+            for bits in BITS:
+                k = f"{m}@int{bits}"
+                if k not in cache:
+                    continue
+                qs = np.array(cache[k]["top1_str"], dtype=object)
+                keep = (~bb) & sel
+                n = int(keep.sum())
+                reb[k] = dict(agreement=round(float(np.mean(bs[keep] == qs[keep])), 4) if n else None,
+                              n_escaping_sources=n)
+        res["rebaselined_on_widening_support"] = dict(
+            support=len(shared), pairs=reb,
+            _reading="the manuscript quotes THESE figures beside the decisive pair's 0.6353, because "
+                     "that pair lives on this support. The per-model figures above are on each "
+                     "model's own probe set and may not be set beside it.")
+    except Exception as e:
+        res["rebaselined_on_widening_support"] = dict(error=f"{type(e).__name__}: {e}")
+
     anchor = "EleutherAI/pythia-410m"
     q8 = res["cells"].get(f"{anchor}@int8", {}).get("escape_agreement_vs_fp32")
     q4 = res["cells"].get(f"{anchor}@int4", {}).get("escape_agreement_vs_fp32")
@@ -167,6 +212,15 @@ def _verdict(cache):
              "intersection, so its int4 Hamming of 8 is consistent with perfect robustness and is in "
              "fact total loss -- 0 of 8 kept. A sparse set makes a small Hamming meaningless on its "
              "own, which is the same defect F183 found at r=0.913 and F185 avoided by pairing. ")
+    rb = res.get("rebaselined_on_widening_support", {})
+    if rb.get("pairs"):
+        a8 = rb["pairs"].get(f"{anchor}@int8", {})
+        p.append(f"SAME-SUPPORT RE-BASELINING, because the figures above sit on each model's own "
+                 f"probe set while the decisive pair sits on the 19-model shared support of "
+                 f"{rb['support']} positions: on that support the anchor's 8-bit agreement is "
+                 f"{a8.get('agreement')} over {a8.get('n_escaping_sources')} sources. That is the "
+                 f"figure the manuscript quotes beside 0.6353; setting the own-probe-set number "
+                 f"beside it would break the paper's own re-baselining rule. ")
     p.append(f"THE REGISTERED COMPARISON POINT is arm 1's decisive pair at {DECISIVE_FP32}. ")
     for lbl, fired, v, b in (("KQ1", res["KQ1_fires"], q8, 8), ("KQ2", res["KQ2_fires"], q4, 4)):
         if v is None:
