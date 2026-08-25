@@ -1,0 +1,63 @@
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 6850.64it/s]
+  EleutherAI/pythia-70m@fp32               n=3683   (1s)
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 20937.08it/s]
+  EleutherAI/pythia-70m@bf16               n=3683   (4s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 6304.71it/s]
+  EleutherAI/pythia-1b@fp32                n=3683   (17s)
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s]Loading weights: 100%|██████████| 196/196 [00:00<00:00, 17366.62it/s]
+  EleutherAI/pythia-1b@bf16                n=3683   (64s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 6796.38it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPT2Tokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  EleutherAI/gpt-neo-125m@fp32             n=3522   (4s)
+Loading weights:   0%|          | 0/160 [00:00<?, ?it/s]Loading weights: 100%|██████████| 160/160 [00:00<00:00, 16324.62it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-125m
+Key                                                   | Status     |  | 
+------------------------------------------------------+------------+--+-
+transformer.h.{0, 2, 4, 6, 8, 10}.attn.attention.bias | UNEXPECTED |  | 
+transformer.h.{0...11}.attn.attention.masked_bias     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-125m@bf16             n=3522   (10s)
+Loading weights:   0%|          | 0/316 [00:00<?, ?it/s]Loading weights: 100%|██████████| 316/316 [00:00<00:00, 5627.09it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-1.3B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...22}.attn.attention.bias        | UNEXPECTED |  | 
+transformer.h.{0...23}.attn.attention.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-1.3B@fp32             n=3522   (45s)
+Loading weights:   0%|          | 0/316 [00:00<?, ?it/s]Loading weights: 100%|██████████| 316/316 [00:00<00:00, 16846.95it/s]
+[transformers] [1mGPTNeoForCausalLM LOAD REPORT[0m from: EleutherAI/gpt-neo-1.3B
+Key                                               | Status     |  | 
+--------------------------------------------------+------------+--+-
+transformer.h.{0...22}.attn.attention.bias        | UNEXPECTED |  | 
+transformer.h.{0...23}.attn.attention.masked_bias | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  EleutherAI/gpt-neo-1.3B@bf16             n=3522   (95s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 67468.70it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer GPTNeoXTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  RWKV/rwkv-4-430m-pile@fp32               n=3683   (17s)
+Loading weights:   0%|          | 0/438 [00:00<?, ?it/s]Loading weights: 100%|██████████| 438/438 [00:00<00:00, 64727.83it/s]
+  RWKV/rwkv-4-430m-pile@bf16               n=3683   (30s)
+[transformers] The fast path is not available because one of `(selective_state_update, selective_scan_fn, causal_conv1d_fn, causal_conv1d_update, mamba_inner_fn)` is None. Falling back to the sequential implementation of Mamba, as use_mambapy is set to False. To install follow https://github.com/state-spaces/mamba/#installation for mamba-ssm and install the kernels library using `pip install kernels` or https://github.com/Dao-AILab/causal-conv1d for causal-conv1d. For the mamba.py backend, follow https://github.com/alxndrTL/mamba.py.
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 5647.20it/s]
+  state-spaces/mamba-130m-hf@fp32          n=3683   (102s)
+Loading weights:   0%|          | 0/242 [00:00<?, ?it/s]Loading weights: 100%|██████████| 242/242 [00:00<00:00, 18089.53it/s]
+  state-spaces/mamba-130m-hf@bf16          n=3683   (67s)
+
+PRECISION-FLOOR SURVEY, registered in experiments/prereg_floor_survey.json (sha256 05bc8157207c..., frozen before any new twin). Each model measured at float32 and bfloat16 on the frozen probe set, same estimator and same tau ladder as F185.  FLOOR AT THE CONTESTED RUNG (tau=0.5): gpt-neo-1.3B 1.0 (n=982); gpt-neo-125m 1.0 (n=1175); pythia-160m 1.0 [reused]; pythia-1b 1.0 (n=1525); pythia-410m 0.995 [reused]; pythia-70m 1.0 (n=254), NOT DECIDABLE; rwkv-4-430m-pile 1.0 (n=1289); mamba-130m-hf 1.0 (n=1160).  KF1 FIRES -- THE TAU=0.5 RUNG IS RETIRED. Every floor in the cohort is at or above 0.99 at that rung, so the resolution ratio has no stable denominator anywhere. F185's 11.76x may never be quoted, and this is a stronger retirement than the replication's NOT DECIDABLE: the rung is not merely unreplicated on one pair, it is unresolvable on this estimand. Registered as the expected outcome before the six new floors were measured.  AND THE SPREAD F187 FOUND, now measured across the cohort: at tau=0 the floors run 0.201 to 0.9778 across 6 models. Both earlier preregs treated one model's floor as THE floor; it is not, and every per-model robustness statement in the paper rests on this spread.  REFUSALS: no p-value; no adjustment of the 0.99 bound, the ladder, or the source floor; no replication run here even under KF2; no claim that a bfloat16 floor bounds a quantized one -- 4-bit remains fatal per F187.
+
+wrote results/floor_survey.json
