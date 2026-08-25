@@ -1,0 +1,34 @@
+{
+ "name": "quant-grouped-v1",
+ "status": "FROZEN before any grouped-quantization cell was measured. F187's per-channel RTN cells exist and are known; nothing about group-wise quantization has been measured.",
+ "plan_section": "paper 4. Narrows -- and does not close -- the gap F187 registered as KQ3.",
+
+ "what_f187_left_open": "F187 quantized weights with symmetric PER-OUTPUT-CHANNEL round-to-nearest and registered the asymmetry that follows: RTN is the WEAKEST standard quantizer, so surviving it implies surviving a calibrated one while FAILING it does not imply failing one. 4-bit failed, at escape agreement 0.0098. That negative is therefore scoped and not general, and the paper says so. The obvious next question is whether 4-bit is fatal under the scheme deployment actually uses.",
+
+ "what_changes_and_what_does_not": {
+  "changes": "the quantization GRANULARITY only: symmetric round-to-nearest over contiguous groups of 128 input channels per output row, instead of one scale per output row. Group-wise 4-bit at g=128 is the standard deployed configuration -- it is what GPTQ, AWQ and bitsandbytes all quantize AT -- so this separates the granularity from the calibration.",
+  "does_not_change": "the estimator, the probe set, the cells, the comparison point, or anything else. Same five models, same intersection, same 0.6355 reference.",
+  "STILL_NOT_DISCHARGED": "GPTQ and AWQ do not merely group -- they use calibration data to compensate quantization error, GPTQ through a Hessian-based update and AWQ through activation-aware scaling. Neither is implemented here. So this narrows KQ3's gap from 'granularity AND calibration' to 'calibration alone', and the OWED item survives in that reduced form. Activation quantization and real serving stacks remain wholly untouched."
+ },
+
+ "cells": ["EleutherAI/pythia-410m", "EleutherAI/pythia-410m-deduped",
+           "state-spaces/mamba-370m-hf", "RWKV/rwkv-4-430m-pile", "EleutherAI/gpt-neo-125m"],
+ "bit_widths": [8, 4],
+ "group_size": 128,
+
+ "estimands": "identical to F187's: escape-destination agreement against the float32 self on the frozen intersection, and the self-continuation set's KEPT FRACTION -- never its Hamming count, for the reason F187 recorded when a Hamming of 8 out of 3471 turned out to be total loss.",
+
+ "kill_conditions": {
+  "KG1_grouping_does_not_rescue_four_bit": "if group-wise 4-bit agreement for pythia-410m is still at or below the 0.6355 that the corpus manipulation produces, then granularity is not what killed it, and the remaining hope for 4-bit rests entirely on calibration. The paper's full-precision scoping stands unchanged.",
+  "KG2_grouping_rescues_it": "if group-wise 4-bit clears 0.6355, then F187's 4-bit negative was an artefact of the coarsest possible granularity and must be restated: the paper may then say 4-bit at deployment granularity survives, while still not claiming anything about calibrated quantizers.",
+  "KG3_eight_bit_must_not_regress": "8-bit already passed at 0.9018. Grouping is strictly finer, so if grouped 8-bit comes in BELOW per-channel 8-bit the implementation is wrong, not the finding. This is a correctness check on the quantizer, not a result.",
+  "KG4_anti_vacuity": "report the modal-destination share per cell, as F187 did."
+ },
+
+ "refusals_recorded_before_numbers": [
+  "no p-value on five cells",
+  "no claim that this discharges GPTQ or AWQ -- calibration is the untested half and stays OWED",
+  "no adjustment of the group size, the bit widths, or the 0.6355 comparison point after any value is seen",
+  "no reporting of feature A as a Hamming count"
+ ]
+}

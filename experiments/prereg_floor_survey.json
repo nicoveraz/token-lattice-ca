@@ -1,0 +1,37 @@
+{
+ "name": "precision-floor-survey-v1",
+ "status": "FROZEN before any new bfloat16 twin was measured. Two floors already exist (pythia-410m, pythia-160m) and both are known; this registers what the OTHER models' floors are asked to decide.",
+ "plan_section": "paper 4. Decides whether F185's tau=0.5 rung is resolvable at all, and bounds the per-model floor F187 found varies.",
+ "epistemic_tier": "TIER 1 for the new twins; the two existing floors are reused unchanged.",
+
+ "the_question": "F185's confidence ladder peaked at tau=0.5 with resolution 11.76x, and that rung was never promoted. Its registered replication (prereg_tau_replication) returned NOT DECIDABLE under KR3: the held-out floor, pythia-160m at float32 against bfloat16, reaches agreement 1.0 by tau=0.5, so there is nothing left to resolve against. pythia-410m's floor reaches 0.995 at the same rung. Two models, both degenerate. The open question is whether that is a property of those two models or of the ESTIMAND, and it is answerable by measuring more floors.",
+
+ "why_this_is_not_a_second_bite": "prereg_tau_replication asked whether the ladder's interior peak REPLICATES, and it could not be answered. This asks a different and prior question: does a usable floor exist at tau=0.5 for ANY model? A negative here does not rescue the rung -- it retires it for a reason stronger than 'not decidable on one held-out pair', namely that the quantity it is a ratio of vanishes across the cohort.",
+
+ "measurement": "for each cohort model with a full-vocabulary cell, a bfloat16 twin measured on the frozen probe intersection, and the float32-vs-bfloat16 escape agreement computed at every rung of the registered tau ladder. Same estimator, same ladder, no new machinery.",
+ "cells": ["EleutherAI/pythia-70m", "EleutherAI/pythia-1b", "EleutherAI/gpt-neo-125m",
+           "EleutherAI/gpt-neo-1.3B", "RWKV/rwkv-4-430m-pile", "state-spaces/mamba-130m-hf"],
+ "reused": {"EleutherAI/pythia-410m": "results/escape_confidence.json, floor 0.7089 at tau=0 rising to 0.995 at tau=0.5",
+            "EleutherAI/pythia-160m": "results/tau_replication.json, floor 0.3458 at tau=0 rising to 1.0 at tau=0.5"},
+
+ "thresholds": {"tau_ladder": [0.0, 0.1, 0.5, 1.0, 2.0],
+                "degenerate_floor": 0.99,
+                "min_shared_sources": 500},
+ "what_degenerate_means": "a floor agreement at or above 0.99 leaves at most 1% disagreement to divide by, so a resolution RATIO computed against it is dominated by its denominator's noise. 0.99 is fixed now and is not adjustable after any floor is seen.",
+
+ "kill_conditions": {
+  "KF1_rung_retired": "if EVERY measured model's floor is degenerate at tau=0.5 -- at or above 0.99 -- the tau=0.5 rung is RETIRED, not merely not-replicated. The resolution ratio at that rung has no stable denominator for any model in this cohort, and F185's 11.76x may never be quoted. Registered as the expected outcome given two of two so far, and written down before the other six.",
+  "KF2_rung_is_testable": "if ANY model's floor at tau=0.5 is below 0.99 with at least 500 shared sources, the rung IS testable on that model, and the honest report is that prereg_tau_replication picked a degenerate control rather than that the rung failed. That model is then named as the one a future replication must use -- and this prereg does NOT run that replication, because the model would have been chosen after seeing its floor.",
+  "KF3_thin": "any rung with fewer than 500 shared escaping sources is NOT DECIDABLE at that rung for that model.",
+  "KF4_cohort": "a twin that fails to load is NAMED and the survey continues."
+ },
+
+ "the_second_thing_this_measures": "F187 found the precision floor varies by model -- 0.3458 for pythia-160m against 0.7089 for pythia-410m -- and neither prereg anticipated a floor that varies at all. Both had treated one model's floor as THE floor. This survey reports the full spread at tau=0, which is what any per-model robustness statement in the paper has to rest on.",
+
+ "refusals_recorded_before_numbers": [
+  "no p-value; eight models is not a sample",
+  "no adjustment of the 0.99 degeneracy bound, the tau ladder, or the 500-source floor after any value is seen",
+  "NO REPLICATION RUN IN THIS PREREG even if KF2 fires: a model selected because its floor is usable is a model selected on the data, and running the replication on it here would be exactly the shopping the tau ladder was registered to prevent. It names the model and stops.",
+  "no claim that a bfloat16 floor bounds a quantized one -- F187 measured those separately and 4-bit remains fatal"
+ ]
+}
