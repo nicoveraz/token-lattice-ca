@@ -62,9 +62,9 @@ recurrent architectures cluster, at balanced accuracy $1.0$ against a majority r
 $0.90$ once each model's dominant destination is excluded, which is the figure we stand behind. We
 measure the robustness envelope rather than assume it: $8$-bit weight rounding moves the map less
 than deduplicating the training corpus does ($0.9018$ against $0.6353$), $4$-bit destroys it
-($0.0098$) under the weakest standard quantizer, which bounds that negative rather than generalising
-it, and the numeric precision floor varies by model from $0.3458$ to $0.7089$, so every
-robustness statement here is per-model. All estimands, thresholds and kill conditions were registered
+($0.0098$, and $0.1812$ at the granularity deployment actually uses, so the failure is not an
+artefact of coarse quantization), and the numeric precision floor varies by model from $0.201$ to
+$0.9778$, so every robustness statement here is per-model. All estimands, thresholds and kill conditions were registered
 before the data, and the failed one is reported at the same length as the surviving one.
 \end{abstract}
 
@@ -314,9 +314,12 @@ We registered the perturbations before running them.
 layer, with embeddings and norms untouched. At $8$ bits the destination map agrees with its
 full-precision self at $0.9018$ --- \textbf{less movement than deduplicating the training corpus produces}
 ($0.6353$ on the same support). At $4$ bits it collapses to $0.0098$, and the fingerprint is scoped
-to full precision. Round-to-nearest is the weakest quantizer in deployment use: surviving it implies
-surviving a calibrated one, while failing it does not imply failing one. The $4$-bit result therefore
-scopes the claim; it does not establish that a real quantized deployment breaks the fingerprint.
+to full precision. That negative is located rather than merely bounded. Per-output-channel rounding
+is the coarsest granularity possible and nothing deployed uses it, so we repeated the measurement
+over groups of $128$ input channels --- the granularity GPTQ, AWQ and bitsandbytes all quantize at.
+Grouped $4$-bit reaches $0.1812$: an order of magnitude better, and still short of $0.6353$ by a
+factor of three and a half. Granularity is not what kills it. What remains untested is calibration,
+the half those methods add on top of grouping, and we do not implement it.
 
 \paragraph{The fixed-point set does not survive $4$ bits either, and its natural statistic hides
 that.} At $4$ bits \texttt{pythia-410m}'s bit vector differs from its full-precision self on $8$
@@ -324,9 +327,11 @@ positions out of $3471$, which reads as near-perfect robustness. The model has $
 tokens in that index and keeps $0$ of them. We report kept fractions, never Hamming counts, for the
 reason \S\ref{sec:e1} gives.
 
-\paragraph{Numeric precision, and why it is reported per model.} Reading the same weights at
-\texttt{bfloat16} instead of \texttt{float32} changes the destination on $29\%$ of sources for one
-model and on $65\%$ for another --- floors of $0.7089$ and $0.3458$. There is no single precision
+\paragraph{Numeric precision, and why it is reported per model.}% F189, results/floor_survey.json
+Reading the same weights at \texttt{bfloat16} instead of \texttt{float32} changes the destination on
+$2\%$ of sources for one model and on $80\%$ for another --- floors of $0.9778$ and $0.201$ across
+eight models. There is no single precision floor for this instrument, and the spread is wide enough
+that a paper quoting one model's would be quoting one model's. There is no single precision
 floor for this instrument; the smaller model is roughly twice as brittle. In \texttt{float32} the
 measurement is invariant to how tokens are grouped into batches ($0$ of $18254$ argmaxes change); in
 \texttt{bfloat16} it is not ($163$ of $3683$), so part of any \texttt{bfloat16} floor is
@@ -337,9 +342,10 @@ sources where the winner beats the runner-up by a margin raises the precision fl
 the flipped destinations are near-ties. But it removes exactly the low-confidence sources that
 carried the discrimination: at the threshold we registered as primary, the corpus pair sits at
 $0.9981$ against a floor of $0.9983$ --- indistinguishable from numeric noise. Signal and noise live
-in the same place. An intermediate threshold looks much better, and we do not report it as a result:
-its pre-registered replication on held-out models returned \textsc{not decidable}, because the
-held-out floor reached $1.0$ and left nothing to resolve against.
+in the same place. An intermediate threshold looks much better, and it is not a result:
+surveying every model's floor across the ladder, \emph{all eight} sit at or above $0.99$ at that
+threshold. The ratio has no stable denominator anywhere in the cohort, so the rung is not merely
+unreplicated --- it is unresolvable on this estimand, and we retire it.
 
 % =================================================================================================
 \section{Limits}\label{sec:limits}
@@ -354,7 +360,9 @@ say tokenizer contributes nothing.
 
 \textbf{The architecture result rests on four models from two families}, the same four whose errors
 generated the hypothesis, and its perfect separation is $0.90$ once the dominant destination is
-excluded. A hybrid architecture would be the informative test and ours failed to load.
+excluded. A hybrid architecture would be the
+informative test; ours could not be loaded --- a weight-tying incompatibility between the checkpoint
+and the modelling code, not a capacity limit --- and the test is owed rather than answered.
 
 \textbf{Corpus varies but is not controlled}, so no claim here is a corpus claim.
 

@@ -3794,6 +3794,17 @@ serving stacks are untouched.
 p-value. Feature A is reported as a kept fraction throughout and never as a Hamming count, which is
 R13's rule and the one F187 had to learn when $8$ of $3471$ turned out to be total loss.
 
+**A third arm attempted and refused, recorded so nobody repeats the unsafe half.** F188 excluded
+`Zamba2-2.7B` on a `ValueError` and left the hybrid-architecture cell owed. Diagnosed here: the
+failure is a `tie_weights_keys` incompatibility between the checkpoint and the modelling code for the
+shared transformer blocks, and it survives every loader path tried — default, `_fast_init=False`,
+`low_cpu_mem_usage=False`. **The one bypass that "works" must not be used.** Passing
+`tie_word_embeddings=False` loads the model and leaves **133 tensors randomly initialised, including
+`lm_head.weight`** and the shared blocks across layers 18–51 — Zamba2's architecture *is* block
+sharing, so disabling the tying disables the model. Any measurement taken that way would be noise
+carrying a model's name, and it would have looked clean. The cell stays owed, and the paper's Limits
+says so.
+
 `experiments/floor_survey.py`, `experiments/quant_grouped.py` → `results/floor_survey.json`,
 `results/quant_grouped.json`.
 
