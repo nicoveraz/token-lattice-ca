@@ -7,10 +7,28 @@ Everything the arXiv form asks for, in the order it asks. Adapted from `paper3_a
 
 ## Status
 
-**Draft complete and reviewed; not submitted.** Unlike papers 2 and 3 this one is not waiting on an
-external identifier — what it is waiting on is the author's decision that it is finished. The
-prior-art gate that blocked write-up (F186) has run, the delta paragraphs it mandated are §3, and
-three arms run *after* the draft (F189, F190) have been folded in.
+**PARKED 25 Aug 2026, by author decision, pending paper 3's arXiv identifier.** The draft is complete,
+reviewed and green; the release is prepared but not cut. The prior-art gate that blocked write-up
+(F186) has run, the delta paragraphs it mandated are §3, and three arms run *after* the draft (F189,
+F190) have been folded in.
+
+**What the wait is actually for, and it is short.** Nothing in paper 4's *argument* depends on paper
+3 — the manuscript cites paper 1 and no other companion, because paper 1 is the only one its delta
+runs against. What the identifier buys is coherence in the metadata: paper 4's comments line names
+its companions, and naming two of three while the third sits announced-but-unnamed is the kind of
+small wrongness that outlives the reason for it. Cutting one release that carries both papers'
+identifiers is cheaper than cutting two.
+
+**Resume list, when the identifier exists:**
+1. Add paper 3 to the **Comments** line below, making it three companions.
+2. Add paper 3 to `CITATION.cff` under `identifiers` in **both** forms, then
+   `python -m pytest tests/test_citation_cff.py -q`.
+3. Update the README — badge row, papers section, and the Citation section, replacing the
+   placeholder written at `7e102bb`.
+4. Merge `paper4` into `main` per `MERGE_MANIFEST.md`, push, and cut the release from
+   `paper4_arxiv/RELEASE_NOTES.md`.
+
+Steps 1–3 are metadata. Step 4 is the release, and its notes are already written.
 
 ## Title
 
@@ -46,7 +64,7 @@ reach.
 ## Comments
 
 ```
-7 pages, 3 tables. Companion to arXiv:2608.10986 and arXiv:2608.21315. Code, per-run results, pre-registrations and the findings ledger: https://github.com/nicoveraz/token-lattice-ca (archived: https://doi.org/10.5281/zenodo.21880472)
+8 pages, 3 tables. Companion to arXiv:2608.10986 and arXiv:2608.21315. Code, per-run results, pre-registrations and the findings ledger: https://github.com/nicoveraz/token-lattice-ca (archived: https://doi.org/10.5281/zenodo.21880472)
 ```
 
 Paper 3 is not named because it has no identifier yet. Add it when it announces.
