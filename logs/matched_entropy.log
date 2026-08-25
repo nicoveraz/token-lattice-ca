@@ -1,0 +1,12 @@
+  pairing verified against its freeze: 9f3012b7d1ff0ea0cdf5955cc49a65e4...
+Loading weights:   0%|          | 0/292 [00:00<?, ?it/s]Loading weights: 100%|██████████| 292/292 [00:00<00:00, 6727.77it/s]
+  EleutherAI/pythia-410m-deduped     raw/A/B done (696s)
+Loading weights:   0%|          | 0/218 [00:00<?, ?it/s]Loading weights: 100%|██████████| 218/218 [00:00<00:00, 4744.93it/s]
+  HuggingFaceTB/SmolLM-1.7B          raw/A/B done (3221s)
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5822.34it/s]
+  Qwen/Qwen1.5-1.8B                  raw/A/B done (3623s)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5847.77it/s]
+  Qwen/Qwen2.5-1.5B-Instruct         raw/A/B done (2851s)
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 4667.86it/s]
+/Users/nicoveraz/anaconda3/lib/python3.11/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
