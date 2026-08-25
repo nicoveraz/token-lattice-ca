@@ -8,7 +8,22 @@ which was written for the same form and whose lessons are carried rather than re
 
 ## Status
 
-**Ready to upload.** The one thing paper 3 was waiting for — paper 2's arXiv identifier — exists:
+**SUBMITTED 25 Aug 2026, and ON HOLD.** arXiv has the submission and its moderators are reviewing
+it; it has no identifier and may not be cited, linked or recorded anywhere until it announces. The
+submission number is deliberately **not written down here** — it does not resolve, and an identifier
+that does not resolve is worse in a citation record than an absent one.
+
+**On hold is a normal state, not a rejection.** arXiv holds a fraction of submissions for moderator
+review and contacts the author only if something is needed; most clear within days. Nothing is
+owed from this end unless they write. If they do ask about placement, the relevant facts are that
+this paper was submitted to `cs.CL`, matching papers 1 and 2, while the account's default category
+is `cs.LG` — and that consistency across the series is the reason, recorded below under Primary
+category before the submission was made.
+
+**Downstream:** paper 4 is parked on this identifier (`paper4_arxiv/SUBMISSION.md`), so a long hold
+delays that release rather than anything about paper 4 itself.
+
+The one thing paper 3 had been waiting for — paper 2's arXiv identifier — exists:
 **arXiv:2608.21315**, announced 21 Aug 2026. `refs.bib` now carries `veraz2026domain`,
 `CITATIONS.md` entry 11 records it, and Setup and §E3 cite it.
 

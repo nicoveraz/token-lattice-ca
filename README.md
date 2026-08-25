@@ -109,7 +109,7 @@ nearest mechanistic account, attention-sink dominance, predicts the sign of the 
 models, which is chance. What is left is the prompt–model pair.
 
 **Paper 3 — the cohort.** *What a Cross-Model Fixed-Point Census Can and Cannot Arbitrate About
-Repetition.* **Submitted; awaiting announcement**, 9 pages; source in
+Repetition.* **Submitted; on hold at arXiv, awaiting announcement**, 9 pages; source in
 [`paper3_arxiv/`](paper3_arxiv/).
 
 Its subject is what the readout says across models rather than within one. Two accounts of neural
