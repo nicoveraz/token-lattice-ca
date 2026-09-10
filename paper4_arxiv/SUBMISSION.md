@@ -19,6 +19,28 @@ its companions, and naming two of three while the third sits announced-but-unnam
 small wrongness that outlives the reason for it. Cutting one release that carries both papers'
 identifiers is cheaper than cutting two.
 
+**The cost of not waiting was checked, 10 Sep 2026, and it is larger than the paragraph above
+assumed.** arXiv will not edit the Comments field of an announced paper as metadata: *"To allow
+authors to make changes to the comments and other metadata fields of publicly announced articles
+without generating a new version … is open to abuse and thus not allowed"*
+([replace](https://info.arxiv.org/help/replace.html)). The documented exceptions are journal
+reference, DOI and report number only — *"no new article version will be generated when journal
+reference, DOI or report number information is added"*
+([jref](https://info.arxiv.org/help/jref.html)). So uploading before paper 3 announces does not
+defer naming it; it converts naming it into **paper 4 v2, whose only change is one line of
+comments**, permanently in the version history. That is the argument for waiting, and it is stronger
+than metadata tidiness.
+
+**A second reason to wait, weaker and separate.** `MERGE_MANIFEST.md` states that submitting a
+fourth paper while the third is under moderation review "is the action most likely to lengthen that
+review". That is the author's judgement, not arXiv policy — the moderation page says nothing about
+holds or concurrent submissions, and its only rate guidance is *"no more than three papers per
+day"*. What it does say is adjacent and does apply: *"Submitters who have had works previously
+delayed or declined by arXiv should anticipate closer scrutiny on future submissions"*
+([moderation](https://info.arxiv.org/help/moderation/index.html)). Paper 3 is currently delayed, so
+paper 4 submitted now should expect a hold of its own — which is a cost, but not evidence that it
+lengthens paper 3's.
+
 **Resume list, when the identifier exists:**
 1. Add paper 3 to the **Comments** line below, making it three companions.
 2. Add paper 3 to `CITATION.cff` under `identifiers` in **both** forms, then
@@ -116,13 +138,26 @@ abstract.
 or `SELF` — no entry rests on the F186 gate's summary, and fetching the three that did corrected the
 record twice. `veraz2026domain` is deliberately absent from `refs.bib` until a sentence cites it.
 
-## The one field this document cannot fill
+## Licence — resolved, no longer an open field
 
-**The arXiv licence selector.** It is irrevocable once submitted and is not recorded for papers 1–3,
-so it cannot be matched from this repository. The repo licenses its prose and research record as
-**CC BY 4.0** (`LICENSE-docs`), which makes CC BY 4.0 the consistent choice — but confirm it against
-a companion's abstract page before selecting, and then record it here so paper 5 does not rediscover
-the question. This is the second paper to reach submission with this gap.
+```
+Creative Commons Attribution 4.0 (CC BY 4.0)
+```
+
+**Checked against the companions' own abstract pages, 10 Sep 2026, rather than inferred.** Both
+announced papers carry CC BY 4.0: [arXiv:2608.10986](https://arxiv.org/abs/2608.10986) (v1, 11 Aug
+2026) and [arXiv:2608.21315](https://arxiv.org/abs/2608.21315) (v1, 21 Aug 2026). That matches the
+repository's own `LICENSE-docs`, so consistency and the repo's stated policy point the same way and
+the selector needs no judgement call at the form.
+
+The selection is **irrevocable once submitted**, which is why it is verified here rather than at the
+form. It is recorded so paper 5 does not rediscover the question — paper 4 was the second paper to
+reach submission with this gap, and `paper3_arxiv/SUBMISSION.md` has no licence section at all.
+
+**Paper 3's selection is still unknown.** It was made at submission on 25 Aug and never written
+down; it can be read off its abstract page once it announces, and should be recorded there then. If
+it turns out not to be CC BY 4.0, that is a divergence to note rather than to fix — the field cannot
+be changed after the fact.
 
 ## After upload
 
