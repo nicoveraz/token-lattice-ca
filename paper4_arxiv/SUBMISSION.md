@@ -7,6 +7,10 @@ Everything the arXiv form asks for, in the order it asks. Adapted from `paper3_a
 
 ## Status
 
+**UNPARKED 25 Sep 2026: paper 3 announced as arXiv:2609.29507.** Resume steps 1–3 below are done;
+step 4's merge was already executed on 25 Aug (`MERGE_MANIFEST.md`), so what is left is to push
+these commits and cut `v1.3.0`. What follows records the park as it stood.
+
 **PARKED 25 Aug 2026, by author decision, pending paper 3's arXiv identifier.** The draft is complete,
 reviewed and green; the release is prepared but not cut. The prior-art gate that blocked write-up
 (F186) has run, the delta paragraphs it mandated are §3, and three arms run *after* the draft (F189,
@@ -50,7 +54,8 @@ lengthens paper 3's.
 4. Merge `paper4` into `main` per `MERGE_MANIFEST.md`, push, and cut the release from
    `paper4_arxiv/RELEASE_NOTES.md`.
 
-Steps 1–3 are metadata. Step 4 is the release, and its notes are already written.
+Steps 1–3 are metadata. Step 4 is the release, and its notes are already written. **Steps 1–3 were
+done 25 Sep 2026.**
 
 ## Title
 
@@ -86,10 +91,11 @@ reach.
 ## Comments
 
 ```
-8 pages, 3 tables. Companion to arXiv:2608.10986 and arXiv:2608.21315. Code, per-run results, pre-registrations and the findings ledger: https://github.com/nicoveraz/token-lattice-ca (archived: https://doi.org/10.5281/zenodo.21880472)
+8 pages, 3 tables. Companion to arXiv:2608.10986, arXiv:2608.21315 and arXiv:2609.29507. Code, per-run results, pre-registrations and the findings ledger: https://github.com/nicoveraz/token-lattice-ca (archived: https://doi.org/10.5281/zenodo.21880472)
 ```
 
-Paper 3 is not named because it has no identifier yet. Add it when it announces.
+All three companions are named, in announcement order. Paper 3 was added on 25 Sep 2026 when it
+announced; this is the one-line change the park was waiting for.
 
 ## Abstract (plain text, ready to paste)
 
@@ -154,10 +160,8 @@ The selection is **irrevocable once submitted**, which is why it is verified her
 form. It is recorded so paper 5 does not rediscover the question — paper 4 was the second paper to
 reach submission with this gap, and `paper3_arxiv/SUBMISSION.md` has no licence section at all.
 
-**Paper 3's selection is still unknown.** It was made at submission on 25 Aug and never written
-down; it can be read off its abstract page once it announces, and should be recorded there then. If
-it turns out not to be CC BY 4.0, that is a divergence to note rather than to fix — the field cannot
-be changed after the fact.
+**Paper 3's selection is CC BY 4.0**, read off [its abstract page](https://arxiv.org/abs/2609.29507)
+on 25 Sep 2026 and now recorded in `paper3_arxiv/SUBMISSION.md`. All four papers are consistent.
 
 ## After upload
 

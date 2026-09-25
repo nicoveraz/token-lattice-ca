@@ -8,20 +8,21 @@ which was written for the same form and whose lessons are carried rather than re
 
 ## Status
 
-**SUBMITTED 25 Aug 2026, and ON HOLD.** arXiv has the submission and its moderators are reviewing
-it; it has no identifier and may not be cited, linked or recorded anywhere until it announces. The
-submission number is deliberately **not written down here** — it does not resolve, and an identifier
-that does not resolve is worse in a citation record than an absent one.
+**ANNOUNCED as [arXiv:2609.29507](https://arxiv.org/abs/2609.29507)**, DOI
+`10.48550/arXiv.2609.29507`, `cs.CL`, licence **CC BY 4.0** (read off the abstract page on 25 Sep
+2026). It spent several weeks on hold before announcement; the September-series identifier comes
+from that delay, not from a resubmission.
 
-**On hold is a normal state, not a rejection.** arXiv holds a fraction of submissions for moderator
-review and contacts the author only if something is needed; most clear within days. Nothing is
-owed from this end unless they write. If they do ask about placement, the relevant facts are that
-this paper was submitted to `cs.CL`, matching papers 1 and 2, while the account's default category
-is `cs.LG` — and that consistency across the series is the reason, recorded below under Primary
-category before the submission was made.
+**Correction to this file's earlier record:** it said "submitted 25 Aug". arXiv's own record is
+**v1, Mon 24 Aug 2026 18:08:36 UTC**, the date cited everywhere else. The 25 Aug was the local date
+of the commit that recorded the hold, not the date of the submission.
 
-**Downstream:** paper 4 is parked on this identifier (`paper4_arxiv/SUBMISSION.md`), so a long hold
-delays that release rather than anything about paper 4 itself.
+**Licence, recorded late:** CC BY 4.0, the same as papers 1 and 2 and `LICENSE-docs`. This file had no
+licence section when the selection was made; `paper4_arxiv/SUBMISSION.md` records why that is now
+checked before submission.
+
+**Downstream:** paper 4 was parked on this identifier and is now unblocked
+(`paper4_arxiv/SUBMISSION.md`).
 
 The one thing paper 3 had been waiting for — paper 2's arXiv identifier — exists:
 **arXiv:2608.21315**, announced 21 Aug 2026. `refs.bib` now carries `veraz2026domain`,

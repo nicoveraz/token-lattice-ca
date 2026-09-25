@@ -21,6 +21,12 @@ identifiers:
   - type: doi
     value: 10.48550/arXiv.2608.21315
     description: "Paper 2 arXiv DOI"
+  - type: other
+    value: "arXiv:2609.29507"
+    description: "Paper 3 preprint, cs.CL, 24 Aug 2026"
+  - type: doi
+    value: 10.48550/arXiv.2609.29507
+    description: "Paper 3 arXiv DOI"
   - type: doi
     value: 10.5281/zenodo.21880472
     description: "Concept DOI — resolves to the latest archived version"

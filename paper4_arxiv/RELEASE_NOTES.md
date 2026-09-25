@@ -1,8 +1,8 @@
 # Prepared release notes — `v1.3.0`
 
-**Not cut.** Held pending paper 3's arXiv identifier, so one release can carry both papers'
-metadata. Everything below is computed against `v1.2.0` and is final except the two lines marked
-`<<<`.
+**Ready to cut.** It was held for paper 3's arXiv identifier so that one release could carry both
+papers' metadata; that identifier is arXiv:2609.29507 and is recorded below. Everything here is
+computed against `v1.2.0`.
 
 Cut with:
 
@@ -88,10 +88,9 @@ result is a map defined on the whole vocabulary, with two halves.
 |---|---|
 | Paper 1 — the instrument | [arXiv:2608.10986](https://arxiv.org/abs/2608.10986) |
 | Paper 2 — the domain | [arXiv:2608.21315](https://arxiv.org/abs/2608.21315) |
-| Paper 3 — the cohort | `<<< arXiv:NNNN.NNNNN` |
+| Paper 3 — the cohort | [arXiv:2609.29507](https://arxiv.org/abs/2609.29507) |
 | Paper 4 — provenance | draft complete, not submitted |
 
 `CITATION.cff` carries every announced paper under `identifiers`, each with its bare arXiv ID and its
 DOI; `preferred-citation` stays pointed at paper 1, which is the citation for the *software*.
 
-`<<< before cutting: replace paper 3's row above, and confirm CITATION.cff and the README carry its identifier.`
